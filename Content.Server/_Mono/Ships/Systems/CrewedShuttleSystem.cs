@@ -4,7 +4,6 @@
 
 using Content.Server.Shuttles.Components;
 using Content.Shared._Mono.FireControl;
-using Content.Shared._Mono.Ships.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 
@@ -16,16 +15,17 @@ namespace Content.Server._Mono.Ships.Systems;
 public sealed class CrewedShuttleSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    public bool AnyConsoleActiveByPlayer<T>(Entity<CrewedShuttleComponent?> shuttle, Enum key, EntityUid actor) where T : IComponent
-    {
-        if (!Resolve(shuttle.Owner, ref shuttle.Comp, false))
-            return false;
 
+    public bool AnyConsoleActiveOnGridByPlayer<T>(EntityUid grid, Enum key, EntityUid actor) where T : IComponent
+    {
         var query = EntityQueryEnumerator<T>();
 
         while (query.MoveNext(out var uid, out _))
         {
-            if (Transform(uid).ParentUid != shuttle.Owner)
+            var xform = Transform(uid);
+            var consoleGrid = xform.GridUid;
+
+            if (consoleGrid != grid && xform.ParentUid != grid)
                 continue;
 
             if (!TryComp<UserInterfaceComponent>(uid, out var ui))
@@ -40,13 +40,13 @@ public sealed class CrewedShuttleSystem : EntitySystem
         return false;
     }
 
-    public bool AnyGunneryConsoleActiveByPlayer(Entity<CrewedShuttleComponent?> shuttle, EntityUid actor)
+    public bool AnyGunneryConsoleActiveOnGridByPlayer(EntityUid grid, EntityUid actor)
     {
-        return AnyConsoleActiveByPlayer<FireControlConsoleComponent>(shuttle, FireControlConsoleUiKey.Key, actor);
+        return AnyConsoleActiveOnGridByPlayer<FireControlConsoleComponent>(grid, FireControlConsoleUiKey.Key, actor);
     }
 
-    public bool AnyShuttleConsoleActiveByPlayer(Entity<CrewedShuttleComponent?> shuttle, EntityUid actor)
+    public bool AnyShuttleConsoleActiveOnGridByPlayer(EntityUid grid, EntityUid actor)
     {
-        return AnyConsoleActiveByPlayer<ShuttleConsoleComponent>(shuttle, ShuttleConsoleUiKey.Key, actor);
+        return AnyConsoleActiveOnGridByPlayer<ShuttleConsoleComponent>(grid, ShuttleConsoleUiKey.Key, actor);
     }
 }
