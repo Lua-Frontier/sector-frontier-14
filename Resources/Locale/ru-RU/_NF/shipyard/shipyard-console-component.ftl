@@ -81,3 +81,5 @@ shipyard-console-unassign-deed = Отвязать от ID
 shipyard-console-contraband-onboard = На борту обнаружена контрабанда.
 shipyard-console-station-resources = На борту обнаружены жизненно важные ресурсы станции.
 shipyard-console-dangerous-materials = На борту обнаружены опасные материалы.
+
+shipyard-console-limited = Достигнут предел по активным шаттлам этого типа, попробуйте снова позже.
