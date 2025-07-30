@@ -31,6 +31,19 @@
     Diethylamine: 2
 
 - type: reaction
+  id: UncookedAnimalProteins
+  minTemp: 340
+  reactants:
+    Oxygen:
+      amount: 1
+    Benzene:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    UncookedAnimalProteins: 1
+    
+- type: reaction
   id: Phenol
   reactants:
     Hydroxide:
