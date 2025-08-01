@@ -108,3 +108,32 @@
     damage:
       types:
         Heat: 40
+
+# Tier 1-2-3- Default stuff
+- type: entity
+  id: ThrusterPiratesT3
+  name: ракетный двигатель
+  suffix: Пираты, Т3
+  parent: ThrusterPirates
+  components:
+  - type: Machine
+    board: ThrusterMachineCircuitboardT3
+
+- type: entity
+  id: ThrusterSyndieT3
+  name: ракетный двигатель
+  suffix: Синди, Т3
+  parent: ThrusterSyndie
+  components:
+  - type: Machine
+    board: ThrusterMachineCircuitboardT3
+
+- type: entity
+  id: ThrusterNfsdT3
+  name: ракетный двигатель
+  suffix: СБ, Т3
+  parent: ThrusterNfsd
+  components:
+  - type: Machine
+    board: ThrusterMachineCircuitboardT3
+

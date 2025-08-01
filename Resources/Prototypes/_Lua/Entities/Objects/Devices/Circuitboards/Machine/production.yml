@@ -95,3 +95,48 @@
       Uranium: 10
       Plasma: 30
       Plasteel: 10
+
+# Default thrusters t4
+
+- type: entity
+  id: ThrusterMachineCircuitboardT4
+  parent: BaseMachineCircuitboard
+  name: thruster machine board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: Thruster
+    stackRequirements:
+      Plasteel: 5
+      BluespaceCapacitor: 4
+
+# Default thrusters t3
+- type: entity
+  id: ThrusterMachineCircuitboardT3
+  parent: BaseMachineCircuitboard
+  name: thruster machine board
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: Thruster
+    stackRequirements:
+      Plasteel: 5
+      SuperCapacitor: 4
+
+# Default thrusters t2
+- type: entity
+  id: ThrusterMachineCircuitboardT2
+  parent: BaseMachineCircuitboard
+  name: thruster machine board
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: Thruster
+    stackRequirements:
+      Plasteel: 5
+      AdvancedCapacitor: 4
