@@ -1,0 +1,67 @@
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: technology
+  id: UniversalRailgunAmmo
+  name: research-technology-universal-railgun-ammo
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/charonslug.rsi
+    state: railgun_slug
+  discipline: FactionUniversal
+  tier: 1
+  cost: 20000
+  recipeUnlocks:
+  - CharonSlugUniversal
+
+- type: technology
+  id: UniversalTorpedoAmmo
+  name: research-technology-universal-asm220-ammo
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/asm220.rsi
+    state: space_artillery
+  discipline: FactionUniversal
+  tier: 2
+  cost: 40000
+  recipeUnlocks:
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
+
+- type: technology
+  id: Universal150mmAmmo
+  name: research-technology-universal-150mm-ammo
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/150mmtarnyx.rsi
+    state: 150mm_standard
+  discipline: FactionUniversal
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - 150mmApShellUniversal
+  - 150mmEmpShellUniversal
+
+- type: technology
+  id: UniversalLightFighterOrdinance
+  name: research-technology-universal-light-fighter-ordinance
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/GPO.rsi
+    state: GPO
+  discipline: FactionUniversal
+  tier: 1
+  cost: 20000
+  recipeUnlocks:
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+
+- type: technology
+  id: UniversalAdvancedLightFighterOrdinance
+  name: research-technology-universal-advanced-light-fighter-ordinance
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/quasar.rsi
+    state: quasar
+  discipline: FactionUniversal
+  tier: 3
+  cost: 40000
+  recipeUnlocks:
+  - QuasarAcceleratorUniversal
