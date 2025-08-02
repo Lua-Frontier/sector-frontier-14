@@ -95,20 +95,3 @@
       Uranium: 10
       Plasma: 30
       Plasteel: 10
-
-
-# Default thrusters t3
-- type: entity
-  id: ThrusterUpgradedT3Circuitboard
-  parent: BaseMachineCircuitboard
-  name: thruster machine board
-  categories: [HideSpawnMenu]
-  components:
-  - type: Sprite
-    sprite: /Textures/Objects/Misc/module.rsi
-    state: supply
-  - type: MachineBoard
-    prototype: ThrusterUpgradedT3
-    stackRequirements:
-      Plasteel: 5
-      SuperCapacitor: 4
