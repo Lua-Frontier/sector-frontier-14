@@ -53,7 +53,7 @@
       offset: 0, 1
   - type: RadarBlip # Mono
     radarColor: "#99FF99"
-    scale: 1
+    scale: 0.3
     shape: diamond
 
 - type: entity
@@ -109,31 +109,57 @@
       types:
         Heat: 40
 
-# Tier 1-2-3- Default stuff
+# Thrusters (Soon Large/Small)
 - type: entity
-  id: ThrusterPiratesT3
+  id: ThrusterUpgradedT3
   name: ракетный двигатель
-  suffix: Пираты, Т3
-  parent: ThrusterPirates
+  suffix: Тир 3
+  parent: [BaseThruster, ConstructibleMachine]
   components:
   - type: Machine
-    board: ThrusterMachineCircuitboardT3
-
-- type: entity
-  id: ThrusterSyndieT3
-  name: ракетный двигатель
-  suffix: Синди, Т3
-  parent: ThrusterSyndie
-  components:
-  - type: Machine
-    board: ThrusterMachineCircuitboardT3
-
-- type: entity
-  id: ThrusterNfsdT3
-  name: ракетный двигатель
-  suffix: СБ, Т3
-  parent: ThrusterNfsd
-  components:
-  - type: Machine
-    board: ThrusterMachineCircuitboardT3
-
+    board: ThrusterMachineCircuitboard
+  - type: Thruster
+    damage:
+      types:
+        Heat: 40
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+  - type: Sprite
+    sprite: _Lua/Structures/Thrusters/thrusterpirates.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+  - type: RadarBlip # Mono
+    radarColor: "#99FF99"
+    scale: 0.3
+    shape: diamond
