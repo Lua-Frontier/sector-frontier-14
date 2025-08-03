@@ -40,8 +40,8 @@
       tableId: DungeonBluespaceEventsTable
     minimumTimeUntilFirstEvent: 600 # 10 minutes
     minMaxEventTiming:
-      min: 2100 # 35 minutes between events
-      max: 2400 # 40 minutes between events
+      min: 4200 #2100 # 35<70 minutes between events Lua
+      max: 4800 #2400 # 40<80 minutes between events Lua
 
 - type: entityTable
   id: DungeonBluespaceEventsTable
@@ -61,8 +61,8 @@
       tableId: SalvageBluespaceEventsTable
     minimumTimeUntilFirstEvent: 420 # 7 minutes
     minMaxEventTiming:
-      min: 2100 # 35 minutes between events
-      max: 2400 # 40 minutes between events
+      min: 4200 #2100 # 35 minutes between events Lua
+      max: 4800 #2400 # 40 minutes between events Lua
 
 - type: entityTable
   id: SalvageBluespaceEventsTable

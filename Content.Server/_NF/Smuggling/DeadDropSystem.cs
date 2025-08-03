@@ -63,8 +63,8 @@ public sealed class DeadDropSystem : EntitySystem
     private int _maxSimultaneousPods = 5;
     private int _minDeadDropTimeout = 900;
     private int _maxDeadDropTimeout = 5400;
-    private int _minDeadDropDistance = 6500;
-    private int _maxDeadDropDistance = 8000;
+    private int _minDeadDropDistance = 10500;
+    private int _maxDeadDropDistance = 12500;
     private int _minDeadDropHints = 3;
     private int _maxDeadDropHints = 5;
     public override void Initialize()

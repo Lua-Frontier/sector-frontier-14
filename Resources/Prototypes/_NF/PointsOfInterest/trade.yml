@@ -12,8 +12,8 @@
   id: Trade
   parent: BasePOI
   name: 'Торговый Аванпост'
-  minimumDistance: 1500
-  maximumDistance: 2500
+  minimumDistance: 2000 #1500 Lua
+  maximumDistance: 12500 #2500 Lua
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trade.yml
   addComponents:

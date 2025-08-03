@@ -320,7 +320,7 @@
   - type: Extractable
     grindableSolutionName: food
   - type: DamageOnInteract
-    damage: 
+    damage:
       types:
         Heat: 4
         Caustic: 4
@@ -347,7 +347,7 @@
             volume: -5
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DamageOnHit 
+  - type: DamageOnHit
     damage:
       types:
         Blunt: 5 # The nettle will "wilt" after 5 hits.
@@ -1780,9 +1780,9 @@
         maxVol: 40
         reagents:
         - ReagentId: Ultravasculine
-          Quantity: 20
+          Quantity: 4 #20 Lua
         - ReagentId: Epinephrine
-          Quantity: 20
+          Quantity: 5 #20 Lua
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/lingzhi.rsi
   - type: Item

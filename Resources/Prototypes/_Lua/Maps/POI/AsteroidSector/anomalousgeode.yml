@@ -16,8 +16,8 @@
   id: AnomalousGeodeLua
   parent: BasePOI
   name: 'Аномальный Обломок'
-  minimumDistance: 2100
-  maximumDistance: 3800
+  minimumDistance: 4000 #2100
+  maximumDistance: 8000 #3800
   spawnGroup: AsteroidRequired
   gridPath: /Maps/_NF/POI/anomalousgeode.yml
   addComponents:
