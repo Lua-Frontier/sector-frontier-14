@@ -1,25 +1,38 @@
 using Content.Server._Mono.Radar;
 using Content.Shared.Buckle.Components;
 using Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
+using Content.Shared._Mono.Radar; // Frontier
 
 namespace Content.Server._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
 public sealed class VehicleSystem : SharedVehicleSystem
 {
+    //// Frontier: extra logic (radar blips, faction stuff)
+    [Dependency] private readonly RadarBlipSystem _radar = default!;
+
+    /// <summary>
+    /// Configures the radar blip for a vehicle entity.
+    /// </summary>
     protected override void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args)
     {
         base.OnStrapped(ent, ref args);
-
-        var blip = EnsureComp<RadarBlipComponent>(ent);
-        blip.RadarColor = Color.Cyan;
-        blip.Scale = 0.5f;
-        blip.VisibleFromOtherGrids = true;
+        _radar.SetupVehicleRadarBlip(ent);
     }
 
     protected override void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args)
     {
         RemComp<RadarBlipComponent>(ent);
-
         base.OnUnstrapped(ent, ref args);
+    }
+
+    protected override void HandleEmag(Entity<VehicleComponent> ent)
+    {
+        RemComp<RadarBlipComponent>(ent);
+    }
+
+    protected override void HandleUnemag(Entity<VehicleComponent> ent)
+    {
+        if (ent.Comp.Driver != null)
+            _radar.SetupVehicleRadarBlip(ent);
     }
 }

@@ -1,0 +1,40 @@
+
+- type: vessel
+  id: GFSYRiman
+  parent: BaseVessel
+  name: GF Riman
+  description: Старинный шаттл некогда крупной судоверфи Гефест. Обладает всем необходимым для научных исследований и утилизации обломков.
+  price: 128000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/riman2.yml
+  guidebookPage: null
+  class:
+  - Science
+  - Salvage
+  engine:
+  - Uranium
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFSYRiman
+  mapName: 'GF Riman'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/riman2.yml
+  minPlayers: 0
+  stations:
+    GFSYRiman:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'GF Riman {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

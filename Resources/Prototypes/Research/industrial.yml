@@ -1,3 +1,4 @@
+# region FRONTIER - IGNORED
 # Tier 1
 
 - type: technology
@@ -11,7 +12,6 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
-  - WeaponGrapplingGun # Frontier
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
@@ -70,7 +70,6 @@
   - ProtolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
   - SheetifierMachineCircuitboard
-  - MaterialSiloMachineCircuitboard # Frontier
 
 - type: technology
   id: PowerGeneration
@@ -120,7 +119,6 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
-  - MechEquipmentFork # Frontier
 
 # Tier 2
 
@@ -128,7 +126,7 @@
   id: Shuttlecraft
   name: research-technology-shuttlecraft
   icon:
-    sprite: _NF/Structures/Shuttles/gyroscope.rsi # Frontier: add _NF prefix
+    sprite: Structures/Shuttles/gyroscope.rsi
     state: base
   discipline: Industrial
   tier: 2
@@ -138,9 +136,6 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
-  - MiniStationAnchorCircuitboard # Frontier
-  - SmallThrusterMachineCircuitboard # Frontier
-  - SmallGyroscopeMachineCircuitboard # Frontier
 
 - type: technology
   id: AdvancedAtmospherics
@@ -155,7 +150,6 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
-  #  - FireExtinguisherBluespace # DeltaV
   technologyPrerequisites:
   - AtmosphericTech
 
@@ -172,10 +166,9 @@
     - WelderExperimental
     - PowerDrill
     - JawsOfLife
-    - UtilityBeltChiefEngineer
     - BorgModuleAdvancedTool
-    # - Fulton # Frontier
-    # - FultonBeacon # Frontier
+    - Fulton
+    - FultonBeacon
 
 - type: technology
   id: MassExcavation
@@ -192,20 +185,20 @@
   - AdvancedMineralScannerEmpty
   - BorgModuleAdvancedMining
 
-- type: technology
-  id: Ripley2
-  name: research-technology-ripley-mkii
-  icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
-    state: ripleymkii
-  discipline: Industrial
-  tier: 2
-  cost: 8000
-  recipeUnlocks:
-  - RipleyMKIIHarness
-  - RipleyUpgradeKit
-  technologyPrerequisites:
-  - RipleyAPLU
+# - type: technology
+#   id: Ripley2
+#   name: research-technology-ripley-mkii
+#   icon:
+#     sprite: Objects/Specific/Mech/mecha.rsi
+#     state: ripleymkii
+#   discipline: Industrial
+#   tier: 2
+#   cost: 8000
+#   recipeUnlocks:
+#   - RipleyMKIIHarness
+#   - RipleyUpgradeKit
+#   technologyPrerequisites:
+#   - RipleyAPLU
 
 - type: technology
   id: Clarke
@@ -242,12 +235,11 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
-  - ClothingBackpackMessengerHolding # Frontier
   - BotanistBagOfHolding # Lua
 
 - type: technology
-  id: PortableFission
-  name: research-technology-portable-fission
+  id: OptimizedMicrogalvanism
+  name: research-technology-optimized-microgalvanism
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: microreactor
@@ -256,19 +248,6 @@
   cost: 10000
   recipeUnlocks:
   - PowerCellMicroreactor
-  - PortableGeneratorDKJrMachineCircuitboard # Frontier
+  # - PowerCellHyper # Frontier: moved to PowerCellHyperNF
   technologyPrerequisites:
   - AdvancedPowercells
-
-- type: technology
-  id: RapidConstruction
-  name: research-technology-rapid-construction
-  icon:
-    sprite: _NF/Objects/Tools/rcd.rsi
-    state: icon-shipyard # Frontier
-  discipline: Industrial
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-    - ShipyardRCD # Frontier: RCD<ShipyardRCD
-    - ShipyardRCDAmmo # Frontier: RCDAmmo<ShipyardRCDAmmo

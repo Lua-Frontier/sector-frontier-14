@@ -237,7 +237,7 @@
   parent: DrinkCanBaseFull
   id: BrennNightCan
   name: банка BrennNight
-  description: Для настоящих ублюдков, прямо как автор. Выглядит немного демонически, немного магически, имеет удобную ручку и прикреплённую трубочку. Алкогольный напиток с привкусом перца.
+  description: Для настоящих ублюдков, прямо как автор. Выглядит немного демонически, немного магически, имеет удобную ручку и прикреплённую трубочку. Алкогольный напиток с привкусом перца. Имеет три предупреждения о возможных летальных исходах."Пить не больше одного глотка в две минуты."
   components:
   - type: SolutionContainerManager
     solutions:
@@ -269,7 +269,7 @@
       drink:
         maxVol: 40
         reagents:
-        - ReagentId: BrennNightDrink
+        - ReagentId: MaxwellDrink
           Quantity: 40
       grindable:
         reagents:
@@ -282,3 +282,28 @@
     sprite: _Lua/Objects/Consumable/Drinks/Maxwell_Aska.rsi
   - type: Item
     sprite: _Lua/Objects/Consumable/Drinks/Maxwell_Aska.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: FaustNetzachCan
+  name: банка FaustNetzach
+  description: Сначала ощущается лёгкая неопределённость вкуса с морозной ноткой, а затем раскрывается тонкий аромат фиалок.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: FaustNetzachDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/FaustNetzach.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/FaustNetzach.rsi

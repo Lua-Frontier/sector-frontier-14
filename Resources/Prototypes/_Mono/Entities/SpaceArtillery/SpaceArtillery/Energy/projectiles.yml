@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: 2025 Blu
+# SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 RikuTheKiller
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # MARAUDER
 
 - type: entity
@@ -9,10 +18,10 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 750
-        Structural: 1250
-        Heat: 750
-        Ion: 900
+        Radiation: 750 #1250
+        Structural: 1250 #4250
+        Heat: 750 #350
+        Ion: 600 #350
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     layers:
@@ -26,16 +35,50 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 3.3
+    lifetime: 6.6
   - type: PointLight
     radarColor: "#C92BCC"
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
-    totalIntensity: 100
+    explosionType: DefaultShipGun
+    totalIntensity: 250
     intensitySlope: 6
     maxIntensity: 25
     maxTileBreak: 1
+
+# M25
+
+- type: entity
+  id: ShipM25Projectile
+  name: M25 projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 15
+        Heat: 35
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+    layers:
+    - state: plasmashot
+    scale: 0.4, 0.4
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 0.5
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 3
+  - type: PointLight
+    radarColor: "#C92BCC"
+  - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
 
 # RUBICON
 
@@ -48,8 +91,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 75
-        Heat: 115
+       # Radiation: 75
+        Heat: 15
         Ion: 375
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
@@ -64,13 +107,13 @@
     requireNoGrid: true
     shape: circle
   - type: TimedDespawn
-    lifetime: 3.3
+    lifetime: 6.6
   - type: PointLight
     color: "#FB00FF"
   - type: EmpOnTrigger
     range: 4
     energyConsumption: 2700000
-    disableDuration: 5
+    disableDuration: 10
 
 
 # DYMERE
@@ -99,12 +142,12 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 4.4
+    lifetime: 6
   - type: PointLight
     color: "#6BC1FF"
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: HardBomb
+    explosionType: HardBombShipGun
     totalIntensity: 1250
     intensitySlope: 10
     maxIntensity: 55

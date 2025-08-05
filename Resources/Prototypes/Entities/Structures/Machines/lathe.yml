@@ -175,7 +175,7 @@
 
 - type: entity
   id: Protolathe
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, NFBlueprintReceiverBase] # Frontier: Add BlueprintRecieverBase as parent
   name: protolathe
   description: Converts raw materials into advanced items.
   components:
@@ -516,9 +516,6 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - GoobWeaponAmmo
-      - N14AmmoPack
-      - RMCAmmoPack
       - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
     - type: MaterialStorage
       whitelist:

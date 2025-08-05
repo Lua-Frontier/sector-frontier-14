@@ -146,21 +146,12 @@ public sealed class ShipVsShipPOISystem : EntitySystem
     private Vector2 GetRandomPOICoord(float minRange, float maxRange)
     {
         int numRetries = _cfg.GetCVar(NFCCVars.POIPlacementRetries);
-        float minDistance = _cfg.GetCVar(NFCCVars.MinPOIDistance);
 
         Vector2 coords = _random.NextVector2(minRange, maxRange);
         for (int i = 0; i < numRetries; i++)
         {
             bool valid = true;
             foreach (var station in _stationCoords)
-            {
-                if (Vector2.Distance(station, coords) < minDistance)
-                {
-                    valid = false;
-                    break;
-                }
-            }
-
             if (valid)
                 break;
 

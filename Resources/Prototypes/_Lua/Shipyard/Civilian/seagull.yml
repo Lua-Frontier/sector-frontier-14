@@ -1,0 +1,40 @@
+
+- type: vessel
+  id: GFSYSeagull
+  parent: BaseVessel
+  name: GF Seagull
+  description: Старинный шаттл некогда крупной судоверфи Гефест. Сконструированный для быстрых спасательных операций, он готов предложить оборудование для крионики, химическую лабораторию и гидропонику любому медику.
+  price: 82000
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/seagull.yml
+  guidebookPage: null
+  class:
+  - Medical
+  - Chemistry
+  engine:
+  - Uranium
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFSYSeagull
+  mapName: 'GF Seagull'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/seagull.yml
+  minPlayers: 0
+  stations:
+    GFSYSeagull:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'GF Seagull {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

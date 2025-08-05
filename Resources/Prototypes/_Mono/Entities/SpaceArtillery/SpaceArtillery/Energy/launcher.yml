@@ -1,3 +1,14 @@
+# SPDX-FileCopyrightText: 2025 Blu
+# SPDX-FileCopyrightText: 2025 BlueHNT
+# SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 RikuTheKiller
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 kyres1
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # MARAUDER
 
 - type: entity
@@ -22,7 +33,7 @@
     range: 500
   - type: Gun
     fireRate: 0.5
-    projectileSpeed: 180
+    projectileSpeed: 90
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
     soundEmpty:
@@ -63,13 +74,78 @@
   - type: ShipGunClass
     shipClass: Medium
 
+ # M25
+
+- type: entity
+  id: WeaponTurretM25
+  name: M25 mining pulser
+  parent: BallisticArtillery
+  description: Uses mechanisms to launch... something. Destroys rock easily.
+  components:
+  - type: StaticPrice
+    price: 1500
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/m25.rsi
+    layers:
+    - state: space_artillery
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 4.0
+    projectileSpeed: 40
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 350
+  - type: SpaceArtillery
+    powerChargeRate: 350
+    powerUsePassive: 500
+    powerUseActive: 0
+  - type: Actions
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipM25Projectile
+    fireCost: 100
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 1
+  - type: ShipGunType
+    shipType: Energy
+  - type: ShipGunClass
+    shipClass: Superlight
+
 # RUBICON
 
 - type: entity
   id: WeaponTurretM220
   name: M220 RUBICON EMP launcher
   parent: BallisticArtillery
-  description: Launches EMP projectiles at ships. Can be remotely activated, or linked up to a GCS.
+  description: Launches EMP projectiles at ships, disabling systems with powerful electromagnetic pulses. Ideal for non-lethal engagements and can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
     price: 5000
@@ -87,7 +163,7 @@
     range: 500
   - type: Gun
     fireRate: 0.2
-    projectileSpeed: 120
+    projectileSpeed: 90
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
     soundEmpty:
@@ -107,13 +183,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 800
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
+        damage: 12000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -134,7 +204,7 @@
   id: WeaponTurretDymere
   name: ADEX-9 DYMERE Turbolaser
   parent: BallisticArtilleryUnanchorable
-  description: Aetherion Dynamics Weapons Development Branch's most iconic product. Ionized gas projectiles will melt through anything you put in front of them. Can be remotely activated, or linked up to a GCS.
+  description: Aetherion Dynamics' most iconic supercapital battery. Fires enormous ionized gas projectiles that melt through the toughest ship armor. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
     price: 60000
@@ -159,7 +229,7 @@
           bounds: "-0.75,-0.75,0.75,0.75"
         density: 1500
   - type: Gun
-    projectileSpeed: 285
+    projectileSpeed: 150
     fireRate: 0.75
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/laserfire.ogg
@@ -184,4 +254,4 @@
   - type: ShipGunType
     shipType: Energy
   - type: ShipGunClass
-    shipClass: Medium
+    shipClass: Superheavy

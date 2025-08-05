@@ -157,3 +157,18 @@
         reagent: Ethanol
         amount: 0.2
   pricePerUnit: 6
+
+- type: reagent
+  id: FaustNetzachDrink
+  name: reagent-name-faustnetzach
+  group: Drinks
+  desc: reagent-desc-faustnetzach
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: sweet
+  color: "#ffb8c2"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 6
+  pricePerUnit: 6

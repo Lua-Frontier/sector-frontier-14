@@ -29,6 +29,7 @@
       - type: CommandStaff
       - type: Company
         companyName: Nanotrasen
+      - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -42,4 +43,5 @@
     - Flash
     - RubberStampSr
     - DoorRemoteCommand
-    - EncryptionKeyStationMaster
+  encryptionKeys:
+  - EncryptionKeyStationMaster

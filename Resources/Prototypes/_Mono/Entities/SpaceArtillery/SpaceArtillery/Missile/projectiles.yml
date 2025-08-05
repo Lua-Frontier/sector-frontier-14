@@ -1,3 +1,12 @@
+# SPDX-FileCopyrightText: 2025 Blu
+# SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 RikuTheKiller
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # VESPERA
 
 - type: entity
@@ -9,7 +18,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 550 #450
+        Structural: 450
         Blunt: 65
         Heat: 10
   - type: Sprite
@@ -25,23 +34,23 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 6
+    lifetime: 3.5
   - type: PointLight
     radius: 3.5
     color: orange
     energy: 0.5
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
-    totalIntensity: 125 #75
+    explosionType: DefaultShipGun
+    totalIntensity: 75
     intensitySlope: 8
     maxIntensity: 25
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 150
-    detectionRange: 200
+    acceleration: 75
+    detectionRange: 300
     scanArc: 40
     launchSpeed: 60
     maxSpeed: 150
@@ -68,7 +77,7 @@
     damage:
       types:
         Structural: 1000
-        Blunt: 450
+        Blunt: 175
         Heat: 50
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -83,14 +92,14 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 6
+    lifetime: 4.5
   - type: PointLight
     radius: 3.5
     color: orange
     energy: 0.5
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    explosionType: DefaultShipGun
     totalIntensity: 150
     intensitySlope: 10
     maxIntensity: 55
@@ -98,21 +107,12 @@
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 200
-    detectionRange: 300
-    scanArc: 40
-    launchSpeed: 100
-    maxSpeed: 180
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100 # Lua
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
+    acceleration: 100
+    detectionRange: 450
+    scanArc: 70
+    launchSpeed: 90
+    maxSpeed: 210
+    trackDelay: 0.7
 
 # ASM-501
 
@@ -141,36 +141,27 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 10
+    lifetime: 15
   - type: PointLight
     radius: 5
     color: orange
     energy: 2
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: DemolitionCharge
+    explosionType: DefaultShipGun
     maxIntensity: 6000
-    intensitySlope: 15
-    totalIntensity: 1500
+    intensitySlope: 30
+    totalIntensity: 6000
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 50
-    detectionRange: 500
+    acceleration: 25
+    detectionRange: 300
     scanArc: 50
-    launchSpeed: 50
-    maxSpeed: 110
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 1000 # Lua
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
+    launchSpeed: 25
+    maxSpeed: 30
+    trackDelay: 4
 
 # TOVEK
 
@@ -183,9 +174,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 500 #7500
+        #Structural: 7500
         Heat: 30
-        Ion: 5000 #2500
+        Ion: 2500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/hybrid_missile.rsi
     layers:
@@ -199,7 +190,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 4.2
+    lifetime: 6.5
   - type: PointLight
     radius: 3.5
     color: orange
@@ -210,7 +201,7 @@
     disableDuration: 5
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    explosionType: DefaultShipGun
     totalIntensity: 100
     intensitySlope: 10
     maxIntensity: 50
@@ -219,18 +210,9 @@
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 80
-    detectionRange: 300
-    scanArc: 50
-    launchSpeed: 100
-    maxSpeed: 300
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 150 # Lua
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
+    acceleration: 40
+    detectionRange: 450
+    scanArc: 80
+    launchSpeed: 50
+    maxSpeed: 125
+    trackDelay: 1.2
