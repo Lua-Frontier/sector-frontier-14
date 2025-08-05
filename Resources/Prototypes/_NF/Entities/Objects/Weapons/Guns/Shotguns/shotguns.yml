@@ -14,12 +14,17 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Gun
+    soundGunshot:
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
     fireRate: 3
     selectedMode: FullAuto
     availableModes:
     - FullAuto
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-gorlex-steel-works
+  - type: Item
+    shape:
+    - 0,0,4,1
 
 - type: entity
   id: NFWeaponShotgunDoubleBarreled
@@ -33,6 +38,8 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Item
+    shape:
+    - 0,0,3,0
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: BallisticAmmoProvider
     capacity: 2
@@ -56,9 +63,15 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
+    shape:
+    - 0,0,3,1
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_metal.ogg
+    fireRate: 2
 
 - type: entity
   id: NFWeaponShotgunKammerer
@@ -68,17 +81,22 @@
     An old yet faithful design, and a favorite among irregular forces on many worlds.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    shape:
+    - 0,0,4,0
   - type: BallisticAmmoProvider
     capacity: 5
   - type: Gun
-    fireRate: 1
+    soundGunshot:
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_alt.ogg
+    fireRate: 2
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
+    
 
 - type: entity
   id: NFWeaponShotgunSawn
@@ -88,13 +106,16 @@
     Groovy!
   components:
   - type: Sprite
-    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Clothing
-    sprite: _DV/Objects/Weapons/Guns/Shotguns/sawn.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
     size: Small
   - type: Gun
-    fireRate: 2
+    soundGunshot:
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_sawed.ogg
+    fireRate: 4
   - type: BallisticAmmoProvider
     capacity: 2
   - type: NFWeaponDetails
@@ -152,6 +173,8 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: Item
+    shape:
+    - 0,0,3,0
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: BallisticAmmoProvider
     capacity: 1
@@ -179,6 +202,10 @@
   - type: Construction
     graph: ImprovisedShotgunGraph
     node: shotgun
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_pipe.ogg
+
 
 #region Less-lethal
 - type: entity
