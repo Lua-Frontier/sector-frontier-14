@@ -105,8 +105,8 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: PowerSink
-    totalIntensity: 900000.0
-    intensitySlope: 50
+    totalIntensity: 900000.0 # 21 radius, wipes plastitanium
+    intensitySlope: 120
     maxIntensity: 1000
   - type: PointLight
     radius: 3.5

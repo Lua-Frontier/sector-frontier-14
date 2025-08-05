@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: MagnusCrowe
+# GitHub:
 # Discord: MagnusCrowe
 
 # Maintainer Info
@@ -10,34 +10,25 @@
 # Basic Trade Outpost buying point for economy and great wealth
 - type: pointOfInterest
   id: Trade
-  parent: BasePOI
-  name: 'Торговый Аванпост'
-  minimumDistance: 2000 #1500 Lua
-  maximumDistance: 12500 #2500 Lua
+  name: Trade Outpost
+  minimumDistance: 1500
+  maximumDistance: 2500
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trade.yml
   addComponents:
   - type: IFF
     color: "#37C837"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
   - type: StationTransit
-    routes:
-      TradeExpress: 10
   - type: ProtectedGrid
     preventArtifactTriggers: true
-  - type: SolarPoweredGrid # Just in case somebody sets them up
-    trackOnInit: true
-    doNotCull: true
-  - type: WorldGenDistanceCarver
-    distanceThresholds:
-      # Dead zone
-      - maxDistance: 500
-        prob: 0.0
-      - maxDistance: 1000
-        prob: 0.3
 
 - type: gameMap
   id: Trade
-  mapName: 'Торговый Аванпост'
+  mapName: 'Trade Outpost'
   mapPath: /Maps/_NF/POI/trade.yml
   minPlayers: 0
   stations:
@@ -45,8 +36,6 @@
       stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Торговый Аванпост'
+          mapNameTemplate: 'Trade Outpost'
         - type: StationDeadDrop
           maxDeadDrops: 3 # Many here, it's huge.
-        - type: TradeCrateDestination
-          destinationProto: Trade
