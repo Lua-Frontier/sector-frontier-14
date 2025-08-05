@@ -144,3 +144,24 @@
   technologyPrerequisites:
   - ShuttleGunDuster
   position: 4, 47
+
+- type: technology
+  id: ShuttleShields
+  name: research-technology-shields
+  entityIcon: CircularShieldBase
+  discipline: Shiparmory
+  tier: 3
+  cost: 12600
+  recipeUnlocks:
+  - CharonSlugUniversal
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
+  - CharonSlugUniversal
+  - 150mmApShellUniversal
+  - 150mmEmpShellUniversal
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+  - QuasarAcceleratorUniversal
+  technologyPrerequisites:
+  - ShuttleShields
+  position: 4, 48
