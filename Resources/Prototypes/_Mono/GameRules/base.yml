@@ -5,10 +5,10 @@
     - type: BasicStationEventScheduler
       scheduledGameRules: !type:NestedSelector
         tableId: MonoAISTCEventsTable
-      minimumTimeUntilFirstEvent: 10800 # 180 minutes
+      minimumTimeUntilFirstEvent: 1800 # 30 minutes
       minMaxEventTiming:
         min: 5400 # 90 minutes between events
-        max: 9000 # 150 minutes between events
+        max: 13500 # 225 minutes between events
 
 - type: entityTable
   id: MonoAISTCEventsTable
@@ -27,6 +27,6 @@
     weight: 10
     reoccurrenceDelay: 90
     duration: 1
-    maxOccurrences: 2 # should be the same as [copies] in ship_spawns.yml
+    maxOccurrences: 24 # should be the same as [copies] in ship_spawns.yml Lua
   - type: RuleGrids
   - type: LoadMapRule

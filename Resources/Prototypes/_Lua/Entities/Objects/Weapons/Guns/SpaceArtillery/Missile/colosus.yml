@@ -105,9 +105,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: PowerSink
-    totalIntensity: 300000.0
-    intensitySlope: 10
-    maxIntensity: 5000
+    totalIntensity: 900000.0 # 21 radius, wipes plastitanium
+    intensitySlope: 120
+    maxIntensity: 1000
   - type: PointLight
     radius: 3.5
     color: orange
@@ -123,7 +123,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: RadarBlip
-    scale: 3.5
+    scale: 5
     requireNoGrid: true
     radarColor: "#e5ff00"
     shape: triangle

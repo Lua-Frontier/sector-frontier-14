@@ -45,7 +45,6 @@ entities:
       name: grid
     - type: Transform
       pos: 47.5,-5.5
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -1589,8 +1588,6 @@ entities:
       pos: 0.5,5.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
 - proto: AltarFrameNF
@@ -1682,10 +1679,6 @@ entities:
     - type: Transform
       pos: -2.5,10.5
       parent: 1
-    - type: UserInterface
-      actors:
-        enum.ApcUiKey.Key:
-        - invalid
     - type: ActiveUserInterface
   - uid: 28
     components:
@@ -4377,8 +4370,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0055CCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
   - uid: 493
@@ -4390,8 +4381,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0055CCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
   - uid: 494
@@ -4400,8 +4389,6 @@ entities:
       pos: -0.5,12.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
 - proto: GasVentScrubber
@@ -4415,8 +4402,6 @@ entities:
     - type: AtmosPipeColor
       color: '#990000FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
   - uid: 496
@@ -4428,8 +4413,6 @@ entities:
     - type: AtmosPipeColor
       color: '#990000FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
   - uid: 497
@@ -4441,8 +4424,6 @@ entities:
     - type: AtmosPipeColor
       color: '#990000FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
   - uid: 498
@@ -4451,8 +4432,6 @@ entities:
       pos: 0.5,12.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4
   - uid: 499

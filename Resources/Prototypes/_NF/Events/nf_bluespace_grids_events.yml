@@ -300,6 +300,7 @@
         paths:
         - /Maps/_NF/Bluespace/mcevent.yml
 
+#Lua events return by Supernoob
 - type: entity
   id: BluespaceAsteroid
   parent: BaseStationEventShortDelay
@@ -315,13 +316,14 @@
     weight: 5
     duration: 1500
     maxDuration: 1800
-  - type: BluespaceErrorRule
+    reoccurrenceDelay: 240 # once per 4 hours
+  - type: BluespaceErrorRuleAsteroid
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-UnusualAsteroid
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 5500
         addComponents:
         - type: Gravity
           enabled: true
@@ -351,13 +353,14 @@
     weight: 3
     duration: 2100
     maxDuration: 2400
-  - type: BluespaceErrorRule
+    reoccurrenceDelay: 240 # once per 4 hours
+  - type: BluespaceErrorRuleAsteroid
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-UnusualAsteroid
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
         addComponents:
         - type: Gravity
           enabled: true

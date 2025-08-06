@@ -12,8 +12,8 @@
   id: Nfsd
   parent: BasePOI
   name: 'Аванспост ДСБФ'
-  minimumDistance: 750
-  maximumDistance: 1000
+  minimumDistance: 2000 #750 Lua
+  maximumDistance: 3000 #1000 Lua
   spawnGroup: Required
   gridPath: /Maps/_Lua/POI/nfsd.yml
   addComponents:

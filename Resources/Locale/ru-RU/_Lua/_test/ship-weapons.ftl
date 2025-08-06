@@ -50,3 +50,4 @@ research-technology-turret-two-ap = Бронебойные миномётные 
 research-technology-turret-two-he = Фугасные миномётные снаряды
 research-technology-turret-two-pf = Бесконтактные миномётные снаряды
 research-technology-turret-teslalaser = Компактное хранение энергии
+research-technology-mono-weapons = Эксперементальное вооружение

@@ -15,5 +15,5 @@ public sealed partial class StationDeadDropComponent : Component
     ///     Maximum number of dead drops to spawn on the station.
     /// </summary>
     [DataField]
-    public int MaxDeadDrops = 3;
+    public int MaxDeadDrops = 2;
 }

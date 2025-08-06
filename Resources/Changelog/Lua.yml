@@ -632,3 +632,50 @@ Entries:
   id: 46
   time: '2025-08-05T06:00:54.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/97
+- author: salo2016
+  changes:
+    - type: Remove
+      message: Гиб уроном гуманоидов - можно только через крюк!
+    - type: Tweak
+      message: >-
+        Максимальная скорость шаттлов значительно повышена до среднего значения
+        в 50. Массивные шаттлы значительно медленее..
+    - type: Tweak
+      message: FTL+IFF новому шаттлу ИИ Nebula.
+    - type: Tweak
+      message: Фиксы проводки шаттлов - ремап Kettlebell, Baron, Mjolnir.
+    - type: Tweak
+      message: >-
+        Нёрф скорострельности Турели Тесла; Нёрф мутаций; Нёрф DeadDrop
+        листовок;
+    - type: Add
+      message: Авто-ивент спавна шаттлов реликтового ИИ.
+    - type: Tweak
+      message: Реликтовые ИИ враждебных шаттлов теперь ломаются.
+    - type: Fix
+      message: Патроны пистолета анаконда не пролетают сквозь игроков
+    - type: Tweak
+      message: Дистанция появления станций **значительно** увеличена.
+  id: 47
+  time: '2025-08-05T09:12:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/99
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Дискорд авторизация
+  id: 48
+  time: '2025-08-06T02:16:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/105
+- author: k1bitka
+  changes:
+    - type: Add
+      message: Добавлена локазилация для огнестрела, патронов, энергооружия
+    - type: Fix
+      message: >-
+        Изменены звуки выстрелов дробовиков, их размеры в сумке, их
+        скорострельность
+    - type: Remove
+      message: замедление при взятие большинства оружия в руки
+  id: 49
+  time: '2025-08-06T02:34:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/107

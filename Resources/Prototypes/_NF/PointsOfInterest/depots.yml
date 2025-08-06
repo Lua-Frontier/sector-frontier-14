@@ -12,8 +12,8 @@
   id: CargoDepot
   parent: BasePOI
   name: Торговый Терминал
-  minimumDistance: 4000
-  maximumDistance: 5000
+  minimumDistance: 6000 #4000 #lua
+  maximumDistance: 10000 #5000 #lua
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepot.yml
   addComponents: &cargoComponents
@@ -36,8 +36,8 @@
   id: CargoDepotAlt
   parent: BasePOI
   name: Торговый Терминал
-  minimumDistance: 4000
-  maximumDistance: 5000
+  minimumDistance: 6000 #4000 #lua
+  maximumDistance: 10000 #5000 #lua
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepotalt.yml
   addComponents: *cargoComponents
