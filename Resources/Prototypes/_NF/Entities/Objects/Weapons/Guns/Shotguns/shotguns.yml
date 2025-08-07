@@ -15,7 +15,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Gun
     soundGunshot:
-      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg #_Lua
     fireRate: 3
     selectedMode: FullAuto
     availableModes:
@@ -24,7 +24,7 @@
     manufacturer: weapon-details-manufacturer-gorlex-steel-works
   - type: Item
     shape:
-    - 0,0,4,1
+    - 0,0,4,1 #_Lua
 
 - type: entity
   id: NFWeaponShotgunDoubleBarreled
@@ -39,7 +39,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Item
     shape:
-    - 0,0,3,0
+    - 0,0,3,0 #_Lua
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: BallisticAmmoProvider
     capacity: 2
@@ -64,13 +64,13 @@
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
     shape:
-    - 0,0,3,1
+    - 0,0,3,1 #_Lua
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
   - type: Gun
     soundGunshot:
-      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_metal.ogg
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_metal.ogg #_Lua
     fireRate: 2
 
 - type: entity
@@ -81,19 +81,19 @@
     An old yet faithful design, and a favorite among irregular forces on many worlds.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi #_Lua
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi #_Lua
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi #_Lua
     shape:
-    - 0,0,4,0
+    - 0,0,4,0 #_Lua
   - type: BallisticAmmoProvider
     capacity: 5
   - type: Gun
     soundGunshot:
-      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_alt.ogg
-    fireRate: 2
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_alt.ogg #_Lua
+    fireRate: 2 #_Lua
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
     
@@ -106,16 +106,16 @@
     Groovy!
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi #_Lua
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi #_Lua
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi #_Lua
     size: Small
   - type: Gun
     soundGunshot:
-      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_sawed.ogg
-    fireRate: 4
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_sawed.ogg #_Lua
+    fireRate: 4 #_Lua
   - type: BallisticAmmoProvider
     capacity: 2
   - type: NFWeaponDetails
@@ -174,7 +174,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: Item
     shape:
-    - 0,0,3,0
+    - 0,0,3,0 #_Lua
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: BallisticAmmoProvider
     capacity: 1
@@ -204,7 +204,7 @@
     node: shotgun
   - type: Gun
     soundGunshot:
-      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_pipe.ogg
+      path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_pipe.ogg #_Lua
 
 
 #region Less-lethal

@@ -15,7 +15,7 @@ ent-NFMagazineHighCapacityPistol35Incendiary = магазин повышенно
 ent-NFMagazineHighCapacityPistol35Uranium = магазин повышенной ёмкости (.35 пистолетные, урановые)
 ent-NFMagazineHighCapacityPistol35Practice = магазин повышенной ёмкости (.35 пистолетные, учебные)
 ent-NFMagazineHighCapacityPistol35Emp = магазин повышенной ёмкости (.35 пистолетные, ЭМИ)
-ent-NFMagazinePistol35HighCapacityRubber = магазин повышенной ёмкости (.35 пистолетные, резиновые)
+ent-NFMagazineHighCapacityPistol35Rubber = магазин повышенной ёмкости (.35 пистолетные, резиновые)
 #.35 SMG
 ent-NFMagazineSubMachineGun35Empty = магазин ПП (.35 пистолетные, любой)
 ent-NFMagazineSubMachineGun35 = магазин ПП (.35 пистолетные)

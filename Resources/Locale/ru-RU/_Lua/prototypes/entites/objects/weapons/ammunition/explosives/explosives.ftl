@@ -1,0 +1,12 @@
+ent-NFCannonBall = пушечное ядро
+ent-NFCannonBallGlassshot = стеклянная картечь
+ent-NFCannonBallGrapeshot = пушечная картечь
+ent-NFCannonBallEmp = шоковое ядро
+ent-NFGrenadeFrag = осколочная граната
+ent-NFGrenadeBlast = фугасная граната
+ent-NFGrenadeFlash = светошумовая граната
+ent-NFGrenadeEMP = ЭМИ граната
+ent-NFCartridgeRocket = Ракета GR-44
+   .desc = Боеголовка диаметром 1,5 дюйма, предназначенная для реактивных СЗО. Выглядит как лопата.
+ent-NFCartridgeRocketEmp = ЭМИ Ракета GR-44
+   .desc = 1,5-дюймовая ЭМИ боеголовка, предназначенная для реактивных СЗО. Всё также выглядит как лопата.

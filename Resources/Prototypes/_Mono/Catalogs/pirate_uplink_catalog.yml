@@ -432,6 +432,54 @@
       - PirateUplink
 
 #MARK: Ammunition
+
+- type: listing
+  id: UplinkPirateCannonBall #_Lua
+  name: uplink-pirate-cannonball-name
+  desc: uplink-pirate-cannonball-desc
+  productEntity: CratePirateChestCannonBall
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+
+- type: listing
+  id: UplinkPirateGrapeShot #_Lua
+  name: uplink-pirate-GrapeShot-name
+  desc: uplink-pirate-GrapeShot-desc
+  productEntity: CratePirateChestGrapeShot
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+
+- type: listing
+  id: UplinkPirateGlassShots #_Lua
+  name: uplink-pirate-glassshots-name
+  desc: uplink-pirate-glassshots-desc
+  productEntity: CratePirateChestGlassShot
+  cost:
+    Doubloon: 2
+  categories:
+  - UplinkPirateAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+
+
+  
 - type: listing
   id: UplinkPirateShotgunDrum
   name: uplink-pirate-bulldog-ammo-name
@@ -618,6 +666,20 @@
 #       - PirateUplink
 
 #MARK: Weapons
+- type: listing
+  id: UplinkPiratePirateCannon #_Lua
+  name: uplink-pirate-pirate-cannon-name
+  description: uplink-pirate-pirate-cannon-desc
+  productEntity: NFWeaponLauncherPirateCannon
+  cost:
+   Doubloon: 15
+  categories:
+  - UplinkPirateWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
 
 - type: listing
   id: UplinkPirateEnergyCutlass
@@ -701,7 +763,7 @@
   id: UplinkPiratePython
   name: uplink-pirate-python-name
   description: uplink-pirate-python-desc
-  productEntity: WeaponRevolverPython
+  productEntity: NFWeaponRevolverRitland45 #_Lua
   icon: { sprite: Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
   cost:
     Doubloon: 4
@@ -717,7 +779,7 @@
   id: UplinkPirateViper
   name: uplink-pirate-viper-name
   description: uplink-pirate-viper-desc
-  productEntity: WeaponPistolViper
+  productEntity: NFWeaponPistolViper
   icon: { sprite: Objects/Weapons/Guns/Pistols/viper.rsi, state: icon }
   cost:
     Doubloon: 2
@@ -748,8 +810,8 @@
   id: UplinkPirateAk
   name: uplink-pirate-ak-name
   description: uplink-pirate-ak-desc
-  productEntity: WeaponRifleAk
-  icon: { sprite: Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
+  productEntity: NFWeaponRifleAssaultSm #_Lua
+  icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi, state: icon } #_Lua
   cost:
     Doubloon: 3
   categories:
@@ -812,8 +874,8 @@
   id: UplinkPirateLaserGun
   name: uplink-pirate-laser-gun-name
   description: uplink-pirate-laser-gun-desc
-  productEntity: WeaponLaserGun
-  icon: { sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi, state: icon }
+  productEntity: NFWeaponEnergyPistolLaser 
+  icon: { sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi, state: icon }
   cost:
     Doubloon: 2
   categories:
