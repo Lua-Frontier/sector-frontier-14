@@ -5209,21 +5209,11 @@ entities:
     - type: Transform
       pos: -2.5,-10.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        600:
-        - Pressed: Toggle
-        599:
-        - Pressed: Toggle
   - uid: 611
     components:
     - type: Transform
       pos: 5.5,-20.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        605:
-        - Pressed: Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 20
@@ -5232,34 +5222,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        602:
-        - Pressed: Toggle
-        598:
-        - Pressed: Toggle
   - uid: 21
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-7.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        597:
-        - Pressed: Toggle
-        601:
-        - Pressed: Toggle
-        608:
-        - Pressed: Toggle
-        606:
-        - Pressed: Toggle
-        604:
-        - Pressed: Toggle
-        607:
-        - Pressed: Toggle
-        603:
-        - Pressed: Toggle
 - proto: SignDirectionalEvac
   entities:
   - uid: 614
@@ -6590,51 +6558,23 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-9.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        868:
-        - WeaponOutputPort: WeaponInputPort
   - uid: 643
     components:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        870:
-        - WeaponOutputPort: WeaponInputPort
-        872:
-        - WeaponOutputPort: WeaponInputPort
-        873:
-        - WeaponOutputPort: WeaponInputPort
-        871:
-        - WeaponOutputPort: WeaponInputPort
   - uid: 878
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-9.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        869:
-        - WeaponOutputPort: WeaponInputPort
   - uid: 926
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-28.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        927:
-        - WeaponOutputPort: WeaponInputPort
-        929:
-        - WeaponOutputPort: WeaponInputPort
-        928:
-        - WeaponOutputPort: WeaponInputPort
-        925:
-        - WeaponOutputPort: WeaponInputPort
 - proto: ComputerGunneryConsoleFlatpack
   entities:
   - uid: 630

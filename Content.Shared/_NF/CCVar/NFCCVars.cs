@@ -102,7 +102,7 @@ public sealed class NFCCVars
     /// Base sell rate (multiplier: 0.95 = 95%)
     /// </summary>
     public static readonly CVarDef<float> ShipyardSellRate =
-        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.95f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.70f, CVar.SERVERONLY); // Lua 95%<70%
 
     /*
      * Salvage

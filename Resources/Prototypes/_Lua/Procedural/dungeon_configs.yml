@@ -1,25 +1,76 @@
 - type: dungeonConfig
   id: GateMineshaft
-  data:
-    colors:
-      Decals: "#FFFFFF"
-    entities:
-      Walls: WallRock
-      CornerWalls: WallRock
-      Cabling: Catwalk
-    spawnGroups:
-      CornerClutter: NFMineshaftClutter
-      Entrance: NFBaseWoodWall
-      EntranceFlank: NFBaseWoodWall
-      Junction: NFBaseWoodSupport
-      WallMounts: NFNanoTrasenFacilityWallmounts
-      Window: NFBaseWoodWall
-    tiles:
-      FallbackTile: FloorCaveDrought
-    whitelists:
-      Rooms:
-        tags:
-        - NFMineshaft
   layers:
-  - !type:PrototypeDunGen
-    proto: NFPlanetBase
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:EntranceFlankDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:ExternalWindowDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:WallMountDunGen
+    contents: NFNanoTrasenFacilityWallmounts
+    tile: FloorCaveDrought
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorCaveDrought
+    contents: NFBaseWoodSupport
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorCaveDrought
+    contents: NFBaseWoodSupport
+
+  - !type:AutoCablingDunGen
+    entity: Catwalk
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#FFFFFF"

@@ -9,10 +9,14 @@
     sprite: Structures/Machines/telecomms.rsi
     snapCardinals: true
     layers:
-    - state: icon
-    - state: unlit
+    - state: telecom-nopower
+    - state: telecom-stripe
+    - state: telecom-on
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      visible: false
+      map: ["telecom-on"]
+    - state: telecom-open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: ExtensionCableReceiver
   - type: Appearance
   - type: AmbientOnPowered
@@ -24,7 +28,7 @@
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
-        enum.PowerDeviceVisualLayers.Powered:
+        telecom-on:
           True: { visible: true }
           False: { visible: false }
   - type: Construction # Mono

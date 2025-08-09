@@ -849,17 +849,6 @@ entities:
     - type: InstantAction
       originalIconColor: '#FFFFFFFF'
       container: 2626
-- proto: ActionToggleJetpack
-  entities:
-  - uid: 2627
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 2626
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 2626
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -7086,15 +7075,6 @@ entities:
       toggleActionEntity: 2960
     - type: Physics
       canCollide: False
-    - type: Jetpack
-      toggleActionEntity: 2627
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 2627
-          - 2960
 - proto: ClothingUniformJumpskirtCMO
   entities:
   - uid: 1190

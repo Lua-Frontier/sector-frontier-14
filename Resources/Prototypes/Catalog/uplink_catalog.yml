@@ -1179,6 +1179,29 @@
       components:
       - SurplusBundle
 
+# Frontier
+
+# - type: listing
+#   id: UplinkStarterKit
+#   name: uplink-starter-kit-name
+#   description: uplink-starter-kit-desc
+#   productEntity: ClothingBackpackDuffelSyndicateFilledStarterKit
+#   cost:
+#     Telecrystal: 40
+#   categories:
+#   - UplinkDisruption
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#         - NukeOpsUplink
+#     - !type:BuyerWhitelistCondition
+#       blacklist:
+#         components:
+#         - SurplusBundle
+
+# End Frontier
+
 - type: listing
   id: UplinkSingarityBeacon
   name: uplink-singularity-beacon-name
