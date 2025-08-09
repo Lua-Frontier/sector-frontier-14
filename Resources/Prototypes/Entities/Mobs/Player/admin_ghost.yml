@@ -138,75 +138,93 @@
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
 
 - type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseAGhostAction
+  components:
+  - type: Action
+    icon: _Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
+    iconOn: _Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
+    keywords: [ "AI", "console", "interface" ]
+    priority: 20
+
+- type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowSolar
   name: Solar Control Interface
   description: View a Solar Control Interface.
   components:
   - type: InstantAction
-    icon: _Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
-    keywords: [ "AI", "console", "interface" ]
-    priority: 20
     event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
 
 - type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowCommunications
   name: Communications Interface
   description: View a Communications Interface.
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
     iconOn: _Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
 
 - type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowRadar
   name: Mass Scanner Interface
   description: View a Mass Scanner Interface.
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
     iconOn: _Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
 
 - type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowCargo
   name: Cargo Ordering Interface
   description: View a Cargo Ordering Interface.
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Corvax/Interface/AdminActions/cargo.png # Corvax-Resprite
     iconOn: _Corvax/Interface/AdminActions/cargo.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
 
 - type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowCrewMonitoring
   name: Crew Monitoring Interface
   description: View a Crew Monitoring Interface.
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
     iconOn: _Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
 
 - type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowStationRecords
   name: Station Records Interface
   description: View a Station Records Interface.
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Corvax/Interface/AdminActions/records.png # Corvax-Resprite
     iconOn: _Corvax/Interface/AdminActions/records.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }
 
 - type: entity
@@ -214,11 +232,12 @@
   name: Мониторинг Атмосферной Сети
   description: Используется для мониторинга атмосферных сетей станции
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Lua/Interface/AdminActions/atmos.png
     iconOn: _Lua/Interface/AdminActions/atmos.png
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.AtmosMonitoringConsoleUiKey.Key }
 
 - type: entity
@@ -226,11 +245,12 @@
   name: Консоль Оповещений
   description: Используется для доступа к автоматизированной системе оповещения станции
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Lua/Interface/AdminActions/atmosalert.png
     iconOn: _Lua/Interface/AdminActions/atmosalert.png
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.AtmosAlertsComputerUiKey.Key }
 
 - type: entity
@@ -238,9 +258,10 @@
   name: Консоль Контроля Питания
   description: Он отслеживает показатели энергии по всей станции
   components:
-  - type: InstantAction
+  - type: Action
     icon: _Lua/Interface/AdminActions/energy.png
     iconOn: _Lua/Interface/AdminActions/energy.png
     keywords: [ "AI", "console", "interface" ]
     priority: 20
+  - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.PowerMonitoringConsoleUiKey.Key }
