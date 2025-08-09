@@ -12,8 +12,8 @@
 - type: entity
   id: GunneryServerBase
   parent: BaseMachinePowered
-  name: ent-GunneryServerBase
-  description: ent-GunneryServerBase.desc
+  name: gunnery control server
+  description: Manages the remote operation of ship weapons.
   suffix: НЕ РАБОЧИЙ
   components:
   - type: Sprite
@@ -60,7 +60,7 @@
 - type: entity
   id: GunneryServerLow
   parent: GunneryServerBase
-  name: ent-GunneryServerLow
+  name: low-power gunnery control server
   suffix: 24
   components:
   - type: Machine
@@ -80,7 +80,7 @@
 - type: entity
   id: GunneryServerMedium
   parent: GunneryServerBase
-  name: ent-GunneryServerMedium
+  name: medium-power gunnery control server
   suffix: 42
   components:
   - type: Machine
@@ -100,7 +100,7 @@
 - type: entity
   id: GunneryServerHigh
   parent: GunneryServerBase
-  name: ent-GunneryServerHigh
+  name: high-power gunnery control server
   suffix: 60
   components:
   - type: Machine
@@ -120,7 +120,7 @@
 - type: entity
   id: GunneryServerUltra
   parent: [GunneryServerBase] # removed BaseStructureDisableToolUse
-  name: ent-GunneryServerUltra
+  name: ultra-high-power gunnery control server
   suffix: 90
   components:
   - type: Machine
@@ -142,7 +142,7 @@
 - type: entity
   id: GunneryServerOmega
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerOmega
+  name: Omega-high-power gunnery control server
   suffix: НЕ МАПИТЬ 150
   components:
   - type: Machine
@@ -164,7 +164,7 @@
 - type: entity
   id: GunneryServerStation
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerStation
+  name: station gunnery control server
   components:
   - type: Machine
     board: MachineGCSStationCircuitboard
@@ -185,7 +185,7 @@
 - type: entity
   id: GunneryServerStationConsolesEnforced
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerStationConsolesEnforced
+  name: station gunnery control server
   suffix: НЕ РАБОТАЕТ
   components:
   - type: Machine
@@ -208,8 +208,8 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerGunneryConsole
-  name: ent-ComputerGunneryConsole
-  description: ent-ComputerGunneryConsole.desc
+  name: консоль управления вооружением
+  description: Interfaces with the gunnery control server to operate ship weapons.
   placement:
     mode: SnapgridCenter
   components:
