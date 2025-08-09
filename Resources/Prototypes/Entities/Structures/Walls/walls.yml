@@ -1303,6 +1303,9 @@
     randomStates:
     - mining
     - miningB
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
   - type: Appearance
 
 - type: entity
@@ -1326,6 +1329,9 @@
   - type: Icon
     sprite: Structures/Walls/mining_diagonal.rsi
     state: state0
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
 

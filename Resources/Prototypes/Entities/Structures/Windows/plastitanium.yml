@@ -69,7 +69,7 @@
   # Frontier: colored indestructible windows
   description: Skub knows this window is too hard to destroy.
   components:
-  - type: Sprite 
+  - type: Sprite
     color: "#cdf3cd"
   # End Frontier
 
@@ -105,7 +105,7 @@
         acts: [ "Destruction" ]
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 20
+    damageDivisor: 200
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
@@ -169,7 +169,7 @@
   # Frontier: colored indestructible windows
   description: Skub knows this window is too hard to destroy.
   components:
-  - type: Sprite 
+  - type: Sprite
     color: "#cdf3cd"
   # End Frontier
 
@@ -206,7 +206,7 @@
         acts: [ "Destruction" ]
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 20
+    damageDivisor: 200 #Lua
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi

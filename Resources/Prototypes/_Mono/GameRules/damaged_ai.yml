@@ -15,9 +15,10 @@
     startAudio:
       path: /Audio/Misc/notice1.ogg
     weight: 2
-    maxOccurrences: 3
+    maxOccurrences: 6
     requiredJobs:
       Sheriff: 1
+    reoccurrenceDelay: 150 # 2.5 hours
   - type: LoadMapRule
     preloadedGrid: AIZenith
 
@@ -31,6 +32,7 @@
       path: /Audio/Misc/notice1.ogg
     weight: 2
     maxOccurrences: 6
+    reoccurrenceDelay: 120 # 2 hours
   - type: GameRule
     minPlayers: 25
   - type: LoadMapRule
@@ -45,7 +47,8 @@
     startAudio:
       path: /Audio/Misc/notice1.ogg
     weight: 3
-    maxOccurrences: 5
+    maxOccurrences: 12
+    reoccurrenceDelay: 60 # 1 hour
     requiredJobs:
       Sheriff: 1
   - type: LoadMapRule

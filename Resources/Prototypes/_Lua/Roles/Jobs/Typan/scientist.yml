@@ -44,6 +44,8 @@
       - type: NpcFactionMember
         factions:
         - LuaNordFoll
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplantNordfoll ]
 
 - type: startingGear
   id: SyndicateScience
