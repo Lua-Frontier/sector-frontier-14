@@ -12,8 +12,8 @@
 - type: entity
   id: GunneryServerBase
   parent: BaseMachinePowered
-  name: ent-GunneryServerBase-name
-  description: ent-GunneryServerBase-desc
+  name: ent-GunneryServerBase.name
+  description: ent-GunneryServerBase.desc
   components:
   - type: Sprite
     sprite: Structures/Machines/telecomms.rsi
@@ -55,7 +55,7 @@
 - type: entity
   id: GunneryServerLow
   parent: GunneryServerBase
-  name: ent-GunneryServerLow-name
+  name: ent-GunneryServerLow.name
   suffix: 24
   components:
   - type: Machine
@@ -75,7 +75,7 @@
 - type: entity
   id: GunneryServerMedium
   parent: GunneryServerBase
-  name: ent-GunneryServerMedium-name
+  name: ent-GunneryServerMedium.name
   suffix: 42
   components:
   - type: Machine
@@ -95,7 +95,7 @@
 - type: entity
   id: GunneryServerHigh
   parent: GunneryServerBase
-  name: ent-GunneryServerHigh-name
+  name: ent-GunneryServerHigh.name
   suffix: 60
   components:
   - type: Machine
@@ -115,7 +115,7 @@
 - type: entity
   id: GunneryServerUltra
   parent: [GunneryServerBase] # removed BaseStructureDisableToolUse
-  name: ent-GunneryServerUltra-name
+  name: ent-GunneryServerUltra.name
   suffix: 90
   components:
   - type: Machine
@@ -137,7 +137,7 @@
 - type: entity
   id: GunneryServerOmega
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerOmega-name
+  name: ent-GunneryServerOmega.name
   suffix: НЕ МАПИТЬ 150
   components:
   - type: Machine
@@ -159,7 +159,7 @@
 - type: entity
   id: GunneryServerStation
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerStation-name
+  name: ent-GunneryServerStation.name
   components:
   - type: Machine
     board: MachineGCSStationCircuitboard
@@ -180,7 +180,7 @@
 - type: entity
   id: GunneryServerStationConsolesEnforced
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerStationConsolesEnforced-name
+  name: ent-GunneryServerStationConsolesEnforced.name
   suffix: НЕ РАБОТАЕТ
   components:
   - type: Machine
@@ -203,8 +203,8 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerGunneryConsole
-  name: ent-ComputerGunneryConsole-name
-  description: ent-ComputerGunneryConsole-desc
+  name: ent-ComputerGunneryConsole.name
+  description: ent-ComputerGunneryConsole.desc
   placement:
     mode: SnapgridCenter
   components:

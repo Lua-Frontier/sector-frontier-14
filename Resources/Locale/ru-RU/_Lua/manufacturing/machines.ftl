@@ -19,16 +19,16 @@ ent-PlantManagerPDA-desc = В идеальном состоянии, но с с�
 ent-PlantTechnicianPDA-name = КПК Техника Электростанции
 ent-PlantTechnicianPDA-desc = Последний работник как-то погнул антенну кпк..
 
-ent-GunneryServerBase-name = Сервер Вооружения
-ent-GunneryServerBase-desc = Управляет дистанционно работой корабельных орудий.
-ent-GunneryServerLow-name = Малый сервер вооружения
-ent-GunneryServerMedium-name = Средний сервер вооружения
-ent-GunneryServerHigh-name = Высокомощный сервер вооружения
-ent-GunneryServerUltra-name = Ультра-Высокомощный сервер вооружения
-ent-GunneryServerOmega-name = Омега-Высокомощный сервер вооружения
-ent-GunneryServerStation-name = Стационный Сервер Вооружения
-ent-GunneryServerStationConsolesEnforced-name = Стационный Сервер Вооружения
-ent-ComputerGunneryConsole-name = консоль управления вооружением
-ent-ComputerGunneryConsole-desc = Консоль управления для взаимодействия с сервером вооружения корабельных орудий
+ent-GunneryServerBase.name = Сервер Вооружения
+ent-GunneryServerBase.desc = Управляет дистанционно работой корабельных орудий.
+ent-GunneryServerLow.name = Малый сервер вооружения
+ent-GunneryServerMedium.name = Средний сервер вооружения
+ent-GunneryServerHigh.name = Высокомощный сервер вооружения
+ent-GunneryServerUltra.name = Ультра-Высокомощный сервер вооружения
+ent-GunneryServerOmega.name = Омега-Высокомощный сервер вооружения
+ent-GunneryServerStation.name = Стационный Сервер Вооружения
+ent-GunneryServerStationConsolesEnforced.name = Стационный Сервер Вооружения
+ent-ComputerGunneryConsole.name = консоль управления вооружением
+ent-ComputerGunneryConsole.desc = Консоль управления для взаимодействия с сервером вооружения корабельных орудий
 
 
