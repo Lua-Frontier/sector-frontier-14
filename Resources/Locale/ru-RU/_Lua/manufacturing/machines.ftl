@@ -14,10 +14,10 @@ station-event-bluespace-name-SecureNTVault = Защищённое хранили
 station-event-bluespace-name-SyndicateWeaponsCache = Хранилище Вооружения Синдиката
 station-event-bluespace-name-UnusualAsteroid = Необычный Астероид
 
-ent-PlantManagerPDA-name = КПК Менеджера Электростанции
-ent-PlantManagerPDA-desc = В идеальном состоянии, но с сильным запахом озона.
-ent-PlantTechnicianPDA-name = КПК Техника Электростанции
-ent-PlantTechnicianPDA-desc = Последний работник как-то погнул антенну кпк..
+ent-PlantManagerPDA.name = КПК Менеджера Электростанции
+ent-PlantManagerPDA.desc = В идеальном состоянии, но с сильным запахом озона.
+ent-PlantTechnicianPDA.name = КПК Техника Электростанции
+ent-PlantTechnicianPDA.desc = Последний работник как-то погнул антенну кпк..
 
 ent-GunneryServerBase.name = Сервер Вооружения
 ent-GunneryServerBase.desc = Управляет дистанционно работой корабельных орудий.

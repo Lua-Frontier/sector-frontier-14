@@ -499,7 +499,7 @@
 - type: entity
   parent: BasePDA
   id: PlantTechnicianPDA
-  name: ent-PlantTechnicianPDA-name
+  name: ent-PlantTechnicianPDA.name
   description: ent-PlantTechnicianPDA-desc
   components:
   - type: Pda
@@ -518,8 +518,8 @@
 - type: entity
   parent: BasePDA
   id: PlantManagerPDA
-  name: ent-PlantManagerPDA-name
-  description: ent-PlantManagerPDA-desc
+  name: ent-PlantManagerPDA.name
+  description: ent-PlantManagerPDA.desc
   components:
   - type: Pda
     id: PlantManagerIDCard
