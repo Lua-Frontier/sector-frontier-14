@@ -167,8 +167,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
   - type: Damageable
     damageContainer: Inorganic
@@ -280,8 +284,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
 
 - type: entity
@@ -383,8 +391,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
 
 - type: entity
@@ -493,8 +505,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
 
 - type: entity
