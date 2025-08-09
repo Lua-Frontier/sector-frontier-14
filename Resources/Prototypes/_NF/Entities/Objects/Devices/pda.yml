@@ -499,8 +499,8 @@
 - type: entity
   parent: BasePDA
   id: PlantTechnicianPDA
-  name: КПК Техника Электростанции
-  description: Последний работник как-то погнул антенну кпк.. #Lua
+  name: ent-PlantTechnicianPDA-name
+  description: ent-PlantTechnicianPDA-desc
   components:
   - type: Pda
     id: PlantTechnicianIDCard
@@ -518,8 +518,8 @@
 - type: entity
   parent: BasePDA
   id: PlantManagerPDA
-  name: КПК Менеджера Электростанции
-  description: В идеальном состоянии, но с сильным запахом озона.
+  name: ent-PlantManagerPDA-name
+  description: ent-PlantManagerPDA-desc
   components:
   - type: Pda
     id: PlantManagerIDCard
