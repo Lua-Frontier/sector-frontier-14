@@ -11,7 +11,7 @@ uplink-clothing-chameleon-thieving-gloves-name = Воровские перчат
 uplink-clothing-chameleon-thieving-gloves-desc = Воровксие перчатки специально для ваших скрытных операций по воровству технологий Nanotrasen
 uplink-akms-name = АКМС
 uplink-akms-desc = Старая винтовка синдиката, специально для вашей самозащиты и нападения, она зарекомендовла себя временем!
-uplink-wspr-name = ВСПР 
+uplink-wspr-name = ВСПР
 uplink-wspr-desc = Новая винтовка синдиката, специально для вашей самозащиты и нападения, теперь имеет встроенный глушитель и дозвуковые патротны для повышения скрытности!
 #ritland
 uplink-revolver-ritland-name = Ритланд
@@ -30,3 +30,7 @@ uplink-emag-pass-desc = Работает как старший брат, но н
 #Bakery kit
 uplink-combat-bakery-name = Набор боевой выпечки
 uplink-pirate-glassshots-desc = Набор подпольного печёного оружия.
+uplink-XC67-name = XC-67
+uplink-XC67-desc = Старая винтовка синдиката, специально для вашей самозащиты и нападения, она зарекомендовла себя временем!
+uplink-rifle-magazine-XC67-name = Магазин для винтовки XC-67
+uplink-rifle-magazine-XC67-desc = Расширенный магазин для винтовки XC-67 под винтовочные патроны .20 калибра

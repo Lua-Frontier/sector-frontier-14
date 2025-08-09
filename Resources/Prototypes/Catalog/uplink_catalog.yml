@@ -259,7 +259,21 @@
   productEntity:  ClothingBackpackDuffelSyndicateFilledWSPR
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: uplinkXC67
+  name: uplink-XC67-name
+  description: uplink-XC67-desc
+  icon: { sprite: /Textures/ADT/Objects/Weapons/Guns/Rifels/xc67.rsi, state: icon }
+  productEntity:  ADTClothingBackpackDuffelSyndicateFilledXC67
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 8
   cost:
     Telecrystal: 14
   categories:
@@ -273,9 +287,9 @@
   productEntity: NFWeaponRifleAssaultSm
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 4
   cost:
-    Telecrystal: 12
+    Telecrystal: 8
   categories:
   - UplinkWeaponry
 
@@ -559,6 +573,17 @@
   # productEntity: MagazinePistolSubMachineGun # Frontier
   cost:
     Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineRifleWeaponXC67
+  name: uplink-rifle-magazine-XC67-name
+  description: uplink-rifle-magazine-XC67-desc
+  icon: { sprite: /Textures/ADT/Objects/Weapons/Guns/Ammunition/Magazine/ext_rifle_mag.rsi, state: base }
+  productEntity: ADTExtMagazineRifle
+  cost:
+    Telecrystal: 4
   categories:
   - UplinkAmmo
 
@@ -969,18 +994,18 @@
   categories:
   - UplinkDisruption
 
-# - type: listing # Frontier
-  # id: UplinkEmag
-  # name: uplink-emag-name
-  # description: uplink-emag-desc
-  # productEntity: Emag
-  # discountCategory: veryRareDiscounts
-  # discountDownTo:
-    # Telecrystal: 3
-  # cost:
-    # Telecrystal: 5
-  # categories:
-  # - UplinkDisruption
+- type: listing # Frontier
+  id: UplinkEmag
+  name: uplink-emag-name
+  description: uplink-emag-desc
+  productEntity: Emag
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+   Telecrystal: 3
+  cost:
+   Telecrystal: 4
+  categories:
+  - UplinkDisruption
 
 - type: listing
   id: UplinkRadioJammer
@@ -1391,7 +1416,6 @@
     stock: 1
 
 # Implants
-
 - type: listing
   id: UplinkStorageImplanter
   name: uplink-storage-implanter-name
@@ -1575,7 +1599,7 @@
       blacklist:
         components:
           - SurplusBundle
-          
+
 - type: listing
   id: UplinkFakeMindshield
   name: uplink-fake-mindshield-name
