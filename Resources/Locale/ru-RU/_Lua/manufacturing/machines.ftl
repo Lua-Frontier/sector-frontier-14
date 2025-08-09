@@ -29,6 +29,6 @@ ent-GunneryServerOmega.name = Омега-Высокомощный сервер �
 ent-GunneryServerStation.name = Стационный Сервер Вооружения
 ent-GunneryServerStationConsolesEnforced.name = Стационный Сервер Вооружения
 ent-ComputerGunneryConsole.name = консоль управления вооружением
-ent-ComputerGunneryConsole.desc = Консоль управления для взаимодействия с сервером вооружения корабельных орудий
+ent-ComputerGunneryConsole.desc = Консоль управления для взаимодействия с сервером вооружения корабельных орудий шаттла
 
 
