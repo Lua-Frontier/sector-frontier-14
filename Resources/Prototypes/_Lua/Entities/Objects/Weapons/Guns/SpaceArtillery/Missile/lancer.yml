@@ -23,8 +23,21 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+       !type:DamageTrigger
+        damage: 3500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 40
+    projectileSpeed: 65 #40
     selectedMode: FullAuto
     availableModes:
       - FullAuto

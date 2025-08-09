@@ -17,7 +17,7 @@
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 60
         mask:
-        - TableMask # Frontier - Stop AI Abuse - MachineMask<TableMask
+        - MidImpassable # Frontier - Stop AI Abuse - MachineMask<TableMask
         layer:
         - TableLayer # Frontier - Stop AI Abuse - GlassAirlockLayer<TableLayer
   - type: InteractionOutline

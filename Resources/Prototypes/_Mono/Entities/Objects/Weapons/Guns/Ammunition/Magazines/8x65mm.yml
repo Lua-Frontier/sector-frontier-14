@@ -84,12 +84,13 @@
   components:
   - type: Tag
     tags:
+    - Magazine8x55mmSKRBox
     - MagazineBox8x55mmSKR
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-      - Cartridge8x55mmSKR
+        - Cartridge8x55mmSKR
     capacity: 150
   - type: Item
     size: Small

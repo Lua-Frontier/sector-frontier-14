@@ -29,3 +29,281 @@
   metamorphicSprite:
     sprite: /Textures/_Lua/Objects/Consumable/Drinks/uplinkglass.rsi
     state: icon
+
+
+# Frontier legends drinks
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: SaloCan
+  name: банка Salo-2016
+  description: Святые угодники! Лирика в песни, это история. Без лирики, это процесс. А пить - из шляпы. Да-да.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: Salo-2016
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Ichor
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Salo_2016.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Salo_2016.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: NetscapeCan
+  name: банка Netscape
+  description: Погасли свечи, и ночь в окно твоё войдёт, в тот лунный вечер ты знаешь, что она придет
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: NetscapeDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Ichor
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Netscape.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Netscape.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: VeergilCan
+  name: банка Кайо X
+  description: Банка подогнана под желания заказчика, имеет водяной знак (ЛЛЛ). Вкус винограда, сакэ и по моему на дне виднеется кубик д20...
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: VeergilDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Veergil.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Veergil.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: MayskiCan
+  name: банка "Майская"
+  description: Кто додумался сделать пушистую банку? Кто-то явно не в себе. Так у неё ещё и хвост! Вкус винограда!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: MayskiDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Mayski.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Mayski.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: KlifandMondCan
+  name: банка Клифа
+  description: Да это же KlifMond >W<! Вкус чаёчка и цитруса обеспечен!
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: klifowoDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/klifowo.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/klifowo.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: ArkanyaCan
+  name: банка Arkanya
+  description: Да это же мышь! Нет, это банка Arkanya! Вкус молока и клубники, а также немного магии любви.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: ArkanyaDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Arkanya.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Arkanya.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: NickTeslCan
+  name: банка NickTesl
+  description: Вкус льда и электричества! О втором вкусе автор не просил.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: NickTeslDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/NickTesl.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/NickTesl.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: GixCan
+  name: банка Gix
+  description: Цель в голове, сигарету в зубы, ночь пролетит, ивент готов... . Сигарета реально горит?
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: GixDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Gix.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Gix.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: BrennNightCan
+  name: банка BrennNight
+  description: Для настоящих ублюдков, прямо как автор. Выглядит немного демонически, немного магически, имеет удобную ручку и прикреплённую трубочку. Алкогольный напиток с привкусом перца. Имеет три предупреждения о возможных летальных исходах."Пить не больше одного глотка в две минуты."
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: BrennNightDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/BrennNight.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/BrennNight.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: MaxwellCan
+  name: банка "Анна'Наваар"
+  description: Алкогольный. Для создания этого напитка пришлось запрашивать разрешение на использование шапки-ушанки у СССП. Автор явно скучал по былым временам.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: MaxwellDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/Maxwell_Aska.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/Maxwell_Aska.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: FaustNetzachCan
+  name: банка FaustNetzach
+  description: Сначала ощущается лёгкая неопределённость вкуса с морозной ноткой, а затем раскрывается тонкий аромат фиалок.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: FaustNetzachDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/FaustNetzach.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/FaustNetzach.rsi

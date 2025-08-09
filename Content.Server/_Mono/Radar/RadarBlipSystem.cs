@@ -1,9 +1,10 @@
-using System.Numerics;
 using Content.Server.Theta.ShipEvent.Components;
+using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._Mono.Radar;
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map.Components;
+using System.Numerics;
 
 namespace Content.Server._Mono.Radar;
 
@@ -205,5 +206,21 @@ public sealed partial class RadarBlipSystem : EntitySystem
         }
 
         return hitscans;
+    }
+    private void SetupRadarBlip(EntityUid uid, Color color, float scale, bool visibleFromOtherGrids = true, bool requireNoGrid = false)
+    {
+        var blip = EnsureComp<RadarBlipComponent>(uid);
+        blip.RadarColor = color;
+        blip.Scale = scale;
+        blip.VisibleFromOtherGrids = visibleFromOtherGrids;
+        blip.RequireNoGrid = requireNoGrid;
+    }
+
+    /// <summary>
+    /// Configures the radar blip for a vehicle entity.
+    /// </summary>
+    public void SetupVehicleRadarBlip(Entity<VehicleComponent> uid)
+    {
+        SetupRadarBlip(uid, Color.Cyan, 1f, true, true);
     }
 }

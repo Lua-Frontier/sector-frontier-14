@@ -1,8 +1,15 @@
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Redrover1760
+// SPDX-FileCopyrightText: 2025 RikuTheKiller
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Numerics;
 using Content.Shared.Interaction;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Projectiles;
 using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Mono.Projectiles.TargetSeeking;
 
@@ -14,11 +21,13 @@ public sealed class TargetSeekingSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = null!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = null!;
     [Dependency] private readonly PhysicsSystem _physics = null!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!; // Mono
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<TargetSeekingComponent, ProjectileHitEvent>(OnProjectileHit);
+        SubscribeLocalEvent<TargetSeekingComponent, EntParentChangedMessage>(OnParentChanged);
     }
 
     /// <summary>
@@ -36,9 +45,35 @@ public sealed class TargetSeekingSystem : EntitySystem
         component.CurrentTarget = null;
     }
 
+    /// <summary>
+    /// Called when a target-seeking projectile changes parent (e.g., enters a grid).
+    /// </summary>
+    private void OnParentChanged(EntityUid uid, TargetSeekingComponent component, EntParentChangedMessage args)
+    {
+        // Check if the projectile has entered a grid
+        if (args.Transform.GridUid == null)
+            return;
+
+        // Get the shooter's grid to compare
+        if (!TryComp<ProjectileComponent>(uid, out var projectile) ||
+            !TryComp<TransformComponent>(projectile.Shooter, out var shooterTransform))
+            return;
+
+        var shooterGridUid = shooterTransform.GridUid;
+        var currentGridUid = args.Transform.GridUid;
+
+        // If we've entered a different grid than the shooter's grid, disable seeking
+        if (currentGridUid != shooterGridUid)
+        {
+            component.SeekingDisabled = true;
+        }
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        var curTime = _gameTiming.CurTime;
 
         var query = EntityQueryEnumerator<TargetSeekingComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var seekingComp, out var xform))
@@ -61,6 +96,16 @@ public sealed class TargetSeekingSystem : EntitySystem
 
             // Apply velocity in the direction the projectile is facing
             _physics.SetLinearVelocity(uid, _transform.GetWorldRotation(xform).ToWorldVec() * seekingComp.CurrentSpeed);
+
+            // Skip seeking behavior if disabled (e.g., after entering an enemy grid)
+            if (seekingComp.SeekingDisabled)
+                continue;
+
+            if (seekingComp.TrackDelay > 0f)
+            {
+                seekingComp.TrackDelay -= frameTime;
+                continue;
+            }
 
             // If we have a target, track it using the selected algorithm
             if (seekingComp.CurrentTarget.HasValue)
@@ -109,7 +154,7 @@ public sealed class TargetSeekingSystem : EntitySystem
 
             // Check if target is within field of view
             var angleDifference = Angle.ShortestDistance(currentRotation, angleToTarget).Degrees;
-            if (MathF.Abs((float)angleDifference) > component.FieldOfView / 2)
+            if (MathF.Abs((float)angleDifference) > component.ScanArc / 2)
             {
                 continue; // Target is outside our field of view
             }
@@ -198,7 +243,7 @@ public sealed class TargetSeekingSystem : EntitySystem
             uid,
             targetAngle,
             frameTime,
-            comp.ScanArc,
+            comp.Tolerance,
             comp.TurnRate?.Theta ?? MathF.PI * 2,
             xform
         );
@@ -229,7 +274,7 @@ public sealed class TargetSeekingSystem : EntitySystem
             uid,
             angleToTarget,
             frameTime,
-            comp.ScanArc,
+            comp.Tolerance,
             comp.TurnRate?.Theta ?? MathF.PI * 2,
             xform
         );

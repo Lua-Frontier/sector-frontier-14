@@ -44,6 +44,9 @@
       - type: SpecialSectorStationRecord
         recordGeneration: FalseRecord
       - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaNordFoll
 
 - type: startingGear
   id: SyndicateCargotech
@@ -53,3 +56,9 @@
     back: ClothingBackpackSyndicateFilled
     shoes: ClothingShoesBootsCombatOutpostSyndicate
     id: SyndiPDACargo
+
+- type: chameleonOutfit
+  id: OutpostSyndicateCargotechChameleonOutfit
+  job: OutpostSyndicateCargotech
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOutpostSyndicateCargotech

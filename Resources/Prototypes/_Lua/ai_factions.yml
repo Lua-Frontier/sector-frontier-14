@@ -25,3 +25,31 @@
   id: HostileIndependentShip
   hostile:
     - IndependentShip
+
+- type: npcFaction
+  id: LuaNordFoll
+  friendly: # Frontier
+  - NFSyndicate # Frontier
+  - Syndicate # Lua
+  hostile:
+  - NanoTrasen
+  - SimpleHostile
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - NFPirate # Frontier
+  - ExplorersExpeditionNF # Frontier
+  - ArtifactConstruct # Frontier
+  - StreetGangNF # Frontier
+  - DinosaursNF # Frontier
+  - MercenariesExpeditionNF # Frontier
+  - SiliconsExpeditionNF # Frontier
+  - AberrantFleshExpeditionNF # Frontier
+  - ContrabandClothing # Frontier
+  - ContrabandDetection # Frontier

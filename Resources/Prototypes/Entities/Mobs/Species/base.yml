@@ -32,10 +32,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "eyes" ]
-    - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -210,7 +210,7 @@
   - type: MobPrice
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
-  - type: CanEscapeInventory # Carrying system from nyanotrasen.  
+  - type: CanEscapeInventory # Carrying system from nyanotrasen.
   - type: Tag
     tags:
     - CanPilot

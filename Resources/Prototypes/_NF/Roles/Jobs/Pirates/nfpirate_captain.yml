@@ -7,11 +7,8 @@
     - !type:OverallPlaytimeRequirement
       time: 172800 # 48 hours
     - !type:RoleTimeRequirement
-      role: JobSecurityCadet
-      time: 29600 # 6 hours
-    - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 29600 # 6 hours
+      time: 57600 # 16 hours
     - !type:RoleTimeRequirement
       role: JobSeniorOfficer
       time: 29800 # 3 hours
@@ -28,6 +25,7 @@
   weight: 40
   displayWeight: 40
   setPreference: true
+  newPlayerMessage: false
   access:
   - Pirate
   accessGroups:
@@ -56,3 +54,7 @@
   storage:
     back:
     - AppraisalTool
+
+- type: chameleonOutfit
+  id: NFPirateCaptainChameleonOutfit
+  job: NFPirateCaptain

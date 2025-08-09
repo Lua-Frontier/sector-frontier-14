@@ -5,9 +5,7 @@
 - type: technology
   id: BasicShuttleWeaponPad
   name: research-technology-basic-weaponpad
-  icon:
-    sprite: _Lua/Structures/Machines/computers.rsi
-    state: full
+  entityIcon: ComputerGunneryConsole
   discipline: Shiparmory
   tier: 1
   cost: 10500
@@ -16,13 +14,12 @@
   - MachineGCSLowCircuitboard
   - MachineGCSMediumCircuitboard
   - MachineGCSHighCircuitboard
+  position: 0, 46
 
 - type: technology
   id: BasicShuttleWeapon
   name: research-technology-basic-weapon
-  icon:
-    sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
-    state: ptk-800
+  entityIcon: ShuttleGunKinetic
   discipline: Shiparmory
   tier: 1
   cost: 12500
@@ -31,13 +28,12 @@
   - ShuttleGunSvalinnMachineGunCircuitboard
   technologyPrerequisites:
   - BasicShuttleWeaponPad
+  position: 0, 47
 
 - type: technology
   id: ShuttlePowerCage
   name: research-technology-shuttle-powercage
-  icon:
-    sprite: Objects/Power/power_cages.rsi
-    state: high
+  entityIcon: PowerCageSmallEmpty
   discipline: Shiparmory
   tier: 1
   cost: 13500
@@ -48,13 +44,12 @@
   - PowerCageRechargerCircuitboard
   technologyPrerequisites:
   - BasicShuttleWeapon
+  position: 1, 47
 
 - type: technology
   id: ShuttleShuttleGunPerforator
   name: research-technology-shuttle-perforator
-  icon:
-    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
-    state: lse-1200c
+  entityIcon: ShuttleGunPerforator
   discipline: Shiparmory
   tier: 1
   cost: 14800
@@ -62,13 +57,12 @@
   - ShuttleGunPerforatorCircuitboard
   technologyPrerequisites:
   - ShuttlePowerCage
+  position: 1, 46
 
 - type: technology
   id: ShuttleGrenade
   name: research-technology-shuttle-grenade
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: blast
+  entityIcon: NFGrenadeBlast
   discipline: Shiparmory
   tier: 1
   cost: 12100
@@ -79,13 +73,12 @@
   - NFGrenadeFlash
   technologyPrerequisites:
   - ShuttleShuttleGunPerforator
+  position: 2, 46
 
 - type: technology
   id: ShuttleFriendshipPirate
   name: research-technology-shuttle-friendshippirate
-  icon:
-    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
-    state: exp-320g
+  entityIcon: ShuttleGunFriendship
   discipline: Shiparmory
   tier: 2
   cost: 18200
@@ -94,13 +87,12 @@
   - ShuttleGunPirateCannonCircuitboard
   technologyPrerequisites:
   - ShuttleGrenade
+  position: 2, 47
 
 - type: technology
   id: ShuttleCannonBall
   name: research-technology-shuttle-cannonball
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: grapeshot
+  entityIcon: NFCannonBallGrapeshot
   discipline: Shiparmory
   tier: 2
   cost: 16900
@@ -109,13 +101,12 @@
   - NFCannonBallGlassshot
   technologyPrerequisites:
   - ShuttleFriendshipPirate
+  position: 3, 47
 
 - type: technology
   id: ShuttleGrenadeEMP
   name: research-technology-shuttle-grenadeemp
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: emp
+  entityIcon: NFGrenadeEMP
   discipline: Shiparmory
   tier: 2
   cost: 14800
@@ -124,13 +115,12 @@
   - NFGrenadeBaton
   technologyPrerequisites:
   - ShuttleCannonBall
+  position: 3, 46
 
 - type: technology
   id: ShuttleGunDuster
   name: research-technology-shuttle-gunduster
-  icon:
-    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
-    state: exp-2100g
+  entityIcon: ShuttleGunDuster
   discipline: Shiparmory
   tier: 2
   cost: 21100
@@ -139,13 +129,12 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - ShuttleGrenadeEMP
+  position: 4, 46
 
 - type: technology
   id: ShuttleShields
   name: research-technology-shields
-  icon:
-    sprite: _Mono/Structures/ShuttleComponents/shield.rsi
-    state: control_on
+  entityIcon: CircularShieldBase
   discipline: Shiparmory
   tier: 3
   cost: 12600
@@ -154,3 +143,4 @@
   - ShieldControlComputerCircuitboard
   technologyPrerequisites:
   - ShuttleGunDuster
+  position: 4, 47

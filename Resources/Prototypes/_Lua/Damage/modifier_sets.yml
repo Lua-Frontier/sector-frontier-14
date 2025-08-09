@@ -13,3 +13,18 @@
     Radiation: 0.15 #They have no way of repairing this so it's low, but radiation screws with elecronics just as much as people. Set this to 1 or 1.2 when we get brain surgery.
     Bloodloss: 0.0 #They take heat damage instead and there are enemies that deal bloodloss on hit.
     Cellular: 0.0 #Robots don't have DNA
+
+- type: damageModifierSet
+  id: StructuralMetallicStrongUltra
+  coefficients:
+    Blunt: 0.2
+    Slash: 0.1
+    Piercing: 0.1
+    Structural: 0.25
+    Heat: 0.3
+  flatReductions:
+    Blunt: 25
+    Slash: 25
+    Piercing: 25
+    Heat: 25
+    Structural: 50

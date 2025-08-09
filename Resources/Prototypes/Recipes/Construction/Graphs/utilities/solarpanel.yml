@@ -43,6 +43,18 @@
               doAfter: 0.5
           completed:
             - !type:SnapToGrid
+        - to: solarpaneldiamond
+          conditions:
+            - !type:EntityAnchored
+          steps:
+            - material: Diamond
+              amount: 2
+              doAfter: 0.5
+            - material: Glass
+              amount: 2
+              doAfter: 0.5
+          completed:
+            - !type:SnapToGrid
         - to: solarpanel
           conditions:
             - !type:EntityAnchored
@@ -95,6 +107,40 @@
             - !type:SpawnPrototype
               prototype: SheetUGlass1
               amount: 2
+          conditions:
+            - !type:EntityAnchored
+              anchored: true
+          steps:
+            - tool: Prying
+              doAfter: 0.5
+
+    - node: solarpaneldiamond
+      entity: SolarPanelDiamond
+      edges:
+        - to: solarassembly
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+            - !type:SpawnPrototype
+              prototype: MaterialDiamond1
+              amount: 2
+          conditions:
+            - !type:EntityAnchored
+              anchored: true
+          steps:
+            - tool: Prying
+              doAfter: 0.5
+
+    - node: solarpaneldiamond_broken
+      entity: SolarPanelDiamondBroken
+      edges:
+        - to: solarassembly
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+            - !type:SpawnPrototype
+              prototype: MaterialDiamond1
+              amount: 1
           conditions:
             - !type:EntityAnchored
               anchored: true

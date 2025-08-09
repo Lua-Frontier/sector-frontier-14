@@ -1,4 +1,4 @@
-﻿<Document>
+<Document>
 # Pumps
   Pumps are the primary way of actively moving gasses through a [textlink="pipenet." link="PipeNetworks"]
   They take gas from one side and push it to the other.
@@ -44,5 +44,5 @@
   They are extremely useful for moving large amounts of gas quickly.
   They can typically achieve higher pressures than a pressure pump.
 
-  While volumetric pumps work off of the principle of volume, they will become [color=red]blocked[/color] if they try to push gas into a pipe higher than [color=orange][protodata="GasVolumePump" comp="GasVolumePump" member="HigherThreshold"/] kPa[/color].
+  While volumetric pumps work off of the principle of volume, they will become [color=red]blocked[/color] if they try to push gas into a pipe higher than [color=orange]<!--[protodata="GasVolumePump" comp="GasVolumePump" member="HigherThreshold"/]--> kPa[/color].
 </Document>

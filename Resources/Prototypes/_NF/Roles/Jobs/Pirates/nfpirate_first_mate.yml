@@ -10,11 +10,8 @@
       department: Security
       time: 29800 # 3 hours
     - !type:RoleTimeRequirement
-      role: JobSecurityCadet
-      time: 29600 # 6 hours
-    - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 29600 # 6 hours
+      time: 57600 # 16 hours
     - !type:RoleTimeRequirement
       role: JobSeniorOfficer
       time: 21600 # 6 hours
@@ -28,6 +25,7 @@
   weight: 30
   displayWeight: 30
   setPreference: true
+  newPlayerMessage: false
   access:
   - Pirate
   accessGroups:
@@ -55,3 +53,7 @@
   storage:
     back:
     - AppraisalTool
+
+- type: chameleonOutfit
+  id: NFPirateFirstMateChameleonOutfit
+  job: NFPirateFirstMate

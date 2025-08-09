@@ -1,11 +1,37 @@
+// SPDX-FileCopyrightText: 2021 20kdc
+// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
+// SPDX-FileCopyrightText: 2021 Visne
+// SPDX-FileCopyrightText: 2022 Rane
+// SPDX-FileCopyrightText: 2022 corentt
+// SPDX-FileCopyrightText: 2022 mirrorcult
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Slava0135
+// SPDX-FileCopyrightText: 2023 Vasilis
+// SPDX-FileCopyrightText: 2023 deltanedas
+// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
+// SPDX-FileCopyrightText: 2024 Aviu00
+// SPDX-FileCopyrightText: 2024 BramvanZijp
+// SPDX-FileCopyrightText: 2024 Brandon Hu
+// SPDX-FileCopyrightText: 2024 GreaseMonk
+// SPDX-FileCopyrightText: 2024 Tayrtahn
+// SPDX-FileCopyrightText: 2024 Whatstone
+// SPDX-FileCopyrightText: 2025 Dvir
+// SPDX-FileCopyrightText: 2025 Errant
+// SPDX-FileCopyrightText: 2025 Redrover1760
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
 using Content.Shared.Emp; // Frontier: Upstream - #28984
 using Content.Server.Power.Components;
+using Content.Shared.Cargo;
 using Content.Shared.Examine;
 using Content.Shared.Rejuvenate;
-using Content.Shared.Timing;
 using JetBrains.Annotations;
+using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
 using Content.Server._NF.Power.Components; // Frontier
@@ -15,7 +41,9 @@ namespace Content.Server.Power.EntitySystems
     [UsedImplicitly]
     public sealed class BatterySystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] protected readonly IGameTiming _timing = default!;
+
+        [Dependency] private readonly SharedContainerSystem _containers = default!; // WD EDIT
 
         public override void Initialize()
         {
@@ -54,7 +82,7 @@ namespace Content.Server.Power.EntitySystems
                 if (effectiveMax == 0)
                     effectiveMax = 1;
                 var chargeFraction = batteryComponent.CurrentCharge / effectiveMax;
-                var chargePercentRounded = (int) (chargeFraction * 100);
+                var chargePercentRounded = (int)(chargeFraction * 100);
                 args.PushMarkup(
                     Loc.GetString(
                         "examinable-battery-component-examine-detail",
@@ -279,26 +307,51 @@ namespace Content.Server.Power.EntitySystems
             return battery.CurrentCharge >= battery.MaxCharge;
         }
 
-        public int CalculateChargeDeficit(EntityUid uid, BatteryComponent? battery = null)
+        // Goobstation
+        public int GetChargeDifference(EntityUid uid, BatteryComponent? battery = null) // Debug
         {
             if (!Resolve(uid, ref battery))
                 return 0;
 
-            return (int)(battery.MaxCharge - battery.CurrentCharge);
+            return Convert.ToInt32(battery.MaxCharge - battery.CurrentCharge);
         }
-
-        public float IncreaseCharge(EntityUid uid, float amount, BatteryComponent? battery = null)
+        public float AddCharge(EntityUid uid, float value, BatteryComponent? battery = null)
         {
-            if (amount <= 0 || !Resolve(uid, ref battery))
-                return battery?.CurrentCharge ?? 0;
+            if (value <= 0 || !Resolve(uid, ref battery))
+                return 0;
 
-            float adjustedCharge = Math.Min(battery.CurrentCharge + amount, battery.MaxCharge);
-            battery.CurrentCharge = adjustedCharge;
-
-            var chargeUpdate = new ChargeChangedEvent(battery.CurrentCharge, battery.MaxCharge);
-            RaiseLocalEvent(uid, ref chargeUpdate);
-
-            return adjustedCharge;
+            var newValue = Math.Clamp(battery.CurrentCharge + value, 0, battery.MaxCharge);
+            battery.CurrentCharge = newValue;
+            var ev = new ChargeChangedEvent(battery.CurrentCharge, battery.MaxCharge);
+            RaiseLocalEvent(uid, ref ev);
+            return newValue;
         }
+            // WD EDIT START
+        public bool TryGetBatteryComponent(EntityUid uid, [NotNullWhen(true)] out BatteryComponent? battery,
+            [NotNullWhen(true)] out EntityUid? batteryUid)
+        {
+            if (TryComp(uid, out battery))
+            {
+                batteryUid = uid;
+                return true;
+            }
+
+            if (!_containers.TryGetContainer(uid, "cell_slot", out var container)
+                || container is not ContainerSlot slot)
+            {
+                battery = null;
+                batteryUid = null;
+                return false;
+            }
+
+            batteryUid = slot.ContainedEntity;
+
+            if (batteryUid != null)
+                return TryComp(batteryUid, out battery);
+
+            battery = null;
+            return false;
+        }
+        // WD EDIT END
     }
 }

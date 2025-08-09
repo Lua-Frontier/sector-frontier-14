@@ -34,7 +34,7 @@ public sealed class CryoSleepEui : BaseEui
         }
         else
         {
-            _window.StoreText.Text = Loc.GetString("accept-cryo-window-prompt-not-stored");
+            _window.StoreText.Text = Loc.GetString("accept-cryo-window-prompt-stored");
         }
 
         _window.OnAccept += () =>

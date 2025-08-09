@@ -62,14 +62,14 @@
   components:
   - type: Damageable
     damageContainer: Biological
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 400
-      behaviors:
-      - !type:GibBehavior { }
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTypeTrigger
+#        damageType: Blunt
+#        damage: 400
+#      behaviors:
+#      - !type:GibBehavior { }
 #    - trigger: # Frontier - Removed round remover
 #        !type:DamageTypeTrigger
 #        damageType: Heat

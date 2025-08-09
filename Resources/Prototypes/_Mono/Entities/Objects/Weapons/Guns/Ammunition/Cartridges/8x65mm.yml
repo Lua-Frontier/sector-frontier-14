@@ -29,9 +29,31 @@
     proto: Bullet8x65mmSKR
 
 - type: entity
+  id: BaseCartridge8x55mmSKR
+  name: cartridge (8x55mm SKR)
+  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - Cartridge8x55mmSKR
+  - type: CartridgeAmmo
+    proto: Bullet8x55mmSKR
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
   id: Cartridge8x55mmSKR
   name: cartridge (8x55mm SKR)
-  parent: BaseCartridge8x65mmSKR
+  parent: BaseCartridge8x55mmSKR
   components:
   - type: CartridgeAmmo
     proto: Bullet8x55mmSKR

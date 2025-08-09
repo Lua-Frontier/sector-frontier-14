@@ -41,6 +41,9 @@
       - type: SpecialSectorStationRecord
         recordGeneration: FalseRecord
       - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaNordFoll
 
 - type: startingGear
   id: SyndicateScience
@@ -52,3 +55,9 @@
     shoes: ClothingShoesBootsCombat
     back: ClothingBackpackSyndicateFilled
     id: SyndiPDAScience
+
+- type: chameleonOutfit
+  id: OutpostSyndicateScienceChameleonOutfit
+  job: OutpostSyndicateScience
+  equipment:
+    jumpsuit: ClothingUniformScienceOutpostSyndicate

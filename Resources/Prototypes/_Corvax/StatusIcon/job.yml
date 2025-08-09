@@ -41,7 +41,7 @@
     state: SecurityPilot
 
 - type: entity
-  parent: [ BasePDA, BaseItem, StorePresetUplink ] 
+  parent: [ BasePDA, BaseItem, StorePresetUplink ]
   id: BaseTypanPDA
   abstract: true
   components:
@@ -59,7 +59,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: _Lua/Objects/Devices/typan_pda.rsi
+    sprite: /Textures/_Lua/Objects/Devices/typan_pda.rsi
     state: pda
 
 - type: entity
@@ -286,5 +286,5 @@
   parent: JobIcon
   id: JobIconVip
   icon:
-    sprite: _Lua/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: Vip

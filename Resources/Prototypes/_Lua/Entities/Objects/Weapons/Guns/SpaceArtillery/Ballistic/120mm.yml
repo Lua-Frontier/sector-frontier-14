@@ -23,8 +23,21 @@
       containers:
         machine_board: !type:Container
         machine_parts: !type:Container
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 2250
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
     - type: Gun
-      fireRate: 20
+      fireRate: 2
       projectileSpeed: 80
       selectedMode: FullAuto
       availableModes:
@@ -42,12 +55,12 @@
       ports:
       - Toggle
     - type: SpaceArtillery
-      powerChargeRate: 30
-      powerUseActive: 1
-      powerUsePassive: 1100
+      powerChargeRate: 50
+      powerUseActive: 1200
+      powerUsePassive: 2500
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 30
+      autoRechargeRate: 50
     - type: ProjectileBatteryAmmoProvider
       proto: Bullet120mm
       fireCost: 150

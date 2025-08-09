@@ -1,3 +1,32 @@
+// SPDX-FileCopyrightText: 2021 DrSmugleaf
+// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
+// SPDX-FileCopyrightText: 2021 Ygg01
+// SPDX-FileCopyrightText: 2022 Mervill
+// SPDX-FileCopyrightText: 2022 Moony
+// SPDX-FileCopyrightText: 2022 ShadowCommander
+// SPDX-FileCopyrightText: 2022 mirrorcult
+// SPDX-FileCopyrightText: 2022 themias
+// SPDX-FileCopyrightText: 2022 wrexbe
+// SPDX-FileCopyrightText: 2023 AJCM-git
+// SPDX-FileCopyrightText: 2023 Chief-Engineer
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Nemanja
+// SPDX-FileCopyrightText: 2023 Sailor
+// SPDX-FileCopyrightText: 2023 Slava0135
+// SPDX-FileCopyrightText: 2023 Vasilis
+// SPDX-FileCopyrightText: 2023 Visne
+// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
+// SPDX-FileCopyrightText: 2023 keronshb
+// SPDX-FileCopyrightText: 2024 Aviu00
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2024 Tayrtahn
+// SPDX-FileCopyrightText: 2024 deltanedas
+// SPDX-FileCopyrightText: 2024 metalgearsloth
+// SPDX-FileCopyrightText: 2024 slarticodefast
+// SPDX-FileCopyrightText: 2025 Ark
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.Examine;
@@ -12,6 +41,7 @@ using Content.Server.UserInterface;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Popups;
 using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
+using Content.Server._NF.Power.Components; // Frontier
 
 namespace Content.Server.PowerCell;
 
@@ -27,6 +57,7 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearanceSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly RiggableSystem _riggableSystem = default!;
+    [Dependency] private readonly PowerReceiverSystem _powerSystem = default!; // Frontier
 
     public override void Initialize()
     {
@@ -143,6 +174,15 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     /// <param name="user">Popup to this user with the relevant detail if specified.</param>
     public bool HasCharge(EntityUid uid, float charge, PowerCellSlotComponent? component = null, EntityUid? user = null)
     {
+        // Frontier start - Mixed Power Recievers
+        if (HasComp<MixedPowerReceiverComponent>(uid) &&
+            TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+            _powerSystem.IsPowered(uid, apcPowerComp))
+        {
+            return true;
+        }
+        // Frontier end - Mixed Power Recievers
+
         if (!TryGetBatteryFromSlot(uid, out var battery, component))
         {
             if (user != null)
@@ -167,6 +207,17 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     /// </summary>
     public bool TryUseCharge(EntityUid uid, float charge, PowerCellSlotComponent? component = null, EntityUid? user = null)
     {
+
+        // Frontier start - Mixed Power Recievers
+        if (HasComp<MixedPowerReceiverComponent>(uid) &&
+            TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+            _powerSystem.IsPowered(uid, apcPowerComp))
+        {
+            return true;
+        }
+        // Frontier end - Mixed Power Recievers
+
+
         if (!TryGetBatteryFromSlot(uid, out var batteryEnt, out var battery, component))
         {
             if (user != null)
@@ -235,9 +286,9 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
         OnBatteryExamined(uid, battery, args);
     }
 
-    private void OnBatteryExamined(EntityUid uid, BatteryComponent? component, ExaminedEvent args)
+    public void OnBatteryExamined(EntityUid uid, BatteryComponent? component, ExaminedEvent args) // WD EDIT
     {
-        if (component != null)
+        if (Resolve(uid, ref component, false)) // WD EDIT
         {
             var charge = component.CurrentCharge / component.MaxCharge * 100;
             args.PushMarkup(Loc.GetString("power-cell-component-examine-details", ("currentCharge", $"{charge:F0}")));

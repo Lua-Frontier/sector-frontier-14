@@ -39,6 +39,19 @@
         Dead:
           Base: impulselaser
           BaseUnshaded: impulselaser
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3000 #Durable
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
     - type: Gun
       fireRate: 4
       projectileSpeed: 110

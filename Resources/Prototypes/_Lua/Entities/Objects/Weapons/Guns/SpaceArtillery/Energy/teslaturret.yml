@@ -25,9 +25,24 @@
         - map: ["enum.DamageStateVisualLayers.Base"]
         - state: teslaturret
           sprite: _Lua/Objects/Weapons/Guns/Turrets/teslaturret.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.5 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 2750 #Nothing can explode inside it
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
     - type: Gun
-      fireRate: 0.4
-      projectileSpeed: 22
+      fireRate: 0.05 # 0.4
+      projectileSpeed: 60 #22
       selectedMode: FullAuto
       availableModes:
         - FullAuto

@@ -1,4 +1,4 @@
-# Contractor
+# region Civilian
 - type: roleLoadout
   id: JobContractor
   groups:
@@ -27,7 +27,6 @@
   - PantsUnderwear
   - SocksUnderwear
 
-# Pilot
 - type: roleLoadout
   id: JobPilot
   groups:
@@ -56,7 +55,6 @@
   - PantsUnderwear
   - SocksUnderwear
 
-# Mercenary
 - type: roleLoadout
   id: JobMercenary
   groups:
@@ -85,7 +83,7 @@
   - PantsUnderwear
   - SocksUnderwear
 
-# Frontier
+# region Frontier
 - type: roleLoadout
   id: JobValet
   groups:
@@ -238,6 +236,7 @@
   - PantsUnderwear
   - SocksUnderwear
 
+# region Misc
 - type: roleLoadout
   id: JobDirectorOfCare
   groups:
@@ -266,7 +265,56 @@
   - PantsUnderwear
   - SocksUnderwear
 
-# Nfsd
+- type: roleLoadout
+  id: JobPlantManager
+  groups:
+  - PlantManagerHead
+  - PlantManagerNeck
+  - PlantManagerJumpsuit
+  - EngineeringGloves
+  - PlantManagerBackpack
+  - PlantManagerOuterClothing
+  - EngineeringForcedOuterClothing
+  - PlantManagerShoes
+  - EngineeringFace
+  - PlantManagerGlasses
+  - PlantManagerBelt
+  - PlantManagerEars
+  - ContractorBoxSurvival
+  - PlantManagerPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: roleLoadout
+  id: JobPlantTechnician
+  groups:
+  - EngineeringHead
+  - EngineeringJumpsuit
+  - EngineeringGloves
+  - EngineeringBackpack
+  - EngineeringOuterClothing
+  - EngineeringForcedOuterClothing
+  - EngineeringShoes
+  - EngineeringFace
+  - EngineeringGlasses
+  - EngineeringBelt
+  - EngineeringEars
+  - ContractorBoxSurvival
+  - PlantTechnicianPDA
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+# region NFSD
 - type: roleLoadout
   id: JobCadet
   groups:
@@ -517,7 +565,7 @@
   - PantsUnderwear
   - SocksUnderwear
 
-# NFPirate
+# region NFPirate
 
 - type: roleLoadout
   id: JobNFPirate
@@ -590,7 +638,7 @@
   - SocksUnderwear
   canCustomizeName: true # pseudonym?
 
-# Prisoner
+# region Prisoner
 
 - type: roleLoadout
   id: JobPrisoner

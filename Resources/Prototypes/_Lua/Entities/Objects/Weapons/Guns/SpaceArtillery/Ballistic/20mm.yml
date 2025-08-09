@@ -34,6 +34,31 @@
     - type: DeviceLinkSink
       ports:
       - Toggle
+    - type: ExplosionResistance
+      damageCoefficient: 0.5 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1250
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 12
+      projectileSpeed: 90
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: ProjectileBatteryAmmoProvider
+      proto: Bullet20mm
+      fireCost: 50
     - type: SpaceArtillery
       powerChargeRate: 100
       powerUseActive: 20
@@ -41,16 +66,6 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 100
-    - type: ProjectileBatteryAmmoProvider
-      proto: Bullet20mm
-      fireCost: 50
-    - type: Gun
-      fireRate: 10
-      projectileSpeed: 60
-      selectedMode: FullAuto
-      availableModes:
-        - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
 
 - type: entity
   parent: [BaseWeaponNavalBallisctic, Weapon20mm]

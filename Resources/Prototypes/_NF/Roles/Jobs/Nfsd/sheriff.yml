@@ -45,6 +45,7 @@
       - type: CommandStaff
       - type: Company
         companyName: Security
+      - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -62,3 +63,17 @@
     - DoorRemoteNfsd
     - BaseSecurityUplinkRadioSheriff
     - RubberStampSheriff
+
+- type: chameleonOutfit
+  id: SheriffChameleonOutfit
+  job: Sheriff
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdCampaignFilled
+    mask: ClothingMaskGasSheriff
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterCoatNfsdFormalSheriff
+    neck: ClothingNeckNfsdBadgeSheriff
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdCream
+    shoes: ClothingShoesBootsNfsdBrown

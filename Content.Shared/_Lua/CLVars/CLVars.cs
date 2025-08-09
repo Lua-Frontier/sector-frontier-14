@@ -93,5 +93,11 @@ namespace Content.Shared.Lua.CLVar
         /// </summary>
         public static readonly CVarDef<bool> AutoGridCleanupEnabled =
             CVarDef.Create("shuttle.grid_cleanup_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        /// <summary>
+        /// Таймер ожидания возможности проснутся с криосна.
+        /// </summary
+        public static readonly CVarDef<int> CryoSleepTimerSet =
+            CVarDef.Create("lua.cryosleep.timer.set", 30, CVar.SERVERONLY);
     }
 }

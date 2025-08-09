@@ -31,7 +31,7 @@
           collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 1500 # Lua 400<1500
+        damage: 2000 # Lua 400<1500<2000
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -80,7 +80,7 @@
   - type: RCDDeconstructable
     cost: 6
     delay: 8
-    fx: EffectRCDDeconstruct8    
+    fx: EffectRCDDeconstruct8
   - type: Destructible
     thresholds:
     - trigger:
@@ -199,7 +199,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 750 # Lua 75<750
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -271,3 +271,156 @@
   - type: Construction
     graph: WindowDiagonal
     node: reinforcedWindowDiagonal
+
+#Station Walls
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallPlastitaniumStation
+  name: plastitanium wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
+  suffix: "Станция"
+  components:
+    - type: Sprite # Frontier
+      color: "#a6a6a6" # Frontier
+    - type: Tag
+      tags:
+        - Wall
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 30000 # Lua
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ReinforcedGirder:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Damageable
+      damageContainer: StructuralInorganicUltraHeavy
+      damageModifierSet: StructuralMetallicStrongUltra
+    - type: StaticPrice
+      price: 2500
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallPlastitaniumDiagonalStation
+  name: plastitanium wall
+  suffix: "Станция Диагональ"
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    state: state0
+    color: "#a6a6a6" # Lua
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    state: state0
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30000 # Lua
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 1250
+
+# Windows
+
+- type: entity
+  id: PlastitaniumWindowStation
+  name: plastitanium window
+  parent: PlastitaniumWindowSquareBase
+  suffix: "Станция"
+  components:
+  - type: Sprite # Frontier
+    color: "#a6a6a6" # Frontier
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000 #500 - Lua
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 20
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: StaticPrice # Frontier
+    price: 1000 # Frontier
+
+- type: entity
+  id: PlastitaniumWindowDiagonalStation
+  name: plastitanium window
+  parent: PlastitaniumWindowDiagonalBase
+  suffix: "Станция Диагональ"
+  components:
+  - type: Sprite # Frontier
+    color: "#a6a6a6" # Frontier
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000 #500 - Lua
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 20
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks_diagonal.rsi
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: StaticPrice
+    price: 500

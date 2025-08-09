@@ -41,6 +41,9 @@
       - type: SpecialSectorStationRecord
         recordGeneration: FalseRecord
       - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaNordFoll
 
 - type: startingGear
   id: SyndicateBotanist
@@ -50,3 +53,9 @@
     back: ClothingBackpackSyndicateFilled
     shoes: ClothingShoesColorBlack
     id: SyndiPDABotan
+
+- type: chameleonOutfit
+  id: OutpostSyndicateBotanistChameleonOutfit
+  job: OutpostSyndicateBotanist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOutpostSyndicateBotanist

@@ -81,7 +81,7 @@
     maxAngle: 49
     angleIncrease: 8
     angleDecay: 19
-    fireRate: 6 # 360 rpm
+    fireRate: 7 # 360 rpm
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -99,8 +99,7 @@
         priority: 2
         whitelist:
           tags:
-          - Magazine8x55mmSKR
-          - MagazineBox8x55mmSKR
+          - Magazine8x55mmSKRBox
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber

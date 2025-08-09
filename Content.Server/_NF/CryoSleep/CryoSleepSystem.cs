@@ -33,7 +33,9 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Robust.Shared.Configuration;//Lua
 using Content.Shared._Lua.CryoTimer;//Lua
+using Content.Shared.Lua.CLVar;//Lua
 using Robust.Shared.Player; //Lua
 
 namespace Content.Server._NF.CryoSleep;
@@ -58,6 +60,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!; //Lua
     [Dependency] private readonly IMapManager _mapManager = default!; //Lua
     [Dependency] private readonly GameTicker _gameTicker = default!; //Lua
+    [Dependency] private readonly IConfigurationManager _cfg = default!; //Lua
 
     private readonly Dictionary<NetUserId, (TimeSpan OriginalEndTime, TimeSpan EntryTime)> _cryoTimers = new(); //Lua
 
@@ -323,6 +326,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
     public void CryoStoreBody(EntityUid bodyId, EntityUid cryopod)
     {
+        int CryoSleepTimer = _cfg.GetCVar(CLVars.CryoSleepTimerSet);
         if (!TryComp<CryoSleepComponent>(cryopod, out var cryo))
             return;
 
@@ -347,7 +351,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
                 //Lua start
                 if (!_cryoTimers.ContainsKey(id.Value))
                 {
-                    SetCryoReturnTimer(id.Value, _timing.CurTime + TimeSpan.FromMinutes(30));
+                    SetCryoReturnTimer(id.Value, _timing.CurTime + TimeSpan.FromMinutes(CryoSleepTimer));
                 }
                 else
                 {
@@ -383,7 +387,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
 
         #region DeadCode
         //Lua no-no-no, no delete!
-        //if (deleteEntity) 
+        //if (deleteEntity)
         //{
         //    QueueDel(bodyId);
         //}

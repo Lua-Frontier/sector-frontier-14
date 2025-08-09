@@ -1,0 +1,30 @@
+
+
+- type: vessel
+  parent: BaseVessel
+  id: GFSYFisherman
+  name: GF Fisherman
+  description: Старинный корабль некогда крупной судоверфи Гефест. Имеет на борту бар, кухню, ботанику и небольшой пруд с рыбой, окруженный декоративным садом.
+  price: 98000
+  category: Large
+  group: Shipyard # Lua ShipyardLarge<Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/fisherman.yml
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFSYFisherman
+  mapName: 'GF Fisherman'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/fisherman.yml
+  minPlayers: 0
+  stations:
+    GFSYFisherman:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'GF Fisherman {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

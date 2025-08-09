@@ -305,7 +305,7 @@
       sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Shoes/Boots/lua_magboots.rsi
       layers:
       - state: icon
-        map: [ "enum.ToggleVisuals.Layer" ]
+        map: [ "enum.ToggleableVisuals.Layer" ]
     - type: Clothing
       sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Shoes/Boots/lua_magboots.rsi
     - type: GasTank
@@ -595,7 +595,7 @@
     - state: welder_flame
       visible: false
       shader: unshaded
-      map: ["enum.ToggleVisuals.Layer"]
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Item
     size: Small
     sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_welder.rsi
@@ -1021,7 +1021,7 @@
     - state: welder_flame
       visible: false
       shader: unshaded
-      map: ["enum.ToggleVisuals.Layer"]
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Item
     size: Small
     sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_welder.rsi

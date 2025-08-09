@@ -182,7 +182,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             // Define a collision mask appropriate for projectiles.
             // This should generally match what projectiles are expected to collide with.
             // Using Impassable, MobMask, and Opaque as a baseline.
-            const int collisionMask = (int)(CollisionGroup.Impassable | CollisionGroup.MobMask | CollisionGroup.Opaque);
+            const int collisionMask = (int)(CollisionGroup.Impassable | CollisionGroup.BulletImpassable | CollisionGroup.Opaque); // Replaces CollisonGroup.MobMask with CollisionGroup.BulletImpassable - Mono
 
             var hits = _physics.IntersectRay(xform.MapID,
                 new CollisionRay(lastPosition, rayDirection, collisionMask),

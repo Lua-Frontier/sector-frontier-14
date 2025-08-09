@@ -1,7 +1,7 @@
 - type: reaction
   id: Fentanyl
   impact: Low
-  minTemp: 475
+  minTemp: 375 # made this 375 just so oil won't turn into ash with some bug fuckery
   reactants:
     SpaceDrugs:
       amount: 1
@@ -15,27 +15,10 @@
       amount: 0.5
     Kelotane:
       amount: 0.5
-    CarpoToxin:
-      amount: 1
+    Lead:
+      amount: 0.1
   products:
     Fentanyl: 5.5
-
-- type: reaction
-  id: FentanylVestine
-  impact: Low
-  reactants:
-    SpaceDrugs:
-      amount: 2
-    Desoxyephedrine:
-      amount: 2
-    SodiumHydroxide:
-      amount: 0.5
-    Phenol:
-      amount: 0.5
-    Vestine:
-      amount: 1
-  products:
-    Fentanyl: 10 # vestine is annoying..
 
 - type: reaction # this reaction is to prevent people from mixing fent and dylo for combat meds, and to serve as something to prevent mass crystallization
   id: FentanylIncompatibility

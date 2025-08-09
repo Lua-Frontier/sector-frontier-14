@@ -41,6 +41,9 @@
       - type: SpecialSectorStationRecord
         recordGeneration: FalseRecord
       - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaNordFoll
 
 - type: startingGear
   id: SyndicateChef
@@ -51,3 +54,9 @@
     outerClothing: ClothingOuterApronOutpostSyndicateChef
     shoes: ClothingShoesColorBlack
     id: SyndiPDAChef
+
+- type: chameleonOutfit
+  id: OutpostSyndicateChefChameleonOutfit
+  job: OutpostSyndicateChef
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOutpostSyndicateChef

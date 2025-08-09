@@ -1,0 +1,51 @@
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC2ContrabandUnredeemable, ContrabandClothing ]
+  id: ClothingOuterExosuitAurora
+  name: M-320X AURORA exosuit
+  suffix: SelfUnremovable
+  description:  
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Armor/aurora.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Armor/aurora.rsi
+    stripDelay: 100
+    equipDelay: 10 # to avoid accidentally falling into the trap associated with SelfUnremovableClothing
+  - type: SelfUnremovableClothing
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.45 # nanomachines are brittle
+        Slash: 0.2
+        Piercing: 0.7
+        Heat: 0.35
+        Cold: 0.35
+        Shock: 0.15
+        Caustic: 0.7
+        Radiation: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: StaminaDamageResistance
+    coefficient: 0.2 # high shock resist, why shouldnt it block a batong?
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: FireProtection # raiden is actively lit on fire like 5 times ingame
+    reduction: 0.4
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: OUTERCLOTHING
+  - type: HarpyHideWings # Frontier, needed for Harpies
+  - type: StaticPrice
+    price: 10000
+    vendPrice: 150000
+  - type: ClothingGrantComponent
+    component:
+     - type: PressureImmunity

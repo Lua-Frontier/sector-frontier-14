@@ -42,7 +42,7 @@ namespace Content.Server._Lua.MaterialAmmo
 
         private void ProcessBatteryRecharge(EntityUid charger, EntityUid materialEntity, int unitsPerSheet, int stackSize)
         {
-            var availableCapacity = _powerSystem.CalculateChargeDeficit(charger);
+            var availableCapacity = _powerSystem.GetChargeDifference(charger);
             if (availableCapacity == 0)
                 return;
             var totalMaterial = unitsPerSheet * stackSize;
@@ -62,7 +62,7 @@ namespace Content.Server._Lua.MaterialAmmo
                 chargeAmount = Math.Abs(Math.Abs(remainingMaterial) - availableCapacity);
             }
 
-            _powerSystem.IncreaseCharge(charger, chargeAmount);
+            _powerSystem.AddCharge(charger, chargeAmount);
             var removedEntity = _stackHandler.Split(materialEntity, chargeAmount / unitsPerSheet, Transform(materialEntity).Coordinates);
             QueueDel(removedEntity);
         }

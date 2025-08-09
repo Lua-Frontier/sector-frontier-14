@@ -6,8 +6,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
-using System.Numerics;
+using Content.Shared.EntityTable;
 using Content.Shared.Fishing.Components;
 using Content.Shared.Fishing.Systems;
 using Content.Shared.Interaction.Events;
@@ -20,6 +19,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Server.Fishing;
 
@@ -64,7 +65,7 @@ public sealed class FishingSystem : SharedFishingSystem
         Anchor(ent, attachedEnt);
 
         // Currently we don't support multiple loots from this
-        var fish = spotComp.FishList.GetSpawns(_random.GetRandom(), EntityManager, _proto).First();
+        var fish = spotComp.FishList.GetSpawns(_random.GetRandom(), EntityManager, _proto, new EntityTableContext()).First(); // Lua add EntityTableContext
 
         // Get fish difficulty
         _proto.Index(fish).TryGetComponent(out FishComponent? fishComp, _compFactory);

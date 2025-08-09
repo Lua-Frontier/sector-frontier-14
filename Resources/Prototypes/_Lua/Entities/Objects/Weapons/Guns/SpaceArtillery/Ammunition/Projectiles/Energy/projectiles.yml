@@ -11,9 +11,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 1000 #175
+        Structural: 225 #175
         Radiation: 35
-        Heat: 80 #40
+        Heat: 220 #40
         Blunt: 40 #20
   - type: ExplodeOnTrigger
   - type: Explosive
@@ -63,8 +63,8 @@
   components:
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    scale: 2.5
+    scale: 3.5 # 2.5
     requireNoGrid: true
-    shape: triangle
+    shape: circle
   - type: TimedDespawn
     lifetime: 20

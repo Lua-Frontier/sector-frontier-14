@@ -42,6 +42,9 @@
       - type: SpecialSectorStationRecord
         recordGeneration: FalseRecord
       - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaNordFoll
 
 - type: startingGear
   id: SyndicateRD
@@ -55,3 +58,9 @@
     back: ClothingBackpackSyndicateFilled
     jumpsuit: ClothingUniformJumpsuitSyndieFormal
     belt: ClothingBeltAssaultOutpostSyndicate
+
+- type: chameleonOutfit
+  id: OutpostSyndicateRDChameleonOutfit
+  job: OutpostSyndicateRD
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSyndieFormal

@@ -13,7 +13,7 @@
   components:
     - type: RadarBlip
       radarColor: "#229e51"
-      scale: 1
+      scale: 0.8
     - type: Sprite
       sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets80mm.rsi
       drawdepth: Mobs
@@ -23,9 +23,24 @@
       containers:
         machine_board: !type:Container
         machine_parts: !type:Container
+    - type: ExplosionResistance
+      damageCoefficient: 0.75 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 2250
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
     - type: Gun
-      fireRate: 2
-      projectileSpeed: 60
+      fireRate: 1.5
+      projectileSpeed: 80 #60
       selectedMode: FullAuto
       availableModes:
         - FullAuto
@@ -42,12 +57,12 @@
       ports:
       - Toggle
     - type: SpaceArtillery
-      powerChargeRate: 15
-      powerUseActive: 30
+      powerChargeRate: 25
+      powerUseActive: 2500
       powerUsePassive: 1100
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 15
+      autoRechargeRate: 25
     - type: ProjectileBatteryAmmoProvider
       proto: Bullet80mm
       fireCost: 50

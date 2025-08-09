@@ -257,6 +257,27 @@
       - type: Company
         companyName: None
 
+- type: chameleonOutfit
+  id: BlueTeamSpecialistChameleonOutfit
+  job: BlueTeamSpecialist
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+
+- type: chameleonOutfit
+  id: BlueTeamGunnerChameleonOutfit
+  job: BlueTeamGunner
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+
+- type: chameleonOutfit
+  id: BlueTeamPilotChameleonOutfit
+  job: BlueTeamPilot
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+
 - type: startingGear
   id: BlueTeamGear
   equipment:
@@ -339,6 +360,13 @@
     components:
       - type: Company
         companyName: None
+
+- type: chameleonOutfit
+  id: BlueTeamCaptainChameleonOutfit
+  job: BlueTeamCaptain
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
 
 - type: startingGear
   id: BlueTeamGearCaptain
@@ -695,6 +723,27 @@
       - type: Company
         companyName: None
 
+- type: chameleonOutfit
+  id: RedTeamSpecialistChameleonOutfit
+  job: RedTeamSpecialist
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+
+- type: chameleonOutfit
+  id: RedTeamGunnerChameleonOutfit
+  job: RedTeamGunner
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+
+- type: chameleonOutfit
+  id: RedTeamPilotChameleonOutfit
+  job: RedTeamPilot
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+
 - type: startingGear
   id: RedTeamGear
   equipment:
@@ -777,6 +826,13 @@
     components:
       - type: Company
         companyName: None
+
+- type: chameleonOutfit
+  id: RedTeamCaptainChameleonOutfit
+  job: RedTeamCaptain
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
 
 - type: startingGear
   id: RedTeamGearCaptain

@@ -44,3 +44,4 @@ station-event-bluespace-name-Cave = Cave
 station-event-bluespace-name-UnidentifiedVessel = Unidentified Vessel
 station-event-bluespace-name-SecureNTVault = Secure NT Vault
 station-event-bluespace-name-SyndicateWeaponsCache = Syndicate Weapons Cache
+station-event-bluespace-name-UnusualAsteroid = Unusual Asteroid

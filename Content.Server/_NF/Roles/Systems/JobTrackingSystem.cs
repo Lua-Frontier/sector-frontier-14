@@ -52,7 +52,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
                 return;
 
             // The character is back, readjust their job slot if you can.
-            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, -1);
+            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 0);
         }
         catch (ArgumentException)
         {
@@ -76,7 +76,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             return;
 
         OpenJob(ent);
-        ev.DeleteEntity = true;
+        ev.DeleteEntity = false;
     }
 
     public void OpenJob(Entity<JobTrackingComponent> ent)
@@ -101,7 +101,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             if (slots + occupiedJobs >= stationJobs.SetupAvailableJobs[job][1])
                 return;
 
-            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 1);
+            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 0);
         }
         catch (ArgumentException)
         {

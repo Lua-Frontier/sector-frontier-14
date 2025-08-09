@@ -15,7 +15,7 @@ public abstract class SharedJobTrackingSystem : EntitySystem
         foreach (var reopenJob in ReopenExceptions)
         {
             if (job == reopenJob)
-                return false;
+                return true;
         }
         return true;
     }

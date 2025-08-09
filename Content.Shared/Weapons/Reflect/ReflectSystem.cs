@@ -1,7 +1,27 @@
+// SPDX-FileCopyrightText: 2023 Chief-Engineer
+// SPDX-FileCopyrightText: 2023 DrSmugleaf
+// SPDX-FileCopyrightText: 2023 Kara
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2023 Slava0135
+// SPDX-FileCopyrightText: 2023 avery
+// SPDX-FileCopyrightText: 2023 kalane15
+// SPDX-FileCopyrightText: 2024 Aviu00
+// SPDX-FileCopyrightText: 2024 Hannah Giovanna Dawson
+// SPDX-FileCopyrightText: 2024 Nemanja
+// SPDX-FileCopyrightText: 2024 Plykiya
+// SPDX-FileCopyrightText: 2024 deltanedas
+// SPDX-FileCopyrightText: 2024 metalgearsloth
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Redrover1760
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
+using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -39,6 +59,7 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!; // WD EDIT
 
     public override void Initialize()
     {
@@ -116,13 +137,12 @@ public sealed class ReflectSystem : EntitySystem
         var bestReflector = reflectiveItems[0];
 
         // Try to reflect with the best reflector
-        if (TryReflectHitscan(uid, bestReflector.Entity, args.Shooter, args.SourceItem, args.Direction, out var dir))
+        if (TryReflectHitscan(uid, bestReflector.Entity, args.Shooter, args.SourceItem, args.Direction, args.Damage, out var dir))
         {
             args.Direction = dir.Value;
             args.Reflected = true;
         }
     }
-
     private void OnReflectUserCollide(EntityUid uid, ReflectUserComponent component, ref ProjectileReflectAttemptEvent args)
     {
         // First, check the projectile's reflective type
@@ -227,6 +247,14 @@ public sealed class ReflectSystem : EntitySystem
 
         if (Resolve(projectile, ref projectileComp, false))
         {
+            // WD EDIT START
+            if (reflect.DamageOnReflectModifier != 0)
+            {
+                _damageable.TryChangeDamage(reflector, projectileComp.Damage * reflect.DamageOnReflectModifier,
+                    projectileComp.IgnoreResistances, origin: projectileComp.Shooter);
+            }
+            // WD EDIT END
+
             _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)} from {ToPrettyString(projectileComp.Weapon)} shot by {projectileComp.Shooter}");
 
             projectileComp.Shooter = user;
@@ -249,7 +277,7 @@ public sealed class ReflectSystem : EntitySystem
             return;
         }
 
-        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, out var dir))
+        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, args.Damage, out var dir)) // WD EDIT
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -262,6 +290,7 @@ public sealed class ReflectSystem : EntitySystem
         EntityUid? shooter,
         EntityUid shotSource,
         Vector2 direction,
+        DamageSpecifier? damage, // WD EDIT
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if (!TryComp<ReflectComponent>(reflector, out var reflect) ||
@@ -277,6 +306,11 @@ public sealed class ReflectSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("reflect-shot"), user);
             _audio.PlayPvs(reflect.SoundOnReflect, user, AudioHelpers.WithVariation(0.05f, _random));
         }
+
+        // WD EDIT START
+        if (reflect.DamageOnReflectModifier != 0 && damage != null)
+            _damageable.TryChangeDamage(reflector, damage * reflect.DamageOnReflectModifier, origin: shooter);
+        // WD EDIT END
 
         var spread = _random.NextAngle(-reflect.Spread / 2, reflect.Spread / 2);
         newDirection = -spread.RotateVec(direction);

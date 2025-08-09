@@ -5,6 +5,7 @@
 # SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 RikuTheKiller
 # SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 grandalff
 # SPDX-FileCopyrightText: 2025 kyres1
 # SPDX-FileCopyrightText: 2025 starch
 #
@@ -38,24 +39,24 @@
     - Toggle
   - type: Gun
     fireRate: 12
-    projectileSpeed: 160 #180 - Lua
+    projectileSpeed: 90
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/slammer.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 5000 #550 - Lua
+    autoRechargeRate: 550
   - type: SpaceArtillery
-    powerChargeRate: 550 #110 - Lua
-    powerUsePassive: 550 #110 - Lua
+    powerChargeRate: 100
+    powerUsePassive: 100
   - type: Actions
   - type: CombatMode
     isInCombatMode: true
   - type: Airtight
   - type: ProjectileBatteryAmmoProvider
     proto: 20mmBulletArmorPiercing
-    fireCost: 10
+    fireCost: 15
   - type: RadiationBlocker
     resistance: 8
   - type: RadarBlip
@@ -66,21 +67,6 @@
   - type: ShipGunClass
     shipClass: Light
 
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretL85AutocannonFlatPack
-  name: L85 20mm autocannon
-  description: A cheap and light 20mm autocannon. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretL85Autocannon
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
 # DRAVON 57mm
 
 - type: entity
@@ -105,7 +91,7 @@
     range: 500
   - type: Gun
     fireRate: 1.5
-    projectileSpeed: 250 #322
+    projectileSpeed: 161
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/mortar.ogg
     soundEmpty:
@@ -129,21 +115,6 @@
   - type: ShipGunClass
     shipClass: Medium
 
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretDravonFlatPack
-  name: ADBP-7 DRAVON 57mm Autocannon
-  description: A single-barrel autocannon made by Aetherion Dynamics. High fire rate, but relatively low impact. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretDravon
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
 # AK570 90mm
 
 - type: entity
@@ -168,7 +139,7 @@
     range: 500
   - type: Gun
     fireRate: 2.5
-    projectileSpeed: 160 #240
+    projectileSpeed: 120
     burstCooldown: 0.5
     burstFireRate: 10
     shotsPerBurst: 2
@@ -197,84 +168,6 @@
   - type: ShipGunClass
     shipClass: Medium
 
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretAK570FlatPack
-  name: AK570 90mm heavy autocannon
-  description: A dual barrel, heavy autocannon. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretAK570
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-# TARNYX EMP 150mm
-
-- type: entity
-  id: WeaponTurretTarnyx
-  name: ADBX-31 TARNYX 150mm EMP Cannon
-  parent: BallisticArtilleryUnanchorable
-  description: A heavy EMP cannon made by Aetherion Dynamics, designed to disable large sections of enemy ships with a single, powerful shot. Effective in asymmetric combat. Can be remotely activated or linked up to a GCS.
-  components:
-  - type: StaticPrice
-    price: 10000
-  - type: Sprite
-    sprite: _Mono/Objects/ShuttleWeapons/tarnyx.rsi
-    layers:
-    - state: space_artillery
-  - type: Appearance
-  - type: AmmoCounter
-  - type: Battery
-    maxCharge: 40000
-    startingCharge: 40000
-  - type: ExaminableBattery
-  - type: WirelessNetworkConnection
-    range: 500
-  - type: Gun
-    fireRate: 0.05
-    projectileSpeed: 400
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 214
-  - type: SpaceArtillery
-    powerChargeRate: 214
-    powerUsePassive: 3500
-    powerUseActive: 0
-  - type: Actions
-  - type: ProjectileBatteryAmmoProvider
-    proto: ShipTarnyxProjectile
-    fireCost: 17500 # low shot weapon moved back to the original spot
-  - type: RadarBlip
-    radarColor: "#035EFC"
-    scale: 2.5
-  - type: ShipGunType
-    shipType: Ballistic
-  - type: ShipGunClass
-    shipClass: Heavy
-
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretTarnyxFlatPack
-  name: ADBX-31 TARNYX 150mm EMP Cannon
-  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretTarnyx
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
 # CYREXA 220mm
 
 - type: entity
@@ -310,8 +203,8 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 260 #315
-    fireRate: 0.1 #0.2
+    projectileSpeed: 155
+    fireRate: 0.2
     burstCooldown: 10
     burstFireRate: 2
     shotsPerBurst: 2
@@ -335,27 +228,22 @@
   - type: RadarBlip
     radarColor: "#FF0000"
     scale: 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-    
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretCyrexaFlatPack
-  name: CYREXA 220mm cannon
-  description: A dual barrel, main-battery cannon firing 220mm auto shells with slight reduction in brute strength. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretCyrexa
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-    
+
 # HADES 305mm
 
 - type: entity
@@ -391,7 +279,7 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 450
+    projectileSpeed: 225
     fireRate: 0.2
     burstCooldown: 10
     burstFireRate: 2
@@ -416,74 +304,69 @@
   - type: RadarBlip
     radarColor: "#FF0000"
     scale: 2.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
-    shipClass: Heavy
+    shipClass: Superheavy
 
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretHadesFlatPack
-  name: HADES 305mm cannon
-  description: One of the largest chemical-based kinetic weapons in the sector. Its power is only rivaled by mass drivers such as the M381.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretHades
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-    
-# CHARON
+# MiniCHARON
 
 - type: entity
-  id: WeaponTurretCharon
-  name: M381 CHARON mass driver
+  id: WeaponTurretCharonette
+  name: M194 CHARONETTE mass driver
   parent: BallisticArtilleryUnanchorable
-  description: A capital-class railgun that fires a massive slug at extreme velocity, capable of catastrophic damage to enemy ships. Heavy linear accelerator, can be remotely activated or linked up to a GCS.
+  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships. Medium linear accelerator, can be remotely activated or linked up to a GCS.
   components:
   - type: StaticPrice
-    price: 40000
+    price: 25000
   - type: Sprite
-    sprite: _Mono/Objects/ShuttleWeapons/charon.rsi
+    sprite: _Mono/Objects/ShuttleWeapons/charonette.rsi
     layers:
     - state: space_artillery
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
-    maxCharge: 40000
-    startingCharge: 40000
+    maxCharge: 20000
+    startingCharge: 20000
   - type: ExaminableBattery
   - type: WirelessNetworkConnection
     range: 500
   - type: Gun
-    fireRate: 0.02
-    projectileSpeed: 300 #900
+    fireRate: 0.05
+    projectileSpeed: 400
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 350
+    autoRechargeRate: 150
   - type: SpaceArtillery
-    powerChargeRate: 350
-    powerUsePassive: 1000
-    powerUseActive: 7500
+    powerChargeRate: 150
+    powerUsePassive: 600
+    powerUseActive: 4000
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
-    proto: ShipRailgunProjectile
-    fireCost: 1500
+    proto: ShipMiniRailgunProjectile
+    fireCost: 1000
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
-        density: 1500
+        density: 1000
         mask:
         - MachineMask
         layer:
@@ -492,13 +375,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 6000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 2500 #1500
+        damage: 12500
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -506,28 +383,13 @@
         sound:
           collection: MetalBreak
   - type: RadarBlip
-    radarColor: "#CF0E0E"
-    scale: 3
+    radarColor: "#d53a3a"
+    scale: 2
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Heavy
 
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretCharonFlatPack
-  name: M381 CHARON mass driver
-  description: A heavy linear accelerator, capable of devastating targets with kinetic energy. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretCharon
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
 # Bofors 255mm
 
 - type: entity
@@ -563,7 +425,7 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 270 #315
+    projectileSpeed: 155
     fireRate: 0.075
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
@@ -574,13 +436,13 @@
     autoRechargeRate: 12000
     autoRechargePause: true
   - type: SpaceArtillery
-    powerChargeRate: 800
-    powerUsePassive: 1500
+    powerChargeRate: 12000
+    powerUsePassive: 2000
     powerUseActive: 0
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipBoforsProjectile
-    fireCost: 6000
+    fireCost: 8000
   - type: RadarBlip
     radarColor: "#03FC9D"
     scale: 3.5
@@ -589,21 +451,6 @@
   - type: ShipGunClass
     shipClass: Medium
 
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretBoforsFlatPack
-  name: Bofors 255mm cannon
-  description: A single barrelled, heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretBofors
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
 # Kargil 203mm
 
 - type: entity
@@ -639,24 +486,24 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 270 #315
-    fireRate: 0.15 #2
+    projectileSpeed: 155
+    fireRate: 0.2
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 12000
+    autoRechargeRate: 10000
     autoRechargePause: true
   - type: SpaceArtillery
-    powerChargeRate: 700
+    powerChargeRate: 10000
     powerUsePassive: 1500
     powerUseActive: 0
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipKargilProjectile
-    fireCost: 6000
+    fireCost: 5000
   - type: RadarBlip
     radarColor: "#03FC9D"
     scale: 3
@@ -664,19 +511,3 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-
-#FLATPACK
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretKargilFlatPack
-  name: Kargil 203mm cannon
-  description: A single barrelled, medium-heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretKargil
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
