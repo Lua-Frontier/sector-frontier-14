@@ -291,12 +291,6 @@
       - Back
       - suitStorage
       - Belt
-  - type: GasTank
-    outputPressure: 21.3
-    air:
-      volume: 15 #_Lua
-      temperature: 293.15
-    
 
 # Filled void
 - type: entity
@@ -308,8 +302,8 @@
   - type: GasTank
     outputPressure: 42.6
     air:
-      # я подумаю...
-      volume: 15 #_Lua
+      # 13 minutes of thrust
+      volume: 5
       temperature: 293.15
       moles:
         - 1.025689525 # oxygen
