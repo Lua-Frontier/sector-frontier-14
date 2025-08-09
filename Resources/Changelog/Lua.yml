@@ -659,3 +659,60 @@ Entries:
   id: 47
   time: '2025-08-05T09:12:37.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/99
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Дискорд авторизация
+  id: 48
+  time: '2025-08-06T02:16:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/105
+- author: k1bitka
+  changes:
+    - type: Add
+      message: Добавлена локазилация для огнестрела, патронов, энергооружия
+    - type: Fix
+      message: >-
+        Изменены звуки выстрелов дробовиков, их размеры в сумке, их
+        скорострельность
+    - type: Remove
+      message: замедление при взятие большинства оружия в руки
+  id: 49
+  time: '2025-08-06T02:34:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/107
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: >-
+        Обновление сборки по состоянию сборки New Frontier на 07.08.2025, сборка
+        New Frontier содержит обновления WizDen по состоянию 25.06.2025
+  id: 50
+  time: '2025-08-09T13:41:48.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/112
+- author: Donevinoll
+  changes:
+    - type: Add
+      message: Добавил XC67 в аплинк нордфоллу
+    - type: Add
+      message: 'Добавил Экстендедмаги для XC67 в аплинк нордфолла '
+    - type: Tweak
+      message: '"малый" ЕМАГ теперь стоит дешевле'
+    - type: Tweak
+      message: Вернул "большой" ЕМАГ в аплинк нодфолла
+    - type: Remove
+      message: Убран вайтлист на стандартные магазины XC67
+  id: 51
+  time: '2025-08-09T15:35:58.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/96
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Исправлен баг, в результате которого капитан шаттла не мог попасть в
+        рубку своего шаттла
+    - type: Tweak
+      message: >-
+        Кнопкам добавлены каркасы, исправлена плитка, добавлено дополнительное
+        топливо для ДАМ на Fisherman
+  id: 52
+  time: '2025-08-09T15:37:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/110

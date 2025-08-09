@@ -49,13 +49,15 @@
       provided_container: !type:Container { }
 
 - type: entity
+  parent: BaseAction
   id: ActionBorgSwapModule
   name: Swap Module
   description: Select this module, enabling you to use the tools it provides.
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     useDelay: 0.5
+  - type: InstantAction
     event: !type:BorgModuleActionSelectedEvent
 
 - type: entity
@@ -1579,7 +1581,7 @@
   parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleSword
   name: sword xenoborg module
-  description: Module with an energy dagger.
+  description: Module with a kukri knife.
   components:
   - type: Sprite
     layers:
@@ -1588,16 +1590,16 @@
   - type: ItemBorgModule
     moduleId: XenoborgSword # Frontier
     items:
-    - EnergyDaggerLoudBlue
+    - KukriKnife
     - JetpackXenoborg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
 - type: entity
   parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
-  id: XenoborgModuleFastSword
-  name: fast sword xenoborg module
-  description: Module with a crusher dagger.
+  id: XenoborgModuleEnergySword
+  name: energy sword xenoborg module
+  description: Module with an energy dagger.
   components:
   - type: Sprite
     layers:
@@ -1606,7 +1608,7 @@
   - type: ItemBorgModule
     moduleId: XenoborgSwordFast # Frontier
     items:
-    - WeaponCrusherDagger
+    - EnergyDaggerLoudBlue
     - JetpackXenoborg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }

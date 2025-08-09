@@ -93,7 +93,7 @@ namespace Content.Shared.Chat
         AdminRelated = Admin | AdminAlert | AdminChat,
     }
 
-    /// <summary>Add commentMore actions
+    /// <summary>
     /// Contains extension methods for <see cref="ChatChannel"/>
     /// </summary>
     public static class ChatChannelExt

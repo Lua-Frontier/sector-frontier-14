@@ -446,28 +446,6 @@ entities:
           - 0
         chunkSize: 4
     - type: GasTileOverlay
-- proto: ActionToggleInternals
-  entities:
-  - uid: 412
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 410
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 410
-- proto: ActionToggleJetpack
-  entities:
-  - uid: 411
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 410
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 410
 - proto: AirAlarm
   entities:
   - uid: 414
@@ -2328,17 +2306,6 @@ entities:
     - type: Transform
       pos: -0.78616333,6.7370753
       parent: 1
-    - type: GasTank
-      toggleActionEntity: 412
-    - type: Jetpack
-      toggleActionEntity: 411
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 411
-          - 412
 - proto: LockableButtonExternal
   entities:
   - uid: 421
