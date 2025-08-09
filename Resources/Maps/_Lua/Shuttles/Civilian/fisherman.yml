@@ -1468,17 +1468,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: ActionToggleBlock
-  entities:
-  - uid: 915
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 910
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 910
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -7038,14 +7027,6 @@ entities:
     - type: Transform
       pos: -2.4949837,6.9673967
       parent: 1
-    - type: Blocking
-      blockingToggleActionEntity: 915
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 915
 - proto: WoodenKeg
   entities:
   - uid: 911

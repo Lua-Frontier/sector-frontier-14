@@ -5,8 +5,9 @@
   components:
   - type: LimitedCharges
     maxCharges: 1
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Objects/Consumable/Food/egg.rsi, state: icon }
+  - type: InstantAction
     event: !type:EggAriralLayInstantActionEvent
 
 - type: entity
@@ -35,8 +36,9 @@
   id: OwOVoice
   name: Change speech
   components:
-    - type: InstantAction
-      checkCanInteract: false
-      icon: _Lua/Interface/Actions/owo-button.png
-      iconOn: _Lua/Interface/Actions/owo-button-on.png
-      event: !type:OwOAccentActionEvent
+  - type: Action
+    checkCanInteract: false
+    icon: _Lua/Interface/Actions/owo-button.png
+    iconOn: _Lua/Interface/Actions/owo-button-on.png
+  - type: InstantAction
+    event: !type:OwOAccentActionEvent

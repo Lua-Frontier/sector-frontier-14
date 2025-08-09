@@ -267,4 +267,5 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
 public enum JetpackVisuals : byte
 {
     Enabled,
+    Layer
 }

@@ -48,6 +48,12 @@ namespace Content.Shared.Maps
         [DataField]
         public PrototypeFlags<ToolQualityPrototype> DeconstructTools { get; set; } = new();
 
+        /// <summary>
+        /// Effective mass of this tile for grid impacts.
+        /// </summary>
+        [DataField]
+        public float Mass = 800f;
+
         /// <remarks>
         /// Legacy AF but nice to have.
         /// </remarks>
@@ -70,6 +76,11 @@ namespace Content.Shared.Maps
         [DataField("friction")] public float Friction { get; set; } = 1f;
 
         [DataField("variants")] public byte Variants { get; set; } = 1;
+
+        /// <summary>
+        ///     Allows the tile to be rotated/mirrored when placed on a grid.
+        /// </summary>
+        [DataField] public bool AllowRotationMirror { get; set; } = false;
 
         /// <summary>
         /// This controls what variants the `variantize` command is allowed to use.
@@ -101,12 +112,6 @@ namespace Content.Shared.Maps
         /// </summary>
         [DataField("mobFrictionNoInput")]
         public float? MobFrictionNoInput { get; private set; }
-
-        /// <summary>
-        /// Effective mass of this tile for grid impacts.
-        /// </summary>
-        [DataField]
-        public float Mass = 800f;
 
         /// <summary>
         ///     Accel override for mob mover in <see cref="SharedMoverController"/>

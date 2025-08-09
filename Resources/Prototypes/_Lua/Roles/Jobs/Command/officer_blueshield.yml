@@ -61,6 +61,13 @@
     id: BlueShieldOfficerPDA
     pocket1: PistolBlueShield
 
+- type: chameleonOutfit
+  id: BlueShieldOfficerChameleonOutfit
+  job: BlueShieldOfficer
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+
 - type: entity
   parent: BasePDA
   id: BlueShieldOfficerPDA

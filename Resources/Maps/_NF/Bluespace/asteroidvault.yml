@@ -549,17 +549,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: ActionToggleBlock
-  entities:
-  - uid: 1406
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 536
-    - type: InstantAction
-      originalIconColor: '#FFFFFFFF'
-      container: 536
 - proto: AirlockExternal
   entities:
   - uid: 2
@@ -10742,14 +10731,6 @@ entities:
     - type: Transform
       pos: 0.484375,2.515625
       parent: 1
-    - type: Blocking
-      blockingToggleActionEntity: 1406
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 1406
 - proto: FoodBreadBanana
   entities:
   - uid: 535
