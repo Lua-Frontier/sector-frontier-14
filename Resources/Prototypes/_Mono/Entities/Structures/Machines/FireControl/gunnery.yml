@@ -12,7 +12,7 @@
 - type: entity
   id: GunneryServerBase
   parent: BaseMachinePowered
-  name: ent-GunneryServerBase.name
+  name: ent-GunneryServerBase
   description: ent-GunneryServerBase.desc
   suffix: НЕ РАБОЧИЙ
   components:
@@ -60,7 +60,7 @@
 - type: entity
   id: GunneryServerLow
   parent: GunneryServerBase
-  name: ent-GunneryServerLow.name
+  name: ent-GunneryServerLow
   suffix: 24
   components:
   - type: Machine
@@ -80,7 +80,7 @@
 - type: entity
   id: GunneryServerMedium
   parent: GunneryServerBase
-  name: ent-GunneryServerMedium.name
+  name: ent-GunneryServerMedium
   suffix: 42
   components:
   - type: Machine
@@ -100,7 +100,7 @@
 - type: entity
   id: GunneryServerHigh
   parent: GunneryServerBase
-  name: ent-GunneryServerHigh.name
+  name: ent-GunneryServerHigh
   suffix: 60
   components:
   - type: Machine
@@ -120,7 +120,7 @@
 - type: entity
   id: GunneryServerUltra
   parent: [GunneryServerBase] # removed BaseStructureDisableToolUse
-  name: ent-GunneryServerUltra.name
+  name: ent-GunneryServerUltra
   suffix: 90
   components:
   - type: Machine
@@ -142,7 +142,7 @@
 - type: entity
   id: GunneryServerOmega
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerOmega.name
+  name: ent-GunneryServerOmega
   suffix: НЕ МАПИТЬ 150
   components:
   - type: Machine
@@ -164,7 +164,7 @@
 - type: entity
   id: GunneryServerStation
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerStation.name
+  name: ent-GunneryServerStation
   components:
   - type: Machine
     board: MachineGCSStationCircuitboard
@@ -185,7 +185,7 @@
 - type: entity
   id: GunneryServerStationConsolesEnforced
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
-  name: ent-GunneryServerStationConsolesEnforced.name
+  name: ent-GunneryServerStationConsolesEnforced
   suffix: НЕ РАБОТАЕТ
   components:
   - type: Machine
@@ -208,7 +208,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerGunneryConsole
-  name: ent-ComputerGunneryConsole.name
+  name: ent-ComputerGunneryConsole
   description: ent-ComputerGunneryConsole.desc
   placement:
     mode: SnapgridCenter

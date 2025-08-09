@@ -14,21 +14,20 @@ station-event-bluespace-name-SecureNTVault = Защищённое хранили
 station-event-bluespace-name-SyndicateWeaponsCache = Хранилище Вооружения Синдиката
 station-event-bluespace-name-UnusualAsteroid = Необычный Астероид
 
-ent-PlantManagerPDA.name = КПК Менеджера Электростанции
-ent-PlantManagerPDA.desc = В идеальном состоянии, но с сильным запахом озона.
-ent-PlantTechnicianPDA.name = КПК Техника Электростанции
-ent-PlantTechnicianPDA.desc = Последний работник как-то погнул антенну кпк..
+ent-PlantManagerPDA = КПК Менеджера Электростанции
+    .desc = В идеальном состоянии, но с сильным запахом озона.
+ent-PlantTechnicianPDA = КПК Техника Электростанции
+    .desc = Последний работник как-то погнул антенну кпк..
 
-ent-GunneryServerBase.name = Сервер Вооружения
-ent-GunneryServerBase.desc = Управляет дистанционно работой корабельных орудий.
-ent-GunneryServerLow.name = Малый сервер вооружения
-ent-GunneryServerMedium.name = Средний сервер вооружения
-ent-GunneryServerHigh.name = Высокомощный сервер вооружения
-ent-GunneryServerUltra.name = Ультра-Высокомощный сервер вооружения
-ent-GunneryServerOmega.name = Омега-Высокомощный сервер вооружения
-ent-GunneryServerStation.name = Стационный Сервер Вооружения
-ent-GunneryServerStationConsolesEnforced.name = Стационный Сервер Вооружения
-ent-ComputerGunneryConsole.name = консоль управления вооружением
-ent-ComputerGunneryConsole.desc = Консоль управления для взаимодействия с сервером вооружения корабельных орудий шаттла
+ent-GunneryServerBase = Сервер Вооружения
+    .desc = Управляет дистанционно работой корабельных орудий.
+ent-GunneryServerLow = Малый сервер вооружения
+ent-GunneryServerMedium = Средний сервер вооружения
+ent-GunneryServerHigh = Высокомощный сервер вооружения
+ent-GunneryServerUltra = Ультра-Высокомощный сервер вооружения
+ent-GunneryServerOmega = Омега-Высокомощный сервер вооружения
+ent-GunneryServerStation = Стационный Сервер Вооружения
+ent-GunneryServerStationConsolesEnforced = Стационный Сервер Вооружения
 
-
+ent-ComputerGunneryConsole = консоль управления вооружением
+    .desc = Консоль управления для взаимодействия с сервером вооружения корабельных орудий шаттла
