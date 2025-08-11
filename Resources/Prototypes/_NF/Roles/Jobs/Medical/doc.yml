@@ -37,6 +37,7 @@
         account: Medical
       - type: Company
         companyName: Nanotrasen
+      - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
@@ -52,3 +53,15 @@
     - MobileComputerTabletopCommsFlatpack
     - BoxFolderMedicalDoctor
     - RubberStampDoc
+
+- type: chameleonOutfit
+  id: DirectorOfCareChameleonOutfit
+  job: DirectorOfCare
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretCmo
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingCloakCmo
+    outerClothing: ClothingOuterCoatLabCmo
+    gloves: ClothingHandsGlovesNitrile

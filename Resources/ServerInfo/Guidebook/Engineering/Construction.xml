@@ -1,5 +1,5 @@
 <Document>
-  # Construction
+  # Строительство
 
   <Box>
     <GuideEntityEmbed Entity="Bed" Caption=""/>
@@ -8,20 +8,15 @@
     <GuideEntityEmbed Entity="Chair" Caption=""/>
   </Box>
 
+  Меню строительства позволяет создавать и строить объекты в игре.
+  Открывается по [color=yellow][bold][keybind="OpenCraftingMenu"][/bold][/color].
 
-  The Construction Menu is how you build and craft objects in the game.
-  It can be accessed by pressing [color=yellow][bold][keybind="OpenCraftingMenu"][/bold][/color].
+  Для объектов, «прилипающих» к сетке, удерживайте [color=yellow][bold][keybind="EditorLinePlace"][/bold][/color], чтобы ставить линию, и [color=yellow][bold][keybind="EditorGridPlace"][/bold][/color], чтобы ставить целую сетку.
 
-  When placing objects that "snap" to the grid, you can hold [color=yellow][bold][keybind="EditorLinePlace"][/bold][/color] to place an entire line at a time, and [color=yellow][bold][keybind="EditorGridPlace"][/bold][/color] to place an entire grid at a time.
+  Для крафтов с множеством ингредиентов не нужно держать всё в руках: положите рядом на пол, в рюкзак или на стол — они израсходуются автоматически.
 
-  When crafting objects with a lot of ingredients, keep in mind you don't have to hold everything at once; you can simply place the ingredients on the floor, in your backpack or on a table near you, and they'll be used up during crafting like normal.
+  Размещая «призрак постройки», нажмите [color=yellow][bold][keybind="EditorRotateObject"][/bold][/color] для поворота по часовой. Для зеркалируемых узлов (например, смесители/фильтры) используйте [color=yellow][bold][keybind="EditorFlipObject"][/bold][/color].
 
-  When placing a "building ghost" somewhere in the world, press [color=yellow][bold][keybind="EditorRotateObject"][/bold][/color] to rotate the ghost clockwise.
-  If you are building a mirrorable component (think: Gas Mixers/Filters), you can press [color=yellow][bold][keybind="EditorFlipObject"][/bold][/color] to flip the ghost.
-
-  You can also use [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] and [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] to rotate an object clockwise or counterclockwise if it's already built, as long as it is unanchored (unwrenched).
-
-
-
+  Уже поставленные, но не закреплённые объекты можно вращать [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] и [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color].
 
 </Document>

@@ -167,9 +167,32 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BluespaceMatterBinStockPart:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   id: StationAiBrainRedacted
@@ -261,8 +284,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
 
 - type: entity
@@ -364,8 +391,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
 
 - type: entity
@@ -474,8 +505,12 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: base
-    - state: ai
+    - state: ai_empty
       shader: unshaded
+    - state: ai
+      map: ["enum.StationAiVisualState.Key"]
+      shader: unshaded
+      visible: false
   - type: Anchorable
 
 - type: entity

@@ -1,0 +1,94 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: [ ClothingBackpackLua, ClothingBackpack ]
+  id: ClothingBackpackLuaB
+  name: модифицированный рюкзак "LuaTech"
+  suffix: Луа
+  description: Рюкзак разработанный "LuaTech" с функцией РИГ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Back/Backpacks/lua_back.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitLuaB
+    requiredSlot: BACK
+    slot: outerClothing
+  - type: StorageFill
+    contents:
+      - id: HacksHat
+      - id: HacksPDA
+      - id: HacksHandsRing
+      - id: ClothingHandsGlovesCombatLua
+      - id: ClothingShoesBootsLua
+      - id: ClothingNeckCapeLuaDalt
+      - id: ClothingNeckCapeLuaBlackDalt
+      - id: ClothingUniformJumpsuitMedicLua
+      - id: PaperLawsLua
+      - id: HyposprayLua
+      - id: ClothingEyesHudLuaTech
+      - id: PlushieSharkBlack
+      - id: PlushieIrisLua
+      - id: PlushieHacksLua
+      - id: ClothingBeltLua
+      - id: WeaponCaseShortLua
+      - id: BlinkImplanterLua
+
+- type: entity
+  parent: [ ClothingHeadHelmetLua, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetLuaB
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра "S" "LuaTech"
+  description: Скафандр шлем с ушами под расу "Вульпканинов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Head/Hardsuits/lua_helm_black.rsi
+    layers:
+    - state: on-equipped-HELMET
+  - type: PointLight
+    color: "#75ACF0"
+    energy: 3
+    radius: 7
+
+- type: entity
+  parent: [ ClothingOuterHardsuitLua, ClothingOuterHardsuitAtmos ]
+  id: ClothingOuterHardsuitLuaB
+  categories: [ HideSpawnMenu ]
+  name: скафандр "S" "LuaTech"
+  description: Скафандр специализированный под расу "Вульпканинов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/OuterClothing/Hardsuits/lua_hardsuit_black.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/OuterClothing/Hardsuits/lua_hardsuit_black.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetLuaB
+
+- type: entity
+  parent: [ ClothingBackpackLuaB, ClothingBackpackLua, ClothingBackpack ]
+  id: ClothingBackpackLuaBW
+  name: модифицированный рюкзак "LuaTech"
+  suffix: Луа, Упрощенный
+  description: Рюкзак разработанный "LuaTech" с функцией РИГ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitLuaB
+    requiredSlot: BACK
+    slot: outerClothing
+  - type: StorageFill
+    contents:
+      - id: HacksHat
+      - id: HacksPDA
+      - id: ClothingHandsGlovesCombatLua
+      - id: WeaponCaseShortLua
+      - id: BlinkImplanterLua
+      - id: ClothingShoesBootsLua
+      - id: ClothingNeckCapeLuaBlackDalt
+      - id: ClothingUniformJumpsuitMedicLua
+      - id: PaperLawsLua
+      - id: HyposprayLua
+      - id: ClothingEyesHudLuaTech
+      - id: PlushieHacksLua
+      - id: ClothingBeltLua

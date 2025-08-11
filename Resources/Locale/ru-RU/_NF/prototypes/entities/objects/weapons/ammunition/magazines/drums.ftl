@@ -1,0 +1,5 @@
+ent-NFMagazineShotgunDrum = барабан (.50 дробь)
+ent-NFMagazineShotgunDrumEmpty = барабан (.50 дробь, любые)
+ent-NFMagazineShotgunDrumBeanbag = барабан (.50 пуля, траматическая)
+ent-NFMagazineShotgunDrumSlug = барабан (.50 пуля)
+ent-NFMagazineShotgunDrumIncendiary = барабан (.50 дробь, зажигательная)

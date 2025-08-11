@@ -44,6 +44,8 @@
       - type: NpcFactionMember
         factions:
         - LuaNordFoll
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplantNordfoll ]
 
 - type: startingGear
   id: SyndicateBotanist
@@ -53,3 +55,9 @@
     back: ClothingBackpackSyndicateFilled
     shoes: ClothingShoesColorBlack
     id: SyndiPDABotan
+
+- type: chameleonOutfit
+  id: OutpostSyndicateBotanistChameleonOutfit
+  job: OutpostSyndicateBotanist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOutpostSyndicateBotanist

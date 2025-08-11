@@ -281,7 +281,7 @@
   suffix: "Станция"
   components:
     - type: Sprite # Frontier
-      color: "#a16e30" # Frontier
+      color: "#a6a6a6" # Frontier
     - type: Tag
       tags:
         - Wall
@@ -318,7 +318,7 @@
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
-    color: "#a16e30" # Lua
+    color: "#a6a6a6" # Lua
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -353,6 +353,8 @@
   parent: PlastitaniumWindowSquareBase
   suffix: "Станция"
   components:
+  - type: Sprite # Frontier
+    color: "#a6a6a6" # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -390,6 +392,8 @@
   parent: PlastitaniumWindowDiagonalBase
   suffix: "Станция Диагональ"
   components:
+  - type: Sprite # Frontier
+    color: "#a6a6a6" # Frontier
   - type: Destructible
     thresholds:
     - trigger:

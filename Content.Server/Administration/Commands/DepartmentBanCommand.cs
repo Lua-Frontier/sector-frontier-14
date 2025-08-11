@@ -27,7 +27,10 @@ public sealed class DepartmentBanCommand : IConsoleCommand
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
+
+    private ISawmill? _sawmill;
 
     public string Command => "departmentban";
     public string Description => Loc.GetString("cmd-departmentban-desc");
@@ -63,7 +66,8 @@ public sealed class DepartmentBanCommand : IConsoleCommand
         uint minutes;
         if (!Enum.TryParse(_cfg.GetCVar(CCVars.DepartmentBanDefaultSeverity), out NoteSeverity severity))
         {
-            Logger.WarningS("admin.department_ban", "Department ban severity could not be parsed from config! Defaulting to medium.");
+            _sawmill ??= _log.GetSawmill("admin.department_ban");
+            _sawmill.Warning("Department ban severity could not be parsed from config! Defaulting to medium.");
             severity = NoteSeverity.Medium;
         }
 
@@ -170,34 +174,34 @@ public sealed class DepartmentBanCommand : IConsoleCommand
     {
         var builder = new StringBuilder();
 
-        builder.AppendLine($"### **Департмент-бан **");
-        builder.AppendLine($"**Нарушитель:** *{target}*");
-        builder.AppendLine($"**Причина:** {reason}");
+        builder.AppendLine($"### **����������-��� **");
+        builder.AppendLine($"**����������:** *{target}*");
+        builder.AppendLine($"**�������:** {reason}");
 
         var banDuration = TimeSpan.FromMinutes(minutes);
 
-        builder.Append($"**Длительность:** ");
+        builder.Append($"**������������:** ");
 
         if (expires != null)
         {
-            builder.Append($"{banDuration.Days} {NumWord(banDuration.Days, "день", "дня", "дней")}, ");
-            builder.Append($"{banDuration.Hours} {NumWord(banDuration.Hours, "час", "часа", "часов")}, ");
-            builder.AppendLine($"{banDuration.Minutes} {NumWord(banDuration.Minutes, "минута", "минуты", "минут")}");
+            builder.Append($"{banDuration.Days} {NumWord(banDuration.Days, "����", "���", "����")}, ");
+            builder.Append($"{banDuration.Hours} {NumWord(banDuration.Hours, "���", "����", "�����")}, ");
+            builder.AppendLine($"{banDuration.Minutes} {NumWord(banDuration.Minutes, "������", "������", "�����")}");
 
         }
         else
         {
-            builder.AppendLine($"***Навсегда***");
+            builder.AppendLine($"***��������***");
         }
 
-        builder.AppendLine($"**Отдел:** {department}");
+        builder.AppendLine($"**�����:** {department}");
 
         if (expires != null)
         {
-            builder.AppendLine($"**Дата снятия наказания:** {expires}");
+            builder.AppendLine($"**���� ������ ���������:** {expires}");
         }
 
-        builder.Append($"**Наказание выдал(-а):** ");
+        builder.Append($"**��������� �����(-�):** ");
 
         if (player != null)
         {
@@ -205,7 +209,7 @@ public sealed class DepartmentBanCommand : IConsoleCommand
         }
         else
         {
-            builder.AppendLine($"***СИСТЕМА***");
+            builder.AppendLine($"***�������***");
         }
 
         return builder.ToString();

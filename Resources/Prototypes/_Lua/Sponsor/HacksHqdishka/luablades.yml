@@ -1,0 +1,101 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesCombatLua
+  name: боевые перчатки "LuaTech"
+  categories: [ HideSpawnMenu ]
+  description: Эти тактические перчатки огнеупорны и ударопрочны.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Weapons/lua_blade.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Weapons/lua_blade.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-black
+  - type: Appearance
+  - type: HiddenBlades
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True:
+            sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Weapons/lua_blade_activated.rsi
+            state: icon
+          False:
+            sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Weapons/lua_blade.rsi
+            state: icon
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+      params:
+        volume: 3
+  - type: ToggleClothing
+    action: ActionToggleBladeLua
+    disableOnUnequip: true
+  # - type: HardsuitAcidifier
+  - type: Speech
+  - type: TTS
+    voice: Templar
+  - type: ComponentToggler
+    components:
+    - type: Unremoveable
+    - type: MeleeWeapon
+      wideAnimationRotation: -135
+      attackRate: 1.8
+      autoAttack: true
+      angle: 100
+      damage:
+        types:
+          Slash: 15
+          Heat: 15
+          Structural: 20
+      mustBeEquippedToUse: true
+      animation: WeaponArcClaw
+      wideAnimation: WeaponArcClaw
+      soundSwing:
+        path: /Audio/Weapons/eblademiss.ogg
+        params:
+          volume: 3
+          variation: 0.025
+      soundHit:
+        path: /Audio/Weapons/eblade1.ogg
+        params:
+          volume: 3
+          variation: 0.025
+    - type: PointLight
+      color: "#820047"
+      radius: 3
+      energy: 1.5
+    - type: Sharp
+    - type: Execution
+      doAfterDuration: 4.0
+    - type: Reflect
+      reflectProb: .75
+      spread: 75
+
+- type: entity
+  id: ActionToggleBladeLua
+  name: Активировать скрытые клинки
+  description: Скрытые клинки были разработаны "LuaTech" для проведения спецопераций по устранению или ведению ближних боев.
+  components:
+  - type: Action
+    useDelay: 1.0
+    icon:
+      sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Weapons/lua_blade_activated.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent

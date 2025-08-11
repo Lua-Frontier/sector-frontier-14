@@ -25,6 +25,7 @@
   weight: 30
   displayWeight: 30
   setPreference: true
+  newPlayerMessage: false
   access:
   - Pirate
   accessGroups:
@@ -52,3 +53,7 @@
   storage:
     back:
     - AppraisalTool
+
+- type: chameleonOutfit
+  id: NFPirateFirstMateChameleonOutfit
+  job: NFPirateFirstMate

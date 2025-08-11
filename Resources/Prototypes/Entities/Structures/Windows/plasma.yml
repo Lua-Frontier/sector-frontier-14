@@ -15,7 +15,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 1500 #Lua
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -24,7 +24,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 750 #Lua
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -44,7 +44,7 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 3
+    damageDivisor: 50 #Lua
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
@@ -83,7 +83,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 750 #Lua
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -92,7 +92,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 37
+        damage: 375 #Lua
       behaviors:
       - !type:PlaySoundBehavior
         sound:

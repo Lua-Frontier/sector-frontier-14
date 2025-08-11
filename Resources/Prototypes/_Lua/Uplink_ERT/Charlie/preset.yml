@@ -1,0 +1,16 @@
+- type: entity
+  id: StorePresetCharlieUplink
+  abstract: true
+  components:
+  - type: Store
+    name: uplink-charlie-fsf
+    categories:
+    - CharlieUplinkWeapon
+    - CharlieUplinkMedical
+    - CharlieUplinkAmmo
+    - CharlieUplinkMisc
+    - CharlieUplinkExplosions
+    currencyWhitelist:
+    - FrontierUplinkCoin
+    balance:
+      FrontierUplinkCoin: 0

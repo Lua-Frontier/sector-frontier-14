@@ -3,8 +3,8 @@
 # Discord: dustylens
 
 # Maintainer Info
-# GitHub: ???
-# Discord: ???
+# GitHub: dustylens
+# Discord: dustylens
 
 # Notes:
 # Medical ship garage, medical manager base and medical bounty staging area.
@@ -12,8 +12,8 @@
   id: Medical
   parent: BasePOI
   name: 'Медицинский Центр'
-  minimumDistance: 450
-  maximumDistance: 600
+  minimumDistance: 1000 #450 Lua
+  maximumDistance: 2000 #600 Lua
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/medical.yml
   addComponents:

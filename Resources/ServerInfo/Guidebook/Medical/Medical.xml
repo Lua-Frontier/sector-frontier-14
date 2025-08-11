@@ -1,9 +1,9 @@
 <Document>
-# Medical
-This is the department where people go to when they're hurt, it's up to the folks working here to fix them.
+# Медицинский отдел
+Это отдел, куда приходят, когда им больно. Задача работающих здесь — поставить на ноги пострадавших.
 
-## Personnel
-[color=#5b97bc]Medical[/color]'s staff is made up of Medical Interns, Medical Doctors, Paramedics and Chemists. [color=#5b97bc]Medical[/color] is run by the Chief Medical Officer.
+## Персонал
+Персонал [color=#5b97bc]медицинского отдела[/color] состоит из мединтернов, врачей, парамедиков и химиков. Руководит [color=#5b97bc]медициной[/color] Главный врач (Chief Medical Officer).
 
   <Box>
     <GuideEntityEmbed Entity="ToyFigurineMedicalDoctor" Caption="Doctor"/>
@@ -11,10 +11,10 @@ This is the department where people go to when they're hurt, it's up to the folk
     <GuideEntityEmbed Entity="ToyFigurineChemist" Caption="Chemist"/>
     <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="CMO"/>
   </Box>
-  
-Right now, medbay is divided into two different sets of care:
 
-## Medical Treatment
+Сейчас медбей делится на два основных направления помощи:
+
+## Медицинское лечение
   <Box>
     <GuideEntityEmbed Entity="Brutepack"/>
     <GuideEntityEmbed Entity="Bloodpack"/>
@@ -22,7 +22,8 @@ Right now, medbay is divided into two different sets of care:
     <GuideEntityEmbed Entity="Gauze"/>
     <GuideEntityEmbed Entity="HandheldHealthAnalyzer"/>
   </Box>
-## Chemical Production
+
+## Производство лекарств
   <Box>
     <GuideEntityEmbed Entity="ChemDispenser"/>
     <GuideEntityEmbed Entity="LargeBeaker"/>

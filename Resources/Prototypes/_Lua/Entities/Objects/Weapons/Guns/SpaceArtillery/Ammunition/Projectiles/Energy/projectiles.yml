@@ -63,8 +63,8 @@
   components:
   - type: ShipWeaponProjectile
   - type: RadarBlip
-    scale: 2.5
+    scale: 3.5 # 2.5
     requireNoGrid: true
-    shape: triangle
+    shape: circle
   - type: TimedDespawn
     lifetime: 20

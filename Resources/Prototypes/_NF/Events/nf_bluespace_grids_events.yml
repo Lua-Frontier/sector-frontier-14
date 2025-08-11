@@ -54,8 +54,6 @@
     duration: 1020
     maxDuration: 1350
     reoccurrenceDelay: 360 # 6 hours
-    requiredJobs:
-      Sheriff: 1
   - type: BluespaceErrorRuleAsteroid
     groups:
       grid: !type:GridSpawnGroup
@@ -77,8 +75,10 @@
         paths:
         - /Maps/_NF/Bluespace/vault.yml
     rewardAccounts:
-      Nfsd: 1.0
-
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
 - type: entity
   id: BluespaceVaultSmallError
   parent: BaseStationEventShortDelay
@@ -95,8 +95,6 @@
     duration: 590
     maxDuration: 780
     reoccurrenceDelay: 360 # 6 hours
-    requiredJobs:
-      Sheriff: 1
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
@@ -118,8 +116,10 @@
         paths:
         - /Maps/_NF/Bluespace/vaultsmall.yml
     rewardAccounts:
-      Nfsd: 1.0
-
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
 - type: entity
   id: BluespaceSyndicateFTLInterception
   parent: BaseStationEventShortDelay
@@ -300,6 +300,7 @@
         paths:
         - /Maps/_NF/Bluespace/mcevent.yml
 
+#Lua events return by Supernoob
 - type: entity
   id: BluespaceAsteroid
   parent: BaseStationEventShortDelay
@@ -315,13 +316,14 @@
     weight: 5
     duration: 1500
     maxDuration: 1800
-  - type: BluespaceErrorRule
+    reoccurrenceDelay: 240 # once per 4 hours
+  - type: BluespaceErrorRuleAsteroid
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-UnusualAsteroid
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 5500
         addComponents:
         - type: Gravity
           enabled: true
@@ -351,13 +353,14 @@
     weight: 3
     duration: 2100
     maxDuration: 2400
-  - type: BluespaceErrorRule
+    reoccurrenceDelay: 240 # once per 4 hours
+  - type: BluespaceErrorRuleAsteroid
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-UnusualAsteroid
         minimumDistance: 1500
-        maximumDistance: 2500
+        maximumDistance: 3500
         addComponents:
         - type: Gravity
           enabled: true

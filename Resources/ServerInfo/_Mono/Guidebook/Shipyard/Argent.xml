@@ -1,57 +1,57 @@
 <Document>
-  # ARGENT-CLASS CARGO TRANSPORT
+  # ГРУЗОВИК КЛАССА ARGENT
   <Box>
   <GuideEntityEmbed Entity="SalvageTechfabNF"/>
   <GuideEntityEmbed Entity="WeaponTurretL85Autocannon"/>
   <GuideEntityEmbed Entity="ConveyorBelt"/>
   <GuideEntityEmbed Entity="CrateTradeSecureNormal"/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Medium
+    [color=#a4885c]Размер корабля:[/color] Средний
 
-	[color=#a4885c]Recommended Crew:[/color] 1-3
+	[color=#a4885c]Рекомендуемый экипаж:[/color] 1-3
 
-	[color=#a4885c]Power Gen Type:[/color] Uranium
+	[color=#a4885c]Тип генерации энергии:[/color] Уран
 
-	[color=#a4885c]Expeditions:[/color] None
+	[color=#a4885c]Экспедиции:[/color] Нет
 
-	[color=#a4885c]IFF Console:[/color] None
+	[color=#a4885c]Консоль IFF:[/color] Нет
 
-  "Argent-class cargo transports are surplus frigates overhauled for mass cargo transport."
+  "Грузовики класса Argent — это списанные фрегаты, переоборудованные под массовую перевозку грузов."
 
-  # PREFLIGHT CHECKLIST
+  # ПРЕДПОЛЁТНЫЙ ЧЕК-ЛИСТ
 
-  ## 1. Power supply
+  ## 1. Электропитание
 
-  ## 1.1. Battery units
+  ## 1.1. Батарейные узлы
   <Box>
   <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
 
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the rear APC unit's Main Breaker is toggled on.
-  - Check the APC units current Load* (W).
-  - Check that the front APC unit's Main Breaker is toggled on.
-  - Check the APC units' current Load* (W).
+  - Проверьте, что генератор S.U.P.E.R.P.A.C.M.A.N. заанкорен.
+  - Проверьте, что SMES заанкорен.
+  - Проверьте, что подстанция заанкорена.
+  - Проверьте, что на заднем APC включен Main Breaker.
+  - Проверьте текущую Load* (W) APC.
+  - Проверьте, что на переднем APC включен Main Breaker.
+  - Проверьте текущую Load* (W) APC.
 
-  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit.
+  ## 1.2. Генератор S.U.P.E.R.P.A.C.M.А.N.
   <Box>
   <GuideEntityEmbed Entity="PortableGeneratorSuperPacmanShuttle"/>
   <GuideEntityEmbed Entity="FuelUranium"/>
   </Box>
 
-  - Check that the generator unit is properly anchored.
-  - Check that the generator unit is connected to the cable terminal of your SMES via HV.
-  - Check the fuel remaining of the generator unit.
-  - Set the generator unit output power to 43 kW.
-  - Enable Injection.
+  - Убедитесь, что генератор заанкорен.
+  - Убедитесь, что он подключён к клемме SMES по HV.
+  - Проверьте остаток топлива.
+  - Установите выходную мощность 43 kW.
+  - Включите Injection.
 
-  ## 2. Atmospherics
+  ## 2. Атмосфера
 
-  ## 2.1. Distribution Loop
+  ## 2.1. Контур дистрибуции
   <Box>
   <GuideEntityEmbed Entity="OxygenCanister"/>
   <GuideEntityEmbed Entity="NitrogenCanister"/>
@@ -59,31 +59,31 @@
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
 
-  - Check that the O2 canister is anchored to the BLUE connector port.
-  - Check that the N2 canister is anchored to the RED connector port.
-  - Check that the gas mixer is set to the correct mixing ratio (~22% Oxygen, ~78% Nitrogen).
-  - Check that the gas mixer is set to 101.325kPa.
-  - Enable gas mixer.
+  - Проверьте, что баллон O2 заанкорен к СИНЕМУ порту.
+  - Проверьте, что баллон N2 заанкорен к КРАСНОМУ порту.
+  - Убедитесь, что миксер выставлен на ~22% кислорода и ~78% азота.
+  - Убедитесь, что миксер установлен на 101.325 kPa.
+  - Включите миксер.
 
-  ## 2.2. Waste Loop
+  ## 2.2. Контур отходов
   <Box>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   <GuideEntityEmbed Entity="AirAlarm"/>
   </Box>
 
-  - Enable waste loop pump.
+  - Включите насос контура отходов.
 
-  ## 3. Other checks
+  ## 3. Прочие проверки
   <Box>
   <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
   </Box>
 
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Проверьте, что гироскоп заанкорен, запитан и включён.
+  - Проверьте, что мини генератор гравитации заанкорен, запитан и включён.
 
-  ## Sidenotes
+  ## Примечания
 
-  * - Argent-class transport ships are equipped with two APC units that can be used to appraise the ship's total power consumption. Unmodified Argent-class ship requires ~42.5 kW of power to remain operational.
+  * Корабли класса Argent оснащены двумя APC, по их показаниям можно оценить суммарное потребление. Нестроенный Argent требует ~42.5 kW для работы.
 
 </Document>

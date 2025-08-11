@@ -1,5 +1,6 @@
 using Content.Server.Destructible;
 using Content.Server.Gatherable.Components;
+using Content.Shared.EntityTable;
 using Content.Shared.Destructible;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
@@ -7,20 +8,19 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Gatherable;
 
 public sealed partial class GatherableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly DestructibleSystem _destructible = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
     public override void Initialize()
     {
@@ -82,8 +82,7 @@ public sealed partial class GatherableSystem : EntitySystem
                 if (gatherer != null && !_tagSystem.HasTag(gatherer.Value, tag))
                     continue;
             }
-            var getLoot = _proto.Index(table);
-            var spawnLoot = getLoot.GetSpawns(_random);
+            var spawnLoot = _entityTable.GetSpawns(table);
             foreach (var loot in spawnLoot)
             {
                 var spawnPos = pos.Offset(_random.NextVector2(component.GatherOffset));

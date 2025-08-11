@@ -1,24 +1,34 @@
 <Document>
-# Technologies
+# Технологии
 
-All technologies have a cost and a tier requirement in order to be researched. Unlocking them adds a variety of recipes that can be printed at various lathes.
+Все технологии имеют стоимость и требования по тиру для исследования. Их открытие добавляет набор рецептов, которые можно печатать на разных станках.
 
-The different technologies and their respective discipline are listed below.
+Ниже перечислены технологии и соответствующие им дисциплины.
 
-## Industrial
-<GuideTechDisciplineEmbed Discipline="Industrial"/>
+<!-- Frontier: all disciplines below swapped to NF variants -->
 
-## Arsenal
-##<GuideTechDisciplineEmbed Discipline="Arsenal"/>
-## Fix later
+## Инженерия
+<GuideTechDisciplineEmbed Discipline="NFEngineering"/>
 
-## Experimental
-<GuideTechDisciplineEmbed Discipline="Experimental"/>
+## Медицина
+<GuideTechDisciplineEmbed Discipline="NFMedical"/>
 
-## Civilian Services
-<GuideTechDisciplineEmbed Discipline="CivilianServices"/>
+## Наёмники
+<GuideTechDisciplineEmbed Discipline="NFArsenalMercenary"/>
 
-## Civilian Services
+## ДСБФ
+<GuideTechDisciplineEmbed Discipline="NFArsenalNfsd"/>
+
+## Утилизация
+<GuideTechDisciplineEmbed Discipline="NFSalvage"/>
+
+## Наука
+<GuideTechDisciplineEmbed Discipline="NFScience"/>
+
+## Сервис
+<GuideTechDisciplineEmbed Discipline="NFService"/>
+
+## Гражданские службы
 <GuideTechDisciplineEmbed Discipline="Shiparmory"/>
 
 </Document>

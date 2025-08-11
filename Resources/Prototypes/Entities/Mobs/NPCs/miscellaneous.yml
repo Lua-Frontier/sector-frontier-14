@@ -213,9 +213,7 @@
     group: GenericNumber
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Effects/Footsteps/slime1.ogg
-      params:
-        volume: 3
+      collection: FootstepSlime
   - type: Tag
     tags:
       - FootstepSound
@@ -234,7 +232,7 @@
     damage:
       types:
         Blunt: 0.11
-#  - type: StaticPrice # Frontier - remove value
-#    price: 400
+  - type: StaticPrice
+    price: 400
   - type: TimedDespawn
     lifetime: 2400

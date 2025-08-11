@@ -586,3 +586,227 @@ Entries:
   id: 42
   time: '2025-07-27T19:04:20.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/90
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Апстрим 28.07.25
+  id: 43
+  time: '2025-08-05T03:39:06.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/103
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлена банка "FaustNetzach"
+    - type: Fix
+      message: Исправлено описание банки "BrennNight"
+  id: 44
+  time: '2025-08-05T03:40:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/95
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Добавлен шаттл-ресторан Fisherman
+    - type: Add
+      message: Добавлен научный шаттл Riman
+    - type: Add
+      message: Добавлен медицинский шаттл Seagull
+  id: 45
+  time: '2025-08-05T05:59:19.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/87
+- author: salo2016
+  changes:
+    - type: Add
+      message: Добавлены новые корабельные орудия.
+    - type: Add
+      message: >-
+        Добавлен новый крафт боезапаса на корабельки. (Новые, не замена
+        существующих)
+    - type: Remove
+      message: Патронфаб более не может создавать патроны RMC/WY!
+    - type: Tweak
+      message: Стены станции теперь не коричневые.
+    - type: Fix
+      message: Фракция Нордфолл точно теперь враждует со всеми.
+    - type: Tweak
+      message: Скорость корабельных снарядов понижена.
+  id: 46
+  time: '2025-08-05T06:00:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/97
+- author: salo2016
+  changes:
+    - type: Remove
+      message: Гиб уроном гуманоидов - можно только через крюк!
+    - type: Tweak
+      message: >-
+        Максимальная скорость шаттлов значительно повышена до среднего значения
+        в 50. Массивные шаттлы значительно медленее..
+    - type: Tweak
+      message: FTL+IFF новому шаттлу ИИ Nebula.
+    - type: Tweak
+      message: Фиксы проводки шаттлов - ремап Kettlebell, Baron, Mjolnir.
+    - type: Tweak
+      message: >-
+        Нёрф скорострельности Турели Тесла; Нёрф мутаций; Нёрф DeadDrop
+        листовок;
+    - type: Add
+      message: Авто-ивент спавна шаттлов реликтового ИИ.
+    - type: Tweak
+      message: Реликтовые ИИ враждебных шаттлов теперь ломаются.
+    - type: Fix
+      message: Патроны пистолета анаконда не пролетают сквозь игроков
+    - type: Tweak
+      message: Дистанция появления станций **значительно** увеличена.
+  id: 47
+  time: '2025-08-05T09:12:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/99
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Дискорд авторизация
+  id: 48
+  time: '2025-08-06T02:16:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/105
+- author: k1bitka
+  changes:
+    - type: Add
+      message: Добавлена локазилация для огнестрела, патронов, энергооружия
+    - type: Fix
+      message: >-
+        Изменены звуки выстрелов дробовиков, их размеры в сумке, их
+        скорострельность
+    - type: Remove
+      message: замедление при взятие большинства оружия в руки
+  id: 49
+  time: '2025-08-06T02:34:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/107
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: >-
+        Обновление сборки по состоянию сборки New Frontier на 07.08.2025, сборка
+        New Frontier содержит обновления WizDen по состоянию 25.06.2025
+  id: 50
+  time: '2025-08-09T13:41:48.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/112
+- author: Donevinoll
+  changes:
+    - type: Add
+      message: Добавил XC67 в аплинк нордфоллу
+    - type: Add
+      message: 'Добавил Экстендедмаги для XC67 в аплинк нордфолла '
+    - type: Tweak
+      message: '"малый" ЕМАГ теперь стоит дешевле'
+    - type: Tweak
+      message: Вернул "большой" ЕМАГ в аплинк нодфолла
+    - type: Remove
+      message: Убран вайтлист на стандартные магазины XC67
+  id: 51
+  time: '2025-08-09T15:35:58.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/96
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Исправлен баг, в результате которого капитан шаттла не мог попасть в
+        рубку своего шаттла
+    - type: Tweak
+      message: >-
+        Кнопкам добавлены каркасы, исправлена плитка, добавлено дополнительное
+        топливо для ДАМ на Fisherman
+  id: 52
+  time: '2025-08-09T15:37:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/110
+- author: salo2016
+  changes:
+    - type: Add
+      message: Трекер Нордфолла (Вживлён раундстартом)
+    - type: Tweak
+      message: >-
+        Edison Power Plant --> Электростанция, вайтлист убран, фикс локализаций,
+        авто-зарплата.
+    - type: Fix
+      message: Сервера вооружений на шаттлах теперь подходящие.
+    - type: Tweak
+      message: Спавн больших астероидов более вероятен.
+    - type: Tweak
+      message: >-
+        Ребалансы турелей/хп окнам; Шахтёрские стенки крепче укреплённых;
+        Шахтёрское стекло - близко к пластитановому.
+    - type: Add
+      message: Новая станция ДСБФ!
+    - type: Fix
+      message: >-
+        Верфь пиратов вновь берёт налоги; Шаттлы не окупаются при покупке; 30%
+        налог за продажу вернулся.
+    - type: Fix
+      message: При вашем любом /ghost случае роль освобождается включая синее крио.
+    - type: Tweak
+      message: Syn-Lancer не имеет более стартового снаряжения с огнестрела.
+    - type: Tweak
+      message: Бафф хп боргам; Доступен канал диспетчерский;
+  id: 53
+  time: '2025-08-09T18:07:23.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/118
+- author: salo2016
+  changes:
+    - type: Add
+      message: Большой двигатель для маперов!
+  id: 54
+  time: '2025-08-09T18:08:43.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/119
+- author: UnilTan
+  changes:
+    - type: Tweak
+      message: Перевод всех руководств в ESC
+  id: 55
+  time: '2025-08-09T18:46:36.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/114
+- author: k1bitka
+  changes:
+    - type: Add
+      message: Пиратская пушка в аплинк, ядра к ней
+    - type: Remove
+      message: Замедление при взятие в руки гранатамётов, пушки, РПГ
+    - type: Fix
+      message: Название позиций в аплинках, их покупки
+    - type: Fix
+      message: Аргенти теперь не выпускает проджектайлы при разрядке
+  id: 56
+  time: '2025-08-09T19:01:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/113
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлены мягкие стены и полы
+    - type: Add
+      message: Добавлены 2 новые банки в фронтир-комрад венд
+    - type: Add
+      message: 'Добавлены 2 новых вида деревянного пола. '
+    - type: Add
+      message: Добавлены новые чулки в лодаут!
+    - type: Tweak
+      message: Респрайт нижнего белья представителя фронтира.
+  id: 57
+  time: '2025-08-11T14:51:34.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/116
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены скрытые клинки богомола в аплинк синдиката
+    - type: Add
+      message: Добавлены скрытые клинки в аплинк синдиката
+    - type: Add
+      message: >-
+        Телепорт призрака возвращен на МК, телепорт призрака будет выключен на
+        Луа по прежнему
+    - type: Add
+      message: Призраки теперь не слышат весь мир и радио
+    - type: Remove
+      message: Убран звук надоедающей работы энергомечей
+    - type: Tweak
+      message: Снижены все рефлекты на мечах
+    - type: Fix
+      message: Исправлен ДСФБ
+  id: 58
+  time: '2025-08-11T16:28:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/126

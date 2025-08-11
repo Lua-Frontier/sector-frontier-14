@@ -1,29 +1,29 @@
 <Document>
-  # Atmos Tools
-  Atmospheric Technicians have the same core toolset as Engineers, but they also have access to two new tools, the Holofan Projector and the Gas Analyzer.
+  # Инструменты атмосферики
+  У техники атмосферы тот же базовый набор, что и у инженеров, но им доступны ещё два инструмента: проектор голофана и газоанализатор.
 
   <Box>
     <GuideEntityEmbed Entity="HolofanProjector"/>
     <GuideEntityEmbed Entity="GasAnalyzer"/>
   </Box>
 
-  ## Holofan Projector
-  The Holofan Projector is a tool that can project a barrier of hard-light which blocks air and gas flow, while still allowing people to pass through.
+  ## Проектор голофана
+  Проектор создаёт барьер из «твёрдого света», который блокирует воздух и поток газа, но пропускает людей.
 
   <Box>
     <GuideEntityEmbed Entity="HolofanProjector"/>
     <GuideEntityEmbed Entity="HoloFan"/>
   </Box>
 
-  This is super useful for moving in between [textlink="firelock buffers" link="FireAndGasControl"] without leaking gas between rooms, as well a signifying to regular crew that a room may be unsafe for entry.
-  It can also be used for forming a temporary barrier to allow crew to quickly move between a spaced and unspaced area without risk of leaking air from other rooms.
+  Это крайне полезно для прохода между [textlink="буферами противопожарных шлюзов" link="FireAndGasControl"] без утечки газа между комнатами, а также как знак для экипажа, что вход может быть [color=red]опасен[/color].
+  Можно формировать и временный коридор для быстрого перемещения между разгерметизированной и нормальной зонами без риска утечки воздуха из других помещений.
 
-  It has an internal charge that will deplete with each use, but it can be recharged by taking out the power cell and inserting it into a cell charger or recharger.
+  Устройство имеет внутренний заряд, расходуемый при использовании; его можно пополнить, вынув энергоячейку и зарядив её в заряднике.
 
-  Holofans that are placed adjacent to a [textlink="firelock" link="FireAndGasControl"] will deactivate the firelock lockout, allowing the firelock to be opened by hand.
+  Голофаны, размещённые рядом с [textlink="противопожарным шлюзом" link="FireAndGasControl"], снимают его блокировку, позволяя открыть шлюз вручную.
 
-  ## Gas Analyzer
-  The Gas Analyzer is a tool that can be used to analyze the gas composition of an exposed atmosphere, or any [textlink="atmospheric device" link="GasManipulation"] containing gas.
+  ## Газоанализатор
+  Газоанализатор измеряет состав газа в открытой атмосфере или в любом [textlink="атмосферном устройстве" link="GasManipulation"], содержащем газ.
 
   <Box>
     <GuideEntityEmbed Entity="GasAnalyzer"/>
@@ -37,16 +37,16 @@
     <GuideEntityEmbed Entity="GasThermoMachineFreezer" Caption=""/>
   </Box>
 
-  You can use the Gas Analyzer by clicking on a gas-containing [textlink="device" link="GasManipulation"], or by clicking on the air in the room.
+  Используйте газоанализатор, кликнув по [textlink="устройству" link="GasManipulation"], содержащему газ, или по воздуху в комнате.
 
-  When used, the gas analyzer will report on:
-  - The volume of the device measured (not the volume of the gas!)
-  - The total pressure of the gas, in kPa
-  - The temperature of the gas, in Kelvin (K) and Celsius (C)
-  - The precise composition of the gas in molar amounts, and as a percentage of the total gas volume
+  Он показывает:
+  - Объём измеряемого устройства (не объём газа)
+  - Общее давление газа, кПа
+  - Температуру газа, K и °C
+  - Точный состав по молям и долям от общего объёма
 
-  At the bottom of the UI, the gas analyzer will display a visual indication of the different [textlink="gasses" link="Gasses"] present in the composition, as well as their relative concentrations.
+  Внизу интерфейса показывается визуальная диаграмма по [textlink="газам" link="Gasses"] и их относительным концентрациям.
 
-  When the gas analyzer is analyzing binary and trinary [textlink="devices" link="GasManipulation"] (devices with two and three inputs/outputs), it will display the composition of each input/output separately. This is useful for troubleshooting gas [textlink="mixing and filtering" link="MixingAndFiltering"] setups.
+  При анализе бинарных и тернарных [textlink="устройств" link="GasManipulation"] (с двумя и тремя входами/выходами) отображается состав каждого входа/выхода отдельно — это полезно при отладке схем [textlink="смешивания и фильтрации" link="MixingAndFiltering"].
 
 </Document>

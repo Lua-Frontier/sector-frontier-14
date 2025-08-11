@@ -141,7 +141,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponRevolverArgenti
-  parent: [ NFBaseWeaponRevolverChamber35, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  parent: [ BaseWeaponRevolver, NFBaseWeaponFrameRevolverFrontierGunsmith ]
   name: argenti
   description: |-
     The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
@@ -151,6 +151,18 @@
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
+  - type: Gun
+    fireRate: 2.5
+    resetOnHandSelected: false
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - NFCartridgeRifle20
+        - SpeedLoaderRifleHeavy
+    capacity: 8
+    proto: NFBulletRifle20
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
 
