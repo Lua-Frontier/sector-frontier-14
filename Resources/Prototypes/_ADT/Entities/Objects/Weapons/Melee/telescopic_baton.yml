@@ -8,7 +8,7 @@
     sprite: ADT/Objects/Weapons/Melee/telescopic_baton.rsi
     layers:
     - state: telescope_off
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: StaminaDamageOnHit
     damage: 0
   - type: MeleeWeapon
@@ -25,8 +25,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-     enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: telescope_on}
           False: {state: telescope_off}
 
@@ -40,7 +40,7 @@
     sprite: ADT/Objects/Weapons/Melee/telescopic_baton_bob.rsi
     layers:
     - state: telescope_off
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: StaminaDamageOnHit
     damage: 0
   - type: MeleeWeapon
@@ -57,8 +57,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-     enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: telescope_on}
           False: {state: telescope_off}
 
@@ -74,7 +74,7 @@
     sprite: ADT/Objects/Weapons/Melee/telescopic_baton_kon.rsi
     layers:
     - state: telescope_off
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: StaminaDamageOnHit
     damage: 0
   - type: MeleeWeapon
@@ -91,7 +91,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-     enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: telescope_on}
           False: {state: telescope_off}

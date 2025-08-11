@@ -1,18 +1,18 @@
 ﻿<Document>
-  # Generators
-  Generators are devices that produce power for the station. They vary in size and power output, and each has its own unique quirks and requirements.
+  # Генераторы
+  Генераторы производят энергию для станции. Они различаются размером, мощностью и особенностями запуска/эксплуатации.
 
-  Engineers are intended to setup low-tier generators like Solar Arrays and the AME at the start of the shift, to give enough time to setup higher-tier generators like the Singularity Engine for sustained power for the rest of the shift.
+  На старте инженерам стоит поднять генераторы нижнего уровня — солнечные панели и AME — чтобы выиграть время на подготовку «тяжёлых» систем вроде синги.
 
   <Box>
     <GuideEntityEmbed Entity="SingularityGenerator" Caption=""/>
     <GuideEntityEmbed Entity="TeslaGenerator" Caption=""/>
   </Box>
   <Box>
-    ## Singularity and Tesla Engine
+    ## Сингулярный и Тесла‑двигатель
   </Box>
   <Box>
-    [color=#999999][italic]Devices capable of infinite energy — and destructive potential[italic][/color]
+    [color=#999999][italic]Потенциально «бесконечная» энергия — и разрушительная сила[/italic][/color]
   </Box>
 
   <Box>
@@ -20,10 +20,10 @@
     <GuideEntityEmbed Entity="AmePartFlatpack" Caption=""/>
   </Box>
   <Box>
-    ## Antimatter Engine
+    ## Антивещественный двигатель (AME)
   </Box>
   <Box>
-    [color=#999999][italic]Short-term support generator for the station[italic][/color]
+    [color=#999999][italic]Кратковременная поддержка энергосети в начале смены[/italic][/color]
   </Box>
 
   <Box>
@@ -32,10 +32,10 @@
     <GuideEntityEmbed Entity="TegCirculator" Caption="" Margin="0"/>
   </Box>
   <Box>
-    ## Thermo-electric Generator
+    ## Термоэлектрогенератор (TEG)
   </Box>
   <Box>
-    [color=#999999][italic]Advanced atmospherics generator that harnesses the energy of gasses[italic][/color]
+    [color=#999999][italic]Продвинутая атмосферная установка, извлекающая энергию из газов[/italic][/color]
   </Box>
 
   <Box>
@@ -44,32 +44,31 @@
     <GuideEntityEmbed Entity="SolarPanel" Caption=""/>
   </Box>
   <Box>
-    ## Solar Panels
+    ## Солнечные панели
   </Box>
   <Box>
-    [color=#999999][italic]Low-maintenance passive power source[italic][/color]
-  </Box>
-
-
-  <Box>
-    <GuideEntityEmbed Entity="PortableGeneratorJrPacman" Caption="" />
-    <GuideEntityEmbed Entity="PortableGeneratorPacman" Caption="" />
-    <GuideEntityEmbed Entity="PortableGeneratorSuperPacman" Caption="" />
-  </Box>
-  <Box>
-    ## Portable Generators
-  </Box>
-  <Box>
-    [color=#999999][italic]Portable generators for crew use and emergency power[italic][/color]
+    [color=#999999][italic]Пассивный источник, почти не требует обслуживания[/italic][/color]
   </Box>
 
   <Box>
-    <GuideEntityEmbed Entity="GeneratorRTG" Caption="" />
+    <GuideEntityEmbed Entity="PortableGeneratorJrPacman" Caption=""/>
+    <GuideEntityEmbed Entity="PortableGeneratorPacman" Caption=""/>
+    <GuideEntityEmbed Entity="PortableGeneratorSuperPacman" Caption=""/>
   </Box>
   <Box>
-    ## Radioisotope Thermoelectric Generator
+    ## Переносные генераторы
   </Box>
   <Box>
-    [color=#999999][italic]Zero-maintenance passive power source[italic][/color]
+    [color=#999999][italic]Для нужд экипажа и аварийного питания[/italic][/color]
+  </Box>
+
+  <Box>
+    <GuideEntityEmbed Entity="GeneratorRTG" Caption=""/>
+  </Box>
+  <Box>
+    ## Радиоизотопный термоэлектрогенератор (RTG)
+  </Box>
+  <Box>
+    [color=#999999][italic]Пассивный источник, не требует обслуживания[/italic][/color]
   </Box>
 </Document>

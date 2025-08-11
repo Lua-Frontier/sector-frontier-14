@@ -101,7 +101,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
             if (slots + occupiedJobs >= stationJobs.SetupAvailableJobs[job][1])
                 return;
 
-            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 0);
+            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 1);
         }
         catch (ArgumentException)
         {

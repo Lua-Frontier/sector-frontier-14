@@ -44,6 +44,8 @@
       - type: NpcFactionMember
         factions:
         - LuaNordFoll
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplantNordfoll ]
 
 - type: startingGear
   id: SyndicateParamedic
@@ -56,3 +58,9 @@
     id: MedicalPDASyndi
     back: ClothingBackpackSyndicateFilled
     belt: ClothingBeltMedicalFilled
+
+- type: chameleonOutfit
+  id: OutpostSyndicateMedicChameleonOutfit
+  job: OutpostSyndicateMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitParamedicSyndie

@@ -1,0 +1,73 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: [ ClothingBackpackLuaBW, ClothingBackpackLua, ClothingBackpack ]
+  id: ClothingBackpackLuaD
+  name: модифицированный рюкзак "LuaTech"
+  suffix: Луа
+  description: Рюкзак разработанный "LuaTech" с функцией РИГ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitLuaD
+    requiredSlot: BACK
+    slot: outerClothing
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+
+- type: entity
+  parent: [ ClothingOuterHardsuitLua, ClothingOuterHardsuitAtmos ]
+  id: ClothingOuterHardsuitLuaD
+  categories: [ HideSpawnMenu ]
+  name: скафандр "S" "LuaTech"
+  description: Боевой скафандр специализированный под расу "Вульпканинов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/OuterClothing/Hardsuits/lua_battlehardsuit_black.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/OuterClothing/Hardsuits/lua_battlehardsuit_black.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetLuaD
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+
+- type: entity
+  parent: [ ClothingHeadHelmetLua, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetLuaD
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра "S" "LuaTech"
+  description: Боевой скафандр шлем с ушами под расу "Вульпканинов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Head/Hardsuits/lua_battlehelm_black.rsi
+    layers:
+    - state: on-equipped-HELMET
+  - type: PointLight
+    color: "#820047"
+    energy: 3
+    radius: 7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.4
+        Heat: 0.3

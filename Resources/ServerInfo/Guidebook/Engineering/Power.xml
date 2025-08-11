@@ -1,8 +1,7 @@
 <Document>
-  # Power
-  Power is the lifeblood of the station.
-  Without it, the station will quickly fall into chaos.
-  Engineers are responsible for maintaining the station's power grid, ensuring that power is supplied, distributed, and all departments are satisfied.
+  # Электроснабжение
+  Электричество — [color=#a4885c]кровеносная система[/color] станции.
+  Без него всё быстро скатится в хаос. Инженеры отвечают за поддержание энергосети: генерацию, распределение и стабильное питание отделов.
 
   <Box>
     <GuideEntityEmbed Entity="SingularityGenerator" Caption=""/>
@@ -13,23 +12,21 @@
     <GuideEntityEmbed Entity="APCBasic" Caption=""/>
   </Box>
 
-  There are many different aspects to Space Station 14's power system simulation, as well as Engineering's intended gameplay.
+  В SS14 у энергосистемы много аспектов — как симуляции, так и геймплея инженерии. Важно помнить:
+  - [textlink="Генераторы" link="Generators"] имеют уровни: чем ниже уровень, тем проще запустить, но тем хуже долгосрочная устойчивость. Высокоуровневые сложнее в запуске, но [color=#a4885c]стабильнее[/color].
+  - Существуют [textlink="сети напряжений" link="VoltageNetworks"], распределяющие мощность по станции. Машины понижают напряжение ступенчато для питания оборудования.
+  - У [textlink="генераторов" link="Generators"] есть [textlink="раскачивание" link="Ramping"] — нужно время, чтобы выйти на требуемую нагрузку.
 
-  Some important information to keep in mind includes:
-  - Station [textlink="generators" link="Generators"] are tiered and follow a hierarchy. The lower the tier, the less they are sustainable, but the easier they are to setup. The higher the tier, the more sustainable they are, but the more complex they are to setup.
-  - Space Station 14 features [textlink="voltage networks" link="VoltageNetworks"], which distribute power across the station and are stepped down in voltage by machines, so they can be used by other machines.
-  - Power [textlink="generators" link="Generators"] have [textlink="ramping" link="Ramping"], which means they take time to match the grid's demand to their supply.
+  ## Старт смены
+  В начале смены станция живёт только на [textlink="батареях" link="PowerStorage"].
+  Этого хватит на [color=orange]5–10 минут[/color] в зависимости от потребления.
 
-  ## Starting Out
-  At the start of the shift, the station is running off of purely [textlink="battery" link="PowerStorage"] power.
-  This will at most last 5-10 minutes, depending on the station's power draw.
+  Чтобы продлить время, запустите [textlink="антивещественный двигатель" link="AME"] ([textlink="AME" link="AME"]).
+  Это значительно увеличит «дыхание» батарей и даст вам время подготовить генераторы [textlink="высшего уровня" link="Generators"].
+  Дополнительно подключите [textlink="солнечные панели" link="SolarPanels"] — бесплатная энергия.
 
-  To extend this, you can start up the station's [textlink="Antimatter Engine" link="AME"], or [textlink="AME." link="AME"]
-  This will extend the runtime of the station's batteries by a significant amount, giving you more time to setup the station's higher-tier [textlink="generators." link="Generators"]
-  You can extend this even further by setting up [textlink="solar panels" link="SolarPanels"], which generate power for free.
+  После запуска [textlink="AME" link="AME"] и [textlink="солнечных" link="SolarPanels"] вы получите приемлемую выработку.
 
-  After setting up the [textlink="AME" link="AME"] and [textlink="Solars" link="SolarPanels"], you should be generating a decent amount of power.
-
-  Now that you've bought yourself time, you can focus on setting up higher-tier [textlink="generators" link="Generators"] like the [textlink="Singularity Engine" link="SingularityEngine"], which can provide power for the rest of the shift.
+  Используйте это время, чтобы развернуть генераторы высокого уровня, вроде [textlink="сингулярного двигателя" link="SingularityEngine"], который способен покрыть потребности станции на всю смену.
 
 </Document>

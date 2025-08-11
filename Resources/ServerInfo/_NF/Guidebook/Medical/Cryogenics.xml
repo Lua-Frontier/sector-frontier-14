@@ -1,18 +1,18 @@
 <Document>
-# Cryogenics
-Cryogenics can be a bit daunting to understand, but hopefully, quick run through of this diagram, you'll learn how to work it! So, let's go over what each part does:
+# Криогеника
+Криогеника может показаться сложной, но с помощью этой схемы вы быстро разберётесь, как всё работает! Давайте разберёмся, за что отвечает каждая часть:
 
-- Air in: Air comes in here through the distro or an air tank, giving those inside something to breathe, and the freezer something to chill.
-- Gas pump: Limits the network pressure, so those in the tube aren't crushed.
-- Freezer: Chills the air, and by extension, patients in the tube, so Cryoxadone can activate.
-- Gas filters: Removes waste gas (Carbon Dioxide and Nitrous Oxide) from the loop.
-- Air out: Waste gasses go here, either into a storage tank, or into the waste network.
+- Подача воздуха: Воздух поступает сюда через дистро или баллон, обеспечивая дыхание пациентам и охлаждение для морозильника.
+- Газовый насос: Ограничивает давление в системе, чтобы пациенты в капсуле не были раздавлены.
+- Морозильник: Охлаждает воздух, а значит и пациентов в капсуле, чтобы активировать Криоксадон.
+- Газовые фильтры: Удаляют отходящие газы (углекислый газ и закись азота) из контура.
+- Выход воздуха: Отработанные газы уходят сюда — либо в накопительный баллон, либо в систему утилизации.
 <Box>
 <GuideEntityEmbed Entity="GasPipeBend" Rotation="90"/>
 <GuideEntityEmbed Entity="GasPipeStraight" Rotation="90"/>
 <GuideEntityEmbed Entity="GasPipeStraight" Rotation="90"/>
 <GuideEntityEmbed Entity="GasPipeBend" Rotation="0"/>
-<GuideEntityEmbed Entity="CryoPod" Caption="cryo pod" Rotation="0"/>
+<GuideEntityEmbed Entity="CryoPod" Caption="криокапсула" Rotation="0"/>
 <GuideEntityEmbed Entity="GasThermoMachineFreezerEnabled" Rotation="0"/>
 </Box>
 <Box>
@@ -24,27 +24,27 @@ Cryogenics can be a bit daunting to understand, but hopefully, quick run through
 <GuideEntityEmbed Entity="GasPipeTJunction" Rotation="270"/>
 </Box>
 <Box>
-<GuideEntityEmbed Entity="GasPort" Caption="air out" Rotation="90"/>
+<GuideEntityEmbed Entity="GasPort" Caption="выход воздуха" Rotation="90"/>
 <GuideEntityEmbed Entity="GasPipeTJunction" Rotation="180"/>
 <GuideEntityEmbed Entity="GasPipeBend" Rotation="270"/>
-<GuideEntityEmbed Entity="GasPort" Caption="air in" Rotation="90"/>
+<GuideEntityEmbed Entity="GasPort" Caption="подача воздуха" Rotation="90"/>
 <GuideEntityEmbed Entity="GasPressurePump" Rotation="90"/>
 <GuideEntityEmbed Entity="GasPipeBend" Rotation="270"/>
 </Box>
 
-Not every network will look like this, but hopefully, it's enough to give you the basic gist of how it's functioning.
+Не все системы будут выглядеть именно так, но этого достаточно, чтобы понять принцип работы.
 
-An important thing to note, winter clothing (and hardsuits) will make cryogenic treatment less, or completely ineffective. Be sure to remove cold preventative clothing before placing people in the pod.
+Важно: зимняя одежда (и скафандры) делают криолечение менее эффективным или полностью бесполезным. Обязательно снимайте тёплую одежду перед помещением пациента в капсулу.
 
-## Using the Pod
+## Использование криокапсулы
 
-Once things have been set up, you're going to require cryogenic medications (all listed below). They each provide healing when a patient is chilled, and should be loaded into the pod directly with a beaker. Do note, patients won't begin to heal until they've chilled to the appropriate temperature, it may be worthwhile to wait a bit before placing a beaker inside.
+Когда всё настроено, вам понадобятся криопрепараты (см. ниже). Они лечат, когда пациент охлаждён, и должны быть загружены в капсулу прямо в колбе. Учтите: лечение начнётся только после того, как пациент достаточно охладится — иногда стоит подождать, прежде чем помещать колбу внутрь.
 
-## Additional Information:
+## Дополнительная информация:
 
-The standard pressure for a gas pump is 100.325 kpa. Cryogenics medicines work at under 213K (150K for Opporozidone), but it is standard practice to set the freezer to 100K for faster freezing.
+Стандартное давление для газового насоса — 100,325 кПа. Криопрепараты работают при температуре ниже 213K (150K для Оппорозидона), но обычно морозильник ставят на 100K для ускорения процесса.
 
-Cryo pods filter out each cryogenic medicine from the beaker in the pod, injecting a small, steady amount of each into the patient. This allows for medicine to be administered twice as efficiently than with injection or oral administration.
+Криокапсулы фильтруют каждый криопрепарат из колбы, вводя небольшое, стабильное количество в пациента. Это позволяет лечить вдвое эффективнее, чем при инъекции или приёме внутрь.
 
 <GuideReagentEmbed Reagent="Aloxadone"/>
 <GuideReagentEmbed Reagent="Cryoxadone"/>

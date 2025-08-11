@@ -1,17 +1,17 @@
 ﻿<Document>
-  # Signal Valve
-  The signal valve is a valve that can be controlled via [textlink="signals." link="Networking"]
+  # Сигнальный клапан
+  Сигнальный клапан управляется через [textlink="сигналами." link="Networking"]
   <Box>
     <GuideEntityEmbed Entity="SignalControlledValve"/>
   </Box>
 
-  The signal valve is similar to the manual valve. Gas can flow unrestricted in both directions and it can be operated manually.
+  Он похож на ручной клапан: газ течёт без ограничений в обе стороны, и им можно управлять вручную.
 
-  The signal valve has 3 [textlink="signal" link="Networking"] inputs, which can open, close, or toggle the valve.
+  У сигнального клапана есть 3 входа [textlink="сигналов" link="Networking"], позволяющие открывать, закрывать или переключать клапан.
 
-  Signal valves can be used in a variety of applications, for example:
-  - Remote control of valves in hazardous areas or areas inaccessible to crew
-  - Convenient control over a valve in a hard-to-reach area
-  - Automation with other [textlink="signal-enabled" link="Networking"] machines and equipment such as [textlink="air alarms" link="AirAlarms"] and remote signalers
+  Примеры применения:
+  - Удалённое управление клапанами в опасных местах или там, куда экипажу не попасть
+  - Удобный контроль клапана в труднодоступной зоне
+  - Автоматизация с другими [textlink="совместимыми с сигналами" link="Networking"] машинами и оборудованием, например [textlink="воздушными сигнализациями" link="AirAlarms"] и дистанционными сигнализаторами
 
 </Document>

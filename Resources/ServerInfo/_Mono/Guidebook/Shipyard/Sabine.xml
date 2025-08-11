@@ -1,55 +1,55 @@
 <Document>
-  # SABINE-CLASS SALVAGE SHUTTLE
+  # УТИЛИЗАТОР КЛАССА SABINE
   <Box>
   <GuideEntityEmbed Entity="SalvageTechfabNF"/>
   <GuideEntityEmbed Entity="OreProcessor"/>
   <GuideEntityEmbed Entity="LockerSalvageSpecialistFilledHardsuit"/>
   <GuideEntityEmbed Entity="ComputerWallmountAdvancedRadar"/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Small
+    [color=#a4885c]Размер корабля:[/color] Малый
 
-	[color=#a4885c]Recommended Crew:[/color] 1-2
+	[color=#a4885c]Рекомендуемый экипаж:[/color] 1-2
 
-	[color=#a4885c]Power Gen Type:[/color] Uranium
+	[color=#a4885c]Тип генерации энергии:[/color] Уран
 
-	[color=#a4885c]Expeditions:[/color] None
+	[color=#a4885c]Экспедиции:[/color] Нет
 
-	[color=#a4885c]IFF Console:[/color] None
+	[color=#a4885c]Консоль IFF:[/color] Нет
 
-  "A small, light, 2 seater salvage shuttle for light mining operations. Usually found as part of a fleet or carrier group."
+  "Небольшой лёгкий двухместный утилизатор для лёгких горных работ. Обычно в составе флота или авиагруппы."
 
-  # PREFLIGHT CHECKLIST
+  # ПРЕДПОЛЁТНЫЙ ЧЕК-ЛИСТ
 
-  ## 1. Power supply
+  ## 1. Электропитание
 
-  ## 1.1. Battery units
+  ## 1.1. Батарейные узлы
   <Box>
   <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
 
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the main APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
+  - Убедитесь, что генератор S.U.P.E.R.P.A.C.M.A.N. заанкорен.
+  - Убедитесь, что SMES заанкорен.
+  - Убедитесь, что подстанция заанкорена.
+  - Проверьте, что на основном APC включен Main Breaker.
+  - Проверьте текущую Load* (W) APC.
 
-  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit.
+  ## 1.2. Генератор S.U.P.E.R.P.A.C.M.A.N.
   <Box>
   <GuideEntityEmbed Entity="PortableGeneratorSuperPacmanShuttle"/>
   <GuideEntityEmbed Entity="FuelUranium"/>
   </Box>
 
-  - Check that the generator unit is properly anchored.
-  - Check that the generator unit is connected to the cable terminal of your SMES via HV.
-  - Check the fuel remaining of the generator unit.
-  - Set the generator unit output power to 22 kW.
-  - Enable Injection.
+  - Проверьте, что генератор заанкорен.
+  - Проверьте подключение к клемме SMES по HV.
+  - Проверьте остаток топлива.
+  - Установите выходную мощность 22 kW.
+  - Включите Injection.
 
-  ## 2. Atmospherics
+  ## 2. Атмосфера
 
-  ## 2.1. Distribution Loop
+  ## 2.1. Контур дистрибуции
   <Box>
   <GuideEntityEmbed Entity="OxygenCanister"/>
   <GuideEntityEmbed Entity="NitrogenCanister"/>
@@ -57,29 +57,29 @@
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
 
-  - Ensure that a air canister is wrenched to the connector port.
-  - Check that the air canister is of a suitable atmos mixture (~22% oxygen, ~78% nitrogen).
-  - Enable the gas pump into the distribution system.
+  - Убедитесь, что баллон воздуха прикручен к коннектору.
+  - Убедитесь, что смесь подходит (~22% O2, ~78% N2).
+  - Включите насос в контур дистрибуции.
 
-  ## 2.2. Waste Loop
+  ## 2.2. Контур отходов
   <Box>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   <GuideEntityEmbed Entity="AirAlarm"/>
   </Box>
 
-  - Enable waste loop pump.
+  - Включите насос контура отходов.
 
-  ## 3. Other checks
+  ## 3. Прочие проверки
   <Box>
   <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
   </Box>
 
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Проверьте, что гироскоп заанкорен, запитан и включён.
+  - Проверьте, что мини генератор гравитации заанкорен, запитан и включён.
 
-  ## Sidenotes
+  ## Примечания
 
-  * - Sabine-class salvage shuttles are equipped with one APC unit that can be used to appraise the ship's total power consumption. Unmodified Sabine-class ship requires ~21.25 kW of power to remain operational.
+  * Корабли класса Sabine имеют один APC, по нему можно оценивать суммарное потребление. Нестроенный Sabine требует ~21.25 kW для работы.
 
 </Document>

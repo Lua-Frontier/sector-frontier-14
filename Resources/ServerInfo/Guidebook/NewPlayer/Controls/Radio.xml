@@ -1,64 +1,64 @@
 <Document>
-# Speech and Text Channels
-Talking is a key part of Space Station 14. You can press [keybind="FocusChatInputWindow"/] to jump to the text box.
+# Речь и текстовые каналы
+Разговор — ключевая часть Space Station 14. Нажмите [keybind="FocusChatInputWindow"/] чтобы перейти к полю ввода.
 
-The word next to the text box is the [color=#a4885c]text channel[/color] you're about to send the message to, or rather how you're about to say what you've typed.
+Слово рядом с полем — это [color=#a4885c]текстовый канал[/color], в который вы отправите сообщение, то есть как вы скажете написанное.
 
-Local is normal speech at normal volume.
+Local — обычная речь нормальной громкости.
 
-Whisper can only be heard when nearby somebody. You automatically whisper into your radio to send messages over it.
+Whisper слышно только рядом. Вы автоматически шепчете в радио, чтобы отправлять сообщения по нему.
 
-Emotes are gestures that you make. Can be recieved by anyone who is not blinded. You will often see mimes do many emotes.
+Emotes — это жесты. Их видит любой, кто не ослеплён. Мимы часто активно ими пользуются.
 
-Whisper messages can be sent by starting your message with [color=#a4885c][keybind="FocusWhisperChatWindow"/][/color] and Emotes can be sent by starting your message with ([color=#a4885c]@[/color]).
-You can also cycle through all of these text channels by pressing [keybind="CycleChatChannelForward"/].
+Шёпот отправляется, если начать сообщение с [color=#a4885c][keybind="FocusWhisperChatWindow"/][/color], эмоут — если начать с ([color=#a4885c]@[/color]).
+Также можно циклировать каналы клавишей [keybind="CycleChatChannelForward"/].
 
-People may not be able to make out all of what you're saying if you're standing too far away from them. This is especially important if you're whispering.
+Люди могут не разобрать речь, если вы далеко. Особенно важно для шёпота.
 
-## Radio
+## Радио
 
-Your radio allows you to communicate across the entire station and to your specific [color=#a4885c]department[/color].
+Радио позволяет говорить по всей станции и в свой [color=#a4885c]департамент[/color].
 
 <Box>
   <GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
 </Box>
 
-To send a [color=#a4885c]station-wide[/color] message over the radio preface, use the [color=#32cd32]Common[/color] channel by beginning your text with [color=#32cd32]semi-colon (;)[/color].
-People standing right next to you might catch bits of your radio message, even if they don't have the access to the relevant radio channel. Watch for eavesdroppers.
+Чтобы отправить [color=#a4885c]общестанционное[/color] сообщение, используйте канал [color=#32cd32]Common[/color], начав текст с [color=#32cd32]точки с запятой (;)[/color].
+Соседи могут подслушать части вашего сообщения, даже без доступа к каналу. Следите за ушами рядом.
 
-## Departmental Radio
+## Департаментское радио
 
-You are able to send messages over your departmental radio channels using [color=#32cd32]colon (:)[/color] followed by the department letter as long as you're wearing a headset with your department's encryption key.
+Писать в департаментские каналы можно через [color=#32cd32]двоеточие (:)[/color] и букву отдела при наличии гарнитуры с нужным ключом шифрования.
 
-Examine your headset to see the department channels available to you.
+Осмотрите гарнитуру, чтобы увидеть доступные каналы.
 
 <Box>
   <GuideEntityEmbed Entity="ClothingHeadsetEngineering"/>
 </Box>
 
-Examining an unmodified engineering headset would show you the prefixes for the [color=#32cd32]Common[/color] and [color=#f37746]Engineering[/color] channels.
+У немодифицированной инженерной гарнитуры будут префиксы для [color=#32cd32]Common[/color] и [color=#f37746]Engineering[/color].
 
-It is also possible to use [color=#a4885c]:h[/color]. This hotkey will automatically default to your department radio channel.
-For example, if you're a Station Engineer then [color=#a4885c]:h[/color] will default to [color=#f37746]:e[/color].
+Есть горячая клавиша [color=#a4885c]:h[/color], по умолчанию отправляющая в канал вашего департамента.
+Например, для инженера [color=#a4885c]:h[/color] соответствует [color=#f37746]:e[/color].
 
-## Encryption Keys
-[color=#a4885c]Encryption keys[/color] give you access to their respective channel.
-  
-Examining our engineering headset from earlier shows us [color=#32cd32]Common[/color] and [color=#f37746]Engineering[/color] because an engineer's headset starts with those [color=#a4885c]encryption keys[/color].
-  
+## Ключи шифрования
+[color=#a4885c]Ключи шифрования[/color] дают доступ к соответствующему каналу.
+
+В инженерной гарнитуре из примера видны [color=#32cd32]Common[/color] и [color=#f37746]Engineering[/color], потому что именно эти [color=#a4885c]ключи[/color] в ней стоят.
+
 <Box>
   <GuideEntityEmbed Entity="EncryptionKeyCommon"/>
   <GuideEntityEmbed Entity="EncryptionKeyEngineering"/>
 </Box>
-  
-You can take out encryption keys by using a [color=#a4885c]screwdriver[/color] on a headset. New encryption keys are put into headsets by clicking on one with an encryption key in your hand.
 
-All command members have extras of their relevant encryption key, but you can also request one at the HoP's office when you're getting your job changed.
+Достать ключ можно [color=#a4885c]отвёрткой[/color] по гарнитуре. Вставить — кликнув по ней, держа ключ в руке.
 
-## OOC Channels
-OOC (out-of-character) channels exist outside of the game world. They are LOOC, OOC and Dead chat.
+У членов командования обычно есть запасные ключи их отделов, а также можно запросить у ГП при смене работы.
 
-LOOC is on during the rounds, OOC is typically off until the round ends and you can only see and talk in Dead chat when you are, well, dead.
+## OOC каналы
+OOC (out-of-character) каналы вне игрового мира: LOOC, OOC и Dead chat.
 
-Do not discuss the current round in the Discord or in OOC if it's on during the round.
+LOOC включён во время раунда, OOC обычно выключен до конца, а Dead chat виден и доступен только будучи мёртвым.
+
+Не обсуждайте текущий раунд в Discord или в OOC, если он включен во время раунда.
 </Document>

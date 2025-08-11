@@ -1,140 +1,132 @@
 <Document>
-  # Mercenaries
-  
-  A mercenary, merc, soldier of fortune, hired gun, dog of war. An [italic]arguably[/italic] professional soldier whose loyalty can be bought: they will carry out any task as long as the pay is good. Mercenaries are often favored by many corporations as deniable assets for covert operations.
+  # Наймники
 
-  The mercenaries you'll encounter were paid by unknown outside corporations, and are targeted for termination.
-  
+  Наймник, солдат удачи, наймный убийца, пёс войны. [italic]Спорно[/italic] профессиональный солдат, чью верность можно купить: они выполнят любую задачу, если плата хорошая. Наймники часто предпочитаются многими корпорациями как отрицаемые активы для скрытых операций.
+
+  Наймники, с которыми вы столкнётесь, были оплачены неизвестными внешними корпорациями и намечены к ликвидации.
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
-  # Known Variants
-  # "Mercenary soldiers"
-  
-  Low-ranking soldiers armed with a variety of surplus weapons.
-  
+
+  # Известные варианты
+  # "Солдаты-наймники"
+
+  Низкоранговые солдаты, вооружённые различными избыточными оружиями.
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenarySoldierKnife" Caption=""/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)[bold][color=#a4885c]*[/color][/bold]
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 8 [color=red]Slash[/color], 2 [color=yellow]Piercing[/color] (hatchet)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] none
-  
-  [bold][color=#a4885c]*[/color][/bold] - [italic]an average human can run at 4.5 m/s and walk at 2.5 m/s.[/italic]
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)[bold][color=#a4885c]*[/color][/bold]
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 8 [color=red]режущий[/color], 2 [color=yellow]колющий[/color] (топорик)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
+  [bold][color=#a4885c]*[/color][/bold] - [italic]средний человек бегает 4.5 м/с, ходит 2.5 м/с.[/italic]
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenarySoldierPistol" Caption=""/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 16 [color=yellow]Piercing[/color] (.35 round)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (mk58)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 16 [color=yellow]колющий[/color] (.35 патрон)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (mk58)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenarySoldierNovalite" Caption=""/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 17 [color=yellow]Piercing[/color] (.20 round)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (Novalite C1)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 17 [color=yellow]колющий[/color] (.20 патрон)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (Novalite C1)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
-  # "Mercenary breachers"
-  
-  Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  
+
+  # "Прорывщики-наймники"
+
+  Ударные войска, специализирующиеся на использовании элемента неожиданности и быстрых, агрессивных действий для достижения своих целей.
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenaryBreacherMachete" Caption=""/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)[bold]
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 15 [color=red]Slash[/color] (machete)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] none
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)[bold]
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 15 [color=red]режущий[/color] (мачете)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] нет
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenarySoldierRevolver" Caption=""/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 17 [color=yellow]Piercing[/color] (.20 round)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (double Argenti revolvers)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 17 [color=yellow]колющий[/color] (.20 патрон)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (двойные револьверы Argenti)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenaryBreacherShotgun" Caption=""/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 10 [color=yellow]Piercing[/color] (shotgun cartridge)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (shotgun)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 10 [color=yellow]колющий[/color] (дробовой патрон)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (дробовик)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
-  # "Mercenary specialists"
-  
-  Experienced mercenaries, specialists are practised and proficient in combat or support roles, possibly both.
-  
+
+  # "Специалисты-наймники"
+
+  Опытные наймники, специалисты практикованы и искусны в боевых или поддерживающих ролях, возможно, в обеих.
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenarySpecialistMedic"/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 14 [color=orange]Heat[/color] (retro laser pistol); 5 [color=red]Blunt[/color], 5 [color=red]Slash[/color], 5 [color=yellow]Piercing[/color] (circular saw)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (retro laser pistol)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 14 [color=orange]тепловой[/color] (ретро лазерный пистолет); 5 [color=red]тупой[/color], 5 [color=red]режущий[/color], 5 [color=yellow]колющий[/color] (циркулярная пила)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (ретро лазерный пистолет)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
+
   <Box>
-  <GuideEntityEmbed Entity="MobMercenarySpecialistAssault"/>
+  <GuideEntityEmbed Entity="MobMercenarySpecialistAssault"/> <!--ЕБУЧИЕ ИИ-->
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 14 [color=orange]Heat[/color] (retro laser pistol); 5 [color=red]Blunt[/color], 5 [color=red]Slash[/color], 5 [color=yellow]Piercing[/color] (circular saw)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (retro laser pistol)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 14 [color=orange]тепловой[/color] (ретро лазерный пистолет); 5 [color=red]тупой[/color], 5 [color=red]режущий[/color], 5 [color=yellow]колющий[/color] (циркулярная пила)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (ретро лазерный пистолет)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
-  # "Mercenary captain"
-  
-  The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
-  
+
+  # "Капитан наймников"
+
+  Лидеры этих банд разбойников, капитан наймников одновременно жесток и смертельно эффективен. Будьте осторожны.
+
   <Box>
   <GuideEntityEmbed Entity="MobMercenaryCaptain"/>
   </Box>
-  - [bold][color=#a4885c]Health thresholds:[/color][/bold] 100 (crit), 130 (death)
-  - [bold][color=#a4885c]Run (walk) speed:[/color][/bold] 4.5 m/s (2.5 m/s)
-  - [bold][color=#a4885c]Damage (type):[/color][/bold] 35 [color=yellow]Piercing[/color] (.45 round)
-  - [bold][color=#a4885c]Damage resistances:[/color][/bold] [color=red]Blunt[/color], [color=red]Slash[/color] and [color=yellow]Piercing[/color] 25%; [color=orange]Heat[/color] 20%; [color=orange]Caustic[/color] 10%
-  - [bold][color=#a4885c]Special abilities:[/color][/bold] Shooter (N2524 pattern repeater)
-  
+  - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
+  - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 14 [color=orange]тепловой[/color] (ретро лазерный пистолет); 5 [color=red]тупой[/color], 5 [color=red]режущий[/color], 5 [color=yellow]колющий[/color] (циркулярная пила)
+  - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (ретро лазерный пистолет)
+
   [bold][color=#a4885c]________________________________________________________________________[/color]
-  
-  # Mission Objectives
-  ## Elimination
-  <Box>
-  <GuideEntityEmbed Entity="MobMercenaryCaptain"/>
-  </Box>
-  Eliminate a large and dangerous creature - a [color=#a4885c]mercenary captain[/color] within given time constraints to earn a monetary reward.
-  
-  ## Destruction
-  <Box>
-  <GuideEntityEmbed Entity="MercenaryCounterfeitCache"/>
-  </Box>
-  Destroy a certain number of [color=#a4885c]counterfeit caches[/color] within given time constraints to earn a monetary reward.
+
+  # Награды
+
+  Устраните крупное и опасное существо — [color=#a4885c]капитана наймников[/color] в отведённое время, чтобы получить денежное вознаграждение.
+
 </Document>

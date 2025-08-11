@@ -1,0 +1,281 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase ]
+  id: ClothingBeltLua
+  name: блюспейс хранилище "LuaTech"
+  description: Неизвестная технология организации LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Belt/lua_belt.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Belt/lua_belt.rsi
+  - type: Storage
+    grid:
+      - 0,0,9,1
+  - type: Item
+    size: Huge
+  - type: StorageFill
+    contents:
+      - id: JawsOfLifeLua
+      - id: HandHeldMassScannerLua
+      - id: MultitoolLua
+      - id: RCDLua
+      - id: WelderLua
+      - id: HandheldCrewMonitorLua
+      - id: LuaTechProjectorField
+
+- type: entity
+  parent: [ HoloprojectorField, Holoprojector ]
+  categories: [ HideSpawnMenu ]
+  id: LuaTechProjectorField
+  name: голопроектор "LuaTech"
+  description: Обычный голопроектор
+  components:
+    - type: HolosignProjector
+      signProto: LuaTechForcefield
+      chargeUse: 30
+    - type: Sprite
+      sprite: Objects/Devices/Holoprojectors/field.rsi
+      state: icon
+
+- type: entity
+  id: LuaTechForcefield
+  categories: [ HideSpawnMenu ]
+  parent: [HolosignForcefield, HolosignWetFloor,]
+  name: силовое поле
+  description: Сдерживающее силовое поле
+  components:
+  - type: TimedDespawn
+    lifetime: 360
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Structures/Holo/field.rsi
+    state: icon
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]
+  id: ClothingEyesHudLuaTech
+  categories: [ HideSpawnMenu ]
+  name: визор "LuaTech"
+  description: Визор разработанный "LuaTech".
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Eyes/Hud/lua_hud.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Eyes/Hud/lua_hud.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: ShowSyndicateIcons
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: SolutionScanner
+  - type: ThermalVision
+    isEquipment: true
+    toggleAction: ToggleThermalVision
+  - type: NightVision
+    isEquipment: true
+    toggleAction: ToggleNightVision
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: HacksPDA
+  description: Виднеется логотип "LuaTech corp."
+  name: КПК "LuaTech"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HandheldGPS
+  - type: Icon
+    sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Devices/lua_pda.rsi
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Devices/lua_pda.rsi
+
+- type: entity
+  name: гипоспрей "LuaTech"
+  parent: BaseItem
+  description: Старая версия гипоспрея произведенная LuaTech
+  categories: [ HideSpawnMenu ]
+  id: HyposprayLua
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Specific/Medical/lua_hypo.rsi
+    state: hypo
+  - type: Item
+    sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Specific/Medical/lua_hypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 2.5
+
+- type: entity
+  name: портативный монитор экипажа "LuaTech"
+  parent: [ HandheldCrewMonitor, BaseItem ]
+  id: HandheldCrewMonitorLua
+  description: Странный монитор экипажа, вроде как подключается к сети станции
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_crewmonitor.rsi
+    state: scanner
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot { }
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+- type: entity
+  parent: JawsOfLife
+  id: JawsOfLifeLua
+  name: челюсти жизни "LuaTech"
+  description: Изготовлено организацией "LuaTech".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_jaws.rsi
+    state: syn_jaws_cutter
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: syn_inhand-left
+      right:
+      - state: syn_inhand-right
+    size: Normal
+  - type: Tool
+    qualities:
+    - Cutting
+    speedModifier: 1.2
+    useSound: !type:SoundPathSpecifier
+      path: /Audio/Items/jaws_cut.ogg
+  - type: Prying
+    speedModifier: 3.0
+    enabled: false
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_jaws.rsi
+    quickEquip: false
+    slots:
+      - Belt
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+    - behavior: Cutting
+      sprite:
+        sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_jaws.rsi
+        state: syn_jaws_cutter
+      useSound: /Audio/Items/jaws_cut.ogg
+      changeSound: /Audio/Items/change_jaws.ogg
+    - behavior: Prying
+      sprite:
+        sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_jaws.rsi
+        state: syn_jaws_pry
+      useSound: /Audio/Items/jaws_pry.ogg
+      changeSound: /Audio/Items/change_jaws.ogg
+    - behavior: Screwing
+      sprite:
+        sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_jaws.rsi
+        state: syn_jaws_drill
+      useSound: /Audio/Items/drill_use.ogg
+      changeSound: /Audio/Items/change_jaws.ogg
+    - behavior: Anchoring
+      sprite:
+        sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_jaws.rsi
+        state: syn_jaws_wrench
+      useSound: /Audio/Items/ratchet.ogg
+      changeSound: /Audio/Items/change_jaws.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 14
+
+- type: entity
+  name: ручной сканер массы "LuaTech"
+  parent: HandHeldMassScanner
+  id: HandHeldMassScannerLua
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_massscanner.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: scanner
+        shader: unshaded
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+
+- type: entity
+  parent: Multitool
+  id: MultitoolLua
+  name: мультитул "LuaTech"
+  description: Мультитул, изготовленый на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TrayScanner
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_multitool.rsi
+    layers:
+    - state: icon
+    - state: green-unlit
+      shader: unshaded
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_multitool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+
+- type: entity
+  id: RCDLua
+  parent: RCD
+  name: RCD "LuaTech"
+  description: Причудливое устройство напоминающее RCD.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_rcd.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_rcd.rsi
+    quickEquip: false
+    slots:
+    - Belt
+
+- type: entity
+  parent: [ WelderExperimental, Welder ]
+  id: WelderLua
+  name: сварочный аппарат "LuaTech"
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_welder.rsi
+    layers:
+    - state: icon
+    - state: welder_flame
+      visible: false
+      shader: unshaded
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Item
+    size: Small
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_welder.rsi

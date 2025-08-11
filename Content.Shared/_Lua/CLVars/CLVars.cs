@@ -99,5 +99,11 @@ namespace Content.Shared.Lua.CLVar
         /// </summary
         public static readonly CVarDef<int> CryoSleepTimerSet =
             CVarDef.Create("lua.cryosleep.timer.set", 30, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Если true — обычные игроки могут перемещаться к другим игрокам
+        /// </summary>
+        public static readonly CVarDef<bool> GhostPlayerWarps =
+            CVarDef.Create("ghost.player_warps", false, CVar.SERVERONLY);
     }
 }

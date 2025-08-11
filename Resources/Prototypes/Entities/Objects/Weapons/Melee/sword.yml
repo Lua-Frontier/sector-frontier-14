@@ -90,7 +90,7 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: .1
+    reflectProb: .07
     spread: 90
   - type: Item
     storedSprite:
@@ -174,7 +174,7 @@
     - Back
     - Belt
   - type: Reflect
-    reflectProb: .25
+    reflectProb: .06
     spread: 90
 
 #Greatswords
@@ -228,7 +228,7 @@
       soundHit:
         path: /Audio/Effects/explosion_small1.ogg
     - type: Reflect
-      reflectProb: .10
+      reflectProb: .06
       spread: 90
     - type: Item
       size: Ginormous

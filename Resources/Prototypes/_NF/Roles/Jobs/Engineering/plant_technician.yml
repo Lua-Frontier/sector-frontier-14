@@ -3,9 +3,10 @@
   name: job-name-plant-technician
   description: job-description-plant-technician
   playTimeTracker: JobPlantTechnician
+  salary: 30000
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 43200 # Frontier - 12 hrs
+      time: 432000 # Frontier - 120 hrs Lua
   startingGear: PlantTechnicianGear
   alwaysUseSpawner: true
   icon: "JobIconPlantTechnician"
@@ -28,3 +29,15 @@
   id: PlantTechnicianGear
   equipment:
     pocket2: HolofanProjector
+
+- type: chameleonOutfit
+  id: PlantTechnicianChameleonOutfit
+  job: PlantTechnician
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterWinterEngi
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMag

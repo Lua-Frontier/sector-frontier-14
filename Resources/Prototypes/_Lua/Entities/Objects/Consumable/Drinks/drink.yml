@@ -307,3 +307,57 @@
     sprite: _Lua/Objects/Consumable/Drinks/FaustNetzach.rsi
   - type: Item
     sprite: _Lua/Objects/Consumable/Drinks/FaustNetzach.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: VanMinCan
+  name: банка Van_Min
+  description: Тот кто работал 24/7 и заработал только на напиток. Вкус усталости, денег и немного солёный.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: VanMinDrink
+          Quantity: 40
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/VanMin.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/VanMin.rsi
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: NakiAraArcCan
+  name: банка NakiAraArc
+  description: Тот кто работал 24/7 и заработал только на напиток. Вкус усталости, денег и немного солёный.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 40
+        reagents:
+        - ReagentId: JuiceWatermelon
+          Quantity: 15
+        - ReagentId: Holywater
+          Quantity: 15
+        - ReagentId: SpaceDrugs
+          Quantity: 10
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Drink
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Drinks/NakiAraArc.rsi
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Drinks/NakiAraArc.rsi

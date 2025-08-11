@@ -1,0 +1,205 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase ]
+  id: ClothingBeltIrisRed
+  name: РПС "LuaTech"
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Clothing/Belt/iris_belt.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Clothing/Belt/iris_belt.rsi
+  - type: Storage
+    grid:
+      - 0,0,9,1
+  - type: Item
+    size: Huge
+  - type: StorageFill
+    contents:
+      - id: MultitoolIrisRed
+      - id: JawsOfLifeIrisRed
+      - id: trayScannerIrisRed
+      - id: WelderIrisRed
+      - id: PowerDrillIrisRed
+      - id: GasAnalyzerIrisRed
+      - id: HandHeldMassScannerIrisRed
+      - id: HolofanProjectorIrisRed
+
+- type: entity
+  parent: Multitool
+  id: MultitoolIrisRed
+  name: Мультитул "LuaTech"
+  description: Мультитул, изготовленый на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_multitool.rsi
+    layers:
+    - state: icon
+    - state: green-unlit
+      shader: unshaded
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_multitool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+
+- type: entity
+  parent: trayScanner
+  id: trayScannerIrisRed
+  name: Т-лучевой сканер "LuaTech"
+  description: Т-лучевой сканер, изготовленый на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_trayscanner.rsi
+    layers:
+    - state: tray-off
+      map: ["base"]
+  - type: Item
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_trayscanner.rsi
+
+- type: entity
+  parent: JawsOfLife
+  id: JawsOfLifeIrisRed
+  name: челюсти жизни "LuaTech"
+  description: Изготовлено на заказ организацией "LuaTech".
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_jawsoflife.rsi
+    state: syn_jaws_pry
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: syn_inhand-left
+      right:
+      - state: syn_inhand-right
+    size: Normal
+  - type: Prying
+    speedModifier: 3.0
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_jawsoflife.rsi
+    quickEquip: false
+    slots:
+      - Belt
+  - type: MultipleTool
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_jawsoflife.rsi
+          state: syn_jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_jawsoflife.rsi
+          state: syn_jaws_cutter
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 14
+
+- type: entity
+  parent: [ WelderExperimental, Welder ]
+  id: WelderIrisRed
+  name: сварочный аппарат "LuaTech"
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_welder.rsi
+    layers:
+    - state: icon
+    - state: welder_flame
+      visible: false
+      shader: unshaded
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Item
+    size: Small
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_welder.rsi
+
+- type: entity
+  parent: PowerDrill
+  id: PowerDrillIrisRed
+  name: электродрель "LuaTech"
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_powerdrill.rsi
+    state: drill_screw
+  - type: Item
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_powerdrill.rsi
+    size: Small
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_powerdrill.rsi
+    quickEquip: false
+    slots:
+      - Belt
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Screwing
+        sprite:
+          sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_powerdrill.rsi
+          state: drill_screw
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_powerdrill.rsi
+          state: drill_bolt
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+
+- type: entity
+  name: ручной сканер массы "LuaTech"
+  parent: HandHeldMassScanner
+  id: HandHeldMassScannerIrisRed
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_massscanner.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: scanner
+        shader: unshaded
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+
+- type: entity
+  parent: HolofanProjector
+  id: HolofanProjectorIrisRed
+  name: атмос голопроектор "LuaTech"
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_holofanprojector.rsi
+    state: icon
+
+- type: entity
+  name: газоанализатор "LuaTech"
+  parent: GasAnalyzer
+  id: GasAnalyzerIrisRed
+  description: Изготовлено на заказ организацией LuaTech.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Red/Tools/iris_tools_gasanalyzer.rsi
+    layers:
+      - state: icon
+        map: ["analyzer"]

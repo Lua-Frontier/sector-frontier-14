@@ -1,0 +1,99 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: ClothingHeadBase
+  id: HacksHat
+  name: Заколка Луа
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Head/Misc/lua_head.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Head/Misc/lua_head.rsi
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: HacksHandsRing
+  name: Кольцо Хакса
+  description: Обручальное кольцо Хакса, напоминает вам о теплых временах и о Айрис.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Hands/Misc/lua_ring.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Hands/Misc/lua_ring.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsLua
+  name: улучшенные магнитные подковы "LuaTech"
+  description: Магнитные подковы разработанные в LuaTech совместимые со многими скафандрами.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Shoes/Boots/lua_magboots.rsi
+      layers:
+      - state: icon
+        map: [ "enum.ToggleableVisuals.Layer" ]
+    - type: Clothing
+      sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Shoes/Boots/lua_magboots.rsi
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        volume: 70
+        temperature: 293.15
+        moles:
+        - 11.315
+        - 11.315
+    - type: ActivatableUI
+      key: enum.SharedGasTankUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SharedGasTankUiKey.Key:
+          type: GasTankBoundUserInterface
+    - type: Explosive
+      explosionType: Default
+      maxIntensity: 20
+    - type: Jetpack
+      moleUsage: 0.00085
+      toggleAction: ActionToggleADTJetpack
+    - type: CanMoveInAir
+    - type: InputMover
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeLuaDalt
+  categories: [ HideSpawnMenu ]
+  name: плащ Луа
+  description: Плащ сшитый на заказ в память о Дальтштанте.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Neck/Cloaks/lua_cape.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeLuaBlackDalt
+  categories: [ HideSpawnMenu ]
+  name: плащ Луа
+  description: Плащ сшитый на заказ в память о Дальтштанте.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Neck/Cloaks/lua_cape_black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMedicLua
+  categories: [ HideSpawnMenu ]
+  name: комбинезон медика "LuaTech"
+  description: Удобный комбинезон для оказания различного рода медицинских услуг
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Uniforms/Jumpsuit/lua_suit_black.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Uniforms/Jumpsuit/lua_suit_black.rsi

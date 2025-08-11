@@ -1,55 +1,76 @@
 <Document>
-# Xenoarchaeology
-Xenoarchaeology is a field of science focused on researching and experimenting on alien artifacts.
+  # Изучение артефактов: руководство
 
-Artifacts can be found by mining asteroids found around the sector, or you can buy some from miners or salvagers.
+  ## Подключение оборудования
 
-By researching the unique things each artifact can do, you gain Research Points, increase the artifact's sale value, and potentially discover a useful ability or two!
+  Для начала работы с артефактами необходимо подключить [bold]анализатор артефактов[/bold] к консоли с помощью [color=orange]мультитула[/color] или конфигуратора сетей. После подключения и помещения артефакта на сканер, вы увидите его структуру — [italic]набор узлов[/italic]. Количество и расположение узлов может отличаться.
 
-## Artifact Nodes
-<Box>
-<GuideEntityEmbed Entity="ComplexXenoArtifact" Caption=""/>
-<GuideEntityEmbed Entity="ComplexXenoArtifactItem" Caption=""/>
-</Box>
-Artifacts consist of a randomly-generated tree of nodes. These nodes have a "[color=#a4885c]depth[/color]", representing how dangerous the node is, and the number of other nodes connected to it, called "[color=#a4885c]edges[/color]",
+  ## Навигация по узлам
 
-Artifacts always start at depth zero, the root of the tree. Travelling the tree to find as many nodes as possible is the main goal of the scientists working on them. Knowledge is extracted from nodes to gain Research Points and increase the artifact's sale value.
+  Выберите активный узел на экране, чтобы увидеть его свойства. Важнее всего — категория [bold][color=yellow]«Триггеры»[/color][/bold]. Это список условий, необходимых для активации текущего узла.
 
-Each node has two components: its [color=#a4885c]stimulus[/color] and a [color=#a4885c]reaction[/color].
+  В отличие от старых артефактов, теперь триггеры могут комбинироваться: один узел требует выполнения сразу нескольких. Чтобы правильно активировать узел, выполните [bold]все указанные триггеры[/bold], независимо от их порядка.
 
-A stimulus is the external behavior that triggers the reaction. There's a variety of these, and higher depth nodes have more difficult to accomplish stimuli. Some stimuli will need improvisation to trigger, and you may need special materials or resources to get everything you need.
+  ## Таблица триггеров
 
-Some reactions are instantaneous effects while others are permanent changes. Once an artifact is triggered, the reaction causes the artifact to randomly move to another node it is linked to.
+  Триггеры бывают разные: от атмосферы и температуры до взаимодействий с предметами и живыми существами. Ниже — краткий список примеров:
 
-With some experimental science, you can begin to grasp how the different nodes of an artifact are connected, and how to move between them by repeatedly activating nodes.
+  - [color=lightblue]Nitrous oxide[/color]: помещение артефакта в среду с более чем 10 молей оксида азота.
+  - [color=lightblue]Prying[/color]: использование лома на артефакте.
+  - [color=lightblue]Death[/color]: убийство живого существа рядом.
+  - [color=lightblue]Physical damage[/color]: нанести 20 механического урона.
+  - [color=lightblue]Being Thrown[/color]: кинуть артефакт (актуально для мелких объектов).
 
-All non-zero-depth nodes will have exactly one edge that leads up to its parent node. All other edges a node has lead down to the next depth.
+  Некоторые условия можно достичь с помощью атмосферы (например, сжечь плазму для получения трития или охладить газ до 73K). Также возможна замена газов на жидкие формы, но, как отмечено, это работает не для всех видов газа и может быть неэффективно.
 
-## Artifact Analyzer and Analysis Console
-<Box>
-<GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
-<GuideEntityEmbed Entity="ComputerAnalysisConsole"/>
-</Box>
-The main equipment that you'll be using for Xenoarchaeology is the [color=#a4885c]artifact analyzer[/color] and the [color=#a4885c]analysis console[/color]. You can use these to create reports that contain valuable information about an artifact.
+  ## Прогресс активации
 
-To set them up, simply link them with a network configurator and set an artifact on top of the analyzer. Every science vessel has at least one of these machines already set up.
+  При выполнении правильных триггеров артефакт начнёт [italic]переливаться цветами[/italic] и отобразит сообщение:
+  [color=yellow]"It begins to shift in strange ways"[/color].
+  Если вы выполнили все условия — произойдёт активация узла со звуком и фразой:
+  [color=green]"It slows down, visibly changed"[/color].
 
-Use the console's [color=#a4885c]scan[/color] button to discover what stimulus the artifact needs and what its reaction will do. Scanning takes thirty seconds.
+  [bold]Пример:[/bold] узел требует [italic]prying[/italic], [italic]nitrous oxide[/italic] и [italic]death[/italic] — используйте лом, создайте атмосферу с NO2 и убейте кого-либо рядом с артефактом.
 
-Use the [color=#a4885c]print[/color] button to save the scan result, so you can refer to it later.
+  ## Ресурсы для изучения
 
-Once you've discovered a new node, you can extract points from the artifact using the [color=#a4885c]Extract[/color] button.
+  [bold]Рекомендуемый набор:[/bold]
 
-## Artifexium and You
+  - [color=orange]Мультитул[/color] (обязательно)
+  - Канистры: [color=plum]плазма[/color], [color=gray]CO2[/color], [color=lightblue]NO2[/color], [color=violet]NH3[/color], [color=skyblue]кислород[/color]
+  - [color=tomato]Охладитель[/color] и [color=orangered]нагреватель[/color]
+  - [color=chocolate]Кубики животных[/color]
+  - [color=skyblue]Вода[/color] и [color=red]кровь[/color] (в отдельных мензурках)
 
-Some nodes can be particularly difficult to reach. One way to mitigate this is with [color=#a4885c]artifexium[/color]. When [color=#a4885c]sprayed[/color] or [color=#a4885c]splashed[/color] on an artifact. This will start unlocking nodes if the artifact isn't already doing it, and it will count as a wildcard stimulus for the triggers.
+  Большинство можно найти на [color=steelblue]синих обломках[/color]. Воду набирайте на шаттле, кровь — с себя.
 
-In order to get artifexium, artifact fragments can be [color=#a4885c]ground[/color] in a [color=#a4885c]reagent grinder[/color].
+  ## Глубина узлов и эффективность
 
-It is worth note that using artifexium taints the observation process, resulting in fewer research points and value generated in the artifacts. Still, it is a useful tool in a pinch.
+  Узлы нижнего уровня [italic]наследуют триггеры от предыдущих[/italic]. Чем глубже расположен узел, тем больше у него триггеров и выше награда:
 
-## Assembling Artifacts
-<GuideEntityEmbed Entity="ArtifactFragment" Caption="Artifact Fragment"/>
+  - 2 триггера — [color=lime]~8000 очков[/color]
+  - 3 триггера — [color=lime]~14000 очков[/color]
+  - 5 триггеров — [color=lime]~40000 очков[/color]
 
-It is possible to gather multiple artifact fragments and assemble them into a working artifact. You can ask for these from mining ships, who usually find these while mining asteroids or on Expeditions.
+  Если артефакт неглубокий, но требует сложных триггеров (например, [color=red]смерть[/color]), его изучение [bold]невыгодно[/bold].
+
+  ## Рекомендации по обустройству
+
+  Оптимальная схема скан-комнаты — наличие [color=lightyellow]верхней[/color] и [color=orange]нижней[/color] камеры:
+  - Верхняя камера — для газов: [color=lightblue]NO2[/color], [color=violet]аммиак[/color], [color=gray]CO2[/color], [color=lightblue]фрезон[/color], [color=red]тритий[/color]
+  - Нижняя камера — для [color=orangered]высокой температуры и сжигания[/color]
+
+  Это покрывает до [bold]80%[/bold] атмосферных триггеров.
+
+  ## Примечание
+
+  Некоторые артефакты имеют триггер [italic]регулярной активации по таймеру[/italic]. Описание такого узла содержит информацию о [color=lightgreen]времени до следующей активации[/color].
+
+  ## Зачем это всё?
+
+  При хорошем артефакте с глубокой структурой вы сможете изучить сервер буквально за [color=green]5 объектов[/color]. Кроме того, его стоимость составит [bold]половину полученных очков[/bold].
+  Пример: [color=lime]200к очков = 100к стоимости[/color].
+
+  [bold]Артефакты[/bold] — это [color=gold]быстрый[/color] и [color=green]выгодный[/color] способ прогресса. При должной подготовке и понимании механики — [italic]бесценны[/italic].
+
 </Document>
