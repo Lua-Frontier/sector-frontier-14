@@ -19,7 +19,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 5
+        Piercing: 12 # _Lua
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -30,8 +30,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2.4
-        Heat: 1.6
+        Blunt: 2 # _Lua
+        Heat: 7 # _Lua
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -53,8 +53,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 3.5
-        Radiation: 3.5
+        Piercing: 8 # _Lua
+        Radiation: 10 # _Lua
 
 - type: entity
   categories: [ HideSpawnMenu ]

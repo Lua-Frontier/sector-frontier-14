@@ -1,3 +1,4 @@
+@@ -1,63 +0,0 @@
 #region .10
 ent-NFAmmunitionBoxRifle10 = Коробка патронов (.10 винтовочные)
 ent-NFAmmunitionBoxRifle10Practice = Коробка патронов (.10 винтовочные, учебные)
@@ -38,12 +39,12 @@ ent-NFAmmunitionBoxBigRifle30Practice = Ящик патронов (.30 винт�
 ent-NFAmmunitionBoxBigRifle30Rubber =  Ящик патронов (.30 винтовочные, резиновые)
 
 #region .25 rifle
-ent-NFAmmunitionBoxRifle25 = Коробка патронов (.30 винтовочные)
-ent-NFAmmunitionBoxRifle25Overpressure = Коробка патронов (.30 винтовочные, усиленные)
-ent-NFAmmunitionBoxRifle25Incendiary = Коробка патронов (.30 винтовочные, зажигательные)
-ent-NFAmmunitionBoxRifle25Uranium = Коробка патронов (.30 винтовочные, урановые)
-ent-NFAmmunitionBoxRifle25Practice = Коробка патронов (.30 винтовочные, учебные)
-ent-NFAmmunitionBoxRifle25Rubber = Коробка патронов (.30 винтовочные, резиновые)
+ent-NFAmmunitionBoxRifle25 = Коробка патронов (.25 винтовочные)
+ent-NFAmmunitionBoxRifle25Overpressure = Коробка патронов (.25 винтовочные, усиленные)
+ent-NFAmmunitionBoxRifle25Incendiary = Коробка патронов (.25 винтовочные, зажигательные)
+ent-NFAmmunitionBoxRifle25Uranium = Коробка патронов (.25 винтовочные, урановые)
+ent-NFAmmunitionBoxRifle25Practice = Коробка патронов (.25 винтовочные, учебные)
+ent-NFAmmunitionBoxRifle25Rubber = Коробка патронов (.25 винтовочные, резиновые)
 
 #region .25 rifle big
 ent-NFAmmunitionBoxBigRifle25 = Ящик патронов (.25 винтовочные)
