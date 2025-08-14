@@ -1,4 +1,3 @@
-@@ -1,63 +0,0 @@
 #region .10
 ent-NFAmmunitionBoxRifle10 = Коробка патронов (.10 винтовочные)
 ent-NFAmmunitionBoxRifle10Practice = Коробка патронов (.10 винтовочные, учебные)
