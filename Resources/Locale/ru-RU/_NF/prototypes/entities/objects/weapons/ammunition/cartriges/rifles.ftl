@@ -22,7 +22,7 @@ ent-NFCartridgeRifle25Rubber = патрон (.25 винтовочный, рез�
 #.10 rifle
 ent-NFCartridgeRifle10 = патрон (.10 винтовочный)
 ent-NFCartridgeRifle10Practice = патрон (.10 винтовочный, учебный)
-ent-rtridgeRifle10Rubber = патрон (.10 винтовочный, резиновый)
+ent-NFCartridgeRifle10Rubber = патрон (.10 винтовочный, резиновый)
 #.60 rifle
 ent-NFCartridgeRifle60Practice = патрон (.60 винтовочный, учебный)
 ent-NFCartridgeRifle60Rubber = патрон (.60 винтовочный, резиновый)
