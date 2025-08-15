@@ -43,6 +43,7 @@ public sealed class BankCommand : IConsoleCommand
             return;
         }
 
+
         var target = args[0];
         var bankSystem = _entitySystemManager.GetEntitySystem<BankSystem>();
 
@@ -97,6 +98,11 @@ public sealed class BankCommand : IConsoleCommand
                     return;
                 }
             }
+        }
+        if (target == "@")
+        {
+            await HandleAllCharacters(shell, amount);
+            return;
         }
 
         shell.WriteError($"Unable to find player or character '{target}'.");
@@ -252,6 +258,47 @@ public sealed class BankCommand : IConsoleCommand
         shell.WriteLine(amount > 0
             ? $"Added {amount} to offline player '{target}' balance. New balance: {newBalance.Value}"
             : $"Removed {Math.Abs(amount)} from offline player '{target}' balance. New balance: {newBalance.Value}");
+    }
+
+    private async Task HandleAllCharacters(IConsoleShell shell, int amount)
+    {
+        var processed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+            {
+                foreach (var (_, profile) in prefs.Characters)
+                {
+                    if (profile is HumanoidCharacterProfile humanoid)
+                    {
+                        if (!processed.Add(humanoid.Name))
+                            continue;
+
+                        await HandleOnlinePlayer(shell, session, amount, humanoid.Name);
+                    }
+                }
+            }
+        }
+
+        foreach (var playerData in _playerManager.GetAllPlayerData())
+        {
+            if (_prefsManager.TryGetCachedPreferences(playerData.UserId, out var prefs))
+            {
+                foreach (var (_, profile) in prefs.Characters)
+                {
+                    if (profile is HumanoidCharacterProfile humanoid)
+                    {
+                        if (!processed.Add(humanoid.Name))
+                            continue;
+
+                        await HandleOfflinePlayer(shell, playerData.UserId, prefs, humanoid, amount, humanoid.Name);
+                    }
+                }
+            }
+        }
+
+        shell.WriteLine($"Выдано {amount} кредитов всем уникальным персонажам.");
     }
 
     private bool TryGetOfflinePlayerData(string username, out NetUserId userId, out PlayerPreferences prefs, out HumanoidCharacterProfile profile)
