@@ -5,6 +5,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Robust.Shared.IoC;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Content.Server.Anomaly.Systems;
 
@@ -70,6 +71,81 @@ public sealed class AnomalyRandomManager
         {
             _threadRandoms.Clear();
             _fallbackRandom = null;
+        }
+    }
+
+    // LUA DEBUG: New diagnostic methods
+    public static string GetDetailedDiagnostics()
+    {
+        var diagnostics = new List<string>();
+
+        if (_fallbackRandom != null)
+        {
+            try
+            {
+                var testValue = _fallbackRandom.Next(1, 100);
+                diagnostics.Add($"Global Random: Available, Test value: {testValue}");
+            }
+            catch (Exception ex)
+            {
+                diagnostics.Add($"Global Random: ERROR - {ex.Message}");
+            }
+        }
+        else
+        {
+            diagnostics.Add("Global Random: Not Available");
+        }
+
+        diagnostics.Add($"Thread Randoms: {_threadRandoms.Count} active");
+        foreach (var (threadId, random) in _threadRandoms)
+        {
+            try
+            {
+                var testValue = random.Next(1, 100);
+                diagnostics.Add($"  Thread {threadId}: Test value: {testValue}");
+            }
+            catch (Exception ex)
+            {
+                diagnostics.Add($"  Thread {threadId}: ERROR - {ex.Message}");
+            }
+        }
+
+        return string.Join("\n", diagnostics);
+    }
+
+    public static bool IsGlobalRandomCorrupted()
+    {
+        if (_fallbackRandom == null)
+            return false;
+
+        try
+        {
+            var values = new List<int>();
+            for (int i = 0; i < 10; i++)
+            {
+                values.Add(_fallbackRandom.Next(1, 100));
+            }
+
+            if (values.All(v => v == values[0]))
+                return true;
+
+            if (values.Zip(values.Skip(1), (a, b) => b - a).All(diff => diff == 1))
+                return true;
+
+            return false;
+        }
+        catch
+        {
+            return true;
+        }
+    }
+
+    public static void ResetGlobalRandom()
+    {
+        lock (_globalLock)
+        {
+            _fallbackRandom = null;
+            Console.WriteLine("AnomalyRandomManager: Reset global Random");
         }
     }
 }

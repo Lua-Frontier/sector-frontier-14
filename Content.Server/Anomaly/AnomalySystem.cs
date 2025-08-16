@@ -1,24 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Content.Server.Anomaly.Components;
-using Content.Server.Atmos.EntitySystems;
+using Content.Server.Anomaly.Effects;
+using Content.Server.Anomaly.Systems;
 using Content.Server.Audio;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Construction;
+using Content.Server.Construction.Components;
+using Content.Server.DeviceNetwork;
+using Content.Server.DeviceNetwork.Components;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.GameTicking;
 using Content.Server.Materials;
-using Content.Server.Radiation.Systems;
+using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Radiation.Systems;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
+using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server.UserInterface;
+using Content.Server.Warps;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
+using Content.Shared.Anomaly.Effects;
 using Content.Shared.Anomaly.Prototypes;
+using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction.Steps;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Coordinates;
+using Content.Shared.Damage;
+using Content.Shared.Database;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
+using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Maps;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Physics;
+using Content.Shared.Popups;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Speech;
+using Content.Shared.Stacks;
+using Content.Shared.Tools.Components;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
+using Robust.Shared.Log;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Anomaly.Systems; // Lua
+using Robust.Shared.Timing;
+using Robust.Shared.Utility;
+using Robust.Shared.ViewVariables;
+using Content.Server.Anomaly.Systems;
 using Robust.Shared.Timing; // Frontier
 using Content.Server.Stack; // Frontier
 using Content.Shared._NF.Anomaly; // Frontier
@@ -72,11 +134,21 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     private void OnMapInit(Entity<AnomalyComponent> anomaly, ref MapInitEvent args)
     {
         anomaly.Comp.NextPulseTime = Timing.CurTime + GetPulseLength(anomaly.Comp) * 3; // longer the first time
-        ChangeAnomalyStability(anomaly, Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1 , anomaly.Comp.InitialStabilityRange.Item2), anomaly.Comp);
-        ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
+
+        var stability = Random.NextFloat(anomaly.Comp.InitialStabilityRange.Item1, anomaly.Comp.InitialStabilityRange.Item2);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"NextFloat({anomaly.Comp.InitialStabilityRange.Item1}, {anomaly.Comp.InitialStabilityRange.Item2}) = {stability:F4} for stability");
+        ChangeAnomalyStability(anomaly, stability, anomaly.Comp);
+
+        var severity = Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"NextFloat({anomaly.Comp.InitialSeverityRange.Item1}, {anomaly.Comp.InitialSeverityRange.Item2}) = {severity:F4} for severity");
+        ChangeAnomalySeverity(anomaly, severity, anomaly.Comp);
 
         ShuffleParticlesEffect(anomaly);
-        anomaly.Comp.Continuity = AnomalyRandomManager.GetThreadRandom().NextFloat(anomaly.Comp.MinContituty, anomaly.Comp.MaxContituty); // Lua
+
+        var continuity = AnomalyRandomManager.GetThreadRandom().NextFloat(anomaly.Comp.MinContituty, anomaly.Comp.MaxContituty);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"ThreadRandom.NextFloat({anomaly.Comp.MinContituty}, {anomaly.Comp.MaxContituty}) = {continuity:F4} for continuity");
+        anomaly.Comp.Continuity = continuity;
+
         SetBehavior(anomaly, GetRandomBehavior());
     }
 
@@ -85,10 +157,22 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         var particles = new List<AnomalousParticleType>
             { AnomalousParticleType.Delta, AnomalousParticleType.Epsilon, AnomalousParticleType.Zeta, AnomalousParticleType.Sigma };
 
-        anomaly.Comp.SeverityParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.DestabilizingParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.WeakeningParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.TransformationParticleType = Random.PickAndTake(particles);
+        var severityParticle = Random.PickAndTake(particles);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"PickAndTake(particles[{particles.Count}]) = {severityParticle} for severity");
+        anomaly.Comp.SeverityParticleType = severityParticle;
+
+        var destabilizingParticle = Random.PickAndTake(particles);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"PickAndTake(particles[{particles.Count}]) = {destabilizingParticle} for destabilizing");
+        anomaly.Comp.DestabilizingParticleType = destabilizingParticle;
+
+        var weakeningParticle = Random.PickAndTake(particles);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"PickAndTake(particles[{particles.Count}]) = {weakeningParticle} for weakening");
+        anomaly.Comp.WeakeningParticleType = weakeningParticle;
+
+        var transformationParticle = Random.PickAndTake(particles);
+        RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"PickAndTake(particles[{particles.Count}]) = {transformationParticle} for transformation");
+        anomaly.Comp.TransformationParticleType = transformationParticle;
+
         Dirty(anomaly);
     }
 
@@ -119,21 +203,35 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         if (particle.ParticleType == anomaly.Comp.DestabilizingParticleType || particle.DestabilzingOverride)
         {
-            ChangeAnomalyStability(anomaly, VaryValue(particle.StabilityPerDestabilizingHit), anomaly.Comp);
+            var varyValue = VaryValue(particle.StabilityPerDestabilizingHit);
+            RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"VaryValue({particle.StabilityPerDestabilizingHit}) = {varyValue:F4} for destabilizing");
+            ChangeAnomalyStability(anomaly, varyValue, anomaly.Comp);
         }
         if (particle.ParticleType == anomaly.Comp.SeverityParticleType || particle.SeverityOverride)
         {
-            ChangeAnomalySeverity(anomaly, VaryValue(particle.SeverityPerSeverityHit), anomaly.Comp);
+            var varyValue = VaryValue(particle.SeverityPerSeverityHit);
+            RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"VaryValue({particle.SeverityPerSeverityHit}) = {varyValue:F4} for severity");
+            ChangeAnomalySeverity(anomaly, varyValue, anomaly.Comp);
         }
         if (particle.ParticleType == anomaly.Comp.WeakeningParticleType || particle.WeakeningOverride)
         {
-            ChangeAnomalyHealth(anomaly, VaryValue(particle.HealthPerWeakeningeHit), anomaly.Comp);
-            ChangeAnomalyStability(anomaly, VaryValue(particle.StabilityPerWeakeningeHit), anomaly.Comp);
+            var healthVaryValue = VaryValue(particle.HealthPerWeakeningeHit);
+            RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"VaryValue({particle.HealthPerWeakeningeHit}) = {healthVaryValue:F4} for health");
+            ChangeAnomalyHealth(anomaly, healthVaryValue, anomaly.Comp);
+
+            var stabilityVaryValue = VaryValue(particle.StabilityPerWeakeningeHit);
+            RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"VaryValue({particle.StabilityPerWeakeningeHit}) = {stabilityVaryValue:F4} for stability");
+            ChangeAnomalyStability(anomaly, stabilityVaryValue, anomaly.Comp);
         }
         if (particle.ParticleType == anomaly.Comp.TransformationParticleType || particle.TransmutationOverride)
         {
-            ChangeAnomalySeverity(anomaly, VaryValue(particle.SeverityPerSeverityHit), anomaly.Comp);
-            if (AnomalyRandomManager.GetThreadRandom().Prob(anomaly.Comp.Continuity)) // Lua
+            var varyValue = VaryValue(particle.SeverityPerSeverityHit);
+            RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"VaryValue({particle.SeverityPerSeverityHit}) = {varyValue:F4} for transformation");
+            ChangeAnomalySeverity(anomaly, varyValue, anomaly.Comp);
+
+            var continuityProb = AnomalyRandomManager.GetThreadRandom().Prob(anomaly.Comp.Continuity);
+            RandomLoggerWrapper.LogRandomCallFromSystem("AnomalySystem", $"ThreadRandom.Prob({anomaly.Comp.Continuity}) = {continuityProb} for behavior change");
+            if (continuityProb)
                 SetBehavior(anomaly, GetRandomBehavior());
         }
     }
