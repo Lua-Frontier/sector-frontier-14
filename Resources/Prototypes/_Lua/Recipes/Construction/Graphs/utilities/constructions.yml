@@ -148,13 +148,28 @@
         doAfter: 25 #Lua-Tweak - 1 to 25 - для небольшого замедления и усложнения процесса
 
 - type: constructionGraph
-  id: MetalBarrelRandom
+  id: MetalBarrelGreyCrafted
   start: start
   graph:
   - node: start
     edges:
-    - to: BarrelSpawner
+    - to: MetalBarrelGreyCrafted
       steps:
-      - material: SheetSteel1
-        amount: 10
+      - material: Steel
+        amount: 15
         doAfter: 4
+
+  - node: MetalBarrelGreyCrafted
+    entity: MetalBarrelGreyCrafted
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel10
+        amount: 1
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 2

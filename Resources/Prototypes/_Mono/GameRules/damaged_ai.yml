@@ -16,8 +16,6 @@
       path: /Audio/Misc/notice1.ogg
     weight: 2
     maxOccurrences: 6
-    requiredJobs:
-      Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
   - type: LoadMapRule
     preloadedGrid: AIZenith
@@ -49,7 +47,5 @@
     weight: 3
     maxOccurrences: 12
     reoccurrenceDelay: 60 # 1 hour
-    requiredJobs:
-      Sheriff: 1
   - type: LoadMapRule
     preloadedGrid: AIRazor
