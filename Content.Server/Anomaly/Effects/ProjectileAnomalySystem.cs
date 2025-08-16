@@ -7,6 +7,7 @@ using Content.Shared.Projectiles;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Server.Anomaly.Systems; // Lua
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -71,11 +72,11 @@ public sealed class ProjectileAnomalySystem : EntitySystem
         {
             Log.Debug($"{projectileCount}");
             var target = priority.Count > 0
-                ? _random.PickAndTake(priority)
-                : _random.Pick(_inRange);
+                ? AnomalyRandomManager.GetThreadRandom().PickAndTake(priority) // Lua
+                : AnomalyRandomManager.GetThreadRandom().Pick(_inRange); // Lua
 
             var targetXForm= _xFormQuery.GetComponent(target);
-            var targetCoords = targetXForm.Coordinates.Offset(_random.NextVector2(0.5f));
+            var targetCoords = targetXForm.Coordinates.Offset(AnomalyRandomManager.GetThreadRandom().NextVector2(0.5f)); // Lua
 
             ShootProjectile(
                 uid,

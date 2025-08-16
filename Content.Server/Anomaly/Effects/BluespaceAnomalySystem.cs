@@ -9,6 +9,7 @@ using Content.Shared.Teleportation.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Random;
+using Content.Server.Anomaly.Systems; // Lua
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -46,7 +47,7 @@ public sealed class BluespaceAnomalySystem : EntitySystem
                 coords.Add(_xform.GetWorldPosition(allXform));
         }
 
-        _random.Shuffle(coords);
+        AnomalyRandomManager.GetThreadRandom().Shuffle(coords); // Lua
         for (var i = 0; i < allEnts.Count; i++)
         {
             _adminLogger.Add(LogType.Teleport, $"{ToPrettyString(allEnts[i])} has been shuffled to {coords[i]} by the {ToPrettyString(uid)} at {xform.Coordinates}");
@@ -65,8 +66,8 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         foreach (var comp in mobs)
         {
             var ent = comp.Owner;
-            var randomX = _random.NextFloat(gridBounds.Left, gridBounds.Right);
-            var randomY = _random.NextFloat(gridBounds.Bottom, gridBounds.Top);
+            var randomX = AnomalyRandomManager.GetThreadRandom().NextFloat(gridBounds.Left, gridBounds.Right); // Lua
+            var randomY = AnomalyRandomManager.GetThreadRandom().NextFloat(gridBounds.Bottom, gridBounds.Top); // Lua
 
             var pos = new Vector2(randomX, randomY);
 

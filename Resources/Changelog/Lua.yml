@@ -810,3 +810,16 @@ Entries:
   id: 58
   time: '2025-08-11T16:28:20.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/126
+- author: HacksLua
+  changes:
+    - type: Fix
+      message: Исправлена проблема с рандом генератором в системах аномалий
+    - type: Add
+      message: >-
+        Добавлено локальное хранилище потоков - менеджер для предотвращения
+        краша сервера
+    - type: Tweak
+      message: Улучшена стабильность сервера при работе с множественными аномалиями
+  id: 59
+  time: '2025-08-15T14:44:25.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/139

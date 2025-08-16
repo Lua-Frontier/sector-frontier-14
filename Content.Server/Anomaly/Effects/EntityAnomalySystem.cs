@@ -5,6 +5,7 @@ using Content.Shared.Anomaly.Effects.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
+using Content.Server.Anomaly.Systems; // Lua
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -95,7 +96,7 @@ public sealed class EntityAnomalySystem : SharedEntityAnomalySystem
 
         foreach (var tileref in tiles)
         {
-            Spawn(_random.Pick(entry.Spawns), _mapSystem.ToCenterCoordinates(tileref, grid));
+            Spawn(AnomalyRandomManager.GetThreadRandom().Pick(entry.Spawns), _mapSystem.ToCenterCoordinates(tileref, grid)); // Lua
         }
     }
 }
