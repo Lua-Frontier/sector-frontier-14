@@ -5,7 +5,7 @@ ent-NFMagazineRifle30Incendiary = магазин (.30 винтовочные, з
 ent-NFMagazineRifle30Uranium = магазин (.30 винтовочные, урановые)
 ent-NFMagazineRifle30Practice = магазин (.30 винтовочные, учебные)
 ent-NFMagazineRifle30Rubber = магазин (.30 винтовочные, резиновые)
-#lowcap
+
 ent-NFMagazineLowCapacityRifle30Empty = магазин с низкой вместимостью (.30 винтовочные, любые)
 ent-NFMagazineLowCapacityRifle30 = магазин с низкой вместимостью (.30 винтовочные)
 ent-NFMagazineLowCapacityRifle30Overpressure = магазин с низкой вместимостью (.30 винтовочные, усиленные)

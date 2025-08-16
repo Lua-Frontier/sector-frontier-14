@@ -1,4 +1,3 @@
-#.35
 ent-NFAmmunitionBoxPistol35 = Коробка патронов (.35 пистолетные)
 ent-NFAmmunitionBoxPistol35Overpressure = Коробка патронов (.35 пистолетные, усиленные)
 ent-NFAmmunitionBoxPistol35Practice = Коробка патронов (.35 пистолетные, учебные)
@@ -6,7 +5,7 @@ ent-NFAmmunitionBoxPistol35Incendiary = Коробка патронов (.35 п�
 ent-NFAmmunitionBoxPistol35Uranium = Коробка патронов (.35 пистолетные, урановые )
 ent-NFAmmunitionBoxPistol35Rubber = Коробка патронов (.35 пистолетные, резиновые)
 ent-NFAmmunitionBoxPistol35Emp = Коробка патронов (.35 пистолетные, ЭМИ)
-#.45 
+
 ent-NFAmmunitionBoxPistol45 = Коробка патронов (.45 магнум)
 ent-NFAmmunitionBoxPistol45Overpressure = Коробка патронов (.45 магнум, усиленные)
 ent-NFAmmunitionBoxPistol45Practice = Коробка патронов (.45 магнум, учебные)
