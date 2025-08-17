@@ -34,19 +34,25 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.2
-        Radiation: 0.01
+        Piercing: 0.5
+        Heat: 0.50
+        Radiation: 0.1
         Caustic: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 1.15
     sprintModifier: 1.3
   - type: HeldSpeedModifier
+    mirrorClothingModifier: false
+    walkModifier: 1
+    sprintModifier: 1
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetAriralExosuit
   - type: Tag
     tags:
     - Hardsuit
+  - type: RaceRequirement
+    allowedRaces:
+      - Ariral
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -59,9 +65,9 @@
     sprite: _Lua/Clothing/Head/Hardsuits/ariral.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Head/Hardsuits/ariral.rsi
-  - type: SpeciesRequirement
-    allowedSpecies:
-    - Ariral
+  - type: RaceRequirement
+    allowedRaces:
+      - Ariral
   - type: PointLight
     radius: 7
     energy: 3
