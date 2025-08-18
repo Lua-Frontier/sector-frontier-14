@@ -21,7 +21,7 @@
     burstCooldown: 0.8
     shotsPerBurst: 4
     fireRate: 6.5
-    projectileSpeed: 42.5 # Mono
+    projectileSpeed: 22.5 # _Lua
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/thock.ogg
   - type: ChamberMagazineAmmoProvider
@@ -78,7 +78,7 @@
     selectedMode: Burst
     burstFireRate: 16
     burstCooldown: 0.5
-    projectileSpeed: 40 # Mono
+    projectileSpeed: 22.5 # _Lua
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/bwuh.ogg
   - type: ItemSlots

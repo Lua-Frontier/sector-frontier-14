@@ -1,0 +1,44 @@
+# Wearables
+- type: listing
+  id: UplinkMantisGloves
+  name: hidden-blades-gloves-uplink-name
+  description: hidden-blades-gloves-uplink-desc
+  icon: { sprite: /Textures/_Lua/Clothing/Hands/Gloves/mantis_activated.rsi, state: icon }
+  productEntity: ClothingHandsGlovesMantis
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkMantisBladesBundle
+  name: mantis-blades-gloves-uplink
+  description: mantis-blades-gloves-uplink-desc
+  icon: { sprite: /Textures/_Lua/Clothing/Hands/Gloves/mantis_blades_activated.rsi, state: icon }
+  productEntity: ClothingHandsGlovesMantisBlades
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 14
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+        - SurplusBundle

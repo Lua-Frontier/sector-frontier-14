@@ -1,0 +1,23 @@
+- type: entity
+  parent: [ BaseItem, StorePresetCharlieUplink ]
+  id: UplinkCharlie
+  name: Аплинк рейнджеров
+  description: Аплинк рейнджеров "Чарли"
+  suffix: Пустое
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Devices/Uplink_ERT.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Lua/Objects/Devices/Uplink_ERT.rsi
+    heldPrefix: icon
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      FrontierUplinkCoin: 0

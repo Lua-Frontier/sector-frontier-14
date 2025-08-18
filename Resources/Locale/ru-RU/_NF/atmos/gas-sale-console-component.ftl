@@ -9,3 +9,4 @@ gas-sale-menu-temperature = {$value} K
 
 gas-sale-refresh-button = Оценить
 gas-sale-sell-button = Продать
+

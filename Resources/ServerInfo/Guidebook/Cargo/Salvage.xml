@@ -1,13 +1,13 @@
 <Document>
-  # Salvage
+  # Утилизация
 
-  [color=cyan]Salvage[/color] is one of Cargo's key, but also most dangerous, sources of income. Salvage extracts money from [color=cyan]Space Debris[/color] and the enigmatic [color=cyan]Mining Asteroid[/color].
+  [color=cyan]Утилизация[/color] — один из ключевых, но и самых опасных источников дохода Карго. Деньги добываются из [color=cyan]космических обломков[/color] и через [color=cyan]планетарные экспедиции[/color].
 
-  While the void of space is full of terrors, with proper preparation and coordination any Salvage Team can make a lot of money for Cargo.
+  Риск высок из‑за опасностей космоса и чужих планет, но при правильной подготовке и работе в команде любой отряд утилизации может принести Карго много денег.
 
-  ## Preparations
+  ## Подготовка
 
-  Before leaving the station, ensure you are prepared with all the required equipment. Otherwise, you will die before seeing any profits!
+  Перед вылетом на задание убедитесь, что у вас есть всё необходимое. Иначе вы погибнете, не увидев прибыли!
 
   <Box>
     <GuideEntityEmbed Entity="SuitStorageSalv"/>
@@ -15,7 +15,7 @@
     <GuideEntityEmbed Entity="VendingMachineSalvage"/>
   </Box>
 
-  Everything needed before leaving the station is provided inside Salvage's starting room. While Science can research better weapons and equipment, it is best to be equipped with something rather than nothing.
+  Всё нужное перед выходом со станции находится в стартовой комнате утилизации. Наука может исследовать лучшее снаряжение и оружие, но лучше иметь хоть что‑то, чем ничего.
 
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterHardsuitSpatio"/>
@@ -23,29 +23,29 @@
     <GuideEntityEmbed Entity="VendingMachineTankDispenserEVA"/>
   </Box>
 
-  The most basic equipment you need is the EVA setup.
+  Базовый набор — ЕВА‑снаряжение:
 
-  - [color=cyan]Spationaut Hardsuit[/color]: This keeps you alive in space. [italic]Remember to activate the helmet so you can breathe and turn on its built-in flashlight[/italic].
-  - [color=cyan]Magboots[/color]: These provide you with gravity when exploring space debris while also making you slip-proof.
-  - [color=cyan]Oxygen/Nitrogen[/color]: Depending on your species, you will need [color=cyan]Nitrogen[/color] (slimes & vox) or [color=cyan]Oxygen[/color] (every other species). The [color=cyan]Gas Tank Dispenser[/color] has all the tanks needed, so stock up.
+  - [color=cyan]Скафандр Spationaut[/color]: держит вас в живых в космосе. [italic]Не забудьте опустить шлем для дыхания и включить встроенный фонарик[/italic].
+  - [color=cyan]Магнито‑ботинки[/color]: дают «гравитацию» на обломках и защищают от подскальзываний.
+  - [color=cyan]Кислород/Азот[/color]: в зависимости от вида вам нужен [color=cyan]азот[/color] (слаймы) или [color=cyan]кислород[/color] (прочие). В [color=cyan]диспенсере газовых баллонов[/color] есть все типы — запаситесь. Учтите: на шаттле утилизации не всегда есть воздух — можете начать задыхаться ещё до выхода в космос.
 
   <Box>
     <GuideEntityEmbed Entity="WeaponProtoKineticAccelerator"/>
   </Box>
 
-  All Salvage Specialists must be armed, in case they need to defend themselves from hostiles.
+  Все специалисты по утилизации должны быть вооружены — для защиты от противников.
 
-  - [color=cyan]Proto-Kinetic Accelerator[/color]: This gun has infinite ammunition, allowing you to slowly mine and fly through space. Science can print upgrades to make it hit harder, shoot farther, and cycle faster.
+  - [color=cyan]Протокинетический ускоритель[/color]: бесконечные «патроны», позволяет неторопливо добывать руду и маневрировать в космосе.
 
   <Box>
     <GuideEntityEmbed Entity="Pickaxe"/>
     <GuideEntityEmbed Entity="OreBag"/>
   </Box>
 
-  While you can technically mine and gather ore with just a PKA and a Backpack, Salvagers start with more specialized gear for the task.
+  Для добычи (на астероидах и в экспедициях) нужен свой базовый комплект:
 
-  - [color=cyan]Pickaxe[/color]: This is required for mining at any reasonable speed when wielded. Also, it works as a melee weapon!
-  - [color=cyan]Ore Bag[/color]: When equipped in your belt slot, this magnetizes nearby ore and automatically picks it up for you.
+  - [color=cyan]Кирка[/color]: необходима для вменяемой скорости добычи при использовании двумя руками. Также может служить оружием ближнего боя!
+  - [color=cyan]Мешок для руды[/color]: в слоте пояса магнитит близлежащую руду и автоматически собирает её.
 
   <Box>
     <GuideEntityEmbed Entity="FireExtinguisher"/>
@@ -54,6 +54,11 @@
     <GuideEntityEmbed Entity="ComputerRadar"/>
   </Box>
 
+  Перед мародёрством (на обломках и в экспедициях) разверните фултоны для транспортировки крупногабаритных объектов и тел погибших.
+
+  - [color=cyan]Маяк Фултона[/color]: разверните на шаттле — все объекты с фултоном в радиусе 15 тайлов полетят к нему.
+  - [color=cyan]Фултон[/color]: связав с маяком, закрепите на объект — через минуту он улетит к маяку.
+  
   Although you can acquire more advanced forms of travel, you'll begin with more humble methods.
 
   - [color=cyan]Fire Extinguisher[/color]: The poor man's Jetpack. While in space, you can use a Fire Extinguisher's knockback to propel yourself in the opposite direction. It can be refilled with any liquid.
@@ -67,27 +72,33 @@
     <GuideEntityEmbed Entity="ClothingBeltUtilityFilled"/>
   </Box>
 
-  Finally, there are also some helpful but not required equipment that is available to Salvage.
+  Есть и полезные, но необязательные вещи:
 
-  - [color=cyan]Handheld Radio[/color]: This lets you communicate with other Salvage Specialists even if regular radio communications are unavailable.
-  - [color=cyan]Global Positioning System[/color]: A spare GPS system, identical to the one pre-installed in your PDA. Useful as a backup option or as equipment from newly-hired Salvagers.
-  - [color=cyan]Utility Belt[/color]: This holds all the equipment you will need to loot machines and the like from Salvage Wrecks and the Mining Asteroid. Wear it anytime you aren't planning on mining.
+  - [color=cyan]Портативная рация[/color]: связь с напарниками при отсутствии обычной радиосвязи. Критично для координации в космосе и на экспедициях.
+  - [color=cyan]GPS[/color]: показывает абсолютные координаты — поможет сориентироваться, организовать спасение или вернуться к шаттлу.
+  - [color=cyan]Инструментальный ремень[/color]: для переноски инструмента при разборе машин и оборудования на обломках/в экспедициях.
 
-  ## Salvage Magnet Pulls
+  ## Космические обломки
 
-  Once prepared, it is time to go and explore the stars.
+  Когда готовы — к звёздам.
+
+  Прежде чем лезть в экспедиции, полезно потренироваться на космических обломках — экипаж привыкнет к задачам.
+
+  [color=cyan]Космические обломки[/color] обычно безопаснее экспедиций и дают базовые материалы (сталь, стекло и т.п.), особенно дефицитные в начале смены.
 
   <Box>
     <GuideEntityEmbed Entity="SalvageMagnet"/>
   </Box>
 
-  The [color=cyan]Salvage Magnet[/color] is the machine that brings space debris into nearby space.
+  [color=cyan]Магнит утилизации[/color] притягивает обломки в округе.
 
-  The Salvage Magnet provides five offers: they will be a random mix of [color=cyan]Asteroids[/color], [color=cyan]Salvage Wrecks[/color], and [color=cyan]Space Debris[/color]. After choosing one of the offers, the selected chunk will be pulled in for the next [bold]6 minutes[/bold]. At the end of this time, any loot remaining on the pulled grid will disappear. If none of the offers look appealing to you, they refresh every [bold]3 minutes[/bold] if unclaimed.
+  Магнит выдаёт шесть предложений: первые 3 — это [color=cyan]астероиды[/color], последние 3 — [color=cyan]космические обломки[/color]. Предложения обновляются каждые 3 минуты, пока не приняты; после принятия обломки подтягиваются на ближайшие [bold]6 минут[/bold].
 
-  During the 6 minutes, fly to the pulled grid, extract all profit possible, and then fly back to the station.
+  Магнит показывает, какие ресурсы есть на астероиде — можно расставить приоритеты по нуждам станции.
 
-### Asteroids
+  В течение 6 минут долетите до цели, извлеките максимум прибыли и вернитесь на станцию. [italic]Вы погибнете, если не успеете вернуться к шаттлу[/italic]!
+
+  Есть две основные активности с магнитом утилизации:
 
   <Box>
     <GuideEntityEmbed Entity="Pickaxe"/>
@@ -95,6 +106,8 @@
     <GuideEntityEmbed Entity="OreProcessor"/>
   </Box>
 
+  - [color=cyan]Добыча на астероидах[/color]: самый безопасный способ — противников нет. Летайте, добывайте руду [color=cyan]киркой[/color] с [color=cyan]мешком для руды[/color]. Собранную руду переработайте в материалы через [color=cyan]рудопроцессор[/color].
+  
   The Salvage Magnet provides information on the types of resources on an asteroid, which can help you decide which to prioritize based on the current needs of the station. This is a relatively safe option for mining as there are no hostile creatures on asteroids - though there are certainly still threats...
 
   All you need to do is fly around and mine the ore with your [color=cyan]Pickaxe[/color] and [color=cyan]Ore Bag[/color]. Once you have collected all the ore, you can refine it into materials through the [color=cyan]Ore Processor[/color].
@@ -123,6 +136,12 @@
     <GuideEntityEmbed Entity="WeaponProtoKineticAccelerator"/>
   </Box>
 
+  - [color=cyan]Мародёрство на обломках[/color]: чуть опаснее — есть противники. Держите дистанцию и стреляйте из [color=cyan]протокинетического ускорителя[/color]. В основном будете вывозить оборудование и машины, используя [color=cyan]гаечные ключи[/color] и [color=cyan]фултоны[/color].
+
+  ## Планетарные экспедиции
+
+  Самые опасные, но и самые прибыльные задания утилизации — это [color=cyan]планетарные экспедиции[/color].
+  
   The Salvage Magnet provides information on the size of a Wreck. Salvage Wrecks vary wildly in both threat and value, but they often have more diverse threats than [color=cyan]Space Debris[/color]. Keep your distance from hostiles and shoot at them with the [color=cyan]Proto-Kinetic Accelerator[/color]. Look out for valuable loot and machinery, and use your [color=cyan]Appraisal Tool[/color] to check the value of different things.
 
   ## Progression & Upgrades
@@ -135,6 +154,20 @@
     <GuideEntityEmbed Entity="ComputerSalvageJobBoard"/>
   </Box>
 
+  Сначала на [color=cyan]консоле экспедиций утилизации[/color] выберите миссию. Каждые 30 секунд список обновляется и показывает [color=yellow]сложность[/color] и [color=yellow]типы врагов[/color].
+
+  Взвесьте варианты и выберите экспедицию под нужды станции и возможности экипажа.
+
+  После взятия миссии будет выдан [color=cyan]диск координат[/color], который нужно вставить в [color=cyan]консоль шаттла[/color].
+
+  В консоли включите [color=yellow]режим карты[/color], нажмите «[color=yellow]Scan for Nearby Objects[/color]», затем в выпадающем меню слева выберите [color=yellow]нужную планету[/color]. Включите [color=yellow]FTL[/color], кликните по [color=yellow]планете на карте[/color] — начнётся FTL‑прыжок.
+
+  На планете у вас будет [bold]11 минут[/bold] на [color=cyan]добычу[/color] и [color=cyan]зачистку комплекса[/color].
+
+  - [color=cyan]Добыча в экспедиции[/color]: даёт широкий набор ресурсов, но повышает риск заблудиться и столкнуться с угрозами среды и противниками.
+
+  - [color=cyan]Зачистка комплекса[/color]: главный источник прибыли. После посадки по радио объявят направление комплекса. Прорвитесь внутрь, устраните противников, заберите лут. [color=cyan]Фултоны[/color] особенно полезны — будете вывозить целые машины и аномалии. Награды — дорогое оборудование на продажу и эксклюзивные технологии вроде [color=yellow]клонирования[/color]. Кроме того, трупы противников тоже пригодятся — их можно использовать и продать!
+  
   The [color=cyan]Salvage Job Board[/color] is a computer located in the Salvage Bay. It serves as Salvage's version of the [color=cyan]Cargo Bounty Computer[/color], allowing Salvagers to fulfill specific jobs with Salvage-specific materials in order to earn Spesos and unlock [color=yellow]Advanced Salvage Gear[/color].
 
   Once you gather the supplies necessary to complete a job, print out a [color=cyan]Salvage Job Shipment Label[/color] and attach it to the crate or locker containing the goods. You can use your [color=cyan]Appraisal Tool[/color] to double-check that it's ready for sale. The prepared bounty can then be brought to the [color=cyan]Automated Trade Station[/color] to earn Cargo Spesos and to unlock new Salvage-specific crates in the [color=cyan]Cargo Request Computer[/color].

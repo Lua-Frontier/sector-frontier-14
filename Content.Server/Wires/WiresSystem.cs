@@ -471,9 +471,13 @@ public sealed class WiresSystem : SharedWiresSystem
             GenerateSerialNumber(uid, component);
 
         if (component.WireSeed == 0)
-            component.WireSeed = _random.Next(1, int.MaxValue);
+        {
+            var localRandom = new RobustRandom();
+            component.WireSeed = localRandom.Next(1, int.MaxValue);
 
-        // Update the construction graph to make sure that it starts on the node specified by WiresPanelSecurityComponent
+            Log.Debug($"WiresSystem: Generated WireSeed {component.WireSeed} for entity {uid} using local Random");
+        }
+
         if (TryComp<WiresPanelSecurityComponent>(uid, out var wiresPanelSecurity) &&
             !string.IsNullOrEmpty(wiresPanelSecurity.SecurityLevel) &&
             TryComp<ConstructionComponent>(uid, out var construction))

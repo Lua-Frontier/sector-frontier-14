@@ -21,6 +21,9 @@
   - type: Ghost
     canInteract: true
   - type: GhostHearing
+  - type: ActiveRadio
+    receiveAllChannels: true
+    globalReceive: true
   - type: Hands
   - type: ComplexInteraction
   - type: Puller

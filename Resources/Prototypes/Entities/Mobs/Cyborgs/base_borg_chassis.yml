@@ -45,8 +45,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      200: Dead
+      175: Critical # Lua
+      250: Dead # Lua
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -94,17 +94,19 @@
   - type: IntrinsicRadioTransmitter
     channels:
     - Binary
+    - Traffic
     - Common
     - Science
   - type: ActiveRadio
     channels:
     - Binary
+    - Traffic
     - Common
     - Science
   - type: ZombieImmune
   - type: Repairable
     doAfterDelay: 10
-    allowSelfRepair: false
+    allowSelfRepair: true # lua
   - type: BorgChassis
   - type: LockingWhitelist
     blacklist:
@@ -250,6 +252,7 @@
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   - type: PreventDropOnDowned # Frontier: borgs don't drop items when falling (e.g. critical/dead)
+  - type: Magboots #Lua
 
 - type: entity
   abstract: true
@@ -352,9 +355,11 @@
   - type: IntrinsicRadioTransmitter
     channels:
     - Binary
+    - Traffic
     - Syndicate
   - type: ActiveRadio
     channels:
+    - Traffic
     - Syndicate
   - type: ShowSyndicateIcons
   - type: MovementAlwaysTouching

@@ -1,0 +1,150 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackIris
+  name: модифицированная сумка "LuaTech"
+  suffix: Айрис
+  description: Сумка разработанная "LuaTech" с функцией РИГ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Back/Satchels/irisp_bag.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,13,9
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitIris
+    requiredSlot: BACK
+    slot: outerClothing
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      toggleable-clothing: !type:ContainerSlot
+  - type: StorageFill
+    contents:
+      - id: IrisHandsRing
+      - id: PaperLawsIris
+      - id: HacksHat
+      - id: HacksPDA
+      - id: ClothingShoesBootsLua
+      - id: ClothingNeckCapeLuaDalt
+      - id: ClothingNeckCapeLuaBlackDalt
+      - id: ClothingUniformJumpsuitIris
+      - id: HyposprayLua
+      - id: ClothingEyesHudLuaTech
+      - id: PlushieSharkBlack
+      - id: PlushieIrisLua
+      - id: PlushieHacksLua
+      - id: ClothingBeltIrisRed
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  # - type: HardsuitAcidifier
+  - type: Speech
+  - type: TTS
+    voice: Templar
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetIris
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра "LuaTech"
+  description: Шлем под расу "Плафеимов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Head/Hardsuits/iris_helm.rsi
+    layers:
+    - state: on-equipped-HELMET
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+      - state: on-equipped-HELMET-unshaded
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: off-equipped-HELMET
+  - type: PointLight
+    color: "#A9F4F9"
+    energy: 3
+    radius: 7
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.2
+        Heat: 0.3
+
+- type: entity
+  parent: ClothingOuterHardsuitAtmos
+  id: ClothingOuterHardsuitIris
+  categories: [ HideSpawnMenu ]
+  name: скафандр "LuaTech"
+  description: Скафандр специализированный под расу "Плафеимов" сделанный на заказ LuaTech.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/OuterClothing/Hardsuits/iris_hardsuit.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/OuterClothing/Hardsuits/iris_hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  # - type: HardsuitSpeedBuff
+  - type: PowerCellDraw
+    drawRate: 3.6
+    enabled: false
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.3
+        Caustic: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.1
+      lastVisibility: 0.1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetIris
+  - type: Item
+    size: Huge

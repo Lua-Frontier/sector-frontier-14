@@ -531,4 +531,123 @@
   description: Солнце светит, эльфы пашут, вот такая доля наша.
   components:
   - type: Sprite
-    sprite: _Lua/Clothing/Underwear/xmas.rsi
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/xmas.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksThighDarkRed
+  name: красные чулки
+  description: Для любителей красного.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/darkred_longocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksThighExpensive
+  name: дорогие чулки
+  description: Дорого богато, но не для всех. Подходят к дорогой шубе.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/expensive_socks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksThighGreen
+  name: зелёные чулки
+  description: Для любителей зелёного.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/green_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksThighSR
+  name: чулки представителя фронтира
+  description: Для любителей бумаги.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/sr_longocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksStockings
+  name: чулки
+  description: Самое то для чёрных платьев и юбок.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/stockings.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksStockingsDamaged
+  name: порванные чулки
+  description: Самое то для чёрных платьев и юбок... Зачем их порвали?
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/stockingsdamaged.rsi
+
+# Longsocks
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksGreen
+  name: зелёные чулки
+  description: Яркий зелёный цвет для смелых образов и мета-вейн-ящеров.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/green_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksLightBlue
+  name: голубые чулки
+  description: Прохладный оттенок, как лёгкое дыхание морского бриза.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/lightblue_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksLightViolet
+  name: светло-фиолетовые чулки
+  description: Нежные, как аромат лаванды на закате.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/lightviolet_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksOrange
+  name: оранжевые чулки
+  description: Цвет апельсинового настроения и яркой энергии.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/orange_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksRed
+  name: красные чулки
+  description: Для тех, кто знает, чего хочет.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/red_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksStandard
+  name: стандартные чулки
+  description: Самая обычная пара чулок. Слишком скучные.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/standart_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearLongSocksYellow
+  name: жёлтые чулки
+  description: Яркие, как солнечный свет сквозь утреннюю рощу.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/yellow_longsocks.rsi

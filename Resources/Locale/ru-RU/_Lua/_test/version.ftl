@@ -1,1 +1,1 @@
-connecting-version = Alpha 255_v0.6b
+connecting-version = Alpha 261_v0.7a

@@ -125,7 +125,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         if (component.Seed == -1)
         {
-            SetSeed(uid, component, _random.Next());
+            var localRandom = new RobustRandom();
+            var seed = localRandom.Next();
+            SetSeed(uid, component, seed);
+
+            Log.Debug($"BiomeSystem: Generated seed {seed} for biome {uid} using local Random");
         }
 
         if (_proto.TryIndex(component.Template, out var biome))
