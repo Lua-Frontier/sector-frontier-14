@@ -6,33 +6,26 @@
 # GitHub: dustylens (https://github.com/dustylens)
 # Discord: dustylens
 - type: vessel
-  id: Apothecary
   parent: BaseVessel
-  name: FSB Apothecary
+  id: PZApothecary
+  name: PZ Apothecary
   description: A small medical and chemistry support vessel. Deployed by the Far Star Biotech company to provide aid and medical services to the Frontier.
-  price: 36000 # 30183 0.2 36219.6
+  price: 36000
   category: Small
   group: Medical
   shuttlePath: /Maps/_Lua/Shuttles/Civilian/apothecary.yml
-  guidebookPage: ShipyardApothecary
-  class:
-  - Medical
-  - Chemistry
-  engine:
-  - Uranium
   addComponents:
-
     - type: IFF
       color: "#ffffff"
     - type: NanotrasenFtl
 
 - type: gameMap
-  id: Apothecary
-  mapName: 'FSB Apothecary'
+  id: PZApothecary
+  mapName: 'PZ Apothecary'
   mapPath: /Maps/_Lua/Shuttles/Civilian/apothecary.yml
   minPlayers: 0
   stations:
-    Apothecary:
+    PZApothecary:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -40,8 +33,3 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            ContractorInterview: [ 0, 0 ]
-            PilotInterview: [ 0, 0 ]
-            MercenaryInterview: [ 0, 0 ]
