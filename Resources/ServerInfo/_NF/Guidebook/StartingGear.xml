@@ -1,36 +1,35 @@
 <Document>
-  # Starting Equipment
+  # Стартовое снаряжение
   <Box>
     <GuideEntityEmbed Entity="NFClothingBackpack"/>
   </Box>
-  In the bag on your person you will find the following equipment:
+  В сумке, которая находится при вас, вы найдёте следующее снаряжение:
 
-  -A [color=#028ed9]survival box[/color], containing equipment to help you survive emergency scenarios
-  -A [color=#CC6633]traffic control key[/color], which can be slotted into your radio headset to utilize the traffic control radio channel
-  -A [color=#33bbff]medical implant[/color]. If you inject it, when you get incapacitated, it'll tell your location to medics. Click the implanter to equip it in your hand, and click it again to inject it into your body.
+  -[color=#028ed9]Коробка для выживания[/color], содержащая всё необходимое для экстренных ситуаций
+  -[color=#CC6633]Ключ канала трафика[/color], который можно вставить в вашу гарнитуру для доступа к радиоканалу трафика.
 
-  Find your headset by opening your inventory (backpack icon, bottom left corner).
+  Найдите свою гарнитуру, открыв инвентарь (значок рюкзака в левом нижнем углу).
 
-# Suit Sensors
+# Датчики костюма
   <Box>
     <GuideEntityEmbed Entity="ClothingUniformJumpsuitColorGrey"/>
   </Box>
-  Suit sensors give your vital status and position to anyone with a [color=#55bbff]crew monitoring console[/color], typically used by medical personnel.
+  Датчики костюма передают ваш жизненный статус и позицию всем, у кого есть [color=#55bbff]консоль мониторинга экипажа[/color], обычно используемая медперсоналом.
 
-  The sensor options are the following:
+  Варианты настроек датчиков:
 
-  -Off: Disables tracking - you will not be listed
-  -Binary: Shows you as Alive or Dead with no position
-  -Vitals: Shows your vital status (Good, Okay, Poor, Bad, Critical) with no position
-  -Coordinates: Shows your vital status and current position on a crew monitor
+  -Выкл.: Отключает отслеживание — вы не будете отображаться
+  -Бинарный: Показывает, живы вы или мертвы, без позиции
+  -Жизненные показатели: Показывает ваш статус (Хорошо, Нормально, Плохо, Критично) без позиции
+  -Координаты: Показывает ваш статус и текущую позицию на мониторе экипажа, при потере сознания они сообщит медикам ваше местоположение.
 
-  To change your suit sensors:
+  Чтобы изменить настройки датчиков костюма:
 
-  -Right-click your jumpsuit
-  -Hover over "Sensor >"
-  -Left-click your new setting
+  -Кликните ПКМ по комбинезону
+  -Наведите курсор на "Датчик >"
+  -ЛКМ по нужной настройке
 
-  In general, set your sensors to Coordinates if you'd like medics to come get you in a crisis.
+  В целом, ставьте датчики на "Координаты", если хотите, чтобы медики могли найти вас в экстренной ситуации.
 
 </Document>
 

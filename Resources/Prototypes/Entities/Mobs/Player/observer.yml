@@ -54,12 +54,9 @@
   - type: Examiner
     skipChecks: true
   - type: Ghost
-  - type: GhostHearing
+  #- type: GhostHearing // Lua
   - type: ShowElectrocutionHUD
   - type: IntrinsicRadioReceiver
-  - type: ActiveRadio
-    receiveAllChannels: true
-    globalReceive: true
   - type: Tag
     tags:
     - BypassInteractionRangeChecks

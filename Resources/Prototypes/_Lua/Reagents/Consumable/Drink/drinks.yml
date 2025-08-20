@@ -172,3 +172,18 @@
       - !type:SatiateThirst
         factor: 6
   pricePerUnit: 6
+
+- type: reagent
+  id: VanMinDrink
+  name: reagent-name-vanmin
+  group: Drinks
+  desc: reagent-desc-vanmin
+  physicalDesc: reagent-physical-desc-salty
+  flavor: salty
+  color: "#0064C8"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 6

@@ -6,6 +6,7 @@ using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Server.Anomaly.Systems;
 
 namespace Content.Server.Spawners.EntitySystems
 {
@@ -33,6 +34,8 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void OnRandSpawnMapInit(EntityUid uid, RandomSpawnerComponent component, MapInitEvent args)
         {
+            RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner spawning entity at {Transform(uid).Coordinates}");
+
             Spawn(uid, component);
             if (component.DeleteSpawnerAfterSpawn)
                 QueueDel(uid);
@@ -48,60 +51,56 @@ namespace Content.Server.Spawners.EntitySystems
         private void OnRuleStarted(ref GameRuleStartedEvent args)
         {
             var query = EntityQueryEnumerator<ConditionalSpawnerComponent>();
-            while (query.MoveNext(out var uid, out var spawner))
+            while (query.MoveNext(out var uid, out var component))
             {
-                RuleStarted(uid, spawner, args);
+                if (component.GameRules.Contains(args.RuleId))
+                {
+                    TrySpawn(uid, component);
+                }
             }
-        }
-
-        public void RuleStarted(EntityUid uid, ConditionalSpawnerComponent component, GameRuleStartedEvent obj)
-        {
-            if (component.GameRules.Contains(obj.RuleId))
-                Spawn(uid, component);
         }
 
         private void TrySpawn(EntityUid uid, ConditionalSpawnerComponent component)
         {
-            if (component.GameRules.Count == 0)
-            {
-                Spawn(uid, component);
-                return;
-            }
-
-            foreach (var rule in component.GameRules)
-            {
-                if (!_ticker.IsGameRuleActive(rule))
-                    continue;
-                Spawn(uid, component);
-                return;
-            }
+            Spawn(uid, component);
         }
 
         private void Spawn(EntityUid uid, ConditionalSpawnerComponent component)
         {
-            if (component.Chance != 1.0f && !_robustRandom.Prob(component.Chance))
-                return;
-
             if (component.Prototypes.Count == 0)
             {
-                Log.Warning($"Prototype list in ConditionalSpawnComponent is empty! Entity: {ToPrettyString(uid)}");
+                Log.Warning($"Prototype list in ConditionalSpawnerComponent is empty! Entity: {ToPrettyString(uid)}");
                 return;
             }
 
-            if (!Deleted(uid))
-                EntityManager.SpawnEntity(_robustRandom.Pick(component.Prototypes), Transform(uid).Coordinates);
+            if (Deleted(uid))
+                return;
+
+            var coordinates = Transform(uid).Coordinates;
+
+            EntityManager.SpawnEntity(_robustRandom.Pick(component.Prototypes), coordinates);
+
+            RandomLoggerWrapper.LogGlobalRandomCall($"ConditionalSpawner: Pick(Prototypes[{component.Prototypes.Count}])");
         }
 
         private void Spawn(EntityUid uid, RandomSpawnerComponent component)
         {
             if (component.RarePrototypes.Count > 0 && (component.RareChance == 1.0f || _robustRandom.Prob(component.RareChance)))
             {
-                EntityManager.SpawnEntity(_robustRandom.Pick(component.RarePrototypes), Transform(uid).Coordinates);
+                RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner: Prob({component.RareChance}) = {_robustRandom.Prob(component.RareChance)}");
+
+                var rarePrototype = _robustRandom.Pick(component.RarePrototypes);
+                RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner: Pick(RarePrototypes[{component.RarePrototypes.Count}]) = {rarePrototype}");
+
+                EntityManager.SpawnEntity(rarePrototype, Transform(uid).Coordinates);
                 return;
             }
 
             if (component.Chance != 1.0f && !_robustRandom.Prob(component.Chance))
+            {
+                RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner: Prob({component.Chance}) = {_robustRandom.Prob(component.Chance)} - SPAWN BLOCKED");
                 return;
+            }
 
             if (component.Prototypes.Count == 0)
             {
@@ -116,9 +115,15 @@ namespace Content.Server.Spawners.EntitySystems
             var xOffset = _robustRandom.NextFloat(-offset, offset);
             var yOffset = _robustRandom.NextFloat(-offset, offset);
 
+            RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner: NextFloat(-{offset}, {offset}) = {xOffset:F4} for X offset");
+            RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner: NextFloat(-{offset}, {offset}) = {yOffset:F4} for Y offset");
+
             var coordinates = Transform(uid).Coordinates.Offset(new Vector2(xOffset, yOffset));
 
-            EntityManager.SpawnEntity(_robustRandom.Pick(component.Prototypes), coordinates);
+            var prototype = _robustRandom.Pick(component.Prototypes);
+            RandomLoggerWrapper.LogGlobalRandomCall($"RandomSpawner: Pick(Prototypes[{component.Prototypes.Count}]) = {prototype}");
+
+            EntityManager.SpawnEntity(prototype, coordinates);
         }
 
         private void Spawn(Entity<EntityTableSpawnerComponent> ent)
@@ -133,6 +138,10 @@ namespace Content.Server.Spawners.EntitySystems
             {
                 var xOffset = _robustRandom.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
                 var yOffset = _robustRandom.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
+
+                RandomLoggerWrapper.LogGlobalRandomCall($"EntityTableSpawner: NextFloat(-{ent.Comp.Offset}, {ent.Comp.Offset}) = {xOffset:F4} for X offset");
+                RandomLoggerWrapper.LogGlobalRandomCall($"EntityTableSpawner: NextFloat(-{ent.Comp.Offset}, {ent.Comp.Offset}) = {yOffset:F4} for Y offset");
+
                 var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
 
                 SpawnAtPosition(proto, trueCoords);

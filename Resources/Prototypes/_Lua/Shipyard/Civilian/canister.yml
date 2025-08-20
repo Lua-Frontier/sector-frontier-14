@@ -1,20 +1,14 @@
 
 - type: vessel
-  id: PZCanister
   parent: BaseVessel
+  id: PZCanister
   name: PZ Canister
-  description: Whatever you're bringing, it won't fit. Seats two. Gravity included.
+  description: Whatever youre bringing, it wont fit. Seats two. Gravity included.
   price: 8000
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_Lua/Shuttles/Civilian/canister.yml
-  guidebookPage: Null
-  class:
-  - Civilian
-  engine:
-  - Plasma
   addComponents:
-
     - type: IFF
       color: "#ffffff"
     - type: NanotrasenFtl
@@ -33,8 +27,3 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            ContractorInterview: [ 0, 0 ]
-            PilotInterview: [ 0, 0 ]
-            MercenaryInterview: [ 0, 0 ]

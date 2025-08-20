@@ -1,27 +1,14 @@
-# Author Info
-# GitHub: arimah
-# Discord: arimah
-
-# Maintainer Info
-# GitHub: arimah
-# Discord: arimah
 
 - type: vessel
-  id: PZBookworm
   parent: BaseVessel
+  id: PZBookworm
   name: PZ Bookworm
   description: A cozy medium-size library for travellers who wish to relax with a book or perhaps a board game.
   price: 29500
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_Lua/Shuttles/Civilian/bookworm.yml
-  guidebookPage: ShipyardBookworm
-  class:
-  - Civilian
-  engine:
-  - Plasma
   addComponents:
-
     - type: IFF
       color: "#ffffff"
     - type: NanotrasenFtl
@@ -36,12 +23,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'PZBookworm {1}'
+          mapNameTemplate: 'PZ Bookworm {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            ContractorInterview: [ 0, 0 ]
-            PilotInterview: [ 0, 0 ]
-            MercenaryInterview: [ 0, 0 ]

@@ -20,7 +20,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 15000
+        Structural: 7500 #15000
         Blunt: 3000
         Ion: 600
   - type: Sprite
@@ -36,15 +36,15 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 2.2
+    lifetime: 7.5 #2.2 150*7.5=max range 1125m
   - type: PointLight
     color: "#19AFFF"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 2500
+    totalIntensity: 1000 #1500 #2500
     intensitySlope: 50
-    maxIntensity: 800
+    maxIntensity: 150 #800
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -62,7 +62,7 @@
       types:
         Structural: 75
         Blunt: 75
-        Piercing: 100
+        Piercing: 50 #100
     ignoreWeaponGrid: true
   - type: ShipWeaponProjectile
   - type: TimedDespawn
@@ -85,7 +85,7 @@
     damage:
       types:
         Structural: 25
-        Piercing: 125
+        Piercing: 50 #125
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/50_armorpiercing_machinegun_casing.rsi
     layers:
@@ -106,7 +106,7 @@
       types:
         Structural: 420
         Blunt: 100
-        Piercing: 210
+   #     Piercing: 210
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/57_shell.rsi
     layers:
@@ -120,15 +120,15 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 7
+    lifetime: 4 #512m
   - type: PointLight
     color: "#FCBA03"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 40
+    totalIntensity: 30 #40
     intensitySlope: 5
-    maxIntensity: 25
+    maxIntensity: 20 #25
     maxTileBreak: 1
 
 # 90mm
@@ -141,7 +141,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 4.2
+    lifetime: 4.2 #500m
   - type: PointLight
     radius: 3.5
     energy: 0.5
@@ -161,9 +161,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 875
+        Structural: 535 #875
         Blunt: 50
-        Piercing: 150
+        Piercing: 75 #150
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:
@@ -200,7 +200,7 @@
     damage:
       types:
         Structural: 6500
-        Blunt: 10000
+        Blunt: 5000 #10000
         Ion: 17500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
@@ -215,15 +215,15 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 5.15
+    lifetime: 5.15 #750m
   - type: PointLight
     color: "#FCBA03"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
     totalIntensity: 550
-    intensitySlope: 5
-    maxIntensity: 1150
+    intensitySlope: 15
+    maxIntensity: 45
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
@@ -239,9 +239,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 8500
-        Blunt: 12000
-        Ion: 20000
+        Structural: 9500 #8500
+        Blunt: 8000 #12000
+        Ion: 15000 #20000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:
@@ -255,14 +255,14 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 5.5
+    lifetime: 6.5 #1024m
   - type: PointLight
     color: "#fc5a03"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
     totalIntensity: 1000
-    intensitySlope: 25
+    intensitySlope: 30
     maxIntensity: 75
   - type: GatheringProjectile
   - type: MiningGatheringSoft
@@ -279,8 +279,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 6000
-        Blunt: 7500
+        Structural: 4000 #6000
+        Blunt: 3350 #7500
         Ion: 14000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
@@ -295,7 +295,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 5.15
+    lifetime: 4 #5.15 620m
   - type: PointLight
     color: "#fc8c03"
   - type: ExplodeOnTrigger
@@ -303,7 +303,7 @@
     explosionType: HardBombShipGun
     totalIntensity: 300
     intensitySlope: 30
-    maxIntensity: 600
+    maxIntensity: 60 #600
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard

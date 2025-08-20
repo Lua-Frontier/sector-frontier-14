@@ -3,10 +3,10 @@
   name: job-name-plant-manager
   description: job-description-plant-manager
   playTimeTracker: JobPlantManager
+  salary: 40000
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 72000 # Frontier - 20 hrs (the real condition here is the whitelist)
-  whitelisted: true
+      time: 720000 # Frontier - 200 hrs Lua
   startingGear: PlantManagerGear
   alwaysUseSpawner: true
   icon: "JobIconPlantManager"

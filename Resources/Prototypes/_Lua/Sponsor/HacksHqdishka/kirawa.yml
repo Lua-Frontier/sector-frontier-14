@@ -50,7 +50,9 @@
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
   - type: Item
-    size: Large
+    size: Normal
+    shape:
+    - 0,0,1,1
     sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Tools/guncaseshort.rsi
   - type: Storage
     maxItemSize: Normal

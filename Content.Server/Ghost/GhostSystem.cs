@@ -12,6 +12,7 @@ using Content.Server.Warps;
 using Content.Shared.Actions;
 using Content.Shared.Cargo; // Frontier
 using Content.Shared.CCVar;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
@@ -300,6 +301,7 @@ namespace Content.Server.Ghost
 
         #region Warp
 
+        #region LuaMod
         private void OnGhostWarpsRequest(GhostWarpsRequestEvent msg, EntitySessionEventArgs args)
         {
             if (args.SenderSession.AttachedEntity is not {Valid: true} entity
@@ -311,6 +313,7 @@ namespace Content.Server.Ghost
 
             // Frontier: get admin status for entity.
             bool isAdmin = _admin.IsAdmin(entity);
+            bool playerWarps = _configurationManager.GetCVar(CLVars.GhostPlayerWarps); //Lua
 
             //Lua start
             IEnumerable<GhostWarp> warps = Enumerable.Empty<GhostWarp>();
@@ -322,9 +325,17 @@ namespace Content.Server.Ghost
                     .Concat(GetAdminGhostWarps(entity))
                     .Concat(GetRegularGhostWarps(entity));
             }
+            else
+            {
+                warps = Enumerable.Empty<GhostWarp>();
+
+                if (playerWarps)
+                    warps = warps.Concat(GetPlayerWarps(entity));
+
+                warps = warps.Concat(GetRegularGhostWarps(entity));
+            }
             //Lua end
 
-            #region LuaMod
             //Lua Disable
             // Only include admin ghosts if the requester is an admin
             //var warps = GetPlayerWarps(entity)
@@ -337,11 +348,11 @@ namespace Content.Server.Ghost
             //                .Concat(GetRegularGhostWarps(entity));
             //}
             //Lua Disable
-            #endregion LuaMod
 
             var response = new GhostWarpsResponseEvent(warps.ToList());
             RaiseNetworkEvent(response, args.SenderSession.Channel);
         }
+        #endregion LuaMod
 
         private void OnGhostWarpToTargetRequest(GhostWarpToTargetRequestEvent msg, EntitySessionEventArgs args)
         {
@@ -361,14 +372,31 @@ namespace Content.Server.Ghost
             }
 
             // Frontier: check admin status when warping to admin-only warp points
-            if (!_admin.IsAdmin(attached))// && TryComp<WarpPointComponent>(target, out var warpPoint) && warpPoint.AdminOnly) //Lua
+            //Lua start
+            bool playerWarps = _configurationManager.GetCVar(CLVars.GhostPlayerWarps);
+            if (!_admin.IsAdmin(attached))
             {
-                Log.Warning($"User {args.SenderSession.Name} tried to warp to an admin-only warp point: {msg.Target}");
-                _adminLog.Add(LogType.Action, LogImpact.Medium, $"{EntityManager.ToPrettyString(attached):player} tried to warp to admin warp point {EntityManager.ToPrettyString(msg.Target)}");
-                return;
+                if (TryComp<WarpPointComponent>(target, out var warpPoint))
+                {
+                    if (warpPoint.AdminOnly)
+                    {
+                        Log.Warning($"User {args.SenderSession.Name} tried to warp to an admin-only warp point: {msg.Target}");
+                        _adminLog.Add(LogType.Action, LogImpact.Medium, $"{EntityManager.ToPrettyString(attached):player} tried to warp to admin warp point {EntityManager.ToPrettyString(msg.Target)}");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (!_mobState.IsDead(target) && !playerWarps)
+                    {
+                        Log.Warning($"User {args.SenderSession.Name} tried to warp to a player without permission: {msg.Target}");
+                        _adminLog.Add(LogType.Action, LogImpact.Medium, $"{EntityManager.ToPrettyString(attached):player} tried to warp point {EntityManager.ToPrettyString(msg.Target)}");
+                        return;
+                    }
+                }
             }
+            // Lua end
             // End Frontier
-
             WarpTo(attached, target);
         }
 

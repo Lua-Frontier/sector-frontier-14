@@ -1,0 +1,33 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFShukraF
+  name: SYN-GF Shukra-2
+  description: Штурмовая версия корабля поддержки "Шукра". Этот шаттл схож по форме со своим предком, однако имеет более крепкую броню.
+  price: 135000 #116554*1.15=134037~135000
+  category: Medium
+  group: Typan
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/shukra-f.yml
+  addComponents:
+    - type: IFF
+      color: "#990816"
+    - type: NanotrasenFtl
+    - type: TypanFtl
+
+- type: gameMap
+  id: GFShukraF
+  mapName: 'SYN-GF Shukra-2'
+  mapPath: /Maps/_Lua/Shuttles/Typan/shukra-f.yml
+  minPlayers: 0
+  stations:
+    GFShukraF:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SYN-GF Shukra-2 {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

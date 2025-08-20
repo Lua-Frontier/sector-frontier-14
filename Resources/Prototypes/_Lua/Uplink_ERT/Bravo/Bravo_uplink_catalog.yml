@@ -1,0 +1,350 @@
+#вооружение
+- type: listing
+  id: BravoUplinkPulseCarbine
+  name: Импульсный карабин
+  description: Высокотехнологичный энергетический карабин, излюбленный бойцами ОБР NanoTrasen. На рукоятке имеется наклейка с надписью «Только для авторизованного использования».
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: icon }
+  productEntity: NFWeaponEnergyRifleAssaultPulseCarbine
+  cost:
+    FrontierUplinkCoin: 15
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkSubMachineGunDrozd
+  name: Дрозд
+  description: Добротный пистолет-пулемет, использует пистолетные патроны 35 калибра
+  icon: { sprite: Objects/Weapons/Guns/SMGs/drozd.rsi, state: base }
+  productEntity: NFWeaponSubMachineGunDrozd
+  cost:
+    FrontierUplinkCoin: 6
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkEnergyShield
+  name: энергощит
+  description: Экзотический энергетический щит, в сложенном состоянии может поместиться даже в кармане.
+  icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  productEntity: EnergyShieldSelfRecharging
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkWeaponWeaponHFKatana
+  name: HF клинок
+  description: Высокочастотный клинок. Невероятно мощный.
+  icon: { sprite: _Mono/Objects/Weapons/Melee/hfblade.rsi, state: icon }
+  productEntity: WeaponHFKatana
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkShotgunBulldog
+  name: Магазинный дробовик "Бульдог"
+  description: классика, автоматический дробовик бульдог для устранения всякой швали.
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+  productEntity: NFWeaponShotgunBulldog
+  cost:
+    FrontierUplinkCoin: 8
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkRevolverWard45
+  name: Вард-45
+  description: Высококачественный револьвер с особым строением. На рукояти есть наклейка с надписью «Только для авторизованного использования».
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi, state: icon }
+  productEntity: NFWeaponRevolverWard45
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - BravoUplinkWeapon
+
+#Медицина
+
+- type: listing
+  id: BravoUplinkMedicalPyraAutoInjector
+  name: автоинъектор пиразина
+  description: Экспресс-доза пиразина и дермалина, предназначенная для применения в боевых условиях.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: pyrapen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: PyraAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalPunctAutoInjector
+  name: Автоиньектор пунктураза
+  description: Экспресс-доза пунктураза и транексамовой кислоты, предназначенная для применения в боевых условиях.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: punctpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: PunctAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalCombatMedipen
+  name: боевой медипен
+  description: Одноразовый медипен, содержащий химические вещества, восстанавливающие большинство видов повреждений.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: morphen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: CombatMedipen
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalStimulantAutoInjector
+  name: медипен стимулятор
+  description: Экстренная доза сильнодействующих стимуляторов и регулирующих веществ. Содержит дезоксиэфедрин и диловен. Используйте с особой осторожностью.
+  icon: { sprite: _NF/Objects/Specific/Medical/medipen.rsi, state: stimulantpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: StimulantAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: AirlossAutoInjector
+  name: автоинъектор удушения
+  description: Экспресс-доза физраствора и дексалина плюс, предназначенная чтобы быстро поднять кого-нибудь на ноги.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: dexpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: AirlossAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalHypospray
+  name: Гипоспрей
+  description: Гипоспрей, позволяющий вводить препараты буквально мгновенно!
+  icon: { sprite: Objects/Specific/Medical/hypospray.rsi , state: hypo }
+  cost:
+    FrontierUplinkCoin: 5
+  productEntity: Hypospray
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalMedkitCombatFilled
+  name: боевая аптечка
+  description: Для любителей больших пушек среди нас.
+  icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    FrontierUplinkCoin: 2
+  productEntity: MedkitCombatFilled
+  categories:
+    - BravoUplinkMedical
+
+
+- type: listing
+  id: BravoUplinkMedicalDefibrillatorCompact
+  name: компактный дефибриллятор
+  description: Теперь и в весёлом размере!
+  icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
+  cost:
+    FrontierUplinkCoin: 3
+  productEntity: DefibrillatorCompact
+  categories:
+    - BravoUplinkMedical
+
+#Боеприпасы
+- type: listing
+  id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
+  name: smg magazine (.35 pistol, overpressure)
+  description: магазин заполненный летальными боеприпасами для ПП "Дрозд"
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
+  productEntity: NFMagazineSubMachineGun35Overpressure
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
+  name: smg magazine (.35 pistol, rubber)
+  description: магазин заполненный не летальными боеприпасами для ПП "Дрозд"
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
+  productEntity: NFMagazineSubMachineGun35Rubber
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFMagazineShotgunDrum
+  name: ammo drum (.50 shells, buckshot)
+  description: барабан заполненный летальными боеприпасами для автоматического дробовика "Бульдог"
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi, state: base }
+  productEntity: NFMagazineShotgunDrum
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFSpeedLoaderPistol45Rubber
+  name: speed loader (.45 pistol, Rubber)
+  description: спидлодер заполненный не летальными боеприпасами для револьвера Ward-45
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
+  productEntity: NFSpeedLoaderPistol45Rubber
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoSpeedLoaderPistol45
+  name: speed loader (.45 pistol)
+  description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
+  productEntity: NFSpeedLoaderPistol45
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+
+#Прочее
+- type: listing
+  id: BravoUplinkMiscMindShieldImplanter
+  name: имплантер щита разума
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
+  productEntity: MindShieldImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscMicroBombImplanter
+  name: имплантер микробомбы
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
+  productEntity: MicroBombImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscDeathAcidifierImplanter
+  name: имплантер посмертного растворителя
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
+  productEntity: DeathAcidifierImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscWelderExperimental
+  name: Экспериментальный сварочный аппарат
+  description: Экспериментальный сварочный аппарат, способный самостоятельно вырабатывать топливо, менее вреден для глаз.
+  icon: { sprite: Objects/Tools/welder_experimental.rsi, state: icon }
+  productEntity: WelderExperimental
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscNFShovel
+  name: the people's shovel
+  description: Это омнитул. Но ввиде лопаты!
+  icon: { sprite: Objects/Tools/shovel.rsi, state: icon }
+  productEntity: NFShovel
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscJetpackVoidFilled
+  name: пустотный джетпак
+  description: Это реактивный ранец - джетпак.
+  icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
+  productEntity: JetpackVoidFilled
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscBoxMRE
+  name: сухой паёк
+  description: Коробка старых военных ИРП. Они, на удивление, не испортились.
+  icon: { sprite: Objects/Consumable/Food/snacks.rsi, state: nutribrick }
+  productEntity: BoxMRE
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+
+
+#Взрывчатка
+- type: listing
+  id: BravoUplinkExplosionsBoxEMPGrenadesNfsd
+  name: коробка ЭМИ гранат
+  description: Коробка, полная ЭМИ гранат.
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon }
+  productEntity: BoxEMPGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsBoxShrapnelGrenadesNfsd
+  name: коробка осколочных гранат
+  description: Коробка, полная осколочных гранат.
+  icon: { sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi, state: icon }
+  productEntity: BoxShrapnelGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 6
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsBoxIncendiaryGrenadesNfsd
+  name: коробка зажигательных гранат
+  description: Коробка, полная зажигательных гранат.
+  icon: { sprite: Objects/Weapons/Grenades/pyrogrenade.rsi, state: icon }
+  productEntity: BoxIncendiaryGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 6
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsBoxSmokeGrenades
+  name: коробка дымовых гранат
+  description: Коробка, полная дымовых гранат.
+  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
+  productEntity: BoxSmokeGrenades
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsClothingBackpackDuffelSyndicateC4tBundle
+  name: набор C-4
+  description: Сумка которая содержит 8 зарядов взрывчатки С-4.
+  icon: { sprite: Objects/Weapons/Bombs/c4.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateC4tBundle
+  cost:
+    FrontierUplinkCoin: 8
+  categories:
+    - BravoUplinkExplosions

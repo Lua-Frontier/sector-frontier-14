@@ -424,3 +424,50 @@
     damageModifierSet: RGlass
   - type: StaticPrice
     price: 500
+
+- type: entity
+  parent: BaseWall
+  id: WallSoft
+  name: soft wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/Softwall.rsi
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Softwall.rsi
+  - type: Construction
+    graph: Girder
+    node: reinforcedWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200 # Lua 300<1200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 600 # Lua 150<600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: silver
+  - type: StaticPrice
+    price: 500

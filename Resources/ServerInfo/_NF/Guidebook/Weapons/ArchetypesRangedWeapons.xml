@@ -1,37 +1,37 @@
 <Document>
-  # Ranged Weapon Archetypes
+  # Архетипы дальнобойного оружия
 
-  Generally, weapons available on Frontier are split into 10 distinct categories: Pistols, Machine Pistols, SMG, Revolvers, Shotguns, Rifles, Assault Rifles, Sniper Rifles, Launchers (mirrored for energy weapons) with defined effective ranges, fire modes and rates of fire.
+  Как правило, оружие, доступное на Фронтире, разделено на 10 различных категорий: Пистолеты, Пистолеты-пулемёты, ПП, Револьверы, Дробовики, Винтовки, Штурмовые винтовки, Снайперские винтовки, Гранатомёты (зеркально для энергетического оружия) с определённой эффективной дальностью, режимами стрельбы и скорострельностью.
 
   <Table Columns="6">
     <ColorBox Color="#a88b5e">
       <Box VerticalAlignment="Center">
-      Icon
+      Иконка
       </Box>
     </ColorBox>
     <ColorBox Color="#a88b5e">
       <Box VerticalAlignment="Center">
-      Category
+      Категория
       </Box>
     </ColorBox>
     <ColorBox Color="#a88b5e">
       <Box VerticalAlignment="Center">
-      Effective Range
+      Эффективная дальность
       </Box>
     </ColorBox>
     <ColorBox Color="#a88b5e">
       <Box VerticalAlignment="Center">
-      Ammo
+      Боеприпасы
       </Box>
     </ColorBox>
     <ColorBox Color="#a88b5e">
       <Box VerticalAlignment="Center">
-      Fire Modes
+      Режимы стрельбы
       </Box>
     </ColorBox>
     <ColorBox Color="#a88b5e">
       <Box VerticalAlignment="Center">
-      Notes
+      Примечания
       </Box>
     </ColorBox>
 
@@ -42,28 +42,28 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Pistols
+      Пистолеты
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      12 Tiles
+      12 тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .35 pistol
-      - .45 pistol
+      - .35 пистолетные
+      - .45 пистолетные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
+      - Полуавтомат
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - None
+      - Нет
       </Box>
     </ColorBox>
 
@@ -74,29 +74,29 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Machine Pistols
+      Пистолеты-пулемёты
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      10 Tiles
+      10 тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .35 pistol
-      - .45 pistol
+      - .35 пистолетные
+      - .45 пистолетные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Full-Auto
-      - Burst
+      - Автомат
+      - Очередями
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - None
+      - Нет
       </Box>
     </ColorBox>
 
@@ -107,28 +107,28 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Revolvers
+      Револьверы
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      14 Tiles
+      14 тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .35 pistol
-      - .45 pistol
+      - .35 пистолетные
+      - .45 пистолетные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
+      - Полуавтомат
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - None
+      - Нет
       </Box>
     </ColorBox>
 
@@ -139,29 +139,29 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Shotguns
+      Дробовики
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      9 Tiles
+      9 тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .50 shells
+      - .50 патроны
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
-      - Full-Auto
+      - Полуавтомат
+      - Автомат
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Need both hands to operate
-      - Incurs 20% movement speed penalty when wielded
+      - Требует обеих рук для использования
+      - Налагает 20% штраф к скорости движения при использовании
       </Box>
     </ColorBox>
 
@@ -172,31 +172,31 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Submachine Guns
+      Пистолеты-пулемёты
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      10 (13) Tiles
+      10 (13) тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .35 pistol
-      - .45 pistol
+      - .35 пистолетные
+      - .45 пистолетные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
-      - Full-Auto
-      - Burst
+      - Полуавтомат
+      - Автомат
+      - Очередями
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Effective range increases if the gun is wielded
-      - Incurs 10% movement speed penalty when wielded
+      - Эффективная дальность увеличивается при использовании оружия
+      - Налагает 10% штраф к скорости движения при использовании
       </Box>
     </ColorBox>
 
@@ -207,32 +207,32 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Rifles
+      Винтовки
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      21 Tiles
+      21 тайл
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .10 rifle
-      - .20 rifle
-      - .25 rifle
-      - .30 rifle
+      - .10 винтовочные
+      - .20 винтовочные
+      - .25 винтовочные
+      - .30 винтовочные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
+      - Полуавтомат
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Need both hands to operate
-      - Incurs 20% movement speed penalty when wielded
-      - Extends vision range
+      - Требует обеих рук для использования
+      - Налагает 20% штраф к скорости движения при использовании
+      - Расширяет поле зрения
       </Box>
     </ColorBox>
 
@@ -243,34 +243,34 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Assault Rifles
+      Штурмовые винтовки
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      17 Tiles
+      17 тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .10 rifle
-      - .20 rifle
-      - .25 rifle
-      - .30 rifle
+      - .10 винтовочные
+      - .20 винтовочные
+      - .25 винтовочные
+      - .30 винтовочные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
-      - Full-Auto
-      - Burst
+      - Полуавтомат
+      - Автомат
+      - Очередями
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Need both hands to operate
-      - Incurs 15% movement speed penalty when wielded
-      - Extends vision range
+      - Требует обеих рук для использования
+      - Налагает 15% штраф к скорости движения при использовании
+      - Расширяет поле зрения
       </Box>
     </ColorBox>
 
@@ -281,29 +281,29 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Sniper Rifles
+      Снайперские винтовки
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      24 Tiles
+      24 тайла
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .60 rifle
+      - .60 винтовочные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
+      - Полуавтомат
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Need both hands to operate
-      - Incurs 70% movement speed penalty when wielded
-      - Extends vision range
+      - Требует обеих рук для использования
+      - Налагает 70% штраф к скорости движения при использовании
+      - Расширяет поле зрения
       </Box>
     </ColorBox>
 
@@ -314,30 +314,30 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Light Machine Guns
+      Ручные пулемёты
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      12 Tiles
+      12 тайлов
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - .20 rifle
+      - .20 винтовочные
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Full-Auto
-      - Burst
+      - Автомат
+      - Очередями
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Need both hands to operate
-      - Incurs 70% movement speed penalty when wielded
-      - Extends vision range
+      - Требует обеих рук для использования
+      - Налагает 70% штраф к скорости движения при использовании
+      - Расширяет поле зрения
       </Box>
     </ColorBox>
 
@@ -348,34 +348,34 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      Launchers
+      Гранатомёты
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      24 Tiles
+      24 тайла
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Grenades
+      - Гранаты
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Semi-Auto
+      - Полуавтомат
       </Box>
     </ColorBox>
     <ColorBox>
       <Box Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2">
-      - Need both hands to operate
-      - Incurs 70% movement speed penalty when wielded
-      - Extends vision range
+      - Требует обеих рук для использования
+      - Налагает 70% штраф к скорости движения при использовании
+      - Расширяет поле зрения
       </Box>
     </ColorBox>
   </Table>
 
-  * - Effective range here is defined as follows: maximum distance at which the weapon is guaranteed to hit a tile-wide target with the weapons first shot; subsequent shots made in short succession are not guaranteed to hit the same target but have a decently high chance of hitting.
+  * - Эффективная дальность здесь определяется следующим образом: максимальное расстояние, на котором оружие гарантированно попадает в цель шириной в тайл первым выстрелом; последующие выстрелы, сделанные в быстрой последовательности, не гарантированно попадают в ту же цель, но имеют достаточно высокий шанс попадания.
 
 </Document>
 

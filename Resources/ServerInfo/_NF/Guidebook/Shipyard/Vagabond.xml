@@ -1,57 +1,57 @@
 <Document>
-  # VAGABOND-CLASS CARGO SHUTTLE
+  # ГРУЗОВОЙ ШАТТЛ КЛАССА VAGABOND
   <Box>
   <GuideEntityEmbed Entity="MiningDrill"/>
   <GuideEntityEmbed Entity="OreProcessor"/>
-  <GuideEntityEmbed Entity="CrateTradeSecureNormal" Caption="trading crate"/>
-  <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="trading crate"/>
-  </Box>  
+  <GuideEntityEmbed Entity="CrateTradeSecureNormal" Caption="торговый контейнер"/>
+  <GuideEntityEmbed Entity="CrateTradeSecureHigh" Caption="торговый контейнер"/>
+  </Box>
   <Box>
   <GuideEntityEmbed Entity="ShuttleMapVagabond" Caption=""/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Medium
-	
-	[color=#a4885c]Recommended Crew:[/color] 2-4
-	
-	[color=#a4885c]Power Gen Type:[/color] Plasma
-	
-	[color=#a4885c]Expeditions:[/color] None
-	
-	[color=#a4885c]IFF Console:[/color] None
-	
-  "An adaptable long-haul industrial freighter that pilots have adapted to many different purposes."
-  
-  # PREFLIGHT CHECKLIST
-  
-  ## 1. Power supply
-  
-  ## 1.1. Battery units
+    [color=#a4885c]Размер корабля:[/color] Средний
+
+	[color=#a4885c]Рекомендуемый экипаж:[/color] 2-4
+
+	[color=#a4885c]Тип генератора:[/color] Плазма
+
+	[color=#a4885c]Экспедиции:[/color] Нет
+
+	[color=#a4885c]Консоль IFF:[/color] Нет
+
+  "Адаптируемый промышленный грузовик дальнего следования, который пилоты приспособили для множества различных целей."
+
+  # ЧЕК-ЛИСТ ПЕРЕД ПОЛЁТОМ
+
+  ## 1. Электропитание
+
+  ## 1.1. Аккумуляторные блоки
   <Box>
   <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
-  
-  - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load* (W).
-  
-  ## 1.2. P.A.C.M.A.N. generator unit
+
+  - Проверьте, что блок SMES закреплён на полу.
+  - Проверьте, что блок подстанции закреплён на полу.
+  - Проверьте, что главный выключатель блока APC включён.
+  - Проверьте текущую нагрузку блока APC* (Вт).
+
+  ## 1.2. Генератор P.A.C.M.A.N.
   <Box>
   <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
   <GuideEntityEmbed Entity="SheetPlasma"/>
   </Box>
-  
-  - Check that P.A.C.M.A.N. generator units are anchored to the floor.
-  - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-  - Check that P.A.C.M.A.N. generator units are set to HV output.
-  - Set Target Power to 13** [bold]kW[/bold] on each generator unit.
-  - Start P.A.C.M.A.N. generator units.
-  
-  ## 2. Atmospherics
-  
-  ## 2.1. Distribution Loop
+
+  - Проверьте, что генераторы P.A.C.M.A.N. закреплены на полу.
+  - Проверьте, что генераторы P.A.C.M.A.N. заправлены. Для длительных полётов убедитесь, что у вас достаточно топлива для поддержания длительной генерации энергии.
+  - Проверьте, что генераторы P.A.C.M.A.N. настроены на выход высокого напряжения.
+  - Установите целевую мощность 13** [bold]кВт[/bold] на каждом генераторе.
+  - Запустите генераторы P.A.C.M.A.N.
+
+  ## 2. Атмосфера
+
+  ## 2.1. Распределительный контур
   <Box>
   <GuideEntityEmbed Entity="OxygenCanister"/>
   <GuideEntityEmbed Entity="NitrogenCanister"/>
@@ -59,38 +59,38 @@
   <GuideEntityEmbed Entity="GasMixer"/>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
-  
-  - Check that the O2 canister is anchored to connector port.
-  - Check that the N2 canister is anchored to connector port.
-  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
-  - Check that the gas mixer is set to 101kPa.
-  - Enable gas mixer.
-  
-  ## 2.2. Waste Loop
+
+  - Проверьте, что баллон с O2 закреплён на разъёме.
+  - Проверьте, что баллон с N2 закреплён на разъёме.
+  - Проверьте, что газовый смеситель настроен на правильное соотношение смешивания (21% кислород, 79% азот).
+  - Проверьте, что газовый смеситель настроен на 101 кПа.
+  - Включите газовый смеситель.
+
+  ## 2.2. Контур отходов
   <Box>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   <GuideEntityEmbed Entity="AirAlarm"/>
   </Box>
-    
-  - Enable waste loop pump.
-  - Disable Auto Mode on the Air Alarm in the Engine Room.
-  - Set the Air Alarm in the Engine Room to Filtering (Wide).
-  
-  ## 3. Other checks
+
+  - Включите насос контура отходов.
+  - Отключите автоматический режим на воздушной сигнализации в машинном отделении.
+  - Установите воздушную сигнализацию в машинном отделении на фильтрацию (широкий диапазон).
+
+  ## 3. Другие проверки
   <Box>
   <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
   <GuideEntityEmbed Entity="BlastDoor"/>
   </Box>
-  
-  - Check that the gyroscope is anchored, powered, and enabled.
-  - Check that the mini gravity generator is anchored, powered, and enabled.
-  - Check that the bow blast doors are closed.
-  
-  ## Sidenotes
-  
-  * - Vagabond-class cargo ships are equipped with five APC units that can be used to appraise the ship's total power consumption. Unmodified Vagabond-class ship requires 24.6 kW of power to remain operational.
-  
-  ** - Vagabond-class cargo ships have higher power demand than single standard P.A.C.M.A.N. generator unit can provide at optimal settings, however the ship comes equipped with two P.A.C.M.A.N. generator units, recommended target power output for each P.A.C.M.A.N. generator unit is 13 kW.
+
+  - Проверьте, что гироскоп закреплён, подключён к питанию и включён.
+  - Проверьте, что мини-генератор гравитации закреплён, подключён к питанию и включён.
+  - Проверьте, что носовые взрывозащитные двери закрыты.
+
+  ## Примечания
+
+  * - Грузовые корабли класса Vagabond оснащены пятью блоками APC, которые можно использовать для оценки общего энергопотребления корабля. Немодифицированный корабль класса Vagabond требует 24,6 кВт мощности для поддержания работоспособности.
+
+  ** - Грузовые корабли класса Vagabond имеют более высокое энергопотребление, чем может обеспечить один стандартный генератор P.A.C.M.A.N. при оптимальных настройках, однако корабль оснащён двумя генераторами P.A.C.M.A.N., рекомендуемая целевая мощность для каждого генератора P.A.C.M.A.N. составляет 13 кВт.
 
 </Document>

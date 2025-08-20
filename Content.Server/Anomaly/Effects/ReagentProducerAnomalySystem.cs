@@ -7,6 +7,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server.Anomaly.Systems; // Lua
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -44,7 +45,7 @@ public sealed class ReagentProducerAnomalySystem : EntitySystem
 
     private void OnPulse(Entity<ReagentProducerAnomalyComponent> entity, ref AnomalyPulseEvent args)
     {
-        if (_random.NextFloat(0.0f, 1.0f) > args.Stability)
+        if (AnomalyRandomManager.GetThreadRandom().NextFloat(0.0f, 1.0f) > args.Stability) // Lua
             ChangeReagent(entity, args.Severity);
     }
 
@@ -125,25 +126,25 @@ public sealed class ReagentProducerAnomalySystem : EntitySystem
         var currentWeightUseful = MathHelper.Lerp(entity.Comp.WeightSpreadUseful.X, entity.Comp.WeightSpreadUseful.Y, severity);
 
         var sumWeight = currentWeightDangerous + currentWeightFun + currentWeightUseful;
-        var rnd = _random.NextFloat(0f, sumWeight);
+        var rnd = AnomalyRandomManager.GetThreadRandom().NextFloat(0f, sumWeight); // Lua
         //Dangerous
         if (rnd <= currentWeightDangerous && entity.Comp.DangerousChemicals.Count > 0)
         {
-            var reagent = _random.Pick(entity.Comp.DangerousChemicals);
+            var reagent = AnomalyRandomManager.GetThreadRandom().Pick(entity.Comp.DangerousChemicals); // Lua
             return reagent;
         }
         else rnd -= currentWeightDangerous;
         //Fun
         if (rnd <= currentWeightFun && entity.Comp.FunChemicals.Count > 0)
         {
-            var reagent = _random.Pick(entity.Comp.FunChemicals);
+            var reagent = AnomalyRandomManager.GetThreadRandom().Pick(entity.Comp.FunChemicals); // Lua
             return reagent;
         }
         else rnd -= currentWeightFun;
         //Useful
         if (rnd <= currentWeightUseful && entity.Comp.UsefulChemicals.Count > 0)
         {
-            var reagent = _random.Pick(entity.Comp.UsefulChemicals);
+            var reagent = AnomalyRandomManager.GetThreadRandom().Pick(entity.Comp.UsefulChemicals); // Lua
             return reagent;
         }
         //We should never end up here.

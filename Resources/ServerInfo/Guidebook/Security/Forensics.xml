@@ -1,46 +1,46 @@
 <Document>
-  # Forensics
+  # Криминалистика
 
-  There are a lot of tools to help you gather and examine the evidence at your disposal
+  В вашем распоряжении множество инструментов для сбора и анализа улик.
 
   # Log probe
 
-  This little add-on to your PDA is incredibly useful, just install the cartridge and your PDA will acquire the ability to scan anything with access (like airlocks) and see who has used them recently.
+  Этот небольшой модуль для КПК крайне полезен: установите картридж, и КПК сможет сканировать любые объекты с доступом (например, шлюзы) и показывать, кто пользовался ими недавно.
 
-  You can normally find it inside the detective locker. After inserting it on your PDA, go to the programs tab and the log probe application should be there, to use the application you just have to interact with anything that requires access with your PDA while the application is open and the information will be instantly displayed in it.
+  Обычно модуль лежит в шкафу детектива. Вставьте картридж в КПК, откройте вкладку программ — там будет приложение log probe. Чтобы использовать, просто взаимодействуйте КПК с открытым приложением с любой вещью, требующей доступа, и информация отобразится сразу.
 
-  It should be noted that the name shown in the application is not to be trusted 100% of the time since it gets the name from the identification card of whoever used the thing we are scanning, so if for example someone opened an airlock with no card the application would display "Unknown" as the name.
+  Учтите, имя в приложении не всегда достоверно: оно берётся с ID-карты того, кто воспользовался объектом. Если, к примеру, шлюз открывали без карты, приложение покажет имя "Unknown".
 
   <Box>
     <GuideEntityEmbed Entity="LockerDetective"/>
     <GuideEntityEmbed Entity="LogProbeCartridge"/>
   </Box>
 
-  # DNA and Fingerprints
+  # ДНК и отпечатки
 
-  ## How to get someone’s DNA?
+  ## Как получить ДНК?
 
-  You can scan blood puddles, vomit, glasses, bottles, cans and other liquid containers using the [color=#a4885c]forensic scanner[/color] to get DNA of any person.
+  Можно сканировать лужи крови, рвоту, стаканы, бутылки, банки и другие ёмкости [color=#a4885c]криминалистическим сканером[/color], чтобы получить ДНК любого человека.
   <Box>
     <GuideEntityEmbed Entity="ForensicScanner"/>
   </Box>
-  So be careful before fighting with someone.
+  Так что подумайте дважды, прежде чем лезть в драку.
 
-  Same scanner can also get fingerprint information about who touched pretty much any object. If the possible perpetrator was using gloves, then your scanner will print out which fibers were left on the crimescene.
+  Тем же сканером можно получить отпечатки практически с любого объекта. Если подозреваемый был в перчатках, сканер укажет тип волокон, оставленных на месте преступления.
 
-  ## I got DNA. How do I recognize whose it is?
+  ## ДНК есть. Как понять, чья?
 
-  You can print the forensic information of the object you scanned so you never miss it. Now with the paper containing DNA you can simply find a [color=#a4885c]Station Records Computer[/color] and look for a person whose DNA matches. Same applies to finding whose fingerprint is is.
+  Распечатайте данные с объекта, чтобы не потерять их. С листом с ДНК найдите [color=#a4885c]компьютер записей станции[/color] и подберите человека по совпадению ДНК. То же и с отпечатками.
 
-  ## Taking Fingerprints
-  It is also possible to take someone's fingerprints while on scene if you make them take off their gloves and apply a forensic pad to their fingers. No need to run back to [color=#a4885c]Station Records Computer[/color] to check if the butler did it!
+  ## Снятие отпечатков
+  Можно снимать отпечатки на месте, попросив снять перчатки и приложив криминалистическую подушечку к пальцам. Не нужно бежать к [color=#a4885c]компьютеру записей станции[/color], чтобы понять, был ли это дворецкий!
 
   <GuideEntityEmbed Entity="ForensicPad"/>
 
-  ## Fibers
-  Whenenever people wearing gloves touch anything on the station, they are bound to leave behind some fibers. This complicates things, but nothing is unsolvable for a real detective.
+  ## Волокна
+  Люди в перчатках, касаясь чего-либо на станции, неизбежно оставляют волокна. Это усложняет работу, но для настоящего детектива нет нерешаемых задач.
 
-  There are up to [color=red]26[/color] different types of fibers possible. Can that stop you from solving the case?
+  Возможны до [color=red]26[/color] типов волокон. Справитесь ли вы с делом?
 
   <Box>
     <GuideEntityEmbed Entity="ComputerStationRecords"/>

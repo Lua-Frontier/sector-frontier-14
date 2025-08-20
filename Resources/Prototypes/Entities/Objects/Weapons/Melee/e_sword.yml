@@ -11,8 +11,7 @@
     soundDeactivate:
       path: /Audio/Weapons/ebladeoff.ogg
   - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
+    activeSound: null
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -71,7 +70,7 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
-    reflectProb: .10
+    reflectProb: .09
     spread: 10
   - type: IgnitionSource
     temperature: 700
@@ -121,10 +120,7 @@
             Heat: 10
     deactivatedSecret: true
   - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
-      params:
-        volume: -3
+    activeSound: null
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -175,10 +171,7 @@
       params:
         volume: -6
   - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
-      params:
-        volume: -6
+    activeSound: null
   - type: ItemToggleMeleeWeapon
     activatedSoundOnSwing:
       path: /Audio/Weapons/eblademiss.ogg
@@ -300,10 +293,7 @@
             Heat: 12
             Structural: 15
   - type: ItemToggleActiveSound
-    activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
-      params:
-        volume: 3
+    activeSound: null
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -333,7 +323,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .10
+    reflectProb: .12
     spread: 10
 
 # Item will look weird in handslot. Will need to adjust handstorage visuals in a future PR
@@ -386,7 +376,7 @@
     size: Small
     sprite: Objects/Weapons/Melee/hypereutactic_blade_inhands.rsi
   - type: Reflect
-    reflectProb: .10
+    reflectProb: .09
     spread: 10
 
 # Borgs

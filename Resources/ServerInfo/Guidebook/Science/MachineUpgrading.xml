@@ -1,38 +1,38 @@
 <Document>
-# Machine Upgrading
+# Апгрейд машин
 
-Machines help the station run smoothly, and as a scientist, you can help them run even better!
+Машины помогают станции работать, а вы, как учёный, можете помочь им работать ещё лучше!
 
-## Parts
-<Box>Stock Parts:</Box>
+## Запчасти
+<Box>Стоковые части:</Box>
 <Box>
 <GuideEntityEmbed Entity="CapacitorStockPart"/>
 <GuideEntityEmbed Entity="MatterBinStockPart"/>
 <GuideEntityEmbed Entity="MicroManipulatorStockPart"/>
 </Box>
-You can examine each machine part to see both the type and the rating, which range from 1 to 4.
+Осматривайте каждую часть, чтобы увидеть тип и рейтинг (от 1 до 4).
 
-Parts of higher levels can be researched as well as found through artifacts or salvage.
+Продвинутые части можно исследовать, а также найти в артефактах или на утилизации.
 <Box>
 <GuideEntityEmbed Entity="AdvancedMatterBinStockPart"/>
 <GuideEntityEmbed Entity="SuperMatterBinStockPart"/>
 <GuideEntityEmbed Entity="BluespaceMatterBinStockPart"/>
 </Box>
-Machine Parts can be used to create many machines.
+Части используются для сборки множества машин.
 
-## Upgrading
-To know if a machine can be upgraded, you can examine it and check for the [color=#a4885c]lightning bolt[/color] icon in the lower right corner. Clicking on it will allow you to see what kinds of upgrades the machine has.
+## Апгрейд
+Если машину можно улучшить, при осмотре появится иконка [color=#a4885c]молнии[/color] в правом нижнем углу. Кликните, чтобы увидеть доступные улучшения.
 
-To check what parts a machine needs, you can examine its board. Try it here:
+Чтобы узнать, какие части нужны машине, осмотрите её плату. Попробуйте здесь:
 <Box Orientation="Vertical">
 <GuideEntityEmbed Entity="ProtolatheMachineCircuitboard"/>
 <GuideEntityEmbed Entity="CloningPodMachineCircuitboard"/>
 <GuideEntityEmbed Entity="ThermomachineFreezerMachineCircuitBoard"/>
 </Box>
-You can use any rating part for any part requirement. Using higher rated parts will increase how effective the machine is.
+Можно ставить часть любого рейтинга на соответствующее место. Чем выше рейтинг, тем эффективнее машина.
 
-If you want to upgrade an existing machine, simply deconstruct it with a screwdriver and crowbar, and replace the existing parts with parts of a higher level.
+Чтобы улучшить существующую машину, разберите её отвёрткой и ломом и замените части на более высокий уровень.
 
-You can also quickly upgrade machines by using an RPED, loading it with machine parts, and then clicking on a machine. It will quickly be upgraded with whatever parts were inserted.
+Быстро апгрейдить помогает RPED: зарядите его частями и кликните по машине — она обновится доступными деталями.
 <GuideEntityEmbed Entity="RPED"/>
 </Document>

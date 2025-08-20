@@ -1,47 +1,47 @@
 <Document>
-  # New Frontiers Shipyards
+  # Верфи Фронтира
 
-To assist in developing the Frontier, shuttles from Nanotrasen and its subsidiaries can be rented for use.
-All rentals last for one shift. Rented shuttles return to Nanotrasen at the end of shift.
-The value of shuttles is returned to the purchaser when ended through a ship console.
-To avoid losses, [bold]make sure you end your rental before ending your shift[/bold].
+Для освоения Фронтира вы можете арендовать шаттлы у Nanotrasen и её дочерних компаний.
+Вся аренда действует одну смену. В конце смены арендованные шаттлы возвращаются Nanotrasen.
+Если вы завершите аренду через корабельную консоль, стоимость шаттла вернётся вам.
+Чтобы не потерять деньги, [bold]обязательно завершайте аренду до конца смены[/bold].
 
-## Shipyard Console
+## Консоль верфи
   <Box>
     <GuideEntityEmbed Entity="PassengerIDCard"/>
     <GuideEntityEmbed Entity="SpaceCash1000"/>
     <GuideEntityEmbed Entity="ComputerShipyard"/>
   </Box>
-  To rent a ship:
-- Eject the ID card from your PDA.
-- Insert the ID card into an unused [color=#cccc00]shipyard console[/color].
-- Use the shipyard console to bring up its interface.
-- Select the ship you would like to rent.
-- Press the Purchase button on the console.
-- Press the Eject button to remove your ID from the console.
-- Reinsert your ID card into your PDA.
+  Чтобы арендовать корабль:
+- Извлеките ID-карту из вашего КПК.
+- Вставьте ID-карту в свободную [color=#cccc00]консоль верфи[/color].
+- Используйте консоль верфи, чтобы открыть интерфейс.
+- Выберите корабль, который хотите арендовать.
+- Нажмите кнопку "Арендовать" в интерфейсе консоли.
+- Нажмите "Извлечь", чтобы забрать ID-карту.
+- Вставьте ID-карту обратно в КПК.
 
-Congratulations, you're now the Captain of your own ship!
+Поздравляем, теперь вы капитан собственного корабля!
 
-To end your rental:
-- Make sure your rented ship is docked with Frontier Outpost.
-- Make sure nobody is aboard the ship.
-- Eject the ID card [bold]used to purchase the ship[/bold] from your PDA.
-- Insert the ID card into an unused [color=#cccc00]shipyard console[/color].
-- Use the shipyard console to bring up its interface.
-- Press the Sell button on the console. The value will be deposited into your bank account.
-- Press the Eject button to remove your ID from the console.
-- Reinsert your ID card into your PDA.
+Чтобы завершить аренду:
+- Убедитесь, что ваш арендованный корабль пришвартован к Станции Фронтир.
+- Проверьте, что на борту никого нет.
+- Извлеките ID-карту [bold]ту, с которой арендовали корабль[/bold] из КПК.
+- Вставьте ID-карту в свободную [color=#cccc00]консоль верфи[/color].
+- Используйте консоль верфи, чтобы открыть интерфейс.
+- Нажмите кнопку "Продать". Стоимость будет зачислена на ваш счёт спессо.
+- Нажмите "Извлечь", чтобы забрать ID-карту.
+- Вставьте ID-карту обратно в КПК.
 
-## Provisions
+## Оснащение
   <Box>
     <GuideEntityEmbed Entity="LockerCaptain"/>
     <GuideEntityEmbed Entity="SuitStorageBase"/>
     <GuideEntityEmbed Entity="LockerParamedic"/>
   </Box>
-  Ships come equipped with the tools and supplies needed to perform one or more tasks in the Frontier (e.g. mining, research, medical, food services).
+  Корабли оснащены всем необходимым для выполнения задач на Фронтире (например, добыча ресурсов, исследования, медицина, питание).
 
-Ships, especially larger ones, work best with a crew. Refer to the [bold]Hiring[/bold] section for more info.
-Space is a lonely, dangerous place, and you'll have a much better time when you work with a crew.
+Корабли, особенно крупные, эффективнее работают с экипажем. Подробнее см. раздел [bold]Найм[/bold].
+Космос — опасное и одинокое место, работать в команде всегда проще и веселее.
 
 </Document>

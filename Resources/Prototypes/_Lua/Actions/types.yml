@@ -1,3 +1,6 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
 - type: entity
   id: ActionAriralLayEgg
   name: Отложить яйцо
@@ -42,3 +45,31 @@
     iconOn: _Lua/Interface/Actions/owo-button-on.png
   - type: InstantAction
     event: !type:OwOAccentActionEvent
+
+- type: entity
+  id: ActionToggleMantisGloves
+  name: Toggle hidden blades
+  description: Extends or retracts the deadly blades in your gloves.
+  components:
+  - type: Action
+    useDelay: 1.0
+    icon:
+      sprite: _Lua/Clothing/Hands/Gloves/mantis_activated.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  id: ActionToggleBladesMantis
+  name: Toggle mantis blades
+  description: Extends or retracts the deadly blades in your gloves.
+  components:
+  - type: Action
+    useDelay: 1.0
+    icon:
+      sprite: _Lua/Clothing/Hands/Gloves/mantis_blades_activated.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
