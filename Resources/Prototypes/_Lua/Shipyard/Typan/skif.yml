@@ -1,0 +1,33 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFSkif
+  name: SYN-GF Skif
+  description: Резкий, как удар серпом по пальцам и сильный, как удар молотом, этот шаттл обладает убойной огневой мощью и исчерпывающей броней.
+  price: 113000 #97666*1.15=112315~113000
+  category: Medium
+  group: Typan
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/skif-2.yml
+  addComponents:
+    - type: IFF
+      color: "#990816"
+    - type: NanotrasenFtl
+    - type: TypanFtl
+
+- type: gameMap
+  id: GFSkif
+  mapName: 'SYN-GF Skif'
+  mapPath: /Maps/_Lua/Shuttles/Typan/skif-2.yml
+  minPlayers: 0
+  stations:
+    GFSkif:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SYN-GF Skif {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

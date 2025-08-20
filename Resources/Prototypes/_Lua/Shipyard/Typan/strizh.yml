@@ -1,0 +1,33 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFStrizh
+  name: SYN-GF Strizh
+  description: Гибрид, способный одинаково хорошо уничтожать врага на любом расстоянии. Бронирован средне.
+  price: 115000 #99949*1.15=114941~115000
+  category: Medium
+  group: Typan
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/strizh.yml
+  addComponents:
+    - type: IFF
+      color: "#990816"
+    - type: NanotrasenFtl
+    - type: TypanFtl
+
+- type: gameMap
+  id: GFStrizh
+  mapName: 'SYN-GF Strizh'
+  mapPath: /Maps/_Lua/Shuttles/Typan/strizh.yml
+  minPlayers: 0
+  stations:
+    GFStrizh:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SYN-GF Strizh {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
