@@ -1,0 +1,29 @@
+
+- type: vessel
+  parent: BaseVessel
+  id: PZBookworm
+  name: PZ Bookworm
+  description: A cozy medium-size library for travellers who wish to relax with a book or perhaps a board game.
+  price: 29500
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/bookworm.yml
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: PZBookworm
+  mapName: 'PZ Bookworm'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/bookworm.yml
+  minPlayers: 0
+  stations:
+    PZBookworm:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'PZ Bookworm {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

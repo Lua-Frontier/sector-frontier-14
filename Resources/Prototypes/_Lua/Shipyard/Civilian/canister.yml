@@ -1,0 +1,29 @@
+
+- type: vessel
+  parent: BaseVessel
+  id: PZCanister
+  name: PZ Canister
+  description: Whatever youre bringing, it wont fit. Seats two. Gravity included.
+  price: 8000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/canister.yml
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: PZCanister
+  mapName: 'PZ Canister'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/canister.yml
+  minPlayers: 0
+  stations:
+    PZCanister:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'PZ Canister {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

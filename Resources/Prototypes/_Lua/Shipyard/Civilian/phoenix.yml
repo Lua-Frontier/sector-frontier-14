@@ -1,0 +1,28 @@
+
+- type: vessel
+  parent: BaseVessel
+  id: PZPhoenix
+  name: PZ Phoenix
+  description: A research and salvage vessel designed for deep space exploration.
+  price: 65500
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/phoenix.yml
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: PZPhoenix
+  mapName: 'PZ Phoenix'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/phoenix.yml
+  minPlayers: 0
+  stations:
+    PZPhoenix:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'PZ Phoenix {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
