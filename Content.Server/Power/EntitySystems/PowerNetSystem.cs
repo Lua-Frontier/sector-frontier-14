@@ -1,24 +1,3 @@
-// SPDX-FileCopyrightText: 2020 py01
-// SPDX-FileCopyrightText: 2021 20kdc
-// SPDX-FileCopyrightText: 2021 Acruid
-// SPDX-FileCopyrightText: 2021 Kara D
-// SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
-// SPDX-FileCopyrightText: 2021 Visne
-// SPDX-FileCopyrightText: 2021 collinlunn
-// SPDX-FileCopyrightText: 2022 mirrorcult
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2023 Leon Friedrich
-// SPDX-FileCopyrightText: 2024 Cojoke
-// SPDX-FileCopyrightText: 2024 Kevin Zheng
-// SPDX-FileCopyrightText: 2024 ShadowCommander
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 chromiumboy
-// SPDX-FileCopyrightText: 2025 metalgearsloth
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
-using System; // Mono
 using System.Linq;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
@@ -52,21 +31,15 @@ namespace Content.Server.Power.EntitySystems
         private readonly HashSet<ApcNet> _apcNetReconnectQueue = new();
 
         private EntityQuery<ApcPowerReceiverBatteryComponent> _apcBatteryQuery;
-        private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<BatteryComponent> _batteryQuery;
 
         private BatteryRampPegSolver _solver = new();
-
-        // Mono
-        private TimeSpan _updateInterval = TimeSpan.FromSeconds(0.5);
-        private TimeSpan _updateAccumulator = TimeSpan.FromSeconds(0);
 
         public override void Initialize()
         {
             base.Initialize();
 
             _apcBatteryQuery = GetEntityQuery<ApcPowerReceiverBatteryComponent>();
-            _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _batteryQuery = GetEntityQuery<BatteryComponent>();
 
             UpdatesAfter.Add(typeof(NodeGroupSystem));
@@ -300,20 +273,13 @@ namespace Content.Server.Power.EntitySystems
         {
             base.Update(frameTime);
 
-            // Mono
-            _updateAccumulator += TimeSpan.FromSeconds(frameTime);
-            if (_updateAccumulator < _updateInterval)
-                return;
-            _updateAccumulator -= _updateInterval;
-
             ReconnectNetworks();
 
             // Synchronize batteries
             RaiseLocalEvent(new NetworkBatteryPreSync());
 
-            // Mono - replace frameTime with update interval
             // Run power solver.
-            _solver.Tick((float)_updateInterval.TotalSeconds, _powerState, _parMan);
+            _solver.Tick(frameTime, _powerState, _parMan);
 
             // Synchronize batteries, the other way around.
             RaiseLocalEvent(new NetworkBatteryPostSync());
@@ -321,7 +287,7 @@ namespace Content.Server.Power.EntitySystems
             // Send events where necessary.
             // TODO: Instead of querying ALL power components every tick, and then checking if an event needs to be
             // raised, should probably assemble a list of entity Uids during the actual solver steps.
-            UpdateApcPowerReceiver((float)_updateInterval.TotalSeconds); // Mono
+            UpdateApcPowerReceiver(frameTime);
             UpdatePowerConsumer();
             UpdateNetworkBattery();
         }
@@ -423,9 +389,6 @@ namespace Content.Server.Power.EntitySystems
 
                 var ev = new PowerChangedEvent(powered, apcReceiver.NetworkLoad.ReceivingPower);
                 RaiseLocalEvent(uid, ref ev);
-
-                if (_appearanceQuery.TryComp(uid, out var appearance))
-                    _appearance.SetData(uid, PowerDeviceVisuals.Powered, powered, appearance);
             }
         }
 
