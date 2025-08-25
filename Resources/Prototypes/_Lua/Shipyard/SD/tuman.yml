@@ -1,0 +1,32 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFTuman
+  name: SD-GF Туман
+  description: Боевой корабль "Туман" способен одинаково эффективно работать как на дальних, так и на ближних дистанциях.
+  price: 240000 #208225*1.15=239458~240000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/_Lua/Shuttles/SD/tuman.yml
+  addComponents:
+    - type: IFF
+      color: "#009954"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFTuman
+  mapName: 'SD-GF Туман'
+  mapPath: /Maps/_Lua/Shuttles/SD/tuman.yml
+  minPlayers: 0
+  stations:
+    GFTuman:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SD-GF Туман {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
