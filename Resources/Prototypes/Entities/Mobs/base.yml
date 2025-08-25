@@ -72,11 +72,11 @@
 #      - !type:GibBehavior { }
     - trigger: # _Lua
         !type:DamageTypeTrigger
-        damageType: Heat
+        damageType: Cold # _Lua
         damage: 50000 # _Lua (From mobs flying in space)
       behaviors:
       - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
+        spawnInContainer: false # _Lua
         spawn:
           Ash:
             min: 1
@@ -84,7 +84,7 @@
       - !type:BurnBodyBehavior { }
       - !type:PlaySoundBehavior
         sound:
-          collection: MeatLaserImpact
+          collection: MeatLaserImpact # _Lua
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState
