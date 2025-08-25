@@ -152,6 +152,7 @@
               doAfter: 1
         # End Frontier: interior shuttle wall
 
+## TO DO MOVE TO _LUA NEW RECIPES+GRINDER
 # _Lua Start
         - to: WallKrissSolid
           completed:
@@ -165,7 +166,7 @@
             - tool: Screwing
               doAfter: 1
             - material: Steel
-              amount: 3
+              amount: 1
               doAfter: 1
 
         - to: WallKrissSolidDiagonal
@@ -180,7 +181,7 @@
             - tool: Welding
               doAfter: 1
             - material: Steel
-              amount: 2
+              amount: 1
               doAfter: 1
 # _Lua End
 
