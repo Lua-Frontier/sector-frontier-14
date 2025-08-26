@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Text;
-using Content.Client._NF.Lathe.UI; //Lua: import NF lathe window; used to bind client UI
+using Content.Client._NF.Lathe.UI; /Lua: import NF lathe window; used to bind client UI
 using Content.Client.Materials;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
