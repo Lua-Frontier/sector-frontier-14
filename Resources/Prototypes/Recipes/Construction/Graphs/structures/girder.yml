@@ -166,7 +166,7 @@
             - tool: Screwing
               doAfter: 1
             - material: Steel
-              amount: 1
+              amount: 2
               doAfter: 1
 
         - to: WallKrissSolidDiagonal
@@ -655,7 +655,7 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
-              amount: 2
+              amount: 1
           steps:
             - tool: Cutting
               doAfter: 1
@@ -677,7 +677,7 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
-              amount: 3
+              amount: 1
           steps:
             - tool: Cutting
               doAfter: 1
