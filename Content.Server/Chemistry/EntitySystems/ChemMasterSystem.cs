@@ -50,7 +50,7 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ComponentStartup>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
             // Ensure UI updates after storage actually mutates its state
-            SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]); //Lua: update UI after storage actually changes
+            SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ChemMasterComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ChemMasterComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
 
@@ -78,7 +78,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var bufferReagents = bufferSolution.Contents;
             var bufferCurrentVolume = bufferSolution.Volume;
 
-            var state = new ChemMasterBoundUserInterfaceState( //Lua: build UI state (buffer/slots content) after changes
+            var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, chemMaster.SortingType, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
                 bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, updateLabel);
 

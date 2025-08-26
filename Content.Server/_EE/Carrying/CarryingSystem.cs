@@ -51,7 +51,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
 
-        public const float BaseDistanceCoeff = 0.5f; // //Lua: base throw distance reduction while carrying - prevents long-throw spam
+        public const float BaseDistanceCoeff = 0.5f; // Frontier: default throwing speed reduction
         public const float MaxDistanceCoeff = 1.0f; // Frontier: default throwing speed reduction
         public const float DefaultMaxThrowDistance = 4.0f; // Frontier: maximum throwing distance
 
@@ -254,7 +254,7 @@ namespace Content.Server.Carrying
                 return;
             }
 
-            var length = component.PickupDuration //Lua: compute pickup duration based on mass/stamina/downed state
+            var length = component.PickupDuration // Frontier: removed outer TimeSpan.FromSeconds()
                         * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
                         * _contests.StaminaContest(carrier, carried)
                         * (_standingState.IsDown(carried) ? 0.5f : 1);
@@ -269,7 +269,7 @@ namespace Content.Server.Carrying
             component.CancelToken = new CancellationTokenSource();
 
             var ev = new CarryDoAfterEvent();
-            var args = new DoAfterArgs(EntityManager, carrier, duration, ev, carried, target: carried) //Lua: pass clamped duration to DoAfter
+            var args = new DoAfterArgs(EntityManager, carrier, duration, ev, carried, target: carried) // Frontier: length<duration
             {
                 BreakOnMove = true,
                 NeedHand = true

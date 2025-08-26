@@ -33,7 +33,7 @@ public sealed class PartExchangerSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<PartExchangerComponent, AfterInteractEvent>(OnAfterInteract); //Lua: start part exchange on machine interaction
+        SubscribeLocalEvent<PartExchangerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PartExchangerComponent, ExchangerDoAfterEvent>(OnDoAfter);
     }
 
@@ -62,7 +62,7 @@ public sealed class PartExchangerSystem : EntitySystem
 
         // Insert the contained parts into a dictionary for indexing.
         // Note: these parts remain in the starting container.
-        foreach (var item in storage.Container.ContainedEntities) //Lua: collect parts from RPED for exchange
+        foreach (var item in storage.Container.ContainedEntities)
         {
             if (_construction.GetMachinePartState(item, out var partState))
             {
@@ -118,7 +118,7 @@ public sealed class PartExchangerSystem : EntitySystem
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
         var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
-        foreach (var (type, amount) in macBoardComp.Requirements) //Lua: iterate board requirements to select best parts
+        foreach (var (type, amount) in macBoardComp.Requirements)
         {
             if (partsByType.ContainsKey(type))
             {
@@ -205,7 +205,7 @@ public sealed class PartExchangerSystem : EntitySystem
             return;
 
         // Add all components in the machine to form a complete set of available components.
-        foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration //Lua: pull existing parts to form the selection pool
+        foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
             if (_construction.GetMachinePartState(item, out var partState))
             {
@@ -230,7 +230,7 @@ public sealed class PartExchangerSystem : EntitySystem
         }
 
         // Sort parts in descending order of rating (highest rated parts first)
-        foreach (var partList in partsByType.Values) //Lua: sort by rating - install best parts first
+        foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
         var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();

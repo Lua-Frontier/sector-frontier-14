@@ -53,7 +53,7 @@ public sealed partial class SleepingSystem : EntitySystem
         SubscribeLocalEvent<MobStateComponent, WakeActionEvent>(OnWakeAction);
         SubscribeLocalEvent<MobStateComponent, SleepActionEvent>(OnSleepAction);
 
-        SubscribeLocalEvent<SleepingComponent, DamageChangedEvent>(OnDamageChanged); //Lua: wake on damage - keeps UI/state in sync
+        SubscribeLocalEvent<SleepingComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<SleepingComponent, EntityZombifiedEvent>(OnZombified);
         SubscribeLocalEvent<SleepingComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<SleepingComponent, MapInitEvent>(OnMapInit);
@@ -132,7 +132,7 @@ public sealed partial class SleepingSystem : EntitySystem
         RemComp<SpamEmitSoundComponent>(ent);
     }
 
-        private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args) //Lua: on spawn - apply sleep effects and add Wake action
+        private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args)
         {
             var ev = new SleepStateChangedEvent(true);
             RaiseLocalEvent(ent, ref ev);
@@ -283,7 +283,7 @@ public sealed partial class SleepingSystem : EntitySystem
         EnsureComp<SleepingComponent>(ent);
 
         // Frontier: set auto-wakeup time
-        if (TryComp<AutoWakeUpComponent>(ent, out var autoWakeUp)) //Lua: set auto-wakeup timestamp - fixes "endless sleep"
+        if (TryComp<AutoWakeUpComponent>(ent, out var autoWakeUp))
             autoWakeUp.NextWakeUp = _gameTiming.CurTime + autoWakeUp.Length;
         // End Frontier: auto-wakeup
         return true;

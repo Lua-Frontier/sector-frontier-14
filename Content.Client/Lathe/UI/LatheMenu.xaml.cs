@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Text;
-using Content.Client._NF.Lathe.UI; /Lua: import NF lathe window; used to bind client UI
+using Content.Client._NF.Lathe.UI; // Frontier
 using Content.Client.Materials;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
@@ -27,9 +27,9 @@ public sealed partial class LatheMenu : DefaultWindow
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
-    public event Action<int>? QueueDeleteAction; //Lua: queue item deletion event - added for print job management
-    public event Action<int>? QueueMoveUpAction; //Lua: move job up in queue - improves queue UX
-    public event Action<int>? QueueMoveDownAction; //Lua: move job down in queue - improves queue UX
+    public event Action<int>? QueueDeleteAction; // Frontier
+    public event Action<int>? QueueMoveUpAction; // Frontier
+    public event Action<int>? QueueMoveDownAction; // Frontier
     public event Action? DeleteFabricatingAction; // Frontier
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
@@ -61,8 +61,8 @@ public sealed partial class LatheMenu : DefaultWindow
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
-        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); //Lua: cancel current fabrication button
-        DeleteFabricating.AddStyleClass("OpenLeft"); //Lua: button style per design
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
+        DeleteFabricating.AddStyleClass("OpenLeft"); // Frontier
     }
 
     public void SetEntity(EntityUid uid)
@@ -127,7 +127,7 @@ public sealed partial class LatheMenu : DefaultWindow
 
         foreach (var prototype in sortedRecipesToShow)
         {
-            var canProduce = _lathe.CanProduce(Entity, prototype, quantity, component: lathe); //Lua: respects server discounts/materials to enable/disable button
+            var canProduce = _lathe.CanProduce(Entity, prototype, quantity, component: lathe);
 
             var control = new RecipeControl(_lathe, prototype, () => GenerateTooltipText(prototype), canProduce, GetRecipeDisplayControl(prototype));
             control.OnButtonPressed += s =>
@@ -143,7 +143,7 @@ public sealed partial class LatheMenu : DefaultWindow
     private string GenerateTooltipText(LatheRecipePrototype prototype)
     {
         StringBuilder sb = new();
-        var multiplier = _entityManager.GetComponent<LatheComponent>(Entity).FinalMaterialUseMultiplier; // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier //Lua: use final material use multiplier correctly
+        var multiplier = _entityManager.GetComponent<LatheComponent>(Entity).FinalMaterialUseMultiplier; // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
         // Consider the selected batch quantity when displaying costs to match server-side consumption
         var quantity = 1;
         if (!int.TryParse(AmountLineEdit.Text, out quantity) || quantity <= 0)
@@ -180,7 +180,7 @@ public sealed partial class LatheMenu : DefaultWindow
             sb.AppendLine(tooltipText);
         }
 
-        var desc = _lathe.GetRecipeDescription(prototype); //Lua: show recipe description for better info
+        var desc = _lathe.GetRecipeDescription(prototype);
         if (!string.IsNullOrWhiteSpace(desc))
             sb.AppendLine(Loc.GetString("lathe-menu-description-display", ("description", desc)));
 
@@ -234,7 +234,7 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch //Lua: client-side support for batched queue
+    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch
     {
         QueueList.DisposeAllChildren();
 
@@ -262,7 +262,7 @@ public sealed partial class LatheMenu : DefaultWindow
                 displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
             else
                 displayText = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(batch.Recipe)); //Lua: UX element to manage job
+            var queuedRecipeBox = new QueuedRecipeControl(displayText, idx - 1, GetRecipeDisplayControl(batch.Recipe));
             queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
             queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
             queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);

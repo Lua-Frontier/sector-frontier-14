@@ -55,7 +55,7 @@
   - type: ResearchClient
   - type: TechnologyDatabase
   - type: MaterialStorageMagnetPickup # Frontier
-    range: 0.30 #Lua: 0.25<0.30 - increased auto-pickup radius to reduce micromanagement
+    range: 0.30 # Frontier
     magnetEnabled: false
 
 # a lathe that can be sped up with space lube / slowed down with glue
@@ -727,7 +727,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
-      productValueModifier: 0.3 #Lua: confirmed price modifier 0.3 - balance/print cost display per PR
+      productValueModifier: 0.3 # Frontier
       staticPacks:
       - OreSmelting
       # - RGlassSmelting # Frontier: raw mats only

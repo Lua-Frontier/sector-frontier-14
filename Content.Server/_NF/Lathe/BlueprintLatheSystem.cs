@@ -51,7 +51,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
         SubscribeLocalEvent<BlueprintLatheComponent, BlueprintLatheQueueRecipeMessage>(OnLatheQueueRecipeMessage);
         SubscribeLocalEvent<BlueprintLatheComponent, LatheSyncRequestMessage>(OnLatheSyncRequestMessage);
-        SubscribeLocalEvent<BlueprintLatheComponent, LatheDeleteRequestMessage>(OnLatheDeleteRequestMessage); //Lua: support deleting jobs from queue
+        SubscribeLocalEvent<BlueprintLatheComponent, LatheDeleteRequestMessage>(OnLatheDeleteRequestMessage);
         SubscribeLocalEvent<BlueprintLatheComponent, LatheMoveRequestMessage>(OnLatheMoveRequestMessage);
         SubscribeLocalEvent<BlueprintLatheComponent, LatheAbortFabricationMessage>(OnLatheAbortFabricationMessage);
 
@@ -221,7 +221,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
 
         var producing = component.CurrentBlueprintType ?? component.Queue.FirstOrDefault()?.BlueprintType;
 
-        var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing); //Lua: send current queue/status to UI for sync
+        var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing);
         _uiSys.SetUiState(uid, BlueprintLatheUiKey.Key, state);
     }
 
