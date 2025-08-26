@@ -1,5 +1,4 @@
 using Content.Shared.Clothing.Components;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
@@ -15,21 +14,39 @@ public sealed class RaceRequirementSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<RaceRequirementComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<RaceRequirementComponent, BeingEquippedAttemptEvent>(OnEquipAttempt);
     }
+
+    private void OnExamine(EntityUid uid, RaceRequirementComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        // print current armor status
+        string examineMsg;
+        if (!component.Enabled)
+        {
+            examineMsg = "race-requirement-component-disabled";
+        }
+        else
+        {
+            if (IsValidRace(args.Examiner, uid))
+                examineMsg = "race-requirement-component-canequip";
+            else
+                examineMsg = "race-requirement-component-cantequip";
+        }
+        args.PushMarkup(Loc.GetString(examineMsg));
+    }
+
     private void OnEquipAttempt(EntityUid uid, RaceRequirementComponent component, BeingEquippedAttemptEvent args)
     {
         var isValid = IsValidRace(args.EquipTarget, uid, component);
         if (!isValid)
         {
-            if (component.AllowedRaces != null && component.AllowedRaces.Count > 0)
-            {
-                args.Reason = $"Вы не рассы: {string.Join(", ", component.AllowedRaces)}";
-            }
-            else
-            {
-                args.Reason = "race requirement failed";
-            }
+            args.Reason = component.AllowedRaces != null && component.AllowedRaces.Count > 0
+                ? "race-requirement-component-equip-failed-allowed"
+                : "race-requirement-component-equip-failed";
             args.Cancel();
         }
     }
@@ -37,6 +54,10 @@ public sealed class RaceRequirementSystem : EntitySystem
     {
         if (!Resolve(itemUid, ref component))
             return false;
+
+        // Отключено — пропускаем.
+        if (!component.Enabled)
+            return true;
 
         if (component.AllowedRaces == null || component.AllowedRaces.Count == 0)
             return true;
