@@ -1,4 +1,4 @@
-
+#.35
 ent-NFMagazinePistol35Empty = магазин (.35 пистолетные, любой)
 ent-NFMagazinePistol35 = магазин (.35 пистолетные)
 ent-NFMagazinePistol35Overpressure = магазин (.35 пистолетные, усиленные)
@@ -7,7 +7,7 @@ ent-NFMagazinePistol35Uranium = магазин (.35 пистолетные, ур
 ent-NFMagazinePistol35Practice = магазин (.35 пистолетные, учебные)
 ent-NFMagazinePistol35Emp = магазин (.35 пистолетные, ЭМИ)
 ent-NFMagazinePistol35Rubber = магазин (.35 пистолетные, резиновые)
-
+#.35 highcap
 ent-NFMagazineHighCapacityPistol35Empty = магазин повышенной ёмкости (.35 пистолетные, любой)
 ent-NFMagazineHighCapacityPistol35 = магазин повышенной ёмкости (.35 пистолетные)
 ent-NFMagazineHighCapacityPistol35Overpressure = магазин повышенной ёмкости (.35 пистолетные, усиленные)
@@ -16,7 +16,7 @@ ent-NFMagazineHighCapacityPistol35Uranium = магазин повышенной 
 ent-NFMagazineHighCapacityPistol35Practice = магазин повышенной ёмкости (.35 пистолетные, учебные)
 ent-NFMagazineHighCapacityPistol35Emp = магазин повышенной ёмкости (.35 пистолетные, ЭМИ)
 ent-NFMagazinePistol35HighCapacityRubber = магазин повышенной ёмкости (.35 пистолетные, резиновые)
-
+#.35 SMG
 ent-NFMagazineSubMachineGun35Empty = магазин ПП (.35 пистолетные, любой)
 ent-NFMagazineSubMachineGun35 = магазин ПП (.35 пистолетные)
 ent-NFMagazineSubMachineGun35Overpressure = магазин ПП (.35 пистолетные, усиленные)
@@ -25,7 +25,7 @@ ent-NFMagazineSubMachineGun35Uranium = магазин ПП (.35 пистолет
 ent-NFMagazineSubMachineGun35Practice = магазин ПП (.35 пистолетные, учебные)
 ent-NFMagazineSubMachineGun35Rubber = магазин ПП (.35 пистолетные, резиновые)
 ent-NFMagazineSubMachineGun35Emp = магазин ПП (.35 пистолетные, ЭМИ)
-
+#.35 SMG WT-550
 ent-NFMagazineSubMachineGunTopMounted35Empty = магазин ПП (.35 пистолетные, любой)
 ent-NFMagazineSubMachineGunTopMounted35 = магазин ПП (.35 пистолетные)
 ent-NFMagazineSubMachineGunTopMounted35Overpressure = магазин ПП (.35 пистолетные, усиленные)
@@ -34,7 +34,7 @@ ent-NFMagazineSubMachineGunTopMounted35Uranium = магазин ПП (.35 пис
 ent-NFMagazineSubMachineGunTopMounted35Practice = магазин ПП (.35 пистолетные, учебные)
 ent-NFMagazineSubMachineGunTopMounted35Rubber = магазин ПП (.35 пистолетные, резиновые)
 ent-NFMagazineSubMachineGunTopMounted35Emp = магазин ПП (.35 пистолетные, ЭМИ)
-
+#.45
 ent-NFMagazinePistol45Empty = магазин (.45 магнум, любой)
 ent-NFMagazinePistol45 = магазин (.45 магнум)
 ent-NFMagazinePistol45Overpressure = магазин (.45 магнум, усиленные)
@@ -43,7 +43,7 @@ ent-NFMagazinePistol45Uranium = магазин (.45 магнум, урановы
 ent-NFMagazinePistol45Practice = магазин (.45 магнум, учебные)
 ent-NFMagazinePistol45Emp = магазин (.45 магнум, ЭМИ)
 ent-NFMagazinePistol45Rubber = магазин (.45 магнум, резиновые)
-
+#.45 SMG
 ent-NFMagazineSubMachineGun45Empty = магазин ПП (.45 магнум, любой)
 ent-NFMagazineSubMachineGun45 = магазин ПП (.45 магнум)
 ent-NFMagazineSubMachineGun45Overpressure = магазин ПП (.45 магнум, усиленные)

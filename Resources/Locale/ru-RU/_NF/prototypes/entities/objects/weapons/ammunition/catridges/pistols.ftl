@@ -1,3 +1,4 @@
+#.35
 ent-NFCartridgePistol35 = патрон (.35 пистолетные)
 ent-NFCartridgePistol35Overpressure = патро (.35 пистолетные, усиленные)
 ent-NFCartridgePistol35Incendiary = патрон (.35 пистолетные, зажигательные)
@@ -5,7 +6,7 @@ ent-NFCartridgePistol35Uranium = патрон (.35 пистолетные, ур�
 ent-NFCartridgePistol35Practice = патрон (.35 пистолетные, учебные)
 ent-NFCartridgePistol35Emp = патрон (.35 пистолетные, ЭМИ)
 ent-NFCartridgePistol35Rubber = патрон (.35 пистолетные, резиновые)
-
+#.35
 ent-NFCartridgePistol45 = патрон (.45 магнум)
 ent-NFCartridgePistol45Overpressure = патрон (.45 магнум, усиленные)
 ent-NFCartridgePistol45Incendiary = патрон (.45 магнум, зажигательные)
