@@ -51,9 +51,9 @@ namespace Content.Server.Carrying
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
 
-        public const float BaseDistanceCoeff = 0.5f; //Lua
-        public const float MaxDistanceCoeff = 1.0f; //Lua
-        public const float DefaultMaxThrowDistance = 4.0f; //Lua
+        public const float BaseDistanceCoeff = 0.5f; // Frontier: default throwing speed reduction
+        public const float MaxDistanceCoeff = 1.0f; // Frontier: default throwing speed reduction
+        public const float DefaultMaxThrowDistance = 4.0f; // Frontier: maximum throwing distance
 
         public override void Initialize()
         {
@@ -146,14 +146,14 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
-            var contestCoeff = _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) //Lua: replaced throwSpeed multiplication with explicit variable
+            var contestCoeff = _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier: "args.throwSpeed *="<"var contestCoeff ="
                                 * _contests.StaminaContest(uid, virtItem.BlockingEntity);
 
-            //Lua: sanitize throw distance regardless of cvars
+            // Frontier: sanitize our range regardless of CVar values - TODO: variable throw distance ranges (via traits, etc.)
             contestCoeff = float.Min(BaseDistanceCoeff * contestCoeff, MaxDistanceCoeff);
             if (args.Direction.Length() > DefaultMaxThrowDistance * contestCoeff)
                 args.Direction = args.Direction.Normalized() * DefaultMaxThrowDistance * contestCoeff;
-            // End Lua
+            // End Frontier
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -253,17 +253,17 @@ namespace Content.Server.Carrying
                 return;
             }
 
-            var length = component.PickupDuration //Lua: removed outer TimeSpan.FromSeconds()
+            var length = component.PickupDuration // Frontier: removed outer TimeSpan.FromSeconds()
                         * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
                         * _contests.StaminaContest(carrier, carried)
                         * (_standingState.IsDown(carried) ? 0.5f : 1);
 
-            //Lua: sanitize pickup time duration regardless of CVars - no near-instant pickups.
+            // Frontier: sanitize pickup time duration regardless of CVars - no near-instant pickups.
             var duration = TimeSpan.FromSeconds(
                 float.Clamp(length,
                 component.MinPickupDuration,
                 component.MaxPickupDuration));
-            // End Lua
+            // End Frontier
 
             component.CancelToken = new CancellationTokenSource();
 
@@ -378,7 +378,7 @@ namespace Content.Server.Carrying
                 // Make sure the carried entity is always centered relative to the carrier, as gravity pulls can offset it otherwise
                 if (!xform.LocalPosition.Equals(Vector2.Zero))
                 {
-                    _transform.SetLocalPosition(carried, Vector2.Zero, xform); //Lua
+                    _transform.SetLocalPosition(carried, Vector2.Zero, xform); // Frontier: warning suppression
                 }
             }
             // End Frontier: query for transform

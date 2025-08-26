@@ -1,4 +1,4 @@
-using System.Linq; //Lua
+using System.Linq; // Lua
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
@@ -28,7 +28,7 @@ using Robust.Shared.Timing; // Frontier
 using Content.Shared.Weapons.Melee.Events; // Frontier
 using Content.Shared.Emag.Systems; // Frontier
 
-namespace Content.Shared._Goobstation.Vehicles; //Lua: migrate under _Goobstation
+namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
 public abstract partial class SharedVehicleSystem : EntitySystem
 {
@@ -40,7 +40,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; //Lua
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
     [Dependency] private readonly SharedHandsSystem _hands = default!; // Lua
     [Dependency] private readonly INetManager _net = default!; // Frontier
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
@@ -105,7 +105,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (actionsUpdated)
             Dirty(uid, component);
     }
-    // End Lua
+    // End Frontier
 
     private void OnRemove(EntityUid uid, VehicleComponent component, ComponentRemove args)
     {
@@ -122,12 +122,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (HasComp<InstantActionComponent>(args.Entity))
             return;
 
-        //Lua: check key slot
+        // Frontier: check key slot
         if (args.Container.ID != component.KeySlotId)
             return;
         if (!_timing.IsFirstTimePredicted)
             return;
-        // End Lua: check key slot
+        // End Frontier: check key slot
 
         component.EngineRunning = true;
         _appearance.SetData(uid, VehicleState.Animated, component.Driver != null);
@@ -142,12 +142,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnEject(EntityUid uid, VehicleComponent component, ref EntRemovedFromContainerMessage args)
     {
-        //Lua: check key slot
+        // Frontier: check key slot
         if (args.Container.ID != component.KeySlotId)
             return;
         if (!_timing.IsFirstTimePredicted)
             return;
-        // End Lua: check key slot
+        // End Frontier: check key slot
 
         component.EngineRunning = false;
         _appearance.SetData(uid, VehicleState.Animated, false);
@@ -165,32 +165,33 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (args.Handled == true || component.Driver != args.Performer || component.HornSound == null)
             return;
 
-        _audio.PlayPredicted(component.HornSound, uid, args.Performer); //Lua: PlayPvs<PlayPredicted
+        _audio.PlayPredicted(component.HornSound, uid, args.Performer); // Frontier: PlayPvs<PlayPredicted, add args.Performer
         args.Handled = true;
     }
 
     private void OnSiren(EntityUid uid, VehicleComponent component, InstantActionEvent args)
     {
-        if (_net.IsClient) //Lua: avoid client-side entities for Stop
-            return; //Lua
+        if (_net.IsClient) // Frontier: _audio.Stop hates client-side entities, only create this serverside
+            return; // Frontier
 
         if (args.Handled == true || component.Driver != args.Performer || component.SirenSound == null)
             return;
 
-        if (component.SirenStream != null) //Lua
+        if (component.SirenStream != null) // Frontier: SirenEnabled<SirenStream != null
         {
             component.SirenStream = _audio.Stop(component.SirenStream);
         }
         else
         {
-            var sirenParams = component.SirenSound.Params.WithLoop(true); //Lua: force loop
-            component.SirenStream = _audio.PlayPvs(component.SirenSound, uid, audioParams: sirenParams)?.Entity; //Lua
+            var sirenParams = component.SirenSound.Params.WithLoop(true); // Frontier: force loop
+            component.SirenStream = _audio.PlayPvs(component.SirenSound, uid, audioParams: sirenParams)?.Entity; // Frontier: set params
         }
-        // component.SirenEnabled = component.SirenStream != null; //Lua: removed (unneeded state)
+
+        // component.SirenEnabled = component.SirenStream != null; // Frontier: remove (unneeded state)
         args.Handled = true;
     }
 
-    //Lua start (fuck driver cowboy)
+    // Lua start (fuck driver cowboy)
     private bool TryOccupyHands(EntityUid rider, EntityUid vehicle)
     {
         if (!TryComp<HandsComponent>(rider, out var hands))
@@ -236,7 +237,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             }
         }
     }
-    //Lua end (fuck driver cowboy)
+    // Lua end (fuck driver cowboy)
 
     private void OnStrapAttempt(Entity<VehicleComponent> ent, ref StrapAttemptEvent args)
     {
@@ -248,14 +249,14 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
         }
 
-        //Lua: no pulling when riding
+        // Frontier: no pulling when riding
         if (TryComp<PullerComponent>(args.Buckle, out var puller) && puller.Pulling != null)
         {
             _popup.PopupPredicted(Loc.GetString("vehicle-cannot-pull", ("object", puller.Pulling), ("vehicle", ent)), ent, args.Buckle);
             args.Cancelled = true;
             return;
         }
-        // End Lua
+        // End Frontier
 
         if (ent.Comp.RequiredHands != 2)
         {
@@ -288,11 +289,11 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
 
         ent.Comp.Driver = driver;
-        Dirty(ent); //Lua
+        Dirty(ent); // Frontier
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, true);
-        _appearance.SetData(ent.Owner, VehicleState.Animated, ent.Comp.EngineRunning); //Lua
-        var rider = EnsureComp<VehicleRiderComponent>(driver); //Lua
-        Dirty(driver, rider); //Lua
+        _appearance.SetData(ent.Owner, VehicleState.Animated, ent.Comp.EngineRunning); // Frontier
+        var rider = EnsureComp<VehicleRiderComponent>(driver); // Frontier
+        Dirty(driver, rider); // Frontier
 
         if (!ent.Comp.EngineRunning)
             return;
@@ -307,8 +308,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         Dismount(args.Buckle.Owner, ent);
         _appearance.SetData(ent.Owner, VehicleState.DrawOver, false);
-        _appearance.SetData(ent.Owner, VehicleState.Animated, false); //Lua
-        RemComp<VehicleRiderComponent>(args.Buckle.Owner); //Lua
+        _appearance.SetData(ent.Owner, VehicleState.Animated, false); // Frontier
+        RemComp<VehicleRiderComponent>(args.Buckle.Owner); // Frontier
     }
 
     private void OnDropped(EntityUid uid, VehicleComponent comp, VirtualItemDeletedEvent args)
@@ -320,24 +321,24 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         Dismount(args.User, uid);
         _appearance.SetData(uid, VehicleState.DrawOver, false);
-        _appearance.SetData(uid, VehicleState.Animated, false); //Lua
-        RemComp<VehicleRiderComponent>(args.User); //Lua
+        _appearance.SetData(uid, VehicleState.Animated, false); // Frontier
+        RemComp<VehicleRiderComponent>(args.User); // Frontier
     }
 
-    //Lua: do not hit your own vehicle
+    // Frontier: do not hit your own vehicle
     private void OnMeleeHit(Entity<VehicleComponent> ent, ref MeleeHitEvent args)
     {
         if (args.User == ent.Comp.Driver) // Don't hit your own vehicle
             args.Handled = true;
     }
-    // End Lua
+    // End Frontier: do not hit your own vehicle
 
     private void AddHorns(EntityUid driver, EntityUid vehicle)
     {
         if (!TryComp<VehicleComponent>(vehicle, out var vehicleComp))
             return;
 
-        //Lua: grant existing actions
+        // Frontier: grant existing actions
         List<EntityUid> grantedActions = new();
         if (vehicleComp.HornAction != null)
             grantedActions.Add(vehicleComp.HornAction.Value);
@@ -353,7 +354,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         // Only try to grant actions if the vehicle actually has them.
         if (grantedActions.Count > 0)
             _actions.GrantActions(driver, grantedActions, vehicle);
-        // End Lua
+        // End Frontier
     }
 
     private void Mount(EntityUid driver, EntityUid vehicle)
@@ -371,7 +372,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         _mover.SetRelay(driver, vehicle);
 
-        AddHorns(driver, vehicle); //Lua
+        AddHorns(driver, vehicle); // Frontier
     }
 
     private void Dismount(EntityUid driver, EntityUid vehicle, bool removeDriver = true) // Frontier: add removeDriver
@@ -380,12 +381,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
 
         RemComp<RelayInputMoverComponent>(driver);
-        _actionBlocker.UpdateCanMove(driver); //Lua: ensure can move after relay removal
+        _actionBlocker.UpdateCanMove(driver); // Frontier: bugfix, relay input mover only updates on shutdown, not remove
 
         if (removeDriver) // Frontier
             vehicleComp.Driver = null;
 
-        _actions.RemoveProvidedActions(driver, vehicle); //Lua
+        _actions.RemoveProvidedActions(driver, vehicle); // Frontier: don't remove actions, just provide/revoke them
 
         if (removeDriver) // Frontier
             _virtualItem.DeleteInHandsMatching(driver, vehicle);
@@ -394,7 +395,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             accessComp.Tags.Clear();
     }
 
-    //Lua: prevent drivers from pulling things, emag handlers
+    // Frontier: prevent drivers from pulling things, emag handlers
     private void OnRiderPull(Entity<VehicleRiderComponent> ent, ref PullAttemptEvent args)
     {
         if (args.PullerUid == ent.Owner)
@@ -416,7 +417,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
             HandleEmag(ent);
 
-            //Lua: assuming the only other emaggable component on the vehicle is a flashlight
+            // Hack: assuming the only other emaggable component on the vehicle is a flashlight
             args.Repeatable = HasComp<UnpoweredFlashlightComponent>(ent);
             args.Handled = true;
         }

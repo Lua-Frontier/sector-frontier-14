@@ -113,7 +113,7 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        //Lua: sort by rating in descending order (highest rated parts first)
+        // Sort by rating in descending order (highest rated parts first)
         foreach (var (partKey, partList) in partsByType)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
@@ -229,7 +229,7 @@ public sealed class PartExchangerSystem : EntitySystem
             }
         }
 
-        //Lua: sort parts in descending order of rating (highest rated parts first)
+        // Sort parts in descending order of rating (highest rated parts first)
         foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 

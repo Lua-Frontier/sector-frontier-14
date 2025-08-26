@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Text;
-using Content.Client._NF.Lathe.UI; //Lua
+using Content.Client._NF.Lathe.UI; // Frontier
 using Content.Client.Materials;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
@@ -27,10 +27,10 @@ public sealed partial class LatheMenu : DefaultWindow
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
-    public event Action<int>? QueueDeleteAction; //Lua
-    public event Action<int>? QueueMoveUpAction; //Lua
-    public event Action<int>? QueueMoveDownAction; //Lua
-    public event Action? DeleteFabricatingAction; //Lua
+    public event Action<int>? QueueDeleteAction; // Frontier
+    public event Action<int>? QueueMoveUpAction; // Frontier
+    public event Action<int>? QueueMoveDownAction; // Frontier
+    public event Action? DeleteFabricatingAction; // Frontier
 
     public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
@@ -61,8 +61,8 @@ public sealed partial class LatheMenu : DefaultWindow
         FilterOption.OnItemSelected += OnItemSelected;
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
-        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); //Lua
-        DeleteFabricating.AddStyleClass("OpenLeft"); //Lua
+        DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke(); // Frontier
+        DeleteFabricating.AddStyleClass("OpenLeft"); // Frontier
     }
 
     public void SetEntity(EntityUid uid)
@@ -143,7 +143,7 @@ public sealed partial class LatheMenu : DefaultWindow
     private string GenerateTooltipText(LatheRecipePrototype prototype)
     {
         StringBuilder sb = new();
-        var multiplier = _entityManager.GetComponent<LatheComponent>(Entity).FinalMaterialUseMultiplier; //Lua: MaterialUseMultiplier<FinalMaterialUseMultiplier
+        var multiplier = _entityManager.GetComponent<LatheComponent>(Entity).FinalMaterialUseMultiplier; // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
 
         foreach (var (id, amount) in prototype.Materials)
         {
@@ -230,26 +230,26 @@ public sealed partial class LatheMenu : DefaultWindow
     /// Populates the build queue list with all queued items
     /// </summary>
     /// <param name="queue"></param>
-    public void PopulateQueueList(List<LatheRecipeBatch> queue) //Lua: LatheRecipePrototype<LatheRecipeBatch
+    public void PopulateQueueList(List<LatheRecipeBatch> queue) // Frontier: LatheRecipePrototype<LatheRecipeBatch
     {
         QueueList.DisposeAllChildren();
 
         var idx = 1;
-        foreach (var batch in queue) //Lua: recipe<batch
+        foreach (var batch in queue) // Frontier: recipe<batch
         {
-            //Lua Start: custom boxes
+            // Frontier: custom boxes
             // var queuedRecipeBox = new BoxContainer();
             // queuedRecipeBox.Orientation = BoxContainer.LayoutOrientation.Horizontal;
 
-            // //Lua: batch handling
-            // queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe)); //Lua: GetRecipeDisplayControl<GetQueueRecipeDisplayControl
+            // // Frontier: batch handling
+            // queuedRecipeBox.AddChild(GetRecipeDisplayControl(batch.Recipe)); // Frontier: GetRecipeDisplayControl<GetQueueRecipeDisplayControl
 
             // var queuedRecipeLabel = new Label();
             // if (batch.ItemsRequested > 1)
             //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)} ({batch.ItemsPrinted}/{batch.ItemsRequested})";
             // else
             //     queuedRecipeLabel.Text = $"{idx}. {_lathe.GetRecipeName(batch.Recipe)}";
-            // // End Lua
+            // // End Frontier
             // queuedRecipeBox.AddChild(queuedRecipeLabel);
             // QueueList.AddChild(queuedRecipeBox);
 
@@ -263,7 +263,7 @@ public sealed partial class LatheMenu : DefaultWindow
             queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
             queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
             QueueList.AddChild(queuedRecipeBox);
-            //Lua End: custom boxes
+            // End Frontier: custom boxes
             idx++;
         }
     }

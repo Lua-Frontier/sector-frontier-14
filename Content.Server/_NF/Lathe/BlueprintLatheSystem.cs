@@ -148,7 +148,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
             component.Queue.RemoveAt(0);
         var blueprintType = batch.BlueprintType;
 
-        var time = _reagentSpeed.ApplySpeed(uid, component.BlueprintPrintTime) * component.TimeMultiplier * component.FinalTimeMultiplier; //Lua: use FinalTimeMultiplier
+        var time = _reagentSpeed.ApplySpeed(uid, component.BlueprintPrintTime) * component.TimeMultiplier * component.FinalTimeMultiplier;
 
         var lathe = EnsureComp<LatheProducingComponent>(uid);
         lathe.StartTime = _timing.CurTime;

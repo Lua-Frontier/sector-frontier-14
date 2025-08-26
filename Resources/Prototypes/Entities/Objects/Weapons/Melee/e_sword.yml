@@ -3,7 +3,7 @@
   parent: BaseItem
   abstract: true
   components:
-  - type: WeaponCaseInsertable #Lua
+  - type: WeaponCaseInsertable # Frontier
   - type: EnergySword
   - type: ItemToggle
     soundActivate:
@@ -77,7 +77,7 @@
 
 - type: entity
   name: energy sword
-  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] #Lua: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EnergySword
   description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
   components:
@@ -95,7 +95,7 @@
 
 - type: entity
   name: energy dagger
-  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] #Lua: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EnergyDaggerLoud
   description: A not as loud and dangerous dagger with a beam made of pure, concentrated plasma. This one is completely undisguised.
   components:
@@ -219,11 +219,11 @@
   - type: Tag
     tags:
     - Write
-  - type: Contraband #Lua
-    hideValues: true #Lua
+  - type: Contraband # Frontier
+    hideValues: true # Frontier
 
 - type: entity
-  parent: [BaseItem, BaseC3SyndicateContraband] #Lua: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EnergyDaggerBox
   name: e-dagger box
   suffix: E-Dagger
@@ -242,7 +242,7 @@
 
 - type: entity
   name: energy cutlass
-  parent: [BaseMeleeWeaponEnergy, BaseC3PirateContraband] #Lua: BaseMajorContraband<BaseC3PirateContraband
+  parent: [BaseMeleeWeaponEnergy, BaseC3PirateContraband] # Frontier: BaseMajorContraband<BaseC3PirateContraband
   id: EnergyCutlass
   description: An exotic energy weapon.
   components:
@@ -266,7 +266,7 @@
 
 - type: entity
   name: double-bladed energy sword
-  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] #Lua: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EnergySwordDouble
   description: Syndicate Command Interns thought that having one blade on the energy sword was not enough. This can be stored in pockets.
   components:
@@ -353,7 +353,7 @@
         Heat: 20
         Structural: 20
   - type: MeleeRequiresWield
-  - type: HeldSpeedModifier #Lua slowdown balances compared to dsword
+  - type: HeldSpeedModifier #slowdown is what balances this compared to a dsword
     walkModifier: 0.6
     sprintModifier: 0.6
   - type: UseDelay

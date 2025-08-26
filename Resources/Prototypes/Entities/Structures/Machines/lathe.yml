@@ -54,8 +54,8 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
-  - type: MaterialStorageMagnetPickup #Lua
-    range: 0.30 #Lua: null<0.30
+  - type: MaterialStorageMagnetPickup # Frontier
+    range: 0.30 # Frontier
     magnetEnabled: false
 
 # a lathe that can be sped up with space lube / slowed down with glue
@@ -67,7 +67,7 @@
   - type: ReagentSpeed
     solution: lube
     modifiers:
-      SpaceLube: 0.5 #Lua: 0.25<0.5
+      SpaceLube: 0.5 # Frontier: 0.25<0.5 (we double dip on time with lube and machine parts)
       SpaceGlue: 5
   - type: SolutionContainerManager
     solutions:
@@ -86,12 +86,12 @@
   components:
   - type: Lathe
     materialUseMultiplier: 0.5
-    timeMultiplier: 3 #Lua: 1.5<3
+    timeMultiplier: 3 # Frontier: 1.5<3 (we double dip on time with lube and machine parts)
   - type: LatheHeatProducing
   - type: ReagentSpeed
     modifiers:
-      SpaceLube: 0.5 #Lua: 0.8<0.5
-      SpaceGlue: 5 #Lua
+      SpaceLube: 0.5 # Frontier: 0.8<0.5
+      SpaceGlue: 5 # no change from normal lathe, overheat!!!
 
 - type: entity
   id: Autolathe
@@ -139,14 +139,14 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-    - NFSalvageStatic #Lua
-    - NFLights #Lua
-    - NFServiceStatic #Lua
+    - NFSalvageStatic # Frontier
+    - NFLights # Frontier
+    - NFServiceStatic # Frontier
     - ReportingStatic # DeltaV
     - NFPaperAndPaperAccessories # Frontier
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - NfsdAmmoStatic #Lua: SecurityAmmoStatic<NfsdAmmoStatic
+    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -339,7 +339,7 @@
   description: Creates parts for robotics and other mechanical needs.
   components:
   - type: Sprite
-    snapCardinals: true #Lua
+    snapCardinals: true # Frontier
     sprite: Structures/Machines/exosuit_fabricator.rsi
     layers:
     - state: fab-idle
@@ -357,12 +357,12 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    - MechMiscStatic #Lua
+    - MechMiscStatic # Mono
     dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
-    - MechEquipment #Lua - Mech parts
+    - MechEquipment # Mono - Mech parts
     - ClarkeMechParts
     - DurandMechParts
     - GygaxMechParts
@@ -395,7 +395,7 @@
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
-  categories: [ HideSpawnMenu ] #Lua
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/biofabricator.rsi
