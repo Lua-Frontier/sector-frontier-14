@@ -242,7 +242,7 @@
   group: Savory
   solids:
     FoodBreadBun: 1
-    FoodCuredCarp: 1
+    FoodCuredCarp: 1 # Lua
     FoodCheeseSlice: 1
   recipeType: Oven # Frontier
 
@@ -256,7 +256,7 @@
     FoodBreadBun: 1
     FoodMeatFishGeneric: 1
     FoodCheeseSlice: 1
-  recipeType: Oven # Frontier
+  recipeType: Oven # Lua
   hideInGuidebook: true
 
 - type: microwaveMealRecipe
@@ -969,7 +969,7 @@
   recipeType: Oven # Frontier
 
 #Soups & Stew
-# Lua: рыбо-супы совместимы с `FoodMeatFishGeneric` и спрайтами из `_Lua/Objects/Consumable/Food/fish_dishes.rsi`
+# Lua: Добавлены супы из рыбы
 - type: microwaveMealRecipe
   id: RecipeBisque
   name: bisque recipe
@@ -982,8 +982,8 @@
     FoodBowlBig: 1
     FoodTomato: 1
     FoodMushroom: 1
-    FoodCuredCarp: 1
-  recipeType: Oven # Frontier
+    FoodCuredCarp: 1 #Lua
+  recipeType: Oven # Froniter
 
 - type: microwaveMealRecipe
   id: RecipeBisqueFish
@@ -998,7 +998,7 @@
     FoodTomato: 1
     FoodMushroom: 1
     FoodMeatFishGeneric: 1
-  recipeType: Oven # Frontier
+  recipeType: Oven # Lua
   hideInGuidebook: true
 
 - type: microwaveMealRecipe
@@ -1455,7 +1455,7 @@
     FoodDough: 1
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
-    FoodCuredCarp: 2
+    FoodCuredCarp: 2 #Lua: Добавлена возможность готовки с новым мяском карпа
   recipeType: Oven # Frontier
 
 - type: microwaveMealRecipe
@@ -1469,7 +1469,7 @@
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
     FoodMeatFishGeneric: 2
-  recipeType: Oven # Frontier
+  recipeType: Oven # Lua
   hideInGuidebook: true
 
 - type: microwaveMealRecipe
@@ -1482,7 +1482,7 @@
     TableSalt: 1
   solids:
     FoodCuredCarp: 2
-  recipeType: Assembler # Frontier
+  recipeType: Assembler # Frontier-Lua edith
 
 - type: microwaveMealRecipe
   id: RecipeSashimiFish
@@ -1494,7 +1494,7 @@
     TableSalt: 1
   solids:
     FoodMeatFishGeneric: 2
-  recipeType: Assembler # Frontier
+  recipeType: Assembler # Frontier-Lua edith
   hideInGuidebook: true
 
 - type: microwaveMealRecipe
@@ -2562,9 +2562,9 @@
     FoodOnionSlice: 2
     FoodTomato: 1
     FoodCabbage: 1
-  recipeType: # Frontier
-  - Oven # Frontier
-  - Microwave # Frontier
+  recipeType: # Frontier-Lua edith
+  - Oven # Frontier-Lua edith
+  - Microwave # Frontier-Lua edith
 
 - type: microwaveMealRecipe
   id: RecipeTacoFishGeneric
@@ -2578,9 +2578,9 @@
     FoodOnionSlice: 2
     FoodTomato: 1
     FoodCabbage: 1
-  recipeType: # Frontier
-  - Oven # Frontier
-  hideInGuidebook: true
+  recipeType: # Frontier-Lua edith
+  - Oven # Frontier-Lua edith
+  hideInGuidebook: true # Lua edith
 
 - type: microwaveMealRecipe
   id: RecipeTacoRat

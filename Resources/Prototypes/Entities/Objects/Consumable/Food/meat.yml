@@ -78,7 +78,7 @@
 - type: Tag
   id: Cutlet
 
-# Needed for fish fillets and recipes referencing the Fish tag
+# Lua Needed for fish fillets and recipes referencing the Fish tag
 - type: Tag
   id: Fish
 
@@ -160,6 +160,7 @@
       - ReagentId: CarpoToxin
         Quantity: 5
 
+# Lua start
 # Generic raw fish fillet (from fishing)
 - type: entity
   name: raw fish fillet
@@ -185,6 +186,8 @@
           Quantity: 5
         - ReagentId: Fat
           Quantity: 2
+
+# Lua end
 
 - type: entity
   name: raw bacon
