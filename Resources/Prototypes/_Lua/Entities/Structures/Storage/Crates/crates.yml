@@ -22,7 +22,7 @@
     node: crategenericsteelmagneet
   - type: StaticPrice
     price: 190
-  
+
 - type: construction
   name: crate-generic-steel
   id: CrateGenericSteelMagneet
@@ -69,3 +69,13 @@
               amount: 5
             - !type:EmptyAllContainers
             - !type:DeleteEntity
+
+- type: entity
+  id: MetalBarrelGreyCrafted
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/grey.rsi
+  - type: Construction #Lua_Tweak - крафт маленького вентилятора
+    graph: MetalBarrelGreyCrafted
+    node: MetalBarrelGreyCrafted

@@ -64,3 +64,14 @@ cryo-sleep-pod = капсула криосна
 cryo-sleep-pod-desc = Холодная подушка обеспечена.
 crate-generic-steel = стальной магнитный ящик
 crate-generic-steel-desc = Большой контейнер для предметов.
+
+metal-barrel-grey = Металическая Бочка
+metal-barrel-grey-desc = Обьёмное хранилище жидкости с металических пластин.
+WallKrissReinforced-name =  укреплённая стена
+WallKrissReinforced-desc = Укреплённая стена но белая!
+WallKrissReinforcedDiagonal-name = диагональная укреплённая стена
+WallKrissReinforcedDiagonal-desc = Укреплённая стена но белая!
+WallKrissSolid-name = обычная стена
+WallKrissSolid-desc = Стена но белая!
+WallKrissSolidDiagonal-name = диагональная обычная стена
+WallKrissSolidDiagonal-desc = Стена но белая!

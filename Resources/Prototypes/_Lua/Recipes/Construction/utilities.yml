@@ -44,3 +44,15 @@
   category: construction-category-utilities
   placementMode: SnapgridCenter
   canBuildInImpassable: false
+
+# BARREL
+- type: construction
+  name: metal-barrel-grey
+  id: MetalBarrelGreyCrafted
+  description: metal-barrel-grey-desc
+  graph: MetalBarrelGreyCrafted
+  startNode: start
+  targetNode: MetalBarrelGreyCrafted
+  category: construction-category-storage
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

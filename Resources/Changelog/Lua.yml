@@ -823,3 +823,102 @@ Entries:
   id: 59
   time: '2025-08-15T14:44:25.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/139
+- author: UnilTan
+  changes:
+    - type: Add
+      message: >-
+        Динамическое ценообразование для продаж через консоли паллет с
+        изолированными доменами(категориями рынка).
+    - type: Add
+      message: Консоли и экраны для Syndicate и BlackMarket и консоль тортуги.
+    - type: Tweak
+      message: >-
+        Интерфейс консоли паллет показывает реальную стоимость после налогов и
+        динамики и итоговое снижение.
+    - type: Add
+      message: >-
+        Настроены категории динамики с разными параметрами снижения,
+        восстановления и минимальной планкой цены.
+  id: 60
+  time: '2025-08-25T11:28:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/129
+- author: PyotrIgn
+  changes:
+    - type: Add
+      message: Возвращены старые рецепты шашлыков.
+    - type: Fix
+      message: Исправлена отсутствующая локализация для шаурмы.
+  id: 61
+  time: '2025-08-25T12:20:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/132
+- author: salo2016
+  changes:
+    - type: Tweak
+      message: Финальный нёрф ботаники; Нёрф lingzhi гриба.
+  id: 62
+  time: '2025-08-25T12:25:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/133
+- author: UnilTan
+  changes:
+    - type: Tweak
+      message: изменена текстура упаковщика
+  id: 63
+  time: '2025-08-25T14:26:05.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/134
+- author: UnilTan
+  changes:
+    - type: Add
+      message: >-
+        Датчики на одежде теперь включены по умолчанию для всех, кроме пиратов,
+        синдикатов и мерков. Одежда, появившаяся в раунде, всегда с датчиками в
+        режиме "Координаты".
+  id: 64
+  time: '2025-08-25T14:32:31.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/140
+- author: UnilTan
+  changes:
+    - type: Tweak
+      message: >-
+        Гипоспрей больше не может вводить реагенты цели, если на ней
+        одновременно надеты скафандр и шлем. Снятие шлема снова позволяет
+        инъекцию даже в скафандре.
+    - type: Tweak
+      message: Самовкол блокируется при надетых скафандре и шлеме.
+  id: 65
+  time: '2025-08-25T14:57:21.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/137
+- author: UnilTan
+  changes:
+    - type: Tweak
+      message: Изменен цвет и прозрачность ПНВ от НИО
+  id: 66
+  time: '2025-08-25T15:00:19.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/142
+- author: UnilTan
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено отображение и работу фонарика у максимального скафандра
+        утилизаторов.
+    - type: Tweak
+      message: Добавлена новая дальность фонарикам
+  id: 67
+  time: '2025-08-25T15:28:49.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/141
+- author: salo2016
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Gixon с новыми лазерными турелями для добычи
+        экспедиционного аванпоста.
+    - type: Tweak
+      message: >-
+        Нёрф дальности стрельбы дробовиков; Нельзя продать хим-мастер; Бафф
+        гейзеров на астероидах.
+    - type: Add
+      message: Крафт металической бочки.
+    - type: Fix
+      message: ИИ шаттлы для спавна не требуют активного Шерифа.
+  id: 68
+  time: '2025-08-27T02:57:58.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/143
