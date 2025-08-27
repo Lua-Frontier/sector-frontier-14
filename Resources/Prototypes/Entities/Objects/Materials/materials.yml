@@ -54,7 +54,9 @@
       cardboard:
         reagents:
         - ReagentId: Cellulose
-          Quantity: 2
+          Quantity: 2 # Lua 6<2
+#  - type: Item
+#    heldPrefix: cardboard
 
 - type: entity
   parent: MaterialCardboard
@@ -82,7 +84,7 @@
   name: cloth
   suffix: Full
   components:
-  - type: ConstructionMaterials # Frontier
+  - type: ConstructionMaterials # Lua
   - type: Healing
     damageContainers:
       - Biological
@@ -138,7 +140,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
+      - DroneUsable # Lua
       - Gauze
       - RawMaterial
   - type: Construction
@@ -173,7 +175,7 @@
   name: durathread
   suffix: Full
   components:
-  - type: ConstructionMaterials # Frontier
+  - type: ConstructionMaterials # Lua
   - type: Stack
     stackType: Durathread
     baseLayer: base
@@ -206,7 +208,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
+      - DroneUsable #Lua
       - RawMaterial
   - type: Item
     heldPrefix: durathread
@@ -234,7 +236,7 @@
   name: wood
   suffix: Full
   components:
-  - type: ConstructionMaterials # Frontier
+  - type: ConstructionMaterials # Lua
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -257,7 +259,7 @@
   - type: Tag
     tags:
     - Wooden
-    - DroneUsable
+    - DroneUsable # Lua
     - RawMaterial
   - type: Extractable
     grindableSolutionName: wood
@@ -266,7 +268,7 @@
       wood:
         reagents:
         - ReagentId: Cellulose
-          Quantity: 4
+          Quantity: 4 # Lua 10<4
 
 - type: entity
   parent: MaterialWoodPlank
@@ -398,8 +400,8 @@
     tags:
     - RawMaterial
     - Diamond
-  - type: PirateBountyItem # Frontier
-    id: MaterialDiamond # Frontier
+  - type: PirateBountyItem # Lua
+    id: MaterialDiamond # Lua
 
 - type: entity
   parent: MaterialDiamond
@@ -447,7 +449,7 @@
         Quantity: 3
   - type: Tag
     tags:
-      - DroneUsable
+      - DroneUsable # Lua
       - ClothMade
       - RawMaterial
       - Boll
@@ -457,7 +459,7 @@
       Cotton: 100
   - type: Item
     heldPrefix: cotton
-  - type: MothFood # Frontier
+  - type: MothFood # Lua
 
 
 - type: entity
@@ -513,7 +515,7 @@
       - RawMaterial
   - type: Item
     heldPrefix: pyrotton
-  - type: MothFood # Frontier
+  - type: MothFood # Lua
 
 - type: entity
   parent: MaterialPyrotton
@@ -531,7 +533,7 @@
   name: bananium
   suffix: Full
   components:
-  - type: ConstructionMaterials # Frontier
+  - type: ConstructionMaterials # Lua
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -576,7 +578,7 @@
   - type: Appearance
   - type: Item
     heldPrefix: bananium
-  - type: NFFuel # Frontier
+  - type: NFFuel # Lua
 
 - type: entity
   parent: MaterialBananium
@@ -595,7 +597,7 @@
   description: A webby material.
   suffix: Full
   components:
-  - type: ConstructionMaterials # Frontier
+  - type: ConstructionMaterials # Lua
   - type: PhysicalComposition
     materialComposition:
       WebSilk: 100
@@ -627,7 +629,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable
+      - DroneUsable # Lua
       - RawMaterial
   - type: Item
     sprite: Objects/Materials/silk.rsi
@@ -736,11 +738,11 @@
   name: bones
   suffix: Full
   components:
-  - type: ConstructionMaterials # Frontier
-  - type: Material # Frontier
-  - type: PhysicalComposition # Frontier
-    materialComposition: # Frontier
-      Bones: 100 # Frontier
+  - type: ConstructionMaterials # Lua
+  - type: Material # Lua
+  - type: PhysicalComposition # Lua
+    materialComposition: # Lua
+      Bones: 100 # Lua
   - type: Stack
     stackType: Bones
     baseLayer: base
