@@ -6,6 +6,9 @@
   parent: SimpleMobBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: Mobs/Animals/ghost_crab.rsi
+    state: icon
   - type: Tag
     tags:
     - CanPilot
