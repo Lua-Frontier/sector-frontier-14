@@ -1,0 +1,32 @@
+# Lua: Shuttle AI presets matched by exact grid name.
+# Each entry overrides the default brain parameters for a specific grid.
+- type: AiShuttlePreset #Lua
+  id: Perun
+  nameMatch: CR-GF "Perun"
+  minPatrolRadius: 500
+  maxPatrolRadius: 3500
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 40
+
+- type: AiShuttlePreset #Lua
+  id: Stribog
+  nameMatch: CR-GF "Stribog"
+  minPatrolRadius: 500
+  maxPatrolRadius: 3500
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 50
+
+- type: AiShuttlePreset #Lua
+  id: Pozvizd
+  nameMatch: CR-GF "Pozvizd"
+  minPatrolRadius: 500
+  maxPatrolRadius: 3500
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 70
+
