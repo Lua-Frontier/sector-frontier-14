@@ -62,29 +62,29 @@
   components:
   - type: Damageable
     damageContainer: Biological
-#  - type: Destructible
-#    thresholds:
+  - type: Destructible
+    thresholds:
 #    - trigger:
 #        !type:DamageTypeTrigger
 #        damageType: Blunt
 #        damage: 400
 #      behaviors:
 #      - !type:GibBehavior { }
-#    - trigger: # Frontier - Removed round remover
-#        !type:DamageTypeTrigger
-#        damageType: Heat
-#        damage: 1500
-#      behaviors:
-#      - !type:SpawnEntitiesBehavior
-#        spawnInContainer: true
-#        spawn:
-#          Ash:
-#            min: 1
-#            max: 1
-#      - !type:BurnBodyBehavior { }
-#      - !type:PlaySoundBehavior
-#        sound:
-#          collection: MeatLaserImpact
+    - trigger: # _Lua
+        !type:DamageTypeTrigger
+        damageType: Cold # _Lua
+        damage: 50000 # _Lua (From mobs flying in space)
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: false # _Lua
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact # _Lua
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState

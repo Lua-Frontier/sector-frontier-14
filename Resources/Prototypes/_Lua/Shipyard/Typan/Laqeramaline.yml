@@ -1,0 +1,29 @@
+- type: vessel
+  id: Laqeramaline
+  parent: BaseVesselAntag
+  name: ML-Laqeramaline
+  description: Линейный крейсер и замыкающая цепь кораблей Mordus Legion. Создана для затяжного боя и поддержки огнём тяжелой артиллерией и рельсотронами с заднего фланга.
+  price: 310000 #270000 x 1.15
+  category: Large
+  group: Typan
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/Laqeramaline.yml
+  addComponents:
+    - type: IFF
+      color: "#d93204"
+    - type: NanotrasenFtl
+    - type: TypanFtl
+
+- type: gameMap
+  id: Laqeramaline
+  mapName: 'ML-Laqeramaline'
+  mapPath: /Maps/_Lua/Shuttles/Typan/Laqeramaline.yml
+  minPlayers: 0
+  stations:
+    Laqeramaline:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'ML-Laqeramaline {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

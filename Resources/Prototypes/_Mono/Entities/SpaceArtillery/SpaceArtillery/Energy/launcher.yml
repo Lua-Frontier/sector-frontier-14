@@ -97,7 +97,7 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: Gun
-    fireRate: 4.0
+    fireRate: 4
     projectileSpeed: 40
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
@@ -107,13 +107,14 @@
     autoRecharge: true
     autoRechargeRate: 350
   - type: SpaceArtillery
-    powerChargeRate: 350
-    powerUsePassive: 500
-    powerUseActive: 0
+    powerChargeRate: 10000 # _Lua
+    powerUsePassive: 5000 # _Lua
+    powerUseActive: 35000 #  _Lua
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipM25Projectile
-    fireCost: 100
+    fireCost: 300 # _Lua
+  - type: DisableToolUse # _Lua
   - type: Destructible
     thresholds:
     - trigger:

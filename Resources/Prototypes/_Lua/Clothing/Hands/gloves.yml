@@ -43,6 +43,7 @@
     components:
     - type: MeleeWeapon
       attackRate: 1.2
+      clickDamageModifier: 1.2
       damage:
         types:
           Slash: 15
@@ -111,10 +112,11 @@
     components:
     - type: MeleeWeapon
       mustBeEquippedToUse: true
-      attackRate: 1.5
+      attackRate: 3 #1.5
+      clickDamageModifier: 1.2
       damage:
         types:
-          Slash: 7
+          Slash: 10 #7
           Structural: 20
       animation: WeaponArcClaw
       soundHit:

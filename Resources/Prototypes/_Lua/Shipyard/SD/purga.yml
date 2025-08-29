@@ -1,0 +1,32 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFPurga
+  name: SD-GF Пурга
+  description: Боевой корабль "Пурга" создан для уничтожения врага на дистанции 300-500м.
+  price: 113000 #97510*1.15=112136~113000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/_Lua/Shuttles/SD/purga.yml
+  addComponents:
+    - type: IFF
+      color: "#009954"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFPurga
+  mapName: 'SD-GF Пурга'
+  mapPath: /Maps/_Lua/Shuttles/SD/purga.yml
+  minPlayers: 0
+  stations:
+    GFPurga:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SD-GF Пурга {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

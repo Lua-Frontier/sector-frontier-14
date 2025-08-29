@@ -1,0 +1,32 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFRising
+  name: SD-GF Восход
+  description: Боевой корабль "Восход" предназначен для поддержки штурмовых кораблей на дистанции 700-1000м.
+  price: 264000 #229563*1.15=263997~264000
+  category: Medium
+  group: Security
+  shuttlePath: /Maps/_Lua/Shuttles/SD/rising.yml
+  addComponents:
+    - type: IFF
+      color: "#009954"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFRising
+  mapName: 'SD-GF Восход'
+  mapPath: /Maps/_Lua/Shuttles/SD/rising.yml
+  minPlayers: 0
+  stations:
+    GFRising:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SD-GF Восход {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

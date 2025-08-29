@@ -1,0 +1,33 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFShukra
+  name: SYN-GF Shukra
+  description: Этот корабль оборудован радаром и несет мощные дальнобойные орудия, однако за огневую мощь расплачивается слабой броней.
+  price: 175000 #151708*1.15=174464~175000
+  category: Medium
+  group: Typan
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/shukra-2.yml
+  addComponents:
+    - type: IFF
+      color: "#990816"
+    - type: NanotrasenFtl
+    - type: TypanFtl
+
+- type: gameMap
+  id: GFShukra
+  mapName: 'SYN-GF Shukra'
+  mapPath: /Maps/_Lua/Shuttles/Typan/shukra-2.yml
+  minPlayers: 0
+  stations:
+    GFShukra:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SYN-GF Shukra {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

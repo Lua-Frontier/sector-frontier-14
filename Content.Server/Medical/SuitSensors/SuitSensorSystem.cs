@@ -8,6 +8,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
 using Content.Shared.Damage;
+using Content.Server.GameTicking; //Lua
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -48,6 +49,8 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+
+    [Dependency] private readonly GameTicking.GameTicker _ticker = default!; //Lua Added to check run level
 
     public override void Initialize()
     {
@@ -175,10 +178,16 @@ public sealed class SuitSensorSystem : EntitySystem
         component.StationId ??= _stationSystem.GetOwningStation(uid);
         */
 
-        // generate random mode
+        //Lua: if an item with built-in sensors spawns during the round - force Coordinates mode
+        if (_ticker.RunLevel == GameRunLevel.InRound)
+        {
+            SetSensor((uid, component), SuitSensorMode.SensorCords); //Lua: default to coordinates so medics can find players
+            return;
+        }
+
+        // Иначе (до старта раунда) оставляем прототипное поведение (рандом).
         if (component.RandomMode)
         {
-            //make the sensor mode favor higher levels, except coords.
             var modesDist = new[]
             {
                 SuitSensorMode.SensorOff,

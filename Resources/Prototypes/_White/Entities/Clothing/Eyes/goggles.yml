@@ -3,8 +3,8 @@
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesNightVisionGoggles
-  name: night vision goggles
-  description: Now you can see in the dark!
+  name: ent-ClothingEyesNightVisionGoggles
+  description: ent-ClothingEyesNightVisionGoggles.desc
   components:
   - type: Sprite
     sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
@@ -13,6 +13,7 @@
   - type: NightVision
     flashDurationMultiplier: 2
     isEquipment: true
+    color: "#999999"
   - type: IdentityBlocker
     coverage: EYES
 
@@ -45,8 +46,8 @@
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesThermalVisionGoggles
-  name: thermal vision goggles
-  description: Now you can see everyone!
+  name: ent-ClothingEyesThermalVisionGoggles
+  description: ent-ClothingEyesThermalVisionGoggles.desc
   components:
   - type: Sprite
     sprite: _White/Clothing/Eyes/Goggles/thermal.rsi
@@ -54,7 +55,7 @@
     sprite: _White/Clothing/Eyes/Goggles/thermal.rsi
   - type: ThermalVision
     flashDurationMultiplier: 2
-    pulseTime: 2
+    pulseTime: 4
     isEquipment: true
     toggleAction: PulseThermalVision
   - type: IdentityBlocker

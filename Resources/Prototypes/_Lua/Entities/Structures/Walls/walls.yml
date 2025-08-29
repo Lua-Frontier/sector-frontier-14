@@ -14,7 +14,7 @@
     state: rgeneric
   - type: Construction
     graph: Girder
-    node: reinforcedWall
+    node: WallKrissReinforced
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -74,7 +74,7 @@
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
-    node: wall
+    node: WallKrissSolid
   - type: Icon
     sprite: _Lua/Structures/Walls/Krisswall.rsi
   - type: RCDDeconstructable
@@ -128,6 +128,9 @@
   - type: Icon
     sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
     state: state0
+  - type: Construction
+    graph: Girder
+    node: WallKrissSolidDiagonal
 
 # Wall variations
 - type: entity
@@ -165,6 +168,9 @@
         - WallLayer
   - type: Occluder
     enabled: false
+  - type: Construction
+    graph: Girder
+    node: WallKrissReinforcedDiagonal
 
 - type: entity
   id: ReinforcedWindowKriss
