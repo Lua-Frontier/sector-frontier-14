@@ -397,9 +397,9 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (component.CurrentBlueprintType != null && component.CurrentRecipeSets != null)
         {
             // Items incremented on start, need to decrement with removal
-                if (component.Queue.Count > 0)
+                if (component.Queue.Count > 0) //Lua start
                 {
-                    var batch = component.Queue.First();
+                    var batch = component.Queue.First(); 
                     if (batch.BlueprintType != component.CurrentBlueprintType || !RecipeSetsEqual(batch.Recipes, component.CurrentRecipeSets)) // Lua
                     {
                         var newBatch = new BlueprintLatheRecipeBatch(component.CurrentBlueprintType.Value, component.CurrentRecipeSets, 0, 1);
@@ -408,7 +408,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
                     else if (batch.ItemsPrinted > 0)
                     {
                         batch.ItemsPrinted--;
-                    }
+                    } // Lua end
                 }
                 else // Lua start
                 {
