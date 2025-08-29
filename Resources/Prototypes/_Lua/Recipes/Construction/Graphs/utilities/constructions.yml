@@ -121,19 +121,19 @@
         doAfter: 15 #Lua-Tweak - 1 to 15 - для небольшого замедления и усложнения процесса
 
 - type: constructionGraph
-  id: AtmosDeviceFanTiny 
+  id: AtmosDeviceFanTiny
   start: start
   graph:
   - node: start
     edges:
-    - to: AtmosDeviceFanTiny 
+    - to: AtmosDeviceFanTiny
       steps:
       - material: Gold
         amount: 30
         doAfter: 1
 
-  - node: AtmosDeviceFanTiny 
-    entity: AtmosDeviceFanTiny 
+  - node: AtmosDeviceFanTiny
+    entity: AtmosDeviceFanTiny
     edges:
     - to: start
       completed:
@@ -146,3 +146,30 @@
         doAfter: 10 #Lua-Tweak - 1 to 10 - для небольшого замедления и усложнения процесса
       - tool: Welding
         doAfter: 25 #Lua-Tweak - 1 to 25 - для небольшого замедления и усложнения процесса
+
+- type: constructionGraph
+  id: MetalBarrelGreyCrafted
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MetalBarrelGreyCrafted
+      steps:
+      - material: Steel
+        amount: 15
+        doAfter: 4
+
+  - node: MetalBarrelGreyCrafted
+    entity: MetalBarrelGreyCrafted
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel10
+        amount: 1
+      - !type:DeleteEntity
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      - tool: Welding
+        doAfter: 2

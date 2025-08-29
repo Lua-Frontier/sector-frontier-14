@@ -141,7 +141,7 @@
         maxValue: 10
         steps: 5
     - name: ChangePotency
-      baseOdds: 0.018 # 036 Lua
+      baseOdds: 0.018 # 036 _Lua
       persists: false
       effect: !type:PlantChangeStat
         targetValue: Potency
@@ -149,7 +149,7 @@
         maxValue: 100
         steps: 5
     - name: ChangeSeedless
-      baseOdds: 0.036
+      baseOdds: 0.072 # _Lua 0.036
       persists: false
       effect: !type:PlantChangeStat
         targetValue: Seedless
@@ -159,7 +159,7 @@
       effect: !type:PlantChangeStat
         targetValue: Ligneous
     - name: Kudzufication
-      baseOdds: 0.036
+      baseOdds: 0.072 # _Lua 0.036
       persists: false
       effect: !type:PlantChangeStat
         targetValue: TurnIntoKudzu
@@ -169,7 +169,7 @@
       effect: !type:PlantChangeStat
         targetValue: CanScream
     - name: ChangeChemicals
-      baseOdds: 0.036 #072 Lua
+      baseOdds: 0.036 #072 _Lua
       persists: false
       effect: !type:PlantMutateChemicals
     - name: ChangeExudeGasses
@@ -180,7 +180,7 @@
       baseOdds: 0.0036
       persists: false
       effect: !type:PlantMutateConsumeGasses
-    - name: ChangeHarvest
-      baseOdds: 0.036
-      persists: false
-      effect: !type:PlantMutateHarvest
+#    - name: ChangeHarvest _Lua
+#      baseOdds: 0.036
+#      persists: false
+#      effect: !type:PlantMutateHarvest

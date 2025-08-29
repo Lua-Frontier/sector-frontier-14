@@ -53,6 +53,8 @@
   - type: Tracer
     color: "#ddddddFF"
     length: 1
+  - type: TimedDespawn # _Lua
+    lifetime: 0.3 # _Lua
 
 #region Bullets
 - type: entity
@@ -285,6 +287,8 @@
   - type: Tracer
     color: "#ff8d00FF"
     length: 1
+  - type: TimedDespawn # _Lua
+    lifetime: 0.3 # _Lua
 
 - type: entity
   id: NFBasePelletIncendiary
@@ -311,6 +315,8 @@
   - type: Tracer
     color: "#ff0000FF"
     length: 1
+  - type: TimedDespawn # _Lua
+    lifetime: 0.3 # _Lua
 
 - type: entity
   id: NFBasePelletUranium
@@ -333,6 +339,8 @@
   - type: Tracer
     color: "#00ff00FF"
     length: 1
+  - type: TimedDespawn # _Lua
+    lifetime: 0.3 # _Lua
 
 - type: entity
   id: NFBasePelletPractice
@@ -350,3 +358,5 @@
   - type: Tracer
     color: "#ddddddFF"
     length: 1
+  - type: TimedDespawn # _Lua
+    lifetime: 0.3 # _Lua

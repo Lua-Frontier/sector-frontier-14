@@ -119,20 +119,10 @@ namespace Content.Server.DeviceNetwork.Systems
             {
                 device.TransmitFrequency = xmit.Frequency;
             }
-            // Lua start
+
             if (device.AutoConnect)
-            {
-                try
-                {
-                    ConnectDevice(uid, device);
-                }
-                catch (Exception ex)
-                {
-                    _logManager.GetSawmill("DeviceNetwork").Error($"Failed to auto-connect device {uid} on map init. Error: {ex}");
-                }
-            }
+                ConnectDevice(uid, device);
         }
-        // Lua end
 
         private DeviceNet GetNetwork(int netId)
         {
@@ -222,20 +212,11 @@ namespace Content.Server.DeviceNetwork.Systems
 
             if (device.ReceiveFrequency == frequency) return;
 
-            try // Lua
-            {
-                var deviceNet = GetNetwork(device.DeviceNetId);
-                deviceNet.Remove(device);
-                device.ReceiveFrequency = frequency;
-                deviceNet.Add(device);
-            }
-            // Lua start
-            catch (Exception ex)
-            {
-                _logManager.GetSawmill("DeviceNetwork").Error($"Failed to set receive frequency for device {uid}. Error: {ex}");
-            }
+            var deviceNet = GetNetwork(device.DeviceNetId);
+            deviceNet.Remove(device);
+            device.ReceiveFrequency = frequency;
+            deviceNet.Add(device);
         }
-        // Lua end
 
         public void SetTransmitFrequency(EntityUid uid, uint? frequency, DeviceNetworkComponent? device = null)
         {
@@ -250,20 +231,11 @@ namespace Content.Server.DeviceNetwork.Systems
 
             if (device.ReceiveAll == receiveAll) return;
 
-            try // Lua
-            {
-                var deviceNet = GetNetwork(device.DeviceNetId);
-                deviceNet.Remove(device);
-                device.ReceiveAll = receiveAll;
-                deviceNet.Add(device);
-            }
-            // Lua start
-            catch (Exception ex)
-            {
-                _logManager.GetSawmill("DeviceNetwork").Error($"Failed to set receive all for device {uid}. Error: {ex}");
-            }
+            var deviceNet = GetNetwork(device.DeviceNetId);
+            deviceNet.Remove(device);
+            device.ReceiveAll = receiveAll;
+            deviceNet.Add(device);
         }
-        // Lua end
 
         public void SetAddress(EntityUid uid, string address, DeviceNetworkComponent? device = null)
         {
@@ -272,42 +244,23 @@ namespace Content.Server.DeviceNetwork.Systems
 
             if (device.Address == address && device.CustomAddress) return;
 
-            try // Lua
-            {
-                var deviceNet = GetNetwork(device.DeviceNetId);
-                deviceNet.Remove(device);
-                device.CustomAddress = true;
-                device.Address = address;
-                deviceNet.Add(device);
-            }
-            // Lua start
-            catch (Exception ex)
-            {
-                _logManager.GetSawmill("DeviceNetwork").Error($"Failed to set address for device {uid}. Error: {ex}");
-            }
+            var deviceNet = GetNetwork(device.DeviceNetId);
+            deviceNet.Remove(device);
+            device.CustomAddress = true;
+            device.Address = address;
+            deviceNet.Add(device);
         }
-        // Lua end
 
         public void RandomizeAddress(EntityUid uid, DeviceNetworkComponent? device = null)
         {
             if (!Resolve(uid, ref device, false))
                 return;
-
-            try // Lua
-            {
-                var deviceNet = GetNetwork(device.DeviceNetId);
-                deviceNet.Remove(device);
-                device.CustomAddress = false;
-                device.Address = "";
-                deviceNet.Add(device);
-            }
-            // Lua start
-            catch (Exception ex)
-            {
-                _logManager.GetSawmill("DeviceNetwork").Error($"Failed to randomize address for device {uid}. Error: {ex}");
-            }
+            var deviceNet = GetNetwork(device.DeviceNetId);
+            deviceNet.Remove(device);
+            device.CustomAddress = false;
+            device.Address = "";
+            deviceNet.Add(device);
         }
-        // Lua end
 
         /// <summary>
         ///     Try to find a device on a network using its address.

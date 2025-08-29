@@ -16,6 +16,7 @@
       path: /Audio/Misc/notice1.ogg
     weight: 2
     maxOccurrences: 6
+    minimumPlayers: 50
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
@@ -32,6 +33,9 @@
       path: /Audio/Misc/notice1.ogg
     weight: 2
     maxOccurrences: 6
+    minimumPlayers: 50
+    requiredJobs:
+      Sheriff: 1
     reoccurrenceDelay: 120 # 2 hours
   - type: GameRule
     minPlayers: 25
@@ -49,6 +53,7 @@
     weight: 3
     maxOccurrences: 12
     reoccurrenceDelay: 60 # 1 hour
+    minimumPlayers: 10
     requiredJobs:
       Sheriff: 1
   - type: LoadMapRule
