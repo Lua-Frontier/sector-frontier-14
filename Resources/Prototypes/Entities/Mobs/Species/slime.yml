@@ -112,22 +112,24 @@
     maxSaturation: 15
   - type: Inventory
     displacements:
-      socks:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: feet
+#Lua fix socks
+#      socks:
+#        sizeMaps:
+#          32:
+#            sprite: Mobs/Species/Human/displacement.rsi
+#            state: feet
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-      socks:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: feet
+#Lua fix socks
+#      socks:
+#        sizeMaps:
+#          32:
+#            sprite: Mobs/Species/Human/displacement.rsi
+#            state: feet
 
 - type: entity
   parent: MobHumanDummy
