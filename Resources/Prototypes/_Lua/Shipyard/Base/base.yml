@@ -8,6 +8,8 @@
   category: Medium
   group: Shipyard
   addComponents:
+  - type: PreventDelete
+    remover: True
   - type: IFF
     color: "#ffffff"
     flags: [IsPlayerShuttle]

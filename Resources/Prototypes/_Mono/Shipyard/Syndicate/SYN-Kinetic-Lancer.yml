@@ -3,13 +3,14 @@
   parent: BaseVesselAntag
   name: SYN-Kinetic-Lancer
   description: A light syndicate frigate meant for raiding enemy stations. Armed to the teeth in missiles and CYREXAs.
-  price: 322000 # 280000*1.15=322000~322000
+  price: 322000 # 280000*1.15=322000~322000 - Still will be cheaper as main thing for Syndicate till capitals limit
   category: Large
   group: Typan
   access: SyndicateAgent
   shuttlePath: /Maps/_Mono/Shuttles/Syndicate/SYN-Kinetic-lancer.yml
   guidebookPage: Null
   class:
+  - Capital
   - Syndicate
   engine:
   - AME
