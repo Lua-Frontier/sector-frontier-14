@@ -132,7 +132,7 @@ public sealed partial class SleepingSystem : EntitySystem
         RemComp<SpamEmitSoundComponent>(ent);
     }
 
-        private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args)
+        private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args) // Lua start
         {
             var ev = new SleepStateChangedEvent(true);
             RaiseLocalEvent(ent, ref ev);
@@ -140,6 +140,7 @@ public sealed partial class SleepingSystem : EntitySystem
             _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
         }
 
+// Lua end
 
 
     private void OnSpeakAttempt(Entity<SleepingComponent> ent, ref SpeakAttemptEvent args)
