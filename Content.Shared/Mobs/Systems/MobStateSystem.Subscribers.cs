@@ -77,13 +77,13 @@ public partial class MobStateSystem
                 //unused
                 break;
             case MobState.Critical:
-                // Не поднимать, если пристёгнут к ремню с положением Down (койка)
+                // Lua Не поднимать, если пристёгнут к ремню с положением Down (койка)
                 if (!ShouldKeepLying(target))
                     _standing.Stand(target);
                 break;
             case MobState.Dead:
                 RemComp<CollisionWakeComponent>(target);
-                if (!ShouldKeepLying(target))
+                if (!ShouldKeepLying(target)) // Lua
                     _standing.Stand(target);
                 break;
             case MobState.Invalid:
@@ -105,7 +105,7 @@ public partial class MobStateSystem
         switch (state)
         {
             case MobState.Alive:
-                if (!ShouldKeepLying(target))
+                if (!ShouldKeepLying(target)) // Lua
                     _standing.Stand(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
@@ -198,7 +198,7 @@ public partial class MobStateSystem
     }
 
     #endregion
-
+// Lua start
     /// <summary>
     /// Возвращает true, если сущность пристёгнута к ремню, который кладёт её (StrapPosition.Down).
     /// Нужна, чтобы не вставать автоматически при выходе из крита, лежа на кровати.
@@ -214,4 +214,4 @@ public partial class MobStateSystem
 
         return strap.Position == StrapPosition.Down;
     }
-}
+} //lua end

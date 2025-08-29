@@ -158,14 +158,13 @@ public abstract class SwitchableOverlaySystem<TComp, TEvent> : EntitySystem // t
 
     private void OnToggle(EntityUid uid, TComp component, TEvent args)
     {
-        // Не допускаем повторного запуска пульса, если он уже идёт,
-        // чтобы избежать двойной активации от частых кликов.
+        // Lua start
         if (component.PulseTime > 0f && component.PulseAccumulator < component.PulseTime)
         {
             args.Handled = true;
             return;
         }
-
+        // Lua end
         Toggle(uid, component, !component.IsActive);
         RaiseSwitchableOverlayToggledEvent(uid, args.Performer, component.IsActive);
         args.Handled = true;

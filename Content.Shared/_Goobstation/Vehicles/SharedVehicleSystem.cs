@@ -27,9 +27,9 @@ using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
 using Content.Shared.Weapons.Melee.Events; // Frontier
 using Content.Shared.Emag.Systems; // Frontier
-using Robust.Shared.Map; // Frontier: EntityCoordinates
-using System.Numerics; // Frontier: Vector2
-using Robust.Shared.GameObjects; // Frontier: SharedTransformSystem
+using Robust.Shared.Map; // Lua
+using System.Numerics; // Lua
+using Robust.Shared.GameObjects; // Lua
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -51,7 +51,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!; // Frontier
     [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
     [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier: ensure rider stays parented
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Lua
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -226,7 +226,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             }
         }
     }
-
+// Lua start
     private bool ShouldShowNoHandsPopup(EntityUid user)
     {
         if (!_net.IsClient)
@@ -238,6 +238,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         _lastNoHandsPopup[user] = now;
         return true;
     }
+// Lua end
 
     public override void Update(float frameTime)
     {
@@ -312,9 +313,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!TryOccupyHands(driver, ent.Owner))
         {
             _buckle.TryUnbuckle(driver, ent.Owner);
-            // антисспам: покажем сообщение не чаще раза в NoHandsPopupCooldown и только предсказуемо
+            // Lua start: покажем сообщение не чаще раза в NoHandsPopupCooldown и только предсказуемо
             if (ShouldShowNoHandsPopup(driver))
-                _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), ent, driver);
+                _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), ent, driver); // lua end
             return;
         }
         // Lua end  (fuck driver cowboy)

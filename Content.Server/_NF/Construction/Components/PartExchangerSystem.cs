@@ -328,7 +328,7 @@ public sealed class PartExchangerSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("construction-step-condition-wire-panel-open"),
                 args.Target.Value);
-            // Не даём Dumpable вывалить содержимое на поверхность, если панель закрыта
+            // Lua we do not allow Dumpable to dump the contents to the surface if the panel is closed.
             args.Handled = true;
             return;
         }
@@ -345,7 +345,7 @@ public sealed class PartExchangerSystem : EntitySystem
             BreakOnMove = true
         });
 
-        // Помечаем событие обработанным, чтобы RPED не пытался вывалить содержимое на PlaceableSurface
+        // Lua мarks the event as processed so that RPED does not try to dump the contents onto the PlaceableSurface.
         args.Handled = true;
     }
 }

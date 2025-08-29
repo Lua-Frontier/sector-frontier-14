@@ -560,14 +560,13 @@ namespace Content.Server.Lathe
                         batch.ItemsPrinted--;
                     }
                 }
-                else
+                else // Lua start
                 {
-                    // Очередь могла опустеть, если это был последний предмет партии и её сняли в TryStartProducing().
-                    // Вернём один предмет текущего рецепта, чтобы ресурсы не пропали.
+                    // Queue check and refund as needed
                     var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
                     component.Queue.Insert(0, newBatch);
                 }
-
+                // Lua end
                 component.CurrentRecipe = null;
             }
             RemCompDeferred<LatheProducingComponent>(uid);

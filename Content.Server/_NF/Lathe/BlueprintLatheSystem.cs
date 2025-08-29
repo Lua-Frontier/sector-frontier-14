@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;  //Lua
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction;
@@ -400,7 +400,7 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
                 if (component.Queue.Count > 0)
                 {
                     var batch = component.Queue.First();
-                    if (batch.BlueprintType != component.CurrentBlueprintType || !RecipeSetsEqual(batch.Recipes, component.CurrentRecipeSets))
+                    if (batch.BlueprintType != component.CurrentBlueprintType || !RecipeSetsEqual(batch.Recipes, component.CurrentRecipeSets)) // Lua
                     {
                         var newBatch = new BlueprintLatheRecipeBatch(component.CurrentBlueprintType.Value, component.CurrentRecipeSets, 0, 1);
                         component.Queue.Insert(0, newBatch);
@@ -410,12 +410,12 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
                         batch.ItemsPrinted--;
                     }
                 }
-                else
+                else // Lua start
                 {
                     // Очередь пуста — вернём один элемент, чтобы не терять ресурсы
                     var newBatch = new BlueprintLatheRecipeBatch(component.CurrentBlueprintType.Value, component.CurrentRecipeSets, 0, 1);
                     component.Queue.Insert(0, newBatch);
-                }
+                } // Lua end
         }
         component.CurrentBlueprintType = null;
         component.CurrentRecipeSets = null;

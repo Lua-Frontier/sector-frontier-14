@@ -1,6 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Weapons.Ranged.Components;
-using Robust.Shared.Timing;
+using Robust.Shared.Timing; // Lua
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -8,9 +8,9 @@ public sealed class ActionGunSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Lua start
 
-    private const float SuppressMainGunSeconds = 0.5f; // краткая задержка, чтобы не стрелять одновременно с навыком
+    private const float SuppressMainGunSeconds = 0.5f; // Lua end краткая задержка, чтобы не стрелять одновременно с навыком
 
     public override void Initialize()
     {
@@ -40,7 +40,7 @@ public sealed class ActionGunSystem : EntitySystem
     {
         if (TryComp<GunComponent>(ent.Comp.Gun, out var gun))
         {
-            // Коротко заглушим основной ствол на владельце, чтобы навык не накладывался с очередным выстрелом
+            //  Lua Коротко заглушим основной ствол на владельце, чтобы навык не накладывался с очередным выстрелом
             if (TryComp<GunComponent>(ent.Owner, out var mainGun))
             {
                 var until = _timing.CurTime + TimeSpan.FromSeconds(SuppressMainGunSeconds);
@@ -49,7 +49,7 @@ public sealed class ActionGunSystem : EntitySystem
                     mainGun.NextFire = until;
                     Dirty(ent.Owner, mainGun);
                 }
-            }
+            } // Lua end
 
             _gun.AttemptShoot(ent, ent.Comp.Gun.Value, gun, args.Target);
             args.Handled = true;  // Frontier: set handled
