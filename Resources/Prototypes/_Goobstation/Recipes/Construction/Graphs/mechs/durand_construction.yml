@@ -80,12 +80,12 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 9
 
-      - component: PowerCell //Lua start
+      - component: PowerCell # Lua start
         name: construction-insert-info-examine-name-power-cell
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi
-          state: small //Lua end
+          state: small # Lua end
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
