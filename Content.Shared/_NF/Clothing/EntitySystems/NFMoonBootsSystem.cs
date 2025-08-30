@@ -8,11 +8,11 @@ using Robust.Shared.Containers;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared._NF.Clothing.Components;
 using Content.Shared.Clothing;
-using Content.Shared.Standing; // Проверка состояния стоя/лежа
+using Content.Shared.Standing; // Lua
 
 namespace Content.Shared._NF.Clothing.EntitySystems;
 
-    public sealed class SharedNFMoonBootsSystem : EntitySystem
+    public sealed class SharedNFMoonBootsSystem : EntitySystem // Lua 
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly ClothingSystem _clothing = default!;
@@ -20,8 +20,8 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!; // Система стояния/лежания
-        [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!; // Lua 
+        [Dependency] private readonly SharedGravitySystem _gravity = default!; // Lua
 
     public override void Initialize()
     {
@@ -42,13 +42,13 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
             _inventory.TryGetSlotEntity(container.Owner, comp.Slot, out var worn)
             && uid == worn)
         {
-                UpdateMoonbootEffects(container.Owner, ent, args.Activated);
+                UpdateMoonbootEffects(container.Owner, ent, args.Activated); // Lua start
 
                 // Если включают ботинки лежа — сразу поднимем персонажа
                 if (args.Activated && HasComp<StandingStateComponent>(container.Owner) && _standing.IsDown(container.Owner))
                 {
                     _standing.Stand(container.Owner, force: true);
-                }
+                } // Lua end
         }
 
         var prefix = args.Activated ? "on" : null;
@@ -74,7 +74,7 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
             _alerts.ClearAlert(user, ent.Comp.MoonBootsAlert);
     }
 
-        private void OnIsWeightless(Entity<NFMoonBootsComponent> ent, ref IsWeightlessEvent args)
+        private void OnIsWeightless(Entity<NFMoonBootsComponent> ent, ref IsWeightlessEvent args) // Lua start
     {
             if (args.Handled)
                 return;
@@ -104,7 +104,7 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
         {
             args.IsWeightless = true;
             args.Handled = true;
-        }
+        } // Lua end
     }
 
     private void OnIsWeightless(Entity<NFMoonBootsComponent> ent, ref InventoryRelayedEvent<IsWeightlessEvent> args)
