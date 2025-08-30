@@ -84,7 +84,7 @@
   name: cloth
   suffix: Full
   components:
-  - type: ConstructionMaterials # Lua
+  - type: ConstructionMaterials # Frontier
   - type: Healing
     damageContainers:
       - Biological
@@ -175,7 +175,7 @@
   name: durathread
   suffix: Full
   components:
-  - type: ConstructionMaterials # Lua
+  - type: ConstructionMaterials # Frontier
   - type: Stack
     stackType: Durathread
     baseLayer: base
@@ -208,7 +208,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable #Lua
+      - DroneUsable
       - RawMaterial
   - type: Item
     heldPrefix: durathread
@@ -236,7 +236,7 @@
   name: wood
   suffix: Full
   components:
-  - type: ConstructionMaterials # Lua
+  - type: ConstructionMaterials # Frontier
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -259,7 +259,7 @@
   - type: Tag
     tags:
     - Wooden
-    - DroneUsable # Lua
+    - DroneUsable
     - RawMaterial
   - type: Extractable
     grindableSolutionName: wood
@@ -400,8 +400,8 @@
     tags:
     - RawMaterial
     - Diamond
-  - type: PirateBountyItem # Lua
-    id: MaterialDiamond # Lua
+  - type: PirateBountyItem # Frontier
+    id: MaterialDiamond # Frontier
 
 - type: entity
   parent: MaterialDiamond
@@ -449,7 +449,7 @@
         Quantity: 3
   - type: Tag
     tags:
-      - DroneUsable # Lua
+      - DroneUsable
       - ClothMade
       - RawMaterial
       - Boll
@@ -459,7 +459,7 @@
       Cotton: 100
   - type: Item
     heldPrefix: cotton
-  - type: MothFood # Lua
+  - type: MothFood # Frontier
 
 
 - type: entity
@@ -515,7 +515,7 @@
       - RawMaterial
   - type: Item
     heldPrefix: pyrotton
-  - type: MothFood # Lua
+  - type: MothFood # Frontier
 
 - type: entity
   parent: MaterialPyrotton
@@ -533,7 +533,7 @@
   name: bananium
   suffix: Full
   components:
-  - type: ConstructionMaterials # Lua
+  - type: ConstructionMaterials # Frontier
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -578,7 +578,7 @@
   - type: Appearance
   - type: Item
     heldPrefix: bananium
-  - type: NFFuel # Lua
+  - type: NFFuel # Frontier
 
 - type: entity
   parent: MaterialBananium
@@ -597,7 +597,7 @@
   description: A webby material.
   suffix: Full
   components:
-  - type: ConstructionMaterials # Lua
+  - type: ConstructionMaterials # Frontier
   - type: PhysicalComposition
     materialComposition:
       WebSilk: 100
@@ -629,7 +629,7 @@
   - type: Tag
     tags:
       - ClothMade
-      - DroneUsable # Lua
+      - DroneUsable # Frontier
       - RawMaterial
   - type: Item
     sprite: Objects/Materials/silk.rsi
@@ -738,11 +738,11 @@
   name: bones
   suffix: Full
   components:
-  - type: ConstructionMaterials # Lua
-  - type: Material # Lua
-  - type: PhysicalComposition # Lua
-    materialComposition: # Lua
-      Bones: 100 # Lua
+  - type: ConstructionMaterials # Frontier
+  - type: Material # Frontier
+  - type: PhysicalComposition # Frontier
+    materialComposition: # Frontier
+      Bones: 100 # Frontier
   - type: Stack
     stackType: Bones
     baseLayer: base
