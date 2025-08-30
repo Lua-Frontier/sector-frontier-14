@@ -134,6 +134,11 @@
         reagents:
         - ReagentId: Ash
           Quantity: 1 # Lua 10<1
+  # - type: SolutionSpiker # Lua
+  #   sourceSolution: food # Lua
+  #   ignoreEmpty: true # Lua
+  # - type: ScoopableSolution # Lua
+  #   solution: food # Lua
   - type: Extractable
     grindableSolutionName: food
 
