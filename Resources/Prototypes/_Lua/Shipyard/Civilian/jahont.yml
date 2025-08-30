@@ -1,0 +1,30 @@
+
+
+- type: vessel
+  parent: BaseVessel
+  id: GFJahont
+  name: GF Jahont
+  description: Небольшой, уютный шаттл-кафе с кухней, баром и гидропоникой.
+  price: 30000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/jahont.yml
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFJahont
+  mapName: 'GF Jahont'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/jahont.yml
+  minPlayers: 0
+  stations:
+    GFJahont:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'GF Jahont {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
