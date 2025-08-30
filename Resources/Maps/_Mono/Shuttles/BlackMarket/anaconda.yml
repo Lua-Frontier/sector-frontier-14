@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Grid
   engineVersion: 261.2.0
-  forkId: dsfrontier
-  forkVersion: 18082025021841
-  time: 08/28/2025 07:36:46
-  entityCount: 971
+  forkId: ""
+  forkVersion: ""
+  time: 08/30/2025 12:48:46
+  entityCount: 958
 maps: []
 grids:
 - 1
@@ -3090,86 +3090,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: DecalSpawnerDirtWide
-  entities:
-  - uid: 732
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-12.5
-      parent: 1
-  - uid: 781
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-12.5
-      parent: 1
-  - uid: 941
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-18.5
-      parent: 1
-  - uid: 942
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-35.5
-      parent: 1
-  - uid: 944
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-30.5
-      parent: 1
-  - uid: 945
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-28.5
-      parent: 1
-  - uid: 946
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-24.5
-      parent: 1
-  - uid: 947
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-29.5
-      parent: 1
-  - uid: 948
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-25.5
-      parent: 1
-  - uid: 949
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-25.5
-      parent: 1
-  - uid: 950
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-18.5
-      parent: 1
-  - uid: 952
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-9.5
-      parent: 1
-  - uid: 954
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-4.5
-      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 431
