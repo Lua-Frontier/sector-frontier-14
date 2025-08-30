@@ -51,3 +51,193 @@
     FoodSnackRaisins: 1
     FoodChevreSlice: 2
   recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeBakedFishFillet
+  name: baked fish fillet recipe
+  result: FoodMealBakedFishFillet
+  time: 10
+  group: Savory
+  solids:
+    FoodMeatFishGeneric: 1
+    FoodTomato: 1
+  reagents:
+    OilOlive: 5
+    JuiceLemon: 5
+    Blackpepper: 2
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFishLemonPasta
+  name: fish lemon pasta recipe
+  result: FoodMealFishLemonPasta
+  time: 10
+  group: Pasta
+  solids:
+    FoodNoodlesBoiled: 1
+    FoodMeatFishGeneric: 1
+    FoodTomato: 1
+  reagents:
+    JuiceLemon: 5
+    OilOlive: 5
+    TableSalt: 2
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeFishChowder
+  name: fish chowder recipe
+  result: FoodSoupFishChowder
+  time: 10
+  group: Soup
+  reagents:
+    Water: 10
+    Milk: 5
+    TableSalt: 2
+    Blackpepper: 2
+  solids:
+    FoodBowlBig: 1
+    FoodMeatFishGeneric: 1
+    FoodPotato: 1
+    FoodOnionSlice: 2
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeFishSalad
+  name: fish salad recipe
+  result: FoodSaladFishGeneric
+  time: 5
+  group: Salad
+  reagents:
+    Vinaigrette: 5
+  solids:
+    FoodBowlBig: 1
+    FoodMeatFishGeneric: 1
+    FoodCucumber: 1
+    FoodTomato: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCarpSushiFish
+  name: carp sushi recipe (fish fillet)
+  result: FoodMealCarpSushi
+  time: 5
+  group: Savory
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodMeatFishGeneric: 1
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeCuredCarpSushiFish
+  name: fresh fish sushi recipe (fish fillet)
+  result: CuredCarpSushi
+  time: 5
+  group: Savory
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodMeatFishGeneric: 1
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredFishGeneric
+  name: battered fish recipe (fish fillet)
+  result: FoodCuredCarpBattered
+  group: Savory
+  time: 5
+  reagents:
+    Flour: 5
+    Egg: 6
+  solids:
+    FoodMeatFishGeneric: 1
+  recipeType:
+  - Oven
+  - Microwave
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeTacoFishGeneric
+  name: fish taco recipe (fish fillet)
+  result: FoodTacoFish
+  time: 10
+  group: Savory
+  solids:
+    FoodTacoShell: 1
+    FoodMeatFishGeneric: 1
+    FoodOnionSlice: 2
+    FoodTomato: 1
+    FoodCabbage: 1
+  recipeType:
+  - Oven
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeSashimiFish
+  name: sashimi recipe (fish fillet)
+  result: FoodMealSashimi
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodMeatFishGeneric: 2
+  recipeType: Assembler
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeCubanFish
+  name: Cuban fish recipe
+  result: FoodMealCubancarp
+  time: 15
+  group: Savory
+  solids:
+    FoodDough: 1
+    FoodCheeseSlice: 2
+    FoodChiliPepper: 1
+    FoodMeatFishGeneric: 2
+  recipeType: Oven
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeBisqueFish
+  name: bisque recipe (fish fillet)
+  result: FoodSoupBisque
+  time: 10
+  group: Soup
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    FoodTomato: 1
+    FoodMushroom: 1
+    FoodMeatFishGeneric: 1
+  recipeType: Oven
+  hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeCarpBurgerGeneric
+  name: fillet-o-fish burger recipe
+  result: FoodBurgerCarp
+  time: 10
+  group: Savory
+  solids:
+    FoodBreadBun: 1
+    FoodMeatFishGeneric: 1
+    FoodCheeseSlice: 1
+  recipeType: Oven # Lua
+  hideInGuidebook: true

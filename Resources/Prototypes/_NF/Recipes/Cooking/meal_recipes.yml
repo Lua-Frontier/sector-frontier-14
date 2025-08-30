@@ -1,5 +1,4 @@
 #Burgers
-# Burger recipes and novelty variants.
 
 - type: microwaveMealRecipe
   id: RecipeClurgerBurger
@@ -11,64 +10,6 @@
     FoodBreadBun: 1
     ClothingHeadMailCarrier: 1
     FoodMeatCat: 1
-  recipeType:
-  - Oven
-
-# Baked Fish
-# Lua: новые рыбо-блюда используют спрайты из `_Lua/Objects/Consumable/Food/fish_dishes.rsi`
-
-- type: microwaveMealRecipe
-  id: RecipeBakedFishFillet
-  name: baked fish fillet recipe
-  result: FoodMealBakedFishFillet
-  time: 10
-  group: Savory
-  solids:
-    FoodMeatFishGeneric: 1
-    FoodTomato: 1
-  reagents:
-    OilOlive: 5
-    JuiceLemon: 5
-    Blackpepper: 2
-  recipeType:
-  - Oven
-
-- type: microwaveMealRecipe
-  id: RecipeFishLemonPasta
-  name: fish lemon pasta recipe
-  result: FoodMealFishLemonPasta
-  time: 10
-  group: Pasta
-  solids:
-    FoodNoodlesBoiled: 1
-    FoodMeatFishGeneric: 1
-    FoodTomato: 1
-  reagents:
-    JuiceLemon: 5
-    OilOlive: 5
-    TableSalt: 2
-  recipeType:
-  - Assembler
-
-# Soup
-# Lua: рыбные супы используют спрайты из `_Lua/Objects/Consumable/Food/fish_dishes.rsi`
-
-- type: microwaveMealRecipe
-  id: RecipeFishChowder
-  name: fish chowder recipe
-  result: FoodSoupFishChowder
-  time: 10
-  group: Soup
-  reagents:
-    Water: 10
-    Milk: 5
-    TableSalt: 2
-    Blackpepper: 2
-  solids:
-    FoodBowlBig: 1
-    FoodMeatFishGeneric: 1
-    FoodPotato: 1
-    FoodOnionSlice: 2
   recipeType:
   - Oven
 
@@ -189,7 +130,6 @@
   - Oven
 
 #Breads & Sandwiches
-# Sandwiches, toasts, and simple bread dishes.
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoToast
@@ -249,22 +189,6 @@
   - Assembler
 
 - type: microwaveMealRecipe
-  id: RecipeFishSalad
-  name: fish salad recipe
-  result: FoodSaladFishGeneric
-  time: 5
-  group: Salad
-  reagents:
-    Vinaigrette: 5
-  solids:
-    FoodBowlBig: 1
-    FoodMeatFishGeneric: 1
-    FoodCucumber: 1
-    FoodTomato: 1
-  recipeType:
-  - Assembler
-
-- type: microwaveMealRecipe
   id: RecipeFoodBakedChevreChaudCotton
   name: cotton chevre chaud recipe
   result: FoodBakedChevreChaudCotton
@@ -291,11 +215,8 @@
     Stellibinin: 10
   recipeType:
   - Assembler
-  - Oven
-  - Microwave
-
-# Bird-based roasts
-# Whole roasted poultry and similar.
+  - Oven # Lua
+  - Microwave # Lua
 
 - type: microwaveMealRecipe
   id: RecipeFoodBakedWholeChicken
@@ -332,7 +253,6 @@
 
 
 # Sushi
-# Sushi recipes; carp-only by default with generic variants hidden.
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoSushi
@@ -359,33 +279,12 @@
   solids:
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
-    FoodCuredCarp: 1
+    FoodCuredCarp: 1 # Lua FoodMeatFish<FoodCuredCarp
   reagents:
     Rice: 15
     Water: 10
   recipeType:
   - Assembler
-
-# Generic fish variant (hidden)
-- type: microwaveMealRecipe
-  id: RecipeCarpSushiFish
-  name: carp sushi recipe (fish fillet)
-  result: FoodMealCarpSushi
-  time: 5
-  group: Savory
-  solids:
-    FoodAvocadoSlice: 2
-    FoodCucumberSlice: 2
-    FoodMeatFishGeneric: 1
-  reagents:
-    Rice: 15
-    Water: 10
-  recipeType:
-  - Assembler
-  hideInGuidebook: true
-
-# Sushi remains carp-only; generic fish variant provided separately.
-# Lua: generic fish вариант скрыт в гайде, совместим с `FoodMeatFishGeneric`
 
 - type: microwaveMealRecipe
   id: RecipeCuredCarpSushi
@@ -403,26 +302,7 @@
   recipeType:
   - Assembler
 
-# Generic fish variant (hidden)
-- type: microwaveMealRecipe
-  id: RecipeCuredCarpSushiFish
-  name: fresh fish sushi recipe (fish fillet)
-  result: CuredCarpSushi
-  time: 5
-  group: Savory
-  solids:
-    FoodAvocadoSlice: 2
-    FoodCucumberSlice: 2
-    FoodMeatFishGeneric: 1
-  reagents:
-    Rice: 15
-    Water: 10
-  recipeType:
-  - Assembler
-  hideInGuidebook: true
-
 # Salad
-# Fresh salads and moth-specific variants.
 
 - type: microwaveMealRecipe
   id: RecipeGreekSalad
@@ -474,7 +354,6 @@
   - Assembler
 
 # Fryer Prep
-# Battered items for frying or deep-fry preparation.
 
 - type: microwaveMealRecipe
   id: RecipeBatteredChicken
@@ -516,24 +395,8 @@
   solids:
     FoodCuredCarp: 1
   recipeType:
-  - Oven
-  - Microwave
-
-- type: microwaveMealRecipe
-  id: RecipeBatteredFishGeneric
-  name: battered fish recipe (fish fillet)
-  result: FoodCuredCarpBattered
-  group: Savory
-  time: 5
-  reagents:
-    Flour: 5
-    Egg: 6
-  solids:
-    FoodMeatFishGeneric: 1
-  recipeType:
-  - Oven
-  - Microwave
-  hideInGuidebook: true
+  - Oven # Lua
+  - Microwave # Lua
 
 - type: microwaveMealRecipe
   id: RecipeBatteredOnionRings
@@ -886,7 +749,6 @@
 #   - Assembler
 
 # Other
-# Miscellaneous special or thematic recipes.
 
 - type: microwaveMealRecipe
   id: RecipeCatCrispy
@@ -1094,7 +956,6 @@
   - Oven
 
 # Pasta and Noodles
-# Pasta dishes and ramen-style noodle bowls.
 
 - type: microwaveMealRecipe
   id: RecipeRiceNoodleSheet
@@ -1245,7 +1106,6 @@
   - Oven
 
 # Frozen desserts
-# Ice creams, popsicles, snowcones, and other frozen sweets.
 
 - type: microwaveMealRecipe
   id: RecipeIceCreamSandwich
