@@ -253,7 +253,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
                 EnsureHandsAreCorrect(rider, vehicle);
             }
 
-            // Frontier: Ensure rider remains parented to the vehicle's strap after collisions
+            // Lua start
             if (TryComp(rider, out BuckleComponent? buckle) && buckle.BuckledTo is { } strapEnt)
             {
                 var strapUid = strapEnt;
@@ -266,7 +266,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
                         _transform.SetCoordinates(rider, riderXform, coords, rotation: null);
                     }
                 }
-            }
+            } // Lua end
         }
     }
     // Lua end (fuck driver cowboy)
