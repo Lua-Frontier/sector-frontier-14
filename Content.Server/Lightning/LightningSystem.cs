@@ -1,9 +1,26 @@
+// SPDX-FileCopyrightText: 2022 keronshb
+// SPDX-FileCopyrightText: 2023 AJCM-git
+// SPDX-FileCopyrightText: 2023 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Visne
+// SPDX-FileCopyrightText: 2024 Ed
+// SPDX-FileCopyrightText: 2024 Emisse
+// SPDX-FileCopyrightText: 2024 Kara
+// SPDX-FileCopyrightText: 2024 Mervill
+// SPDX-FileCopyrightText: 2024 TemporalOroboros
+// SPDX-FileCopyrightText: 2024 TinManTim
+// SPDX-FileCopyrightText: 2024 lzk
+// SPDX-FileCopyrightText: 2024 metalgearsloth
+// SPDX-FileCopyrightText: 2025 Ilya246
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using Content.Server.Beam;
 using Content.Server.Beam.Components;
 using Content.Server.Lightning.Components;
 using Content.Shared.Lightning;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes; // Mono
 using Robust.Shared.Random;
 
 namespace Content.Server.Lightning;
@@ -19,6 +36,7 @@ namespace Content.Server.Lightning;
 public sealed class LightningSystem : SharedLightningSystem
 {
     [Dependency] private readonly BeamSystem _beam = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!; // Mono
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -49,6 +67,18 @@ public sealed class LightningSystem : SharedLightningSystem
     /// <param name="triggerLightningEvents">if the lightnings being fired should trigger lightning events.</param>
     public void ShootLightning(EntityUid user, EntityUid target, string lightningPrototype = "Lightning", bool triggerLightningEvents = true)
     {
+        // Mono
+        EntProtoId? spawnOnHit = null;
+        var proto = _proto.Index(lightningPrototype);
+        if (proto.TryGetComponent<LightningComponent>(out var lightningComp, EntityManager.ComponentFactory))
+            spawnOnHit = lightningComp.SpawnOnHit;
+
+        ShootLightning(user, target, lightningPrototype, triggerLightningEvents);
+    }
+
+    // Mono - for optimisation purposes
+    private void ShootLightning(EntityUid user, EntityUid target, EntProtoId? spawnOnHit, string lightningPrototype = "Lightning", bool triggerLightningEvents = true)
+    {
         var spriteState = LightningRandomizer();
         _beam.TryCreateBeam(user, target, lightningPrototype, spriteState);
 
@@ -57,6 +87,9 @@ public sealed class LightningSystem : SharedLightningSystem
             var ev = new HitByLightningEvent(user, target);
             RaiseLocalEvent(target, ref ev);
         }
+
+        if (spawnOnHit != null)
+            Spawn(spawnOnHit.Value, _transform.GetMapCoordinates(target));
     }
 
 
@@ -70,6 +103,18 @@ public sealed class LightningSystem : SharedLightningSystem
     /// <param name="arcDepth">how many times to recursively fire lightning bolts from the target points of the first shot.</param>
     /// <param name="triggerLightningEvents">if the lightnings being fired should trigger lightning events.</param>
     public void ShootRandomLightnings(EntityUid user, float range, int boltCount, string lightningPrototype = "Lightning", int arcDepth = 0, bool triggerLightningEvents = true)
+    {
+        // Mono
+        EntProtoId? spawnOnHit = null;
+        var proto = _proto.Index(lightningPrototype);
+        if (proto.TryGetComponent<LightningComponent>(out var lightningComp, EntityManager.ComponentFactory))
+            spawnOnHit = lightningComp.SpawnOnHit;
+
+        ShootRandomLightnings(user, range, boltCount, spawnOnHit, lightningPrototype, arcDepth, triggerLightningEvents);
+    }
+
+    // Mono - for optimisation purposes
+    private void ShootRandomLightnings(EntityUid user, float range, int boltCount, EntProtoId? spawnOnHit, string lightningPrototype = "Lightning", int arcDepth = 0, bool triggerLightningEvents = true)
     {
         //TODO: add support to different priority target tablem for different lightning types
         //TODO: Remove Hardcode LightningTargetComponent (this should be a parameter of the SharedLightningComponent)
@@ -92,10 +137,10 @@ public sealed class LightningSystem : SharedLightningSystem
             if (!_random.Prob(curTarget.Comp.HitProbability)) //Chance to ignore target
                 continue;
 
-            ShootLightning(user, targets[count].Owner, lightningPrototype, triggerLightningEvents);
+            ShootLightning(user, targets[count].Owner, spawnOnHit, lightningPrototype, triggerLightningEvents);
             if (arcDepth - targets[count].Comp.LightningResistance > 0)
             {
-                ShootRandomLightnings(targets[count].Owner, range, 1, lightningPrototype, arcDepth - targets[count].Comp.LightningResistance, triggerLightningEvents);
+                ShootRandomLightnings(targets[count].Owner, range, 1, spawnOnHit, lightningPrototype, arcDepth - targets[count].Comp.LightningResistance, triggerLightningEvents);
             }
             shootedCount++;
         }
