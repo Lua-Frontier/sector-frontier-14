@@ -243,6 +243,7 @@ namespace Content.Client.Lobby.UI
 
             RefreshSpecies();
             InitializeHairGradientControls(); //Lua
+            InitializeAllMarkingsGradientControls(); //Lua
 
             SpeciesButton.OnItemSelected += args =>
             {
@@ -1651,7 +1652,11 @@ namespace Content.Client.Lobby.UI
 
             FacialHairGradientToggle.Pressed = Profile.Appearance.FacialHairGradientEnabled;
             FacialHairGradientSecondColorSelector.Color = Profile.Appearance.FacialHairGradientSecondaryColor;
-            FacialHairGradientDirectionSelector.SelectId(Profile.Appearance.FacialHairGradientDirection); //Lua end
+            FacialHairGradientDirectionSelector.SelectId(Profile.Appearance.FacialHairGradientDirection);
+
+            AllMarkingsGradientToggle.Pressed = Profile.Appearance.AllMarkingsGradientEnabled;
+            AllMarkingsGradientSecondColorSelector.Color = Profile.Appearance.AllMarkingsGradientSecondaryColor;
+            AllMarkingsGradientDirectionSelector.SelectId(Profile.Appearance.AllMarkingsGradientDirection); //Lua end
         }
 
         private void UpdateCMarkingsHair()
@@ -1834,6 +1839,52 @@ namespace Content.Client.Lobby.UI
                 var app = new HumanoidCharacterAppearance(Profile.Appearance)
                 {
                     FacialHairGradientDirection = args.Id
+                };
+                Profile = Profile.WithCharacterAppearance(app);
+                SetDirty();
+                ReloadProfilePreview();
+            };
+        } //Lua end
+
+        private void InitializeAllMarkingsGradientControls() //Lua start
+        {
+            AllMarkingsGradientDirectionSelector.Clear();
+            AllMarkingsGradientDirectionSelector.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-dir-bottom-top"), 0);
+            AllMarkingsGradientDirectionSelector.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-dir-top-bottom"), 1);
+            AllMarkingsGradientDirectionSelector.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-dir-left-right"), 2);
+            AllMarkingsGradientDirectionSelector.AddItem(Loc.GetString("humanoid-profile-editor-hair-gradient-dir-right-left"), 3);
+
+            AllMarkingsGradientToggle.OnToggled += _ =>
+            {
+                if (Profile == null) return;
+                var app = new HumanoidCharacterAppearance(Profile.Appearance)
+                {
+                    AllMarkingsGradientEnabled = AllMarkingsGradientToggle.Pressed
+                };
+                Profile = Profile.WithCharacterAppearance(app);
+                SetDirty();
+                ReloadProfilePreview();
+            };
+
+            AllMarkingsGradientSecondColorSelector.OnColorChanged += color =>
+            {
+                if (Profile == null) return;
+                var app = new HumanoidCharacterAppearance(Profile.Appearance)
+                {
+                    AllMarkingsGradientSecondaryColor = color
+                };
+                Profile = Profile.WithCharacterAppearance(app);
+                SetDirty();
+                ReloadProfilePreview();
+            };
+
+            AllMarkingsGradientDirectionSelector.OnItemSelected += args =>
+            {
+                if (Profile == null) return;
+                AllMarkingsGradientDirectionSelector.SelectId(args.Id);
+                var app = new HumanoidCharacterAppearance(Profile.Appearance)
+                {
+                    AllMarkingsGradientDirection = args.Id
                 };
                 Profile = Profile.WithCharacterAppearance(app);
                 SetDirty();

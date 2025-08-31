@@ -245,7 +245,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.HairGradientDirection = profile.Appearance.HairGradientDirection;
         humanoid.FacialHairGradientEnabled = profile.Appearance.FacialHairGradientEnabled;
         humanoid.FacialHairGradientSecondaryColor = profile.Appearance.FacialHairGradientSecondaryColor;
-        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection; //Lua end
+        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection;
+        humanoid.AllMarkingsGradientEnabled = profile.Appearance.AllMarkingsGradientEnabled;
+        humanoid.AllMarkingsGradientSecondaryColor = profile.Appearance.AllMarkingsGradientSecondaryColor;
+        humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection; //Lua end
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -437,6 +440,17 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 inst2.SetParameter("color2", new Vector3(humanoid.FacialHairGradientSecondaryColor.R, humanoid.FacialHairGradientSecondaryColor.G, humanoid.FacialHairGradientSecondaryColor.B));
                 inst2.SetParameter("direction", (float) humanoid.FacialHairGradientDirection);
                 sprite.LayerSetShader(layerId, inst2, "HairGradient");
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+            }
+            else if (humanoid.AllMarkingsGradientEnabled && markingPrototype.BodyPart != HumanoidVisualLayers.Head && markingPrototype.BodyPart != HumanoidVisualLayers.HeadTop && markingPrototype.BodyPart != HumanoidVisualLayers.HeadSide)
+            {
+                // Apply gradient to any marking if enabled globally (excluding skin/base-like head parts)
+                var instG = _prototypeManager.Index<ShaderPrototype>("HairGradient").InstanceUnique();
+                var baseColor = (colors != null && j < colors.Count) ? colors[j] : Color.White;
+                instG.SetParameter("color1", new Vector3(baseColor.R, baseColor.G, baseColor.B));
+                instG.SetParameter("color2", new Vector3(humanoid.AllMarkingsGradientSecondaryColor.R, humanoid.AllMarkingsGradientSecondaryColor.G, humanoid.AllMarkingsGradientSecondaryColor.B));
+                instG.SetParameter("direction", (float) humanoid.AllMarkingsGradientDirection);
+                sprite.LayerSetShader(layerId, instG, "HairGradient");
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
             }
             else

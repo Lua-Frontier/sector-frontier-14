@@ -57,6 +57,20 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public int FacialHairGradientDirection { get; set; } = 0; //Lua end
 
+    // Lua start Global gradient for all markings (except skin)
+    [DataField]
+    public bool AllMarkingsGradientEnabled { get; set; } = false;
+
+    [DataField]
+    public Color AllMarkingsGradientSecondaryColor { get; set; } = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField]
+    public int AllMarkingsGradientDirection { get; set; } = 0;
+    // Lua end
+
     public HumanoidCharacterAppearance(string hairStyleId,
         Color hairColor,
         string facialHairStyleId,
@@ -82,7 +96,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         HairGradientDirection = other.HairGradientDirection;
         FacialHairGradientEnabled = other.FacialHairGradientEnabled;
         FacialHairGradientSecondaryColor = ClampColor(other.FacialHairGradientSecondaryColor);
-        FacialHairGradientDirection = other.FacialHairGradientDirection; //Lua end
+        FacialHairGradientDirection = other.FacialHairGradientDirection;
+        AllMarkingsGradientEnabled = other.AllMarkingsGradientEnabled;
+        AllMarkingsGradientSecondaryColor = ClampColor(other.AllMarkingsGradientSecondaryColor);
+        AllMarkingsGradientDirection = other.AllMarkingsGradientDirection; //Lua end
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
@@ -94,7 +111,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -107,7 +127,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -120,7 +143,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -133,7 +159,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -146,7 +175,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -159,7 +191,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -172,7 +207,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = HairGradientDirection,
             FacialHairGradientEnabled = FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
-            FacialHairGradientDirection = FacialHairGradientDirection
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -365,7 +403,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var h2 = HashCode.Combine(EyeColor, SkinColor, Markings);
         var h3 = HashCode.Combine(HairGradientEnabled, HairGradientSecondaryColor, HairGradientDirection);
         var h4 = HashCode.Combine(FacialHairGradientEnabled, FacialHairGradientSecondaryColor, FacialHairGradientDirection);
-        return HashCode.Combine(h1, h2, h3, h4); //Lua end
+        var h5 = HashCode.Combine(AllMarkingsGradientEnabled, AllMarkingsGradientSecondaryColor, AllMarkingsGradientDirection);
+        return HashCode.Combine(h1, h2, h3, h4, h5); //Lua end
     }
 
     public HumanoidCharacterAppearance Clone()

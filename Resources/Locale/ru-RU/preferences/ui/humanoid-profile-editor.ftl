@@ -62,7 +62,6 @@ humanoid-profile-editor-company-label = Фракция:
 # Lua Hair gradient UI
 humanoid-profile-editor-hair-gradient-label = Градиент волос
 humanoid-profile-editor-hair-gradient-enable = Включить градиент
-humanoid-profile-editor-hair-gradient-color2 = Второй цвет
 humanoid-profile-editor-hair-gradient-direction = Направление
 humanoid-profile-editor-hair-gradient-dir-bottom-top = Снизу вверх
 humanoid-profile-editor-hair-gradient-dir-top-bottom = Сверху вниз
@@ -70,3 +69,6 @@ humanoid-profile-editor-hair-gradient-dir-left-right = Слева направо
 humanoid-profile-editor-hair-gradient-dir-right-left = Справа налево
 
 humanoid-profile-editor-facialhair-gradient-label = Градиент бороды
+
+# Lua All markings gradient
+humanoid-profile-editor-allmarkings-gradient-label = Градиент тела и черт

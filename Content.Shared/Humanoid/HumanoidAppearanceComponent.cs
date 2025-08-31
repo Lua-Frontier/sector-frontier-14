@@ -125,6 +125,20 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField]
     public int FacialHairGradientDirection = 0; //Lua end
 
+    // Lua start Global gradient for all markings (except skin/base layers)
+    [DataField, AutoNetworkedField]
+    public bool AllMarkingsGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color AllMarkingsGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int AllMarkingsGradientDirection = 0;
+    // Lua end
+
     /// <summary>
     ///     Which layers of this humanoid that should be hidden on equipping a corresponding item..
     /// </summary>
