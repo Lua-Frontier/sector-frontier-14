@@ -1,0 +1,13 @@
+- type: language
+  id: Tradeband
+  obfuscation:
+    !type:SyllableObfuscation
+    replacement:
+    - тра
+    - де
+    - бан
+    minSyllables: 2
+    maxSyllables: 4
+  speech:
+    allowRadio: true
+

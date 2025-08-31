@@ -1,0 +1,39 @@
+- type: entity
+  id: TranslatorPoweredBase
+  parent: BaseItem
+  name: translator
+  description: Translates speech.
+  components:
+  - type: HandheldTranslator
+    enabled: false
+
+- type: entity
+  id: SolCommonTranslator
+  parent: TranslatorPoweredBase
+  suffix: SolCommon
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - SolCommon
+    understood:
+    - TauCetiBasic
+    - SolCommon
+    requires:
+    - TauCetiBasic
+    - SolCommon
+
+- type: entity
+  id: CanilunztTranslator
+  parent: TranslatorPoweredBase
+  components:
+  - type: HandheldTranslator
+    spoken:
+    - TauCetiBasic
+    - Canilunzt
+    understood:
+    - TauCetiBasic
+    - Canilunzt
+    requires:
+    - TauCetiBasic
+    - Canilunzt

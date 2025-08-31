@@ -1,0 +1,7 @@
+- type: language
+  id: Binary
+  obfuscation:
+    !type:ReplacementObfuscation
+    replacement: [ "0101", "1100" ]
+  speech:
+    requireSpeech: false

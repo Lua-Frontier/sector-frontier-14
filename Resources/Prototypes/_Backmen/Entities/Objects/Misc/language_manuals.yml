@@ -1,0 +1,9 @@
+- type: entity
+  parent: BaseItem
+  id: ManualBabel
+  name: babel manual
+  components:
+  - type: LanguageLearn
+    deleteAfterUse: true
+    languages:
+      - Universal

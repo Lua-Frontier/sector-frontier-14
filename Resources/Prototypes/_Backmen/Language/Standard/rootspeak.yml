@@ -1,0 +1,10 @@
+- type: language
+  id: RootSpeak
+  obfuscation:
+    !type:SyllableObfuscation
+    replacement: [ "сс", "шш", "рр" ]
+    minSyllables: 2
+    maxSyllables: 4
+  speech:
+    allowRadio: true
+

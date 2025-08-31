@@ -1,0 +1,8 @@
+- type: language
+  id: Moffic
+  obfuscation:
+    !type:ReplacementObfuscation
+    replacement: [ "фф", "м-м", "мф" ]
+  speech:
+    allowRadio: true
+

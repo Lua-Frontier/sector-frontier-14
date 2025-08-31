@@ -1,0 +1,13 @@
+- type: language
+  id: SolCommon
+  obfuscation:
+    !type:SyllableObfuscation
+    replacement:
+    - ла
+    - ба
+    - га
+    minSyllables: 2
+    maxSyllables: 4
+  speech:
+    allowRadio: true
+
