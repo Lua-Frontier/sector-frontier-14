@@ -6,6 +6,8 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics; //Lua
+using Robust.Shared.Maths; //Lua
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -237,6 +239,14 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
+        //Lua start Copy hair/facial hair gradient settings for preview
+        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
+        humanoid.HairGradientSecondaryColor = profile.Appearance.HairGradientSecondaryColor;
+        humanoid.HairGradientDirection = profile.Appearance.HairGradientDirection;
+        humanoid.FacialHairGradientEnabled = profile.Appearance.FacialHairGradientEnabled;
+        humanoid.FacialHairGradientSecondaryColor = profile.Appearance.FacialHairGradientSecondaryColor;
+        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection; //Lua end
+
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
 
@@ -400,16 +410,46 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 continue;
             }
 
-            // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
-            // and we need to check the index is correct.
-            // So if that happens just default to white?
-            if (colors != null && j < colors.Count)
+
+            //Lua start Hair/FacialHair gradient support
+            var isHair = markingPrototype.BodyPart == HumanoidVisualLayers.Hair;
+            var isFacialHair = markingPrototype.BodyPart == HumanoidVisualLayers.FacialHair;
+
+            if (isHair && humanoid.HairGradientEnabled)
             {
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+                var inst = _prototypeManager.Index<ShaderPrototype>("HairGradient").InstanceUnique();
+                var baseCol = (colors != null && j < colors.Count)
+                    ? colors[j]
+                    : (humanoid.CachedHairColor ?? Color.White);
+                inst.SetParameter("color1", new Vector3(baseCol.R, baseCol.G, baseCol.B));
+                inst.SetParameter("color2", new Vector3(humanoid.HairGradientSecondaryColor.R, humanoid.HairGradientSecondaryColor.G, humanoid.HairGradientSecondaryColor.B));
+                inst.SetParameter("direction", (float) humanoid.HairGradientDirection);
+                sprite.LayerSetShader(layerId, inst, "HairGradient");
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+            }
+            else if (isFacialHair && humanoid.FacialHairGradientEnabled)
+            {
+                var inst2 = _prototypeManager.Index<ShaderPrototype>("HairGradient").InstanceUnique();
+                var baseCol2 = (colors != null && j < colors.Count)
+                    ? colors[j]
+                    : (humanoid.CachedFacialHairColor ?? Color.White);
+                inst2.SetParameter("color1", new Vector3(baseCol2.R, baseCol2.G, baseCol2.B));
+                inst2.SetParameter("color2", new Vector3(humanoid.FacialHairGradientSecondaryColor.R, humanoid.FacialHairGradientSecondaryColor.G, humanoid.FacialHairGradientSecondaryColor.B));
+                inst2.SetParameter("direction", (float) humanoid.FacialHairGradientDirection);
+                sprite.LayerSetShader(layerId, inst2, "HairGradient");
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
             }
             else
             {
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                //Lua end Default color application
+                if (colors != null && j < colors.Count)
+                {
+                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+                }
+                else
+                {
+                    _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
+                } //Lua
             }
 
             if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)

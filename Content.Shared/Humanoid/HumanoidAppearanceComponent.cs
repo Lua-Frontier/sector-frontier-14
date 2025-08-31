@@ -100,6 +100,31 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public Color? CachedFacialHairColor;
 
+    //Lua start Hair/Fur gradient settings (client-applied shader parameters)
+    [DataField, AutoNetworkedField]
+    public bool HairGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color HairGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int HairGradientDirection = 0;
+
+    [DataField, AutoNetworkedField]
+    public bool FacialHairGradientEnabled = false;
+
+    [DataField, AutoNetworkedField]
+    public Color FacialHairGradientSecondaryColor = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int FacialHairGradientDirection = 0; //Lua end
+
     /// <summary>
     ///     Which layers of this humanoid that should be hidden on equipping a corresponding item..
     /// </summary>
