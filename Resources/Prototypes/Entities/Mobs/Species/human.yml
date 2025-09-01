@@ -30,13 +30,13 @@
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
   - type: Speech # Frontier
     allowedEmotes: ['Belch'] # Frontier
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Human
     understands:
     - Intergalactic
-    - Human
+    - Human # Lua end
 
 - type: entity
   parent: BaseSpeciesDummy

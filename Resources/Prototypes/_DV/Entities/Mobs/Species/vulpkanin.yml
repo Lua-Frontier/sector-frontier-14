@@ -107,13 +107,13 @@
       Female: FemaleVulpkanin
       Unsexed: MaleVulpkanin
   - type: DogVision
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Vulpkanin
     understands:
     - Intergalactic
-    - Vulpkanin
+    - Vulpkanin # Lua end
   - type: Temperature
     heatDamageThreshold: 320 # 5 lower than base # Frontier: 315<320
     coldDamageThreshold: 220 # 40 lower than base, very insulating fur

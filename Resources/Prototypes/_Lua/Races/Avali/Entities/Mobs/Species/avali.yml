@@ -51,10 +51,10 @@
     requiredLegs: 2
   - type: Speech
     speechSounds: Avali
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
-    - Avali
+    - Avali # Lua end
     understands:
     - Intergalactic
     - Avali

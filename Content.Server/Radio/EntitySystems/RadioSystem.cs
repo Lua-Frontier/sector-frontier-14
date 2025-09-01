@@ -37,7 +37,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; //Lua
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -72,13 +72,13 @@ public sealed class RadioSystem : EntitySystem
     {
         if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
         {
-            var language = _language.GetLanguage(args.Source);
+            var language = _language.GetLanguage(args.Source); //Lua start
             var content = language.SpeechOverride.AllowRadio
                 ? _language.ObfuscateSpeech(args.Message, language)
                 : args.Message;
 
             // Use the original speaker as message source, and the transmitter as radio source
-            SendRadioMessage(args.Source, content, args.Channel, uid);
+            SendRadioMessage(args.Source, content, args.Channel, uid); // Lua end
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }

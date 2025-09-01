@@ -65,15 +65,14 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; // Lua
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 8; // how far whisper goes at all, in world units
     public const string DefaultAnnouncementSound = "/Audio/_Lua/Announcements/announce.ogg"; // Lua
     public const string CentComAnnouncementSound = "/Audio/_Lua/Announcements/centcomm.ogg"; // Lua
-    private readonly Color DefaultSpeakColor = Color.White;
-
+    private readonly Color DefaultSpeakColor = Color.White; // Lua
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
     private bool _critLoocEnabled;
@@ -228,10 +227,10 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var language = _language.GetLanguage(source);
 
-        var shouldCapitalize = (desiredType != InGameICChatType.Emote);
+        var shouldCapitalize = (desiredType != InGameICChatType.Emote); // Lua start
         var shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
         var shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
-            || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
+            || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en"); // Lua end
 
         message = SanitizeInGameICMessage(source, message, out var emoteStr, shouldCapitalize, shouldPunctuate, shouldCapitalizeTheWordI);
 
@@ -485,14 +484,13 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         name = FormattedMessage.EscapeText(name);
 
-        var wrappedMessage = WrapPublicMessage(source, name, message);
+        var wrappedMessage = WrapPublicMessage(source, name, message);  // Lua start
         var obfuscated = SanitizeInGameICMessage(source, _language.ObfuscateSpeech(message, _language.GetLanguage(source)), out var emoteStr2, true, _configurationManager.GetCVar(CCVars.ChatPunctuation), (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en") || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en"));
         var wrappedObfuscated = WrapPublicMessage(source, name, obfuscated, _language.GetLanguage(source));
-
         SendInVoiceRange(ChatChannel.Local, name, message, wrappedMessage, obfuscated, wrappedObfuscated, source, range);
 
         var ev = new EntitySpokeEvent(source, message, originalMessage, null, null);
-        RaiseLocalEvent(source, ev, true);
+        RaiseLocalEvent(source, ev, true);  // Lua start
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
         // Also doesn't log if hideLog is true.
@@ -553,10 +551,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var languageObfuscatedMessage = SanitizeInGameICMessage(source, _language.ObfuscateSpeech(message, _language.GetLanguage(source)), out var emoteStr, true, _configurationManager.GetCVar(CCVars.ChatPunctuation), (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en") || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en"));
-        var languageObfuscatedMessageLongRange = ObfuscateMessageReadability(languageObfuscatedMessage, 0.2f);
+        var languageObfuscatedMessageLongRange = ObfuscateMessageReadability(languageObfuscatedMessage, 0.2f); // Lua start
 
         var wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", nameIdentity, message, _language.GetLanguage(source));
-        var wrappedUnknownMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", nameIdentity, message, _language.GetLanguage(source));
+        var wrappedUnknownMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", nameIdentity, message, _language.GetLanguage(source)); // Lua end
 
 
         foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
@@ -570,7 +568,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
 
-            var canUnderstandLanguage = _language.CanUnderstand(listener, _language.GetLanguage(source).ID);
+            var canUnderstandLanguage = _language.CanUnderstand(listener, _language.GetLanguage(source).ID); // Lua start
             if (data.Range <= WhisperClearRange)
             {
                 var perceivedMessage = FormattedMessage.EscapeText(canUnderstandLanguage ? message : languageObfuscatedMessage);
@@ -587,7 +585,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             {
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedUnknownMessage, source, false, session.Channel);
                 continue;
-            }
+            } // Lua end
         }
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
@@ -960,7 +958,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #endregion
 
-    #region Backmen-languages helpers
+    // Lua start
+    #region Lua-languages helpers
 
     public string WrapPublicMessage(EntityUid source, string name, string message, LanguagePrototype? language = null)
     {
@@ -1046,7 +1045,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     #endregion
-}
+} // Lua end
 
 /// <summary>
 ///     This event is raised before chat messages are sent out to clients. This enables some systems to send the chat

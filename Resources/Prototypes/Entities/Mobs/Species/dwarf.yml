@@ -53,13 +53,13 @@
   - type: Speech
     speechSounds: Bass
     allowedEmotes: ['Belch'] # Frontier
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Dwarf
     understands:
     - Intergalactic
-    - Dwarf
+    - Dwarf # Lua end
   - type: HumanoidAppearance
     species: Dwarf
     hideLayersOnEquip:

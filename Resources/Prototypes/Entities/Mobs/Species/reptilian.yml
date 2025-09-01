@@ -1,4 +1,4 @@
-- type: entity
+  - type: entity
   save: false
   name: Urisst' Mzhand
   parent: BaseMobSpeciesOrganic
@@ -41,13 +41,13 @@
       Male: MaleReptilian
       Female: FemaleReptilian
       Unsexed: MaleReptilian
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Reptilian
     understands:
     - Intergalactic
-    - Reptilian
+    - Reptilian # Lua end
   - type: BodyEmotes
     soundsId: ReptilianBodyEmotes
   - type: Damageable

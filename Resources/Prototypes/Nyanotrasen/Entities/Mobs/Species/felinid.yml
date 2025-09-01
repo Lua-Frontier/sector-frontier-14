@@ -76,13 +76,13 @@
     action: ActionHairball
     coughPopup: hairball-cough
   - type: Felinid
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Felinid
     understands:
     - Intergalactic
-    - Felinid
+    - Felinid # Lua end
   - type: NpcFactionMember
     factions:
     - NanoTrasen

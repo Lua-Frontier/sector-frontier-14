@@ -22,13 +22,13 @@
       Male: UnisexVox
       Female: UnisexVox
       Unsexed: UnisexVox
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Vox
     understands:
     - Intergalactic
-    - Vox
+    - Vox # Lua end
   - type: Butcherable
     butcheringType: Spike
     spawned:

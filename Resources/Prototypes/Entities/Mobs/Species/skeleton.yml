@@ -102,13 +102,13 @@
           probability: 0.5
   - type: FireVisuals
     alternateState: Standing
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Skeleton
     understands:
     - Intergalactic
-    - Skeleton
+    - Skeleton # Lua end
   - type: FlashImmunity
   - type: Inventory
     femaleDisplacements:
