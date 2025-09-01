@@ -74,10 +74,11 @@
 #      effects: # Frontier
 #      - !type:SatiateHunger # Frontier
 #        factor: 1 # Frontier
-  footstepSound:
-    collection: FootstepSlime # makes sense
-    params:
-      volume: 6
+  metabolisms: # Lua start
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 0.4 # Lua end
 
 - type: reagent
   id: Sap

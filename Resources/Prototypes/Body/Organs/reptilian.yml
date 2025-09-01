@@ -4,14 +4,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    # specialDigestible: # Frontier
-      # tags: # Frontier
-      # - Fruit # Frontier
-      # - ReptilianFood # Frontier
-      # - Meat # Frontier
-      # - Pill # Frontier
-      # - Crayon # Frontier
-      # - Paper # Frontier
+    # // Lua start
+    specialDigestible:
+      tags:
+      - Meat
+      - Fish
+    isSpecialDigestibleExclusive: true
+    # // Lua end
   - type: SolutionContainerManager
     solutions:
       stomach:

@@ -5,15 +5,16 @@
   components:
   - type: Stomach
     specialDigestible:
-      # Frontier: general moth digestion
-      # tags:
-      # - ClothMade
-      # - Paper
-      # - Pill
+      # Lua: general moth digestion
+      tags:
+      - ClothMade
+      - Paper
+      - Pill
+      - Fruit
       components:
       - MothFood
-      # End Frontier: general moth digestion
-    isSpecialDigestibleExclusive: false # Frontier
+    isSpecialDigestibleExclusive: true
+    specialDigestibleOnly: true # End Lua: general moth digestion
   - type: SolutionContainerManager
     solutions:
       stomach:
