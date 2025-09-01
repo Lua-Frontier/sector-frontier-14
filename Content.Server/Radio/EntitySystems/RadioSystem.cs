@@ -1,7 +1,7 @@
 using Content.Server._NF.Radio; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
-using Content.Server.Backmen.Language; //Lua
+using Content.Server._Lua.Language; //Lua
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
 using Content.Shared.Chat;
