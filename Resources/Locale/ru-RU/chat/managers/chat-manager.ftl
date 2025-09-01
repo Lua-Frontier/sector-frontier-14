@@ -1,6 +1,9 @@
+### Lua
+
 chat-manager-wrap-language-font-whisper = [font="{$fontType}"]{$message}[/font]
 chat-manager-wrap-language-font = [font="{$fontType}" size={$fontSize}]{$message}[/font]
 chat-manager-wrap-language-color = [color={$color}]{$message}[/color]
+
 ### UI
 
 chat-manager-max-message-length = Ваше сообщение превышает лимит в { $maxMessageLength } символов

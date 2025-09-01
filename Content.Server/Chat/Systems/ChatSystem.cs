@@ -4,8 +4,8 @@ using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server._Lua.Language;
-using Content.Shared._Lua.Language;
+using Content.Server._Lua.Language; // Lua
+using Content.Shared._Lua.Language; // Lua
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Speech.Prototypes;
@@ -965,15 +965,15 @@ public sealed partial class ChatSystem : SharedChatSystem
     public string WrapPublicMessage(EntityUid source, string name, string message, LanguagePrototype? language = null)
     {
         var wrapId = GetSpeechVerb(source, message).Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message";
-        return WrapMessage(wrapId, Content.Shared._Lua.InGameICChatType.Speak, source, name, message, language);
+        return WrapMessage(wrapId, Content.Shared._Lua.InGameICChatType.Speak, source, name, message, language); // Lua
     }
 
     public string WrapWhisperMessage(EntityUid source, LocId defaultWrap, string entityName, string message, LanguagePrototype? language = null)
     {
-        return WrapMessage(defaultWrap, Content.Shared._Lua.InGameICChatType.Whisper, source, entityName, message, language);
+        return WrapMessage(defaultWrap, Content.Shared._Lua.InGameICChatType.Whisper, source, entityName, message, language); // Lua
     }
 
-    public string WrapMessage(LocId wrapId, Content.Shared._Lua.InGameICChatType chatType, EntityUid source, string entityName, string message, LanguagePrototype? language)
+    public string WrapMessage(LocId wrapId, Content.Shared._Lua.InGameICChatType chatType, EntityUid source, string entityName, string message, LanguagePrototype? language) // Lua
     {
         language ??= _language.GetLanguage(source);
 
