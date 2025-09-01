@@ -7,33 +7,18 @@
   - type: HandheldTranslator
     enabled: false
 
+# Intergalactic universal translator
 - type: entity
-  id: SolCommonTranslator
+  id: IntergalacticTranslator
   parent: TranslatorPoweredBase
-  suffix: SolCommon
+  suffix: Intergalactic
   components:
   - type: HandheldTranslator
     spoken:
-    - TauCetiBasic
-    - SolCommon
+    - Intergalactic
     understood:
-    - TauCetiBasic
-    - SolCommon
+    - Intergalactic
     requires:
-    - TauCetiBasic
-    - SolCommon
+    - Intergalactic
 
-- type: entity
-  id: CanilunztTranslator
-  parent: TranslatorPoweredBase
-  components:
-  - type: HandheldTranslator
-    spoken:
-    - TauCetiBasic
-    - Canilunzt
-    understood:
-    - TauCetiBasic
-    - Canilunzt
-    requires:
-    - TauCetiBasic
-    - Canilunzt
+

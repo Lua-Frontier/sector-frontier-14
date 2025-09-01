@@ -990,7 +990,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (language.SpeechOverride.Color is { } colorOverride)
         {
             var color = Color.InterpolateBetween(DefaultSpeakColor, colorOverride, colorOverride.A);
-            message = Loc.GetString("chat-manager-wrap-language-color", ("message", message), ("color", color));
+            var colorHex = color.ToHex();
+            message = Loc.GetString("chat-manager-wrap-language-color", ("message", message), ("color", colorHex));
         }
 
         if (language.SpeechOverride?.FontId != null || language.SpeechOverride?.FontSize != null)
@@ -1001,7 +1002,12 @@ public sealed partial class ChatSystem : SharedChatSystem
                 ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize));
         }
 
-        return Loc.GetString(wrapId, ("entityName", entityName), ("verb", Loc.GetString(verbId)), ("message", message));
+        return Loc.GetString(wrapId,
+            ("entityName", entityName),
+            ("verb", Loc.GetString(verbId)),
+            ("message", message),
+            ("fontType", speech.FontId),
+            ("fontSize", speech.FontSize));
     }
 
     private void SendInVoiceRange(

@@ -10,13 +10,13 @@ public abstract class SharedLanguageSystem : EntitySystem
     ///     Язык по умолчанию, когда сущность внезапно получает способность говорить (fallback).
     /// </summary>
     [ValidatePrototypeId<LanguagePrototype>]
-    public static readonly string FallbackLanguagePrototype = "TauCetiBasic";
+    public static readonly string FallbackLanguagePrototype = "Intergalactic";
 
     /// <summary>
     ///     Язык, понимающий все остальные языки. Не должен устанавливаться напрямую.
     /// </summary>
     [ValidatePrototypeId<LanguagePrototype>]
-    public static readonly string UniversalPrototype = "Universal";
+    public static readonly string UniversalPrototype = "Intergalactic";
 
     /// <summary>
     ///     Кэшированный экземпляр прототипа универсального языка.
@@ -28,7 +28,7 @@ public abstract class SharedLanguageSystem : EntitySystem
 
     public override void Initialize()
     {
-        Universal = _prototype.Index<LanguagePrototype>("Universal");
+        Universal = _prototype.Index<LanguagePrototype>(UniversalPrototype);
     }
 
     public LanguagePrototype? GetLanguagePrototype(string id)

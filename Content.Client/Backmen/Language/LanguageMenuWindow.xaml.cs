@@ -76,7 +76,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow, IEntityEventSubs
             HorizontalExpand = true
         };
 
-        var button = new Button { Text = "Choose" };
+        var button = new Button { Text = Loc.GetString("language-menu-choose") };
         button.OnPressed += _ => OnLanguageChosen(language);
         state.button = button;
 

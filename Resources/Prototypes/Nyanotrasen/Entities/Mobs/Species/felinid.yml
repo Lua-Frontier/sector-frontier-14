@@ -76,6 +76,13 @@
     action: ActionHairball
     coughPopup: hairball-cough
   - type: Felinid
+  - type: LanguageKnowledge
+    speaks:
+    - Intergalactic
+    - Felinid
+    understands:
+    - Intergalactic
+    - Felinid
   - type: NpcFactionMember
     factions:
     - NanoTrasen

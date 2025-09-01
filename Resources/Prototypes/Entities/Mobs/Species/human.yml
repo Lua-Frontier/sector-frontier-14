@@ -30,6 +30,13 @@
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
   - type: Speech # Frontier
     allowedEmotes: ['Belch'] # Frontier
+  - type: LanguageKnowledge
+    speaks:
+    - Intergalactic
+    - Human
+    understands:
+    - Intergalactic
+    - Human
 
 - type: entity
   parent: BaseSpeciesDummy

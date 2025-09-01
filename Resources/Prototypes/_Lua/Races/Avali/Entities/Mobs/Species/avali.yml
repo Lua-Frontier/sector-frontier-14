@@ -51,6 +51,13 @@
     requiredLegs: 2
   - type: Speech
     speechSounds: Avali
+  - type: LanguageKnowledge
+    speaks:
+    - Intergalactic
+    - Avali
+    understands:
+    - Intergalactic
+    - Avali
   - type: Sprite
     netsync: false
     noRot: true

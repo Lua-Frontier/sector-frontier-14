@@ -67,6 +67,13 @@
     factions:
     - NanoTrasen
     - Goblin
+  - type: LanguageKnowledge
+    speaks:
+    - Intergalactic
+    - Goblin
+    understands:
+    - Intergalactic
+    - Goblin
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:

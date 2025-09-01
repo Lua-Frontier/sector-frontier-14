@@ -28,8 +28,34 @@ public partial class ReplacementObfuscation : ObfuscationMethod
 
     internal override void Obfuscate(StringBuilder builder, string message, SharedLanguageSystem context)
     {
-        var idx = context.PseudoRandomNumber(message.GetHashCode(), 0, Replacement.Count - 1);
-        builder.Append(Replacement[idx]);
+        const char eof = (char) 0;
+        var wordBeginIndex = 0;
+        var hashCode = 0;
+
+        for (var i = 0; i <= message.Length; i++)
+        {
+            var ch = i < message.Length ? message[i] : eof;
+            var isWordEnd = ch == eof || !char.IsLetterOrDigit(ch);
+
+            if (!isWordEnd)
+                hashCode = hashCode * 31 + char.ToLower(ch);
+
+            if (isWordEnd)
+            {
+                var wordLength = i - wordBeginIndex;
+                if (wordLength > 0)
+                {
+                    var index = context.PseudoRandomNumber(hashCode, 0, Replacement.Count - 1);
+                    builder.Append(Replacement[index]);
+                }
+
+                hashCode = 0;
+                wordBeginIndex = i + 1;
+            }
+
+            if (isWordEnd && ch != eof)
+                builder.Append(ch);
+        }
     }
 }
 
