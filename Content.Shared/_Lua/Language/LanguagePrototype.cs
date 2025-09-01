@@ -1,4 +1,3 @@
-using Content.Shared._Lua.InGameICChatType; // incorrect, will adjust
 using Content.Shared.Chat;
 using Robust.Shared.Prototypes;
 
