@@ -1,7 +1,6 @@
 ---
 - type: language
   id: Human
-  name: language-Human-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["■"]
@@ -11,7 +10,6 @@
 
 - type: language
   id: Reptilian
-  name: language-Reptilian-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["шш", "шшш", "шсс", "сшш", "ссс", "шрр", "шшр", "срр", "рсс", "ррр", "трск", "крк"]
@@ -21,7 +19,6 @@
 
 - type: language
   id: Diona
-  name: language-Diona-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["шш", "шрш", "шрр", "шух", "шор", "трск", "хрск", "крк", "крск", "шлл", "шел", "шелест"]
@@ -31,7 +28,6 @@
 
 - type: language
   id: Dwarf
-  name: language-Dwarf-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["грр", "ррх", "рхх", "гхр", "хар", "оргх", "кнурла", "брр", "ррг", "ггр", "хрр", "хатьфу"]
@@ -41,7 +37,6 @@
 
 - type: language
   id: Moth
-  name: language-Moth-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["пик", "пиик", "црр", "ззз", "жжж", "трр", "фрр", "флп", "вжж", "пии", "тзз", "жии"]
@@ -51,7 +46,6 @@
 
 - type: language
   id: Arachnid
-  name: language-Arachnid-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["цок", "ццц", "тцк", "кцк", "щщщ", "шшш", "шсс", "хсшу", "хисшу", "цик", "хисш", "хисссшуу"]
@@ -61,7 +55,6 @@
 
 - type: language
   id: Vox
-  name: language-Vox-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["фью", "фьфь", "свии", "сви", "фьюу", "пии", "пиии", "свип", "свик", "чирп", "цвир", "вист"]
@@ -71,7 +64,6 @@
 
 - type: language
   id: Slime
-  name: language-Slime-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["блоп", "блюп", "буль", "плоп", "хлюп", "плюк", "блюм", "шлёп", "шлип", "плюп", "хлюм", "блимпаафф"]
@@ -81,7 +73,6 @@
 
 - type: language
   id: Skeleton
-  name: language-Skeleton-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["клк", "цок", "тук", "клак", "клац", "скрп", "скрр", "скр", "брцк", "дзынь", "тынь", "тинь"]
@@ -91,7 +82,6 @@
 
 - type: language
   id: Gingerbread
-  name: language-Gingerbread-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["хрум", "хруст", "хррм", "мням", "хрусь", "крамп", "грмм", "грыз", "хрмм", "хрюм", "мхам", "кхру"]
@@ -101,7 +91,6 @@
 
 - type: language
   id: Felinid
-  name: language-Felinid-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["мяу", "мяуф", "мрр", "урр", "шшш", "фрр", "ррр", "мяфф", "хсс", "пфф", "мур", "ррау"]
@@ -111,7 +100,6 @@
 
 - type: language
   id: Oni
-  name: language-Oni-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["грр", "ррх", "урх", "вхр", "хар", "офф", "ррах", "хрр", "гхр", "брр", "бух", "охр"]
@@ -121,7 +109,6 @@
 
 - type: language
   id: Vulpkanin
-  name: language-Vulpkanin-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["гав", "тяв", "ррр", "рррр", "ррф", "арф", "вуу", "вууу", "ауф", "воуф", "уууу", "ууу"]
@@ -131,7 +118,6 @@
 
 - type: language
   id: Harpy
-  name: language-Harpy-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["киа", "кья", "ааа", "иии", "крии", "кри", "вии", "виии", "чии", "чиии", "арь", "ииа"]
@@ -141,17 +127,15 @@
 
 - type: language
   id: Ariral
-  name: language-Ariral-name
   obfuscation:
     !type:ReplacementObfuscation
-      "replacement": ["шзо", "зоак", "ша", "сза", "ррх", "аак", "орх", "кзо", "жа", "лхз", "хра", "шрр"]
+      replacement: ["шзо", "зоак", "ша", "сза", "ррх", "аак", "орх", "кзо", "жа", "лхз", "хра", "шрр"]
   speech:
     color: "#B0E0FF"
     allowRadio: true
 
 - type: language
   id: Sheleg
-  name: language-Sheleg-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["хх", "хк", "кх", "пх", "кц", "цк", "ск", "ст", "тс", "тч", "пст", "ксь"]
@@ -161,7 +145,6 @@
 
 - type: language
   id: Goblin
-  name: language-Goblin-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["хех", "хехе", "хрр", "кхк", "кхе", "хрх", "кек", "гхх", "гыг", "хиы", "гыы", "кых"]
@@ -171,7 +154,6 @@
 
 - type: language
   id: Demon
-  name: language-Demon-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["грр", "ррр", "ррах", "харр", "шрр", "кхх", "грах", "рвв", "рргх", "вгрр", "крак", "ррха"]
@@ -181,7 +163,6 @@
 
 - type: language
   id: Avali
-  name: language-Avali-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["чир", "чвик", "цвик", "цвир", "трив", "три", "пик", "пии", "пип", "пипи", "трр", "трии"]
@@ -191,7 +172,6 @@
 
 - type: language
   id: Shark
-  name: language-Shark-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: ["грр", "клац", "клик", "хрр", "ррр", "рррр", "щелк", "цок", "чавк", "кхр", "кхрр", "ррх"]

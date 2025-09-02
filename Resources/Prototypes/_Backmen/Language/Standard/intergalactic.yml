@@ -1,13 +1,10 @@
 ---
 - type: language
   id: Intergalactic
-  name: intergalactic-language-name
   obfuscation:
     !type:ReplacementObfuscation
       replacement: [" "]
   speech:
     color: "#A6E3FF"
-    radioColor: "#A6E3FF"
     allowRadio: true
-  emote: Intergalactic
 
