@@ -12,7 +12,7 @@
   name: рюкзак Мед-Техника
   description: Этот рюкзак предназначен для хранения медицинских принадлежностей и инструментов, необходимых для быстрого реагирования в экстренных ситуациях.
   suffix: Доминатор, Не спавнить
- # categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/Wisdom/backpack.rsi
@@ -88,7 +88,7 @@
 
 # Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ClothingOuterHardsuitAtmos, HardsuitIdentifySponsor]
   id: ClothingOuterHardsuitWisdom
   name: скафандр Мед-Техника
   description: Скафандр с биокодированием, обеспечивающий защиту в критических ситуациях.
@@ -102,7 +102,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWisdom
   - type: Item
     size: Huge
-  # - type: HardsuitIdentification
   - type: Armor
     modifiers:
       coefficients:

@@ -50,7 +50,11 @@
       - id: ClothingBeltIrisRed
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  # - type: HardsuitAcidifier
+  - type: HardsuitIdentification
+    emaggable: false
+    securityMode: Acid
+    createAcidPuddles: true
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Templar
