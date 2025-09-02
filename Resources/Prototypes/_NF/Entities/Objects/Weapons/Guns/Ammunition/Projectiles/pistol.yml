@@ -24,7 +24,7 @@
     damage:
       types:
         Piercing: 10
-        Blunt: 5
+        Blunt: 8 #Lua 5<8
   - type: StaminaDamageOnCollide
     damage: 5 # 12 hits to slowdown
 
@@ -37,8 +37,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 4.8 # 0.6 * base total dmg
-        Heat: 3.2 # 0.4 * base total dmg
+        Blunt: 5 # 0.6 * base total dmg #Lua 4.8<5
+        Heat: 10 # 0.4 * base total dmg #Lua 3.2<10
   - type: StaminaDamageOnCollide
     damage: 4 # 15 hits to slowdown
 
@@ -51,8 +51,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 6.6 # 0.6 * (1.4 * base total dmg)
-        Radiation: 4.4 # 0.4 * (1.4 * base total dmg)
+        Blunt: 5 # 0.6 * (1.4 * base total dmg) #Lua 6.6<5
+        Radiation: 10 # 0.4 * (1.4 * base total dmg) #Lua 4.4<10
   - type: StaminaDamageOnCollide
     damage: 4 # 15 hits to slowdown
 
@@ -106,8 +106,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 6
-        Blunt: 6
+        Piercing: 20 #Lua 6<20
+        Blunt: 15 #Lua 6<15
   - type: StaminaDamageOnCollide
     damage: 6 # 10 hits to slowdown
 
@@ -120,8 +120,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 6
-        Blunt: 7
+        Piercing: 25 #Lua 6<25
+        Blunt: 15 #Lua 7<15
   - type: StaminaDamageOnCollide
     damage: 7 # ~9 hits to slowdown
 
@@ -134,8 +134,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 7.2 # 0.6 * base total dmg
-        Heat: 4.8 # 0.4 * base total dmg
+        Blunt: 15 # 0.6 * base total dmg #Lua 7.2<15
+        Heat: 20 # 0.4 * base total dmg #Lua 4.8<20
   - type: StaminaDamageOnCollide
     damage: 6 # 10 hits to slowdown
 
@@ -148,8 +148,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 9.6 # 0.6 * (1.4 * base total dmg)
-        Radiation: 6.4 # 0.6 * (1.4 * base total dmg)
+        Blunt: 15 # 0.6 * (1.4 * base total dmg) #Lua 9.6<15
+        Radiation: 20 # 0.6 * (1.4 * base total dmg) #Lua 6.4<20
   - type: StaminaDamageOnCollide
     damage: 6 # 10 hits to slowdown
 
