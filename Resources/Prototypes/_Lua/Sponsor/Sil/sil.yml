@@ -1,13 +1,15 @@
-#- type: sponsorLoadout
-#  id: Sil
-#  entity: ClothingBackpackSil
-#  sponsorOnly: true
+- type: sponsorLoadout
+  id: Sil
+  entity: ClothingBackpackSil
+  sponsorOnly: true
+  login: _Sil
 
-#- type: sponsorLoadout
-#  id: SilHypospray
-#  entity: HypospraySil
-#  sponsorOnly: true
-#  whitelistJobs: [ChiefMedicalOfficer, SeniorPhysician, Chemist, MedicalDoctor, Paramedic, Coroner, MedicalIntern]
+- type: sponsorLoadout
+  id: SilHypospray
+  entity: HypospraySil
+  sponsorOnly: true
+  login: _Sil
+  whitelistJobs: [ChiefMedicalOfficer, SeniorPhysician, Chemist, MedicalDoctor, Paramedic, Coroner, MedicalIntern]
 
 # Hardsuit
 - type: entity
