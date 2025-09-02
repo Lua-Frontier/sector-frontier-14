@@ -6,7 +6,7 @@
 
 # Backpack
 - type: entity
-  parent: [ClothingBackpack, HardsuitIdentifySponsor]
+  parent: [ClothingBackpack, HardsuitIdentifySponsor, HardsuitSpeedBuff]
   id: ClothingBackpackKelic
   name: сумка с функцией РИГ "MS-06"
   description: Компактная, износостойкая сумка, специально созданная для скафандра MS-06.
@@ -112,8 +112,7 @@
         Caustic: 0.5
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
-#  - type: HardsuitIdentification
-#    nonlethal: true
+  - type: HardsuitSpeedBuff
   - type: HideLayerClothing
     slots:
     - Tail
