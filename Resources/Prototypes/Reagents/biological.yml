@@ -22,6 +22,18 @@
           - !type:OrganType
             type: Human
             shouldHave: false
+      - !type:SatiateThirst
+        # Demons hydrate from blood like saline.
+        factor: 6
+        conditions:
+          - !type:OrganType
+            type: Demon
+      - !type:SatiateHunger
+        # Demons (arkana) get hunger from blood like cooked protein.
+        factor: 1
+        conditions:
+          - !type:OrganType
+            type: Demon
     Food:
       effects:
         - !type:AdjustReagent
@@ -68,17 +80,12 @@
   viscosity: 0.25
   tileReactions:
     - !type:SpillTileReaction
-#  metabolisms: # Frontier
-#    Food: # Frontier
-#      # Delicious! # Frontier
-#      effects: # Frontier
-#      - !type:SatiateHunger # Frontier
-#        factor: 1 # Frontier
-  metabolisms: # Lua start
-    Food:
-      effects:
-      - !type:SatiateHunger
-        factor: 0.4 # Lua end
+  metabolisms: # Frontier
+    Food: # Frontier
+      # Delicious! # Frontier
+      effects: # Frontier
+      - !type:SatiateHunger # Frontier
+        factor: 0.8 # Frontier 1<0.8 Lua
 
 - type: reagent
   id: Sap
@@ -141,6 +148,11 @@
       effects:
       - !type:SatiateThirst
         factor: -0.5
+      - !type:SatiateHunger
+        factor: 2
+        conditions:
+          - !type:OrganType
+            type: Demon
     Poison:
       effects:
       - !type:HealthChange
