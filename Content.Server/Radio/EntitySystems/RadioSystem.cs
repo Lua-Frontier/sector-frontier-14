@@ -180,7 +180,7 @@ public sealed class RadioSystem : EntitySystem
             channelText = $"\\[{channel.LocalizedName}\\]";
         // End Frontier
 
-        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+        var wrappedMessageOriginal = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("channel-color", channel.Color),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
@@ -191,15 +191,14 @@ public sealed class RadioSystem : EntitySystem
             ("headset-color", headsetColor),
             ("job", job));
 
-        // most radios are relayed to chat, so lets parse the chat message beforehand
+        // Prepare a representative chat message for logging/replay
         var chat = new ChatMessage(
             ChatChannel.Radio,
             message,
-            wrappedMessage,
+            wrappedMessageOriginal,
             NetEntity.Invalid,
             null);
-        var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, []);
+        var receivers = new List<EntityUid>();
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -218,6 +217,11 @@ public sealed class RadioSystem : EntitySystem
 
         if (frequency == null) // Nuclear-14
             frequency = GetFrequency(messageSource, channel); // Nuclear-14
+
+        // Determine language used by the speaker
+        var language = _language.GetLanguage(messageSource);
+        var isIntergalactic = language.ID == Content.Shared._Lua.Language.Systems.SharedLanguageSystem.UniversalPrototype;
+        var isSecurityChannel = channel.ID == "Security";
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -251,11 +255,41 @@ public sealed class RadioSystem : EntitySystem
             if (attemptEv.Cancelled)
                 continue;
 
+            // Per-listener content: holders of the language see full text; others get a single-word gibberish on non-security channels when language is not Intergalactic
+            var listenerUnderstands = _language.CanUnderstand(receiver, language.ID);
+            var displayRaw = message;
+            if (!listenerUnderstands && !isSecurityChannel && !isIntergalactic)
+            {
+                // Generate a single obfuscated word based on the language
+                displayRaw = _language.ObfuscateSpeech("x", language);
+                // collapse to a single token (remove whitespace)
+                displayRaw = string.Concat(displayRaw.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
+            }
+
+            var displayContent = escapeMarkup
+                ? FormattedMessage.EscapeText(displayRaw)
+                : displayRaw;
+
+            var wrappedPer = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+                ("channel-color", channel.Color),
+                ("fontType", speech.FontId),
+                ("fontSize", speech.FontSize),
+                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+                ("channel", $"\\[{channel.LocalizedName}\\]"),
+                ("name", name),
+                ("message", displayContent),
+                ("headset-color", headsetColor),
+                ("job", job));
+
+            var chatPer = new ChatMessage(ChatChannel.Radio, displayRaw, wrappedPer, NetEntity.Invalid, null);
+            var chatMsgPer = new MsgChatMessage { Message = chatPer };
+            var evPer = new RadioReceiveEvent(displayRaw, messageSource, channel, radioSource, chatMsgPer, receivers);
+
             // send the message
-            RaiseLocalEvent(receiver, ref ev);
+            RaiseLocalEvent(receiver, ref evPer);
         }
 
-        RaiseLocalEvent(new RadioSpokeEvent(messageSource, message, ev.Receivers.ToArray()));
+        RaiseLocalEvent(new RadioSpokeEvent(messageSource, message, receivers.ToArray()));
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");

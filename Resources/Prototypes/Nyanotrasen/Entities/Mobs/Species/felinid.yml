@@ -74,7 +74,12 @@
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
-  - type: NightVision
+  - type: SoftDarkVision
+    perfectRadius: 2.7
+    falloffRadius: 4
+    color: "#cfd6d9"
+    innerEnergy: 0.23
+    outerEnergy: 0.08
   - type: ItemCougher
     item: Hairball
     action: ActionHairball

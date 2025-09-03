@@ -6,6 +6,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
+using Content.Server._Lua.Language; // Lua
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Network;
@@ -18,6 +19,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; // Lua
 
     public override void Initialize()
     {
@@ -56,7 +58,8 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
+            // Lua
+            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset); // Lua end
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }

@@ -10,6 +10,8 @@ using Content.Shared.PowerCell;
 using Content.Shared._Lua.Language.Components.Translators;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
+using Content.Shared._Lua.Language; // LanguagePrototype
 
 namespace Content.Server._Lua.Language;
 
@@ -19,6 +21,7 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
@@ -51,13 +54,29 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
 
         foreach (var (translator, translatorComp) in component.Translators.ToArray())
         {
-            if (!translatorComp.Enabled || !_powerCell.HasActivatableCharge(uid))
+            // Always allow enabled handheld translators to work when held
+            if (!translatorComp.Enabled)
                 continue;
 
             if (!_containers.TryGetContainingContainer(translator, out var container) || container.Owner != uid)
             {
                 component.Translators.RemoveWhere(it => it.Owner == translator);
                 continue;
+            }
+
+            // Special case: IntergalacticTranslator understands all languages
+            var protoId = MetaData(translator).EntityPrototype?.ID;
+            if (protoId == "IntergalacticTranslator")
+            {
+                foreach (var lang in _prototype.EnumeratePrototypes<LanguagePrototype>())
+                {
+                    ev.UnderstoodLanguages.Add(lang.ID);
+                }
+                // Force output language to Intergalactic while translator is held
+                if (TryComp<LanguageSpeakerComponent>(uid, out var speakComp))
+                {
+                    _language.SetLanguage(uid, SharedLanguageSystem.UniversalPrototype, speakComp);
+                }
             }
 
             CopyLanguages(translatorComp, ev, knowledge);
@@ -75,6 +94,13 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
         intrinsic.Translators.Add((translator, component));
 
         _language.UpdateEntityLanguages(holder);
+
+        // If it's an intergalactic translator, force-set active language to Intergalactic after languages refreshed
+        var protoId = MetaData(translator).EntityPrototype?.ID;
+        if (protoId == "IntergalacticTranslator" && TryComp<LanguageSpeakerComponent>(holder, out var speakComp))
+        {
+            Timer.Spawn(0, () => _language.SetLanguage(holder, SharedLanguageSystem.UniversalPrototype, speakComp));
+        }
     }
 
     private void OnTranslatorParentChanged(EntityUid translator,
