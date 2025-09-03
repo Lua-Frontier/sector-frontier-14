@@ -28,6 +28,8 @@ using Content.Server.Radio.EntitySystems;
 using Content.Shared.Verbs;
 using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Timing;// Lua add timer panic button
+using Content.Shared.Lua.CLVar; // Lua
+using Robust.Shared.Configuration; // Lua
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -46,6 +48,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -98,7 +101,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         InitializeFTL();
 
         InitializeNFDrone(); // Frontier: add our drone subscriptions
+
+        Subs.CVar(_cfg, CLVars.AutoDelteEnabled, value => _autoDeleteEnabled = value, true); // Lua
     }
+
+    private bool _autoDeleteEnabled = true; // Lua
 
     private void OnConsoleGetVerbs(EntityUid uid, ShuttleConsoleComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -671,6 +678,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
+
+        if (!_autoDeleteEnabled)
+            return; // Lua
 
         if (!TryComp<TransformComponent>(console, out var xform) || xform.GridUid == null)
             return;

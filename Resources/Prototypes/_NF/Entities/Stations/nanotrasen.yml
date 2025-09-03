@@ -94,8 +94,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform
-    - type: PreventDelete # _Lua
-      remover: true # _Lua
 
 # region Dev
 - type: entity
@@ -191,8 +189,6 @@
   - BaseStationDeadDropHintExempt # No hints on ship generation
   categories: [ HideSpawnMenu ]
   components:
-  - type: PreventDelete # _Lua
-    remover: true # _Lua
   - type: Transform
   - type: ExtraShuttleInformation
 
@@ -202,8 +198,6 @@
   - StandardFrontierVessel
   categories: [ HideSpawnMenu ]
   components:
-  - type: PreventDelete # _Lua
-    remover: true # _Lua
   - type: Transform
   - type: ExtraShuttleInformation
     hiddenWithoutOpenJobs: true
@@ -215,8 +209,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
-  - type: PreventDelete # _Lua
-    remover: true # _Lua
 
 # region Expedition Shuttles
 - type: entity
