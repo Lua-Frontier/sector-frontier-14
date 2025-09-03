@@ -1,8 +1,9 @@
 # Loadout Definitions
-#- type: sponsorLoadout
-#  id: Reimon
-#  entity: ClothingBackpackReimon
-#  sponsorOnly: true
+- type: sponsorLoadout
+  id: Reimon
+  entity: ClothingBackpackReimon
+  sponsorOnly: true
+  login: Reimon
 #
 #- type: sponsorLoadout
 #  id: ReimonHypospray
@@ -18,7 +19,7 @@
 
 # Backpack
 - type: entity
-  parent: ClothingBackpack
+  parent: [ ClothingBackpack, HardsuitIdentifySponsor ]
   id: ClothingBackpackReimon
   name: сумка Minaris
   description: Такие сумки носят офицеры-исследователи компании Minaris.
@@ -101,7 +102,7 @@
 
 # Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ ClothingOuterHardsuitAtmos, HardsuitSpeedBuff ]
   id: ClothingOuterHardsuitReimon
   name: пустотный скафандр Minaris
   description: Пустотный скафандр офицера-исследователя компании Minaris Technical. Выполнен из дорогих материалов и экспериментальных сплавов.
