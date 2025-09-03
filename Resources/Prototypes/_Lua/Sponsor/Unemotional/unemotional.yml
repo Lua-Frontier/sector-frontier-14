@@ -161,6 +161,16 @@
     sprite: _Lua/Sponsor/unemotional/hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitdeFOA
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
+      cell_slot: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
   - type: Item
     size: Huge
   - type: PressureProtection

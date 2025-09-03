@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ "master" ]
     paths:
+      - "Resources/Prototypes/_Mono/Shipyard/**/*.yml" # Lua
+      - "Resources/Prototypes/_Lua/Shipyard/**/*.yml" # Lua
+      - "Resources/Maps/_Mono/Shuttles/**/*.yml" # Lua
+      - "Resources/Maps/_Lua/Shuttles/**/*.yml" # Lua
       - "Resources/Maps/_NF/Shuttles/**/*.yml" # Ship grids
       - "Resources/Prototypes/_NF/Shipyard/**/*.yml" # Shipyard prototypes
       - "Content.IntegrationTests/Tests/_NF/ShipyardTests.cs" # Shipyard tests

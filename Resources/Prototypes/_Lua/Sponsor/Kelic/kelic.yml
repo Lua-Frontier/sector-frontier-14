@@ -42,7 +42,9 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-      toggleable-clothing: !type:ContainerSlot
+        ents: []
+      toggleable-clothing: !type:ContainerSlot {}
+      cell_slot: !type:ContainerSlot {}
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitKelic
     requiredSlot: BACK

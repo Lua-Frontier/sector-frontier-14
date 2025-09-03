@@ -32261,9 +32261,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -39.5,-16.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: ComputerTabletopStationRecords
   entities:
   - uid: 5069
@@ -61688,7 +61685,6 @@ entities:
       parent: 1
     - type: SpecialRespawn
       stationMap:
-      - invalid
       - 1
 - proto: NutimovCircuitBoard
   entities:

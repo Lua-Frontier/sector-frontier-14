@@ -38,7 +38,10 @@ public sealed class HardsuitDNARadialSystem : EntitySystem
     {
         if (component.OpenDNARadialActionEntity != null)
         {
-            _actionContainer.RemoveAction(component.OpenDNARadialActionEntity);
+            var action = component.OpenDNARadialActionEntity.Value;
+            if (!TerminatingOrDeleted(action))
+                _actionContainer.RemoveAction(action);
+            component.OpenDNARadialActionEntity = null;
         }
     }
 
@@ -50,7 +53,9 @@ public sealed class HardsuitDNARadialSystem : EntitySystem
     {
         if (component.OpenDNARadialActionEntity != null)
         {
-            _actionContainer.RemoveAction(component.OpenDNARadialActionEntity);
+            var action = component.OpenDNARadialActionEntity.Value;
+            if (!TerminatingOrDeleted(action))
+                _actionContainer.RemoveAction(action);
             component.OpenDNARadialActionEntity = null;
         }
     }
