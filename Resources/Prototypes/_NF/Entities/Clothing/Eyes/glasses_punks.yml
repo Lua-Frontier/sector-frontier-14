@@ -5,6 +5,11 @@
   name: punk goggles
   description: How can you see anything in this with all the lights?
   components:
+  # Добавляем Item с формой и смещением, чтобы корректно отображаться в слотах инвентаря/сумках
+  - type: Item
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,0
   - type: VisionCorrection
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
@@ -48,7 +53,7 @@
   - type: Item
     shape:
     - 0,0,1,0
-    storedOffset: -20,-20
+    storedOffset: 0,0
   - type: Sprite
     sprite: _NF/Clothing/Eyes/Glasses/punk_glasses.rsi
     layers:

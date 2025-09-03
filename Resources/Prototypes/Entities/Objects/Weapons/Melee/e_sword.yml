@@ -6,6 +6,7 @@
   - type: WeaponCaseInsertable # Frontier
   - type: EnergySword
   - type: ItemToggle
+    onActivate: false # prevent activation via E while in world/containers
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
     soundDeactivate:
@@ -100,6 +101,7 @@
   description: A not as loud and dangerous dagger with a beam made of pure, concentrated plasma. This one is completely undisguised.
   components:
   - type: ItemToggle
+    onActivate: false # prevent activation via E while in world/containers
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
       params:
@@ -272,7 +274,7 @@
   components:
   - type: ItemToggle
     onUse: false # wielding events control it instead
-    onActivate: false # prevents the weapon from being able to be turned on when it is on the ground
+    onActivate: false # prevents activation via E while in world/containers
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
       params:

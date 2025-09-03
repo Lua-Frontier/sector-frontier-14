@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: roleLoadout
-  id: JobChemist 
+  id: JobChemist
   groups:
   - MedicalMask
   - ChemistJumpsuit
@@ -16,9 +16,30 @@
   - TopUnderwear
   - PantsUnderwear
   - SocksUnderwear
+  # Lua start Added contractor groups (extension)
+  - ContractorHead
+  - ContractorNeck
+  - ContractorJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  # Lua end
 
 - type: roleLoadout
-  id: JobParamedic 
+  id: JobParamedic
   groups:
   - ParamedicHead
   - MedicalMask
@@ -33,9 +54,30 @@
   - TopUnderwear
   - PantsUnderwear
   - SocksUnderwear
+  # Lua start Added contractor groups (extension)
+  - ContractorHead
+  - ContractorNeck
+  - ContractorJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  # Lua end
 
 - type: roleLoadout
-  id: JobMedicalDoctor 
+  id: JobMedicalDoctor
   groups:
   - MedicalDoctorHead
   - MedicalMask
@@ -51,9 +93,30 @@
   - TopUnderwear
   - PantsUnderwear
   - SocksUnderwear
+  # Lua start Added contractor groups (extension)
+  - ContractorHead
+  - ContractorNeck
+  - ContractorJumpsuit
+  - ContractorGloves
+  - ContractorBackpack
+  - ContractorOuterClothing
+  - ContractorForcedOuterClothing
+  - ContractorShoes
+  - ContractorFace
+  - ContractorGlasses
+  - ContractorBelt
+  - ContractorEars
+  - ContractorEncryptionKey
+  - ContractorBoxSurvival
+  - ContractorPDA
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorBackpackItems
+  - ContractorHandItems
+  # Lua end
 
 - type: roleLoadout
-  id: JobCentralCommandCargo 
+  id: JobCentralCommandCargo
   groups:
   - NFSpeciesSpecific
   - ContractorWallet

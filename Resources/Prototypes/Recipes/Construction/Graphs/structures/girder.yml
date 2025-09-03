@@ -152,6 +152,39 @@
               doAfter: 1
         # End Frontier: interior shuttle wall
 
+## TO DO MOVE TO _LUA NEW RECIPES+GRINDER
+# _Lua Start
+        - to: WallKrissSolid
+          completed:
+            - !type:SnapToGrid
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - material: Steel
+              amount: 2
+              doAfter: 1
+
+        - to: WallKrissSolidDiagonal
+          completed:
+            - !type:SnapToGrid
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: Cloth
+              amount: 1
+              doAfter: 1
+            - tool: Welding
+              doAfter: 1
+            - material: Steel
+              amount: 1
+              doAfter: 1
+# _Lua End
+
     - node: wall
       entity: WallSolid
       edges:
@@ -272,6 +305,7 @@
               amount: 2
               doAfter: 1
 
+# _Lua Start
         - to: plastitaniumwall
           conditions:
             - !type:EntityAnchored { }
@@ -316,6 +350,35 @@
               doAfter: 2
             - tool: Welding
               doAfter: 15
+
+        - to: WallKrissReinforced
+          completed:
+            - !type:SnapToGrid
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+            - material: Plasteel
+              amount: 4
+              doAfter: 1
+
+        - to: WallKrissReinforcedDiagonal
+          completed:
+            - !type:SnapToGrid
+          conditions:
+            - !type:EntityAnchored { }
+          steps:
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - material: Plasteel
+              amount: 3
+              doAfter: 1
+# _Lua End
 
         - to: shuttleWall
           completed:
@@ -502,6 +565,7 @@
             - tool: Cutting
               doAfter: 1
 
+# _Lua Start
     - node: plastitaniumwall
       entity: WallPlastitanium
       edges:
@@ -583,6 +647,102 @@
               doAfter: 1
             - tool: Cutting
               doAfter: 1
+
+    - node: WallKrissSolid
+      entity: WallKrissSolid
+      edges:
+        - to: girder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Prying
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1
+
+    - node: WallKrissSolidDiagonal
+      entity: WallKrissSolidDiagonal
+      edges:
+        - to: girder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Prying
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1
+
+    - node: WallKrissReinforcedDiagonal
+      entity: WallKrissReinforcedDiagonal
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Prying
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1
+
+    - node: WallKrissReinforced
+      entity: WallKrissReinforced
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlasteel1
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Welding
+              doAfter: 5
+            - tool: Prying
+              doAfter: 1
+            - tool: Anchoring
+              doAfter: 1
+            - tool: Welding
+              doAfter: 10
+            - tool: Prying
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Cutting
+              doAfter: 1
+
+# _Lua End
 
     - node: wallrust
       entity: WallSolidRust

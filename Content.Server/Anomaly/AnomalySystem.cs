@@ -18,7 +18,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Anomaly.Systems; // Lua
 using Robust.Shared.Timing; // Frontier
 using Content.Server.Stack; // Frontier
 using Content.Shared._NF.Anomaly; // Frontier
@@ -76,7 +75,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         ChangeAnomalySeverity(anomaly, Random.NextFloat(anomaly.Comp.InitialSeverityRange.Item1, anomaly.Comp.InitialSeverityRange.Item2), anomaly.Comp);
 
         ShuffleParticlesEffect(anomaly);
-        anomaly.Comp.Continuity = AnomalyRandomManager.GetThreadRandom().NextFloat(anomaly.Comp.MinContituty, anomaly.Comp.MaxContituty); // Lua
+        anomaly.Comp.Continuity = _random.NextFloat(anomaly.Comp.MinContituty, anomaly.Comp.MaxContituty);
         SetBehavior(anomaly, GetRandomBehavior());
     }
 
@@ -133,7 +132,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (particle.ParticleType == anomaly.Comp.TransformationParticleType || particle.TransmutationOverride)
         {
             ChangeAnomalySeverity(anomaly, VaryValue(particle.SeverityPerSeverityHit), anomaly.Comp);
-            if (AnomalyRandomManager.GetThreadRandom().Prob(anomaly.Comp.Continuity)) // Lua
+            if (_random.Prob(anomaly.Comp.Continuity))
                 SetBehavior(anomaly, GetRandomBehavior());
         }
     }
@@ -216,7 +215,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     private string GetRandomBehavior()
     {
         var weightList = _prototype.Index<WeightedRandomPrototype>(WeightListProto);
-        return weightList.Pick(AnomalyRandomManager.GetThreadRandom()); // Lua
+        return weightList.Pick(_random);
     }
 
     private void SetBehavior(Entity<AnomalyComponent> anomaly, ProtoId<AnomalyBehaviorPrototype> behaviorProto)

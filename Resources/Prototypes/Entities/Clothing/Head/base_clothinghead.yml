@@ -216,8 +216,8 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 3
-    energy: 2
+    radius: 9 # Lua: 3<9
+    energy: 6 # Lua: 2<6
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -232,8 +232,8 @@
         id: radiating
         interpolate: Linear
         maxDuration: 2.0
-        startValue: 3.0
-        endValue: 2.0
+        startValue: 9.0 # Lua: 3.0<9.0
+        endValue: 6.0 # Lua: 2.0<6.0
         isLooped: true
         reverseWhenFinished: true
       - !type:PulseBehaviour

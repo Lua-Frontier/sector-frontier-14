@@ -1,6 +1,12 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
+- type: sponsorLoadout
+  id: hqdishka
+  entity: ClothingBackpackIris
+  sponsorOnly: true
+  login: hqdishka
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackIris
@@ -44,7 +50,11 @@
       - id: ClothingBeltIrisRed
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  # - type: HardsuitAcidifier
+  - type: HardsuitIdentification
+    emaggable: false
+    securityMode: Acid
+    createAcidEffect: true
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Templar
@@ -103,7 +113,7 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  # - type: HardsuitSpeedBuff
+  - type: HardsuitSpeedBuff
   - type: PowerCellDraw
     drawRate: 3.6
     enabled: false

@@ -1,8 +1,9 @@
 # Sponsor Loadout
-# - type: sponsorLoadout
-#   id: Wisdom
-#   entity: ClothingBackpackWisdom
-#   sponsorOnly: true
+- type: sponsorLoadout
+  id: Wisdom
+  entity: ClothingBackpackWisdom
+  sponsorOnly: true
+  login: Wisdom
 
 # Backpack
 - type: entity
@@ -11,7 +12,7 @@
   name: рюкзак Мед-Техника
   description: Этот рюкзак предназначен для хранения медицинских принадлежностей и инструментов, необходимых для быстрого реагирования в экстренных ситуациях.
   suffix: Доминатор, Не спавнить
- # categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/Wisdom/backpack.rsi
@@ -87,7 +88,7 @@
 
 # Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ClothingOuterHardsuitAtmos, HardsuitIdentifySponsor, HardsuitSpeedBuff]
   id: ClothingOuterHardsuitWisdom
   name: скафандр Мед-Техника
   description: Скафандр с биокодированием, обеспечивающий защиту в критических ситуациях.
@@ -99,9 +100,18 @@
     sprite: _Lua/Sponsor/Wisdom/hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWisdom
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
+      cell_slot: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
   - type: Item
     size: Huge
-  # - type: HardsuitIdentification
   - type: Armor
     modifiers:
       coefficients:

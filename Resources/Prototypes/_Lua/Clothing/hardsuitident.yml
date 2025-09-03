@@ -1,0 +1,22 @@
+- type: entity
+  id: HardsuitIdentify
+  abstract: true
+  components:
+  - type: HardsuitIdentification
+  - type: HardsuitDNARadial
+  - type: Speech
+  - type: TTS
+    voice: Adjutant
+
+- type: entity
+  id: HardsuitIdentifySponsor
+  abstract: true
+  components:
+  - type: HardsuitIdentification
+    emaggable: false
+    securityMode: Acid
+    createAcidEffect: true
+  - type: HardsuitDNARadial
+  - type: Speech
+  - type: TTS
+    voice: Adjutant

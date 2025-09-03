@@ -1,0 +1,43 @@
+- type: construction
+  name: WallKrissReinforced-name
+  id: WallKrissReinforced
+  description: WallKrissReinforced-desc
+  graph: Girder
+  startNode: start
+  targetNode: WallKrissReinforced
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  name: WallKrissReinforcedDiagonal-name
+  id: WallKrissReinforcedDiagonal
+  description: WallKrissReinforcedDiagonal-desc
+  graph: Girder
+  startNode: start
+  targetNode: WallKrissReinforcedDiagonal
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  name: WallKrissSolid-name
+  id: WallKrissSolid
+  description: WallKrissSolid-desc
+  graph: Girder
+  startNode: start
+  targetNode: WallKrissSolid
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  name: WallKrissSolidDiagonal-name
+  id: WallKrissSolidDiagonal
+  description: WallKrissSolidDiagonal-desc
+  graph: Girder
+  startNode: start
+  targetNode: WallKrissSolidDiagonal
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

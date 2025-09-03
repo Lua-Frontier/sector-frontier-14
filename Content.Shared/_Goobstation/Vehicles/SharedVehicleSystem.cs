@@ -27,6 +27,9 @@ using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
 using Content.Shared.Weapons.Melee.Events; // Frontier
 using Content.Shared.Emag.Systems; // Frontier
+using Robust.Shared.Map; // Lua
+using System.Numerics; // Lua
+using Robust.Shared.GameObjects; // Lua
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -48,6 +51,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!; // Frontier
     [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
     [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Lua
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -222,6 +226,19 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             }
         }
     }
+// Lua start
+    private bool ShouldShowNoHandsPopup(EntityUid user)
+    {
+        if (!_net.IsClient)
+            return true;
+
+        var now = _timing.CurTime;
+        if (_lastNoHandsPopup.TryGetValue(user, out var last) && now - last < NoHandsPopupCooldown)
+            return false;
+        _lastNoHandsPopup[user] = now;
+        return true;
+    }
+// Lua end
 
     public override void Update(float frameTime)
     {
@@ -235,6 +252,21 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             {
                 EnsureHandsAreCorrect(rider, vehicle);
             }
+
+            // Lua start
+            if (TryComp(rider, out BuckleComponent? buckle) && buckle.BuckledTo is { } strapEnt)
+            {
+                var strapUid = strapEnt;
+                if (HasComp<VehicleComponent>(strapUid))
+                {
+                    var riderXform = Transform(rider);
+                    if (riderXform.ParentUid != strapUid)
+                    {
+                        var coords = new EntityCoordinates(strapUid, Vector2.Zero);
+                        _transform.SetCoordinates(rider, riderXform, coords, rotation: null);
+                    }
+                }
+            } // Lua end
         }
     }
     // Lua end (fuck driver cowboy)
@@ -281,7 +313,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!TryOccupyHands(driver, ent.Owner))
         {
             _buckle.TryUnbuckle(driver, ent.Owner);
-            _popup.PopupEntity(Loc.GetString("vehicle-no-free-hands"), driver, PopupType.Medium);
+            // Lua start: покажем сообщение не чаще раза в NoHandsPopupCooldown и только предсказуемо
+            if (ShouldShowNoHandsPopup(driver))
+                _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), ent, driver); // lua end
             return;
         }
         // Lua end  (fuck driver cowboy)
