@@ -282,6 +282,7 @@ public sealed class AsteroidSectorSystem : EntitySystem
         "TrainStation",
         "KettleStation",
         "Sky",
+        "Asteroids",
         "Default"
         };
         var parallax = EnsureComp<ParallaxComponent>(_mapUid);
