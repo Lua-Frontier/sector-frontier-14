@@ -133,12 +133,12 @@
         maxVol: 50
         reagents:
         - ReagentId: Ash
-          Quantity: 10
-  - type: SolutionSpiker
-    sourceSolution: food
-    ignoreEmpty: true
-  - type: ScoopableSolution
-    solution: food
+          Quantity: 1 # Lua 10<1
+  # - type: SolutionSpiker # Lua
+  #   sourceSolution: food # Lua
+  #   ignoreEmpty: true # Lua
+  # - type: ScoopableSolution # Lua
+  #   solution: food # Lua
   - type: Extractable
     grindableSolutionName: food
 

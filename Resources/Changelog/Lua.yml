@@ -966,3 +966,75 @@ Entries:
   id: 72
   time: '2025-08-27T17:28:15.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/157
+- author: UnilTan
+  changes:
+    - type: Fix
+      message: >-
+        Визуальные баги (фонарь утиль-скафа, иконки панк-очков, звук
+        тапок-уточек).
+    - type: Fix
+      message: >-
+        Сумки руды снова загружает печь, также работает УМЗД улучшение без
+        вываливания компонентов ; автолаты не теряют ресурсы при отключении;
+        Химмастер корректно отражает питание.
+    - type: Fix
+      message: >-
+        Антигравоботинки не позволяют летать лёжа; скиллы магафауны не дублируют
+        выстрел.
+    - type: Fix
+      message: Локализованы обозначения частот и исправлен баг с дробными значениями.
+  id: 73
+  time: '2025-08-30T12:22:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/138
+- author: UnilTan
+  changes:
+    - type: Add
+      message: Добавлен рецепт крафта для Barozine (лекарство от давления)
+    - type: Tweak
+      message: Пепел теперь требует измельчения для получения углерода
+    - type: Tweak
+      message: Электролиз целлюлозы теперь дает только чистый углерод
+    - type: Tweak
+      message: Уменьшено количество целлюлозы при измельчении материалов
+    - type: Fix
+      message: Пепел больше не может использоваться напрямую в мензурке
+  id: 74
+  time: '2025-08-30T13:14:09.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/144
+- author: UnilTan
+  changes:
+    - type: Fix
+      message: Исправлена система рыбалки - добавлен шанс поимки рыбы
+    - type: Add
+      message: Создана универсальная система рыбного филе
+    - type: Add
+      message: Полная русская локализация для рыбалки и кулинарии
+  id: 75
+  time: '2025-08-30T16:27:43.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/136
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Рядом с полем FPS добавлено поле FPS сервера
+    - type: Tweak
+      message: >-
+        Пропатчен SuitSensor для уменьшения частоты проверок датчиков на
+        комбинезонах
+  id: 76
+  time: '2025-09-03T14:34:36.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/174
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Добавлена регистрация ДНК скафандра, поддержка мультирегистрации ДНК, а
+        так же удаление ДНК из памяти скафандра.
+    - type: Add
+      message: Добавлен форсаж (ускорение) в скафандры доминаторов
+    - type: Add
+      message: Добавлена регистрация ДНК в скафандры доминаторов
+    - type: Add
+      message: Добавлена автовыдача предметов доминаторов в руки доминаторам
+  id: 77
+  time: '2025-09-03T14:47:06.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/172

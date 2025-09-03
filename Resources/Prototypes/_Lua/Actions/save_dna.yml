@@ -1,0 +1,49 @@
+- type: entity
+  id: ActionHardsuitOpenDNARadial
+  name: Управление ДНК
+  description: Открыть меню управления ДНК скафандра
+  components:
+  - type: Action
+    useDelay: 1.0
+    icon: _Lua/Interface/Actions/action_hardsuit_dna.png
+  - type: InstantAction
+    event: !type:OpenDNARadialActionEvent
+
+- type: entity
+  id: ActionHardsuitSaveDNA
+  name: Записать ДНК
+  description: Скафандр вносит ДНК в список разрешенных.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/action_hardsuit_reg_dna.png
+    priority: -20
+    useDelay: 10
+  - type: InstantAction
+    event: !type:StoreDNAActionEvent
+
+- type: entity
+  id: ActionHardsuitLockDNA
+  name: Завершить регистрацию ДНК
+  description: Скафандр окончательно запишет сохраненные ДНК и детонирует если кто-то с другим ДНК его наденет.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/action_hardsuit_lock_dna.png
+    priority: -20
+    useDelay: 10
+  - type: InstantAction
+    event: !type:LockDNAActionEvent
+
+- type: entity
+  id: ActionHardsuitClearDNA
+  name: Очистить записанные ДНК
+  description: Скафандр очистит записи ДНК и станет общедоступным.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/action_hardsuit_clear_dna.png
+    priority: -20
+    useDelay: 10
+  - type: InstantAction
+    event: !type:ClearDNAActionEvent

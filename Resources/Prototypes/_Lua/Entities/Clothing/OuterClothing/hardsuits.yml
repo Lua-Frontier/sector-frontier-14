@@ -28,8 +28,9 @@
         Caustic: 0.45
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitFSFCommanderBravo
-  # - type: HardsuitIdentification
-  #   emaggable: false
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
@@ -63,8 +64,9 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  # - type: HardsuitIdentification
-  #   emaggable: false
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
@@ -99,8 +101,9 @@
         Caustic: 0.35
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitFSFCommanderCharlie
-  # - type: HardsuitIdentification
-  #   emaggable: false
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
@@ -134,8 +137,9 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  # - type: HardsuitIdentification
-  #   emaggable: false
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
@@ -156,7 +160,9 @@
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits_Alt/fsf_commander_hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitFSFCommanderAlt
-  # - type: HardsuitIdentification
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
@@ -178,7 +184,9 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  # - type: HardsuitIdentification
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
@@ -201,7 +209,9 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  # - type: HardsuitIdentification
+  - type: HardsuitIdentification
+    emaggable: false
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant

@@ -16,6 +16,15 @@
   metabolisms:
     Poison:
       effects:
+      # Lua start
+      - !type:AdjustReagent
+        conditions:
+        - !type:OrganType
+          type: Ariral
+          shouldHave: true
+        reagent: AriralBlood
+        amount: -2
+        # Lua end
       - !type:ChemVomit
         conditions:
         - !type:OrganType

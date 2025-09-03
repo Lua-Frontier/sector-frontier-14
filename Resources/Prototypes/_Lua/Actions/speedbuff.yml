@@ -1,0 +1,13 @@
+
+- type: entity
+  id: ActionHardsuitSpeedBuff
+  name: Режим перегрузки скафандра
+  description: Включает форсажный режим скафандра, временно увеличивая скорость передвижения за счёт перегрузки систем.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/action_hardsuit_speedbuff.png
+    priority: -20
+    useDelay: 10
+  - type: InstantAction
+    event: !type:ActivateSpeedBuffActionEvent

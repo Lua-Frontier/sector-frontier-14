@@ -241,7 +241,7 @@
   group: Savory
   solids:
     FoodBreadBun: 1
-    FoodMeatFish: 1
+    FoodCuredCarp: 1 # Lua FoodMeatFish<FoodCuredCarp
     FoodCheeseSlice: 1
   recipeType: Oven # Frontier
 
@@ -966,8 +966,8 @@
     FoodBowlBig: 1
     FoodTomato: 1
     FoodMushroom: 1
-    FoodMeatFish: 1
-  recipeType: Oven # Frontier
+    FoodCuredCarp: 1 # Lua FoodMeatFish<FoodCuredCarp
+  recipeType: Oven # Froniter
 
 - type: microwaveMealRecipe
   id: RecipeMeatballSoup
@@ -1423,7 +1423,7 @@
     FoodDough: 1
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
-    FoodMeatFish: 2
+    FoodCuredCarp: 2 # Lua FoodMeatFish<FoodCuredCarp
   recipeType: Oven # Frontier
 
 - type: microwaveMealRecipe
@@ -1435,8 +1435,8 @@
   reagents:
     TableSalt: 1
   solids:
-    FoodMeatFish: 2
-  recipeType: Assembler # Frontier
+    FoodCuredCarp: 2 # Lua FoodMeatFish<FoodCuredCarp
+  recipeType: Assembler
 
 - type: microwaveMealRecipe
   id: RecipeMisoColaSoup
@@ -2499,12 +2499,13 @@
   group: Savory
   solids:
     FoodTacoShell: 1
-    FoodMeatFish: 1
+    FoodCuredCarp: 1 # Lua FoodMeatFish<FoodCuredCarp
     FoodOnionSlice: 2
     FoodTomato: 1
     FoodCabbage: 1
   recipeType: # Frontier
   - Oven # Frontier
+  - Microwave # Lua
 
 - type: microwaveMealRecipe
   id: RecipeTacoRat

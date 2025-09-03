@@ -1,0 +1,93 @@
+- type: entity
+  name: fish salad
+  parent: FoodBowlBase
+  id: FoodSaladFishGeneric
+  description: "Healthy. Allegedly. Fish definitely involved."
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Food/fish_dishes.rsi
+    state: fish_salad
+    scale: 0.9, 0.6
+  - type: FlavorProfile
+    flavors:
+    - leafy
+    - fishy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 3
+
+- type: entity
+  name: fish chowder
+  parent: FoodBowlBase
+  id: FoodSoupFishChowder
+  description: "Thick enough to stand your spoon. Don't test that."
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Food/fish_dishes.rsi
+    state: fish_chowder
+    scale: 0.9, 0.6
+  - type: FlavorProfile
+    flavors:
+    - creamy
+    - fishy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 4
+
+- type: entity
+  name: lemon fish pasta
+  parent: FoodMealBase
+  id: FoodMealFishLemonPasta
+  description: "When life gives you lemons, add fish and carbs."
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Food/fish_dishes.rsi
+    state: fish_lemon_pasta
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - citrus
+    - fishy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 2
+
+- type: entity
+  name: baked fish fillet
+  parent: FoodMealBase
+  id: FoodMealBakedFishFillet
+  description: "Crispy outside, space-fishy inside. Chef's secret: heat."
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Food/fish_dishes.rsi
+    state: baked_fish_fillet
+  - type: FlavorProfile
+    flavors:
+    - fishy
+    - savory
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+

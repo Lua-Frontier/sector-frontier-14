@@ -1,0 +1,27 @@
+- type: Tag
+  id: Fish
+
+- type: entity
+  name: raw fish fillet
+  parent: FoodMeatBase
+  id: FoodMeatFishGeneric
+  description: A slice of raw fish fillet.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+    - Fish
+  - type: Sprite
+    state: fish_fillet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: Fat
+          Quantity: 2

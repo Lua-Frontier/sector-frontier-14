@@ -424,7 +424,7 @@
     unlitIdleState: unshaded
     unlitRunningState: building-unshaded
     defaultProductionAmount: 1
-    productValueModifier: null
+    productValueModifier: 0.3  # Lua 3<0
     staticPacks:
     - NFScrapStatic
   - type: OreSiloClient
