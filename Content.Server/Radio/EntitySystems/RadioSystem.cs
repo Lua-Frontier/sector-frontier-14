@@ -180,7 +180,7 @@ public sealed class RadioSystem : EntitySystem
             channelText = $"\\[{channel.LocalizedName}\\]";
         // End Frontier
 
-        var wrappedMessageOriginal = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+        var wrappedMessageOriginal = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap", // Lua
             ("channel-color", channel.Color),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
@@ -191,14 +191,14 @@ public sealed class RadioSystem : EntitySystem
             ("headset-color", headsetColor),
             ("job", job));
 
-        // Prepare a representative chat message for logging/replay
+        // Lua Prepare a representative chat message for logging/replay
         var chat = new ChatMessage(
             ChatChannel.Radio,
             message,
-            wrappedMessageOriginal,
+            wrappedMessageOriginal, // Lua
             NetEntity.Invalid,
             null);
-        var receivers = new List<EntityUid>();
+        var receivers = new List<EntityUid>(); // Lua
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -218,10 +218,10 @@ public sealed class RadioSystem : EntitySystem
         if (frequency == null) // Nuclear-14
             frequency = GetFrequency(messageSource, channel); // Nuclear-14
 
-        // Determine language used by the speaker
+        // Lua start Determine language used by the speaker
         var language = _language.GetLanguage(messageSource);
         var isIntergalactic = language.ID == Content.Shared._Lua.Language.Systems.SharedLanguageSystem.UniversalPrototype;
-        var isSecurityChannel = channel.ID == "Security";
+        var isSecurityChannel = channel.ID == "Security"; // lua end
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -255,7 +255,7 @@ public sealed class RadioSystem : EntitySystem
             if (attemptEv.Cancelled)
                 continue;
 
-            // Per-listener content: holders of the language see full text; others get a single-word gibberish on non-security channels when language is not Intergalactic
+            // Lua start Per-listener content: holders of the language see full text; others get a single-word gibberish on non-security channels when language is not Intergalactic
             var listenerUnderstands = _language.CanUnderstand(receiver, language.ID);
             var displayRaw = message;
             if (!listenerUnderstands && !isSecurityChannel && !isIntergalactic)
@@ -283,13 +283,13 @@ public sealed class RadioSystem : EntitySystem
 
             var chatPer = new ChatMessage(ChatChannel.Radio, displayRaw, wrappedPer, NetEntity.Invalid, null);
             var chatMsgPer = new MsgChatMessage { Message = chatPer };
-            var evPer = new RadioReceiveEvent(displayRaw, messageSource, channel, radioSource, chatMsgPer, receivers);
+            var evPer = new RadioReceiveEvent(displayRaw, messageSource, channel, radioSource, chatMsgPer, receivers); // Lua end
 
             // send the message
-            RaiseLocalEvent(receiver, ref evPer);
+            RaiseLocalEvent(receiver, ref evPer); // Lua
         }
 
-        RaiseLocalEvent(new RadioSpokeEvent(messageSource, message, receivers.ToArray()));
+        RaiseLocalEvent(new RadioSpokeEvent(messageSource, message, receivers.ToArray())); // Lua
 
         if (name != Name(messageSource))
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");

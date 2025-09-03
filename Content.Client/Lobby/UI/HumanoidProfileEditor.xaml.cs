@@ -721,7 +721,7 @@ namespace Content.Client.Lobby.UI
 
             _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
             // Lua: Sort species strictly alphabetically by localized display name
-            _species.Sort((a, b) => string.Compare(Loc.GetString(a.Name), Loc.GetString(b.Name), System.StringComparison.CurrentCulture)); // Lua end
+            _species.Sort((a, b) => string.Compare(Loc.GetString(a.Name), Loc.GetString(b.Name), System.StringComparison.CurrentCulture)); // Lua
             var speciesIds = _species.Select(o => o.ID).ToList();
 
             for (var i = 0; i < _species.Count; i++)
@@ -1846,7 +1846,7 @@ namespace Content.Client.Lobby.UI
                 SetDirty();
                 ReloadProfilePreview();
             };
-        } //Lua end
+        }
 
         private void InitializeAllMarkingsGradientControls() //Lua start
         {

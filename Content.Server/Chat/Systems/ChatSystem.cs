@@ -225,9 +225,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             message = message[1..];
         }
 
-        var language = _language.GetLanguage(source);
+        var language = _language.GetLanguage(source);// Lua start
 
-        var shouldCapitalize = (desiredType != InGameICChatType.Emote); // Lua start
+        var shouldCapitalize = (desiredType != InGameICChatType.Emote);
         var shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
         var shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en"); // Lua end
@@ -490,7 +490,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         SendInVoiceRange(ChatChannel.Local, name, message, wrappedMessage, obfuscated, wrappedObfuscated, source, range);
 
         var ev = new EntitySpokeEvent(source, message, originalMessage, null, null);
-        RaiseLocalEvent(source, ev, true);  // Lua start
+        RaiseLocalEvent(source, ev, true);  // Lua end
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
         // Also doesn't log if hideLog is true.
@@ -550,8 +550,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
         name = FormattedMessage.EscapeText(name);
 
-        var languageObfuscatedMessage = SanitizeInGameICMessage(source, _language.ObfuscateSpeech(message, _language.GetLanguage(source)), out var emoteStr, true, _configurationManager.GetCVar(CCVars.ChatPunctuation), (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en") || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en"));
-        var languageObfuscatedMessageLongRange = ObfuscateMessageReadability(languageObfuscatedMessage, 0.2f); // Lua start
+        var languageObfuscatedMessage = SanitizeInGameICMessage(source, _language.ObfuscateSpeech(message, _language.GetLanguage(source)), out var emoteStr, true, _configurationManager.GetCVar(CCVars.ChatPunctuation), (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en") || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en")); // Lua start
+        var languageObfuscatedMessageLongRange = ObfuscateMessageReadability(languageObfuscatedMessage, 0.2f);
 
         var wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", nameIdentity, message, _language.GetLanguage(source));
         var wrappedUnknownMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", nameIdentity, message, _language.GetLanguage(source)); // Lua end

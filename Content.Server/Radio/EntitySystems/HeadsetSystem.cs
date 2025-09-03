@@ -58,8 +58,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
-            // Lua
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset); // Lua end
+            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset); // Lua
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }

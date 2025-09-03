@@ -455,7 +455,6 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             }
             else
             {
-                //Lua end Default color application
                 if (colors != null && j < colors.Count)
                 {
                     _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
@@ -463,7 +462,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 else
                 {
                     _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
-                } //Lua
+                } //Lua end Default color application
             }
 
             if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
