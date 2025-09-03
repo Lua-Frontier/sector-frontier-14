@@ -35,6 +35,11 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
+  - type: HardsuitIdentification
+  - type: HardsuitDNARadial
+  - type: Speech
+  - type: TTS
+    voice: Adjutant
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband]
@@ -73,3 +78,8 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
+  - type: HardsuitIdentification
+  - type: HardsuitDNARadial
+  - type: Speech
+  - type: TTS
+    voice: Adjutant

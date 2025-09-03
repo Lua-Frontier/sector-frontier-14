@@ -38,6 +38,7 @@ chat-emote-msg-goblin-throat-singing = поёт
 # Felinid
 chat-emote-msg-felinid-hiss = шипит
 chat-emote-msg-felinid-meow = мяукает
+chat-emote-msg-felinid-mews = мявкает
 chat-emote-msg-felinid-mew = мявкает
 chat-emote-msg-felinid-growl = рычит
 chat-emote-msg-felinid-purr = мурлыкает

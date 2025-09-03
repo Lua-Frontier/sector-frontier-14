@@ -158,6 +158,13 @@ public abstract class SwitchableOverlaySystem<TComp, TEvent> : EntitySystem // t
 
     private void OnToggle(EntityUid uid, TComp component, TEvent args)
     {
+        // Lua start
+        if (component.PulseTime > 0f && component.PulseAccumulator < component.PulseTime)
+        {
+            args.Handled = true;
+            return;
+        }
+        // Lua end
         Toggle(uid, component, !component.IsActive);
         RaiseSwitchableOverlayToggledEvent(uid, args.Performer, component.IsActive);
         args.Handled = true;

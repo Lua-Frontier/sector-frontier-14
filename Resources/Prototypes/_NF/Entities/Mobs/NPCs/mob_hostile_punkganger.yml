@@ -223,7 +223,8 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: Jittering
+  # Lua Remove excessive jittering that caused visual shaking
+  # - type: Jittering
   # Ghost role stuff
   - type: GhostRole
     allowMovement: true

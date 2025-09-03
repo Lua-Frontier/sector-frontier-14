@@ -215,8 +215,8 @@
     Stellibinin: 10
   recipeType:
   - Assembler
-
-# Birb
+  - Oven # Lua
+  - Microwave # Lua
 
 - type: microwaveMealRecipe
   id: RecipeFoodBakedWholeChicken
@@ -279,7 +279,7 @@
   solids:
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
-    FoodMeatFish: 1
+    FoodCuredCarp: 1 # Lua FoodMeatFish<FoodCuredCarp
   reagents:
     Rice: 15
     Water: 10
@@ -395,7 +395,8 @@
   solids:
     FoodCuredCarp: 1
   recipeType:
-  - Assembler
+  - Oven # Lua
+  - Microwave # Lua
 
 - type: microwaveMealRecipe
   id: RecipeBatteredOnionRings
@@ -1346,6 +1347,7 @@
   - Assembler
 
 # NOT ACTUAL FOOD
+# Non-food or medicinal processing outputs.
 
 - type: microwaveMealRecipe
   id: RecipeDriedShrooms

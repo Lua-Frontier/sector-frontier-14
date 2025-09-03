@@ -1,3 +1,4 @@
 
-chat-emote-name-spin = Spin
-chat-emote-msg-spin = spins!
+chat-emote-name-spin = Крутиться
+chat-emote-msg-spin = кружится
+

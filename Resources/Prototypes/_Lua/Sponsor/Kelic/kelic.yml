@@ -1,14 +1,15 @@
-#- type: sponsorLoadout
-#  id: Kelic
-#  entity: ClothingBackpackKelic
-#  sponsorOnly: true
+- type: sponsorLoadout
+  id: Kelic
+  entity: ClothingBackpackKelic
+  sponsorOnly: true
+  login: Kelic
 
 # Backpack
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, HardsuitIdentifySponsor, HardsuitSpeedBuff]
   id: ClothingBackpackKelic
   name: сумка с функцией РИГ "MS-06"
-  description: Компактная, износостойкая сумка, специально созданная для скафандра MS-06. 
+  description: Компактная, износостойкая сумка, специально созданная для скафандра MS-06.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -21,8 +22,8 @@
     - 0,0,19,9
   - type: StorageFill
     contents:
-      - id: ClothingNeckKelic 
-      - id: ClothingBeltKelic 
+      - id: ClothingNeckKelic
+      - id: ClothingBeltKelic
       - id: ClothingShoesBootsMagKelic
       - id: ClothingHandsGlovesCombatKelic
       - id: ClothingUniformJumpsuitKelic
@@ -37,11 +38,13 @@
       - id: WeaponCrusherKelic
       - id: HypoKelic
   - type: Tag
-    tags: [] # ignore "WhitelistChameleon" tag    
+    tags: [] # ignore "WhitelistChameleon" tag
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-      toggleable-clothing: !type:ContainerSlot
+        ents: []
+      toggleable-clothing: !type:ContainerSlot {}
+      cell_slot: !type:ContainerSlot {}
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitKelic
     requiredSlot: BACK
@@ -67,7 +70,7 @@
       - id: JawsOfLife
       - id: WelderExperimental
       - id: Multitool
-      
+
 # Neck
 - type: entity
   parent: ClothingNeckBase
@@ -111,8 +114,7 @@
         Caustic: 0.5
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
-#  - type: HardsuitIdentification
-#    nonlethal: true
+  - type: HardsuitSpeedBuff
   - type: HideLayerClothing
     slots:
     - Tail

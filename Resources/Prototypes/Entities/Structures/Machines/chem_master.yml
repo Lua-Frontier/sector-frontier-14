@@ -14,6 +14,7 @@
     - state: mixer_empty
     - state: mixer_screens
       shader: unshaded
+      visible: false # экран выключен по умолчанию, включается только при питании
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: Icon
     sprite: Structures/Machines/mixer.rsi

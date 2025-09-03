@@ -1,12 +1,13 @@
 # Mech armor
+# Lua start Пересмотрены все статы бронежилетов мехов, чтобы они были более логичными и сбалансированными.
 - type: damageModifierSet
   id: ThinArmor
   coefficients:
-    Blunt: 0.8
-    Slash: 0.8
-    Piercing: 0.9
-    Shock: 1.2
-    Heat: 0.8
+    Blunt: 1.0
+    Slash: 1.0
+    Piercing: 1.125
+    Shock: 1.5
+    Heat: 1.0
   flatReductions:
     Blunt: 3
     Heat: 2
@@ -14,11 +15,11 @@
 - type: damageModifierSet
   id: LightArmor
   coefficients:
-    Blunt: 0.75
-    Slash: 0.75
-    Piercing: 0.7
-    Shock: 1.2
-    Heat: 0.7
+    Blunt: 0.975
+    Slash: 0.975
+    Piercing: 0.875
+    Shock: 1.5
+    Heat: 0.875
   flatReductions:
     Blunt: 5
     Heat: 5
@@ -26,11 +27,11 @@
 - type: damageModifierSet
   id: MediumArmorNT
   coefficients:
-    Blunt: 0.6
-    Slash: 0.6
-    Piercing: 0.65
-    Shock: 1.4
-    Heat: 0.7
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.8125
+    Shock: 1.75
+    Heat: 0.875
   flatReductions:
     Blunt: 8
     Heat: 10
@@ -38,11 +39,11 @@
 - type: damageModifierSet
   id: HeavyArmorNT
   coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.35
-    Shock: 1.8
-    Heat: 0.6
+    Blunt: 0.625
+    Slash: 0.625
+    Piercing: 0.4375
+    Shock: 2.25
+    Heat: 0.75
   flatReductions:
     Blunt: 15
     Heat: 15
@@ -50,11 +51,11 @@
 - type: damageModifierSet
   id: MediumArmorSyndi
   coefficients:
-    Blunt: 0.6
-    Slash: 0.6
-    Piercing: 0.6
-    Shock: 1.4
-    Heat: 0.75
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.75
+    Shock: 1.75
+    Heat: 0.9375
   flatReductions:
     Blunt: 8
     Heat: 5
@@ -62,11 +63,12 @@
 - type: damageModifierSet
   id: HeavyArmorSyndi
   coefficients:
-    Blunt: 0.5
-    Slash: 0.5
-    Piercing: 0.4
-    Shock: 1.8
-    Heat: 0.7
+    Blunt: 0.625
+    Slash: 0.625
+    Piercing: 0.5
+    Shock: 2.25
+    Heat: 0.875
   flatReductions:
     Blunt: 10
     Heat: 7
+# Lua end

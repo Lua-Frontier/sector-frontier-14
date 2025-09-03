@@ -10,7 +10,16 @@ ent-NFWeaponShotgunSawn = обрез
    .desc = Против всякой шелупони. Использует патроны калибра .50 ружейный.
 ent-NFWeaponShotgunHandmade = самодельный пистолет
    .desc = Выглядит ненадёжно. Использует патроны калибра .50 ружейный.
+ent-NFWeaponShotgunHandmadeEmpty = самодельный пистолет (пустой)
+   .desc = Пустой вариант без патрона.
 ent-NFWeaponShotgunBlunderbuss = мушкетон
    .desc = Смертельно опасен на близком расстоянии.
 ent-NFWeaponShotgunImprovised = самодельный дробовик
    .desc = Дерьмовенькое ружьё кустарного производства, использующее патроны калибра .50 ружейный. Патронник рассчитан только на один патрон.
+
+ent-NFWeaponShotgunEnforcerLessLethal = Силовик нелетальный
+   .desc = Вариант под резиновые патроны.
+ent-NFWeaponShotgunKammererLessLethal = Каммерер нелетальный
+   .desc = Вариант под резиновые патроны.
+ent-NFWeaponShotgunSawnLessLethal = обрез нелетальный
+   .desc = Вариант под резиновые патроны.

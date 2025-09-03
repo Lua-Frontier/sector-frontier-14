@@ -27,10 +27,4 @@ public sealed partial class NFCargoPalletConsoleComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Whitelist;
-
-    /// <summary>
-    /// Влияет ли эта консоль на динамику рынка; пираты/фрилансеры обычно false.
-    /// </summary>
-    [DataField]
-    public bool ContributesToMarket = true;
 }
