@@ -43,6 +43,10 @@
     clothingPrototype: ClothingOuterHardsuitKelic
     requiredSlot: BACK
     slot: outerClothing
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      toggleable-clothing: !type:ContainerSlot
 
 # Belt
 - type: entity

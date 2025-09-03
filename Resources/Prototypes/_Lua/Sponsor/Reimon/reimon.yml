@@ -130,6 +130,10 @@
         Caustic: 0.5
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
 
 # Helmet
 - type: entity
