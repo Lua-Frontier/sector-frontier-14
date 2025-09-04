@@ -4,11 +4,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    specialDigestible:  # Lua start
-      tags:
-      - Meat
-      - Fish
-    isSpecialDigestibleExclusive: true # Lua end
   - type: SolutionContainerManager
     solutions:
       stomach:

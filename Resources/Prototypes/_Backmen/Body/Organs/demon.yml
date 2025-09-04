@@ -19,18 +19,11 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
-    # Lua start
-    specialDigestible:
-      tags:
-      - Meat
-      - Fish
-    isSpecialDigestibleExclusive: true
-    # Lua end
   - type: Organ
   - type: Metabolizer
     # mm yummy
     maxReagents: 3
-    metabolizerTypes: [Human, Demon]
+    metabolizerTypes: [Human]
     groups:
     - id: Food
     - id: Drink

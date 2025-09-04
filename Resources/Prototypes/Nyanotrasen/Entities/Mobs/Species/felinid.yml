@@ -56,9 +56,6 @@
     damage:
       types:
         Blunt: 1
-  - type: MovementSpeedModifier # Lua
-    baseWalkSpeed: 3.0 # Lua
-    baseSprintSpeed: 5.4 # Lua
   - type: Stamina
   - type: TypingIndicator
     proto: felinid
@@ -74,20 +71,12 @@
       Male: MaleFelinid
       Female: FemaleFelinid
       Unsexed: MaleFelinid
-  - type: SoftDarkVision # Lua start
-    perfectRadius: 2.7
-    falloffRadius: 4
-    color: "#cfd6d9"
-    innerEnergy: 0.23
-    outerEnergy: 0.08 # Lua end
   - type: ItemCougher
     item: Hairball
     action: ActionHairball
     coughPopup: hairball-cough
   - type: Felinid
-  - type: Hunger # Lua start
-    baseDecayRate: 0.024
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
     - Felinid
