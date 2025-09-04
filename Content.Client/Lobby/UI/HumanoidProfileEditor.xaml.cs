@@ -242,6 +242,8 @@ namespace Content.Client.Lobby.UI
             // Corvax-TTS-End
 
             RefreshSpecies();
+            InitializeHairGradientControls(); //Lua
+            InitializeAllMarkingsGradientControls(); //Lua
 
             SpeciesButton.OnItemSelected += args =>
             {
@@ -718,6 +720,8 @@ namespace Content.Client.Lobby.UI
             _species.Clear();
 
             _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
+            // Lua: Sort species strictly alphabetically by localized display name
+            _species.Sort((a, b) => string.Compare(Loc.GetString(a.Name), Loc.GetString(b.Name), System.StringComparison.CurrentCulture)); // Lua
             var speciesIds = _species.Select(o => o.ID).ToList();
 
             for (var i = 0; i < _species.Count; i++)
