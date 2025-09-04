@@ -4,14 +4,14 @@ on:
     types: [submitted]
 jobs:
   add_label:
-    if: ${{ github.event.review.state == 'APPROVED' }}
+    if: ${{ github.event.review.state == 'approved' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
     steps:
-      - name: Add label if founder
+      - name: Add label
         if: ${{ github.actor == 'HacksLua' }}
         uses: actions-ecosystem/action-add-labels@v1
         with:
-          labels: "APPROVED"
+          labels: APPROVED
+          github_token: ${{ secrets.LABELER_PAT }}
+          repo: ${{ github.repository }}
+
