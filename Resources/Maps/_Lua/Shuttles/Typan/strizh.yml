@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/02/2025 22:21:52
-  entityCount: 603
+  time: 09/04/2025 11:08:48
+  entityCount: 605
 maps: []
 grids:
 - 1
@@ -545,7 +545,7 @@ entities:
       pos: -7.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10885.566
+      secondsUntilStateChange: -11062.518
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1258,6 +1258,16 @@ entities:
     components:
     - type: Transform
       pos: -9.5,-7.5
+      parent: 1
+  - uid: 604
+    components:
+    - type: Transform
+      pos: 1.5,4.5
+      parent: 1
+  - uid: 605
+    components:
+    - type: Transform
+      pos: -0.5,4.5
       parent: 1
 - proto: BedsheetSyndie
   entities:
@@ -2795,7 +2805,6 @@ entities:
       storage:
         FuelGradeUranium: 3000
     - type: InsertingMaterialStorage
-      endTime: 0
 - proto: PoweredlightLED
   entities:
   - uid: 344
