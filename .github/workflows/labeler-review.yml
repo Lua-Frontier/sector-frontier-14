@@ -4,32 +4,16 @@ on:
   pull_request_review:
     types: [submitted]
 
+permissions:
+  pull-requests: write
+
 jobs:
   add_label:
-    if: ${{ github.event.review.state == 'approved' }}
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
-      - name: Check if reviewer ska
-        id: checkOwner
-        env:
-          ORG: ${{ github.repository_owner }}
-          TOKEN: ${{ secrets.LABELER_PAT }}
-        run: |
-          role=$(curl -s -H "Authorization: token $TOKEN" \
-            "https://api.github.com/orgs/$ORG/memberships/${GITHUB_ACTOR}" \
-            | jq -r '.role')
-          if [[ "$role" == "admin" ]]; then
-            echo "is_owner=true" >> $GITHUB_OUTPUT
-          else
-            echo "is_owner=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Add label if fk
-        if: ${{ steps.checkOwner.outputs.is_owner == 'true' }}
+      - name: Add approved label
         uses: actions-ecosystem/action-add-labels@v1
         with:
-          labels: "APPROVED"
-          github_token: ${{ secrets.LABELER_PAT }}
-          repo: ${{ github.repository }}
+          labels: APPROVED
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
