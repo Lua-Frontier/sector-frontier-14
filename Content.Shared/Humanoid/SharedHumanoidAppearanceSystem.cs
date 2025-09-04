@@ -458,6 +458,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.MarkingSet.EnsureSpecies(profile.Species, profile.Appearance.SkinColor, _markingManager, _proto);
 
+        // Lua start Copy hair gradient settings from profile to component
+        humanoid.HairGradientEnabled = profile.Appearance.HairGradientEnabled;
+        humanoid.HairGradientSecondaryColor = profile.Appearance.HairGradientSecondaryColor;
+        humanoid.HairGradientDirection = profile.Appearance.HairGradientDirection;
+        humanoid.FacialHairGradientEnabled = profile.Appearance.FacialHairGradientEnabled;
+        humanoid.FacialHairGradientSecondaryColor = profile.Appearance.FacialHairGradientSecondaryColor;
+        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection; //Lua end
+
         // Finally adding marking with forced colors
         foreach (var (marking, prototype) in markingFColored)
         {

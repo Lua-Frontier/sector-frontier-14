@@ -32,6 +32,45 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     [DataField]
     public List<Marking> Markings { get; set; } = new();
 
+    //Lua start Hair/Fur gradient settings
+    [DataField]
+    public bool HairGradientEnabled { get; set; } = false;
+
+    [DataField]
+    public Color HairGradientSecondaryColor { get; set; } = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField]
+    public int HairGradientDirection { get; set; } = 0;
+
+    [DataField]
+    public bool FacialHairGradientEnabled { get; set; } = false;
+
+    [DataField]
+    public Color FacialHairGradientSecondaryColor { get; set; } = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField]
+    public int FacialHairGradientDirection { get; set; } = 0; //Lua end
+
+    // Lua start Global gradient for all markings (except skin)
+    [DataField]
+    public bool AllMarkingsGradientEnabled { get; set; } = false;
+
+    [DataField]
+    public Color AllMarkingsGradientSecondaryColor { get; set; } = Color.White;
+
+    /// <summary>
+    /// 0 = bottom->top, 1 = top->bottom, 2 = left->right, 3 = right->left
+    /// </summary>
+    [DataField]
+    public int AllMarkingsGradientDirection { get; set; } = 0;
+    // Lua end
+
     public HumanoidCharacterAppearance(string hairStyleId,
         Color hairColor,
         string facialHairStyleId,
@@ -52,42 +91,127 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public HumanoidCharacterAppearance(HumanoidCharacterAppearance other) :
         this(other.HairStyleId, other.HairColor, other.FacialHairStyleId, other.FacialHairColor, other.EyeColor, other.SkinColor, new(other.Markings))
     {
-
+        HairGradientEnabled = other.HairGradientEnabled; //Lua start
+        HairGradientSecondaryColor = ClampColor(other.HairGradientSecondaryColor);
+        HairGradientDirection = other.HairGradientDirection;
+        FacialHairGradientEnabled = other.FacialHairGradientEnabled;
+        FacialHairGradientSecondaryColor = ClampColor(other.FacialHairGradientSecondaryColor);
+        FacialHairGradientDirection = other.FacialHairGradientDirection;
+        AllMarkingsGradientEnabled = other.AllMarkingsGradientEnabled;
+        AllMarkingsGradientSecondaryColor = ClampColor(other.AllMarkingsGradientSecondaryColor);
+        AllMarkingsGradientDirection = other.AllMarkingsGradientDirection; //Lua end
     }
 
     public HumanoidCharacterAppearance WithHairStyleName(string newName)
     {
-        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(newName, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public HumanoidCharacterAppearance WithHairColor(Color newColor)
     {
-        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, newColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public HumanoidCharacterAppearance WithFacialHairStyleName(string newName)
     {
-        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, newName, FacialHairColor, EyeColor, SkinColor, Markings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public HumanoidCharacterAppearance WithFacialHairColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, newColor, EyeColor, SkinColor, Markings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public HumanoidCharacterAppearance WithEyeColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, newColor, SkinColor, Markings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public HumanoidCharacterAppearance WithSkinColor(Color newColor)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, newColor, Markings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public HumanoidCharacterAppearance WithMarkings(List<Marking> newMarkings)
     {
-        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings);
+        return new(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, newMarkings) //Lua start
+        {
+            HairGradientEnabled = HairGradientEnabled,
+            HairGradientSecondaryColor = HairGradientSecondaryColor,
+            HairGradientDirection = HairGradientDirection,
+            FacialHairGradientEnabled = FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = FacialHairGradientSecondaryColor,
+            FacialHairGradientDirection = FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = AllMarkingsGradientSecondaryColor,
+            AllMarkingsGradientDirection = AllMarkingsGradientDirection
+        }; //Lua end
     }
 
     public static HumanoidCharacterAppearance DefaultWithSpecies(string species)
@@ -225,7 +349,15 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             facialHairColor,
             eyeColor,
             skinColor,
-            markingSet.GetForwardEnumerator().ToList());
+            markingSet.GetForwardEnumerator().ToList()) //Lua start
+        {
+            HairGradientEnabled = appearance.HairGradientEnabled,
+            HairGradientSecondaryColor = ClampColor(appearance.HairGradientSecondaryColor),
+            HairGradientDirection = appearance.HairGradientDirection,
+            FacialHairGradientEnabled = appearance.FacialHairGradientEnabled,
+            FacialHairGradientSecondaryColor = ClampColor(appearance.FacialHairGradientSecondaryColor),
+            FacialHairGradientDirection = appearance.FacialHairGradientDirection
+        }; //Lua end
     }
 
     public bool MemberwiseEquals(ICharacterAppearance maybeOther)
@@ -238,6 +370,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (!EyeColor.Equals(other.EyeColor)) return false;
         if (!SkinColor.Equals(other.SkinColor)) return false;
         if (!Markings.SequenceEqual(other.Markings)) return false;
+        if (HairGradientEnabled != other.HairGradientEnabled) return false; //Lua start
+        if (!HairGradientSecondaryColor.Equals(other.HairGradientSecondaryColor)) return false;
+        if (HairGradientDirection != other.HairGradientDirection) return false;
+        if (FacialHairGradientEnabled != other.FacialHairGradientEnabled) return false;
+        if (!FacialHairGradientSecondaryColor.Equals(other.FacialHairGradientSecondaryColor)) return false;
+        if (FacialHairGradientDirection != other.FacialHairGradientDirection) return false; //Lua end
         return true;
     }
 
@@ -261,7 +399,12 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor, EyeColor, SkinColor, Markings);
+        var h1 = HashCode.Combine(HairStyleId, HairColor, FacialHairStyleId, FacialHairColor); //Lua start
+        var h2 = HashCode.Combine(EyeColor, SkinColor, Markings);
+        var h3 = HashCode.Combine(HairGradientEnabled, HairGradientSecondaryColor, HairGradientDirection);
+        var h4 = HashCode.Combine(FacialHairGradientEnabled, FacialHairGradientSecondaryColor, FacialHairGradientDirection);
+        var h5 = HashCode.Combine(AllMarkingsGradientEnabled, AllMarkingsGradientSecondaryColor, AllMarkingsGradientDirection);
+        return HashCode.Combine(h1, h2, h3, h4, h5); //Lua end
     }
 
     public HumanoidCharacterAppearance Clone()
