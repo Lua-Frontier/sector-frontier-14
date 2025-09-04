@@ -29,7 +29,7 @@
     requireNoGrid: true
     shape: circle
   - type: TimedDespawn
-    lifetime: 5
+    lifetime: 7.5 #Lua 5<7.5
   - type: PointLight
     color: "#FB00FF"
   - type: EmpOnTrigger

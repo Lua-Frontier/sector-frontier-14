@@ -46,9 +46,6 @@ public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
 
         _menu?.SetEnabled(palletState.Enabled);
         _menu?.SetAppraisal(palletState.Appraisal);
-        _menu?.SetReal(palletState.Real); // Lua
         _menu?.SetCount(palletState.Count);
-        _menu?.SetReductionText(palletState.TotalReductionText ?? string.Empty); // Lua
-        _menu?.SetMinimalUi(palletState.MinimalUi); // Lua
     }
 }

@@ -560,7 +560,13 @@ namespace Content.Server.Lathe
                         batch.ItemsPrinted--;
                     }
                 }
-
+                else // Lua start
+                {
+                    // Queue check and refund as needed
+                    var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
+                    component.Queue.Insert(0, newBatch);
+                }
+                // Lua end
                 component.CurrentRecipe = null;
             }
             RemCompDeferred<LatheProducingComponent>(uid);

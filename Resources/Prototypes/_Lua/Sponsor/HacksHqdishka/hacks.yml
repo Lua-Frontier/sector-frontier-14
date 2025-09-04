@@ -1,6 +1,12 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
+- type: sponsorLoadout
+  id: hackslua
+  entity: ClothingBackpackLuaD
+  sponsorOnly: true
+  login: HacksLua
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackLua
@@ -47,7 +53,11 @@
       - id: BlinkImplanterLua
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  # - type: HardsuitAcidifier
+  - type: HardsuitIdentification
+    emaggable: false
+    securityMode: Acid
+    createAcidEffect: true
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Templar
@@ -130,7 +140,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  # - type: HardsuitSpeedBuff
+  - type: HardsuitSpeedBuff
+    powerConsumption: 0.5
   - type: PowerCellDraw
     drawRate: 3.6
     enabled: false
@@ -175,3 +186,7 @@
     clothingPrototype: ClothingHeadHelmetLua
   - type: Item
     size: Huge
+  - type: HardsuitReanimation
+  - type: Speech
+  - type: TTS
+    voice: Templar

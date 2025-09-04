@@ -33,9 +33,16 @@
     baseWalkSpeed: 2.8
     baseSprintSpeed: 5.8
     weightlessAcceleration: 2.5
+  - type: PseudoItem
+    storedOffset: 0,17
+    shape:
+      - 0,0,1,4
+      - 0,2,3,4
+      - 4,0,5,4
   - type: Carriable
   - type: DiseaseCarrier
   - type: HarpyVisuals
+  - type: CantCarryOthers
   - type: Icon
     sprite: _Lua/Races/Avali/parts.rsi
     state: full
@@ -60,6 +67,13 @@
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
       - map: [ "underwearb" ] # Sirena-Underwear
       - map: [ "underweart" ] # Sirena-Underwear
+      # Ensure local stencil buffer is cleared before any clothing with displacement/shader writes.
+      # This prevents clothes from disappearing in UI previews and with vision overlays.
+      - shader: StencilClear
+        sprite: Mobs/Species/Human/parts.rsi
+        # Using a full-size human limb as a harmless quad to clear the stencil in the entity's draw region.
+        # See similar usage in vulpkanin species prototype.
+        state: l_leg
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
       - map: [ "enum.HumanoidVisualLayers.RHand" ]
       - map: [ "enum.HumanoidVisualLayers.LFoot" ]

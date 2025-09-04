@@ -7,11 +7,13 @@ using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Lua.CLVar; // Lua
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Robust.Shared.Configuration; // Lua
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -24,12 +26,15 @@ public sealed class ShipOwnershipSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
 
     private readonly HashSet<EntityUid> _pendingDeletionShips = new();
-    
+
     // Timer for deletion checks
     private TimeSpan _nextDeletionCheckTime;
     private const int DeletionCheckIntervalSeconds = 60;
+
+    private bool _autoDeleteEnabled; // Lua
 
     public override void Initialize()
     {
@@ -41,9 +46,11 @@ public sealed class ShipOwnershipSystem : EntitySystem
         // Initialize tracking for ships
         SubscribeLocalEvent<ShipOwnershipComponent, ComponentStartup>(OnShipOwnershipStartup);
         SubscribeLocalEvent<ShipOwnershipComponent, ComponentShutdown>(OnShipOwnershipShutdown);
-        
+
         // Initialize the deletion check timer
         _nextDeletionCheckTime = _gameTiming.CurTime;
+
+        Subs.CVar(_cfg, CLVars.AutoDelteEnabled, value => _autoDeleteEnabled = value, true); // Lua
     }
 
     public override void Shutdown()
@@ -77,13 +84,16 @@ public sealed class ShipOwnershipSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        if (!_autoDeleteEnabled) 
+            return; // Lua
+
         // Only check for ship deletion every DeletionCheckIntervalSeconds
         if (_gameTiming.CurTime < _nextDeletionCheckTime)
             return;
-            
+
         // Update next check time
         _nextDeletionCheckTime = _gameTiming.CurTime + TimeSpan.FromSeconds(DeletionCheckIntervalSeconds);
-        
+
         // Log that we're checking for ships to delete
         Logger.DebugS("shipOwnership", $"Checking for abandoned ships to delete");
 

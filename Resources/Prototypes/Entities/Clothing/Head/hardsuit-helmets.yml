@@ -102,18 +102,17 @@
     sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
-  - type: HandheldLight
-    addPrefix: false
+    clothingVisuals:
+      head:
+      - state: off-equipped-HELMET
+      head-vox:
+      - state: off-equipped-HELMET-vox
   - type: ToggleableVisuals
     clothingVisuals:
       head:
-      - state: equipped-head
-      - state: equipped-head-unshaded
-        shader: unshaded
+      - state: on-equipped-HELMET
       head-vox:
-      - state: equipped-head-vox
-      - state: equipped-head-unshaded-vox
-        shader: unshaded
+      - state: on-equipped-HELMET-vox
   - type: PointLight
     radius: 6
   - type: PressureProtection

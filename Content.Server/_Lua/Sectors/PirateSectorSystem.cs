@@ -126,7 +126,8 @@ public sealed class PirateSectorSystem : EntitySystem
 
         var parallaxes = new[]
         {
-        "CoreStation"
+        "CoreStation",
+        "Tortuga"
         };
         var parallax = EnsureComp<ParallaxComponent>(_mapUid);
         parallax.Parallax = _random.Pick(parallaxes);

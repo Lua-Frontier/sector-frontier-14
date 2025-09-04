@@ -1,0 +1,24 @@
+- type: entity
+  id: HardsuitSpeedBuff
+  abstract: true
+  components:
+  - type: PowerCellDraw
+    drawRate: 3.6
+    enabled: false
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: HardsuitSpeedBuff

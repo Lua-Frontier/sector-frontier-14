@@ -17,8 +17,8 @@
     Cellulose:
       amount: 3
   products:
-    Sugar: 2
-    Carbon: 1
+    # Sugar: 2 # Lua
+    Carbon: 2.25 # Lua 2<2.25
 
 - type: reaction
   id: Diethylamine
