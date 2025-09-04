@@ -5,8 +5,8 @@
  */
 
 using Content.Shared.UserInterface;
-using Content.Shared._NF.Finance.BUI;
-using Content.Shared._NF.Finance.Events;
+using Content.Shared._Lua.Finance.BUI;
+using Content.Shared._Lua.Finance.Events;
 using Robust.Client.UserInterface;
 using Content.Client._Lua.Finance.UI; //Lua
 

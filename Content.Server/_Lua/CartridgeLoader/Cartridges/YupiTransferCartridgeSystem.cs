@@ -2,7 +2,7 @@ using Content.Server.CartridgeLoader;
 using Content.Server.Popups;
 using Content.Server._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
-using Content.Shared._NF.Bank.Events;
+using Content.Shared._Lua.Bank.Events;
 using Content.Shared.CartridgeLoader;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Preferences;

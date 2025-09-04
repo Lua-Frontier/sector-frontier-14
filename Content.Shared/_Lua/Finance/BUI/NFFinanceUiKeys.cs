@@ -6,7 +6,7 @@
 using System;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._NF.Finance.BUI;
+namespace Content.Shared._Lua.Finance.BUI;
 
 [Serializable, NetSerializable]
 public enum NFFinanceDepositUiKey : byte

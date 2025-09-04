@@ -7,7 +7,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Content.Shared.CartridgeLoader;
 
-namespace Content.Shared._NF.Bank.Events;
+namespace Content.Shared._Lua.Bank.Events;
 
 [Serializable, NetSerializable]
 public sealed class YupiTransferRequestMessage : CartridgeMessageEvent

@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 using Content.Shared._NF.Finance;
-using Content.Shared._NF.Finance.Events;
+using Content.Shared._Lua.Finance.Events;
 using Content.Server._NF.Bank;
 using Robust.Shared.IoC;
 using Robust.Shared.Timing;

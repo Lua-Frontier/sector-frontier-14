@@ -3,13 +3,13 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
-using Content.Shared._NF.Finance.Events;
+using Content.Shared._Lua.Finance.Events;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Content.Shared._NF.Bank;
-using static Content.Shared._NF.Finance.Events.DepositTermType;
-using static Content.Shared._NF.Finance.Events.DepositRateModel;
+using static Content.Shared._Lua.Finance.Events.DepositTermType;
+using static Content.Shared._Lua.Finance.Events.DepositRateModel;
 using Robust.Shared.Localization; //Lua
 
 namespace Content.Client._Lua.Finance.UI;

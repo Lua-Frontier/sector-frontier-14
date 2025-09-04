@@ -1,8 +1,3 @@
-/*
- * LuaWorld - This file is licensed under AGPLv3
- * Copyright (c) 2025 LuaWorld Contributors
- * See AGPLv3.txt for details.
- */
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -228,20 +223,8 @@ public sealed partial class BankSystem : SharedBankSystem
 			return false;
 		}
 
-		// Lua Start: Apply deposit priority so Due/Hold reduce before balance increases
-		try
-		{
-			var finance = EntityManager.System<Content.Server._NF.Finance.FinanceSystem>();
-			var (toDue, toHold, remainder) = finance.ApplyDepositPriority(session, amount);
-			var delta = Math.Max(0, remainder);
-			newBalance = profile.BankBalance + delta;
-		}
-		catch
-		{
-			// Fallback: if finance system unavailable for some reason, deposit full amount
-			newBalance = profile.BankBalance + amount;
-		}
-		// Lua End
+		// Lua: Apply deposit priority so Due/Hold reduce before balance increases
+		newBalance = ApplyFinancePriorityDeposit(session, amount) ?? (profile.BankBalance + amount);
 
 		var newProfile = profile.WithBankBalance(newBalance.Value);
 		var index = prefs.IndexOfCharacter(profile);
@@ -323,25 +306,15 @@ public sealed partial class BankSystem : SharedBankSystem
 			return false;
 		}
 
-		// Lua Start: Apply finance priority even for offline deposits
-		try
-		{
-			var finance = EntityManager.System<Content.Server._NF.Finance.FinanceSystem>();
-			// Build a fake session wrapper for ApplyDepositPriority
-			var session = new OfflineSessionShim(userId);
-			var (toDue, toHold, remainder) = finance.ApplyDepositPriority(session, amount);
-			amount = Math.Max(0, remainder);
-		}
-		catch
-		{
-			// If finance not available, deposit full amount
-		}
-		// Lua End
-
 		int newBalance = profile.BankBalance + amount;
 
 		var newProfile = profile.WithBankBalance(newBalance);
 		var index = prefs.IndexOfCharacter(profile);
+
+		// Lua: Apply finance priority even for offline deposits
+		amount = ApplyFinancePriorityOfflineDeposit(userId, index, amount) ?? amount;
+		newBalance = profile.BankBalance + amount;
+		newProfile = profile.WithBankBalance(newBalance);
 		if (index == -1)
 		{
 			_log.Info($"TryBankDepositOffline: {userId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
@@ -363,29 +336,6 @@ public sealed partial class BankSystem : SharedBankSystem
 		return true;
 	}
 
-	// Lua Start: offline session shim for finance priority
-	private sealed class OfflineSessionShim : ICommonSession
-	{
-		public NetUserId UserId { get; }
-		public EntityUid? AttachedEntity => null;
-		public string Name => "offline";
-		public SessionStatus Status => SessionStatus.Disconnected;
-		public short Ping => 0;
-		public INetChannel Channel { get; set; } = default!;
-		public LoginType AuthType => LoginType.GuestAssigned;
-		public HashSet<EntityUid> ViewSubscriptions { get; } = new();
-		public DateTime ConnectedTime { get; set; } = DateTime.MinValue;
-		public SessionState State { get; } = new();
-		public SessionData Data { get; }
-		public bool ClientSide { get; set; }
-
-		public OfflineSessionShim(NetUserId id)
-		{
-			UserId = id;
-			Data = new SessionData(id, Name);
-		}
-	}
-	// Lua End
 
 	/// <summary>
 	/// Retrieves a character's balance via its in-game entity, if it has one.
@@ -464,42 +414,11 @@ public sealed partial class BankSystem : SharedBankSystem
 	/// <summary>
 	/// Player's preferences loaded (mostly for hotjoin)
 	/// </summary>
-	public async void OnPreferencesLoaded(EntityUid mobUid, BankAccountComponent comp, PreferencesLoadedEvent ev)
-	{
-		UpdateBankBalance(mobUid, comp);
-
-		// Ensure YUPI account code exists for ALL characters in this user's prefs and are unique.
-		try
-		{
-			var prefs = ev.Prefs;
-			// Assign codes to any slots missing one.
-			var assigned = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-			foreach (var (idx, profBase) in prefs.Characters)
-			{
-				if (profBase is not HumanoidCharacterProfile profile)
-					continue;
-				if (IsValidYupiCode(profile.YupiAccountCode))
-				{
-					assigned.Add(profile.YupiAccountCode);
-					continue;
-				}
-
-				// Generate a unique code and save it to this slot
-				var code = await GenerateUniqueYupiCodeAsync();
-				while (assigned.Contains(code))
-				{
-					code = await GenerateUniqueYupiCodeAsync();
-				}
-				assigned.Add(code);
-				var newProfile = profile.WithYupiAccountCode(code);
-				await _prefsManager.SetProfile(ev.Session.UserId, idx, newProfile, validateFields: false);
-			}
-		}
-		catch (Exception e)
-		{
-			_log.Error($"Failed to ensure YUPI code: {e}");
-		}
-	}
+	        public void OnPreferencesLoaded(EntityUid mobUid, BankAccountComponent comp, PreferencesLoadedEvent ev) //Lua
+        {
+            UpdateBankBalance(mobUid, comp);
+            HandleYupiCodeAssignmentSafely(ev); //Lua
+        }
 
 	/// <summary>
 	/// Player attached, make sure the bank account is up-to-date.
@@ -766,9 +685,8 @@ public sealed partial class BankSystem : SharedBankSystem
 			return false;
 		}
 
-		// Lua: 50000<cvarMax
-		var cvarMax = IoCManager.Resolve<IConfigurationManager>().GetCVar(FinanceCVars.TransferMaxAmountPerOperation);
-		if (amount > cvarMax)
+		// Lua: проверка лимита перевода из CVar
+		if (!CheckTransferLimit(amount))
 		{
 			error = YupiTransferError.ExceedsPerTransferLimit;
 			return false;

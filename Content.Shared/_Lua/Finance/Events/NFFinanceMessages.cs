@@ -7,7 +7,7 @@ using System;
 using Content.Shared.UserInterface;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._NF.Finance.Events;
+namespace Content.Shared._Lua.Finance.Events;
 
 // Rating console messages
 

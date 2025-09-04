@@ -6,7 +6,7 @@
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Content.Shared._NF.Finance.Events;
+using Content.Shared._Lua.Finance.Events;
 using Robust.Shared.Maths;
 using Vector2 = System.Numerics.Vector2;
 using Robust.Client.UserInterface;

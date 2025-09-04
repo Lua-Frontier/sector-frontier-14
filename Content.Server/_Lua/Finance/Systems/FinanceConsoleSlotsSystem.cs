@@ -6,7 +6,7 @@
 using Content.Server._NF.Finance.Components;
 using Content.Shared.Containers.ItemSlots;
 
-namespace Content.Server._NF.Finance;
+namespace Content.Server._Lua.Finance;
 
 public sealed class FinanceConsoleSlotsSystem : EntitySystem
 {
