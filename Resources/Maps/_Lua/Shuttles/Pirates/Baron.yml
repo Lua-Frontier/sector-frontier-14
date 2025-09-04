@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 11:29:08
-  entityCount: 1629
+  time: 09/04/2025 12:30:17
+  entityCount: 1622
 maps: []
 grids:
 - 1
@@ -4991,22 +4991,6 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 741
-          - 742
-          - 739
-          - 740
-          - 737
-          - 743
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: CurtainsBlack
   entities:
   - uid: 744
@@ -7571,34 +7555,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MedkitAdvancedFilled
-  entities:
-  - uid: 737
-    components:
-    - type: Transform
-      parent: 736
-    - type: Storage
-      storedItems:
-        738:
-          position: 0,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 738
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 739
-    components:
-    - type: Transform
-      parent: 736
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MedkitCombatFilled
   entities:
   - uid: 1066
@@ -7606,22 +7562,6 @@ entities:
     - type: Transform
       pos: -7.4906354,-20.411335
       parent: 1
-- proto: MedkitFilled
-  entities:
-  - uid: 740
-    components:
-    - type: Transform
-      parent: 736
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 741
-    components:
-    - type: Transform
-      parent: 736
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MiningDrill
   entities:
   - uid: 55
@@ -8007,31 +7947,6 @@ entities:
       - C48CC5B7918ABFA5EC61A0AE86D0F53E
       - BC0BBD1584BC08AE3D76BBD798E7314D
       - 922813DFD3058725A66C427220B17638
-  - uid: 738
-    components:
-    - type: Transform
-      parent: 737
-    - type: Physics
-      canCollide: False
-    - type: Paper
-      stampState: paper_stamp-trader
-      stampedBy:
-      - reapply: False
-        stampType: RubberStamp
-        stampedColor: '#000000FF'
-        stampedName: stamp-component-stamped-name-trader
-      content: >2-
-
-
-
-                               Специально 
-                                                    для 
-                                                             Баронессы
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
   - uid: 1098
     components:
     - type: Transform
@@ -9322,22 +9237,6 @@ entities:
     - type: Transform
       pos: -4.5,-18.5
       parent: 1
-- proto: Stimpack
-  entities:
-  - uid: 742
-    components:
-    - type: Transform
-      parent: 736
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 743
-    components:
-    - type: Transform
-      parent: 736
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: StimpackMini
   entities:
   - uid: 337
