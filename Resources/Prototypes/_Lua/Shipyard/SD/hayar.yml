@@ -2,39 +2,39 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
-- type: vessel
-  parent: BaseVessel
-  id: Hayar
-  name: Хаяр
-  description: Эсминец Lua Technologies, упрощенная версия корабля LuaTech, оснащенная только самым необходимым, рекомендуемый экипаж 4 человека, служит для сопровожения Линкора Хевишь.
-  price: 244213
-  category: Medium
-  group: Security
-  access: Sergeant
-  shuttlePath: /Maps/_Lua/Shuttles/SD/hayar.yml
-  guidebookPage: Null
-  noVoucher: true
-  class:
-  - Capital
-  - Fighter
-  engine:
-  - Uranium
-  addComponents:
-    - type: IFF
-      color: "#009954"
-    - type: NanotrasenFtl
+# - type: vessel
+#   parent: BaseVessel
+#   id: Hayar
+#   name: Хаяр
+#   description: Эсминец Lua Technologies, упрощенная версия корабля LuaTech, оснащенная только самым необходимым, рекомендуемый экипаж 4 человека, служит для сопровожения Линкора Хевишь.
+#   price: 244213
+#   category: Medium
+#   group: Security
+#   access: Sergeant
+#   shuttlePath: /Maps/_Lua/Shuttles/SD/hayar.yml
+#   guidebookPage: Null
+#   noVoucher: true
+#   class:
+#   - Capital
+#   - Fighter
+#   engine:
+#   - Uranium
+#   addComponents:
+#     - type: IFF
+#       color: "#009954"
+#     - type: NanotrasenFtl
 
-- type: gameMap
-  id: Hayar
-  mapName: 'Хаяр'
-  mapPath: /Maps/_Lua/Shuttles/SD/hayar.yml
-  minPlayers: 0
-  stations:
-    Hayar:
-      stationProto: StandardFrontierVessel
-      components:
-      - type: StationNameSetup
-        mapNameTemplate: 'Хаяр {1}'
-        nameGenerator:
-          !type:LuaTechNameGenerator
-            prefixCreator: '14'
+# - type: gameMap
+#   id: Hayar
+#   mapName: 'Хаяр'
+#   mapPath: /Maps/_Lua/Shuttles/SD/hayar.yml
+#   minPlayers: 0
+#   stations:
+#     Hayar:
+#       stationProto: StandardFrontierVessel
+#       components:
+#       - type: StationNameSetup
+#         mapNameTemplate: 'Хаяр {1}'
+#         nameGenerator:
+#           !type:LuaTechNameGenerator
+#             prefixCreator: '14'
