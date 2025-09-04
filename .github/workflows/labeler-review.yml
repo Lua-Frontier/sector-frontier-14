@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Add label if founder
-        if: ${{ github.actor == github.repository_owner }}
+        if: ${{ github.actor == 'HacksLua' }}
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: "APPROVED"
