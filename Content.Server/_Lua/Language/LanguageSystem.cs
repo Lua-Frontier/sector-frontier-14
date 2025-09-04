@@ -4,6 +4,7 @@ using Content.Shared._Lua.Language;
 using Content.Shared._Lua.Language.Components;
 using Content.Shared._Lua.Language.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Ghost;
 using UniversalLanguageSpeakerComponent = Content.Shared._Lua.Language.Components.UniversalLanguageSpeakerComponent;
 
 namespace Content.Server._Lua.Language;
@@ -46,6 +47,9 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
     public bool CanUnderstand(Entity<LanguageSpeakerComponent?> listener, string language)
     {
+        if (HasComp<GhostComponent>(listener))
+            return true;
+
         if (language == UniversalPrototype || _universalLanguageSpeakerQuery.HasComp(listener))
             return true;
 
