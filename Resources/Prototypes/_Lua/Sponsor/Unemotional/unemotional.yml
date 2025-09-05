@@ -1,3 +1,9 @@
+- type: sponsorLoadout
+  id: unemotional
+  entity: ClothingBackpackdeFoA
+  sponsorOnly: true
+  login: unemotional
+
 # Cloak
 - type: entity
   parent: ClothingNeckBase
@@ -143,7 +149,7 @@
 
 # Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ClothingOuterHardsuitAtmos, HardsuitIdentifySponsor, HardsuitSpeedBuff]
   id: ClothingOuterHardsuitdeFOA
   name: скафандр "deFo"
   description: Изготовлено на заказ компанией "deFo".
@@ -155,6 +161,16 @@
     sprite: _Lua/Sponsor/unemotional/hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitdeFOA
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
+      cell_slot: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
   - type: Item
     size: Huge
   - type: PressureProtection

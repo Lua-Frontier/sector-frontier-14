@@ -22,43 +22,18 @@ public sealed partial class CargoPalletMenu : FancyWindow
 
     public void SetAppraisal(int amount)
     {
-        AppraisalLabel.Text = BankSystemExtensions.ToSpesoString(amount); // Suffixed to avoid BUI collisions (see RT#5648)
+        AppraisalLabel.Text = BankSystemExtensions.ToSpesoString(amount); // Frontier: custom speso formatting
     }
-
-    // Lua start
-    // Устанавливает реальную выплату после налогов и динамического мультипликатора.
-    public void SetReal(int amount)
-    {
-        RealLabel.Text = BankSystemExtensions.ToSpesoString(amount);
-    }
-    // Lua end
 
     public void SetCount(int count)
     {
         CountLabel.Text = count.ToString();
     }
-
-    // Lua start
-    // Устанавливает краткое описание общего снижения цены (например, "-17%").
-    public void SetReductionText(string text)
-    {
-        ReductionLabel.Text = text;
-    }
-    // Lue end
-
     public void SetEnabled(bool enabled)
     {
         AppraiseButton.Disabled = !enabled;
         SellButton.Disabled = !enabled;
     }
-
-    // Lua start
-    public void SetMinimalUi(bool minimal)
-    {
-        RealRow.Visible = !minimal;
-        ReductionRow.Visible = !minimal;
-    }
-    // Lua end
 
     private void OnSellPressed(BaseButton.ButtonEventArgs obj)
     {

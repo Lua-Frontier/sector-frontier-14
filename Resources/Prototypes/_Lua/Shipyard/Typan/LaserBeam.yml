@@ -2,11 +2,14 @@
   id: LaserBeam
   parent: BaseVesselAntag
   name: ML-LaserBeam
-  description: Крейсер снабженный эксперементальным орудием ADEX-9 DYMERE. Невероятно мощен, но имеет множество технических ньюансов. Прилагается инструкция.
-  price: 400000 #200000 (2x price: Turbolaser)
+  description: Крейсер снабженный эксперементальным орудием ADEX-9 DYMERE. Невероятно мощен, но имеет множество технических ньюансов.
+  price: 500000 #200000 (2.5x price: Turbolaser + underfloor loot)
   category: Medium
   group: Typan
   shuttlePath: /Maps/_Lua/Shuttles/Typan/LaserBeam.yml
+  class:
+  - Capital
+  - Syndicate
   addComponents:
     - type: IFF
       color: "#d93204"

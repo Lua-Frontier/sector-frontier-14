@@ -64,6 +64,10 @@
     speechVerb: Arachnid
     speechSounds: Arachnid
     allowedEmotes: ['Click', 'Chitter']
+  - type: UltraVision # Lua start
+  - type: ContentEye
+    maxZoom: 1.35, 1.35
+    targetZoom: 1.35, 1.35 # Lua end
   - type: Vocal
     sounds:
       Male: UnisexArachnid
