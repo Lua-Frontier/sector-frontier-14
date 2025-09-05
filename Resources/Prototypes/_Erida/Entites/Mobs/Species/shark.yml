@@ -44,7 +44,7 @@
       types:
         Heat : 0.1 #per second, scales with temperature & other constants
   - type: Perishable
-  # Lua start
+    # Lua start
   - type: SpeedModifierContacts
     walkSpeedModifier: 1.2
     sprintSpeedModifier: 1.2
@@ -54,8 +54,8 @@
     - Shark
     understands:
     - Intergalactic
-    - Shark # Lua end
-
+    - Shark
+    # Lua end
 - type: entity
   parent: BaseSpeciesDummy
   id: MobPlafDummy
