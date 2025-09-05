@@ -1,11 +1,12 @@
-#- type: sponsorLoadout
-#  id: Kelic
-#  entity: ClothingBackpackKelic
-#  sponsorOnly: true
+- type: sponsorLoadout
+  id: Kelic
+  entity: ClothingBackpackKelic
+  sponsorOnly: true
+  login: Kelic
 
 # Backpack
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, HardsuitIdentifySponsor]
   id: ClothingBackpackKelic
   name: сумка с функцией РИГ "MS-06"
   description: Компактная, износостойкая сумка, специально созданная для скафандра MS-06.
@@ -38,14 +39,14 @@
       - id: HypoKelic
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-      toggleable-clothing: !type:ContainerSlot
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitKelic
     requiredSlot: BACK
     slot: outerClothing
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      toggleable-clothing: !type:ContainerSlot
 
 # Belt
 - type: entity
@@ -83,7 +84,7 @@
 
 # Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ ClothingOuterHardsuitAtmos, HardsuitSpeedBuff ]
   id: ClothingOuterHardsuitKelic
   name: MS-06
   description: Старая разработка не вышедшая в массовое производство. Теперь личная вещь, скорее всего выданная пользователю за какие-то заслуги перед командованием.
@@ -111,8 +112,12 @@
         Caustic: 0.5
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
-#  - type: HardsuitIdentification
-#    nonlethal: true
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      toggleable-clothing: !type:ContainerSlot {}
+      cell_slot: !type:ContainerSlot {}
   - type: HideLayerClothing
     slots:
     - Tail
@@ -295,7 +300,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - CrewManifestCartridge
-      - YupiTransferCartridge
+      - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
