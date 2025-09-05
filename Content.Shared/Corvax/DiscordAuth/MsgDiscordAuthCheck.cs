@@ -1,4 +1,4 @@
-using Lidgren.Network;
+﻿using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -19,3 +19,4 @@ public sealed class MsgDiscordAuthCheck : NetMessage
     {
     }
 }
+

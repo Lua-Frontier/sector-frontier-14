@@ -27,12 +27,9 @@ public sealed class DiscordAuthManager
 
     private ISawmill _sawmill = default!;
     private readonly HttpClient _httpClient = new();
-    public bool IsEnabled { get; private set; } = false;
+    private bool _isEnabled = false;
     private string _apiUrl = string.Empty;
     private string _apiKey = string.Empty;
-    public bool IsOpt { get; private set; } = false;
-
-    private Dictionary<NetUserId, bool> _isLoggedIn = new();
 
     /// <summary>
     ///     Raised when player passed verification or if feature disabled
@@ -43,25 +40,14 @@ public sealed class DiscordAuthManager
     {
         _sawmill = Logger.GetSawmill("discord_auth");
 
-        _cfg.OnValueChanged(CCCVars.DiscordAuthEnabled, v => IsEnabled = v, true);
+        _cfg.OnValueChanged(CCCVars.DiscordAuthEnabled, v => _isEnabled = v, true);
         _cfg.OnValueChanged(CCCVars.DiscordAuthApiUrl, v => _apiUrl = v, true);
         _cfg.OnValueChanged(CCCVars.DiscordAuthApiKey, v => _apiKey = v, true);
-        _cfg.OnValueChanged(CCCVars.DiscordAuthIsOptional, v => IsOpt = v, true);
 
         _netMgr.RegisterNetMessage<MsgDiscordAuthRequired>();
         _netMgr.RegisterNetMessage<MsgDiscordAuthCheck>(OnAuthCheck);
-        _netMgr.RegisterNetMessage<MsgDiscordAuthByPass>(OnByPass);
 
         _playerMgr.PlayerStatusChanged += OnPlayerStatusChanged;
-    }
-
-    private void OnByPass(MsgDiscordAuthByPass message)
-    {
-        if (!IsEnabled || !IsOpt)
-            return;
-
-        var session = _playerMgr.GetSessionById(message.MsgChannel.UserId);
-        PlayerVerified?.Invoke(this, session);
     }
 
     private async void OnAuthCheck(MsgDiscordAuthCheck message)
@@ -80,9 +66,8 @@ public sealed class DiscordAuthManager
         if (e.NewStatus != SessionStatus.Connected)
             return;
 
-        if (!IsEnabled)
+        if (!_isEnabled)
         {
-            _isLoggedIn[e.Session.UserId] = true;
             PlayerVerified?.Invoke(this, e.Session);
             return;
         }
@@ -90,9 +75,6 @@ public sealed class DiscordAuthManager
         if (e.NewStatus == SessionStatus.Connected)
         {
             var isVerified = await IsVerified(e.Session.UserId);
-
-            _isLoggedIn[e.Session.UserId] = isVerified;
-
             if (isVerified)
             {
                 PlayerVerified?.Invoke(this, e.Session);
@@ -100,12 +82,12 @@ public sealed class DiscordAuthManager
             }
 
             var authUrl = await GenerateAuthLink(e.Session.UserId);
-            var msg = new MsgDiscordAuthRequired() { AuthUrl = authUrl.Url, QrCode = authUrl.Qrcode };
+            var msg = new MsgDiscordAuthRequired() { AuthUrl = authUrl };
             e.Session.Channel.SendMessage(msg);
         }
     }
 
-    public async Task<DiscordGenerateLinkResponse> GenerateAuthLink(NetUserId userId, CancellationToken cancel = default)
+    public async Task<string> GenerateAuthLink(NetUserId userId, CancellationToken cancel = default)
     {
         _sawmill.Info($"Player {userId} requested generation Discord verification link");
 
@@ -113,12 +95,12 @@ public sealed class DiscordAuthManager
         var response = await _httpClient.PostAsync(requestUrl, null, cancel);
         if (!response.IsSuccessStatusCode)
         {
-            var content = await response.Content.ReadAsStringAsync(cancel);
+            var content = await response.Content.ReadAsStringAsync();
             throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
         }
 
         var data = await response.Content.ReadFromJsonAsync<DiscordGenerateLinkResponse>(cancellationToken: cancel);
-        return data!;
+        return data!.Url;
     }
 
     public async Task<bool> IsVerified(NetUserId userId, CancellationToken cancel = default)
@@ -129,7 +111,7 @@ public sealed class DiscordAuthManager
         var response = await _httpClient.GetAsync(requestUrl, cancel);
         if (!response.IsSuccessStatusCode)
         {
-            var content = await response.Content.ReadAsStringAsync(cancel);
+            var content = await response.Content.ReadAsStringAsync();
             throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
         }
 
@@ -137,13 +119,8 @@ public sealed class DiscordAuthManager
         return data!.IsLinked;
     }
 
-    public bool IsCached(ICommonSession user)
-    {
-        return _isLoggedIn.TryGetValue(user.UserId, out var isLoggedIn) && isLoggedIn;
-    }
-
     [UsedImplicitly]
-    public sealed record DiscordGenerateLinkResponse(string Url, byte[] Qrcode);
+    private sealed record DiscordGenerateLinkResponse(string Url);
     [UsedImplicitly]
     private sealed record DiscordAuthInfoResponse(bool IsLinked);
 }

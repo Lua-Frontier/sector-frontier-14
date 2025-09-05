@@ -1,4 +1,4 @@
-using System.Threading;
+﻿using System.Threading;
 using Content.Shared.Corvax.DiscordAuth;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
@@ -9,7 +9,6 @@ namespace Content.Client.Corvax.DiscordAuth;
 
 public sealed class DiscordAuthState : State
 {
-    [Dependency] private readonly IClipboardManager _clipboard = default!;
     [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
     [Dependency] private readonly IClientNetManager _netManager = default!;
 
@@ -18,7 +17,7 @@ public sealed class DiscordAuthState : State
 
     protected override void Startup()
     {
-        _gui = new DiscordAuthGui(_clipboard);
+        _gui = new DiscordAuthGui();
         _userInterfaceManager.StateRoot.AddChild(_gui);
 
         Timer.SpawnRepeating(TimeSpan.FromSeconds(5), () =>
