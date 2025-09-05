@@ -44,7 +44,11 @@
       types:
         Heat : 0.1 #per second, scales with temperature & other constants
   - type: Perishable
-  - type: LanguageKnowledge  # Lua start
+  # Lua start
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 1.2
+    sprintSpeedModifier: 1.2
+  - type: LanguageKnowledge
     speaks:
     - Intergalactic
     - Shark
