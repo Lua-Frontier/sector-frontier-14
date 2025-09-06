@@ -32,3 +32,11 @@ ent-AmpulaDexa = {ent-Ampula}
 ent-AmpulaHyro = {ent-Ampula}
     .suffix = Хироналин
     .desc = {ent-Ampula.desc}
+
+  - type: Inject
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit

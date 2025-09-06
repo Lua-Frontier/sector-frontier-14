@@ -155,6 +155,13 @@
   - type: StaticPrice # Frontier
     price: 20 # Frontier
     vendPrice: 1500 # Frontier
+  - type: Inject # _Lua
+  - type: ItemSlots # _Lua
+    slots: # _Lua
+      beakerSlot: # _Lua
+        whitelist: # _Lua
+          tags: # _Lua
+          - FitsHardsuit # _Lua
 
 - type: entity
   abstract: true
