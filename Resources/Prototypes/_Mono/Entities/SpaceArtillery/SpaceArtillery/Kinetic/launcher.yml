@@ -91,7 +91,7 @@
     range: 500
   - type: Gun
     fireRate: 1.5
-    projectileSpeed: 161
+    projectileSpeed: 130 #161
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/mortar.ogg
     soundEmpty:
@@ -203,7 +203,7 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 155
+    projectileSpeed: 190 #155
     fireRate: 0.2
     burstCooldown: 10
     burstFireRate: 2
@@ -344,7 +344,7 @@
     range: 500
   - type: Gun
     fireRate: 0.05
-    projectileSpeed: 150 #400
+    projectileSpeed: 225 #150 #400
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
     soundEmpty:
@@ -425,7 +425,7 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 180 #155
+    projectileSpeed: 155
     fireRate: 0.075
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
