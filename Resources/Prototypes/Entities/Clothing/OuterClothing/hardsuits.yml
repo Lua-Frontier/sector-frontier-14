@@ -589,6 +589,13 @@
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
+  - type: Inject
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier

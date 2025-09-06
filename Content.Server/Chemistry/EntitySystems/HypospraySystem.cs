@@ -17,6 +17,8 @@ using System.Linq;
 using Robust.Server.Audio;
 using Content.Shared.DoAfter; // Frontier
 using Content.Shared._DV.Chemistry.Components; // Frontier
+using Content.Shared.Inventory; // _Lua
+using Content.Shared.Imperial.HardsuitInjection.Components; // _Lua
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -24,6 +26,7 @@ public sealed class HypospraySystem : SharedHypospraySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Frontier - Upstream: #30704 - MIT
+    [Dependency] private readonly InventorySystem _inventory = default!; // _Lua
 
     public override void Initialize()
     {
@@ -129,6 +132,20 @@ public sealed class HypospraySystem : SharedHypospraySystem
             return false;
         }
         // End Frontier
+
+        // _Lua Start
+        if (_inventory.TryGetSlotEntity(target, "outerClothing", out var suit))
+        {
+            if (TryComp<InjectComponent>(suit, out var injectComp))
+            {
+                if (injectComp.Locked)
+                {
+                    _popup.PopupEntity(Loc.GetString("hardsuitinjection-True"), target, user);
+                    return false;
+                }
+            }
+        }
+        // _Lua End
 
         string? msgFormat = null;
 

@@ -1,0 +1,8 @@
+- type: entity
+  id: TeleportOnCritImplant
+  name: "Телепортирующий имплант"
+  components:
+    - type: TeleportOnCritImplant
+      teleportTarget: TargetTeleportEntity
+      organPrototype: OrganGibbed
+      organCount: 3
