@@ -139,6 +139,11 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public List<string> Company = new();
+
+    // Добавляем новое поле для лимита категории:
+    [DataField("limitCategory")] // _Lua
+    public string? LimitCategory; // _Lua
+
 }
 
 public enum VesselSize : byte

@@ -16,4 +16,7 @@ public sealed partial class VesselComponent : Component
 {
     [DataField]
     public ProtoId<VesselPrototype> VesselId { get; set; }
+
+    [DataField("limitCategory")] // _Lua
+    public string? LimitCategory { get; set; } // _Lua
 }

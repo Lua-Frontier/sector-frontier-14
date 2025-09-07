@@ -42,7 +42,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 2500 #1000 #1500
+    totalIntensity: 1500
     intensitySlope: 50
     maxIntensity: 800 #150
   - type: GatheringProjectile
@@ -262,7 +262,7 @@
   - type: Explosive
     explosionType: HardBombShipGun
     totalIntensity: 1250 #1000
-    intensitySlope: 30
+    intensitySlope: 50 #30
     maxIntensity: 75
   - type: GatheringProjectile
   - type: MiningGatheringSoft
@@ -279,7 +279,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: #6000 #4000
+        Structural: 6000 #4000
         Blunt: 7500 #3350
         Ion: 14000
   - type: Sprite

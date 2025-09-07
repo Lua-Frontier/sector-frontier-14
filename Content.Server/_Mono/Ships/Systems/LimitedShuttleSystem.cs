@@ -99,6 +99,40 @@ public sealed class LimitedShuttleSystem : EntitySystem
             ev.CancelReason = "shipyard-console-limited";
             ev.Cancel();
         }
+
+        // _Lua Start
+        if (!string.IsNullOrEmpty(ev.Vessel.LimitCategory))
+        {
+            // Получаем лимит из ShuttleCategoryLimitComponent
+            var categoryLimit = 1;
+            foreach (var catLimit in EntityQuery<ShuttleCategoryLimitComponent>())
+            {
+                if (catLimit.CategoryId == ev.Vessel.LimitCategory)
+                {
+                    categoryLimit = catLimit.MaxInCategory;
+                    break;
+                }
+            }
+
+            var categoryCount = 0;
+            var vesselQuery = EntityQueryEnumerator<VesselComponent>();
+            while (vesselQuery.MoveNext(out var uid, out var vessel))
+            {
+                if (!TryComp<ShipActivityComponent>(uid, out var activity) || activity.InactivePastThreshold)
+                    continue;
+
+                // Сравниваем по полю из VesselComponent (которое заполняется из прототипа)
+                if (vessel.LimitCategory == ev.Vessel.LimitCategory)
+                    categoryCount++;
+            }
+
+            if (categoryCount >= categoryLimit)
+            {
+                ev.CancelReason = "shipyard-console-limited-category";
+                ev.Cancel();
+            }
+        }
+        // _Lua End
     }
 
     private bool IsActive(Entity<VesselComponent?> vessel)
@@ -125,7 +159,7 @@ public sealed class LimitedShuttleSystem : EntitySystem
             totalPowerEntities++;
         }
 
-        var percentage = totalPowerEntities != 0 && powered != 0 ? (double) powered / (double) totalPowerEntities : 0.0;
+        var percentage = totalPowerEntities != 0 && powered != 0 ? (double)powered / (double)totalPowerEntities : 0.0;
 
         if (percentage >= PoweredInactivityThreshold)
             return true;
