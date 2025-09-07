@@ -5,13 +5,13 @@
   description: An industrial machine used for expediting machine construction across the station.
   components:
   - type: Sprite
-    sprite: Structures/Machines/flatpacker.rsi
+    sprite: _Lua/Structures/Machines/flatpacker.rsi # Lua
     snapCardinals: true
     layers:
     - state: base
-    - state: screen
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-      shader: unshaded
+#    - state: screen # Lua
+#      map: ["enum.PowerDeviceVisualLayers.Powered"]
+#      shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
     - state: packing

@@ -16,5 +16,5 @@ public sealed partial class StationAiVisionComponent : Component
     /// Range in tiles
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Range = 7.5f;
+    public float Range = 12.5f; // _Lua 7.5<12.5 salo fuckup
 }

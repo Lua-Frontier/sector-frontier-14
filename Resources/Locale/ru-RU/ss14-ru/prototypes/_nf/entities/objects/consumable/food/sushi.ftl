@@ -12,3 +12,5 @@ ent-FoodMealGasBadSushiSlice = { ent-FoodMealGasSafeSushiSlice }
     .desc = { ent-FoodMealGasSafeSushiSlice.desc }
 ent-FoodMealCuredCarpSushiSlice = свежий ролл
   .desc = Ещё менее рискованно, но все равно вкусно. Вы всё еще не уверены, откуда взялись морские водоросли.
+ent-CuredCarpSushi = свежий ролл с рыбой
+    .desc = Менее рискованно, но всё ещё вкусно. Вы по-прежнему не уверены, откуда взялись водоросли.

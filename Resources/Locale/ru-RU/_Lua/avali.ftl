@@ -1,4 +1,6 @@
 species-name-avali = Авали
+ent-MobAvali = Урист МакАвали
+    .desc = { ent-BaseMobSpeciesOrganic.desc }
 marking-AvaliWingDefault = Крылья 1
 marking-AvaliEarsDefault = Уши Авали 1
 marking-Avali2EarsDefault = Уши Авали 2

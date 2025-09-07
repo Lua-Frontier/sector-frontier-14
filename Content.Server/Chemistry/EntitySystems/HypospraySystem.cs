@@ -17,6 +17,10 @@ using System.Linq;
 using Robust.Server.Audio;
 using Content.Shared.DoAfter; // Frontier
 using Content.Shared._DV.Chemistry.Components; // Frontier
+using Content.Shared.Inventory; //Lua: импорт для проверок экипировки цели
+using Content.Server.Atmos.Components; //Lua: импорт для проверки шлема по PressureProtection
+using Content.Shared.Tag; //Lua: импорт для проверки тега Hardsuit у внешней одежды
+using Robust.Shared.Prototypes; //Lua: импорт для ProtoId<TagPrototype>
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -24,6 +28,10 @@ public sealed class HypospraySystem : SharedHypospraySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Frontier - Upstream: #30704 - MIT
+    [Dependency] private readonly InventorySystem _inventory = default!; //Lua: система инвентаря для чтения слотов
+    [Dependency] private readonly TagSystem _tag = default!; //Lua: система тегов
+
+    private static readonly ProtoId<TagPrototype> HardsuitTag = "Hardsuit"; //Lua: идентификатор тега скафандра
 
     public override void Initialize()
     {
@@ -55,29 +63,19 @@ public sealed class HypospraySystem : SharedHypospraySystem
             return TryDraw(entity, target, drawableSolution.Value, user);
         }
 
-        // Frontier - Upstream: #30704 - MIT
-        if (entity.Comp.DoAfterTime > 0 && target != user)
+        //Lua Start: запрет инъекции при надетых шлеме и скафандре
+        if (target != user && (HasComp<MobStateComponent>(target) || HasComp<BloodstreamComponent>(target)))
         {
-            // Is the target a mob? If yes, use a do-after to give them time to respond.
-            if (HasComp<MobStateComponent>(target) || HasComp<BloodstreamComponent>(target))
+            var hasSuit = _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag);
+            var hasHelmet = _inventory.TryGetSlotEntity(target, "head", out var helmet) && HasComp<PressureProtectionComponent>(helmet.Value);
+
+            if (hasSuit && hasHelmet)
             {
-                //If the injection would fail the doAfter can be skipped at this step
-                if (InjectionFailureCheck(entity, target, user, out _, out _, out _, out _))
-                {
-                    _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, entity.Comp.DoAfterTime, new HyposprayDoAfterEvent(), entity.Owner, target: target, used: entity.Owner)
-                    {
-                        BreakOnMove = true,
-                        BreakOnWeightlessMove = false,
-                        BreakOnDamage = true,
-                        NeedHand = true,
-                        BreakOnHandChange = true,
-                        //Hidden = true // Frontier: if supporting this, should be configurable
-                    });
-                }
+                _popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
                 return true;
             }
         }
-        // End Frontier
+        //Lua End
 
         return TryDoInject(entity, target, user);
     }
@@ -115,6 +113,16 @@ public sealed class HypospraySystem : SharedHypospraySystem
 
         if (!EligibleEntity(target, EntityManager, component))
             return false;
+
+        //Lua Start: общий запрет - инъекция невозможна даже при самовколе, если шлем и скафандр надеты
+        var hasSuitOn = _inventory.TryGetSlotEntity(target, "outerClothing", out var suitOn) && _tag.HasTag(suitOn.Value, HardsuitTag);
+        var hasHelmetOn = _inventory.TryGetSlotEntity(target, "head", out var helmetOn) && HasComp<PressureProtectionComponent>(helmetOn.Value);
+        if (hasSuitOn && hasHelmetOn)
+        {
+            _popup.PopupEntity(Loc.GetString("hypospray-cant-inject", ("target", Identity.Entity(target, EntityManager))), target, user);
+            return false;
+        }
+        //Lua End
 
         if (TryComp(uid, out UseDelayComponent? delayComp))
         {

@@ -1,3 +1,19 @@
+// SPDX-FileCopyrightText: 2023 Cheackraze
+// SPDX-FileCopyrightText: 2023 Checkraze
+// SPDX-FileCopyrightText: 2023 Mnemotechnican
+// SPDX-FileCopyrightText: 2024 Dvir
+// SPDX-FileCopyrightText: 2024 GreaseMonk
+// SPDX-FileCopyrightText: 2024 Shroomerian
+// SPDX-FileCopyrightText: 2024 Wiebe Geertsma
+// SPDX-FileCopyrightText: 2025 Alkheemist
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Redrover1760
+// SPDX-FileCopyrightText: 2025 Whatstone
+// SPDX-FileCopyrightText: 2025 ark1368
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server.Shuttles.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
@@ -137,7 +153,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var price = _pricing.AppraiseGrid(shuttleGrid.Value, null);
         var targetGrid = _station.GetLargestGrid(stationData);
-
 
         if (targetGrid == null) //how are we even here with no station grid
         {

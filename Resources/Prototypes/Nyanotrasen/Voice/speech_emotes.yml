@@ -2,7 +2,7 @@
 - type: emote
   id: Hiss
   category: Vocal
-  name: Hiss
+  name: chat-emote-name-hiss
   icon: Interface/Actions/scream.png
   available: false
   whitelist:
@@ -11,7 +11,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [hisses.]
+  chatMessages: ["chat-emote-msg-felinid-hiss"]
   chatTriggers:
     - hiss
     - hisses
@@ -22,11 +22,16 @@
     - hissed
     - hissing.
     - hissed.
+    - шипит
+    - шипит.
+    - шипит!
+    - зашипел
+    - шипя
 
 - type: emote
   id: Meow
   category: Vocal
-  name: Meow
+  name: chat-emote-name-meow
   icon: Interface/Actions/scream.png
   available: false
   whitelist:
@@ -35,7 +40,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [meows.]
+  chatMessages: ["chat-emote-msg-felinid-meow"]
   chatTriggers:
     - meow
     - meows
@@ -64,11 +69,21 @@
     - mraows.
     - mraows!
     - mraows~
+    - мяу
+    - мяу.
+    - мяу!
+    - мяукает
+    - мяукает.
+    - мяукнула
+    - мяукнул
+    - ня
+    - ня.
+    - ня!
 
 - type: emote
   id: Mew
   category: Vocal
-  name: Mew
+  name: chat-emote-name-mew
   icon: Interface/Actions/scream.png
   available: false
   whitelist:
@@ -77,17 +92,20 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [mews.]
+  chatMessages: ["chat-emote-msg-felinid-mews"]
   chatTriggers:
     - mew
     - mews
     - mewing
     - mewed
+    - мявкает
+    - мявкает.
+    - мявкнул
 
 - type: emote
   id: Growl
   category: Vocal
-  name: Growl
+  name: chat-emote-name-growl
   icon: Interface/Actions/scream.png
   available: false
   whitelist:
@@ -96,17 +114,20 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [growls.]
+  chatMessages: ["chat-emote-msg-felinid-growl"]
   chatTriggers:
     - growl
     - growls
     - growling
     - growled
+    - рычит
+    - рычит.
+    - зарычал
 
 - type: emote
   id: Purr
   category: Vocal
-  name: Purr
+  name: chat-emote-name-purr
   icon: Interface/Actions/scream.png
   available: false
   whitelist:
@@ -115,9 +136,14 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [purrs.]
+  chatMessages: ["chat-emote-msg-felinid-purr"]
   chatTriggers:
     - purr
     - purrs
     - purring
     - purred
+    - мурлычет
+    - мурлычет.
+    - мурчит
+    - мурчит.
+    - замурлыкал

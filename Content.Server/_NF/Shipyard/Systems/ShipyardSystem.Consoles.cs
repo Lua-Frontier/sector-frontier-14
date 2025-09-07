@@ -1,3 +1,27 @@
+// SPDX-FileCopyrightText: 2023 Cheackraze
+// SPDX-FileCopyrightText: 2023 Debug
+// SPDX-FileCopyrightText: 2023 FoxxoTrystan
+// SPDX-FileCopyrightText: 2023 InsanityMoose
+// SPDX-FileCopyrightText: 2024 Alice "Arimah" Heurlin
+// SPDX-FileCopyrightText: 2024 Arimah
+// SPDX-FileCopyrightText: 2024 Checkraze
+// SPDX-FileCopyrightText: 2024 Dvir
+// SPDX-FileCopyrightText: 2024 GreaseMonk
+// SPDX-FileCopyrightText: 2024 Mnemotechnican
+// SPDX-FileCopyrightText: 2024 Salvantrix
+// SPDX-FileCopyrightText: 2024 Shroomerian
+// SPDX-FileCopyrightText: 2024 checkraze
+// SPDX-FileCopyrightText: 2024 neuPanda
+// SPDX-FileCopyrightText: 2025 Alkheemist
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 LukeZurg22
+// SPDX-FileCopyrightText: 2025 Redrover1760
+// SPDX-FileCopyrightText: 2025 Whatstone
+// SPDX-FileCopyrightText: 2025 ark1368
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server.Access.Systems;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
@@ -46,6 +70,13 @@ using Content.Shared.Forensics.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
+using Content.Shared._Mono.Ships.Components;
+using Content.Shared._Mono.Shipyard;
+using Content.Shared.Tag;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
+using Content.Shared._Mono.Ships.Components;
+using Robust.Shared.Log;
 using Robust.Shared.Timing;
 
 namespace Content.Server._NF.Shipyard.Systems;
@@ -71,7 +102,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
     [Dependency] private readonly ShuttleConsoleLockSystem _shuttleConsoleLock = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
+    private static readonly ProtoId<TagPrototype> CrewedShuttleTag = "CrewedShuttle";
     private static readonly Regex DeedRegex = new(@"\s*\([^()]*\)");
 
     public void InitializeConsole()
@@ -129,8 +162,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var name = vessel.Name;
+
         if (vessel.Price <= 0)
             return;
+
+        if (!vessel.RequireCrew && vessel.Classes.Contains(VesselClass.Capital))
+            vessel.RequireCrew = true;
 
         if (_station.GetOwningStation(shipyardConsoleUid) is not { Valid: true } station)
         {
@@ -143,6 +180,31 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-bank"));
             PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
+        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
+        {
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
+        var shuttleUid = shuttleUidOut.Value;
+        if (!_entityManager.TryGetComponent<ShuttleComponent>(shuttleUid, out var shuttle))
+        {
+            ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
+        var ev = new AttemptShipyardShuttlePurchaseEvent(shuttleUid, args.Actor, vessel);
+        RaiseLocalEvent(ref ev);
+
+        if (ev.Cancelled)
+        {
+            PlayDenySound(player, shipyardConsoleUid, component);
+            ConsolePopup(player, Loc.GetString(ev.CancelReason));
+            TryQueueDel(shuttleUid);
             return;
         }
 
@@ -159,6 +221,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             if (voucher!.RedemptionsLeft <= 0)
             {
+                TryQueueDel(shuttleUid);
                 ConsolePopup(player, Loc.GetString("shipyard-console-no-voucher-redemptions"));
                 PlayDenySound(player, shipyardConsoleUid, component);
                 if (voucher!.DestroyOnEmpty)
@@ -169,6 +232,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
             else if (voucher!.ConsoleType != (ShipyardConsoleUiKey)args.UiKey)
             {
+                TryQueueDel(shuttleUid);
                 ConsolePopup(player, Loc.GetString("shipyard-console-invalid-voucher-type"));
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
@@ -180,6 +244,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             if (bank.Balance <= vessel.Price)
             {
+                TryQueueDel(shuttleUid);
                 ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
@@ -187,23 +252,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             if (!_bank.TryBankWithdraw(player, vessel.Price))
             {
+                TryQueueDel(shuttleUid);
                 ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
             }
-        }
-
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
-        {
-            PlayDenySound(player, shipyardConsoleUid, component);
-            return;
-        }
-
-        var shuttleUid = shuttleUidOut.Value;
-        if (!TryComp<ShuttleComponent>(shuttleUid, out var shuttle))
-        {
-            PlayDenySound(player, shipyardConsoleUid, component);
-            return;
         }
 
         // Add company information to the shuttle
@@ -232,7 +285,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         // Add FTLLockComponent to the shuttle with Enabled set to true
         // We need to use the ShuttleConsoleSystem to properly set the Enabled property
-        var ftlLock = EnsureComp<FTLLockComponent>(shuttleUid);
+        EnsureComp<FTLLockComponent>(shuttleUid);
 
         // Get the ShuttleConsoleSystem which has proper access to modify FTLLockComponent.Enabled
         var shuttleConsoleSystem = Get<ShuttleConsoleSystem>();
@@ -344,8 +397,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (component.SecretShipyardChannel is { } secretChannel)
             SendPurchaseMessage(shipyardConsoleUid, player, name, secretChannel, secret: true);
 
+        var vesselStore = EnsureComp<VesselComponent>(shuttleUid);
+        vesselStore.VesselId = vessel.ID;
+
         // Mono
-        Get<ShipyardDirectionSystem>().SendShipDirectionMessage(player, shuttleUid);
+        _entityManager.System<ShipyardDirectionSystem>().SendShipDirectionMessage(player, shuttleUid);
+
+        EnsureComp<TagComponent>(shuttleUid);
+        _tagSystem.TryAddTags(shuttleUid, vessel.Tags);
+
+        if (vessel.Classes.Contains(VesselClass.Capital) || _tagSystem.HasTag(shuttleUid, CrewedShuttleTag))
+            vessel.RequireCrew = true;
+
+        if (vessel.RequireCrew)
+            EnsureComp<CrewedShuttleComponent>(shuttleUid);
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
         if (voucherUsed)
@@ -370,6 +435,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             );
         }
 
+        var purchaseEv = new ShipyardShuttlePurchaseEvent(shuttleUid, player); // Mono: half of this shit could be an event.
+        RaiseLocalEvent(purchaseEv);
         RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
     }
 

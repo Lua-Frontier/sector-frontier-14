@@ -68,12 +68,12 @@
   viscosity: 0.25
   tileReactions:
     - !type:SpillTileReaction
-#  metabolisms: # Frontier
-#    Food: # Frontier
-#      # Delicious! # Frontier
-#      effects: # Frontier
-#      - !type:SatiateHunger # Frontier
-#        factor: 1 # Frontier
+  metabolisms: # Frontier Lua start
+    Food: # Frontier
+      # Delicious! # Frontier
+      effects: # Frontier
+      - !type:SatiateHunger # Frontier
+        factor: 1 # Frontier Lua end
   footstepSound:
     collection: FootstepSlime # makes sense
     params:
@@ -140,6 +140,11 @@
       effects:
       - !type:SatiateThirst
         factor: -0.5
+      - !type:SatiateHunger
+        factor: 2
+        conditions:
+          - !type:OrganType
+            type: Demon
     Poison:
       effects:
       - !type:HealthChange

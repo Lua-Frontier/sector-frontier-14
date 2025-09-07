@@ -34,19 +34,14 @@ public sealed partial class ToPlanetEffect : FtlPointEffect
     public override void Effect(FtlPointEffectArgs args)
     {
         var protoManager = IoCManager.Resolve<IPrototypeManager>();
-
-        var localRandom = new RobustRandom();
-        Log.Debug($"ToPlanetEffect: Created local Random for planet generation");
-
-        var biomeTemplate = protoManager.Index<BiomeTemplatePrototype>(localRandom.Pick(BiomeTemplates));
+        var random = IoCManager.Resolve<IRobustRandom>();
+        var biomeTemplate = protoManager.Index<BiomeTemplatePrototype>(random.Pick(BiomeTemplates));
 
         var biome = args.EntityManager.EnsureComponent<BiomeComponent>(args.MapUid);
         var biomeSystem = args.EntityManager.System<BiomeSystem>();
         MetaDataComponent? metadata = null;
-        var seed = localRandom.Next();
-        biomeSystem.SetSeed(args.MapUid, biome, seed);
-        Log.Debug($"ToPlanetEffect: Generated seed {seed} for planet biome using local Random");
 
+        biomeSystem.SetSeed(args.MapUid, biome, random.Next());
         biomeSystem.SetTemplate(args.MapUid, biome, biomeTemplate);
         args.EntityManager.Dirty(args.MapUid, biome);
 
@@ -55,7 +50,7 @@ public sealed partial class ToPlanetEffect : FtlPointEffect
         args.EntityManager.Dirty(args.MapUid, gravity, metadata);
 
         var light = args.EntityManager.EnsureComponent<MapLightComponent>(args.MapUid);
-        light.AmbientLightColor = Color.FromHex("#" + localRandom.Pick(LightingColors));
+        light.AmbientLightColor = Color.FromHex("#" + random.Pick(LightingColors));
         args.EntityManager.Dirty(args.MapUid, light, metadata);
 
         // Atmos
@@ -74,6 +69,5 @@ public sealed partial class ToPlanetEffect : FtlPointEffect
         // args.EntityManager.System<AtmosphereSystem>().SetMapAtmosphere(args.MapUid, false, mixture, atmos);
 
         args.EntityManager.EnsureComponent<MapGridComponent>(args.MapUid);
-        Log.Debug($"ToPlanetEffect: Completed planet generation with template {biomeTemplate.ID}");
     }
 }
