@@ -283,6 +283,18 @@
         amount: 1
 
 - type: entity
+  id: CrateWeaponWeaponTurretCharonette
+  parent: CrateShipWeaponBase
+  name: ящик с упакованным  M194 CHARONETTE mass driver
+  description: содержит 1 упакованный  M194 CHARONETTE mass driver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretCharonetteFlatPack
+        amount: 1
+
+- type: entity
   id: CrateWeaponTurretDymereFlatPack
   parent: CrateShipWeaponBase
   name: ящик с упакованным ADEX-9 DYMERE Turbolaser

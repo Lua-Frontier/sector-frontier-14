@@ -36,6 +36,21 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: WeaponTurretCharonetteFlatPack
+  name: M194 CHARONETTE mass driver
+  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships. Medium linear accelerator, can be remotely activated or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCharonette
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
   id: WeaponTurretM220FlatPack
   name: M220 RUBICON EMP launcher
   description: Launches EMP projectiles at ships. Can be remotely activated, or linked up to a GCS.

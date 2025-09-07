@@ -145,6 +145,16 @@
   group: market
 
 - type: cargoProduct
+  id: CargoCrateWeaponWeaponTurretCharonette
+  icon:
+    sprite: _Lua/Structures/Storage/Crates/sweapon.rsi
+    state: icon
+  product: CrateWeaponTurretVanykFlatPack
+  cost: 450000
+  category: Корабельное вооружение
+  group: market
+
+- type: cargoProduct
   id: CargoCrateWeaponTurretVesperaFlatPack
   icon:
     sprite: _Lua/Structures/Storage/Crates/sweapon.rsi
@@ -180,7 +190,7 @@
     sprite: _Lua/Structures/Storage/Crates/sweapon.rsi
     state: icon
   product: CrateWeaponTurretDravonFlatPack
-  cost: 75000
+  cost: 150000
   category: Корабельное вооружение
   group: market
 
