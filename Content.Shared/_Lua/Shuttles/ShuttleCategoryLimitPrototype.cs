@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-[Prototype]
+[Prototype("ShuttleCategoryLimit")]
 public sealed class ShuttleCategoryLimitPrototype : IPrototype
 {
     [IdDataField] public string ID { get; set; } = default!;
