@@ -356,7 +356,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             HairGradientDirection = appearance.HairGradientDirection,
             FacialHairGradientEnabled = appearance.FacialHairGradientEnabled,
             FacialHairGradientSecondaryColor = ClampColor(appearance.FacialHairGradientSecondaryColor),
-            FacialHairGradientDirection = appearance.FacialHairGradientDirection
+            FacialHairGradientDirection = appearance.FacialHairGradientDirection,
+            AllMarkingsGradientEnabled = appearance.AllMarkingsGradientEnabled,
+            AllMarkingsGradientSecondaryColor = ClampColor(appearance.AllMarkingsGradientSecondaryColor),
+            AllMarkingsGradientDirection = appearance.AllMarkingsGradientDirection
         }; //Lua end
     }
 
@@ -375,7 +378,10 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         if (HairGradientDirection != other.HairGradientDirection) return false;
         if (FacialHairGradientEnabled != other.FacialHairGradientEnabled) return false;
         if (!FacialHairGradientSecondaryColor.Equals(other.FacialHairGradientSecondaryColor)) return false;
-        if (FacialHairGradientDirection != other.FacialHairGradientDirection) return false; //Lua end
+        if (FacialHairGradientDirection != other.FacialHairGradientDirection) return false;
+        if (AllMarkingsGradientEnabled != other.AllMarkingsGradientEnabled) return false;
+        if (!AllMarkingsGradientSecondaryColor.Equals(other.AllMarkingsGradientSecondaryColor)) return false;
+        if (AllMarkingsGradientDirection != other.AllMarkingsGradientDirection) return false; //Lua end
         return true;
     }
 
@@ -389,7 +395,16 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
                FacialHairColor.Equals(other.FacialHairColor) &&
                EyeColor.Equals(other.EyeColor) &&
                SkinColor.Equals(other.SkinColor) &&
-               Markings.SequenceEqual(other.Markings);
+               Markings.SequenceEqual(other.Markings) && //Lua start
+               HairGradientEnabled == other.HairGradientEnabled &&
+               HairGradientSecondaryColor.Equals(other.HairGradientSecondaryColor) &&
+               HairGradientDirection == other.HairGradientDirection &&
+               FacialHairGradientEnabled == other.FacialHairGradientEnabled &&
+               FacialHairGradientSecondaryColor.Equals(other.FacialHairGradientSecondaryColor) &&
+               FacialHairGradientDirection == other.FacialHairGradientDirection &&
+               AllMarkingsGradientEnabled == other.AllMarkingsGradientEnabled &&
+               AllMarkingsGradientSecondaryColor.Equals(other.AllMarkingsGradientSecondaryColor) &&
+               AllMarkingsGradientDirection == other.AllMarkingsGradientDirection; //Lua end
     }
 
     public override bool Equals(object? obj)

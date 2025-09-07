@@ -248,7 +248,10 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection;
         humanoid.AllMarkingsGradientEnabled = profile.Appearance.AllMarkingsGradientEnabled;
         humanoid.AllMarkingsGradientSecondaryColor = profile.Appearance.AllMarkingsGradientSecondaryColor;
-        humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection; //Lua end
+        humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection;
+        // Set cached hair colors for gradient shader
+        humanoid.CachedHairColor = hairColor;
+        humanoid.CachedFacialHairColor = facialHairColor; //Lua end
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
