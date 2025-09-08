@@ -215,7 +215,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 5.15 #750m
+    lifetime: 8.2 #750m #Lua 5.15<8.2 (~1000m) (1=~122m)
   - type: PointLight
     color: "#FCBA03"
   - type: ExplodeOnTrigger
@@ -255,7 +255,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 6.5 #1024m
+    lifetime: 7.04 #1024m #Lua 6.5<7.04 (~1000m) (1=~142m)
   - type: PointLight
     color: "#fc5a03"
   - type: ExplodeOnTrigger
@@ -295,7 +295,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 4 #5.15 620m
+    lifetime: 5.81 #5.15 620m #Lua 4<5.81 (~750m) (1=~129m)
   - type: PointLight
     color: "#fc8c03"
   - type: ExplodeOnTrigger

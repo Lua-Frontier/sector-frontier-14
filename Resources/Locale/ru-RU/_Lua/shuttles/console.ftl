@@ -1,7 +1,5 @@
 shuttle-console-target = Цель Радара
-shuttle-console-set-target = Установить
 shuttle-console-set-target-description = Устанавливает координаты целевой точки маршрута на консоли радара.
-shuttle-console-hide-target = Показать
 shuttle-console-hide-target-description = Переключает видимость целевой точки маршрута на консоли радара.
 shuttle-console-target-name = Цель
 shuttle-console-map-track = ⌖

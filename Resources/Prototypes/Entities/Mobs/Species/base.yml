@@ -25,6 +25,11 @@
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Ensure local stencil buffer is cleared before any clothing with displacement/shader writes.
+    # This prevents clothes from disappearing in UI previews and with vision overlays (e.g., night vision).
+    - shader: StencilClear
+      sprite: Mobs/Species/Human/parts.rsi
+      state: l_leg
     - map: [ "socks" ] # Sirena-Underwear
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]

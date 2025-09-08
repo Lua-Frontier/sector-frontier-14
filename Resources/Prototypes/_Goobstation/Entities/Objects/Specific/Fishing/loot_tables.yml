@@ -71,13 +71,13 @@
     children:
       - !type:NestedSelector
         tableId: BasicFishingLootTable
-        weight: 70
+        weight: 65
       - !type:NestedSelector
         tableId: WaterFishTable
-        weight: 20
+        weight: 30
       - !type:NestedSelector
         tableId: RareFishTable
-        weight: 10
+        weight: 5
 
 # Items from Lava
 - type: entityTable
@@ -105,7 +105,7 @@
       # like water but no rare fishes
       - !type:NestedSelector
         tableId: BasicFishingLootTable
-        weight: 80
+        weight: 65
       - !type:NestedSelector
         tableId: WaterFishTable
-        weight: 20
+        weight: 35

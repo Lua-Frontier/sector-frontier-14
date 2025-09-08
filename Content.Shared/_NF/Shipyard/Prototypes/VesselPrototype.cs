@@ -1,4 +1,14 @@
+// SPDX-FileCopyrightText: 2023 Checkraze
+// SPDX-FileCopyrightText: 2024 TsjipTsjip
+// SPDX-FileCopyrightText: 2024 Whatstone
+// SPDX-FileCopyrightText: 2024 neuPanda
+// SPDX-FileCopyrightText: 2025 Dvir
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Guidebook;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
@@ -24,6 +34,12 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField] public string Name = string.Empty;
 
     /// <summary>
+    ///     The amount of this ship that can active at any given time.
+    ///     0 for unlimited.
+    /// </summary>
+    [DataField("limit")] public int LimitActive;
+
+    /// <summary>
     ///     Short description of the vessel.
     /// </summary>
     [DataField] public string Description = string.Empty;
@@ -33,6 +49,13 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField(required: true)]
     public int Price;
+
+    /// <summary>
+    ///     Whether the ship should be crewed or not
+    ///     This is automatically set to true when the ship is a Capital-class ship.
+    /// </summary>
+    [DataField]
+    public bool RequireCrew;
 
     /// <summary>
     ///     The size of the vessel. (e.g. Small, Medium, Large etc.)
@@ -89,6 +112,9 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public float MinPriceMarkup = 1.05f;
 
+    [DataField]
+    public HashSet<ProtoId<TagPrototype>> Tags = new();
+
     /// <summary>
     /// Components to be added to any spawned grids.
     /// </summary>
@@ -97,10 +123,22 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     public ComponentRegistry AddComponents { get; set; } = new();
 
     /// <summary>
-    /// Запретить покупку корабля с использованием ваучера.
+    /// ��������� ������� ������� � �������������� �������.
     /// </summary>
     [DataField]
     public bool NoVoucher { get; private set; } = false;
+
+    /// <summary>
+    /// Whether this ship can suppress IFF flags of other ships.
+    /// </summary>
+    [DataField]
+    public bool CloakHunter;
+
+    /// <summary>
+    /// List of company names whose ships this vessel can suppress IFF flags for.
+    /// </summary>
+    [DataField]
+    public List<string> Company = new();
 }
 
 public enum VesselSize : byte
@@ -140,6 +178,12 @@ public enum VesselClass : byte
     // Antag ships
     Syndicate,
     Pirate,
+    // Mono - combat factions
+    Corvette,
+    Frigate,
+    Destroyer,
+    Cruiser,
+    // i doubt we'll ever get to cruisers
 }
 
 public enum VesselEngine : byte

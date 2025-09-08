@@ -154,7 +154,8 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.75
+    mechToPilotDamageMultiplier: 0.0
+    airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -201,7 +202,7 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0
     airtight: true # Goobstation - Space Honk is real.
     pilotWhitelist:
       components:
@@ -237,7 +238,7 @@
     baseState: hamtr
     openState: hamtr-open
     brokenState: hamtr-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
