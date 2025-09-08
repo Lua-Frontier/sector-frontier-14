@@ -58,44 +58,37 @@ public sealed partial class BankSystem
     }
 
     /// <summary>
-    /// Безопасная обработка загрузки предпочтений без async void
+    /// Загрузка предпочтений в потоке. (мне кажется я пожалею)
     /// </summary>
-    private void HandleYupiCodeAssignmentSafely(PreferencesLoadedEvent ev)
+    private async void HandleYupiCodeAssignmentSafely(PreferencesLoadedEvent ev)
     {
-        // Запускаем асинхронную работу в фоне безопасно
-        _ = Task.Run(async () =>
+        try
         {
-            try
+            var prefs = ev.Prefs;
+            var assigned = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var (idx, profBase) in prefs.Characters)
             {
-                var prefs = ev.Prefs;
-                // Assign codes to any slots missing one.
-                var assigned = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                foreach (var (idx, profBase) in prefs.Characters)
+                if (profBase is not HumanoidCharacterProfile profile)
+                    continue;
+                if (IsValidYupiCode(profile.YupiAccountCode))
                 {
-                    if (profBase is not HumanoidCharacterProfile profile)
-                        continue;
-                    if (IsValidYupiCode(profile.YupiAccountCode))
-                    {
-                        assigned.Add(profile.YupiAccountCode);
-                        continue;
-                    }
-
-                    // Generate a unique code and save it to this slot
-                    var code = await GenerateUniqueYupiCodeAsync();
-                    while (assigned.Contains(code))
-                    {
-                        code = await GenerateUniqueYupiCodeAsync();
-                    }
-                    assigned.Add(code);
-                    var newProfile = profile.WithYupiAccountCode(code);
-                    await _prefsManager.SetProfile(ev.Session.UserId, idx, newProfile, validateFields: false);
+                    assigned.Add(profile.YupiAccountCode);
+                    continue;
                 }
+                var code = await GenerateUniqueYupiCodeAsync();
+                while (assigned.Contains(code))
+                {
+                    code = await GenerateUniqueYupiCodeAsync();
+                }
+                assigned.Add(code);
+                var newProfile = profile.WithYupiAccountCode(code);
+                await _prefsManager.SetProfile(ev.Session.UserId, idx, newProfile, validateFields: false);
             }
-            catch (Exception e)
-            {
-                _log.Error($"OnPreferencesLoaded YUPI assignment failed: {e}");
-            }
-        });
+        }
+        catch (Exception e)
+        {
+            _log.Error($"OnPreferencesLoaded YUPI assignment failed: {e}");
+        }
     }
 
     /// <summary>
