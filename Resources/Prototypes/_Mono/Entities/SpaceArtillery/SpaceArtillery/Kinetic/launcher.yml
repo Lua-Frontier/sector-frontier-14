@@ -152,6 +152,17 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 125
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: SpaceArtillery
     powerChargeRate: 125
     powerUsePassive: 600

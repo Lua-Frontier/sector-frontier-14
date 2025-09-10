@@ -378,7 +378,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DamageVisuals
-    thresholds: [5, 10, 20]
+    thresholds: [10000, 15000, 17500]
     damageDivisor: 20
     trackAllDamage: true
     damageOverlay:

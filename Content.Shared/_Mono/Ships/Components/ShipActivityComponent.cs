@@ -28,7 +28,7 @@ public sealed partial class ShipActivityComponent : Component
     public int TimesInactive { get; set; }
 
     [ViewVariables]
-    public int InactiveThresholdMinutes { get; set; } = 10;
+    public int InactiveThresholdMinutes { get; set; } = 240; // 4 hours
 
     public int GetSecondsInactive()
     {
