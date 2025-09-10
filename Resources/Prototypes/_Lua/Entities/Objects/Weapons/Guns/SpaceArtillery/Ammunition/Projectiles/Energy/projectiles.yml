@@ -11,13 +11,13 @@
   - type: Projectile
     damage:
       types:
-        Structural: 225 #175
-        Radiation: 35
-        Heat: 220 #40
-        Blunt: 40 #20
+        Structural: 625 #175 #Lua 225<625 (1250*0.5)
+        Radiation: 375 #Lua 35<375 (750*0.5)
+        Heat: 375 #40 #Lua 220<375 (750*0.5)
+        Ion: 300 #600*0.5
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: MicroBomb #Default
+    explosionType: DefaultShipGun #Default #Lua MicroBomb<DefaultShipGun
     maxIntensity: 40 #12
     intensitySlope: 6 #3
     totalIntensity: 40 #4
