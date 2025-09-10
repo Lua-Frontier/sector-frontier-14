@@ -7,6 +7,7 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.HardsuitInjection.Components;
 using Content.Shared.Popups;
+using System.Threading;
 
 namespace Content.Shared.Imperial.HardsuitInjection.EntitySystems;
 
@@ -38,6 +39,30 @@ public sealed partial class InjectSystem
 
         _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-open"), user, user, PopupType.Medium);
         _sharedAdminLogSystem.Add(LogType.ForceFeed, $"{_entManager.ToPrettyString(user):user} opened EC of {_entManager.ToPrettyString(uid):wearer}");
+
+       if (component.AutoClose)
+        StartAutoClose(uid, component);
+    }
+
+    private void StartAutoClose(EntityUid uid, InjectComponent component)
+    {
+        // Отменяем предыдущий таймер, если был
+        component.AutoCloseCancelToken?.Cancel();
+        component.AutoCloseCancelToken = new CancellationTokenSource();
+        var token = component.AutoCloseCancelToken.Token;
+
+        Robust.Shared.Timing.Timer.Spawn(component.AutoCloseDelay, () =>
+        {
+            if (token.IsCancellationRequested)
+                return;
+
+            if (!Deleted(uid) && TryComp<InjectComponent>(uid, out var comp) && !comp.Locked)
+            {
+                comp.Locked = true;
+                // Оповещение (если нужно)
+                _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-close"), uid, PopupType.Medium);
+            }
+        }, token);
     }
 
     /// <summary>

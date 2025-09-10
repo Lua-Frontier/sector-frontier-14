@@ -3,6 +3,8 @@
 using Content.Shared.Actions;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Imperial.HardsuitInjection.Components;
+using Content.Shared.DoAfter;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.HardsuitInjection.EntitySystems;
 
@@ -29,10 +31,38 @@ public sealed partial class InjectSystem
         if (args.Handled) return;
         if (_netManager.IsClient) return;
 
+        if (!component.CanBeOpened)
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (component.AlwaysOpen)
+        {
+            component.Locked = false;
+            args.Handled = true;
+            component.ToggleInjectionActionEntity = args.Action;
+            return;
+        }
+
+        // Задержка на открытие/закрытие
+        if (component.OpenCloseDelay > TimeSpan.Zero)
+        {
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Performer, component.OpenCloseDelay, new ToggleSlotDoAfterEvent(), uid)
+            {
+                BreakOnDamage = true,
+                BreakOnMove = true,
+                DistanceThreshold = 2,
+            });
+            args.Handled = true;
+            component.ToggleInjectionActionEntity = args.Action;
+            return;
+        }
+
+        // Открываем отсек
+        component.Locked = false;
         args.Handled = true;
         component.ToggleInjectionActionEntity = args.Action;
-
-        ToggleEC(uid, args.Performer);
     }
 
     private void OnInjection(EntityUid uid, InjectComponent component, InjectionEvent args)

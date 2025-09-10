@@ -5,6 +5,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.GameStates;
+using System.Threading;
 
 namespace Content.Shared.Imperial.HardsuitInjection.Components;
 
@@ -51,4 +52,26 @@ public sealed partial class InjectComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool Locked = true;
+
+    [DataField("openCloseDelay")]
+    public TimeSpan OpenCloseDelay = TimeSpan.FromSeconds(3);
+
+    [DataField("canBeOpened")]
+    public bool CanBeOpened = true;
+
+    [DataField("alwaysOpen")]
+    public bool AlwaysOpen = false;
+
+    [DataField("autoClose")]
+    public bool AutoClose = true;
+
+    [DataField("autoCloseDelay")]
+    public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(10);
+
+    [ViewVariables]
+    public TimeSpan LastOpenTime;
+
+    [ViewVariables]
+    public CancellationTokenSource? AutoCloseCancelToken;
+
 }
