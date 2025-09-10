@@ -345,8 +345,10 @@
     - Syndicate
   - type: Access
     tags:
-    - NuclearOperative
     - SyndicateAgent
+    - NuclearOperative
+    groups: # _Lua
+    - AllAccess # _Lua
   - type: AccessReader
     access: [["SyndicateAgent"], ["NuclearOperative"]]
   - type: SiliconLawProvider
@@ -361,6 +363,7 @@
     channels:
     - Traffic
     - Syndicate
+    - Typan
   - type: ShowSyndicateIcons
   - type: MovementAlwaysTouching
   - type: Speech
