@@ -51,7 +51,7 @@ public sealed partial class InjectSystem
             _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Performer, component.OpenCloseDelay, new ToggleSlotDoAfterEvent(), uid)
             {
                 BreakOnDamage = true,
-                BreakOnMove = true,
+                BreakOnMove = false,
                 DistanceThreshold = 2,
             });
             args.Handled = true;

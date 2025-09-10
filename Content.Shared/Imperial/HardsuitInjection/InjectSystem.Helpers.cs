@@ -40,8 +40,8 @@ public sealed partial class InjectSystem
         _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-open"), user, user, PopupType.Medium);
         _sharedAdminLogSystem.Add(LogType.ForceFeed, $"{_entManager.ToPrettyString(user):user} opened EC of {_entManager.ToPrettyString(uid):wearer}");
 
-       if (component.AutoClose)
-        StartAutoClose(uid, component);
+        if (component.AutoClose)
+            StartAutoClose(uid, component);
     }
 
     private void StartAutoClose(EntityUid uid, InjectComponent component)

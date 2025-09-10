@@ -54,7 +54,7 @@ public sealed partial class InjectComponent : Component
     public bool Locked = true;
 
     [DataField("openCloseDelay")]
-    public TimeSpan OpenCloseDelay = TimeSpan.FromSeconds(3);
+    public TimeSpan OpenCloseDelay = TimeSpan.FromSeconds(2);
 
     [DataField("canBeOpened")]
     public bool CanBeOpened = true;
@@ -66,7 +66,7 @@ public sealed partial class InjectComponent : Component
     public bool AutoClose = true;
 
     [DataField("autoCloseDelay")]
-    public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(10);
+    public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(5);
 
     [ViewVariables]
     public TimeSpan LastOpenTime;
