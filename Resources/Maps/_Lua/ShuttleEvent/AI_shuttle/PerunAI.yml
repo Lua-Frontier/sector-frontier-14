@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/28/2025 01:29:52
+  time: 09/11/2025 04:41:00
   entityCount: 227
 maps: []
 grids:
@@ -28,7 +28,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: CR-GF "Перун"
+      name: CR-GF Perun
     - type: Transform
       pos: -0.546875,-0.515625
       parent: invalid
@@ -62,21 +62,13 @@ entities:
     - type: Shuttle
       dampingModifier: 0.45
     - type: AiShuttleBrain
-      anchorEntityName: "Станция фронтир"
-      fallbackAnchor: 0,0
-      minPatrolRadius: 1500
-      maxPatrolRadius: 2500
-      fightRangeMin: 500
-      fightRangeMax: 800
       maxWeaponRange: 1000
       minSeparation: 120
-      ftlMinDistance: 400
-      ftlExitOffset: 180
-      retreatHealthFraction: 0.3
-      avoidStationFire: true
-      forbidRamming: true
-      targetShuttles: true
-      targetDebris: false
+      fightRangeMax: 800
+      fightRangeMin: 500
+      maxPatrolRadius: 2500
+      minPatrolRadius: 1500
+      anchorEntityName: Станция фронтир
     - type: ImplicitRoof
     - type: GridPathfinding
     - type: Gravity
@@ -705,6 +697,13 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
+- proto: FakeAiPlayerStation
+  entities:
+  - uid: 132
+    components:
+    - type: Transform
+      pos: 0.5,11.5
+      parent: 1
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 115
@@ -814,13 +813,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,13.5
-      parent: 1
-- proto: PlayerStationAiVessel
-  entities:
-  - uid: 132
-    components:
-    - type: Transform
-      pos: 0.5,11.5
       parent: 1
 - proto: PoweredlightCyan
   entities:

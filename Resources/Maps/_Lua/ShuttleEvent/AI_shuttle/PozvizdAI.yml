@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2025 14:24:14
-  entityCount: 627
+  time: 09/11/2025 04:44:18
+  entityCount: 629
 maps: []
 grids:
 - 1
@@ -33,9 +33,8 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: CR-GF "Позвид"
+      name: CR-GF Pozvizd
     - type: Transform
-      pos: 49.52778,-60.47222
       parent: invalid
     - type: MapGrid
       chunks:
@@ -77,7 +76,6 @@ entities:
     - type: Shuttle
       dampingModifier: 0.45
     - type: AiShuttleBrain
-    # Preset now carried by prototype (Resources/Prototypes/_Lua/AiShuttlePresets.yml)
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -212,30 +210,7 @@ entities:
     - type: ImplicitRoof
     - type: IFF
       color: '#B3AD84FF'
-
-- proto: ComputerShuttle
-  entities:
-  - uid: 9001
-    components:
-    - type: Transform
-      pos: 0.5,1.5
-      parent: 1
-    - type: ShuttleConsoleLock
-      locked: False
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-      startingCharge: 0
-
-- proto: GunneryServerHigh
-  entities:
-  - uid: 9002
-    components:
-    - type: Transform
-      pos: 1.5,1.5
-      parent: 1
-    - type: PreventDelete
-  - uid: 159
+  - uid: 28
     components:
     - type: MetaData
     - type: Transform
@@ -1972,18 +1947,40 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
-- proto: CircularShieldConsole
-  entities:
-  - uid: 28
-    components:
-    - type: Transform
-      pos: 0.5,5.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        232:
-        - - CircularShieldConsoleSender
-          - CircularShieldConsoleReceiver
+    - type: CircularShield
+      width: 6.283185307179586 rad
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.45,-0.45
+            - 0.45,-0.45
+            - 0.45,0.45
+            - -0.45,0.45
+          mask:
+          - Impassable
+          - TableLayer
+          - LowImpassable
+          layer:
+          - TableLayer
+          - LowImpassable
+          density: 60
+          hard: True
+          restitution: 0
+          friction: 0.4
+        ShieldFixture:
+          shape: !type:PhysShapeCircle
+            radius: 0
+            position: 0.5186035,3.1377563
+          mask: []
+          layer:
+          - BulletImpassable
+          density: 1
+          hard: False
+          restitution: 0
+          friction: 0.4
 - proto: ComputerGunneryConsole
   entities:
   - uid: 439
@@ -2004,6 +2001,21 @@ entities:
     components:
     - type: Transform
       pos: 0.5,2.5
+      parent: 1
+  - uid: 9001
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 1
+    - type: ApcPowerReceiver
+      powerLoad: 5
+    - type: Battery
+- proto: FakeAiPlayerStation
+  entities:
+  - uid: 267
+    components:
+    - type: Transform
+      pos: 0.5,0.5
       parent: 1
 - proto: GeneratorBasic15kW
   entities:
@@ -2118,6 +2130,22 @@ entities:
       parent: 1
 - proto: GunneryServerHigh
   entities:
+  - uid: 159
+    components:
+    - type: Transform
+      pos: 0.5,6.5
+      parent: 1
+    - type: Battery
+      startingCharge: 0
+    - type: ApcPowerReceiver
+      powerLoad: 20
+    - type: RadarBlip
+      enabled: False
+      visibleFromOtherGrids: True
+      shape: Ring
+      scale: 0
+      radarColor: '#00DEFEFF'
+    - type: CircularShieldRadar
   - uid: 365
     components:
     - type: Transform
@@ -2127,6 +2155,16 @@ entities:
       startingCharge: 0
     - type: ApcPowerReceiver
       powerLoad: 20
+  - uid: 9002
+    components:
+    - type: Transform
+      pos: 1.5,1.5
+      parent: 1
+    - type: Battery
+      startingCharge: 0
+    - type: ApcPowerReceiver
+      powerLoad: 20
+    - type: PreventDelete
 - proto: GyroscopeNfsd
   entities:
   - uid: 69
@@ -2192,14 +2230,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,1.5
-      parent: 1
-- proto: PlayerStationAiVessel
-  entities:
-  - uid: 267
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,0.5
       parent: 1
 - proto: PoweredlightBlue
   entities:

@@ -1,24 +1,13 @@
 using System.Numerics;
 using Robust.Shared.Prototypes;
-// Lua: AI brain preset prototype. Can be referenced by ID or auto-matched
-// by exact grid name (MetaData.EntityName) via NameMatch.
 
-namespace Content.Shared._Mono.AiShuttle;
+namespace Content.Shared._Lua.AiShuttle;
 
-/// <summary>
-/// Lua: AI brain preset prototype. Supports optional matching by exact grid name.
-/// </summary>
 [Prototype("AiShuttlePreset")]
 public sealed partial class AiShuttlePresetPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = string.Empty;
-
-    /// <summary>
-    /// Optional exact grid name to match against MetaData.EntityName (e.g. CR-GF "Perun").
-    /// </summary>
-    [DataField]
-    public string? NameMatch;
 
     [DataField] public string? AnchorEntityName;
     [DataField] public Vector2 FallbackAnchor = Vector2.Zero;
@@ -39,6 +28,17 @@ public sealed partial class AiShuttlePresetPrototype : IPrototype
     [DataField] public float MinSeparation = 50f;
     [DataField] public float MaxWeaponRange = 512f;
     [DataField] public float ForwardAngleOffset = 0f;
+    [DataField] public bool? PatrolSectorEnabled;
+    [DataField] public Vector2? PatrolSectorCenter;
+    [DataField] public float? PatrolSectorRadius;
+    [DataField] public float? PatrolHoldSeconds;
+    [DataField] public float? YawDeadzoneDegrees;
+    [DataField] public float? YawGateDegrees;
+    [DataField] public float? YawKAvPerRad;
+    [DataField] public float? YawAvEpsilon;
+    [DataField] public float? YawAvBrakeThreshold;
+    [DataField] public bool? KeepFacingOnHold;
+    [DataField] public float? OrbitTangentialScale;
 }
 
 

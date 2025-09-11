@@ -1,13 +1,8 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
-// Lua: Networked preset for shuttle AI. Attach to a grid to override
-// the default brain parameters without changing prototypes at large.
 
-namespace Content.Shared._Mono.AiShuttle;
+namespace Content.Shared._Lua.AiShuttle;
 
-/// <summary>
-/// Lua: Preset of AI brain values applied to the owning grid at runtime.
-/// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class AiShuttlePresetComponent : Component
 {
@@ -67,5 +62,25 @@ public sealed partial class AiShuttlePresetComponent : Component
 
     [DataField]
     public float ForwardAngleOffset = 0f;
+
+    [DataField]
+    public bool? PatrolSectorEnabled;
+
+    [DataField]
+    public Vector2? PatrolSectorCenter;
+
+    [DataField]
+    public float? PatrolSectorRadius;
+
+    [DataField]
+    public float? PatrolHoldSeconds;
+
+    [DataField] public float? YawDeadzoneDegrees;
+    [DataField] public float? YawGateDegrees;
+    [DataField] public float? YawKAvPerRad;
+    [DataField] public float? YawAvEpsilon;
+    [DataField] public float? YawAvBrakeThreshold;
+    [DataField] public bool? KeepFacingOnHold;
+    [DataField] public float? OrbitTangentialScale;
 }
 

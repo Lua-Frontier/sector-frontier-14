@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/28/2025 01:35:46
+  time: 09/11/2025 04:47:42
   entityCount: 414
 maps: []
 grids:
@@ -26,9 +26,8 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: CR-GF "Стрибог"
+      name: CR-GF Stribog
     - type: Transform
-      pos: 14.775032,-19.302887
       parent: invalid
     - type: MapGrid
       chunks:
@@ -68,7 +67,6 @@ entities:
     - type: Shuttle
       dampingModifier: 0.45
     - type: AiShuttleBrain
-    # Preset now carried by prototype (Resources/Prototypes/_Lua/AiShuttlePresets.yml)
     - type: ImplicitRoof
     - type: GridPathfinding
     - type: Gravity
@@ -1228,6 +1226,13 @@ entities:
     - type: Transform
       pos: 4.5,-7.5
       parent: 1
+- proto: FakeAiPlayerStation
+  entities:
+  - uid: 232
+    components:
+    - type: Transform
+      pos: 4.5,-9.5
+      parent: 1
 - proto: GeneratorBasic15kW
   entities:
   - uid: 204
@@ -1404,14 +1409,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-8.5
-      parent: 1
-- proto: PlayerStationAi
-  entities:
-  - uid: 232
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-9.5
       parent: 1
 - proto: PoweredlightBlue
   entities:

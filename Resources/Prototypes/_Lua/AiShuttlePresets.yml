@@ -1,30 +1,61 @@
-# Lua: Shuttle AI presets matched by exact grid name.
-# Each entry overrides the default brain parameters for a specific grid.
-- type: AiShuttlePreset #Lua
-  id: Perun
-  nameMatch: CR-GF "Perun"
+- type: AiShuttlePreset
+  id: Default
   minPatrolRadius: 500
-  maxPatrolRadius: 3500
+  maxPatrolRadius: 5000
   fightRangeMin: 500
   fightRangeMax: 800
   maxWeaponRange: 1000
   minSeparation: 40
 
-- type: AiShuttlePreset #Lua
-  id: Stribog
-  nameMatch: CR-GF "Stribog"
+- type: AiShuttlePreset
+  id: Perun
   minPatrolRadius: 500
-  maxPatrolRadius: 3500
+  maxPatrolRadius: 5000
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 40
+
+- type: AiShuttlePreset
+  id: Stribog
+  minPatrolRadius: 500
+  maxPatrolRadius: 5000
   fightRangeMin: 500
   fightRangeMax: 800
   maxWeaponRange: 1000
   minSeparation: 50
 
-- type: AiShuttlePreset #Lua
+- type: AiShuttlePreset
   id: Pozvizd
-  nameMatch: CR-GF "Pozvizd"
   minPatrolRadius: 500
-  maxPatrolRadius: 3500
+  maxPatrolRadius: 5000
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 70
+
+- type: AiShuttlePreset
+  id: Razor
+  minPatrolRadius: 500
+  maxPatrolRadius: 5000
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 70
+
+- type: AiShuttlePreset
+  id: Zenith
+  minPatrolRadius: 500
+  maxPatrolRadius: 5000
+  fightRangeMin: 500
+  fightRangeMax: 800
+  maxWeaponRange: 1000
+  minSeparation: 70
+
+- type: AiShuttlePreset
+  id: Nebula
+  minPatrolRadius: 500
+  maxPatrolRadius: 5000
   fightRangeMin: 500
   fightRangeMax: 800
   maxWeaponRange: 1000
