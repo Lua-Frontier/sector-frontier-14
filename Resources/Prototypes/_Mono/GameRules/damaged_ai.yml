@@ -60,8 +60,6 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 120 # 2 hours
-  - type: GameRule
-    minPlayers: 25
     duration: -1
   - type: AiShuttleSpawnRule
     deleteGridsOnEnd: false
