@@ -12,7 +12,7 @@ public sealed partial class BankAccountComponent : Component
 	[AutoNetworkedField]
 	public int Balance;
 
-	//Lua Start: ЮПИ-код аккаунта привязан к банковскому компоненту
+	//Lua Start .gb rjl ghbdzpfy r rjvgjytyne gj xtkjdtxtcrb
 	[DataField, Access(typeof(SharedBankSystem))]
 	[AutoNetworkedField]
 	public string YupiCode = string.Empty;

@@ -32,7 +32,7 @@ public sealed partial class BankSystem
 	/// </summary>
 	private int? ApplyFinancePriorityDeposit(ICommonSession session, int amount)
 	{
-		// Temporarily disabled — finance system not found
+		// Temporarily disabled - finance system not found
 		return null;
 	}
 
@@ -41,7 +41,7 @@ public sealed partial class BankSystem
 	/// </summary>
 	private int? ApplyFinancePriorityOfflineDeposit(NetUserId userId, int characterIndex, int amount)
 	{
-		// Temporarily disabled — finance system not found
+		// Temporarily disabled - finance system not found
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public sealed partial class BankSystem
 	/// </summary>
 	private bool CheckTransferLimit(int amount)
 	{
-		// Temporarily disabled — FinanceCVars not available
+		// Temporarily disabled - FinanceCVars not available
 		// var cvarMax = IoCManager.Resolve<IConfigurationManager>().GetCVar(FinanceCVars.TransferMaxAmountPerOperation);
 		// return amount <= cvarMax;
 		return true; // Allow all transfers until configured
