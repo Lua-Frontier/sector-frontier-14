@@ -2,6 +2,8 @@ using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Forensics;
+using Content.Server.Afk; // Lua
+using Content.Server.Afk.Events; // Lua
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind;
@@ -58,6 +60,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
+    [Dependency] private readonly IAfkManager _afkManager = default!; // Lua
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -95,6 +98,9 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
         SubscribeLocalEvent<ActorComponent, IdentityChangedEvent>(OnIdentityChanged);
         SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
+
+        SubscribeLocalEvent<AFKEvent>(OnAFKEvent); // Lua
+        SubscribeLocalEvent<UnAFKEvent>(OnUnAFKEvent); // Lua
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -350,7 +356,9 @@ public sealed class AdminSystem : EntitySystem
         var hasAdmins = false;
         foreach (var admin in _adminManager.AllAdmins)
         {
-            if (_adminManager.HasAdminFlag(admin, AdminFlags.Admin, includeDeAdmin: PanicBunker.CountDeadminnedAdmins))
+            if (!_adminManager.HasAdminFlag(admin, AdminFlags.Admin, includeDeAdmin: PanicBunker.CountDeadminnedAdmins)) continue; // Lua !
+            var isAfk = _afkManager.IsAfk(admin); // Lua
+            if (!isAfk) // Lua
             {
                 hasAdmins = true;
                 break;
@@ -391,78 +399,90 @@ public sealed class AdminSystem : EntitySystem
         }
     }
 
-        /// <summary>
-        ///     Erases a player from the round.
-        ///     This removes them and any trace of them from the round, deleting their
-        ///     chat messages and showing a popup to other players.
-        ///     Their items are dropped on the ground.
-        /// </summary>
-        public void Erase(NetUserId uid)
+    // Lua start
+    private void OnAFKEvent(ref AFKEvent ev)
+    {
+        UpdatePanicBunker();
+    }
+
+    private void OnUnAFKEvent(ref UnAFKEvent ev)
+    {
+        UpdatePanicBunker();
+    }
+    // Lua end
+
+    /// <summary>
+    ///     Erases a player from the round.
+    ///     This removes them and any trace of them from the round, deleting their
+    ///     chat messages and showing a popup to other players.
+    ///     Their items are dropped on the ground.
+    /// </summary>
+    public void Erase(NetUserId uid)
+    {
+        _chat.DeleteMessagesBy(uid);
+
+        if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.OwnedEntity == null || TerminatingOrDeleted(mind.OwnedEntity.Value))
+            return;
+
+        var entity = mind.OwnedEntity.Value;
+
+        if (TryComp(entity, out TransformComponent? transform))
         {
-            _chat.DeleteMessagesBy(uid);
-
-            if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.OwnedEntity == null || TerminatingOrDeleted(mind.OwnedEntity.Value))
-                return;
-
-            var entity = mind.OwnedEntity.Value;
-
-            if (TryComp(entity, out TransformComponent? transform))
-            {
-                var coordinates = _transform.GetMoverCoordinates(entity, transform);
-                var name = Identity.Entity(entity, EntityManager);
-                _popup.PopupCoordinates(Loc.GetString("admin-erase-popup", ("user", name)), coordinates, PopupType.LargeCaution);
-                var filter = Filter.Pvs(coordinates, 1, EntityManager, _playerManager);
-                var audioParams = new AudioParams().WithVolume(3);
-                _audio.PlayStatic("/Audio/Effects/pop_high.ogg", filter, coordinates, true, audioParams);
-            }
-
-            foreach (var item in _inventory.GetHandOrInventoryEntities(entity))
-            {
-                if (TryComp(item, out PdaComponent? pda) &&
-                    TryComp(pda.ContainedId, out StationRecordKeyStorageComponent? keyStorage) &&
-                    keyStorage.Key is { } key &&
-                    _stationRecords.TryGetRecord(key, out GeneralStationRecord? record))
-                {
-                    if (TryComp(entity, out DnaComponent? dna) &&
-                        dna.DNA != record.DNA)
-                    {
-                        continue;
-                    }
-
-                    if (TryComp(entity, out FingerprintComponent? fingerPrint) &&
-                        fingerPrint.Fingerprint != record.Fingerprint)
-                    {
-                        continue;
-                    }
-
-                    _stationRecords.RemoveRecord(key);
-                    Del(item);
-                }
-            }
-
-            if (_inventory.TryGetContainerSlotEnumerator(entity, out var enumerator))
-            {
-                while (enumerator.NextItem(out var item, out var slot))
-                {
-                    if (_inventory.TryUnequip(entity, entity, slot.Name, true, true))
-                        _physics.ApplyAngularImpulse(item, ThrowingSystem.ThrowAngularImpulse);
-                }
-            }
-
-            if (TryComp(entity, out HandsComponent? hands))
-            {
-                foreach (var hand in _hands.EnumerateHands(entity, hands))
-                {
-                    _hands.TryDrop(entity, hand, checkActionBlocker: false, doDropInteraction: false, handsComp: hands);
-                }
-            }
-
-            _minds.WipeMind(mindId, mind);
-            QueueDel(entity);
-
-            if (_playerManager.TryGetSessionById(uid, out var session))
-                _gameTicker.SpawnObserver(session);
+            var coordinates = _transform.GetMoverCoordinates(entity, transform);
+            var name = Identity.Entity(entity, EntityManager);
+            _popup.PopupCoordinates(Loc.GetString("admin-erase-popup", ("user", name)), coordinates, PopupType.LargeCaution);
+            var filter = Filter.Pvs(coordinates, 1, EntityManager, _playerManager);
+            var audioParams = new AudioParams().WithVolume(3);
+            _audio.PlayStatic("/Audio/Effects/pop_high.ogg", filter, coordinates, true, audioParams);
         }
+
+        foreach (var item in _inventory.GetHandOrInventoryEntities(entity))
+        {
+            if (TryComp(item, out PdaComponent? pda) &&
+                TryComp(pda.ContainedId, out StationRecordKeyStorageComponent? keyStorage) &&
+                keyStorage.Key is { } key &&
+                _stationRecords.TryGetRecord(key, out GeneralStationRecord? record))
+            {
+                if (TryComp(entity, out DnaComponent? dna) &&
+                    dna.DNA != record.DNA)
+                {
+                    continue;
+                }
+
+                if (TryComp(entity, out FingerprintComponent? fingerPrint) &&
+                    fingerPrint.Fingerprint != record.Fingerprint)
+                {
+                    continue;
+                }
+
+                _stationRecords.RemoveRecord(key);
+                Del(item);
+            }
+        }
+
+        if (_inventory.TryGetContainerSlotEnumerator(entity, out var enumerator))
+        {
+            while (enumerator.NextItem(out var item, out var slot))
+            {
+                if (_inventory.TryUnequip(entity, entity, slot.Name, true, true))
+                    _physics.ApplyAngularImpulse(item, ThrowingSystem.ThrowAngularImpulse);
+            }
+        }
+
+        if (TryComp(entity, out HandsComponent? hands))
+        {
+            foreach (var hand in _hands.EnumerateHands(entity, hands))
+            {
+                _hands.TryDrop(entity, hand, checkActionBlocker: false, doDropInteraction: false, handsComp: hands);
+            }
+        }
+
+        _minds.WipeMind(mindId, mind);
+        QueueDel(entity);
+
+        if (_playerManager.TryGetSessionById(uid, out var session))
+            _gameTicker.SpawnObserver(session);
+    }
 
     private void OnSessionPlayTimeUpdated(ICommonSession session)
     {
