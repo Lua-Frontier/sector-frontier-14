@@ -222,13 +222,9 @@ public sealed partial class BankSystem
         }
 
         // Show YUPI account code as popup
-        if (_playerManager.TryGetSessionByEntity(player, out var session) &&
-            _prefsManager.TryGetCachedPreferences(session.UserId, out var prefs) &&
-            prefs.SelectedCharacter is Content.Shared.Preferences.HumanoidCharacterProfile profile)
-        {
-            var code = string.IsNullOrWhiteSpace(profile.YupiAccountCode) ? "N/A" : profile.YupiAccountCode.ToUpperInvariant();
-            ConsolePopup(player, Loc.GetString("bank-atm-yupi-code", ("code", code)));
-        }
+        var code = string.IsNullOrWhiteSpace(bank.YupiCode) ? "N/A" : bank.YupiCode.ToUpperInvariant();
+        ConsolePopup(player, Loc.GetString("bank-atm-yupi-code", ("code", code)));
+        //Lua End
 
         _uiSystem.SetUiState(uid, args.UiKey,
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
