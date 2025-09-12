@@ -1,3 +1,6 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
 using Content.Shared._Lua.AiShuttle;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -9,7 +12,7 @@ public partial class AiShuttleBrainSystem
 {
     private void ProcessCombatBehavior(EntityUid uid, ref AiShuttleBrainComponent brain, TransformComponent xform, PhysicsComponent body, Vector2 pos, EntityUid targetGrid, Vector2 targetPos, Vector2 aimPos, float controlDt)
     {
-        if (!TryGetEnemyShuttleConsolePos(targetGrid, out var stillAim))
+        if (!TryGetEnemyGunneryServerPos(targetGrid, out var stillAim))
         {
             brain.CurrentTarget = null;
             brain.LastKnownTargetPos = null;

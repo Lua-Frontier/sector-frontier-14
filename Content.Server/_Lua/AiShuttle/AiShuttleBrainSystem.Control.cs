@@ -1,3 +1,6 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
 using Content.Server.Shuttles.Components;
 using Content.Shared._Lua.AiShuttle;
 using Content.Shared.Movement.Systems;
@@ -25,8 +28,7 @@ public partial class AiShuttleBrainSystem
             var gridXform = Transform(grid);
             var gridPos = _xform.GetWorldPosition(gridXform);
             var toMarker = marker - gridPos;
-            if (toMarker.LengthSquared() > 0.0001f)
-                facingVec = Vector2.Normalize(toMarker);
+            if (toMarker.LengthSquared() > 0.0001f) facingVec = Vector2.Normalize(toMarker);
         }
         var cross = nose.X * facingVec.Y - nose.Y * facingVec.X;
         var dot = Vector2.Dot(nose, facingVec);
@@ -123,6 +125,29 @@ public partial class AiShuttleBrainSystem
         var leftDir = new Vector2(-dir.Y, dir.X);
         var rightDir = -leftDir;
         var backDir = -dir;
+        Vector2 exclusionAvoid = Vector2.Zero;
+        var brain = Comp<AiShuttleBrainComponent>(grid);
+        if (brain.RespectFtlExclusions)
+        {
+            var q = EntityQueryEnumerator<FTLExclusionComponent, TransformComponent>();
+            while (q.MoveNext(out var excl, out var xform))
+            {
+                if (!excl.Enabled) continue;
+                if (xform.MapID != mapId) continue;
+                var center = _xform.GetWorldPosition(xform);
+                var toCenter = fromWorld - center;
+                var dist = toCenter.Length();
+                var range = excl.Range + brain.FtlExclusionBuffer;
+                if (dist <= range + 64f)
+                { if (dist > 0.001f) exclusionAvoid += Vector2.Normalize(toCenter) * MathF.Max(0f, (range + 64f - dist)) / (range + 64f); }
+                var nextPos = fromWorld + dir * (isPatrolMode ? 32f : 8f);
+                if ((nextPos - center).Length() <= range)
+                {
+                    var away = toCenter.LengthSquared() > 1e-4f ? Vector2.Normalize(toCenter) : -dir;
+                    exclusionAvoid += away * 3.5f;
+                }
+            }
+        }
         if (isPatrolMode)
         {
             var ahead = AccumulateAvoid(noseStart, dir, probeDist);// 4
@@ -137,7 +162,7 @@ public partial class AiShuttleBrainSystem
             var rightAhead = AccumulateAvoid(noseStart, Vector2.Normalize(rightDir + dir * 0.7f), sideProbeDist * 0.9f);
             var leftBack = AccumulateAvoid(noseStart, Vector2.Normalize(leftDir + backDir * 0.7f), sideProbeDist * 0.9f);
             var rightBack = AccumulateAvoid(noseStart, Vector2.Normalize(rightDir + backDir * 0.7f), sideProbeDist * 0.9f);
-            var avoid = ahead.sum * 3.0f + (aheadLeft.sum + aheadRight.sum) * 2.0f + (leftAhead.sum + rightAhead.sum) * 1.5f + left.sum * 1.2f + right.sum * 1.2f + (backLeft.sum + backRight.sum) * 0.8f + (leftBack.sum + rightBack.sum) * 0.6f + back.sum * 0.4f;
+            var avoid = ahead.sum * 3.0f + (aheadLeft.sum + aheadRight.sum) * 2.0f + (leftAhead.sum + rightAhead.sum) * 1.5f + left.sum * 1.2f + right.sum * 1.2f + (backLeft.sum + backRight.sum) * 0.8f + (leftBack.sum + rightBack.sum) * 0.6f + back.sum * 0.4f + exclusionAvoid * 2.0f;
             var forwardHits = new[] { ahead.minDist, aheadLeft.minDist, aheadRight.minDist, leftAhead.minDist, rightAhead.minDist };
             var minForwardHit = forwardHits.Where(d => d > 0f).DefaultIfEmpty(float.MaxValue).Min();
             return (avoid, minForwardHit, left.freeDist, right.freeDist);
@@ -148,7 +173,7 @@ public partial class AiShuttleBrainSystem
             var left = AccumulateAvoid(noseStart, leftDir, sideProbeDist);
             var right = AccumulateAvoid(noseStart, rightDir, sideProbeDist);
             var back = AccumulateAvoid(noseStart, backDir, sideProbeDist);
-            var avoid = ahead.sum * 2.2f + left.sum * 1.0f + right.sum * 1.0f + back.sum * 0.4f;
+            var avoid = ahead.sum * 2.2f + left.sum * 1.0f + right.sum * 1.0f + back.sum * 0.4f + exclusionAvoid * 2.0f;
             return (avoid, ahead.minDist, left.freeDist, right.freeDist);
         }
     }

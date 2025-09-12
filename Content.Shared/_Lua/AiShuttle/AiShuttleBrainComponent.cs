@@ -1,3 +1,6 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
 using System.Numerics;
 using Robust.Shared.Prototypes;
 
@@ -179,6 +182,15 @@ public sealed partial class AiShuttleBrainComponent : Component
 
     [ViewVariables, DataField(serverOnly: true)]
     public bool WaitingForConsole;
+
+    [DataField]
+    public bool RespectFtlExclusions = true;
+
+    [DataField]
+    public float FtlExclusionBuffer = 64f;
+
+    [DataField]
+    public bool AttackArmedCiviliansInExclusions = true;
 }
 
 

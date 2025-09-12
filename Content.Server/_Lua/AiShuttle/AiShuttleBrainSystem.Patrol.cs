@@ -1,3 +1,6 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
 using Content.Shared._Lua.AiShuttle;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -41,12 +44,37 @@ public partial class AiShuttleBrainSystem
             var dist = MathHelper.Clamp((float)(brain.PatrolFtlMinDistance + rng.NextDouble() * (brain.PatrolFtlMaxDistance - brain.PatrolFtlMinDistance)), brain.PatrolFtlMinDistance, brain.PatrolFtlMaxDistance);
             sample = pos + dirRnd * dist;
         }
+        if (brain.RespectFtlExclusions)
+        {
+            var xform = Transform(uid);
+            var map = xform.MapID;
+            for (var i = 0; i < 4; i++)
+            {
+                if (!IsPositionInAnyFtlExclusion(sample, map, brain.FtlExclusionBuffer)) break;
+                var theta2 = (float)(rng.NextDouble() * Math.PI * 2.0);
+                var rr2 = brain.PatrolSectorEnabled ? (float)Math.Sqrt(rng.NextDouble()) * brain.PatrolSectorRadius : MathHelper.Clamp((float)(brain.PatrolFtlMinDistance + rng.NextDouble() * (brain.PatrolFtlMaxDistance - brain.PatrolFtlMinDistance)), brain.PatrolFtlMinDistance, brain.PatrolFtlMaxDistance);
+                var dir2 = new Vector2(MathF.Cos(theta2), MathF.Sin(theta2));
+                sample = brain.PatrolSectorEnabled ? sectorCenter + dir2 * rr2 : pos + dir2 * rr2;
+            }
+        }
         brain.PatrolWaypoint = sample;
     }
     private void ProcessPatrolWaypoint(EntityUid uid, ref AiShuttleBrainComponent brain, TransformComponent xform, PhysicsComponent body, Vector2 pos, Vector2 wp, Vector2 sectorCenter, Vector2 outward, float controlDt)
     {
         var toWp = wp - pos;
         var distWp = toWp.Length();
+        if (brain.RespectFtlExclusions && TryGetNearestFtlExclusion(pos, xform.MapID, brain.FtlExclusionBuffer, out var c, out var r))
+        {
+            var delta = pos - c;
+            var d = delta.Length();
+            if (d <= r)
+            {
+                var escapeDir = d > 1e-3f ? delta / d : outward;
+                DriveViaConsole(uid, brain, body, controlDt, escapeDir, Vector2.Zero, 1f, false, 0, gateForwardOnYaw: true);
+                brain.PatrolLastDistToWaypoint = distWp;
+                return;
+            }
+        }
         if (distWp > brain.PatrolWaypointTolerance)
         {
             var dirTo = distWp > 0f ? toWp / distWp : Vector2.UnitX;
@@ -84,6 +112,19 @@ public partial class AiShuttleBrainSystem
     private void HandlePatrolMovement(EntityUid uid, ref AiShuttleBrainComponent brain, TransformComponent xform, PhysicsComponent body, Vector2 dirTo, float distWp, float controlDt)
     {
         if (brain.PatrolLastDistToWaypoint == 0f || distWp < brain.PatrolLastDistToWaypoint - 0.5f) brain.PatrolBlockedTimer = 0f;
+        if (brain.RespectFtlExclusions)
+        {
+            var pos = _xform.GetWorldPosition(xform);
+            var map = xform.MapID;
+            var nextPos = pos + dirTo * MathF.Min(32f, MathF.Max(8f, distWp * 0.25f));
+            if (IsPositionInAnyFtlExclusion(nextPos, map, brain.FtlExclusionBuffer))
+            {
+                DriveViaConsole(uid, brain, body, controlDt, Vector2.Zero, Vector2.Zero, 1f, true, 0, gateForwardOnYaw: false);
+                brain.PatrolWaypoint = null;
+                brain.PatrolBlockedTimer = 0f;
+                return;
+            }
+        }
         if (brain.WingSlot == 0)
         { HandleWingLeaderPatrolMovement(uid, ref brain, xform, body, dirTo, controlDt); }
         else
@@ -138,6 +179,16 @@ public partial class AiShuttleBrainSystem
         var dir = new Vector2(MathF.Cos(theta), MathF.Sin(theta));
         var dist = MathHelper.Clamp((float)(brain.PatrolFtlMinDistance + rng.NextDouble() * (brain.PatrolFtlMaxDistance - brain.PatrolFtlMinDistance)), brain.PatrolFtlMinDistance, brain.PatrolFtlMaxDistance);
         var arrive = pos + dir * dist;
+        if (brain.RespectFtlExclusions)
+        {
+            for (var i = 0; i < 5 && IsPositionInAnyFtlExclusion(arrive, xform.MapID, brain.FtlExclusionBuffer); i++)
+            {
+                theta = (float)(rng.NextDouble() * Math.PI * 2.0);
+                dir = new Vector2(MathF.Cos(theta), MathF.Sin(theta));
+                dist = MathHelper.Clamp((float)(brain.PatrolFtlMinDistance + rng.NextDouble() * (brain.PatrolFtlMaxDistance - brain.PatrolFtlMinDistance)), brain.PatrolFtlMinDistance, brain.PatrolFtlMaxDistance);
+                arrive = pos + dir * dist;
+            }
+        }
         var coords = new MapCoordinates(arrive, xform.MapID);
         brain.StabilizeTimer = MathF.Max(brain.StabilizeTimer, brain.PostFtlStabilizeSeconds);
         _shuttle.FTLToCoordinates(uid, Comp<Server.Shuttles.Components.ShuttleComponent>(uid), _xform.ToCoordinates(coords), Angle.Zero);

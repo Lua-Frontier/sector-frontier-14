@@ -27,6 +27,7 @@ using Content.Shared.Interaction;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
 using Content.Shared.UserInterface;
+using Content.Server.Shuttles.Components; // Lua
 
 namespace Content.Server._Mono.FireControl;
 
@@ -392,6 +393,15 @@ public sealed partial class FireControlSystem : EntitySystem
             return;
         }
 
+        // Block all firing if the server's grid is inside an FTL exclusion zone (no firing from within ZZ)
+        if (grid != null)
+        {
+            var gridXform = Transform((EntityUid) grid);
+            var gridPos = _xform.GetWorldPosition(gridXform);
+            if (IsInsideAnyFtlExclusion(gridXform.MapID, gridPos))
+                return;
+        }
+
         var targetCoords = GetCoordinates(coordinates);
 
         foreach (var weapon in weapons)
@@ -447,7 +457,7 @@ public sealed partial class FireControlSystem : EntitySystem
             _gun.AttemptShoot(localWeapon, localWeapon, gun, targetCoords);
         }
     }
-	
+
 	//Lua start
     /// <summary>
     /// Convenience: attempt to aim and fire all controllable weapons on a grid at a world position.
@@ -729,6 +739,8 @@ public sealed partial class FireControlSystem : EntitySystem
         var weaponPos = _xform.GetWorldPosition(weaponXform);
         var targetPos = coords.ToMap(EntityManager, _xform).Position;
 
+        if (IsInsideAnyFtlExclusion(weaponXform.MapID, weaponPos) || IsInsideAnyFtlExclusion(weaponXform.MapID, targetPos)) return false;  // Lua
+
         // Calculate direction
         var direction = targetPos - weaponPos;
         var distance = direction.Length();
@@ -753,6 +765,21 @@ public sealed partial class FireControlSystem : EntitySystem
 
         return false;
     }
+
+    // Lua start
+    private bool IsInsideAnyFtlExclusion(MapId mapId, Vector2 position)
+    {
+        var query = EntityQueryEnumerator<FTLExclusionComponent, TransformComponent>();
+        while (query.MoveNext(out var excl, out var xform))
+        {
+            if (!excl.Enabled) continue;
+            if (xform.MapID != mapId) continue;
+            var center = _xform.GetWorldPosition(xform);
+            if ((position - center).Length() <= excl.Range) return true;
+        }
+        return false;
+    }
+    // Lua end
 
     /// <summary>
     /// Checks if a weapon is ready to fire.

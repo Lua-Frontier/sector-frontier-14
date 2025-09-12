@@ -1,3 +1,6 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
 using Content.Server._Mono.FireControl;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
@@ -173,8 +176,10 @@ public sealed partial class AiShuttleBrainSystem : EntitySystem
                     if (gxform.MapID != xform.MapID) continue;
                     if (!HasComp<ShuttleDeedComponent>(gridUid)) continue;
                     if (HasComp<AiShuttleBrainComponent>(gridUid)) continue;
-                    if (!TryGetEnemyShuttleConsolePos(gridUid, out var consolePos)) continue;
                     var gp = _xform.GetWorldPosition(gxform);
+                    if (brain.RespectFtlExclusions && IsPositionInAnyFtlExclusion(gp, gxform.MapID, brain.FtlExclusionBuffer)) continue;
+                    if (!GridHasGunneryAndConsole(gridUid)) continue;
+                    if (!TryGetEnemyGunneryServerPos(gridUid, out var gcsPos)) continue;
                     if (brain.PatrolSectorEnabled)
                     {
                         var distToCenter = (gp - sectorCenter).Length();
@@ -193,7 +198,7 @@ public sealed partial class AiShuttleBrainSystem : EntitySystem
                         bestScore = score;
                         targetGrid = gridUid;
                         targetPos = gp;
-                        aimPos = consolePos;
+                        aimPos = gcsPos;
                     }
                 }
                 if (targetGrid != null)
@@ -289,13 +294,100 @@ public sealed partial class AiShuttleBrainSystem : EntitySystem
                     aimPos = targetPos;
                     brain.FacingMarker = targetPos;
                 }
-
+                if (targetGrid != null && brain.RespectFtlExclusions)
+                {
+                    if (TryComp<TransformComponent>(targetGrid.Value, out var tgx) && TryComp<AiShuttleBrainComponent>(uid, out var selfBrain))
+                    {
+                        var tpos = _xform.GetWorldPosition(tgx);
+                        if (IsPositionInAnyFtlExclusion(tpos, tgx.MapID, selfBrain.FtlExclusionBuffer))
+                        { targetGrid = null; }
+                    }
+                }
                 if (targetGrid != null)
                 { ProcessCombatBehavior(uid, ref brain, xform, body, pos, targetGrid.Value, targetPos, aimPos, 1f / ControlHz); }
                 else
                 { ProcessPatrolBehavior(uid, ref brain, xform, body, pos, sectorCenter, 1f / ControlHz); }
             }
         }
+    }
+
+    private bool TryGetEnemyGunneryServerPos(EntityUid enemyGrid, out Vector2 worldPos)
+    {
+        var q = EntityQueryEnumerator<FireControlServerComponent, TransformComponent>();
+        while (q.MoveNext(out var serverUid, out _, out var xform))
+        {
+            if (xform.GridUid == enemyGrid)
+            {
+                worldPos = _xform.GetWorldPosition(xform);
+                return true;
+            }
+        }
+        worldPos = default;
+        return false;
+    }
+
+    private bool GridHasGunneryAndConsole(EntityUid gridUid)
+    {
+        var hasConsole = false;
+        var hasGunnery = false;
+        var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent>();
+        while (consoleQuery.MoveNext(out var cUid, out _, out var cxform))
+        {
+            if (cxform.GridUid == gridUid)
+            {
+                hasConsole = true;
+                break;
+            }
+        }
+        var gQuery = EntityQueryEnumerator<FireControlServerComponent, TransformComponent>();
+        while (gQuery.MoveNext(out _, out _, out var gxform))
+        {
+            if (gxform.GridUid == gridUid)
+            {
+                hasGunnery = true;
+                break;
+            }
+        }
+        return hasConsole && hasGunnery;
+    }
+
+    private bool IsPositionInAnyFtlExclusion(Vector2 worldPos, MapId mapId, float buffer)
+    {
+        var q = EntityQueryEnumerator<FTLExclusionComponent, TransformComponent>();
+        while (q.MoveNext(out var excl, out var xform))
+        {
+            if (!excl.Enabled) continue;
+            if (xform.MapID != mapId) continue;
+            var center = _xform.GetWorldPosition(xform);
+            var range = excl.Range + buffer;
+            if ((worldPos - center).Length() <= range) return true;
+        }
+        return false;
+    }
+
+    private bool TryGetNearestFtlExclusion(Vector2 worldPos, MapId mapId, float buffer, out Vector2 center, out float radius)
+    {
+        center = default;
+        radius = 0f;
+        var found = false;
+        var minDist = float.MaxValue;
+        var q = EntityQueryEnumerator<FTLExclusionComponent, TransformComponent>();
+        while (q.MoveNext(out var excl, out var xform))
+        {
+            if (!excl.Enabled) continue;
+            if (xform.MapID != mapId) continue;
+            var c = _xform.GetWorldPosition(xform);
+            var r = excl.Range + buffer;
+            var d = (worldPos - c).Length();
+            if (d < minDist)
+            {
+                minDist = d;
+                center = c;
+                radius = r;
+                found = true;
+            }
+        }
+        return found;
     }
 
     private void StopAiOnGrid(EntityUid grid)
