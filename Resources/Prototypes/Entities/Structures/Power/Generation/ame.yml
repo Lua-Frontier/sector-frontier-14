@@ -29,19 +29,19 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: StructuralInorganicUltraHeavy # _Lua
+    damageModifierSet: StructuralMetallicStrongUltra # _Lua
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
         !type:DamageTrigger
-        damage: 200
+        damage: 5000 #200 _Lua
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 3000 #100 _Lua
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -161,19 +161,19 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: StructuralInorganicUltraHeavy # _Lua
+    damageModifierSet: StructuralMetallicStrongUltra # _Lua
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
         !type:DamageTrigger
-        damage: 200
+        damage: 5000 #200 _Lua
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 3000 #100 _Lua
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:

@@ -168,7 +168,8 @@ public sealed class TypanSectorSystem : EntitySystem
 
         var parallaxes = new[]
         {
-        "OriginStation"
+        "OriginStation",
+        "NordFoll"
         };
         var parallax = EnsureComp<ParallaxComponent>(_mapUid);
         parallax.Parallax = _random.Pick(parallaxes);

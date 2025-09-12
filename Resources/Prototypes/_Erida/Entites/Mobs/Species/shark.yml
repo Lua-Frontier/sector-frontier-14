@@ -44,6 +44,11 @@
       types:
         Heat : 0.1 #per second, scales with temperature & other constants
   - type: Perishable
+  # Lua start
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 1.2
+    sprintSpeedModifier: 1.2
+  # Lua end
 
 - type: entity
   parent: BaseSpeciesDummy

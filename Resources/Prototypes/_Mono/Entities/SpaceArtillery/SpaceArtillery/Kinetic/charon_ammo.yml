@@ -29,7 +29,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 1.7
+    lifetime: 5.71 #Lua 1.7<5.71 (~1000m) (1=~175m)
   - type: PointLight
     color: "#19AFFF"
   - type: ExplodeOnTrigger

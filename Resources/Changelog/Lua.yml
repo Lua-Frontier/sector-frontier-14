@@ -1012,3 +1012,245 @@ Entries:
   id: 75
   time: '2025-08-30T16:27:43.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/136
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Рядом с полем FPS добавлено поле FPS сервера
+    - type: Tweak
+      message: >-
+        Пропатчен SuitSensor для уменьшения частоты проверок датчиков на
+        комбинезонах
+  id: 76
+  time: '2025-09-03T14:34:36.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/174
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Добавлена регистрация ДНК скафандра, поддержка мультирегистрации ДНК, а
+        так же удаление ДНК из памяти скафандра.
+    - type: Add
+      message: Добавлен форсаж (ускорение) в скафандры доминаторов
+    - type: Add
+      message: Добавлена регистрация ДНК в скафандры доминаторов
+    - type: Add
+      message: Добавлена автовыдача предметов доминаторов в руки доминаторам
+  id: 77
+  time: '2025-09-03T14:47:06.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/172
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Был возвращен старый урон огнестрела
+    - type: Tweak
+      message: >-
+        Время жизни снарядов кирех, каргилов, бофорсов, ручных чаронов,
+        тарниксов было увеличено
+  id: 78
+  time: '2025-09-03T16:35:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/171
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлены новые параллаксы!
+  id: 79
+  time: '2025-09-03T16:48:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/166
+- author: salo2016
+  changes:
+    - type: Add
+      message: 'Spawncharacter команда модерации. '
+    - type: Tweak
+      message: >-
+        Всем шаттлам с рельсой была перестановка на ручную - заряжайте ручками,
+        путь к ним оформлен. 
+    - type: Tweak
+      message: >-
+        ДАМ теперь прочный как шахтёрская стена. Шаттлы покупаются с выключенным
+        авто-удалением.
+    - type: Tweak
+      message: >-
+        Аномалии дают нормальное кол-во Очков. Консоли управления радиус
+        увеличен в двое. Камерам ИИ увеличен обзор.
+    - type: Fix
+      message: Рельса стреляет теперь до километра, а не 400м.
+    - type: Add
+      message: >-
+        Добавлена панелька управления ИИ турелями рядом с ИИ и в Оружейной
+        Аванпоста ДСБФ с уже списком турелей но НЕ настроенной панелью.
+  id: 80
+  time: '2025-09-03T17:07:33.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/160
+- author: UnilTan
+  changes:
+    - type: Add
+      message: 'Добавлен градиент для волос '
+    - type: Add
+      message: Добавлен градиент для аксессуаров (хвосты крылья носы рога)
+    - type: Add
+      message: Добавлен градиент бороды(эпичные ROCK AND STONE)
+  id: 81
+  time: '2025-09-04T14:42:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/177
+- author: UnilTan
+  changes:
+    - type: Add
+      message: Система питья крови для Аркан
+    - type: Add
+      message: Добавлена система зрения в темноте для феллинида
+    - type: Add
+      message: >-
+        Обновления видов (феллинид, вульпа, моль, рептилия, арахнид, акулоок):
+        новые особенности пищеварения, зрения и движения.
+    - type: Fix
+      message: Небольшие правки
+  id: 82
+  time: '2025-09-04T14:45:50.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/179
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Ремап пиратских шаттлов (Baron, Mjolnir, Anaconda, Tethys, Spyglass,
+        Vulture) от Covral
+    - type: Fix
+      message: >-
+        На шаттле Fracture ручные ЭМИ были заменены на станционные (теперь
+        точно)
+    - type: Tweak
+      message: Цены большинства пиратских шаттлов были пересмотрены
+    - type: Tweak
+      message: >-
+        Исправление багов и недоработок на шаттлах Strizh, Purga, Voshod; шаттл
+        Туман был удален
+  id: 83
+  time: '2025-09-04T14:54:16.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/180
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: Ремап и баланс шаттлов ML.
+    - type: Fix
+      message: питание кораблей ML.
+  id: 84
+  time: '2025-09-04T15:05:38.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/175
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Корабль Spear теперь является Stealth Killer и подходит для
+        сопровождения крупных судов.
+    - type: Add
+      message: >-
+        Добавлено подавление IFF в радиусе 256 м для кораблей с флагом
+        CloakHunter.
+    - type: Add
+      message: Добавлены лимиты на крупные шаттлы делая их уникальными.
+    - type: Remove
+      message: 'Удалены шаттлы: Айхива, Хаяр, Хевишь на длительное время для ремапа'
+    - type: Tweak
+      message: Теперь невозможно одновременно стрелять и управлять шаттлом
+  id: 85
+  time: '2025-09-04T15:23:34.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/181
+- author: UnilTan
+  changes:
+    - type: Add
+      message: >-
+        Добавлен картридж «ЮПИ» для переводов денег в КПК, показ баланса и
+        собственного ЮПИ, кнопка «Копировать».
+    - type: Add
+      message: >-
+        Всплывающие уведомления: исходящий- только отправителю, входящий- только
+        получателю.
+    - type: Add
+      message: Показ ЮПИ-кода при открытии банкомата.
+    - type: Add
+      message: 'Консоли: вклады, рейтинг, выдача кредитов, обзор кредитов/вкладов.'
+    - type: Tweak
+      message: >-
+        Комиссия 3% до 100 000 за 30 минут, далее 13%; частичное налогообложение
+        при пересечении порога. Комиссия списывается с отправителя сверх суммы.
+    - type: Tweak
+      message: Лимит одного перевода- 50 000; переводы только между онлайн-игроками.
+    - type: Tweak
+      message: Добавлены CVars для экономической балансировки кредитов и вкладов.
+  id: 86
+  time: '2025-09-11T07:06:12.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/148
+- author: UnilTan
+  changes:
+    - type: Add
+      message: >-
+        Добавлена система Aishuttlebrain для автономного управления шаттлами и
+        ведения боя.
+    - type: Add
+      message: Новые YAML-прототипы и карты шаттлов с ИИ.
+    - type: Add
+      message: Документация по использованию и настройке Aishuttlebrain.
+    - type: Tweak
+      message: Компоненты FireControl обновлены для интеграции с ИИ.
+    - type: Tweak
+      message: Неиспользуемые ресурсоёмкие системы закомментированы для оптимизации.
+  id: 87
+  time: '2025-09-11T07:16:01.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/159
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Переработаны старые шаттлы ИИ управляемые человеком на полное ИИ
+    - type: Tweak
+      message: Переработана логика ИИ
+    - type: Add
+      message: Добавлены новые правила для ИИ
+    - type: Add
+      message: Добавлено самоуничтожение ИИ
+    - type: Add
+      message: ИИ теперь патрулируют сектор
+    - type: Add
+      message: Если ИИ более 2х ИИ выстраиваются в крыло
+    - type: Tweak
+      message: Переработаны геймрулы вызова ИИ
+  id: 88
+  time: '2025-09-11T08:17:46.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/197
+- author: HacksLua
+  changes:
+    - type: Fix
+      message: ИИ теперь будет избегать Зеленых Зон
+    - type: Fix
+      message: ИИ не атакует игрока если тот находится в Зеленой Зоне
+    - type: Tweak
+      message: >-
+        ИИ теперь атакует любой шаттл имеющий на борту сервер управления
+        вооружением
+    - type: Add
+      message: Зеленые зоны теперь видны на радаре
+    - type: Tweak
+      message: Вооружение теперь не работает в зеленых зонах
+    - type: Add
+      message: >-
+        Добавлен новый инструмент для мапперов drawline линейка с категориями
+        кораблей
+    - type: Tweak
+      message: >-
+        Шаттлы с категорией Small теперь могут использовать одновременно и
+        консоль шаттла и консоль вооружения
+  id: 89
+  time: '2025-09-12T12:35:27.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/199
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Теперь бункер будет активироваться при АФК админах
+  id: 90
+  time: '2025-09-12T12:37:23.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/202
+- author: UnilTan
+  changes:
+    - type: Fix
+      message: Исправлен баг Yupi кода из-за которого банк баланс становился нулевым
+  id: 91
+  time: '2025-09-12T12:50:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/201

@@ -614,15 +614,18 @@
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Item # Frontier
     size: Ginormous # Frontier
-  - type: Storage # Frontier: commented out
-    maxItemSize: Huge # Frontier: commented out
-    grid: # Frontier: commented out
-    - 0,0,4,3 # Frontier: commented out
-    whitelist: # Frontier: commented out whitelist
-     components:
-     - Gun
-     - BallisticAmmoProvider
-     - CartridgeAmmo
+  - type: Storage # Frontier: commented out # _Lua
+    maxItemSize: Huge # Frontier: commented out # _Lua
+    grid: # Frontier: commented out # _Lua
+    - 0,0,4,3 # Frontier: commented out # _Lua
+    whitelist: # Frontier: commented out whitelist # _Lua
+     tags:  # _Lua
+     - N14PowerCellHigh # _Lua
+     - N14AmmoCell # _Lua
+     components: # _Lua
+     - Gun # _Lua
+     - BallisticAmmoProvider # _Lua
+     - CartridgeAmmo # _Lua
 
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase

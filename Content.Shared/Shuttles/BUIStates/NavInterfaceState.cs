@@ -3,6 +3,7 @@ using Robust.Shared.Serialization;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.Components; // Frontier
 using System.Numerics; // Frontier - InertiaDampeningMode access
+using Content.Shared.Shuttles.UI.MapObjects;
 
 namespace Content.Shared.Shuttles.BUIStates;
 
@@ -30,6 +31,8 @@ public sealed class NavInterfaceState
     /// Key is the port ID, value is the display name.
     /// </summary>
     public Dictionary<string, string> NetworkPortNames = new();
+
+    public List<ShuttleExclusionObject> Exclusions = new();
 
     // Frontier fields
     /// <summary>
@@ -77,7 +80,8 @@ public sealed class NavInterfaceState
         Vector2? target, // Frontier
         NetEntity? targetEntity, // Frontier
         bool hideTarget, // Frontier
-        Dictionary<string, string>? networkPortNames = null)
+        Dictionary<string, string>? networkPortNames = null,
+        List<ShuttleExclusionObject>? exclusions = null)
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
@@ -89,6 +93,7 @@ public sealed class NavInterfaceState
         TargetEntity = targetEntity; // Frontier
         HideTarget = hideTarget; // Frontier
         NetworkPortNames = networkPortNames ?? new Dictionary<string, string>();
+        Exclusions = exclusions ?? new List<ShuttleExclusionObject>();
     }
 }
 

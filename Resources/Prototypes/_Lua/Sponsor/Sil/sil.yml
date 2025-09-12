@@ -1,17 +1,19 @@
-#- type: sponsorLoadout
-#  id: Sil
-#  entity: ClothingBackpackSil
-#  sponsorOnly: true
+- type: sponsorLoadout
+  id: Sil
+  entity: ClothingBackpackSil
+  sponsorOnly: true
+  login: _Sil
 
-#- type: sponsorLoadout
-#  id: SilHypospray
-#  entity: HypospraySil
-#  sponsorOnly: true
-#  whitelistJobs: [ChiefMedicalOfficer, SeniorPhysician, Chemist, MedicalDoctor, Paramedic, Coroner, MedicalIntern]
+- type: sponsorLoadout
+  id: SilHypospray
+  entity: HypospraySil
+  sponsorOnly: true
+  login: _Sil
+  whitelistJobs: [ChiefMedicalOfficer, SeniorPhysician, Chemist, MedicalDoctor, Paramedic, MedicalIntern] # У нас нет коронеров rm Coroner
 
 # Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ClothingOuterHardsuitAtmos, HardsuitSpeedBuff]
   id: ClothingOuterHardsuitSil
   name: скафандр "СЕВА"
   description: Принадлежат члену экипажа, находящемуся под покровительством спонсорской организации.
@@ -23,6 +25,16 @@
     sprite: _Lua/Sponsor/Sil/hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSil
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
+      cell_slot: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
   - type: Item
     size: Huge
   - type: PressureProtection
@@ -244,7 +256,7 @@
 
 # Backpack
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, HardsuitIdentifySponsor]
   id: ClothingBackpackSil
   name: белый армейский вещмешок
   description: Вместительный вещмешок с множеством карманов. Имеет окрас городского камуфляжа. Принадлежит члену экипажа, находящемуся под покровительством спонсорской организации.

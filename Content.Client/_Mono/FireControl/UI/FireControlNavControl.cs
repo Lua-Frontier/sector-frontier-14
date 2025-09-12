@@ -1,13 +1,12 @@
-using System.Linq;
-using System.Numerics;
+using Content.Client._Mono.Radar;
 using Content.Client.Shuttles.UI;
 using Content.Shared._Mono.FireControl;
+using Content.Shared._Mono.Radar; // Lua
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using Content.Client._Mono.Radar;
-using Content.Shared._Mono.Radar;
+using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
@@ -17,6 +16,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using System.Linq; // Lua
+using System.Numerics; // Lua
 
 namespace Content.Client._Mono.FireControl.UI;
 
@@ -39,6 +40,7 @@ public sealed class FireControlNavControl : BaseShuttleControl
     private HashSet<NetEntity> _selectedWeapons = new();
 
     private List<Entity<MapGridComponent>> _grids = new();
+    private List<ShuttleExclusionObject>? _exclusions; // Lua
 
     #region Mono
 
@@ -175,6 +177,7 @@ public sealed class FireControlNavControl : BaseShuttleControl
         SetMatrix(EntManager.GetCoordinates(state.Coordinates), state.Angle);
         _docks = state.Docks;
         RotateWithEntity = state.RotateWithEntity;
+        _exclusions = state.Exclusions; // Lua
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -207,6 +210,28 @@ public sealed class FireControlNavControl : BaseShuttleControl
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
         var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+
+        // Lua start
+        if (_exclusions != null)
+        {
+            var viewAABB = new Box2(
+                new Vector2(-WorldRange, -WorldRange) + mapPos.Position,
+                new Vector2(WorldRange, WorldRange) + mapPos.Position);
+
+            foreach (var excl in _exclusions)
+            {
+                var coords = EntManager.GetCoordinates(excl.Coordinates);
+                var mapCoords = _transform.ToMapCoordinates(coords);
+                if (mapCoords.MapId != xform.MapID) continue;
+                var enlarged = viewAABB.Enlarged(excl.Range);
+                if (!enlarged.Contains(mapCoords.Position)) continue;
+                var centerInView = Vector2.Transform(mapCoords.Position, worldToShuttle * shuttleToView);
+                var radiusPixels = excl.Range * MinimapScale;
+                var color = Color.Lime.WithAlpha(0.35f);
+                handle.DrawCircle(centerInView, radiusPixels, color, false);
+            }
+        }
+        // Lua end
 
         var ourGridId = xform.GridUid;
         if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&

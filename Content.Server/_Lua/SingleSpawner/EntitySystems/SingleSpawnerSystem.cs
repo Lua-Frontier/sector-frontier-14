@@ -23,10 +23,12 @@ public sealed class SingleSpawnerSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // Проверяем все компоненты SingleSpawnerComponent
         var query = EntityQueryEnumerator<SingleSpawnerComponent>();
         while (query.MoveNext(out var uid, out var component))
         {
+            if (TerminatingOrDeleted(uid))
+                continue;
+
             if (component.SpawnedEntity.HasValue && Deleted(component.SpawnedEntity.Value))
             {
                 component.SpawnedEntity = null;
@@ -46,9 +48,9 @@ public sealed class SingleSpawnerSystem : EntitySystem
         {
             var spawnedEntity = component.SpawnedEntity.Value;
 
-            // Проверяем, существует ли сущность и не находится ли она на стадии удаления
             if (EntityManager.EntityExists(spawnedEntity)
-                && EntityManager.GetComponentOrNull<MetaDataComponent>(spawnedEntity)?.EntityLifeStage < EntityLifeStage.Deleted)
+                && !TerminatingOrDeleted(spawnedEntity)
+                && !EntityManager.IsQueuedForDeletion(spawnedEntity))
             {
                 EntityManager.DeleteEntity(spawnedEntity);
             }
