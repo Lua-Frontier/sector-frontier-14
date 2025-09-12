@@ -12,7 +12,7 @@ public sealed partial class BankAccountComponent : Component
 	[AutoNetworkedField]
 	public int Balance;
 
-	//Lua Start .gb rjl ghbdzpfy r rjvgjytyne gj xtkjdtxtcrb
+	//Lua Start The UPI code is linked via the BankAccount component
 	[DataField, Access(typeof(SharedBankSystem))]
 	[AutoNetworkedField]
 	public string YupiCode = string.Empty;
