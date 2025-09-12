@@ -5,12 +5,9 @@ using Content.Shared._NF.Bank.BUI;
 using Content.Shared._Lua.Bank.Events;
 using Content.Shared.CartridgeLoader;
 using Content.Shared._NF.Bank.Components;
-using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
-using Content.Server.Preferences.Managers;
 using Robust.Server.Containers;
-using System.Threading.Tasks;
 
 namespace Content.Server._NF.CartridgeLoader.Cartridges;
 
@@ -34,30 +31,29 @@ public sealed class YupiTransferCartridgeSystem : EntitySystem
 	private void OnUiReady(Entity<YupiTransferCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
 	{
 		var loader = args.Loader;
-		var code = "";
+		var code = string.Empty;
 		var balance = 0;
 
 		var owner = GetRootOwner(loader);
 		var playerMan = IoCManager.Resolve<ISharedPlayerManager>();
-		var prefsMan = IoCManager.Resolve<IServerPreferencesManager>();
 
 		if (playerMan.TryGetSessionByEntity(owner, out var session))
 		{
+			// Ensure code synchronously and read from component //Lua
+			code = _bank.EnsureYupiForSessionSelected(session);
 			_bank.TryGetBalance(session, out balance);
-			if (prefsMan.TryGetCachedPreferences(session.UserId, out var prefs) &&
-				prefs.SelectedCharacter is HumanoidCharacterProfile profile)
-				code = profile.YupiAccountCode;
-
-			// Fire-and-forget: ensure and push updated state
-			_ = EnsureAndPushAsync(loader, session);
 		}
 		else
 		{
+			// Fallback: read balance/code directly from component //Lua
 			_bank.TryGetBalance(loader, out balance);
+			if (TryComp<BankAccountComponent>(owner, out var bank))
+				code = bank.YupiCode;
 		}
 
-		var due = 0;
+		// Finance integration (outstanding/due) remains as before; avoid async //Lua
 		var outstanding = 0;
+		var due = 0;
 		if (playerMan.TryGetSessionByEntity(owner, out var s2))
 		{
 			var finance = EntityManager.System<Content.Server._NF.Finance.FinanceSystem>();
@@ -65,6 +61,7 @@ public sealed class YupiTransferCartridgeSystem : EntitySystem
 			due = d;
 			outstanding = finance.GetOutstandingTotal(s2.UserId);
 		}
+
 		_cartridgeLoader.UpdateCartridgeUiState(loader, new YupiTransferUiState(code, balance, outstanding, due));
 	}
 
@@ -164,13 +161,10 @@ public sealed class YupiTransferCartridgeSystem : EntitySystem
 
 	private string GetCode(EntityUid loader)
 	{
-		var playerMan = IoCManager.Resolve<ISharedPlayerManager>();
-		var prefsMan = IoCManager.Resolve<IServerPreferencesManager>();
 		var owner = GetRootOwner(loader);
-		if (playerMan.TryGetSessionByEntity(owner, out var session) &&
-			prefsMan.TryGetCachedPreferences(session.UserId, out var prefs) &&
-			prefs.SelectedCharacter is HumanoidCharacterProfile profile)
-			return profile.YupiAccountCode;
+		//Lua: read from BankAccountComponent; no preferences access
+		if (TryComp<BankAccountComponent>(owner, out var bank))
+			return bank.YupiCode;
 		return string.Empty;
 	}
 
@@ -204,17 +198,5 @@ public sealed class YupiTransferCartridgeSystem : EntitySystem
 			current = cont.Owner;
 		}
 		return current;
-	}
-
-	private async Task EnsureAndPushAsync(EntityUid loader, ICommonSession session)
-	{
-		var ensured = await _bank.EnsureYupiForSessionSelected(session);
-		if (string.IsNullOrEmpty(ensured))
-			return;
-		_bank.TryGetBalance(session, out var bal);
-		var finance = EntityManager.System<Content.Server._NF.Finance.FinanceSystem>();
-		var outstanding = finance.GetOutstandingTotal(session.UserId);
-		var (due, _) = finance.GetDueAndHold(session.UserId);
-		_cartridgeLoader.UpdateCartridgeUiState(loader, new YupiTransferUiState(ensured, bal, outstanding, due));
 	}
 }

@@ -301,10 +301,10 @@ public sealed partial class FinanceSystem
 		var rows = new List<FinanceLoanRow>();
 		foreach (var snap in GetAllLoansSnapshot())
 		{
-			var name = snap.UserId.ToString();
+			var name = ResolveCharacterName(snap.UserId); // Lua: prefer in-game character name for online users
 			var seconds = -1; // Unknown per-user schedule
-			var code = string.Empty;
-			rows.Add(new FinanceLoanRow(name, snap.Principal, seconds, code));
+			var code = ResolveOnlineYupi(snap.UserId);
+			rows.Add(new FinanceLoanRow(name, snap.Principal, seconds, string.IsNullOrWhiteSpace(code) ? string.Empty : code.ToUpperInvariant()));
 		}
 		_ui.SetUiState(console, NFFinanceLoansUiKey.Key, new FinanceLoansState(rows.ToArray()));
 	}
@@ -314,16 +314,54 @@ public sealed partial class FinanceSystem
 		var rows = new List<FinanceDepositOverviewRow>();
 		foreach (var snap in GetAllDepositsSnapshot())
 		{
-			var name = snap.UserId.ToString();
-			var code = string.Empty;
+			var name = ResolveCharacterName(snap.UserId); // Lua: prefer in-game character name for online users
+			var code = ResolveOnlineYupi(snap.UserId);
 			var nextSec = (int) Math.Max(0, (snap.NextCapAt - _gameTiming.CurTime).TotalSeconds);
 			var stopSec = (int) Math.Max(0, (snap.HardStopAt - _gameTiming.CurTime).TotalSeconds);
-			rows.Add(new FinanceDepositOverviewRow(name, code, snap.Id, snap.Principal, snap.Accrued, nextSec, stopSec, snap.RateModel));
+			rows.Add(new FinanceDepositOverviewRow(name, string.IsNullOrWhiteSpace(code) ? string.Empty : code.ToUpperInvariant(), snap.Id, snap.Principal, snap.Accrued, nextSec, stopSec, snap.RateModel));
 		}
 		_ui.SetUiState(console, NFFinanceLoansUiKey.Key, new FinanceDepositsState(rows.ToArray()));
 	}
 
 	#endregion
+
+	private string ResolveOnlineYupi(NetUserId userId)
+	{
+		// Resolve current YUPI code for online users only. For offline users returns empty. //Lua
+		foreach (var session in _players.Sessions)
+		{
+			if (session.UserId != userId)
+				continue;
+			if (session.AttachedEntity is not { Valid: true } ent)
+				continue;
+			if (!TryComp<BankAccountComponent>(ent, out var bank))
+				continue;
+			// Ensure code synchronously for the session owner //Lua
+			var ensured = _bank.EnsureYupiForSessionSelected(session);
+			return string.IsNullOrWhiteSpace(bank.YupiCode) ? ensured : bank.YupiCode;
+		}
+		return string.Empty;
+	}
+
+	private string ResolveCharacterName(NetUserId userId)
+	{
+		// Prefer the in-game entity name of the attached mob (character name) when online.
+		foreach (var session in _players.Sessions)
+		{
+			if (session.UserId != userId)
+				continue;
+			if (session.AttachedEntity is { Valid: true } ent)
+			{
+				var inGameName = Name(ent);
+				if (!string.IsNullOrWhiteSpace(inGameName))
+					return inGameName;
+			}
+			// Fallback to OOC session name if entity is unavailable
+			return session.Name;
+		}
+		// Offline fallback: show raw userId if nothing else is available
+		return userId.ToString();
+	}
 
 	private ICommonSession GetSession(EntityUid ent)
 	{

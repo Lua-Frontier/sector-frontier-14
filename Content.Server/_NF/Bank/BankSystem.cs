@@ -37,7 +37,6 @@ public sealed partial class BankSystem : SharedBankSystem
         SubscribeLocalEvent<SectorBankComponent, ComponentInit>(OnSectorInit);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
-        _ = EnsureYupiForAllUsersAsync(); // Lua
     }
 
     public override void Update(float frameTime)
@@ -212,8 +211,7 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        newBalance = ApplyFinancePriorityDeposit(session, amount)
-            ?? (profile.BankBalance + amount); // Lua
+        newBalance = profile.BankBalance + amount;
 
         var newProfile = profile.WithBankBalance(newBalance.Value);
         var index = prefs.IndexOfCharacter(profile);
@@ -299,12 +297,6 @@ public sealed partial class BankSystem : SharedBankSystem
 
         var newProfile = profile.WithBankBalance(newBalance);
         var index = prefs.IndexOfCharacter(profile);
-
-        // Lua: Apply finance priority even for offline deposits
-        amount = ApplyFinancePriorityOfflineDeposit(userId, index, amount) ?? amount;
-        newBalance = profile.BankBalance + amount;
-        newProfile = profile.WithBankBalance(newBalance);
-        // Lua end
         if (index == -1)
         {
             _log.Info($"TryBankDepositOffline: {userId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
@@ -403,10 +395,9 @@ public sealed partial class BankSystem : SharedBankSystem
     /// <summary>
     /// Player's preferences loaded (mostly for hotjoin)
     /// </summary>
-    public void OnPreferencesLoaded(EntityUid mobUid, BankAccountComponent comp, PreferencesLoadedEvent ev) //Lua
+    public void OnPreferencesLoaded(EntityUid mobUid, BankAccountComponent comp, PreferencesLoadedEvent _)
     {
         UpdateBankBalance(mobUid, comp);
-        HandleYupiCodeAssignmentSafely(ev); //Lua
     }
 
     /// <summary>
