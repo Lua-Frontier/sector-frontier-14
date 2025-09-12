@@ -3,21 +3,14 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
-using System;
-using System.Collections.Generic;
 using Content.Shared._NF.Finance;
 using Content.Shared._Lua.Finance.Events;
 using Content.Server._NF.Bank;
-using Robust.Shared.IoC;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
-using Robust.Shared.Log;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Preferences;
 
@@ -31,7 +24,6 @@ public sealed partial class FinanceSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ISharedPlayerManager _players = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
@@ -321,7 +313,7 @@ public sealed partial class FinanceSystem : EntitySystem
 
     private bool CheckAndRecordOpsLimit(NetUserId userId, int amount)
     {
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
         var maxOps = GetCVar(FinanceCVars.DepositOpsMaxPer10Min);
         var maxSum = GetCVar(FinanceCVars.DepositOpsMaxSumPerHour);
 
@@ -354,8 +346,8 @@ public sealed partial class FinanceSystem : EntitySystem
         ScheduleNextInterestStep();
         _currentDepositShiftInterestPercent = GetCVar(FinanceCVars.DepositShiftInterestPercent);
         ScheduleNextDepositDrift();
-        _nextFinanceTickAt = _timing.CurTime; // allow immediate first run
-                                              // Hook up console/BUI handlers in partial implementation
+        _nextFinanceTickAt = _gameTiming.CurTime; // allow immediate first run
+                                                  // Hook up console/BUI handlers in partial implementation
         InitializeConsoles();
     }
 
@@ -363,7 +355,7 @@ public sealed partial class FinanceSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
 
         // Throttle heavy finance processing to reduce server load
         if (now < _nextFinanceTickAt)
@@ -539,7 +531,7 @@ public sealed partial class FinanceSystem : EntitySystem
 
     private void ScheduleNextInterestStep()
     {
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
         var minutes = _random.Next(30, 91); // 30-90 minutes
         _nextInterestStepAt = now + TimeSpan.FromMinutes(minutes);
     }
@@ -562,7 +554,7 @@ public sealed partial class FinanceSystem : EntitySystem
 
     private void ScheduleNextDepositDrift()
     {
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
         var min = GetCVar(FinanceCVars.DepositDriftMinMinutes);
         var max = GetCVar(FinanceCVars.DepositDriftMaxMinutes);
         _nextDepositDriftAt = now + TimeSpan.FromMinutes(_random.Next(min, max + 1));
@@ -825,7 +817,7 @@ public sealed partial class FinanceSystem : EntitySystem
             ? GetCVar(FinanceCVars.DepositLongMinMinutes)
             : GetCVar(FinanceCVars.DepositShortMinMinutes);
         var period = _random.Next(minCap, maxCap + 1);
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
         var dep = new Deposit
         {
             Id = nextId,
@@ -915,7 +907,7 @@ public sealed partial class FinanceSystem : EntitySystem
         if (dep == null)
             return false;
 
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
         var total = dep.Principal + dep.AccruedInterest;
 
         // Enforce close lock window, if configured
@@ -979,7 +971,7 @@ public sealed partial class FinanceSystem : EntitySystem
     {
         if (!TryGetCharacterKey(session, out var ckey) || !_depositsByCharacter.TryGetValue(ckey, out var list) || list.Count == 0)
             return Array.Empty<FinanceDepositRow>();
-        var now = _timing.CurTime;
+        var now = _gameTiming.CurTime;
         var rows = new List<FinanceDepositRow>(list.Count);
         foreach (var d in list)
         {

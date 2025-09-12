@@ -3,7 +3,6 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
-using System;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Lua.Finance.BUI;

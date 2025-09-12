@@ -3,7 +3,6 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
-using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Content.Shared.CartridgeLoader;
 

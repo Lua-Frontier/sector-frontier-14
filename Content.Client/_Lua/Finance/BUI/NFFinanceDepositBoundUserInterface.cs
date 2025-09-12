@@ -3,11 +3,7 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
-
-using Content.Shared.UserInterface;
-using Content.Shared._Lua.Finance.BUI;
 using Content.Shared._Lua.Finance.Events;
-using Robust.Client.UserInterface;
 using Content.Client._Lua.Finance.UI; //Lua
 
 namespace Content.Client._NF.Finance.BUI;

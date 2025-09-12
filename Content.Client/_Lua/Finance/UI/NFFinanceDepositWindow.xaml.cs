@@ -10,7 +10,6 @@ using Robust.Client.UserInterface.XAML;
 using Content.Shared._NF.Bank;
 using static Content.Shared._Lua.Finance.Events.DepositTermType;
 using static Content.Shared._Lua.Finance.Events.DepositRateModel;
-using Robust.Shared.Localization; //Lua
 
 namespace Content.Client._Lua.Finance.UI;
 
@@ -71,17 +70,17 @@ public sealed partial class NFFinanceDepositWindow : DefaultWindow
         RefreshBtn = FindControl<Button>("RefreshBtn");
         DepositsList = FindControl<ItemList>("DepositsList");
 
-        Term.AddItem(Loc.GetString("finance-deposit-term-short"), (int) Short);
-        Term.AddItem(Loc.GetString("finance-deposit-term-long"), (int) Long);
+        Term.AddItem(Loc.GetString("finance-deposit-term-short"), (int)Short);
+        Term.AddItem(Loc.GetString("finance-deposit-term-long"), (int)Long);
         Term.OnItemSelected += args =>
         {
             Term.SelectId(args.Id);
         };
         Term.SelectId(0);
 
-        Rate.AddItem(Loc.GetString("finance-deposit-rate-fixed"), (int) FixedApr);
-        Rate.AddItem(Loc.GetString("finance-deposit-rate-floating"), (int) FloatingApr);
-        Rate.AddItem(Loc.GetString("finance-deposit-rate-progressive"), (int) ProgressiveApr);
+        Rate.AddItem(Loc.GetString("finance-deposit-rate-fixed"), (int)FixedApr);
+        Rate.AddItem(Loc.GetString("finance-deposit-rate-floating"), (int)FloatingApr);
+        Rate.AddItem(Loc.GetString("finance-deposit-rate-progressive"), (int)ProgressiveApr);
         Rate.OnItemSelected += args =>
         {
             Rate.SelectId(args.Id);
@@ -91,8 +90,8 @@ public sealed partial class NFFinanceDepositWindow : DefaultWindow
         {
             if (int.TryParse(OpenAmount.Text, out var amt) && amt > 0)
             {
-                var term = (DepositTermType) Term.SelectedId;
-                var rate = (DepositRateModel) Rate.SelectedId;
+                var term = (DepositTermType)Term.SelectedId;
+                var rate = (DepositRateModel)Rate.SelectedId;
                 OpenRequested?.Invoke(amt, term, rate);
             }
         };
