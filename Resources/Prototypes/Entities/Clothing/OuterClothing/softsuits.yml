@@ -61,6 +61,7 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container # Frontier
         ents: [] # Frontier
+      beakerSlot: !type:ContainerSlot # _Lua imperial hardsuit injection
 
 #Prisoner EVA
 - type: entity
@@ -159,3 +160,4 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container # Frontier
         ents: [] # Frontier
+    beakerSlot: !type:ContainerSlot # _Lua imperial hardsuit injection
