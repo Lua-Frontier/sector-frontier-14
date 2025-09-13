@@ -1,4 +1,4 @@
-﻿using Content.Server._NF.CrateMachine;
+using Content.Server._NF.CrateMachine;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
 using Content.Shared._NF.Market;
@@ -84,6 +84,24 @@ public sealed partial class MarketSystem
         itemSpawner.ItemsToSpawn = consoleComponent.CartDataList;
         consoleComponent.CartDataList = [];
         _crateMachine.OpenFor(crateMachineUid, component);
+        // Lua start
+        var grid = Transform(consoleUid).GridUid;
+        if (grid != null)
+        {
+            var system = ResolveRoutingSystem(grid.Value);
+            foreach (var data in itemSpawner.ItemsToSpawn)
+            {
+                var units = 1;
+                var amountPer = GetAmountPerEntitySpace(data);
+                if (amountPer != null)
+                {
+                    units = (int) Math.Ceiling((double) data.Quantity / Math.Max(1, amountPer.Value));
+                    units = Math.Max(1, units);
+                }
+                system?.RegisterPurchaseForPrototype(data.Prototype, units);
+            }
+        }
+        // Lua end
     }
 
     private void SpawnCrateItems(List<MarketData> spawnList, EntityUid targetCrate)

@@ -10,14 +10,12 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using System.Numerics;
 using Content.Shared.Coordinates;
-using Content.Shared.Stacks; // Lua: for StackComponent
 
 namespace Content.Server._NF.Cargo.Systems;
 
 /// <summary>
 /// Handles cargo pallet (sale) mechanics.
 /// Based off of Wizden's CargoSystem.
-/// Механики паллет карго: UI, оценка, продажа; интеграция динамики Frontier.
 /// </summary>
 public sealed partial class NFCargoSystem
 {
@@ -48,70 +46,37 @@ public sealed partial class NFCargoSystem
 
         // Modify prices based on modifier.
         GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount);
-
-        // Lua start
-        // Compute dynamic reduction summary and tax for UI
-        double dynamicMultiplierAvg = 1.0;
-        double taxMultiplier = 1.0;
-        // Lua end
+        double taxMultiplier = 1.0; // Lua
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
         {
             taxMultiplier = priceMod.Mod; // Lua ammount * < taxMultiplier
         }
-
-        // Lua start
-        // Estimate dynamic effect by averaging multipliers of unique prototypes present.
-        // This is an approximation for a compact UI summary.
-        var uniqueProtos = new HashSet<string>();
-        foreach (var uid in toSell)
-        {
-            if (_market.TryGetDynamicPrototypeId(uid, out var pid))
-                uniqueProtos.Add(pid);
-        }
-        if (uniqueProtos.Count > 0)
-        {
-            double sum = 0;
-            foreach (var pid in uniqueProtos)
-                sum += _market.GetCurrentDynamicMultiplier(pid);
-            dynamicMultiplierAvg = sum / uniqueProtos.Count;
-        }
-
-        // Apply tax to taxable amount
-        amount *= taxMultiplier;
-        // Add immune amount after tax (immune to tax and dynamic)
-        //Lua End
+        amount *= taxMultiplier; // Lua
         amount += noModAmount;
 
         // Lua start
-        // Build UI reduction text. For consoles that do not contribute to market, hide system UI.
         var reductionText = "";
         var contributes = ent.Comp.ContributesToMarket;
-        // Compute per-prototype batch size (stacks count as 1)
         var previewBatchByProto = new Dictionary<string, int>();
         if (contributes)
         {
+            var sys = ResolveRoutingSystem(ent.Owner);
             foreach (var uid in toSell)
             {
-                if (!_market.TryGetDynamicPrototypeId(uid, out var pid))
-                    continue;
-
-                // Count 1 per stack
+                if (!(sys?.TryGetDynamicPrototypeId(uid, out var pid) ?? false)) continue;
                 var units = 1;
-                if (!previewBatchByProto.TryAdd(pid, units))
-                    previewBatchByProto[pid] += units;
+                if (!previewBatchByProto.TryAdd(pid, units)) previewBatchByProto[pid] += units;
             }
         }
-
-        // Weighted average of projected multipliers by batch count
         double afterWeighted = 1.0;
         int dynPercentInt = 0;
         if (contributes && previewBatchByProto.Count > 0)
         {
+            var system = ResolveRoutingSystem(ent.Owner);
             double sumWeighted = 0;
             double totalUnits = 0;
             foreach (var (pid, count) in previewBatchByProto)
             {
-                var system = ResolveRoutingSystem(ent.Owner);
                 var projected = (system?.GetProjectedMultiplierAfterSale(pid, count)) ?? 1.0;
                 sumWeighted += projected * count;
                 totalUnits += count;
@@ -121,52 +86,43 @@ public sealed partial class NFCargoSystem
             dynPercentInt = Math.Max(0, (int)Math.Round(dynPercent));
             reductionText = $"-{dynPercentInt}%";
         }
-
-        // Compute real preview price with tax and dynamics (including bulk preview effect).
-        // RU: Считает реальную цену предпросмотра с налогом и динамикой (с учётом эффекта партии).
         double real = 0.0;
+        var routingSystem = contributes ? ResolveRoutingSystem(ent.Owner) : null;
+        var multiplierCache = new Dictionary<(string, int), double>();
         foreach (var uid in toSell)
         {
             var basePrice = _pricing.GetPrice(uid);
-            if (basePrice <= 0)
-                continue;
-
+            if (basePrice <= 0) continue; 
             if (HasComp<IgnoreMarketModifierComponent>(uid))
+            { real += basePrice; continue; }
+            if (contributes && (routingSystem?.TryGetDynamicPrototypeId(uid, out var pid) ?? false))
             {
-                real += basePrice;
-                continue;
-            }
-
-            if (contributes && _market.TryGetDynamicPrototypeId(uid, out var pid))
-            {
-                var units = 1; // Stacks treated as 1. RU: Стак считается за 1.
-                var system = ResolveRoutingSystem(ent.Owner);
-                var dyn = (system?.GetEffectiveMultiplierForBatch(pid, previewBatchByProto.GetValueOrDefault(pid, units))) ?? 1.0;
+                var units = 1;
+                var batch = previewBatchByProto.GetValueOrDefault(pid, units);
+                if (!multiplierCache.TryGetValue((pid, batch), out var dyn))
+                {
+                    dyn = (routingSystem?.GetEffectiveMultiplierForBatch(pid, batch)) ?? 1.0;
+                    multiplierCache[(pid, batch)] = dyn;
+                }
                 var taxed = basePrice * taxMultiplier * dyn;
-                var minAfterTax = basePrice * _market.GetDynamicMinAfterTaxBaseFraction(pid);
+                var minAfterTax = basePrice * routingSystem!.GetDynamicMinAfterTaxBaseFraction(pid);
                 real += Math.Max(minAfterTax, taxed);
             }
             else
             {
                 var taxed = basePrice * taxMultiplier;
-                // For non-contributing consoles, do not clamp by dynamic min.
-                // RU: Для консоли, не влияющей на рынок, без минимального порога динамики.
                 if (contributes)
                 {
-                    var minAfterTax = basePrice * _market.GetDynamicMinAfterTaxBaseFraction();
+                    var minAfterTax = basePrice * routingSystem!.GetDynamicMinAfterTaxBaseFraction();
                     real += Math.Max(minAfterTax, taxed);
                 }
                 else
-                {
-                    real += taxed;
-                }
+                { real += taxed; }
             }
         }
-
         var minimalUi = !ent.Comp.ContributesToMarket;
+        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale, new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true, reductionText, (int)real, dynPercentInt, minimalUi));
         // Lua end
-        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale,
-            new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true, reductionText, (int)real, dynPercentInt, minimalUi)); // Lua add: reductionText, (int)real, dynPercentInt, minimalUi
     }
 
     private void OnPalletUIOpen(Entity<NFCargoPalletConsoleComponent> ent, ref BoundUIOpenedEvent args)
@@ -184,6 +140,8 @@ public sealed partial class NFCargoSystem
 
     private void OnPalletAppraise(Entity<NFCargoPalletConsoleComponent> ent, ref CargoPalletAppraiseMessage args)
     {
+        if (_timing.CurTime < ent.Comp.NextAppraiseTime) return; // Lua
+        ent.Comp.NextAppraiseTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.AppraiseCooldown); // Lua
         UpdatePalletConsoleInterface(ent);
     }
 
@@ -247,7 +205,7 @@ public sealed partial class NFCargoSystem
 
     #region Station
 
-        private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
+    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount) // Frontier: first arg to Entity, add noMultiplierAmount
     {
         GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount);
 
@@ -353,87 +311,71 @@ public sealed partial class NFCargoSystem
         }
 
         //if (!SellPallets(ent, gridUid, out var price, out var noMultiplierPrice)) // Lua
-        // Compute price before deletion (prevents zero after deletion).
         GetPalletGoods(ent, gridUid, out var toSellNow, out _, out _); // Lua
         if (toSellNow.Count == 0) // Lua
             return;
 
-        // Учёт налога, иммунных объектов и динамики.
-        double taxMultiplier = 1.0; // Lua (господи боже... ебанная иишка нахуй оно это всё...)
+        // Handle market modifiers & immune objects
+        double taxMultiplier = 1.0; // Lua
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
-            taxMultiplier = priceMod.Mod;
-
-            // Формируем размеры партий по прототипам (стак=1) как в превью UI. (партии единной россии блять)
-            // Lua start
-            var previewBatchByProto = new Dictionary<string, int>();
-            var contributesSale = ent.Comp.ContributesToMarket;
-            if (contributesSale)
-            {
-                foreach (var uid in toSellNow)
-                {
-                    if (!_market.TryGetDynamicPrototypeId(uid, out var pid))
-                        continue;
-                    var units = 1; // Stacks count as 1 for pricing preview. RU: Стак=1 для превью.
-                    if (!previewBatchByProto.TryAdd(pid, units))
-                        previewBatchByProto[pid] += units;
-                }
-            }
-
-            double finalPrice = 0.0;
+            taxMultiplier = priceMod.Mod; // Lua
+        // Lua start
+        var previewBatchByProto = new Dictionary<string, int>();
+        var contributesSale = ent.Comp.ContributesToMarket;
+        if (contributesSale)
+        {
+            var sysPreview = ResolveRoutingSystem(ent.Owner);
             foreach (var uid in toSellNow)
             {
-                var basePrice = _pricing.GetPrice(uid);
-                if (basePrice <= 0)
-                    continue;
-
-                if (HasComp<IgnoreMarketModifierComponent>(uid))
+                if (!(sysPreview?.TryGetDynamicPrototypeId(uid, out var pid) ?? false)) continue;
+                var units = 1;
+                if (!previewBatchByProto.TryAdd(pid, units)) previewBatchByProto[pid] += units;
+            }
+        }
+        double finalPrice = 0.0;
+        var sysSale = ResolveRoutingSystem(ent.Owner);
+        foreach (var uid in toSellNow)
+        {
+            var basePrice = _pricing.GetPrice(uid);
+            if (basePrice <= 0) continue;
+            if (HasComp<IgnoreMarketModifierComponent>(uid))
+            { finalPrice += basePrice; continue; }
+            if (contributesSale && (sysSale?.TryGetDynamicPrototypeId(uid, out var pid) ?? false))
+            {
+                var batchUnits = previewBatchByProto.GetValueOrDefault(pid, 1);
+                var dyn = (sysSale?.GetEffectiveMultiplierForBatch(pid, batchUnits)) ?? 1.0;
+                var taxed = basePrice * taxMultiplier * dyn;
+                var minAfterTax = basePrice * (sysSale?.GetDynamicMinAfterTaxBaseFraction(pid) ?? 0.25);
+                finalPrice += Math.Max(minAfterTax, taxed);
+            }
+            else
+            {
+                var taxed = basePrice * taxMultiplier;
+                if (contributesSale)
                 {
-                    finalPrice += basePrice; // Immune to tax & dynamic.
-                    continue;
-                }
-
-                if (contributesSale && _market.TryGetDynamicPrototypeId(uid, out var pid))
-                {
-                    var system = ResolveRoutingSystem(ent.Owner);
-                    var batchUnits = previewBatchByProto.GetValueOrDefault(pid, 1);
-                    var dyn = (system?.GetEffectiveMultiplierForBatch(pid, batchUnits)) ?? 1.0;
-                    var taxed = basePrice * taxMultiplier * dyn;
-                    var minAfterTax = basePrice * _market.GetDynamicMinAfterTaxBaseFraction(pid);
+                    var minAfterTax = basePrice * (sysSale?.GetDynamicMinAfterTaxBaseFraction() ?? 0.25);
                     finalPrice += Math.Max(minAfterTax, taxed);
                 }
                 else
                 {
-                    var taxed = basePrice * taxMultiplier;
-                    if (contributesSale)
-                    {
-                        var minAfterTax = basePrice * _market.GetDynamicMinAfterTaxBaseFraction();
-                        finalPrice += Math.Max(minAfterTax, taxed);
-                    }
-                    else
-                    {
-                        finalPrice += taxed;
-                    }
-                }
-            }
-
-        // Размеры партий по прототипам для последующего оптового эффекта, считая каждый стак как 1.
-            var bulkByProto = new Dictionary<string, int>();
-        if (contributesSale)
-        {
-            foreach (var uid in toSellNow)
-            {
-                if (_market.TryGetDynamicPrototypeId(uid, out var pid))
-                {
-                    const int units = 1; // Stack is treated as 1 unit for dynamic bulk effect
-                    if (!bulkByProto.TryAdd(pid, units))
-                        bulkByProto[pid] += units;
+                    finalPrice += taxed;
                 }
             }
         }
-
-        // Now delete and send events. RU: Теперь удаляем и шлём события.
-        if (!SellPallets(ent, gridUid, out _, out _))
-            return; // someone snatched items
+        var bulkByProto = new Dictionary<string, int>();
+        if (contributesSale)
+        {
+            var sys = ResolveRoutingSystem(ent.Owner);
+            foreach (var uid in toSellNow)
+            {
+                if (sys?.TryGetDynamicPrototypeId(uid, out var pid) ?? false)
+                {
+                    const int units = 1;
+                    if (!bulkByProto.TryAdd(pid, units)) bulkByProto[pid] += units;
+                }
+            }
+        }
+        if (!SellPallets(ent, gridUid, out _, out _)) return;
         var price = finalPrice;
         // Lua end
 
@@ -443,15 +385,12 @@ public sealed partial class NFCargoSystem
             _transform.SetLocalRotation(stackUid, Angle.Zero); // Orient these to grid north instead of map north
         _audio.PlayPvs(ApproveSound, ent);
         // Lua start
-        // Применяем оптовое снижение.
         if (contributesSale)
         {
             var sys = ResolveRoutingSystem(ent.Owner);
-            foreach (var (pid, count) in bulkByProto)
-                sys?.ApplyBulkSaleEffect(pid, count);
+            foreach (var (pid, count) in bulkByProto) sys?.ApplyBulkSaleEffect(pid, count);
         }
         // Lua end
-
         UpdatePalletConsoleInterface(ent);
     }
 

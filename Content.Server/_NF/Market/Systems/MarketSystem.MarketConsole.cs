@@ -1,21 +1,22 @@
+using System.Linq;
 using Content.Server._Lua.Market.Systems; // Lua
 using Content.Server._NF.Cargo.Components; // Lua
 using Content.Server._NF.Cargo.Systems;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
 using Content.Server.Storage.Components;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.BUI;
 using Content.Shared._NF.Market.Events;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Materials;
 using Content.Shared.Power;
 using Content.Shared.Stacks;
 using Content.Shared.Storage;
+using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Linq;
+using Robust.Shared.Timing; // Lua
 
 
 namespace Content.Server._NF.Market.Systems;
@@ -24,6 +25,11 @@ public sealed partial class MarketSystem
 {
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _sharedMaterialStorageSystem = default!;
+    // Lua start
+    [Dependency] private readonly IGameTiming _timing = default!;
+    private readonly Dictionary<EntityUid, (BaseMarketDynamicSystem Sys, TimeSpan Time)> _routingCache = new();
+    private static readonly TimeSpan RoutingCacheTtl = TimeSpan.FromSeconds(2);
+    // Lua end
     private void InitializeConsole()
     {
         SubscribeLocalEvent<NFEntitySoldEvent>(OnEntitySoldEvent);
@@ -31,17 +37,22 @@ public sealed partial class MarketSystem
         SubscribeLocalEvent<MarketConsoleComponent, MarketConsoleCartMessage>(OnCartMessage);
         SubscribeLocalEvent<MarketConsoleComponent, PowerChangedEvent>(OnPowerChanged);
     }
-
     // Lua start
     private BaseMarketDynamicSystem? ResolveRoutingSystem(EntityUid grid)
     {
-        // Prefer explicit consoles on the grid to decide routing; fallback to default.
+        var now = _timing.CurTime;
+        if (_routingCache.TryGetValue(grid, out var cached) && now - cached.Time <= RoutingCacheTtl) return cached.Sys;
+        if (_routingCache.Count > 64)
+        {
+            var expired = new List<EntityUid>();
+            foreach (var (k, v) in _routingCache)
+            { if (now - v.Time > RoutingCacheTtl) expired.Add(k); }
+            foreach (var k in expired) _routingCache.Remove(k);
+        }
         var query = AllEntityQuery<NFCargoPalletConsoleComponent, TransformComponent, MarketModifierComponent>();
         while (query.MoveNext(out var uid, out var console, out var xform, out var modifier))
         {
-            if (xform.GridUid != grid)
-                continue;
-            // Identify by sprite/state via name doesn't scale; use existing ids:
+            if (xform.GridUid != grid) continue;
             var proto = MetaData(uid).EntityPrototype;
             if (proto != null)
             {
@@ -50,21 +61,25 @@ public sealed partial class MarketSystem
                 {
                     var sys = EntityManager.System<MarketSystemBlackMarket>();
                     sys.LoadDomainConfig("BlackMarket");
+                    _routingCache[grid] = (sys, now);
                     return sys;
                 }
                 if (id.Contains("Syndicate", StringComparison.OrdinalIgnoreCase))
                 {
                     var sys = EntityManager.System<MarketSystemSyndicate>();
                     sys.LoadDomainConfig("SyndicateMarket");
+                    _routingCache[grid] = (sys, now);
                     return sys;
                 }
             }
             var def = EntityManager.System<MarketSystemDefault>();
             def.LoadDomainConfig("DefaultMarket");
+            _routingCache[grid] = (def, now);
             return def;
         }
         var @default = EntityManager.System<MarketSystemDefault>();
         @default.LoadDomainConfig("DefaultMarket");
+        _routingCache[grid] = (@default, now);
         return @default;
     }
     // Lua end
@@ -83,14 +98,9 @@ public sealed partial class MarketSystem
     private void OnEntitySoldEvent(ref NFEntitySoldEvent entitySoldEvent)
     {
         // Lua start
-        // If sale source console does not contribute to market, ignore for pricing dynamics.
-        if (TryComp<NFCargoPalletConsoleComponent>(entitySoldEvent.SourceConsole, out var pallet)
-            && !pallet.ContributesToMarket)
-        {
-            return;
-        }
+        if (TryComp<NFCargoPalletConsoleComponent>(entitySoldEvent.SourceConsole, out var pallet) && !pallet.ContributesToMarket)
+        { return; }
         // Lua end
-
         var station = _station.GetOwningStation(entitySoldEvent.Grid);
         if (station is null ||
             !_entityManager.TryGetComponent<CargoMarketDataComponent>(station, out var market))
@@ -98,11 +108,12 @@ public sealed partial class MarketSystem
             return;
         }
 
+        var system = ResolveRoutingSystem(entitySoldEvent.Grid); // Lua
         foreach (var sold in entitySoldEvent.Sold)
         {
             // Lua start
-            // Route to appropriate market system instance based on console type on the grid.
-            var system = ResolveRoutingSystem(entitySoldEvent.Grid);
+            if (_entityManager.HasComponent<IgnoreMarketModifierComponent>(sold))
+            { UpsertEntity(market, sold); continue; }
             system?.RegisterSaleForEntity(sold);
             // Lua end
             UpsertEntity(market, sold);

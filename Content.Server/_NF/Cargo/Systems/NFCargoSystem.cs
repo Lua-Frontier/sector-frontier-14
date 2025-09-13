@@ -1,10 +1,10 @@
+using Content.Server._Lua.Market.Systems; // Lua
 using Content.Server._NF.Bank;
 using Content.Server._NF.SectorServices;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Hands.Systems;
-using Content.Server._NF.Market.Systems; // Lua: dependency for dynamic market pricing
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
@@ -20,8 +20,8 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using Robust.Shared.Random;
+using Robust.Shared.Timing; // Lua
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -50,7 +50,6 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly MarketSystem _market = default!; // Lua: Dynamic pricing access
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
@@ -86,12 +85,8 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
         ResetOrders();
         CleanupTradeCrateDestinations();
     }
-
-    /// <summary>
-    /// Выбирает экземпляр системы динамики по id прототипа консоли.
-    /// </summary>
     // Lua start
-    private Content.Server._Lua.Market.Systems.BaseMarketDynamicSystem? ResolveRoutingSystem(EntityUid console)
+    private BaseMarketDynamicSystem? ResolveRoutingSystem(EntityUid console)
     {
         var proto = MetaData(console).EntityPrototype;
         if (proto != null)
@@ -99,18 +94,18 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
             var id = proto.ID;
             if (id.Contains("BlackMarket", StringComparison.OrdinalIgnoreCase))
             {
-                var sys = EntityManager.System<Content.Server._Lua.Market.Systems.MarketSystemBlackMarket>();
+                var sys = EntityManager.System<MarketSystemBlackMarket>();
                 sys.LoadDomainConfig("BlackMarket");
                 return sys;
             }
             if (id.Contains("Syndicate", StringComparison.OrdinalIgnoreCase))
             {
-                var sys = EntityManager.System<Content.Server._Lua.Market.Systems.MarketSystemSyndicate>();
+                var sys = EntityManager.System<MarketSystemSyndicate>();
                 sys.LoadDomainConfig("SyndicateMarket");
                 return sys;
             }
         }
-        var def = EntityManager.System<Content.Server._Lua.Market.Systems.MarketSystemDefault>();
+        var def = EntityManager.System<MarketSystemDefault>();
         def.LoadDomainConfig("DefaultMarket");
         return def;
     }

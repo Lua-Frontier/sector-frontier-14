@@ -1,90 +1,102 @@
 // LuaWorld - This file is licensed under AGPLv3
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
-
-// Dynamic pricing base system used to provide isolated instances per console group.
-// This system tracks and updates per-prototype multipliers over time and on sales,
-// and supports category-specific parameters loaded from prototypes.
-using System;
-using System.Collections.Generic;
 using Content.Server._NF.Cargo.Components;
-using Content.Server.Instruments;
-using Content.Shared.Chemistry.Components.SolutionManager;
-using Content.Server.Nutrition.Components;
-using Content.Shared.Nutrition.Components;
 using Content.Server.Botany.Components;
-using Content.Shared.Materials;
-using Content.Shared.Tools.Components;
+using Content.Server.Instruments;
+using Content.Server.Nutrition.Components;
+using Content.Shared._Lua.Market.Prototypes;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Construction.Components;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Timing; // IGameTiming
-using Content.Shared.Stacks;
-using Robust.Server.Player;
-using Robust.Shared.Enums; // SessionStatus
+using Content.Shared.Explosion.Components;
+using Content.Shared.Materials;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Stacks;
+using Content.Shared.Tools.Components;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Ranged.Components;
+using Robust.Server.Player;
+using Robust.Shared.Enums;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Lua.Market.Systems;
 
-/// <summary>
-/// Базовая серверная система динамического ценообразования.
-/// Хранит множители по прототипам, восстанавливает их со временем,
-/// применяет поштучное и оптовое снижение, поддерживает параметры домена/категорий из MarketDomainConfigPrototype.
-/// </summary>
 public abstract class BaseMarketDynamicSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected readonly IPrototypeManager ProtoMan = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    // Состояние: множитель для прототипа и время последнего обновления.
+    private string? _loadedDomainId;
+    private double _cachedOnlineScale = 1.0;
+    private TimeSpan _lastOnlineScaleUpdate = TimeSpan.Zero;
+    private static readonly TimeSpan OnlineScaleCacheInterval = TimeSpan.FromSeconds(1);
+    private TimeSpan _lastCleanupTime = TimeSpan.Zero;
+    private static readonly TimeSpan StateCleanupInterval = TimeSpan.FromMinutes(10);
+    private static readonly TimeSpan StateExpireTtl = TimeSpan.FromMinutes(30);
+    private double _defaultDynamicDecayPerStack = 0.003;
+    private double _defaultDynamicRestorePerMinute = 0.01;
+    private double _defaultDynamicMinAfterTaxBaseFraction = 0.25;
+    private double _defaultBulkDecayPerStack = 0.0007;
+    private int _onlineMinBaseline = 0;
+    private int _onlineMaxBaseline = 110;
+    private double _onlineDecayScaleMin = 0.9;
+    private double _onlineDecayScaleMax = 1.1;
+
     protected sealed class DynamicPriceState
     {
-        public double Multiplier = 1.0;
+        public double NetSoldUnits = 0.0;
         public TimeSpan LastUpdateTime;
     }
 
-    private double DefaultDynamicDecayPerStack = 0.003;
-    private double DefaultDynamicRestorePerMinute = 0.01;
-    private double DefaultDynamicMinAfterTaxBaseFraction = 0.25;
-    private double DefaultBulkDecayPerStack = 0.0007;
-
-        // Online-dependent dumping tuning.
-        private int OnlineMinBaseline = 0;   // Min online
-        private int OnlineMaxBaseline = 110; // Max online
-        private double OnlineDecayScaleMin = 0.9;  // Softer scaling at low online
-        private double OnlineDecayScaleMax = 1.1;  // Softer scaling at high online
-
-        private int GetActiveAlivePlayerCount()
+    private int GetActiveAlivePlayerCount()
+    {
+        var sessions = _playerManager.Sessions;
+        var count = 0;
+        foreach (var s in sessions)
         {
-            var sessions = _playerManager.Sessions;
-            var count = 0;
-            foreach (var s in sessions)
-            {
-                if (s.Status != SessionStatus.InGame)
-                    continue;
-                if (s.AttachedEntity is not { } uid)
-                    continue;
-                if (!EntityManager.TryGetComponent(uid, out MobStateComponent? mob))
-                    continue;
-                if (mob.CurrentState == MobState.Alive)
-                    count++;
-            }
-            return count;
+            if (s.Status != SessionStatus.InGame) continue;
+            if (s.AttachedEntity is not { } uid) continue;
+            if (!EntityManager.TryGetComponent(uid, out MobStateComponent? mob)) continue;
+            if (mob.CurrentState == MobState.Alive) count++;
         }
+        return count;
+    }
 
-        private double GetOnlineDumpingScale()
+    private double GetOnlineDumpingScale()
+    {
+        var now = _timing.CurTime;
+        if (now - _lastOnlineScaleUpdate < OnlineScaleCacheInterval) return _cachedOnlineScale;
+        var online = (double)GetActiveAlivePlayerCount();
+        double scale;
+        if (online <= _onlineMinBaseline) scale = _onlineDecayScaleMin;
+        else if (online >= _onlineMaxBaseline) scale = _onlineDecayScaleMax;
+        else
         {
-            var online = (double) GetActiveAlivePlayerCount();
-            if (online <= OnlineMinBaseline)
-                return OnlineDecayScaleMin;
-            if (online >= OnlineMaxBaseline)
-                return OnlineDecayScaleMax;
-            var t = (online - OnlineMinBaseline) / Math.Max(1.0, (OnlineMaxBaseline - OnlineMinBaseline));
-            return OnlineDecayScaleMin + t * (OnlineDecayScaleMax - OnlineDecayScaleMin);
+            var t = (online - _onlineMinBaseline) / Math.Max(1.0, (_onlineMaxBaseline - _onlineMinBaseline));
+            scale = _onlineDecayScaleMin + t * (_onlineDecayScaleMax - _onlineDecayScaleMin);
         }
+        _cachedOnlineScale = scale;
+        _lastOnlineScaleUpdate = now;
+        if (now - _lastCleanupTime > StateCleanupInterval || _dynamicPricing.Count > 2048)
+        {
+            CleanupExpiredStates(now);
+            _lastCleanupTime = now;
+        }
+        return scale;
+    }
 
-    // Категории товаров для подбора параметров динамики.
+    private void CleanupExpiredStates(TimeSpan now)
+    {
+        var toRemove = new List<string>();
+        foreach (var (pid, state) in _dynamicPricing)
+        { if (state.NetSoldUnits <= 0.0 && now - state.LastUpdateTime > StateExpireTtl) toRemove.Add(pid); }
+        foreach (var pid in toRemove) _dynamicPricing.Remove(pid);
+    }
+
     private enum MarketCategory
     {
         Chemistry,
@@ -98,7 +110,6 @@ public abstract class BaseMarketDynamicSystem : EntitySystem
         Unknown
     }
 
-    // Параметры динамики на уровне категории.
     protected sealed class CategoryParams
     {
         public double DecayPerStack = 0.003;
@@ -127,159 +138,154 @@ public abstract class BaseMarketDynamicSystem : EntitySystem
     {
         if (!_dynamicPricing.TryGetValue(prototypeId, out var state))
         {
-            state = new DynamicPriceState { Multiplier = 1.0, LastUpdateTime = _timing.CurTime };
+            state = new DynamicPriceState { NetSoldUnits = 0.0, LastUpdateTime = _timing.CurTime };
             _dynamicPricing[prototypeId] = state;
         }
         return state;
     }
 
-    // Применяет восстановление множителя по прошествии времени.
     public void RestoreNow(string prototypeId)
     {
         var state = GetState(prototypeId);
         var now = _timing.CurTime;
         var elapsed = now - state.LastUpdateTime;
-        if (elapsed <= TimeSpan.Zero)
-            return;
-
+        if (elapsed <= TimeSpan.Zero) return;
         var minutes = elapsed.TotalMinutes;
         if (minutes <= 0)
+        { state.LastUpdateTime = now; return; }
+        var p = GetParamsForPrototype(prototypeId);
+        var a = p.DecayPerStack;
+        var restoreMultPerMinute = p.RestorePerMinute;
+        if (a > 0.0)
         {
-            state.LastUpdateTime = now;
-            return;
+            var restoreUnitsPerMinute = restoreMultPerMinute / a;
+            state.NetSoldUnits = Math.Max(0.0, state.NetSoldUnits - minutes * restoreUnitsPerMinute);
         }
-
-        var restore = GetParamsForPrototype(prototypeId).RestorePerMinute;
-        state.Multiplier = Math.Min(1.0, state.Multiplier + minutes * restore);
+        else
+        { state.NetSoldUnits = 0.0; }
         state.LastUpdateTime = now;
     }
 
-    // Возвращает текущий множитель после восстановления.
     public double GetCurrentDynamicMultiplier(string prototypeId)
     {
         RestoreNow(prototypeId);
-        return GetState(prototypeId).Multiplier * _domainBaseMultiplier;
+        var state = GetState(prototypeId);
+        var p = GetParamsForPrototype(prototypeId);
+        var a = p.DecayPerStack;
+        if (a <= 0.0) return 1.0 * _domainBaseMultiplier;
+        var baseMult = Math.Max(0.0, 1.0 - a * state.NetSoldUnits);
+        return baseMult * _domainBaseMultiplier;
     }
 
-    // Регистрирует продажу и применяет поштучное снижение; исключения пропускаются.
     public void RegisterSaleForEntity(EntityUid sold)
     {
-        if (EntityManager.HasComponent<IgnoreMarketModifierComponent>(sold))
-            return;
-        if (EntityManager.HasComponent<InstrumentComponent>(sold))
-            return;
-
-        if (!EntityManager.TryGetComponent<MetaDataComponent>(sold, out var meta) || meta.EntityPrototype == null)
-            return;
-
+        if (EntityManager.HasComponent<IgnoreMarketModifierComponent>(sold)) return;
+        if (EntityManager.HasComponent<InstrumentComponent>(sold)) return;
+        if (!EntityManager.TryGetComponent<MetaDataComponent>(sold, out var meta) || meta.EntityPrototype == null) return;
         string? prototypeId = meta.EntityPrototype.ID;
-        var count = 1; // stack = 1
-
+        var count = 1;
         if (EntityManager.TryGetComponent<StackComponent>(sold, out var stack))
         {
-            var singularId = _prototypeManager.Index<StackPrototype>(stack.StackTypeId).Spawn.Id;
+            var singularId = ProtoMan.Index<StackPrototype>(stack.StackTypeId).Spawn.Id;
             prototypeId = singularId;
         }
-
-        if (prototypeId == null)
-            return;
-
+        if (prototypeId == null) return;
         RestoreNow(prototypeId);
         var state = GetState(prototypeId);
-        var decay = GetParamsForPrototype(prototypeId).DecayPerStack * GetOnlineDumpingScale();
-        state.Multiplier = Math.Max(0.0, state.Multiplier - decay * count);
+        state.NetSoldUnits += count;
     }
 
-    // Применяет разовое оптовое снижение при продаже пачкой.
     public void ApplyBulkSaleEffect(string prototypeId, int batchCount)
     {
-        if (batchCount <= 1)
-            return;
-
+        if (batchCount <= 1) return;
         RestoreNow(prototypeId);
         var state = GetState(prototypeId);
-        var bulk = GetParamsForPrototype(prototypeId).BulkDecayPerStack * GetOnlineDumpingScale();
-        var extra = bulk * Math.Max(0, batchCount - 1);
-        state.Multiplier = Math.Max(0.0, state.Multiplier - extra);
+        var p = GetParamsForPrototype(prototypeId);
+        var a = p.DecayPerStack;
+        var scale = GetOnlineDumpingScale();
+        if (a <= 0.0) return;
+        var bulk = p.BulkDecayPerStack * scale;
+        var extraUnits = (bulk / a) * Math.Max(0, batchCount - 1);
+        state.NetSoldUnits = Math.Max(0.0, state.NetSoldUnits + extraUnits);
     }
 
-    // Возвращает прогноз множителя для размера партии без изменения состояния.
     public double GetEffectiveMultiplierForBatch(string prototypeId, int batchCount)
     {
         RestoreNow(prototypeId);
         var state = GetState(prototypeId);
-        var bulk = GetParamsForPrototype(prototypeId).BulkDecayPerStack * GetOnlineDumpingScale();
+        var p = GetParamsForPrototype(prototypeId);
+        var a = p.DecayPerStack;
+        if (a <= 0.0) return 1.0 * _domainBaseMultiplier;
+        var scale = GetOnlineDumpingScale();
+        var bulk = p.BulkDecayPerStack * scale;
+        var baseMult = Math.Max(0.0, 1.0 - a * state.NetSoldUnits);
         var extra = bulk * Math.Max(0, batchCount - 1);
-        return Math.Max(0.0, state.Multiplier - extra) * _domainBaseMultiplier;
+        return Math.Max(0.0, baseMult - extra) * _domainBaseMultiplier;
     }
 
-    // Считает множитель сразу после завершения продажи партии.
     public double GetProjectedMultiplierAfterSale(string prototypeId, int batchCount)
     {
         RestoreNow(prototypeId);
         var state = GetState(prototypeId);
         var p = GetParamsForPrototype(prototypeId);
+        var a = p.DecayPerStack;
+        if (a <= 0.0) return 1.0 * _domainBaseMultiplier;
         var scale = GetOnlineDumpingScale();
-        var perUnit = p.DecayPerStack * scale * Math.Max(0, batchCount);
         var bulk = p.BulkDecayPerStack * scale * Math.Max(0, batchCount - 1);
-        var projected = state.Multiplier - perUnit - bulk;
-        return Math.Max(0.0, projected) * _domainBaseMultiplier;
+        var baseAfter = Math.Max(0.0, 1.0 - a * Math.Max(0.0, state.NetSoldUnits + Math.Max(0, batchCount)));
+        var projected = Math.Max(0.0, baseAfter - bulk);
+        return projected * _domainBaseMultiplier;
     }
 
-    // Определяет прототип для динамики (стаки приводятся к единичному).
     public bool TryGetDynamicPrototypeId(EntityUid uid, out string prototypeId)
     {
         prototypeId = string.Empty;
-        if (!EntityManager.TryGetComponent<MetaDataComponent>(uid, out var meta) || meta.EntityPrototype == null)
-            return false;
-
+        if (!EntityManager.TryGetComponent<MetaDataComponent>(uid, out var meta) || meta.EntityPrototype == null) return false;
         prototypeId = meta.EntityPrototype.ID;
         if (EntityManager.TryGetComponent<StackComponent>(uid, out var stack))
         {
-            var singularId = _prototypeManager.Index<StackPrototype>(stack.StackTypeId).Spawn.Id;
+            var singularId = ProtoMan.Index<StackPrototype>(stack.StackTypeId).Spawn.Id;
             prototypeId = singularId;
         }
         return true;
     }
 
-    public double GetDynamicMinAfterTaxBaseFraction() => DefaultDynamicMinAfterTaxBaseFraction; // RU: Минимальная доля от базовой цены после налога (по умолчанию)
-    public double GetDynamicMinAfterTaxBaseFraction(string prototypeId) => GetParamsForPrototype(prototypeId).MinAfterTaxBaseFraction;
+    public void RegisterPurchaseForPrototype(string prototypeId, int units)
+    {
+        if (units <= 0) return;
+        RestoreNow(prototypeId);
+        var state = GetState(prototypeId);
+        state.NetSoldUnits = Math.Max(0.0, state.NetSoldUnits - units);
+    }
 
-    // Загружает конфигурацию домена по id прототипа; при отсутствии — оставляет значения по умолчанию.
+    public double GetDynamicMinAfterTaxBaseFraction() => _defaultDynamicMinAfterTaxBaseFraction;
+    public double GetDynamicMinAfterTaxBaseFraction(string prototypeId) => GetParamsForPrototype(prototypeId).MinAfterTaxBaseFraction;
     public void LoadDomainConfig(string prototypeId)
     {
-        // Find domain config. If missing, keep defaults.
-        if (!_prototypeManager.TryIndex<Content.Shared._Lua.Market.Prototypes.MarketDomainConfigPrototype>(prototypeId, out var proto))
-            return;
+        if (_loadedDomainId == prototypeId) return;
+        if (!ProtoMan.TryIndex<MarketDomainConfigPrototype>(prototypeId, out var proto)) return;
+        _loadedDomainId = prototypeId;
         _domainBaseMultiplier = proto.BaseMultiplier;
-
-        // Online scaling from prototype
-        OnlineMinBaseline = proto.OnlineMin;
-        OnlineMaxBaseline = proto.OnlineMax;
-        OnlineDecayScaleMin = proto.OnlineScaleMin;
-        OnlineDecayScaleMax = proto.OnlineScaleMax;
-
-        // Default dynamic parameters from prototype
-        DefaultDynamicDecayPerStack = proto.DefaultDecayPerStack;
-        DefaultBulkDecayPerStack = proto.DefaultBulkDecayPerStack;
-        DefaultDynamicRestorePerMinute = proto.DefaultRestorePerMinute;
-        DefaultDynamicMinAfterTaxBaseFraction = proto.DefaultMinAfterTaxBaseFraction;
-
-        // Ensure Unknown category reflects defaults
+        _onlineMinBaseline = proto.OnlineMin;
+        _onlineMaxBaseline = proto.OnlineMax;
+        _onlineDecayScaleMin = proto.OnlineScaleMin;
+        _onlineDecayScaleMax = proto.OnlineScaleMax;
+        _defaultDynamicDecayPerStack = proto.DefaultDecayPerStack;
+        _defaultBulkDecayPerStack = proto.DefaultBulkDecayPerStack;
+        _defaultDynamicRestorePerMinute = proto.DefaultRestorePerMinute;
+        _defaultDynamicMinAfterTaxBaseFraction = proto.DefaultMinAfterTaxBaseFraction;
         CategoryConfig[MarketCategory.Unknown] = new CategoryParams
         {
-            DecayPerStack = DefaultDynamicDecayPerStack,
-            BulkDecayPerStack = DefaultBulkDecayPerStack,
-            RestorePerMinute = DefaultDynamicRestorePerMinute,
-            MinAfterTaxBaseFraction = DefaultDynamicMinAfterTaxBaseFraction
+            DecayPerStack = _defaultDynamicDecayPerStack,
+            BulkDecayPerStack = _defaultBulkDecayPerStack,
+            RestorePerMinute = _defaultDynamicRestorePerMinute,
+            MinAfterTaxBaseFraction = _defaultDynamicMinAfterTaxBaseFraction
         };
-
         foreach (var kv in proto.Categories)
         {
             var key = kv.Key;
             var cfg = kv.Value;
-            if (!Enum.TryParse<MarketCategory>(key, out var cat))
-                continue;
+            if (!Enum.TryParse<MarketCategory>(key, out var cat)) continue;
             CategoryConfig[cat] = new CategoryParams
             {
                 DecayPerStack = cfg.DecayPerStack,
@@ -293,43 +299,28 @@ public abstract class BaseMarketDynamicSystem : EntitySystem
     private CategoryParams GetParamsForPrototype(string prototypeId)
     {
         var category = GetCategoryForPrototype(prototypeId);
-        if (CategoryConfig.TryGetValue(category, out var param))
-            return param;
+        if (CategoryConfig.TryGetValue(category, out var param)) return param;
         return new CategoryParams
         {
-            DecayPerStack = DefaultDynamicDecayPerStack,
-            BulkDecayPerStack = DefaultBulkDecayPerStack,
-            RestorePerMinute = DefaultDynamicRestorePerMinute,
-            MinAfterTaxBaseFraction = DefaultDynamicMinAfterTaxBaseFraction
+            DecayPerStack = _defaultDynamicDecayPerStack,
+            BulkDecayPerStack = _defaultBulkDecayPerStack,
+            RestorePerMinute = _defaultDynamicRestorePerMinute,
+            MinAfterTaxBaseFraction = _defaultDynamicMinAfterTaxBaseFraction
         };
     }
 
-    /// <summary>
-    /// Attempts to classify a prototype into a pricing category based on attached components.
-    /// </summary>
     private MarketCategory GetCategoryForPrototype(string prototypeId)
     {
-        if (!_prototypeManager.TryIndex<EntityPrototype>(prototypeId, out var prototype))
+        if (!ProtoMan.TryIndex<EntityPrototype>(prototypeId, out var prototype))
             return MarketCategory.Unknown;
 
-        if (prototype.TryGetComponent<InstrumentComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.Instrument;
-        if (prototype.TryGetComponent<Content.Shared.Weapons.Ranged.Components.GunComponent>(out _, EntityManager.ComponentFactory)
-            || prototype.TryGetComponent<Content.Shared.Weapons.Melee.MeleeWeaponComponent>(out _, EntityManager.ComponentFactory)
-            || prototype.TryGetComponent<Content.Shared.Explosion.Components.ExplosiveComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.WeaponsSecurity;
-        if (prototype.TryGetComponent<FoodComponent>(out _, EntityManager.ComponentFactory)
-            || prototype.TryGetComponent<DrinkComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.FoodDrink;
-        if (prototype.TryGetComponent<ProduceComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.Botany;
-        if (prototype.TryGetComponent<MaterialComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.MaterialsOres;
-        if (prototype.TryGetComponent<ToolComponent>(out _, EntityManager.ComponentFactory)
-            || prototype.TryGetComponent<MachinePartComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.ManufacturedTools;
-        if (prototype.TryGetComponent<SolutionContainerManagerComponent>(out _, EntityManager.ComponentFactory))
-            return MarketCategory.Chemistry;
+        if (prototype.TryGetComponent<InstrumentComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.Instrument;
+        if (prototype.TryGetComponent<GunComponent>(out _, EntityManager.ComponentFactory) || prototype.TryGetComponent<MeleeWeaponComponent>(out _, EntityManager.ComponentFactory) || prototype.TryGetComponent<ExplosiveComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.WeaponsSecurity;
+        if (prototype.TryGetComponent<FoodComponent>(out _, EntityManager.ComponentFactory) || prototype.TryGetComponent<DrinkComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.FoodDrink;
+        if (prototype.TryGetComponent<ProduceComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.Botany;
+        if (prototype.TryGetComponent<MaterialComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.MaterialsOres;
+        if (prototype.TryGetComponent<ToolComponent>(out _, EntityManager.ComponentFactory) || prototype.TryGetComponent<MachinePartComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.ManufacturedTools;
+        if (prototype.TryGetComponent<SolutionContainerManagerComponent>(out _, EntityManager.ComponentFactory)) return MarketCategory.Chemistry;
         return MarketCategory.SalvageMisc;
     }
 }

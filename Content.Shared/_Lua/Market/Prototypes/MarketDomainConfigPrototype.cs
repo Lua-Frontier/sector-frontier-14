@@ -1,56 +1,59 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Lua.Market.Prototypes;
 
-/// <summary>
-/// Prototype to configure market domain pricing and per-category dynamic parameters.
-/// One prototype per domain (Default, Syndicate, BlackMarket, etc.).
-/// </summary>
 [Prototype("marketDomainConfig")]
 public sealed partial class MarketDomainConfigPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    /// <summary>
-    /// Base price multiplier applied for this domain, on top of console-specific MarketModifier.
-    /// Default 1.0.
-    /// </summary>
-    [DataField("baseMultiplier")]
+    [DataField]
     public float BaseMultiplier { get; private set; } = 1.0f;
 
-    /// <summary>
-    /// Parameters per category.
-    /// Keys must match values from server-side category enum mapping.
-    /// </summary>
-    [DataField("categories")]
+    [DataField]
     public Dictionary<string, CategoryParamsPrototype> Categories { get; private set; } = new();
 
-    // Online-based scaling configuration
-    [DataField("onlineMin")] public int OnlineMin { get; private set; } = 0;
-    [DataField("onlineMax")] public int OnlineMax { get; private set; } = 110;
-    [DataField("onlineScaleMin")] public double OnlineScaleMin { get; private set; } = 0.9;
-    [DataField("onlineScaleMax")] public double OnlineScaleMax { get; private set; } = 1.1;
+    [DataField]
+    public int OnlineMin { get; private set; } = 0;
 
-    // Default dynamic parameters used as fallback (e.g., for Unknown category)
-    [DataField("defaultDecayPerStack")] public double DefaultDecayPerStack { get; private set; } = 0.003;
-    [DataField("defaultBulkDecayPerStack")] public double DefaultBulkDecayPerStack { get; private set; } = 0.0007;
-    [DataField("defaultRestorePerMinute")] public double DefaultRestorePerMinute { get; private set; } = 0.01;
-    [DataField("defaultMinAfterTaxBaseFraction")] public double DefaultMinAfterTaxBaseFraction { get; private set; } = 0.25;
+    [DataField]
+    public int OnlineMax { get; private set; } = 110;
+
+    [DataField]
+    public double OnlineScaleMin { get; private set; } = 0.9;
+
+    [DataField]
+    public double OnlineScaleMax { get; private set; } = 1.1;
+
+    [DataField]
+    public double DefaultDecayPerStack { get; private set; } = 0.003;
+
+    [DataField]
+    public double DefaultBulkDecayPerStack { get; private set; } = 0.0007;
+
+    [DataField]
+    public double DefaultRestorePerMinute { get; private set; } = 0.01;
+
+    [DataField]
+    public double DefaultMinAfterTaxBaseFraction { get; private set; } = 0.25;
 
     [DataDefinition]
     public sealed partial class CategoryParamsPrototype
     {
-        [DataField("decayPerStack")]
+        [DataField]
         public double DecayPerStack = 0.01;
 
-        [DataField("bulkDecayPerStack")]
+        [DataField]
         public double BulkDecayPerStack = 0.002;
 
-        [DataField("restorePerMinute")]
+        [DataField]
         public double RestorePerMinute = 0.01;
 
-        [DataField("minAfterTaxBaseFraction")]
+        [DataField]
         public double MinAfterTaxBaseFraction = 0.25;
     }
 }
