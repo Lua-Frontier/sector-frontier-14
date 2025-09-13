@@ -71,6 +71,9 @@
     - type: ProjectileBatteryAmmoProvider
       proto: TeslaGunTurretBullet
       fireCost: 150
+    - type: StaticPrice
+      price: 10000
+
 
 - type: entity
   parent: [BaseStructureDisableToolUse, TeslaTurretBase]

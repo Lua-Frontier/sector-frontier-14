@@ -277,3 +277,61 @@
     sprite: _Lua/Flatpack/flatpack.rsi
     layers:
     - state: ship_weapon
+
+#MARK: Structures - wall
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WallPlastitaniumFlatPack
+  name: пластитановая стена
+  description: Упакованная пластитановая стена, тут точно нет блюспейс технологий?
+  components:
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    state: plastitanium
+  - type: Flatpack
+    entity: WallPlastitaniumStation
+  - type: StaticPrice
+    price: 350
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PlastitaniumWindowStationFlatPack
+  name: пластитановое окно
+  description: Упакованная пластитановая стена, тут точно нет блюспейс технологий?
+  components:
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    state: plastitanium
+  - type: Flatpack
+    entity: PlastitaniumWindowStation
+  - type: StaticPrice
+    price: 350
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PlastitaniumWindowSquareBaseFlatPack
+  name: пластитановая стена
+  description: Упакованная пластитановая стена, тут точно нет блюспейс технологий?
+  components:
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    state: plastitanium
+  - type: Flatpack
+    entity: PlastitaniumWindow
+  - type: StaticPrice
+    price: 350
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WallPlastitaniumFlatPack
+  name: пластитановое окно
+  description: Упакованная пластитановая стена, тут точно нет блюспейс технологий?
+  components:
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    state: plastitanium
+  - type: Flatpack
+    entity: WallPlastitanium
+  - type: StaticPrice
+    price: 350
