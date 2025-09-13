@@ -1,0 +1,46 @@
+# Author Info
+# GitHub:
+# Discord: Checkraze
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
+- type: pointOfInterest
+  id: Lodge
+  parent: BasePOI
+  name: 'Аванпост Экспедиций'
+  minimumDistance: 2300 #1650 Lua
+  maximumDistance: 5400 #3400 Lua
+  spawnGroup: Required
+  gridPath: /Maps/_Lua/POI/lodge.yml
+  addComponents:
+  - type: IFF
+    color: "#3737F8"
+  - type: StationTransit
+    routes:
+      SpawnPoints: 20
+
+- type: gameMap
+  id: Lodge
+  mapName: 'Аванпост Экспедиций'
+  mapPath: /Maps/_Lua/POI/lodge.yml
+  minPlayers: 0
+  stations:
+    Lodge:
+      stationProto: RecordsFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Аванпост Экспедиций'
+        - type: ExtraStationInformation
+          iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
+          stationSubtext: 'frontier-lobby-exped-subtext'
+          stationDescription: 'frontier-lobby-exped-description'
+          lobbySortOrder: 3
+        - type: StationJobs
+          availableJobs:
+            Pilot: [ -1, -1 ]
+        - type: StationDeadDrop
+          maxDeadDrops: 1 # Fewer here, players start here.

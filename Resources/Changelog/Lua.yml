@@ -1154,3 +1154,103 @@ Entries:
   id: 85
   time: '2025-09-04T15:23:34.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/181
+- author: UnilTan
+  changes:
+    - type: Add
+      message: >-
+        Добавлен картридж «ЮПИ» для переводов денег в КПК, показ баланса и
+        собственного ЮПИ, кнопка «Копировать».
+    - type: Add
+      message: >-
+        Всплывающие уведомления: исходящий- только отправителю, входящий- только
+        получателю.
+    - type: Add
+      message: Показ ЮПИ-кода при открытии банкомата.
+    - type: Add
+      message: 'Консоли: вклады, рейтинг, выдача кредитов, обзор кредитов/вкладов.'
+    - type: Tweak
+      message: >-
+        Комиссия 3% до 100 000 за 30 минут, далее 13%; частичное налогообложение
+        при пересечении порога. Комиссия списывается с отправителя сверх суммы.
+    - type: Tweak
+      message: Лимит одного перевода- 50 000; переводы только между онлайн-игроками.
+    - type: Tweak
+      message: Добавлены CVars для экономической балансировки кредитов и вкладов.
+  id: 86
+  time: '2025-09-11T07:06:12.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/148
+- author: UnilTan
+  changes:
+    - type: Add
+      message: >-
+        Добавлена система Aishuttlebrain для автономного управления шаттлами и
+        ведения боя.
+    - type: Add
+      message: Новые YAML-прототипы и карты шаттлов с ИИ.
+    - type: Add
+      message: Документация по использованию и настройке Aishuttlebrain.
+    - type: Tweak
+      message: Компоненты FireControl обновлены для интеграции с ИИ.
+    - type: Tweak
+      message: Неиспользуемые ресурсоёмкие системы закомментированы для оптимизации.
+  id: 87
+  time: '2025-09-11T07:16:01.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/159
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Переработаны старые шаттлы ИИ управляемые человеком на полное ИИ
+    - type: Tweak
+      message: Переработана логика ИИ
+    - type: Add
+      message: Добавлены новые правила для ИИ
+    - type: Add
+      message: Добавлено самоуничтожение ИИ
+    - type: Add
+      message: ИИ теперь патрулируют сектор
+    - type: Add
+      message: Если ИИ более 2х ИИ выстраиваются в крыло
+    - type: Tweak
+      message: Переработаны геймрулы вызова ИИ
+  id: 88
+  time: '2025-09-11T08:17:46.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/197
+- author: HacksLua
+  changes:
+    - type: Fix
+      message: ИИ теперь будет избегать Зеленых Зон
+    - type: Fix
+      message: ИИ не атакует игрока если тот находится в Зеленой Зоне
+    - type: Tweak
+      message: >-
+        ИИ теперь атакует любой шаттл имеющий на борту сервер управления
+        вооружением
+    - type: Add
+      message: Зеленые зоны теперь видны на радаре
+    - type: Tweak
+      message: Вооружение теперь не работает в зеленых зонах
+    - type: Add
+      message: >-
+        Добавлен новый инструмент для мапперов drawline линейка с категориями
+        кораблей
+    - type: Tweak
+      message: >-
+        Шаттлы с категорией Small теперь могут использовать одновременно и
+        консоль шаттла и консоль вооружения
+  id: 89
+  time: '2025-09-12T12:35:27.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/199
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Теперь бункер будет активироваться при АФК админах
+  id: 90
+  time: '2025-09-12T12:37:23.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/202
+- author: UnilTan
+  changes:
+    - type: Fix
+      message: Исправлен баг Yupi кода из-за которого банк баланс становился нулевым
+  id: 91
+  time: '2025-09-12T12:50:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/201

@@ -2,6 +2,8 @@ using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Forensics;
+using Content.Server.Afk; // Lua
+using Content.Server.Afk.Events; // Lua
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind;
@@ -58,6 +60,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
+    [Dependency] private readonly IAfkManager _afkManager = default!; // Lua
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -95,6 +98,9 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
         SubscribeLocalEvent<ActorComponent, IdentityChangedEvent>(OnIdentityChanged);
         SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
+
+        SubscribeLocalEvent<AFKEvent>(OnAFKEvent); // Lua
+        SubscribeLocalEvent<UnAFKEvent>(OnUnAFKEvent); // Lua
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -350,7 +356,9 @@ public sealed class AdminSystem : EntitySystem
         var hasAdmins = false;
         foreach (var admin in _adminManager.AllAdmins)
         {
-            if (_adminManager.HasAdminFlag(admin, AdminFlags.Admin, includeDeAdmin: PanicBunker.CountDeadminnedAdmins))
+            if (!_adminManager.HasAdminFlag(admin, AdminFlags.Admin, includeDeAdmin: PanicBunker.CountDeadminnedAdmins)) continue; // Lua !
+            var isAfk = _afkManager.IsAfk(admin); // Lua
+            if (!isAfk) // Lua
             {
                 hasAdmins = true;
                 break;
@@ -468,4 +476,16 @@ public sealed class AdminSystem : EntitySystem
     {
         UpdatePlayerList(session);
     }
+
+    // Lua start
+    private void OnAFKEvent(ref AFKEvent ev)
+    {
+        UpdatePanicBunker();
+    }
+
+    private void OnUnAFKEvent(ref UnAFKEvent ev)
+    {
+        UpdatePanicBunker();
+    }
+    // Lua end
 }
