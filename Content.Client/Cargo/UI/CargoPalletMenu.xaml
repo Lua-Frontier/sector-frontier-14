@@ -1,9 +1,10 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-            SetSize="480 220"
-            MinSize="380 180"
+            SetSize="640 360"
+            MinSize="520 300"
                       Title="{Loc 'cargo-pallet-console-menu-title'}">
-    <BoxContainer Orientation="Vertical" Margin="5">
+    <BoxContainer Orientation="Horizontal" Margin="5">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
         <BoxContainer Orientation="Horizontal">
             <Label Text="{Loc 'cargo-pallet-menu-appraisal-label'}"
                    StyleClasses="LabelKeyText" />
@@ -25,17 +26,19 @@
                    HorizontalExpand="True"
                    Text="-" />
         </BoxContainer>
-        <BoxContainer Orientation="Horizontal" Name="ReductionRow">
-            <Label Text="{Loc 'cargo-pallet-menu-total-reduction-label'}"
-                   StyleClasses="LabelKeyText" />
-            <Label Name="ReductionLabel"
-                   HorizontalExpand="True"
-                   Text="-" />
+            <Button Name="AppraiseButton"
+                    Text="{Loc 'cargo-pallet-appraise-button'}"/>
+            <Button Name="SellButton"
+                    Text="{Loc 'cargo-pallet-sell-button'}"/>
+            <TextureButton VerticalExpand="True" />
         </BoxContainer>
-        <Button Name="AppraiseButton"
-                Text="{Loc 'cargo-pallet-appraise-button'}"/>
-        <Button Name="SellButton"
-                Text="{Loc 'cargo-pallet-sell-button'}"/>
-        <TextureButton VerticalExpand="True" />
+        <PanelContainer MinSize="200 0" HorizontalExpand="False">
+            <BoxContainer Orientation="Vertical" Margin="5" HorizontalExpand="False">
+                <Label Text="{Loc 'cargo-pallet-tax-list-title'}" StyleClasses="LabelKeyText" />
+                <ScrollContainer Name="TaxScroll" VerticalExpand="True">
+                    <BoxContainer Name="TaxList" Orientation="Vertical" />
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
     </BoxContainer>
 </controls:FancyWindow>

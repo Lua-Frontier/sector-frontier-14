@@ -24,7 +24,8 @@ public sealed class NFCargoPalletConsoleInterfaceState : BoundUserInterfaceState
     public int Real;
     public int ReductionPercent;
     public bool MinimalUi;
-    public NFCargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled, string? totalReductionText = null, int real = 0, int reductionPercent = 0, bool minimalUi = false)
+    public List<PalletTaxEntry> TaxEntries = new(); // Lua
+    public NFCargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled, string? totalReductionText = null, int real = 0, int reductionPercent = 0, bool minimalUi = false, List<PalletTaxEntry>? taxEntries = null)
     {
         Appraisal = appraisal;
         Count = count;
@@ -33,6 +34,24 @@ public sealed class NFCargoPalletConsoleInterfaceState : BoundUserInterfaceState
         Real = real;
         ReductionPercent = reductionPercent;
         MinimalUi = minimalUi;
+        if (taxEntries != null) TaxEntries = taxEntries;
     }
     // Lua end
+}
+
+[NetSerializable, Serializable]
+public sealed class PalletTaxEntry
+{
+    public string Name = string.Empty;
+    public int Percent;
+
+    public PalletTaxEntry()
+    {
+    }
+
+    public PalletTaxEntry(string name, int percent)
+    {
+        Name = name;
+        Percent = percent;
+    }
 }

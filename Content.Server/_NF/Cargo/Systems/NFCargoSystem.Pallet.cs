@@ -92,7 +92,7 @@ public sealed partial class NFCargoSystem
         foreach (var uid in toSell)
         {
             var basePrice = _pricing.GetPrice(uid);
-            if (basePrice <= 0) continue; 
+            if (basePrice <= 0) continue;
             if (HasComp<IgnoreMarketModifierComponent>(uid))
             { real += basePrice; continue; }
             if (contributes && (routingSystem?.TryGetDynamicPrototypeId(uid, out var pid) ?? false))
@@ -121,7 +121,28 @@ public sealed partial class NFCargoSystem
             }
         }
         var minimalUi = !ent.Comp.ContributesToMarket;
-        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale, new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true, reductionText, (int)real, dynPercentInt, minimalUi));
+        var taxEntries = new List<PalletTaxEntry>();
+        if (contributes && routingSystem != null)
+        {
+            var seen = new HashSet<string>();
+            foreach (var uid in toSell)
+            {
+                if (!routingSystem.TryGetDynamicPrototypeId(uid, out var pid)) continue;
+                if (!seen.Add(pid)) continue;
+                var basePrice = _pricing.GetPrice(uid);
+                if (basePrice <= 0) continue;
+                if (HasComp<IgnoreMarketModifierComponent>(uid)) continue;
+                var batch = previewBatchByProto.GetValueOrDefault(pid, 1);
+                var dyn = routingSystem.GetEffectiveMultiplierForBatch(pid, batch);
+                var taxed = taxMultiplier * dyn;
+                var minAfterTax = routingSystem.GetDynamicMinAfterTaxBaseFraction(pid);
+                var effective = Math.Max(minAfterTax, taxed);
+                var percent = (int) Math.Round((effective - 1.0) * 100.0);
+                var name = MetaData(uid).EntityName;
+                taxEntries.Add(new PalletTaxEntry(name, percent));
+            }
+        }
+        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale, new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true, reductionText, (int)real, dynPercentInt, minimalUi, taxEntries));
         // Lua end
     }
 
