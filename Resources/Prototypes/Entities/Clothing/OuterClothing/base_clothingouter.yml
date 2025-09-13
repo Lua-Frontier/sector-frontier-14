@@ -162,6 +162,10 @@
         whitelist: # lua - imperial hardsuit injection
           tags: # lua - imperial hardsuit injection
           - FitsHardsuit # Lua - imperial hardsuit injection
+  - type: ContainerContainer # Lua - imperial hardsuit injection
+    containers: # Lua - imperial hardsuit injection
+      toggleable-clothing: !type:ContainerSlot {} # Lua - imperial hardsuit injection
+      beakerSlot: !type:ContainerSlot # Lua - imperial hardsuit injection
 
 - type: entity
   abstract: true
