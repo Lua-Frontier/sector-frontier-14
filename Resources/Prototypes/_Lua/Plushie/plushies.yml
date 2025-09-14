@@ -95,3 +95,13 @@
   - type: Sprite
     sprite: _Lua/Plushie/toys.rsi
     state: tyler_mylukin
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMariaRogozina
+  name: плюшевая Мария Рогозина
+  description: Плюшевая представительница Центрального Командования. Её взгляд строг и требователен, но мягкий мех выдаёт, что внутри она тоже создана для объятий.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: mariya_rogozina
