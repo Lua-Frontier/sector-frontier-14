@@ -62,6 +62,13 @@ public sealed partial class AudioTab : Control
             SliderVolumeInterface,
             scale: ContentAudioSystem.InterfaceMultiplier);
 
+        // Lua start
+        Control.AddOptionPercentSlider(
+            CCVars.JukeboxVolume,
+            SliderVolumeJukebox,
+            scale: 1f);
+        // Lua end
+
         Control.AddOptionSlider(
             CCVars.MaxAmbientSources,
             SliderMaxAmbienceSounds,
