@@ -30,19 +30,19 @@ public sealed partial class JukeboxComponent : Component
     /// <summary>
     /// RSI state for the jukebox being on.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Lua AutoNetworkedField
     public string? OnState;
 
     /// <summary>
     /// RSI state for the jukebox being on.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Lua AutoNetworkedField
     public string? OffState;
 
     /// <summary>
     /// RSI state for the jukebox track being selected.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Lua AutoNetworkedField
     public string? SelectState;
 
     [DataField]
@@ -61,6 +61,19 @@ public sealed partial class JukeboxComponent : Component
     [DataField]
     public Vector2 AudioOffset = Vector2.Zero;
     // End Frontier
+    // Lua start
+    [DataField]
+    public string? OnOverlayState;
+
+    [DataField]
+    public List<string>? OnRandomStates;
+
+    [DataField]
+    public bool SelectIsLoop;
+
+    [ViewVariables]
+    public bool UiOpen;
+    // Lua end
 }
 
 [Serializable, NetSerializable]
@@ -116,5 +129,10 @@ public enum JukeboxVisualState : byte
 
 public enum JukeboxVisualLayers : byte
 {
-    Base
+    Base, // Lua add ,
+    // Lua start
+    Overlay,
+    OverlayStatic,
+    OverlayDynamic
+    // Lua end
 }
