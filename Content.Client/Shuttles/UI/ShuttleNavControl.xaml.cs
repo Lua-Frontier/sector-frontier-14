@@ -59,6 +59,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public Action<EntityCoordinates>? OnRadarClick;
 
     private List<Entity<MapGridComponent>> _grids = new();
+    private List<Content.Shared.Shuttles.UI.MapObjects.ShuttleExclusionObject>? _radarExclusions; // Lua
 
     public ShuttleNavControl() : base(64f, 256f, 256f)
     {
@@ -145,6 +146,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         _docks = state.Docks;
 
+        _radarExclusions = state.Exclusions; // Lua
+
         NFUpdateState(state); // Frontier Update State
     }
 
@@ -211,6 +214,23 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
         var viewAABB = viewBounds.CalcBoundingBox();
+        // Lua start
+        if (_radarExclusions != null)
+        {
+            foreach (var excl in _radarExclusions)
+            {
+                var coords = EntManager.GetCoordinates(excl.Coordinates);
+                var mapCoords = _transform.ToMapCoordinates(coords);
+                if (mapCoords.MapId != xform.MapID) continue;
+                var enlarged = viewAABB.Enlarged(excl.Range);
+                if (!enlarged.Contains(mapCoords.Position)) continue;
+                var centerInView = Vector2.Transform(mapCoords.Position, worldToShuttle * shuttleToView);
+                var radiusPixels = excl.Range * MinimapScale;
+                var color = Color.Lime.WithAlpha(0.35f);
+                handle.DrawCircle(centerInView, radiusPixels, color, false);
+            }
+        }
+        // Lua end
 
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);

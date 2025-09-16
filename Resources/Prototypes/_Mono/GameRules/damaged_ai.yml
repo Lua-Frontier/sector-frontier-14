@@ -3,58 +3,230 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
       - id: UnknownShuttleZenith
-      - id: UnknownShuttleRazor
+      # - id: UnknownShuttleRazor
       - id: UnknownShuttleNebula
+      - id: UnknownShuttlePerunAI
+      - id: UnknownShuttlePozvizdAI
+      - id: UnknownShuttleStribogAI
 
 - type: entity
-  parent: BaseRandomShuttleRule
+  parent: BaseGameRule
   id: UnknownShuttleZenith
   components:
   - type: StationEvent
     startAnnouncement: station-event-ai-shuttle-detected
     startAudio:
-      path: /Audio/Misc/notice1.ogg
+      path: /Audio/_Lua/Announcements/airogue.ogg
     weight: 2
     maxOccurrences: 6
-    minimumPlayers: 50
+    minimumPlayers: 40
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
-  - type: LoadMapRule
-    preloadedGrid: AIZenith
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 4000
+        maximumDistance: 6000
+        addComponents:
+        - type: IFF
+          color: "#FF0000"
+        - type: LinkedLifecycleGridParent
+        - type: AiShuttleBrain
+          preset: Zenith
+        - type: NanotrasenFtl
+        paths:
+        - /Maps/_Mono/ShuttleEvent/zenith.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
 
 - type: entity
-  parent: BaseRandomShuttleRule
+  parent: BaseGameRule
   id: UnknownShuttleNebula
   components:
   - type: StationEvent
     startAnnouncement: station-event-ai-shuttle-detected
     startAudio:
-      path: /Audio/Misc/notice1.ogg
+      path: /Audio/_Lua/Announcements/airogue.ogg
     weight: 2
     maxOccurrences: 6
     minimumPlayers: 50
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 120 # 2 hours
-  - type: GameRule
-    minPlayers: 25
-  - type: LoadMapRule
-    preloadedGrid: AINebula
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 4000
+        maximumDistance: 6000
+        addComponents:
+        - type: IFF
+          color: "#FF0000"
+        - type: LinkedLifecycleGridParent
+        - type: AiShuttleBrain
+          preset: Nebula
+        - type: NanotrasenFtl
+        paths:
+        - /Maps/_Mono/ShuttleEvent/nebula.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+# - type: entity # Из-за бага требуется создать прям новую карту razor, я не могу найти причину почему этот Razor не стреляет
+#   parent: BaseGameRule
+#   id: UnknownShuttleRazor
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: station-event-ai-shuttle-detected
+#     startAudio:
+#       path: /Audio/_Lua/Announcements/airogue.ogg
+#     weight: 3
+#     maxOccurrences: 12
+#     reoccurrenceDelay: 60 # 1 hour
+#     minimumPlayers: 10
+#     requiredJobs:
+#       Sheriff: 1
+#     duration: -1
+#   - type: AiShuttleSpawnRule
+#     deleteGridsOnEnd: false
+#     asteroid: false
+#     groups:
+#       grid: !type:AiShuttleGridSpawnGroup
+#         minimumDistance: 4000
+#         maximumDistance: 6000
+#         addComponents:
+#         - type: IFF
+#           color: "#FF0000"
+#         - type: LinkedLifecycleGridParent
+#         - type: AiShuttleBrain
+#           preset: Razor
+#         - type: NanotrasenFtl
+#         paths:
+#         - /Maps/_Mono/ShuttleEvent/razor.yml
+#     rewardAccounts:
+#       Nfsd: 0.25
+#       Frontier: 0.25
+#       Medical: 0.25
+#       Edison: 0.25
 
 - type: entity
-  parent: BaseRandomShuttleRule
-  id: UnknownShuttleRazor
+  parent: BaseGameRule
+  id: UnknownShuttlePerunAI
   components:
   - type: StationEvent
     startAnnouncement: station-event-ai-shuttle-detected
     startAudio:
-      path: /Audio/Misc/notice1.ogg
+      path: /Audio/_Lua/Announcements/airogue.ogg
     weight: 3
     maxOccurrences: 12
     reoccurrenceDelay: 60 # 1 hour
     minimumPlayers: 10
     requiredJobs:
       Sheriff: 1
-  - type: LoadMapRule
-    preloadedGrid: AIRazor
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 4000
+        maximumDistance: 6000
+        addComponents:
+        - type: IFF
+          color: "#FF0000"
+        - type: LinkedLifecycleGridParent
+        - type: AiShuttleBrain
+          preset: Perun
+        - type: NanotrasenFtl
+        paths:
+        - /Maps/_Lua/ShuttleEvent/AI_shuttle/PerunAI.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttlePozvizdAI
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 3
+    maxOccurrences: 12
+    reoccurrenceDelay: 60 # 1 hour
+    minimumPlayers: 10
+    requiredJobs:
+      Sheriff: 1
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 4000
+        maximumDistance: 6000
+        addComponents:
+        - type: IFF
+          color: "#FF0000"
+        - type: LinkedLifecycleGridParent
+        - type: AiShuttleBrain
+          preset: Pozvizd
+        - type: NanotrasenFtl
+        paths:
+        - /Maps/_Lua/ShuttleEvent/AI_shuttle/PozvizdAI.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleStribogAI
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 3
+    maxOccurrences: 12
+    reoccurrenceDelay: 60 # 1 hour
+    minimumPlayers: 10
+    requiredJobs:
+      Sheriff: 1
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 4000
+        maximumDistance: 6000
+        addComponents:
+        - type: IFF
+          color: "#FF0000"
+        - type: LinkedLifecycleGridParent
+        - type: AiShuttleBrain
+          preset: Stribog
+        - type: NanotrasenFtl
+        paths:
+        - /Maps/_Lua/ShuttleEvent/AI_shuttle/StribogAI.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
