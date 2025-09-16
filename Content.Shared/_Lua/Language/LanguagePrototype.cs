@@ -1,4 +1,4 @@
-using Content.Shared.Chat;
+using Content.Shared._Lua.Chat.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Lua.Language;
@@ -38,13 +38,13 @@ public sealed partial class SpeechOverrideInfo
     public bool RequireSpeech = true;
 
     [DataField]
-    public Content.Shared._Lua.InGameICChatType? ChatTypeOverride;
+    public InGameICChatType? ChatTypeOverride;
 
     [DataField]
     public List<LocId>? SpeechVerbOverrides;
 
     [DataField]
-    public Dictionary<Content.Shared._Lua.InGameICChatType, LocId> MessageWrapOverrides = new();
+    public Dictionary<InGameICChatType, LocId> MessageWrapOverrides = new();
 }
 
 

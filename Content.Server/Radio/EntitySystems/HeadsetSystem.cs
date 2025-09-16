@@ -58,7 +58,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset); // Lua
+            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, language: args.Language);// backmen: language
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }
@@ -111,7 +111,9 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         var actorUid = Transform(uid).ParentUid;
         if (TryComp(Transform(uid).ParentUid, out ActorComponent? actor))
         {
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            var msg = args.ChatMsg;
+            if (args.Language != null && args.LanguageObfuscatedChatMsg != null && !_language.CanUnderstand(actorUid, args.Language.ID)) msg = args.LanguageObfuscatedChatMsg;
+            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
             if (actorUid != args.MessageSource && TryComp(args.MessageSource, out TTSComponent? _))
             {
                 args.Receivers.Add(actorUid);

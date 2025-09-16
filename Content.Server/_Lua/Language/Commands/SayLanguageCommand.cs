@@ -1,9 +1,10 @@
 using Content.Server.Chat.Systems;
+using Content.Shared._Lua.Chat.Systems;
 using Content.Shared.Administration;
-using SharedIC = Content.Shared._Lua.InGameICChatType;
 using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
+using SharedIC = Content.Shared._Lua.Chat.Systems.InGameICChatType;
 
 namespace Content.Server._Lua.Language.Commands;
 
@@ -55,7 +56,7 @@ public sealed class SayLanguageCommand : IConsoleCommand
         // В текущем ChatSystem нет параметра languageOverride на этом уровне.
         chats.TrySendInGameICMessage(playerEntity,
             message,
-            Content.Server.Chat.Systems.InGameICChatType.Speak,
+            InGameICChatType.Speak,
             ChatTransmitRange.Normal,
             false,
             shell,
