@@ -12,13 +12,10 @@
   category: Large
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/orion-p.yml
-class:
+  class:
   - Expedition
   - Civilian
-  - Medical
-
   addComponents:
-
     - type: IFF
       color: "#ffffff"
     - type: NanotrasenFtl
