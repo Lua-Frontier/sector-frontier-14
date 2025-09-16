@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -21,4 +21,10 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> GhostKillCrit =
         CVarDef.Create("ghost.kill_crit", true, CVar.REPLICATED | CVar.SERVER);
+
+    /// <summary>
+    ///     Whether ghost roles UI and requests are enabled. Can be toggled mid-round.
+    /// </summary>
+    public static readonly CVarDef<bool> GhostRolesEnabled =
+        CVarDef.Create("ghost.roles_enabled", true, CVar.REPLICATED | CVar.SERVER);
 }

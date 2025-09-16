@@ -110,6 +110,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         }
 
         Gui.Visible = _system?.IsGhost ?? false;
+        Gui.GhostRolesButton.Disabled = !_cfg.GetCVar(CCVars.GhostRolesEnabled);
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
             _cfg.GetCVar(NFCCVars.CryoReturnEnabled) ? _system?.Player?.CanReturnFromCryo : false);
     }
@@ -219,7 +220,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
     private void GhostRolesPressed()
     {
-        _system?.OpenGhostRoles();
+        if (_cfg.GetCVar(CCVars.GhostRolesEnabled))
+            _system?.OpenGhostRoles();
     }
 
     private void RespawnPressed()

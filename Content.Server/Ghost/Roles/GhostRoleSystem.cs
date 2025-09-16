@@ -127,6 +127,9 @@ public sealed class GhostRoleSystem : EntitySystem
 
     public void OpenEui(ICommonSession session)
     {
+        if (!_cfg.GetCVar(CCVars.GhostRolesEnabled))
+            return;
+
         if (session.AttachedEntity is not { Valid: true } attached ||
             !EntityManager.HasComponent<GhostComponent>(attached))
             return;
@@ -471,6 +474,9 @@ public sealed class GhostRoleSystem : EntitySystem
     /// <param name="identifier">ID of the ghost role.</param>
     public void Request(ICommonSession player, uint identifier)
     {
+        if (!_cfg.GetCVar(CCVars.GhostRolesEnabled))
+            return;
+
         if (!_ghostRoles.TryGetValue(identifier, out var roleEnt))
             return;
 
@@ -490,6 +496,9 @@ public sealed class GhostRoleSystem : EntitySystem
     /// <returns>True if takeover was successful, otherwise false.</returns>
     public bool Takeover(ICommonSession player, uint identifier)
     {
+        if (!_cfg.GetCVar(CCVars.GhostRolesEnabled))
+            return false;
+
         if (!_ghostRoles.TryGetValue(identifier, out var role))
             return false;
 
@@ -520,6 +529,9 @@ public sealed class GhostRoleSystem : EntitySystem
 
     public void Follow(ICommonSession player, uint identifier)
     {
+        if (!_cfg.GetCVar(CCVars.GhostRolesEnabled))
+            return;
+
         if (!_ghostRoles.TryGetValue(identifier, out var role))
             return;
 
@@ -858,9 +870,19 @@ public sealed class GhostRoles : IConsoleCommand
     public string Help => $"{Command}";
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (shell.Player != null)
-            _e.System<GhostRoleSystem>().OpenEui(shell.Player);
-        else
+        if (shell.Player == null)
+        {
             shell.WriteLine("You can only open the ghost roles UI on a client.");
+            return;
+        }
+
+        var cfg = IoCManager.Resolve<IConfigurationManager>();
+        if (!cfg.GetCVar(CCVars.GhostRolesEnabled))
+        {
+            shell.WriteLine("Ghost roles are disabled.");
+            return;
+        }
+
+        _e.System<GhostRoleSystem>().OpenEui(shell.Player);
     }
 }
