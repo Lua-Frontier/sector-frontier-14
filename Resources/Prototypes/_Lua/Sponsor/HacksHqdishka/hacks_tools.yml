@@ -95,6 +95,16 @@
     sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Devices/lua_pda.rsi
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_White/Objects/Devices/lua_pda.rsi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - YupiTransferCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - MedTekCartridge
+    - AstroNavCartridge
 
 - type: entity
   name: гипоспрей "LuaTech"

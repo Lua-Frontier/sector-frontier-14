@@ -27,4 +27,14 @@ public sealed partial class NFCargoPalletConsoleComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Whitelist;
+    //Lua start
+    [DataField]
+    public bool ContributesToMarket = true;
+
+    [DataField]
+    public float AppraiseCooldown = 0.25f;
+
+    [ViewVariables]
+    public TimeSpan NextAppraiseTime = TimeSpan.Zero;
+    //Lua end
 }

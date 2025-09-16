@@ -1,23 +1,89 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-4.0",
-  "copyright": "Made by LuaWorld/LuaTech tm. (discord)#hackslua.",
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by mutemaid (discord) for Space Station 14 server Мёртвый Космос",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "player-off"
+      "name": "MP3player-on-SEARCH",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
     },
     {
-      "name": "player-on-hacks"
+      "name": "MP3player-on-YELLOW",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
     },
     {
-      "name": "player-on-boich"
+      "name": "MP3player-on-PINK",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
     },
     {
-      "name": "player-on-netscape"
+      "name": "MP3player-on-overlay",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "MP3player-base"
+    },
+    {
+      "name": "MP3player-off-overlay"
+    },
+    {
+      "name": "MP3player-on-BLUE",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "MP3player-on-BLUE_SKY",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "MP3player-on-GREEN",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
+      "name": "MP3player-on-MITN_GREEN",
+       "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
     }
   ]
 }
