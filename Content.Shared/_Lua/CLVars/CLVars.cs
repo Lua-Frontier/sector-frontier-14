@@ -105,5 +105,12 @@ namespace Content.Shared.Lua.CLVar
         /// </summary>
         public static readonly CVarDef<bool> GhostPlayerWarps =
             CVarDef.Create("ghost.player_warps", false, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> PirateSectorEnabled =
+            CVarDef.Create("game.pirate_sector_enabled", true, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> TypanSectorEnabled =
+            CVarDef.Create("game.typan_sector_enabled", true, CVar.SERVERONLY);
+
     }
 }

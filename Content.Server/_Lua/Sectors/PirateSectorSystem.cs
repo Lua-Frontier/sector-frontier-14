@@ -39,6 +39,7 @@ public sealed class PirateSectorSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
 
     private bool _asteroidSectorEnabled = true;
+    private bool _pirateSectorEnabled = true;
 
     public override void Initialize()
     {
@@ -50,6 +51,7 @@ public sealed class PirateSectorSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<PirateSectorComponent, ComponentStartup>(OnStationAdd);
         _cfg.OnValueChanged(CLVars.AsteroidSectorEnabled, OnAsteroidSectorEnabledChanged, true);
+        _cfg.OnValueChanged(CLVars.PirateSectorEnabled, OnPirateSectorEnabledChanged, true);
     }
 
     private void OnAsteroidSectorEnabledChanged(bool enabled)
@@ -62,6 +64,12 @@ public sealed class PirateSectorSystem : EntitySystem
         }
     }
 
+    private void OnPirateSectorEnabledChanged(bool enabled)
+    {
+        _pirateSectorEnabled = enabled;
+        if (!enabled && _mapId != MapId.Nullspace)
+            ForceCleanup();
+    }
     public void DisableFtl(Entity<FTLDestinationComponent?> ent)
     {
         Log.Info($"Отключение FTL для: {ent}");
@@ -100,6 +108,10 @@ public sealed class PirateSectorSystem : EntitySystem
     public void EnsurePirateSector(Entity<PirateSectorComponent> source, bool force = false)
     {
         if (!_asteroidSectorEnabled)
+        {
+            return;
+        }
+        if (!_pirateSectorEnabled)
         {
             return;
         }

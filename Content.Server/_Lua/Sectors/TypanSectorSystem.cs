@@ -50,6 +50,7 @@ public sealed class TypanSectorSystem : EntitySystem
     private bool _worldgenEnabled;
     private string _asteroidConfig = "Default";
     private bool _asteroidSectorEnabled = true;
+    private bool _typanSectorEnabled = true;
     public override void Initialize()
     {
 #if DEBUG
@@ -61,6 +62,7 @@ public sealed class TypanSectorSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<TypanSectorComponent, ComponentStartup>(OnStationAdd);
 
+        _cfg.OnValueChanged(CLVars.TypanSectorEnabled, OnTypanSectorEnabledChanged, true);
         _cfg.OnValueChanged(CCVars.WorldgenEnabled, OnWorldgenEnabledChanged, true);
         _cfg.OnValueChanged(CLVars.AsteroidSectorEnabled, OnAsteroidSectorEnabledChanged, true);
     }
@@ -73,6 +75,13 @@ public sealed class TypanSectorSystem : EntitySystem
         {
             ForceCleanup();
         }
+    }
+
+    private void OnTypanSectorEnabledChanged(bool enabled)
+    {
+        _typanSectorEnabled = enabled;
+        if (!enabled && _mapId != MapId.Nullspace)
+            ForceCleanup();
     }
 
     private void OnRoundStart(RoundStartingEvent ev)
@@ -142,6 +151,10 @@ public sealed class TypanSectorSystem : EntitySystem
     {
         Log.Info("EnsureTypanSector");
         if (!_asteroidSectorEnabled)
+        {
+            return;
+        }
+        if (!_typanSectorEnabled)
         {
             return;
         }
