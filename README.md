@@ -76,8 +76,9 @@ Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/
 | `_Mono` | Monolith | https://github.com/Monolith-Station/Monolith | AGPL 3.0 |
 | `_Theta` | ThetaStation | https://github.com/ThetaStation/ThetaStation | AGPL 3.0 |
 | `Sirena` | Sirena | https://github.com/EvgenRP99/SS14-Sirena | MIT |
-| `__Erida` | Erida | https://github.com/SS14Backmen/space-station-14-Erida | AGPL 3.0 |
+| `_Erida` | Erida | https://github.com/SS14Backmen/space-station-14-Erida | AGPL 3.0 |
 | `ShibaStation` | _ShibaStation | https://github.com/AstroDogeDX/ShibaStation-GS | AGPL 3.0 |
+| `Imperial` | _Imperial | https://github.com/imperial-space/SS14-public | MIT |
 
 
 Дополнительные репозитории, из которых мы перенесли функции без создания подкаталогов, перечислены ниже.
