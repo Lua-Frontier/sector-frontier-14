@@ -5,22 +5,23 @@
 // In addition to AGPLv3, the author grants the "Мёртвый Космос" project
 // the right to use this code under a separate custom license agreement.
 
-using Content.Server.Body.Systems;
-using Content.Shared.Inventory.Events;
-using Content.Server.Explosion.EntitySystems;
-using Content.Server.Chat.Systems;
-using Content.Shared.Inventory;
 using Content.Server.Administration.Logs;
-using Content.Shared.Database;
+using Content.Server.Body.Systems;
+using Content.Server.Chat.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared._Lua.Chat.Systems;
 using Content.Shared._Lua.HardsuitIdentification;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Forensics.Components;
+using Content.Shared.Interaction.Components;
+using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
-using Content.Shared.Forensics.Components;
 
 namespace Content.Server._Lua.HardsuitIdentification;
 

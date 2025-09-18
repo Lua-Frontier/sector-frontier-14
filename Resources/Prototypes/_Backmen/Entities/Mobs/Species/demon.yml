@@ -53,6 +53,13 @@
       types:
         Heat : 0.3 #per second, scales with temperature & other constants
   - type: Perishable
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Demon
+    understands:
+    - Intergalactic
+    - Demon # Lua end
 
 - type: entity
   parent: BaseSpeciesDummy
