@@ -4,6 +4,7 @@ using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Configuration; // Lua
+using Robust.Shared.Audio.Components;
 
 namespace Content.Client.Audio.Jukebox;
 
@@ -93,7 +94,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         //SetLayerState(JukeboxVisualLayers.Base, component.OffState, entity); // Lua
         // Lu start
         var vol = _cfg.GetCVar(CCVars.JukeboxVolume);
-        if (component.AudioStream != null) Audio.SetGain(component.AudioStream, vol);
+        if (component.AudioStream != null && TryComp(component.AudioStream, out AudioComponent? audioComp)) Audio.SetGain(component.AudioStream, vol, audioComp);
         _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.Base, true);
 
         var hasStatic = _sprite.LayerMapTryGet(entity.AsNullable(), JukeboxVisualLayers.OverlayStatic, out _, false);
@@ -165,7 +166,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     {
         var query = EntityQueryEnumerator<JukeboxComponent>();
         while (query.MoveNext(out var _, out var comp))
-        { if (comp.AudioStream != null) Audio.SetGain(comp.AudioStream, value); }
+        { if (comp.AudioStream != null && TryComp(comp.AudioStream, out AudioComponent? audio)) Audio.SetGain(comp.AudioStream, value, audio); }
     }
 
     public override void Update(float frameTime)
@@ -174,7 +175,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var vol = _cfg.GetCVar(CCVars.JukeboxVolume);
         var query = EntityQueryEnumerator<JukeboxComponent>();
         while (query.MoveNext(out var _, out var comp))
-        { if (comp.AudioStream != null) Audio.SetGain(comp.AudioStream, vol); }
+        { if (comp.AudioStream != null && TryComp(comp.AudioStream, out AudioComponent? audio)) Audio.SetGain(comp.AudioStream, vol, audio); }
     }
     // Lua end
 

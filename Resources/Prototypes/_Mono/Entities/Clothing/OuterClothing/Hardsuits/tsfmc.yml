@@ -25,6 +25,14 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+  - type: Inject
+    autoClose: true
+  - type: ItemSlots # _Lua
+    slots: # _Lua
+      beakerSlot: # _Lua
+        whitelist: # _Lua
+          tags: # _Lua
+          - FitsHardsuit # _Lua
 
 - type: entity
   parent: ClothingOuterHardsuitTSFMCM73
@@ -156,6 +164,8 @@
     sprintModifier: 0.75
   - type: FactionClothing
     faction: NanoTrasen
+  - type: Inject
+    canBeOpened: false
 
 #Security Combat Hardsuit
 - type: entity

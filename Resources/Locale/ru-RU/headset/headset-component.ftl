@@ -1,4 +1,5 @@
 # Chat window radio wrap (prefix and postfix)
+chat-radio-wrap-language-color = [color={ $languageColor }]{ $message }[/color]
 chat-radio-message-wrap = [bold][color={ $channel-color }]{ $channel } [/color][color={ $headset-color }]{ $job }{ $name }[/bold][/color][color={ $channel-color }] { $verb }, [font={ $fontType } size={ $fontSize }]"{ $message }"[/font][/color]
 chat-radio-message-wrap-bold = [bold][color={ $channel-color }]{ $channel } [/color][color={ $headset-color }]{ $job }{ $name }[/bold][/color][color={ $channel-color }] { $verb }, [font={ $fontType } size={ $fontSize }][bold]"{ $message }"[/bold][/font][/color]
 examine-headset-default-channel = Отображается, что каналом по умолчанию этой гарнитуры является [color={ $color }]{ $channel }[/color].
