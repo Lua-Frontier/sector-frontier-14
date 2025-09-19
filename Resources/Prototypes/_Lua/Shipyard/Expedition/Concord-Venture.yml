@@ -1,0 +1,32 @@
+# Creator Info
+# Discord: daeqa1us_
+# Cikey: wh1te
+
+ - type: vessel
+   id: Venture
+   parent: BaseVessel
+   name: Concord-Venture
+   description: Лёгкий научно-исследовательский фрегат, оборудованный с небольшим медицинским отделом. Производитель - LaFleur Industries.
+   price: 48000 #41580 x 1.15
+   category: Small
+   group: Expedition
+   shuttlePath: /Maps/_Lua/Shuttles/Expedition/Concord-Venture.yml
+   addComponents:
+     - type: IFF
+       color: "#ffffff"
+     - type: NanotrasenFtl
+
+ - type: gameMap
+   id: Venture
+   mapName: 'Concord-Venture'
+   mapPath: /Maps/_Lua/Shuttles/Expedition/Concord-Venture.yml
+   minPlayers: 0
+   stations:
+     Venture:
+       stationProto: StandardFrontierExpeditionVessel
+       components:
+         - type: StationNameSetup
+           mapNameTemplate: 'Concord-Venture {1}'
+           nameGenerator:
+             !type:NanotrasenNameGenerator
+             prefixCreator: '14'
