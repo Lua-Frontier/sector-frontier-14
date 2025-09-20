@@ -25,6 +25,13 @@
     damageModifierSet: Oni
   - type: Body
     prototype: Human
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Oni
+    understands:
+    - Intergalactic
+    - Oni # Lua end
   - type: Fixtures
     fixtures: # TODO: This needs a second fixture just for mob collisions.
       fix1:

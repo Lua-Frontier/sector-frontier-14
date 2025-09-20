@@ -85,6 +85,13 @@
     innerEnergy: 0.23
     outerEnergy: 0.08 # Lua end
   - type: Felinid
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Felinid
+    understands:
+    - Intergalactic
+    - Felinid # Lua end
   - type: NpcFactionMember
     factions:
     - NanoTrasen

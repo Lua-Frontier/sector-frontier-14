@@ -18,6 +18,27 @@
 
 - type: entity
   parent: MobHuman
+  id: MobDebugCounterHarpy
+  name: debug counter harpy
+  description: He can count harpy
+  suffix: AI, DEBUG, Harpy
+  components:
+    - type: LanguageKnowledge # Lua start
+      speaks:
+      - Harpy
+    - type: HTN
+      rootTask:
+        task: DebugCounterCompound
+      blackboard:
+        MinimumIdleTime: !type:Single
+          0.5
+        MaximumIdleTime: !type:Single
+          0.5
+        Count: !type:Single
+          0
+
+- type: entity
+  parent: MobHuman
   id: MobDebugRandomCounter
   name: debug random counter
   description: He can randomize
