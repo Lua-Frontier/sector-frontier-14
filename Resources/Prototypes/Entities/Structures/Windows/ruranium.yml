@@ -15,13 +15,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1500 #300 - Lua
+        damage: 2000 #300 - Lua
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 750 #150 - Lua
+        damage: 1750 #150 - Lua
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -44,7 +44,7 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 6
+    damageDivisor: 35 #6 _Lua
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
@@ -75,7 +75,7 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 3
+    damageDivisor: 25 #3
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
@@ -91,7 +91,7 @@
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 350 #75 - Lua
+        damage: 650 #75 - Lua
       behaviors:
       - !type:PlaySoundBehavior
         sound:

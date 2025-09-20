@@ -41,7 +41,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    maxIntensity: 2000
+    maxIntensity: 1500 #2000
     intensitySlope: 30
     totalIntensity: 7000
   - type: MiningGatheringSoft
@@ -220,7 +220,7 @@
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: EmpDescription
-    range: 15 #7
+    range: 10 #7
     energyConsumption: 2900000
     disableDuration: 10
 

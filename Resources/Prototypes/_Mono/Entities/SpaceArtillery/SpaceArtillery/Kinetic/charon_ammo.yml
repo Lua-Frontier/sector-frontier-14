@@ -34,10 +34,10 @@
     color: "#19AFFF"
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: HardBombShipGun
-    totalIntensity: 6500 #5000
-    intensitySlope: 100
-    maxIntensity: 6000 #3500
+    explosionType: DemolitionCharge #HardBombShipGun
+    totalIntensity: 6000 #5000
+    intensitySlope: 60
+    maxIntensity: 3500
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
