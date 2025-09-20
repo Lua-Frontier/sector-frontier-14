@@ -91,7 +91,7 @@
     range: 500
   - type: Gun
     fireRate: 1.5
-    projectileSpeed: 161
+    projectileSpeed: 130 #161
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/mortar.ogg
     soundEmpty:
@@ -113,7 +113,7 @@
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
-    shipClass: Light
+    shipClass: Medium
 
 # AK570 90mm
 
@@ -152,6 +152,17 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 125
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: SpaceArtillery
     powerChargeRate: 125
     powerUsePassive: 600
@@ -166,7 +177,7 @@
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
-    shipClass: Light
+    shipClass: Medium
 
 # CYREXA 220mm
 
@@ -203,7 +214,7 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 155
+    projectileSpeed: 190 #155
     fireRate: 0.2
     burstCooldown: 10
     burstFireRate: 2
@@ -242,7 +253,7 @@
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
-    shipClass: Heavy
+    shipClass: Medium
 
 # HADES 305mm
 
@@ -344,7 +355,7 @@
     range: 500
   - type: Gun
     fireRate: 0.05
-    projectileSpeed: 150 #400
+    projectileSpeed: 225 #150 #400
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
     soundEmpty:
@@ -425,7 +436,7 @@
         layer:
         - MachineLayer
   - type: Gun
-    projectileSpeed: 180 #155
+    projectileSpeed: 155
     fireRate: 0.075
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
@@ -449,7 +460,7 @@
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
-    shipClass: Heavy
+    shipClass: Medium
 
 # Kargil 203mm
 

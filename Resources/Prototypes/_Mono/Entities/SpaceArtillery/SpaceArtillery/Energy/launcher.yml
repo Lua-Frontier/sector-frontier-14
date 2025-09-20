@@ -138,7 +138,7 @@
   - type: ShipGunType
     shipType: Energy
   - type: ShipGunClass
-    shipClass: Light
+    shipClass: Superlight
 
 # RUBICON
 
@@ -231,7 +231,7 @@
         density: 1500
   - type: Gun
     projectileSpeed: 150
-    fireRate: 0.75
+    fireRate: 1.25 #0.75
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/laserfire.ogg
     soundEmpty:

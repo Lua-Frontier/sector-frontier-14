@@ -18,9 +18,9 @@
   - type: Projectile
     damage:
       types:
-        Structural: 450
-        Blunt: 65
-        Heat: 10
+        Structural: 900 #450
+        Blunt: 200 #65
+        Heat: 50 #10
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/mini_rocket.rsi
     layers:
@@ -77,8 +77,8 @@
     damage:
       types:
         Structural: 1000
-        Blunt: 175
-        Heat: 50
+        Blunt: 500 #175
+        Heat: 100 #50
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
@@ -151,7 +151,7 @@
     explosionType: DefaultShipGun
     maxIntensity: 6000
     intensitySlope: 30
-    totalIntensity: 6000
+    totalIntensity: 150
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard

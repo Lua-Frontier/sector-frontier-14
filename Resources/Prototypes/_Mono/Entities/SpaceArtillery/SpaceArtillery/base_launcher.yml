@@ -12,6 +12,7 @@
     mode: SnapgridCenter
   components:
   - type: ExtensionCableReceiver
+    receptionRange: 5
   - type: LightningTarget
     priority: 1
   - type: ApcPowerReceiver
