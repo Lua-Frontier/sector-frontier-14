@@ -18,6 +18,8 @@ public sealed class CrewedShuttleSystem : EntitySystem
 
     public bool AnyConsoleActiveOnGridByPlayer<T>(EntityUid grid, Enum key, EntityUid actor) where T : IComponent
     {
+        if (HasComp<Shared._Mono.Ships.Components.WhitelistConsolesComponent>(grid)) return false; // Lua
+
         var query = EntityQueryEnumerator<T>();
 
         while (query.MoveNext(out var uid, out _))

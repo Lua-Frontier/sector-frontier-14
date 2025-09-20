@@ -1,7 +1,9 @@
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.CCVar; // Lua
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Configuration; // Lua
 
 namespace Content.Client.Audio.Jukebox;
 
@@ -13,6 +15,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
 
     public override void Initialize()
     {
@@ -22,6 +25,9 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, AfterAutoHandleStateEvent>(OnJukeboxAfterState);
 
         _protoManager.PrototypesReloaded += OnProtoReload;
+
+        // Apply current volume on init and react to changes in real-time
+        _cfg.OnValueChanged(CCVars.JukeboxVolume, OnJukeboxVolumeChanged, true);
     }
 
     public override void Shutdown()
@@ -84,23 +90,93 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void UpdateAppearance(Entity<SpriteComponent> entity, JukeboxVisualState visualState, JukeboxComponent component)
     {
-        SetLayerState(JukeboxVisualLayers.Base, component.OffState, entity);
+        //SetLayerState(JukeboxVisualLayers.Base, component.OffState, entity); // Lua
+        // Lu start
+        var vol = _cfg.GetCVar(CCVars.JukeboxVolume);
+        if (component.AudioStream != null) Audio.SetGain(component.AudioStream, vol);
+        _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.Base, true);
 
+        var hasStatic = _sprite.LayerMapTryGet(entity.AsNullable(), JukeboxVisualLayers.OverlayStatic, out _, false);
+        var hasDynamic = _sprite.LayerMapTryGet(entity.AsNullable(), JukeboxVisualLayers.OverlayDynamic, out _, false);
+        if (!hasStatic && _sprite.LayerMapTryGet(entity.AsNullable(), JukeboxVisualLayers.Overlay, out var _, false))
+        { hasStatic = true; }
+        var targetLayer = hasDynamic ? JukeboxVisualLayers.OverlayDynamic : (hasStatic ? JukeboxVisualLayers.OverlayStatic : JukeboxVisualLayers.Base);
+        // Lua end
         switch (visualState)
         {
             case JukeboxVisualState.On:
-                SetLayerState(JukeboxVisualLayers.Base, component.OnState, entity);
+                //SetLayerState(JukeboxVisualLayers.Base, component.OnState, entity); // Lua
+                // Lua start
+                if (hasStatic && !string.IsNullOrEmpty(component.OnOverlayState))
+                {
+                    _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.OverlayStatic, true);
+                    SetLayerState(JukeboxVisualLayers.OverlayStatic, component.OnOverlayState, entity);
+                }
+                if (hasDynamic)
+                {
+                    _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.OverlayDynamic, true);
+                    SetLayerState(JukeboxVisualLayers.OverlayDynamic, component.OnState, entity);
+                }
+                else
+                { SetLayerState(targetLayer, component.OnState, entity); }
+                // Lua end
                 break;
 
             case JukeboxVisualState.Off:
-                SetLayerState(JukeboxVisualLayers.Base, component.OffState, entity);
+                //SetLayerState(JukeboxVisualLayers.Base, component.OffState, entity); // Lua
+                // Lua start
+                if (hasStatic) _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.OverlayStatic, false);
+                if (hasDynamic)
+                {
+                    _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.OverlayDynamic, true);
+                    SetLayerState(JukeboxVisualLayers.OverlayDynamic, component.OffState, entity);
+                }
+                else
+                { SetLayerState(targetLayer, component.OffState, entity); }
+                // Lua end
                 break;
 
             case JukeboxVisualState.Select:
-                PlayAnimation(entity.Owner, JukeboxVisualLayers.Base, component.SelectState, 1.0f, entity);
+                //PlayAnimation(entity.Owner, JukeboxVisualLayers.Base, component.SelectState, 1.0f, entity); // Lua
+                // Lua start
+                if (component.SelectIsLoop)
+                {
+                    if (hasStatic && !string.IsNullOrEmpty(component.OnOverlayState))
+                    {
+                        _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.OverlayStatic, true);
+                        SetLayerState(JukeboxVisualLayers.OverlayStatic, component.OnOverlayState, entity);
+                    }
+                    if (hasDynamic)
+                    {
+                        _sprite.LayerSetVisible(entity.AsNullable(), JukeboxVisualLayers.OverlayDynamic, true);
+                        SetLayerState(JukeboxVisualLayers.OverlayDynamic, component.SelectState, entity);
+                    }
+                    else
+                    { SetLayerState(targetLayer, component.SelectState, entity); }
+                }
+                else { PlayAnimation(entity.Owner, targetLayer, component.SelectState, 1.0f, entity); }
+                // Lua end
                 break;
         }
     }
+
+    // Lua start
+    private void OnJukeboxVolumeChanged(float value)
+    {
+        var query = EntityQueryEnumerator<JukeboxComponent>();
+        while (query.MoveNext(out var _, out var comp))
+        { if (comp.AudioStream != null) Audio.SetGain(comp.AudioStream, value); }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var vol = _cfg.GetCVar(CCVars.JukeboxVolume);
+        var query = EntityQueryEnumerator<JukeboxComponent>();
+        while (query.MoveNext(out var _, out var comp))
+        { if (comp.AudioStream != null) Audio.SetGain(comp.AudioStream, vol); }
+    }
+    // Lua end
 
     private void PlayAnimation(EntityUid uid, JukeboxVisualLayers layer, string? state, float animationTime, SpriteComponent sprite)
     {

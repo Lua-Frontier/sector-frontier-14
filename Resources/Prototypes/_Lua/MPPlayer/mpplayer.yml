@@ -3,35 +3,56 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  id: Mpplayer
-  name: Плеер Луа
+  id: MpplayerBase
+  name: base mpplayer
   parent: [ BaseItem, PowerCellSlotSmallItem]
-  description: Музыкальный плеер который можно носить в кармане
+  description: just base proto
+  abstract: true
   components:
   - type: Item
     size: Small
   - type: Sprite
+    scale: 0.45, 0.45
     sprite: _Lua/MPPlayer/mpplayer.rsi
-    state: player-off
     layers:
-      - state: player-off
-      - state: player-on-hacks
+      - state: MP3player-base
+      - state: MP3player-on-overlay
         shader: unshaded
         visible: true
-        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        map: [ "enum.JukeboxVisualLayers.OverlayStatic" ]
+      - state: MP3player-off-overlay
+        shader: unshaded
+        visible: true
+        map: [ "enum.JukeboxVisualLayers.OverlayDynamic" ]
   - type: Jukebox
     menuTitle: mpplayer-lua-menu-title
-    category: HacksLua
+    onRandomStates:
+    - MP3player-on-BLUE
+    - MP3player-on-BLUE_SKY
+    - MP3player-on-GREEN
+    - MP3player-on-MITN_GREEN
+    - MP3player-on-PINK
+    - MP3player-on-YELLOW
+    offState: MP3player-off-overlay
+    selectState: MP3player-on-SEARCH
+    selectIsLoop: true
+    onOverlayState: MP3player-on-overlay
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.PowerCellSlotVisuals.Enabled:
-        enum.PowerDeviceVisualLayers.Powered:
+        enum.JukeboxVisualLayers.Base:
+          True: { visible: true }
+          False: { visible: false }
+        enum.JukeboxVisualLayers.OverlayStatic:
+          True: { visible: true }
+          False: { visible: false }
+        enum.JukeboxVisualLayers.OverlayDynamic:
           True: { visible: true }
           False: { visible: false }
   - type: PowerCellDraw
-    drawRate: 3
-    useRate: 100
+    drawRate: 0.1
+    useRate: 0.1
   - type: ActivatableUIRequiresPowerCell
   - type: ActivatableUI
     key: enum.JukeboxUiKey.Key
@@ -42,85 +63,42 @@
           type: JukeboxBoundUserInterface
   - type: StaticPrice
     price: 20
+
+- type: entity
+  id: Mpplayer
+  name: Плеер Луа
+  parent: [ MpplayerBase, BaseItem, PowerCellSlotSmallItem]
+  description: Музыкальный плеер который можно носить в кармане
+  components:
+  - type: Jukebox
+    menuTitle: mpplayer-lua-menu-title
+    category: HacksLua
 
 - type: entity
   id: MpplayerBoich
   name: Плеер Боича
-  parent: [ BaseItem, PowerCellSlotSmallItem]
+  parent: [ MpplayerBase, BaseItem, PowerCellSlotSmallItem]
   description: Музыкальный плеер который можно носить в кармане
   components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: _Lua/MPPlayer/mpplayer.rsi
-    state: player-off
-    layers:
-      - state: player-off
-      - state: player-on-boich
-        shader: unshaded
-        visible: true
-        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: Jukebox
     menuTitle: mpplayer-boich-menu-title
     category: Boich
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerCellSlotVisuals.Enabled:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
-  - type: PowerCellDraw
-    drawRate: 3
-    useRate: 100
-  - type: ActivatableUIRequiresPowerCell
-  - type: ActivatableUI
-    key: enum.JukeboxUiKey.Key
-    singleUser: true
-  - type: UserInterface
-    interfaces:
-        enum.JukeboxUiKey.Key:
-          type: JukeboxBoundUserInterface
-  - type: StaticPrice
-    price: 20
 
 - type: entity
   id: MpplayerNetscape
   name: Плеер Нетскейпа
-  parent: [ BaseItem, PowerCellSlotSmallItem]
+  parent: [ MpplayerBase, BaseItem, PowerCellSlotSmallItem]
   description: Музыкальный плеер который можно носить в кармане
   components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: _Lua/MPPlayer/mpplayer.rsi
-    state: player-off
-    layers:
-      - state: player-off
-      - state: player-on-netscape
-        shader: unshaded
-        visible: true
-        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: Jukebox
     menuTitle: mpplayer-netscape-menu-title
     category: Netscape
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerCellSlotVisuals.Enabled:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
-  - type: PowerCellDraw
-    drawRate: 3
-    useRate: 100
-  - type: ActivatableUIRequiresPowerCell
-  - type: ActivatableUI
-    key: enum.JukeboxUiKey.Key
-    singleUser: true
-  - type: UserInterface
-    interfaces:
-        enum.JukeboxUiKey.Key:
-          type: JukeboxBoundUserInterface
-  - type: StaticPrice
-    price: 20
+
+- type: entity
+  id: MpplayerDefault
+  name: Плеер
+  parent: [ MpplayerBase, BaseItem, PowerCellSlotSmallItem]
+  description: Музыкальный плеер который можно носить в кармане
+  components:
+  - type: Jukebox
+    menuTitle: mpplayer-menu-title

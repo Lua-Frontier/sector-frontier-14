@@ -1,0 +1,68 @@
+# Lua: Invisible pilot entity for controlling shuttle consoles.
+- type: entity #Lua
+  id: MobShuttleAIPilotNF
+  name: shuttle ai pilot
+  description: Invisible AI pilot that emulates player input for shuttle consoles.
+  components:
+  - type: MetaData
+    name: Shuttle AI Pilot
+  - type: Transform
+  - type: Tag
+    tags:
+    - CanPilot
+  # No client sprite or outline; server-only control entity.
+
+- type: entity
+  id: FakeAiPlayerStation
+  parent: BaseStructure
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: AiShuttleKillSwitch
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai_angel_dead
+      shader: unshaded
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            BluespaceMatterBinStockPart:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: InteractionPopup
+    interactSuccessString: petting-success-station-ai
+    interactFailureString: petting-failure-station-ai
+    messagePerceivedByOthers: petting-success-station-ai-others # Otherwise AI cannot tell its being pet as It's just a brain inside of the core, not the core itself.
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Appearance
+  - type: ExtensionCableReceiver
+  - type: InteractionOutline
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+

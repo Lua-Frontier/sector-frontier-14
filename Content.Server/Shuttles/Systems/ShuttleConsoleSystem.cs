@@ -587,7 +587,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Dictionary<string, string>? portNames = null)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertial dampening, target
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true, portNames, GetExclusionList()); // Frontier: add inertial dampening, target // Lua add GetExclusionList
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
@@ -599,8 +599,18 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             entity.Comp1.Target, // Frontier
             GetNetEntity(entity.Comp1.TargetEntity), // Frontier
             entity.Comp1.HideTarget, // Frontier
-        portNames);
+            portNames,
+            GetExclusionList()); // Lua
     }
+
+    //Lua start
+    private List<ShuttleExclusionObject> GetExclusionList()
+    {
+        List<ShuttleExclusionObject>? exclusions = null;
+        GetExclusions(ref exclusions);
+        return exclusions ?? new List<ShuttleExclusionObject>();
+    }
+    //Lua end
 
     /// <summary>
     /// Global for all shuttles.

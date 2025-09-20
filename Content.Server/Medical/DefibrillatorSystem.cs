@@ -6,7 +6,7 @@ using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.PowerCell;
-using Content.Shared.Traits.Assorted;
+using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -21,6 +21,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.PowerCell;
 using Content.Shared.Timing;
 using Content.Shared.Toggleable;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 

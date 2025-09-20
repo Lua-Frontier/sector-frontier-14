@@ -11,3 +11,18 @@
   - type: PresetIdCard
     job: Captain
   - type: StationDeedSpawner
+
+- type: entity
+  parent: IDCardStandard
+  id: ShuttleDeedIDCardAI
+  name: ID карта
+  description: Чья это ID карта и как она тут оказалась?
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpassenger
+  - type: PresetIdCard
+    job: Captain
+  - type: StationDeedSpawner

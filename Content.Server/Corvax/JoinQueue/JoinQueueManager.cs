@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Administration.Managers;
 using Content.Server.Connection;
 using Content.Server.Corvax.DiscordAuth;
 using Content.Shared.CCVar;
@@ -41,6 +42,7 @@ public sealed class JoinQueueManager
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly DiscordAuthManager _discordAuthManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
 
     /// <summary>
     ///     Queue of active player sessions
@@ -83,8 +85,9 @@ public sealed class JoinQueueManager
         }
 
         var isPrivileged = await _connectionManager.HavePrivilegedJoin(session.UserId);
-        var currentOnline = _playerManager.PlayerCount - 1; // Do not count current session in general online, because we are still deciding her fate
-        var haveFreeSlot = currentOnline < _cfg.GetCVar(CCVars.SoftMaxPlayers);
+        var players = GetPlayersCount() - 1;
+        if (players < 0) players = 0;
+        var haveFreeSlot = players < _cfg.GetCVar(CCVars.SoftMaxPlayers);
         if (isPrivileged || haveFreeSlot)
         {
             SendToGame(session);
@@ -115,6 +118,15 @@ public sealed class JoinQueueManager
         }
     }
 
+    private int GetPlayersCount()
+    {
+        var count = _playerManager.PlayerCount - _queue.Count;
+        if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
+        { count -= _adminManager.ActiveAdmins.Count(); }
+        if (count < 0) count = 0;
+        return count;
+    }
+
     /// <summary>
     ///     If possible, takes the first player in the queue and sends him into the game
     /// </summary>
@@ -122,7 +134,7 @@ public sealed class JoinQueueManager
     /// <param name="connectedTime">Session connected time for histogram metrics</param>
     private void ProcessQueue(bool isDisconnect, DateTime connectedTime)
     {
-        var players = ActualPlayersCount;
+        var players = GetPlayersCount();
         if (isDisconnect)
             players--; // Decrease currently disconnected session but that has not yet been deleted
 

@@ -102,6 +102,10 @@ namespace Content.Shared.Preferences
         [DataField] // Frontier: Bank balance
         public int BankBalance { get; private set; } = DefaultBalance; // Frontier: Bank balance
 
+            // YUPI: Persistent per-slot account code (6 chars A-Z, excluding I/O, and digits 1-9). Uppercase stored. //Lua
+    [DataField]
+    public string YupiAccountCode { get; private set; } = string.Empty; //Lua
+
         /// <summary>
         /// <see cref="Appearance"/>
         /// </summary>
@@ -195,6 +199,7 @@ namespace Content.Shared.Preferences
             : this(other.Name, other.FlavorText, (int)other.ERPStatus, other.Species, other.Voice, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
                 jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts, other.Company)
         {
+            YupiAccountCode = other.YupiAccountCode; //Lua
         }
 
         /// <summary>Copy constructor</summary>
@@ -217,6 +222,7 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Company)
         {
+            YupiAccountCode = other.YupiAccountCode; //Lua копирования
         }
 
         /// <summary>
@@ -337,6 +343,11 @@ namespace Content.Shared.Preferences
             return new(this) { BankBalance = bankBalance };
         }
         // End Frontier
+
+            public HumanoidCharacterProfile WithYupiAccountCode(string code) //Lua
+    {
+        return new(this) { YupiAccountCode = code }; //Lua
+    }
 
         public HumanoidCharacterProfile WithSpecies(string species)
         {
@@ -528,6 +539,7 @@ namespace Content.Shared.Preferences
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (BankBalance != other.BankBalance) return false; // Frontier
+            if (YupiAccountCode != other.YupiAccountCode) return false; //Lua
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (Company != other.Company) return false;
@@ -830,6 +842,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);
             hashCode.Add(BankBalance); // Frontier
+            hashCode.Add(YupiAccountCode); //Lua
             hashCode.Add((int)SpawnPriority);
             hashCode.Add((int)PreferenceUnavailable);
             return hashCode.ToHashCode();
