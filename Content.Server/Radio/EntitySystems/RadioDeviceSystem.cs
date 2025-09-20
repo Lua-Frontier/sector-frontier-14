@@ -13,6 +13,7 @@ using Content.Shared.Power;
 using Content.Shared.Radio;
 using Content.Shared.Chat;
 using Content.Shared.Radio.Components;
+using Content.Shared.Corvax.TTS; // TTS
 using Content.Shared.UserInterface; // Nuclear-14
 using Content.Shared._NC.Radio; // Nuclear-14
 using Robust.Server.GameObjects; // Nuclear-14
@@ -21,6 +22,7 @@ using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; //Frontier
 using Robust.Shared.Utility; // Frontier
 using Content.Shared.ActionBlocker; //Frontier
+using Content.Server._Lua.Language; // Lua
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -38,6 +40,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier: access
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
+    [Dependency] private readonly LanguageSystem _language = default!; // Lua
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, RadioChannelPrototype)> _recentlySent = new();
@@ -217,7 +220,11 @@ public sealed class RadioDeviceSystem : EntitySystem
 
         var channel = _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel)!;
         if (_recentlySent.Add((args.Message, args.Source, channel)))
-            _radio.SendRadioMessage(args.Source, args.Message, channel, uid, /*Nuclear-14-start*/ frequency: component.Frequency /*Nuclear-14-end*/);
+        {
+            var lang = args.Language ?? _language.GetLanguage(args.Source);
+            _radio.SendRadioMessage(args.Source, args.Message, channel, uid, /*Nuclear-14-start*/ frequency: component.Frequency /*Nuclear-14-end*/,
+                language: lang); // backmen: language
+        }
     }
 
     private void OnAttemptListen(EntityUid uid, RadioMicrophoneComponent component, ListenAttemptEvent args)
@@ -241,8 +248,18 @@ public sealed class RadioDeviceSystem : EntitySystem
             ("speaker", Name(uid)),
             ("originalName", nameEv.VoiceName));
 
+        if (TryComp<TTSComponent>(args.MessageSource, out var srcTts))
+        {
+            var devTts = EnsureComp<TTSComponent>(uid);
+            devTts.VoicePrototypeId = srcTts.VoicePrototypeId;
+            devTts.Enabled = true;
+            Dirty(uid, devTts);
+        }
+        else
+        { RemComp<TTSComponent>(uid); }
+
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chat.TrySendInGameICMessage(uid, args.Message, component.OutputChatType, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false); // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck, InGameICChatType.Whisper<component.OutputChatType
+        _chat.TrySendInGameICMessage(uid, args.Message, component.OutputChatType, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck, InGameICChatType.Whisper<component.OutputChatType
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)

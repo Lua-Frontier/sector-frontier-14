@@ -113,6 +113,13 @@
     speechSounds: Harpy
     speechVerb: Harpy
     allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'Beep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish'] # Frontier: add Belch, Squish
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Harpy
+    understands:
+    - Intergalactic
+    - Harpy # Lua end
   - type: Vocal
     sounds:
       Male: SoundsHarpy
@@ -129,7 +136,7 @@
 #    baseWalkSpeed: 2.5 # Frontier
 #    baseSprintSpeed: 5.0 # Frontier
     weightlessAcceleration: 2.5
-  - type: Inventory 
+  - type: Inventory
     speciesId: harpy
     displacements:
       jumpsuit:
@@ -156,7 +163,7 @@
   components:
   - type: HumanoidAppearance
     species: Harpy
-  - type: Inventory 
+  - type: Inventory
     speciesId: harpy
     displacements:
       jumpsuit:

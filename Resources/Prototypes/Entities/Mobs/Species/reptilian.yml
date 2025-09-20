@@ -12,7 +12,7 @@
     - HeadTop
     - HeadSide
     - Tail
-    - Hair 
+    - Hair
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
   - type: Puller
@@ -41,6 +41,13 @@
       Male: MaleReptilian
       Female: FemaleReptilian
       Unsexed: MaleReptilian
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Reptilian
+    understands:
+    - Intergalactic
+    - Reptilian # Lua end
   - type: BodyEmotes
     soundsId: ReptilianBodyEmotes
   - type: Damageable
@@ -101,7 +108,7 @@
     - HeadTop
     - HeadSide
     - Tail
-    - Hair 
+    - Hair
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Inventory
     speciesId: reptilian

@@ -1,10 +1,10 @@
-using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Popups;
+using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared.Atmos;
 using Content.Shared.Dataset;
 using Content.Shared.Nutrition.Components;
@@ -14,6 +14,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.RatKing;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using System.Numerics;
 
 namespace Content.Server.RatKing
 {

@@ -1,0 +1,28 @@
+- type: entity
+  id: TranslatorPoweredBase
+  parent: BaseItem
+  name: translator
+  description: Translates speech.
+  components:
+  - type: HandheldTranslator
+    enabled: false
+  abstract: true
+
+# Intergalactic universal translator
+- type: entity
+  id: IntergalacticTranslator
+  parent: TranslatorPoweredBase
+  suffix: Intergalactic
+  components:
+  - type: Sprite
+    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+    layers:
+    - state: icon
+  - type: HandheldTranslator
+    enabled: true
+    spoken:
+    - Intergalactic
+    understood:
+    - Intergalactic
+
+
