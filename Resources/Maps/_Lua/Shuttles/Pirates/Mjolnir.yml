@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 13:18:52
-  entityCount: 550
+  time: 09/20/2025 08:34:23
+  entityCount: 548
 maps: []
 grids:
 - 1
@@ -208,6 +208,7 @@ entities:
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: PreventDelete
   - uid: 4
     mapInit: true
     paused: true
@@ -403,16 +404,6 @@ entities:
       devices:
       - 315
       - 550
-  - uid: 23
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 317
-      - 312
 - proto: AirCanister
   entities:
   - uid: 24
@@ -1465,8 +1456,18 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 1
+  - uid: 411
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 1
 - proto: CableMV
   entities:
+  - uid: 23
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 1
   - uid: 224
     components:
     - type: Transform
@@ -2370,9 +2371,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 23
 - proto: GasVentScrubber
   entities:
   - uid: 311
@@ -2390,9 +2388,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 23
   - uid: 316
     components:
     - type: Transform
@@ -2521,6 +2516,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.5,0.5
+      parent: 1
+- proto: LockerEngineerFilled
+  entities:
+  - uid: 424
+    components:
+    - type: Transform
+      pos: 3.5,-1.5
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
@@ -3014,11 +3016,6 @@ entities:
     - type: Transform
       pos: 6.5,-0.5
       parent: 1
-  - uid: 411
-    components:
-    - type: Transform
-      pos: 3.5,-1.5
-      parent: 1
   - uid: 412
     components:
     - type: Transform
@@ -3035,12 +3032,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,0.5
       parent: 1
-- proto: SubstationBasic
+  - uid: 425
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-1.5
+      parent: 1
+- proto: SubstationWallBasic
   entities:
   - uid: 415
     components:
     - type: Transform
-      pos: 3.5,-1.5
+      rot: 3.141592653589793 rad
+      pos: 3.5,-2.5
       parent: 1
 - proto: SuitStorageWallmountPirateCap
   entities:
@@ -3094,16 +3098,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,7.5
-      parent: 1
-  - uid: 424
-    components:
-    - type: Transform
-      pos: 9.5,-3.5
-      parent: 1
-  - uid: 425
-    components:
-    - type: Transform
-      pos: -8.5,-3.5
       parent: 1
 - proto: ThrusterPirates
   entities:
@@ -3779,18 +3773,6 @@ entities:
       parent: 1
 - proto: WeaponTurretAK570
   entities:
-  - uid: 544
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 8.5,5.5
-      parent: 1
-  - uid: 545
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -7.5,5.5
-      parent: 1
   - uid: 546
     components:
     - type: Transform

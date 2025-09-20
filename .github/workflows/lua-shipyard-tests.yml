@@ -1,0 +1,65 @@
+name: Build & Run Lua Shipyard Rules Tests
+
+on:
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - "Resources/Prototypes/_Mono/Shipyard/**/*.yml"
+      - "Resources/Prototypes/_Lua/Shipyard/**/*.yml"
+      - "Resources/Maps/_Mono/Shuttles/**/*.yml"
+      - "Resources/Maps/_Lua/Shuttles/**/*.yml"
+      - "Content.IntegrationTests/Tests/_Lua/ShipyardLuaRulesTests.cs"
+      - "Content.Shared/_NF/Shipyard/Prototypes/VesselPrototype.cs"
+
+jobs:
+  build:
+    if: github.event.pull_request.draft == false && github.actor != 'FrontierATC' && github.actor != 'LuaATC'
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout Master
+      uses: actions/checkout@v4.2.2
+
+    - name: Setup Submodule
+      run: |
+        git submodule update --init --recursive
+
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Install Dependencies
+      run: dotnet restore
+
+    - name: Build Project
+      run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
+
+    - name: Run Lua Shipyard Rules Tests
+      shell: pwsh
+      run: |
+        $env:DOTNET_gcServer=1
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter FullyQualifiedName~ShipyardLuaRulesTests -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+
+  ci-success:
+    name: Build & Run Lua Shipyard Rules Tests
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI succeeded
+        run: exit 0
+
+

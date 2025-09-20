@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/28/2025 17:10:50
-  entityCount: 610
+  time: 09/19/2025 09:57:24
+  entityCount: 611
 maps: []
 grids:
 - 1
@@ -3065,7 +3065,7 @@ entities:
     - type: Transform
       pos: 2.5,5.5
       parent: 1
-- proto: LockerWallMedicalFilled
+- proto: LockerWallColorMedicalFilled
   entities:
   - uid: 338
     components:
@@ -3098,13 +3098,6 @@ entities:
         - 0
         - 0
         - 0
-- proto: MachineFTLDrive
-  entities:
-  - uid: 346
-    components:
-    - type: Transform
-      pos: -13.5,-0.5
-      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 348
@@ -4564,6 +4557,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 14.5,2.5
+      parent: 1
+- proto: WarpPoint
+  entities:
+  - uid: 611
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,0.5
       parent: 1
 - proto: WindoorSecure
   entities:

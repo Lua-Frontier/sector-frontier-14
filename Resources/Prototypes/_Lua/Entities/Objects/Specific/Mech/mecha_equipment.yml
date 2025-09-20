@@ -22,6 +22,7 @@
   - type: BallisticAmmoProvider
     proto: CartridgeMinigun
     capacity: 1000
+  - type: LuaTech
   - type: Appearance
   - type: Tag
     tags:
@@ -44,6 +45,7 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+  - type: LuaTech
   - type: Item
     size: Ginormous
   - type: Gun

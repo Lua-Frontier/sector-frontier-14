@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/28/2025 16:43:30
-  entityCount: 565
+  time: 09/19/2025 04:17:30
+  entityCount: 566
 maps: []
 grids:
 - 1
@@ -32,6 +32,7 @@ entities:
     - type: MetaData
       name: grid
     - type: Transform
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -2697,13 +2698,6 @@ entities:
     - type: Transform
       pos: -4.5,5.5
       parent: 1
-- proto: MachineFTLDrive600
-  entities:
-  - uid: 303
-    components:
-    - type: Transform
-      pos: -3.5,-6.5
-      parent: 1
 - proto: MaterialReclaimer
   entities:
   - uid: 385
@@ -4219,5 +4213,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.5,2.5
+      parent: 1
+- proto: WarpPoint
+  entities:
+  - uid: 566
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,0.5
       parent: 1
 ...

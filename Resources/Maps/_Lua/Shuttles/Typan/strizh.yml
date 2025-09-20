@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 11:08:48
-  entityCount: 605
+  time: 09/19/2025 04:54:30
+  entityCount: 599
 maps: []
 grids:
 - 1
@@ -545,7 +545,7 @@ entities:
       pos: -7.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11062.518
+      secondsUntilStateChange: -11408.281
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1675,21 +1675,6 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
-  - uid: 199
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
-      parent: 1
-  - uid: 200
-    components:
-    - type: Transform
-      pos: 1.5,-2.5
-      parent: 1
-  - uid: 201
-    components:
-    - type: Transform
-      pos: 0.5,-2.5
-      parent: 1
   - uid: 202
     components:
     - type: Transform
@@ -1722,25 +1707,25 @@ entities:
       parent: 1
 - proto: CableMV
   entities:
-  - uid: 208
+  - uid: 199
     components:
     - type: Transform
-      pos: -0.5,-2.5
+      pos: 0.5,-3.5
       parent: 1
-  - uid: 209
+  - uid: 200
     components:
     - type: Transform
       pos: -0.5,-3.5
+      parent: 1
+  - uid: 201
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
       parent: 1
   - uid: 210
     components:
     - type: Transform
       pos: -1.5,-3.5
-      parent: 1
-  - uid: 211
-    components:
-    - type: Transform
-      pos: 1.5,-2.5
       parent: 1
   - uid: 212
     components:
@@ -2957,17 +2942,17 @@ entities:
         127:
         - - Pressed
           - Toggle
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
-  - uid: 366
-    components:
-    - type: Transform
-      pos: -2.5,-2.5
-      parent: 1
-  - uid: 367
+  - uid: 209
     components:
     - type: Transform
       pos: -2.5,-3.5
+      parent: 1
+  - uid: 211
+    components:
+    - type: Transform
+      pos: -2.5,-2.5
       parent: 1
 - proto: StasisBed
   entities:
@@ -2976,17 +2961,13 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
-  - uid: 369
+  - uid: 208
     components:
     - type: Transform
-      pos: -0.5,-2.5
-      parent: 1
-  - uid: 370
-    components:
-    - type: Transform
-      pos: 1.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-2.5
       parent: 1
 - proto: SuitStorageBase
   entities:
@@ -4224,18 +4205,6 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 0.5,4.5
-      parent: 1
-  - uid: 377
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,8.5
-      parent: 1
-  - uid: 586
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,8.5
+      pos: 0.5,8.5
       parent: 1
 ...

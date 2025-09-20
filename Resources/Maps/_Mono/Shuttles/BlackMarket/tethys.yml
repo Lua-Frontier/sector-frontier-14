@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 11:33:01
-  entityCount: 461
+  time: 09/19/2025 06:12:50
+  entityCount: 457
 maps: []
 grids:
 - 1
@@ -601,29 +601,6 @@ entities:
     - type: ImplicitRoof
 - proto: AirAlarm
   entities:
-  - uid: 2
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 259
-      - 199
-      - 200
-      - 254
-  - uid: 3
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 199
-      - 261
-      - 255
   - uid: 4
     components:
     - type: Transform
@@ -635,30 +612,6 @@ entities:
       - 197
       - 262
       - 257
-  - uid: 5
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 200
-      - 198
-      - 258
-      - 253
-  - uid: 6
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,7.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 197
-      - 198
-      - 256
-      - 260
 - proto: AirlockExternalGlassPirateLocked
   entities:
   - uid: 7
@@ -1298,6 +1251,11 @@ entities:
       parent: 1
 - proto: CableHV
   entities:
+  - uid: 2
+    components:
+    - type: Transform
+      pos: -5.5,-0.5
+      parent: 1
   - uid: 130
     components:
     - type: Transform
@@ -1318,17 +1276,12 @@ entities:
     - type: Transform
       pos: -4.5,-0.5
       parent: 1
+- proto: CableMV
+  entities:
   - uid: 134
     components:
     - type: Transform
-      pos: -4.5,-1.5
-      parent: 1
-- proto: CableMV
-  entities:
-  - uid: 135
-    components:
-    - type: Transform
-      pos: -4.5,-1.5
+      pos: -5.5,-0.5
       parent: 1
   - uid: 136
     components:
@@ -1695,7 +1648,6 @@ entities:
       deviceLists:
       - 195
       - 4
-      - 6
       - 196
   - uid: 198
     components:
@@ -1705,9 +1657,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 196
-      - 6
       - 194
-      - 5
   - uid: 199
     components:
     - type: Transform
@@ -1716,9 +1666,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 192
-      - 3
       - 193
-      - 2
 - proto: FirelockGlass
   entities:
   - uid: 200
@@ -1729,9 +1677,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 194
-      - 5
       - 193
-      - 2
 - proto: FloorDrain
   entities:
   - uid: 201
@@ -2144,9 +2090,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
     - type: AtmosPipeColor
       color: '#00AACCFF'
   - uid: 254
@@ -2155,9 +2098,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 2
     - type: AtmosPipeColor
       color: '#00AACCFF'
   - uid: 255
@@ -2166,9 +2106,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
     - type: AtmosPipeColor
       color: '#00AACCFF'
   - uid: 256
@@ -2177,9 +2114,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,8.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 6
     - type: AtmosPipeColor
       color: '#00AACCFF'
   - uid: 257
@@ -2200,9 +2134,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
     - type: AtmosPipeColor
       color: '#DD0075FF'
   - uid: 259
@@ -2211,9 +2142,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 2
     - type: AtmosPipeColor
       color: '#DD0075FF'
   - uid: 260
@@ -2222,9 +2150,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,10.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 6
     - type: AtmosPipeColor
       color: '#DD0075FF'
   - uid: 261
@@ -2233,9 +2158,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
     - type: AtmosPipeColor
       color: '#DD0075FF'
   - uid: 262
@@ -2344,6 +2266,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,8.5
+      parent: 1
+- proto: LockerEngineerFilled
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: -4.5,-1.5
       parent: 1
 - proto: LockerFreezerBase
   entities:
@@ -2605,12 +2534,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-1.5
       parent: 1
-  - uid: 307
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,-1.5
-      parent: 1
   - uid: 308
     components:
     - type: Transform
@@ -2625,9 +2548,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,8.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
-  - uid: 310
+  - uid: 6
     components:
     - type: Transform
       pos: -4.5,1.5
@@ -2668,12 +2591,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
-  - uid: 312
+  - uid: 3
     components:
     - type: Transform
-      pos: -4.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-0.5
       parent: 1
 - proto: SuitStorageEVAPirate
   entities:
