@@ -67,6 +67,13 @@
     factions:
     - NanoTrasen
     - Goblin
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Goblin
+    understands:
+    - Intergalactic
+    - Goblin # Lua end
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:

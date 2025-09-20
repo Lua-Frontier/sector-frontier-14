@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseItem
+  id: ManualBabel
+  name: babel manual
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    state: book_icon
+  - type: Item
+    sprite: Objects/Misc/books.rsi
+  - type: LanguageLearn
+    deleteAfterUse: true
+    languages:
+      - Intergalactic

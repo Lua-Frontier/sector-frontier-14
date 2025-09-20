@@ -31,6 +31,13 @@
     speechSounds: Sheleg
     speechVerb: Sheleg
 #    allowedEmotes: [ 'Belch' ]
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Sheleg
+    understands:
+    - Intergalactic
+    - Sheleg # Lua end
   - type: TypingIndicator
     proto: sheleg
   - type: Butcherable

@@ -40,6 +40,33 @@ public static class BoundKeyHelper
             name = null;
             name = key switch
             {
+                // Lua start Force latin letters regardless of OS keyboard layout
+                Keyboard.Key.A => "A",
+                Keyboard.Key.B => "B",
+                Keyboard.Key.C => "C",
+                Keyboard.Key.D => "D",
+                Keyboard.Key.E => "E",
+                Keyboard.Key.F => "F",
+                Keyboard.Key.G => "G",
+                Keyboard.Key.H => "H",
+                Keyboard.Key.I => "I",
+                Keyboard.Key.J => "J",
+                Keyboard.Key.K => "K",
+                Keyboard.Key.L => "L",
+                Keyboard.Key.M => "M",
+                Keyboard.Key.N => "N",
+                Keyboard.Key.O => "O",
+                Keyboard.Key.P => "P",
+                Keyboard.Key.Q => "Q",
+                Keyboard.Key.R => "R",
+                Keyboard.Key.S => "S",
+                Keyboard.Key.T => "T",
+                Keyboard.Key.U => "U",
+                Keyboard.Key.V => "V",
+                Keyboard.Key.W => "W",
+                Keyboard.Key.X => "X",
+                Keyboard.Key.Y => "Y",
+                Keyboard.Key.Z => "Z", // Lua end
                 Keyboard.Key.Apostrophe => "'",
                 Keyboard.Key.Comma => ",",
                 Keyboard.Key.Delete => "Del",

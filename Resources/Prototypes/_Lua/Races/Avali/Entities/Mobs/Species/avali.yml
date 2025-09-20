@@ -51,6 +51,13 @@
     requiredLegs: 2
   - type: Speech
     speechSounds: Avali
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Avali
+    understands:
+    - Intergalactic
+    - Avali # Lua end
   - type: Sprite
     netsync: false
     noRot: true
