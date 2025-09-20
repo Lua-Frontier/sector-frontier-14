@@ -244,6 +244,9 @@
   - type: ContainerComp
     proto: AiHeld
     container: station_ai_mind_slot
+  - type: Damageable # _Lua
+    damageContainer: StructuralInorganic # _Lua
+    damageModifierSet: RGlass # _Lua
   - type: Destructible
     thresholds:
     - trigger:
