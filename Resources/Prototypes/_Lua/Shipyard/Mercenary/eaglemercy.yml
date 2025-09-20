@@ -1,17 +1,6 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
-
-# Author Info
-# GitHub: ThatOneGoblin25
-# Discord: thedaarkgoblin
-# Remap Author Info
-# Github: HacksLua
-# Discord: HacksLua
-
-# Shuttle Notes:
-#
-
 - type: vessel
   parent: BaseVessel
   id: EagleMercenary
@@ -23,7 +12,6 @@
   access: Mercenary
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/eaglemercy.yml
   addComponents:
-
     - type: IFF
       color: "#182faf"
     - type: NanotrasenFtl

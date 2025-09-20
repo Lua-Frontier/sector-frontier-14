@@ -19,9 +19,10 @@
   price: 306103 # 244883 - original - 25% markup engine is fueled with bananium, extremely radioactive engine room, thin armor, extremely vulnerable rear E thrusters. Big ow.
   category: Large
   group: Expedition
-  shuttlePath: /Maps/_Lua/Shuttles/Expedition/gixon.yml
+  shuttlePath: /Maps/_Mono/Shuttles/Expedition/gixon.yml
   guidebookPage: Null
   class:
+  - Civilian
   - Expedition
   - Science
   - Salvage
@@ -31,7 +32,7 @@
 - type: gameMap
   id: gixon
   mapName: 'COG Gixon'
-  mapPath: /Maps/_Lua/Shuttles/Expedition/gixon.yml
+  mapPath: /Maps/_Mono/Shuttles/Expedition/gixon.yml
   minPlayers: 0
   stations:
     gixon:

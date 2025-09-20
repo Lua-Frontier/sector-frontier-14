@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 11:26:26
-  entityCount: 1271
+  time: 09/20/2025 07:02:30
+  entityCount: 1266
 maps: []
 grids:
 - 1
@@ -717,45 +717,6 @@ entities:
     - type: InsideEntityStorage
 - proto: AirAlarm
   entities:
-  - uid: 28
-    components:
-    - type: Transform
-      pos: 18.5,-2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 56
-      - 610
-      - 602
-  - uid: 29
-    components:
-    - type: Transform
-      pos: -1.5,-2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 607
-      - 54
-      - 601
-  - uid: 30
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,-1.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 600
-      - 608
-      - 60
-      - 611
-      - 55
-      - 604
-      - 609
-      - 603
-      - 59
-      - 62
-      - 61
   - uid: 31
     components:
     - type: Transform
@@ -910,25 +871,16 @@ entities:
     - type: Transform
       pos: 0.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 29
   - uid: 55
     components:
     - type: Transform
       pos: 8.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 56
     components:
     - type: Transform
       pos: 16.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 28
   - uid: 57
     components:
     - type: Transform
@@ -950,33 +902,21 @@ entities:
     - type: Transform
       pos: 13.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 60
     components:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 61
     components:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 62
     components:
     - type: Transform
       pos: 12.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
 - proto: AmeController
   entities:
   - uid: 63
@@ -3911,42 +3851,27 @@ entities:
     - type: Transform
       pos: 2.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 601
     components:
     - type: Transform
       pos: -4.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 29
   - uid: 602
     components:
     - type: Transform
       pos: 21.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 28
   - uid: 603
     components:
     - type: Transform
       pos: 14.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 604
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,-6.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 605
     components:
     - type: Transform
@@ -3973,45 +3898,30 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 29
   - uid: 608
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 609
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
   - uid: 610
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 17.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 28
   - uid: 611
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 30
 - proto: GravityGeneratorMini
   entities:
   - uid: 612
@@ -8230,20 +8140,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,7.5
-      parent: 1
-- proto: WeaponTurretTarnyxReload
-  entities:
-  - uid: 1257
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,3.5
-      parent: 1
-  - uid: 1258
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 18.5,3.5
       parent: 1
 - proto: WindoorSecure
   entities:
