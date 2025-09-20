@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 16:14:27
-  entityCount: 1206
+  time: 09/20/2025 16:23:19
+  entityCount: 1210
 maps: []
 grids:
 - 1
@@ -1895,7 +1895,7 @@ entities:
       parent: 1
 - proto: BarSign
   entities:
-  - uid: 640
+  - uid: 638
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -2014,7 +2014,7 @@ entities:
       parent: 1
 - proto: BoozeDispenser
   entities:
-  - uid: 614
+  - uid: 612
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2999,6 +2999,11 @@ entities:
     - type: Transform
       pos: -2.5,-10.5
       parent: 1
+  - uid: 1208
+    components:
+    - type: Transform
+      pos: 8.5,1.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 125
@@ -3306,6 +3311,11 @@ entities:
     - type: Transform
       pos: -2.5,-10.5
       parent: 1
+  - uid: 1207
+    components:
+    - type: Transform
+      pos: 8.5,1.5
+      parent: 1
 - proto: CableTerminal
   entities:
   - uid: 282
@@ -3542,6 +3552,18 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-8.5
+      parent: 1
+  - uid: 1209
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,1.5
+      parent: 1
+  - uid: 1210
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,1.5
       parent: 1
 - proto: ChairPilotSeat
   entities:
@@ -6025,7 +6047,7 @@ entities:
       parent: 1
 - proto: PosterContrabandRIPBadger
   entities:
-  - uid: 610
+  - uid: 608
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -6257,12 +6279,12 @@ entities:
       parent: 1
 - proto: PoweredlightPink
   entities:
-  - uid: 633
+  - uid: 614
     components:
     - type: Transform
       pos: -7.5,12.5
       parent: 1
-  - uid: 638
+  - uid: 633
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -6342,7 +6364,7 @@ entities:
       parent: 1
 - proto: ShelfBar
   entities:
-  - uid: 611
+  - uid: 610
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -6603,15 +6625,14 @@ entities:
     - type: Transform
       pos: -6.5,11.5
       parent: 1
-- proto: SubstationBasic
-  entities:
-  - uid: 100
-    components:
-    - type: Transform
-      pos: 7.5,1.5
-      parent: 1
 - proto: SubstationWallBasic
   entities:
+  - uid: 640
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 8.5,1.5
+      parent: 1
   - uid: 655
     components:
     - type: Transform
@@ -6690,13 +6711,13 @@ entities:
       parent: 1
 - proto: TableStone
   entities:
-  - uid: 325
+  - uid: 100
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,7.5
       parent: 1
-  - uid: 612
+  - uid: 611
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -6704,6 +6725,12 @@ entities:
       parent: 1
 - proto: TableWood
   entities:
+  - uid: 325
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,10.5
+      parent: 1
   - uid: 588
     components:
     - type: Transform
@@ -6732,21 +6759,15 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -7.5,10.5
+      pos: -6.5,10.5
       parent: 1
   - uid: 606
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -6.5,10.5
-      parent: 1
-  - uid: 607
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
       pos: -8.5,10.5
       parent: 1
-  - uid: 608
+  - uid: 607
     components:
     - type: Transform
       rot: 3.141592653589793 rad
