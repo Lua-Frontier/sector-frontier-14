@@ -89,3 +89,4 @@ shuttle-console-guest-access-already-granted = У вас уже есть гос�
 shuttle-console-reset-guest-access-denied = Для сброса гостевого доступа требуется документ на корабль.
 shuttle-console-no-guest-access = Нет гостевого доступа для сброса.
 shuttle-console-guest-access-reset = Гостевой доступ сброшен для {$count} ID-карт.
+shipyard-console-limited-category = Лимит шаттлов данной категории.

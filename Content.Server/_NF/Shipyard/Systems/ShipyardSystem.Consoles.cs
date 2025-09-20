@@ -400,6 +400,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var vesselStore = EnsureComp<VesselComponent>(shuttleUid);
         vesselStore.VesselId = vessel.ID;
 
+        vesselStore.LimitCategory = vessel.LimitCategory; // _Lua
+
         // Mono
         _entityManager.System<ShipyardDirectionSystem>().SendShipDirectionMessage(player, shuttleUid);
 
