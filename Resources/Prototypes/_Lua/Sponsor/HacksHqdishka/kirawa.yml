@@ -4,7 +4,7 @@
 
 - type: entity
   name: Кирава "LuaTech"
-  parent: BaseWeaponPistol
+  parent: [ NFWeaponPistolMk58, BaseC1Contraband, NFBaseWeaponPistolChamber35, NFBaseWeaponFramePistolNanotrasen ]
   id: WeaponPistolLua
   description: Гражданский травматический пистолет для самообороны, использует травматические патроны 9.19.
   categories: [ HideSpawnMenu ]
@@ -78,7 +78,7 @@
     contents:
     - id: WeaponPistolLua
       amount: 1
-    - id: MagazinePistol
+    - id: NFMagazinePistol35Overpressure
       amount: 2
   - type: Lock
   - type: LockVisuals

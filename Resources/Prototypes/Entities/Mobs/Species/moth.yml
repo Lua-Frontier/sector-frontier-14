@@ -29,6 +29,13 @@
     allowedEmotes: ['Chitter', 'Squeak']
   - type: TypingIndicator
     proto: moth
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Moth
+    understands:
+    - Intergalactic
+    - Moth # Lua end
   - type: Butcherable
     butcheringType: Spike
     spawned:

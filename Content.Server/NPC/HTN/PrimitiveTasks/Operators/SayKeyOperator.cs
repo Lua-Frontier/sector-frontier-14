@@ -1,4 +1,5 @@
-﻿using Content.Server.Chat.Systems;
+using Content.Server.Chat.Systems;
+using Content.Shared._Lua.Chat.Systems; // Lua
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 

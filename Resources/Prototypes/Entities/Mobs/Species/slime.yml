@@ -42,6 +42,13 @@
     speechVerb: Slime
     speechSounds: Slime
     allowedEmotes: ['Squish', 'Bubble', 'Pop'] # Imp: add Bubble, Pop
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Slime
+    understands:
+    - Intergalactic
+    - Slime # Lua end
   - type: TypingIndicator
     proto: slime
   - type: Vocal

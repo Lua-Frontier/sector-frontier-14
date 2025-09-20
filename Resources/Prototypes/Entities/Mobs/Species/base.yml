@@ -149,6 +149,13 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: LanguageSpeaker # Lua start
+    currentLanguage: Intergalactic
+  - type: LanguageKnowledge
+    speaks:
+    - Intergalactic
+    understands:
+    - Intergalactic # Lua end
   - type: Identity
   - type: IdExaminable
   - type: Hands
