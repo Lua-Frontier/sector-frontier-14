@@ -62,6 +62,7 @@
   name: ракетный двигатель
   suffix: LuaTech, Луа, Тир 5
   components:
+  - type: LuaTech
   - type: Machine
     board: ThrusterLuaMachineCircuitboard
   - type: Sprite
@@ -93,6 +94,7 @@
   parent: [ThrusterLua, ThrusterPirates]
   suffix: LuaTech, Луа, Тир 1
   components:
+  - type: LuaTech
   - type: Machine
     board: ThrusterLuaBuildMachineCircuitboard
 

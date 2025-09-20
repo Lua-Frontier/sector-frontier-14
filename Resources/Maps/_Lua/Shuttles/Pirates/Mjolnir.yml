@@ -208,6 +208,7 @@ entities:
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: PreventDelete
   - uid: 4
     mapInit: true
     paused: true
@@ -1482,6 +1483,11 @@ entities:
       parent: 1
 - proto: CableMV
   entities:
+  - uid: 23
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 1
   - uid: 224
     components:
     - type: Transform
@@ -2385,9 +2391,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 23
 - proto: GasVentScrubber
   entities:
   - uid: 315
@@ -2543,6 +2546,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.5,0.5
+      parent: 1
+- proto: LockerEngineerFilled
+  entities:
+  - uid: 424
+    components:
+    - type: Transform
+      pos: 3.5,-1.5
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
@@ -3057,12 +3067,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,0.5
       parent: 1
-- proto: SubstationBasic
+  - uid: 425
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-1.5
+      parent: 1
+- proto: SubstationWallBasic
   entities:
   - uid: 416
     components:
     - type: Transform
-      pos: 3.5,-1.5
+      rot: 3.141592653589793 rad
+      pos: 3.5,-2.5
       parent: 1
 - proto: SuitStorageWallmountPirateCap
   entities:

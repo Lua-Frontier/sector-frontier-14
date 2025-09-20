@@ -115,6 +115,9 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public HashSet<ProtoId<TagPrototype>> Tags = new();
 
+    [DataField("marker")]
+    public string? Marker;
+
     /// <summary>
     /// Components to be added to any spawned grids.
     /// </summary>

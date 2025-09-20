@@ -48,6 +48,7 @@ public sealed class JoinQueueManager
     ///     Queue of active player sessions
     /// </summary>
     private readonly List<ICommonSession> _queue = new(); // Real Queue class can't delete disconnected users
+    private readonly Dictionary<NetUserId, DateTime> _reservedSlots = new();
 
     private bool _isEnabled = false;
 
@@ -61,6 +62,7 @@ public sealed class JoinQueueManager
         _cfg.OnValueChanged(CCCVars.QueueEnabled, OnQueueCVarChanged, true);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _discordAuthManager.PlayerVerified += OnPlayerVerified;
+        _netManager.Connected += OnChannelConnected;
     }
 
     private void OnQueueCVarChanged(bool value)
@@ -111,16 +113,32 @@ public sealed class JoinQueueManager
             if (!wasInQueue && e.OldStatus != SessionStatus.InGame) // Process queue only if player disconnected from InGame or from queue
                 return;
 
+            var seconds = _cfg.GetCVar(CCCVars.QueueReconnectReserveSeconds);
+            if (seconds > 0 && e.OldStatus == SessionStatus.InGame)
+            { _reservedSlots[e.Session.UserId] = DateTime.UtcNow.AddSeconds(seconds); }
             ProcessQueue(true, e.Session.ConnectedTime);
 
             if (wasInQueue)
                 QueueTimings.WithLabels("Unwaited").Observe((DateTime.UtcNow - e.Session.ConnectedTime).TotalSeconds);
         }
     }
+    private void OnChannelConnected(object? sender, NetChannelArgs args)
+    {
+        var userId = args.Channel.UserId;
+        if (_reservedSlots.TryGetValue(userId, out var until))
+        { if (DateTime.UtcNow <= until) _reservedSlots.Remove(userId); }
+    }
 
     private int GetPlayersCount()
     {
         var count = _playerManager.PlayerCount - _queue.Count;
+        var now = DateTime.UtcNow;
+        foreach (var kv in _reservedSlots.ToArray())
+        {
+            if (kv.Value <= now)
+            { _reservedSlots.Remove(kv.Key); continue; }
+            count++;
+        }
         if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
         { count -= _adminManager.ActiveAdmins.Count(); }
         if (count < 0) count = 0;

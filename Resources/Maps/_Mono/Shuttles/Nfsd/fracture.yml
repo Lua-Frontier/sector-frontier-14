@@ -551,28 +551,6 @@ entities:
       - 218
       - 264
       - 259
-  - uid: 4
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-7.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 216
-      - 217
-      - 262
-      - 257
-  - uid: 5
-    components:
-    - type: Transform
-      pos: 4.5,-3.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 216
-      - 260
-      - 263
 - proto: AirlockExternalGlassNfsdLocked
   entities:
   - uid: 6
@@ -1711,9 +1689,7 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 214
-      - 4
       - 215
-      - 5
   - uid: 217
     components:
     - type: Transform
@@ -1724,7 +1700,6 @@ entities:
       - 212
       - 2
       - 214
-      - 4
   - uid: 218
     components:
     - type: Transform
@@ -2047,9 +2022,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-6.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
     - type: AtmosPipeColor
       color: '#00AACCFF'
   - uid: 258
@@ -2078,9 +2050,6 @@ entities:
     - type: Transform
       pos: 2.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
     - type: AtmosPipeColor
       color: '#00AACCFF'
 - proto: GasVentScrubber
@@ -2102,9 +2071,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-6.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
     - type: AtmosPipeColor
       color: '#DD0075FF'
   - uid: 263
@@ -2113,9 +2079,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-6.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
     - type: AtmosPipeColor
       color: '#DD0075FF'
   - uid: 264
@@ -2371,9 +2334,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-5.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
-  - uid: 301
+  - uid: 4
     components:
     - type: Transform
       pos: -5.5,-6.5
@@ -3484,19 +3447,5 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,1.5
-      parent: 1
-- proto: WeaponTurretTarnyx
-  entities:
-  - uid: 512
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -12.5,-4.5
-      parent: 1
-  - uid: 513
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 11.5,-4.5
       parent: 1
 ...
