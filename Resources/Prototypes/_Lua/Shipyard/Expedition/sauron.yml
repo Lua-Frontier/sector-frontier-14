@@ -12,9 +12,10 @@
   price: 180000 #260000
   category: Large
   group: Expedition
+  class:
+  - Civilian
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/sauron.yml
   addComponents:
-
     - type: IFF
       color: "#ffffff"
     - type: NanotrasenFtl

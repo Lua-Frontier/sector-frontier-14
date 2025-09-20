@@ -1320,3 +1320,23 @@ Entries:
   id: 97
   time: '2025-09-17T08:08:13.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/188
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Добавлен тест правил верфи для шаттлов с проверками вооружения,
+        энергетики, IFF, навигации.
+    - type: Tweak
+      message: Классы вооружения шаттлов обновлены.
+    - type: Remove
+      message: Команда mapping больше не открывает клиентский UI автоматически.
+  id: 98
+  time: '2025-09-20T12:28:55.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/221
+- author: Hero_010
+  changes:
+    - type: Fix
+      message: Исправлены лодауты медицинского отдела.
+  id: 99
+  time: '2025-09-20T13:32:48.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/210

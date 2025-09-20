@@ -104,6 +104,7 @@
         3.141
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
+  - type: LuaTech
   - type: NpcFactionMember
     factions:
     - SiliconsLuaTech
@@ -120,6 +121,7 @@
   - type: HitscanBatteryAmmoProvider
     proto: VioletLaserShip
     fireCost: 300
+  - type: LuaTech
   - type: HTN
     rootTask:
       task: TurretCompound
