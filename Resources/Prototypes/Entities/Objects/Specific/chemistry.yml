@@ -41,6 +41,8 @@
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
+    minTransferAmount: 1 # Lua
+    maxTransferAmount: 1000 # Lua
   - type: SolutionItemStatus
     solution: beaker
   - type: UserInterface
@@ -141,6 +143,8 @@
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
+    minTransferAmount: 1 # Lua
+    maxTransferAmount: 1000 # Lua
   - type: SolutionItemStatus
     solution: beaker
   - type: UserInterface
@@ -197,6 +201,8 @@
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
+    minTransferAmount: 1 # Lua
+    maxTransferAmount: 1000 # Lua
   - type: SolutionItemStatus
     solution: beaker
   - type: UserInterface

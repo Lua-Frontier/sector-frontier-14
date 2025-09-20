@@ -464,7 +464,13 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.HairGradientDirection = profile.Appearance.HairGradientDirection;
         humanoid.FacialHairGradientEnabled = profile.Appearance.FacialHairGradientEnabled;
         humanoid.FacialHairGradientSecondaryColor = profile.Appearance.FacialHairGradientSecondaryColor;
-        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection; //Lua end
+        humanoid.FacialHairGradientDirection = profile.Appearance.FacialHairGradientDirection;
+        humanoid.AllMarkingsGradientEnabled = profile.Appearance.AllMarkingsGradientEnabled;
+        humanoid.AllMarkingsGradientSecondaryColor = profile.Appearance.AllMarkingsGradientSecondaryColor;
+        humanoid.AllMarkingsGradientDirection = profile.Appearance.AllMarkingsGradientDirection;
+        // Set cached hair colors for gradient shader
+        humanoid.CachedHairColor = hairColor;
+        humanoid.CachedFacialHairColor = facialHairColor; //Lua end
 
         // Finally adding marking with forced colors
         foreach (var (marking, prototype) in markingFColored)

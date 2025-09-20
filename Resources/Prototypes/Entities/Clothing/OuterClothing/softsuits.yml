@@ -37,7 +37,7 @@
 
 #Emergency EVA
 - type: entity
-  parent: NFClothingOuterEVASuitBase # Frontier: ClothingOuterEVASuitBase<NFClothingOuterEVASuitBase
+  parent: NFClothingOuterEVASuitBase # Frontier: ClothingOuterEVASuitBase<NfsoftsuitsFClothingOuterEVASuitBase
   id: ClothingOuterSuitEmergency
   name: emergency EVA suit
   description: An emergency EVA suit with a built-in helmet. It's horribly slow and lacking in temperature protection, but enough to buy you time from the harsh vacuum of space.
@@ -61,6 +61,7 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container # Frontier
         ents: [] # Frontier
+      beakerSlot: !type:ContainerSlot # _Lua imperial hardsuit injection
 
 #Prisoner EVA
 - type: entity
@@ -159,3 +160,4 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container # Frontier
         ents: [] # Frontier
+      beakerSlot: !type:ContainerSlot # _Lua imperial hardsuit injection

@@ -3186,7 +3186,7 @@ entities:
     - type: Transform
       pos: -14.5,-1.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
   - uid: 392
     components:
@@ -3212,12 +3212,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,2.5
-      parent: 1
-  - uid: 396
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,3.5
       parent: 1
 - proto: Stimpack
   entities:

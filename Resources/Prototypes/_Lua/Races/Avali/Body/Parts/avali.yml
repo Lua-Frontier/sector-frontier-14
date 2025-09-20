@@ -62,7 +62,7 @@
 - type: entity
   id: LeftArmAvali
   name: левая рука
-  parent: PartAvali
+  parent: [PartAvali, BaseLeftArm]
   components:
   - type: Sprite
     netsync: false
@@ -71,14 +71,11 @@
   - type: Icon
     sprite: _Lua/Races/Avali/parts.rsi
     state: "l_arm"
-  - type: BodyPart
-    partType: Arm
-    symmetry: Left
 
 - type: entity
   id: RightArmAvali
   name: правая рука
-  parent: PartAvali
+  parent: [PartAvali, BaseRightArm]
   components:
   - type: Sprite
     netsync: false
@@ -87,14 +84,11 @@
   - type: Icon
     sprite: _Lua/Races/Avali/parts.rsi
     state: "r_arm"
-  - type: BodyPart
-    partType: Arm
-    symmetry: Right
 
 - type: entity
   id: LeftHandAvali
   name: левая ладонь
-  parent: PartAvali
+  parent: [PartAvali, BaseLeftHand]
   components:
   - type: Sprite
     netsync: false
@@ -103,14 +97,11 @@
   - type: Icon
     sprite: _Lua/Races/Avali/parts.rsi
     state: "l_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
 
 - type: entity
   id: RightHandAvali
   name: правая ладонь
-  parent: PartHarpy
+  parent: [PartAvali, BaseRightHand]
   components:
   - type: Sprite
     netsync: false
@@ -119,9 +110,6 @@
   - type: Icon
     sprite: _Lua/Races/Avali/parts.rsi
     state: "r_hand"
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right
 
 - type: entity
   id: LeftLegAvali

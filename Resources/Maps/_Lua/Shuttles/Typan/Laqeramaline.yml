@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 14:47:44
-  entityCount: 2094
+  time: 09/20/2025 05:29:53
+  entityCount: 2118
 maps: []
 grids:
 - 1
@@ -1206,6 +1206,19 @@ entities:
       scale: 0
       radarColor: '#00DEFEFF'
     - type: CircularShieldRadar
+  - uid: 1337
+    components:
+    - type: MetaData
+    - type: Transform
+      pos: 8.5,12.5
+      parent: 1
+    - type: RadarBlip
+      enabled: False
+      visibleFromOtherGrids: True
+      shape: Ring
+      scale: 0
+      radarColor: '#00DEFEFF'
+    - type: CircularShieldRadar
 - proto: ADTClothingNeckSyndicateCloak
   entities:
   - uid: 14
@@ -1262,56 +1275,6 @@ entities:
       - 64
       - 387
       - 1302
-      - 70
-  - uid: 1337
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 1351
-      - 1332
-      - 25
-      - 1545
-      - 1334
-      - 68
-      - 24
-      - 58
-      - 1346
-      - 1120
-      - 39
-      - 41
-      - 1349
-      - 51
-      - 1174
-      - 1353
-  - uid: 1357
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 17.5,2.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 1342
-      - 63
-      - 23
-      - 1350
-      - 44
-      - 1363
-      - 1345
-      - 1336
-      - 1356
-      - 1343
-      - 22
-      - 1111
-      - 1110
-      - 65
-      - 1177
-      - 1125
-      - 1339
 - proto: AirCanister
   entities:
   - uid: 27
@@ -1529,33 +1492,21 @@ entities:
     - type: Transform
       pos: 19.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 23
     components:
     - type: Transform
       pos: 18.5,14.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 24
     components:
     - type: Transform
       pos: 0.5,9.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 25
     components:
     - type: Transform
       pos: 0.5,14.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 26
     components:
     - type: Transform
@@ -1577,9 +1528,6 @@ entities:
     - type: Transform
       pos: 18.5,9.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 49
     components:
     - type: Transform
@@ -1593,9 +1541,6 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 54
     components:
     - type: Transform
@@ -1635,9 +1580,6 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 1122
     components:
     - type: Transform
@@ -1651,9 +1593,6 @@ entities:
     - type: Transform
       pos: 17.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1548
     components:
     - type: Transform
@@ -4791,6 +4730,11 @@ entities:
       parent: 1
 - proto: CableHV
   entities:
+  - uid: 70
+    components:
+    - type: Transform
+      pos: 10.5,-9.5
+      parent: 1
   - uid: 671
     components:
     - type: Transform
@@ -4819,12 +4763,12 @@ entities:
   - uid: 676
     components:
     - type: Transform
-      pos: 11.5,-9.5
+      pos: 12.5,-10.5
       parent: 1
   - uid: 677
     components:
     - type: Transform
-      pos: 7.5,-9.5
+      pos: 6.5,-10.5
       parent: 1
   - uid: 678
     components:
@@ -4855,26 +4799,6 @@ entities:
     components:
     - type: Transform
       pos: 9.5,-10.5
-      parent: 1
-  - uid: 684
-    components:
-    - type: Transform
-      pos: 10.5,-9.5
-      parent: 1
-  - uid: 685
-    components:
-    - type: Transform
-      pos: 9.5,-9.5
-      parent: 1
-  - uid: 686
-    components:
-    - type: Transform
-      pos: 8.5,-9.5
-      parent: 1
-  - uid: 687
-    components:
-    - type: Transform
-      pos: 8.5,-9.5
       parent: 1
   - uid: 688
     components:
@@ -5356,6 +5280,16 @@ entities:
     - type: Transform
       pos: 9.5,10.5
       parent: 1
+  - uid: 1080
+    components:
+    - type: Transform
+      pos: 8.5,-9.5
+      parent: 1
+  - uid: 1357
+    components:
+    - type: Transform
+      pos: 9.5,-9.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 784
@@ -5757,6 +5691,156 @@ entities:
     components:
     - type: Transform
       pos: 9.5,12.5
+      parent: 1
+  - uid: 1565
+    components:
+    - type: Transform
+      pos: 15.5,-5.5
+      parent: 1
+  - uid: 1566
+    components:
+    - type: Transform
+      pos: 17.5,-5.5
+      parent: 1
+  - uid: 2079
+    components:
+    - type: Transform
+      pos: 16.5,-5.5
+      parent: 1
+  - uid: 2080
+    components:
+    - type: Transform
+      pos: 18.5,-5.5
+      parent: 1
+  - uid: 2081
+    components:
+    - type: Transform
+      pos: 18.5,-4.5
+      parent: 1
+  - uid: 2082
+    components:
+    - type: Transform
+      pos: 18.5,-3.5
+      parent: 1
+  - uid: 2095
+    components:
+    - type: Transform
+      pos: 18.5,-2.5
+      parent: 1
+  - uid: 2096
+    components:
+    - type: Transform
+      pos: 18.5,-1.5
+      parent: 1
+  - uid: 2097
+    components:
+    - type: Transform
+      pos: 18.5,-0.5
+      parent: 1
+  - uid: 2098
+    components:
+    - type: Transform
+      pos: 18.5,0.5
+      parent: 1
+  - uid: 2099
+    components:
+    - type: Transform
+      pos: 18.5,1.5
+      parent: 1
+  - uid: 2100
+    components:
+    - type: Transform
+      pos: 18.5,3.5
+      parent: 1
+  - uid: 2101
+    components:
+    - type: Transform
+      pos: 18.5,4.5
+      parent: 1
+  - uid: 2102
+    components:
+    - type: Transform
+      pos: 18.5,5.5
+      parent: 1
+  - uid: 2103
+    components:
+    - type: Transform
+      pos: 18.5,2.5
+      parent: 1
+  - uid: 2104
+    components:
+    - type: Transform
+      pos: 3.5,-5.5
+      parent: 1
+  - uid: 2105
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 1
+  - uid: 2106
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 1
+  - uid: 2107
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 1
+  - uid: 2108
+    components:
+    - type: Transform
+      pos: 0.5,-4.5
+      parent: 1
+  - uid: 2109
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 1
+  - uid: 2110
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 2111
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+  - uid: 2112
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+  - uid: 2113
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
+  - uid: 2114
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 1
+  - uid: 2115
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 1
+  - uid: 2116
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 1
+  - uid: 2117
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
+  - uid: 2118
+    components:
+    - type: Transform
+      pos: 0.5,5.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -6529,60 +6613,6 @@ entities:
     - type: Transform
       pos: 14.5,-3.5
       parent: 1
-- proto: CircularShieldBase
-  entities:
-  - uid: 992
-    components:
-    - type: Transform
-      pos: 8.5,12.5
-      parent: 1
-    - type: CircularShield
-      width: 6.283185307179586 rad
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.45,-0.45
-            - 0.45,-0.45
-            - 0.45,0.45
-            - -0.45,0.45
-          mask:
-          - Impassable
-          - TableLayer
-          - LowImpassable
-          layer:
-          - TableLayer
-          - LowImpassable
-          density: 60
-          hard: True
-          restitution: 0
-          friction: 0.4
-        ShieldFixture:
-          shape: !type:PhysShapeCircle
-            radius: 0
-            position: 9.5016575,5.581099
-          mask: []
-          layer:
-          - BulletImpassable
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
-- proto: CircularShieldConsole
-  entities:
-  - uid: 994
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,9.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        992:
-        - - CircularShieldConsoleSender
-          - CircularShieldConsoleReceiver
 - proto: ClosetWallO2N2FilledRandom
   entities:
   - uid: 995
@@ -6673,6 +6703,14 @@ entities:
     components:
     - type: Transform
       pos: 10.5,10.5
+      parent: 1
+- proto: ComputerFrame
+  entities:
+  - uid: 994
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,9.5
       parent: 1
 - proto: ComputerGunneryConsole
   entities:
@@ -6820,6 +6858,16 @@ entities:
       parent: 1
 - proto: DisposalPipe
   entities:
+  - uid: 684
+    components:
+    - type: Transform
+      pos: 9.5,-10.5
+      parent: 1
+  - uid: 686
+    components:
+    - type: Transform
+      pos: 9.5,-9.5
+      parent: 1
   - uid: 1021
     components:
     - type: Transform
@@ -7155,25 +7203,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,-6.5
       parent: 1
-  - uid: 1080
-    components:
-    - type: Transform
-      pos: 9.5,-7.5
-      parent: 1
-  - uid: 1081
+  - uid: 1082
     components:
     - type: Transform
       pos: 9.5,-8.5
       parent: 1
-  - uid: 1082
-    components:
-    - type: Transform
-      pos: 9.5,-9.5
-      parent: 1
   - uid: 1083
     components:
     - type: Transform
-      pos: 9.5,-10.5
+      pos: 9.5,-7.5
       parent: 1
   - uid: 1084
     components:
@@ -7375,18 +7413,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 41
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 56
     components:
     - type: Transform
@@ -7429,18 +7461,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 19.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1111
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,0.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1335
     components:
     - type: Transform
@@ -7456,9 +7482,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,6.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1338
     components:
     - type: Transform
@@ -7474,9 +7497,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 16.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1347
     components:
     - type: Transform
@@ -7492,18 +7512,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-5.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 1350
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,12.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1358
     components:
     - type: Transform
@@ -7543,9 +7557,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,12.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
 - proto: FloorDrain
   entities:
   - uid: 1129
@@ -7576,6 +7587,12 @@ entities:
       color: '#FF0000FF'
 - proto: GasPipeBend
   entities:
+  - uid: 685
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 8.5,5.5
+      parent: 1
   - uid: 1133
     components:
     - type: Transform
@@ -7878,6 +7895,17 @@ entities:
       color: '#0000FFFF'
 - proto: GasPipeStraight
   entities:
+  - uid: 992
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-4.5
+      parent: 1
+  - uid: 1081
+    components:
+    - type: Transform
+      pos: 9.5,-9.5
+      parent: 1
   - uid: 1171
     components:
     - type: Transform
@@ -9162,9 +9190,6 @@ entities:
     - type: Transform
       pos: 18.5,15.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 68
@@ -9173,9 +9198,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,7.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 1132
@@ -9194,9 +9216,6 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 1177
@@ -9204,9 +9223,6 @@ entities:
     - type: Transform
       pos: 17.5,-4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 1302
@@ -9225,9 +9241,6 @@ entities:
     - type: Transform
       pos: 0.5,15.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 1340
@@ -9247,9 +9260,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 19.5,3.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 1346
@@ -9258,9 +9268,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
   - uid: 1348
@@ -9290,9 +9297,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 19.5,7.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
 - proto: GasVentScrubber
@@ -9303,9 +9307,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 59
     components:
     - type: Transform
@@ -9319,18 +9320,6 @@ entities:
     - type: Transform
       pos: 17.5,-3.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
-  - uid: 70
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 8.5,-9.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 69
   - uid: 1333
     components:
     - type: Transform
@@ -9345,9 +9334,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,8.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 1341
     components:
     - type: Transform
@@ -9362,9 +9348,6 @@ entities:
     - type: Transform
       pos: 19.5,15.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1344
     components:
     - type: Transform
@@ -9380,17 +9363,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 19.5,8.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
   - uid: 1351
     components:
     - type: Transform
       pos: -0.5,15.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 1352
     components:
     - type: Transform
@@ -9404,9 +9381,6 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1337
   - uid: 1354
     components:
     - type: Transform
@@ -9422,9 +9396,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 19.5,4.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 1357
 - proto: GravityGeneratorMini
   entities:
   - uid: 1364
@@ -9820,6 +9791,14 @@ entities:
     components:
     - type: Transform
       pos: 12.5,-7.5
+      parent: 1
+- proto: MachineFrame
+  entities:
+  - uid: 687
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 8.5,12.5
       parent: 1
 - proto: MachineFTLDrive
   entities:
@@ -10788,16 +10767,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-8.5
-      parent: 1
-  - uid: 1565
-    components:
-    - type: Transform
-      pos: 18.5,16.5
-      parent: 1
-  - uid: 1566
-    components:
-    - type: Transform
-      pos: 0.5,16.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
@@ -13701,32 +13670,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-3.5
-      parent: 1
-- proto: WeaponTurretAK570
-  entities:
-  - uid: 2079
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,16.5
-      parent: 1
-  - uid: 2080
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 12.5,16.5
-      parent: 1
-  - uid: 2081
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,31.5
-      parent: 1
-  - uid: 2082
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 19.5,31.5
       parent: 1
 - proto: WeaponTurretCharonReload
   entities:

@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2025 06:14:18
+  time: 09/20/2025 07:19:23
   entityCount: 581
 maps: []
 grids:
@@ -1384,6 +1384,11 @@ entities:
       parent: 1
 - proto: CableHV
   entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: -0.5,29.5
+      parent: 1
   - uid: 205
     components:
     - type: Transform
@@ -1419,12 +1424,12 @@ entities:
     - type: Transform
       pos: 1.5,30.5
       parent: 1
-  - uid: 212
+  - uid: 365
     components:
     - type: Transform
-      pos: -0.5,29.5
+      pos: 0.5,29.5
       parent: 1
-  - uid: 213
+  - uid: 366
     components:
     - type: Transform
       pos: -0.5,30.5
@@ -1483,6 +1488,12 @@ entities:
       parent: 1
 - proto: CableTerminal
   entities:
+  - uid: 4
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,29.5
+      parent: 1
   - uid: 224
     components:
     - type: Transform
@@ -1665,12 +1676,14 @@ entities:
     components:
     - type: Transform
       parent: 2
-    - type: GasTank
     - type: Physics
       canCollide: False
-    - type: Jetpack
     - type: ActionsContainer
     - type: InsideEntityStorage
+    - type: ContainerContainer
+      containers:
+        actions: !type:Container
+          ents: []
   - uid: 22
     components:
     - type: Transform
@@ -2604,17 +2617,17 @@ entities:
         128:
         - - Pressed
           - Toggle
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
-  - uid: 365
-    components:
-    - type: Transform
-      pos: -0.5,29.5
-      parent: 1
-  - uid: 366
+  - uid: 212
     components:
     - type: Transform
       pos: -0.5,30.5
+      parent: 1
+  - uid: 213
+    components:
+    - type: Transform
+      pos: -0.5,29.5
       parent: 1
 - proto: StasisBed
   entities:

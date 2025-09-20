@@ -537,6 +537,9 @@
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: BiocodedClothing # _Lua
+  - type: Inject
+    openCloseDelay: 1.5
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -633,6 +636,9 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
   - type: BiocodedClothing # _Lua
+  - type: Inject # _Lua
+    openCloseDelay: 0.5 # _Lua
+    autoClose: false # _Lua
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -673,6 +679,8 @@
     - MonkeyWearable
     - WhitelistChameleon
   - type: BiocodedClothing # _Lua
+  - type: Inject # _Lua
+    canBeOpened: false # _Lua
 
 #Wizard Hardsuit
 - type: entity
@@ -935,6 +943,9 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
   - type: BiocodedClothing # _Lua
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: false
 
 #CBURN Hardsuit
 - type: entity

@@ -135,6 +135,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      beakerSlot: !type:ContainerSlot # Lua - imperial hardsuit injection
   - type: GroupExamine
   - type: Tag
     tags:
@@ -155,6 +156,13 @@
   - type: StaticPrice # Frontier
     price: 20 # Frontier
     vendPrice: 1500 # Frontier
+  - type: Inject # lua - imperial hardsuit injection
+  - type: ItemSlots # lua - imperial hardsuit injection
+    slots: # lua - imperial hardsuit injection
+      beakerSlot: # lua - imperial hardsuit injection
+        whitelist: # lua - imperial hardsuit injection
+          tags: # lua - imperial hardsuit injection
+          - FitsHardsuit # Lua - imperial hardsuit injection
 
 - type: entity
   abstract: true

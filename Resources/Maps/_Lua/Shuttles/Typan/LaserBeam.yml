@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 13:59:07
-  entityCount: 1131
+  time: 09/19/2025 15:52:27
+  entityCount: 1124
 maps: []
 grids:
 - 1
@@ -1881,6 +1881,20 @@ entities:
     - type: Transform
       pos: -8.5,-2.5
       parent: 1
+- proto: Barricade
+  entities:
+  - uid: 430
+    components:
+    - type: Transform
+      pos: 0.5,-8.5
+      parent: 1
+- proto: BarricadeBlock
+  entities:
+  - uid: 390
+    components:
+    - type: Transform
+      pos: 0.5,-10.5
+      parent: 1
 - proto: BedsheetMedical
   entities:
   - uid: 197
@@ -2829,11 +2843,6 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
-  - uid: 385
-    components:
-    - type: Transform
-      pos: 0.5,-14.5
-      parent: 1
   - uid: 386
     components:
     - type: Transform
@@ -2853,11 +2862,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-0.5
-      parent: 1
-  - uid: 390
-    components:
-    - type: Transform
-      pos: 1.5,-13.5
       parent: 1
   - uid: 391
     components:
@@ -2898,11 +2902,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-10.5
-      parent: 1
-  - uid: 399
-    components:
-    - type: Transform
-      pos: 1.5,-14.5
       parent: 1
   - uid: 400
     components:
@@ -2951,6 +2950,11 @@ entities:
       parent: 1
 - proto: CableMV
   entities:
+  - uid: 399
+    components:
+    - type: Transform
+      pos: 0.5,-10.5
+      parent: 1
   - uid: 409
     components:
     - type: Transform
@@ -3056,11 +3060,6 @@ entities:
     - type: Transform
       pos: 0.5,-11.5
       parent: 1
-  - uid: 430
-    components:
-    - type: Transform
-      pos: 1.5,-13.5
-      parent: 1
   - uid: 431
     components:
     - type: Transform
@@ -3153,12 +3152,6 @@ entities:
       parent: 1
 - proto: CableTerminal
   entities:
-  - uid: 449
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-14.5
-      parent: 1
   - uid: 450
     components:
     - type: Transform
@@ -3170,12 +3163,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-0.5
-      parent: 1
-  - uid: 452
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-10.5
       parent: 1
 - proto: Catwalk
   entities:
@@ -3734,61 +3721,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-8.5
       parent: 1
-- proto: CircularShieldBase
-  entities:
-  - uid: 547
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-8.5
-      parent: 1
-    - type: CircularShield
-      width: 6.283185307179586 rad
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.45,-0.45
-            - 0.45,-0.45
-            - 0.45,0.45
-            - -0.45,0.45
-          mask:
-          - Impassable
-          - TableLayer
-          - LowImpassable
-          layer:
-          - TableLayer
-          - LowImpassable
-          density: 60
-          hard: True
-          restitution: 0
-          friction: 0.4
-        ShieldFixture:
-          shape: !type:PhysShapeCircle
-            radius: 0
-            position: 0.50065154,-4.346486
-          mask: []
-          layer:
-          - BulletImpassable
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
-- proto: CircularShieldConsole
-  entities:
-  - uid: 549
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-9.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        547:
-        - - CircularShieldConsoleSender
-          - CircularShieldConsoleReceiver
 - proto: ClosetWall
   entities:
   - uid: 550
@@ -3803,6 +3735,14 @@ entities:
     components:
     - type: Transform
       pos: 3.3168297,-6.207943
+      parent: 1
+- proto: ComputerFrame
+  entities:
+  - uid: 449
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-9.5
       parent: 1
 - proto: ComputerGunneryConsole
   entities:
@@ -4881,6 +4821,20 @@ entities:
     - type: Transform
       pos: 4.5,-9.5
       parent: 1
+- proto: InflatableWall
+  entities:
+  - uid: 452
+    components:
+    - type: Transform
+      pos: 0.5,-9.5
+      parent: 1
+- proto: LockerEngineerFilled
+  entities:
+  - uid: 385
+    components:
+    - type: Transform
+      pos: 1.5,-13.5
+      parent: 1
 - proto: LockerEngineerFilledHardsuit
   entities:
   - uid: 686
@@ -4974,26 +4928,6 @@ entities:
       parent: 1
 - proto: Paper
   entities:
-  - uid: 699
-    components:
-    - type: Transform
-      pos: 0.48287225,7.735449
-      parent: 1
-    - type: Paper
-      content: >2-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                     Помогите....
   - uid: 700
     components:
     - type: Transform
@@ -5058,13 +4992,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,-15.5
-      parent: 1
-- proto: PlushieHacksLua
-  entities:
-  - uid: 711
-    components:
-    - type: Transform
-      pos: 0.46418333,8.535754
       parent: 1
 - proto: PosterLegitAnatomyPoster
   entities:
@@ -5526,11 +5453,6 @@ entities:
       parent: 1
 - proto: SMESAdvanced
   entities:
-  - uid: 787
-    components:
-    - type: Transform
-      pos: 1.5,-14.5
-      parent: 1
   - uid: 788
     components:
     - type: Transform
@@ -5541,11 +5463,6 @@ entities:
     - type: Transform
       pos: -3.5,0.5
       parent: 1
-  - uid: 790
-    components:
-    - type: Transform
-      pos: 0.5,-9.5
-      parent: 1
 - proto: StasisBed
   entities:
   - uid: 791
@@ -5555,11 +5472,6 @@ entities:
       parent: 1
 - proto: SubstationBasic
   entities:
-  - uid: 792
-    components:
-    - type: Transform
-      pos: 1.5,-13.5
-      parent: 1
   - uid: 793
     components:
     - type: Transform

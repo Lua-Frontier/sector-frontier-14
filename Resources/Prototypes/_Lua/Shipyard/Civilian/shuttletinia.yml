@@ -11,6 +11,8 @@
   price: 134500
   category: Large
   group: Shipyard # Lua ShipyardLarge<Shipyard
+  class:
+  - Civilian
   shuttlePath: /Maps/_Lua/Shuttles/Civilian/shuttletinia.yml
   addComponents: &cargoComponents
     - type: IFF

@@ -35,6 +35,10 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
   - type: HardsuitIdentification
   - type: HardsuitDNARadial
   - type: Speech
@@ -78,6 +82,8 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
+  - type: Inject
+    openCloseDelay: 2
   - type: HardsuitIdentification
   - type: HardsuitDNARadial
   - type: Speech

@@ -1278,3 +1278,58 @@ Entries:
   id: 93
   time: '2025-09-14T09:34:37.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/212
+- author: UnilTan
+  changes:
+    - type: Add
+      message: Добавлены расовые языки
+  id: 94
+  time: '2025-09-16T13:28:34.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/185
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Добавлена поддержка языков в ТТС, рации/ручные рации, голопады,
+        интеркомы.
+  id: 95
+  time: '2025-09-16T13:49:29.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/216
+- author: UnilTan
+  changes:
+    - type: Fix
+      message: Починила баг с не правильным отображением рук у авали
+    - type: Add
+      message: >-
+        Мензурками и всем контейнерам добавлено "переместить
+        1/5/10/25/50/100/250/500/1000"
+    - type: Fix
+      message: Исправлены орфографических ошибки в законах ИИ.
+  id: 96
+  time: '2025-09-16T14:32:35.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/187
+- author: salo2016
+  changes:
+    - type: Add
+      message: >-
+        Отсек ЭП во всех скафандрах разрешающий/запрещающий колоться
+        открыв/закрыв.
+    - type: Add
+      message: Добавлен крафт ампул в Медипен Техфаб
+    - type: Add
+      message: Добавлен крафт в Мед-О-Мат и крафт ампулы
+  id: 97
+  time: '2025-09-17T08:08:13.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/188
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Добавлен тест правил верфи для шаттлов с проверками вооружения,
+        энергетики, IFF, навигации.
+    - type: Tweak
+      message: Классы вооружения шаттлов обновлены.
+    - type: Remove
+      message: Команда mapping больше не открывает клиентский UI автоматически.
+  id: 98
+  time: '2025-09-20T12:28:55.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/221
