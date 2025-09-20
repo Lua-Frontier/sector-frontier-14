@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/04/2025 11:22:41
-  entityCount: 808
+  time: 09/19/2025 03:51:43
+  entityCount: 805
 maps: []
 grids:
 - 1
@@ -393,42 +393,6 @@ entities:
       - 383
       - 27
       - 371
-  - uid: 3
-    components:
-    - type: Transform
-      pos: 4.5,0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 377
-      - 375
-      - 24
-      - 370
-      - 381
-  - uid: 4
-    components:
-    - type: Transform
-      pos: 18.5,0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 25
-      - 379
-      - 373
-      - 372
-      - 380
-  - uid: 5
-    components:
-    - type: Transform
-      pos: 9.5,0.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 378
-      - 374
-      - 26
-      - 382
-      - 376
 - proto: AirCanister
   entities:
   - uid: 6
@@ -547,27 +511,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
   - uid: 25
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 17.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
   - uid: 26
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
   - uid: 27
     components:
     - type: Transform
@@ -2480,9 +2435,6 @@ entities:
     - type: Transform
       pos: 6.5,3.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
   - uid: 371
     components:
     - type: Transform
@@ -2496,45 +2448,30 @@ entities:
     - type: Transform
       pos: 16.5,3.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
   - uid: 373
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 16.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
   - uid: 374
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
   - uid: 375
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
   - uid: 376
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
 - proto: GasVentScrubber
   entities:
   - uid: 377
@@ -2543,54 +2480,36 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
   - uid: 378
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 10.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
   - uid: 379
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 18.5,-1.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
   - uid: 380
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 15.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
   - uid: 381
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
   - uid: 382
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,2.5
       parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 5
   - uid: 383
     components:
     - type: Transform

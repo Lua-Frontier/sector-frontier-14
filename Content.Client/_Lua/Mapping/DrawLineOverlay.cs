@@ -62,8 +62,8 @@ public sealed class DrawLineOverlay : Overlay
         handle.SetTransform(worldMatrix);
         var max = 1000;
         var microHalf = 4;
-        var smallHalf = 12;
-        var mediumHalf = 20;
+        var smallHalf = 10;
+        var mediumHalf = 15;
         var color = Color.LimeGreen.WithAlpha(0.8f);
         var gridLocalVisible = invWorld.TransformBox(args.WorldBounds);
         void DrawTile(Vector2i tile)
@@ -109,8 +109,8 @@ public sealed class DrawLineOverlay : Overlay
         var (_, _, matrix, invMatrix) = xformSys.GetWorldPositionRotationMatrixWithInv(xform);
         var numbersMax = 1000;
         const int microHalf = 4; //На потом
-        const int smallHalf = 12; //На потом
-        const int mediumHalf = 20; //На потом
+        const int smallHalf = 10; //На потом
+        const int mediumHalf = 15; //На потом
         var gridLocalVisible = invMatrix.TransformBox(args.WorldBounds);
         void DrawNumAt(Vector2i tile, int val)
         {
@@ -133,9 +133,9 @@ public sealed class DrawLineOverlay : Overlay
         {
             var originLocal = (_originTile + Vector2Helpers.Half) * _tileSize;
             var northLocal = originLocal + new Vector2(0, -tiles * _tileSize);
-            var southLocal = originLocal + new Vector2(0,  tiles * _tileSize);
+            var southLocal = originLocal + new Vector2(0, tiles * _tileSize);
             var westLocal = originLocal + new Vector2(-tiles * _tileSize, 0);
-            var eastLocal = originLocal + new Vector2( tiles * _tileSize, 0);
+            var eastLocal = originLocal + new Vector2(tiles * _tileSize, 0);
             void DrawLabel(Vector2 local)
             {
                 var world = Vector2.Transform(local, matrix);
@@ -148,14 +148,12 @@ public sealed class DrawLineOverlay : Overlay
             DrawLabel(eastLocal);
         }
         const int labelMicro = 4;
-        const int labelSmall = 12;
-        const int labelMedium = 20;
-        const int labelLarge = 25;
+        const int labelSmall = 10;
+        const int labelMedium = 15;
+        const int labelLarge = 20;
         DrawLabelTiles(labelMicro, "\nMicro");
         DrawLabelTiles(labelSmall, "\nSmall");
         DrawLabelTiles(labelMedium, "\nMedium");
         DrawLabelTiles(labelLarge, "\nLarge");
     }
 }
-
-
