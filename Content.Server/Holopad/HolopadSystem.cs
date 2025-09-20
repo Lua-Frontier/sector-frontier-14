@@ -1,8 +1,10 @@
+using Content.Server._NF.Station.Systems; // Frontier
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Telephone;
+using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared.Access.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Chat.TypingIndicator;
@@ -21,7 +23,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Server._NF.Station.Systems; // Frontier
 
 namespace Content.Server.Holopad;
 

@@ -2,12 +2,13 @@ using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
-using Content.Shared.Chat;
-using Content.Shared.Paper;
-using Content.Shared.Speech;
 using Content.Shared._DV.TapeRecorder;
 using Content.Shared._DV.TapeRecorder.Components;
 using Content.Shared._DV.TapeRecorder.Systems;
+using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat;
+using Content.Shared.Paper;
+using Content.Shared.Speech;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;

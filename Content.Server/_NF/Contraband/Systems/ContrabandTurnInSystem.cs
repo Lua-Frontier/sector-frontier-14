@@ -106,7 +106,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
         return pads;
     }
 
-    private void SellPallets(EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out int amount)
+    private void SellPallets(EntityUid consoleUid, EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out int amount) // Lua add: EntityUid consoleUid
     {
         station ??= _station.GetOwningStation(gridUid);
         GetPalletGoods(gridUid, component, out var toSell, out amount);
@@ -115,7 +115,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
 
         if (station != null)
         {
-            var ev = new NFEntitySoldEvent(toSell, gridUid);
+            var ev = new NFEntitySoldEvent(toSell, gridUid, consoleUid); // Lua add: consoleUid
             RaiseLocalEvent(ref ev);
         }
 
@@ -201,7 +201,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
             return;
         }
 
-        SellPallets(gridUid, component, null, out var price);
+        SellPallets(uid, gridUid, component, null, out var price); // Lua add: uid
 
         var stackPrototype = _protoMan.Index<StackPrototype>(component.RewardType);
         var stackUid = _stack.Spawn(price, stackPrototype, args.Actor.ToCoordinates());

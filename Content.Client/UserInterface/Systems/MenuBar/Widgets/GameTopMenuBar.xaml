@@ -34,11 +34,11 @@
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
     <ui:MenuButton
-        Name="CharacterButton"
+        Name="LanguageButton"
         Access="Internal"
         Icon="{xe:Tex '/Textures/Interface/character.svg.192dpi.png'}"
-        ToolTip="{Loc 'game-hud-open-character-menu-button-tooltip'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenCharacterMenu}"
+        ToolTip="{Loc 'language-menu-window-title'}"
+        BoundKey = "{x:Static is:ContentKeyFunctions.OpenLanguageMenu}"
         MinSize="42 64"
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
@@ -53,6 +53,17 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
+    <ui:MenuButton
+        Name="CharacterButton"
+        Access="Internal"
+        Icon="{xe:Tex '/Textures/Interface/character.svg.192dpi.png'}"
+        ToolTip="{Loc 'game-hud-open-character-menu-button-tooltip'}"
+        BoundKey = "{x:Static is:ContentKeyFunctions.OpenCharacterMenu}"
+        MinSize="42 64"
+        HorizontalExpand="True"
+        AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+        />
+
     <ui:MenuButton
         Name="CraftingButton"
         Access="Internal"

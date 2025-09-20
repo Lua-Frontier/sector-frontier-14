@@ -102,7 +102,7 @@ public sealed class TTSManager
             var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
             var soundData = Convert.FromBase64String(json.Results.First().Audio);
 
-            _cache.Add(cacheKey, soundData);
+            _cache.TryAdd(cacheKey, soundData);
             _cacheKeysSeq.Add(cacheKey);
             if (_cache.Count > _maxCachedCount)
             {

@@ -36,6 +36,8 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         SubscribeLocalEvent<JukeboxComponent, ComponentStartup>(OnComponentStartup); // Frontier
         SubscribeLocalEvent<JukeboxComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<JukeboxComponent, BoundUIOpenedEvent>(OnUiOpened); // Lua 
+        SubscribeLocalEvent<JukeboxComponent, BoundUIClosedEvent>(OnUiClosed); // Lua 
     }
 
     private void OnComponentInit(EntityUid uid, JukeboxComponent component, ComponentInit args)
@@ -69,6 +71,13 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         {
             component.AudioStream = Audio.Stop(component.AudioStream);
 
+            // Lua start
+            if (component.OnRandomStates != null && component.OnRandomStates.Count > 0)
+            {
+                component.OnState = _random.Pick(component.OnRandomStates);
+                Dirty(uid, component);
+            }
+            // Lua end
             // Frontier: Shuffling feature.
             if (component.PlaybackMode == JukeboxPlaybackMode.Shuffle
                 && !component.FirstPlay
@@ -184,7 +193,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var query = EntityQueryEnumerator<JukeboxComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.Selecting)
+            if (comp.Selecting && !comp.UiOpen) // Lua add  && !comp.UiOpen
             {
                 comp.SelectAccumulator += frameTime;
                 if (comp.SelectAccumulator >= 0.5f)
@@ -196,14 +205,21 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
                 }
             }
 
+            // Lua start
             // Frontier: Replay feature. Please pitch in if you have better ideas. This is a pretty bad implementation.
-            if (comp.PlaybackMode != JukeboxPlaybackMode.Single && comp.AudioStream != null &&
-                GetAudioState(comp.AudioStream) == AudioState.Stopped)
-            {
-                var msg = new JukeboxPlayingMessage();
-                OnJukeboxPlay(uid, comp, ref msg);
-            }
+            //if (comp.PlaybackMode != JukeboxPlaybackMode.Single && comp.AudioStream != null &&
+            //    GetAudioState(comp.AudioStream) == AudioState.Stopped)
+            //{
+            //    var msg = new JukeboxPlayingMessage();
+            //    OnJukeboxPlay(uid, comp, ref msg);
+            //}
             // End Frontier
+            var isStopped = comp.AudioStream == null || GetAudioState(comp.AudioStream) == AudioState.Stopped;
+            if (isStopped && !comp.UiOpen)
+            {
+                TryUpdateVisualState(uid, comp);
+            }
+            // Lua end
         }
     }
 
@@ -231,4 +247,26 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
         _appearanceSystem.SetData(uid, JukeboxVisuals.VisualState, finalState);
     }
+
+    // Lua start
+    private void OnUiOpened(Entity<JukeboxComponent> ent, ref BoundUIOpenedEvent args)
+    {
+        if (args.UiKey is not JukeboxUiKey) return;
+        ent.Comp.UiOpen = true;
+        if (!string.IsNullOrEmpty(ent.Comp.SelectState))
+        {
+            DirectSetVisualState(ent, JukeboxVisualState.Select);
+            ent.Comp.Selecting = ent.Comp.SelectIsLoop;
+            ent.Comp.SelectAccumulator = 0;
+            Dirty(ent);
+        }
+    }
+
+    private void OnUiClosed(Entity<JukeboxComponent> ent, ref BoundUIClosedEvent args)
+    {
+        if (args.UiKey is not JukeboxUiKey) return;
+        ent.Comp.UiOpen = false;
+        TryUpdateVisualState(ent);
+    }
+    // Lua end
 }

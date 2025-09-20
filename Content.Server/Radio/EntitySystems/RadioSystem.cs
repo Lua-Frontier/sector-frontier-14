@@ -1,15 +1,20 @@
+using Content.Server._Lua.Language; // Lua
 using Content.Server._NF.Radio; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
+using Content.Shared._Lua.Language;
+using Content.Shared.Access.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Ghost; // Nuclear-14
+using Content.Shared.Inventory;
+using Content.Shared.PDA;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
-using Robust.Server.GameObjects; // Frontier
 using Content.Shared.Speech;
-using Content.Shared.Ghost; // Nuclear-14
+using Robust.Server.GameObjects; // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -17,9 +22,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Shared.Inventory;
-using Content.Shared.PDA;
-using Content.Shared.Access.Components;
 using System.Text.RegularExpressions;
 
 namespace Content.Server.Radio.EntitySystems;
@@ -36,6 +38,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; // Lua
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -70,7 +73,7 @@ public sealed class RadioSystem : EntitySystem
     {
         if (args.Channel != null && component.Channels.Contains(args.Channel.ID))
         {
-            SendRadioMessage(uid, args.Message, args.Channel, uid);
+            SendRadioMessage(uid, args.Message, args.Channel, uid, language: args.Language);
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
     }
@@ -90,21 +93,25 @@ public sealed class RadioSystem : EntitySystem
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         if (TryComp(uid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
-    }
+        {
+            var msg = args.ChatMsg;
+            if (args.Language != null && args.LanguageObfuscatedChatMsg != null && !_language.CanUnderstand(uid, args.Language.ID)) msg = args.LanguageObfuscatedChatMsg;
+            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+        }
 
+    }
     /// <summary>
     /// Send radio message to all active radio listeners
     /// </summary>
-    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Frontier: added frequency
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, LanguagePrototype? language = null, int? frequency = null, bool escapeMarkup = true) // Frontier: added frequency
     {
-        SendRadioInternal(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup, ignoreRange: false); // Frontier: added frequency // Lua SendRadioMessage<SendRadioInternal add ignoreRange
+        SendRadioInternal(messageSource, message, _prototype.Index(channel), radioSource, frequency: frequency, escapeMarkup: escapeMarkup, ignoreRange: false, language: language); // Frontier: added frequency // Lua SendRadioMessage<SendRadioInternal add ignoreRange
     }
 
     // Lua Global Radio start
-    public void SendRadioMessageGlobal(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true)
+    public void SendRadioMessageGlobal(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, LanguagePrototype? language = null, int? frequency = null, bool escapeMarkup = true)
     {
-        SendRadioInternal(messageSource, message, channel, radioSource, frequency, escapeMarkup, ignoreRange: true);
+        SendRadioInternal(messageSource, message, channel, radioSource, frequency, escapeMarkup, ignoreRange: true, language: language);
     }
     // Lua Global Radio end
 
@@ -113,7 +120,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public void SendRadioInternal(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency, bool escapeMarkup, bool ignoreRange) // Nuclear-14: add frequency // Lua SendRadioMessage<SendRadioInternal add ignoreRange
+    public void SendRadioInternal(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency, bool escapeMarkup, bool ignoreRange, LanguagePrototype? language = null) // Nuclear-14: add frequency // Lua SendRadioMessage<SendRadioInternal add ignoreRange
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -172,16 +179,7 @@ public sealed class RadioSystem : EntitySystem
             channelText = $"\\[{channel.LocalizedName}\\]";
         // End Frontier
 
-        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
-            ("channel-color", channel.Color),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
-            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
-            ("name", name),
-            ("message", content),
-            ("headset-color", headsetColor),
-            ("job", job));
+        var wrappedMessage = WrapRadioMessage(messageSource, speech, channel, name, content, headsetColor, job, language);
 
         // most radios are relayed to chat, so lets parse the chat message beforehand
         var chat = new ChatMessage(
@@ -191,7 +189,19 @@ public sealed class RadioSystem : EntitySystem
             NetEntity.Invalid,
             null);
         var chatMsg = new MsgChatMessage { Message = chat };
-        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, []);
+        MsgChatMessage? notUdsMsg = null;
+        if (language != null)
+        {
+            var obf = _language.ObfuscateSpeech(content, language);
+            var wrappedObf = WrapRadioMessage(messageSource, speech, channel, name, obf, headsetColor, job, language);
+            var chatObf = new ChatMessage(ChatChannel.Radio, obf, wrappedObf, NetEntity.Invalid, null);
+            notUdsMsg = new MsgChatMessage { Message = chatObf };
+        }
+        var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg, [])
+        {
+            Language = language,
+            LanguageObfuscatedChatMsg = notUdsMsg
+        };
 
         var sendAttemptEv = new RadioSendAttemptEvent(channel, radioSource);
         RaiseLocalEvent(ref sendAttemptEv);
@@ -242,20 +252,75 @@ public sealed class RadioSystem : EntitySystem
             RaiseLocalEvent(receiver, ref attemptEv);
             if (attemptEv.Cancelled)
                 continue;
-
-            // send the message
-            RaiseLocalEvent(receiver, ref ev);
+            var listener = ResolveListener(receiver);
+            var perMsg = ev.ChatMsg;
+            if (language != null && ev.LanguageObfuscatedChatMsg != null && !_language.CanUnderstand(listener, language.ID)) perMsg = ev.LanguageObfuscatedChatMsg;
+            var evPer = new RadioReceiveEvent(ev.Message, ev.MessageSource, ev.Channel, ev.RadioSource, perMsg, ev.Receivers)
+            {
+                Language = ev.Language,
+                LanguageObfuscatedChatMsg = ev.LanguageObfuscatedChatMsg
+            };
+            RaiseLocalEvent(receiver, ref evPer);
         }
-
         RaiseLocalEvent(new RadioSpokeEvent(messageSource, message, ev.Receivers.ToArray()));
-
-        if (name != Name(messageSource))
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
-        else
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
-
+        if (name != Name(messageSource)) _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} as {name} on {channel.LocalizedName}: {message}");
+        else _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Radio message from {ToPrettyString(messageSource):user} on {channel.LocalizedName}: {message}");
         _replay.RecordServerMessage(chat);
         _messages.Remove(message);
+    }
+    private string WrapRadioMessage(EntityUid source, SpeechVerbPrototype speech, RadioChannelPrototype channel, string name, string message, Color headsetColor, string job, LanguagePrototype? language)
+    {
+        if (language?.SpeechOverride.Color is { } colorOverride)
+        {
+            var mixed = Color.InterpolateBetween(channel.Color, colorOverride, colorOverride.A);
+            message = Loc.GetString("chat-radio-wrap-language-color",
+                ("message", message),
+                ("color", channel.Color),
+                ("languageColor", mixed));
+        }
+
+        var fontId = language?.SpeechOverride.FontId ?? speech.FontId;
+        var fontSize = language?.SpeechOverride.FontSize ?? speech.FontSize;
+        if (language?.SpeechOverride?.FontId != null || language?.SpeechOverride?.FontSize != null)
+        {
+            var fontSizeInt = (int) Math.Round((double) fontSize);
+            message = Loc.GetString("chat-manager-wrap-language-font",
+                ("message", message),
+                ("fontType", fontId),
+                ("fontSize", fontSizeInt));
+        }
+        return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
+            ("channel-color", channel.Color),
+            ("fontType", fontId),
+            ("fontSize", fontSize),
+            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+            ("channel", $"\\[{channel.LocalizedName}\\]"),
+            ("name", name),
+            ("message", message),
+            ("headset-color", headsetColor),
+            ("job", job));
+    }
+
+    private EntityUid ResolveListener(EntityUid receiver)
+    {
+        try
+        {
+            var current = receiver;
+            var xforms = GetEntityQuery<TransformComponent>();
+            while (true)
+            {
+                if (HasComp<ActorComponent>(current)) return current;
+
+                if (!xforms.TryGetComponent(current, out var xform)) break;
+
+                var parent = xform.ParentUid;
+                if (!parent.IsValid() || parent == current) break;
+                current = parent;
+            }
+        }
+        catch
+        { }
+        return receiver;
     }
 
     /// <inheritdoc cref="TelecomServerComponent"/>

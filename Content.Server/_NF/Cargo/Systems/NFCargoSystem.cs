@@ -1,3 +1,4 @@
+using Content.Server._Lua.Market.Systems; // Lua
 using Content.Server._NF.Bank;
 using Content.Server._NF.SectorServices;
 using Content.Server.Cargo.Components;
@@ -19,8 +20,8 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using Robust.Shared.Random;
+using Robust.Shared.Timing; // Lua
 
 namespace Content.Server._NF.Cargo.Systems;
 
@@ -84,4 +85,29 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
         ResetOrders();
         CleanupTradeCrateDestinations();
     }
+    // Lua start
+    private BaseMarketDynamicSystem? ResolveRoutingSystem(EntityUid console)
+    {
+        var proto = MetaData(console).EntityPrototype;
+        if (proto != null)
+        {
+            var id = proto.ID;
+            if (id.Contains("BlackMarket", StringComparison.OrdinalIgnoreCase))
+            {
+                var sys = EntityManager.System<MarketSystemBlackMarket>();
+                sys.LoadDomainConfig("BlackMarket");
+                return sys;
+            }
+            if (id.Contains("Syndicate", StringComparison.OrdinalIgnoreCase))
+            {
+                var sys = EntityManager.System<MarketSystemSyndicate>();
+                sys.LoadDomainConfig("SyndicateMarket");
+                return sys;
+            }
+        }
+        var def = EntityManager.System<MarketSystemDefault>();
+        def.LoadDomainConfig("DefaultMarket");
+        return def;
+    }
+    // Lua end
 }

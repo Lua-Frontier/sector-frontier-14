@@ -40,6 +40,8 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.ResetZoom);
             common.AddFunction(ContentKeyFunctions.InspectEntity);
             common.AddFunction(ContentKeyFunctions.ToggleRoundEndSummaryWindow);
+            // Lua: allow toggling language menu via keybind (F)
+            common.AddFunction(ContentKeyFunctions.OpenLanguageMenu);
 
             // Not in engine, because engine cannot check for sanbox/admin status before starting placement.
             common.AddFunction(ContentKeyFunctions.EditorCopyObject);
