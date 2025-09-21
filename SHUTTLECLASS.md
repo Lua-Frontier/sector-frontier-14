@@ -62,6 +62,8 @@ Structural добавит ещё 1–2.
 | WeaponTurretVanyk | Missile | Heavy |
 | WeaponTurretASM501 | Missile | Superheavy |
 | WeaponTurretTovek | Missile | Medium |
+| WeaponTurretASM220 | Missile | Heavy |
+| WeaponTurretLightMunitionsBay | Missile | Heavy |
 | ShuttleGunSvalinnMachineGun | Energy | Superlight |
 | ShuttleGunPerforator | Energy | Superlight |
 | ShuttleGunFriendship | Ballistic | Light |
