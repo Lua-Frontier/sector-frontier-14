@@ -50,8 +50,8 @@ Structural добавит ещё 1–2.
 | WeaponTurretCharonette | Ballistic | Heavy |
 | WeaponTurretBofors | Ballistic | Heavy |
 | WeaponTurretKargil | Ballistic | Medium |
-| WeaponTurretTarnyx | Ballistic | Medium |
-| WeaponTurretTarnyxReload | Ballistic | Medium |
+| WeaponTurretTarnyx | Ballistic | Heavy |
+| WeaponTurretTarnyxReload | Ballistic | Heavy |
 | WeaponTurretCharon | Ballistic | Superheavy |
 | WeaponTurretCharonReload | Ballistic | Superheavy |
 | WeaponTurretType35 | Energy | Medium |
