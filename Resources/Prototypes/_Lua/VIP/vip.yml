@@ -20,10 +20,21 @@
   id: VipGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
-    back: ClothingBackpackMessengerHolding
+    eyes: ClothingEyesGlassesSunglasses
     shoes: ClothingShoesBootsLaceup
     id: VipPDA
     ears: ClothingHeadsetAltVip
+    gloves: ClothingHandsGlovesCombat
     pocket1: BaseVipUplinkRadioVip
-    pocket2: BoxSurvival
     neck: ClothingNeckCloakNanotrasenVip
+    back: ClothingBackpackSatchelHoldingFilledVip
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackSatchelHolding
+  id: ClothingBackpackSatchelHoldingFilledVip
+  components:
+    - type: StorageFill
+      contents:
+        - id: NFBoxSurvivalExtended
+        - id: MedkitAdvancedFilled

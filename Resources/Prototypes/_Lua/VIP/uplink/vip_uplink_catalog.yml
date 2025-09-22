@@ -23,33 +23,52 @@
       whitelist:
         - Vip
 
+- type: listing
+  id: UplinkVipShield
+  name:  uplink-vip-Shield-name
+  description: uplink-vip-Shield-desc
+  productEntity: ClothingOuterHardsuitBlueShield
+  icon: { sprite: _Lua/Clothing/OuterClothing/Hardsuits/blueshield.rsi, state: icon }
+  cost:
+    Speso: 16400
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMaxim
+  name:  uplink-vip-Maxim-name
+  description: uplink-vip-Maxim-desc
+  productEntity: ClothingOuterHardsuitMaxim
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi, state: icon }
+  cost:
+    Speso: 150000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
 #CLOTHING
 
 - type: listing
-  id: UplinkVipClothingBootsMagAdv
-  name:  uplink-vip-BootsMagAdv-name
-  description: uplink-vip-BootsMagAdv-desc
-  productEntity: ClothingShoesBootsMagAdv
-  icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
-  cost:
-    Speso: 1800
-  categories:
-    - UplinkVipClothing
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - VipUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Vip
-
-- type: listing
-  id: UplinkVipClothingCloakUnnown
-  name:  uplink-vip-CloakUnnown-name
-  description: uplink-vip-CloakUnnown-desc
-  productEntity: ClothingNeckCloakUnnown
-  icon: { sprite: _Lua/Cloack/unnown.rsi, state: icon }
+  id: UplinkVipClothingPantiesVip
+  name:  uplink-vip-PantiesVip-name
+  description: uplink-vip-PantiesVip-desc
+  productEntity: ClothingUnderwearBottomPantiesVip
+  icon: { sprite: _Lua/Underwear/vip/women/pants.rsi, state: icon }
   cost:
     Speso: 100
   categories:
@@ -64,11 +83,11 @@
         - Vip
 
 - type: listing
-  id: UplinkVipClothingCloakCe
-  name:  uplink-vip-CloakCe-name
-  description: uplink-vip-CloakCe-desc
-  productEntity: ClothingNeckCloakCe
-  icon: { sprite: Clothing/Neck/Cloaks/ce.rsi, state: icon }
+  id: UplinkVipClothingBoxersVip
+  name:  uplink-vip-BoxersVip-name
+  description: uplink-vip-BoxersVip-desc
+  productEntity: ClothingUnderwearBottomBoxersVip
+  icon: { sprite: _Lua/Underwear/vip/man.rsi, state: icon }
   cost:
     Speso: 100
   categories:
@@ -83,11 +102,11 @@
         - Vip
 
 - type: listing
-  id: UplinkVipClothingCloakTrans
-  name:  uplink-vip-CloakTrans-name
-  description: uplink-vip-CloakTrans-desc
-  productEntity: ClothingNeckCloakTrans
-  icon: { sprite: Clothing/Neck/Cloaks/trans.rsi, state: icon }
+  id: UplinkVipClothingTopBraVip
+  name:  uplink-vip-TopBraVip-name
+  description: uplink-vip-TopBraVip-desc
+  productEntity: ClothingUnderwearTopBraVip
+  icon: { sprite: _Lua/Underwear/vip/women/bra.rsi, state: icon }
   cost:
     Speso: 100
   categories:
@@ -102,11 +121,68 @@
         - Vip
 
 - type: listing
-  id: UplinkVipClothingCloakNanotrasen
-  name:  uplink-vip-CloakNanotrasen-name
-  description: uplink-vip-CloakNanotrasen-desc
-  productEntity: ClothingNeckCloakNanotrasen
-  icon: { sprite: Clothing/Neck/Cloaks/nanotrasen.rsi, state: icon }
+  id: UplinkVipClothingSocksVip
+  name:  uplink-vip-SocksVip-name
+  description: uplink-vip-SocksVip-desc
+  productEntity: ClothingUnderwearSocksVip
+  icon: { sprite: _Lua/Underwear/vip/socks.rsi, state: icon }
+  cost:
+    Speso: 100
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingJumpskirtLawyerBlack
+  name:  uplink-vip-JumpskirtLawyerBlack-name
+  description: uplink-vip-JumpskirtLawyerBlack-desc
+  productEntity: ClothingUniformJumpskirtLawyerBlack
+  icon: { sprite: Clothing/Uniforms/Jumpskirt/lawyerblack.rsi, state: icon }
+  cost:
+    Speso: 100
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingJumpsuitLawyerBlack
+  name:  uplink-vip-JumpsuitLawyerBlack-name
+  description: uplink-vip-JumpsuitLawyerBlack-desc
+  productEntity: ClothingUniformJumpsuitLawyerBlack
+  icon: { sprite: Clothing/Uniforms/Jumpsuit/lawyerblack.rsi, state: icon }
+  cost:
+    Speso: 100
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingCloakNanotrasenVip
+  name:  uplink-vip-NanotrasenVip-name
+  description: uplink-vip-NanotrasenVip-desc
+  productEntity: ClothingNeckCloakNanotrasenVip
+  icon: { sprite: _Lua/Cloack/nanotrasenvip.rsi, state: icon }
   cost:
     Speso: 100
   categories:
@@ -128,6 +204,25 @@
   icon: { sprite: Clothing/Neck/Cloaks/admin.rsi, state: icon }
   cost:
     Speso: 100
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingBootsMagAdv
+  name:  uplink-vip-BootsMagAdv-name
+  description: uplink-vip-BootsMagAdv-desc
+  productEntity: ClothingShoesBootsMagAdv
+  icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+  cost:
+    Speso: 1800
   categories:
     - UplinkVipClothing
   conditions:
@@ -181,24 +276,71 @@
 
 #GUNS
 
-# - type: listing
-#   id: UplinkVipGunVector
-#   name:  uplink-vip-Vector-name
-#   description: uplink-vip-Vector-desc
-#   productEntity: WeaponSubMachineGunVectorLegal
-#   icon: { sprite: _Lua/Guns/vectorlegal.rsi, state: icon }
-#   cost:
-#     Speso: 45000
-#   categories:
-#     - UplinkVipGun
-#   conditions:
-#     - !type:StoreWhitelistCondition
-#       whitelist:
-#         tags:
-#           - VipUplink
-#     - !type:BuyerJobCondition
-#       whitelist:
-#         - Vip
+- type: entity
+  name: Vector Legal
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunVectorLegal
+  description: An excellent fully automatic Heavy SMG. Uses 9.19 ammo.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/SMGs/vector.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/SMGs/vector.rsi
+  - type: Gun
+    fireRate: 9
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: NFMagazineSubMachineGun35
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - NFMagazineSubMachineGunPistol35
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgePistol35
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgePistol35
+        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: listing
+  id: UplinkVipGunVectorLegal
+  name:  uplink-vip-Vector-name
+  description: uplink-vip-Vector-desc
+  productEntity: WeaponSubMachineGunVectorLegal
+  icon: { sprite: Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
+  cost:
+    Speso: 70000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
 
 - type: listing
   id: UplinkVipGunShotgunKammerer
@@ -260,13 +402,51 @@
 #AMMO
 
 - type: listing
-  id: UplinkVipAmmoMagnum
-  name:  uplink-vip-Magnum-name
-  description: uplink-vip-Magnum-desc
-  productEntity: NFMagazineSubMachineGun45
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Magnum/magnum_smg_mag.rsi, state: red }
+  id: UplinkVipAmmoPowerCellMedium
+  name:  uplink-vip-PowerCell-name
+  description: uplink-vip-PowerCell-desc
+  productEntity: PowerCellMedium
+  icon: { sprite: Objects/Power/power_cells.rsi, state: medium }
   cost:
     Speso: 1200
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipAmmo35
+  name:  uplink-vip-35pistol-name
+  description: uplink-vip-35pistol-desc
+  productEntity: NFMagazineSubMachineGun35
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
+  cost:
+    Speso: 1200
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipAmmo35box
+  name:  uplink-vip-35box-name
+  description: uplink-vip-35box-desc
+  productEntity: NFAmmunitionBoxPistol35
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: base }
+  cost:
+    Speso: 2400
   categories:
     - UplinkVipAmmo
   conditions:
@@ -376,24 +556,24 @@
         - Vip
 
 #FLATPACK
-# - type: listing
-#   id: UplinkVipFlatpackCryopod
-#   name:  uplink-vip-Cryopod-name
-#   description: uplink-vip-Cryopod-desc
-#   productEntity: CryopodFlatpack
-#   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: cryopod_flat }
-#   cost:
-#     Speso: 41250
-#   categories:
-#     - UplinkVipFlatpack
-#   conditions:
-#     - !type:StoreWhitelistCondition
-#       whitelist:
-#         tags:
-#           - VipUplink
-#     - !type:BuyerJobCondition
-#       whitelist:
-#         - Vip
+- type: listing
+  id: UplinkVipFlatpackCryopod
+  name:  uplink-vip-Cryopod-name
+  description: uplink-vip-Cryopod-desc
+  productEntity: CryopodFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: cryopod_flat }
+  cost:
+    Speso: 41250
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
 
 - type: listing
   id: UplinkVipFlatpackDawInstrument

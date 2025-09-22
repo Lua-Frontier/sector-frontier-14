@@ -21,11 +21,8 @@ ent-BaseVipUplinkRadioDebug = { ent-BaseVipUplinkRadioVip }
 ent-ClothingNeckCloakNanotrasenVip = плащ випа
     .desc = Выдается лучшим из лучших
 
-ent-WeaponSubMachineGunVectorLegal = легальный вектор
-    .desc = Превосходный тяжелый пистолет-пулемёт легализованый для вип. Использует патроны калибра .45 магнум.
-
-ent-EnergySwordDoubleLegal = легальный двухклинковый энергетический меч
-    .desc = NanoTrasen разобрала склад контрабанды и легализовала некоторые мечи для вип. Его можно хранить в кармане.
+ent-WeaponSubMachineGunVectorLegal = Вектор VIP-персоны
+    .desc = Превосходный пистолет-пулемёт легализованый для VIP-персон. Использует патроны калибра .35 пистолетные.
 
 store-vip-category-flatpack = упаковки
 
@@ -34,20 +31,35 @@ store-vip-category-crates = ящики
 uplink-vip-Luxury-name = элитный шахтёрский скафандр
 uplink-vip-Luxury-desc = Отремонтированный шахтёрский скафандр, выполненный в цветах квартирмейстера. Графеновая подкладка обеспечивает меньшую защиту, но с ней гораздо легче передвигаться.
 
+uplink-vip-Shield-name = скафандр офицера "Синий Щит"
+uplink-vip-Shield-desc = Скафандр предназначенный для защитника командования.
+
+uplink-vip-Maxim-name = максимальный скафандр утилизатора
+uplink-vip-Maxim-desc = Пламя. Жар. Эти элементы куют великое оружие, они же куют великих утилизаторов.
+
 uplink-vip-BootsMagAdv-name = продвинутые магнитные сапоги
 uplink-vip-BootsMagAdv-desc = Новейшие магнитные ботинки, которые не замедляют движения своего владельца.
 
-uplink-vip-CloakUnnown-name = плащ семьи Ханглер
-uplink-vip-CloakUnnown-desc = Торжественно-выходной плащ семьи Ханглер. Выглядит дорого-богато.
+uplink-vip-PantiesVip-name = стринги вип
+uplink-vip-PantiesVip-desc = Cтандартное нижнее бельё вип.
 
-uplink-vip-CloakCe-name = плащ старшего инженера
-uplink-vip-CloakCe-desc = Белый плащ с оранжевым узором, который выдается тем, кто доказал, что владеет точным инженерным искусством.
+uplink-vip-BoxersVip-name = боксеры вип
+uplink-vip-BoxersVip-desc = Cтандартное нижнее бельё вип.
 
-uplink-vip-CloakTrans-name = вампирский плащ
-uplink-vip-CloakTrans-desc = Его носят высокопоставленные вампиры из трансильванского общества вампиров.
+uplink-vip-TopBraVip-name = бра вип
+uplink-vip-TopBraVip-desc = Cтандартное нижнее бельё вип.
 
-uplink-vip-CloakNanotrasen-name = плащ Nanotrasen
-uplink-vip-CloakNanotrasen-desc = Величественный синий плащ, представляющий Nanotrasen.
+uplink-vip-SocksVip-name = носки вип
+uplink-vip-SocksVip-desc = Стандартные носки вип.
+
+uplink-vip-JumpskirtLawyerBlack-name = чёрная адвокатская юбка-костюм
+uplink-vip-JumpskirtLawyerBlack-desc = Изысканный чёрный костюм с юбкой, который носят адвокаты и гангстеры.
+
+uplink-vip-JumpsuitLawyerBlack-name = чёрный адвокатский костюм
+uplink-vip-JumpsuitLawyerBlack-desc = Изысканный чёрный костюм, который носят адвокаты и гангстеры.
+
+uplink-vip-NanotrasenVip-name = плащ випа
+uplink-vip-NanotrasenVip-desc = Выдается лучшим из лучших.
 
 uplink-vip-CloakAdmin-name = плащ админа
 uplink-vip-CloakAdmin-desc = Вех!
@@ -58,14 +70,20 @@ uplink-vip-Ian-desc = Иногда он носит его.
 uplink-vip-Clippy-name = рюкзак клиппи
 uplink-vip-Clippy-desc = Сделано из настоящего Клиппи.
 
-uplink-vip-Vector-name = легальный вектор
-uplink-vip-Vector-desc = Превосходный тяжелый пистолет-пулемёт легализованый для вип. Использует патроны калибра .45 магнум.
+uplink-vip-Vector-name = Вектор
+uplink-vip-Vector-desc = Превосходный тяжелый пистолет-пулемёт легализованый для VIP. Использует патроны калибра .35 пистолетные.
 
 uplink-vip-Double-name = легальный двухклинковый энергетический меч
 uplink-vip-Double-desc = NanoTrasen разобрала склад контрабанды и легализовала некоторые мечи для вип. Его можно хранить в кармане.
 
-uplink-vip-Magnum-name = магазин Вектора 
-uplink-vip-Magnum-desc = .45 магнум
+uplink-vip-35pistol-name = магазин ПП (.35 пистолетные) 
+uplink-vip-35pistol-desc = Самый распространённый калибр.
+
+uplink-vip-35box-name = Коробка патронов (.35 пистолетные)
+uplink-vip-35box-desc = Самый распространённый калибр. Содержит 80 патронов.
+
+uplink-vip-PowerCell-name = батарея средней ёмкости
+uplink-vip-PowerCell-desc = Перезаряжаемый элемент питания. Популярный и надёжный вариант.
 
 uplink-vip-medkit-name = продвинутая аптечка первой помощи
 uplink-vip-medkit-desc = Продвинутый набор для оказания помощи при продвинутых ранах.
