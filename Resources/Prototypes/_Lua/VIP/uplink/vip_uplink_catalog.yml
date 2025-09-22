@@ -410,7 +410,7 @@
   productEntity: MedkitAdvancedFilled
   icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: advkit }
   cost:
-    Speso: 800
+    Speso: 3800
   categories:
     - UplinkVipNocat
   conditions:
@@ -1602,23 +1602,23 @@
         - Vip
 
 #X-01
-- type: listing
-  id: UplinkVipADTWeaponPistolX01
-  name: X-01 мультифазовый энергетический пистолет
-  description: Это дорогая, современная версия антикварного лазерного пистолета. У этого оружия есть несколько уникальных режимов огня, но нет возможности самостоятельно перезаряжаться с течением времени.
-  productEntity: ADTWeaponPistolX01
-  cost:
-    Speso: 70000
-  categories:
-    - UplinkVipGun
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - VipUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Vip
+#- type: listing
+#  id: UplinkVipADTWeaponPistolX01
+#  name: X-01 мультифазовый энергетический пистолет
+#  description: Это дорогая, современная версия антикварного лазерного пистолета. У этого оружия есть несколько уникальных режимов огня, но нет возможности самостоятельно перезаряжаться с течением времени.
+#  productEntity: ADTWeaponPistolX01
+#  cost:
+#    Speso: 70000
+#  categories:
+#    - UplinkVipGun
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - VipUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Vip
 
 #AntiMateriel
 - type: listing
