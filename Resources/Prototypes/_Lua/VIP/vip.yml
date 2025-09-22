@@ -5,7 +5,7 @@
 - type: job
   id: Vip
   name: job-name-vip
-  description: job-description-vip
+  description: job-desc-vip
   playTimeTracker: JobVip
 #  sponsorOnly: true
   startingGear: VipGear
@@ -13,8 +13,16 @@
   icon: "JobIconVip" 
   supervisors: job-supervisors-hire
   setPreference: true
+  whitelisted: true
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobMercenary
+      time: 64800
   accessGroups: # Frontier
-  - GeneralAccess # Frontier
+  - GeneralAccess 
+  access:
+  - Mercenary
+  - Pirate
 
 - type: startingGear
   id: VipGear

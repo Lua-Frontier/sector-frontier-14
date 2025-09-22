@@ -86,3 +86,16 @@
     layers:
       - state: green
       - state: securityguard
+
+- type: entity
+  id: SpawnPointVip
+  parent: SpawnPointJobBase
+  name: VIP-персона
+  components:
+  - type: SpawnPoint
+    job_id: Vip
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: mercenary

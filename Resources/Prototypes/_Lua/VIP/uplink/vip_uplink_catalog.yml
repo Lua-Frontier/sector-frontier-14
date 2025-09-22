@@ -5,25 +5,6 @@
 #HARDSUIT
 
 - type: listing
-  id: UplinkVipLuxury
-  name:  uplink-vip-Luxury-name
-  description: uplink-vip-Luxury-desc
-  productEntity: ClothingOuterHardsuitLuxury
-  icon: { sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi, state: icon }
-  cost:
-    Speso: 8200
-  categories:
-    - UplinkVipHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - VipUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Vip
-
-- type: listing
   id: UplinkVipShield
   name:  uplink-vip-Shield-name
   description: uplink-vip-Shield-desc
@@ -31,25 +12,6 @@
   icon: { sprite: _Lua/Clothing/OuterClothing/Hardsuits/blueshield.rsi, state: icon }
   cost:
     Speso: 16400
-  categories:
-    - UplinkVipHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - VipUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Vip
-
-- type: listing
-  id: UplinkVipMaxim
-  name:  uplink-vip-Maxim-name
-  description: uplink-vip-Maxim-desc
-  productEntity: ClothingOuterHardsuitMaxim
-  icon: { sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi, state: icon }
-  cost:
-    Speso: 150000
   categories:
     - UplinkVipHardsuits
   conditions:
@@ -421,44 +383,6 @@
         - Vip
 
 - type: listing
-  id: UplinkVipAmmo35
-  name:  uplink-vip-35pistol-name
-  description: uplink-vip-35pistol-desc
-  productEntity: NFMagazineSubMachineGun35
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  cost:
-    Speso: 1200
-  categories:
-    - UplinkVipAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - VipUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Vip
-
-- type: listing
-  id: UplinkVipAmmo35box
-  name:  uplink-vip-35box-name
-  description: uplink-vip-35box-desc
-  productEntity: NFAmmunitionBoxPistol35
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: base }
-  cost:
-    Speso: 2400
-  categories:
-    - UplinkVipAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - VipUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Vip
-
-- type: listing
   id: UplinkVipAmmoBoxLethalshot
   name:  uplink-vip-BoxLethalshot-name
   description: uplink-vip-BoxLethalshot-desc
@@ -564,9 +488,9 @@
   productEntity: WeaponTurretTarnyxFlatPack
   icon: { sprite: _Lua/Flatpack/flatpack.rsi, state: ship_weapon }
   cost:
-    Speso: 75000
+    Speso: 32000
   categories:
-    - UplinkVipFlatpack
+    - UplinkVipShipWeapons
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -892,6 +816,1021 @@
     Speso: 5500
   categories:
     - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+
+#MERCENARY UPLINK
+
+- type: listing
+  id: UplinkVipHardsuit
+  name:  uplink-mercenary-hardsuit-name
+  description: uplink-mercenary-hardsuit-desc
+  productEntity: ClothingOuterHardsuitMercenary
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/mercenary.rsi, state: icon }
+  cost:
+    Speso: 6000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingBand
+  name:  uplink-merc-band-name
+  description: uplink-merc-band-desc
+  productEntity: ClothingHeadBandMercenary
+  icon: { sprite: Clothing/Head/Bandanas/merc.rsi, state: icon }
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingBeret
+  name:  uplink-merc-beret-name
+  description: uplink-merc-beret-desc
+  productEntity: ClothingHeadHatBeretMercenary
+  icon: { sprite: Clothing/Head/Hats/beret_merc.rsi, state: icon }
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingWebb
+  name:  uplink-merc-webbing-name
+  description: uplink-merc-webbing-desc
+  productEntity: ClothingBeltMercenaryWebbing
+  icon: { sprite: Clothing/Belt/mercwebbing.rsi, state: icon }
+  cost:
+    Speso: 800
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingGlovesCombat
+  name:  uplink-merc-glovesc-name
+  description: uplink-merc-glovesc-desc
+  productEntity: ClothingHandsMercenaryGlovesCombat
+  icon: { sprite: Clothing/Hands/Gloves/mercbattle.rsi, state: icon }
+  cost:
+    Speso: 2300
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingBoots
+  name:  uplink-merc-bootsm-name
+  description: uplink-merc-bootsm-desc
+  productEntity: ClothingShoesBootsMercenary
+  icon: { sprite: Clothing/Shoes/Boots/mercboots.rsi, state: icon }
+  cost:
+    Speso: 400
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingWeb
+  name:  uplink-merc-web-name
+  description: uplink-merc-web-desc
+  productEntity: ClothingOuterVestWebMercenary
+  icon: { sprite: Clothing/OuterClothing/Vests/mercwebvest.rsi, state: icon }
+  cost:
+    Speso: 1900
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingHelmet
+  name:  uplink-merc-helmet-name
+  description: uplink-merc-helmet-desc
+  productEntity: ClothingHeadHelmetMercenary
+  icon: { sprite: Clothing/Head/Helmets/merc_helmet.rsi, state: icon }
+  cost:
+    Speso: 600
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingJumpskirt
+  name:  uplink-merc-jumpskirt-name
+  description: uplink-merc-jumpskirt-desc
+  productEntity: ClothingUniformJumpskirtMercenary
+  icon: { sprite: _NF/Clothing/Uniforms/Jumpskirt/mercenary.rsi, state: icon }
+  cost:
+    Speso: 120
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingJumpsuit
+  name:  uplink-merc-jumpskirt-name
+  description: uplink-merc-jumpskirt-desc
+  productEntity: ClothingUniformJumpsuitMercenary
+  icon: { sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi, state: icon }
+  cost:
+    Speso: 120
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingGasMask
+  name:  uplink-merc-gas-name
+  description: uplink-merc-gas-desc
+  productEntity: ClothingMaskGasMercenary
+  icon: { sprite: Clothing/Mask/merc.rsi, state: icon }
+  cost:
+    Speso: 600
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingBootsMag
+  name:  uplink-merc-magboots-name
+  description: uplink-merc-magboots-desc
+  productEntity: ClothingShoesBootsMagMercenary
+  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-mercenary.rsi, state: icon }
+  cost:
+    Speso: 600
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingGlasses
+  name:  uplink-merc-glasses-name
+  description: uplink-merc-glasses-desc
+  productEntity: ClothingEyesGlassesMercenary
+  icon: { sprite: Clothing/Eyes/Glasses/mercglasses.rsi, state: icon }
+  cost:
+    Speso: 670
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipGunMk58
+  name:  uplink-merc-mk58-name
+  description: uplink-merc-mk58-desc
+  productEntity: NFWeaponPistolMk58
+  icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
+  cost:
+    Speso: 1900
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipGunEnergyGun
+  name:  uplink-merc-energygun-name
+  description: uplink-merc-energygun-desc
+  productEntity: NFWeaponEnergySubMachineGunDeltaV
+  icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
+  cost:
+    Speso: 2300
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipGunRifleAk
+  name:  uplink-merc-rifleak-name
+  description: uplink-merc-rifleak-desc
+  productEntity: NFWeaponRifleAssaultSm
+  icon: { sprite: Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
+  cost:
+    Speso: 16800
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipAmmoLightRifle
+  name:  uplink-merc-lightrifle-name
+  description: uplink-merc-lightrifle-desc
+  productEntity: NFMagazineRifle30
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: red }
+  cost:
+    Speso: 1000
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipAmmoMagazinePistol
+  name:  uplink-merc-magazineoistol-name
+  description: uplink-merc-magazineoistol-desc
+  productEntity: NFMagazinePistol35
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+  cost:
+    Speso: 150
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatMedkitCombat
+  name:  uplink-merc-medkit-name
+  description: uplink-merc-medkit-desc
+  productEntity: MedkitCombatFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    Speso: 3000
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatMercenaryPDA
+  name:  uplink-merc-mercpda-name
+  description: uplink-merc-mercpda-desc
+  productEntity: MercenaryPDA
+  icon: { sprite: _NF/Objects/Devices/pda.rsi, state: pda-mercenary }
+  cost:
+    Speso: 150
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatJawsOfLife
+  name:  uplink-merc-jawsoflife-name
+  description: uplink-merc-jawsoflife-desc
+  productEntity: JawsOfLife
+  icon: { sprite: Objects/Tools/jaws_of_life.rsi, state: jaws_pry }
+  cost:
+    Speso: 2600
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatGrappling
+  name:  uplink-merc-grappling-name
+  description: uplink-merc-grappling-desc
+  productEntity: WeaponGrapplingGun
+  icon: { sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi, state: base }
+  cost:
+    Speso: 800
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatJetpack
+  name:  uplink-merc-jetpack-name
+  description: uplink-merc-jetpack-desc
+  productEntity: JetpackMiniFilled
+  icon: { sprite: Objects/Tanks/Jetpacks/mini.rsi, state: icon }
+  cost:
+    Speso: 1300
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatHeadset
+  name:  uplink-merc-headset-name
+  description: uplink-merc-headset-desc
+  productEntity: ClothingHeadsetAltMercenary
+  icon: { sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi, state: icon_alt }
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipNocatKey
+  name:  uplink-merc-key-name
+  description: uplink-merc-key-desc
+  productEntity: EncryptionKeyMercenary
+  icon: { sprite: _Lua/encryption_keys.rsi, state: crypt_gray_uplink }
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#Upd
+
+#C20r
+- type: listing
+  id: UplinkVipWeaponSubMachineGunC20r
+  name:  C-20r
+  description: Нелегальное оружие используемое агентами синдиката. Оружие, часто используемое печально известными ядерными оперативниками. Использует патроны калибра .35 авто.
+  productEntity: NFWeaponSubMachineGunC20r
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMagazinePistolSubMachineGun
+  name:  магазин ПП (.35 авто)
+  description: магазин ПП (.35 авто)
+  productEntity: NFMagazineSubMachineGun35
+  cost:
+    Speso: 1200
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#AR10
+- type: listing
+  id: UplinkVipWeaponRifleAR10
+  name: AR10
+  description: Ранняя версия более распространенной винтовки M16. Считается прародителем винтовки XX века. Как одна из них оказалась здесь — отдельная загадка. Использует патрон 7,62×51 мм.
+  productEntity: WeaponRifleAR10
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipRMCMagazineRifleAR10
+  name:  AR10 магазин (7.62x51mm)
+  description: AR10 магазин (7.62x51mm)
+  productEntity: RMCMagazineRifleAR10
+  cost:
+    Speso: 900
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#CAWS-25
+- type: listing
+  id: UplinkVipWeaponRifleJackdaw
+  name: CAWS-25 "Галка"
+  description: Начало конца возвещается песней галки. Использует безгильзовые патроны .25.
+  productEntity: NFWeaponRifleAssaultJackdaw
+  cost:
+    Speso: 13000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMagazineCaselessRifle
+  name:  магазин (.25 безгильзовые)
+  description: магазин (.25 безгильзовые)
+  productEntity: LuaMagazineCaselessRifle
+  cost:
+    Speso: 1200
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#M16
+- type: listing
+  id: UplinkVipWeaponRifleM16
+  name: M16
+  description: Старая, проверенная конструкция, впервые принятая на вооружение в США в 1960-х. Такой экземпляр скорее принадлежит музею военной истории. Использует патрон 5,56×45 мм.
+  productEntity: WeaponRifleM16
+  cost:
+    Speso: 12000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipRMCMagazineRifleM16
+  name:  M16 магазин (5.56x45mm)
+  description: M16 магазин (5.56x45mm)
+  productEntity: RMCMagazineRifleM16
+  cost:
+    Speso: 1200
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#L6 SAW
+- type: listing
+  id: UplinkVipWeaponLightMachineGunL6
+  name: L6 SAW
+  description: Нелегальное оружие используемое агентами синдиката. Весьма традиционный лёгкий пулемёт с удобной лакированной деревянной пистолетной рукоятью. Использует патроны калибра .30 винтовочный.
+  productEntity: NFWeaponLightMachineGunL6
+  cost:
+    Speso: 45000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMagazineLightRifleBox
+  name:  короб патронов L6 SAW (.30 винтовочные)
+  description: короб патронов L6 SAW (.30 винтовочные)
+  productEntity: NFMagazineBoxRifle20
+  cost:
+    Speso: 3000
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#MP5
+- type: listing
+  id: UplinkVipWeaponSMGMP5
+  name: MP5
+  description: Немецкая разработка — один из самых массовых пистолетов-пулемётов в мире. До сих пор можно встретить этот образец у коллекционеров или фанатов огнестрельного оружия.
+  productEntity: WeaponSMGMP5
+  cost:
+    Speso: 9000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipCMMagazineSMGMP5
+  name:  MP5 магазин (9mm)
+  description: MP5 магазин (9mm)
+  productEntity: CMMagazineSMGMP5
+  cost:
+    Speso: 700
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#Wt550
+- type: listing
+  id: UplinkVipWeaponSubMachineGunWt550
+  name: WT550
+  description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 авто. Запрещено к использованию гражданскими.
+  productEntity: NFWeaponSubMachineGunWt550
+  cost:
+    Speso: 7000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMagazinePistolSubMachineGunTopMounted
+  name: магазин WT550 (.35 авто, надствольный)
+  description: магазин WT550 (.35 авто, надствольный)
+  productEntity: NFMagazineSubMachineGunTopMounted35
+  cost:
+    Speso: 600
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#Bulldog
+- type: listing
+  id: UplinkVipWeaponShotgunBulldog
+  name: Бульдог
+  description: Нелегальное оружие используемое агентами синдиката. Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра .50 ружейный.
+  productEntity: NFWeaponShotgunBulldog
+  cost:
+    Speso: 30000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMagazineShotgun
+  name: барабан (.50 дробь)
+  description: барабан (.50 дробь)
+  productEntity: NFMagazineShotgunDrum
+  cost:
+    Speso: 2500
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#X-01
+- type: listing
+  id: UplinkVipADTWeaponPistolX01
+  name: X-01 мультифазовый энергетический пистолет
+  description: Это дорогая, современная версия антикварного лазерного пистолета. У этого оружия есть несколько уникальных режимов огня, но нет возможности самостоятельно перезаряжаться с течением времени.
+  productEntity: ADTWeaponPistolX01
+  cost:
+    Speso: 70000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#AntiMateriel
+- type: listing
+  id: UplinkVipN14WeaponAntiMateriel
+  name: Анти-Материальная винтовка
+  description: С одного взгляда внушает страх. Она может уничтожить все, что попадется на ее пути.
+  productEntity: N14WeaponAntiMateriel
+  cost:
+    Speso: 30000
+  categories:
+    - UplinkVipGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipN14Magazine50AMR
+  name: магазин (.50 BMG)
+  description: магазин (.50 BMG)
+  productEntity: N14Magazine50AMR
+  cost:
+    Speso: 1200
+  categories:
+    - UplinkVipAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#Скуфандры
+- type: listing
+  id: UplinkVipClothingOuterHardsuitMaxim
+  name:  максимальный скафандр утилизатора
+  description: Пламя. Жар. Эти элементы куют великое оружие, они же куют великих утилизаторов.
+  productEntity: ClothingOuterHardsuitMaxim
+  cost:
+    Speso: 35000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingOuterHardsuitPirateElite
+  name: элитный пиратский скафандр
+  description: Древний бронированный скафандр элитного класса. Сконструирован неким бородатым умельцем и крепок, как чугунный утюг.
+  productEntity: ClothingOuterHardsuitPirateElite
+  cost:
+    Speso: 30000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingOuterHardsuitLuxury
+  name: элитный шахтёрский скафандр
+  description: Отремонтированный шахтёрский скафандр, выполненный в цветах квартирмейстера. Графеновая подкладка обеспечивает меньшую защиту, но с ней гораздо легче передвигаться.
+  productEntity: ClothingOuterHardsuitLuxury
+  cost:
+    Speso: 20000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingOuterHardsuitSecurity
+  name: скафандр службы безопасности
+  description: Специальный костюм, защищающий от опасной среды с низким давлением. Имеет дополнительный слой брони.
+  productEntity: ClothingOuterHardsuitSecurity
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipClothingOuterHardsuitGoliath
+  name: скафандр голиафа
+  description: Легковесный скафандр, украшенный лоскутами толстой, хитиновой шкуры голиафа.
+  productEntity: ClothingOuterHardsuitGoliath
+  cost:
+    Speso: 28000
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#корабельное вооружение
+- type: listing
+  id: UplinkVipGunneryServerFlatpack
+  name: упакованный сервер управления огнём
+  description: Упакованный сервер управления огнём для наведения и управления огнём оружия установленного на шаттле.
+  productEntity: GunneryServerFlatpack
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkVipShipWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipWeapon20mmBaseFlatpack
+  name: упакованный лёгкий пулемёт
+  description: Упакованный Лёгкий Пулемёт (.20мм)
+  productEntity: Weapon20mmBaseFlatpack
+  cost:
+    Speso: 12000
+  categories:
+    - UplinkVipShipWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipMachineFTLDrive600Flatpack
+  name: упакованный FSS-600 блюспейс двигатель
+  description: Упакованный FSS-600 блюспейс двигатель который увеличивает дальность сверхсветового перемещения корабля до 600 метров
+  productEntity: MachineFTLDrive600Flatpack
+  cost:
+    Speso: 8000
+  categories:
+    - UplinkVipShipWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+- type: listing
+  id: UplinkVipComputerGunneryConsoleFlatpack
+  name: упакованная консоль управления огнём
+  description: Упакованная консоль управления огнём для наведения и управления огнём оружия, обеспечивающий точное прицеливание и стрельбу.
+  productEntity: ComputerGunneryConsoleFlatpack
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkVipShipWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
+#Ховербайк
+- type: listing
+  id: UplinkVipHoverbikeSyndicateFlatpack
+  name: упакованный ховербайк синдиката
+  description: Упаковка, содержащая ховербайк. Ключи в комплекте.
+  productEntity: HoverbikeSyndicateFlatpack
+  cost:
+    Speso: 12000
+  categories:
+    - UplinkVipNocat
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
