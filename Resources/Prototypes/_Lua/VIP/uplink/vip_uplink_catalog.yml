@@ -556,6 +556,26 @@
         - Vip
 
 #FLATPACK
+
+- type: listing
+  id: UplinkVipFlatpackTarnyxFlatPack
+  name:  uplink-vip-TarnyxFlatPack-name
+  description: uplink-vip-TarnyxFlatPack-desc
+  productEntity: WeaponTurretTarnyxFlatPack
+  icon: { sprite: _Lua/Flatpack/flatpack.rsi, state: ship_weapon }
+  cost:
+    Speso: 75000
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+
 - type: listing
   id: UplinkVipFlatpackCryopod
   name:  uplink-vip-Cryopod-name

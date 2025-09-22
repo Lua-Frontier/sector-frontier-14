@@ -85,6 +85,9 @@ uplink-vip-35box-desc = Самый распространённый калибр
 uplink-vip-PowerCell-name = батарея средней ёмкости
 uplink-vip-PowerCell-desc = Перезаряжаемый элемент питания. Популярный и надёжный вариант.
 
+uplink-vip-TarnyxFlatPack-name = ADBX-31 TARNYX 150mm EMP Cannon
+uplink-vip-TarnyxFlatPack-desc = Тяжелая электромагнитная пушка производства Aetherion Dynamics, предназначенная для выведения из строя больших групп вражеских кораблей одним мощным выстрелом. Эффективна в асимметричном бою. Может быть активирована дистанционно или подключена к GCS.
+
 uplink-vip-medkit-name = продвинутая аптечка первой помощи
 uplink-vip-medkit-desc = Продвинутый набор для оказания помощи при продвинутых ранах.
 
