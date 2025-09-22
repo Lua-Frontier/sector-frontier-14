@@ -33,5 +33,8 @@ public sealed partial class GatewayGeneratorDestinationComponent : Component
     /// </summary>
     [DataField]
     public Vector2i Origin;
+
+    [DataField]
+    public EntityUid? AllowedSourceGateway; // Lua
 }
 
