@@ -192,6 +192,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         var failures = 0; // Avoid severe log spam.
         foreach (var point in points)
         {
+            if (point.Length() > 30000f) continue;  // Lua
+
             if (component.OwnedDebris.TryGetValue(point, out var existing))
             {
                 DebugTools.Assert(Exists(existing));

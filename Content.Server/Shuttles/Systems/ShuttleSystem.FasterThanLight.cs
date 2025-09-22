@@ -262,6 +262,16 @@ public sealed partial class ShuttleSystem
             return false;
         }
 
+        if (_xformQuery.TryGetComponent(shuttleUid, out var xform))
+        {
+            var worldPos = _transform.GetWorldPosition(xform);
+            if (worldPos.Length() > 30000f)
+            {
+                reason = Loc.GetString("shuttle-console-noftl");
+                return false;
+            }
+        }
+
         var ev = new ConsoleFTLAttemptEvent(shuttleUid, false, string.Empty);
         RaiseLocalEvent(shuttleUid, ref ev, true);
 
@@ -366,6 +376,12 @@ public sealed partial class ShuttleSystem
             Log.Warning($"Tried queuing {ToPrettyString(uid)} which already has {nameof(FTLComponent)}?");
             return false;
         }
+
+        if (_xformQuery.TryGetComponent(uid, out var xform)) // Lua start
+        {
+            var worldPos = _transform.GetWorldPosition(xform);
+            if (worldPos.Length() > 30000f) return false;
+        }  // Lua end
 
         _thruster.DisableLinearThrusters(shuttle);
         _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.North);
