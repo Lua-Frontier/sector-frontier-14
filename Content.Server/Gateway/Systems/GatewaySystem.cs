@@ -102,6 +102,7 @@ public sealed class GatewaySystem : EntitySystem
             if (!dest.Enabled || destUid == uid)
                 continue;
 
+            if (destXform.MapUid == xform.MapUid) continue; // Lua
             // Show destination if either no destination comp on the map or it's ours.
             TryComp<GatewayGeneratorDestinationComponent>(destXform.MapUid, out var gatewayDestination);
 

@@ -17,6 +17,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Layers;
 using Content.Shared.Parallax.Biomes.Markers;
+using Content.Shared.Salvage; // Lua
 using Content.Shared.Tag;
 using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Player;
@@ -586,6 +587,16 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         var nodeEntities = new Dictionary<Vector2i, EntityUid?>();
         var nodeMask = new Dictionary<Vector2i, string?>();
 
+        var hasRestriction = false; // Lua start
+        var origin = Vector2.Zero;
+        var range2 = 0f;
+        if (TryComp<RestrictedRangeComponent>(gridUid, out var restricted))
+        {
+            hasRestriction = true;
+            origin = restricted.Origin;
+            range2 = restricted.Range * restricted.Range;
+        } // Lua end
+
         // Okay so originally we picked a random tile and BFS outwards
         // the problem is if you somehow get a cooked frontier then it might drop entire veins
         // hence we'll grab all valid tiles up front and use that as possible seeds.
@@ -595,6 +606,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             for (var y = bounds.Bottom; y < bounds.Top; y++)
             {
                 var node = new Vector2i(x, y);
+
+                if (hasRestriction) // Lua start
+                {
+                    var dx = node.X - origin.X;
+                    var dy = node.Y - origin.Y;
+                    if ((dx * dx + dy * dy) > range2) continue;
+                } // Lua end
 
                 // Empty tile, skip if relevant.
                 if (!emptyTiles && (!_mapSystem.TryGetTile(grid, node, out var tile) || tile.IsEmpty))
@@ -722,8 +740,23 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         {
             var layerProto = ProtoManager.Index<BiomeMarkerLayerPrototype>(layer);
 
+            var hasRestriction = false; // Lua start
+            var origin = Vector2.Zero;
+            var range2 = 0f;
+            if (TryComp<RestrictedRangeComponent>(gridUid, out var restricted))
+            {
+                hasRestriction = true;
+                origin = restricted.Origin;
+                range2 = restricted.Range * restricted.Range;
+            } // Lua end
             foreach (var node in nodes)
             {
+                if (hasRestriction) // Lua start
+                {
+                    var dx = node.X - origin.X;
+                    var dy = node.Y - origin.Y;
+                    if ((dx * dx + dy * dy) > range2) continue;
+                } // Lua end
                 if (modified.Contains(node))
                     continue;
 
@@ -779,6 +812,15 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         modified ??= _tilePool.Get();
         _tiles.Clear();
 
+        var hasRestriction = false; // Lua start
+        var origin = Vector2.Zero;
+        var range2 = 0f;
+        if (TryComp<RestrictedRangeComponent>(gridUid, out var restricted))
+        {
+            hasRestriction = true;
+            origin = restricted.Origin;
+            range2 = restricted.Range * restricted.Range;
+        } // Lua end
         // Set tiles first
         for (var x = 0; x < ChunkSize; x++)
         {
@@ -786,6 +828,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 var indices = new Vector2i(x + chunk.X, y + chunk.Y);
 
+                if (hasRestriction) // Lua start
+                {
+                    var dx = indices.X - origin.X;
+                    var dy = indices.Y - origin.Y;
+                    if ((dx * dx + dy * dy) > range2) continue;
+                } // Lua end
                 // Pass in null so we don't try to get the tileref.
                 if (modified.Contains(indices))
                     continue;
@@ -817,6 +865,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 if (modified.Contains(indices))
                     continue;
 
+                if (hasRestriction) // Lua start
+                {
+                    var dx = indices.X - origin.X;
+                    var dy = indices.Y - origin.Y;
+                    if ((dx * dx + dy * dy) > range2) continue;
+                } // Lua end
                 // Don't mess with anything that's potentially anchored.
                 var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, indices);
 
@@ -850,6 +904,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 if (modified.Contains(indices))
                     continue;
 
+                if (hasRestriction) // Lua start
+                {
+                    var dx = indices.X - origin.X;
+                    var dy = indices.Y - origin.Y;
+                    if ((dx * dx + dy * dy) > range2) continue;
+                } // Lua end
                 // Don't mess with anything that's potentially anchored.
                 var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, indices);
 
