@@ -1,0 +1,32 @@
+# Creator Info
+# Discord: daeqa1us_
+# Cikey: wh1te
+
+ - type: vessel
+   id: Aeon
+   parent: BaseVessel
+   name: Concord-Aeon
+   description: Медицинское судно со "всеми" удобствами для спасения неумех в космосе. Производитель - LaFleur Industries
+   price: 75000 #50000 x 1.5 + 5000 (1.5 + 5000 reasons: 2.5km FTLDrive on small medical ship, CrewmonitoringServer + CrewmonitorngConsole)
+   category: small
+   group: Medical
+   shuttlePath: /Maps/_Lua/Shuttles/Civilian/Concord-Aeon.yml
+   addComponents:
+     - type: IFF
+       color: "#ffffff"
+     - type: NanotrasenFtl
+
+ - type: gameMap
+   id: Aeon
+   mapName: 'Concord-Aeon'
+   mapPath: /Maps/_Lua/Shuttles/Civilian/Concord-Aeon.yml
+   minPlayers: 0
+   stations:
+     Aeon:
+       stationProto: StandardFrontierVessel
+       components:
+         - type: StationNameSetup
+           mapNameTemplate: 'Concord-Aeon {1}'
+           nameGenerator:
+             !type:NanotrasenNameGenerator
+             prefixCreator: '14'

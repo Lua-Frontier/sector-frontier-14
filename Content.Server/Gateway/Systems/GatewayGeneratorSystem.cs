@@ -177,6 +177,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
 
         ent.Comp.Locked = false;
         ent.Comp.Loaded = true;
+        ent.Comp.AllowedSourceGateway = args.SourceGatewayUid; // Lua
 
         // Do dungeon
         var seed = ent.Comp.Seed;

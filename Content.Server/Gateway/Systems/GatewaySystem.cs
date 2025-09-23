@@ -85,13 +85,20 @@ public sealed class GatewaySystem : EntitySystem
         var nextUnlock = TimeSpan.Zero;
         var unlockTime = TimeSpan.Zero;
 
-        // Next unlock is based off of:
-        // - Our station's unlock timer (if we have a station)
-        // - If our map is a generated destination then use the generator that made it
+        EntityUid? sourceGeneratorUid = null; // Lua start
+        GatewayGeneratorComponent? generatorComp = null;
 
-        if (TryComp(_stations.GetOwningStation(uid), out GatewayGeneratorComponent? generatorComp) ||
-            (TryComp(xform.MapUid, out GatewayGeneratorDestinationComponent? generatorDestination) &&
-             TryComp(generatorDestination.Generator, out generatorComp)))
+        if (TryComp(uid, out GatewayGeneratorComponent? selfGen))
+        {
+            sourceGeneratorUid = uid;
+            generatorComp = selfGen;
+        }
+        else if (TryComp(xform.MapUid, out GatewayGeneratorDestinationComponent? srcGenDest) && TryComp(srcGenDest.Generator, out GatewayGeneratorComponent? mapGen))
+        {
+            sourceGeneratorUid = srcGenDest.Generator;
+            generatorComp = mapGen;
+        }
+        if (generatorComp != null) // Lua end
         {
             nextUnlock = generatorComp.NextUnlock;
             unlockTime = generatorComp.UnlockCooldown;
@@ -102,8 +109,13 @@ public sealed class GatewaySystem : EntitySystem
             if (!dest.Enabled || destUid == uid)
                 continue;
 
+            if (destXform.MapUid == xform.MapUid) continue; // Lua
             // Show destination if either no destination comp on the map or it's ours.
             TryComp<GatewayGeneratorDestinationComponent>(destXform.MapUid, out var gatewayDestination);
+
+            if (sourceGeneratorUid != null && gatewayDestination != null && gatewayDestination.Generator != sourceGeneratorUid) continue; // Lua start
+            if (TryComp(xform.MapUid, out GatewayGeneratorDestinationComponent? srcGatewayDestination))
+            { if (srcGatewayDestination.AllowedSourceGateway != null && destUid != srcGatewayDestination.AllowedSourceGateway) continue; } // Lua end
 
             destinations.Add(new GatewayDestinationData()
             {
@@ -161,6 +173,12 @@ public sealed class GatewaySystem : EntitySystem
             return;
         }
 
+        EntityUid? sourceGeneratorUid = null; // Lua start
+        var srcXform = Transform(uid);
+        if (HasComp<GatewayGeneratorComponent>(uid)) { sourceGeneratorUid = uid; }
+        else if (TryComp(srcXform.MapUid, out GatewayGeneratorDestinationComponent? srcGenDest)) { sourceGeneratorUid = srcGenDest.Generator; }
+        if (sourceGeneratorUid != null && TryComp(Transform(desto).MapUid, out GatewayGeneratorDestinationComponent? dstGenDest)) { if (dstGenDest.Generator != sourceGeneratorUid) return; } // Lua end
+
         // TODO: admin log???
         ClosePortal(uid, comp, false);
         OpenPortal(uid, comp, desto, dest);
@@ -188,7 +206,7 @@ public sealed class GatewaySystem : EntitySystem
         sourcePortal.RandomTeleport = false;
         targetPortal.RandomTeleport = false;
 
-        var openEv = new GatewayOpenEvent(destXform.MapUid.Value, dest);
+        var openEv = new GatewayOpenEvent(destXform.MapUid.Value, uid, dest); // Lua add uid
         RaiseLocalEvent(destXform.MapUid.Value, ref openEv);
 
         // for ui
@@ -304,6 +322,7 @@ public record struct AttemptGatewayOpenEvent(EntityUid MapUid, EntityUid Gateway
 
 /// <summary>
 /// Raised directed on the target map when a gateway is opened.
+/// Carries the source gateway (on the origin map) and the destination gateway (on this map).
 /// </summary>
 [ByRefEvent]
-public readonly record struct GatewayOpenEvent(EntityUid MapUid, EntityUid GatewayDestinationUid);
+public readonly record struct GatewayOpenEvent(EntityUid MapUid, EntityUid SourceGatewayUid, EntityUid GatewayDestinationUid);

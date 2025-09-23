@@ -22,6 +22,8 @@ public sealed class MoverController : SharedMoverController
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
+    private const float DistanceSlowdown = 30000f; // Lua
+    private const float DistanceStop = 30100f; // Lua
 
     public override void Initialize()
     {
@@ -309,6 +311,8 @@ public sealed class MoverController : SharedMoverController
                 continue;
 
             var shuttleNorthAngle = _xformSystem.GetWorldRotation(shuttleUid, xformQuery);
+            var worldPos = _xformSystem.GetWorldPosition(shuttleUid, xformQuery); // Lua
+            var worldDist = worldPos.Length(); // Lua
 
             // Collate movement linear and angular inputs together
             var linearInput = Vector2.Zero;
@@ -347,6 +351,15 @@ public sealed class MoverController : SharedMoverController
             angularInput /= Math.Max(1, angularCount);
             brakeInput /= Math.Max(1, brakeCount);
 
+            if (worldDist >= DistanceStop) // Lua start
+            {
+                _thruster.DisableLinearThrusters(shuttle);
+                PhysicsSystem.SetLinearVelocity(shuttleUid, Vector2.Zero, body: body);
+                linearInput = Vector2.Zero;
+                brakeInput = 0f;
+            }
+            if (worldDist >= DistanceSlowdown && worldDist < DistanceStop)
+            { if (body.LinearVelocity.Length() > 1f) PhysicsSystem.SetLinearVelocity(shuttleUid, body.LinearVelocity.Normalized() * 1f, body: body); }  // Lua end
             // Handle shuttle movement
             if (brakeInput > 0f)
             {
@@ -525,6 +538,16 @@ public sealed class MoverController : SharedMoverController
 
                 finalForce = shuttleNorthAngle.RotateVec(finalForce);
 
+                if (worldDist >= DistanceSlowdown && worldDist < DistanceStop)  // Lua start
+                {
+                    var vel = body.LinearVelocity;
+                    if (vel.Length() >= 1f)
+                    {
+                        var dir = vel.Normalized();
+                        var along = Vector2.Dot(finalForce, dir);
+                        if (along > 0f) finalForce -= along * dir;
+                    }
+                } // Lua end
                 if (finalForce.Length() > 0f)
                     PhysicsSystem.ApplyForce(shuttleUid, finalForce, body: body);
             }

@@ -2,14 +2,11 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using System.Linq;
 using JetBrains.Annotations;
 using Content.Shared.Lua.CLVar;
-using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Configuration;
-using Robust.Shared.Enums;
-using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Lua.Tick
 {
@@ -17,45 +14,52 @@ namespace Content.Server._Lua.Tick
     public sealed class TickrateSystem : EntitySystem
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly IGameTiming _time = default!;
+
+        private TimeSpan? _lowFpsSince;
+        private TimeSpan _lastLowFps;
+        private TimeSpan _lastIncrease;
+        private const int MinTickrate = 15;
+        private const int MaxTickrate = 30;
 
         public override void Initialize()
         {
             base.Initialize();
-
             _cfg.OnValueChanged(CLVars.NetDynamicTick, dynamicEnabled =>
             {
-                if (dynamicEnabled)
-                    UpdateTickrate();
+                _lowFpsSince = null;
+                _lastLowFps = _time.RealTime;
+                _lastIncrease = _time.RealTime;
             }, true);
-
-            _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         }
 
-        private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+        public override void Update(float frameTime)
         {
-            if (!_cfg.GetCVar(CLVars.NetDynamicTick))
-                return;
-
-            if (args.NewStatus == SessionStatus.Connected || args.NewStatus == SessionStatus.Disconnected)
-                UpdateTickrate();
-        }
-
-        private void UpdateTickrate()
-        {
-            var inGame = _playerManager.Sessions
-                .Count(s => s.Status == SessionStatus.InGame);
-
-            var newRate = inGame switch
+            base.Update(frameTime);
+            if (!_cfg.GetCVar(CLVars.NetDynamicTick)) return;
+            var now = _time.RealTime;
+            var srvfps = _time.FramesPerSecondAvg;
+            var srvfpsRounded = (int) Math.Round(srvfps);
+            if (srvfpsRounded >= 4 && srvfpsRounded <= 9)
             {
-                <= 10 => 60,
-                <= 15 => 45,
-                <= 20 => 40,
-                <= 30 => 35,
-                _ => 30
-            };
+                if (_lowFpsSince == null) _lowFpsSince = now;
+                if (now - _lowFpsSince >= TimeSpan.FromSeconds(15))
+                {
+                    var cur = _cfg.GetCVar(CVars.NetTickrate);
+                    if (cur > MinTickrate) _cfg.SetCVar(CVars.NetTickrate, cur - 1);
+                    _lowFpsSince = now;
+                }
+                _lastLowFps = now;
+            }
+            else
+            { _lowFpsSince = null; }
 
-            _cfg.SetCVar(CVars.NetTickrate, newRate);
+            if (now - _lastLowFps >= TimeSpan.FromMinutes(20) && now - _lastIncrease >= TimeSpan.FromMinutes(20))
+            {
+                var cur = _cfg.GetCVar(CVars.NetTickrate);
+                if (cur < MaxTickrate) _cfg.SetCVar(CVars.NetTickrate, cur + 1);
+                _lastIncrease = now;
+            }
         }
     }
 }

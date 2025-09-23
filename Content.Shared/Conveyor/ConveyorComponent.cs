@@ -39,6 +39,11 @@ public sealed partial class ConveyorComponent : Component
 
     [DataField]
     public ProtoId<SinkPortPrototype> OffPort = "Off";
+
+    [DataField] // Lua start
+    public float WorkDuration = 15f;
+    [ViewVariables]
+    public TimeSpan? AutoOffUntil; // Lua end
 }
 
 [Serializable, NetSerializable]

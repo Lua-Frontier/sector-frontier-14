@@ -129,7 +129,7 @@ public abstract partial class SharedMoverController : VirtualController
         // If we're a relay then apply all of our data to the parent instead and go next.
         if (RelayQuery.TryComp(uid, out var relay))
         {
-            if (!MoverQuery.TryComp(relay.RelayEntity, out var relayTargetMover))
+            if (!MoverQuery.TryGetComponent(relay.RelayEntity, out var relayTargetMover)) // Lua TryComp<TryGetComponent
                 return;
 
             // Always lerp rotation so relay entities aren't cooked.
@@ -210,6 +210,16 @@ public abstract partial class SharedMoverController : VirtualController
             inAirHelpless = true;
         }
 
+        // Lua start
+        var velocity = physicsComponent.LinearVelocity;
+        var anyInput = mover.HeldMoveButtons != MoveButtons.None;
+        if (!anyInput && velocity.LengthSquared() < 0.0025f && !physicsComponent.AngularVelocity.Equals(0f))
+        {
+            PhysicsSystem.SetAngularVelocity(uid, 0, body: physicsComponent);
+            UsedMobMovement[uid] = false;
+            return;
+        }
+        // Lua end
         UsedMobMovement[uid] = true;
 
         var moveSpeedComponent = ModifierQuery.CompOrNull(uid);
@@ -217,7 +227,6 @@ public abstract partial class SharedMoverController : VirtualController
         float friction;
         float accel;
         Vector2 wishDir;
-        var velocity = physicsComponent.LinearVelocity;
 
         // Get current tile def for things like speed/friction mods
         ContentTileDefinition? tileDef = null;
@@ -245,10 +254,13 @@ public abstract partial class SharedMoverController : VirtualController
             if (touching)
             {
                 touching = true;
-                if (wishDir != Vector2.Zero)
-                    friction = moveSpeedComponent?.WeightlessFriction ?? _airDamping;
-                else
-                    friction = moveSpeedComponent?.WeightlessFrictionNoInput ?? _airDamping;
+                //if (wishDir != Vector2.Zero)
+                //    friction = moveSpeedComponent?.WeightlessFriction ?? _airDamping;
+                //else
+                //    friction = moveSpeedComponent?.WeightlessFrictionNoInput ?? _airDamping;
+                friction = wishDir != Vector2.Zero
+                    ? moveSpeedComponent?.WeightlessFriction ?? _airDamping
+                    : moveSpeedComponent?.WeightlessFrictionNoInput ?? _airDamping; // Lua Test
             }
             // Otherwise use the off-grid values.
             else
