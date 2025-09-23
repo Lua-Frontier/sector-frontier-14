@@ -1,0 +1,64 @@
+- type: entity
+  parent: SheetMetalBase
+  id: SheetAstrolite
+  name: astrolite
+  suffix: Full, LuaTech
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Materials/Sheets/metal.rsi
+    state: astrolite_3
+    layers:
+    - state: astrolite_3
+      map: ["base"]
+  - type: Item
+    sprite: _Lua/Objects/Materials/Sheets/metal.rsi
+    size: Normal
+    heldPrefix: astrolite
+  - type: Material
+  - type: LuaTech
+  - type: PhysicalComposition
+    materialComposition:
+      Astrolite: 100
+  - type: Stack
+    stackType: Astrolite
+    baseLayer: base
+    layerStates:
+    - astrolite
+    - astrolite_2
+    - astrolite_3
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: astrolite
+
+- type: entity
+  parent: SheetAstrolite
+  id: SheetAstrolite10
+  name: astrolite
+  suffix: 10, LuaTech
+  components:
+  - type: Sprite
+    state: astrolite
+  - type: Stack
+    stackType: Astrolite
+    count: 10
+
+- type: entity
+  parent: SheetAstrolite
+  id: SheetAstrolite1
+  name: astrolite
+  suffix: Single, LuaTech
+  components:
+  - type: Sprite
+    state: astrolite
+  - type: Stack
+    stackType: Astrolite
+    count: 1
+
+- type: entity
+  parent: SheetAstrolite
+  id: SheetAstroliteLingering0
+  suffix: Lingering, 0, LuaTech
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
