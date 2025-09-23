@@ -379,44 +379,49 @@
               amount: 3
               doAfter: 1
 
+# Astrolite
         - to: astrolitewall
           conditions:
-            - !type:EntityAnchored { }
+            - !type:EntityAnchored {}
           steps:
-            - tool: Screwing
-              doAfter: 2
             - material: Astrolite
-              amount: 10
+              amount: 1
               doAfter: 1
+            - tool: Welding
+              doAfter: 10
             - tool: Screwing
               doAfter: 2
             - material: Astrolite
-              amount: 10
+              amount: 1
               doAfter: 1
-            - tool: Screwing
-              doAfter: 2
             - material: Astrolite
-              amount: 10
+              amount: 2
               doAfter: 1
             - tool: Screwing
               doAfter: 2
             - tool: Welding
               doAfter: 10
 
+#Astrolite Diagonal
         - to: diagonalastrolitewall
           conditions:
-            - !type:EntityAnchored { }
+            - !type:EntityAnchored {}
           steps:
-            - tool: Screwing
-              doAfter: 2
+            - material: CompactAstrolite
+              amount: 1
+              doAfter: 1
+            - tool: Welding
+              doAfter: 10
             - material: Astrolite
-              amount: 10
+              amount: 1
               doAfter: 1
             - tool: Screwing
               doAfter: 2
             - material: Astrolite
-              amount: 10
+              amount: 1
               doAfter: 1
+            - tool: Screwing
+              doAfter: 2
             - tool: Screwing
               doAfter: 2
             - tool: Welding
@@ -633,22 +638,6 @@
               doAfter: 3
             - tool: Cutting
               doAfter: 1
-            - tool: Screwing
-              doAfter: 1
-            - tool: Welding
-              doAfter: 5
-            - tool: Prying
-              doAfter: 1
-            - tool: Anchoring
-              doAfter: 1
-            - tool: Welding
-              doAfter: 10
-            - tool: Prying
-              doAfter: 1
-            - tool: Screwing
-              doAfter: 1
-            - tool: Cutting
-              doAfter: 1
 
     - node: diagonalplastitaniumwall
       entity: WallPlastitaniumDiagonal
@@ -672,22 +661,6 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
-            - tool: Cutting
-              doAfter: 1
-            - tool: Screwing
-              doAfter: 1
-            - tool: Welding
-              doAfter: 5
-            - tool: Prying
-              doAfter: 1
-            - tool: Anchoring
-              doAfter: 1
-            - tool: Welding
-              doAfter: 10
-            - tool: Prying
-              doAfter: 1
-            - tool: Screwing
-              doAfter: 1
             - tool: Cutting
               doAfter: 1
 
@@ -784,7 +757,69 @@
               doAfter: 1
             - tool: Cutting
               doAfter: 1
+              
+#Astrolite
+    - node: astrolitewall
+      entity: WallAstrolit
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetAstrolite1
+              amount: 4
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 10
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 10
 
+#Astrolite Diagonal
+    - node: diagonalastrolitewall
+      entity: WallAstrolitDiagonal
+      edges:
+        - to: reinforcedGirder
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetAstrolite1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: SheetCompactAstrolite1
+              amount: 1
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 10
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 1
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 10
 # _Lua End
 
     - node: wallrust

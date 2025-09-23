@@ -41,3 +41,30 @@
   category: construction-category-structures
   placementMode: SnapgridCenter
   canBuildInImpassable: false
+
+- type: construction
+  id: AstrolitWindow
+  graph: AstrolitWindow
+  startNode: start
+  targetNode: astrolitWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: AstrolitWindowDiagonal
+  graph: AstrolitWindow
+  startNode: start
+  targetNode: astrolitWindowDiagonal
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter

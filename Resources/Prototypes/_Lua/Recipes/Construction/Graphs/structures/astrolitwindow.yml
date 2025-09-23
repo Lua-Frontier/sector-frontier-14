@@ -7,8 +7,13 @@
         - to: astrolitWindow
           steps:
             - material: Astrolite
-              amount: 2
-              doAfter: 2
+              amount: 4
+              doAfter: 6
+        - to: astrolitWindowDiagonal
+          steps:
+            - material: Astrolite
+              amount: 4
+              doAfter: 6
 
     - node: astrolitWindow
       entity: AstrolitWindow
@@ -17,7 +22,32 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetAstrolite1
-              amount: 2
+              amount: 4
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 10
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 10
+            - tool: Screwing
+              doAfter: 2
+            - tool: Screwing
+              doAfter: 2
+            - tool: Welding
+              doAfter: 10
+            - tool: Screwing
+              doAfter: 1
+
+    - node: astrolitWindowDiagonal
+      entity: AstrolitWindowDiagonal
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetAstrolite1
+              amount: 4
             - !type:DeleteEntity {}
           steps:
             - tool: Welding

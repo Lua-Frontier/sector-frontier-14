@@ -536,7 +536,7 @@
   id: WallAstrolitDiagonal
   name: astrolite wall
   suffix: diagonal
-  description: 
+  description:
   components:
   - type: LuaTech
   - type: Sprite
@@ -751,3 +751,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
+  - type: Construction
+    graph: AstrolitWindow
+    node: astrolitWindowDiagonal
