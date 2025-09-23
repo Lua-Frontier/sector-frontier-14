@@ -50,8 +50,8 @@ Structural добавит ещё 1–2.
 | WeaponTurretCharonette | Ballistic | Heavy |
 | WeaponTurretBofors | Ballistic | Heavy |
 | WeaponTurretKargil | Ballistic | Medium |
-| WeaponTurretTarnyx | Ballistic | Medium |
-| WeaponTurretTarnyxReload | Ballistic | Medium |
+| WeaponTurretTarnyx | Ballistic | Heavy |
+| WeaponTurretTarnyxReload | Ballistic | Heavy |
 | WeaponTurretCharon | Ballistic | Superheavy |
 | WeaponTurretCharonReload | Ballistic | Superheavy |
 | WeaponTurretType35 | Energy | Medium |
@@ -62,6 +62,8 @@ Structural добавит ещё 1–2.
 | WeaponTurretVanyk | Missile | Heavy |
 | WeaponTurretASM501 | Missile | Superheavy |
 | WeaponTurretTovek | Missile | Medium |
+| WeaponTurretASM220 | Missile | Heavy |
+| WeaponTurretLightMunitionsBay | Missile | Heavy |
 | ShuttleGunSvalinnMachineGun | Energy | Superlight |
 | ShuttleGunPerforator | Energy | Superlight |
 | ShuttleGunFriendship | Ballistic | Light |
