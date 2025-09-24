@@ -8,6 +8,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Server.Worldgen.Components.GC; // Lua
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -18,6 +19,21 @@ public sealed partial class ShuttleConsoleSystem
 
     private const float ShuttleFTLRange = 200f;
     private const float ShuttleFTLMassThreshold = 50f;
+
+    private bool IsGcAbleGrid(EntityUid gridUid) // Lua start создание проблемы и её героическое решение
+    {
+        if (HasComp<GCAbleObjectComponent>(gridUid))
+            return true;
+
+        var query = AllEntityQuery<GCAbleObjectComponent>();
+        while (query.MoveNext(out var comp))
+        {
+            if (comp.LinkedGridEntity == gridUid)
+                return true;
+        }
+
+        return false;
+    } // Lue end
 
     private void InitializeFTL()
     {
@@ -167,6 +183,9 @@ public sealed partial class ShuttleConsoleSystem
         foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
         {
             if (other.Owner == shuttleUid.Value)
+                continue;
+
+            if (IsGcAbleGrid(other.Owner)) // Lua
                 continue;
 
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent.Owner, PopupType.Medium);
