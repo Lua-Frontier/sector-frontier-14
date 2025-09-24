@@ -9,6 +9,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Content.Server.Worldgen.Components.GC; // Lua
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -16,6 +18,7 @@ public sealed partial class ShuttleConsoleSystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     private const float ShuttleFTLRange = 200f;
     private const float ShuttleFTLMassThreshold = 50f;
@@ -188,6 +191,7 @@ public sealed partial class ShuttleConsoleSystem
             if (IsGcAbleGrid(other.Owner)) // Lua
                 continue;
 
+            PlayDenySound(ent);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent.Owner, PopupType.Medium);
             UpdateConsoles(shuttleUid.Value);
             return;
@@ -226,5 +230,14 @@ public sealed partial class ShuttleConsoleSystem
     {
         DockingInterfaceState? dockState = null;
         UpdateState(uid, ref dockState);
+    }
+}
+
+// Lua: deny
+partial class ShuttleConsoleSystem
+{
+    private void PlayDenySound(Entity<ShuttleConsoleComponent> ent)
+    {
+        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg"), ent.Owner);
     }
 }
