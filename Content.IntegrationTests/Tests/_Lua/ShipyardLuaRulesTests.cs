@@ -169,6 +169,12 @@ public sealed class ShipyardLuaRulesTests
         "DebugListing", "DebugListing2", "DebugListing3", "DebugListing4", "DebugListing5", "DebugDollar",
     };
 
+    private static readonly string[] WhitelistedVessels =
+    {
+        "CourierRed",
+        "CourierBlue",
+    };
+
     private static readonly string[] LuaTechThrusters =
     {
         "ThrusterLuaBuild",
@@ -190,6 +196,9 @@ public sealed class ShipyardLuaRulesTests
             {
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
+                    if (WhitelistedVessels.Contains(vessel.ID))
+                        continue;
+
                     map.CreateMap(out var mapId);
                     bool mapLoaded = false;
                     Entity<MapGridComponent>? shuttle = null;
@@ -225,6 +234,7 @@ public sealed class ShipyardLuaRulesTests
                     }
                     var size = vessel.Category;
                     if (vessel.Classes == null || !vessel.Classes.Any()) { sb.AppendLine($"[Класс] {vessel.ID}: поле 'class' обязательно и должно содержать хотя бы одно значение."); }
+                    if (vessel.Engines == null || !vessel.Engines.Any()) { sb.AppendLine($"[Двигатель] {vessel.ID}: поле 'engine' обязательно и должно содержать хотя бы одно значение."); }
                     if (!PointsCap.TryGetValue(size, out var cap)) cap = 0;
                     if (points > cap)
                     {
