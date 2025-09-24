@@ -14,6 +14,8 @@
   group: Security
   class:
   - Nfsd
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/Mole.yml
   addComponents:
     - type: IFF

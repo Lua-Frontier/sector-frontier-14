@@ -13,6 +13,8 @@
   group: Security
   class:
   - Nfsd
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/rising.yml
   addComponents:
     - type: IFF
