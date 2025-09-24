@@ -59,7 +59,7 @@
           name: Bluespace Crystal
           whitelist:
             components: [ Stack ]
-            ids: [ MaterialBluespace, MaterialBluespace1, FuelBluespace ]
+            tags: [ BluespaceCrystal, BluespaceFuel ]
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
     - type: ContainerContainer
@@ -93,7 +93,7 @@
           name: Bluespace Crystal
           whitelist:
             components: [ Stack ]
-            ids: [ MaterialBluespace, MaterialBluespace1, FuelBluespace ]
+            tags: [ BluespaceCrystal, BluespaceFuel ]
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
     - type: ContainerContainer
