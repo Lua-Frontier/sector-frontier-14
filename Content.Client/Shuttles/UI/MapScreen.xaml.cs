@@ -53,8 +53,6 @@ public sealed partial class MapScreen : BoxContainer
     private float _maxMapDequeue = 0.10f; // Frontier: 0.25<0.10
 
     private StyleBoxFlat _ftlStyle;
-    private TimeSpan _nextAutoRefresh; // Lua
-    private readonly TimeSpan _autoRefreshInterval = TimeSpan.FromMinutes(1); // Lua
 
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
@@ -105,10 +103,6 @@ public sealed partial class MapScreen : BoxContainer
         {
             MapRadar.ShowBeacons = args.Pressed;
         };
-
-        MapRebuildButton.Visible = false; // Lua
-        MapRebuildButton.Disabled = true; // Lua
-        _nextAutoRefresh = _timing.CurTime; // Lua
     }
 
     public void UpdateState(ShuttleMapInterfaceState state)
@@ -239,6 +233,7 @@ public sealed partial class MapScreen : BoxContainer
         }
 
         RebuildMapObjects();
+        BumpMapDequeue();
 
         _nextPing = _timing.CurTime + _pingCooldown;
         MapRebuildButton.Disabled = true;
@@ -415,13 +410,6 @@ public sealed partial class MapScreen : BoxContainer
 
             return (yMapPos.Position - shuttlePos).Length().CompareTo((xMapPos.Position - shuttlePos).Length());
         });
-
-        for (var i = _pendingMapObjects.Count - 1; i >= 0; i--) // Lua
-        {
-            var mapObj = _pendingMapObjects[i]; // Lua
-            AddMapObject(mapObj.mapId, mapObj.mapobj); // Lua
-        }
-        _pendingMapObjects.Clear(); // Lua
     }
 
     /// <summary>
@@ -571,10 +559,17 @@ public sealed partial class MapScreen : BoxContainer
 
         var curTime = _timing.CurTime;
 
-        if (!IsFTLBlocked() && _nextAutoRefresh <= curTime) // Lua
+        if (_nextMapDequeue < curTime && _pendingMapObjects.Count > 0)
         {
-            RebuildMapObjects(); // Lua
-            _nextAutoRefresh = curTime + _autoRefreshInterval; // Lua
+            var mapObj = _pendingMapObjects[^1];
+            _pendingMapObjects.RemoveAt(_pendingMapObjects.Count - 1);
+            AddMapObject(mapObj.mapId, mapObj.mapobj);
+            BumpMapDequeue();
+        }
+
+        if (!IsFTLBlocked() && _nextPing < curTime)
+        {
+            MapRebuildButton.Disabled = false;
         }
 
         var progress = _ftlTime.ProgressAt(curTime);

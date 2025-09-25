@@ -157,7 +157,6 @@ public enum VesselClass : byte
 {
     All, // Should not be used by ships, intended as a placeholder value to represent everything
     // NFSD-specific categories
-    Nfsd, // Lua base for nfsd shuttle use pls
     Capital,
     Detainment,
     Detective,

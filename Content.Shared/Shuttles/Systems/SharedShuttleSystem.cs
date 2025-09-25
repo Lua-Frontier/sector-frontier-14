@@ -183,13 +183,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
             if (TryComp<TransformComponent>(driveUid, out var transform) && transform.GridUid == shuttleUid)
             {
                 if (drive.Powered)
-                // Lua start
-                {
-                    var range = drive.Range;
-                    if (TryComp<BluespaceFuelComponent>(driveUid, out var fuel) && fuel.HasFuel) range += fuel.RangeBonus;
-                    return range;
-                }
-                // Lua end
+                    return drive.Range;
             }
         }
 
