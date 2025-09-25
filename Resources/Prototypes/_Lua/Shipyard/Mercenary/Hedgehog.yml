@@ -6,10 +6,14 @@
   parent: BaseVessel
   id: Hedgehog
   name: MC Hedgehog
-  price: 19000
+  price: 16000
   category: Small
   group: Mercenary
   access: Mercenary
+  class:
+  - Mercenary
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Hedgehog.yml
   addComponents:
     - type: IFF

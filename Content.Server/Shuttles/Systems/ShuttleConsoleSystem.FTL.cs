@@ -8,6 +8,9 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Server.Worldgen.Components.GC; // Lua
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -15,9 +18,25 @@ public sealed partial class ShuttleConsoleSystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private const float ShuttleFTLRange = 100f;
+    private const float ShuttleFTLRange = 200f;
     private const float ShuttleFTLMassThreshold = 50f;
+
+    private bool IsGcAbleGrid(EntityUid gridUid) // Lua start создание проблемы и её героическое решение
+    {
+        if (HasComp<GCAbleObjectComponent>(gridUid))
+            return true;
+
+        var query = AllEntityQuery<GCAbleObjectComponent>();
+        while (query.MoveNext(out var comp))
+        {
+            if (comp.LinkedGridEntity == gridUid)
+                return true;
+        }
+
+        return false;
+    } // Lue end
 
     private void InitializeFTL()
     {
@@ -160,61 +179,19 @@ public sealed partial class ShuttleConsoleSystem
             return;
         }
 
-        // Check for nearby grids that are above the mass threshold
+        // Check for nearby grids within the FTL safety radius
         var xform = Transform(shuttleUid.Value);
         var bounds = xform.WorldMatrix.TransformBox(Comp<MapGridComponent>(shuttleUid.Value).LocalAABB).Enlarged(ShuttleFTLRange);
-        var bodyQuery = GetEntityQuery<PhysicsComponent>();
-        // Keep track of docked grids to exclude them from the proximity check
-        var dockedGrids = new HashSet<EntityUid>();
-
-        // Find all docked grids by looking for DockingComponents on the shuttle
-        var dockQuery = EntityQueryEnumerator<DockingComponent, TransformComponent>();
-        while (dockQuery.MoveNext(out var dockUid, out var dock, out var dockXform))
-        {
-            // Only consider docks on our shuttle
-            if (dockXform.GridUid != shuttleUid.Value || !dock.Docked || dock.DockedWith == null)
-                continue;
-
-            // If we have a docked entity, get its grid
-            if (TryComp<TransformComponent>(dock.DockedWith.Value, out var dockedXform) && dockedXform.GridUid != null)
-            {
-                dockedGrids.Add(dockedXform.GridUid.Value);
-                
-                // Check if we're docked to another grid
-                var parentGridUid = dockedXform.GridUid.Value;
-                
-                // Find all other grids docked to this parent grid
-                // These should also be excluded from the proximity check so we can
-                // still FTL even when other ships are docked to the same station/grid
-                var parentDockQuery = EntityQueryEnumerator<DockingComponent, TransformComponent>();
-                while (parentDockQuery.MoveNext(out var parentDockUid, out var parentDock, out var parentDockXform))
-                {
-                    // Only consider docks on the parent grid
-                    if (parentDockXform.GridUid != parentGridUid || !parentDock.Docked || parentDock.DockedWith == null)
-                        continue;
-                    
-                    // If we have a docked entity and it's not our ship, add its grid to the exclusion list
-                    if (TryComp<TransformComponent>(parentDock.DockedWith.Value, out var siblingDockedXform) && 
-                        siblingDockedXform.GridUid != null && 
-                        siblingDockedXform.GridUid != shuttleUid.Value)
-                    {
-                        dockedGrids.Add(siblingDockedXform.GridUid.Value);
-                    }
-                }
-            }
-        }
 
         foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
         {
-            if (other.Owner == shuttleUid.Value ||
-                dockedGrids.Contains(other.Owner) || // Skip grids that are docked to us or to the same parent grid
-                !bodyQuery.TryGetComponent(other.Owner, out var body) ||
-                body.Mass < ShuttleFTLMassThreshold ||
-                !HasComp<StationMemberComponent>(other.Owner)) // Skip entities without a StationMember component
-            {
+            if (other.Owner == shuttleUid.Value)
                 continue;
-            }
 
+            if (IsGcAbleGrid(other.Owner)) // Lua
+                continue;
+
+            PlayDenySound(ent);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent.Owner, PopupType.Medium);
             UpdateConsoles(shuttleUid.Value);
             return;
@@ -253,5 +230,14 @@ public sealed partial class ShuttleConsoleSystem
     {
         DockingInterfaceState? dockState = null;
         UpdateState(uid, ref dockState);
+    }
+}
+
+// Lua: deny
+partial class ShuttleConsoleSystem
+{
+    private void PlayDenySound(Entity<ShuttleConsoleComponent> ent)
+    {
+        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg"), ent.Owner);
     }
 }
