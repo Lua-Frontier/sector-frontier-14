@@ -1,4 +1,4 @@
-﻿<Control xmlns="https://spacestation14.io"
+<Control xmlns="https://spacestation14.io"
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:parallax="clr-namespace:Content.Client.Parallax"
@@ -28,7 +28,6 @@
             </BoxContainer>
             <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0 20 0 0">
                 <Button Name="PriorityJoinButton" Text="{Loc 'queue-priority-join'}" HorizontalExpand="True" StyleClasses="OpenRight" />
-                <Button Name="JoinToAnotherServerButton" Text="{Loc 'connecting-connecttoanotherserver'}" HorizontalExpand="True" StyleClasses="OpenLeft" />
             </BoxContainer>
         </BoxContainer>
     </Control>
