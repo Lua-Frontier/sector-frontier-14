@@ -9,6 +9,7 @@ on:
       - "Resources/Maps/_Mono/Shuttles/**/*.yml"
       - "Resources/Maps/_Lua/Shuttles/**/*.yml"
       - "Content.IntegrationTests/Tests/_Lua/ShipyardLuaRulesTests.cs"
+      - "Content.IntegrationTests/Tests/_Lua/ShipyardLuaPriceTests.cs"
       - "Content.Shared/_NF/Shipyard/Prototypes/VesselPrototype.cs"
 
 jobs:
@@ -47,11 +48,11 @@ jobs:
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /p:WarningsAsErrors=nullable /m
 
-    - name: Run Lua Shipyard Rules Tests
+    - name: Run Lua Shipyard Tests
       shell: pwsh
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter FullyQualifiedName~ShipyardLuaRulesTests -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~ShipyardLuaRulesTests|FullyQualifiedName~ShipyardLuaPriceTests" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
 
   ci-success:
     name: Build & Run Lua Shipyard Rules Tests

@@ -133,7 +133,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                 else
                 {
                     // We'll send the "adjusted" position and server will adjust it back when relevant.
-                    var mapCoords = new MapCoordinates(InverseMapPosition(args.RelativePosition), ViewingMap);
+                    var mapCoords = new MapCoordinates(InverseMapPosition(args.RelativePixelPosition), ViewingMap);
 
                     if (!_physicsQuery.TryGetComponent(_shuttleEntity, out var shuttlePhysics) || !EntManager.TryGetComponent(_shuttleEntity, out TransformComponent? shuttleTransform))
                         return;

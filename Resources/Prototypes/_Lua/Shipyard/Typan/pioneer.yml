@@ -7,10 +7,14 @@
   id: TYPioneer
   name: TY Pioneer
   description: Корабль для секретных заданий и конспирации
-  price: 31000 #18500
+  price: 28900
   category: Small
   group: Typan
   access: SyndicateAgent
+  class:
+  - Syndicate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/pioneer.yml
   addComponents:
     - type: IFF
