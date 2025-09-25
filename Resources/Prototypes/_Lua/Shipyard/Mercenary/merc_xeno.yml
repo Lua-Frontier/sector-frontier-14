@@ -3,10 +3,14 @@
   id: MercXeno
   name: MC Xeno
   description: "Лучший ночлег и хищник Наёмника ценящий своё превосходство не жалея денег."
-  price: 339550
+  price: 229600
   category: Large
   group: Mercenary
   access: Mercenary
+  class:
+  - Mercenary
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/merc_xeno.yml
   addComponents:
     - type: IFF

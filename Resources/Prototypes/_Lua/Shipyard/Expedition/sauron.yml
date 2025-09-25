@@ -9,11 +9,14 @@
   description: Научный шаттл, сделанный под заказ известной компанией. Имеет возможность
     прыгать в экспедиции.
   limit: 3
-  price: 180000 #260000
+  price: 179900
   category: Large
   group: Expedition
   class:
   - Civilian
+  - Expedition
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/sauron.yml
   addComponents:
     - type: IFF

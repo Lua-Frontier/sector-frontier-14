@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseItem
+  id: FuelBluespace
+  name: fuel-grade bluespace
+  description: A rod made of semi-processed bluespace, suitable for fuel.
+  suffix: 20, НЕ МАППИТЬ!
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FuelGradeBluespace: 100
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fuel/fuelgrade_material.rsi
+    layers:
+    - state: bluespace
+      map: ["base"]
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 12500
+  - type: Tag
+    tags:
+      - BluespaceFuel
+  - type: Stack
+    stackType: FuelBluespace
+    count: 20
+  - type: NFFuel # Frontier
+
+- type: entity
+  parent: FuelBluespace
+  id: FuelBluespace1
+  suffix: 1, НЕ МАППИТЬ!
+  components:
+  - type: Stack
+    count: 1
+  - type: StaticPrice
+    vendPrice: 0
