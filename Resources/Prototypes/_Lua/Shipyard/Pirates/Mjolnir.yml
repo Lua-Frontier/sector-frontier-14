@@ -6,10 +6,14 @@
   parent: BaseVessel
   id: Mjolnir
   name: BM Mjolnir
-  description: ...
-  price: 70000
-  category: Small
+  description: Пронырливый маленький корабль, вооруженный пулеметами и тесла-пушками. Обладает неплохой броней
+  price: 75000
+  category: Medium
   group: BlackMarket
+  class:
+  - Pirate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Pirates/Mjolnir.yml
   addComponents:
     - type: IFF

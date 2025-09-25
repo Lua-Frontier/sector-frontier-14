@@ -1,20 +1,21 @@
-using Content.Shared.Shuttles.Components;
-using Content.Shared.Procedural;
-using Content.Shared.Salvage.Expeditions;
-using Content.Shared.Dataset;
-using Robust.Shared.Prototypes;
-using Content.Shared.Popups; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Robust.Shared.Map.Components; // Frontier
-using Robust.Shared.Physics.Components; // Frontier
-using Content.Shared.NPC; // Frontier
 using Content.Server._NF.Salvage; // Frontier
-using Content.Shared.NPC.Components; // Frontier
 using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Server.Station.Components; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Dataset;
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.NPC; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.Popups; // Frontier
+using Content.Shared.Procedural;
+using Content.Shared.Salvage.Expeditions;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.Shuttles.Systems;
+using Robust.Shared.Map.Components; // Frontier
 using Robust.Shared.Physics; // Frontier
+using Robust.Shared.Physics.Components; // Frontier
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Salvage;
 
@@ -171,19 +172,36 @@ public sealed partial class SalvageSystem
         }
         // End SalvageSystem.Runner:OnConsoleFTLAttempt
 
-        data.CanFinish = false;
-        UpdateConsoles((station.Value, data));
-
         var map = Transform(entity).MapUid;
 
         if (!TryComp<SalvageExpeditionComponent>(map, out var expedition))
             return;
+
+        // Lua start
+        var ftlQuery = AllEntityQuery<FTLComponent, TransformComponent>();
+        while (ftlQuery.MoveNext(out var ftl, out var ftlXform))
+        {
+            if (ftlXform.MapUid != map)
+                continue;
+
+            if (ftl.State == FTLState.Cooldown)
+            {
+                PlayDenySound((entity, component));
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), entity, PopupType.MediumCaution);
+                UpdateConsoles((station.Value, data));
+                return;
+            }
+        }
+        // Lua end
 
         const int departTime = 20;
         var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(departTime);
 
         if (expedition.EndTime <= newEndTime)
             return;
+
+        data.CanFinish = false; // Lua
+        UpdateConsoles((station.Value, data));
 
         expedition.Stage = ExpeditionStage.FinalCountdown;
         expedition.EndTime = newEndTime;

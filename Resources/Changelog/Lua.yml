@@ -1448,3 +1448,108 @@ Entries:
   id: 107
   time: '2025-09-23T14:21:36.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/207
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Локализованы существующие и добавлены новые описания для шаттлов СБ и
+        пиратов
+  id: 108
+  time: '2025-09-23T14:51:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/235
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Ремап Мельнира: категория изменена на медиум, возвращена старая
+        комбинация пушек (6 АК570, 4 Тесла-турели)
+    - type: Add
+      message: Добавлен Orion и Yunk
+  id: 109
+  time: '2025-09-23T15:16:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/236
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        На Бароне 203мм пушки были заменены на 220мм в соответствии с новыми
+        нормами курсового вооружения
+  id: 110
+  time: '2025-09-23T15:18:59.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/237
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Курсовое вооружение на Восходе изменено под новый стандарт
+  id: 111
+  time: '2025-09-23T16:52:25.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/238
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Курсовое вооружение на Стриже изменено под новый стандарт
+  id: 112
+  time: '2025-09-23T16:52:50.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/239
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлено блюспейс топливо в топлимат для БСС двигателя
+    - type: Tweak
+      message: >-
+        БСС двигатели теперь можно заправлять блюспейс кристаллами или блюспейс
+        топливом для прыжка свыше 600м
+    - type: Tweak
+      message: БСС невозможен если что-то находится рядом в радиусе 200 метров
+    - type: Tweak
+      message: Теперь перезарядка БСС 5 минут
+    - type: Tweak
+      message: Убрана кнопка сканирования объектов, все объекты будут отображены сразу
+    - type: Fix
+      message: >-
+        Внесены правки которые не позволяли совершить бсс по неизвестной причине
+        а так же перемещали не в то местоположение 
+  id: 113
+  time: '2025-09-24T14:36:40.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/246
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена проверка на максимальную цену
+    - type: Add
+      message: Добавлена проверка на наличие ивентового FTL 2.5
+    - type: Add
+      message: Добавлена проверка на наличие класса судна
+    - type: Add
+      message: Добавлена проверка на наличие типа питания корабля
+    - type: Fix
+      message: Астероиды больше не исчезнут во время добычи газов на них
+    - type: Fix
+      message: На торговом аванпосте консоли +25 заменены на +0
+  id: 114
+  time: '2025-09-25T02:45:18.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/243
+- author: fox76055
+  changes:
+    - type: Remove
+      message: Удалены сервера мониторинга с Concord-Wyvern и с Concord-Aeon
+    - type: Tweak
+      message: Изменены цены на LaserBeam и Laqeramaline (Цена x 1.15)
+    - type: Fix
+      message: Теперь покупка Concord-Wyvern и Concord-Aeon не ломают мониторинг.
+    - type: Add
+      message: >-
+        теперь все корабли CLS, Concord, ML имеют классы и тип генератора в
+        консоли верфи.
+    - type: Add
+      message: теперь LaserBeam и Laqeramaline имеют лимит. 3 и 2.
+  id: 115
+  time: '2025-09-25T04:15:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/242
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Новый пиратский шаттл класса Large - Mercury (от Covral)
+  id: 116
+  time: '2025-09-25T05:01:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/241

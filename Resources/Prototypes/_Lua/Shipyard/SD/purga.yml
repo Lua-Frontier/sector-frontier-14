@@ -6,11 +6,15 @@
   parent: BaseVessel
   id: GFPurga
   name: SD-GF Пурга
-  description: Боевой корабль "Пурга" создан для уничтожения врага на дистанции 300-500м.
+  description: Хорошо бронированный штурмовик первой линии с 6 орудиями типа Marauder
   limit: 4
   price: 145136
   category: Large
   group: Security
+  class:
+  - Nfsd
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/purga.yml
   addComponents:
     - type: IFF
