@@ -1,7 +1,9 @@
 # SPDX-FileCopyrightText: 2025 Ark
+# SPDX-FileCopyrightText: 2025 Avalon
 # SPDX-FileCopyrightText: 2025 Blu
 # SPDX-FileCopyrightText: 2025 BlueHNT
 # SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Ilya246
 # SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 RikuTheKiller
 # SPDX-FileCopyrightText: 2025 core-mene
@@ -507,6 +509,74 @@
   - type: RadarBlip
     radarColor: "#03FC9D"
     scale: 3
+  - type: ShipGunType
+    shipType: Ballistic
+  - type: ShipGunClass
+    shipClass: Medium
+
+# RAC-30 Draupnir
+
+- type: entity
+  id: WeaponTurretRAC30
+  name: RAC-30 Draupnir Autocannon
+  parent: BallisticArtillery
+  description: A more heavy duty rapid rife autocannon, firing a hail of rounds much like its namesake became a hail of spears.
+  components:
+  - type: StaticPrice
+    price: 1000
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/rac-30_draupnir.rsi
+    layers:
+    - state: space_artillery
+  - type: Battery
+    maxCharge: 45000
+    startingCharge: 45000
+  - type: ExaminableBattery
+  - type: Appearance
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: WirelessNetworkConnection
+    range: 700
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+  - type: Gun
+    fireRate: 50
+    projectileSpeed: 120
+    shootThermalSignature: 100000 # ~4.5km if firing continuously
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/Gunshots/slammer.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 600
+  - type: SpaceArtillery
+    powerChargeRate: 100
+    powerUsePassive: 100
+  - type: Actions
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Airtight
+  - type: ProjectileBatteryAmmoProvider
+    proto: 30mmBullet
+    fireCost: 7.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadiationBlocker
+    resistance: 8
+  - type: RadarBlip
+    radarColor: "#FF0000"
+    scale: 1.5
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
