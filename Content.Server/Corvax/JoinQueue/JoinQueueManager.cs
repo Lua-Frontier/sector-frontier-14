@@ -49,6 +49,7 @@ public sealed class JoinQueueManager
     /// </summary>
     private readonly List<ICommonSession> _queue = new(); // Real Queue class can't delete disconnected users
     private readonly Dictionary<NetUserId, DateTime> _reservedSlots = new();
+    private readonly object _sync = new();
 
     private bool _isEnabled = false;
 
@@ -104,22 +105,25 @@ public sealed class JoinQueueManager
         ProcessQueue(false, session.ConnectedTime);
     }
 
-    private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
         if (e.NewStatus == SessionStatus.Disconnected)
         {
-            var wasInQueue = _queue.Remove(e.Session);
+            lock (_sync)
+            {
+                var wasInQueue = _queue.Remove(e.Session);
 
-            if (!wasInQueue && e.OldStatus != SessionStatus.InGame) // Process queue only if player disconnected from InGame or from queue
-                return;
+                if (!wasInQueue && e.OldStatus != SessionStatus.InGame)
+                    return;
 
-            var seconds = _cfg.GetCVar(CCCVars.QueueReconnectReserveSeconds);
-            if (seconds > 0 && e.OldStatus == SessionStatus.InGame)
-            { _reservedSlots[e.Session.UserId] = DateTime.UtcNow.AddSeconds(seconds); }
-            ProcessQueue(true, e.Session.ConnectedTime);
+                var seconds = _cfg.GetCVar(CCCVars.QueueReconnectReserveSeconds);
+                if (seconds > 0 && e.OldStatus == SessionStatus.InGame && _queue.Count == 0)
+                { _reservedSlots[e.Session.UserId] = DateTime.UtcNow.AddSeconds(seconds); }
+                ProcessQueue(true, e.Session.ConnectedTime);
 
-            if (wasInQueue)
-                QueueTimings.WithLabels("Unwaited").Observe((DateTime.UtcNow - e.Session.ConnectedTime).TotalSeconds);
+                if (wasInQueue)
+                    QueueTimings.WithLabels("Unwaited").Observe((DateTime.UtcNow - e.Session.ConnectedTime).TotalSeconds);
+            }
         }
     }
     private void OnChannelConnected(object? sender, NetChannelArgs args)
@@ -133,11 +137,15 @@ public sealed class JoinQueueManager
     {
         var count = _playerManager.PlayerCount - _queue.Count;
         var now = DateTime.UtcNow;
-        foreach (var kv in _reservedSlots.ToArray())
+        var activeReserved = 0;
+        if (_queue.Count == 0)
         {
-            if (kv.Value <= now)
-            { _reservedSlots.Remove(kv.Key); continue; }
-            count++;
+            foreach (var kv in _reservedSlots.ToArray())
+            {
+                if (kv.Value <= now)
+                { _reservedSlots.Remove(kv.Key); continue; }
+                activeReserved++;
+            }
         }
         if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
         { count -= _adminManager.ActiveAdmins.Count(); }

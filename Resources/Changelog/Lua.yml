@@ -1529,3 +1529,27 @@ Entries:
   id: 114
   time: '2025-09-25T02:45:18.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/243
+- author: fox76055
+  changes:
+    - type: Remove
+      message: Удалены сервера мониторинга с Concord-Wyvern и с Concord-Aeon
+    - type: Tweak
+      message: Изменены цены на LaserBeam и Laqeramaline (Цена x 1.15)
+    - type: Fix
+      message: Теперь покупка Concord-Wyvern и Concord-Aeon не ломают мониторинг.
+    - type: Add
+      message: >-
+        теперь все корабли CLS, Concord, ML имеют классы и тип генератора в
+        консоли верфи.
+    - type: Add
+      message: теперь LaserBeam и Laqeramaline имеют лимит. 3 и 2.
+  id: 115
+  time: '2025-09-25T04:15:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/242
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Новый пиратский шаттл класса Large - Mercury (от Covral)
+  id: 116
+  time: '2025-09-25T05:01:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/241
