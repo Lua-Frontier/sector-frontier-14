@@ -12,6 +12,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Corvax.CCCVars;
 
 namespace Content.Server.GameTicking
 {
@@ -56,7 +57,10 @@ namespace Content.Server.GameTicking
 
                     // Make the player actually join the game.
                     // timer time must be > tick length
-                    Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    if (!_cfg.GetCVar(CCCVars.QueueEnabled))
+                    {
+                        Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    }
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
