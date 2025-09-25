@@ -22,17 +22,17 @@
        color: "#ffffff"
      - type: NanotrasenFtl
 
- - type: gameMap
-   id: Venture
-   mapName: 'Concord-Venture'
-   mapPath: /Maps/_Lua/Shuttles/Expedition/Concord-Venture.yml
-   minPlayers: 0
-   stations:
-     Venture:
-       stationProto: StandardFrontierExpeditionVessel
-       components:
-         - type: StationNameSetup
-           mapNameTemplate: 'Concord-Venture {1}'
-           nameGenerator:
-             !type:NanotrasenNameGenerator
-             prefixCreator: '14'
+- type: gameMap
+  id: Venture
+  mapName: 'Concord-Venture'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/Concord-Venture.yml
+  minPlayers: 0
+  stations:
+    Venture:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Concord-Venture {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

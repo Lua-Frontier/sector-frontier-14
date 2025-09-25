@@ -22,17 +22,17 @@
        color: "#ffffff"
      - type: NanotrasenFtl
 
- - type: gameMap
-   id: Wyvern
-   mapName: 'Concord-Wyvern'
-   mapPath: /Maps/_Lua/Shuttles/Expedition/Concord-Wyvern.yml
-   minPlayers: 0
-   stations:
-     Wyvern:
-       stationProto: StandardFrontierExpeditionVessel
-       components:
-         - type: StationNameSetup
-           mapNameTemplate: 'Concord-Wyvern {1}'
-           nameGenerator:
-             !type:NanotrasenNameGenerator
-             prefixCreator: '14'
+- type: gameMap
+  id: Wyvern
+  mapName: 'Concord-Wyvern'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/Concord-Wyvern.yml
+  minPlayers: 0
+  stations:
+    Wyvern:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Concord-Wyvern {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -23,17 +23,17 @@
        color: "#ffffff"
      - type: NanotrasenFtl
 
- - type: gameMap
-   id: Aeon
-   mapName: 'Concord-Aeon'
-   mapPath: /Maps/_Lua/Shuttles/Civilian/Concord-Aeon.yml
-   minPlayers: 0
-   stations:
-     Aeon:
-       stationProto: StandardFrontierVessel
-       components:
-         - type: StationNameSetup
-           mapNameTemplate: 'Concord-Aeon {1}'
-           nameGenerator:
-             !type:NanotrasenNameGenerator
-             prefixCreator: '14'
+- type: gameMap
+  id: Aeon
+  mapName: 'Concord-Aeon'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/Concord-Aeon.yml
+  minPlayers: 0
+  stations:
+    Aeon:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Concord-Aeon {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
