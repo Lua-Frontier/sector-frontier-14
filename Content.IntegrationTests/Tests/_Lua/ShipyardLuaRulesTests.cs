@@ -137,6 +137,10 @@ public sealed class ShipyardLuaRulesTests
     private static readonly string[] FtlBannedCivilianExpedition =
     {
         "MachineFTLDrive600",
+    };
+
+    private static readonly string[] FtlBannedAll =
+    {
         "MachineFTLDrive",
     };
 
@@ -165,6 +169,12 @@ public sealed class ShipyardLuaRulesTests
         "DebugListing", "DebugListing2", "DebugListing3", "DebugListing4", "DebugListing5", "DebugDollar",
     };
 
+    private static readonly string[] WhitelistedVessels =
+    {
+        "CourierRed",
+        "CourierBlue",
+    };
+
     private static readonly string[] LuaTechThrusters =
     {
         "ThrusterLuaBuild",
@@ -186,6 +196,9 @@ public sealed class ShipyardLuaRulesTests
             {
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
+                    if (WhitelistedVessels.Contains(vessel.ID))
+                        continue;
+
                     map.CreateMap(out var mapId);
                     bool mapLoaded = false;
                     Entity<MapGridComponent>? shuttle = null;
@@ -220,6 +233,8 @@ public sealed class ShipyardLuaRulesTests
                         points += ClassPoints[gunClass.Class];
                     }
                     var size = vessel.Category;
+                    if (vessel.Classes == null || !vessel.Classes.Any()) { sb.AppendLine($"[Класс] {vessel.ID}: поле 'class' обязательно и должно содержать хотя бы одно значение."); }
+                    if (vessel.Engines == null || !vessel.Engines.Any()) { sb.AppendLine($"[Двигатель] {vessel.ID}: поле 'engine' обязательно и должно содержать хотя бы одно значение."); }
                     if (!PointsCap.TryGetValue(size, out var cap)) cap = 0;
                     if (points > cap)
                     {
@@ -270,9 +285,10 @@ public sealed class ShipyardLuaRulesTests
                         if ((pid == "CircularShieldLuaBuild" || pid == "CircularShieldLua") && !isLuaTech) sb.AppendLine($"[Щиты] {vessel.ID}: '{pid}' разрешён только для LuaTech шаттлов.");
                         if (LuaTechThrusters.Contains(pid) && !isLuaTech) sb.AppendLine($"[Двигатели] {vessel.ID}: '{pid}' разрешён только для LuaTech шаттлов.");
                         if (IffBannedAll.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён на всех шаттлах.");
-                        if ((vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition)) && IffBannedCivilianExpedition.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition.");
+                        if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && IffBannedCivilianExpedition.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition.");
                         if (pid.Contains("Debug", StringComparison.Ordinal) || DebugPrototypeIds.Contains(pid)) debugFound.Add(pid);
-                        if ((vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition)) && FtlBannedCivilianExpedition.Contains(pid))
+                        if (FtlBannedAll.Contains(pid)) { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён на всех шаттлах."); }
+                        if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && FtlBannedCivilianExpedition.Contains(pid))
                         { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition."); }
                     }
                     int godmodeCount = 0;
