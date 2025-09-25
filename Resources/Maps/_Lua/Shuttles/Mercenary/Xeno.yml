@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/25/2025 12:49:45
-  entityCount: 1047
+  time: 09/25/2025 14:22:16
+  entityCount: 1048
 maps: []
 grids:
 - 1
@@ -1405,7 +1405,7 @@ entities:
       pos: -6.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10350.932
+      secondsUntilStateChange: -10375.234
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1435,7 +1435,7 @@ entities:
       pos: 3.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10855.531
+      secondsUntilStateChange: -10879.834
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1458,7 +1458,7 @@ entities:
       pos: -6.5,12.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13012.329
+      secondsUntilStateChange: -13036.632
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1476,7 +1476,7 @@ entities:
       pos: -1.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10841.398
+      secondsUntilStateChange: -10865.701
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1662,6 +1662,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-8.5
+      parent: 1
+- proto: AtmosDeviceFanTiny
+  entities:
+  - uid: 910
+    components:
+    - type: Transform
+      pos: 1.5,18.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
