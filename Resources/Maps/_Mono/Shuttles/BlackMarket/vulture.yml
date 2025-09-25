@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/25/2025 12:56:32
+  time: 09/25/2025 13:53:12
   entityCount: 3424
 maps: []
 grids:
@@ -14281,8 +14281,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-20.5
       parent: 1
-    - type: GasPressurePump
-      enabled: True
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -15635,7 +15633,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: MachineFTLDrive
+- proto: MachineFTLDrive600
   entities:
   - uid: 2380
     components:
