@@ -301,7 +301,6 @@
     shotsPerBurst: 136
     selectedMode: Burst
     availableModes: Burst
-    shootThermalSignature: 2000000 # ~10km while firing
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/glassing.ogg
     soundEmpty:
@@ -364,7 +363,6 @@
   - type: Gun
     fireRate: 16
     projectileSpeed: 145
-    shootThermalSignature: 500000 # ~5.6km with continuous fire
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/autopulse_laser_fire_01.ogg
     soundEmpty:
