@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/26/2025 13:49:40
-  entityCount: 2365
+  time: 09/26/2025 15:28:33
+  entityCount: 2386
 maps: []
 grids:
 - 1
@@ -2850,7 +2850,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -3902.7424
+      secondsUntilStateChange: -4196.5747
       state: Opening
   - uid: 20
     components:
@@ -4854,6 +4854,13 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-27.5
+      parent: 1
+- proto: BarSign
+  entities:
+  - uid: 2377
+    components:
+    - type: Transform
+      pos: 2.5,-31.5
       parent: 1
 - proto: Bed
   entities:
@@ -11987,6 +11994,21 @@ entities:
     - type: Transform
       pos: 3.5,-9.5
       parent: 1
+  - uid: 2366
+    components:
+    - type: Transform
+      pos: -4.5,-42.5
+      parent: 1
+  - uid: 2367
+    components:
+    - type: Transform
+      pos: 3.5,-46.5
+      parent: 1
+  - uid: 2368
+    components:
+    - type: Transform
+      pos: -4.5,-51.5
+      parent: 1
 - proto: Poweredlight
   entities:
   - uid: 1145
@@ -12587,6 +12609,105 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-48.5
+      parent: 1
+- proto: RandomDrinkBottle
+  entities:
+  - uid: 2369
+    components:
+    - type: Transform
+      pos: -4.5,-34.5
+      parent: 1
+- proto: RandomDrinkGlass
+  entities:
+  - uid: 2370
+    components:
+    - type: Transform
+      pos: -5.5,-35.5
+      parent: 1
+- proto: RandomFoodMeal
+  entities:
+  - uid: 2371
+    components:
+    - type: Transform
+      pos: 6.5,-33.5
+      parent: 1
+- proto: RandomInstruments
+  entities:
+  - uid: 2386
+    components:
+    - type: Transform
+      pos: -3.5,-32.5
+      parent: 1
+- proto: RandomPosterAny
+  entities:
+  - uid: 2378
+    components:
+    - type: Transform
+      pos: 4.5,-31.5
+      parent: 1
+  - uid: 2379
+    components:
+    - type: Transform
+      pos: -12.5,-40.5
+      parent: 1
+  - uid: 2383
+    components:
+    - type: Transform
+      pos: 5.5,-43.5
+      parent: 1
+  - uid: 2384
+    components:
+    - type: Transform
+      pos: -8.5,-45.5
+      parent: 1
+  - uid: 2385
+    components:
+    - type: Transform
+      pos: 3.5,-47.5
+      parent: 1
+- proto: RandomPosterContraband
+  entities:
+  - uid: 2381
+    components:
+    - type: Transform
+      pos: 8.5,-48.5
+      parent: 1
+  - uid: 2382
+    components:
+    - type: Transform
+      pos: 12.5,-48.5
+      parent: 1
+- proto: RandomPosterLegit
+  entities:
+  - uid: 2372
+    components:
+    - type: Transform
+      pos: -2.5,-10.5
+      parent: 1
+  - uid: 2373
+    components:
+    - type: Transform
+      pos: 6.5,-5.5
+      parent: 1
+  - uid: 2374
+    components:
+    - type: Transform
+      pos: 4.5,-8.5
+      parent: 1
+  - uid: 2375
+    components:
+    - type: Transform
+      pos: 2.5,-25.5
+      parent: 1
+  - uid: 2376
+    components:
+    - type: Transform
+      pos: 6.5,-16.5
+      parent: 1
+  - uid: 2380
+    components:
+    - type: Transform
+      pos: 17.5,-40.5
       parent: 1
 - proto: ResearchAndDevelopmentServer
   entities:
@@ -16005,6 +16126,13 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-47.5
+      parent: 1
+- proto: WaterTankFull
+  entities:
+  - uid: 2321
+    components:
+    - type: Transform
+      pos: 0.5,-48.5
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
