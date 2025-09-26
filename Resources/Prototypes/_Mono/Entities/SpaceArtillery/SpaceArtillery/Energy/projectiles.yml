@@ -154,3 +154,83 @@
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
+
+# Type 241
+
+- type: entity
+  id: ShipGlassingBeamPlasmaProjectile
+  name: plasma projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 700
+        Structural: 4000
+        Heat: 5000
+        Ion: 500
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+    layers:
+    - state: plasmashot
+    scale: 1, 11
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#FF00AA"
+    scale: 2.4
+    requireNoGrid: true
+    shape: arrow
+  - type: TimedDespawn
+    lifetime: 24
+  - type: PointLight
+    color: "#FF00AA"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 120
+    intensitySlope: 9
+    maxIntensity: 70
+    maxTileBreak: 5
+
+    # Autopulser
+
+- type: entity
+  id: ShipAutopulserPlasmaProjectile
+  name: plasma projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 600
+        Structural: 900
+        Heat: 120
+        Ion: 150
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+    layers:
+    - state: plasmashot
+    scale: 0.6, 0.6
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectPlasmaPulser
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 1
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 4.2
+  - type: PointLight
+    radarColor: "#FF0040"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 20
+    intensitySlope: 2
+    maxIntensity: 40
+    maxTileBreak: 1

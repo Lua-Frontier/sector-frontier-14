@@ -1,6 +1,9 @@
+# SPDX-FileCopyrightText: 2025 Avalon
 # SPDX-FileCopyrightText: 2025 Blu
 # SPDX-FileCopyrightText: 2025 BlueHNT
 # SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 Onezero0
 # SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 RikuTheKiller
 # SPDX-FileCopyrightText: 2025 core-mene
@@ -256,3 +259,146 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Superheavy
+
+# T241 plasma lance
+
+- type: entity
+  id: WeaponTurretType241
+  name: Type-241 plasma lance
+  parent: BallisticArtilleryUnanchorable
+  suffix: TSF ONLY, ADS ONLY
+  description: A devastating weapon, usually used for large scale fire support and strategic destruction.
+  components:
+  - type: StaticPrice
+    price: 50000
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/t241.rsi
+    layers:
+    - state: space_artillery
+    scale: 1.5, 1.5
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40800
+    startingCharge: 40800
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.75,-0.75,0.75,0.75"
+        density: 1500
+  - type: Gun
+    projectileSpeed: 70
+    fireRate: 13
+    minAngle: 0
+    maxAngle: 0
+    burstCooldown: 60
+    burstFireRate: 13
+    shotsPerBurst: 136
+    selectedMode: Burst
+    availableModes: Burst
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/Gunshots/glassing.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: BatterySelfRecharger
+    autoRechargePause: true
+    autoRechargePauseTime: 60
+    autoRecharge: true
+    autoRechargeRate: 81600
+  - type: SpaceArtillery
+    powerChargeRate: 81600
+    powerUsePassive: 25000
+    powerUseActive: 0
+  - type: Actions
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipGlassingBeamPlasmaProjectile
+    fireCost: 300
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 70000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 3
+  - type: ShipGunType
+    shipType: Energy
+  - type: ShipGunClass
+    shipClass: Superheavy
+
+    # Type 54 autopulser
+
+- type: entity
+  id: WeaponTurretType54
+  name: Type-54C plasma autopulser
+  parent: BallisticArtillery
+  suffix: TSF ONLY, ADS ONLY
+  description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
+  components:
+  - type: StaticPrice
+    price: 4000
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/t54.rsi
+    layers:
+    - state: space_artillery
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 15500
+    startingCharge: 15500
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 16
+    projectileSpeed: 145
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/Gunshots/autopulse_laser_fire_01.ogg
+    soundEmpty:
+      path: /Audio/Weapons/click.ogg
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 300
+  - type: SpaceArtillery
+    powerChargeRate: 700
+    powerUsePassive: 100
+    powerUseActive: 0
+  - type: Actions
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipAutopulserPlasmaProjectile
+    fireCost: 450
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 11500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 1.5
+  - type: ShipGunType
+    shipType: Energy
+  - type: ShipGunClass
+    shipClass: Heavy
