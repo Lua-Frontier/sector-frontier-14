@@ -447,6 +447,8 @@ public sealed partial class MapScreen : BoxContainer
         {
             case FTLState.Available:
                 return false;
+            case FTLState.Cooldown:
+                return false;
             default:
                 return true;
         }
