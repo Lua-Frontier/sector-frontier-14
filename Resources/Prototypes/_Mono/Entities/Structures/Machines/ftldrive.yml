@@ -37,7 +37,7 @@
   parent: [BaseStructureDisableToolUse, FTLDriveBase, BaseMachinePowered]
   name: CTLA-25 блюспейс двигатель
   description: FTL-двигатель, который увеличивает дальность сверхсветового перемещения корабля до ~2,5 километров.
-  suffix: FTL, Ивент или спец шаттлы
+  suffix: FTL, Ивенты
   components:
     - type: Sprite
       sprite: _Mono/Structures/ShuttleComponents/drive.rsi
@@ -50,6 +50,21 @@
         shader: unshaded
     - type: FTLDrive
       range: 2500
+    - type: BluespaceFuel
+      rangeBonus: 6100
+    - type: AmmoCounter
+    - type: ItemSlots
+      slots:
+        fuelSlot:
+          name: Bluespace Crystal
+          whitelist:
+            components: [ Stack ]
+            tags: [ BluespaceCrystal, BluespaceFuel ]
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
 
 - type: entity
   id: MachineFTLDrive600
@@ -69,5 +84,20 @@
         shader: unshaded
     - type: FTLDrive
       range: 600
+    - type: BluespaceFuel
+      rangeBonus: 3000
+    - type: AmmoCounter
+    - type: ItemSlots
+      slots:
+        fuelSlot:
+          name: Bluespace Crystal
+          whitelist:
+            components: [ Stack ]
+            tags: [ BluespaceCrystal, BluespaceFuel ]
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
     - type: ApcPowerReceiver
       powerLoad: 3500

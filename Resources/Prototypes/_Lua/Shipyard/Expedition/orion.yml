@@ -8,13 +8,22 @@
   name: MT Orion-P
   description: Научный шаттл с нестандартной компоновкой из малой серии шаттлов не горнодобывающей отрасли, характерной его компании. Наделен возможностью летать на экспедиции. Сделан под заказ.
   limit: 3
+<<<<<<< HEAD
   price: 240000 #130000*1.5= 200000
+=======
+  price: 237790
+>>>>>>> 31310f8e52e4e2d41e594bef0a006d62b1dbc3e3
   category: Large
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/orion-p.yml
   class:
   - Expedition
   - Civilian
+<<<<<<< HEAD
+=======
+  engine:
+  - Singularity
+>>>>>>> 31310f8e52e4e2d41e594bef0a006d62b1dbc3e3
   addComponents:
     - type: IFF
       color: "#ffffff"
