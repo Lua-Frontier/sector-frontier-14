@@ -389,8 +389,8 @@ public sealed partial class FireControlSystem : EntitySystem
         var grid = component.ConnectedGrid;
         if (grid != null && TryComp<FTLComponent>((EntityUid)grid, out var ftlComp))
         {
-            // Cannot fire weapons during FTL travel
-            return;
+            if ((ftlComp.State & (Content.Shared.Shuttles.Systems.FTLState.Starting | Content.Shared.Shuttles.Systems.FTLState.Travelling | Content.Shared.Shuttles.Systems.FTLState.Arriving)) != 0x0)
+                return;
         }
 
         // Block all firing if the server's grid is inside an FTL exclusion zone (no firing from within ZZ)
