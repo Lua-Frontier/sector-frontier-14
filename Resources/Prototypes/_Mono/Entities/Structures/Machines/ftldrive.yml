@@ -58,8 +58,9 @@
         fuelSlot:
           name: Bluespace Crystal
           whitelist:
-            components: [ Stack ]
-            tags: [ BluespaceCrystal, BluespaceFuel ]
+            tags:
+              - BluespaceFuel
+            requireAll: false
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
     - type: ContainerContainer
@@ -92,8 +93,9 @@
         fuelSlot:
           name: Bluespace Crystal
           whitelist:
-            components: [ Stack ]
-            tags: [ BluespaceCrystal, BluespaceFuel ]
+            tags:
+              - BluespaceFuel
+            requireAll: false
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
     - type: ContainerContainer
