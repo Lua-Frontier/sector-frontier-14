@@ -23,6 +23,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Server._Mono.Shipyard;
+using Content.Server._Mono.Ships.Systems;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Components;
 using Content.Server._NF.ShuttleRecords;
@@ -101,6 +102,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ShuttleConsoleLockSystem _shuttleConsoleLock = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly LimitedShuttleSystem _limitedShuttle = default!;
 
     private static readonly ProtoId<TagPrototype> CrewedShuttleTag = "CrewedShuttle";
     private static readonly Regex DeedRegex = new(@"\s*\([^()]*\)");
@@ -181,6 +183,53 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
+        // Keep track of whether or not a voucher was used.
+        // TODO: voucher purchase should be done in a separate function.
+        bool voucherUsed = false;
+        if (voucher is not null && vessel.NoVoucher)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-voucher-allowed"));
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+        if (voucher is not null)
+        {
+            if (voucher!.RedemptionsLeft <= 0)
+            {
+                ConsolePopup(player, Loc.GetString("shipyard-console-no-voucher-redemptions"));
+                PlayDenySound(player, shipyardConsoleUid, component);
+                if (voucher!.DestroyOnEmpty)
+                {
+                    QueueDel(targetId);
+                }
+                return;
+            }
+            else if (voucher!.ConsoleType != (ShipyardConsoleUiKey)args.UiKey)
+            {
+                ConsolePopup(player, Loc.GetString("shipyard-console-invalid-voucher-type"));
+                PlayDenySound(player, shipyardConsoleUid, component);
+                return;
+            }
+            voucher.RedemptionsLeft--;
+            voucherUsed = true;
+        }
+        else
+        {
+            if (bank.Balance <= vessel.Price)
+            {
+                ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
+                PlayDenySound(player, shipyardConsoleUid, component);
+                return;
+            }
+        }
+
+        if (!_limitedShuttle.CanPurchaseVessel(vessel))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-limited"));
+            PlayDenySound(player, shipyardConsoleUid, component);
+            return;
+        }
+
         if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
         {
             PlayDenySound(player, shipyardConsoleUid, component);
@@ -206,56 +255,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        // Keep track of whether or not a voucher was used.
-        // TODO: voucher purchase should be done in a separate function.
-        bool voucherUsed = false;
-        if (voucher is not null && vessel.NoVoucher)
+        if (!_bank.TryBankWithdraw(player, vessel.Price))
         {
-            ConsolePopup(player, Loc.GetString("shipyard-console-no-voucher-allowed"));
+            TryQueueDel(shuttleUid);
+            ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
-        if (voucher is not null)
-        {
-            if (voucher!.RedemptionsLeft <= 0)
-            {
-                TryQueueDel(shuttleUid);
-                ConsolePopup(player, Loc.GetString("shipyard-console-no-voucher-redemptions"));
-                PlayDenySound(player, shipyardConsoleUid, component);
-                if (voucher!.DestroyOnEmpty)
-                {
-                    QueueDel(targetId);
-                }
-                return;
-            }
-            else if (voucher!.ConsoleType != (ShipyardConsoleUiKey)args.UiKey)
-            {
-                TryQueueDel(shuttleUid);
-                ConsolePopup(player, Loc.GetString("shipyard-console-invalid-voucher-type"));
-                PlayDenySound(player, shipyardConsoleUid, component);
-                return;
-            }
-            voucher.RedemptionsLeft--;
-            voucherUsed = true;
-        }
-        else
-        {
-            if (bank.Balance <= vessel.Price)
-            {
-                TryQueueDel(shuttleUid);
-                ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
-                PlayDenySound(player, shipyardConsoleUid, component);
-                return;
-            }
 
-            if (!_bank.TryBankWithdraw(player, vessel.Price))
-            {
-                TryQueueDel(shuttleUid);
-                ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
-                PlayDenySound(player, shipyardConsoleUid, component);
-                return;
-            }
-        }
 
         // Add company information to the shuttle
         if (TryComp<CompanyComponent>(player, out var playerCompany) &&
