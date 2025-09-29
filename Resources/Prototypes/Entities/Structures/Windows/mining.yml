@@ -50,6 +50,9 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 100
+  - type: Construction #Lua
+    graph: MiningWindowGraph
+    node: MiningWindow
 
 - type: entity
   parent: ShuttleWindow
@@ -98,3 +101,6 @@
   - type: Damageable
     damageContainer: StructuralInorganicUltraHeavy #Lua
     damageModifierSet: StructuralMetallicStrongUltra #Lua
+  - type: Construction #Lua
+    graph: MiningWindowDiagonalGraph
+    node: MiningWindowDiagonal

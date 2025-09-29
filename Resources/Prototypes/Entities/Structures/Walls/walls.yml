@@ -782,6 +782,9 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
+  - type: Construction # Lua
+    graph: DiagonalGirder
+    node: diagonalReinforcedWall
 
 # Riveting
 - type: entity
@@ -800,7 +803,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 5000 # Lua 1000<5000
+        damage: 6000 # Lua 1000<6000
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -1115,6 +1118,9 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Construction # Lua
+    graph: DiagonalGirder
+    node: diagonalWall
 
 - type: entity
   parent: WallSolid
@@ -1360,6 +1366,9 @@
     damageContainer: StructuralInorganicUltraHeavy
     damageModifierSet: StructuralMetallicStrongUltra
   - type: Appearance
+  - type: Construction # Lua
+    graph: Girder
+    node: WallMining
 
 - type: entity
   parent: WallDiagonalBase
@@ -1403,7 +1412,9 @@
         acts: ["Destruction"]
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
-
+  - type: Construction # Lua
+    graph: Girder
+    node: WallMiningDiagonal
 
 # Vault Walls
 

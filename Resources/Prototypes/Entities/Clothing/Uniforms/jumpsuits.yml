@@ -553,9 +553,9 @@
   description: Inspired by the quartermasters of military's past, the perfect outfit for supplying a formal occasion.
   components:
     - type: Sprite
-      sprite: Clothing/Uniforms/Jumpsuit/qmformal.rsi
+      sprite: _Lua/Clothing/Uniforms/Jumpsuit/qmformal.rsi #Lua-Resprite
     - type: Clothing
-      sprite: Clothing/Uniforms/Jumpsuit/qmformal.rsi
+      sprite: _Lua/Clothing/Uniforms/Jumpsuit/qmformal.rsi #Lua-Resprite
 
 - type: entity
   parent: ClothingUniformBase # Frontier: remove BaseCommandContraband
