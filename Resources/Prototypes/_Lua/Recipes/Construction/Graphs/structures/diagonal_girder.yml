@@ -20,7 +20,7 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetSteel1
-              amount: 2
+              amount: 1
             - !type:DeleteEntity {}
           conditions:
             - !type:EntityAnchored
@@ -54,7 +54,7 @@
           completed:
             - !type:GivePrototype
               prototype: SheetSteel1
-              amount: 2
+              amount: 1
           steps:
             - tool: Welding
               doAfter: 10
@@ -68,7 +68,7 @@
               # southRotation: true # Frontier
             - !type:SpawnPrototype
               prototype: SheetPlasteel1
-              amount: 2
+              amount: 1
           conditions:
             - !type:EntityAnchored { }
           steps:
@@ -104,10 +104,6 @@
       entity: WallReinforcedDiagonal
       edges:
         - to: diagonalReinforcedGirder
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetPlasteel1
-              amount: 1
           steps:
             - tool: Cutting
               doAfter: 1
@@ -132,10 +128,6 @@
       entity: WallMiningDiagonal
       edges:
         - to: diagonalReinforcedGirder
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetPlasteel1
-              amount: 1
           steps:
             - tool: Cutting
               doAfter: 2
