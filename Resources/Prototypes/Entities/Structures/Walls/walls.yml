@@ -785,8 +785,6 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalReinforcedWall
-  - type: StaticPrice # Lua
-    price: 250
     
 # Riveting
 - type: entity
@@ -1371,8 +1369,6 @@
   - type: Construction # Lua
     graph: Girder
     node: WallMining
-  - type: StaticPrice # Lua
-    price: 250
 
 - type: entity
   parent: WallDiagonalBase
@@ -1419,8 +1415,6 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: WallMiningDiagonal
-  - type: StaticPrice # Lua
-    price: 250
     
 # Vault Walls
 
