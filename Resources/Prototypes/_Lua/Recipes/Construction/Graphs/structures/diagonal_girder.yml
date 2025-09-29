@@ -107,7 +107,7 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetPlasteel1
-              amount: 2
+              amount: 1
           steps:
             - tool: Cutting
               doAfter: 1
@@ -135,9 +135,6 @@
           completed:
             - !type:SpawnPrototype
               prototype: SheetPlasteel1
-              amount: 1
-            - !type:SpawnPrototype
-              prototype: IngotGold1
               amount: 1
           steps:
             - tool: Cutting
