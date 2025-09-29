@@ -762,10 +762,6 @@
       entity: WallMining
       edges:
         - to: girder
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetPlasteel1
-              amount: 1
           steps:
             - tool: Cutting
               doAfter: 2
