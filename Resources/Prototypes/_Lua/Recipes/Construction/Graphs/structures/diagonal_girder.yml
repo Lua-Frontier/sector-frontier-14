@@ -18,9 +18,6 @@
       edges:
         - to: start
           completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 1
             - !type:DeleteEntity {}
           conditions:
             - !type:EntityAnchored
@@ -51,10 +48,6 @@
       entity: WallSolidDiagonal
       edges:
         - to: diagonalGirder
-          completed:
-            - !type:GivePrototype
-              prototype: SheetSteel1
-              amount: 1
           steps:
             - tool: Welding
               doAfter: 10
@@ -63,12 +56,6 @@
       entity: DiagonalReinforcedGirder
       edges:
         - to: diagonalGirder
-          completed:
-            - !type:SnapToGrid {} # Frontier: use default ctor
-              # southRotation: true # Frontier
-            - !type:SpawnPrototype
-              prototype: SheetPlasteel1
-              amount: 1
           conditions:
             - !type:EntityAnchored { }
           steps:
