@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/29/2025 18:11:51
-  entityCount: 432
+  time: 09/29/2025 18:43:33
+  entityCount: 438
 maps: []
 grids:
 - 1
@@ -1027,6 +1027,16 @@ entities:
     - type: Transform
       pos: -3.5,-4.5
       parent: 1
+  - uid: 436
+    components:
+    - type: Transform
+      pos: -3.5,-3.5
+      parent: 1
+  - uid: 437
+    components:
+    - type: Transform
+      pos: 4.5,-3.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 252
@@ -1128,6 +1138,16 @@ entities:
     components:
     - type: Transform
       pos: -0.5,1.5
+      parent: 1
+  - uid: 434
+    components:
+    - type: Transform
+      pos: -3.5,-3.5
+      parent: 1
+  - uid: 435
+    components:
+    - type: Transform
+      pos: 4.5,-3.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -1878,6 +1898,18 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 1
+- proto: Paper
+  entities:
+  - uid: 438
+    components:
+    - type: Transform
+      pos: 0.58178675,-8.532309
+      parent: 1
+    - type: Paper
+      content: >-
+        Гермозатвор привязан к 1 кнопке на пульте управления шаттлом.
+
+        потребляемая мощность в простое примерно 33кВт, но при стрельбе поднимается до 57кВт.
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
   - uid: 196
@@ -1902,17 +1934,17 @@ entities:
     - type: Transform
       pos: 4.5,-5.5
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
   - uid: 202
     components:
     - type: Transform
-      pos: 4.5,-4.5
+      pos: -3.5,-3.5
       parent: 1
   - uid: 205
     components:
     - type: Transform
-      pos: -3.5,-4.5
+      pos: 4.5,-3.5
       parent: 1
 - proto: SuitStorageCadet
   entities:
@@ -2761,6 +2793,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-3.5
+      parent: 1
+- proto: WarpPoint
+  entities:
+  - uid: 433
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
       parent: 1
 - proto: WeaponTurretCyrexa
   entities:
