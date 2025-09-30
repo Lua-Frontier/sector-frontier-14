@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/29/2025 18:43:33
-  entityCount: 438
+  time: 09/30/2025 16:52:07
+  entityCount: 451
 maps: []
 grids:
 - 1
@@ -90,35 +90,89 @@ entities:
             56: -3,-6
             57: 3,-6
         - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelCornerNe
+          decals:
+            97: 2,0
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelCornerNw
+          decals:
+            96: -2,0
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelCornerSe
+          decals:
+            99: 2,-3
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelCornerSw
+          decals:
+            98: -2,-3
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelInnerNe
+          decals:
+            100: 0,0
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelInnerNw
+          decals:
+            101: 0,0
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelInnerSe
+          decals:
+            102: 0,-3
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelInnerSw
+          decals:
+            103: 0,-3
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelLineE
+          decals:
+            79: 2,-2
+            80: 2,-1
+            92: 0,-7
+            93: 0,-6
+            94: 0,-5
+            95: 0,-4
+        - node:
+            zIndex: 5
+            color: '#DE3A3A96'
+            id: BrickTileSteelLineE
+          decals:
+            76: 6,-2
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelLineN
+          decals:
+            83: -1,0
+            84: 1,0
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelLineS
+          decals:
+            85: -1,-3
+            86: 1,-3
+        - node:
+            color: '#DE3A3A96'
+            id: BrickTileSteelLineW
+          decals:
+            81: -2,-2
+            82: -2,-1
+            87: 0,-7
+            89: 0,-5
+            90: 0,-4
+            91: 0,-6
+        - node:
             color: '#334E6DC8'
             id: BrickTileWhiteBox
           decals:
             59: 0,3
             60: 0,3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteCornerNe
-          decals:
-            50: 2,0
-            51: 2,0
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteCornerNw
-          decals:
-            52: -2,0
-            53: -2,0
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteCornerSe
-          decals:
-            46: 2,-3
-            47: 2,-3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteCornerSw
-          decals:
-            48: -2,-3
-            49: -2,-3
         - node:
             color: '#334E6DC8'
             id: BrickTileWhiteEndE
@@ -137,72 +191,6 @@ entities:
           decals:
             61: 1,3
             62: 1,3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteInnerNe
-          decals:
-            44: 0,0
-            45: 0,0
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteInnerNw
-          decals:
-            42: 0,0
-            43: 0,0
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteInnerSw
-          decals:
-            40: 0,-3
-            41: 0,-3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteLineE
-          decals:
-            20: 2,-2
-            21: 2,-2
-            22: 2,-1
-            23: 2,-1
-            24: 0,-5
-            25: 0,-5
-            26: 0,-4
-            27: 0,-4
-            28: 0,-6
-            29: 0,-6
-            30: 0,-7
-            31: 0,-7
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteLineN
-          decals:
-            36: -1,0
-            37: -1,0
-            38: 1,0
-            39: 1,0
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteLineS
-          decals:
-            32: -1,-3
-            33: -1,-3
-            34: 1,-3
-            35: 1,-3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileWhiteLineW
-          decals:
-            6: -2,-2
-            7: -2,-2
-            8: -2,-1
-            9: -2,-1
-            12: 0,-7
-            13: 0,-7
-            14: 0,-6
-            15: 0,-6
-            16: 0,-5
-            17: 0,-5
-            18: 0,-4
-            19: 0,-4
         - node:
             cleanable: True
             color: '#334E6DC8'
@@ -1369,6 +1357,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,4.5
       parent: 1
+  - uid: 450
+    components:
+    - type: Transform
+      pos: -4.5,2.5
+      parent: 1
+  - uid: 451
+    components:
+    - type: Transform
+      pos: 5.5,2.5
+      parent: 1
+- proto: Chair
+  entities:
+  - uid: 447
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-0.5
+      parent: 1
 - proto: ChairPilotSeat
   entities:
   - uid: 341
@@ -1922,6 +1928,51 @@ entities:
     - type: Transform
       pos: -1.5,-5.5
       parent: 1
+- proto: Poweredlight
+  entities:
+  - uid: 19
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-2.5
+      parent: 1
+  - uid: 439
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-2.5
+      parent: 1
+  - uid: 440
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
+- proto: PoweredSmallLight
+  entities:
+  - uid: 441
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-4.5
+      parent: 1
+  - uid: 442
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-4.5
+      parent: 1
+  - uid: 443
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-8.5
+      parent: 1
+  - uid: 444
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-6.5
+      parent: 1
 - proto: SMESBasic
   entities:
   - uid: 197
@@ -1946,12 +1997,17 @@ entities:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
-- proto: SuitStorageCadet
+- proto: SuitStorageNfsdCombat
   entities:
-  - uid: 176
+  - uid: 445
     components:
     - type: Transform
-      pos: -1.5,-0.5
+      pos: 1.5,-2.5
+      parent: 1
+  - uid: 446
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
       parent: 1
 - proto: TableReinforced
   entities:
@@ -2434,6 +2490,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,6.5
       parent: 1
+  - uid: 64
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,2.5
+      parent: 1
   - uid: 139
     components:
     - type: Transform
@@ -2470,6 +2532,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-7.5
       parent: 1
+  - uid: 176
+    components:
+    - type: Transform
+      pos: -4.5,2.5
+      parent: 1
   - uid: 179
     components:
     - type: Transform
@@ -2491,6 +2558,17 @@ entities:
     components:
     - type: Transform
       pos: -5.5,1.5
+      parent: 1
+  - uid: 448
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,3.5
+      parent: 1
+  - uid: 449
+    components:
+    - type: Transform
+      pos: -2.5,3.5
       parent: 1
 - proto: WallReinforced
   entities:
@@ -2517,12 +2595,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,8.5
-      parent: 1
-  - uid: 19
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,2.5
       parent: 1
   - uid: 25
     components:
@@ -2565,12 +2637,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,8.5
-      parent: 1
-  - uid: 64
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,2.5
       parent: 1
   - uid: 67
     components:
