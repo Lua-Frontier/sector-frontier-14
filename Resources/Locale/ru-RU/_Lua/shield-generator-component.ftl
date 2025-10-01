@@ -18,6 +18,3 @@ shipevent-shieldconsole-inactive = [color=red]Неактивен[/color]
 shipevent-shieldconsole-radiuslabel = Радиус
 shipevent-shieldconsole-powerdraw = [color=yellow]Потребление: {$watts} Вт[/color]
 shipevent-shieldconsole-powerdraw-inactive = [color=gray]Потребление: 0 Вт[/color]
-
-ent-CircularShieldConsole = консоль управления щитом
-ent-CircularShieldBase = MS-225 генератор щита

@@ -22,3 +22,12 @@
     color2: 1, 1, 1
     direction: 0
   light_mode: shaded
+
+# Monolith addition
+# Cuts out everything outside of a circle
+# Anti-aliased so the edges are smooth
+# Radius is relative to target size (0.5 is a full circle)
+- type: shader
+  id: CircleAlphaMask
+  kind: source
+  path: "/Textures/_Lua/Shaders/circle_alpha_mask.swsl"

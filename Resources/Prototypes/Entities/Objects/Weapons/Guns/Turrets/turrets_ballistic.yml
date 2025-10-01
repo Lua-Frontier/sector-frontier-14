@@ -45,7 +45,8 @@
     graph: WeaponTurretSyndicateDisposable
     node: disposableTurret
   - type: Repairable
-    qualityNeeded: "Anchoring"
+    qualities:
+    - Anchoring
     doAfterDelay: 3
   - type: TriggerWhenEmpty
   - type: ExplodeOnTrigger
