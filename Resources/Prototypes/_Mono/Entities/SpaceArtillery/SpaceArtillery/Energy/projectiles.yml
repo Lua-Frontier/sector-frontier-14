@@ -301,7 +301,7 @@
 
 - type: entity
   id: ApolloExplosion
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger

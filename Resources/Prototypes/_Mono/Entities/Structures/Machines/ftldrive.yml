@@ -54,8 +54,8 @@
           enum.PowerDeviceVisualLayers.Powered:
             True: { visible: true }
             False: { visible: false }
-    # - type: Machine
-    #   board: MachineDriveCTLA25Circuitboard
+    - type: Machine
+      board: MachineDriveCTLA25Circuitboard
     - type: Construction # Mono
       graph: Machine
       node: machine
@@ -110,8 +110,8 @@
       color: "#E6173E" # beb color
       radius: 2.0
       energy: 1.5
-    # - type: Machine
-    #   board: MachineDriveCTLA50Circuitboard
+    - type: Machine
+      board: MachineDriveCTLA50Circuitboard
     - type: BluespaceFuel
       rangeBonus: 6100
 
@@ -145,7 +145,7 @@
       color: "#7E16F7" # beb color
       radius: 2.0
       energy: 1.5
-    # - type: Machine
-    #   board: MachineDriveCTLA25sCircuitboard
+    - type: Machine
+      board: MachineDriveCTLA25sCircuitboard
     - type: BluespaceFuel
       rangeBonus: 3000
