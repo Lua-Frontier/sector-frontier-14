@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/30/2025 16:52:07
+  time: 10/02/2025 00:09:54
   entityCount: 451
 maps: []
 grids:
@@ -90,55 +90,57 @@ entities:
             56: -3,-6
             57: 3,-6
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelCornerNe
+            color: '#4B653E96'
+            id: BrickCornerOverlayNE
           decals:
-            97: 2,0
+            149: 2,0
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelCornerNw
+            color: '#4B653E96'
+            id: BrickCornerOverlayNW
           decals:
-            96: -2,0
+            148: -2,0
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelCornerSe
+            color: '#4B653E96'
+            id: BrickCornerOverlaySE
           decals:
-            99: 2,-3
+            150: 2,-3
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelCornerSw
+            color: '#4B653E96'
+            id: BrickCornerOverlaySW
           decals:
-            98: -2,-3
+            151: -2,-3
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelInnerNe
+            color: '#4B653E96'
+            id: BrickLineOverlayE
           decals:
-            100: 0,0
+            152: 0,-7
+            153: 0,-6
+            154: 0,-5
+            155: 0,-4
+            166: 2,-2
+            167: 2,-1
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelInnerNw
+            color: '#4B653E96'
+            id: BrickLineOverlayN
           decals:
-            101: 0,0
+            160: -1,0
+            161: 1,0
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelInnerSe
+            color: '#4B653E96'
+            id: BrickLineOverlayS
           decals:
-            102: 0,-3
+            162: -1,-3
+            163: 1,-3
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelInnerSw
+            color: '#4B653E96'
+            id: BrickLineOverlayW
           decals:
-            103: 0,-3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelLineE
-          decals:
-            79: 2,-2
-            80: 2,-1
-            92: 0,-7
-            93: 0,-6
-            94: 0,-5
-            95: 0,-4
+            156: 0,-7
+            157: 0,-6
+            158: 0,-5
+            159: 0,-4
+            164: -2,-2
+            165: -2,-1
         - node:
             zIndex: 5
             color: '#DE3A3A96'
@@ -146,33 +148,37 @@ entities:
           decals:
             76: 6,-2
         - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelLineN
-          decals:
-            83: -1,0
-            84: 1,0
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelLineS
-          decals:
-            85: -1,-3
-            86: 1,-3
-        - node:
-            color: '#DE3A3A96'
-            id: BrickTileSteelLineW
-          decals:
-            81: -2,-2
-            82: -2,-1
-            87: 0,-7
-            89: 0,-5
-            90: 0,-4
-            91: 0,-6
-        - node:
             color: '#334E6DC8'
             id: BrickTileWhiteBox
           decals:
             59: 0,3
             60: 0,3
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteBox
+          decals:
+            193: 0,-2
+            194: 0,-2
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteCornerNe
+          decals:
+            183: 2,0
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteCornerNw
+          decals:
+            180: -2,0
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteCornerSe
+          decals:
+            181: 2,-3
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteCornerSw
+          decals:
+            182: -2,-3
         - node:
             color: '#334E6DC8'
             id: BrickTileWhiteEndE
@@ -192,6 +198,59 @@ entities:
             61: 1,3
             62: 1,3
         - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteInnerNe
+          decals:
+            190: 0,0
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteInnerNw
+          decals:
+            189: 0,0
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteInnerSe
+          decals:
+            191: 0,-3
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteInnerSw
+          decals:
+            192: 0,-3
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteLineE
+          decals:
+            168: 2,-2
+            169: 2,-1
+            170: 0,-4
+            171: 0,-5
+            172: 0,-6
+            173: 0,-7
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteLineN
+          decals:
+            187: -1,0
+            188: 1,0
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteLineS
+          decals:
+            184: -1,-3
+            185: -1,-3
+            186: 1,-3
+        - node:
+            color: '#4B653E96'
+            id: BrickTileWhiteLineW
+          decals:
+            174: 0,-7
+            175: 0,-6
+            176: 0,-5
+            177: 0,-4
+            178: -2,-2
+            179: -2,-1
+        - node:
             cleanable: True
             color: '#334E6DC8'
             id: bottle
@@ -206,6 +265,124 @@ entities:
     - type: GridAtmosphere
       version: 2
       data:
+        tiles:
+          0,0:
+            0: 13079
+            1: 32768
+          0,-1:
+            0: 30581
+          -1,0:
+            0: 34828
+            1: 12305
+          0,1:
+            0: 131
+            1: 12296
+            2: 2048
+          -1,1:
+            0: 56
+            1: 32771
+            2: 768
+          0,2:
+            2: 8611
+            1: 512
+          -1,2:
+            2: 32936
+            1: 2048
+          0,3:
+            2: 1026
+          1,0:
+            1: 12309
+            2: 98
+            0: 512
+          1,1:
+            1: 1
+            0: 18
+            2: 256
+          1,-1:
+            1: 17680
+            2: 616
+          -2,0:
+            1: 32772
+            2: 200
+            0: 2048
+          -2,-1:
+            1: 17408
+            2: 2242
+          -2,1:
+            0: 8
+          -1,-1:
+            0: 52420
+            1: 272
+          -1,3:
+            2: 1032
+          0,-3:
+            0: 4352
+            2: 49152
+          0,-2:
+            0: 56593
+            1: 12
+          1,-3:
+            2: 12288
+          1,-2:
+            1: 34945
+            0: 4352
+            2: 8196
+          -2,-2:
+            1: 8736
+            2: 4
+          -2,-3:
+            2: 32768
+          -1,-3:
+            2: 28672
+          -1,-2:
+            1: 7
+            0: 30464
+        uniqueMixes:
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.824879
+          - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
