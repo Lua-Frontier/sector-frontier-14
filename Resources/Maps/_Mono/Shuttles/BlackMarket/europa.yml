@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/25/2025 09:22:10
+  time: 10/03/2025 12:47:48
   entityCount: 1360
 maps: []
 grids:
@@ -787,11 +787,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
 - proto: AirlockHatchPirateLocked
   entities:
   - uid: 17
@@ -810,7 +808,7 @@ entities:
       pos: 4.5,8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8149.2417
+      secondsUntilStateChange: -8162.3145
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -821,7 +819,7 @@ entities:
       pos: -3.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8152.4414
+      secondsUntilStateChange: -8165.514
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -832,7 +830,7 @@ entities:
       pos: -3.5,8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8151.6416
+      secondsUntilStateChange: -8164.7144
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -843,7 +841,7 @@ entities:
       pos: -1.5,5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -6992.1094
+      secondsUntilStateChange: -7005.182
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -859,7 +857,7 @@ entities:
       pos: 3.5,5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7112.843
+      secondsUntilStateChange: -7125.9155
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -883,7 +881,7 @@ entities:
       pos: -6.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8753.774
+      secondsUntilStateChange: -8766.847
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -901,7 +899,7 @@ entities:
       pos: -1.5,11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7539.642
+      secondsUntilStateChange: -7552.715
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -919,7 +917,7 @@ entities:
       pos: 3.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -6855.643
+      secondsUntilStateChange: -6868.716
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -931,7 +929,7 @@ entities:
       pos: -3.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8170.975
+      secondsUntilStateChange: -8184.048
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5563,7 +5561,7 @@ entities:
       pos: -1.5,-9.5
       parent: 1
     - type: Battery
-      startingCharge: 400.66818
+      startingCharge: 139.33617
     - type: ApcPowerReceiver
       powerLoad: 20
     - type: ApcPowerReceiverBattery
@@ -8612,7 +8610,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -7182.2427
+      secondsUntilStateChange: -7195.3154
       state: Opening
     - type: Airlock
       autoClose: False
