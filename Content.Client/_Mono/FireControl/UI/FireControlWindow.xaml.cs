@@ -37,7 +37,7 @@ public sealed partial class FireControlWindow : FancyWindow
         SelectBallisticButton.OnPressed += SelectBallisticWeapons;
         SelectEnergyButton.OnPressed += SelectEnergyWeapons;
         SelectMissileButton.OnPressed += SelectMissileWeapons;
-        SelectMiningButton.OnPressed += SelectMiningWeapons; //Lua Addition
+        SelectMiningButton.OnPressed += SelectMiningWeapons;
     }
 
     private void SelectAllWeapons(BaseButton.ButtonEventArgs args)
@@ -129,16 +129,12 @@ public sealed partial class FireControlWindow : FancyWindow
         OnWeaponSelectionChanged?.Invoke();
     }
 
-    //Lua Addition start
     private void SelectMiningWeapons(BaseButton.ButtonEventArgs args)
     {
-        // First unselect all weapons
         foreach (var button in WeaponsList.Values)
         {
             button.Pressed = false;
         }
-
-        // Then select only mining weapons
         foreach (var kvp in WeaponsList)
         {
             var weaponEntity = kvp.Key;
@@ -152,7 +148,6 @@ public sealed partial class FireControlWindow : FancyWindow
 
         OnWeaponSelectionChanged?.Invoke();
     }
-    //Lua Addition end
 
     public void UpdateStatus(FireControlConsoleBoundInterfaceState state)
     {
@@ -176,7 +171,7 @@ public sealed partial class FireControlWindow : FancyWindow
         bool hasBallisticWeapons = false;
         bool hasEnergyWeapons = false;
         bool hasMissileWeapons = false;
-        bool hasMiningWeapons = false; //Lua Addition
+        bool hasMiningWeapons = false;
 
         foreach (var kvp in _weaponTypes)
         {
@@ -189,7 +184,7 @@ public sealed partial class FireControlWindow : FancyWindow
             else if (type == ShipGunType.Missile)
                 hasMissileWeapons = true;
             else if (type == ShipGunType.Mining)
-                hasMiningWeapons = true; //Lua Addition
+                hasMiningWeapons = true;
 
             if (hasBallisticWeapons && hasEnergyWeapons && hasMissileWeapons && hasMiningWeapons)
                 break;
@@ -198,7 +193,7 @@ public sealed partial class FireControlWindow : FancyWindow
         SelectBallisticButton.Disabled = !hasBallisticWeapons;
         SelectEnergyButton.Disabled = !hasEnergyWeapons;
         SelectMissileButton.Disabled = !hasMissileWeapons;
-        SelectMiningButton.Disabled = !hasMiningWeapons; //Lua Addition
+        SelectMiningButton.Disabled = !hasMiningWeapons;
     }
 
     private void UpdateWeaponsList(FireControlConsoleBoundInterfaceState state)

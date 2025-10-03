@@ -1,0 +1,29 @@
+- type: entity
+  name: white chocolate bar
+  parent: FoodSnackBase
+  id: FoodSnackWhiteChocolateBar
+  description: Tastes like cardboard.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chocolate
+  - type: Sprite
+    sprite: _Lua/Objects/Consumable/Food/snacks.rsi
+    state: whitechocolatebar-open
+  - type: Item
+    sprite: _Lua/Objects/Consumable/Food/snacks.rsi
+  - type: Tag
+    tags:
+      - FoodSnack
+      - ReptilianFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Butter
+          Quantity: 3
+        - ReagentId: CocoaPowder
+          Quantity: 1

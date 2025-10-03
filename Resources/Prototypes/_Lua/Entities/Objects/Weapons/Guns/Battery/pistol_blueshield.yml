@@ -40,34 +40,44 @@
   - type: Battery
     maxCharge: 750
     startingCharge: 750
-
-- type: hitscan
+    
+- type: entity
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
   id: VioletLaser # DS
-  damage:
-    types:
-      Heat: 25
-  muzzleFlash:
-    sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
-    state: muzzle_beam_violet
-  travelFlash:
-    sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
-    state: beam_violet
-  impactFlash:
-    sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
-    state: impact_beam_violet
-
-- type: hitscan
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 25
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
+      state: muzzle_beam_violet
+    travelFlash:
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
+      state: beam_violet
+    impactFlash:
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
+      state: impact_beam_violet
+    
+- type: entity
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
   id: VioletLaserShip # DS
-  damage:
-    types:
-      Structural: 65
-      Heat: 75
-  muzzleFlash:
-    sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
-    state: muzzle_beam_violet
-  travelFlash:
-    sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
-    state: beam_violet
-  impactFlash:
-    sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
-    state: impact_beam_violet
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Structural: 65
+        Heat: 75
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
+      state: muzzle_beam_violet
+    travelFlash:
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
+      state: beam_violet
+    impactFlash:
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
+      state: impact_beam_violet

@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2025 Blu
 # SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Ilya246
 # SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 RikuTheKiller
 # SPDX-FileCopyrightText: 2025 core-mene
@@ -26,7 +27,7 @@
     layers:
     - state: mini-rocket
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#FCBA03"
@@ -49,21 +50,12 @@
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 75
-    detectionRange: 300
-    scanArc: 40
-    launchSpeed: 60
-    maxSpeed: 150
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 100 # Lua
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
+    acceleration: 300
+    detectionRange: 500
+    scanArc: 35
+    launchSpeed: 150
+    maxSpeed: 180
+    trackDelay: 0.1
 
 # ASM-302
 
@@ -84,7 +76,7 @@
     layers:
     - state: frag
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#FCBA03"
@@ -107,12 +99,12 @@
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 100
-    detectionRange: 450
-    scanArc: 70
+    acceleration: 200
+    detectionRange: 600
+    scanArc: 40
     launchSpeed: 90
     maxSpeed: 210
-    trackDelay: 0.7
+    trackDelay: 0.2
 
 # ASM-501
 
@@ -156,12 +148,12 @@
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 25
-    detectionRange: 300
-    scanArc: 50
+    acceleration: 50
+    detectionRange: 600
+    scanArc: 30
     launchSpeed: 25
     maxSpeed: 30
-    trackDelay: 4
+    trackDelay: 2
 
 # TOVEK
 
@@ -174,15 +166,15 @@
   - type: Projectile
     damage:
       types:
-        #Structural: 7500
-        Heat: 150
+        Structural: 7500
+        Heat: 30
         Ion: 2500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/hybrid_missile.rsi
     layers:
     - state: hybrid-missile
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#FB00FF"
@@ -199,20 +191,20 @@
     range: 5
     energyConsumption: 2700000
     disableDuration: 5
- # - type: ExplodeOnTrigger
- # - type: Explosive
- #   explosionType: DefaultShipGun
- #   totalIntensity: 100
- #   intensitySlope: 10
- #   maxIntensity: 50
- #   maxTileBreak: 1
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 100
+    intensitySlope: 10
+    maxIntensity: 50
+    maxTileBreak: 1
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
   - type: TargetSeeking
-    acceleration: 40
-    detectionRange: 450
-    scanArc: 80
+    acceleration: 200
+    detectionRange: 600
+    scanArc: 45
     launchSpeed: 50
     maxSpeed: 125
-    trackDelay: 1.2
+    trackDelay: 0.6

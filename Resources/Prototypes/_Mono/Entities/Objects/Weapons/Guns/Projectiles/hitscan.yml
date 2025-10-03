@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2025 Avalon
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
+- type: entity
+  id: PulsedPlasma
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 95
+        Blunt: 5
+        Shock: 10
+        Radiation: 65
+        Structural: 700
+  - type: HitscanBasicRaycast
+    maxDistance: 120.0
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
+      state: muzzle_beam_light_pulse
+    travelFlash:
+      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
+      state: beam_light_pulse
+    impactFlash:
+      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
+      state: impact_beam_light_pulse
+
