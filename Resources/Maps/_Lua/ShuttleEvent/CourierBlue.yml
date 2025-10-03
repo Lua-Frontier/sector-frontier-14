@@ -133,7 +133,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 30
     components:
     - type: MetaData
@@ -146,7 +145,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 106
     components:
     - type: MetaData
@@ -159,7 +157,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
 - proto: AirlockShuttle
   entities:
   - uid: 53
@@ -457,7 +454,6 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
-    - type: CircularShield
       width: 6.283185307179586 rad
     - type: Fixtures
       fixtures:

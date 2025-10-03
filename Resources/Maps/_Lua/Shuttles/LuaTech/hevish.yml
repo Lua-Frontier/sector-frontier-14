@@ -1586,7 +1586,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 1094
     components:
     - type: MetaData
@@ -1599,7 +1598,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 3368
     components:
     - type: MetaData
@@ -1612,7 +1610,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#A200FFFF'
-    - type: CircularShieldRadar
   - uid: 4484
     components:
     - type: MetaData
@@ -1625,7 +1622,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 4486
     components:
     - type: MetaData
@@ -1638,7 +1634,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 4847
     components:
     - type: MetaData
@@ -1651,7 +1646,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#A200FFFF'
-    - type: CircularShieldRadar
 - proto: AirAlarm
   entities:
   - uid: 4235
@@ -12747,7 +12741,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,6.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 2510
     components:
@@ -14657,7 +14651,6 @@ entities:
     - type: Transform
       pos: 0.5,16.5
       parent: 1
-    - type: CircularShield
       width: 6.283185307179586 rad
     - type: Fixtures
       fixtures:

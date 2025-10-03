@@ -130,17 +130,3 @@
   technologyPrerequisites:
   - ShuttleGrenadeEMP
   position: 4, 46
-
-- type: technology
-  id: ShuttleShields
-  name: research-technology-shields
-  entityIcon: CircularShieldBase
-  discipline: Shiparmory
-  tier: 3
-  cost: 12600
-  recipeUnlocks:
-  - MachineShieldMS225Circuitboard
-  - ShieldControlComputerCircuitboard
-  technologyPrerequisites:
-  - ShuttleGunDuster
-  position: 4, 47

@@ -405,7 +405,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 163
     components:
     - type: MetaData
@@ -418,7 +417,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 226
     components:
     - type: MetaData
@@ -431,7 +429,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
 - proto: AirAlarm
   entities:
   - uid: 4
@@ -1327,7 +1324,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,0.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 174
     components:
@@ -1595,7 +1592,6 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-    - type: CircularShield
       width: 6.283185307179586 rad
     - type: Fixtures
       fixtures:

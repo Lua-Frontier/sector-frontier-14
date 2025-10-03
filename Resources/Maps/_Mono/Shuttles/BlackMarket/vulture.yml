@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 07:31:16
+  time: 10/02/2025 17:15:56
   entityCount: 3459
 maps: []
 grids:
@@ -1768,11 +1768,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 3
     components:
     - type: MetaData
@@ -1781,11 +1779,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 4
     components:
     - type: MetaData
@@ -1794,11 +1790,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 5
     components:
     - type: MetaData
@@ -1807,11 +1801,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 6
     components:
     - type: MetaData
@@ -1820,11 +1812,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 7
     components:
     - type: MetaData
@@ -1833,11 +1823,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 8
     components:
     - type: MetaData
@@ -1846,11 +1834,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 9
     components:
     - type: MetaData
@@ -1859,11 +1845,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 10
     components:
     - type: MetaData
@@ -1872,11 +1856,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 11
     components:
     - type: MetaData
@@ -1885,11 +1867,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 12
     components:
     - type: MetaData
@@ -1898,11 +1878,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 13
     components:
     - type: MetaData
@@ -1911,11 +1889,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
   - uid: 1897
     components:
     - type: MetaData
@@ -1924,11 +1900,9 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
 - proto: ActionToggleInternals
   entities:
   - uid: 16
@@ -2229,7 +2203,7 @@ entities:
   - uid: 70
     components:
     - type: Transform
-      pos: 3.2057648,-9.194759
+      pos: 4.353058,-8.698559
       parent: 1
   - uid: 71
     components:
@@ -10293,7 +10267,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,23.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 1596
     components:
@@ -15967,7 +15941,7 @@ entities:
   - uid: 2448
     components:
     - type: Transform
-      pos: 13.760707,-4.32876
+      pos: 12.5429535,-4.046693
       parent: 1
   - uid: 2449
     components:
@@ -15989,12 +15963,12 @@ entities:
   - uid: 2452
     components:
     - type: Transform
-      pos: 12.276332,-2.2193851
+      pos: 11.905228,-3.4130244
       parent: 1
   - uid: 2453
     components:
     - type: Transform
-      pos: 12.698207,-2.2037601
+      pos: 13.037079,-3.4069495
       parent: 1
 - proto: NFHolopadShipAntag
   entities:
@@ -23423,12 +23397,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,8.5
       parent: 1
+    missingComponents:
+    - ShipGunClass
   - uid: 3504
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,8.5
       parent: 1
+    missingComponents:
+    - ShipGunClass
 - proto: WeaponTurretKargil
   entities:
   - uid: 3506
@@ -23437,10 +23415,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 14.5,28.5
       parent: 1
+    missingComponents:
+    - ShipGunClass
   - uid: 3507
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,28.5
       parent: 1
+    missingComponents:
+    - ShipGunClass
 ...

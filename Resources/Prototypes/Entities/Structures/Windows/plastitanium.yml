@@ -116,7 +116,7 @@
         acts: [ "Destruction" ]
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 200
+    damageDivisor: 20
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
@@ -218,7 +218,7 @@
         acts: [ "Destruction" ]
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 200 #Lua
+    damageDivisor: 20
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi
