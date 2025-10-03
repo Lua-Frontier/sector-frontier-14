@@ -2,20 +2,15 @@
   parent: BaseVessel
   id: MercXeno
   name: MC Xeno
-<<<<<<< HEAD:Resources/Prototypes/_Lua/Shipyard/Mercenary/Xeno.yml
   description: "Шаттл с тяжелыми артиллерийскими пушками и радаром. Для большой охоты."
   price: 255000
-=======
-  description: "Лучший ночлег и хищник Наёмника ценящий своё превосходство не жалея денег."
-  price: 168964 # 2000 above min
->>>>>>> 64ae4758ba4565a7c7c6e5d966741e99845f0526:Resources/Prototypes/_Lua/Shipyard/Mercenary/merc_xeno.yml
   category: Large
   group: Mercenary
   access: Mercenary
   class:
   - Mercenary
   engine:
-  - Singularity
+  - AME
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Xeno.yml
   addComponents:
     - type: IFF
