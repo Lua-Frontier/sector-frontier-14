@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 ark1368
+// SPDX-FileCopyrightText: 2025 starch
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 // Copyright Rane (elijahrane@gmail.com) 2025
 // All rights reserved. Relicensed under AGPL with permission
 
@@ -25,23 +31,13 @@ public sealed partial class FireControllableComponent : Component
     /// </summary>
     [DataField]
     public float FireCooldown = 0.2f;
-	//Lua start:
-    /// <summary>
-    /// Max allowed angle (in degrees) between weapon's forward and target direction to allow AI fire.
-    /// Only used by AI firing helper; player console fire is unaffected.
-    /// </summary>
+
+    //Lua start
     [DataField]
     public float FireArcDegrees = 180f;
-
-    /// <summary>
-    /// If true, also allow AI fire when target is within this arc relative to the grid's nose.
-    /// </summary>
     [DataField]
     public bool UseGridNoseArc = true;
-
-    /// <summary>
-    /// Max allowed angle (in degrees) from grid nose to target to allow AI fire.
-    /// </summary>
     [DataField]
-    public float GridNoseArcDegrees = 75f;//Lua end
+    public float GridNoseArcDegrees = 75f;
+    //Lua end
 }

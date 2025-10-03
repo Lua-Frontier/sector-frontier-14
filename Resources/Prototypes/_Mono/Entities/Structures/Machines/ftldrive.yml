@@ -1,7 +1,16 @@
+# SPDX-FileCopyrightText: 2025 Ark
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 gus
+# SPDX-FileCopyrightText: 2025 sleepyyapril
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: entity
-  id: FTLDriveBase
-  parent: [BaseStructureDisableToolUse, BaseMachinePowered]
-  abstract: true
+  id: MachineFTLDrive
+  parent: BaseMachinePowered
+  name: CTLA-25 bluespace drive
+  description: A FTL drive that extends a ship's FTL range to ~5 kilometers. Does not stack.
   placement:
     mode: SnapgridCenter
   components:
@@ -9,6 +18,20 @@
       anchored: true
     - type: Physics
       bodyType: Static
+    - type: Sprite
+      sprite: _Mono/Structures/ShuttleComponents/drive.rsi
+      snapCardinals: true
+      layers:
+      - state: control
+      - state: control_on
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        visible: false
+        shader: unshaded
+        color: "#349BEB"
+    - type: FTLDrive
+      range: 5000
+      thermalSignature: 2000000 # ~2828m range
+    - type: ThermalSignature
     - type: ApcPowerReceiver
       powerLoad: 2000
     - type: PointLight
@@ -31,25 +54,21 @@
           enum.PowerDeviceVisualLayers.Powered:
             True: { visible: true }
             False: { visible: false }
-
-- type: entity
-  id: MachineFTLDrive
-  parent: [BaseStructureDisableToolUse, FTLDriveBase, BaseMachinePowered]
-  name: CTLA-25 блюспейс двигатель
-  description: FTL-двигатель, который увеличивает дальность сверхсветового перемещения корабля до ~2,5 километров.
-  suffix: FTL, Ивенты
-  components:
-    - type: Sprite
-      sprite: _Mono/Structures/ShuttleComponents/drive.rsi
-      snapCardinals: true
-      layers:
-      - state: control
-      - state: control_on
-        map: ["enum.PowerDeviceVisualLayers.Powered"]
-        visible: false
-        shader: unshaded
-    - type: FTLDrive
-      range: 2500
+    - type: Machine
+      board: MachineDriveCTLA25Circuitboard
+    - type: Construction # Mono
+      graph: Machine
+      node: machine
+      containers:
+      - machine_board
+      - machine_parts
+    - type: ContainerContainer # Mono
+      containers:
+        fuelSlot: !type:ContainerSlot
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: PirateBountyItem
+      id: FTLDrive
     - type: BluespaceFuel
       rangeBonus: 6100
     - type: AmmoCounter
@@ -63,43 +82,70 @@
             requireAll: false
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-    - type: ContainerContainer
-      containers:
-        fuelSlot: !type:ContainerSlot
 
 - type: entity
-  id: MachineFTLDrive600
-  parent: [BaseStructureDisableToolUse, FTLDriveBase, BaseMachinePowered]
-  name: FSS-600 блюспейс двигатель
-  description: FTL-двигатель, который увеличивает дальность сверхсветового перемещения корабля до 600 метров, популярный FTL двигатель среди авантюристов.
-  suffix: FTL
+  parent: MachineFTLDrive
+  id: MachineFTLDrive50
+  name: CTLA-50 bluespace drive
+  description: A FTL drive that extends a ship's FTL range to ~10 kilometers. Does not stack.
   components:
     - type: Sprite
       sprite: _Mono/Structures/ShuttleComponents/drive.rsi
       snapCardinals: true
       layers:
-      - state: control600
+      - state: control
       - state: control_on
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false
         shader: unshaded
+      color: "#E6173E"
     - type: FTLDrive
-      range: 600
+      range: 10000
+      thermalSignature: 4000000 # ~4000m range
+    - type: ThermalSignature
+    - type: ApcPowerReceiver
+      powerLoad: 4000
+    - type: PointLight
+      enabled: false
+      color: "#E6173E" # beb color
+      radius: 2.0
+      energy: 1.5
+    - type: Machine
+      board: MachineDriveCTLA50Circuitboard
+    - type: BluespaceFuel
+      rangeBonus: 6100
+
+- type: entity
+  parent: MachineFTLDrive
+  id: MachineFTLDrive25S
+  name: CTLA-25s bluespace drive
+  description: An advanced FTL drive that extends a ship's FTL range to ~5 kilometers, but with upgrades to allow for faster recharge and flight times. Does not stack.
+  components:
+    - type: Sprite
+      sprite: _Mono/Structures/ShuttleComponents/drive.rsi
+      snapCardinals: true
+      layers:
+      - state: control
+      - state: control_on
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        visible: false
+        shader: unshaded
+      color: "#7E16F7"
+    - type: FTLDrive
+      range: 5000
+      cooldown: 7.5
+      hyperSpaceTime: 15
+      startupTime: 4.2
+      thermalSignature: 4000000 # ~4000m range but for smaller ships it might not have time to get to full heat signature
+    - type: ThermalSignature
+    - type: ApcPowerReceiver
+      powerLoad: 4000
+    - type: PointLight
+      enabled: false
+      color: "#7E16F7" # beb color
+      radius: 2.0
+      energy: 1.5
+    - type: Machine
+      board: MachineDriveCTLA25sCircuitboard
     - type: BluespaceFuel
       rangeBonus: 3000
-    - type: AmmoCounter
-    - type: ItemSlots
-      slots:
-        fuelSlot:
-          name: Bluespace Crystal
-          whitelist:
-            tags:
-              - BluespaceFuel
-            requireAll: false
-          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-    - type: ContainerContainer
-      containers:
-        fuelSlot: !type:ContainerSlot
-    - type: ApcPowerReceiver
-      powerLoad: 3500

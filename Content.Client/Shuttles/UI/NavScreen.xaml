@@ -2,7 +2,8 @@
               HorizontalExpand="True"
               xmlns:controls="https://spacestation14.io"
               xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
-              xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls">
+              xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
+              xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
                 <ui:ShuttleNavControl Name="NavRadar"
                                  MouseFilter="Stop"
                                  VerticalAlignment="Stretch"
@@ -189,60 +190,78 @@
                     </controls:BoxContainer>
                     <!-- End Frontier - Service Flags -->
                     <!-- Network Port Buttons -->
-                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                        <controls1:StripeBack
-                            MinSize="48 48"
-                            Margin="0 5 0 0">
-                            <controls:Label Text="{controls:Loc 'shuttle-console-network-ports'}"
-                                   VerticalExpand="False"
-                                   HorizontalAlignment="Center"/>
-                        </controls1:StripeBack>
-
-                        <controls:PanelContainer>
-                            <controls:ScrollContainer
-                                HorizontalExpand="True"
-                                MinHeight="150"
-                                MaxHeight="150">
-                                <controls:BoxContainer Orientation="Vertical"
-                                             HorizontalExpand="True"
-                                             Name="NetworkPortsBox">
-                                    <controls:Button Name="DeviceButton1"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-1'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton2"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-2'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton3"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-3'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton4"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-4'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton5"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-5'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton6"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-6'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton7"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-7'}"
-                                                     TextAlign="Center"
-                                                     Margin="0 2 0 2"/>
-                                    <controls:Button Name="DeviceButton8"
-                                                     Text="{controls:Loc 'shuttle-console-device-button-8'}"
-                                                     TextAlign="Center"
-                                                     ToolTip="{controls:Loc 'shuttle-console-network-connect-tooltip'}"
-                                                     Margin="0 2 0 2"/>
-                                </controls:BoxContainer>
-                            </controls:ScrollContainer>
-                        </controls:PanelContainer>
-                    </controls:BoxContainer>
+                    <controls:PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4 4 4">
+                        <controls:PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#333333" BackgroundColor="#181818"/>
+                        </controls:PanelContainer.PanelOverride>
+                        <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                            <controls:PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="2 2 2 6">
+                                <controls:PanelContainer.PanelOverride>
+                                    <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#333333" BackgroundColor="#050505"/>
+                                </controls:PanelContainer.PanelOverride>
+                                <controls:Label Text="{controls:Loc 'shuttle-console-network-ports'}"
+                                       FontColorOverride="#00ff2a"
+                                       VerticalExpand="False"
+                                       HorizontalAlignment="Center"/>
+                            </controls:PanelContainer>
+                            <controls:PanelContainer Margin="1">
+                                <controls:ScrollContainer
+                                    HorizontalExpand="False"
+                                    MinHeight="80"
+                                    MaxHeight="80">
+                                    <controls:GridContainer
+                                                 Columns="8"
+                                                 Rows="2"
+                                                 HorizontalExpand="False"
+                                                 HorizontalAlignment="Center"
+                                                 Name="NetworkPortsBox"
+                                                 Margin="0 6 0 6">
+                                        <controls:Button Name="DeviceButton1"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-1'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton2"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-2'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton3"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-3'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton4"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-4'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton5"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-5'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton6"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-6'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton7"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-7'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         SetWidth="55"/>
+                                        <controls:Button Name="DeviceButton8"
+                                                         Text="{controls:Loc 'shuttle-console-device-button-8'}"
+                                                         TextAlign="Center"
+                                                         StyleClasses="ButtonSquare"
+                                                         ToolTip="{controls:Loc 'shuttle-console-network-connect-tooltip'}"
+                                                         SetWidth="55"/>
+                                    </controls:GridContainer>
+                                </controls:ScrollContainer>
+                            </controls:PanelContainer>
+                        </controls:BoxContainer>
+                    </controls:PanelContainer>
                     <!-- End Network Port Buttons -->
                     </controls:BoxContainer>
                 </controls:BoxContainer>

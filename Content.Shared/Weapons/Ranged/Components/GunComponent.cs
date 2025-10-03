@@ -236,6 +236,12 @@ public sealed partial class GunComponent : Component
     [DataField]
     [AutoNetworkedField]
     public SelectiveFire AvailableModes = SelectiveFire.SemiAuto;
+    // Mono
+    /// <summary>
+    /// If we have a <see cref="ThermalSignatureComponent">, how much heat to generate per shot.
+    /// </summary>
+    [DataField]
+    public float ShootThermalSignature = 0f;
 
     /// <summary>
     /// What firemode is currently selected.
