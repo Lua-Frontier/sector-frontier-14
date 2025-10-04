@@ -17,6 +17,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 
@@ -146,7 +147,7 @@ public sealed partial class FireControlSystem : EntitySystem
         ActivatableUIOpenAttemptEvent args)
     {
         var grid = Transform(uid).GridUid;
-        var uiOpen = grid != null && _crewedShuttle.AnyShuttleConsoleActiveOnGridByPlayer(grid.Value, args.User);
+        var uiOpen = grid != null && _crewedShuttle.AnyShuttleConsoleActiveOnGridByPlayer(grid.Value, args.User) && !HasComp<StationAiHeldComponent>(args.User);
 
         if (uiOpen)
         {

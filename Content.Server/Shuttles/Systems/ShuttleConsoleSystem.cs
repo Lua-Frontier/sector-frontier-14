@@ -51,7 +51,8 @@ using Content.Shared._Mono.Ships.Components;
 using Content.Shared.Verbs;
 using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Timing;// Lua add timer panic button
-using Content.Shared.Lua.CLVar; // Lua
+using Content.Shared.Lua.CLVar;
+using Content.Shared.Silicons.StationAi; // Lua
 using Robust.Shared.Configuration; // Lua
 
 namespace Content.Server.Shuttles.Systems;
@@ -214,7 +215,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         ActivatableUIOpenAttemptEvent args)
     {
         var grid = Transform(uid).GridUid;
-        var uiOpen = grid != null && _crewedShuttle.AnyGunneryConsoleActiveOnGridByPlayer(grid.Value, args.User);
+        var uiOpen = grid != null && _crewedShuttle.AnyGunneryConsoleActiveOnGridByPlayer(grid.Value, args.User) && !HasComp<StationAiHeldComponent>(args.User);
 
         if (uiOpen)
         {
