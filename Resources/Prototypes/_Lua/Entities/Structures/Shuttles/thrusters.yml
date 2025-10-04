@@ -38,7 +38,7 @@
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
   - type: Sprite
-    sprite: _Lua/Structures/Thrusters/thrusterpirates.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -46,11 +46,13 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
+      color: "#C4511C"
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
+      color: "#C4511C"
   - type: RadarBlip # Mono
     radarColor: "#99FF99"
     scale: 0.3
@@ -66,7 +68,21 @@
   - type: Machine
     board: ThrusterLuaMachineCircuitboard
   - type: Sprite
-    sprite: _Lua/Structures/Thrusters/thrusterlua.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi
+    layers:
+    - state: base_luatech
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_luatech
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#7653BA"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#7653BA"
   - type: Thruster
     damage:
       types:
@@ -105,7 +121,21 @@
   suffix: Синдикат
   components:
   - type: Sprite
-    sprite: _Lua/Structures/Thrusters/thrustersyn.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#C44D57"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#C44D57"
   - type: Thruster
     damage:
       types:

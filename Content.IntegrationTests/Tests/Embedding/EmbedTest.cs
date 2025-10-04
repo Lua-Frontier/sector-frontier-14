@@ -48,7 +48,7 @@ public sealed class EmbedTest : InteractionTest
 
         // Disconnect the client
         var cNetMgr = Client.ResolveDependency<IClientNetManager>();
-        await Client.WaitPost(Client.EntMan.FlushEntities);
+        await Client.WaitPost(() => cNetMgr.ClientDisconnect("Test disconnect while embedded"));
         await Pair.RunTicksSync(1);
     }
 

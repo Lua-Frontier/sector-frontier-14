@@ -2,16 +2,16 @@
   parent: BaseVessel
   id: MercXeno
   name: MC Xeno
-  description: "Лучший ночлег и хищник Наёмника ценящий своё превосходство не жалея денег."
-  price: 168964 # 2000 above min
+  description: "Шаттл с тяжелыми артиллерийскими пушками и радаром. Для большой охоты."
+  price: 255000
   category: Large
   group: Mercenary
   access: Mercenary
   class:
   - Mercenary
   engine:
-  - Singularity
-  shuttlePath: /Maps/_Lua/Shuttles/Mercenary/merc_xeno.yml
+  - AME
+  shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Xeno.yml
   addComponents:
     - type: IFF
       color: "#182faf"
@@ -22,7 +22,7 @@
 - type: gameMap
   id: MercXeno
   mapName: 'NMXeno'
-  mapPath: /Maps/_Lua/Shuttles/Mercenary/merc_xeno.yml
+  mapPath: /Maps/_Lua/Shuttles/Mercenary/Xeno.yml
   minPlayers: 0
   stations:
     MercXeno:
