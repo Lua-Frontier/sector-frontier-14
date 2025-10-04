@@ -27,7 +27,7 @@
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false
         shader: unshaded
-        color: "#349BEB"
+        color: "#50dada"
     - type: FTLDrive
       range: 5000
       thermalSignature: 2000000 # ~2828m range
@@ -36,7 +36,7 @@
       powerLoad: 2000
     - type: PointLight
       enabled: false
-      color: "#349BEB" # beb color
+      color: "#50dada" # beb color
       radius: 2.0
       energy: 1.5
     - type: LitOnPowered
@@ -98,7 +98,7 @@
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false
         shader: unshaded
-      color: "#E6173E"
+      color: "#ec2d3d"
     - type: FTLDrive
       range: 10000
       thermalSignature: 4000000 # ~4000m range
@@ -107,7 +107,7 @@
       powerLoad: 4000
     - type: PointLight
       enabled: false
-      color: "#E6173E" # beb color
+      color: "#ec2d3d" # beb color
       radius: 2.0
       energy: 1.5
     - type: Machine
@@ -130,7 +130,7 @@
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false
         shader: unshaded
-      color: "#7E16F7"
+      color: "#f8b043"
     - type: FTLDrive
       range: 5000
       cooldown: 7.5
@@ -142,7 +142,7 @@
       powerLoad: 4000
     - type: PointLight
       enabled: false
-      color: "#7E16F7" # beb color
+      color: "#f8b043" # beb color
       radius: 2.0
       energy: 1.5
     - type: Machine
