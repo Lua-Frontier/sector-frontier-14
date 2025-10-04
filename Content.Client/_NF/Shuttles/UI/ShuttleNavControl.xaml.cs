@@ -20,7 +20,7 @@ using Content.Client.Station;
 // Purposefully colliding with base namespace.
 namespace Content.Client.Shuttles.UI;
 
-public sealed partial class ShuttleNavControl
+public partial class ShuttleNavControl // Mono
 {
     // Dependency
     private readonly StationSystem _station;
@@ -28,7 +28,6 @@ public sealed partial class ShuttleNavControl
 
     // Constants for gunnery system
     // These 2 handle timing updates
-    private const float FireRateLimit = 0.1f; // 100ms between shots
     private static readonly Color TargetColor = Color.FromHex("#99ff66");
 
     #region Mono
@@ -43,10 +42,11 @@ public sealed partial class ShuttleNavControl
     public bool InFtl { get; set; }
     #endregion
 
-    private bool _isMouseDown;
-    private bool _isMouseInside;
-    private Vector2 _lastMousePos;
-    private float _lastFireTime;
+    protected bool _isMouseDown;
+    protected bool _isMouseInside;
+    protected Vector2 _lastMousePos;
+    protected float _lastFireTime;
+    protected const float FireRateLimit = 0.1f; // 100ms between shots
 
     // Constants for IFF system
     public float MaximumIFFDistance { get; set; } = -1f;
@@ -74,7 +74,7 @@ public sealed partial class ShuttleNavControl
 
         if (!EntManager.GetCoordinates(state.Coordinates).HasValue ||
             !EntManager.TryGetComponent(EntManager.GetCoordinates(state.Coordinates).GetValueOrDefault().EntityId, out TransformComponent? transform) ||
-            !EntManager.HasComponent<PhysicsComponent>(transform.GridUid))
+                !EntManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent))
         {
             return;
         }
@@ -112,9 +112,6 @@ public sealed partial class ShuttleNavControl
         return shouldDrawIff;
     }
 
-    /// <summary>
-    /// Adds a blip to the blip data list for later drawing.
-    /// </summary>
     private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color)
     {
         blipDataList.Add(new BlipData
@@ -123,6 +120,35 @@ public sealed partial class ShuttleNavControl
             UiPosition = uiPosition,
             VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
             Color = color
+        });
+    }
+
+
+    /// <summary>
+    /// Adds a blip to the blip data list for later drawing.
+    /// </summary>
+    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color, EntityUid gridUid = default)
+    {
+        // Check if the entity has a company component and use that color if available
+        Color blipColor = color;
+
+        if (gridUid != default &&
+            IoCManager.Resolve<IEntityManager>().TryGetComponent(gridUid, out Shared._Mono.Company.CompanyComponent? companyComp) &&
+            !string.IsNullOrEmpty(companyComp.CompanyName))
+        {
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            if (prototypeManager.TryIndex<CompanyPrototype>(companyComp.CompanyName, out var prototype) && prototype != null)
+            {
+                blipColor = prototype.Color;
+            }
+        }
+
+        blipDataList.Add(new BlipData
+        {
+            IsOutsideRadarCircle = isOutsideRadarCircle,
+            UiPosition = uiPosition,
+            VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
+            Color = blipColor
         });
     }
 
@@ -308,7 +334,6 @@ public sealed partial class ShuttleNavControl
             case RadarBlipShape.Arrow:
                 DrawArrow(handle, position, size, color);
                 break;
-                // Ring shapes are handled by DrawShieldRing for constant thickness
         }
     }
 

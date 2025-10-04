@@ -1437,3 +1437,241 @@ Entries:
   id: 106
   time: '2025-09-22T16:03:20.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/232
+- author: fox76055
+  changes:
+    - type: Add
+      message: корабль CLS-Mammoth
+    - type: Add
+      message: корабль CLS-Hermes
+    - type: Add
+      message: корабль CLS-Devastator
+  id: 107
+  time: '2025-09-23T14:21:36.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/207
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Локализованы существующие и добавлены новые описания для шаттлов СБ и
+        пиратов
+  id: 108
+  time: '2025-09-23T14:51:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/235
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Ремап Мельнира: категория изменена на медиум, возвращена старая
+        комбинация пушек (6 АК570, 4 Тесла-турели)
+    - type: Add
+      message: Добавлен Orion и Yunk
+  id: 109
+  time: '2025-09-23T15:16:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/236
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        На Бароне 203мм пушки были заменены на 220мм в соответствии с новыми
+        нормами курсового вооружения
+  id: 110
+  time: '2025-09-23T15:18:59.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/237
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Курсовое вооружение на Восходе изменено под новый стандарт
+  id: 111
+  time: '2025-09-23T16:52:25.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/238
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Курсовое вооружение на Стриже изменено под новый стандарт
+  id: 112
+  time: '2025-09-23T16:52:50.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/239
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлено блюспейс топливо в топлимат для БСС двигателя
+    - type: Tweak
+      message: >-
+        БСС двигатели теперь можно заправлять блюспейс кристаллами или блюспейс
+        топливом для прыжка свыше 600м
+    - type: Tweak
+      message: БСС невозможен если что-то находится рядом в радиусе 200 метров
+    - type: Tweak
+      message: Теперь перезарядка БСС 5 минут
+    - type: Tweak
+      message: Убрана кнопка сканирования объектов, все объекты будут отображены сразу
+    - type: Fix
+      message: >-
+        Внесены правки которые не позволяли совершить бсс по неизвестной причине
+        а так же перемещали не в то местоположение 
+  id: 113
+  time: '2025-09-24T14:36:40.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/246
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена проверка на максимальную цену
+    - type: Add
+      message: Добавлена проверка на наличие ивентового FTL 2.5
+    - type: Add
+      message: Добавлена проверка на наличие класса судна
+    - type: Add
+      message: Добавлена проверка на наличие типа питания корабля
+    - type: Fix
+      message: Астероиды больше не исчезнут во время добычи газов на них
+    - type: Fix
+      message: На торговом аванпосте консоли +25 заменены на +0
+  id: 114
+  time: '2025-09-25T02:45:18.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/243
+- author: fox76055
+  changes:
+    - type: Remove
+      message: Удалены сервера мониторинга с Concord-Wyvern и с Concord-Aeon
+    - type: Tweak
+      message: Изменены цены на LaserBeam и Laqeramaline (Цена x 1.15)
+    - type: Fix
+      message: Теперь покупка Concord-Wyvern и Concord-Aeon не ломают мониторинг.
+    - type: Add
+      message: >-
+        теперь все корабли CLS, Concord, ML имеют классы и тип генератора в
+        консоли верфи.
+    - type: Add
+      message: теперь LaserBeam и Laqeramaline имеют лимит. 3 и 2.
+  id: 115
+  time: '2025-09-25T04:15:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/242
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Новый пиратский шаттл класса Large - Mercury (от Covral)
+  id: 116
+  time: '2025-09-25T05:01:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/241
+- author: PyotrIgn
+  changes:
+    - type: Add
+      message: Добавлены стены для ивента
+    - type: Add
+      message: Добавлена диагональная клёпаная стена
+    - type: Add
+      message: Добавлены каркасы для диагональных стен
+    - type: Add
+      message: Добавлен крафт и разбор диагональных обычной и укреплённой стен
+    - type: Add
+      message: Добавлен крафт и разбор шахтёрских стен и окон
+    - type: Add
+      message: Добавлен шкафчик Синдиката для Нордфолла
+    - type: Add
+      message: >-
+        Добавлен белый шоколад (без теобромина). Делается из измельченного
+        сливочного масла, молока и сахара
+    - type: Tweak
+      message: >-
+        Показатели прочности для клёпаных стен приведены в соответствие с
+        таковыми у пластитана
+    - type: Tweak
+      message: Респрайт торжественного костюма квартирмейстера
+  id: 117
+  time: '2025-09-29T15:48:26.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/262
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Портировано вооружение с монолита
+    - type: Tweak
+      message: Портированы щиты с монолита
+  id: 118
+  time: '2025-10-02T17:52:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/271
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Курсовое вооружение на Европе изменено под новый стандарт; Переработано
+        бронирование и наполнение (от Covral)
+  id: 119
+  time: '2025-10-04T08:27:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/240
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Курсовое вооружение на шаттле Vulture изменено согласно новому стандарту
+        (от Covral)
+  id: 120
+  time: '2025-10-04T10:28:39.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/249
+- author: LeptonComm
+  changes:
+    - type: Remove
+      message: >-
+        Капитальный ремап Ксено: Изменено бронирование, расположение пушек и
+        двигателей, комбинация курсового вооружения, компоновка, наполнение,
+        декор (feat. Covral)
+  id: 121
+  time: '2025-10-04T10:41:51.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/250
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Добавлен новый экспедиционный шаттл - Ilmus
+  id: 122
+  time: '2025-10-04T11:20:52.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/256
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Concord-Wyvern: Теперь вам точно не сломает кабеля в РнД ведущие к
+        двигателям, удалены не работающие воздушные сигнализаций, на кухне
+        появилась микроволновка и куртка повара, гидропоника получила 2
+        настенных шкафа и лишилась 1 шкафа ботаника, в каюте капитана теперь
+        есть хранилище скафандра (Капитан)
+    - type: Tweak
+      message: >-
+        Concord-Venture: смещён напольный вентилятор, скруббер заменён на
+        пассивную вентиляцию.
+    - type: Tweak
+      message: >-
+        CLS-Devastator: Газовые шлюзы повёрнуты правильно, добавлен: охладитель,
+        нагреватель, переносной скруббер, инжтехфаб
+  id: 123
+  time: '2025-10-04T11:37:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/258
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        LaserBeam: теперь имеет новое название Lancelot. Также изменена
+        компоновка внутри.
+  id: 124
+  time: '2025-10-04T12:13:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/267
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлен Параллель-о-Венд
+    - type: Add
+      message: >-
+        Добавлено 5 женских свитеров и новое кимоно, за авторством спрайта
+        Evgenimation.
+  id: 125
+  time: '2025-10-04T13:20:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/269
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Авантюрист переименован в Исследователя
+    - type: Tweak
+      message: >-
+        Переработаны часы, зарплаты, названия, описания всех ролей Нордфолла,
+        кроме ботаника, ученого и ОТС
+  id: 126
+  time: '2025-10-04T13:32:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/275

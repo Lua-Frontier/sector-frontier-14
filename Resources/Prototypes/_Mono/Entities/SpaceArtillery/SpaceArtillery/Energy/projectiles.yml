@@ -1,5 +1,8 @@
+# SPDX-FileCopyrightText: 2025 Avalon
 # SPDX-FileCopyrightText: 2025 Blu
 # SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 Onezero0
 # SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 RikuTheKiller
 # SPDX-FileCopyrightText: 2025 core-mene
@@ -18,16 +21,16 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 750 #1250
-        Structural: 1250 #4250
-        Heat: 750 #350
-        Ion: 600 #350
+        Radiation: 1250
+        Structural: 4250
+        Heat: 350
+        Ion: 350
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     layers:
     - state: plasmashot
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectPlasmaPulser
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#C92BCC"
@@ -35,16 +38,96 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 12 #6.6 500m
+    lifetime: 6.6
   - type: PointLight
-    radarColor: "#C92BCC"
+    color: "#FF0040"
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
     totalIntensity: 250
     intensitySlope: 6
     maxIntensity: 25
-    maxTileBreak: 0
+    maxTileBreak: 1
+
+# Autopulser
+
+- type: entity
+  id: ShipAutopulserPlasmaProjectile
+  name: plasma projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 600
+        Structural: 900
+        Heat: 120
+        Ion: 150
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+    layers:
+    - state: plasmashot
+    scale: 0.6, 0.6
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectPlasmaPulser
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 1
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 4.2
+  - type: PointLight
+    radarColor: "#FF0040"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 20
+    intensitySlope: 2
+    maxIntensity: 40
+    maxTileBreak: 1
+
+# Type 241
+
+- type: entity
+  id: ShipGlassingBeamPlasmaProjectile
+  name: plasma projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 700
+        Structural: 4000
+        Heat: 5000
+        Ion: 500
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+    layers:
+    - state: plasmashot
+    scale: 1, 11
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#FF00AA"
+    scale: 2.4
+    requireNoGrid: true
+    shape: arrow
+  - type: TimedDespawn
+    lifetime: 24
+  - type: PointLight
+    color: "#FF00AA"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 120
+    intensitySlope: 9
+    maxIntensity: 70
+    maxTileBreak: 5
 
 # M25
 
@@ -57,7 +140,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 150
+        Structural: 15
         Heat: 35
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
@@ -65,7 +148,7 @@
     - state: plasmashot
     scale: 0.4, 0.4
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectHeavyLaser
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#C92BCC"
@@ -75,9 +158,10 @@
   - type: TimedDespawn
     lifetime: 3
   - type: PointLight
-    radarColor: "#C92BCC"
+    color: "#C92BCC"
   - type: GatheringProjectile
   - type: MiningGatheringSoft
+  - type: MiningGatheringHard
 
 # RUBICON
 
@@ -90,15 +174,15 @@
   - type: Projectile
     damage:
       types:
-       # Radiation: 75
-        Heat: 15
+        Radiation: 75
+        Heat: 115
         Ion: 375
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
     layers:
     - state: omnilaser
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectTempCold
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#035EFC"
@@ -154,3 +238,76 @@
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
+
+# region Laser Hitscans
+
+# Phalanx
+
+- type: entity
+  parent: BasicHitscan
+  id: PhalanxLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy
+  - type: HitscanRadarSignature
+    radarColor: red
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Heat: 100
+      Structural: 100
+  - type: HitscanBasicRaycast
+    maxDistance: 400
+
+# Apollo
+
+- type: entity
+  parent: BasicHitscan
+  id: ApolloLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy2
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy2
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy2
+  - type: HitscanRadarSignature
+    radarColor: "#e67a22"
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Heat: 10000
+      Structural: 50000
+  - type: HitscanSpawnEntity
+    spawnedEntity: ApolloExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 600
+
+# Hitscan Explosions
+
+- type: entity
+  id: ApolloExplosion
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 120
+    intensitySlope: 50
+    maxIntensity: 100
+    maxTileBreak: 2

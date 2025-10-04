@@ -794,7 +794,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-    - type: CircularShieldRadar
 - proto: AirlockCommand
   entities:
   - uid: 2
@@ -3365,7 +3364,7 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 490
     components:

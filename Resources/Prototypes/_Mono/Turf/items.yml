@@ -1,0 +1,291 @@
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Sterile techmaint tiles
+
+- type: entity
+  name: sterile techmaint tile
+  parent: FloorTileItemBase
+  id: FloorTileItemTechmaintSterile
+  components:
+  - type: Sprite
+    state: steelmaintfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorTechMaintSterile
+  - type: Stack
+    stackType: FloorTileTechmaintSterile
+
+- type: stack
+  id: FloorTileTechmaintSterile
+  name: tiles-techmaint-floor-sterile
+  spawn: FloorTileItemTechmaintSterile
+  maxCount: 30
+
+# maint tile
+
+- type: entity
+  name: sterile maint tile
+  parent: FloorTileItemBase
+  id: FloorTileItemMaintSterile
+  components:
+  - type: Sprite
+    state: steelmaintfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorMaintSterile
+  - type: Stack
+    stackType: FloorTileMaintSterile
+
+- type: stack
+  id: FloorTileMaintSterile
+  name: tiles-maint-floor-sterile
+  spawn: FloorTileItemMaintSterile
+  maxCount: 30
+
+# mono maint tile
+
+- type: entity
+  name: sterile maint mono tile
+  parent: FloorTileItemBase
+  id: FloorTileItemMaintMonoSterile
+  components:
+  - type: Sprite
+    state: steel-mono
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorMaintMonoSterile
+  - type: Stack
+    stackType: FloorTileMaintMonoSterile
+
+- type: stack
+  id: FloorTileMaintMonoSterile
+  name: tiles-maint-floor-sterile-mono
+  spawn: FloorTileItemMaintMonoSterile
+  maxCount: 30
+
+# Grid floors
+
+- type: entity
+  name: maintenance grid tile
+  parent: FloorTileItemBase
+  id: FloorTileItemGrid
+  components:
+  - type: Sprite
+    state: shuttlegrey
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorMaintGrid
+  - type: Stack
+    stackType: FloorTileGrid
+
+- type: stack
+  id: FloorTileGrid
+  name: tiles-maint-floor-grid
+  spawn: FloorTileItemGrid
+  maxCount: 30
+
+- type: entity
+  name: dark maintenance grid tile
+  parent: FloorTileItemBase
+  id: FloorTileItemGridDark
+  components:
+  - type: Sprite
+    state: shuttlegrey
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorMaintGridDark
+  - type: Stack
+    stackType: FloorTileGridDark
+
+- type: stack
+  id: FloorTileGridDark
+  name: tiles-maint-floor-grid-dark
+  spawn: FloorTileItemGridDark
+  maxCount: 30
+
+# Beestation tiles start
+
+# steel tile
+
+- type: entity
+  name: commercial steel tile
+  parent: FloorTileItemBase
+  id: FloorTileItemSteelCommercial
+  components:
+  - type: Sprite
+    state: steel
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorSteelAlt
+  - type: Stack
+    stackType: FloorSteelAlt
+
+- type: stack
+  id: FloorSteelAlt
+  name: tiles-steel-floor-commercial
+  spawn: FloorTileItemSteelCommercial
+  maxCount: 30
+
+# steel mono tile
+
+- type: entity
+  name: commercial mono steel tile
+  parent: FloorTileItemBase
+  id: FloorTileItemSteelMonoCommercial
+  components:
+  - type: Sprite
+    state: steel-mono
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorSteelMonoAlt
+  - type: Stack
+    stackType: FloorTileSteelMonoAlt
+
+- type: stack
+  id: FloorTileSteelMonoAlt
+  name: tiles-steel-floor-mono-commercial
+  spawn: FloorTileItemSteelMonoCommercial
+  maxCount: 30
+
+# dark steel tile
+
+- type: entity
+  name: commercial dark steel tile
+  parent: FloorTileItemBase
+  id: FloorTileItemDarkSteelCommercial
+  components:
+  - type: Sprite
+    state: dark
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorDarkAlt
+  - type: Stack
+    stackType: FloorDarkSteelAlt
+
+- type: stack
+  id: FloorDarkSteelAlt
+  name: tiles-dark-floor-commercial
+  spawn: FloorTileItemDarkSteelCommercial
+  maxCount: 30
+
+# dark steel mono tile
+
+- type: entity
+  name: commercial mono dark steel tile
+  parent: FloorTileItemBase
+  id: FloorTileItemSteelDarkMonoCommercial
+  components:
+  - type: Sprite
+    state: dark-mono
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorDarkMonoAlt
+  - type: Stack
+    stackType: FloorTileDarkSteelMonoAlt
+
+- type: stack
+  id: FloorTileDarkSteelMonoAlt
+  name: tiles-dark-floor-mono-commercial
+  spawn: FloorTileItemSteelDarkMonoCommercial
+  maxCount: 30
+
+# alt techmaint
+
+- type: entity
+  name: mechanical maintenance tile
+  parent: FloorTileItemBase
+  id: FloorTileItemTechMaintAlt
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorTechMaintAlt
+  - type: Stack
+    stackType: FloorTileTechMaintAlt
+
+- type: stack
+  id: FloorTileTechMaintAlt
+  name: tiles-techmaint-floor-mechanical
+  spawn: FloorTileItemTechMaintAlt
+  maxCount: 30
+
+# grey tile
+
+- type: entity
+  name: commercial grey steel tile
+  parent: FloorTileItemBase
+  id: FloorTileItemGreySteelCommercial
+  components:
+  - type: Sprite
+    state: steel
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorSteelAltGrey
+  - type: Stack
+    stackType: FloorGreySteelAlt
+
+- type: stack
+  id: FloorGreySteelAlt
+  name: tiles-grey-floor-commercial
+  spawn: FloorTileItemGreySteelCommercial
+  maxCount: 30
+
+# grey mono tile
+
+- type: entity
+  name: commercial mono grey steel tile
+  parent: FloorTileItemBase
+  id: FloorTileItemSteelGreyMonoCommercial
+  components:
+  - type: Sprite
+    state: steel-mono
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorSteelMonoAltGrey
+  - type: Stack
+    stackType: FloorTileGreySteelMonoAlt
+
+- type: stack
+  id: FloorTileGreySteelMonoAlt
+  name: tiles-grey-floor-mono-commercial
+  spawn: FloorTileItemSteelGreyMonoCommercial
+  maxCount: 30

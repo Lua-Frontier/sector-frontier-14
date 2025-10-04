@@ -22,7 +22,7 @@ public sealed partial class ShipGunTypeComponent : Component
 public enum ShipGunType
 {
     Ballistic,
+    Mining,
     Energy,
-    Missile,
-    Mining //Lua Addition
+    Missile
 }

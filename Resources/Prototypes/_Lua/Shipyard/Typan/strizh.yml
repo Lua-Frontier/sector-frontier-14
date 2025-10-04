@@ -8,9 +8,13 @@
   name: SYN-GF Strizh
   description: Гибрид, способный одинаково хорошо уничтожать врага на любом расстоянии. Бронирован средне.
   limit: 3
-  price: 171207
+  price: 132986 # 2000 above min
   category: Medium
   group: Typan
+  class:
+  - Syndicate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/strizh.yml
   addComponents:
     - type: IFF

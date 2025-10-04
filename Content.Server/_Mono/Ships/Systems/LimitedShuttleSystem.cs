@@ -7,6 +7,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared._Mono.Shipyard;
 using Content.Shared._NF.Shipyard;
+using Content.Shared._NF.Shipyard.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Mono.Ships.Systems;
@@ -74,17 +75,17 @@ public sealed class LimitedShuttleSystem : EntitySystem
         }
     }
 
-    private void OnAttemptShuttlePurchase(ref AttemptShipyardShuttlePurchaseEvent ev)
+    public bool CanPurchaseVessel(VesselPrototype vessel)
     {
+        if (vessel.LimitActive <= 0)
+            return true;
+
         var query = EntityQueryEnumerator<VesselComponent>();
         var shuttleCount = 0;
 
-        if (ev.Vessel.LimitActive <= 0)
-            return;
-
         while (query.MoveNext(out var uid, out var targetVessel))
         {
-            if (targetVessel.VesselId != ev.Vessel.ID)
+            if (targetVessel.VesselId != vessel.ID)
                 continue;
 
             // InactiveShipComponent isn't like a tag, it's more like ApcPowerReceiver. You need to check if it's inactive.
@@ -94,7 +95,12 @@ public sealed class LimitedShuttleSystem : EntitySystem
             shuttleCount++;
         }
 
-        if (shuttleCount >= ev.Vessel.LimitActive)
+        return shuttleCount < vessel.LimitActive;
+    }
+
+    private void OnAttemptShuttlePurchase(ref AttemptShipyardShuttlePurchaseEvent ev)
+    {
+        if (!CanPurchaseVessel(ev.Vessel))
         {
             ev.CancelReason = "shipyard-console-limited";
             ev.Cancel();
