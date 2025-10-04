@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+#Author discord - germanreutt
+
+- type: vessel
+  parent: BaseVessel
+  id: GFIlmus
+  name: GF-Ilmus
+  description: Средний шаттл для утилизации и экспедиций. Дополнительно оснащен кухней и медицинским отсеком
+  price: 65000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
+  class:
+  - Expedition
+  - Civilian
+  engine:
+  - AME
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFIlmus
+  mapName: 'GF-Ilmus'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
+  minPlayers: 0
+  stations:
+    GFIlmus:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'GF Ilmus {1}'
+          nameGenerator:
+            !type:LuaTechNameGenerator
+            prefixCreator: '14'
