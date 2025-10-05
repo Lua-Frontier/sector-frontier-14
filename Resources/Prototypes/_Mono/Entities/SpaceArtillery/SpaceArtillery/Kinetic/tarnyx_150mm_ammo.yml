@@ -14,7 +14,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 50
+        Structural: 1000
         Ion: 10000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/150_shell.rsi
@@ -29,7 +29,7 @@
     requireNoGrid: true
     shape: circle
   - type: TimedDespawn
-    lifetime: 7.5 #Lua 5<7.5
+    lifetime: 5
   - type: PointLight
     color: "#FB00FF"
   - type: EmpOnTrigger
@@ -88,13 +88,8 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 7.5 #Lua 5<7.5
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: HardBombShipGun
-    totalIntensity: 1000
-    intensitySlope: 30
-    maxIntensity: 75
+    lifetime: 5
+
 - type: entity
   id: 150mmApShell
   name: 150mm AP shell

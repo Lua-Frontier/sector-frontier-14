@@ -4,6 +4,7 @@ using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Repairable;
+using Content.Shared.Tools.Components;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 
 namespace Content.Server.Repairable
@@ -71,8 +72,15 @@ namespace Content.Server.Repairable
                 delay *= component.SelfRepairPenalty;
             }
 
-            // Run the repairing doafter
-            args.Handled = _toolSystem.UseTool(args.Used, args.User, uid, delay, component.QualityNeeded, new RepairFinishedEvent(), component.FuelCost);
+            if (!TryComp<ToolComponent>(args.Used, out var tool))
+                return;
+
+            // Run the repairing doafter - Attempts to run the repairing doafter with required quality  .
+            foreach (var quality in component.Qualities)
+            {
+                if (_toolSystem.HasQuality(args.Used, quality, tool))
+                    args.Handled = _toolSystem.UseTool(args.Used, args.User, uid, delay, quality, new RepairFinishedEvent(), component.FuelCost);
+            }
         }
     }
 

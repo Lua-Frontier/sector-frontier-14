@@ -19,6 +19,7 @@
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
     maxCharge: 40000
@@ -29,6 +30,7 @@
   - type: Gun
     fireRate: 0.1
     projectileSpeed: 200
+    shootThermalSignature: 8000000 # ~2.8km after firing - relatively low
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
@@ -48,7 +50,7 @@
     radarColor: "#035EFC"
     scale: 2.5
   - type: ShipGunType
-    shipType: Ballistic
+    shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
 
@@ -68,6 +70,7 @@
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: FireControlRotate
   - type: AmmoCounter
   - type: ExaminableBattery
   - type: WirelessNetworkConnection
@@ -75,6 +78,7 @@
   - type: Gun
     fireRate: 0.1
     projectileSpeed: 200
+    shootThermalSignature: 8000000 # ~2.8km after firing - relatively low
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
@@ -88,7 +92,7 @@
     radarColor: "#035EFC"
     scale: 2.5
   - type: ShipGunType
-    shipType: Ballistic
+    shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
   - type: BallisticAmmoProvider

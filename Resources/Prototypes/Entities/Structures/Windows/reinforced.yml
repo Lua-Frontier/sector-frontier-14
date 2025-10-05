@@ -22,7 +22,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 3000 #150 - Lua buff #excess damage (nuke?). avoid computational cost of spawning entities.
+        damage: 300 #excess damage (nuke?). avoid computational cost of spawning entities.
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -31,7 +31,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 2000 #75 - Lua buff
+        damage: 150 # Mono 75->150
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -51,7 +51,7 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 150 #Lua
+    damageDivisor: 3
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
@@ -78,7 +78,7 @@
   - type: Appearance
   - type: DamageVisuals
     thresholds: [5, 10, 20]
-    damageDivisor: 75
+    damageDivisor: 1.5
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
@@ -92,7 +92,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1500 #Lua
+        damage: 150 # Mono
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -101,7 +101,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 1000 #Lua
+        damage: 75 # Mono 37->75
       behaviors:
       - !type:PlaySoundBehavior
         sound:

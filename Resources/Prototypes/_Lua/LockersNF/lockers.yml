@@ -143,3 +143,30 @@
       - id: ClothingHeadHelmetNfsd
       - id: ClothingOuterArmorNfsd
       - id: ClothingHeadsetNfsdBrown
+
+- type: entity
+  id: LockerSyndicateNordfall
+  parent: LockerBaseSecure
+  name: syndicate locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: syndicate
+    stateDoorOpen: syndicate_open
+    stateDoorClosed: syndicate_door
+  - type: Sprite
+    sprite: _Lua/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: syndicate
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: syndicate_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: AccessReader
+    access: [["SyndicateAgent"]]

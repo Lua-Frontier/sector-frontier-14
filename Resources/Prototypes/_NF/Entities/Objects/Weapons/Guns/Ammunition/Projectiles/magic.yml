@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: BaseBulletTrigger
   id: BulletFireBolt
   name: fire bolt
@@ -56,21 +56,26 @@
     - state: arcane_barrage
   - type: Ammo
     muzzleFlash: null
-
-- type: hitscan
+    
+- type: entity
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
   id: BloodCultLaser
-  damage:
-    types:
-      Slash: 8
-  muzzleFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  travelFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
-  impactFlash:
-    sprite: _NF/Effects/bloodcultbeams.rsi
-    state: red_lightning
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Slash: 8
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _NF/Effects/bloodcultbeams.rsi
+      state: red_lightning
+    travelFlash:
+      sprite: _NF/Effects/bloodcultbeams.rsi
+      state: red_lightning
+    impactFlash:
+      sprite: _NF/Effects/bloodcultbeams.rsi
+      state: red_lightning
 
 - type: entity # For blood cult cat
   parent: BaseBullet

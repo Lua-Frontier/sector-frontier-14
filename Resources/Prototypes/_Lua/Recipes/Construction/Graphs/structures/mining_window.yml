@@ -1,0 +1,67 @@
+- type: constructionGraph
+  id: MiningWindowGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MiningWindow
+          steps:
+            - material: ReinforcedGlass
+              amount: 3
+              doAfter: 5
+    - node: MiningWindow
+      entity: MiningWindow
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 3
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 7
+            - tool: Screwing
+              doAfter: 2
+            - tool: Prying
+              doAfter: 3
+            - tool: Welding
+              doAfter: 7
+            - tool: Screwing
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 3
+
+- type: constructionGraph
+  id: MiningWindowDiagonalGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MiningWindowDiagonal
+          steps:
+            - material: ReinforcedGlass
+              amount: 3
+              doAfter: 5
+    - node: MiningWindowDiagonal
+      entity: MiningWindowDiagonal
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 3
+            - !type:DeleteEntity {}
+          steps:
+            - tool: Welding
+              doAfter: 7
+            - tool: Screwing
+              doAfter: 2
+            - tool: Prying
+              doAfter: 3
+            - tool: Welding
+              doAfter: 7
+            - tool: Screwing
+              doAfter: 2
+            - tool: Anchoring
+              doAfter: 3

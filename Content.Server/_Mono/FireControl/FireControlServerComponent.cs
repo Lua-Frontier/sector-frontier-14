@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 RikuTheKiller
+// SPDX-FileCopyrightText: 2025 ark1368
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 // Copyright Rane (elijahrane@gmail.com) 2025
 // All rights reserved. Relicensed under AGPL with permission
 
@@ -23,26 +30,21 @@ public sealed partial class FireControlServerComponent : Component
 
     [ViewVariables]
     public int UsedProcessingPower;
-	//Lua start:
-    // Salvo firing configuration
+
+    [ViewVariables, DataField]
+    public int MaxConsoles = 1;
+
+    [ViewVariables, DataField]
+    public bool EnforceMaxConsoles;
+
+    //Lua start
     [DataField]
     public bool UseSalvos = true;
-
-    /// <summary>
-    /// Period of a salvo cycle in seconds.
-    /// </summary>
     [DataField]
     public float SalvoPeriodSeconds = 3f;
-
-    /// <summary>
-    /// Duration of salvo fire window in seconds.
-    /// </summary>
     [DataField]
     public float SalvoWindowSeconds = 0.5f;
-
-    /// <summary>
-    /// Per-weapon additional jitter inside window to avoid perfect sync.
-    /// </summary>
     [DataField]
-    public float SalvoJitterSeconds = 0.12f;//Lua end
+    public float SalvoJitterSeconds = 0.12f;
+    //Lua end
 }

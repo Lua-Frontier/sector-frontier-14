@@ -477,3 +477,203 @@
     base: silver
   - type: StaticPrice
     price: 500
+
+- type: entity
+  parent: WallPlastitaniumDiagonalIndestructible
+  id: WallRivetedDiagonal
+  name: riveted wall
+  suffix: diagonal
+  description: Skub knows this wall is too hard to destroy. # Frontier
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/riveted_diagonal.rsi
+    state: state0
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/riveted_diagonal.rsi
+    state: state0
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2500 # Lua 1200<2000<2500
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Girder:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+  - type: RCDDeconstructable # Frontier
+    deconstructable: false # Frontier
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 250
+
+#Стены для монастыря Фауста
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallMonasteryGray
+  name: monastery gray wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
+  suffix: ""
+  components:
+    - type: Sprite
+      sprite: _Lua/Structures/Walls/monastery_gray.rsi
+      color: "#ffffff" # Frontier
+    - type: Icon
+      sprite: _Lua/Structures/Walls/monastery_gray.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.8 # Lua
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 6000 # Lua 1200<7500<6000
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Girder:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Damageable
+      damageContainer: StructuralInorganicUltraHeavy
+      damageModifierSet: StructuralMetallicStrongUltra
+    - type: StaticPrice
+      price: 350
+
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallMonasteryBrown
+  name: monastery brown wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
+  suffix: ""
+  components:
+    - type: Sprite
+      sprite: _Lua/Structures/Walls/monastery_brown.rsi
+      color: "#ffffff" # Frontier
+    - type: Icon
+      sprite: _Lua/Structures/Walls/monastery_brown.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.8 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3500 # Lua 600<3500
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+      - trigger:
+          !type:DamageTrigger
+          damage: 2500 # Lua 400<2500
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+        - !type:ChangeConstructionNodeBehavior
+          node: girder
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Damageable
+      damageContainer: StructuralInorganicUltraHeavy
+      damageModifierSet: StructuralMetallicStrongUltra
+    - type: StaticPrice
+      price: 350
+
+- type: entity
+  parent: WallPlastitaniumDiagonalIndestructible
+  id: WallMonasteryGrayDiagonal
+  name: monastery wall
+  suffix: diagonal
+  description: Skub knows this wall is too hard to destroy. # Frontier
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/monastery_gray_diagonal.rsi
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/monastery_gray_diagonal.rsi
+    state: state0
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2500 # Lua 1200<2000<2500
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Girder:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+  - type: RCDDeconstructable # Frontier
+    deconstructable: false # Frontier
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: WallDiagonalBase
+  id: WallMonasteryBrownDiagonal
+  name: monastery wall
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # lua
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/monastery_brown_diagonal.rsi
+    state: state0
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/monastery_brown_diagonal.rsi # Frontier: _NF folder
+    state: state0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: RadiationBlocker
+    resistance: 5
