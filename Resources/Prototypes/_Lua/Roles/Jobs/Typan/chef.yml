@@ -6,8 +6,8 @@
   id: OutpostSyndicateChef
   name: job-name-typan-chef
   playTimeTracker: JobOutpostTypanChef
-  salary: 25000
-  description: Повар из далёкого космоса.
+  salary: 35000 #Lua 25000<35000
+  description: Сервисный работник, задача которого - напоить и накормить группу самых мирных людей в секторе
   startingGear: SyndicateChef
   icon: "JobIconOutpostSyndicateChef"
   supervisors: job-supervisors-typan-telecommunications-officer
@@ -17,17 +17,20 @@
     # - !type:RoleTimeRequirement
     #   role: JobOutpostTypanAtmosTech
     #   time: 20600
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 50000 #Lua
     - !type:DepartmentTimeRequirement
       department: Antag
-      time: 32000
+      time: 50000 #Lua 32000<50000
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 27000
+      time: 50000 #Lua 27000<50000
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 23000
+      time: 50000 #Lua 23000<50000
     - !type:OverallPlaytimeRequirement
-      time: 360000
+      time: 200000 #Lua 360000<200000
   access:
   - SyndicateAgent
   - NuclearOperative

@@ -3,16 +3,16 @@
 # Cikey: wh1te
 
 - type: vessel
-  id: LaserBeam
+  id: Lancelot
   parent: BaseVesselAntag
-  name: ML-LaserBeam
-  description: Высокомобильный, но малобронированный эсминец снабженный мощным лазером, предназначенный для ближнего боя.
-  limit: 3
-  price: 270000 #235000 x 1.15
+  name: ML-Lancelot
+  description: Высокомобильный, но малобронированный эсминец, предназначенный для ближнего манёвренного боя и отлично показывающий себя в дуэли.
+  limit: 2
+  price: 264500 #230000 x 1,15
   category: Large
   group: Typan
   access: SyndicateAgent
-  shuttlePath: /Maps/_Lua/Shuttles/Typan/LaserBeam.yml
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/Lancelot.yml
   guidebookPage: Null
   class:
   - Capital
@@ -26,16 +26,16 @@
     - type: TypanFtl
 
 - type: gameMap
-  id: LaserBeam
-  mapName: 'ML-LaserBeam'
-  mapPath: /Maps/_Lua/Shuttles/Typan/LaserBeam.yml
+  id: Lancelot
+  mapName: 'ML-Lancelot'
+  mapPath: /Maps/_Lua/Shuttles/Typan/Lancelot.yml
   minPlayers: 0
   stations:
-    LaserBeam:
+    Lancelot:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'ML-LaserBeam {1}'
+          mapNameTemplate: 'ML-Lancelot {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
