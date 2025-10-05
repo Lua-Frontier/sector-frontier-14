@@ -1,0 +1,53 @@
+- type: entity
+  id: DiagonalGirder
+  parent: Girder
+  name: girder
+  description: A large structural assembly made out of metal; It requires a layer of metal before it can be considered a wall.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: Construction
+    graph: DiagonalGirder
+    node: diagonalGirder
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/diagonalgirder.rsi
+    state: diagonal_girder
+
+- type: entity
+  id: DiagonalReinforcedGirder
+  parent: ReinforcedGirder
+  name: reinforced girder
+  description: A large structural assembly made out of metal and plasteel; It requires a layer of plasteel before it can be considered a reinforced wall.
+  components:
+    - type: Construction
+      graph: DiagonalGirder
+      node: diagonalReinforcedGirder
+    - type: Sprite
+      sprite: _Lua/Structures/Walls/diagonalgirder.rsi
+      state: diagonal_reinforced_girder
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PolygonShape
+              vertices:
+              - "-0.5,-0.5"
+              - "0.5,0.5"
+              - "0.5,-0.5"
+          mask:
+          - FullTileMask
+          layer:
+          - WallLayer
+          density: 2000

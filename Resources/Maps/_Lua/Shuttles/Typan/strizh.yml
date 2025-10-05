@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/23/2025 13:25:03
+  time: 10/02/2025 17:12:06
   entityCount: 596
 maps: []
 grids:
@@ -593,7 +593,7 @@ entities:
       pos: -7.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -12257.575
+      secondsUntilStateChange: -12347.781
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1799,7 +1799,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 216
     components:
@@ -1994,7 +1994,7 @@ entities:
   - uid: 250
     components:
     - type: Transform
-      pos: 6.663812,-3.0067048
+      pos: 7.048329,-4.196094
       parent: 1
 - proto: DrinkShotGlass
   entities:
@@ -4211,12 +4211,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,-0.5
       parent: 1
+    missingComponents:
+    - ShipGunClass
   - uid: 286
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-0.5
       parent: 1
+    missingComponents:
+    - ShipGunClass
 - proto: WeaponTurretM220
   entities:
   - uid: 290

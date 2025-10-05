@@ -6,28 +6,25 @@
   id: OutpostSyndicateRD
   name: job-name-typan-rd
   playTimeTracker: JobOutpostTypanRD
-  salary: 45000
-  description: Директор исследований из далёкого космоса.
+  salary: 70000 #Lua 45000<70000
+  description: Руководитель, назначающий оперативникам дату смерти в героическом штурме
   startingGear: SyndicateRD
   icon: "JobIconSyndicateRD"
   supervisors: job-supervisors-typan-syndicate
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 32000
-    - !type:DepartmentTimeRequirement
-      department: Antag
-      time: 34000
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 73000
+    - !type:RoleTimeRequirement
+      role: JobOutpostTypanCargotech
+      time: 50000 #Lua
     - !type:DepartmentTimeRequirement
       department: Frontier
-      time: 83000
+      time: 100000 #Lua 83<100
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 100000 #Lua 83000<100000
     - !type:OverallPlaytimeRequirement
-      time: 150000
+      time: 200000 #Lua 150<200
   access:
   - SyndicateAgent
   - NuclearOperative

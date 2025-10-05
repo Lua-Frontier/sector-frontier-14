@@ -77,7 +77,7 @@
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi # Frontier: use _NF prefix
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua: use _Lua prefix
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -85,11 +85,13 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
+      color: "#4281de" # Lua
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
+      color: "#4281de" # Lua
   # Frontier: linkable thrusters, pirate bounties
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -130,7 +132,7 @@
     needsPower: false
     powerLoad: 0
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi # Frontier: use _NF prefix
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua: use _Lua prefix
     layers:
     - state: base
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -138,11 +140,13 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
+      color: "#4281de" # Lua
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
+      color: "#4281de" # Lua
 
 - type: entity
   id: Gyroscope
