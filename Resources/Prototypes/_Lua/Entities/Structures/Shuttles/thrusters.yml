@@ -141,6 +141,78 @@
       types:
         Heat: 40
 
+- type: entity
+  id: OmniThrusterLua
+  name: omni thruster
+  suffix: LuaTech, Луа, Тир 5, Магнитный
+  parent: [BaseThruster, ConstructibleMachine]
+  components:
+  - type: LuaTech
+  - type: Tag
+    tags:
+    - OmniBurnAlwaysOn
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster_omni.rsi
+    offset: 0,0
+    layers:
+    - state: base_luatech
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_luatech
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#7962a8"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0,1.85
+      color: "#d5c9ee"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.48,-0.16,0.48,0.16"
+        density: 1750
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: RadarBlip # Mono
+    radarColor: "#99FF99"
+    scale: 0.3
+    shape: diamond
+  - type: Machine
+    board: OmnidirectionalThrusterMachineCircuitboard
+  - type: Thruster
+    thrusterType: Omnidirectional
+    angularThrustExtra: 200
+    damage:
+      types:
+        Heat: 40
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+
 # MARK: Medium Thruster
 
 # SPDX-FileCopyrightText: 2025 BoskiYourk
