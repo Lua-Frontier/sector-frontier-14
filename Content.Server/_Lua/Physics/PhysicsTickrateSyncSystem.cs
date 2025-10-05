@@ -11,18 +11,18 @@ namespace Content.Server._Lua.Physics;
 [UsedImplicitly]
 public sealed class PhysicsTickrateSyncSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    //[Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        _cfg.OnValueChanged(CVars.NetTickrate, OnTickrateChanged, true);
-        var cur = _cfg.GetCVar(CVars.NetTickrate);
-        _cfg.SetCVar(CVars.TargetMinimumTickrate, cur);
-    }
+    //public override void Initialize()
+    //{
+    //    base.Initialize();
+    //    _cfg.OnValueChanged(CVars.NetTickrate, OnTickrateChanged, true);
+    //    var cur = _cfg.GetCVar(CVars.NetTickrate);
+    //    _cfg.SetCVar(CVars.TargetMinimumTickrate, cur);
+    //}
 
-    private void OnTickrateChanged(int rate, in CVarChangeInfo info)
-    { _cfg.SetCVar(CVars.TargetMinimumTickrate, rate); }
+    //private void OnTickrateChanged(int rate, in CVarChangeInfo info)
+    //{ _cfg.SetCVar(CVars.TargetMinimumTickrate, rate); }
 }
 
 

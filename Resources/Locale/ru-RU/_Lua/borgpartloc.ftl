@@ -75,3 +75,23 @@ WallKrissSolid-name = обычная стена
 WallKrissSolid-desc = Стена но белая!
 WallKrissSolidDiagonal-name = диагональная обычная стена
 WallKrissSolidDiagonal-desc = Стена но белая!
+
+WallMining-name = шахтёрская стена
+WallMining-desc = Держит шахтёров внутри, а космос снаружи
+WallMiningDiagonal-name  = диагональная шахтёрская стена
+WallMiningDiagonal-desc = Держит шахтёров внутри, а космос снаружи
+
+MiningWindow-name = шахтёрское окно
+MiningWindow-desc = Смотри не поцарапай киркой
+MiningWindowDiagonal-name = диагональное шахтёрское окно
+MiningWindowDiagonal-desc = Смотри не поцарапай киркой
+
+DiagonalGirder-name = диагональный каркас
+DiagonalGirder-desc = Большой диагональный металлический каркас; Его необходимо покрыть листами металла, чтобы он считался стеной.
+DiagonalReinforcedGirder-name = укреплённый диагональный каркас
+DiagonalReinforcedGirder-desc = Большой диагональный каркас из металла и пластали; Его необходимо покрыть листами пластали, чтобы он считался укреплённой стеной.
+
+WallSolidDiagonal-name = диагональная обычная стена
+WallSolidDiagonal-desc = Удерживает воздух внутри, а ассистентов снаружи.
+WallReinforcedDiagonal-name = диагональная укреплённая стена
+WallReinforcedDiagonal-desc = Удерживает воздух внутри, а ассистентов снаружи.

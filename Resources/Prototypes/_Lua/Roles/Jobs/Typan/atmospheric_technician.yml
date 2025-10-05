@@ -6,8 +6,8 @@
   id: OutpostSyndicateAtmosTech
   name: job-name-typan-atmos-tech
   playTimeTracker: JobOutpostTypanAtmosTech
-  salary: 35000
-  description: Атмосферный инженер из далёкого космоса.
+  salary: 45000 #Lua 35000<45000
+  description: Взлом, постройка баррикад, обслуживание шаттлов и Нордфолла - ваша работа.
   startingGear: SyndicateAtmos
   icon: "JobIconSyndicateAtmos"
   supervisors: job-supervisors-typan-telecommunications-officer
@@ -16,15 +16,12 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Antag
-      time: 29000
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 24000
+      time: 50000 #Lua 29<50
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 10000
+      time: 150000 #Lua 10<150
     - !type:OverallPlaytimeRequirement
-      time: 360000
+      time: 250000 #Lua 360<250
   access:
   - SyndicateAgent
   - NuclearOperative
