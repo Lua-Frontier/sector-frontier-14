@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/06/2025 21:52:46
+  time: 10/06/2025 22:08:08
   entityCount: 556
 maps: []
 grids:
@@ -241,18 +241,18 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 323
-      - 331
+      - 299
+      - 330
       - 410
       - 412
       - 407
       - 408
       - 406
       - 411
-      - 293
+      - 183
       - 409
+      - 323
       - 329
-      - 330
       - 335
       - 343
       - 342
@@ -270,37 +270,37 @@ entities:
       bodyType: Static
 - proto: AirlockNfsdLocked
   entities:
-  - uid: 294
+  - uid: 293
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 1
-  - uid: 295
+  - uid: 294
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
-  - uid: 296
+  - uid: 295
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,5.5
       parent: 1
-  - uid: 297
+  - uid: 296
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,5.5
       parent: 1
-  - uid: 298
+  - uid: 297
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-1.5
       parent: 1
-  - uid: 299
+  - uid: 298
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1707,9 +1707,9 @@ entities:
     - type: Transform
       pos: 1.5,8.5
       parent: 1
-- proto: ComputerTabletopIFFPOI
+- proto: ComputerTabletopIFF
   entities:
-  - uid: 183
+  - uid: 331
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1756,18 +1756,18 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 323
-      - 331
+      - 299
+      - 330
       - 410
       - 412
       - 407
       - 408
       - 406
       - 411
-      - 293
+      - 183
       - 409
+      - 323
       - 329
-      - 330
       - 335
       - 343
       - 342
@@ -1775,7 +1775,7 @@ entities:
       - 334
 - proto: Firelock
   entities:
-  - uid: 293
+  - uid: 183
     components:
     - type: Transform
       pos: 5.5,1.5
@@ -2247,7 +2247,7 @@ entities:
       color: '#0000FFFF'
 - proto: GasVentPump
   entities:
-  - uid: 330
+  - uid: 329
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2257,7 +2257,7 @@ entities:
       deviceLists:
       - 332
       - 336
-  - uid: 331
+  - uid: 330
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -2279,7 +2279,7 @@ entities:
       - 336
 - proto: GasVentScrubber
   entities:
-  - uid: 323
+  - uid: 299
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2291,7 +2291,7 @@ entities:
       - 336
     - type: AtmosPipeLayers
       pipeLayer: Tertiary
-  - uid: 329
+  - uid: 323
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
