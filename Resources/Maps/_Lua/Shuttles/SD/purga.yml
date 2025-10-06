@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/06/2025 11:34:18
+  time: 09/20/2025 13:37:15
   entityCount: 807
 maps: []
 grids:
@@ -1841,6 +1841,7 @@ entities:
   - uid: 266
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 7.5,11.5
       parent: 1
   - uid: 267
@@ -3485,7 +3486,7 @@ entities:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-- proto: SuitStorageCadet
+- proto: SuitStorageNfsdCombat
   entities:
   - uid: 505
     components:
