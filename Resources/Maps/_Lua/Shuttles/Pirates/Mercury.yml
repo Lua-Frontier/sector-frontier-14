@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/23/2025 13:46:52
-  entityCount: 1064
+  time: 10/06/2025 13:35:15
+  entityCount: 1065
 maps: []
 grids:
 - 1
@@ -389,81 +389,126 @@ entities:
       data:
         tiles:
           0,0:
-            0: 30704
+            0: 48063
           0,-1:
-            0: 30583
+            0: 47935
           -1,0:
-            0: 56827
+            0: 48063
           0,1:
-            0: 65303
+            0: 14193
           -1,1:
-            0: 61197
+            0: 36032
           0,2:
-            0: 7
-            1: 128
+            1: 32
+            2: 2176
           -1,2:
-            0: 12
-            1: 33
+            1: 128
+            2: 544
           1,0:
-            0: 4479
-            2: 49152
-          1,1:
-            0: 259
-            1: 9216
-            2: 140
-          1,2:
-            1: 1
+            0: 13119
           1,-1:
-            0: 8157
+            0: 65472
+          1,1:
+            2: 9728
+          1,3:
+            1: 1
           2,0:
-            3: 1
-            0: 50
-            1: 9224
+            0: 1
+            2: 28672
+            1: 2048
           2,1:
-            2: 1
-          -3,0:
-            1: 33794
-            0: 136
-          -2,0:
-            0: 127
-            2: 24576
-          -2,1:
-            2: 39
-            0: 8
-            1: 33792
-          -1,-1:
-            0: 43963
-          -3,-2:
-            1: 2113
-          -3,-1:
-            0: 3822
-            1: 4096
-          -2,-2:
-            1: 832
-          -2,-1:
-            0: 1919
-          -1,-2:
-            1: 1
-            0: 11912
-          -1,-3:
-            1: 8192
-            0: 32768
-          0,-2:
-            0: 2979
-          0,-3:
-            0: 8192
+            2: 5
             1: 32768
-          1,-2:
-            1: 2113
-            0: 4352
-          2,-2:
-            1: 832
+          1,2:
+            1: 128
           2,-1:
-            0: 1911
-          3,-1:
-            1: 4096
-          3,-2:
+            0: 4368
+            1: 32768
+          -3,0:
+            1: 512
+            2: 49152
+          -3,1:
+            2: 4
+            1: 8192
+          -2,0:
+            0: 34959
+            2: 4096
+          -2,-1:
+            0: 65392
+          -2,1:
+            2: 35841
+          -2,2:
+            1: 32
+          -1,-1:
+            0: 48014
+          -1,3:
             1: 1
+          -4,-2:
+            1: 17
+            2: 288
+          -5,-2:
+            1: 27776
+            2: 32768
+          -4,-1:
+            2: 238
+          -4,-3:
+            1: 32768
+          -3,-3:
+            1: 1312
+          -3,-1:
+            1: 8448
+          -3,-2:
+            2: 2060
+            1: 192
+          -2,-3:
+            2: 4096
+            1: 33344
+          -2,-2:
+            2: 779
+            1: 48
+          -1,-3:
+            1: 12804
+            0: 34952
+          -1,-2:
+            2: 3
+            0: 59528
+          0,-3:
+            0: 12834
+            1: 34820
+          0,-2:
+            0: 62242
+            2: 8
+          1,-3:
+            1: 14400
+          1,-2:
+            2: 2059
+            1: 128
+          2,-3:
+            2: 4096
+            1: 1152
+          2,-2:
+            2: 775
+            1: 112
+          3,-3:
+            1: 8448
+          3,-1:
+            1: 256
+            2: 238
+          3,-2:
+            2: 128
+          4,-2:
+            1: 50737
+            2: 8448
+          -5,-1:
+            1: 18434
+            2: 36
+          -5,0:
+            1: 2
+          4,-1:
+            2: 132
+            1: 16904
+          4,0:
+            1: 8
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -510,21 +555,6 @@ entities:
           - 0
           - 0
           - 0
-        - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -558,7 +588,7 @@ entities:
       pos: 2.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3732.571
+      secondsUntilStateChange: -3827.4043
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -990,7 +1020,7 @@ entities:
   - uid: 96
     components:
     - type: Transform
-      pos: 15.5,-7.5
+      pos: -18.5,-2.5
       parent: 1
   - uid: 97
     components:
@@ -1000,7 +1030,7 @@ entities:
   - uid: 98
     components:
     - type: Transform
-      pos: 14.5,-7.5
+      pos: 6.5,-10.5
       parent: 1
   - uid: 99
     components:
@@ -1020,7 +1050,7 @@ entities:
   - uid: 102
     components:
     - type: Transform
-      pos: 6.5,-9.5
+      pos: 1.5,9.5
       parent: 1
   - uid: 103
     components:
@@ -1175,12 +1205,12 @@ entities:
   - uid: 133
     components:
     - type: Transform
-      pos: 2.5,-10.5
+      pos: 19.5,-2.5
       parent: 1
   - uid: 134
     components:
     - type: Transform
-      pos: -1.5,-10.5
+      pos: -0.5,9.5
       parent: 1
   - uid: 135
     components:
@@ -1280,7 +1310,7 @@ entities:
   - uid: 154
     components:
     - type: Transform
-      pos: -13.5,-7.5
+      pos: -1.5,-11.5
       parent: 1
   - uid: 155
     components:
@@ -1290,7 +1320,7 @@ entities:
   - uid: 156
     components:
     - type: Transform
-      pos: -14.5,-7.5
+      pos: 2.5,-11.5
       parent: 1
   - uid: 157
     components:
@@ -1425,6 +1455,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 10.5,-9.5
+      parent: 1
+  - uid: 1065
+    components:
+    - type: Transform
+      pos: -5.5,-10.5
       parent: 1
 - proto: Autolathe
   entities:
@@ -4036,7 +4071,7 @@ entities:
   - uid: 585
     components:
     - type: Transform
-      pos: 5.3641663,3.7935486
+      pos: 5.1281443,2.5660334
       parent: 1
   - uid: 586
     components:
@@ -4085,7 +4120,7 @@ entities:
   - uid: 594
     components:
     - type: Transform
-      pos: 5.7389603,2.6529236
+      pos: 4.5134563,2.8991768
       parent: 1
 - proto: NFPosterContrabandGoblinate
   entities:
