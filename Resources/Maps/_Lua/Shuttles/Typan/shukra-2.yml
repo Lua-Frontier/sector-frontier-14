@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/12/2025 14:42:42
+  time: 10/07/2025 08:29:48
   entityCount: 769
 maps: []
 grids:
@@ -2236,7 +2236,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -34.79026,7.42484
+      pos: -33.54721,7.2932034
       parent: 1
   - uid: 302
     components:
@@ -2290,7 +2290,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -32.16372,7.4078646
+      pos: -33.401848,7.2359915
       parent: 1
   - uid: 312
     components:
@@ -2954,11 +2954,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 46
           - 47
-          - 48
-          - 49
           - 50
+          - 49
+          - 48
+          - 46
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2993,9 +2993,9 @@ entities:
           occludes: True
           ents:
           - 409
-          - 407
-          - 405
           - 406
+          - 405
+          - 407
           - 408
         paper_label: !type:ContainerSlot
           showEnts: False
@@ -3039,7 +3039,7 @@ entities:
   - uid: 415
     components:
     - type: Transform
-      pos: -35.768997,-0.37688315
+      pos: -34.604164,-1.4174393
       parent: 1
 - proto: JetpackBlackFilled
   entities:
@@ -3145,14 +3145,7 @@ entities:
     - type: Transform
       pos: -35.34585,-0.3075471
       parent: 1
-- proto: NFAshtray
-  entities:
-  - uid: 423
-    components:
-    - type: Transform
-      pos: -37.584553,1.4469974
-      parent: 1
-- proto: NFMagazineShotgunDrum
+- proto: NFAmmunitionBoxShellShotgunOverpressure
   entities:
   - uid: 405
     components:
@@ -3182,6 +3175,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: NFAshtray
+  entities:
+  - uid: 423
+    components:
+    - type: Transform
+      pos: -37.584553,1.4469974
+      parent: 1
 - proto: NFMagazineSubMachineGun35Overpressure
   entities:
   - uid: 46
@@ -3212,7 +3212,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponShotgunBulldog
+- proto: NFWeaponShotgunEnforcer
   entities:
   - uid: 408
     components:
