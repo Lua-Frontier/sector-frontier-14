@@ -14,6 +14,12 @@
     flashDurationMultiplier: 2
     isEquipment: true
     color: "#999999"
+  - type: ThermalVision
+    flashDurationMultiplier: 2
+    pulseTime: 4
+    isEquipment: true
+    color: "#ff0000"
+    toggleAction: PulseThermalVision
   - type: ShowHealthBars
   - type: PressureProtection
     highPressureMultiplier: 0.08

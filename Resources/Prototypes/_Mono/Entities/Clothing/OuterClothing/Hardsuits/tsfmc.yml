@@ -120,6 +120,10 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -144,6 +148,10 @@
         Caustic: 0.35
   - type: StaminaDamageResistance #Lua
     coefficient: 0.4
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
 
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
@@ -179,7 +187,9 @@
   - type: FactionClothing
     faction: NanoTrasen
   - type: Inject
-    canBeOpened: false
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
 
 #Security Combat Hardsuit
 - type: entity
@@ -210,6 +220,10 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.825
     sprintModifier: 0.825
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
 
 #Security Command Hardsuit
 - type: entity
@@ -240,3 +254,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
