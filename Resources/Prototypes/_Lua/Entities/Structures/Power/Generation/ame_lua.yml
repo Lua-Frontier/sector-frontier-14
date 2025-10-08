@@ -7,6 +7,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: LuaTech
   - type: Sprite
     sprite: _Lua/Structures/Power/Generation/ame_lua.rsi
     state: control
@@ -25,6 +26,7 @@
   id: AmeControllerLuaUnanchored
   suffix: Lua, Unanchored
   components:
+  - type: LuaTech
   - type: Transform
     anchored: false
   - type: Physics
@@ -39,6 +41,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: LuaTech
   - type: Sprite
     sprite: _Lua/Structures/Power/Generation/ame_lua.rsi
     state: shield_0

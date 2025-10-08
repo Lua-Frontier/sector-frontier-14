@@ -67,6 +67,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: LuaTech
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _Lua/Structures/Power/substation_lua.rsi
@@ -83,6 +84,7 @@
   id: SubstationBasicLua
   suffix: Lua, Basic, 2.5MJ
   components:
+  - type: LuaTech
   - type: Sprite
     sprite: _Lua/Structures/Power/substation_lua.rsi
     snapCardinals: true
@@ -101,6 +103,7 @@
   id: SubstationBasicEmptyLua
   suffix: Lua, Empty
   components:
+  - type: LuaTech
   - type: Sprite
     sprite: _Lua/Structures/Power/substation_lua.rsi
     snapCardinals: true
@@ -119,6 +122,7 @@
   id: SubstationWallBasicLua
   suffix: Lua, Basic, 2MJ
   components:
+  - type: LuaTech
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _Lua/Structures/Power/substation_lua.rsi
@@ -140,6 +144,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: LuaTech
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: _Lua/Structures/Power/substation_lua.rsi
