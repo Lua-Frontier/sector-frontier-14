@@ -527,3 +527,125 @@
   components:
   - type: Sprite
     sprite: _Lua/Structures/Doors/Airlocks/Glass/medium_medical_glass_lua.rsi
+
+- type: entity
+  id: HoloAirlockBase
+  name: holodoor
+  description: A barrier of hard light that blocks air, but nothing else.
+  suffix: Holodoor, Lua
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: LuaTech
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+  - type: ApcPowerReceiver
+    powerLoad: 20
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/shuttle_holo_lua.rsi
+    drawdepth: Doors
+    snapCardinals: false
+    layers:
+    - state: holodoor
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: border
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      visible: true
+    - state: lamps_open
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: lamps_bolted
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.DoorVisualLayers.Base:
+          False: { visible: false }
+          True: { visible: true }
+      enum.DoorVisuals.BoltLights:
+        enum.DoorVisualLayers.BaseBolted:
+          False: { visible: false }
+          True: { visible: true }
+      enum.DoorVisuals.ClosedLights:
+        enum.DoorVisualLayers.BaseUnlit:
+          False: { visible: false }
+          True: { visible: true }
+  - type: DeviceLinkSink
+    ports:
+      - DoorBolt
+  - type: DeviceLinkSource
+    ports:
+      - DoorStatus
+    lastSignals:
+      DoorStatus: false
+  - type: DoorSignalControl
+  - type: DoorBolt
+  - type: HoloAirlock
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: Wires
+    boardName: wires-board-name-airlock
+    layoutId: Docking
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: AccessReader
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronics ]
+  - type: LitOnPowered
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    color: "#006380"
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: entity
+  id: HoloAirlock
+  parent: HoloAirlockBase
+  suffix: Holodoor Dock, Lua
+  name: holodoor docking
+  description: A barrier of hard light that blocks air, but nothing else.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Docking
+  - type: DockingSignalControl

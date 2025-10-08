@@ -118,24 +118,16 @@ public sealed class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Opening:
-                if (sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
-                { sprite.LayerSetState(DoorVisualLayers.BaseColor, entity.Comp.OpeningColorSpriteState); }
-
                 if (entity.Comp.OpeningAnimationTime == 0.0)
                     return;
-                var openingAnimation = CreateOpeningAnimation(entity.Comp, sprite);
-                _animationSystem.Play(entity, openingAnimation, DoorComponent.AnimationKey);
+                _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.AnimationKey);
 
                 return;
             case DoorState.Closing:
-                if (sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
-                { sprite.LayerSetState(DoorVisualLayers.BaseColor, entity.Comp.ClosingColorSpriteState); }
-
                 if (entity.Comp.ClosingAnimationTime == 0.0 || entity.Comp.CurrentlyCrushing.Count != 0)
                     return;
 
-                var closingAnimation = CreateClosingAnimation(entity.Comp, sprite);
-                _animationSystem.Play(entity, closingAnimation, DoorComponent.AnimationKey);
+                _animationSystem.Play(entity, (Animation)entity.Comp.ClosingAnimation, DoorComponent.AnimationKey);
 
                 return;
             case DoorState.Denying:
@@ -149,51 +141,7 @@ public sealed class DoorSystem : SharedDoorSystem
         }
     }
 
-    // Lua start
-    private Animation CreateOpeningAnimation(DoorComponent comp, SpriteComponent sprite)
-    {
-        var animation = new Animation
-        { Length = TimeSpan.FromSeconds(comp.OpeningAnimationTime) };
-        if (sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
-        {
-            animation.AnimationTracks.Add(new AnimationTrackSpriteFlick
-            {
-                LayerKey = DoorVisualLayers.BaseColor,
-                KeyFrames =
-                { new AnimationTrackSpriteFlick.KeyFrame(comp.OpeningColorSpriteState, 0f), },
-            });
-        }
-        animation.AnimationTracks.Add(new AnimationTrackSpriteFlick
-        {
-            LayerKey = DoorVisualLayers.Base,
-            KeyFrames =
-            { new AnimationTrackSpriteFlick.KeyFrame(comp.OpeningSpriteState, 0f), },
-        });
-        return animation;
-    }
 
-    private Animation CreateClosingAnimation(DoorComponent comp, SpriteComponent sprite)
-    {
-        var animation = new Animation
-        { Length = TimeSpan.FromSeconds(comp.ClosingAnimationTime) };
-        if (sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
-        {
-            animation.AnimationTracks.Add(new AnimationTrackSpriteFlick
-            {
-                LayerKey = DoorVisualLayers.BaseColor,
-                KeyFrames =
-                { new AnimationTrackSpriteFlick.KeyFrame(comp.ClosingColorSpriteState, 0f), },
-            });
-        }
-        animation.AnimationTracks.Add(new AnimationTrackSpriteFlick
-        {
-            LayerKey = DoorVisualLayers.Base,
-            KeyFrames =
-            { new AnimationTrackSpriteFlick.KeyFrame(comp.ClosingSpriteState, 0f), },
-        });
-        return animation;
-    }
-    // Lua end
 
     private void UpdateSpriteLayers(Entity<SpriteComponent> sprite, string targetProto)
     {

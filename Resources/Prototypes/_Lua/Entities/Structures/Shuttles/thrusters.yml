@@ -168,6 +168,11 @@
       visible: false
       offset: 0,1.85
       color: "#d5c9ee"
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    color: "#7962a8"
   - type: Fixtures
     fixtures:
       fix1:
@@ -191,9 +196,9 @@
     thrusterType: Omnidirectional
     baseThrust: 800
     thrust: 800
-    thrustPerPartLevel: [1000, 1200, 1400, 1600, 1800]
+    thrustPerPartLevel: [1000, 1200, 1400, 1600, 1900]
     burnShape: ["-0.8,1.2","0,2.0","0.8,1.2","1.3,0.5"]
-    angularThrustExtra: 800
+    angularThrustExtra: 1500
     damage:
       types:
         Heat: 40
