@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/08/2025 06:02:44
-  entityCount: 3171
+  time: 10/08/2025 11:36:46
+  entityCount: 3167
 maps: []
 grids:
 - 2
@@ -2364,42 +2364,6 @@ entities:
       parent: 2
 - proto: AstrolitWindow
   entities:
-  - uid: 18
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,7.5
-      parent: 2
-  - uid: 92
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,8.5
-      parent: 2
-  - uid: 103
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,9.5
-      parent: 2
-  - uid: 225
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,8.5
-      parent: 2
-  - uid: 442
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,7.5
-      parent: 2
-  - uid: 461
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,9.5
-      parent: 2
   - uid: 703
     components:
     - type: Transform
@@ -13367,24 +13331,6 @@ entities:
       parent: 2
 - proto: Grille
   entities:
-  - uid: 1170
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,9.5
-      parent: 2
-  - uid: 1171
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,8.5
-      parent: 2
-  - uid: 1172
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,7.5
-      parent: 2
   - uid: 1173
     components:
     - type: Transform
@@ -13420,24 +13366,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,8.5
-      parent: 2
-  - uid: 1181
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,7.5
-      parent: 2
-  - uid: 1182
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,8.5
-      parent: 2
-  - uid: 1183
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,9.5
       parent: 2
   - uid: 3130
     components:
@@ -13892,6 +13820,20 @@ entities:
     components:
     - type: Transform
       pos: -9.5,7.5
+      parent: 2
+- proto: MachineFrame
+  entities:
+  - uid: 3173
+    components:
+    - type: Transform
+      pos: -13.5,5.5
+      parent: 2
+- proto: MachineFTLDriveLT600
+  entities:
+  - uid: 3172
+    components:
+    - type: Transform
+      pos: 14.5,5.5
       parent: 2
 - proto: MaintenanceFluffSpawner
   entities:
@@ -16741,6 +16683,11 @@ entities:
     - type: Transform
       pos: 3.5,-5.5
       parent: 2
+  - uid: 18
+    components:
+    - type: Transform
+      pos: -13.5,7.5
+      parent: 2
   - uid: 19
     components:
     - type: Transform
@@ -16946,6 +16893,11 @@ entities:
     - type: Transform
       pos: -14.5,10.5
       parent: 2
+  - uid: 92
+    components:
+    - type: Transform
+      pos: -13.5,9.5
+      parent: 2
   - uid: 93
     components:
     - type: Transform
@@ -16978,6 +16930,11 @@ entities:
     components:
     - type: Transform
       pos: -15.5,3.5
+      parent: 2
+  - uid: 103
+    components:
+    - type: Transform
+      pos: 14.5,8.5
       parent: 2
   - uid: 104
     components:
@@ -17348,6 +17305,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,14.5
+      parent: 2
+  - uid: 225
+    components:
+    - type: Transform
+      pos: -13.5,8.5
       parent: 2
   - uid: 226
     components:
@@ -18000,6 +17962,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,38.5
       parent: 2
+  - uid: 442
+    components:
+    - type: Transform
+      pos: 14.5,7.5
+      parent: 2
   - uid: 443
     components:
     - type: Transform
@@ -18048,6 +18015,11 @@ entities:
     components:
     - type: Transform
       pos: 15.5,11.5
+      parent: 2
+  - uid: 461
+    components:
+    - type: Transform
+      pos: 14.5,9.5
       parent: 2
   - uid: 462
     components:
