@@ -76,3 +76,11 @@ ent-SheetCompactAstrolite10 = компактный астролит
 ent-SheetCompactAstrolite1 = компактный астролит
     .desc = { ent-SheetCompactAstrolite.desc }
 
+station-event-bluespace-name-ShipyardLuatech = Автономная верфь
+
+station-event-bluespace-shipyardluatech-start-announcement = В "{ $mapdestination }" прибыла автономная верфь Lua Technologies. Она предоставляет услуги по продаже шаттлов компании. Желающие могут пристыковаться для оформления покупки.
+
+station-event-bluespace-shipyardluatech-warning-announcement = Запущены удалённые пурспейс процедуры, до ухода верфи из "{ $mapdestination }" осталось пять минут.
+
+station-event-bluespace-shipyardluatech-end-announcement = Обнаружено искажение пурспейс пространства - автономная верфь Lua Technologies покинула "{ $mapdestination }".
+

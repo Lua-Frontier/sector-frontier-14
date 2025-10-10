@@ -132,6 +132,44 @@
     graph: Girder
     node: WallKrissSolidDiagonal
 
+# Indestructible variants (new), keep visuals/name from Kriss but inherit indestructible behavior
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallKrissSolidIndestructible
+  name: solid wall
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/Krisswall.rsi
+    color: "#ffffff"
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krisswall.rsi
+  - type: IconSmooth
+    key: walls
+    base: solid
+
+- type: entity
+  parent: WallPlastitaniumDiagonalIndestructible
+  id: WallKrissSolidDiagonalIndestructible
+  name: solid wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
+    state: state0
+    color: "#ffffff"
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
+    state: state0
+
 # Wall variations
 - type: entity
   parent: [ WallReinforced, BaseWallDiagonal ]
@@ -230,6 +268,22 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
 
+# Indestructible reinforced window variants reusing Kriss sprites
+- type: entity
+  id: ReinforcedWindowKrissIndestructible
+  name: reinforced window
+  parent: PlastitaniumWindowIndestructible
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Lua/Structures/Walls/Krissglass.rsi
+    color: "#ffffff"
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krissglass.rsi
+  - type: IconSmooth
+    key: walls
+    base: rwindow
+
 - type: entity
   parent: ReinforcedWindowKriss
   id: ReinforcedWindowKrissDiagonal
@@ -277,6 +331,24 @@
   - type: Construction
     graph: WindowDiagonal
     node: reinforcedWindowDiagonal
+
+- type: entity
+  id: ReinforcedWindowKrissDiagonalIndestructible
+  name: reinforced window
+  parent: PlastitaniumWindowDiagonalIndestructible
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Lua/Structures/Walls/Krissglass_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krissglass_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
 
 #Station Walls
 - type: entity

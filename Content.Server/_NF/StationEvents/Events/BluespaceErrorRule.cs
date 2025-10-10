@@ -6,6 +6,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Server.Station.Systems;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
 using Content.Server._NF.Bank;
@@ -40,6 +41,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
+    [Dependency] private readonly StationSystem _station = default!; // Lua
 
     public override void Initialize()
     {
@@ -191,6 +193,13 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 var name = path.FilenameWithoutExtension;
                 _metadata.SetEntityName(ent.Value, name);
             }
+            if (group.StationGrid) // Lua start
+            {
+                var xform = Transform(ent.Value);
+                var mapStation = _station.GetStationInMap(xform.MapID);
+                if (mapStation != null)
+                { _station.AddGridToStation(mapStation.Value, ent.Value); }
+            } // Lua end
 
             spawned = ent.Value;
             return true;

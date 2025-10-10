@@ -182,4 +182,5 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public bool NameGrid { get; set; } = true;
     public bool NameWarp { get; set; } = true;
     public bool HideWarp { get; set; } = false;
+    public bool StationGrid { get; set; } = false;
 }
