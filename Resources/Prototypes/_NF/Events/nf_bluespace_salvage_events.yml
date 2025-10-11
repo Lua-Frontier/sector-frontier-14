@@ -64,7 +64,8 @@
     weight: 5
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameDataset: NamesScrap

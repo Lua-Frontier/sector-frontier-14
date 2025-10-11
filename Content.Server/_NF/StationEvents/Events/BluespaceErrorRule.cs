@@ -20,6 +20,7 @@ using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
+using Content.Server.LW.AsteroidSector;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -42,20 +43,61 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly StationSystem _station = default!; // Lua
+    [Dependency] private readonly AsteroidSectorSystem _asteroid = default!; // Lua
+
+    private MapId _relevantMapId = MapId.Nullspace;
 
     public override void Initialize()
     {
         base.Initialize();
     }
 
+    protected override void Added(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
+    {
+        MapId targetMapId;
+        if (component.Asteroid)
+        {
+            targetMapId = _asteroid.GetAsteroidSectorMapId();
+            if (targetMapId == MapId.Nullspace)
+            { targetMapId = GameTicker.DefaultMap; }
+        }
+        else
+        { targetMapId = GameTicker.DefaultMap; }
+        _relevantMapId = targetMapId;
+        base.Added(uid, component, gameRule, args);
+    }
+
+    protected override MapId GetRelevantMapId()
+    { return _relevantMapId; }
+
     protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
-        if (!_map.TryGetMap(GameTicker.DefaultMap, out var mapUid))
-            return;
+        MapId targetMapId;
+        EntityUid mapUid;
+        if (component.Asteroid)
+        {
+            targetMapId = _asteroid.GetAsteroidSectorMapId();
+            if (targetMapId == MapId.Nullspace)
+            {
+                if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
+                targetMapId = GameTicker.DefaultMap;
+                mapUid = defaultMapUid.Value;
+            }
+            else
+            { mapUid = _mapManager.GetMapEntityId(targetMapId); }
+        }
+        else
+        {
+            if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
+            targetMapId = GameTicker.DefaultMap;
+            mapUid = defaultMapUid.Value;
+        }
 
-        var spawnCoords = new EntityCoordinates(mapUid.Value, Vector2.Zero);
+        _relevantMapId = targetMapId;
+
+        var spawnCoords = new EntityCoordinates(mapUid, Vector2.Zero);
 
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _map.CreateMap(out var mapId);
@@ -282,5 +324,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             if (_map.MapExists(mapId))
                 _map.DeleteMap(mapId);
         }
+
+        _relevantMapId = GameTicker.DefaultMap;
     }
 }

@@ -57,8 +57,14 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
         if (component.Asteroid)
         {
             targetMapId = _asteroid.GetAsteroidSectorMapId();
-            if (targetMapId == MapId.Nullspace) return;
-            mapUid = _mapManager.GetMapEntityId(targetMapId);
+            if (targetMapId == MapId.Nullspace)
+            {
+                if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
+                targetMapId = GameTicker.DefaultMap;
+                mapUid = defaultMapUid.Value;
+            }
+            else
+            { mapUid = _mapManager.GetMapEntityId(targetMapId); }
         }
         else
         {
