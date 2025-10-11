@@ -117,6 +117,8 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
@@ -157,6 +159,8 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
@@ -392,6 +396,8 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
@@ -557,6 +563,8 @@
   suffix: diagonal
   description: Skub knows this wall is too hard to destroy. # Frontier
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: _Lua/Structures/Walls/riveted_diagonal.rsi
@@ -674,6 +682,8 @@
   suffix: diagonal
   description: Skub knows this wall is too hard to destroy. # Frontier
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: _Lua/Structures/Walls/monastery_gray_diagonal.rsi
@@ -712,6 +722,8 @@
   id: WallMonasteryBrownDiagonal
   name: monastery wall
   components:
+  - type: Occluder
+    enabled: false
   - type: ExplosionResistance
     damageCoefficient: 0.8 # lua
   - type: Sprite
@@ -810,6 +822,8 @@
   suffix: diagonal
   description:
   components:
+  - type: Occluder
+    enabled: false
   - type: LuaTech
   - type: Sprite
     drawdepth: Walls

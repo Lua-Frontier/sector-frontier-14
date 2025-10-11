@@ -10,6 +10,8 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Transform
     anchored: true
   - type: Clickable
