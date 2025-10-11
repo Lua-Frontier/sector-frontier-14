@@ -6,6 +6,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared._Mono.FireControl;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
+using Content.Shared.Silicons.StationAi; // Lua
 
 namespace Content.Server._Mono.Ships.Systems;
 
@@ -19,6 +20,8 @@ public sealed class CrewedShuttleSystem : EntitySystem
     public bool AnyConsoleActiveOnGridByPlayer<T>(EntityUid grid, Enum key, EntityUid actor) where T : IComponent
     {
         if (HasComp<Shared._Mono.Ships.Components.WhitelistConsolesComponent>(grid)) return false; // Lua
+
+        if (HasComp<StationAiHeldComponent>(actor)) return false; // Lua
 
         var query = EntityQueryEnumerator<T>();
 
