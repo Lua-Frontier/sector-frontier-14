@@ -595,6 +595,9 @@
   - type: DeviceLinkSink
     ports:
       - DoorBolt
+      - Open
+      - Close
+      - Toggle
   - type: DeviceLinkSource
     ports:
       - DoorStatus
@@ -605,6 +608,7 @@
   - type: HoloAirlock
   - type: Airtight
     noAirWhenFullyAirBlocked: false
+    airBlocked: false
   - type: Wires
     boardName: wires-board-name-airlock
     layoutId: Docking

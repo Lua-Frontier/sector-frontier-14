@@ -80,7 +80,7 @@ public sealed class HoloAirlockSystem : EntitySystem
     private void UpdateState(EntityUid uid)
     {
         var powered = TryComp(uid, out ApcPowerReceiverComponent? recv) && recv.Powered;
-        var bolted = _door.IsBolted(uid);
+        var bolted = TryComp<DoorBoltComponent>(uid, out var boltComp) && _door.IsBolted(uid, boltComp);
         var docked = TryComp(uid, out DockingComponent? docking) && docking.Docked;
         var collidable = powered && bolted;
         var airblocked = powered && !docked;
