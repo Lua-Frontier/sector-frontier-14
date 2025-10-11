@@ -1,0 +1,80 @@
+#Должно быть вам не стоит делать свой прототип не изучив код основных систем но я подскажу вам как пользоваться
+
+- type: sectorSystemPrototype # базовый прототип в C# там описаны все возможные методы для создания прототипа сектора
+  id: AsteroidSectorDefault # ID нашего будущего сектора
+  name: "Поле Астероидов" # Название нашего сектора, будет видно в БСС карте
+  station: Beacon # id прототипа нашего грида, основной карты сектора, будь то маяк норд или тортуга
+  worldgenConfig: AsteroidSectorDefault # будут ли в нашем секторе спавнится астероиды, тут указывается тип спавна астероидов, есть 2 типа Default где их минимум и AsteroidSectorDefault, где их обилие и большие размеры
+  autoStart: true # Необходим для основной группы секторов, более понятно для чего и зачем не буду пояснять, просто включайте если используете в стандартном режиме игры, выключить если не нужно загружать сектор
+  defaultGamePreset: NFPirates # Режим игры который мы используем по дефолту на нашем фронтире
+  addFtlDestination: true # Включаем возможность перемещаться на наш сектор
+  ftlWhitelist: [ NanotrasenFtl, MercenaryFtl, PirateFtl, TypanFtl ] # Указываем белые списки кому дозволено коснуться нашего сектора, данные компоненты должны быть указаны в прототипе корабля vessel
+  parallaxPool: [ AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
+  poiGroups: # Ниже перечисляем точки интереса что будут раундстартом в секторе, их id и настройку можно получить из PointOfInterest в папке NF прототипов (либо Lua)
+  - group: AsteroidRequired # Группа рекомендаций сектора
+    count: 0 # если 0 то спавнится каждый по одному
+  - group: CargoDepot
+    count: 4
+    ring: true # Спавн по окружности вокруг цвентра
+  - group: AsteroidMarketStation
+    count: 2
+#Я рассказал базовые настройки на основе главного сектора, дальше ничего особого, я упростил код и дал больше инструментов но я крайне рекомендую быть осторожным при создании секторов, данная логика и её поведение непредсказуемое, я постарался сделать больше фоллбеков чтобы обезопасить сервер от возможных проблем но человеческий фактор непредсказуем.
+
+- type: sectorSystemPrototype
+  id: TypanSector
+  name: "Сектор Нордфолл"
+  station: Typan
+  worldgenConfig: Default
+  autoStart: true
+  defaultGamePreset: NFPirates
+  addFtlDestination: true
+  ftlWhitelist: [ TypanFtl ]
+  parallaxPool: [ OriginStation, NordFoll ]
+  poiGroups:
+  - group: TypanCargoDepot
+    count: 1
+    ring: false
+
+- type: sectorSystemPrototype
+  id: PirateSector
+  name: "Сектор Пиратов"
+  station: Cove
+  autoStart: true
+  defaultGamePreset: NFPirates
+  addFtlDestination: true
+  ftlWhitelist: [ PirateFtl ]
+  parallaxPool: [ CoreStation, Tortuga ]
+
+- type: sectorSystemPrototype
+  id: MercenarySector
+  name: "Сектор Наёмников"
+  station: MercMap
+  autoStart: true
+  defaultGamePreset: NFPirates
+  addFtlDestination: true
+  ftlWhitelist: [ MercenaryFtl, TypanFtl ]
+  parallaxPool: [ Sky ]
+
+- type: sectorSystemPrototype
+  id: ShipVsShipRed
+  name: "Сектор Красных"
+  station: ShipVsShipRedGrid
+  requiredGamePreset: ShipVsShip
+  addFtlDestination: false
+  parallaxPool: [ OriginStation ]
+  poiGroups:
+  - group: ShipVsShipRedRequired
+    count: 1
+
+- type: sectorSystemPrototype
+  id: ShipVsShipBlue
+  name: "Сектор Синих"
+  station: ShipVsShipBlueGrid
+  requiredGamePreset: ShipVsShip
+  addFtlDestination: false
+  parallaxPool: [ OriginStation ]
+  poiGroups:
+  - group: ShipVsShipBlueRequired
+    count: 1
+
+

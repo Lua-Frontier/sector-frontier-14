@@ -20,7 +20,7 @@ using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
-using Content.Server.LW.AsteroidSector;
+using Content.Server._Lua.Sectors;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -43,7 +43,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly StationSystem _station = default!; // Lua
-    [Dependency] private readonly AsteroidSectorSystem _asteroid = default!; // Lua
+    [Dependency] private readonly SectorSystem _sectors = default!; // Lua
 
     private MapId _relevantMapId = MapId.Nullspace;
 
@@ -57,7 +57,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         MapId targetMapId;
         if (component.Asteroid)
         {
-            targetMapId = _asteroid.GetAsteroidSectorMapId();
+            if (!_sectors.TryGetMapId("AsteroidSectorDefault", out targetMapId))
+            { targetMapId = MapId.Nullspace; }
             if (targetMapId == MapId.Nullspace)
             { targetMapId = GameTicker.DefaultMap; }
         }
@@ -78,7 +79,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         EntityUid mapUid;
         if (component.Asteroid)
         {
-            targetMapId = _asteroid.GetAsteroidSectorMapId();
+            if (!_sectors.TryGetMapId("AsteroidSectorDefault", out targetMapId))
+            { targetMapId = MapId.Nullspace; }
             if (targetMapId == MapId.Nullspace)
             {
                 if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
