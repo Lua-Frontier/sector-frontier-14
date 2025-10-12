@@ -2019,18 +2019,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 9
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 305
-    components:
-    - type: Transform
-      pos: 2.5,30.5
-      parent: 1
-  - uid: 306
-    components:
-    - type: Transform
-      pos: 2.5,29.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 307

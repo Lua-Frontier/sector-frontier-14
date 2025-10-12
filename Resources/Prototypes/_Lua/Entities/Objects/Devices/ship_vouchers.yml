@@ -14,7 +14,7 @@
     - state: luashipv
   - type: ShipyardConsole
     targetIdSlot:
-      name: id-card-console-target-id
+      name: ShipyardConsole-targetId
       ejectOnBreak: true
       swap: true
       whitelist:
@@ -27,4 +27,8 @@
     interfaces:
       enum.ShipyardConsoleUiKey.LuaTech:
         type: ShipyardConsoleBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      ShipyardConsole-targetId: !type:ContainerSlot {}
 
