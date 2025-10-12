@@ -2,6 +2,7 @@
 guide-entry-shipyard-argent = Argent
 guide-entry-shipyard-sabine = Sabine
 guide-entry-shipyard-judiciary = Judiciary
+guide-entry-gridclaimer = Claiming Debris
 
 # Gunnery Guides
 guide-entry-gunnery = Ship Warfare

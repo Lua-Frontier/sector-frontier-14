@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/08/2025 11:36:46
-  entityCount: 3167
+  time: 10/11/2025 14:44:15
+  entityCount: 3168
 maps: []
 grids:
 - 2
@@ -8177,20 +8177,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,33.5
       parent: 2
-- proto: ComputerTabletopCrewMonitoring
-  entities:
-  - uid: 3019
-    components:
-    - type: Transform
-      pos: 2.5,12.5
-      parent: 2
-- proto: ComputerTabletopSalvageExpedition
-  entities:
-  - uid: 1963
-    components:
-    - type: Transform
-      pos: 2.5,10.5
-      parent: 2
 - proto: ComputerShuttleTabletopLuaTech
   entities:
   - uid: 792
@@ -8236,6 +8222,20 @@ entities:
         2101:
         - - device-button-2
           - DoorBolt
+- proto: ComputerTabletopCrewMonitoring
+  entities:
+  - uid: 3019
+    components:
+    - type: Transform
+      pos: 2.5,12.5
+      parent: 2
+- proto: ComputerTabletopSalvageExpedition
+  entities:
+  - uid: 1963
+    components:
+    - type: Transform
+      pos: 2.5,10.5
+      parent: 2
 - proto: ComputerTabletopSurveillanceCameraMonitor
   entities:
   - uid: 3017
@@ -9573,7 +9573,7 @@ entities:
   - uid: 3020
     components:
     - type: Transform
-      pos: -0.23348165,10.659101
+      pos: 1.9523182,10.7229185
       parent: 2
 - proto: Dropper
   entities:
@@ -13440,84 +13440,36 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -19.5,15.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 36
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,15.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 51
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -19.5,16.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 57
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,17.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 61
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,16.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 1875
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -19.5,17.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
 - proto: HoloAirlockBase
   entities:
   - uid: 67
@@ -13526,84 +13478,36 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 18.5,17.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 133
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,17.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 2082
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 18.5,16.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 2099
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,16.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 2100
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,15.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
   - uid: 2101
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 18.5,15.5
       parent: 2
-    - type: DeviceLinkSink
-      ports:
-      - DoorBolt
-      - Open
-      - Close
-      - Toggle
-    - type: Airtight
-      airBlocked: False
 - proto: HospitalCurtainsOpen
   entities:
   - uid: 1986
@@ -14082,7 +13986,7 @@ entities:
   - uid: 3021
     components:
     - type: Transform
-      pos: -0.38973165,10.580976
+      pos: 1.0929432,10.5979185
       parent: 2
     - type: Paper
       stampState: paper_stamp-cap
@@ -14112,7 +14016,7 @@ entities:
   - uid: 1980
     components:
     - type: Transform
-      pos: -0.51473165,10.627851
+      pos: 1.9366932,10.4572935
       parent: 2
 - proto: PlushieMoffRandom
   entities:
@@ -15309,6 +15213,15 @@ entities:
     - type: Transform
       pos: 3.439008,-4.205634
       parent: 2
+- proto: SelfDestructBomb
+  entities:
+  - uid: 1170
+    components:
+    - type: Transform
+      pos: -0.5,10.5
+      parent: 2
+    - type: ShuttleConsoleLock
+      locked: False
 - proto: SheetPlasma1
   entities:
   - uid: 1841

@@ -1,0 +1,30 @@
+## Replaced by simple voucher system; remove old LuaTech-all voucher
+
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherLuaTechSimple
+  categories: [ HideSpawnMenu ]
+  name: LuaTech ship voucher
+  description: Необычное устройство.
+  suffix: Lua
+  components:
+  - type: Sprite
+    layers:
+    - state: lua
+    - state: luashipv
+  - type: ShipyardConsole
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+    canTransferDeed: false
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.LuaTech
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.LuaTech:
+        type: ShipyardConsoleBoundUserInterface
+

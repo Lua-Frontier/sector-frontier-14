@@ -317,19 +317,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var shuttleConsoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent>();
         while (shuttleConsoleQuery.MoveNext(out var consoleUid, out _, out var transform))
         {
-            // Only process consoles on the purchased ship
             if (transform.GridUid != shuttleUid)
                 continue;
 
-            // Add lock component and set the shuttle ID
             var lockComp = EnsureComp<ShuttleConsoleLockComponent>(consoleUid);
             _shuttleConsoleLock.SetShuttleId(consoleUid, shuttleUid.ToString(), lockComp);
-
-            // Ensure emergency lock is disabled for newly purchased ships
             _shuttleConsoleLock.SetEmergencyLock(consoleUid, false);
-
-            // Log for debugging
             Log.Debug("Locked shuttle console {0} to shuttle {1} for deed holder {2}", consoleUid, shuttleUid, targetId);
+        }
+
+        var otherLockQuery = EntityQueryEnumerator<ShuttleConsoleLockComponent, TransformComponent>();
+        while (otherLockQuery.MoveNext(out var devUid, out var devLock, out var devXform))
+        {
+            if (devXform.GridUid != shuttleUid)
+                continue;
+
+            _shuttleConsoleLock.SetShuttleId(devUid, shuttleUid.ToString(), devLock);
+            _shuttleConsoleLock.SetEmergencyLock(devUid, false);
+            Log.Debug("Locked shuttle device {0} to shuttle {1} for deed holder {2}", devUid, shuttleUid, targetId);
         }
 
         // Register ship ownership for auto-deletion when owner is offline too long
