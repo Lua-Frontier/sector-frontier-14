@@ -168,6 +168,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return true;
     }
 
+    public bool TryPurchaseShuttleToGrid(EntityUid targetGrid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
+    {
+        shuttleEntityUid = null;
+        if (!TryAddShuttle(shuttlePath, out var shuttleGrid) || !TryComp<ShuttleComponent>(shuttleGrid, out var shuttleComponent))
+        { return false; }
+        var price = _pricing.AppraiseGrid(shuttleGrid.Value, null);
+        _sawmill.Info($"Shuttle {shuttlePath} was purchased at grid {ToPrettyString(targetGrid)} for {price:f2}");
+        _shuttle.TryFTLDock(shuttleGrid.Value, shuttleComponent, targetGrid);
+        shuttleEntityUid = shuttleGrid;
+        return true;
+    }
+
     /// <summary>
     /// Loads a shuttle into the ShipyardMap from a file path
     /// </summary>

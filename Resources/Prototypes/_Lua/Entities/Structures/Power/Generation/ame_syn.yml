@@ -1,0 +1,47 @@
+- type: entity
+  parent: AmeController
+  id: AmeControllerSyn
+  name: AME controller syn
+  description: It's a controller for the antimatter engine syndicate.
+  suffix: Syndicate
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Power/Generation/ame_syn.rsi
+  - type: PowerMonitoringDevice
+    sprite: _Lua/Structures/Power/Generation/ame_syn.rsi
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: AmeControllerSyn
+  id: AmeControllerSynUnanchored
+  suffix: Syndicate, Unanchored
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+
+- type: entity
+  parent: AmeShielding
+  id: AmeShieldingSyn
+  name: AME shielding syn
+  description: Keeps the antimatter in and the matter out syndicate.
+  suffix: Syndicate
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Power/Generation/ame_syn.rsi
+    state: shield_0
+    layers:
+    - state: shield_0
+    - state: core
+      map: ["core"]
+      visible: false
+    - state: core_weak
+      map: ["core_glow"]
+      shader: unshaded
+      visible: false
+      color: "#9b2929"

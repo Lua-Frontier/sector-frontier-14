@@ -18,7 +18,7 @@ using Content.Server.Maps.NameGenerators;
 using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
 using Robust.Shared.EntitySerialization.Systems;
-using Content.Server.LW.AsteroidSector;
+using Content.Server._Lua.Sectors;
 
 namespace Content.Server._Lua.AiShuttle;
 
@@ -37,7 +37,7 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly AsteroidSectorSystem _asteroid = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
 
     public override void Initialize()
     {
@@ -56,9 +56,16 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
         EntityUid mapUid;
         if (component.Asteroid)
         {
-            targetMapId = _asteroid.GetAsteroidSectorMapId();
-            if (targetMapId == MapId.Nullspace) return;
-            mapUid = _mapManager.GetMapEntityId(targetMapId);
+            if (!_sectors.TryGetMapId("AsteroidSectorDefault", out targetMapId))
+            { targetMapId = MapId.Nullspace; }
+            if (targetMapId == MapId.Nullspace)
+            {
+                if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
+                targetMapId = GameTicker.DefaultMap;
+                mapUid = defaultMapUid.Value;
+            }
+            else
+            { mapUid = _mapManager.GetMapEntityId(targetMapId); }
         }
         else
         {

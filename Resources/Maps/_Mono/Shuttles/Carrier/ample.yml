@@ -430,37 +430,6 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
-- proto: GeneratorBasic
-  entities:
-  - uid: 52
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
-      parent: 1
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 53
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
-      parent: 1
-  - uid: 54
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
-      parent: 1
-- proto: Grille
-  entities:
-  - uid: 96
-    components:
-    - type: Transform
-      pos: 2.5,-3.5
-      parent: 1
-  - uid: 97
-    components:
-    - type: Transform
-      pos: -1.5,-3.5
-      parent: 1
 - proto: GrilleDiagonal
   entities:
   - uid: 98
