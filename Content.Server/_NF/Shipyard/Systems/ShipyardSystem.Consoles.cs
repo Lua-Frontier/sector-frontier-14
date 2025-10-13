@@ -42,6 +42,7 @@ using Content.Server.StationEvents.Components;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared._Lua.LuaTech; // Lua
 using Content.Shared._Mono.Company;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared._Mono.Shipyard;
@@ -169,11 +170,30 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!vessel.RequireCrew && vessel.Classes.Contains(VesselClass.Capital))
             vessel.RequireCrew = true;
 
-        if (_station.GetOwningStation(shipyardConsoleUid) is not { Valid: true } station)
+        var isLuaTech = HasComp<LuaTechComponent>(shipyardConsoleUid);
+        bool hasStation = false;
+        EntityUid station = default;
+        EntityUid targetGridForLuaTech = default;
+        if (!isLuaTech)
         {
-            ConsolePopup(player, Loc.GetString("shipyard-console-invalid-station"));
-            PlayDenySound(player, shipyardConsoleUid, component);
-            return;
+            if (_station.GetOwningStation(shipyardConsoleUid) is not { Valid: true } owningStation)
+            {
+                ConsolePopup(player, Loc.GetString("shipyard-console-invalid-station"));
+                PlayDenySound(player, shipyardConsoleUid, component); return;
+            }
+            station = owningStation;
+            hasStation = true;
+        }
+        else
+        {
+            var xform = Transform(shipyardConsoleUid);
+            if (xform.GridUid is not { Valid: true } gridUid)
+            {
+                ConsolePopup(player, Loc.GetString("shipyard-console-invalid-station"));
+                PlayDenySound(player, shipyardConsoleUid, component);
+                return;
+            }
+            targetGridForLuaTech = gridUid;
         }
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
@@ -230,7 +250,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!TryPurchaseShuttle(station, vessel.ShuttlePath, out var shuttleUidOut))
+        bool purchased;
+        EntityUid? shuttleUidOut;
+        if (isLuaTech) purchased = TryPurchaseShuttleToGrid(targetGridForLuaTech, vessel.ShuttlePath, out shuttleUidOut);
+        else purchased = TryPurchaseShuttle(station, vessel.ShuttlePath, out shuttleUidOut);
+        if (!purchased || shuttleUidOut is null)
         {
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
@@ -384,8 +408,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 _records.CreateGeneralRecord(shuttleStation.Value, targetId, profile.Name, profile.Age, profile.Species, profile.Gender, $"Captain", fingerprintComponent!.Fingerprint, dnaComponent!.DNA, profile, stationRec!);
             }
         }
-        _records.Synchronize(shuttleStation!.Value);
-        _records.Synchronize(station);
+        if (shuttleStation != null) _records.Synchronize(shuttleStation.Value);
+        if (hasStation)
+            _records.Synchronize(station);
 
         EntityManager.AddComponents(shuttleUid, vessel.AddComponents);
 

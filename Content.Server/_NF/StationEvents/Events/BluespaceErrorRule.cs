@@ -238,13 +238,6 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 var name = path.FilenameWithoutExtension;
                 _metadata.SetEntityName(ent.Value, name);
             }
-            if (group.StationGrid) // Lua start
-            {
-                var xform = Transform(ent.Value);
-                var mapStation = _station.GetStationInMap(xform.MapID);
-                if (mapStation != null)
-                { _station.AddGridToStation(mapStation.Value, ent.Value); }
-            } // Lua end
 
             spawned = ent.Value;
             return true;
