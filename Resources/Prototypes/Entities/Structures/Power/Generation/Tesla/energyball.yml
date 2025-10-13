@@ -120,7 +120,7 @@
     - SingularityTeslaEngine
     - Power
   # Frontier: tethered danger balls & radar blips
-  - type: DangerTethered
+  # - type: DangerTethered // Lua
   - type: RadarBlip
     scale: 4
     shape: Star
@@ -162,7 +162,7 @@
   - type: Electrified
     requirePower: false
   # Frontier: tethered danger balls & radar blips
-  - type: DangerTethered
+  # - type: DangerTethered // Lua
   - type: RadarBlip
     scale: 2
     shape: Square # Too small for fine detail

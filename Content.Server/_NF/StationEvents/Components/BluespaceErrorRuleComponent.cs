@@ -53,6 +53,8 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     /// How much the grid is appraised at upon entering into existence, set after starting the event
     /// </summary>
     public double StartingValue = 0;
+    [DataField]
+    public bool Asteroid = false;
 }
 
 public interface IBluespaceSpawnGroup
@@ -182,4 +184,5 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public bool NameGrid { get; set; } = true;
     public bool NameWarp { get; set; } = true;
     public bool HideWarp { get; set; } = false;
+    public bool StationGrid { get; set; } = false;
 }

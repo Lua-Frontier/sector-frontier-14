@@ -9,8 +9,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
-        Blunt: 4
+        Piercing: 14 #Lua 10<14
+        Blunt: 7 #Lua 4<7
   - type: StaminaDamageOnCollide
     damage: 4 # 15 hits to slowdown
 
@@ -23,7 +23,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 14 #Lua 10<14
         Blunt: 8 #Lua 5<8
   - type: StaminaDamageOnCollide
     damage: 5 # 12 hits to slowdown
@@ -37,8 +37,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 5 # 0.6 * base total dmg #Lua 4.8<5
-        Heat: 10 # 0.4 * base total dmg #Lua 3.2<10
+        Blunt: 8 #Lua 4.8<8
+        Heat: 14 #Lua 3.2<14
   - type: StaminaDamageOnCollide
     damage: 4 # 15 hits to slowdown
 
@@ -51,8 +51,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 5 # 0.6 * (1.4 * base total dmg) #Lua 6.6<5
-        Radiation: 10 # 0.4 * (1.4 * base total dmg) #Lua 4.4<10
+        Blunt: 8 # 0.6 * (1.4 * base total dmg) #Lua 6.6<8
+        Radiation: 14 # 0.4 * (1.4 * base total dmg) #Lua 4.4<14
   - type: StaminaDamageOnCollide
     damage: 4 # 15 hits to slowdown
 
