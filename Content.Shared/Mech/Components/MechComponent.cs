@@ -30,7 +30,7 @@ public sealed partial class MechComponent : Component
     /// The maximum amount of damage the mech can take.
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 MaxIntegrity = 250;
+    public FixedPoint2 MaxIntegrity = 450;
 
     /// <summary>
     /// How much energy the mech has.
