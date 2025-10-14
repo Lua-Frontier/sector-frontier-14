@@ -1,34 +1,34 @@
-using System.Linq;
+using Content.Shared._White.Overlays;
+using Content.Shared._NF.Mech.Equipment.Events; // Frontier
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors.Components;
 using Content.Shared.DragDrop;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Emp;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
+using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.NPC.Components;
 using Content.Shared.Popups;
+using Content.Shared.Prying.Components;
+using Content.Shared.Prying.Systems;
 using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Ranged.Events; // Lua mech gun support
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-using Content.Shared.Mobs.Components; // Frontier
-using Content.Shared.NPC.Components;
-using Content.Shared._NF.Mech.Equipment.Events; // Frontier
-
-// Goobstation Change
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Weapons.Ranged.Events;
+using System.Linq;
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -48,13 +48,21 @@ public abstract class SharedMechSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLights = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
+        SubscribeLocalEvent<MechComponent, MechToggleLightEvent>(OnToggleLightAction);
+        SubscribeLocalEvent<MechComponent, MechPryDoorEvent>(OnPryDoorAction);
+        SubscribeLocalEvent<MechComponent, MechNightVisionEvent>(OnNightVisionAction);
+        SubscribeLocalEvent<MechComponent, EmpAttemptEvent>(OnEmpAttempt);
+        SubscribeLocalEvent<TransformComponent, EmpAttemptEvent>(OnAnyEmpAttempt);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
+        SubscribeLocalEvent<MechEquipmentComponent, EmpAttemptEvent>(OnMechEquipmentEmpAttempt);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
@@ -81,6 +89,68 @@ public abstract class SharedMechSystem : EntitySystem
             return;
         args.Handled = true;
         TryEject(uid, component);
+    }
+
+    private void OnToggleLightAction(EntityUid uid, MechComponent component, MechToggleLightEvent args)
+    {
+        if (args.Handled) return;
+        args.Handled = true;
+        if (!_pointLights.TryGetLight(uid, out var point)) return;
+        var enabled = point.Enabled;
+        _pointLights.SetEnabled(uid, !enabled, point);
+    }
+
+    private void OnPryDoorAction(EntityUid uid, MechComponent component, MechPryDoorEvent args)
+    {
+        if (args.Handled) return; args.Handled = true;
+        if (TryComp<PryingComponent>(uid, out var prying))
+        {
+            var pilot = component.PilotSlot.ContainedEntity;
+            if (pilot == null) return;
+            var coordinates = Transform(uid).Coordinates;
+            var nearbyEntities = _lookup.GetEntitiesInRange(coordinates, 1.5f);
+            foreach (var entity in nearbyEntities)
+            {
+                if (HasComp<DoorComponent>(entity))
+                {
+                    var pryingSystem = Get<PryingSystem>();
+                    pryingSystem.TryPry(entity, pilot.Value, out _, uid); break;
+                }
+            }
+        }
+    }
+
+    private void OnNightVisionAction(EntityUid uid, MechComponent component, MechNightVisionEvent args)
+    {
+        if (args.Handled) return;
+        args.Handled = true;
+        if (!component.NightVisionEnabled) return;
+        var pilot = component.PilotSlot.ContainedEntity;
+        if (pilot == null) return;
+        if (!TryComp<NightVisionComponent>(pilot.Value, out var nv)) nv = AddComp<NightVisionComponent>(pilot.Value);
+        nv.IsEquipment = false;
+        nv.DrawOverlay = true;
+        nv.Color = component.NightVisionColor;
+        nv.IsActive = !nv.IsActive;
+        Dirty(pilot.Value, nv);
+        var ev = new SwitchableOverlayToggledEvent(pilot.Value, nv.IsActive);
+        RaiseLocalEvent(pilot.Value, ref ev);
+    }
+
+    private void OnEmpAttempt(EntityUid uid, MechComponent component, EmpAttemptEvent args)
+    { args.Cancel(); }
+
+    private void OnMechEquipmentEmpAttempt(EntityUid uid, MechEquipmentComponent component, EmpAttemptEvent args)
+    { if (component.EquipmentOwner.HasValue) { args.Cancel(); } }
+
+    private void OnAnyEmpAttempt(EntityUid uid, TransformComponent xform, EmpAttemptEvent args)
+    {
+        var current = uid;
+        while (current.IsValid())
+        {
+            if (TryComp<MechComponent>(current, out _)) { args.Cancel(); return; }
+            if (!TryComp<TransformComponent>(current, out var t) || t.ParentUid == EntityUid.Invalid) break; current = t.ParentUid;
+        }
     }
 
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
@@ -142,6 +212,18 @@ public abstract class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
+        _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
+        _actions.AddAction(pilot, ref component.MechPryDoorActionEntity, component.MechPryDoorAction, mech);
+        if (component.NightVisionEnabled) _actions.AddAction(pilot, ref component.MechNightVisionActionEntity, component.MechNightVisionAction, mech);
+        if (component.NightVisionEnabled && !HasComp<NightVisionComponent>(pilot))
+        {
+            var nv = AddComp<NightVisionComponent>(pilot);
+            nv.IsEquipment = false;
+            nv.DrawOverlay = true;
+            nv.Color = component.NightVisionColor;
+            Dirty(pilot, nv);
+            EnsureComp<MechNightVisionProvidedComponent>(pilot);
+        }
 
         RaiseEquipmentEquippedEvent((mech, component), pilot); // Frontier (note: must send pilot separately, not yet in their seat)
     }
@@ -159,6 +241,17 @@ public abstract class SharedMechSystem : EntitySystem
         if (TryComp<MechComponent>(mech, out var mechComp) && mechComp.CurrentSelectedEquipment != null)
             _actions.RemoveProvidedActions(pilot, mechComp.CurrentSelectedEquipment.Value);
         // End Frontier
+
+        if (HasComp<MechNightVisionProvidedComponent>(pilot))
+        {
+            RemComp<MechNightVisionProvidedComponent>(pilot);
+            if (TryComp<NightVisionComponent>(pilot, out var nv))
+            {
+                nv.IsActive = false;
+                Dirty(pilot, nv);
+                RemComp<NightVisionComponent>(pilot);
+            }
+        }
     }
 
     /// <summary>

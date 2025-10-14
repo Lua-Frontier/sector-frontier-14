@@ -67,6 +67,15 @@
     bodyType: KinematicController
   - type: Clickable
   - type: WiresPanel
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+    energy: 4
+    color: "#d3c68b"
+  - type: Prying
+    pryPowered: true
   - type: Fixtures
     fixtures:
       fix1:

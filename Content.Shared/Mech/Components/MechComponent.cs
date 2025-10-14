@@ -137,6 +137,12 @@ public sealed partial class MechComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool Airtight;
 
+    [DataField]
+    public bool NightVisionEnabled = false;
+
+    [DataField]
+    public Color NightVisionColor = Color.FromHex("#999999");
+
     /// <summary>
     /// The equipment that the mech initially has when it spawns.
     /// Good for things like nukie mechs that start with guns.
@@ -151,6 +157,12 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechUiAction = "ActionMechOpenUI";
     [DataField]
     public EntProtoId MechEjectAction = "ActionMechEject";
+    [DataField]
+    public EntProtoId MechToggleLightAction = "ActionMechToggleLight";
+    [DataField]
+    public EntProtoId MechPryDoorAction = "ActionMechPryDoor";
+    [DataField]
+    public EntProtoId MechNightVisionAction = "ActionMechNightVision";
     #endregion
 
     #region Visualizer States
@@ -165,6 +177,9 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechCycleActionEntity;
     [DataField] public EntityUid? MechUiActionEntity;
     [DataField] public EntityUid? MechEjectActionEntity;
+    [DataField] public EntityUid? MechToggleLightActionEntity;
+    [DataField] public EntityUid? MechPryDoorActionEntity;
+    [DataField] public EntityUid? MechNightVisionActionEntity;
 
     // Frontier: extra fields
     /// <summary>
