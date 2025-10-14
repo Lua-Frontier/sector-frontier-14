@@ -54,7 +54,7 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ExplodeOnTrigger
   - type: Explosive # Weak explosion in a very small radius. Doesn't break underplating.
-    explosionType: DemolitionCharge
+    explosionType: StructuralDemolition
     totalIntensity: 50
     intensitySlope: 5
     maxIntensity: 6
