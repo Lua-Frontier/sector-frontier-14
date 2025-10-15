@@ -334,7 +334,7 @@
 
 #Chief Medical Officer's Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowMedicalIcons ]
   id: ClothingHeadHelmetHardsuitMedical
   name: chief medical officer's hardsuit helmet
   description: Lightweight medical hardsuit helmet that doesn't restrict your head movements.
@@ -343,6 +343,7 @@
     sprite: Clothing/Head/Hardsuits/medical.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/medical.rsi
+  - type: ShowHealthBars
   - type: PointLight
     color: "#adf1ff"
   - type: PressureProtection

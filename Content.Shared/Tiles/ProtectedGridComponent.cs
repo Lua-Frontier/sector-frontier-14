@@ -31,6 +31,8 @@ public sealed partial class ProtectedGridComponent : Component
     public bool PreventArtifactTriggers = false;
     [DataField]
     public bool KillHostileMobs = false;
+    [DataField]
+    public bool PreventClaiming = false;
 
     /// <summary>
     /// The sound made when a hostile mob is killed when entering a protected grid.

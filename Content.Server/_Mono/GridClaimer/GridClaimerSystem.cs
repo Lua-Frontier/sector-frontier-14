@@ -5,6 +5,7 @@
 using Content.Server.Popups;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Shared.Verbs;
+using Content.Shared.Tiles;
 
 namespace Content.Server._Mono.GridClaimer;
 
@@ -106,6 +107,12 @@ public sealed class GridClaimerSystem : EntitySystem
 
     public bool IsClaimable(EntityUid? gridUid)
     {
-        return HasComp<ClaimableGridComponent>(gridUid);
+        if (!HasComp<ClaimableGridComponent>(gridUid))
+            return false;
+
+        if (TryComp<ProtectedGridComponent>(gridUid, out var protectedGrid) && protectedGrid.PreventClaiming)
+            return false;
+
+        return true;
     }
 }

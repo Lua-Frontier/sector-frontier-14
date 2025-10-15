@@ -40,11 +40,50 @@
       PurCapacitor: 4
 
 - type: entity
+  id: OmnidirectionalThrusterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: omnidirectional thruster machine board
+  categories: [HideSpawnMenu]
+  suffix: Lua
+  components:
+  - type: LuaTech
+  - type: Sprite
+    sprite: _Lua/Objects/Misc/module.rsi
+    state: ltthruster
+  - type: MachineBoard
+    prototype: OmniThrusterLua
+    stackRequirements:
+      Steel: 8
+      PurCapacitor: 7
+
+- type: entity
+  id: MachineDriveLT600Circuitboard
+  parent: BaseMachineCircuitboard
+  name: LTA-600 purspace drive board
+  description: A machine board for a LuaTech purspace drive.
+  components:
+  - type: LuaTech
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: MachineFTLDriveLT600
+    componentRequirements:
+      AmeFuelContainer:
+        amount: 3
+        defaultPrototype: AmeJar
+    stackRequirements:
+      Glass: 20
+      Steel: 20
+      Uranium: 35
+      PurCapacitor: 12
+
+- type: entity
   id: ThrusterLuaBuildMachineCircuitboard
   parent: [ThrusterLuaMachineCircuitboard, BaseMachineCircuitboard]
   name: thruster luatech machine board
   suffix: Lua
   components:
+  - type: LuaTech
   - type: MachineBoard
     prototype: ThrusterLuaBuild
     requirements:
@@ -60,6 +99,7 @@
   categories: [HideSpawnMenu]
   suffix: Lua
   components:
+  - type: LuaTech
   - type: Sprite
     sprite: _Lua/Objects/Misc/module.rsi
     state: ltshieldgen
@@ -82,6 +122,7 @@
   parent: [MachineShieldPLTCircuitboard, BaseMachineCircuitboard]
   suffix: Lua
   components:
+  - type: LuaTech
   - type: MachineBoard
     prototype: CircularShieldLuaBuild
     componentRequirements:

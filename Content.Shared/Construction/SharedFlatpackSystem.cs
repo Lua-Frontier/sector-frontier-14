@@ -7,6 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
+using Content.Shared._Lua.LuaTech;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
@@ -45,6 +46,9 @@ public abstract class SharedFlatpackSystem : EntitySystem
     {
         if (args.Slot.ID != ent.Comp.SlotId || args.Cancelled)
             return;
+
+        if (HasComp<LuaTechComponent>(args.Item))
+        { args.Cancelled = true; return; }
 
         if (HasComp<MachineBoardComponent>(args.Item))
             return;

@@ -25,3 +25,19 @@ ent-WallMonasteryGrayDiagonal = стена монастыря
 ent-WallMonasteryBrownDiagonal = стена монастыря
     .desc = { ent-WallReinforced.desc }
     .suffix = Диагональ
+
+ent-WallKrissSolidIndestructible = { ent-WallSolid }
+    .desc = { ent-WallSolid.desc }
+    .suffix = Неразрушимый
+
+ent-ReinforcedWindowKrissIndestructible = { ent-ReinforcedWindow }
+    .desc = { ent-ReinforcedWindow.desc }
+    .suffix = Неразрушимый
+
+ent-ReinforcedWindowKrissDiagonalIndestructible = { ent-ReinforcedWindowDiagonal }
+    .desc = { ent-ReinforcedWindowDiagonal.desc }
+    .suffix = Неразрушимый
+
+ent-WallKrissSolidDiagonalIndestructible = { ent-WallReinforcedDiagonal }
+    .desc = { ent-WallReinforcedDiagonal.desc }
+    .suffix = Неразрушимый
