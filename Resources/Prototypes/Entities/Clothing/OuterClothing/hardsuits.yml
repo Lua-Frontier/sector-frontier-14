@@ -686,8 +686,10 @@
     - MonkeyWearable
     - WhitelistChameleon
   - type: BiocodedClothing # _Lua
-  - type: Inject # _Lua
-    canBeOpened: false # _Lua
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
 
 #Wizard Hardsuit
 - type: entity
