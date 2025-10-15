@@ -24,7 +24,7 @@
         Heat: 0.7
         Radiation: 0.7
         Caustic: 0.5
-  - type: StaminaDamageResistance 
+  - type: StaminaDamageResistance
     coefficient: 0.3
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -44,6 +44,8 @@
   - type: Speech
   - type: TTS
     voice: Adjutant
+  - type: ThermalCloak
+    enabled: false
 
 
 - type: entity
@@ -72,7 +74,7 @@
         Heat: 0.2
         Radiation: 0.1
         Caustic: 0.5
-  - type: StaminaDamageResistance 
+  - type: StaminaDamageResistance
     coefficient: 0.3
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -92,3 +94,5 @@
   - type: Speech
   - type: TTS
     voice: Adjutant
+  - type: ThermalCloak
+    enabled: false

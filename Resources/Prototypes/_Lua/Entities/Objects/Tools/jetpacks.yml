@@ -1,0 +1,62 @@
+- type: entity
+  parent: GasTankBase
+  id: JetpackStealth
+  name: stealth jetpack
+  description: Slower, invisible to radar.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/Jetpacks/black.rsi
+    layers:
+    - state: icon
+      map: ["enum.JetpackVisuals.Layer"]
+  - type: Item
+    sprite: Objects/Tanks/Jetpacks/black.rsi
+    size: Huge
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: Clothing
+    sprite: Objects/Tanks/Jetpacks/black.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - SuitStorage
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      temperature: 293.15
+  - type: Jetpack
+    moleUsage: 0.00085
+    weightlessModifier: 0.50
+    acceleration: 0.25
+    friction: 0.5
+    radarBlip: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.JetpackVisuals.Enabled:
+        enum.JetpackVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: JetpackStealth
+  id: JetpackStealthFilled
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 5
+      temperature: 293.15
+      moles:
+        - 1.025689525
+        - 1.025689525
