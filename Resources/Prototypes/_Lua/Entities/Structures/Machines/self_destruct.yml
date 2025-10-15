@@ -1,0 +1,53 @@
+- type: entity
+  id: SelfDestructBomb
+  name: система самоуничтожения
+  parent: BaseStructure
+  description: Это панель самоуничтожения, не думаю что стоит в нее тыкать.
+  components:
+  - type: LuaTech
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Lua/Structures/Machines/selfdestruct.rsi
+    layers:
+    - state: base
+    - state: display-green
+      map: ["display"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SelfDestructVisuals.State:
+        display:
+          Idle: { state: display-green }
+          Armed: { state: display-red }
+  - type: PointLight
+    enabled: false
+    radius: 4
+    energy: 2.0
+    color: "#FF4020"
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 120
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask: [ MachineMask ]
+        layer: [ WallLayer ]
+  - type: ShuttleConsoleLock
+    locked: false
+  - type: SelfDestruct
+  - type: ActivatableUI
+    key: enum.SelfDestructUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SelfDestructUiKey.Key:
+        type: SelfDestructBoundUserInterface
+
+

@@ -15,7 +15,8 @@
     reoccurrenceDelay: 360 # 6 hours
     requiredJobs:
       Sheriff: 1
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -34,6 +35,7 @@
           preventArtifactTriggers: true
         - type: PreventPilot
         - type: ForceAnchor # Added post-FTL, so anchoring is fine.
+        - type: ClaimableGrid # Mono
         paths:
         - /Maps/_NF/Bluespace/cache.yml
     rewardAccounts:
@@ -54,7 +56,8 @@
     duration: 1020
     maxDuration: 1350
     reoccurrenceDelay: 360 # 6 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -136,7 +139,8 @@
     duration: 1800
     maxDuration: 2400
     reoccurrenceDelay: 360 # 6 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -173,7 +177,8 @@
     duration: 900
     maxDuration: 1200
     reoccurrenceDelay: 360 # 6 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -210,7 +215,8 @@
     duration: 1800
     maxDuration: 2400
     reoccurrenceDelay: 360 # 6 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -246,7 +252,8 @@
     duration: 1800
     maxDuration: 2400
     maxOccurrences: 1
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -282,7 +289,8 @@
     duration: 900
     maxDuration: 1800
     reoccurrenceDelay: 240 # once per 4 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -317,7 +325,8 @@
     duration: 1500
     maxDuration: 1800
     reoccurrenceDelay: 240 # once per 4 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -354,7 +363,8 @@
     duration: 2100
     maxDuration: 2400
     reoccurrenceDelay: 240 # once per 4 hours
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:

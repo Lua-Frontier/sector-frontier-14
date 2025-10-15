@@ -67,4 +67,9 @@ public sealed partial class FTLComponent : Component
 
     [DataField]
     public EntityUid? TravelStream;
+
+    [DataField, AutoNetworkedField]
+    public bool SkipHyperspace;
+    [DataField, AutoNetworkedField]
+    public float SkipHyperspaceEmpRange = 60f;
 }

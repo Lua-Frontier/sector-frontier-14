@@ -1,9 +1,20 @@
 - type: entity
   id: CircularShieldLua
   name: PLT генератор щита
-  parent: [BaseStructureDisableToolUse, ShieldGeneratorSmall, BaseStructure]
-  suffix: Lua, Theta, CircularShield, Тир 5
+  parent: ShieldGenerator
+  suffix: Lua, Тир 5
   components:
+    - type: ShipShieldEmitter
+      healPerSecond: 18200
+      damageExp: 0.5
+      baseDraw: 112000
+      maxDraw: 176000
+      unpoweredBonus: 8
+      damageLimit: 110500
+      damageOverloadTimePunishment: 35
+      shieldColor: "#a200ff"
+    - type: ApcPowerReceiver
+      powerLoad: 96000
     - type: Machine
       board: MachineShieldPLTCircuitboard
     - type: Sprite
@@ -25,8 +36,8 @@
 - type: entity
   id: CircularShieldLuaBuild
   name: PLT генератор щита
-  parent: [CircularShieldLua, BaseStructureDisableToolUse, ShieldGeneratorSmall, BaseStructure]
-  suffix: Lua, Theta, CircularShield, Тир 1
+  parent: [CircularShieldLua, ShieldGenerator]
+  suffix: Lua, Тир 1
   components:
     - type: Machine
       board: MachineShieldPLTCircuitboardBuild

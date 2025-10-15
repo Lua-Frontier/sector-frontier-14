@@ -600,28 +600,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 1
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 46
-    components:
-    - type: Transform
-      pos: -1.5,-1.5
-      parent: 1
-  - uid: 47
-    components:
-    - type: Transform
-      pos: -2.5,-1.5
-      parent: 1
-  - uid: 48
-    components:
-    - type: Transform
-      pos: -2.5,3.5
-      parent: 1
-  - uid: 49
-    components:
-    - type: Transform
-      pos: -1.5,3.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 38
