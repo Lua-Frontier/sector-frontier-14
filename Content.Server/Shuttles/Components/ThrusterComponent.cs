@@ -90,6 +90,15 @@ namespace Content.Server.Shuttles.Components
         [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
         public string TogglePort = "Toggle";
         // End Frontier: upgradeable parts, togglable thrust
+
+        // Mono
+        /// <summary>
+        ///     If we have a <see cref="ThermalSignatureComponent">, heat signature output per thrust while working.
+        /// </summary>
+        [DataField]
+        public float HeatSignatureRatio = 40f;
+        [DataField]
+        public float AngularThrustExtra = 0f;
     }
 
     public enum ThrusterType
@@ -97,5 +106,6 @@ namespace Content.Server.Shuttles.Components
         Linear,
         // Angular meaning rotational.
         Angular,
+        Omnidirectional,
     }
 }

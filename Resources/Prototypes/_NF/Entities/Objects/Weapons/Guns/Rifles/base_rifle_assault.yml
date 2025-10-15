@@ -36,11 +36,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 2.5
-    maxAngle: 12.5
-    angleIncrease: 0.8
-    angleDecay: 2.7
-    fireRate: 3.4
+    minAngle: 1 #Lua 2.5<1
+    maxAngle: 5 #Lua 12.5<5
+    angleIncrease: 0.2 #Lua 0.8<0.2
+    angleDecay: 1 #Lua 2.7<1
+    fireRate: 5 #Lua 3.4<5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -50,9 +50,9 @@
   abstract: true
   components:
   - type: Gun
-    angleIncrease: 0.6
-    angleDecay: 4.2
-    fireRate: 3.2
+    angleIncrease: 0.2 #Lua 0.6<0.2
+    angleDecay: 1 #Lua 4.2<1
+    fireRate: 5 #Lua 3.2<5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 
@@ -62,11 +62,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 2.6
-    maxAngle: 13
-    angleIncrease: 1.2
-    angleDecay: 3.8
-    fireRate: 3.2
+    minAngle: 1 #Lua 2.6<1
+    maxAngle: 5 #Lua 13<5
+    angleIncrease: 0.4 #Lua 1.2<0.4
+    angleDecay: 1.2 #Lua 3.8<1.2
+    fireRate: 4.5 #Lua 3.2<4.5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium
 

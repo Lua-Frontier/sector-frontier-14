@@ -7,6 +7,7 @@
     Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
   components:
   - type: Gun
+    fireRate: 5.5 #_Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: Sprite
@@ -43,6 +44,7 @@
   description: A fully automatic SMG.
   components: &drozdComponents
   - type: Gun
+    fireRate: 5.5 #_Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: Sprite
@@ -65,6 +67,10 @@
   description: |-
     An excellent SMG. On the receiver is a label that says 'for authorized use only.'
   components:
+  - type: Gun
+    fireRate: 6 #_Lua
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
     layers:

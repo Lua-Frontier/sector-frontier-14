@@ -1,4 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Greenwall
+# SPDX-FileCopyrightText: 2025 Ilya246
 # SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 Your Name
 # SPDX-FileCopyrightText: 2025 significant harassment
 # SPDX-FileCopyrightText: 2025 starch
 #
@@ -11,7 +14,7 @@
   description: A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
   components:
   - type: StaticPrice
-    price: 10000
+    price: 1000
   - type: Sprite
     sprite: _Mono/Objects/ShuttleWeapons/lightmunitionsbay.rsi
     layers:
@@ -19,10 +22,12 @@
   - type: Appearance
   - type: AmmoCounter
   - type: WirelessNetworkConnection
-    range: 500
+    range: 700
+  - type: GunSignalControl
   - type: Gun
     projectileSpeed: 10
     fireRate: 0.8
+    shootThermalSignature: 8000000 # ~2.8km
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
@@ -42,7 +47,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 25000
+        damage: 20000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

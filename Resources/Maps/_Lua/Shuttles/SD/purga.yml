@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 13:37:15
+  time: 10/06/2025 11:34:18
   entityCount: 807
 maps: []
 grids:
@@ -1824,7 +1824,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,3.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 264
     components:
@@ -1841,7 +1841,6 @@ entities:
   - uid: 266
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 7.5,11.5
       parent: 1
   - uid: 267
@@ -2628,13 +2627,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 391
-    components:
-    - type: Transform
-      pos: 5.5,5.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 392
@@ -3486,7 +3478,7 @@ entities:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-- proto: SuitStorageNfsdCombat
+- proto: SuitStorageCadet
   entities:
   - uid: 505
     components:

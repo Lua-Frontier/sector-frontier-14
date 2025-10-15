@@ -119,7 +119,7 @@
     - state: zenith
     scale: 1, 1
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#ffff00"
@@ -143,7 +143,7 @@
   - type: TargetSeeking
     acceleration: 15
     detectionRange: 750
-    scanArc: 60
+    scanArc: 35
     launchSpeed: 20
     maxSpeed: 70
     trackDelay: 0.5
@@ -223,7 +223,7 @@
     - state: quasarshot
     scale: 0.7, 0.7
   - type: Ammo
-    muzzleFlash: null
+    muzzleFlash: MuzzleFlashEffectSmall
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#CF0E0E"

@@ -1580,3 +1580,249 @@ Entries:
   id: 117
   time: '2025-09-29T15:48:26.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/262
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Портировано вооружение с монолита
+    - type: Tweak
+      message: Портированы щиты с монолита
+  id: 118
+  time: '2025-10-02T17:52:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/271
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Курсовое вооружение на Европе изменено под новый стандарт; Переработано
+        бронирование и наполнение (от Covral)
+  id: 119
+  time: '2025-10-04T08:27:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/240
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Курсовое вооружение на шаттле Vulture изменено согласно новому стандарту
+        (от Covral)
+  id: 120
+  time: '2025-10-04T10:28:39.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/249
+- author: LeptonComm
+  changes:
+    - type: Remove
+      message: >-
+        Капитальный ремап Ксено: Изменено бронирование, расположение пушек и
+        двигателей, комбинация курсового вооружения, компоновка, наполнение,
+        декор (feat. Covral)
+  id: 121
+  time: '2025-10-04T10:41:51.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/250
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Добавлен новый экспедиционный шаттл - Ilmus
+  id: 122
+  time: '2025-10-04T11:20:52.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/256
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Concord-Wyvern: Теперь вам точно не сломает кабеля в РнД ведущие к
+        двигателям, удалены не работающие воздушные сигнализаций, на кухне
+        появилась микроволновка и куртка повара, гидропоника получила 2
+        настенных шкафа и лишилась 1 шкафа ботаника, в каюте капитана теперь
+        есть хранилище скафандра (Капитан)
+    - type: Tweak
+      message: >-
+        Concord-Venture: смещён напольный вентилятор, скруббер заменён на
+        пассивную вентиляцию.
+    - type: Tweak
+      message: >-
+        CLS-Devastator: Газовые шлюзы повёрнуты правильно, добавлен: охладитель,
+        нагреватель, переносной скруббер, инжтехфаб
+  id: 123
+  time: '2025-10-04T11:37:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/258
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        LaserBeam: теперь имеет новое название Lancelot. Также изменена
+        компоновка внутри.
+  id: 124
+  time: '2025-10-04T12:13:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/267
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлен Параллель-о-Венд
+    - type: Add
+      message: >-
+        Добавлено 5 женских свитеров и новое кимоно, за авторством спрайта
+        Evgenimation.
+  id: 125
+  time: '2025-10-04T13:20:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/269
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Авантюрист переименован в Исследователя
+    - type: Tweak
+      message: >-
+        Переработаны часы, зарплаты, названия, описания всех ролей Нордфолла,
+        кроме ботаника, ученого и ОТС
+  id: 126
+  time: '2025-10-04T13:32:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/275
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлено новое событие, Верфь Lua Technologies
+    - type: Tweak
+      message: В игру возвращен ремапнутый Аркалис
+    - type: Tweak
+      message: >-
+        Кайриис, Айхива, Аркалис теперь доступны только на верфи события Lua
+        Tech.
+    - type: Tweak
+      message: Айхива покупается только с уровнем доступа Наёмник
+    - type: Add
+      message: Добавлены астролитовые стены/окна и материалы эксклюзив LuaTech
+    - type: Tweak
+      message: Шлюзы LuaTech могут быть окрашены в любой hex цвет
+    - type: Add
+      message: Добавлен магнито-гравитационный двигатель LuaTech
+    - type: Add
+      message: Добавлен голошлюз LuaTech
+    - type: Add
+      message: >-
+        Добавлено 2 ДАМа Синдикат и LuaTech, на данный момент ничем не
+        отличаются от обычного ДАМа кроме текстур
+    - type: Fix
+      message: Сингулярность и теслу теперь вновь можно заспавнить
+    - type: Add
+      message: Добавлен пурспейс привод LuaTech
+    - type: Fix
+      message: Исправлены консоли торговых терминалов
+    - type: Fix
+      message: Лазеры теперь нормально отображаются на радаре
+    - type: Add
+      message: Добавлена голографическая консоль верфи и управления шаттлом LuaTech
+    - type: Tweak
+      message: >-
+        Блюспейс события сектора фронтир и поля астероидов объединены в одну
+        систему управления событиями (beta)
+    - type: Tweak
+      message: >-
+        Переработаны сектора, их логика смещена в прототипы а так же единную
+        систему управления (beta)
+    - type: Fix
+      message: 'ИИ теперь может одновременно управлять шаттлом и вооружением '
+    - type: Fix
+      message: Исправлены диагональные стены, теперь они вновь прозрачные meh
+    - type: Add
+      message: Добавлена система самоуничтожения корабля (пока только аркалис)(beta)
+    - type: Tweak
+      message: библия теперь вас не спасет
+    - type: Tweak
+      message: Теперь нельзя создать армию с помощью амулетов
+    - type: Tweak
+      message: Пушки монолита вновь требуют НВ кабель
+  id: 127
+  time: '2025-10-13T08:31:38.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/290
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Незначительно увеличены резисты и скорость большинства гражданских
+        скафандров; В скафандры ГВ и парамедика теперь встроен медицинский визор
+  id: 128
+  time: '2025-10-13T08:48:12.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/277
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Респрайт элитного бладрига синдиката (от Romber)
+  id: 129
+  time: '2025-10-13T08:54:55.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/279
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        В некоторые скафандры СБ были добавлены ПНВ и термалы, у скафандра М73
+        незначительно улучшены резисты
+    - type: Tweak
+      message: >-
+        У бладригов теперь менее вырвиглазный цвет ПНВ, обычному бладригу
+        добавлены термалы
+    - type: Tweak
+      message: Большинству скафандров СБ был добавлен стаминорезист
+    - type: Tweak
+      message: >-
+        Большинству боевых скафандров СБ и синдиката ЭП был заменен на
+        мгновенный, от Джакала; Был добавлен туда, где ранее отсутствовал
+  id: 130
+  time: '2025-10-13T08:57:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/280
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: На шаттлах Восход и Пурга один из скафандров М93С заменен на М73
+    - type: Tweak
+      message: >-
+        На шаттле фрактур под пушками теперь ГМ-пол, также добавлен сейф с двумя
+        пистолетами N1984
+    - type: Fix
+      message: На АСБ починены доступы в мусорку и кабинет детектива
+    - type: Fix
+      message: На Меркурии починен атмос
+  id: 131
+  time: '2025-10-13T09:11:46.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/281
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Были увеличены точность и скорострельность базовых ПП и винтовок;
+        Увеличен урон калибров .20 .30 и .35; Повышена стоимость ВТ в аплинке СБ
+        с 4 до 10 фк
+  id: 132
+  time: '2025-10-13T09:17:58.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/286
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Капитальный экспедиционный шаттл Asket
+  id: 133
+  time: '2025-10-13T09:26:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/255
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Laqeramaline: изменена внутренняя комплектация, изменено вооружение на 2
+        M381 Charon, 1 Cyrexa 220mm, 2 AK570, 4 миномёта 105mm
+  id: 134
+  time: '2025-10-15T13:54:18.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/288
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Изменён Legionnaire-Tov: Название -> Legionnaire-EMP, Вооружение: 2 -
+        150mm, 2 - 220 (EMP), Внутренняя комплектация (отделы сохранены)
+  id: 135
+  time: '2025-10-15T13:56:13.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/291
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Изменён Legionnaire: Название -> Legionnaire-DRV, Вооружение 2 - 2
+        Dravon 4 - Type54, Внутренняя комплектация (отделы сохранены)
+  id: 136
+  time: '2025-10-15T13:58:26.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/292

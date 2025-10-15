@@ -1,38 +1,38 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
+# Remap me pls
+# - type: vessel
+#   parent: BaseVessel
+#   id: Orion-P
+#   name: MT Orion-P
+#   description: Научный шаттл с нестандартной компоновкой из малой серии шаттлов не горнодобывающей отрасли, характерной его компании. Наделен возможностью летать на экспедиции. Сделан под заказ.
+#   limit: 3
+#   price: 237790
+#   category: Large
+#   group: Expedition
+#   shuttlePath: /Maps/_Lua/Shuttles/Expedition/orion-p.yml
+#   class:
+#   - Expedition
+#   - Civilian
+#   engine:
+#   - Singularity
+#   addComponents:
+#     - type: IFF
+#       color: "#ffffff"
+#     - type: NanotrasenFtl
 
-- type: vessel
-  parent: BaseVessel
-  id: Orion-P
-  name: MT Orion-P
-  description: Научный шаттл с нестандартной компоновкой из малой серии шаттлов не горнодобывающей отрасли, характерной его компании. Наделен возможностью летать на экспедиции. Сделан под заказ.
-  limit: 3
-  price: 237790
-  category: Large
-  group: Expedition
-  shuttlePath: /Maps/_Lua/Shuttles/Expedition/orion-p.yml
-  class:
-  - Expedition
-  - Civilian
-  engine:
-  - Singularity
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
-    - type: NanotrasenFtl
-
-- type: gameMap
-  id: Orion-P
-  mapName: 'MT Orion-P'
-  mapPath: /Maps/_Lua/Shuttles/Expedition/orion-p.yml
-  minPlayers: 0
-  stations:
-    Orion-P:
-      stationProto: StandardFrontierExpeditionVessel
-      components:
-      - type: StationNameSetup
-        mapNameTemplate: 'MT Orion-P {1}'
-        nameGenerator:
-          !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+# - type: gameMap
+#   id: Orion-P
+#   mapName: 'MT Orion-P'
+#   mapPath: /Maps/_Lua/Shuttles/Expedition/orion-p.yml
+#   minPlayers: 0
+#   stations:
+#     Orion-P:
+#       stationProto: StandardFrontierExpeditionVessel
+#       components:
+#       - type: StationNameSetup
+#         mapNameTemplate: 'MT Orion-P {1}'
+#         nameGenerator:
+#           !type:NanotrasenNameGenerator
+#             prefixCreator: '14'

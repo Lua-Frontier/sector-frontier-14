@@ -1,9 +1,17 @@
-using Content.Server.Theta.ShipEvent.Components;
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Redrover1760
+// SPDX-FileCopyrightText: 2025 ark1368
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._Mono.Radar;
 using Content.Shared.Projectiles;
 using Content.Shared.Shuttles.Components;
-using Robust.Shared.Map.Components;
+using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using System.Numerics;
 
 namespace Content.Server._Mono.Radar;
@@ -11,10 +19,13 @@ namespace Content.Server._Mono.Radar;
 public sealed partial class RadarBlipSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
+        SubscribeLocalEvent<RadarBlipComponent, ComponentShutdown>(OnBlipShutdown);
     }
 
     private void OnBlipsRequested(RequestBlipsEvent ev, EntitySessionEventArgs args)
@@ -25,17 +36,28 @@ public sealed partial class RadarBlipSystem : EntitySystem
         if (!TryComp<RadarConsoleComponent>(radarUid, out var radar))
             return;
 
+
         var blips = AssembleBlipsReport((EntityUid)radarUid, radar);
         var hitscans = AssembleHitscanReport((EntityUid)radarUid, radar);
 
         // Combine the blips and hitscan lines
         var giveEv = new GiveBlipsEvent(blips, hitscans);
         RaiseNetworkEvent(giveEv, args.SenderSession);
+
+        blips.Clear();
+        hitscans.Clear();
     }
 
-    private List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(EntityUid uid, RadarConsoleComponent? component = null)
+    private void OnBlipShutdown(EntityUid blipUid, RadarBlipComponent component, ComponentShutdown args)
     {
-        var blips = new List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)>();
+        var netBlipUid = GetNetEntity(blipUid);
+        var removalEv = new BlipRemovalEvent(netBlipUid);
+        RaiseNetworkEvent(removalEv);
+    }
+
+    private List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> AssembleBlipsReport(EntityUid uid, RadarConsoleComponent? component = null)
+    {
+        var blips = new List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)>();
 
         if (Resolve(uid, ref component))
         {
@@ -47,108 +69,59 @@ public sealed partial class RadarBlipSystem : EntitySystem
             // Check if the radar is on an FTL map
             var isFtlMap = HasComp<FTLComponent>(radarXform.GridUid);
 
-            var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent>();
+            var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent, PhysicsComponent>();
 
-            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
+            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform, out var blipPhysics))
             {
                 if (!blip.Enabled)
                     continue;
-
-                // Don't show radar blips for projectiles on different maps than the one they were fired from
-                if (TryComp<ProjectileComponent>(blipUid, out var projectile))
-                {
-                    // If the projectile is on a different map than the radar, don't show it
-                    if (blipXform.MapID != radarMapId)
-                        continue;
-
-                    // If we can determine the shooter and they're on a different map, don't show the blip
-                    if (projectile.Shooter != null &&
-                        TryComp<TransformComponent>(projectile.Shooter, out var shooterXform) &&
-                        shooterXform.MapID != blipXform.MapID)
-                        continue;
-                }
 
                 // This prevents blips from showing on radars that are on different maps
                 if (blipXform.MapID != radarMapId)
                     continue;
 
-                var blipGrid = _xform.GetGrid(blipUid);
+                var netBlipUid = GetNetEntity(blipUid);
 
-                if (HasComp<CircularShieldRadarComponent>(blipUid))
-                {
-                    // Skip if in FTL
-                    if (isFtlMap)
-                        continue;
+                var blipGrid = blipXform.GridUid;
 
-                    // Skip if no grid
-                    if (blipGrid == null)
-                        continue;
+                // if (HasComp<CircularShieldRadarComponent>(blipUid))
+                // {
+                //     // Skip if in FTL
+                //     if (isFtlMap)
+                //         continue;
+                //
+                //     // Skip if no grid
+                //     if (blipGrid == null)
+                //         continue;
+                //
+                //     // Ensure the grid is a valid MapGrid
+                //     if (!HasComp<MapGridComponent>(blipGrid.Value))
+                //         continue;
+                //
+                //     // Ensure the shield is a direct child of the grid
+                //     if (blipXform.ParentUid != blipGrid)
+                //         continue;
+                // }
 
-                    // Ensure the grid is a valid MapGrid
-                    if (!HasComp<MapGridComponent>(blipGrid.Value))
-                        continue;
+                var blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
 
-                    // Ensure the shield is a direct child of the grid
-                    if (blipXform.ParentUid != blipGrid)
-                        continue;
-                }
-
-                var blipPosition = _xform.GetWorldPosition(blipUid);
-                var distance = (blipPosition - radarPosition).Length();
-                if (distance > component.MaxRange)
+                var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
+                if (distance > blip.MaxDistance)
                     continue;
 
-                if (blip.RequireNoGrid)
-                {
-                    if (blipGrid != null)
-                        continue;
+                if (blip.RequireNoGrid && blipGrid != null // if we want no grid but we are on a grid
+                    || !blip.VisibleFromOtherGrids && blipGrid != radarGrid) // or if we don't want to be visible from other grids but we're on another grid
+                    continue; // don't show this blip
 
-                    // For free-floating blips without a grid, use world position with null grid
-                    blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
-                }
-                else if (blip.VisibleFromOtherGrids)
-                {
-                    // For blips that should be visible from other grids, add them regardless of grid
-                    // If on a grid, use grid-relative coordinates
-                    if (blipGrid != null)
-                    {
-                        // Local position relative to grid
-                        var gridMatrix = _xform.GetWorldMatrix(blipGrid.Value);
-                        Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
-                        var localPos = Vector2.Transform(blipPosition, invGridMatrix);
+                // due to PVS being a thing, things will break if we try to parent to not the map or a grid
+                var coord = blipXform.Coordinates;
+                if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
+                    coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
+                // we're parented to either the map or a grid and this is relative velocity so account for grid movement
+                if (blipGrid != null)
+                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position);
 
-                        // Add grid-relative blip with grid entity ID
-                        blips.Add((GetNetEntity(blipGrid.Value), localPos, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                    else
-                    {
-                        // Fallback to world position with null grid
-                        blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                }
-                else
-                {
-                    // If we're requiring grid, make sure they're on the same grid
-                    if (blipGrid != radarGrid)
-                        continue;
-
-                    // For grid-aligned blips, store grid NetEntity and grid-local position
-                    if (blipGrid != null)
-                    {
-                        // Local position relative to grid
-                        var gridMatrix = _xform.GetWorldMatrix(blipGrid.Value);
-                        Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
-                        var localPos = Vector2.Transform(blipPosition, invGridMatrix);
-
-                        // Add grid-relative blip with grid entity ID
-                        blips.Add((GetNetEntity(blipGrid.Value), localPos, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                    else
-                    {
-                        // Fallback to world position with null grid
-                        blips.Add((null, blipPosition, blip.Scale, blip.RadarColor, blip.Shape));
-                    }
-                }
+                blips.Add((netBlipUid, GetNetCoordinates(coord), blipVelocity, blip.Scale, blip.RadarColor, blip.Shape));
             }
         }
 
@@ -158,9 +131,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
     /// <summary>
     /// Assembles trajectory information for hitscan projectiles to be displayed on radar
     /// </summary>
-    private List<(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color)> AssembleHitscanReport(EntityUid uid, RadarConsoleComponent? component = null)
+    private List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> AssembleHitscanReport(EntityUid uid, RadarConsoleComponent? component = null)
     {
-        var hitscans = new List<(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color)>();
+        var hitscans = new List<(Vector2 Start, Vector2 End, float Thickness, Color Color)>();
 
         if (!Resolve(uid, ref component))
             return hitscans;
@@ -184,29 +157,12 @@ public sealed partial class RadarBlipSystem : EntitySystem
             if (startDistance > component.MaxRange && endDistance > component.MaxRange)
                 continue;
 
-            // If there's an origin grid, use that for coordinate system
-            if (hitscan.OriginGrid != null && hitscan.OriginGrid.Value.IsValid())
-            {
-                var gridUid = hitscan.OriginGrid.Value;
-
-                // Convert world positions to grid-local coordinates
-                var gridMatrix = _xform.GetWorldMatrix(gridUid);
-                Matrix3x2.Invert(gridMatrix, out var invGridMatrix);
-
-                var localStart = Vector2.Transform(hitscan.StartPosition, invGridMatrix);
-                var localEnd = Vector2.Transform(hitscan.EndPosition, invGridMatrix);
-
-                hitscans.Add((GetNetEntity(gridUid), localStart, localEnd, hitscan.LineThickness, hitscan.RadarColor));
-            }
-            else
-            {
-                // Use world coordinates with null grid
-                hitscans.Add((null, hitscan.StartPosition, hitscan.EndPosition, hitscan.LineThickness, hitscan.RadarColor));
-            }
+            hitscans.Add((hitscan.StartPosition, hitscan.EndPosition, hitscan.LineThickness, hitscan.RadarColor));
         }
 
         return hitscans;
     }
+
     private void SetupRadarBlip(EntityUid uid, Color color, float scale, bool visibleFromOtherGrids = true, bool requireNoGrid = false)
     {
         var blip = EnsureComp<RadarBlipComponent>(uid);

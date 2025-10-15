@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by HacksLua",
+    "states": [
+        {
+            "name": "holodoor",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "border"
+        },
+        {
+            "name": "lamps_bolted",
+            "delays": [
+                [
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2
+                ]
+            ]
+        },
+        {
+            "name": "lamps_open",
+            "delays": [
+                [
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2
+                ]
+            ]
+        }
+    ]
+}

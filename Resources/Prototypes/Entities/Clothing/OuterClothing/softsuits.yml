@@ -115,7 +115,7 @@
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.9
+    sprintModifier: 0.95 #Lua
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
@@ -123,8 +123,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Heat: 0.90
-        Radiation: 0.75
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.5
+        Radiation: 0.7
         Caustic: 0.5
   - type: GroupExamine
   - type: StealTarget

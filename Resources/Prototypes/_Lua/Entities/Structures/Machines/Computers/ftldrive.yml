@@ -1,0 +1,88 @@
+- type: entity
+  parent: MachineFTLDrive
+  id: MachineFTLDrive600
+  name: CTLA-600 bluespace drive
+  description: An advanced FTL drive that extends a ship's FTL range to ~600 meters, but with upgrades to allow for faster recharge and flight times. Does not stack.
+  components:
+    - type: Sprite
+      sprite: _Mono/Structures/ShuttleComponents/drive.rsi
+      snapCardinals: true
+      layers:
+      - state: control
+      - state: control_on
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        visible: false
+        shader: unshaded
+        color: "#2e6cca"
+    - type: FTLDrive
+      range: 600
+      cooldown: 7.5
+      hyperSpaceTime: 15
+      startupTime: 4.2
+      thermalSignature: 4000000 # ~4000m range but for smaller ships it might not have time to get to full heat signature
+    - type: ThermalSignature
+    - type: ApcPowerReceiver
+      powerLoad: 4000
+    - type: PointLight
+      enabled: false
+      color: "#010101" # beb color
+      radius: 2.0
+      energy: 1.5
+    - type: Machine
+      board: MachineFTLDrive600Circuitboard
+    - type: BluespaceFuel
+      rangeBonus: 3000
+
+- type: entity
+  parent: MachineFTLDrive
+  id: MachineFTLDriveLT600
+  name: LTA-600 purspace drive
+  description: An advanced LuaTech FTL civilian drive that extends a ship's FTL range to ~600 meters, but with upgrades to allow for faster recharge and flight times. Does not stack.
+  components:
+    - type: LuaTech
+    - type: Sprite
+      sprite: _Mono/Structures/ShuttleComponents/drive.rsi
+      snapCardinals: true
+      layers:
+      - state: control
+      - state: control_on
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        visible: false
+        shader: unshaded
+        color: "#7962a8"
+    - type: FTLDrive
+      range: 600
+      cooldown: 7.5
+      hyperSpaceTime: 15
+      startupTime: 4.2
+      skipHyperspace: true
+      skipHyperspaceEmpRange: 45
+      thermalSignature: 4000000
+    - type: ThermalSignature
+    - type: ApcPowerReceiver
+      powerLoad: 4000
+    - type: PointLight
+      enabled: false
+      color: "#7962a8"
+      radius: 2.0
+      energy: 1.5
+    - type: Machine
+      board: MachineDriveLT600Circuitboard
+    - type: BluespaceFuel
+      rangeBonus: 3000
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3000
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:SpawnEntitiesBehavior
+            spawn:
+                TeslaMiniEnergyBall:
+                  min: 1
+                  max: 1
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
