@@ -64,41 +64,80 @@
 
 
 #LuaTech
-# - type: entity
-#   parent: [BaseComputerShuttle, BaseShuttleIntercom]
-#   id: ComputerShuttleLuaTech
-#   name: консоль управления шаттлом
-#   description: Используется для пилотирования корабля.
-#   components:
-#   - type: Sprite
-#     sprite: _Lua/Structures/Machines/computers.rsi
-#     layers:
-#     - map: ["computerLayerBody"]
-#       state: computer
-#     - map: ["computerLayerKeyboard"]
-#       state: generic_keyboard
-#     - map: ["computerLayerScreen"]
-#       state: generic
-#     - map: ["computerLayerKeys"]
-#       state: generic_keys
-#     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-#       state: generic_panel_open
-#   - type: Computer
-#     board: ShuttleConsoleCircuitboard
-#   - type: UserInterface
-#     interfaces:
-#         enum.ShuttleConsoleUiKey.Key:
-#           type: ShuttleConsoleBoundUserInterface
-#         enum.IntercomUiKey.Key:
-#           type: IntercomBoundUserInterface
-#   - type: ContainerContainer
-#     containers:
-#       board: !type:Container
-#         ents: []
-#       disk_slot: !type:ContainerSlot {}
-#       key_slots: !type:Container
-#   - type: ContainerFill
-#     containers:
-#       key_slots:
-#       - EncryptionKeyTraffic
-# Мне ща лень рисовать... 
+- type: entity
+  parent: [ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTech
+  name: консоль управления шаттлом
+  description: Используется для пилотирования корабля.
+  suffix: Lua
+  components:
+  - type: LuaTech
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_holo
+    - map: ["computerLayerKeyboard"]
+      state: holo_generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: holo_shuttlecontrolluatech
+    - map: ["computerLayerKeys"]
+      state: holo_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: holo_generic_panel_open
+  - type: PointLight
+    enabled: false
+    color: "#2287af"
+    radius: 1.0
+    energy: 1.5
+  - type: Computer
+    board: ShuttleConsoleCircuitboard
+  - type: UserInterface
+    interfaces:
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
+        enum.IntercomUiKey.Key:
+          type: IntercomBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      disk_slot: !type:ContainerSlot {}
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaTech
+  name: консоль управления шаттлом
+  description: Используется для пилотирования корабля.
+  suffix: Lua, Tabletop
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+          - TabletopMachineMask
+        layer:
+          - TabletopMachineLayer
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_tabletop_holo
+    - map: ["computerLayerKeyboard"]
+      state: holo_generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: holo_shuttlecontrolluatech
+    - map: ["computerLayerKeys"]
+      state: holo_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: holo_generic_panel_open

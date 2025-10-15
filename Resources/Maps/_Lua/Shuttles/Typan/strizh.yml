@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/02/2025 17:12:06
+  time: 10/07/2025 08:35:26
   entityCount: 596
 maps: []
 grids:
@@ -593,7 +593,7 @@ entities:
       pos: -7.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -12347.781
+      secondsUntilStateChange: -12401.442
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1994,7 +1994,7 @@ entities:
   - uid: 250
     components:
     - type: Transform
-      pos: 7.048329,-4.196094
+      pos: 6.7553635,-3.2515702
       parent: 1
 - proto: DrinkShotGlass
   entities:
@@ -2297,18 +2297,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      pos: -1.5,-5.5
-      parent: 1
-  - uid: 296
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 297
@@ -2485,11 +2473,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 369
           - 241
           - 243
+          - 367
           - 319
-          - 596
-          - 597
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2523,11 +2511,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 602
           - 601
-          - 600
-          - 599
           - 598
+          - 599
+          - 600
+          - 602
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2652,7 +2640,7 @@ entities:
     - type: Transform
       pos: 3.5092657,0.46376777
       parent: 1
-- proto: NFMagazineShotgunDrum
+- proto: NFAmmunitionBoxShellShotgunOverpressure
   entities:
   - uid: 241
     components:
@@ -2668,14 +2656,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 596
+  - uid: 319
     components:
     - type: Transform
       parent: 240
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 597
+  - uid: 367
     components:
     - type: Transform
       parent: 240
@@ -2723,9 +2711,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-1.5
       parent: 1
-- proto: NFWeaponShotgunBulldog
+- proto: NFWeaponShotgunEnforcer
   entities:
-  - uid: 319
+  - uid: 369
     components:
     - type: Transform
       parent: 240

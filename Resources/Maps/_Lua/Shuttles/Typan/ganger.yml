@@ -531,28 +531,6 @@ entities:
       - device-button-8
     missingComponents:
     - Anchorable
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 31
-    components:
-    - type: Transform
-      pos: 4.5,3.5
-      parent: 21857
-  - uid: 32
-    components:
-    - type: Transform
-      pos: 0.5,3.5
-      parent: 21857
-  - uid: 33
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 21857
-  - uid: 44
-    components:
-    - type: Transform
-      pos: 3.5,-0.5
-      parent: 21857
 - proto: GravityGeneratorMini
   entities:
   - uid: 21922

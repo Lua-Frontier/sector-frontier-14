@@ -186,6 +186,19 @@ public sealed partial class DoorComponent : Component
     [DataField]
     public string EmaggingSpriteState = "sparks";
 
+    // Lua start
+    [DataField]
+    public string OpenColorSpriteState = "open_color";
+    [DataField]
+    public string ClosedColorSpriteState = "closed_color";
+    [DataField]
+    public string OpeningColorSpriteState = "opening_color";
+    [DataField]
+    public string ClosingColorSpriteState = "closing_color";
+    [DataField]
+    public string AssemblyColorSpriteState = "assembly_color";
+    // Lua end
+
     /// <summary>
     /// The sprite state used for the door when it's open.
     /// </summary>
@@ -332,4 +345,5 @@ public enum DoorVisualLayers : byte
     BaseUnlit,
     BaseBolted,
     BaseEmergencyAccess,
+    BaseColor,
 }

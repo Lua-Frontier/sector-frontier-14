@@ -30,7 +30,11 @@ public sealed partial class HitscanRadarSystem : EntitySystem
         var radarComponent = EnsureComp<HitscanRadarComponent>(radarEntity);
         var startPos = _transform.ToMapCoordinates(ev.FromCoordinates).Position;
         var endPos = startPos + ev.ShotDirection.Normalized() * ev.DistanceTried;
-        InheritShooterSettings(shooter, radarComponent); // Grab visual fields from hitscan entity and imbue radarComponent with em
+        radarComponent.RadarColor = ent.Comp.RadarColor;
+        radarComponent.LineThickness = ent.Comp.LineThickness;
+        radarComponent.Enabled = ent.Comp.Enabled;
+        radarComponent.LifeTime = ent.Comp.LifeTime;
+        InheritShooterSettings(shooter, radarComponent);
 
         radarComponent.StartPosition = startPos;
         radarComponent.EndPosition = endPos;

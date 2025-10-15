@@ -1,0 +1,132 @@
+- type: entity
+  parent: SheetMetalBase
+  id: SheetAstrolite
+  name: astrolite
+  suffix: Full, LuaTech
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Materials/Sheets/metal.rsi
+    state: astrolite_3
+    layers:
+    - state: astrolite_3
+      map: ["base"]
+  - type: Item
+    sprite: _Lua/Objects/Materials/Sheets/metal.rsi
+    size: Normal
+    heldPrefix: astrolite
+  - type: Material
+  - type: LuaTech
+  - type: PhysicalComposition
+    materialComposition:
+      Astrolite: 100
+  - type: Stack
+    stackType: Astrolite
+    baseLayer: base
+    layerStates:
+    - astrolite
+    - astrolite_2
+    - astrolite_3
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: astrolite
+
+- type: entity
+  parent: SheetAstrolite
+  id: SheetAstrolite10
+  name: astrolite
+  suffix: 10, LuaTech
+  components:
+  - type: Sprite
+    state: astrolite
+  - type: Stack
+    stackType: Astrolite
+    count: 10
+
+- type: entity
+  parent: SheetAstrolite
+  id: SheetAstrolite1
+  name: astrolite
+  suffix: Single, LuaTech
+  components:
+  - type: Sprite
+    state: astrolite
+  - type: Stack
+    stackType: Astrolite
+    count: 1
+
+- type: entity
+  parent: SheetAstrolite
+  id: SheetAstroliteLingering0
+  suffix: Lingering, 0, LuaTech
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
+
+- type: entity
+  parent: SheetMetalBase
+  id: SheetCompactAstrolite
+  name: compact astrolite
+  suffix: Full, LuaTech
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Materials/Sheets/metal.rsi
+    state: compactastrolite_3
+    layers:
+    - state: compactastrolite_3
+      map: ["base"]
+  - type: Item
+    sprite: _Lua/Objects/Materials/Sheets/metal.rsi
+    size: Normal
+    heldPrefix: compactastrolite
+  - type: Material
+  - type: LuaTech
+  - type: PhysicalComposition
+    materialComposition:
+      CompactAstrolite: 100
+  - type: Stack
+    stackType: CompactAstrolite
+    baseLayer: base
+    layerStates:
+    - compactastrolite
+    - compactastrolite_2
+    - compactastrolite_3
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: compactastrolite
+  - type: Construction
+    graph: CompactAstrolite
+    node: CompactAstrolite
+
+- type: entity
+  parent: SheetCompactAstrolite
+  id: SheetCompactAstrolite10
+  name: compact astrolite
+  suffix: 10, LuaTech
+  components:
+  - type: Sprite
+    state: compactastrolite
+  - type: Stack
+    stackType: CompactAstrolite
+    count: 10
+
+- type: entity
+  parent: SheetCompactAstrolite
+  id: SheetCompactAstrolite1
+  name: compact astrolite
+  suffix: Single, LuaTech
+  components:
+  - type: Sprite
+    state: compactastrolite
+  - type: Stack
+    stackType: CompactAstrolite
+    count: 1
+
+- type: entity
+  parent: SheetCompactAstrolite
+  id: SheetCompactAstroliteLingering0
+  suffix: Lingering, 0, LuaTech
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
