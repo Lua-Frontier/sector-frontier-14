@@ -67,4 +67,11 @@ public sealed partial class FTLDriveComponent : Component
     [DataField]
     [AutoNetworkedField]
     public float ThermalSignature = 2000000; // ~2.8km
+
+    [DataField]
+    [AutoNetworkedField]
+    public bool SkipHyperspace = false;
+    [DataField]
+    [AutoNetworkedField]
+    public float SkipHyperspaceEmpRange = 60f;
 }

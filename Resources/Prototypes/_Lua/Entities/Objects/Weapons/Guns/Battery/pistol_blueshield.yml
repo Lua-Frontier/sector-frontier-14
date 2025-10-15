@@ -40,7 +40,7 @@
   - type: Battery
     maxCharge: 750
     startingCharge: 750
-    
+
 - type: entity
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
@@ -60,17 +60,23 @@
     impactFlash:
       sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
       state: impact_beam_violet
-    
+
 - type: entity
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   id: VioletLaserShip # DS
   components:
+  - type: HitscanRadarSignature
+    radarColor: "#c24bfa"
   - type: HitscanBasicDamage
     damage:
       types:
         Structural: 65
         Heat: 75
+  - type: HitscanSpawnEntity
+    spawnedEntity: VioletLaserExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 600
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
@@ -81,3 +87,16 @@
     impactFlash:
       sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
       state: impact_beam_violet
+
+- type: entity
+  id: VioletLaserExplosion
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 100
+    intensitySlope: 90
+    maxIntensity: 80
+    maxTileBreak: 2

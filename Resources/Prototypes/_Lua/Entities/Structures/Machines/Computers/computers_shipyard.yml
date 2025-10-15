@@ -129,6 +129,39 @@
       state: blackmarket_key
 
 - type: entity
+  id: ComputerShipyardLuatech
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: консоль кораблей LuaTech
+  description: Консоль покупки кораблей LuaTech
+  suffix: Lua
+  components:
+  - type: LuaTech
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.LuaTech
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.LuaTech:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_holo
+    - map: ["computerLayerKeyboard"]
+      state: holo_generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: holo_shipyardluatech
+    - map: ["computerLayerKeys"]
+      state: holo_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: holo_generic_panel_open
+    - type: PointLight
+      enabled: false
+      color: "#2287af"
+      radius: 1.0
+      energy: 1.5
+
+- type: entity
   id: SauronCarrierComputer
   parent: BaseCarrierComputer
   name: sauron carrier console

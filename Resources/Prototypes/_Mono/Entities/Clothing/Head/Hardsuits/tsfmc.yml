@@ -12,6 +12,15 @@
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
   - type: PointLight
     color: "#ffeead"
+  - type: NightVision
+    flashDurationMultiplier: 2
+    isEquipment: true
+    color: "#999999"
+  - type: ThermalVision
+    flashDurationMultiplier: 2
+    pulseTime: 6
+    isEquipment: true
+    toggleAction: PulseThermalVision
   - type: Armor
     modifiers:
       coefficients:
@@ -67,6 +76,10 @@
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc_sheriff.rsi
   - type: Clothing
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc_sheriff.rsi
+  - type: NightVision
+    flashDurationMultiplier: 2
+    isEquipment: true
+    color: "#999999"
 
 - type: entity
   parent: NFClothingHeadHardsuitWithLightBaseNfsd
@@ -79,6 +92,10 @@
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc_experimental.rsi
   - type: Clothing
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc_experimental.rsi
+  - type: NightVision
+    flashDurationMultiplier: 2
+    isEquipment: true
+    color: "#999999"
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -104,6 +121,11 @@
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc_combat.rsi
   - type: PointLight
     color: "#79bb66"
+  - type: ThermalVision
+    flashDurationMultiplier: 2
+    pulseTime: 6
+    isEquipment: true
+    toggleAction: PulseThermalVision
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -129,6 +151,10 @@
     sprite: _EE/Clothing/Head/Hardsuits/tsfmc_command.rsi
   - type: PointLight
     color: "#ffed7f"
+  - type: NightVision
+    flashDurationMultiplier: 2
+    isEquipment: true
+    color: "#999999"
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000

@@ -11,16 +11,35 @@
       "name": "assembly"
     },
     {
+      "name": "assembly_color"
+    },
+    {
       "name": "bolted_unlit"
     },
     {
       "name": "closed"
     },
     {
+      "name": "closed_color"
+    },
+    {
       "name": "closed_unlit"
     },
     {
       "name": "closing",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "closing_color",
       "delays": [
         [
           0.1,
@@ -67,7 +86,28 @@
       ]
     },
     {
+      "name": "open_color",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
+    {
       "name": "opening",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "opening_color",
       "delays": [
         [
           0.1,
@@ -187,13 +227,13 @@
     },
 	{
       "name": "emergency_open_unlit"
-    },    
+    },
 	{
       "name": "panel_closed"
-    },    
+    },
 	{
       "name": "open_unlit"
-    },    
+    },
 	{
       "name": "bolted_open_unlit"
     },
