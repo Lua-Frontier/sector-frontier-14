@@ -263,6 +263,24 @@ public sealed class ThrusterSystem : EntitySystem
             DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
             shuttleComponent.LinearThrusters[direction].Add(uid);
         }
+        else if (component.Type == ThrusterType.Omnidirectional)
+        {
+            if (args.ParentChanged)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    oldShuttleComponent.LinearThrust[i] -= component.Thrust;
+                    oldShuttleComponent.BaseLinearThrust[i] -= component.BaseThrust;
+                    DebugTools.Assert(oldShuttleComponent.LinearThrusters[i].Contains(uid));
+                    oldShuttleComponent.LinearThrusters[i].Remove(uid);
+
+                    shuttleComponent.LinearThrust[i] += component.Thrust;
+                    shuttleComponent.BaseLinearThrust[i] += component.BaseThrust;
+                    DebugTools.Assert(!shuttleComponent.LinearThrusters[i].Contains(uid));
+                    shuttleComponent.LinearThrusters[i].Add(uid);
+                }
+            }
+        }
     }
 
     private void OnAnchorChange(EntityUid uid, ThrusterComponent component, ref AnchorStateChangedEvent args)
@@ -352,6 +370,12 @@ public sealed class ThrusterSystem : EntitySystem
                 shuttleComponent.BaseLinearThrust[direction] += component.BaseThrust;
                 DebugTools.Assert(!shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Add(uid);
+                if (component.AngularThrustExtra > 0f)
+                {
+                    shuttleComponent.AngularThrust += component.AngularThrustExtra;
+                    DebugTools.Assert(!shuttleComponent.AngularThrusters.Contains(uid));
+                    shuttleComponent.AngularThrusters.Add(uid);
+                }
 
                 // Don't just add / remove the fixture whenever the thruster fires because perf
                 if (EntityManager.TryGetComponent(uid, out PhysicsComponent? physicsComponent) &&
@@ -367,6 +391,28 @@ public sealed class ThrusterSystem : EntitySystem
                 shuttleComponent.AngularThrust += component.Thrust;
                 DebugTools.Assert(!shuttleComponent.AngularThrusters.Contains(uid));
                 shuttleComponent.AngularThrusters.Add(uid);
+                break;
+            case ThrusterType.Omnidirectional:
+                for (int i = 0; i < 4; i++)
+                {
+                    shuttleComponent.LinearThrust[i] += component.Thrust;
+                    shuttleComponent.BaseLinearThrust[i] += component.BaseThrust;
+                    DebugTools.Assert(!shuttleComponent.LinearThrusters[i].Contains(uid));
+                    shuttleComponent.LinearThrusters[i].Add(uid);
+                }
+                if (component.AngularThrustExtra > 0f)
+                {
+                    shuttleComponent.AngularThrust += component.AngularThrustExtra;
+                    DebugTools.Assert(!shuttleComponent.AngularThrusters.Contains(uid));
+                    shuttleComponent.AngularThrusters.Add(uid);
+                }
+                if (EntityManager.TryGetComponent(uid, out physicsComponent) && component.BurnPoly.Count > 0)
+                {
+                    var shape = new PolygonShape();
+                    shape.Set(component.BurnPoly);
+                    _fixtureSystem.TryCreateFixture(uid, shape, BurnFixture, hard: false, collisionLayer: (int)CollisionGroup.FullTileMask, body: physicsComponent);
+                }
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -451,11 +497,32 @@ public sealed class ThrusterSystem : EntitySystem
                 shuttleComponent.BaseLinearThrust[direction] -= component.BaseThrust;
                 DebugTools.Assert(shuttleComponent.LinearThrusters[direction].Contains(uid));
                 shuttleComponent.LinearThrusters[direction].Remove(uid);
+                if (component.AngularThrustExtra > 0f)
+                {
+                    shuttleComponent.AngularThrust -= component.AngularThrustExtra;
+                    DebugTools.Assert(shuttleComponent.AngularThrusters.Contains(uid));
+                    shuttleComponent.AngularThrusters.Remove(uid);
+                }
                 break;
             case ThrusterType.Angular:
                 shuttleComponent.AngularThrust -= component.Thrust;
                 DebugTools.Assert(shuttleComponent.AngularThrusters.Contains(uid));
                 shuttleComponent.AngularThrusters.Remove(uid);
+                break;
+            case ThrusterType.Omnidirectional:
+                for (int i = 0; i < 4; i++)
+                {
+                    shuttleComponent.LinearThrust[i] -= component.Thrust;
+                    shuttleComponent.BaseLinearThrust[i] -= component.BaseThrust;
+                    DebugTools.Assert(shuttleComponent.LinearThrusters[i].Contains(uid));
+                    shuttleComponent.LinearThrusters[i].Remove(uid);
+                }
+                if (component.AngularThrustExtra > 0f)
+                {
+                    shuttleComponent.AngularThrust -= component.AngularThrustExtra;
+                    DebugTools.Assert(shuttleComponent.AngularThrusters.Contains(uid));
+                    shuttleComponent.AngularThrusters.Remove(uid);
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

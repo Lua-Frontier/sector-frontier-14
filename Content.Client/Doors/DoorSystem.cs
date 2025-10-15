@@ -97,28 +97,29 @@ public sealed class DoorSystem : SharedDoorSystem
 
     private void UpdateAppearanceForDoorState(Entity<DoorComponent> entity, SpriteComponent sprite, DoorState state)
     {
-        sprite.DrawDepth = state is DoorState.Open ? entity.Comp.OpenDrawDepth : entity.Comp.ClosedDrawDepth;
+        _sprite.SetDrawDepth(entity.Owner, state is DoorState.Open ? entity.Comp.OpenDrawDepth : entity.Comp.ClosedDrawDepth);
 
         switch (state)
         {
             case DoorState.Open:
+                if (sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
+                { sprite.LayerSetState(DoorVisualLayers.BaseColor, entity.Comp.OpenColorSpriteState); }
+
                 foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
-                {
-                    sprite.LayerSetState(layer, layerState);
-                }
+                { sprite.LayerSetState(layer, layerState); }
 
                 return;
             case DoorState.Closed:
+                if (sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
+                { sprite.LayerSetState(DoorVisualLayers.BaseColor, entity.Comp.ClosedColorSpriteState); }
+
                 foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
-                {
-                    sprite.LayerSetState(layer, layerState);
-                }
+                { sprite.LayerSetState(layer, layerState); }
 
                 return;
             case DoorState.Opening:
                 if (entity.Comp.OpeningAnimationTime == 0.0)
                     return;
-
                 _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.AnimationKey);
 
                 return;
@@ -139,6 +140,8 @@ public sealed class DoorSystem : SharedDoorSystem
                 return;
         }
     }
+
+
 
     private void UpdateSpriteLayers(Entity<SpriteComponent> sprite, string targetProto)
     {

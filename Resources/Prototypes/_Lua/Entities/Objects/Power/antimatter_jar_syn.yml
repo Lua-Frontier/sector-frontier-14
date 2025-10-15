@@ -1,0 +1,11 @@
+- type: entity
+  parent: [AmeJar, BaseItem]
+  id: AmeJarSyn
+  name: AME fuel jar syn
+  description: A hermetically sealed jar containing antimatter for use in an antimatter reactor.
+  suffix: Syndicate
+  components:
+  - type: Item
+    sprite: _Lua/Objects/Power/AME/ame_jar_syn.rsi
+  - type: Sprite
+    sprite: _Lua/Objects/Power/AME/ame_jar_syn.rsi

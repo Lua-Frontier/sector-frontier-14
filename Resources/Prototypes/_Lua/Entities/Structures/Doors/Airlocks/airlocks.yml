@@ -2,9 +2,91 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
-# Standard
+# Base
 - type: entity
   parent: Airlock
+  id: AirlockBaseLua
+  name: шлюз
+  abstract: true
+  suffix: Lua, Base
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_atmos_lua.rsi
+    snapCardinals: true
+    layers:
+    - state: closed_color
+      map: ["enum.DoorVisualLayers.BaseColor"]
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+
+- type: entity
+  parent: Airlock
+  id: AirlockBaseBlackLua
+  name: шлюз
+  abstract: true
+  suffix: Lua, Base, Black
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_atmos_lua.rsi
+    snapCardinals: true
+    layers:
+    - state: closed_color
+      map: ["enum.DoorVisualLayers.BaseColor"]
+      color: "#403d40"
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+
+# Standard
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchAtmosLua
   name: шлюз
   suffix: Lua, Атмос
@@ -13,7 +95,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_atmos_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchAtmosBlackLua
+  name: шлюз
+  suffix: Lua, Атмос, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_atmos_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchBotanyLua
   name: шлюз
   suffix: Lua, Ботаника
@@ -22,7 +113,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_botany_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchBotanyBlackLua
+  name: шлюз
+  suffix: Lua, Ботаника, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_botany_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchChemLua
   name: шлюз
   suffix: Lua, Химия
@@ -31,7 +131,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_chem_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchChemBlackLua
+  name: шлюз
+  suffix: Lua, Химия, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_chem_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchClearLua
   name: шлюз
   suffix: Lua, Чистый
@@ -40,7 +149,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_clear_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchClearBlackLua
+  name: шлюз
+  suffix: Lua, Чистый, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_clear_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchCommLua
   name: шлюз
   suffix: Lua, Командный
@@ -49,7 +167,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_comm_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchCommBlackLua
+  name: шлюз
+  suffix: Lua, Командный, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_comm_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchDormLua
   name: шлюз
   suffix: Lua, Дормы
@@ -58,7 +185,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_dorm_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchDormBlackLua
+  name: шлюз
+  suffix: Lua, Дормы, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_dorm_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchEngineerLua
   name: шлюз
   suffix: Lua, Инженерный
@@ -67,7 +203,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_engin_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchEngineerBlackLua
+  name: шлюз
+  suffix: Lua, Инженерный, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_engin_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchMaintenanceLua
   name: шлюз
   suffix: Lua, Технический
@@ -76,7 +221,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_maint_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchMaintenanceBlackLua
+  name: шлюз
+  suffix: Lua, Технический, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_maint_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchMedicalLua
   name: шлюз
   suffix: Lua, Медицинский
@@ -85,7 +239,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_medi_lua.rsi
 
 - type: entity
-  parent: Airlock
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchMedicalBlackLua
+  name: шлюз
+  suffix: Lua, Медицинский, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_medi_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, Airlock]
   id: AirlockHatchScienceLua
   name: шлюз
   suffix: Lua, Научный
@@ -93,9 +256,18 @@
   - type: Sprite
     sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_scie_lua.rsi
 
+- type: entity
+  parent: [AirlockBaseBlackLua, Airlock]
+  id: AirlockHatchScienceBlackLua
+  name: шлюз
+  suffix: Lua, Научный, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/hatch_scie_lua.rsi
+
 # Glass
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchAtmosGlassLua
   name: стеклянный шлюз
   suffix: Lua, Атмос
@@ -104,7 +276,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_atmos_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchAtmosGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Атмос, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_atmos_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchBotanyGlassLua
   name: стеклянный шлюз
   suffix: Lua, Ботаника
@@ -113,7 +294,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_botany_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchBotanyGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Ботаника, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_botany_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchChemGlassLua
   name: стеклянный шлюз
   suffix: Lua, Химия
@@ -122,7 +312,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_chem_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchChemGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Химия, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_chem_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchClearGlassLua
   name: стеклянный шлюз
   suffix: Lua, Чистый
@@ -131,7 +330,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_clear_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchClearGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Чистый, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_clear_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchCommGlassLua
   name: стеклянный шлюз
   suffix: Lua, Командный
@@ -140,7 +348,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_comm_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchCommGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Командный, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_comm_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchDormGlassLua
   name: стеклянный шлюз
   suffix: Lua, Дормы
@@ -149,7 +366,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_dorm_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchDormGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Дормы, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_dorm_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchEngineerGlassLua
   name: стеклянный шлюз
   suffix: Lua, Инженерный
@@ -158,7 +384,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_engin_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchEngineerGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Инженерный, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_engin_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchMaintenanceGlassLua
   name: стеклянный шлюз
   suffix: Lua, Технический
@@ -167,7 +402,16 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_maint_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchMaintenanceGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Технический, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_maint_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchMedicalGlassLua
   name: стеклянный шлюз
   suffix: Lua, Медицинский
@@ -176,10 +420,28 @@
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_medi_lua.rsi
 
 - type: entity
-  parent: AirlockGlass
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchMedicalGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Медицинский, Тёмный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_medi_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseLua, AirlockGlass]
   id: AirlockHatchScienceGlassLua
   name: стеклянный шлюз
   suffix: Lua, Научный
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_scie_lua.rsi
+
+- type: entity
+  parent: [AirlockBaseBlackLua, AirlockGlass]
+  id: AirlockHatchScienceGlassBlackLua
+  name: стеклянный шлюз
+  suffix: Lua, Научный, Тёмный
   components:
   - type: Sprite
     sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_hatch_scie_lua.rsi
@@ -265,3 +527,129 @@
   components:
   - type: Sprite
     sprite: _Lua/Structures/Doors/Airlocks/Glass/medium_medical_glass_lua.rsi
+
+- type: entity
+  id: HoloAirlockBase
+  name: holodoor
+  description: A barrier of hard light that blocks air, but nothing else.
+  suffix: Holodoor, Lua
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: LuaTech
+  - type: Transform
+    anchored: true
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+  - type: ApcPowerReceiver
+    powerLoad: 20
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/shuttle_holo_lua.rsi
+    drawdepth: Doors
+    snapCardinals: false
+    layers:
+    - state: holodoor
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: border
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      visible: true
+    - state: lamps_open
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: lamps_bolted
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.DoorVisualLayers.Base:
+          False: { visible: false }
+          True: { visible: true }
+      enum.DoorVisuals.BoltLights:
+        enum.DoorVisualLayers.BaseBolted:
+          False: { visible: false }
+          True: { visible: true }
+      enum.DoorVisuals.ClosedLights:
+        enum.DoorVisualLayers.BaseUnlit:
+          False: { visible: false }
+          True: { visible: true }
+  - type: DeviceLinkSink
+    ports:
+      - DoorBolt
+      - Open
+      - Close
+      - Toggle
+  - type: DeviceLinkSource
+    ports:
+      - DoorStatus
+    lastSignals:
+      DoorStatus: false
+  - type: DoorSignalControl
+  - type: DoorBolt
+  - type: HoloAirlock
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlocked: false
+  - type: Wires
+    boardName: wires-board-name-airlock
+    layoutId: Docking
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: AccessReader
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronics ]
+  - type: LitOnPowered
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    color: "#006380"
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: entity
+  id: HoloAirlock
+  parent: HoloAirlockBase
+  suffix: Holodoor Dock, Lua
+  name: holodoor docking
+  description: A barrier of hard light that blocks air, but nothing else.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Docking
+  - type: DockingSignalControl

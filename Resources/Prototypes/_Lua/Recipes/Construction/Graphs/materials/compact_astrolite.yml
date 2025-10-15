@@ -1,0 +1,16 @@
+- type: constructionGraph
+  id: CompactAstrolite
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: CompactAstrolite
+          completed:
+            - !type:SetStackCount
+              amount: 1
+          steps:
+            - material: Astrolite
+              amount: 2
+
+    - node: CompactAstrolite
+      entity: SheetCompactAstrolite

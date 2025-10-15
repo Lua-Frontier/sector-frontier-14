@@ -34,5 +34,5 @@
         - type: StationNameSetup
           mapNameTemplate: 'GF Ilmus {1}'
           nameGenerator:
-            !type:LuaTechNameGenerator
+            !type:NanotrasenNameGenerator
             prefixCreator: '14'

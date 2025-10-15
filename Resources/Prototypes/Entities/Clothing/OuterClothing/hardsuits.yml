@@ -710,13 +710,13 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.4
-        Heat: 0.25
+        Piercing: 0.3 #Lua 0.4<0.3
+        Heat: 0.5 #Lua 0.25<0.5
         Radiation: 0.25
         Caustic: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.8
-    sprintModifier: 0.8
+    sprintModifier: 0.9 #Lua 0.8<0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard

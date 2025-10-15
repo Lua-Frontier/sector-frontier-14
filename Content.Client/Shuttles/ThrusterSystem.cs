@@ -1,4 +1,5 @@
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Shuttles;
@@ -8,6 +9,7 @@ namespace Content.Client.Shuttles;
 /// </summary>
 public sealed class ThrusterSystem : VisualizerSystem<ThrusterComponent>
 {
+    [Dependency] private readonly TagSystem _tag = default!;
     /// <summary>
     /// Updates whether or not the thruster is visibly active/thrusting.
     /// </summary>
@@ -18,11 +20,11 @@ public sealed class ThrusterSystem : VisualizerSystem<ThrusterComponent>
             return;
 
         SpriteSystem.LayerSetVisible((uid, args.Sprite), ThrusterVisualLayers.ThrustOn, state);
-        SetThrusting(
-            uid,
-            state && AppearanceSystem.TryGetData<bool>(uid, ThrusterVisualState.Thrusting, out var thrusting, args.Component) && thrusting,
-            args.Sprite
-        );
+        var thrusting = state && AppearanceSystem.TryGetData<bool>(uid, ThrusterVisualState.Thrusting, out var t, args.Component) && t;
+        SetThrusting(uid, thrusting, args.Sprite);
+        var alwaysBurn = _tag.HasTag(uid, "OmniBurnAlwaysOn");
+        if (alwaysBurn && SpriteSystem.LayerMapTryGet((uid, args.Sprite), ThrusterVisualLayers.ThrustingUnshaded, out var unshadedLayer, false))
+        { SpriteSystem.LayerSetVisible((uid, args.Sprite), unshadedLayer, state || thrusting); }
     }
 
     /// <summary>

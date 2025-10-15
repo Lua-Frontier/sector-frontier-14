@@ -1,0 +1,12 @@
+- type: entity
+  parent: [AmeJar, BaseItem]
+  id: AmeJarLua
+  name: AME fuel jar lt
+  description: A hermetically sealed jar containing antimatter for use in an antimatter reactor.
+  suffix: Lua
+  components:
+  - type: LuaTech
+  - type: Item
+    sprite: _Lua/Objects/Power/AME/ame_jar_lua.rsi
+  - type: Sprite
+    sprite: _Lua/Objects/Power/AME/ame_jar_lua.rsi
