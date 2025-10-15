@@ -309,18 +309,6 @@ entities:
       - device-button-6
       - device-button-7
       - device-button-8
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 41
-    components:
-    - type: Transform
-      pos: 2.5,-0.5
-      parent: 1
-  - uid: 42
-    components:
-    - type: Transform
-      pos: -0.5,-0.5
-      parent: 1
 - proto: Gyroscope
   entities:
   - uid: 43

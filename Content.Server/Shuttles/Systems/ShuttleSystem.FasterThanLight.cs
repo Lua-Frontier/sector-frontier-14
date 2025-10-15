@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Server._NF.Shuttles.Components; // Frontier: FTL knockdown immunity
 using Content.Server._Lua.NoShuttleFTL;
+using Content.Server.Emp; // Lua
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -10,6 +11,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Shared._NF.Emp.Components; // Lua
 using Content.Shared.Maps;
 using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
@@ -312,6 +314,12 @@ public sealed partial class ShuttleSystem
         hyperspace.TargetAngle = angle;
         hyperspace.PriorityTag = priorityTag;
 
+        if (TryGetFTLDrive(shuttleUid, out _, out var driveComp)) // Lua start
+        {
+            hyperspace.SkipHyperspace = driveComp.SkipHyperspace;
+            hyperspace.SkipHyperspaceEmpRange = driveComp.SkipHyperspaceEmpRange;
+        } // Lua end
+
         _console.RefreshShuttleConsoles(shuttleUid);
 
         var mapId = _transform.GetMapId(coordinates);
@@ -345,6 +353,12 @@ public sealed partial class ShuttleSystem
             _gameTiming.CurTime,
             TimeSpan.FromSeconds(hyperspace.StartupTime));
         hyperspace.PriorityTag = priorityTag;
+
+        if (TryGetFTLDrive(shuttleUid, out _, out var driveComp)) // Lua start 
+        {
+            hyperspace.SkipHyperspace = driveComp.SkipHyperspace;
+            hyperspace.SkipHyperspaceEmpRange = driveComp.SkipHyperspaceEmpRange;
+        } //Lue ned
 
         _console.RefreshShuttleConsoles(shuttleUid);
 
@@ -408,6 +422,58 @@ public sealed partial class ShuttleSystem
         var comp = entity.Comp1;
         var xform = _xformQuery.GetComponent(entity);
         DoTheDinosaur(xform);
+
+        if (comp.SkipHyperspace) // Lua start
+        {
+            SpawnEmpVisualOnly(_transform.GetMapCoordinates(uid), comp.SkipHyperspaceEmpRange);
+            _thruster.DisableLinearThrusters(entity.Comp2);
+            _thruster.EnableLinearThrustDirection(entity.Comp2, DirectionFlag.South);
+            _console.RefreshShuttleConsoles(uid);
+            var target = entity.Comp1.TargetCoordinates;
+            MapId mapId;
+            QueueDel(entity.Comp1.VisualizerEntity);
+            entity.Comp1.VisualizerEntity = null;
+            if (!Exists(entity.Comp1.TargetCoordinates.EntityId))
+            {
+                var maps = EntityQuery<MapComponent>().Select(o => o.MapId).ToList();
+                var map = maps.Min(o => o.GetHashCode());
+                mapId = new MapId(map);
+                TryFTLProximity(uid, _mapSystem.GetMap(mapId));
+            }
+            else if (HasComp<MapGridComponent>(target.EntityId) && !HasComp<MapComponent>(target.EntityId))
+            {
+                var config = _dockSystem.GetDockingConfigAt(uid, target.EntityId, target, entity.Comp1.TargetAngle);
+                var mapCoordinates = _transform.ToMapCoordinates(target);
+                if (config == null) { TryFTLProximity(uid, target.EntityId); }
+                else { FTLDock((uid, xform), config); }
+                mapId = mapCoordinates.MapId;
+            }
+            else
+            {
+                mapId = _transform.GetMapId(target);
+                _transform.SetCoordinates(uid, xform, target, rotation: entity.Comp1.TargetAngle);
+            }
+            if (_physicsQuery.TryGetComponent(uid, out var bodyImm))
+            {
+                _physics.SetLinearVelocity(uid, Vector2.Zero, body: bodyImm);
+                _physics.SetAngularVelocity(uid, 0f, body: bodyImm);
+                if (HasComp<MapGridComponent>(xform.MapUid)) { Disable(uid, component: bodyImm); }
+                else { Enable(uid, component: bodyImm, shuttle: entity.Comp2); }
+            }
+            _thruster.DisableLinearThrusters(entity.Comp2);
+            var audio = _audio.PlayPvs(_arrivalSound, uid);
+            _audio.SetGridAudio(audio);
+            SpawnEmpVisualOnly(_transform.ToMapCoordinates(target), comp.SkipHyperspaceEmpRange);
+            if (TryComp<FTLDestinationComponent>(uid, out var dest))
+            { dest.Enabled = true; }
+            comp.State = FTLState.Cooldown;
+            comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
+            _console.RefreshShuttleConsoles(uid);
+            _mapSystem.SetPaused(mapId, false);
+            Smimsh(uid, xform: xform);
+            var ftlEvent = new FTLCompletedEvent(uid, _mapSystem.GetMap(mapId));
+            RaiseLocalEvent(uid, ref ftlEvent, true); return;
+        } // Lua end
 
         comp.State = FTLState.Travelling;
         var fromMapUid = xform.MapUid;
@@ -511,6 +577,8 @@ public sealed partial class ShuttleSystem
         _physics.SetAngularVelocity(uid, 0f, body: body);
 
         var target = entity.Comp1.TargetCoordinates;
+
+        if (comp.SkipHyperspace) { SpawnEmpVisualOnly(_transform.ToMapCoordinates(target), 60f); } // Lua
 
         MapId mapId;
 
@@ -634,6 +702,18 @@ public sealed partial class ShuttleSystem
             }
         }
     }
+
+    // Lua start
+    private void SpawnEmpVisualOnly(MapCoordinates coordinates, float range)
+    {
+        var empBlast = Spawn(EmpSystem.EmpPulseEffectPrototype, coordinates);
+        if (EnsureComp<EmpBlastComponent>(empBlast, out var blast))
+        {
+            blast.VisualRange = range;
+            Dirty(empBlast, blast);
+        }
+    }
+    // Lua end
 
     private float GetSoundRange(EntityUid uid)
     {

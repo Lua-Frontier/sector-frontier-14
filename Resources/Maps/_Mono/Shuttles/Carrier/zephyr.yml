@@ -600,23 +600,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-3.5
       parent: 1
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 72
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
-      parent: 1
-  - uid: 73
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
-      parent: 1
-  - uid: 74
-    components:
-    - type: Transform
-      pos: -2.5,-3.5
-      parent: 1
 - proto: GrilleDiagonal
   entities:
   - uid: 75

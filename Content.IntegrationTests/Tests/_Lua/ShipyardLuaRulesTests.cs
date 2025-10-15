@@ -111,6 +111,17 @@ public sealed class ShipyardLuaRulesTests
         "DebugSMES",
     };
 
+    private static readonly string[] ForbiddenGeneratorsAllSizes =
+    {
+        "GeneratorWallmountAPU",
+        "GeneratorWallmountBasic",
+        "GeneratorRTG",
+        "GeneratorRTGDamaged",
+        "GeneratorBasic15kW",
+        "DebugGenerator",
+        "GeneratorBasic",
+    };
+
     private static readonly string[] ConditionallyAllowedPowerLargeOnly =
     {
         "SMESAdvanced",
@@ -285,6 +296,7 @@ public sealed class ShipyardLuaRulesTests
                         if (pid == "SMESAdvanced" || pid == "SMESAdvancedEmpty") smesAdvancedTotal++;
                         if (pid.Contains("GasMiner", StringComparison.Ordinal)) sb.AppendLine($"[Атмос] {vessel.ID}: GasMiner '{pid}' запрещён.");
                         if (ForbiddenPowerAllSizes.Contains(pid)) sb.AppendLine($"[Энергия] {vessel.ID}: запрещённый прототип питания '{pid}'.");
+                        if (ForbiddenGeneratorsAllSizes.Contains(pid)) sb.AppendLine($"[Генераторы] {vessel.ID}: запрещённый генератор '{pid}'.");
                         if (ConditionallyAllowedPowerLargeOnly.Contains(pid) && size != VesselSize.Large) sb.AppendLine($"[Энергия] {vessel.ID}: '{pid}' разрешён только на Large, текущий размер: {size}.");
                         if (SubstationsBannedAlways.Contains(pid))  sb.AppendLine($"[Энергия] {vessel.ID}: запрещённая подстанция '{pid}'.");
                         if (size != VesselSize.Large && SubstationsBannedExceptLarge.Contains(pid)) sb.AppendLine($"[Энергия] {vessel.ID}: подстанция '{pid}' запрещена для размера {size}.");
