@@ -486,7 +486,7 @@
   description: Нелегальное оружие используемое агентами синдиката. Оружие, часто используемое печально известными ядерными оперативниками. Использует патроны калибра .35 авто.
   productEntity: NFWeaponSubMachineGunC20r
   cost:
-    Speso: 25000
+    Speso: 100000 #Lua 25k<100k
   categories:
     - UplinkMercenaryGun
   conditions:
@@ -634,7 +634,7 @@
   description: Нелегальное оружие используемое агентами синдиката. Весьма традиционный лёгкий пулемёт с удобной лакированной деревянной пистолетной рукоятью. Использует патроны калибра .30 винтовочный.
   productEntity: NFWeaponLightMachineGunL6
   cost:
-    Speso: 45000
+    Speso: 175000 #Lua 45k<175k
   categories:
     - UplinkMercenaryGun
   conditions:
@@ -652,7 +652,7 @@
   description: короб патронов L6 SAW (.30 винтовочные)
   productEntity: NFMagazineBoxRifle20
   cost:
-    Speso: 3000
+    Speso: 20000 #Lua 3k<20k
   categories:
     - UplinkMercenaryAmmo
   conditions:
@@ -708,7 +708,7 @@
   description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 авто. Запрещено к использованию гражданскими.
   productEntity: NFWeaponSubMachineGunWt550
   cost:
-    Speso: 7000
+    Speso: 150000 #Lua 7k<150k
   categories:
     - UplinkMercenaryGun
   conditions:
@@ -726,7 +726,7 @@
   description: магазин WT550 (.35 авто, надствольный)
   productEntity: NFMagazineSubMachineGunTopMounted35
   cost:
-    Speso: 600
+    Speso: 5000 #Lua 0.6k<5k
   categories:
     - UplinkMercenaryAmmo
   conditions:
@@ -745,7 +745,7 @@
   description: Нелегальное оружие используемое агентами синдиката. Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра .50 ружейный.
   productEntity: NFWeaponShotgunBulldog
   cost:
-    Speso: 30000
+    Speso: 100000 #Lua 30k<100k
   categories:
     - UplinkMercenaryGun
   conditions:
