@@ -54,7 +54,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        density: 30
+        density: 5 # Lua 30<5
         shape:
           !type:PhysShapeAabb
           bounds: "-0.35,-0.2,0.25,0.1"
