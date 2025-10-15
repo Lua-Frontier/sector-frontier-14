@@ -26,6 +26,8 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ADTVeteranSecHardsuitHelm
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #ClothingHeadSuitWithLightBase

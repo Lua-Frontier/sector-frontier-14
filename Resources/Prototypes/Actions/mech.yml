@@ -46,3 +46,51 @@
       state: mech_eject
   - type: InstantAction
     event: !type:MechEjectPilotEvent
+
+- type: entity
+  parent: BaseMechAction
+  id: ActionMechToggleLight
+  name: Toggle Light
+  description: Toggle the mech's flashlight
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_lights_off
+    iconOn:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_lights_on
+  - type: InstantAction
+    event: !type:MechToggleLightEvent
+
+- type: entity
+  parent: BaseMechAction
+  id: ActionMechPryDoor
+  name: Pry Door
+  description: Pry open doors
+  components:
+  - type: Action
+    useDelay: 1.0
+    icon:
+      sprite: Objects/Tools/crowbar.rsi
+      state: red-storage
+  - type: InstantAction
+    event: !type:MechPryDoorEvent
+
+- type: entity
+  parent: BaseMechAction
+  id: ActionMechNightVision
+  name: Night Vision
+  description: Toggle night vision mode
+  components:
+  - type: Action
+    useDelay: 0.5
+    icon:
+      sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
+      state: icon
+    iconOn:
+      sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:MechNightVisionEvent

@@ -11,6 +11,7 @@
     damage:
       types:
         Heat: 40
+  - type: ThermalSignature
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: Sprite
@@ -56,6 +57,7 @@
     baseThrust: 250
     thrust: 250
     thrustPerPartLevel: [250, 312.5, 375, 437.5, 460]
+    heatSignatureRatio: 0.5
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: Sprite

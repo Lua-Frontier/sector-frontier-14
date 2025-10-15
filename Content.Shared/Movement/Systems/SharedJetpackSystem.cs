@@ -81,7 +81,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
         if (ev.HasGravity)
         {
             var activeJetpackQuery = EntityQueryEnumerator<ActiveJetpackComponent, JetpackComponent, TransformComponent>();
-            
+
             while (activeJetpackQuery.MoveNext(out var jetpackUid, out _, out var jetpackComponent, out var jetpackTransform))
             {
                 // If the jetpack is on this grid and has no user, disable it
@@ -91,7 +91,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
                     EntityUid? user = null;
                     Container.TryGetContainingContainer((jetpackUid, null, null), out var container);
                     user = container?.Owner;
-                    
+
                     SetEnabled(jetpackUid, jetpackComponent, false, user);
                 }
             }
@@ -236,7 +236,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
         {
             RemoveUser(user.Value, component);
             RemComp<ActiveJetpackComponent>(uid);
-            RemComp<RadarBlipComponent>(uid); // Frontier: remove radar blip when jetpack is deactivated
+            if (TryComp<RadarBlipComponent>(uid, out var blip)) blip.Enabled = false;
         }
 
         Appearance.SetData(uid, JetpackVisuals.Enabled, enabled);

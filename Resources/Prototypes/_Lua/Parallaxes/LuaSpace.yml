@@ -1,0 +1,69 @@
+- type: parallax
+  id: LuaSpace
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/LuaSpaceBG.png"
+      slowness: 0.998046875
+      scale: "0.2, 0.2"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/Stars.png"
+      slowness: 0.998026875
+      scale: "0.3, 0.3"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/Stars.png"
+      slowness: 0.998042875
+      scale: "0.5, 0.5"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/LuaParallaxFog.png"
+      slowness: 0.990946875
+      scale: "1, 1"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/StarsHalf.png"
+      slowness: 0.998046875
+      scale: "0.6, 0.6"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/LuaMoon.png"
+      slowness: 0.998046875
+      scale: "0.55, 0.55"
+      controlHomePosition: "361, 292"
+      worldHomePosition: "0, 0"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/LuaMoonStones.png"
+      slowness: 0.998040875
+      scale: "0.50, 0.50"
+      controlHomePosition: "361, 292"
+      worldHomePosition: "0, 0"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/Asteroids.png"
+      slowness: 0.80
+      scale: 0.65,0.65
+      scrolling: "-0.0375, -0.055"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/Asteroids.png"
+      slowness: 0.97
+      scale: 0.9,0.9
+      scrolling: "0.258, 0.051"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaSpace/Asteroids.png"
+      slowness: 0.80
+      scale: 1.1,1.1
+      scrolling: "-0.0375, -0.055"
+  layersLQ:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.875
+  layersLQUseHQ: false
