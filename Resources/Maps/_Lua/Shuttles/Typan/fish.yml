@@ -2211,23 +2211,6 @@ entities:
       - 9
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GeneratorWallmountAPU
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      pos: 7.5,-4.5
-      parent: 1
-  - uid: 296
-    components:
-    - type: Transform
-      pos: 8.5,-4.5
-      parent: 1
-  - uid: 297
-    components:
-    - type: Transform
-      pos: 6.5,-3.5
-      parent: 1
 - proto: GravityGeneratorMini
   entities:
   - uid: 298

@@ -73,6 +73,8 @@
     tags:
     - Wall
     - Diagonal
+  - type: Occluder
+    enabled: false
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -615,6 +617,8 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi

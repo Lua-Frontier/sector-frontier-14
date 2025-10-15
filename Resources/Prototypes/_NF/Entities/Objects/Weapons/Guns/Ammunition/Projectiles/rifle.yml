@@ -45,7 +45,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20 #Lua 13<20
+        Piercing: 27 #Lua 13<27
 
 - type: entity
   id: NFBulletRifle20Overpressure
@@ -56,7 +56,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 22 #Lua 14<22
+        Piercing: 29 #Lua 14<29
 
 - type: entity
   id: NFBulletRifle20Incendiary
@@ -67,8 +67,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8 # 0.6 * base total dmg #Lua 7.8<8
-        Heat: 12 # 0.4 * base total dmg #Lua 5.2<12
+        Piercing: 11 # 0.6 * base total dmg #Lua 7.8<11
+        Heat: 16 # 0.4 * base total dmg #Lua 5.2<16
 
 - type: entity
   id: NFBulletRifle20Uranium
@@ -79,8 +79,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8 # 0.6 * (1.4 * base total dmg) #Lua 10.8<8
-        Radiation: 12 # 0.4 * (1.4 * base total dmg) #Lua 7.2<12
+        Piercing: 11 # 0.6 * (1.4 * base total dmg) #Lua 10.8<11
+        Radiation: 16 # 0.4 * (1.4 * base total dmg) #Lua 7.2<16
 
 - type: entity
   id: NFBulletRifle20Practice
@@ -187,7 +187,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 18 #Lua 15<18
+        Piercing: 25 #Lua 15<25
 
 - type: entity
   id: NFBulletRifle30Overpressure
@@ -198,7 +198,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20 #Lua 17<20
+        Piercing: 27 #Lua 17<27
 
 - type: entity
   id: NFBulletRifle30Incendiary
@@ -209,8 +209,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8 #Lua 9<8
-        Heat: 10 #Lua 6<10
+        Piercing: 11 #Lua 9<11
+        Heat: 14 #Lua 6<14
 
 - type: entity
   id: NFBulletRifle30Uranium
@@ -221,8 +221,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8 #Lua 12.6<8
-        Radiation: 10 #Lua 8.4<10
+        Piercing: 11 #Lua 12.6<11
+        Radiation: 14 #Lua 8.4<14
 
 - type: entity
   id: NFBulletRifle30Practice

@@ -97,6 +97,8 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [DataField]
         public float HeatSignatureRatio = 40f;
+        [DataField]
+        public float AngularThrustExtra = 0f;
     }
 
     public enum ThrusterType
@@ -104,5 +106,6 @@ namespace Content.Server.Shuttles.Components
         Linear,
         // Angular meaning rotational.
         Angular,
+        Omnidirectional,
     }
 }
