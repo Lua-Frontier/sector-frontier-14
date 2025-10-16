@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: Nutt-Bf
+  name: MXZ Nutt-Bf
+  description: Ранний прототип артиллерии на малой шаттловой базе, почему-то в виде яйца.
+  limit: 2
+  price: 150000 #тестим
+  category: Medium
+  group: Security
+  class:
+  - Nfsd
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/SD/Nutt-Bf.yml
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: Nutt-Bf
+  mapName: 'MXZ Nutt-Bf'
+  mapPath: /Maps/_Lua/Shuttles/SD/Nutt-Bf.yml
+  minPlayers: 0
+  stations:
+    Nutt-Bf:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'MXZ Nutt-Bf {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
