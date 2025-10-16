@@ -5,9 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Lua.FtlPoints;
 
 public abstract class SharedFtlPointsSystem : EntitySystem
-{
-
-}
+{ }
 
 [NetSerializable, Serializable]
 public enum StarmapConsoleUiKey : byte
@@ -20,9 +18,7 @@ public sealed class WarpToStarMessage : BoundUserInterfaceMessage
 {
     public Star Star { get; }
     public WarpToStarMessage(Star star)
-    {
-        Star = star;
-    }
+    { Star = star; }
 }
 
 [Serializable, NetSerializable]

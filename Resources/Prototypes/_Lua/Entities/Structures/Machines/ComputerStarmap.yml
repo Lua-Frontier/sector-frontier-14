@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseComputer
+  id: ComputerStarmap
+  name: starmap computer
+  description: A controller for the spin-drive.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: solar_screen
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+    - type: StarmapConsole
+    - type: StarMap
+    - type: ActivatableUI
+      key: enum.StarmapConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.StarmapConsoleUiKey.Key:
+          type: StarmapConsoleBoundUserInterface
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#e6e227"
