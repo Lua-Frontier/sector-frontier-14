@@ -6,14 +6,19 @@
   parent: BaseVessel
   id: Explorer
   name: TY Explorer
-  price: 23400
-  category: Large
+  price: 20370
+  category: Small
   group: Typan
+  access: SyndicateAgent
+  class:
+  - Syndicate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/explorer.yml
   addComponents:
 
     - type: IFF
-      color: "#990816"
+      color: "#d93204"
     - type: NanotrasenFtl
     - type: TypanFtl
 

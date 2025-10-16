@@ -1,5 +1,5 @@
-using Content.Server.Chat.Systems; // Frontier: InGameICChatType
 using Content.Server.Radio.EntitySystems;
+using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;

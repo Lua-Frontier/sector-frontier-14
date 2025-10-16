@@ -16,6 +16,9 @@
       rating: 1
     - type: Stack
       stackType: Capacitor
+    - type: Tag # _Lua
+      tags: # _Lua
+      - CapacitorStockPart # _Lua
 
 - type: entity
   id: MatterBinStockPart
@@ -31,6 +34,9 @@
       rating: 1
     - type: Stack
       stackType: MatterBin
+    - type: Tag # _Lua
+      tags: # _Lua
+      - MatterBinStockPart # _Lua
 
 # Rating 2
 

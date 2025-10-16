@@ -1,3 +1,25 @@
+// SPDX-FileCopyrightText: 2022 Myctai
+// SPDX-FileCopyrightText: 2022 metalgearsloth
+// SPDX-FileCopyrightText: 2023 Artjom
+// SPDX-FileCopyrightText: 2023 Kevin Zheng
+// SPDX-FileCopyrightText: 2023 Morb
+// SPDX-FileCopyrightText: 2023 TemporalOroboros
+// SPDX-FileCopyrightText: 2024 Dvir
+// SPDX-FileCopyrightText: 2024 Ed
+// SPDX-FileCopyrightText: 2024 Leon Friedrich
+// SPDX-FileCopyrightText: 2024 Mervill
+// SPDX-FileCopyrightText: 2024 Nemanja
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
+// SPDX-FileCopyrightText: 2024 Tayrtahn
+// SPDX-FileCopyrightText: 2024 Whatstone
+// SPDX-FileCopyrightText: 2024 neuPanda
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 gus
+// SPDX-FileCopyrightText: 2025 sleepyyapril
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Server._Mono.Ships.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -25,9 +47,12 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Construction.Components; // Frontier
 using Content.Server.Radio.EntitySystems;
+using Content.Shared._Mono.Ships.Components;
 using Content.Shared.Verbs;
 using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Timing;// Lua add timer panic button
+using Content.Shared.Lua.CLVar; // Lua
+using Robust.Shared.Configuration; // Lua
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -46,6 +71,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
+    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
+
+    private ISawmill _sawmill = default!;
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -62,6 +92,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         _metaQuery = GetEntityQuery<MetaDataComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+
+        _sawmill = _log.GetSawmill("shuttle-console");
 
         InitializeDeviceLinking(); // Initialize device linking functionality
 
@@ -98,7 +130,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         InitializeFTL();
 
         InitializeNFDrone(); // Frontier: add our drone subscriptions
+
+        Subs.CVar(_cfg, CLVars.AutoDelteEnabled, value => _autoDeleteEnabled = value, true); // Lua
     }
+
+    private bool _autoDeleteEnabled = true; // Lua
 
     private void OnConsoleGetVerbs(EntityUid uid, ShuttleConsoleComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -172,9 +208,21 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RemovePilot(args.Actor);
     }
 
-    private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component,
+    private void OnConsoleUIOpenAttempt(
+        EntityUid uid,
+        ShuttleConsoleComponent component,
         ActivatableUIOpenAttemptEvent args)
     {
+        var grid = Transform(uid).GridUid;
+        var uiOpen = grid != null && _crewedShuttle.AnyGunneryConsoleActiveOnGridByPlayer(grid.Value, args.User);
+
+        if (uiOpen)
+        {
+            args.Cancel();
+            _popup.PopupEntity(Loc.GetString("shuttle-console-crewed"), uid, args.User);
+            return;
+        }
+
         if (!TryPilot(args.User, uid))
             args.Cancel();
     }
@@ -539,7 +587,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Dictionary<string, string>? portNames = null)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true); // Frontier: add inertial dampening, target
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true, portNames, GetExclusionList()); // Frontier: add inertial dampening, target // Lua add GetExclusionList
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
@@ -551,8 +599,18 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             entity.Comp1.Target, // Frontier
             GetNetEntity(entity.Comp1.TargetEntity), // Frontier
             entity.Comp1.HideTarget, // Frontier
-        portNames);
+            portNames,
+            GetExclusionList()); // Lua
     }
+
+    //Lua start
+    private List<ShuttleExclusionObject> GetExclusionList()
+    {
+        List<ShuttleExclusionObject>? exclusions = null;
+        GetExclusions(ref exclusions);
+        return exclusions ?? new List<ShuttleExclusionObject>();
+    }
+    //Lua end
 
     /// <summary>
     /// Global for all shuttles.
@@ -671,6 +729,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
+
+        if (!_autoDeleteEnabled)
+            return; // Lua
 
         if (!TryComp<TransformComponent>(console, out var xform) || xform.GridUid == null)
             return;

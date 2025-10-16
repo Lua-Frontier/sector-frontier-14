@@ -19,6 +19,8 @@ public sealed class CCCVars
     public static readonly CVarDef<bool>
         QueueEnabled = CVarDef.Create("queue.enabled", false, CVar.SERVERONLY);
 
+    public static readonly CVarDef<float>
+        QueueReconnectReserveSeconds = CVarDef.Create("queue.reconnect_reserve_seconds", 20f, CVar.SERVERONLY);
 
     /**
      * TTS (Text-To-Speech)

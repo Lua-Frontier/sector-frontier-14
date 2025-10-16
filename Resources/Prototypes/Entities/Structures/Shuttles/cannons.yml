@@ -61,6 +61,8 @@
     scale: 1
   - type: ShipGunType
     shipType: Energy
+  - type: ShipGunClass # Lua
+    shipClass: Superlight # Lua
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
     layers:
@@ -123,6 +125,8 @@
     scale: 1
   - type: ShipGunType
     shipType: Energy
+  - type: ShipGunClass # Lua
+    shipClass: Superlight # Lua
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
     layers:
@@ -184,6 +188,8 @@
   components:
   - type: ShipGunType
     shipType: Ballistic
+  - type: ShipGunClass # Lua
+    shipClass: Light # Lua
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
     layers:
@@ -240,6 +246,8 @@
   components:
   - type: ShipGunType
     shipType: Ballistic
+  - type: ShipGunClass # Lua
+    shipClass: Medium # Lua
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
     layers:
@@ -302,6 +310,8 @@
   components:
   - type: ShipGunType
     shipType: Ballistic
+  - type: ShipGunClass # Lua
+    shipClass: Medium # Lua
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -353,6 +363,8 @@
     scale: 1
   - type: ShipGunType
     shipType: Mining
+  - type: ShipGunClass # Lua
+    shipClass: Light # Lua
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
     layers:

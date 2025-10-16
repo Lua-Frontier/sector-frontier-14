@@ -65,7 +65,7 @@ namespace Content.Shared.Friction
                 if (prediction && !body.Predict || _mover.UseMobMovement(uid))
                     continue;
 
-                if (body.LinearVelocity.Equals(Vector2.Zero) && body.AngularVelocity.Equals(0f))
+                if (body.LinearVelocity.LengthSquared() < 0.0025f && body.AngularVelocity.Equals(0f)) // Lua Equals(Vector2.Zero)<LengthSquared() < 0.0001f 
                     continue;
 
                 var xform = ent.Comp2;

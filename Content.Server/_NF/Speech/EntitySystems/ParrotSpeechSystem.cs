@@ -1,10 +1,11 @@
-using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Speech.Components;
+using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared.Mind.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.Speech.EntitySystems;
 

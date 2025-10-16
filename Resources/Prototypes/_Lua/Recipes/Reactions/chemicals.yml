@@ -1,0 +1,12 @@
+# Lua
+
+- type: reaction
+  id: AshElectrolysis
+  source: true
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    Ash:
+      amount: 3
+  products:
+    Carbon: 1

@@ -9,13 +9,18 @@
   description: Гордость старого флота Синдиката. Предназначен для перехвата шаттлов
     и экспедиций.
   price: 80000
-  category: Medium
+  category: Small
   group: Typan
+  access: SyndicateAgent
+  class:
+  - Syndicate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/fish.yml
   addComponents:
 
     - type: IFF
-      color: "#990816"
+      color: "#d93204"
     - type: NanotrasenFtl
     - type: TypanFtl
 

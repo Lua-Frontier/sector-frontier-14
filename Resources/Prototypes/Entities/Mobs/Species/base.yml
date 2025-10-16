@@ -25,6 +25,11 @@
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Ensure local stencil buffer is cleared before any clothing with displacement/shader writes.
+    # This prevents clothes from disappearing in UI previews and with vision overlays (e.g., night vision).
+    - shader: StencilClear
+      sprite: Mobs/Species/Human/parts.rsi
+      state: l_leg
     - map: [ "socks" ] # Sirena-Underwear
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
@@ -144,6 +149,13 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: LanguageSpeaker # Lua start
+    currentLanguage: Intergalactic
+  - type: LanguageKnowledge
+    speaks:
+    - Intergalactic
+    understands:
+    - Intergalactic # Lua end
   - type: Identity
   - type: IdExaminable
   - type: Hands
@@ -217,6 +229,13 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  - type: RadarBlip # Lua
+    radarColor: "#8A2BE2"
+    scale: 0.6
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+  - type: MobSpeedLimit # Lua
+    maxLinearVelocity: 25
 
 - type: entity
   save: false

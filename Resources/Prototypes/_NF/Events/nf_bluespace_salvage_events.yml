@@ -30,6 +30,7 @@
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ClaimableGrid # Mono
         paths:
 #        - /Maps/_NF/Shuttles/Scrap/canister.yml # Too small
         - /Maps/_NF/Shuttles/Scrap/disciple.yml
@@ -64,7 +65,8 @@
     weight: 5
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
-  - type: BluespaceErrorRuleAsteroid
+  - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameDataset: NamesScrap

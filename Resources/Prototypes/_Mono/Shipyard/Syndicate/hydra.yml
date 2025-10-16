@@ -1,11 +1,13 @@
 - type: vessel
   id: Hydra
   parent: BaseVesselAntag
-  name: Hydra
+  name: TY Hydra
   description: A syndicate missile corvette meant for stealthy hit and runs and harassment.
-  price: 185000
+  limit: 3
+  price: 121135
   category: Medium
   group: Typan
+  access: SyndicateAgent
   shuttlePath: /Maps/_Mono/Shuttles/Syndicate/hydra.yml
   guidebookPage: Null
   class:
@@ -14,7 +16,7 @@
   - Uranium
   addComponents:
     - type: IFF
-      color: "#990816"
+      color: "#d93204"
     - type: NanotrasenFtl
     - type: TypanFtl
 

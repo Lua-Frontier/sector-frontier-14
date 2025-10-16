@@ -1,0 +1,45 @@
+# Ship by Starch
+# Minor edits by Redrover
+
+# Lua remake by fox76055
+
+- type: vessel
+  id: Legionnaire-DRV
+  parent: BaseVesselAntag
+  name: Legionnaire-DRV
+  description: Слабо бронированный корабль поддержки, с совмещённым типом орудий.
+  limit: 2
+  price: 126500 #110000 x 1.15
+  category: Medium
+  group: Security
+  access: Security
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-DRV.yml
+  guidebookPage: Null
+  class:
+  - Patrol
+  - Pursuit
+  engine:
+  - Uranium
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: Legionnaire-DRV
+  mapName: 'Legionnaire-DRV'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-DRV.yml
+  minPlayers: 0
+  stations:
+    Legionnaire-DRV:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Legionnaire-DRV {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Deputy: [ 0, 0 ]
+

@@ -1,6 +1,12 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
+- type: sponsorLoadout
+  id: hackslua
+  entity: ClothingBackpackLuaD
+  sponsorOnly: true
+  login: HacksLua
+
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackLua
@@ -45,9 +51,14 @@
       - id: ClothingBeltLua
       - id: WeaponCaseShortLua
       - id: BlinkImplanterLua
+      - id: ShipVoucherLuaTechSimple
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  # - type: HardsuitAcidifier
+  - type: HardsuitIdentification
+    emaggable: false
+    securityMode: Acid
+    createAcidEffect: true
+  - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Templar
@@ -75,6 +86,7 @@
       - id: ClothingEyesHudLuaTech
       - id: PlushieHacksLua
       - id: ClothingBeltLua
+      - id: ShipVoucherLuaTechSimple
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -130,7 +142,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  # - type: HardsuitSpeedBuff
+  - type: HardsuitSpeedBuff
+    powerConsumption: 0.5
   - type: PowerCellDraw
     drawRate: 3.6
     enabled: false
@@ -141,6 +154,7 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
+      beakerSlot: !type:ContainerSlot # imperial hardsuit injection
   - type: ItemSlots
     slots:
       cell_slot:
@@ -175,3 +189,7 @@
     clothingPrototype: ClothingHeadHelmetLua
   - type: Item
     size: Huge
+  - type: HardsuitReanimation
+  - type: Speech
+  - type: TTS
+    voice: Templar

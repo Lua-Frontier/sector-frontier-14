@@ -64,11 +64,22 @@
     speechVerb: Arachnid
     speechSounds: Arachnid
     allowedEmotes: ['Click', 'Chitter']
+  - type: UltraVision # Lua start
+  - type: ContentEye
+    maxZoom: 1.35, 1.35
+    targetZoom: 1.35, 1.35 # Lua end
   - type: Vocal
     sounds:
       Male: UnisexArachnid
       Female: UnisexArachnid
       Unsexed: UnisexArachnid
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Arachnid
+    understands:
+    - Intergalactic
+    - Arachnid # Lua end
   - type: TypingIndicator
     proto: spider
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.

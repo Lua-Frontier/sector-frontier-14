@@ -1,5 +1,14 @@
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 RikuTheKiller
+// SPDX-FileCopyrightText: 2025 ark1368
+// SPDX-FileCopyrightText: 2025 starch
+//
+// SPDX-License-Identifier: MPL-2.0
+
 using System.Numerics;
 using Content.Server._Mono.FireControl;
+using Content.Shared.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -8,7 +17,6 @@ using Content.Shared._Mono.ShipGuns;
 using Content.Shared._Mono.SpaceArtillery;
 using Content.Shared.Camera;
 using Content.Shared.DeviceLinking;
-using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Examine;
 using Content.Shared.Power;
 using Content.Shared.Projectiles;
@@ -96,6 +104,12 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
     private void TryFireArtillery(EntityUid uid, TransformComponent xform, SpaceArtilleryComponent component)
     {
         if (xform.GridUid == null && !xform.MapUid.HasValue)
+        {
+            return;
+        }
+
+        var parentGrid = xform.GridUid;
+        if (HasComp<SpaceArtilleryDisabledGridComponent>(parentGrid) || !xform.Anchored)
         {
             return;
         }

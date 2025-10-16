@@ -1,0 +1,116 @@
+- type: entity
+  abstract: true
+  parent: CoreSubstation
+  id: CoreSubstationSyn
+
+- type: entity
+  abstract: true
+  id: BaseSubstationSyn
+  parent: [ BaseSubstation, CoreSubstationSyn ]
+  name: substation syn
+  description: Reduces the voltage of electricity put into in.
+  suffix: Syndicate
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    snapCardinals: true
+    layers:
+    - state: substation
+    - state: screen
+      shader: unshaded
+    - state: full
+      shader: unshaded
+  - type: PowerMonitoringDevice
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    state: substation_static
+
+- type: entity
+  id: BaseSubstationWallSyn
+  parent: [BaseSubstationWall, CoreSubstationSyn]
+  categories: [ HideSpawnMenu ]
+  name: wallmount substation syn
+  description: A substation designed for compact shuttles and spaces.
+  suffix: Syndicate
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    layers:
+    - state: substation_wall
+    - state: screen_wall
+      shader: unshaded
+  - type: PowerMonitoringDevice
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    state: substation_wall_static
+
+- type: entity
+  parent: SubstationBasic
+  id: SubstationBasicSyn
+  suffix: Syndicate, Basic, 2.5MJ
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    snapCardinals: true
+    layers:
+    - state: substation
+    - state: screen
+      shader: unshaded
+    - state: full
+      shader: unshaded
+  - type: PowerMonitoringDevice
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    state: substation_static
+
+- type: entity
+  parent: SubstationBasicEmpty
+  id: SubstationBasicEmptySyn
+  suffix: Syndicate, Empty
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    snapCardinals: true
+    layers:
+    - state: substation
+    - state: screen
+      shader: unshaded
+    - state: full
+      shader: unshaded
+  - type: PowerMonitoringDevice
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    state: substation_static
+
+- type: entity
+  parent: SubstationWallBasic
+  id: SubstationWallBasicSyn
+  suffix: Syndicate, Basic, 2MJ
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    layers:
+    - state: substation_wall
+    - state: screen_wall
+      shader: unshaded
+  - type: PowerMonitoringDevice
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    state: substation_wall_static
+
+- type: entity
+  parent: BaseSubstationWallFrame
+  id: BaseSubstationWallFrameSyn
+  categories: [ HideSpawnMenu ]
+  name: wallmount substation frame syn
+  description: A substation frame for construction.
+  suffix: Syndicate
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Lua/Structures/Power/substation_syn.rsi
+    layers:
+    - state: substation_wall

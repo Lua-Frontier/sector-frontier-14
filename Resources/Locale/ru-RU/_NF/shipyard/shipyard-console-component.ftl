@@ -81,3 +81,11 @@ shipyard-console-unassign-deed = Отвязать от ID
 shipyard-console-contraband-onboard = На борту обнаружена контрабанда.
 shipyard-console-station-resources = На борту обнаружены жизненно важные ресурсы станции.
 shipyard-console-dangerous-materials = На борту обнаружены опасные материалы.
+
+shipyard-console-limited = Достигнут предел по активным шаттлам этого типа, попробуйте снова позже.
+shuttle-console-crewed = Нельзя одновременно использовать консоль шаттла и орудийную консоль. Может попробуете найти члена экипажа?
+shuttle-console-guest-access-granted = Гостевой доступ к дверям и шкафчикам этого корабля предоставлен.
+shuttle-console-guest-access-already-granted = У вас уже есть гостевой доступ к этому кораблю.
+shuttle-console-reset-guest-access-denied = Для сброса гостевого доступа требуется документ на корабль.
+shuttle-console-no-guest-access = Нет гостевого доступа для сброса.
+shuttle-console-guest-access-reset = Гостевой доступ сброшен для {$count} ID-карт.

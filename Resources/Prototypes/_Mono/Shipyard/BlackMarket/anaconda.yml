@@ -2,9 +2,10 @@
   id: Anaconda
   parent: BaseVesselAntag
   name: RG Anaconda
-  description: A ship built around a mass driver, with 2 swarm missile pods and basic PD armament for support.
-  price: 292500 #122500
-  category: Medium
+  description: Легкая боевая артиллерия для стрельбы от второй линии
+  limit: 1
+  price: 125000
+  category: Large
   group: BlackMarket
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/anaconda.yml
   guidebookPage: Null
@@ -14,7 +15,7 @@
   - AME
   addComponents:
     - type: IFF
-      color: "#8A6642FF"
+      color: "#948471"
     - type: PirateFtl
     - type: PirateMercFtl
     - type: NanotrasenFtl

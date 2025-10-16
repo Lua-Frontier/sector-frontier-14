@@ -11,13 +11,13 @@
   - type: Projectile
     damage:
       types:
-        Structural: 225 #175
-        Radiation: 35
-        Heat: 220 #40
-        Blunt: 40 #20
+        Structural: 625 #175 #Lua 225<625 (1250*0.5)
+        Radiation: 375 #Lua 35<375 (750*0.5)
+        Heat: 375 #40 #Lua 220<375 (750*0.5)
+        Ion: 300 #600*0.5
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: MicroBomb #Default
+    explosionType: DefaultShipGun #Default #Lua MicroBomb<DefaultShipGun
     maxIntensity: 40 #12
     intensitySlope: 6 #3
     totalIntensity: 40 #4
@@ -38,22 +38,45 @@
     lifetime: 7 #20
   - type: ShipWeaponProjectile
 
-- type: hitscan
+- type: entity
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
   id: RedHeavyLaserSyndie
-  maxLength: 200
-  damage:
-    types:
-      Heat: 20
-      Structural: 10
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_beam_heavy
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_heavy
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_beam_heavy
+  components:
+  - type: HitscanRadarSignature
+    radarColor: "#fd0d0d"
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 40
+        Structural: 50
+  - type: HitscanSpawnEntity
+    spawnedEntity: SynLaserExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 390
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy
+
+- type: entity
+  id: SynLaserExplosion
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 60
+    intensitySlope: 50
+    maxIntensity: 55
+    maxTileBreak: 2
 
 - type: entity
   name: tesla gun lightning

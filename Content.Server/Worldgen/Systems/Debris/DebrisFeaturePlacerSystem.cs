@@ -1,5 +1,5 @@
-using System.Linq;
-using System.Numerics;
+using Content.Server._Lua.Worldgen;
+using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.GC;
@@ -10,7 +10,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._NF.Worldgen.Components.Debris; // Frontier
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Server.Worldgen.Systems.Debris;
 
@@ -50,6 +51,9 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     private void OnTryCancelGC(EntityUid uid, OwnedDebrisComponent component, ref TryCancelGC args)
     {
         args.Cancelled |= HasComp<LoadedChunkComponent>(component.OwningController);
+
+        if (TryComp(uid, out TransformComponent? xform) && xform.GridUid is { Valid: true } grid)
+        { if (HasComp<SafeMiningComponent>(grid)) args.Cancelled = true; }
     }
 
     /// <summary>
@@ -192,6 +196,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         var failures = 0; // Avoid severe log spam.
         foreach (var point in points)
         {
+            if (point.Length() > 30000f) continue;  // Lua
+
             if (component.OwnedDebris.TryGetValue(point, out var existing))
             {
                 DebugTools.Assert(Exists(existing));

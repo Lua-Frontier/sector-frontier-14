@@ -1,12 +1,13 @@
 - type: vessel
   id: MonoInfiltrator
   parent: BaseVesselAntag
-  name: MONO Infiltrator
+  name: TY Mono-Infiltrator
   description: A light syndicate frigate meant for raiding enemy stations. Armed to the teeth in missiles and CYREXAs.
-  price: 375000
+  price: 201354
   category: Large
   group: Typan
-  shuttlePath: /Maps/_Mono/Shuttles/Syndicate/infiltrator.yml
+  access: SyndicateAgent
+  shuttlePath: /Maps/_Mono/Shuttles/Syndicate/mono_infiltrator.yml
   guidebookPage: Null
   class:
   - Syndicate
@@ -22,7 +23,7 @@
 - type: gameMap
   id: MonoInfiltrator
   mapName: 'Infiltrator'
-  mapPath: /Maps/_Mono/Shuttles/Syndicate/infiltrator.yml
+  mapPath: /Maps/_Mono/Shuttles/Syndicate/mono_infiltrator.yml
   minPlayers: 0
   stations:
     MonoInfiltrator:

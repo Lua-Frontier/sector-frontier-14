@@ -172,7 +172,7 @@ namespace Content.Server.Mapping
                 auto.ToggleAutosave(mapId, toLoad ?? "NEWMAP");
 
             shell.ExecuteCommand($"tp 0 0 {mapId}");
-            shell.RemoteExecuteCommand("mappingclientsidesetup");
+            // shell.RemoteExecuteCommand("mappingclientsidesetup"); // Lua
             DebugTools.Assert(mapSys.IsPaused(mapId));
 
             if (args.Length != 2)

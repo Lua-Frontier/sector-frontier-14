@@ -9,12 +9,13 @@
   parent: BaseVessel
   name: TSF-SKR M-Class Salvage Carrier
   description: A large salvage carrier with space for 2 salvage microshuttles to dock.
-  price: 155000
+  price: 74318 # 2000 above min
   category: Large
   group: Shipyard
   shuttlePath: /Maps/_Mono/Shuttles/mclass.yml
   guidebookPage: Null
   class:
+  - Civilian
   - Salvage
   engine:
   - AME

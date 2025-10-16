@@ -6,8 +6,8 @@
   id: OutpostSyndicateResearcher
   name: job-name-typan-researcher
   playTimeTracker: JobOutpostTypanResearcher
-  salary: 25000
-  description: Исследователь из далёкого космоса.
+  salary: 35000 #Lua 25<35
+  description: Самый мирный человек в секторе, распространяющий исключительно добро и позитив.
   startingGear: SyndicateResearcher
   icon: "JobIconSyndicateResearcher"
   supervisors: job-supervisors-typan-telecommunications-officer
@@ -28,15 +28,15 @@
     #   time: 33600
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 39000
+      time: 100000 #Lua 39<100
     - !type:DepartmentTimeRequirement
       department: Antag
-      time: 36000
+      time: 50000 #Lua 36<50
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 43000
+      time: 50000 #Lua 43<50
     - !type:OverallPlaytimeRequirement
-      time: 360000
+      time: 250000 #Lua 360<250
   access:
   - SyndicateAgent
   - NuclearOperative

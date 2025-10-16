@@ -44,6 +44,7 @@
         layer:
         - WallLayer
         density: 1000
+  - type: Occluder
   - type: Airtight
   - type: StaticPrice
     price: 25 # Frontier 75<25
@@ -51,6 +52,9 @@
     resistance: 2
   - type: BlockWeather
   - type: SunShadowCast
+  - type: Repairable
+    qualities:
+    - Applicating
 
 - type: entity
   abstract: true
@@ -69,6 +73,8 @@
     tags:
     - Wall
     - Diagonal
+  - type: Occluder
+    enabled: false
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -127,6 +133,9 @@
   id: WallClock
   name: clock wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/clock.rsi
   - type: Icon
@@ -138,7 +147,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
+        damage: 1800 # Mono - wall buff - 6x
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -162,6 +171,9 @@
   id: WallClown
   name: bananium wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/clown.rsi
   - type: Icon
@@ -222,7 +234,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 # Lua 100<400
+        damage: 2500 # Mono - wall buff to match rwalls
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -240,6 +252,9 @@
   id: WallCult
   name: cult wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/cult.rsi
   - type: Icon
@@ -297,6 +312,9 @@
   id: WallDiamond
   name: diamond wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/diamond.rsi
   - type: Icon
@@ -309,7 +327,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
+        damage: 2400 # Mono - wall buff - 8x its diamonds bro
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -327,6 +345,9 @@
   id: WallGold
   name: gold wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/gold.rsi
   - type: Icon
@@ -342,7 +363,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
+        damage: 900 # Mono - wall buff - 3x gold is brittle
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -351,7 +372,7 @@
         acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 1500 # Mono
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -380,6 +401,9 @@
   id: WallIce
   name: ice wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/ice.rsi
   - type: Icon
@@ -388,7 +412,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
+        damage: 600 # Mono - wall buff - 2x
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -406,6 +430,9 @@
   id: WallPlasma
   name: plasma wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/plasma.rsi
   - type: Icon
@@ -450,6 +477,9 @@
   id: WallPlastic
   name: plastic wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/plastic.rsi
   - type: Icon
@@ -494,6 +524,9 @@
   description: Skub knows this wall is too hard to destroy. # Frontier
   suffix: indestructible
   components:
+    - type: Tag
+      tags:
+      - Wall
     - type: Sprite
       sprite: Structures/Walls/plastitanium.rsi
       color: "#cdf3cd" # Frontier
@@ -526,15 +559,16 @@
   description: Keeps the air in and the greytide out. # Frontier: restore base value
   suffix: ""
   components:
+    - type: Tag
+      tags:
+      - Wall
     - type: Sprite # Frontier
       color: "#ffffff" # Frontier
-    - type: ExplosionResistance
-      damageCoefficient: 0.8 # Lua
     - type: Destructible
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 6000 # Lua 1200<7500<6000
+            damage: 7500 # Mono - wall buff - 7.5x
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
@@ -562,6 +596,7 @@
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
+    color: "#cdf3cd" # Lua
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
@@ -570,8 +605,6 @@
     damageModifierSet: StructuralMetallicStrong
   - type: RadiationBlocker
     resistance: 5
-  - type: ExplosionResistance
-    damageCoefficient: 0.8 # Lua
 
 - type: entity
   parent: WallPlastitaniumDiagonalIndestructible
@@ -579,33 +612,43 @@
   name: plastitanium wall
   suffix: diagonal
   description: Skub knows this wall is too hard to destroy. # Frontier
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
-    color: "#cdf3cd" # Frontier
+    color: "#ffffff" # Lua
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
-  - type: ExplosionResistance
-    damageCoefficient: 0.8 # Lua
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 2500 # Lua 1200<2000<2500
+        damage: 3500 # Mono - wall buff - 2x
       behaviors:
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            Girder:
-              min: 1
-              max: 1
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000 # Mono - wall buff - 2x
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
   - type: Construction # Frontier - Harder to break into
@@ -633,13 +676,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-  - type: ExplosionResistance
-    damageCoefficient: 0.8 # lua
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 3500 # Lua 600<3500
+        damage: 4000 # Mono - wall buff - 5x
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -648,7 +689,7 @@
           collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 2500 # Lua 400<2500
+        damage: 3000 # Mono - wall buff - 5x
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -740,9 +781,15 @@
   parent: WallDiagonalBase
   id: WallReinforcedDiagonal
   name: reinforced wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
   components:
-  - type: ExplosionResistance
-    damageCoefficient: 0.8 # lua
+  - type: Tag
+    tags:
+    - Diagonal
   - type: Sprite
     drawdepth: Walls
     sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
@@ -761,33 +808,39 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 4000
       behaviors:
         - !type:DoActsBehavior
-          acts: [ "Destruction" ]
+          acts: ["Destruction"]
         - !type:PlaySoundBehavior
           sound:
             collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 3000
       behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
       - !type:PlaySoundBehavior
         sound:
           collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
-
+  - type: Construction # Lua
+    graph: DiagonalGirder
+    node: diagonalReinforcedWall
+    
 # Riveting
 - type: entity
   parent: BaseWall
   id: WallRiveted
   name: riveted wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/riveted.rsi
   - type: Icon
@@ -799,7 +852,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 5000 # Lua 1000<5000
+        damage: 6000 # Lua 1000<6000
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -823,6 +876,9 @@
   id: WallSandstone
   name: sandstone wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/sandstone.rsi
   - type: Icon
@@ -835,7 +891,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000 # Lua 300<1000
+        damage: 1000 # Mono - wall buff - 3.33x
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -853,6 +909,9 @@
   id: WallSilver
   name: silver wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/silver.rsi
   - type: Icon
@@ -868,7 +927,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
+        damage: 1200 # Mono - wall buff - 4x
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -877,7 +936,7 @@
           collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 600 # Lua 150<600
+        damage: 600 # Mono - wall buff - 4x
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -896,6 +955,10 @@
   id: WallShuttleDiagonal
   name: shuttle wall
   components:
+  - type: Tag
+    tags:
+    - Wall
+    - Diagonal
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/shuttle_diagonal.rsi
@@ -1042,6 +1105,9 @@
   id: WallSolid
   name: solid wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: _NF/Structures/Walls/solid.rsi # Frontier
   - type: WallReplacementMarker
@@ -1096,7 +1162,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 1600
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -1105,7 +1171,7 @@
             collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 800
       behaviors:
       - !type:ChangeConstructionNodeBehavior
         node: girder
@@ -1114,6 +1180,9 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Construction # Lua
+    graph: DiagonalGirder
+    node: diagonalWall
 
 - type: entity
   parent: WallSolid
@@ -1267,6 +1336,9 @@
           "/Audio/Weapons/slash.ogg"
   - type: Damageable
     damageModifierSet: Web
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/web.rsi
   - type: Icon
@@ -1315,6 +1387,9 @@
   id: WallNecropolis
   name: stone wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/necropolis.rsi
   - type: Icon
@@ -1336,6 +1411,9 @@
   id: WallMining
   name: mining wall
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/mining.rsi
   - type: Icon
@@ -1344,7 +1422,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 2250 # Lua 700<1750<2250
+        damage: 1750 # Mono - wall buff
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -1359,6 +1437,9 @@
     damageContainer: StructuralInorganicUltraHeavy
     damageModifierSet: StructuralMetallicStrongUltra
   - type: Appearance
+  - type: Construction # Lua
+    graph: Girder
+    node: WallMining
 
 - type: entity
   parent: WallDiagonalBase
@@ -1402,8 +1483,10 @@
         acts: ["Destruction"]
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
-
-
+  - type: Construction # Lua
+    graph: DiagonalGirder
+    node: WallMiningDiagonal
+    
 # Vault Walls
 
 - type: entity
@@ -1511,6 +1594,9 @@
   name: cobblestone brick wall
   description: Stone by stone, perfectly fitted together to form a wall.
   components:
+  - type: Tag
+    tags:
+    - Wall
   - type: Sprite
     sprite: Structures/Walls/cobblebrick.rsi
   - type: Icon

@@ -97,6 +97,13 @@
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Diona
+    understands:
+    - Intergalactic
+    - Diona # Lua end
   - type: IgniteOnHeatDamage
     fireStacks: 1
     threshold: 12

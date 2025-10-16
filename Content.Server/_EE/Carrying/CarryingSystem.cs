@@ -83,6 +83,7 @@ namespace Content.Server.Carrying
             if (!args.CanInteract || !args.CanAccess || !_mobStateSystem.IsAlive(args.User)
                 || !CanCarry(args.User, uid, component)
                 || HasComp<CarryingComponent>(args.User)
+                || HasComp<CantCarryOthersComponent>(args.User) //Lua
                 || HasComp<BeingCarriedComponent>(args.User) || HasComp<BeingCarriedComponent>(args.Target)
                 || args.User == args.Target)
                 return;
@@ -349,6 +350,7 @@ namespace Content.Server.Carrying
                 || carriedComp.CancelToken != null
                 || !HasComp<MapGridComponent>(Transform(carrier).ParentUid)
                 || HasComp<BeingCarriedComponent>(carrier)
+                || HasComp<CantCarryOthersComponent>(carrier) //Lua
                 || HasComp<BeingCarriedComponent>(carried)
                 || !TryComp<HandsComponent>(carrier, out var hands)
                 || hands.CountFreeHands() < carriedComp.FreeHandsRequired)

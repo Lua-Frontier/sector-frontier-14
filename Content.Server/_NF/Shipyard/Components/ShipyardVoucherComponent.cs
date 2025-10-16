@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2024 Salvantrix
+// SPDX-FileCopyrightText: 2024 Whatstone
+// SPDX-FileCopyrightText: 2025 Dvir
+// SPDX-FileCopyrightText: 2025 ark1368
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Access;
 using Content.Shared._NF.Shipyard;
 using Robust.Shared.Prototypes;
@@ -34,4 +41,10 @@ public sealed partial class ShipyardVoucherComponent : Component
     /// </summary>
     [DataField(required: true)]
     public ShipyardConsoleUiKey ConsoleType;
+
+    /// <summary>
+    ///  The company name associated with this voucher. Used to transfer company information to purchased ships.
+    /// </summary>
+    [DataField]
+    public string? CompanyName;
 }

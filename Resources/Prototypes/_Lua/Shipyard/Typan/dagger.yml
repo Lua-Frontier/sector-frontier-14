@@ -9,12 +9,17 @@
   description: Старый боевой корабль, найденный в ангарах Синдиката. Имеет три стороны
     стрельбы.
   price: 123525 #105000
-  category: Large
+  category: Medium
   group: Typan
+  access: SyndicateAgent
+  class:
+  - Syndicate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/dagger.yml
   addComponents:
     - type: IFF
-      color: "#990816"
+      color: "#d93204"
     - type: NanotrasenFtl
     - type: TypanFtl
 

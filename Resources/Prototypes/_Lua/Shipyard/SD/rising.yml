@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: GFRising
+  name: SD-GF Восход
+  description: Тяжелая артиллерия с радаром. Обладает неплохой защитой
+  limit: 1
+  price: 346452
+  category: Large
+  group: Security
+  class:
+  - Nfsd
+  engine:
+  - Singularity
+  shuttlePath: /Maps/_Lua/Shuttles/SD/rising.yml
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: GFRising
+  mapName: 'SD-GF Восход'
+  mapPath: /Maps/_Lua/Shuttles/SD/rising.yml
+  minPlayers: 0
+  stations:
+    GFRising:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SD-GF Восход {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

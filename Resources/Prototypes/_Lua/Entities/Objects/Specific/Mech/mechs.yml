@@ -24,6 +24,7 @@
     tools:
       - id: MechaWeaponMR12
       - id: MechaWeaponMinigun
+  - type: LuaTech
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -33,6 +34,8 @@
     brokenState: reising-broken #-broken
     mechToPilotDamageMultiplier: 0.05
     maxEquipmentAmount: 4
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
     equipmentWhitelist:
       tags:
       - ReisingGun
@@ -44,29 +47,6 @@
     baseSprintSpeed: 4.0
   - type: Reflect
     reflectProb: 0.25
-#  - type: MovementIgnoreGravity
-  - type: Prying # Открытие дверей
-  - type: HandheldLight
-    toggleOnInteract: false
-    wattage: 0.2
-    blinkingBehaviourId: blinking
-    radiatingBehaviourId: radiating
-  - type: LightBehaviour
-    behaviours:
-    - !type:FadeBehaviour
-      id: radiating
-      maxDuration: 2.0
-      startValue: 3.0
-      endValue: 2.0
-      isLooped: true
-      reverseWhenFinished: true
-    - !type:PulseBehaviour
-      id: blinking
-      interpolate: Nearest
-      maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
-      isLooped: true
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
@@ -74,7 +54,6 @@
     radius: 8
     energy: 4
     color: "#E20D26"
-  - type: UnpoweredFlashlight
 
 - type: entity
   id: MechReisingBattery

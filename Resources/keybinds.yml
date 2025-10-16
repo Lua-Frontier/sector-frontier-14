@@ -244,6 +244,9 @@ binds:
 - function: OpenGuidebook
   type: State
   key: NumpadNum0
+- function: OpenLanguageMenu # Lua start
+  type: State
+  key: F # Lua end
 - function: OpenAHelp
   type: State
   key: F1
