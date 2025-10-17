@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/15/2025 15:33:05
+  time: 10/16/2025 13:26:30
   entityCount: 579
 maps: []
 grids:
@@ -423,11 +423,11 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 302
+      - 304
       - 17
-      - 306
       - 301
-      - 298
+      - 18
+      - 302
       - 303
 - proto: AirCanister
   entities:
@@ -477,26 +477,22 @@ entities:
       parent: 1
 - proto: AirSensor
   entities:
-  - uid: 301
+  - uid: 17
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,20.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 9
+  - uid: 18
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,28.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 9
-  - uid: 302
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,19.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 9
 - proto: AirTankFilled
@@ -1985,17 +1981,17 @@ entities:
       parent: 1
 - proto: GasPipeTJunction
   entities:
-  - uid: 18
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,20.5
-      parent: 1
   - uid: 297
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,19.5
+      parent: 1
+  - uid: 298
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,20.5
       parent: 1
 - proto: GasPort
   entities:
@@ -2015,25 +2011,21 @@ entities:
       parent: 1
 - proto: GasVentPump
   entities:
-  - uid: 17
+  - uid: 301
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,19.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 9
-  - uid: 298
+  - uid: 302
     components:
     - type: Transform
       pos: 0.5,28.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 9
 - proto: GasVentScrubber
@@ -2044,19 +2036,15 @@ entities:
       pos: 1.5,28.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 9
-  - uid: 306
+  - uid: 304
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,20.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,20.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 9
 - proto: GravityGeneratorMini
@@ -2357,7 +2345,7 @@ entities:
           ent: null
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
-  - uid: 304
+  - uid: 305
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -2506,16 +2494,11 @@ entities:
       parent: 1
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
-  - uid: 305
+  - uid: 306
     components:
     - type: Transform
       pos: 1.5,30.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        FuelGradeUranium: 3000
-    - type: InsertingMaterialStorage
-      endTime: 0
 - proto: PoweredlightLED
   entities:
   - uid: 342
