@@ -3,6 +3,7 @@ using Content.Server.Audio;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.Database;
+using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;

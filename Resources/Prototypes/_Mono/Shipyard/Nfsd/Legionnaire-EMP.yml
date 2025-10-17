@@ -1,17 +1,19 @@
 # Ship by Starch
 # Minor edits + Refit by Redrover
 
+#Lua remake by fox76055
+
 - type: vessel
-  id: Legionnaire-TOV
+  id: Legionnaire-EMP
   parent: BaseVesselAntag
-  name: TSF-SKR Legionnaire-TOV
-  description: Шаттл поддержки с экспериментальными ЭМИ-ракетами. Защищен слабо, создан для стрельбы от второй линии
+  name: Legionnaire-EMP
+  description: слабо бронированный Корабль поддержки, предназначенный для радиоэлектронного подавления вражеских суден.
   limit: 2
-  price: 128300 #68300
+  price: 141500 #123000 x 1.15
   category: Medium
   group: Security
   access: Security
-  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/legionnaire-TOV.yml
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-EMP.yml
   guidebookPage: Null
   class:
   - Patrol
@@ -24,16 +26,16 @@
     - type: NanotrasenFtl
 
 - type: gameMap
-  id: Legionnaire-TOV
-  mapName: 'Legionnaire-TOV'
-  mapPath: /Maps/_Mono/Shuttles/Nfsd/legionnaire-TOV.yml
+  id: Legionnaire-EMP
+  mapName: 'Legionnaire-EMP'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-EMP.yml
   minPlayers: 0
   stations:
-    Legionnaire-TOV:
+    Legionnaire-EMP:
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Legionnaire-TOV TSF{1}'
+        mapNameTemplate: 'Legionnaire-EMP {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

@@ -85,6 +85,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMailCarrier
+  - type: ThermalCloak
+    enabled: false
 
 # MAXIM Nerfed: used best stats from spationaut, mining and luxury hardsuits, additionally increased caustic resistance
 - type: entity
@@ -171,6 +173,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.9
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -184,6 +188,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -197,6 +203,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -210,6 +218,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -223,6 +233,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmedic
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
@@ -255,6 +267,8 @@
     sprintModifier: 0.65
   - type: FactionClothing
     faction: NanoTrasen
+  - type: ThermalCloak
+    enabled: false
 
 #Security Combat Hardsuit
 - type: entity
@@ -283,6 +297,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ThermalCloak
+    enabled: false
 
 #Security Command Hardsuit
 - type: entity
@@ -311,6 +327,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ThermalCloak
+    enabled: false
 
 # SCAF hardsuit
 - type: entity
@@ -344,6 +362,8 @@
     clothingPrototype: ClothingHeadHelmetHardsuitScaf
   - type: PirateBountyItem
     id: ClothingOuterHardsuitScaf
+  - type: ThermalCloak
+    enabled: false
 
 # Tactical Maid Hardsuit
 
@@ -405,6 +425,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ThermalCloak
+    enabled: false
 
 #Wizard Hardsuit
 - type: entity
@@ -437,3 +459,5 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizardBrick
+  - type: ThermalCloak
+    enabled: false

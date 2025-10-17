@@ -229,6 +229,13 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  - type: RadarBlip # Lua
+    radarColor: "#8A2BE2"
+    scale: 0.6
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+  - type: MobSpeedLimit # Lua
+    maxLinearVelocity: 25
 
 - type: entity
   save: false
