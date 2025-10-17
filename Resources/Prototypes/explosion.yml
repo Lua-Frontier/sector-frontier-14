@@ -136,6 +136,35 @@
   fireStates: 3
   fireStacks: 2
 
+- type: explosion
+  id: StructuralDemolition
+  damagePerIntensity:
+    types:
+      Heat: 2
+      Blunt: 2
+      Piercing: 2
+      Structural: 200
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 10, 30 ]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+
+- type: explosion
+  id: StructuralCryo
+  damagePerIntensity:
+    types:
+      Cold: 5
+      Blunt: 2
+      Structural: 200
+  tileBreakChance: [0]
+  tileBreakIntensity: [0]
+  lightColor: Blue
+  fireColor: Blue
+  texturePath: /Textures/Effects/fire_greyscale.rsi
+  fireStates: 3
+
 # STOP
 # BEFORE YOU ADD MORE EXPLOSION TYPES CONSIDER IF AN EXISTING ONE IS SUITABLE
 # ADDING NEW ONES IS PROHIBITIVELY EXPENSIVE

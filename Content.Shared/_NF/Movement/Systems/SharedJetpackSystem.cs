@@ -23,7 +23,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem
             return;
 
         component.RadarBlip = false;
-        RemComp<RadarBlipComponent>(uid); // This is needed if you emag mid flight
+        if (TryComp<RadarBlipComponent>(uid, out var blip)) blip.Enabled = false;
 
         args.Handled = true;
     }
@@ -48,10 +48,6 @@ public abstract partial class SharedJetpackSystem : EntitySystem
 
     private void SetupRadarBlip(EntityUid uid)
     {
-        var blip = EnsureComp<RadarBlipComponent>(uid);
-        blip.RadarColor = Color.Cyan;
-        blip.Scale = 1f;
-        blip.VisibleFromOtherGrids = true;
-        blip.RequireNoGrid = true;
+        if (TryComp<RadarBlipComponent>(uid, out var blip)) blip.Enabled = true;
     }
 }

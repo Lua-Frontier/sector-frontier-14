@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -24,4 +24,10 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<float> StopSpeed =
         CVarDef.Create("physics.stop_speed", 0.1f, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<float> MobMaxLinearVelocity =
+        CVarDef.Create("physics.mob_max_linear_velocity", 25f, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<bool> MobSpeedLimitEnabled =
+        CVarDef.Create("physics.mob_speed_limit_enabled", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
 }

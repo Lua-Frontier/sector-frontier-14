@@ -124,6 +124,10 @@
   - type: ShuttleConsole
   - type: ShuttleConsoleLock
     locked: false
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 2
+    visualMultiplier: 16
+    infraredOutlinePortion: 1.0
   - type: DeviceLinkSource
     ports:
     - device-button-1
@@ -144,6 +148,8 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
+    maxRange: 512
+    maxIffRange: 512
   - type: WorldLoader
     radius: 256
   - type: PointLight
@@ -170,6 +176,7 @@
     guides:
     - ShuttleCraft
   - type: NoSignalOnLink
+  - type: NoDeconstruct
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom

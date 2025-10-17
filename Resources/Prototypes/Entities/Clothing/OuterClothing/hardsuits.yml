@@ -544,9 +544,10 @@
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
-  - type: BiocodedClothing # _Lua
   - type: Inject
     openCloseDelay: 1.5
+  - type: ThermalCloak
+    enabled: false
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -565,7 +566,6 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  - type: BiocodedClothing  # _Lua
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -607,7 +607,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
-  - type: BiocodedClothing # _Lua
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -642,7 +641,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
-  - type: BiocodedClothing # _Lua
   - type: Inject # _Lua
     openCloseDelay: 0.5 # _Lua
     autoClose: false # _Lua
@@ -685,9 +683,10 @@
     - Hardsuit # _Lua
     - MonkeyWearable
     - WhitelistChameleon
-  - type: BiocodedClothing # _Lua
-  - type: Inject # _Lua
-    canBeOpened: false # _Lua
+  - type: Inject
+    openCloseDelay: 0.1
+    autoClose: true
+    autoCloseDelay: 3
 
 #Wizard Hardsuit
 - type: entity
@@ -949,7 +948,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
-  - type: BiocodedClothing # _Lua
   - type: Inject
     openCloseDelay: 0.1
     autoClose: false

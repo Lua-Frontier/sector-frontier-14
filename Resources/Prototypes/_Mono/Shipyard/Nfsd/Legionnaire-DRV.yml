@@ -1,17 +1,19 @@
 # Ship by Starch
 # Minor edits by Redrover
 
+# Lua remake by fox76055
+
 - type: vessel
-  id: Legionnaire
+  id: Legionnaire-DRV
   parent: BaseVesselAntag
-  name: TSF-SKR Legionnaire
-  description: Шаттл с ЭМИ-пушками и парой ракет. Для поддержки штурмовых кораблей
-  limit: 3
-  price: 112300 #55300
+  name: Legionnaire-DRV
+  description: Слабо бронированный корабль поддержки, с совмещённым типом орудий.
+  limit: 2
+  price: 126500 #110000 x 1.15
   category: Medium
   group: Security
   access: Security
-  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/legionnaire.yml
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-DRV.yml
   guidebookPage: Null
   class:
   - Patrol
@@ -24,16 +26,16 @@
     - type: NanotrasenFtl
 
 - type: gameMap
-  id: Legionnaire
-  mapName: 'Legionnaire'
-  mapPath: /Maps/_Mono/Shuttles/Nfsd/legionnaire.yml
+  id: Legionnaire-DRV
+  mapName: 'Legionnaire-DRV'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-DRV.yml
   minPlayers: 0
   stations:
-    Legionnaire:
+    Legionnaire-DRV:
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Legionnaire TSF{1}'
+        mapNameTemplate: 'Legionnaire-DRV {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

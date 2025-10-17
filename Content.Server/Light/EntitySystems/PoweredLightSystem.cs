@@ -7,22 +7,23 @@ using Content.Server.Light.Components;
 using Content.Server.Power.Components;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Emp;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
-using Robust.Server.GameObjects;
-using Robust.Shared.Containers;
-using Robust.Shared.Timing;
-using Robust.Shared.Audio.Systems;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Damage.Components;
-using Content.Shared.DeviceNetwork;
-using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Power;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Random; // Frontier
+using Robust.Shared.Timing;
 
 namespace Content.Server.Light.EntitySystems
 {

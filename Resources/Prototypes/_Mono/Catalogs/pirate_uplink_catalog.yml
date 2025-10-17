@@ -211,6 +211,21 @@
       - PirateUplink
 
 - type: listing
+  id: UplinkPirateStealthJetpack
+  name: uplink-pirate-stealth-jetpack-name
+  description: uplink-pirate-stealth-jetpack-desc
+  productEntity: JetpackStealthFilled
+  cost:
+    Doubloon: 4
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+
+- type: listing
   id: UplinkPirateHoverbikeFlatpack
   name: uplink-pirate-hoverbike-name
   description: uplink-pirate-hoverbike-desc
@@ -479,7 +494,7 @@
       - PirateUplink
 
 
-  
+
 - type: listing
   id: UplinkPirateShotgunDrum
   name: uplink-pirate-bulldog-ammo-name
@@ -874,7 +889,7 @@
   id: UplinkPirateLaserGun
   name: uplink-pirate-laser-gun-name
   description: uplink-pirate-laser-gun-desc
-  productEntity: NFWeaponEnergyPistolLaser 
+  productEntity: NFWeaponEnergyPistolLaser
   icon: { sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi, state: icon }
   cost:
     Doubloon: 2
