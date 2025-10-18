@@ -6,10 +6,16 @@
   components:
     - type: Sprite
       sprite: _Lua/Structures/Shuttles/ftlengine.rsi
+      snapCardinals: true
       offset: 0,0.5
       drawdepth: Mobs
       layers:
-      - state: icon
+      - state: control
+      - state: control_on
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        visible: false
+        shader: unshaded
+        color: "#8fcfff"
     - type: FTLDrive
       range: 600
       cooldown: 7.5
