@@ -15,7 +15,7 @@
   minimumDistance: 1000 #450 Lua
   maximumDistance: 2000 #600 Lua
   spawnGroup: Required
-  gridPath: /Maps/_NF/POI/medical.yml
+  gridPath: /Maps/_Lua/POI/MedCenter.yml #Lua
   addComponents:
   - type: IFF
     color: "#00b7eb"
@@ -26,7 +26,7 @@
 - type: gameMap
   id: Medical
   mapName: 'Медицинский Центр'
-  mapPath: /Maps/_NF/POI/medical.yml
+  mapPath: /Maps/_Lua/POI/MedCenter.yml #Lua
   minPlayers: 0
   stations:
     Medical:
@@ -43,7 +43,9 @@
           availableJobs:
             DirectorOfCare: [ 1, 1 ]
             Pilot: [ -1, -1 ]
-            Paramedic: [ 2, 2 ]
+            Paramedic: [ 5, 5 ] #Lua 2<5
+            MedicalDoctor: [ 3, 3 ] #Lua
+            Chemist: [ 1, 1 ] #Lua
           tags:
           - HeadOfPersonnel
           - HeadOfSecurity
