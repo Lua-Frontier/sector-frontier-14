@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/19/2025 10:36:25
+  time: 10/19/2025 15:52:46
   entityCount: 763
 maps: []
 grids:
@@ -2481,12 +2481,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-4.5
       parent: 1
-  - uid: 400
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,-4.5
-      parent: 1
   - uid: 404
     components:
     - type: Transform
@@ -2864,7 +2858,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.78
       inletOneConcentration: 0.22
-      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 659
@@ -4206,9 +4199,9 @@ entities:
     - type: Transform
       pos: 7.5,-8.5
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
-  - uid: 140
+  - uid: 400
     components:
     - type: Transform
       pos: -3.5,-4.5
@@ -4812,6 +4805,11 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-4.5
+      parent: 1
+  - uid: 140
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
       parent: 1
   - uid: 141
     components:
