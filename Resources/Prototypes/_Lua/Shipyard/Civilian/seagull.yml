@@ -1,43 +1,35 @@
 
-# Made by germanreutt (discord) for Dead Space
-
- - type: vessel
-   id: GFSYSeagull
-   parent: BaseVessel
-   name: GF Seagull
-   description: Шаттл крупной судоверфи Гефест. Создан для спасательных операций в самых дальних уголках космоса.
-   price: 82000
-   category: Large
-   group: Medical
-   shuttlePath: /Maps/_Lua/Shuttles/Civilian/seagull.yml
-   guidebookPage: null
-   class:
-   - Civilian
-   - Medical
-   - Chemistry
-   engine:
-   - Uranium
-   addComponents:
-     - type: IFF
-       color: "#ffffff"
-     - type: NanotrasenFtl
+- type: vessel
+  id: GFSeagull
+  parent: BaseVessel
+  name: GF-Seagull
+  description: Корабль крупной судоверфи Гефест. Создан для спасательных операций в самых дальних уголках космоса.
+  price: 57100
+  category: Medium
+  group: Medical
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/seagull.yml
+  guidebookPage: null
+  class:
+  - Civilian
+  - Medical
+  engine:
+  - AME
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+    - type: NanotrasenFtl
 
 - type: gameMap
-  id: GFSYSeagull
-  mapName: 'GF Seagull'
+  id: GFSeagull
+  mapName: 'GF-Seagull'
   mapPath: /Maps/_Lua/Shuttles/Civilian/seagull.yml
   minPlayers: 0
   stations:
-    GFSYSeagull:
-      stationProto: StandardFrontierExpeditionVessel
+    GFSeagull:
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'GF Seagull {1}'
+          mapNameTemplate: 'GF-Seagull {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
