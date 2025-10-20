@@ -36,18 +36,14 @@ public sealed class JetpackSystem : SharedJetpackSystem
     /// </summary>
     private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
     {
-        var blip = EnsureComp<RadarBlipComponent>(uid);
-        blip.RadarColor = Color.Cyan;
-        blip.Scale = 0.5f;
-        blip.VisibleFromOtherGrids = true;
+        if (TryComp<RadarBlipComponent>(uid, out var blip))
+            blip.Enabled = true;
     }
 
-    /// <summary>
-    /// Removes radar blip from jetpacks when they are deactivated
-    /// </summary>
     private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args)
     {
-        RemComp<RadarBlipComponent>(uid);
+        if (TryComp<RadarBlipComponent>(uid, out var blip))
+            blip.Enabled = false;
     }
 
     public override void Update(float frameTime)

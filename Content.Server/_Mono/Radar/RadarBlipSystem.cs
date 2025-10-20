@@ -5,13 +5,17 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server.Chemistry.Components;
+using Content.Server.Temperature.Components;
 using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._Mono.Radar;
-using Content.Shared.Projectiles;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing;
 using System.Numerics;
 
 namespace Content.Server._Mono.Radar;
@@ -20,12 +24,50 @@ public sealed partial class RadarBlipSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<RequestBlipsEvent>(OnBlipsRequested);
         SubscribeLocalEvent<RadarBlipComponent, ComponentShutdown>(OnBlipShutdown);
+    }
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var jetpackQuery = EntityQueryEnumerator<ActiveJetpackComponent, RadarBlipComponent>();
+        while (jetpackQuery.MoveNext(out var uid, out _, out var blip))
+        {
+            var t = _timing.CurTime;
+            var on = (t.TotalSeconds % 5.0) < 0.5;
+            blip.Enabled = on;
+        }
+        var vehicleQuery = EntityQueryEnumerator<VehicleComponent, RadarBlipComponent>();
+        while (vehicleQuery.MoveNext(out var uid, out var vehicle, out var blip))
+        {
+            if (vehicle.Driver == null)
+            { blip.Enabled = false; continue; }
+            var t = _timing.CurTime;
+            var on = (t.TotalSeconds % 5.0) < 0.5;
+            blip.Enabled = on;
+        }
+        var mobPulseQuery = EntityQueryEnumerator<Content.Shared.Mobs.Components.MobStateComponent, RadarBlipComponent>();
+        while (mobPulseQuery.MoveNext(out var uid, out _, out var blip))
+        {
+            var t = _timing.CurTime;
+            var on = (t.TotalSeconds % 5.0) < 0.5;
+            blip.Enabled = on;
+        }
+        var mobQuery = EntityQueryEnumerator<Content.Shared.Mobs.Components.MobStateComponent>();
+        while (mobQuery.MoveNext(out var mobUid, out _))
+        {
+            if (!HasComp<RadarBlipComponent>(mobUid))
+            {
+                var rb = EnsureComp<RadarBlipComponent>(mobUid);
+                rb.VisibleFromOtherGrids = false;
+                rb.RequireNoGrid = true;
+            }
+        }
     }
 
     private void OnBlipsRequested(RequestBlipsEvent ev, EntitySessionEventArgs args)
@@ -106,12 +148,31 @@ public sealed partial class RadarBlipSystem : EntitySystem
                 var blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
 
                 var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
-                if (distance > blip.MaxDistance)
-                    continue;
 
-                if (blip.RequireNoGrid && blipGrid != null // if we want no grid but we are on a grid
-                    || !blip.VisibleFromOtherGrids && blipGrid != radarGrid) // or if we don't want to be visible from other grids but we're on another grid
-                    continue; // don't show this blip
+                float maxDistance = blip.MaxDistance;
+                if (HasComp<VaporComponent>(blipUid))
+                { maxDistance = 160f; }
+                else if (HasComp<MobStateComponent>(blipUid))
+                {
+                    if (!TryComp<TemperatureComponent>(blipUid, out var temp)) continue;
+                    var tempC = temp.CurrentTemperature - 273.15f;
+                    if (tempC <= 0f) continue;
+                    var distDyn = 30f + tempC * 1.9f;
+                    if (distDyn < 25f) distDyn = 25f;
+                    if (distDyn > 160f) distDyn = 160f;
+                    maxDistance = distDyn;
+                }
+                else if (TryComp<TemperatureComponent>(blipUid, out var temp))
+                {
+                    var tempC = temp.CurrentTemperature - 273.15f;
+                    if (tempC <= 0f) { continue; }
+                    var distDyn = 30f + tempC * 1.9f;
+                    if (distDyn < 25f) distDyn = 25f;
+                    if (distDyn > 160f) distDyn = 160f;
+                    maxDistance = distDyn;
+                }
+                if (distance > maxDistance) continue;
+                if ((blip.RequireNoGrid && blipGrid != null) || (!blip.VisibleFromOtherGrids && blipGrid != radarGrid)) continue;
 
                 // due to PVS being a thing, things will break if we try to parent to not the map or a grid
                 var coord = blipXform.Coordinates;
@@ -163,20 +224,11 @@ public sealed partial class RadarBlipSystem : EntitySystem
         return hitscans;
     }
 
-    private void SetupRadarBlip(EntityUid uid, Color color, float scale, bool visibleFromOtherGrids = true, bool requireNoGrid = false)
-    {
-        var blip = EnsureComp<RadarBlipComponent>(uid);
-        blip.RadarColor = color;
-        blip.Scale = scale;
-        blip.VisibleFromOtherGrids = visibleFromOtherGrids;
-        blip.RequireNoGrid = requireNoGrid;
-    }
-
     /// <summary>
     /// Configures the radar blip for a vehicle entity.
     /// </summary>
     public void SetupVehicleRadarBlip(Entity<VehicleComponent> uid)
     {
-        SetupRadarBlip(uid, Color.Cyan, 1f, true, true);
+        if (TryComp<RadarBlipComponent>(uid, out var blip)) blip.Enabled = true;
     }
 }
