@@ -100,12 +100,6 @@
     moleRatio: 0.5
   - type: WirelessNetworkConnection
     range: 200
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
   - type: Climbable
   - type: FootstepModifier
     footstepSoundCollection:
@@ -173,7 +167,7 @@
     fuelEfficiencyConstant: 0.95
     radiationColor: "#662040"
   - type: SolidFuelGeneratorAdapter
-    fuelMaterial: FuelPlasma
+    fuelMaterial: FuelGradePlasma
     multiplier: 0.01
   - type: MaterialStorage
     materialWhiteList: [Plasma, FuelPlasma]
