@@ -105,5 +105,11 @@ namespace Content.Shared.Lua.CLVar
         /// </summary>
         public static readonly CVarDef<bool> GhostPlayerWarps =
             CVarDef.Create("ghost.player_warps", false, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Обновление лимитов корабля если true = корабль активен пока существует грид, false = проверка активности/питания
+        /// </summary>
+        public static readonly CVarDef<bool> ShipLimitCheckExistence =
+            CVarDef.Create("ship.limit_check_existence", false, CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }
