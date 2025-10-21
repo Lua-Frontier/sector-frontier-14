@@ -39,7 +39,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Concord-Venture
     - type: Transform
       pos: -19.260479,3.2444553
       parent: invalid
@@ -163,7 +163,7 @@ entities:
             246: 6,6
         - node:
             color: '#BE6BC3FF'
-            id: BrickTileSteelInnerSw
+            id: BrickTileSteelInnerSe
           decals:
             206: -1,5
         - node:
@@ -212,7 +212,7 @@ entities:
             145: 1,5
             226: 1,4
         - node:
-            color: '#999999FF'
+            color: '#96DAFFFF'
             id: BrickTileSteelLineN
           decals:
             252: 7,8
@@ -237,8 +237,8 @@ entities:
           decals:
             147: 2,3
         - node:
-            color: '#999999FF'
-            id: BrickTileSteelLineW
+            color: '#96DAFFFF'
+            id: BrickTileSteelLineS
           decals:
             244: 5,6
             247: 7,6
@@ -503,57 +503,50 @@ entities:
           -1,1:
             1: 65535
           0,2:
-            1: 65358
+            1: 65524
           -1,2:
-            1: 33518
+            1: 1551
+            0: 28672
           0,3:
-            1: 255
-            0: 4096
+            0: 16
           -1,3:
-            1: 2115
-            0: 1584
+            1: 8
+            0: 4
           1,0:
             0: 2081
             1: 24576
           1,1:
             1: 65358
           1,2:
-            1: 12646
+            1: 7454
+            0: 49152
           1,3:
-            1: 601
-            0: 7296
+            0: 20
+            1: 2
           2,1:
             1: 57281
           2,2:
             1: 641
             0: 5120
           2,0:
-            1: 16384
-            0: 1152
+            0: 3296
+            1: 49152
           3,0:
-            0: 34608
-            1: 12288
+            0: 256
           3,1:
             1: 4368
             0: 2
           3,2:
-            1: 4102
-            0: 9344
-          -3,0:
-            0: 11392
-            1: 32768
+            0: 18
           -3,1:
             0: 8
           -2,1:
             1: 32624
           -3,2:
-            0: 33824
-            1: 140
+            0: 8
           -2,0:
-            0: 1328
-            1: 20480
-          -2,1:
-            1: 16368
+            0: 2016
+            1: 24576
           -2,2:
             0: 1040
             1: 2080
@@ -597,7 +590,7 @@ entities:
   - uid: 355
     components:
     - type: Transform
-      pos: -3.5,7.5
+      pos: 3.5,8.5
       parent: 1
     - type: DeviceList
       devices:
@@ -1495,7 +1488,7 @@ entities:
   - uid: 222
     components:
     - type: Transform
-      pos: 5.5,7.5
+      pos: 2.5,10.5
       parent: 1
 - proto: CircuitImprinter
   entities:
@@ -2487,8 +2480,7 @@ entities:
   - uid: 99
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,13.5
+      pos: -1.5,8.5
       parent: 1
 - proto: OreProcessor
   entities:
@@ -2577,10 +2569,6 @@ entities:
     - type: Transform
       pos: -1.5,8.5
       parent: 1
-    - type: Physics
-      bodyType: Static
-- proto: OreProcessor
-  entities:
   - uid: 421
     components:
     - type: Transform
@@ -2896,13 +2884,13 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -7.5,11.5
+      pos: -6.5,8.5
       parent: 1
   - uid: 43
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 15.5,4.5
+      rot: 3.141592653589793 rad
+      pos: -5.5,8.5
       parent: 1
   - uid: 44
     components:
@@ -2960,7 +2948,8 @@ entities:
   - uid: 243
     components:
     - type: Transform
-      pos: -9.5,6.5
+      rot: 1.5707963267948966 rad
+      pos: -8.5,4.5
       parent: 1
 - proto: WallShuttle
   entities:
@@ -3324,19 +3313,18 @@ entities:
   - uid: 32
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,13.5
+      pos: -3.5,11.5
       parent: 1
   - uid: 64
     components:
     - type: Transform
-      pos: 11.5,5.5
+      pos: -0.5,12.5
       parent: 1
   - uid: 65
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,10.5
+      rot: -1.5707963267948966 rad
+      pos: 5.5,12.5
       parent: 1
   - uid: 112
     components:
@@ -3426,7 +3414,7 @@ entities:
   - uid: 15
     components:
     - type: Transform
-      pos: -0.5,11.5
+      pos: 2.5,6.5
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
@@ -3438,11 +3426,6 @@ entities:
 - proto: WindoorSecurePlasma
   entities:
   - uid: 248
-    components:
-    - type: Transform
-      pos: 7.5,12.5
-      parent: 1
-  - uid: 491
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
