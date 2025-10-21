@@ -8,6 +8,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.UserInterface;
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._Mono.FireControl;
@@ -120,6 +121,8 @@ public sealed partial class FireControlSystem : EntitySystem
         // Fire the actual weapons
         FireWeapons((EntityUid)component.ConnectedServer, args.Selected, args.Coordinates, server);
 
+        UpdateUi(uid, component);
+
         // Raise an event to track the cursor position even when not firing
         var fireEvent = new FireControlConsoleFireEvent(args.Coordinates, args.Selected);
         RaiseLocalEvent(uid, fireEvent);
@@ -226,6 +229,10 @@ public sealed partial class FireControlSystem : EntitySystem
                 controlled.Coordinates = GetNetCoordinates(Transform(controllable).Coordinates);
                 controlled.Name = MetaData(controllable).EntityName;
 
+                var (ammoCount, hasManualReload) = GetWeaponAmmunitionInfo(controllable);
+                controlled.AmmoCount = ammoCount;
+                controlled.HasManualReload = hasManualReload;
+
                 controllables.Add(controlled);
             }
         }
@@ -234,5 +241,25 @@ public sealed partial class FireControlSystem : EntitySystem
 
         var state = new FireControlConsoleBoundInterfaceState(component.ConnectedServer != null, array, navState);
         _ui.SetUiState(uid, FireControlConsoleUiKey.Key, state);
+    }
+
+    /// <summary>
+    /// Gets ammo information for a weapon to determine if it has manual reload.
+    /// </summary>
+    private (int? ammoCount, bool hasManualReload) GetWeaponAmmunitionInfo(EntityUid weaponEntity)
+    {
+        if (TryComp<BasicEntityAmmoProviderComponent>(weaponEntity, out var basicAmmo))
+        {
+            var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(weaponEntity);
+
+            return (basicAmmo.Count, !hasRecharge);
+        }
+
+        if (TryComp<BallisticAmmoProviderComponent>(weaponEntity, out var ballisticAmmo))
+        {
+            return (ballisticAmmo.Count, ballisticAmmo.Cycleable);
+        }
+
+        return (null, false);
     }
 }
