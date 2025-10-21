@@ -198,7 +198,7 @@
   - type: FuelGradeAdapter
     conversions:
     - input: Plasma
-      output: FuelPlasma
+      output: FuelGradePlasma
       rate: 1
 
 - type: entity
@@ -208,4 +208,4 @@
   components:
   - type: MaterialStorage
     storage:
-      FuelGradePlasma: 2500
+      Plasma: 2500
