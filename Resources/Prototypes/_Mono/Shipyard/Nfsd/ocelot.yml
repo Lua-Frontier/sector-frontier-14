@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: 2025 Ark
+# SPDX-FileCopyrightText: 2025 Cojoke
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 ark1368
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vessel
+  id: Ocelot
+  parent: BaseVesselAntag
+  name: TSF-SKR Ocelot
+  description: Designed to work as a upgrade to the Spear for escort duty and patrols. Capable of revealing fully cloaked ships, and armed with 2x ASM-220s and 4x Type-54C autopulsers.
+  price: 68500
+  category: Small
+  group: Security
+  access: Security
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/ocelot.yml
+  guidebookPage: Null
+  class:
+  - Patrol
+  engine:
+  - Uranium
+  cloakHunter: true
+  company:
+  - TSF
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: Ocelot
+  mapName: 'Ocelot'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/ocelot.yml
+  minPlayers: 0
+  stations:
+    Ocelot:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Ocelot TSF{1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'

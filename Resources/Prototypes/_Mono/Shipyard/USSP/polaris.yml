@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 sleepyyapril
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: vessel
+  id: PolarisShip
+  parent: BaseVesselAntag
+  name: TSF-SKR Polaris
+  description: A heavily-armed frigate with 6 CYREXAs and 1 CHARON mass-driver. While having heavy firepower, and multiple redundant substations and SMES systems, it lacks heavily in PD.
+  limit: 1
+  price: 425000
+  purchasable: false # voucher only
+  category: Large
+  group: Security
+  access: Security
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/polaris.yml
+  guidebookPage: Null
+  class:
+  - Capital
+  - Frigate
+  - Pursuit
+  - Patrol
+  engine:
+  - AME
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+    - type: NanotrasenFtl
+
+- type: gameMap
+  id: PolarisShip
+  mapName: 'TSF-SKR Polaris'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/polaris.yml
+  minPlayers: 0
+  stations:
+    PolarisShip:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Polaris TSFN{1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
