@@ -429,30 +429,6 @@
       - id: WeaponTurretASM220FlatPack
         amount: 1
 
-- type: entity
-  id: CrateWallPlastitaniumFlatPack
-  parent: CrateShipWeaponBase
-  name: пластитановая стена
-  description: пластитановая стена
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-      - id: WallPlastitaniumFlatPack
-        amount: 1
-
-- type: entity
-  id: CratePlastitaniumWindowFlatPack
-  parent: CrateShipWeaponBase
-  name: пластитановое стекло
-  description: Смотри не заляпай, смотри не сядь.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-      - id: PlastitaniumWindowFlatPack
-        amount: 1
-
 #MARK:MONO - shields
 
 - type: entity
