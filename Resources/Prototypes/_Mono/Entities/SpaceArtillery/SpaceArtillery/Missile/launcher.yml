@@ -1,18 +1,32 @@
+# SPDX-FileCopyrightText: 2025 Blu
+# SPDX-FileCopyrightText: 2025 BlueHNT
+# SPDX-FileCopyrightText: 2025 Disguised Bear
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 RikuTheKiller
+# SPDX-FileCopyrightText: 2025 UnicornOnLSD
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+# SPDX-FileCopyrightText: 2025 tonotom
+# SPDX-FileCopyrightText: 2025 tonotom1
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # ADMP-27 VESPERA
 
 - type: entity
   id: WeaponTurretVespera
   name: ADMP-27 VESPERA Rapid-Fire Pod
-  parent: BallisticArtillery
-  description: A rapid-fire swarm missile pod manufactured by Aetherion Dynamics. Can be remotely activated, or linked up to a GCS.
+  parent: BallisticArtilleryUnanchorable
+  description: A rapid-fire swarm missile pod manufactured by Aetherion Dynamics. Saturates targets with guided warheads to overwhelm defenses. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
-    price: 2000
+    price: 1500
   - type: Sprite
     sprite: _Mono/Objects/ShuttleWeapons/vespera.rsi
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
     maxCharge: 40000
@@ -22,10 +36,11 @@
     range: 500
   - type: Gun
     fireRate: 3
+    shootThermalSignature: 2000000 # ~4.9km if firing continuously
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
-      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+      path: /Audio/Weapons/click.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 200
@@ -43,23 +58,25 @@
   - type: ShipGunType
     shipType: Missile
   - type: ShipGunClass
-    shipClass: Medium
+    shipClass: Light
+
 
 # ASM-501 Smerchs
 
 - type: entity
   id: WeaponTurretASM501
   name: ASM-501 pod
-  parent: BallisticArtillery
-  description: ASM-501 Smerchs heavy torpedo launcher. Can be remotely activated, or linked up to a GCS.
+  parent: BallisticArtilleryUnanchorable
+  description: A cruiser torpedo launcher. Fires heavy torpedoes for high-damage strikes against large ships and stations. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
-    price: 7500
+    price: 5000
   - type: Sprite
-    sprite: _Mono/Objects/ShuttleWeapons/vanyk.rsi
+    sprite: _Mono/Objects/ShuttleWeapons/vanyk-MK2.rsi
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
     maxCharge: 40000
@@ -69,6 +86,7 @@
     range: 500
   - type: Gun
     fireRate: 0.1
+    shootThermalSignature: 32000000 # ~5.6km
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
@@ -89,7 +107,7 @@
   - type: ShipGunType
     shipType: Missile
   - type: ShipGunClass
-    shipClass: Medium
+    shipClass: Light
 
 # ASM-302 Vanyk
 
@@ -97,15 +115,16 @@
   id: WeaponTurretVanyk
   name: ASM-302 pod
   parent: BallisticArtillery
-  description: ASM-302 Vanyk basic guided missile pod. Can be remotely activated, or linked up to a GCS.
+  description: An escort missile pod manufactured by Aetherion Dynamics. Launches guided missiles for basic ship-to-ship combat and area denial. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
-    price: 5000
+    price: 4000
   - type: Sprite
     sprite: _Mono/Objects/ShuttleWeapons/vanyk.rsi
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
     maxCharge: 40000
@@ -115,6 +134,7 @@
     range: 500
   - type: Gun
     fireRate: 0.8
+    shootThermalSignature: 8000000 # ~5km if firing continuously
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
@@ -134,13 +154,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 800
+        damage: 9000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -153,7 +167,7 @@
   - type: ShipGunType
     shipType: Missile
   - type: ShipGunClass
-    shipClass: Medium
+    shipClass: Light
 
 # ADMX-23 TOVEK
 
@@ -161,7 +175,7 @@
   id: WeaponTurretTovek
   name: ADMX-23 TOVEK Hybrid EMP Pod
   parent: BallisticArtillery
-  description: A hybrid EMP missile pod manufactured by Aetherion Dynamics. Deals both physical and EMP damage. Can be remotely activated, or linked up to a GCS.
+  description: A hybrid EMP missile pod by Aetherion Dynamics. Fires EMPHE warheads to disable and weaken enemy ships at long range. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
     price: 10000
@@ -170,6 +184,7 @@
     layers:
     - state: space_artillery
   - type: Appearance
+  - type: FireControlRotate
   - type: AmmoCounter
   - type: Battery
     maxCharge: 40000
@@ -179,6 +194,7 @@
     range: 500
   - type: Gun
     fireRate: 0.2
+    shootThermalSignature: 8000000 # ~2828m
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
@@ -200,4 +216,4 @@
   - type: ShipGunType
     shipType: Missile
   - type: ShipGunClass
-    shipClass: Medium
+    shipClass: Heavy

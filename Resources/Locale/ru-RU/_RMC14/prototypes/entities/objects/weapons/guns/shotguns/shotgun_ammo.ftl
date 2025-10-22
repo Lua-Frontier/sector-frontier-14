@@ -1,0 +1,25 @@
+ent-CMShellShotgunBuckshot = Пригоршня картечных патронов
+   .desc = Набор картечных патронов 12-го калибра.
+ent-CMShellShotgunSlugs = Пригоршня пулевых патронов
+   .desc = Набор пулевых патронов 12-го калибра.
+ent-CMShellShotgunIncendiary = Пригоршня зажигательных пуль
+   .desc = Пулевые патроны с зажигательным зарядом.
+ent-CMShellShotgunBeanbag = Пригоршня резиновых пуль
+   .desc = Нелетальные патроны с мешочком-бинбэгом.
+ent-CMShellShotgunFlechette = Пригоршня патронов с дротиками
+   .desc = Патроны с флектеттами.
+ent-CMShellShotgunIncendiaryBuckshot = Пригоршня зажигательной картечи
+   .desc = Картечные патроны с зажигательным эффектом.
+
+ent-CMPelletShotgunBuckshot = Картечь
+   .desc = Заряд картечи.
+ent-CMPelletShotgunSlug = Пуля 12 калибра
+   .desc = Пулевой снаряд.
+ent-CMPelletShotgunIncendiary = Зажигательная пуля
+   .desc = Пуля с зажигательным действием.
+ent-CMPelletShotgunBeanbag = Резиновая пуля
+   .desc = Нелетальная пуля, наносит урон выносливости.
+ent-CMPelletShotgunFlechette = Дротиковый снаряд
+   .desc = Патрон с флектеттами.
+ent-CMPelletShotgunIncendiaryBuckshot = Зажигательная картечь
+   .desc = Картечь с зажигательным эффектом.

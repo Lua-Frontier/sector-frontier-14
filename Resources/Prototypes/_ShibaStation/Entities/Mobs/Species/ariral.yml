@@ -34,6 +34,13 @@
       amount: 5
   - type: Damageable
     damageModifierSet: Ariral
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Ariral
+    understands:
+    - Intergalactic
+    - Ariral # Lua end
   - type: Stamina
     critThreshold: 75 # Less stamina, easier to down.
   - type: Bloodstream # Ariral blood is unique and toxic, but arirals bleed very easily and don't passively heal as fast.

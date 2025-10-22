@@ -67,6 +67,15 @@
     bodyType: KinematicController
   - type: Clickable
   - type: WiresPanel
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+    energy: 4
+    color: "#d3c68b"
+  - type: Prying
+    pryPowered: true
   - type: Fixtures
     fixtures:
       fix1:
@@ -87,7 +96,7 @@
       paper_label: !type:ContainerSlot # Goobstation
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: LightArmor # Goobstation
+    damageModifierSet: EnhancedMechArmor # Goobstation - Enhanced armor with better resistance
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
@@ -154,7 +163,8 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.75
+    mechToPilotDamageMultiplier: 0.0
+    airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -201,7 +211,7 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0
     airtight: true # Goobstation - Space Honk is real.
     pilotWhitelist:
       components:
@@ -237,7 +247,7 @@
     baseState: hamtr
     openState: hamtr-open
     brokenState: hamtr-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -292,9 +302,9 @@
         - MobLayer
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Mecha/mechmove03.ogg
+      path: /Audio/Effects/Footsteps/borgwalk1.ogg # Frontier: Mecha/mechmove03 > /Footsteps/borgwalk1.ogg
       params:
-        volume: -10
+        volume: -5 # Frontier: Louder due to change in sound effect
   - type: Mech
     baseState: vim
     openState: vim-open

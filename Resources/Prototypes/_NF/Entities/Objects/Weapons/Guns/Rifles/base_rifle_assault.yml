@@ -13,10 +13,10 @@
     maxAngle: -0
   - type: Gun
     projectileSpeed: 30
-    minAngle: 2.9
-    maxAngle: 8.7
-    angleIncrease: 2
-    angleDecay: 4
+    minAngle: 2.2
+    maxAngle: 11
+    angleIncrease: 0.6
+    angleDecay: 3
     fireRate: 4
     selectedMode: FullAuto
     availableModes:
@@ -36,11 +36,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 4
-    maxAngle: 12
-    angleIncrease: 2.5
-    angleDecay: 3
-    fireRate: 3.5
+    minAngle: 1 #Lua 2.5<1
+    maxAngle: 5 #Lua 12.5<5
+    angleIncrease: 0.2 #Lua 0.8<0.2
+    angleDecay: 1 #Lua 2.7<1
+    fireRate: 5 #Lua 3.4<5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
 
@@ -50,9 +50,9 @@
   abstract: true
   components:
   - type: Gun
-    angleIncrease: 2
-    angleDecay: 5
-    fireRate: 3
+    angleIncrease: 0.2 #Lua 0.6<0.2
+    angleDecay: 1 #Lua 4.2<1
+    fireRate: 5 #Lua 3.2<5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-cybersun-industries
 
@@ -62,11 +62,11 @@
   abstract: true
   components:
   - type: Gun
-    minAngle: 3.5
-    maxAngle: 11
-    angleIncrease: 2
-    angleDecay: 3
-    fireRate: 3.5
+    minAngle: 1 #Lua 2.6<1
+    maxAngle: 5 #Lua 13<5
+    angleIncrease: 0.4 #Lua 1.2<0.4
+    angleDecay: 1.2 #Lua 3.8<1.2
+    fireRate: 4.5 #Lua 3.2<4.5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium
 

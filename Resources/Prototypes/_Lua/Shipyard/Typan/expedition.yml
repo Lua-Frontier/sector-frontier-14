@@ -7,12 +7,17 @@
   id: Expedition
   name: TY Expedition
   price: 52556 #28100
-  category: Large
+  category: Small
   group: Typan
+  access: SyndicateAgent
+  class:
+  - Syndicate
+  engine:
+  - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/expedition.yml
   addComponents:
     - type: IFF
-      color: "#990816"
+      color: "#d93204"
     - type: NanotrasenFtl
     - type: TypanFtl
 

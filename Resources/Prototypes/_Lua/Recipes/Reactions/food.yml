@@ -1,0 +1,15 @@
+- type: reaction
+  id: CreateWhiteChocolate
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Butter:
+      amount: 5
+    Milk:
+      amount: 2
+    Sugar:
+      amount: 2
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: FoodSnackWhiteChocolateBar

@@ -11,10 +11,11 @@
     damage:
       types:
         Heat: 40
+  - type: ThermalSignature
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua
     layers:
     - state: base_small
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -22,11 +23,13 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
+      color: "#4281de" # Lua
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
+      color: "#4281de" # Lua
   - type: Fixtures
     fixtures:
       fix1:
@@ -54,6 +57,7 @@
     baseThrust: 250
     thrust: 250
     thrustPerPartLevel: [250, 312.5, 375, 437.5, 460]
+    heatSignatureRatio: 0.5
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: Sprite
@@ -96,7 +100,7 @@
   suffix: Security
   components:
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua
     layers: &secThrusterLayers
     - state: base_sec
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -104,11 +108,13 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
+      color: "#4281de" # Lua
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
+      color: "#4281de" # Lua
   - type: Destructible
     thresholds: &secDestructibleThresholds
     - trigger:
@@ -127,7 +133,7 @@
   suffix: DEBUG, Security
   components:
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua
     layers: *secThrusterLayers
   - type: Destructible
     thresholds: *secDestructibleThresholds
@@ -220,7 +226,7 @@
   suffix: NFSD
   components:
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua
     layers: &nfsdThrusterLayers
     - state: base_nfsd
       map: ["enum.ThrusterVisualLayers.Base"]
@@ -228,11 +234,13 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
+      color: "#4281de" # Lua
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
+      color: "#4281de" # Lua
   - type: Machine
     board: ThrusterNfsdMachineCircuitboard
 
@@ -242,7 +250,7 @@
   suffix: DEBUG, NFSD
   components:
   - type: Sprite
-    sprite: _NF/Structures/Shuttles/thruster.rsi
+    sprite: _Lua/Structures/Shuttles/thruster.rsi # Lua
     layers: *nfsdThrusterLayers
   - type: Machine
     board: ThrusterNfsdMachineCircuitboard

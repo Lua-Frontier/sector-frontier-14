@@ -10,9 +10,10 @@
     - NFAdventure
     - NFBasicStationEventScheduler
     - BluespaceEventScheduler
-    - BluespaceDungeonEventScheduler
+    # - BluespaceDungeonEventScheduler # Lua
     - BluespaceSalvageEventScheduler
     - SmugglingEventScheduler
+    - MonoAISTCShuttleSpawnerScheduler # Lua - AI shuttles
     - NFRoundstartVariation
 
 - type: gamePreset
@@ -27,9 +28,10 @@
     - NFAdventure
     - NFBasicStationEventScheduler
     - BluespaceEventScheduler
-    - BluespaceDungeonEventScheduler
+    # - BluespaceDungeonEventScheduler # Lua
     - BluespaceSalvageEventScheduler
     - SmugglingEventScheduler
+    - MonoAISTCShuttleSpawnerScheduler # Lua - AI shuttles
     - NFRoundstartVariation
 
 # Test preset: intended to be close enough to upstream stuff but should be

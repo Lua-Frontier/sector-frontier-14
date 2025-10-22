@@ -320,7 +320,7 @@
   - type: Extractable
     grindableSolutionName: food
   - type: DamageOnInteract
-    damage: 
+    damage:
       types:
         Heat: 4
         Caustic: 4
@@ -347,7 +347,7 @@
             volume: -5
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DamageOnHit 
+  - type: DamageOnHit
     damage:
       types:
         Blunt: 5 # The nettle will "wilt" after 5 hits.
@@ -1420,6 +1420,7 @@
   - type: Tag
     tags:
     - Vegetable
+    - Mushroom
   - type: StaticPrice
     price: 30
 
@@ -1767,9 +1768,6 @@
   - type: Stack
     stackType: FoodLingzhi
     count: 1
-  - type: Tag
-    tags:
-    - MedipenLathe
   - type: FlavorProfile
     flavors:
       - mushroom
@@ -1780,9 +1778,9 @@
         maxVol: 40
         reagents:
         - ReagentId: Ultravasculine
-          Quantity: 20
+          Quantity: 4 #20 Lua
         - ReagentId: Epinephrine
-          Quantity: 20
+          Quantity: 5 #20 Lua
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/lingzhi.rsi
   - type: Item
@@ -1795,6 +1793,10 @@
     entries:
       Taco: Lingzhi
       Burger: Lingzhi
+  - type: Tag
+    tags:
+    - Mushroom
+    - MedipenLathe
   - type: StaticPrice
     price: 27 #50
 
@@ -2030,9 +2032,6 @@
   - type: Stack
     stackType: FoodFlyAmanita
     count: 1
-  - type: Tag
-    tags:
-    - MedipenLathe
   - type: FlavorProfile
     flavors:
       - mushroom
@@ -2058,6 +2057,10 @@
     entries:
       Taco: FlyAmanita
       Burger: FlyAmanita
+  - type: Tag
+    tags:
+    - Mushroom
+    - MedipenLathe
   - type: StaticPrice
     price: 34 #45
 

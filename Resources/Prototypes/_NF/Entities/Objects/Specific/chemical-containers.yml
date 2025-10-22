@@ -129,6 +129,8 @@
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
+    minTransferAmount: 1 # Lua
+    maxTransferAmount: 1000 # Lua
   - type: SolutionItemStatus
     solution: beaker
   - type: UserInterface
@@ -497,7 +499,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Label
-    currentLabel: reagent-name-potassium
+    currentLabel: reagent-name-silicon
   - type: SolutionContainerManager
     solutions:
       beaker:

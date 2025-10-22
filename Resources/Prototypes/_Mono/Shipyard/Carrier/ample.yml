@@ -3,13 +3,14 @@
   parent: BaseVessel
   name: SKR Ample
   description: A very light mining shuttle equipped with a PTK-1500e
-  price: 8750
+  price: 5900
   category: Micro
   group: Custom
   mapchecker_group_override: Shipyard  # Treat this as a Shipyard vessel for mapchecker purposes
   shuttlePath: /Maps/_Mono/Shuttles/Carrier/ample.yml
   guidebookPage: Null
   class:
+  - Civilian
   - Salvage
   engine:
   - APU

@@ -7,11 +7,13 @@ using Content.Shared.Interaction;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
+using Content.Shared._Lua.LuaTech;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.BindToStation; // Frontier
 
 namespace Content.Shared.Construction;
 
@@ -44,6 +46,9 @@ public abstract class SharedFlatpackSystem : EntitySystem
     {
         if (args.Slot.ID != ent.Comp.SlotId || args.Cancelled)
             return;
+
+        if (HasComp<LuaTechComponent>(args.Item))
+        { args.Cancelled = true; return; }
 
         if (HasComp<MachineBoardComponent>(args.Item))
             return;
@@ -95,6 +100,9 @@ public abstract class SharedFlatpackSystem : EntitySystem
             var spawn = Spawn(comp.Entity, _map.GridTileToLocal(grid, gridComp, buildPos));
             if (TryComp(spawn, out TransformComponent? spawnXform)) // Frontier: rotatable flatpacks
                 spawnXform.LocalRotation = xform.LocalRotation.GetCardinalDir().ToAngle(); // Frontier: rotatable flatpacks
+            if (TryComp<StationBoundObjectComponent>(uid, out var bound)) // Frontier: station binding
+                BindToStation(spawn, bound); // Frontier: station binding
+
             _adminLogger.Add(LogType.Construction,
                 LogImpact.Low,
                 $"{ToPrettyString(args.User):player} unpacked {ToPrettyString(spawn):entity} at {xform.Coordinates} from {ToPrettyString(uid):entity}");
@@ -123,6 +131,9 @@ public abstract class SharedFlatpackSystem : EntitySystem
         _metaData.SetEntityName(ent, Loc.GetString("flatpack-entity-name", ("name", machinePrototype.Name)), meta);
         _metaData.SetEntityDescription(ent, Loc.GetString("flatpack-entity-description", ("name", machinePrototype.Name)), meta);
 
+        if (TryComp<StationBoundObjectComponent>(board, out var bound)) // Frontier: station binding
+            BindToStation(ent, bound); // Frontier: station binding
+
         Dirty(ent, meta);
         Appearance.SetData(ent, FlatpackVisuals.Machine, MetaData(board).EntityPrototype?.ID ?? string.Empty);
     }
@@ -148,4 +159,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
 
         return cost;
     }
+
+    // Frontier: a function to bind something to a station.  Will only be run serverside.
+    protected abstract void BindToStation(EntityUid toBind, StationBoundObjectComponent bindingParams);
 }

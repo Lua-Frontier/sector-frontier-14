@@ -305,6 +305,10 @@ internal sealed partial class ChatManager : IChatManager
         {
             wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#D97FE4]h[/color][color=#C487E5]q[/color][color=#AE90E5]d[/color][color=#9998E6]i[/color][color=#83A1E7]s[/color][color=#6EA9E8]h[/color][color=#58B2E8]k[/color][color=#43BAE9]a[/color]"), ("message", FormattedMessage.EscapeText(message)));
         }
+        if (player.Name == "JoBot")
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#FF69B4]JoBot[/color]"), ("message", FormattedMessage.EscapeText(message)));
+        }
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

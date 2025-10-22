@@ -349,10 +349,9 @@ public abstract class SharedFishingSystem : EntitySystem
             var targetCoords = Xform.GetMapCoordinates(Transform(attachedEnt));
             var playerCoords = Xform.GetMapCoordinates(Transform(player));
             var seed = (int)Timing.CurTick.Value;
-            _random.SetSeed(seed);
-
-            // Calculate throw direction
-            var direction = (playerCoords.Position - targetCoords.Position) * _random.NextFloat(0.2f, 0.85f);
+            IRobustRandom localRandom = new RobustRandom();
+            localRandom.SetSeed(seed);
+            var direction = (playerCoords.Position - targetCoords.Position) * localRandom.NextFloat(0.2f, 0.85f);
 
             // Yeet
             Throwing.TryThrow(attachedEnt, direction, 4f, player);

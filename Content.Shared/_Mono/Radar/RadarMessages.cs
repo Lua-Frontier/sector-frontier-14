@@ -1,5 +1,13 @@
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 Redrover1760
+// SPDX-FileCopyrightText: 2025 ark1368
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using System.Numerics;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Mono.Radar;
@@ -21,35 +29,24 @@ public enum RadarBlipShape
 public sealed class GiveBlipsEvent : EntityEventArgs
 {
     /// <summary>
-    /// Blips are now (grid entity, position, scale, color, shape).
-    /// If grid entity is null, position is in world coordinates.
-    /// If grid entity is not null, position is in grid-local coordinates.
+    /// Blips are now (position, velocity, scale, color, shape).
     /// </summary>
-    public readonly List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> Blips;
+    public readonly List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> Blips;
 
     /// <summary>
-    /// Hitscan lines to display on the radar as (grid entity, start position, end position, thickness, color).
-    /// If grid entity is null, positions are in world coordinates.
-    /// If grid entity is not null, positions are in grid-local coordinates.
+    /// Hitscan lines to display on the radar as (start position, end position, thickness, color).
     /// </summary>
-    public readonly List<(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color)> HitscanLines;
+    public readonly List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> HitscanLines;
 
-    // Constructor for back-compatibility
-    public GiveBlipsEvent(List<(Vector2, float, Color)> blips)
-    {
-        Blips = blips.Select(b => ((NetEntity?)null, b.Item1, b.Item2, b.Item3, RadarBlipShape.Circle)).ToList();
-        HitscanLines = new List<(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color)>();
-    }
-
-    public GiveBlipsEvent(List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> blips)
+    public GiveBlipsEvent(List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> blips)
     {
         Blips = blips;
-        HitscanLines = new List<(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color)>();
+        HitscanLines = new List<(Vector2 Start, Vector2 End, float Thickness, Color Color)>();
     }
 
     public GiveBlipsEvent(
-        List<(NetEntity? Grid, Vector2 Position, float Scale, Color Color, RadarBlipShape Shape)> blips,
-        List<(NetEntity? Grid, Vector2 Start, Vector2 End, float Thickness, Color Color)> hitscans)
+        List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> blips,
+        List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> hitscans)
     {
         Blips = blips;
         HitscanLines = hitscans;
@@ -63,5 +60,16 @@ public sealed class RequestBlipsEvent : EntityEventArgs
     public RequestBlipsEvent(NetEntity radar)
     {
         Radar = radar;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class BlipRemovalEvent : EntityEventArgs
+{
+    public NetEntity NetBlipUid { get; set; }
+
+    public BlipRemovalEvent(NetEntity netBlipUid)
+    {
+        NetBlipUid = netBlipUid;
     }
 }

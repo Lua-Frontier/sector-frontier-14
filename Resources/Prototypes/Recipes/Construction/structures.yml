@@ -206,8 +206,8 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-
 # End
+
 - type: construction
   id: ClownWall
   graph: Girder
@@ -1275,6 +1275,18 @@
   graph: SecretDoor
   startNode: start
   targetNode: solidSecretDoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: FungalSoil
+  graph: Soil
+  startNode: start
+  targetNode: fungalSoil
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter

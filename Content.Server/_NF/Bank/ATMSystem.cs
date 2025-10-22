@@ -221,6 +221,12 @@ public sealed partial class BankSystem
             return;
         }
 
+        // Show YUPI account code as popup
+        //Lua: obtain code from BankAccountComponent; ensure synchronously
+        var ensured = EnsureYupiForEntity(player);
+        var code = string.IsNullOrWhiteSpace(ensured) ? "N/A" : ensured.ToUpperInvariant();
+        ConsolePopup(player, Loc.GetString("bank-atm-yupi-code", ("code", code)));
+
         _uiSystem.SetUiState(uid, args.UiKey,
             new BankATMMenuInterfaceState(bank.Balance, true, deposit));
     }

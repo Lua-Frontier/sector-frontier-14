@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
@@ -131,13 +132,16 @@ public sealed partial class SleepingSystem : EntitySystem
         RemComp<SpamEmitSoundComponent>(ent);
     }
 
-    private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args)
-    {
-        var ev = new SleepStateChangedEvent(true);
-        RaiseLocalEvent(ent, ref ev);
-        _blindableSystem.UpdateIsBlind(ent.Owner);
-        _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
-    }
+        private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args) // Lua start
+        {
+            var ev = new SleepStateChangedEvent(true);
+            RaiseLocalEvent(ent, ref ev);
+            _blindableSystem.UpdateIsBlind(ent.Owner);
+            _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
+        }
+
+// Lua end
+
 
     private void OnSpeakAttempt(Entity<SleepingComponent> ent, ref SpeakAttemptEvent args)
     {
@@ -256,7 +260,7 @@ public sealed partial class SleepingSystem : EntitySystem
     private void Wake(Entity<SleepingComponent> ent)
     {
         RemComp<SleepingComponent>(ent);
-        _actionsSystem.RemoveAction(ent, ent.Comp.WakeAction);
+        _actionsSystem.RemoveAction(ent.Owner, ent.Comp.WakeAction);
 
         var ev = new SleepStateChangedEvent(false);
         RaiseLocalEvent(ent, ref ev);
@@ -278,6 +282,7 @@ public sealed partial class SleepingSystem : EntitySystem
             return false;
 
         EnsureComp<SleepingComponent>(ent);
+
         // Frontier: set auto-wakeup time
         if (TryComp<AutoWakeUpComponent>(ent, out var autoWakeUp))
             autoWakeUp.NextWakeUp = _gameTiming.CurTime + autoWakeUp.Length;

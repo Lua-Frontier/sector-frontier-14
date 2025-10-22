@@ -65,9 +65,9 @@
   - type: TimerStartOnSignal
   - type: DeviceLinkSink
     ports:
-      - Timer
-  - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
-    explosionType: DemolitionCharge
+    - Timer
+  - type: Explosive
+    explosionType: StructuralDemolition
     totalIntensity: 60
     intensitySlope: 5
     maxIntensity: 30
@@ -103,12 +103,12 @@
         volume: -6
     startOnStick: false
     canToggleStartOnStick: true
-  - type: TriggerOnSignal
+  - type: TimerStartOnSignal
   - type: DeviceLinkSink
     ports:
-    - Trigger
+    - Timer
   - type: Explosive
-    explosionType: Cryo
+    explosionType: StructuralCryo
     totalIntensity: 120
     intensitySlope: 2
     maxIntensity: 30

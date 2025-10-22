@@ -9,12 +9,14 @@
   parent: BaseVessel
   name: TSF-SKR A-Class Atmospherics Rig
   description: A variant of the M-Class with the carrier area refitted to a atmospherics bay.
-  price: 168200
+  limit: 2
+  price: 100700
   category: Large
   group: Shipyard
   shuttlePath: /Maps/_Mono/Shuttles/aclass.yml
   guidebookPage: Null
   class:
+  - Civilian
   - Salvage
   - Atmospherics
   engine:

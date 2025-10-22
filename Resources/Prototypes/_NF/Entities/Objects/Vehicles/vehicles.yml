@@ -3,6 +3,11 @@
   parent: VehicleATV
   id: NFVehicleATV
   components:
+  - type: RadarBlip
+    radarColor: "#8A2BE2"
+    scale: 0.6
+    visibleFromOtherGrids: true
+    requireNoGrid: false
   - type: Sprite
     sprite: _NF/Objects/Vehicles/atv.rsi
     layers:
@@ -615,6 +620,10 @@
     energy: 3
     color: "#FF4020"
     mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - EmagImmune
 
 - type: entity
   parent: NFVehicleHoverbikeNfsd
@@ -695,6 +704,12 @@
             - Gun
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
   - type: Appearance
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - DemagImmune
+  - type: Vehicle
+    radarBlip: false
 
 - type: entity
   parent: VehicleHoverbikePirate
@@ -779,6 +794,12 @@
     color: green
     radius: 6
     energy: 3
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - DemagImmune
+  - type: Vehicle
+    radarBlip: false
 
 - type: entity
   parent: VehicleHoverbikeSyndicate
@@ -844,7 +865,7 @@
     - sprite: _NF/Structures/Storage/magnetbox.rsi
       state: controller-on
       visible: False
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
       shader: unshaded
     - sprite: _NF/Objects/Tools/goblin_tools/overlay_sparks.rsi
       state: overlay-icon

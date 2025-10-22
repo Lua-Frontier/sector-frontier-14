@@ -28,6 +28,12 @@
   equipment:
     pocket1: BaseMercenaryUplinkRadioMercenary
 
+- type: chameleonOutfit
+  id: MercenaryBaseChameleonOutfit
+  job: MercenaryBase
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+
 # Interview variant
 - type: job
   id: MercenaryInterview
@@ -46,9 +52,21 @@
   accessGroups:
   - GeneralAccess
   jobEntity: InterviewHologramMercenary
+  newPlayerMessage: false
 
 - type: startingGear
   id: MercenaryHologramGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitMercenary
     shoes: ClothingShoesBootsMercenary
+
+- type: chameleonOutfit
+  id: MercenaryChameleonOutfit
+  job: Mercenary
+  equipment:
+    head: ClothingHeadHelmetMercenary
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasMercenary
+    neck: ClothingNeckIFFNeutral
+    outerClothing: ClothingOuterVestWebMercenary
+    gloves: ClothingHandsGlovesCombat

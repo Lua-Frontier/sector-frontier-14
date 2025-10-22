@@ -33,15 +33,7 @@ namespace Content.Shared.Preferences
         private static readonly Regex RestrictedNameRegex = new(@"[^А-Яа-яёЁ0-9' -]"); // Corvax-Localization
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
-        public const int MaxNameLength = 32;
-        public const int MaxLoadoutNameLength = 32;
-        public const int MaxDescLength = 512;
-
-        public const int DefaultBalance = 30000;
-
-        //private readonly Dictionary<string, JobPriority> _jobPriorities; // Frontier: commented out during merge.
-        //private readonly List<string> _antagPreferences; // Frontier: commented out during merge.
-        //private readonly List<string> _traitPreferences; // Frontier: commented out during merge.
+        public const int DefaultBalance = 30000; // Frontier
 
         /// <summary>
         /// Job preferences for initial spawn.
@@ -109,6 +101,10 @@ namespace Content.Shared.Preferences
 
         [DataField] // Frontier: Bank balance
         public int BankBalance { get; private set; } = DefaultBalance; // Frontier: Bank balance
+
+            // YUPI: Persistent per-slot account code (6 chars A-Z, excluding I/O, and digits 1-9). Uppercase stored. //Lua
+    [DataField]
+    public string YupiAccountCode { get; private set; } = string.Empty; //Lua
 
         /// <summary>
         /// <see cref="Appearance"/>
@@ -203,6 +199,7 @@ namespace Content.Shared.Preferences
             : this(other.Name, other.FlavorText, (int)other.ERPStatus, other.Species, other.Voice, other.Age, other.Sex, other.Gender, other.BankBalance, other.Appearance, other.SpawnPriority,
                 jobPriorities, other.PreferenceUnavailable, antagPreferences, traitPreferences, loadouts, other.Company)
         {
+            YupiAccountCode = other.YupiAccountCode; //Lua
         }
 
         /// <summary>Copy constructor</summary>
@@ -225,6 +222,7 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Company)
         {
+            YupiAccountCode = other.YupiAccountCode; //Lua копирования
         }
 
         /// <summary>
@@ -345,6 +343,11 @@ namespace Content.Shared.Preferences
             return new(this) { BankBalance = bankBalance };
         }
         // End Frontier
+
+            public HumanoidCharacterProfile WithYupiAccountCode(string code) //Lua
+    {
+        return new(this) { YupiAccountCode = code }; //Lua
+    }
 
         public HumanoidCharacterProfile WithSpecies(string species)
         {
@@ -536,6 +539,7 @@ namespace Content.Shared.Preferences
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (BankBalance != other.BankBalance) return false; // Frontier
+            if (YupiAccountCode != other.YupiAccountCode) return false; //Lua
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (Company != other.Company) return false;
@@ -600,13 +604,14 @@ namespace Content.Shared.Preferences
             };
 
             string name;
+            var maxNameLength = configManager.GetCVar(CCVars.MaxNameLength);
             if (string.IsNullOrEmpty(Name))
             {
                 name = GetName(Species, gender);
             }
-            else if (Name.Length > MaxNameLength)
+            else if (Name.Length > maxNameLength)
             {
-                name = Name[..MaxNameLength];
+                name = Name[..maxNameLength];
             }
             else
             {
@@ -632,9 +637,10 @@ namespace Content.Shared.Preferences
             }
 
             string flavortext;
-            if (FlavorText.Length > MaxDescLength)
+            var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
+            if (FlavorText.Length > maxFlavorTextLength)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
             }
             else
             {
@@ -836,6 +842,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);
             hashCode.Add(BankBalance); // Frontier
+            hashCode.Add(YupiAccountCode); //Lua
             hashCode.Add((int)SpawnPriority);
             hashCode.Add((int)PreferenceUnavailable);
             return hashCode.ToHashCode();

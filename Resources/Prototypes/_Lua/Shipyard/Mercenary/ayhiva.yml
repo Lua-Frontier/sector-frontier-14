@@ -6,10 +6,16 @@
   parent: BaseVessel
   id: Ayhiva
   name: Айхива
-  description: Боевой корабль созданный для длительных боев корпорацией LuaTech.
-  price: 145270
-  category: Medium
-  group: Mercenary
+  description: Боевой корабль из группы поддержки корпорации LuaTech, требует особый уровень доступа для покупки.
+  price: 149543
+  category: Large
+  marker: LuaTech
+  group: LuaTech
+  access: Mercenary
+  class:
+  - Mercenary
+  engine:
+  - Uranium
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/ayhiva.yml
   addComponents:
     - type: IFF

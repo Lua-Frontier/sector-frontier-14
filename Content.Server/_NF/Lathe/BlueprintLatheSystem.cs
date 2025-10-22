@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;  //Lua
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction;
@@ -397,19 +397,25 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
         if (component.CurrentBlueprintType != null && component.CurrentRecipeSets != null)
         {
             // Items incremented on start, need to decrement with removal
-            if (component.Queue.Count > 0)
-            {
-                var batch = component.Queue.First();
-                if (batch.BlueprintType != component.CurrentBlueprintType && RecipeSetsEqual(batch.Recipes, component.CurrentRecipeSets))
+                if (component.Queue.Count > 0) //Lua start
                 {
+                    var batch = component.Queue.First(); 
+                    if (batch.BlueprintType != component.CurrentBlueprintType || !RecipeSetsEqual(batch.Recipes, component.CurrentRecipeSets)) // Lua
+                    {
+                        var newBatch = new BlueprintLatheRecipeBatch(component.CurrentBlueprintType.Value, component.CurrentRecipeSets, 0, 1);
+                        component.Queue.Insert(0, newBatch);
+                    }
+                    else if (batch.ItemsPrinted > 0)
+                    {
+                        batch.ItemsPrinted--;
+                    } // Lua end
+                }
+                else // Lua start
+                {
+                    // Очередь пуста — вернём один элемент, чтобы не терять ресурсы
                     var newBatch = new BlueprintLatheRecipeBatch(component.CurrentBlueprintType.Value, component.CurrentRecipeSets, 0, 1);
                     component.Queue.Insert(0, newBatch);
-                }
-                else if (batch.ItemsPrinted > 0)
-                {
-                    batch.ItemsPrinted--;
-                }
-            }
+                } // Lua end
         }
         component.CurrentBlueprintType = null;
         component.CurrentRecipeSets = null;
@@ -520,5 +526,25 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
     {
         ent.Comp.ProvidedRecipes = recipes;
         Dirty(ent, ent.Comp);
+    }
+
+    /// <summary>
+    /// Adds a given recipe to a blueprint.
+    /// </remarks>
+    public void AddBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
+    {
+        var inserted = ent.Comp.ProvidedRecipes.Add(recipe);
+        if (inserted && dirty)
+            Dirty(ent, ent.Comp);
+    }
+
+    /// <summary>
+    /// Removes a given recipe from a blueprint.
+    /// </remarks>
+    public void RemoveBlueprintRecipe(Entity<BlueprintComponent> ent, ProtoId<LatheRecipePrototype> recipe, bool dirty = true)
+    {
+        var removed = ent.Comp.ProvidedRecipes.Remove(recipe);
+        if (removed && dirty)
+            Dirty(ent, ent.Comp);
     }
 }

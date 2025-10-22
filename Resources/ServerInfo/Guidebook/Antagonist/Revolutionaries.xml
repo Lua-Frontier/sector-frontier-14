@@ -1,5 +1,5 @@
 <Document>
-  # Revolutionaries
+  # Революционеры
 
   <Box>
     [color=#999999][italic]"Viva la revolución!!"[/italic][/color]
@@ -8,25 +8,25 @@
     <GuideEntityEmbed Entity="PosterContrabandRevolt" Caption=""/>
   </Box>
 
-  Revolutionaries are conversion antagonists sponsored by the [color=#ff0000]Syndicate[/color] who are tasked with taking control of the station. They have no fancy gimmicks or cheap tricks, they only have a cause and strength in numbers.
+  Революционеры — конверсионные антагонисты при поддержке [color=#ff0000]Синдиката[/color], чья задача — взять станцию под контроль. Без хитрых трюков — только идея и сила численности.
 
-  ## Objectives
-  You must convert, cuff or kill all of the [textlink="Command staff" link="Command"] on station in no particular order.
+  ## Цели
+  Вы должны обратить, заковать или убить весь [textlink="состав командования" link="Command"] на станции в любом порядке.
 
-  Your objective is [bold]not to destroy the station[/bold], but [italic]to take it over[/italic], so try to minimize damage where possible.
+  Ваша цель [bold]не разрушить станцию[/bold], а [italic]захватить её[/italic], поэтому минимизируйте ущерб.
 
-  [bold]The revolution will fail[/bold] if all of the [bold][color=#5e9cff]Head Revolutionaries[/color][/bold] die, and all [color=red]Revolutionaries[/color] will de-convert if this happens.
+  [bold]Революция провалится[/bold], если все [bold][color=#5e9cff]главревы[/color][/bold] погибнут — тогда все [color=red]революционеры[/color] деконвертируются.
 
-  ## Headrevs & Conversion
-  [bold][color=#5e9cff]Head Revolutionaries[/color][/bold] are chosen at the start of the shift and begin with a [color=cyan]flash[/color] and a pair of [color=cyan]sunglasses[/color].
+  ## Главревы и конверт
+  [bold][color=#5e9cff]Главревы[/color][/bold] выбираются в начале смены и начинают с [color=cyan]вспышки[/color] и [color=cyan]очков[/color].
 
   <Box>
     <GuideEntityEmbed Entity="Flash"/>
     <GuideEntityEmbed Entity="ClothingEyesGlassesSunglasses"/>
   </Box>
 
-  You can convert crew members to your side by taking any [bold]flash[/bold] and attacking someone with it using [color=#ff0000]harm mode[/color].
-  However, [bold]you can't convert your target if they're wearing [color=cyan]flash protection[/color][/bold] such as sunglasses or a welding mask.
+  Конвертите членов экипажа, атакуя их [bold]вспышкой[/bold] в [color=#ff0000]harm mode[/color].
+  Но [bold]вы не сконвертите цель с [color=cyan]защитой от вспышки[/color][/bold], например в очках или сварочной маске.
 
   <Box>
     <GuideEntityEmbed Entity="ClothingEyesGlassesSunglasses"/>
@@ -34,20 +34,20 @@
     <GuideEntityEmbed Entity="ClothingHeadHatWelding"/>
   </Box>
 
-  Another obstacle in your way are those pesky [color=cyan]mindshield implanters[/color]. These will:
-  - Prevent the implanted person from being converted into a [color=red]Revolutionary[/color]
-  - De-convert Revolutionaries, and will make them no longer loyal to your cause
-  - [bold]Visibly be destroyed upon being implanted into a [color=#5e9cff]Head Revolutionary[/color][/bold], giving you away
-  - NOT protect against flash disorientation
+  Ещё преграда — [color=cyan]имплантеры майндшилда[/color]. Они:
+  - Предотвращают конверт в [color=red]революционера[/color]
+  - Деконвертят революционеров
+  - [bold]Видимо разрушаются при имплантации в [color=#5e9cff]главрева[/color][/bold], выдавая вас
+  - НЕ защищают от ослепления вспышкой
 
-  Assume all of [color=#cb0000]Security[/color] and [color=#1b67a5]Command[/color] are implanted with mindshields already, [bold]however they can be removed using an empty implanter, obtainable from the Medical department's MedFab.[/bold]
+  Считайте, что у [color=#cb0000]СБ[/color] и [color=#1b67a5]командования[/color] майндшилды уже стоят, [bold]но их можно вынуть пустым имплантером из Медбея (MedFab).[/bold]
 
   <Box>
     <GuideEntityEmbed Entity="MindShieldImplanter"/>
   </Box>
 
-  ## Revolutionary
-  A [color=red]Revolutionary[/color] is a crew member that has been converted by a [bold][color=#5e9cff]Head Revolutionary[/color][/bold].
+  ## Революционер
+  [color=red]Революционер[/color] — это член экипажа, обращённый [bold][color=#5e9cff]главревом[/color][/bold].
 
-  [bold][color=red]Revolutionaries[/color] can't convert people themselves,[/bold] but they're more than capable of doing dirty work and carrying out orders.
+  [bold][color=red]Революционеры[/color] сами не конвертят,[/bold] но отлично выполняют грязную работу и приказы.
 </Document>

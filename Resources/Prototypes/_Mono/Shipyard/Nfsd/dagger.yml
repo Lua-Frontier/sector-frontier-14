@@ -3,8 +3,9 @@
   parent: BaseVesselAntag
   name: TSF-SKR Dagger
   description: Straight from the shipyards of Sol, this ship is equipped with a mass driver as its main armament for long-range fire support.
-  price: 149206 #85000
-  category: Medium
+  limit: 2
+  price: 116768 # 2000 above min
+  category: Large
   group: Security
   access: Security
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/dagger.yml
@@ -16,7 +17,7 @@
   - AME
   addComponents:
     - type: IFF
-      color: "#009954"
+      color: "#96B089"
     - type: NanotrasenFtl
 
 - type: gameMap

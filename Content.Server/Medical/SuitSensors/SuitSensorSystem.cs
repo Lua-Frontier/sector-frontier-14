@@ -8,6 +8,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
 using Content.Shared.Damage;
+using Content.Server.GameTicking; //Lua
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -49,6 +50,27 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
+    [Dependency] private readonly GameTicking.GameTicker _ticker = default!; //Lua Added to check run level
+
+    // Lua start
+    private TimeSpan _nextSensorsScan = TimeSpan.Zero;
+    private static readonly TimeSpan SensorsScanInterval = TimeSpan.FromMilliseconds(200);
+
+    private static readonly TimeSpan CordsMinUpdateRate = TimeSpan.FromSeconds(3);
+
+    private static readonly TimeSpan ServerLookupInitialBackoff = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan ServerLookupMaxBackoff = TimeSpan.FromSeconds(30);
+    private readonly Dictionary<EntityUid, TimeSpan> _nextServerLookup = new();
+    private readonly Dictionary<EntityUid, TimeSpan> _serverLookupBackoff = new();
+
+    private string _locUnknownName = string.Empty;
+    private string _locUnknownJob = string.Empty;
+    private string _locUnknownLoc = string.Empty;
+    private string _locUnknownMap = string.Empty;
+    private string _locSpace = string.Empty;
+    private string _locUnknownGrid = string.Empty;
+    // Lua end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -63,6 +85,15 @@ public sealed class SuitSensorSystem : EntitySystem
         SubscribeLocalEvent<SuitSensorComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<SuitSensorComponent, EmpDisabledRemoved>(OnEmpFinished);
         SubscribeLocalEvent<SuitSensorComponent, SuitSensorChangeDoAfterEvent>(OnSuitSensorDoAfter);
+
+        // Lua start
+        _locUnknownName = Loc.GetString("suit-sensor-component-unknown-name");
+        _locUnknownJob = Loc.GetString("suit-sensor-component-unknown-job");
+        _locUnknownLoc = Loc.GetString("suit-sensor-location-unknown");
+        _locUnknownMap = Loc.GetString("suit-sensor-location-unknown-map");
+        _locSpace = Loc.GetString("suit-sensor-location-space");
+        _locUnknownGrid = Loc.GetString("suit-sensor-location-unknown-grid");
+        // Lua end
     }
 
     public override void Update(float frameTime)
@@ -70,6 +101,11 @@ public sealed class SuitSensorSystem : EntitySystem
         base.Update(frameTime);
 
         var curTime = _gameTiming.CurTime;
+        // Lua start
+        if (curTime < _nextSensorsScan)
+            return;
+        _nextSensorsScan = curTime + SensorsScanInterval;
+        // Lua end
         //var sensors = EntityManager.EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent>(); // Frontier modification
         var sensors = EntityQueryEnumerator<SuitSensorComponent, DeviceNetworkComponent, TransformComponent>(); // Frontier modification
 
@@ -87,8 +123,13 @@ public sealed class SuitSensorSystem : EntitySystem
                 continue;
             */
 
+            // Lua start
+            var effectiveRate = sensor.UpdateRate;
+            if (sensor.Mode == SuitSensorMode.SensorCords && effectiveRate < CordsMinUpdateRate)
+                effectiveRate = CordsMinUpdateRate;
+            // Lua end
             // TODO: This would cause imprecision at different tick rates.
-            sensor.NextUpdate = curTime + sensor.UpdateRate;
+            sensor.NextUpdate = curTime + effectiveRate; // Lua sensor.UpdateRate<effectiveRate
 
             // get sensor status
             var status = GetSensorState(uid, sensor);
@@ -98,18 +139,31 @@ public sealed class SuitSensorSystem : EntitySystem
             //Retrieve active server address if the sensor isn't connected to a server
             if (sensor.ConnectedServer == null)
             {
-                // Frontier - PR 1053 QoL changes to coordinates display
-                // if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(sensor.StationId!.Value, out var address))
-                //if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(xform.MapID, out var address)) // Lua
-                //    continue; // Lua
+                // Lua start
+                if (_nextServerLookup.TryGetValue(uid, out var nextLookup) && curTime < nextLookup)
+                    continue;
+                // Lua end
                 if (!_singletonServerSystem.TryGetActiveServerAddress<CrewMonitoringServerComponent>(xform.MapID, out var address) &&
-                !_singletonServerSystem.TryGetActiveServerAddressGlobal<CrewMonitoringServerComponent>(out address))
+                    !_singletonServerSystem.TryGetActiveServerAddressGlobal<CrewMonitoringServerComponent>(out address))
                 {
+                    // Lua start
+                    var backoff = _serverLookupBackoff.TryGetValue(uid, out var currentBackoff)
+                        ? currentBackoff
+                        : ServerLookupInitialBackoff;
+
+                    _nextServerLookup[uid] = curTime + backoff;
+                    var nextBackoffTicks = Math.Min(backoff.Ticks * 2, ServerLookupMaxBackoff.Ticks);
+                    _serverLookupBackoff[uid] = new TimeSpan(nextBackoffTicks);
+                    // Lua end
                     continue;
                 }
 
 
                 sensor.ConnectedServer = address;
+                // Lua start
+                _nextServerLookup.Remove(uid);
+                _serverLookupBackoff.Remove(uid);
+                // Lua end
             }
 
             // Send it to the connected server
@@ -175,10 +229,16 @@ public sealed class SuitSensorSystem : EntitySystem
         component.StationId ??= _stationSystem.GetOwningStation(uid);
         */
 
-        // generate random mode
+        //Lua: if an item with built-in sensors spawns during the round - force Coordinates mode
+        if (_ticker.RunLevel == GameRunLevel.InRound)
+        {
+            SetSensor((uid, component), SuitSensorMode.SensorCords); //Lua: default to coordinates so medics can find players
+            return;
+        }
+
+        // Иначе (до старта раунда) оставляем прототипное поведение (рандом).
         if (component.RandomMode)
         {
-            //make the sensor mode favor higher levels, except coords.
             var modesDist = new[]
             {
                 SuitSensorMode.SensorOff,

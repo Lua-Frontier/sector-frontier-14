@@ -67,11 +67,12 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 8
 
-      - tag: CapacitorStockPart
-        name: stack-capacitor
+      - component: PowerCell # Lua start
+        name: construction-insert-info-examine-name-power-cell
+        store: battery-container
         icon:
-          sprite: Objects/Misc/stock_parts.rsi
-          state: capacitor
+          sprite: Objects/Power/power_cells.rsi
+          state: small # Lua end
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"

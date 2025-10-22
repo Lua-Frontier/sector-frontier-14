@@ -50,12 +50,15 @@ public sealed partial class MapScreen : BoxContainer
     private TimeSpan _nextMapDequeue;
 
     private float _minMapDequeue = 0.05f;
-    private float _maxMapDequeue = 0.25f;
+    private float _maxMapDequeue = 0.10f; // Frontier: 0.25<0.10
 
     private StyleBoxFlat _ftlStyle;
+    private TimeSpan _nextAutoRefresh; // Lua
+    private readonly TimeSpan _autoRefreshInterval = TimeSpan.FromMinutes(1); // Lua
 
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
+    public event Action<NetEntity?, NetEntity>? RequestTrackEntity; // Frontier
 
     private readonly Dictionary<MapId, BoxContainer> _mapHeadings = new();
     private readonly Dictionary<MapId, List<IMapObject>> _mapObjects = new();
@@ -102,6 +105,10 @@ public sealed partial class MapScreen : BoxContainer
         {
             MapRadar.ShowBeacons = args.Pressed;
         };
+
+        MapRebuildButton.Visible = false; // Lua
+        MapRebuildButton.Disabled = true; // Lua
+        _nextAutoRefresh = _timing.CurTime; // Lua
     }
 
     public void UpdateState(ShuttleMapInterfaceState state)
@@ -232,7 +239,6 @@ public sealed partial class MapScreen : BoxContainer
         }
 
         RebuildMapObjects();
-        BumpMapDequeue();
 
         _nextPing = _timing.CurTime + _pingCooldown;
         MapRebuildButton.Disabled = true;
@@ -409,6 +415,13 @@ public sealed partial class MapScreen : BoxContainer
 
             return (yMapPos.Position - shuttlePos).Length().CompareTo((xMapPos.Position - shuttlePos).Length());
         });
+
+        for (var i = _pendingMapObjects.Count - 1; i >= 0; i--) // Lua
+        {
+            var mapObj = _pendingMapObjects[i]; // Lua
+            AddMapObject(mapObj.mapId, mapObj.mapobj); // Lua
+        }
+        _pendingMapObjects.Clear(); // Lua
     }
 
     /// <summary>
@@ -434,6 +447,8 @@ public sealed partial class MapScreen : BoxContainer
         {
             case FTLState.Available:
                 return false;
+            case FTLState.Cooldown:
+                return false;
             default:
                 return true;
         }
@@ -449,6 +464,16 @@ public sealed partial class MapScreen : BoxContainer
         // If it's our map then scroll, otherwise just set position there.
         MapRadar.SetMap(coordinates.MapId, coordinates.Position, recentering: true);
     }
+
+    // Frontier: entity tracking
+    private void OnMapObjectTrackPress(IMapObject mapObject)
+    {
+        if (mapObject is not GridMapObject gridObj)
+            return;
+
+        RequestTrackEntity?.Invoke(_shuttleEntity is null ? null : _entManager.GetNetEntity(_shuttleEntity), _entManager.GetNetEntity(gridObj.Entity));
+    }
+    // End Frontier: entity tracking
 
     public void SetMap(MapId mapId, Vector2 position)
     {
@@ -472,13 +497,15 @@ public sealed partial class MapScreen : BoxContainer
             HorizontalExpand = true,
         };
 
+        gridButton.Label.ClipText = true; // Frontier
+
         var gridContainer = new BoxContainer()
         {
             Children =
             {
                 new Control()
                 {
-                    MinWidth = 32f,
+                    MinWidth = 16f, // Frontier: 32<16
                 },
                 gridButton
             }
@@ -491,6 +518,23 @@ public sealed partial class MapScreen : BoxContainer
         {
             OnMapObjectPress(mapObj);
         };
+
+        // Frontier: tracking button handler
+        if (mapObj is GridMapObject gridObj)
+        {
+            var trackButton = new Button()
+            {
+                Text = Loc.GetString("shuttle-console-map-track"),
+                MinWidth = 32,
+                MaxWidth = 32
+            };
+            trackButton.OnPressed += args =>
+            {
+                OnMapObjectTrackPress(mapObj);
+            };
+            gridContainer.Children.Add(trackButton);
+        }
+        // End Frontier: tracking button handler
 
         if (gridContents.ChildCount > 1)
         {
@@ -529,17 +573,10 @@ public sealed partial class MapScreen : BoxContainer
 
         var curTime = _timing.CurTime;
 
-        if (_nextMapDequeue < curTime && _pendingMapObjects.Count > 0)
+        if (!IsFTLBlocked() && _nextAutoRefresh <= curTime) // Lua
         {
-            var mapObj = _pendingMapObjects[^1];
-            _pendingMapObjects.RemoveAt(_pendingMapObjects.Count - 1);
-            AddMapObject(mapObj.mapId, mapObj.mapobj);
-            BumpMapDequeue();
-        }
-
-        if (!IsFTLBlocked() && _nextPing < curTime)
-        {
-            MapRebuildButton.Disabled = false;
+            RebuildMapObjects(); // Lua
+            _nextAutoRefresh = curTime + _autoRefreshInterval; // Lua
         }
 
         var progress = _ftlTime.ProgressAt(curTime);

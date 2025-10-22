@@ -77,6 +77,8 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentShutdown>(OnStationShutdown);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
+        SubscribeLocalEvent<StationGridAddedEvent>(OnStationGridAddedAssignDeadDrops);
+        SubscribeLocalEvent<PotentialDeadDropComponent, ComponentStartup>(OnPotentialDeadDropStartup);
         SubscribeLocalEvent<SectorDeadDropComponent, ComponentInit>(OnSectorDeadDropInit);
 
         Subs.CVar(_cfg, NFCCVars.SmugglingMaxSimultaneousPods, OnMaxSimultaneousPodsChanged, true);
@@ -180,10 +182,94 @@ public sealed class DeadDropSystem : EntitySystem
     // Then once on any new stations if/when they're created.
     private void OnStationStartup(EntityUid stationUid, StationDeadDropComponent component, ComponentStartup _)
     {
-        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
+        EntityUid resolvedStation;
+        if (HasComp<StationDataComponent>(stationUid))
+        { resolvedStation = stationUid; }
+        else
         {
-            deadDrop.DeadDropStationNames[stationUid] = MetaData(stationUid).EntityName;
+            var station = _station.GetOwningStation(stationUid);
+            if (station == null) return;
+            resolvedStation = station.Value;
         }
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
+        { deadDrop.DeadDropStationNames[resolvedStation] = MetaData(resolvedStation).EntityName; }
+        TryAssignDeadDropsForStation(resolvedStation, component.MaxDeadDrops);
+    }
+
+    private void TryAssignDeadDropsForStation(EntityUid stationUid, int maxDeadDrops)
+    {
+        if (maxDeadDrops <= 0) return;
+        int existing = 0;
+        var activeQuery = EntityManager.EntityQueryEnumerator<DeadDropComponent>();
+        while (activeQuery.MoveNext(out var ent, out var _))
+        {
+            var station = _station.GetOwningStation(ent);
+            if (station != null && station.Value == stationUid) existing++;
+        }
+        var toAssign = int.Max(0, maxDeadDrops - existing);
+        if (toAssign <= 0) return;
+        List<EntityUid> potentials = new();
+        var potentialQuery = EntityManager.EntityQueryEnumerator<PotentialDeadDropComponent>();
+        while (potentialQuery.MoveNext(out var ent, out var _))
+        {
+            var station = _station.GetOwningStation(ent);
+            if (station == null || station.Value != stationUid) continue;
+            if (!TryComp(ent, out TransformComponent? xform) || !xform.Anchored) continue;
+            if (HasComp<DeadDropComponent>(ent)) continue;
+            potentials.Add(ent);
+        }
+        if (potentials.Count == 0)
+        { _sawmill.Debug($"{MetaData(stationUid).EntityName} has no potential dead drops available for assignment."); return; }
+        _random.Shuffle(potentials);
+        int assigned = 0;
+        var dropList = new StringBuilder();
+        foreach (var ent in potentials)
+        {
+            if (assigned >= toAssign) break;
+            AddDeadDrop(ent);
+            assigned++;
+            if (dropList.Length <= 0) dropList.Append(ent);
+            else dropList.Append($", {ent}");
+        }
+        if (assigned > 0)
+        {
+            _sawmill.Debug($"{MetaData(stationUid).EntityName} dead drops assigned: {dropList}");
+            _sawmill.Debug($"{MetaData(stationUid).EntityName} late dead drops assigned: {assigned}");
+        }
+    }
+
+    private void OnStationGridAddedAssignDeadDrops(StationGridAddedEvent ev)
+    {
+        if (!TryComp<StationDeadDropComponent>(ev.GridId, out var stationDrop)) return;
+        var station = ev.Station;
+        TryAssignDeadDropsForStation(station, stationDrop.MaxDeadDrops);
+    }
+
+    private void OnPotentialDeadDropStartup(EntityUid uid, PotentialDeadDropComponent component, ComponentStartup _)
+    {
+        var station = _station.GetOwningStation(uid);
+        if (station == null) return;
+        StationDeadDropComponent? stationDropOnStation;
+        StationDeadDropComponent? stationDropOnGrid;
+        TryComp<StationDeadDropComponent>(station.Value, out stationDropOnStation);
+        TryComp<StationDeadDropComponent>(uid, out stationDropOnGrid);
+        if (stationDropOnStation == null && stationDropOnGrid == null) return;
+        var max = 0;
+        if (stationDropOnStation != null) max = stationDropOnStation.MaxDeadDrops;
+        else if (stationDropOnGrid != null) max = stationDropOnGrid.MaxDeadDrops;
+        if (max <= 0) return;
+        if (!TryComp(uid, out TransformComponent? xform) || !xform.Anchored) return;
+        if (HasComp<DeadDropComponent>(uid)) return;
+        int existing = 0;
+        var activeQuery = EntityManager.EntityQueryEnumerator<DeadDropComponent>();
+        while (activeQuery.MoveNext(out var ent, out var _))
+        {
+            var st = _station.GetOwningStation(ent);
+            if (st != null && st.Value == station.Value) existing++;
+        }
+        if (existing >= max) return;
+        AddDeadDrop(uid);
+        _sawmill.Debug($"{MetaData(station.Value).EntityName} late single dead drop assigned: {uid}");
     }
 
     // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
@@ -257,132 +343,36 @@ public sealed class DeadDropSystem : EntitySystem
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
     {
-        _sawmill.Debug("Generating dead drops!");
-        // Distribute total number of dead drops to assign between each station.
-        var remainingDeadDrops = _maxDeadDrops;
-
-        Dictionary<EntityUid, (int assigned, int max)> assignedDeadDrops = new();
+        _sawmill.Debug("Generating dead drops");
         var stationDropQuery = AllEntityQuery<StationDeadDropComponent>();
-        while (stationDropQuery.MoveNext(out var station, out var stationDeadDrop))
+        while (stationDropQuery.MoveNext(out var holder, out var stationDeadDrop))
         {
-            var deadDropCount = int.Min(remainingDeadDrops, _random.Next(0, stationDeadDrop.MaxDeadDrops + 1));
-            assignedDeadDrops[station] = (deadDropCount, stationDeadDrop.MaxDeadDrops);
-            remainingDeadDrops -= deadDropCount;
+            EntityUid station;
+            if (HasComp<StationDataComponent>(holder)) station = holder;
+            else
+            {
+                var own = _station.GetOwningStation(holder);
+                if (own is null) continue;
+                station = own.Value;
+            }
+
+            TryAssignDeadDropsForStation(station, stationDeadDrop.MaxDeadDrops);
         }
-
-        // We have remaining dead drops, assign them to whichever stations have remaining space (in a random order)
-        if (remainingDeadDrops > 0)
-        {
-            var stationList = assignedDeadDrops.Keys.ToList();
-            _random.Shuffle(stationList);
-            foreach (var station in stationList)
-            {
-                var dropTuple = assignedDeadDrops[station];
-
-                // Insert as many dead drops here as we can.
-                var remainingSpace = dropTuple.max - dropTuple.assigned;
-                remainingSpace = int.Min(remainingSpace, remainingDeadDrops);
-                dropTuple.assigned += remainingSpace;
-                assignedDeadDrops[station] = dropTuple;
-
-                // Adjust global counts.
-                remainingDeadDrops -= remainingSpace;
-
-                if (remainingDeadDrops <= 0)
-                    break;
-            }
-        }
-
-        _sawmill.Debug("Drop assignments:");
-        foreach (var (station, dropSet) in assignedDeadDrops)
-        {
-            _sawmill.Debug($"    {MetaData(station).EntityName} will place {dropSet.assigned} dead drops.");
-        }
-
-        // For each station, distribute its assigned dead drops to potential dead drop components available on their grids.
-        Dictionary<EntityUid, List<EntityUid>> potentialDropEntitiesPerStation = new();
-        var potentialDropQuery = AllEntityQuery<PotentialDeadDropComponent>();
-        while (potentialDropQuery.MoveNext(out var ent, out var _))
-        {
-            var station = _station.GetOwningStation(ent);
-            if (station is null)
-            {
-                continue;
-            }
-
-            // All dead drops must be anchored.
-            if (!TryComp(ent, out TransformComponent? xform) || !xform.Anchored)
-                continue;
-
-            var stationUid = station.Value;
-            if (assignedDeadDrops.ContainsKey(stationUid))
-            {
-                if (!potentialDropEntitiesPerStation.ContainsKey(stationUid))
-                    potentialDropEntitiesPerStation[stationUid] = new List<EntityUid>();
-
-                potentialDropEntitiesPerStation[stationUid].Add(ent);
-            }
-        }
-
-        List<(EntityUid, EntityUid)> deadDropStationTuples = new();
-        StringBuilder dropList = new();
-        foreach (var (station, potentialDropList) in potentialDropEntitiesPerStation)
-        {
-            if (!assignedDeadDrops.TryGetValue(station, out var stationDrops))
-            {
-                continue;
-            }
-
-            List<EntityUid> drops = new();
-            _random.Shuffle(potentialDropList);
-            for (int i = 0; i < potentialDropList.Count && i < stationDrops.assigned; i++)
-            {
-                var dropUid = potentialDropList[i];
-                AddDeadDrop(dropUid);
-                deadDropStationTuples.Add((station, dropUid));
-                drops.Add(dropUid);
-
-                if (dropList.Length <= 0)
-                    dropList.Append(dropUid);
-                else
-                    dropList.Append($", {dropUid}");
-            }
-            if (dropList.Length > 0)
-            {
-                _sawmill.Debug($"{MetaData(station).EntityName} dead drops assigned: {dropList}");
-                dropList.Clear();
-            }
-        }
-
-        // From all existing hints, select a set few to be actual hints, replace the text in the remainder with random hints from a set.
         var hintQuery = AllEntityQuery<DeadDropHintComponent>();
-
         List<EntityUid> allHints = new();
-
         while (hintQuery.MoveNext(out var ent, out var _))
-        {
             allHints.Add(ent);
-        }
 
         _random.Shuffle(allHints);
-
-        // Generate a random number of hints.
         var numHints = _random.Next(_minDeadDropHints, _maxDeadDropHints + 1);
-
         for (int i = 0; i < allHints.Count && i < numHints; i++)
         {
             var ent = allHints[i];
-
-            // Select some number of dead drops to hint
             if (TryComp<PaperComponent>(ent, out var paper))
             {
-                var hintString = GenerateRandomHint(deadDropStationTuples);
+                var hintString = GenerateRandomHint();
                 _paper.SetContent((ent, paper), hintString);
             }
-
-            // Hint generated, destroy component
-            //RemComp<DeadDropHintComponent>(ent); // Removed so we can keep track of it
-            _sawmill.Debug($"Dead drop hint generated at {ent}.");
         }
 
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop) &&
@@ -392,16 +382,9 @@ public sealed class DeadDropSystem : EntitySystem
             for (int i = numHints; i < allHints.Count; i++)
             {
                 var ent = allHints[i];
-
-                // Randomly assign a string from our list of fake hint strings.
                 var index = _random.Next(0, hintCount);
                 var msg = Loc.GetString(deadDropHints.Values[index]);
-
-                // Select some number of dead drops to hint
-                if (TryComp<PaperComponent>(ent, out var paper))
-                    _paper.SetContent((ent, paper), msg);
-
-                // Hint generated, destroy component
+                if (TryComp<PaperComponent>(ent, out var paper)) _paper.SetContent((ent, paper), msg);
                 RemComp<DeadDropHintComponent>(ent);
             }
         }
@@ -470,6 +453,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
 
         var stationName = Loc.GetString(component.Name);
+        var sectorName = MetaData(mapUid.Value).EntityName;
 
         var meta = EnsureComp<MetaDataComponent>(grid);
         _meta.SetEntityName(grid, stationName, meta);
@@ -519,6 +503,7 @@ public sealed class DeadDropSystem : EntitySystem
         var dropHint = new StringBuilder();
         dropHint.AppendLine(Loc.GetString("deaddrop-hint-pretext"));
         dropHint.AppendLine();
+        dropHint.AppendLine(Loc.GetString("deaddrop-hint-sector", ("sector", sectorName)));
         dropHint.AppendLine(dropLocation.ToString());
         dropHint.AppendLine();
         dropHint.AppendLine(Loc.GetString("deaddrop-hint-posttext"));

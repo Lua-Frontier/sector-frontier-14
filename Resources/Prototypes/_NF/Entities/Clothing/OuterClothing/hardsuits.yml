@@ -17,15 +17,15 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.8
+        Blunt: 0.65 #Lua 0.75<0.65
+        Slash: 0.65 #Lua 0.75<0.65
+        Piercing: 0.7 #Lua 0.75<0.7
+        Heat: 0.7 #Lua 0.8<0.7
         Radiation: 0.6
         Caustic: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.8
+    sprintModifier: 0.85 #Lua 0.8<0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
@@ -74,7 +74,7 @@
 
 #ERT Mail Carrier Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ ClothingOuterHardsuitCBURN, HardsuitIdentify ] # Lua: add HardsuitIdentify
   id: ClothingOuterHardsuitERTMailCarrier
   name: ERT mail carrier's hardsuit
   description: A protective hardsuit worn by the mail carriers of an emergency response team.
@@ -85,6 +85,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMailCarrier
+  - type: ThermalCloak
+    enabled: false
 
 # MAXIM Nerfed: used best stats from spationaut, mining and luxury hardsuits, additionally increased caustic resistance
 - type: entity
@@ -102,15 +104,15 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.5
-        Heat: 0.8
+        Blunt: 0.65 #Lua 0.7<0.65
+        Slash: 0.65 #Lua 0.7<0.65
+        Piercing: 0.55 #Lua 0.5<0.65
+        Heat: 0.6 #Lua 0.8<0.6
         Radiation: 0.3
         Caustic: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.8
-    sprintModifier: 0.9
+    sprintModifier: 0.95 #Lua 0.9<0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
@@ -171,6 +173,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.9
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -184,6 +188,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -197,6 +203,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -210,6 +218,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -223,6 +233,8 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmedic
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
@@ -255,6 +267,8 @@
     sprintModifier: 0.65
   - type: FactionClothing
     faction: NanoTrasen
+  - type: ThermalCloak
+    enabled: false
 
 #Security Combat Hardsuit
 - type: entity
@@ -283,6 +297,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ThermalCloak
+    enabled: false
 
 #Security Command Hardsuit
 - type: entity
@@ -311,6 +327,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ThermalCloak
+    enabled: false
 
 # SCAF hardsuit
 - type: entity
@@ -344,6 +362,8 @@
     clothingPrototype: ClothingHeadHelmetHardsuitScaf
   - type: PirateBountyItem
     id: ClothingOuterHardsuitScaf
+  - type: ThermalCloak
+    enabled: false
 
 # Tactical Maid Hardsuit
 
@@ -380,7 +400,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
 
 - type: entity
-  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing]
+  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing, HardsuitIdentify] # Lua: add HardsuitIdentify
   id: ClothingOuterHardsuitPirateElite
   name: elite pirate hardsuit
   description: An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
@@ -405,3 +425,39 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.75
+  - type: ThermalCloak
+    enabled: false
+
+#Wizard Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3WizardContraband, ContrabandClothing, HardsuitIdentify] # Frontier: BaseMagicalContraband<BaseC3WizardContraband, ContrabandClothing as parent/ Lua: added HardsuitIdentify
+  id: ClothingOuterHardsuitWizardBrick
+  name: brick wizard hardsuit
+  description: A weird hardsuit with ornaments made of baked clay and magical gemstones.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/brickwizard.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/brickwizard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.5
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWizardBrick
+  - type: ThermalCloak
+    enabled: false

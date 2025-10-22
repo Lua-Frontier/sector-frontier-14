@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared.Conveyor;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
@@ -130,10 +130,18 @@ public abstract class SharedConveyorController : VirtualController
 
         var query = EntityQueryEnumerator<ConveyedComponent, FixturesComponent, PhysicsComponent, TransformComponent>();
 
-        while (query.MoveNext(out var uid, out var comp, out var fixtures, out var physics, out var xform))
+        var count = 0; // Lua start
+        while (query.MoveNext(out var uid, out var comp, out var fixtures, out var physics, out var xform))//default
         {
-            _job.Conveyed.Add(((uid, comp, fixtures, physics, xform), Vector2.Zero, false));
+            if (!physics.Awake) continue;
+            if (!physics.Predict && prediction) continue;
+            if (physics.BodyStatus != BodyStatus.OnGround) continue;
+            if (physics.ContactCount == 0) continue;
+            if (xform.GridUid == null) continue;
+            _job.Conveyed.Add(((uid, comp, fixtures, physics, xform), Vector2.Zero, false)); //default
+            count++;
         }
+        if (count == 0) { return; }// Lua end
 
         _parallel.ProcessNow(_job, _job.Conveyed.Count);
 

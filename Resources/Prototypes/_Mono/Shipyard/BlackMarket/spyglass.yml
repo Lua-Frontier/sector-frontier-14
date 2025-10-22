@@ -2,9 +2,9 @@
   id: Spyglass
   parent: BaseVesselAntag
   name: RSIC Spyglass
-  description: One of the more rare kinds of ships you'll see rogues with. A actual commercial one. Capable of Xenoarcheology and Robotics.
-  price: 51500
-  category: Small
+  description: Полевая научная лаборатория. Непригодна для боев, но отлично справляется с изучением полезных для грабежа технологий
+  price: 41559
+  category: Medium
   group: BlackMarket
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/spyglass.yml
   guidebookPage: Null
@@ -15,7 +15,7 @@
   - Uranium
   addComponents:
     - type: IFF
-      color: "#8A6642FF"
+      color: "#948471"
     - type: PirateFtl
     - type: PirateMercFtl
     - type: NanotrasenFtl

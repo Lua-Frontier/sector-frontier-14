@@ -47,6 +47,7 @@
     solution: beaker
   - type: SolutionTransfer
     maxTransferAmount: 30
+    minTransferAmount: 1 # Lua
     canChangeTransferAmount: true
   - type: SolutionItemStatus
     solution: beaker
@@ -68,7 +69,7 @@
   - type: TrashOnSolutionEmpty
     solution: beaker
   - type: StaticPrice
-    price: 100
+    price: 5 #Lua 0.5 glass for = 30$ LoL
   - type: DamageOnLand
     damage:
       types:
@@ -141,6 +142,7 @@
     solution: beaker
   - type: SolutionTransfer
     maxTransferAmount: 30
+    minTransferAmount: 1 # Lua
     canChangeTransferAmount: true
   - type: SolutionItemStatus
     solution: beaker

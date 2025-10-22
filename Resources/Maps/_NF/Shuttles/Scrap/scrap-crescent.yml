@@ -1930,10 +1930,12 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 1130
+    mapInit: true
+    paused: true
     components:
     - type: Transform
       parent: 2230
-    - type: InstantAction
+    - type: Action
       container: 2230
 - proto: Airlock
   entities:
@@ -7292,7 +7294,7 @@ entities:
     - type: Transform
       pos: 7.5,12.5
       parent: 1
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 1125
     components:

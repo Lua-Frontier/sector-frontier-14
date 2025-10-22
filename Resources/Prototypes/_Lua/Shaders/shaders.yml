@@ -11,3 +11,23 @@
 #   id: Saphaphrem
 #   kind: source
 #   path: "/Textures/_Lua/Shaders/saphaphrem.swsl"
+
+# Hair/fur linear gradient used in customization
+- type: shader
+  id: HairGradient
+  kind: source
+  path: "/Textures/_Lua/Shaders/hair_linear_gradient.swsl"
+  params:
+    color1: 1, 0, 0
+    color2: 1, 1, 1
+    direction: 0
+  light_mode: shaded
+
+# Monolith addition
+# Cuts out everything outside of a circle
+# Anti-aliased so the edges are smooth
+# Radius is relative to target size (0.5 is a full circle)
+- type: shader
+  id: CircleAlphaMask
+  kind: source
+  path: "/Textures/_Lua/Shaders/circle_alpha_mask.swsl"

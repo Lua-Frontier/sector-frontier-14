@@ -30,7 +30,7 @@ public sealed partial class MechComponent : Component
     /// The maximum amount of damage the mech can take.
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public FixedPoint2 MaxIntegrity = 250;
+    public FixedPoint2 MaxIntegrity = 450;
 
     /// <summary>
     /// How much energy the mech has.
@@ -137,6 +137,12 @@ public sealed partial class MechComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool Airtight;
 
+    [DataField]
+    public bool NightVisionEnabled = false;
+
+    [DataField]
+    public Color NightVisionColor = Color.FromHex("#999999");
+
     /// <summary>
     /// The equipment that the mech initially has when it spawns.
     /// Good for things like nukie mechs that start with guns.
@@ -151,6 +157,12 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechUiAction = "ActionMechOpenUI";
     [DataField]
     public EntProtoId MechEjectAction = "ActionMechEject";
+    [DataField]
+    public EntProtoId MechToggleLightAction = "ActionMechToggleLight";
+    [DataField]
+    public EntProtoId MechPryDoorAction = "ActionMechPryDoor";
+    [DataField]
+    public EntProtoId MechNightVisionAction = "ActionMechNightVision";
     #endregion
 
     #region Visualizer States
@@ -165,10 +177,24 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechCycleActionEntity;
     [DataField] public EntityUid? MechUiActionEntity;
     [DataField] public EntityUid? MechEjectActionEntity;
+    [DataField] public EntityUid? MechToggleLightActionEntity;
+    [DataField] public EntityUid? MechPryDoorActionEntity;
+    [DataField] public EntityUid? MechNightVisionActionEntity;
 
+    // Frontier: extra fields
     /// <summary>
-    /// Frontier: whether or not the equipment in the mech can be removed.
+    /// Whether or not the equipment in the mech can be removed.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool CanRemoveEquipment = true;
+
+    [DataField(serverOnly: true)]
+    public bool MobStateAdded = false;
+
+    [DataField(serverOnly: true)]
+    public bool MobThresholdsAdded = false;
+
+    [DataField(serverOnly: true)]
+    public bool NpcFactionAdded = false;
+    // End Frontier: extra fields
 }

@@ -44,6 +44,7 @@
   - type: Tag
     tags:
     - HudMedical
+    - WhitelistChameleon
   - type: StaticPrice # Frontier
     price: 30 # Frontier
 
@@ -60,6 +61,7 @@
   - type: Tag
     tags:
     - HudSecurity
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
@@ -313,7 +315,7 @@
     toggleAction: ToggleThermalVision
   - type: NightVision
     isEquipment: true
-    color: "#00BFFF"
+    color: "#999999"
     toggleAction: ToggleNightVision
 
 - type: entity

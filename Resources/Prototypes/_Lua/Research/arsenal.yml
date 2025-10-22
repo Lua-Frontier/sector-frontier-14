@@ -1,10 +1,8 @@
 - type: technology
   id: LuaAdvancedSalvage
   name: research-technology-advanced-salvage
-  icon:
-    sprite: Corvax/Objects/Weapons/Melee/magmitecrusher.rsi
-    state: icon
-  discipline: Arsenal
+  entityIcon: WeaponMagmiteCrusher
+  discipline: NFArsenalNfsd
   tier: 3
   cost: 25000
   recipeUnlocks:
@@ -14,4 +12,5 @@
   - WeaponMagmiteAccelerator
   technologyPrerequisites:
   - NFSalvageWeapons
-  - MagnetsTechCombat
+  - NFMagnetsTechCombat
+  position: 4, 39

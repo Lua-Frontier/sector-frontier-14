@@ -31,11 +31,12 @@
   description: Переключает ваше ПНВ
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 2.5
     icon:
       sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
       state: icon
+  - type: InstantAction
     event: !type:ToggleNightVisionEvent
 
 - type: entity
@@ -44,9 +45,10 @@
   description: Переключает ночное зрение
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 2.5
     icon:
       sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
       state: icon
+  - type: InstantAction
     event: !type:ToggleNightVisionEvent

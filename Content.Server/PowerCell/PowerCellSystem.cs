@@ -27,19 +27,21 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._NF.Power.Components; // Frontier
 using Content.Server.Emp;
+using Content.Server.Kitchen.Components;
 using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
+using Content.Server.UserInterface;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Emp;
 using Content.Shared.Examine;
+using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Rounding;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Kitchen.Components;
-using Content.Server.Power.EntitySystems;
-using Content.Server.UserInterface;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Popups;
 using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
 
 namespace Content.Server.PowerCell;
@@ -56,6 +58,7 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearanceSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly RiggableSystem _riggableSystem = default!;
+    [Dependency] private readonly PowerReceiverSystem _powerSystem = default!; // Frontier
 
     public override void Initialize()
     {
@@ -172,6 +175,15 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     /// <param name="user">Popup to this user with the relevant detail if specified.</param>
     public bool HasCharge(EntityUid uid, float charge, PowerCellSlotComponent? component = null, EntityUid? user = null)
     {
+        // Frontier start - Mixed Power Recievers
+        if (HasComp<MixedPowerReceiverComponent>(uid) &&
+            TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+            _powerSystem.IsPowered(uid, apcPowerComp))
+        {
+            return true;
+        }
+        // Frontier end - Mixed Power Recievers
+
         if (!TryGetBatteryFromSlot(uid, out var battery, component))
         {
             if (user != null)
@@ -196,6 +208,17 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
     /// </summary>
     public bool TryUseCharge(EntityUid uid, float charge, PowerCellSlotComponent? component = null, EntityUid? user = null)
     {
+
+        // Frontier start - Mixed Power Recievers
+        if (HasComp<MixedPowerReceiverComponent>(uid) &&
+            TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerComp) &&
+            _powerSystem.IsPowered(uid, apcPowerComp))
+        {
+            return true;
+        }
+        // Frontier end - Mixed Power Recievers
+
+
         if (!TryGetBatteryFromSlot(uid, out var batteryEnt, out var battery, component))
         {
             if (user != null)

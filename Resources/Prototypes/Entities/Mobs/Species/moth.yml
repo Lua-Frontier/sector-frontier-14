@@ -29,6 +29,13 @@
     allowedEmotes: ['Chitter', 'Squeak']
   - type: TypingIndicator
     proto: moth
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    - Moth
+    understands:
+    - Intergalactic
+    - Moth # Lua end
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -73,6 +80,7 @@
       289: 0.8
       275: 0.6
       250: 0.4
+  - type: FluffyWhitelist # Frontier
   - type: Sprite # sprite again because we want different layer ordering
     noRot: true
     drawdepth: Mobs

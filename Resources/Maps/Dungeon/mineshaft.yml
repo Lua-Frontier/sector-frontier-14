@@ -17,7 +17,6 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -109,7 +108,6 @@ entities:
     - type: LoadedMap
     - type: SpreaderGrid
     - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
     - type: DecalGrid
       chunkCollection:
@@ -1098,7 +1096,7 @@ entities:
     - type: Transform
       pos: 32.5,9.5
       parent: 2
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 3
     components:

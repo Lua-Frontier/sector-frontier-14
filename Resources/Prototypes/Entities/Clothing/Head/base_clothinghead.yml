@@ -22,8 +22,8 @@
           Quantity: 10
   - type: Tag
     tags:
-      - ClothMade
-      - WhitelistChameleon
+    - ClothMade
+    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -35,10 +35,14 @@
     spawned:
     - id: MaterialCloth1
       amount: 1
+  - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
+    materialComposition:
+      Cloth: 50
   - type: Tag
     tags:
-      - ClothMade
-      - WhitelistChameleon
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
 
 - type: entity
   abstract: true
@@ -58,7 +62,9 @@
   - type: Item
     heldPrefix: off
     size: Normal
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
     radius: 3
@@ -105,6 +111,9 @@
   id: ClothingHeadEVAHelmetBase
   name: base space helmet
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [ears, eyes, mask]
   - type: BreathMask
   - type: Item
     size: Normal
@@ -141,6 +150,9 @@
   name: base hardsuit helmet
   categories: [ HideSpawnMenu ]
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [ears, eyes, mask]
   - type: BreathMask
   - type: Sprite
     state: icon # default state used by most inheritors
@@ -188,6 +200,9 @@
   name: base hardsuit helmet with light
   categories: [ HideSpawnMenu ]
   components:
+# SlotBlocker blocked until UI change
+#  - type: SlotBlock
+#    slots: [ears, eyes, mask]
   - type: Sprite
     layers:
     - state: icon
@@ -196,11 +211,13 @@
       map: [ "light" ]
   - type: Clothing
     equippedPrefix: off
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 3
-    energy: 2
+    radius: 6 # Lua: 6<9
+    energy: 4 # Lua: 4<6
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -215,8 +232,8 @@
         id: radiating
         interpolate: Linear
         maxDuration: 2.0
-        startValue: 3.0
-        endValue: 2.0
+        startValue: 6.0 # Lua: 6.0<9.0
+        endValue: 4.0 # Lua: 4.0<6.0
         isLooped: true
         reverseWhenFinished: true
       - !type:PulseBehaviour

@@ -124,6 +124,10 @@
   - type: ShuttleConsole
   - type: ShuttleConsoleLock
     locked: false
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 2
+    visualMultiplier: 16
+    infraredOutlinePortion: 1.0
   - type: DeviceLinkSource
     ports:
     - device-button-1
@@ -144,6 +148,8 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
+    maxRange: 512
+    maxIffRange: 512
   - type: WorldLoader
     radius: 256
   - type: PointLight
@@ -170,6 +176,7 @@
     guides:
     - ShuttleCraft
   - type: NoSignalOnLink
+  - type: NoDeconstruct
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
@@ -530,7 +537,7 @@
   - type: UserInterface
     interfaces:
       enum.ResearchConsoleUiKey.Key:
-        type: ResearchConsoleBoundUserInterface
+        type: ResearchConsoleFrontierBoundUserInterface # Frontier: ResearchConsole<ResearchConsoleFrontier
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface
       enum.WiresUiKey.Key:
@@ -748,6 +755,7 @@
     color: "#ff0000"
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: false # The title already says who they are.
     sound: /Audio/_Lua/Announcements/war.ogg # Lua
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
@@ -781,6 +789,7 @@
     color: "#ff00ff"
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: false
     sound: /Audio/_Lua/Announcements/war.ogg # Lua
   - type: Computer
     board: WizardCommsComputerCircuitboard
@@ -1253,6 +1262,42 @@
   - type: GuideHelp
     guides:
     - Cloning
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerSalvageJobBoard
+  name: salvage job board
+  description: Console for accessing salvage jobs, if you're tough enough.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: salvjob # givin em a salvjob like hawk tuah
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: SalvageJobBoardConsole
+  - type: ActivatableUI
+    key: enum.SalvageJobBoardUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SalvageJobBoardUiKey.Key:
+        type: SalvageJobBoardBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActiveRadio
+    channels: [ Supply ]
+  - type: Computer
+    board: SalvageJobBoardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
 
 - type: entity
   id: ComputerSalvageExpedition

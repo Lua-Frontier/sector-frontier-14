@@ -15,16 +15,16 @@
     - type: Blocking
       passiveBlockModifier:
         coefficients:
-          Blunt: 0.9
-          Slash: 0.9
-          Piercing: 0.9
-          Heat: 0.9
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.7
+          Heat: 0.7
       activeBlockModifier:
         coefficients:
-          Blunt: 0.8
-          Slash: 0.8
-          Piercing: 0.8
-          Heat: 0.8
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.5
         flatReductions:
           Blunt: 1
           Slash: 1
@@ -320,7 +320,7 @@
 
 - type: entity
   name: mirror shield
-  parent: BaseShield
+  parent: [ BaseShield, BaseC3WizardContraband] # Frontier: BaseMagicalContraband<BaseC3WizardContraband
   id: MirrorShield
   description: Eerily glows red... you hear the geometer whispering
   components:
@@ -401,7 +401,7 @@
       heldPrefix: eshield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
@@ -612,7 +612,7 @@
       heldPrefix: teleriot
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:

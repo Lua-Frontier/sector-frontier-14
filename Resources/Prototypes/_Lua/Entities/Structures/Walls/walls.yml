@@ -14,7 +14,7 @@
     state: rgeneric
   - type: Construction
     graph: Girder
-    node: reinforcedWall
+    node: WallKrissReinforced
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -74,7 +74,7 @@
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
-    node: wall
+    node: WallKrissSolid
   - type: Icon
     sprite: _Lua/Structures/Walls/Krisswall.rsi
   - type: RCDDeconstructable
@@ -117,10 +117,55 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
     state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
+    state: state0
+  - type: Construction
+    graph: Girder
+    node: WallKrissSolidDiagonal
+
+# Indestructible variants (new), keep visuals/name from Kriss but inherit indestructible behavior
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallKrissSolidIndestructible
+  name: solid wall
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/Krisswall.rsi
+    color: "#ffffff"
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krisswall.rsi
+  - type: IconSmooth
+    key: walls
+    base: solid
+
+- type: entity
+  parent: WallPlastitaniumDiagonalIndestructible
+  id: WallKrissSolidDiagonalIndestructible
+  name: solid wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Occluder
+    enabled: false
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/Krisswall_diagonal.rsi
+    state: state0
+    color: "#ffffff"
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -165,6 +210,9 @@
         - WallLayer
   - type: Occluder
     enabled: false
+  - type: Construction
+    graph: Girder
+    node: WallKrissReinforcedDiagonal
 
 - type: entity
   id: ReinforcedWindowKriss
@@ -224,6 +272,22 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
 
+# Indestructible reinforced window variants reusing Kriss sprites
+- type: entity
+  id: ReinforcedWindowKrissIndestructible
+  name: reinforced window
+  parent: PlastitaniumWindowIndestructible
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Lua/Structures/Walls/Krissglass.rsi
+    color: "#ffffff"
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krissglass.rsi
+  - type: IconSmooth
+    key: walls
+    base: rwindow
+
 - type: entity
   parent: ReinforcedWindowKriss
   id: ReinforcedWindowKrissDiagonal
@@ -272,6 +336,24 @@
     graph: WindowDiagonal
     node: reinforcedWindowDiagonal
 
+- type: entity
+  id: ReinforcedWindowKrissDiagonalIndestructible
+  name: reinforced window
+  parent: PlastitaniumWindowDiagonalIndestructible
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Lua/Structures/Walls/Krissglass_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Krissglass_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+
 #Station Walls
 - type: entity
   parent: WallPlastitaniumIndestructible
@@ -281,7 +363,7 @@
   suffix: "Станция"
   components:
     - type: Sprite # Frontier
-      color: "#a16e30" # Frontier
+      color: "#a6a6a6" # Frontier
     - type: Tag
       tags:
         - Wall
@@ -314,11 +396,13 @@
     snap:
     - Wall
   components:
+  - type: Occluder
+    enabled: false
   - type: Sprite
     drawdepth: Walls
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
-    color: "#a16e30" # Lua
+    color: "#a6a6a6" # Lua
   - type: IconSmooth
     mode: Diagonal
     key: walls
@@ -353,6 +437,8 @@
   parent: PlastitaniumWindowSquareBase
   suffix: "Станция"
   components:
+  - type: Sprite # Frontier
+    color: "#a6a6a6" # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -390,6 +476,8 @@
   parent: PlastitaniumWindowDiagonalBase
   suffix: "Станция Диагональ"
   components:
+  - type: Sprite # Frontier
+    color: "#a6a6a6" # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -420,3 +508,537 @@
     damageModifierSet: RGlass
   - type: StaticPrice
     price: 500
+
+- type: entity
+  parent: BaseWall
+  id: WallSoft
+  name: soft wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/Softwall.rsi
+  - type: Icon
+    sprite: _Lua/Structures/Walls/Softwall.rsi
+  - type: Construction
+    graph: Girder
+    node: reinforcedWall
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200 # Lua 300<1200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 600 # Lua 150<600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: silver
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: WallPlastitaniumDiagonalIndestructible
+  id: WallRivetedDiagonal
+  name: riveted wall
+  suffix: diagonal
+  description: Skub knows this wall is too hard to destroy. # Frontier
+  components:
+  - type: Occluder
+    enabled: false
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/riveted_diagonal.rsi
+    state: state0
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/riveted_diagonal.rsi
+    state: state0
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2500 # Lua 1200<2000<2500
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Girder:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+  - type: RCDDeconstructable # Frontier
+    deconstructable: false # Frontier
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 250
+
+#Стены для монастыря Фауста
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallMonasteryGray
+  name: monastery gray wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
+  suffix: ""
+  components:
+    - type: Sprite
+      sprite: _Lua/Structures/Walls/monastery_gray.rsi
+      color: "#ffffff" # Frontier
+    - type: Icon
+      sprite: _Lua/Structures/Walls/monastery_gray.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.8 # Lua
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 6000 # Lua 1200<7500<6000
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Girder:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Damageable
+      damageContainer: StructuralInorganicUltraHeavy
+      damageModifierSet: StructuralMetallicStrongUltra
+    - type: StaticPrice
+      price: 350
+
+- type: entity
+  parent: WallPlastitaniumIndestructible
+  id: WallMonasteryBrown
+  name: monastery brown wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
+  suffix: ""
+  components:
+    - type: Sprite
+      sprite: _Lua/Structures/Walls/monastery_brown.rsi
+      color: "#ffffff" # Frontier
+    - type: Icon
+      sprite: _Lua/Structures/Walls/monastery_brown.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.8 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3500 # Lua 600<3500
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+      - trigger:
+          !type:DamageTrigger
+          damage: 2500 # Lua 400<2500
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+        - !type:ChangeConstructionNodeBehavior
+          node: girder
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Damageable
+      damageContainer: StructuralInorganicUltraHeavy
+      damageModifierSet: StructuralMetallicStrongUltra
+    - type: StaticPrice
+      price: 350
+
+- type: entity
+  parent: WallPlastitaniumDiagonalIndestructible
+  id: WallMonasteryGrayDiagonal
+  name: monastery wall
+  suffix: diagonal
+  description: Skub knows this wall is too hard to destroy. # Frontier
+  components:
+  - type: Occluder
+    enabled: false
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/monastery_gray_diagonal.rsi
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/monastery_gray_diagonal.rsi
+    state: state0
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2500 # Lua 1200<2000<2500
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Girder:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+  - type: RCDDeconstructable # Frontier
+    deconstructable: false # Frontier
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: WallDiagonalBase
+  id: WallMonasteryBrownDiagonal
+  name: monastery wall
+  components:
+  - type: Occluder
+    enabled: false
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # lua
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/monastery_brown_diagonal.rsi
+    state: state0
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/monastery_brown_diagonal.rsi # Frontier: _NF folder
+    state: state0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  parent: BaseWall
+  id: WallAstrolit
+  name: astrolite wall
+  description: Keeps the air in and the greytide out. # Frontier: restore base value
+  suffix: ""
+  components:
+    - type: LuaTech
+    - type: Sprite
+      sprite: _Lua/Structures/Walls/astrolitwall.rsi
+      color: "#ffffff" # Frontier
+    - type: Icon
+      sprite: _Lua/Structures/Walls/astrolitwall.rsi
+    - type: IconSmooth
+      key: walls
+      base: astrolit
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+          - FullTileMask
+          layer:
+          - WallLayer
+          density: 4000
+    - type: ExplosionResistance
+      damageCoefficient: 0.8
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 14000
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                Girder:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Construction
+      graph: Girder
+      node: astrolitewall
+    - type: Damageable
+      damageContainer: StructuralInorganicUltraHeavy
+      damageModifierSet: StructuralMetallicStrongUltra
+    - type: RadiationBlocker
+      resistance: 5
+    - type: StaticPrice
+      price: 350
+
+- type: entity
+  parent: WallDiagonalBase
+  id: WallAstrolitDiagonal
+  name: astrolite wall
+  suffix: diagonal
+  description:
+  components:
+  - type: Occluder
+    enabled: false
+  - type: LuaTech
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _Lua/Structures/Walls/astrolitwall_diagonal.rsi
+    state: state0
+    color: "#ffffff"
+  - type: Icon
+    sprite: _Lua/Structures/Walls/astrolitwall_diagonal.rsi
+    state: state0
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 8500
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            Girder:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+  - type: RCDDeconstructable
+    deconstructable: false
+  - type: Construction
+    graph: Girder
+    node: diagonalastrolitewall
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 250
+  - type: RadiationBlocker
+    resistance: 5
+
+- type: entity
+  id: AstrolitWindow
+  name: astrolit window
+  parent: BaseStructure
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: LuaTech
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Lua/Structures/Walls/astrolit_window.rsi
+  - type: Icon
+    sprite: _Lua/Structures/Walls/astrolit_window.rsi
+    state: full
+  - type: IconSmooth
+    key: walls
+    base: astrolitwindow
+  - type: RCDDeconstructable
+    deconstructable: false
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmack
+  - type: WallMount
+    arc: 360
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Physics
+    bodyType: Static
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: Appearance
+  - type: BlockWeather
+  - type: Airtight
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 14000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 4000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 200
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: StaticPrice
+    price: 100
+  - type: Construction
+    graph: AstrolitWindow
+    node: astrolitWindow
+
+- type: entity
+  id: AstrolitWindowDiagonal
+  name: astrolit window
+  parent: AstrolitWindow
+  suffix: diagonal
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Lua/Structures/Walls/astrolit_window_diagonal.rsi
+    state: state0
+  - type: Tag
+    tags:
+    - Diagonal
+  - type: Icon
+    sprite: _Lua/Structures/Walls/astrolit_window_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+        density: 4000
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 7000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 200
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks_diagonal.rsi
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: StaticPrice
+    price: 100
+  - type: Construction
+    graph: AstrolitWindow
+    node: astrolitWindowDiagonal

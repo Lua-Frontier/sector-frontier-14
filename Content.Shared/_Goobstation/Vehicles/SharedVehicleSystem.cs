@@ -16,7 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared._NF.Vehicle.Components; // Frontier
 using Content.Shared.ActionBlocker; // Frontier
-using Content.Shared.Interaction; // Frontier
+using Content.Shared.Actions.Components; // Frontier
 using Content.Shared.Light.Components; // Frontier
 using Content.Shared.Light.EntitySystems; // Frontier
 using Content.Shared.Movement.Pulling.Components; // Frontier
@@ -25,6 +25,11 @@ using Content.Shared.Popups; // Frontier
 using Robust.Shared.Network; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
+using Content.Shared.Weapons.Melee.Events; // Frontier
+using Content.Shared.Emag.Systems; // Frontier
+using Robust.Shared.Map; // Lua
+using System.Numerics; // Lua
+using Robust.Shared.GameObjects; // Lua
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -38,13 +43,15 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
     [Dependency] private readonly SharedHandsSystem _hands = default!; // Lua
     [Dependency] private readonly INetManager _net = default!; // Frontier
-    [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
-    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
-    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
+    [Dependency] private readonly EmagSystem _emag = default!; // Frontier
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
+    [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Lua
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
@@ -64,6 +71,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleComponent, UnstrappedEvent>(OnUnstrapped);
         SubscribeLocalEvent<VehicleComponent, VirtualItemDeletedEvent>(OnDropped);
+        SubscribeLocalEvent<VehicleComponent, MeleeHitEvent>(OnMeleeHit); // Frontier
+        SubscribeLocalEvent<VehicleComponent, GotEmaggedEvent>(OnGotEmagged, before: [typeof(UnpoweredFlashlightSystem)]); // Frontier
+        SubscribeLocalEvent<VehicleComponent, GotUnEmaggedEvent>(OnGotUnemagged, before: [typeof(UnpoweredFlashlightSystem)]); // Frontier
 
         SubscribeLocalEvent<VehicleComponent, EntInsertedIntoContainerMessage>(OnInsert);
         SubscribeLocalEvent<VehicleComponent, EntRemovedFromContainerMessage>(OnEject);
@@ -216,6 +226,19 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             }
         }
     }
+// Lua start
+    private bool ShouldShowNoHandsPopup(EntityUid user)
+    {
+        if (!_net.IsClient)
+            return true;
+
+        var now = _timing.CurTime;
+        if (_lastNoHandsPopup.TryGetValue(user, out var last) && now - last < NoHandsPopupCooldown)
+            return false;
+        _lastNoHandsPopup[user] = now;
+        return true;
+    }
+// Lua end
 
     public override void Update(float frameTime)
     {
@@ -229,6 +252,21 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             {
                 EnsureHandsAreCorrect(rider, vehicle);
             }
+
+            // Lua start
+            if (TryComp(rider, out BuckleComponent? buckle) && buckle.BuckledTo is { } strapEnt)
+            {
+                var strapUid = strapEnt;
+                if (HasComp<VehicleComponent>(strapUid))
+                {
+                    var riderXform = Transform(rider);
+                    if (riderXform.ParentUid != strapUid)
+                    {
+                        var coords = new EntityCoordinates(strapUid, Vector2.Zero);
+                        _transform.SetCoordinates(rider, riderXform, coords, rotation: null);
+                    }
+                }
+            } // Lua end
         }
     }
     // Lua end (fuck driver cowboy)
@@ -275,7 +313,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!TryOccupyHands(driver, ent.Owner))
         {
             _buckle.TryUnbuckle(driver, ent.Owner);
-            _popup.PopupEntity(Loc.GetString("vehicle-no-free-hands"), driver, PopupType.Medium);
+            // Lua start: покажем сообщение не чаще раза в NoHandsPopupCooldown и только предсказуемо
+            if (ShouldShowNoHandsPopup(driver))
+                _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), ent, driver); // lua end
             return;
         }
         // Lua end  (fuck driver cowboy)
@@ -318,6 +358,14 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         _appearance.SetData(uid, VehicleState.Animated, false); // Frontier
         RemComp<VehicleRiderComponent>(args.User); // Frontier
     }
+
+    // Frontier: do not hit your own vehicle
+    private void OnMeleeHit(Entity<VehicleComponent> ent, ref MeleeHitEvent args)
+    {
+        if (args.User == ent.Comp.Driver) // Don't hit your own vehicle
+            args.Handled = true;
+    }
+    // End Frontier: do not hit your own vehicle
 
     private void AddHorns(EntityUid driver, EntityUid vehicle)
     {
@@ -381,12 +429,55 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             accessComp.Tags.Clear();
     }
 
-    // Frontier: prevent drivers from pulling things
+    // Frontier: prevent drivers from pulling things, emag handlers
     private void OnRiderPull(Entity<VehicleRiderComponent> ent, ref PullAttemptEvent args)
     {
         if (args.PullerUid == ent.Owner)
             args.Cancelled = true;
     }
+
+    private void OnGotEmagged(Entity<VehicleComponent> ent, ref GotEmaggedEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (ent.Comp.RadarBlip)
+        {
+            ent.Comp.RadarBlip = false;
+            Dirty(ent);
+
+            HandleEmag(ent);
+
+            // Hack: assuming the only other emaggable component on the vehicle is a flashlight
+            args.Repeatable = HasComp<UnpoweredFlashlightComponent>(ent);
+            args.Handled = true;
+        }
+    }
+
+    private void OnGotUnemagged(Entity<VehicleComponent> ent, ref GotUnEmaggedEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (!ent.Comp.RadarBlip)
+        {
+            ent.Comp.RadarBlip = true;
+            Dirty(ent);
+
+            HandleUnemag(ent);
+
+            args.Handled = true;
+        }
+    }
+
+    protected abstract void HandleEmag(Entity<VehicleComponent> ent);
+    protected abstract void HandleUnemag(Entity<VehicleComponent> ent);
     // End Frontier
 }
 

@@ -1,5 +1,6 @@
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.GameStates;
+using System.Numerics; // Frontier
 
 namespace Content.Shared.Shuttles.Components;
 
@@ -18,7 +19,7 @@ public sealed partial class RadarConsoleComponent : Component
     }
 
     [DataField, AutoNetworkedField]
-    public float MaxRange = 256f;
+    public float MaxRange = 512f;
 
     /// <summary>
     /// If true, the radar will be centered on the entity. If not - on the grid on which it is located.
@@ -38,5 +39,31 @@ public sealed partial class RadarConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool HideCoords = false;
+
+    /// <summary>
+    /// A settable target to display on IFF
+    /// </summary>
+    [DataField]
+    public Vector2? Target;
+
+    /// <summary>
+    /// If not null, the target whose information will be displayed on the radar.
+    /// </summary>
+    [DataField]
+    public EntityUid? TargetEntity;
+
+    /// <summary>
+    /// Whether or not to display the target IFF
+    /// </summary>
+    [DataField]
+    public bool HideTarget = false;
     // End Frontier
+
+    // <Mono>
+    [DataField]
+    public bool Pannable = false;
+
+    [DataField]
+    public bool RelativePanning = false;
+    // </Mono>
 }

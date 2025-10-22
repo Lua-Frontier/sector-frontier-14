@@ -38,4 +38,5 @@ public enum SectorBankAccount : byte
     Medical,
     Typan,
     CentComm,
+    Edison,
 }

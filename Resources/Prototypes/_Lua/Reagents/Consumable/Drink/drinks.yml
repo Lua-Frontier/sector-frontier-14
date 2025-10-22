@@ -1,0 +1,189 @@
+- type: reagent
+  id: Salo-2016
+  name: reagent-name-salo2016
+  group: Drinks
+  desc: reagent-desc-salo2016
+  physicalDesc: reagent-physical-desc-sweet
+  flavor: tea
+  color: "#7a29a3"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 8
+
+- type: reagent
+  id: NetscapeDrink
+  name: reagent-name-netscape
+  group: Drinks
+  desc: reagent-desc-netscape
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: tea
+  color: "#bde0ff"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 8
+
+- type: reagent
+  id: VeergilDrink
+  name: reagent-name-veergil
+  group: Drinks
+  parent: BaseAlcohol
+  desc: reagent-desc-veergil
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: sake
+  color: "#7200a3"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 6
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+  pricePerUnit: 6
+
+- type: reagent
+  id: MayskiDrink
+  name: reagent-name-mayski
+  group: Drinks
+  desc: reagent-desc-mayski
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: grapesoda
+  color: "#ba66ff"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 6
+
+- type: reagent
+  id: klifowoDrink
+  name: reagent-name-klifandMond
+  group: Drinks
+  desc: reagent-desc-klifandMond
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: tea
+  color: "#02f2d6"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 6
+
+- type: reagent
+  id: ArkanyaDrink
+  name: reagent-name-arkanyadelove
+  group: Drinks
+  desc: reagent-desc-arkanyadelove
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: milk
+  color: "#fffafa"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 9
+  pricePerUnit: 6
+
+- type: reagent
+  id: NickTeslDrink
+  name: reagent-name-nickTesl
+  group: Drinks
+  desc: reagent-desc-nickTesl
+  physicalDesc: reagent-physical-desc-frosty
+  flavor: tea
+  color: "#02f2d6"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 6
+
+- type: reagent
+  id: GixDrink
+  name: reagent-name-gix
+  group: Drinks
+  desc: reagent-desc-gix
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: soda
+  color: "#02f2d6"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 6
+
+- type: reagent
+  id: BrennNightDrink
+  name: reagent-name-brennnight
+  group: Drinks
+  desc: reagent-desc-brennnight
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: peppery
+  color: "#591d1f"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 7
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.8
+  pricePerUnit: 10
+
+- type: reagent
+  id: MaxwellDrink
+  name: reagent-name-maxwell
+  group: Drinks
+  desc: reagent-desc-maxwell
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: vodka
+  color: "#fc6a03"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+  pricePerUnit: 6
+
+- type: reagent
+  id: FaustNetzachDrink
+  name: reagent-name-faustnetzach
+  group: Drinks
+  desc: reagent-desc-faustnetzach
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: sweet
+  color: "#ffb8c2"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 6
+  pricePerUnit: 6
+
+- type: reagent
+  id: VanMinDrink
+  name: reagent-name-vanmin
+  group: Drinks
+  desc: reagent-desc-vanmin
+  physicalDesc: reagent-physical-desc-salty
+  flavor: salty
+  color: "#0064C8"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+  pricePerUnit: 6

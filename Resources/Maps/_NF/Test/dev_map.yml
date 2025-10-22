@@ -614,9 +614,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
 - proto: AdvancedCapacitorStockPart
@@ -3892,7 +3890,7 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 179
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 2
     components:

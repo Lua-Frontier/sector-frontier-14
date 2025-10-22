@@ -43,7 +43,9 @@
       - type: MailDisabled
       - type: NpcFactionMember
         factions:
-        - Syndicate
+        - LuaNordFoll
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplantNordfoll ]
 
 - type: startingGear
   id: SyndicateScience
@@ -55,3 +57,9 @@
     shoes: ClothingShoesBootsCombat
     back: ClothingBackpackSyndicateFilled
     id: SyndiPDAScience
+
+- type: chameleonOutfit
+  id: OutpostSyndicateScienceChameleonOutfit
+  job: OutpostSyndicateScience
+  equipment:
+    jumpsuit: ClothingUniformScienceOutpostSyndicate

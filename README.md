@@ -1,6 +1,6 @@
 <p align="center"> <img alt="Sector Frontier 14" height="300" src="https://github.com/HacksLua/sector-frontier-14/blob/master/Resources/Textures/_Lua/Logo/logogit.png?raw=true" /></p>
 
-![Alt](https://repobeats.axiom.co/api/embed/966f78fd8296899bae8548ab217d16da5723a238.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/c952b4552bf0f50fd5cc7f247c6636779fa87f4a.svg "Repobeats analytics image")
 
 Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/new-frontiers-14/frontier-station-14)/[Space Station 14](https://github.com/space-wizards/space-station-14), работающий на движке [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), написанном на C#.
 
@@ -76,8 +76,9 @@ Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/
 | `_Mono` | Monolith | https://github.com/Monolith-Station/Monolith | AGPL 3.0 |
 | `_Theta` | ThetaStation | https://github.com/ThetaStation/ThetaStation | AGPL 3.0 |
 | `Sirena` | Sirena | https://github.com/EvgenRP99/SS14-Sirena | MIT |
-| `__Erida` | Erida | https://github.com/SS14Backmen/space-station-14-Erida | AGPL 3.0 |
+| `_Erida` | Erida | https://github.com/SS14Backmen/space-station-14-Erida | AGPL 3.0 |
 | `ShibaStation` | _ShibaStation | https://github.com/AstroDogeDX/ShibaStation-GS | AGPL 3.0 |
+| `Imperial` | _Imperial | https://github.com/imperial-space/SS14-public | MIT |
 
 
 Дополнительные репозитории, из которых мы перенесли функции без создания подкаталогов, перечислены ниже.

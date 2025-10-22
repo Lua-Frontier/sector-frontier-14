@@ -43,9 +43,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -5486,7 +5484,7 @@ entities:
     - type: Transform
       pos: 10.5,7.5
       parent: 1653
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 560
     components:

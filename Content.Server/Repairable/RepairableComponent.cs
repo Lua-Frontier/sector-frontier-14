@@ -22,7 +22,7 @@ namespace Content.Server.Repairable
         public int FuelCost = 5;
 
         [DataField]
-        public ProtoId<ToolQualityPrototype> QualityNeeded = "Welding";
+        public string[] Qualities = { "Welding", "Applicating" };
 
         [DataField]
         public int DoAfterDelay = 1;

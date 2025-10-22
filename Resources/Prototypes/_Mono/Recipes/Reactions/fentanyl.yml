@@ -1,7 +1,7 @@
 - type: reaction
   id: Fentanyl
   impact: Low
-  minTemp: 475
+  minTemp: 375 # made this 375 just so oil won't turn into ash with some bug fuckery
   reactants:
     SpaceDrugs:
       amount: 1
@@ -15,8 +15,8 @@
       amount: 0.5
     Kelotane:
       amount: 0.5
-    CarpoToxin:
-      amount: 1
+    Lead:
+      amount: 0.1
   products:
     Fentanyl: 5.5
 

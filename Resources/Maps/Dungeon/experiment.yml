@@ -42,7 +42,6 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
-    - type: PhysicsMap
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -2223,7 +2222,6 @@ entities:
     - type: LoadedMap
     - type: SpreaderGrid
     - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
 - proto: Airlock
   entities:
@@ -5631,7 +5629,7 @@ entities:
     - type: Transform
       pos: 16.641748,8.598457
       parent: 1653
-- proto: Catwalk
+- proto: CatwalkMono
   entities:
   - uid: 560
     components:

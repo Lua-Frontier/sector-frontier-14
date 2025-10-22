@@ -2,8 +2,8 @@
   id: Tethys
   parent: BaseVesselAntag
   name: RG Tethys
-  description: A basic entry-level rogue ship. 4 heavy autocannons and a bit of plastitanium is what you get.
-  price: 54533 #37520 # WALMARTMOBILE
+  description: Маленький грузовой челнок, не обладающий выделяющимся бронированием или вооружением
+  price: 48742 # 2000 above min
   category: Medium
   group: BlackMarket
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/tethys.yml
@@ -14,7 +14,7 @@
   - Uranium
   addComponents:
     - type: IFF
-      color: "#8A6642FF"
+      color: "#948471"
     - type: PirateFtl
     - type: PirateMercFtl
     - type: NanotrasenFtl

@@ -5,7 +5,7 @@
   id: Bible
   components:
   - type: UseDelay
-    delay: 10.0
+    delay: 120
   - type: Bible
     damage:
       groups:
@@ -84,11 +84,13 @@
     sprite: Objects/Specific/Chapel/necronomicon.rsi
 
 - type: entity
+  parent: BaseAction
   id: ActionBibleSummon
   name: Summon familiar
   description: Summon a familiar that will aid you and gain humanlike intelligence once inhabited by a soul.
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Clothing/Head/Hats/witch.rsi, state: icon }
-    event: !type:SummonActionEvent
     useDelay: 1
+  - type: InstantAction
+    event: !type:SummonActionEvent

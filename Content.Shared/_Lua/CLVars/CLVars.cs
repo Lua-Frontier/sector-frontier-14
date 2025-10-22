@@ -25,7 +25,7 @@ namespace Content.Shared.Lua.CLVar
         /// Включение/отключение Автоудаления Шаттлов..
         /// </summary>
         public static readonly CVarDef<bool> AutoDelteEnabled =
-            CVarDef.Create("zone.autodelete_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE,
+            CVarDef.Create("shuttle.autodelete_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE,
                 "Отключить или включить автоудаление шаттлов.");
 
         /// <summary>
@@ -99,5 +99,11 @@ namespace Content.Shared.Lua.CLVar
         /// </summary
         public static readonly CVarDef<int> CryoSleepTimerSet =
             CVarDef.Create("lua.cryosleep.timer.set", 30, CVar.SERVERONLY);
+
+        /// <summary>
+        /// Если true — обычные игроки могут перемещаться к другим игрокам
+        /// </summary>
+        public static readonly CVarDef<bool> GhostPlayerWarps =
+            CVarDef.Create("ghost.player_warps", false, CVar.SERVERONLY);
     }
 }

@@ -37,7 +37,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenWallet = "OpenWallet"; // Frontier
         public static readonly BoundKeyFunction OpenAHelp = "OpenAHelp";
         public static readonly BoundKeyFunction SwapHands = "SwapHands";
-        public static readonly BoundKeyFunction SwapHandsPrevious = "SwapHandsPrevious"; // Frontier
+        public static readonly BoundKeyFunction SwapHandsReverse = "SwapHandsReverse";
         public static readonly BoundKeyFunction MoveStoredItem = "MoveStoredItem";
         public static readonly BoundKeyFunction RotateStoredItem = "RotateStoredItem";
         public static readonly BoundKeyFunction SaveItemLocation = "SaveItemLocation";
@@ -101,6 +101,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction HotbarShift7 = "HotbarShift7";
         public static readonly BoundKeyFunction HotbarShift8 = "HotbarShift8";
         public static readonly BoundKeyFunction HotbarShift9 = "HotbarShift9";
+        public static readonly BoundKeyFunction OpenLanguageMenu = "OpenLanguageMenu"; // Lua
 
         public static BoundKeyFunction[] GetHotbarBoundKeys() =>
             new[]

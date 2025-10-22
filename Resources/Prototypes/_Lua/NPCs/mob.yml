@@ -1,0 +1,17 @@
+
+# Lua: Visible pilot mob for shuttle control testing.
+- type: entity
+  id: MobShuttleAIPilot
+  name: shuttle AI pilot
+  parent: SimpleMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - CanPilot
+  - type: HTN
+    rootTask:
+      task: IdleCompound

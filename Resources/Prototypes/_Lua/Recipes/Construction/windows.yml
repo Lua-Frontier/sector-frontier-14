@@ -1,0 +1,30 @@
+- type: construction
+  name: MiningWindow-name
+  id: MiningWindow
+  description: MiningWindow-desc
+  graph: MiningWindowGraph
+  startNode: start
+  targetNode: MiningWindow
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  name: MiningWindowDiagonal-name
+  id: MiningWindowDiagonal
+  description: MiningWindowDiagonal-desc
+  graph: MiningWindowDiagonalGraph
+  startNode: start
+  targetNode: MiningWindowDiagonal
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter

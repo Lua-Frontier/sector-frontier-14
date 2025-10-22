@@ -6,9 +6,16 @@ namespace Content.Shared.Tiles;
 /// <summary>
 /// Prevents floor tile updates when attached to a grid.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(ProtectedGridSystem))]
 public sealed partial class ProtectedGridComponent : Component
 {
+    /// <summary>
+    /// A bitmask of all the initial tiles on this grid.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<Vector2i, ulong> BaseIndices = new();
+
     // Frontier: define protection types.
     [DataField]
     public bool PreventFloorRemoval = false;
@@ -24,6 +31,8 @@ public sealed partial class ProtectedGridComponent : Component
     public bool PreventArtifactTriggers = false;
     [DataField]
     public bool KillHostileMobs = false;
+    [DataField]
+    public bool PreventClaiming = false;
 
     /// <summary>
     /// The sound made when a hostile mob is killed when entering a protected grid.

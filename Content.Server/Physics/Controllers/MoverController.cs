@@ -2,10 +2,12 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Content.Shared.Ghost; // Frontier
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
@@ -20,6 +22,8 @@ public sealed class MoverController : SharedMoverController
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
+    private const float DistanceSlowdown = 30000f; // Lua
+    private const float DistanceStop = 30100f; // Lua
 
     public override void Initialize()
     {
@@ -88,6 +92,9 @@ public sealed class MoverController : SharedMoverController
         // Need to order mob movement so that movers don't run before their relays.
         while (inputQueryEnumerator.MoveNext(out var uid, out var mover))
         {
+            if (IsPaused(uid) && !HasComp<GhostComponent>(uid)) // Frontier: Skip processing paused entities. Ghosts are excepted for mapping reasons
+                continue; // Frontier
+
             InsertMover((uid, mover));
         }
 
@@ -304,6 +311,8 @@ public sealed class MoverController : SharedMoverController
                 continue;
 
             var shuttleNorthAngle = _xformSystem.GetWorldRotation(shuttleUid, xformQuery);
+            var worldPos = _xformSystem.GetWorldPosition(shuttleUid, xformQuery); // Lua
+            var worldDist = worldPos.Length(); // Lua
 
             // Collate movement linear and angular inputs together
             var linearInput = Vector2.Zero;
@@ -342,6 +351,15 @@ public sealed class MoverController : SharedMoverController
             angularInput /= Math.Max(1, angularCount);
             brakeInput /= Math.Max(1, brakeCount);
 
+            if (worldDist >= DistanceStop) // Lua start
+            {
+                _thruster.DisableLinearThrusters(shuttle);
+                PhysicsSystem.SetLinearVelocity(shuttleUid, Vector2.Zero, body: body);
+                linearInput = Vector2.Zero;
+                brakeInput = 0f;
+            }
+            if (worldDist >= DistanceSlowdown && worldDist < DistanceStop)
+            { if (body.LinearVelocity.Length() > 1f) PhysicsSystem.SetLinearVelocity(shuttleUid, body.LinearVelocity.Normalized() * 1f, body: body); }  // Lua end
             // Handle shuttle movement
             if (brakeInput > 0f)
             {
@@ -520,6 +538,16 @@ public sealed class MoverController : SharedMoverController
 
                 finalForce = shuttleNorthAngle.RotateVec(finalForce);
 
+                if (worldDist >= DistanceSlowdown && worldDist < DistanceStop)  // Lua start
+                {
+                    var vel = body.LinearVelocity;
+                    if (vel.Length() >= 1f)
+                    {
+                        var dir = vel.Normalized();
+                        var along = Vector2.Dot(finalForce, dir);
+                        if (along > 0f) finalForce -= along * dir;
+                    }
+                } // Lua end
                 if (finalForce.Length() > 0f)
                     PhysicsSystem.ApplyForce(shuttleUid, finalForce, body: body);
             }

@@ -1,0 +1,64 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: [ ClothingBackpackIris, ClothingBackpack ]
+  id: ClothingBackpackIrisP
+  name: модифицированная сумка "LuaTech"
+  suffix: Айрис
+  description: Сумка разработанная "LuaTech" с функцией РИГ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Back/Satchels/irisp_bag.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingOuterHardsuitIrisP
+    requiredSlot: BACK
+    slot: outerClothing
+  - type: StorageFill
+    contents:
+      - id: IrisHandsRing
+      - id: PaperLawsIris
+      - id: HacksHat
+      - id: HacksPDA
+      - id: ClothingShoesBootsLua
+      - id: ClothingNeckCapeLuaDalt
+      - id: ClothingNeckCapeLuaBlackDalt
+      - id: ClothingUniformJumpsuitIris
+      - id: HyposprayLua
+      - id: ClothingEyesHudLuaTech
+      - id: PlushieSharkBlack
+      - id: PlushieIrisLua
+      - id: PlushieHacksLua
+      - id: ClothingBeltIrisRed
+      - id: BlinkImplanterLua
+
+- type: entity
+  parent: [ ClothingHeadHelmetIris, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetIrisP
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра "LuaTech"
+  description: Шлем под расу "Плафеимов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Pink/Clothing/Head/Hardsuits/irisp_helm.rsi
+    layers:
+    - state: on-equipped-HELMET
+  - type: PointLight
+    color: "#F4BEDB"
+    energy: 3
+    radius: 7
+
+- type: entity
+  parent: [ ClothingOuterHardsuitIris, ClothingOuterHardsuitAtmos ]
+  id: ClothingOuterHardsuitIrisP
+  categories: [ HideSpawnMenu ]
+  name: скафандр "LuaTech"
+  description: Скафандр специализированный под расу "Плафеимов" сделанный на заказ LuaTech.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Pink/Clothing/OuterClothing/Hardsuits/irisp_hardsuit.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Pink/Clothing/OuterClothing/Hardsuits/irisp_hardsuit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetIrisP

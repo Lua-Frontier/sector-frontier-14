@@ -1,0 +1,81 @@
+- type: construction
+  name: DiagonalGirder-name
+  id: DiagonalGirder
+  description: DiagonalGirder-desc
+  graph: DiagonalGirder
+  startNode: start
+  targetNode: diagonalGirder
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  # canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: DiagonalReinforcedGirder-name
+  id: DiagonalReinforcedGirder
+  description: DiagonalReinforcedGirder-desc
+  graph: DiagonalGirder
+  startNode: start
+  targetNode: diagonalReinforcedGirder
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  # canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: WallSolidDiagonal-name
+  id: WallSolidDiagonal
+  description: WallSolidDiagonal-desc
+  graph: DiagonalGirder
+  startNode: start
+  targetNode: diagonalWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  # canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: WallReinforcedDiagonal-name
+  id: WallReinforcedDiagonal
+  description: WallReinforcedDiagonal-desc
+  graph: DiagonalGirder
+  startNode: start
+  targetNode: diagonalReinforcedWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  # canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: WallMining-name
+  id: WallMining
+  description: WallMining-desc
+  graph: Girder
+  startNode: start
+  targetNode: WallMining
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  name: WallMiningDiagonal-name
+  id: WallMiningDiagonal
+  description: WallMiningDiagonal-desc
+  graph: DiagonalGirder
+  startNode: start
+  targetNode: WallMiningDiagonal
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

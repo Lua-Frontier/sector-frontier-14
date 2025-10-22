@@ -40,6 +40,8 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.ResetZoom);
             common.AddFunction(ContentKeyFunctions.InspectEntity);
             common.AddFunction(ContentKeyFunctions.ToggleRoundEndSummaryWindow);
+            // Lua: allow toggling language menu via keybind (F)
+            common.AddFunction(ContentKeyFunctions.OpenLanguageMenu);
 
             // Not in engine, because engine cannot check for sanbox/admin status before starting placement.
             common.AddFunction(ContentKeyFunctions.EditorCopyObject);
@@ -57,7 +59,7 @@ namespace Content.Client.Input
             human.AddFunction(EngineKeyFunctions.MoveRight);
             human.AddFunction(EngineKeyFunctions.Walk);
             human.AddFunction(ContentKeyFunctions.SwapHands);
-            human.AddFunction(ContentKeyFunctions.SwapHandsPrevious); // Frontier
+            human.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             human.AddFunction(ContentKeyFunctions.Drop);
             human.AddFunction(ContentKeyFunctions.UseItemInHand);
             human.AddFunction(ContentKeyFunctions.AltUseItemInHand);
@@ -104,7 +106,7 @@ namespace Content.Client.Input
             aghost.AddFunction(EngineKeyFunctions.MoveRight);
             aghost.AddFunction(EngineKeyFunctions.Walk);
             aghost.AddFunction(ContentKeyFunctions.SwapHands);
-            aghost.AddFunction(ContentKeyFunctions.SwapHandsPrevious); // Frontier
+            aghost.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             aghost.AddFunction(ContentKeyFunctions.Drop);
             aghost.AddFunction(ContentKeyFunctions.UseItemInHand);
             aghost.AddFunction(ContentKeyFunctions.AltUseItemInHand);

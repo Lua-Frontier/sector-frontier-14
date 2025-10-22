@@ -18,6 +18,13 @@
 #   access:
 #   - CentralCommand
 
+- type: chameleonOutfit
+  id: CentralCommandSpecialOperationsOfficerChameleonOutfit
+  job: CentralCommandSpecialOperationsOfficer
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+
 - type: startingGear
   id: CentcomSpecialOperationsOfficerGear
   equipment:

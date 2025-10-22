@@ -99,7 +99,8 @@
   - ERTEngineer
   - DeathSquad
   - StationRepresentative # Frontier
-  - Sheriff  # Frontier
+  - Sheriff # Frontier
+  - PlantManager # Frontier
   - StationTrafficController # Frontier
   primary: false
   weight: 100
@@ -112,7 +113,13 @@
   color: "#EFB341"
   weight: -94
   primary: false
-  editorHidden: true # Frontier
+  roles:
+  # - AtmosphericTechnician # Frontier
+  # - ChiefEngineer # Frontier
+  # - StationEngineer # Frontier
+  # - TechnicalAssistant # Frontier
+  - PlantManager # Frontier
+  - PlantTechnician # Frontier
 
 - type: department
   id: Medical

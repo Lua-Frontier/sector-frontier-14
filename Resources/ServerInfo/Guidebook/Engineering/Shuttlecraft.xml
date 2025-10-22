@@ -1,18 +1,18 @@
 <Document>
-  # Shuttle-craft
+  # Малые корабли (Shuttle-craft)
 
-  Shuttle construction is straightforward, albeit rather expensive and hard to pull off within an hour.
+  Постройка шаттла относительно проста, хотя и дорогая и редко укладывается в час.
 
-  It's a good activity if you have a significant amount of spare time on your hands and want a bit of a challenge.
+  Отличная задача, если есть много свободного времени и хочется испытания.
 
-  ## Getting started
-  <Box>Required parts:</Box>
+  ## Начало
+  <Box>Необходимые части:</Box>
   <Box>
   <GuideEntityEmbed Entity="Thruster"/>
   <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="ComputerShuttle"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
-  <GuideEntityEmbed Entity="PortableGeneratorPacman" Caption="P.A.C.M.A.N." />
+  <GuideEntityEmbed Entity="PortableGeneratorPacman" Caption="P.A.C.M.A.N."/>
   </Box>
   <Box>
   <GuideEntityEmbed Entity="CableHVStack"/>
@@ -21,10 +21,10 @@
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
 
-  <Box>Optional parts:</Box>
+  <Box>Опционально:</Box>
   <Box>
   <GuideEntityEmbed Entity="AirCanister"/>
-  <GuideEntityEmbed Entity="LightTube" Caption="lighting"/>
+  <GuideEntityEmbed Entity="LightTube" Caption="освещение"/>
   <GuideEntityEmbed Entity="AirlockGlassShuttle"/>
   <GuideEntityEmbed Entity="SMESBasic"/>
   </Box>
@@ -33,75 +33,63 @@
   <GuideEntityEmbed Entity="NuclearBomb"/>
   </Box>
 
-  ## Foundation
-  For this step you'll need steel sheets, metal rods, and floor tiles (optional).
+  ## Основание
+  Нужны листы стали, металлические прутья и напольная плитка (опционально).
 
   <Box>
-    <GuideEntityEmbed Entity="SheetSteel" Caption=""/>
-    <GuideEntityEmbed Entity="PartRodMetal" Caption=""/>
+    <GuideEntityEmbed Entity="SheetSteel"/>
+    <GuideEntityEmbed Entity="PartRodMetal"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="FloorTileItemSteel" Caption=""/>
-    <GuideEntityEmbed Entity="FloorTileItemDark" Caption=""/>
-    <GuideEntityEmbed Entity="FloorTileItemWhite" Caption=""/>
+    <GuideEntityEmbed Entity="FloorTileItemSteel"/>
+    <GuideEntityEmbed Entity="FloorTileItemDark"/>
+    <GuideEntityEmbed Entity="FloorTileItemWhite"/>
   </Box>
 
-  Head out into space with steel sheets and metal rods in hand and click on the edge of the station to place lattice.
+  Выйдите в космос и кликайте по краю станции, чтобы ставить решётку (lattice).
+  Протяните линию решётки на 3-4 тайла от станции и начните расширять платформу.
+  Расширяйте до платформы не меньше 3x3, соединённой со станцией одной линией.
 
-  Place a line of lattice about 3-4 tiles away from the station, then start building a platform with lattice.
+  Когда база готова, кусачками перережьте соединяющую решётку между кораблём и станцией.
+  Платформа станет отдельной сеткой: без гравитации и якоря, свободно перемещается.
+  Можно расширять платформу дальше, кликая чуть за край с прутьями в руке.
 
-  Keep doing this until you have a platform that is at least 3x3 in size, which is connected to the station via a single lattice line.
+  ## Стыковочные порты
+  Шлюзы шаттла служат стыковочными портами для безопасной стыковки со станциями.
 
-  Once you're finished constructing the base of your shuttle, you can use wirecutters to snip the connecting lattice that joins your new ship and the station.
-
-  This platform is considered a different grid from the station and thus will not have any gravity or be held in place by a station anchor — it can move around freely.
-
-  You can expand your lattice platform further by clicking just off the edge with some rods in hand.
-
-  ## Docking Ports
-  Shuttle airlocks serve as docking ports, where ships can dock to stations safely.
-
-  The orientation of docking ports is important, as it determines on which face the shuttle will dock.
-
-  The little numb on the bottom of the docking port determines the direction of the docking port.
+  Ориентация важна — она определяет, какой гранью шаттл стыкуется. Маленький выступ снизу указывает направление порта.
 
   <Box>
     <GuideEntityEmbed Entity="AirlockShuttle"/>
     <GuideEntityEmbed Entity="AirlockGlassShuttle"/>
   </Box>
 
-  ## Directional Control
-  From there, once you have the shape you want, bring out and install thrusters at the edges.
+  ## Направление движения
+  Установите движители по краям платформы.
 
   <Box>
-    <GuideEntityEmbed Entity="Thruster" Caption="" Rotation="0"/>
-    <GuideEntityEmbed Entity="Thruster" Caption="" Rotation="90"/>
-    <GuideEntityEmbed Entity="Thruster" Caption="" Rotation="180"/>
-    <GuideEntityEmbed Entity="Thruster" Caption="" Rotation="270"/>
+    <GuideEntityEmbed Entity="Thruster" Rotation="0"/>
+    <GuideEntityEmbed Entity="Thruster" Rotation="90"/>
+    <GuideEntityEmbed Entity="Thruster" Rotation="180"/>
+    <GuideEntityEmbed Entity="Thruster" Rotation="270"/>
   </Box>
 
-  It's a good idea to install four thrusters, one on each side of the platform, to ensure you can move in any direction.
+  Рекомендуется четыре движителя — по одному на сторону, чтобы можно было летать во все стороны.
+  Нос сопла должен смотреть в космос; если тайл мешает, движитель не стреляет. Поворачиваются даже заанкоренные: [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] и [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color].
 
-  They must be pointing outward into space to function and will not fire if there's a tile in the way of the nozzle.
-  You can rotate thrusters—even anchored ones—using either [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] or [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] to rotate clockwise or counterclockwise.
+  Включение/выключение движителей: [color=yellow][bold][keybind="Use"][/bold][/color] пустой рукой или [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color].
 
-  Thrusters can be disabled or enabled using [color=yellow][bold][keybind="Use"][/bold][/color] with an empty hand or [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color].
-
-  ## Rotational Control
-  Now that you have directional control, you'll need to install a gyroscope to control your rotation.
-
+  ## Поворот
+  Для вращения установите гироскоп.
   <Box>
     <GuideEntityEmbed Entity="Gyroscope"/>
   </Box>
-  The placement of the gyroscope is not as important as the thrusters, but it should be somewhere convenient for you to access and power.
+  Место не критично, главное — доступ и питание. Для больших масс может понадобиться несколько гироскопов.
 
-  Note for large mass objects, you may need more than one gyroscope to rotate effectively.
+  ## Питание
+  После сборки систем их нужно запитать.
 
-  ## Power
-  Now that you have all the systems in place, you'll need to power them.
-
-  For small shuttles, a J.R.P.A.C.M.A.N.-type portable generator is a good choice. It provides straight LV power, so you don't have to worry about transformers.
-  Fuel for the generator is also commonly found in maintenance tunnels.
+  Для малых шаттлов подойдёт переносной генератор типа J.R.P.A.C.M.A.N.: он выдаёт LV напрямую, без трансформаторов. Топливо обычно есть в техтоннелях.
 
   <Box HorizontalAlignment="Stretch">
     <Box>
@@ -112,9 +100,7 @@
     </Box>
   </Box>
 
-  Some stations, however, provide much better generators and compact solutions like the Shuttle APU or the static generator.
-  These output HV and will have to be stepped down to MV and LV.
-  Luckily, these stations also usually provide wallmount substation boards for this purpose.
+  На некоторых станциях доступны более продвинутые варианты: бортовой APU или статический генератор. Они отдают HV и требуют понижения до MV и LV; обычно станции выдают настенные платы подстанций.
 
   <Box HorizontalAlignment="Stretch">
     <Box>
@@ -128,9 +114,9 @@
     </Box>
   </Box>
 
-  ## Piloting
-  Finally, install the shuttle computer wherever it is convenient and ensure all your thrusters and gyroscopes are receiving power (remember to wire the MV and LV networks!).
-  If they are, congratulations! You should have a functional shuttle!
+  ## Пилотирование
+  Поставьте компьютер шаттла в удобном месте и убедитесь, что все движители и гироскопы получают питание (не забудьте про сети MV и LV).
+  Если все системы работают — поздравляю, у вас рабочий шаттл!
 
-  Making it livable and good-looking is left as an exercise to the reader.
+  Сделать его «жилым и красивым» — дальше на ваше усмотрение.
 </Document>

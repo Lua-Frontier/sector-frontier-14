@@ -12,19 +12,19 @@
     fuelCost: 15
     doAfterDelay: 3
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: RGlass
+    damageContainer: StructuralInorganicUltraHeavy #Lua
+    damageModifierSet: StructuralMetallicStrongUltra #Lua
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 500 # Mono
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 250 # 100->250 - Mono
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -50,6 +50,9 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 100
+  - type: Construction #Lua
+    graph: MiningWindowGraph
+    node: MiningWindow
 
 - type: entity
   parent: ShuttleWindow
@@ -95,3 +98,9 @@
   - type: DamageVisuals
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy #Lua
+    damageModifierSet: StructuralMetallicStrongUltra #Lua
+  - type: Construction #Lua
+    graph: MiningWindowDiagonalGraph
+    node: MiningWindowDiagonal

@@ -1,0 +1,28 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: IrisHandsRing
+  name: Кольцо Айрис
+  description: Обручальное кольцо Айрис, напоминает вам о теплых временах и о Хаксе.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Hands/Misc/iris_ring.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Hands/Misc/iris_ring.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitIris
+  name: форма "LuaTech"
+  description: Форма, изготавливаемая для сотрудников "LuaTech" и партнёров корпорации
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Uniforms/Jumsuit/iris_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Uniforms/Jumsuit/iris_jumpsuit.rsi

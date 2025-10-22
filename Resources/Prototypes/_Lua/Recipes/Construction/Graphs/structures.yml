@@ -1,0 +1,25 @@
+- type: construction
+  id: WallAstrolite
+  graph: Girder
+  startNode: start
+  targetNode: astrolitewall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: WallAstroliteDiagonal
+  graph: Girder
+  startNode: start
+  targetNode: diagonalastrolitewall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

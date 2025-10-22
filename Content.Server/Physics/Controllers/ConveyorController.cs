@@ -10,6 +10,7 @@ using Content.Shared.Power;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing; // Lua
 
 namespace Content.Server.Physics.Controllers;
 
@@ -19,6 +20,7 @@ public sealed class ConveyorController : SharedConveyorController
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly MaterialReclaimerSystem _materialReclaimer = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Lua
 
     public override void Initialize()
     {
@@ -101,6 +103,10 @@ public sealed class ConveyorController : SharedConveyorController
         if (!_materialReclaimer.SetReclaimerEnabled(uid, state != ConveyorState.Off))
             return;
 
+        if (state != ConveyorState.Off && component.Powered)// Lua start
+        { component.AutoOffUntil = _timing.CurTime + TimeSpan.FromSeconds(component.WorkDuration); }
+        if (state == ConveyorState.Off)
+        { component.AutoOffUntil = null; } // Lua end
         component.State = state;
 
         if (state != ConveyorState.Off)
@@ -111,6 +117,21 @@ public sealed class ConveyorController : SharedConveyorController
         UpdateAppearance(uid, component);
         Dirty(uid, component);
     }
+
+    public override void UpdateBeforeSolve(bool prediction, float frameTime) // Lua start
+    {
+        base.UpdateBeforeSolve(prediction, frameTime);
+        if (prediction) return;
+        var query = EntityQueryEnumerator<ConveyorComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (!comp.Powered) continue;
+            if (comp.State == ConveyorState.Off) continue;
+            if (comp.AutoOffUntil == null) continue;
+            if (_timing.CurTime >= comp.AutoOffUntil)
+            { SetState(uid, ConveyorState.Off, comp); }
+        }
+    }// Lua end, i vosstaly machiny is pepla yadernogo ognya
 
     /// <summary>
     /// Awakens sleeping entities on the conveyor belt's tile when it's turned on.
