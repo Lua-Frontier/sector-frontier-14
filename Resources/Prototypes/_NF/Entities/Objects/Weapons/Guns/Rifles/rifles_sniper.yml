@@ -9,23 +9,3 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: N14Magazine50AMR
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - N14Magazine50AMR
-            - N14Magazine50AMRHEIAP
-      gun_chamber:
-        name: Chamber
-        startingItem: N14Cartridge50
-        priority: 1
-        whitelist:
-          tags:
-            - N14Cartridge50
-            - N14Cartridge50HEIAP
