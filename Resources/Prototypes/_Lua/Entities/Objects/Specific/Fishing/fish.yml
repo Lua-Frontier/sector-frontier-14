@@ -89,23 +89,6 @@
       maxAmount: 6
 
 - type: entity
-  id: FishBoomerang
-  parent: BaseFish
-  name: Fish Boomerang
-  description: A fish that returns when thrown.
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
-    state:
-  - type: Item
-    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
-  - type: Butcherable
-    spawned:
-    - id: FoodMeatFishGeneric
-      amount: 1
-      maxAmount: 3
-
-- type: entity
   id: FishKaras
   parent: BaseFish
   name: Fish Karas
