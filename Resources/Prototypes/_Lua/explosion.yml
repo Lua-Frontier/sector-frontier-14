@@ -1,0 +1,22 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: explosion
+  id: DefaultAME
+  damagePerIntensity:
+    types:
+      Heat: 120
+      Blunt: 40
+      Piercing: 10
+      Structural: 200
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 15, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+
+# STOP
+# BEFORE YOU ADD MORE EXPLOSION TYPES CONSIDER IF AN EXISTING ONE IS SUITABLE
+# ADDING NEW ONES IS PROHIBITIVELY EXPENSIVE
