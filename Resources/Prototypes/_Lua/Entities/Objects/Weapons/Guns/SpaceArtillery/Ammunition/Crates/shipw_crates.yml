@@ -221,7 +221,7 @@
 
 #added to cargo
 - type: entity
-  id: CrateWeaponTurretCharonFlatPack
+  id: CrateWeaponTurretCharonReloadFlatPack
   parent: CrateShipWeaponBase
   name: ящик с упакованным M381 CHARON mass driver
   description: содержит 1 упакованный M381 CHARON mass driver
@@ -229,7 +229,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponTurretCharonFlatPack
+      - id: WeaponTurretCharonReloadFlatPack
         amount: 1
 
 - type: entity
@@ -343,4 +343,240 @@
   - type: StorageFill
     contents:
       - id: WeaponTurretTovekFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponLaserTurretL1PhalanxFlatPack
+  parent: CrateShipWeaponBase
+  name: L-1 Phalanx
+  description: A light laser emplactment designed by the Pantheon Collective, used to shred threats of all types
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLaserTurretL1PhalanxFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponLaserTurretApolloFlatPack
+  parent: CrateShipWeaponBase
+  name: L-20 Apollo Heavy Laser Cannon
+  description: One of the Pantheon Collective's top weapons, the Apollo is aptly named for its beams heating surfaces to beyond the temperature of nearby stars.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLaserTurretApolloFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponTurretRAC30FlatPack
+  parent: CrateShipWeaponBase
+  name: RAC-30 Draupnir Autocannon
+  description: A more heavy duty rapid rife autocannon, firing a hail of rounds much like its namesake became a hail of spears.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretRAC30FlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponTurretType54FlatPack
+  parent: CrateShipWeaponBase
+  name: Type-54C plasma autopulser
+  description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretType54FlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponTurretType241FlatPack
+  parent: CrateShipWeaponBase
+  name: Type-241 plasma lance
+  description: A devastating weapon, usually used for large scale fire support and strategic destruction.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretType241FlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponTurretLightMunitionsBayFlatPack
+  parent: CrateShipWeaponBase
+  name: GPOB-L Light Munitions Bay
+  description: A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretLightMunitionsBayFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWeaponTurretASM220FlatPack
+  parent: CrateShipWeaponBase
+  name: ASM-220 torpedo VLS
+  description: A heavy torpedo VLS relying on manual loading to work, usually done at harbor. However, it has high-yield missiles for its size.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretASM220FlatPack
+        amount: 1
+
+- type: entity
+  id: CrateWallPlastitaniumFlatPack
+  parent: CrateShipWeaponBase
+  name: пластитановая стена
+  description: пластитановая стена
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WallPlastitaniumFlatPack
+        amount: 1
+
+- type: entity
+  id: CratePlastitaniumWindowFlatPack
+  parent: CrateShipWeaponBase
+  name: пластитановое стекло
+  description: Смотри не заляпай, смотри не сядь.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: PlastitaniumWindowFlatPack
+        amount: 1
+
+#MARK:MONO - shields
+
+- type: entity
+  id: CrateShieldGeneratorSmallFlatPack
+  parent: CrateShipWeaponBase
+  name: MS-100 "Sentinel" Shield Generator
+  description: Слабый распостранённый щит на малые судна.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShieldGeneratorSmallFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateShieldGeneratorMediumFlatPack
+  parent: CrateShipWeaponBase
+  name: MS-200 "Guardian" Shield Generator
+  description: Продвинутый малый щит для особых суден.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShieldGeneratorMediumFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateShieldGeneratorFlatPack
+  parent: CrateShipWeaponBase
+  name: MS-500 "Titan" Shield Generator
+  description: Обычный большой щит для крупных суден.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShieldGeneratorFlatPack
+        amount: 1
+
+- type: entity
+  id: CrateShieldGeneratorTSFCapitalFlatPack
+  parent: CrateShipWeaponBase
+  name: LM-212 "Vanguard" Capital Shield Generator
+  description: Продвинутый большой щит для крупных суден.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ShieldGeneratorTSFCapitalFlatPack
+        amount: 1
+
+#MARK: Walls Flatpacks
+
+- type: entity
+  id: CrateWallPlastitaniumFlatPack
+  parent: CrateShipWeaponBase
+  name: пластитановая стена
+  description: 4x Флетпак пластитановой стены.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WallPlastitaniumFlatPack
+        amount: 4
+
+- type: entity
+  id: CratePlastitaniumWindowFlatPack
+  parent: CrateShipWeaponBase
+  name: пластитановое стекло
+  description: 2x Смотри не заляпай, смотри не сядь.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: PlastitaniumWindowFlatPack
+        amount: 2
+
+- type: entity
+  id: CrateWallPlastitaniumStationFlatPack
+  parent: CrateShipWeaponBase
+  name: укреплённая пластитановая стена
+  description: 10x Смотри не убейся.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WallPlastitaniumStationFlatPack
+        amount: 10
+
+- type: entity
+  id: CratePlastitaniumWindowStationFlatPack
+  parent: CrateShipWeaponBase
+  name: пластитановое стекло
+  description: 4x Смотри не заляпай, смотри не сядь.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: PlastitaniumWindowStationFlatPack
+        amount: 4
+
+#MARK:MISC
+
+- type: entity
+  id: CrateComputerAdvancedRadarFlatPack
+  parent: CrateShipWeaponBase
+  name: продвинутая консоль сканера массы
+  description: Более мощный процессор и усовершенствованные компоненты делают этот радар идеальным для обнаружения объектов на большом расстоянии. Получите технологическое и тактическое преимущество при отслеживании удалённых космических тел.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: ComputerAdvancedRadarFlatPack
+        amount: 1
+
+#MARK: MONO turrets
+
+- type: entity
+  id: CrateWeaponTurretCharonetteFlatPack
+  parent: CrateShipWeaponBase
+  name: M194 CHARONETTE mass driver
+  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponTurretCharonetteFlatPack
         amount: 1
