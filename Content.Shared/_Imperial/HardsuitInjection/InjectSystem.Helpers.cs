@@ -59,6 +59,13 @@ public sealed partial class InjectSystem
             if (!Deleted(uid) && TryComp<InjectComponent>(uid, out var comp) && !comp.Locked)
             {
                 comp.Locked = true;
+                
+                // ВАЖНО: Также блокируем ItemSlot через ItemSlotsSystem
+                if (TryComp<ItemSlotsComponent>(uid, out var itemSlots))
+                {
+                    _itemSlotsSystem.SetLock(uid, comp.ContainerId, comp.Locked, itemSlots);
+                }
+                
                 // Оповещение (если нужно)
                 _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-close"), uid, PopupType.Medium);
             }

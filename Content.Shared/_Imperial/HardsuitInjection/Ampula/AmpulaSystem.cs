@@ -43,6 +43,14 @@ public sealed partial class AmpulaSystem : EntitySystem
         if (!itemslot.InsertOnInteract)
             return;
 
+        // Проверяем, заблокирован ли слот ампулы через ItemSlotsSystem
+        if (itemslot.Locked)
+        {
+            _entManager.System<Content.Shared.Popups.SharedPopupSystem>()
+                .PopupEntity(Loc.GetString("hardsuitinjection-closed"), user, user);
+            return;
+        }
+
         if (!sys.CanInsert(slot.Value, args.Used, args.User, itemslot, swap: itemslot.Swap))
             return;
 
