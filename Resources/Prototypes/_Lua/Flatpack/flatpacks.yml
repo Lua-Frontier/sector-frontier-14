@@ -234,12 +234,12 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: WeaponTurretCharonFlatPack
+  id: WeaponTurretCharonReloadFlatPack
   name: M381 CHARON mass driver
   description: A heavy linear accelerator, capable of devastating targets with kinetic energy. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
-    entity: WeaponTurretCharon
+    entity: WeaponTurretCharonReload
   - type: StaticPrice
     price: 5000
   - type: Sprite
