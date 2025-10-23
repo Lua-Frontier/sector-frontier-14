@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/19/2025 14:40:29
-  entityCount: 139
+  time: 10/22/2025 15:00:10
+  entityCount: 143
 maps: []
 grids:
 - 1
@@ -207,11 +207,11 @@ entities:
       parent: 1
 - proto: APCBasic
   entities:
-  - uid: 65
+  - uid: 69
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 4.5,-5.5
+      pos: 1.5,-5.5
       parent: 1
 - proto: AtmosDeviceFanTiny
   entities:
@@ -222,10 +222,10 @@ entities:
       parent: 1
 - proto: CableApcExtension
   entities:
-  - uid: 70
+  - uid: 61
     components:
     - type: Transform
-      pos: 4.5,-5.5
+      pos: 1.5,-5.5
       parent: 1
   - uid: 71
     components:
@@ -319,6 +319,11 @@ entities:
       parent: 1
 - proto: CableHV
   entities:
+  - uid: 45
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 1
   - uid: 66
     components:
     - type: Transform
@@ -331,15 +336,15 @@ entities:
       parent: 1
 - proto: CableMV
   entities:
+  - uid: 62
+    components:
+    - type: Transform
+      pos: 3.5,-4.5
+      parent: 1
   - uid: 68
     components:
     - type: Transform
       pos: 4.5,-4.5
-      parent: 1
-  - uid: 69
-    components:
-    - type: Transform
-      pos: 4.5,-5.5
       parent: 1
   - uid: 123
     components:
@@ -355,6 +360,21 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-4.5
+      parent: 1
+  - uid: 141
+    components:
+    - type: Transform
+      pos: 2.5,-4.5
+      parent: 1
+  - uid: 142
+    components:
+    - type: Transform
+      pos: 1.5,-4.5
+      parent: 1
+  - uid: 143
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
       parent: 1
 - proto: CatwalkMono
   entities:
@@ -408,7 +428,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleWithMercenaryDisk
   entities:
   - uid: 47
     components:
@@ -435,15 +455,7 @@ entities:
   - uid: 116
     components:
     - type: Transform
-      pos: 1.6753408,-0.20942831
-      parent: 1
-- proto: ExtinguisherCabinetFilled
-  entities:
-  - uid: 45
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-5.5
+      pos: 1.9752631,-1.4229136
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -619,6 +631,21 @@ entities:
         - 0
         - 0
         - 0
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 23
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-5.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 63
+    components:
+    - type: Transform
+      pos: 5.5,-4.5
+      parent: 1
 - proto: NFHolopadShip
   entities:
   - uid: 139
@@ -628,10 +655,10 @@ entities:
       parent: 1
 - proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 23
+  - uid: 65
     components:
     - type: Transform
-      pos: 5.5,-4.5
+      pos: 4.5,-4.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -671,10 +698,10 @@ entities:
       parent: 1
 - proto: Rack
   entities:
-  - uid: 61
+  - uid: 70
     components:
     - type: Transform
-      pos: 4.5,-4.5
+      pos: 1.5,-4.5
       parent: 1
 - proto: RandomSpawner
   entities:
@@ -687,13 +714,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-4.5
-      parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 62
-    components:
-    - type: Transform
-      pos: 5.484103,-4.4501
       parent: 1
 - proto: ShuttersNormal
   entities:
@@ -1096,9 +1116,9 @@ entities:
       parent: 1
 - proto: Wrench
   entities:
-  - uid: 63
+  - uid: 140
     components:
     - type: Transform
-      pos: 4.576193,-4.4047093
+      pos: 1.414846,-4.455455
       parent: 1
 ...

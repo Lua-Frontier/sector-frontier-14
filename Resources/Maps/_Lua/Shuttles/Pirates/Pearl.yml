@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/19/2025 05:06:24
+  time: 10/23/2025 11:35:12
   entityCount: 540
 maps: []
 grids:
@@ -1502,7 +1502,7 @@ entities:
     - type: Transform
       pos: 2.5,4.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleWithPirateDisk
   entities:
   - uid: 214
     components:
@@ -2257,6 +2257,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,-4.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 303
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 1
 - proto: MagazineEagle
   entities:
   - uid: 317
@@ -2272,7 +2279,7 @@ entities:
     - type: MetaData
       name: пистолетный магазин пиратского орла (.45 магнум)
     - type: Transform
-      pos: 7.7642713,-2.353515
+      pos: 6.6168056,-3.356963
       parent: 1
   - uid: 319
     components:
@@ -2375,7 +2382,7 @@ entities:
   - uid: 378
     components:
     - type: Transform
-      pos: 8.437491,-3.208481
+      pos: 7.2672105,-2.887644
       parent: 1
   - uid: 379
     components:

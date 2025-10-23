@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/08/2025 08:46:15
-  entityCount: 570
+  time: 10/23/2025 11:24:35
+  entityCount: 569
 maps: []
 grids:
 - 1
@@ -1743,7 +1743,7 @@ entities:
     - type: Transform
       pos: -12.5,3.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleWithPirateDisk
   entities:
   - uid: 218
     components:
@@ -1755,7 +1755,7 @@ entities:
   - uid: 219
     components:
     - type: Transform
-      pos: -10.584321,-0.48555368
+      pos: -9.334473,-0.46583557
       parent: 1
     - type: Pullable
       prevFixedRotation: True
@@ -2647,6 +2647,13 @@ entities:
     - type: Transform
       pos: -1.5,2.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 396
+    components:
+    - type: Transform
+      pos: -9.5,1.5
+      parent: 1
 - proto: MedkitAdvancedFilled
   entities:
   - uid: 330
@@ -2709,7 +2716,7 @@ entities:
   - uid: 339
     components:
     - type: Transform
-      pos: -3.7485425,-2.4363694
+      pos: -2.5029984,-2.3309011
       parent: 1
   - uid: 340
     components:
@@ -2721,7 +2728,7 @@ entities:
   - uid: 341
     components:
     - type: Transform
-      pos: -14.7876625,-2.1639504
+      pos: -13.552605,-2.3565884
       parent: 1
 - proto: NFSpeedLoaderPistol45
   entities:
@@ -2767,7 +2774,7 @@ entities:
   - uid: 342
     components:
     - type: Transform
-      pos: -1.5374992,-1.1992779
+      pos: -1.6044388,-2.447484
       parent: 1
 - proto: OreBag
   entities:
