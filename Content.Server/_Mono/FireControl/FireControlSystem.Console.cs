@@ -8,8 +8,10 @@ using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.UserInterface;
+using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Mono.FireControl;
 
@@ -20,6 +22,7 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
 
     private bool _completedCheck = false;
 
@@ -281,6 +284,38 @@ public sealed partial class FireControlSystem : EntitySystem
             }
         }
 
+        if (TryComp<MagazineAmmoProviderComponent>(weaponEntity, out var magazineAmmo))
+        {
+            var magazineEntity = GetMagazineEntity(weaponEntity);
+            if (magazineEntity != null)
+            {
+                if (TryComp<BallisticAmmoProviderComponent>(magazineEntity, out var magazineBallisticAmmo))
+                {
+                    return (magazineBallisticAmmo.Count, magazineBallisticAmmo.Cycleable);
+                }
+
+                if (TryComp<BasicEntityAmmoProviderComponent>(magazineEntity, out var magazineBasicAmmo))
+                {
+                    var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(magazineEntity);
+                    return (magazineBasicAmmo.Count, !hasRecharge);
+                }
+            }
+        }
+
         return (null, false);
+    }
+
+    /// <summary>
+    /// Gets the magazine entity from a weapon's magazine slot.
+    /// </summary>
+    private EntityUid? GetMagazineEntity(EntityUid weaponEntity)
+    {
+        if (!_containers.TryGetContainer(weaponEntity, "gun_magazine", out var container) ||
+            container is not ContainerSlot slot)
+        {
+            return null;
+        }
+
+        return slot.ContainedEntity;
     }
 }
