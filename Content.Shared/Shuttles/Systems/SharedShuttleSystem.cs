@@ -2,6 +2,7 @@ using Content.Shared._Mono.Ships;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.UI.MapObjects;
 using Content.Shared.Whitelist;
@@ -200,6 +201,27 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
         return range;
     }
+
+    public bool TryGetBluespaceDrive(EntityUid shuttleUid, out EntityUid? driveUid, out BluespaceDriveComponent? drive)
+    {
+        driveUid = null;
+        drive = null;
+        var query = AllEntityQuery<BluespaceDriveComponent>();
+        var poweredFound = false;
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (Transform(uid).GridUid != shuttleUid) continue;
+            var isPowered = _powerReceiverSystem.IsPowered(uid);
+            if (!isPowered) continue;
+            driveUid = uid;
+            drive = comp;
+            poweredFound = isPowered;
+        }
+        return poweredFound;
+    }
+
+    public bool TryGetWarpDrive(EntityUid shuttleUid, out EntityUid? driveUid, out BluespaceDriveComponent? drive)
+    { return TryGetBluespaceDrive(shuttleUid, out driveUid, out drive); }
 
     /// <summary>
     /// Tries to get the highest range FTL drive on the shuttle. Prioritizes powered drives.

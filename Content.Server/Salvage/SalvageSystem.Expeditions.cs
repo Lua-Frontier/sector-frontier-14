@@ -197,6 +197,8 @@ public sealed partial class SalvageSystem
         // End Frontier: separate timeout/announcement for success/failures
         component.ActiveMission = 0;
         component.Cooldown = true;
+        component.ReturnMapUid = null;
+        component.ReturnWorldPosition = Vector2.Zero;
         UpdateConsoles(expedition);
     }
 
@@ -285,6 +287,8 @@ public sealed partial class SalvageSystem
         {
             component.ActiveMission = 0;
             component.Cooldown = false;
+            component.ReturnMapUid = null;
+            component.ReturnWorldPosition = Vector2.Zero;
             UpdateConsoles((uid, component));
         }
     }

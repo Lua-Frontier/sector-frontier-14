@@ -1,0 +1,41 @@
+- type: entity
+  id: BannerPirates
+  parent: BannerBase
+  name: pirate banner
+  description: A banner flying pirate colors.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Decoration/banner.rsi
+    state: banner_pirates
+
+- type: entity
+  id: BannerSectorPirates
+  parent: BannerPirates
+  name: pirate sector banner
+  description: A pirate banner marking control over a sector.
+  components:
+  - type: StarMapSectorColorOverride
+    colorHex: "#948471"
+    faction: "Pirates"
+
+- type: entity
+  id: BannerSectorSyndicate
+  parent: BannerSyndicate
+  name: syndicate sector banner
+  description: A syndicate banner marking control over a sector.
+  components:
+  - type: StarMapSectorColorOverride
+    colorHex: "#d93204"
+    faction: "Syndicate"
+
+- type: entity
+  id: BannerSectorSecurity
+  parent: BannerSecurity
+  name: sector security banner
+  description: Special NFSD sector banner. Colors the sector star in the starmap.
+  components:
+  - type: StarMapSectorColorOverride
+    colorHex: "#96B089"
+    faction: "Nfsd"
+
+

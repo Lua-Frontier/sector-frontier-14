@@ -7,11 +7,11 @@
   worldgenConfig: AsteroidSectorDefault # будут ли в нашем секторе спавнится астероиды, тут указывается тип спавна астероидов, есть 2 типа Default где их минимум и AsteroidSectorDefault, где их обилие и большие размеры
   autoStart: true # Необходим для основной группы секторов, более понятно для чего и зачем не буду пояснять, просто включайте если используете в стандартном режиме игры, выключить если не нужно загружать сектор
   defaultGamePreset: NFPirates # Режим игры который мы используем по дефолту на нашем фронтире
-  addFtlDestination: true # Включаем возможность перемещаться на наш сектор
-  ftlWhitelist: [ NanotrasenFtl, MercenaryFtl, PirateFtl, TypanFtl ] # Указываем белые списки кому дозволено коснуться нашего сектора, данные компоненты должны быть указаны в прототипе корабля vessel
   parallaxPool: [ LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
   deadDropEnabled: true # Включаем систему DeadDrop для сектора
   deadDropCount: 8 # Максимальное количество DeadDrop на сектор
+  starmapPosition: 3.0, 4.8 # Позиция на StarMap
+  starmapColor: "#c3cf18" # Цвет на StarMap
   poiGroups: # Ниже перечисляем точки интереса что будут раундстартом в секторе, их id и настройку можно получить из PointOfInterest в папке NF прототипов (либо Lua)
   - group: AsteroidRequired # Группа рекомендаций сектора
     count: 0 # если 0 то спавнится каждый по одному
@@ -29,14 +29,14 @@
   worldgenConfig: Default
   autoStart: true
   defaultGamePreset: NFPirates
-  addFtlDestination: true
-  ftlWhitelist: [ TypanFtl ]
   parallaxPool: [ OriginStation, NordFoll ]
   deadDropEnabled: false
   poiGroups:
   - group: TypanCargoDepot
     count: 1
     ring: false
+  starmapPosition: 14.9, 12.0
+  starmapColor: "#990816"
 
 - type: sectorSystemPrototype
   id: PirateSector
@@ -44,11 +44,11 @@
   station: Cove
   autoStart: true
   defaultGamePreset: NFPirates
-  addFtlDestination: true
-  ftlWhitelist: [ PirateFtl ]
   parallaxPool: [ CoreStation, Tortuga ]
   deadDropEnabled: true
   deadDropCount: 2
+  starmapPosition: 17.6, -16.5
+  starmapColor: "#8A6642"
 
 - type: sectorSystemPrototype
   id: MercenarySector
@@ -56,18 +56,17 @@
   station: MercMap
   autoStart: true
   defaultGamePreset: NFPirates
-  addFtlDestination: true
-  ftlWhitelist: [ MercenaryFtl, TypanFtl ]
   parallaxPool: [ Sky ]
   deadDropEnabled: true
   deadDropCount: 1
+  starmapPosition: -14.8, -16.2
+  starmapColor: "#182faf"
 
 - type: sectorSystemPrototype
   id: ShipVsShipRed
   name: "Сектор Красных"
   station: ShipVsShipRedGrid
   requiredGamePreset: ShipVsShip
-  addFtlDestination: false
   parallaxPool: [ OriginStation ]
   poiGroups:
   - group: ShipVsShipRedRequired
@@ -78,7 +77,6 @@
   name: "Сектор Синих"
   station: ShipVsShipBlueGrid
   requiredGamePreset: ShipVsShip
-  addFtlDestination: false
   parallaxPool: [ OriginStation ]
   poiGroups:
   - group: ShipVsShipBlueRequired

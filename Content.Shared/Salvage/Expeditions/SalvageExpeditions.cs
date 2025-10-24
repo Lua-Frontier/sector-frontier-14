@@ -55,7 +55,7 @@ public sealed partial class SalvageExpeditionConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool Debug = false;
-    // End Frontier: 
+    // End Frontier:
 }
 
 [Serializable, NetSerializable]
@@ -117,6 +117,12 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan CooldownTime;
     // End Frontier: early finish, failure vs. success cooldowns
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public EntityUid? ReturnMapUid;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public System.Numerics.Vector2 ReturnWorldPosition;
 }
 
 [Serializable, NetSerializable]

@@ -1,0 +1,161 @@
+- type: worldgenConfig
+  id: WG_Asteroids_Mix_01
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidsFallback
+        - Failsafe
+        - AsteroidsStandard
+        - NFAsteroidsNear
+
+- type: worldgenConfig
+  id: WG_Asteroids_Mix_02
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidsFallback
+        - Failsafe
+        - AsteroidsStandard
+        - NFAsteroidsMid
+
+- type: worldgenConfig
+  id: WG_Asteroids_Mix_03
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidsFallback
+        - Failsafe
+        - AsteroidsStandard
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_Sector_Rich_01
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidSectorFallback
+        - Failsafe
+        - AsteroidSectorStandard
+        - NFAsteroidsNear
+
+- type: worldgenConfig
+  id: WG_Sector_Rich_02
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidSectorFallback
+        - Failsafe
+        - AsteroidSectorStandard
+        - NFAsteroidsMid
+
+- type: worldgenConfig
+  id: WG_Sector_Rich_03
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidSectorFallback
+        - Failsafe
+        - AsteroidSectorStandard
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_ThreeRing_01
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - NFAsteroidsNear
+        - NFAsteroidsMid
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_ThreeRing_02
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidsFallback
+        - NFAsteroidsNear
+        - NFAsteroidsMid
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_ThreeRing_03
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidSectorFallback
+        - NFAsteroidsNear
+        - NFAsteroidsMid
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_Balanced_01
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - AsteroidsStandard
+        - NFAsteroidsMid
+
+- type: worldgenConfig
+  id: WG_Balanced_02
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - AsteroidSectorStandard
+        - NFAsteroidsMid
+
+- type: worldgenConfig
+  id: WG_Balanced_03
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - AsteroidsStandard
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_Sparse_01
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - AsteroidsFallback
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_Sparse_02
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - AsteroidSectorFallback
+        - NFAsteroidsFar
+
+- type: worldgenConfig
+  id: WG_Dense_01
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - Failsafe
+        - AsteroidSectorStandard
+        - NFAsteroidsNear
+        - NFAsteroidsMid
+
+
