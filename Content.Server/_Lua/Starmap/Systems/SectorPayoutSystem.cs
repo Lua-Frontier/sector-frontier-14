@@ -47,7 +47,6 @@ public sealed class SectorPayoutSystem : EntitySystem
                 comp.Accumulated += add;
             }
             comp.LastAccrualAt += interval * ticks;
-            Dirty(uid, comp);
         }
     }
 
@@ -67,7 +66,6 @@ public sealed class SectorPayoutSystem : EntitySystem
             _ui.SetUiState(ent.Owner, PayoutCollectorUiKey.Key, state); return;
         }
         ent.Comp.Accumulated = 0;
-        Dirty(ent.Owner, ent.Comp);
         var xform = Transform(ent.Owner);
         for (var i = 0; i < amount; i++)
         { EntityManager.SpawnEntity(ent.Comp.CurrencyPrototypePerUnit, xform.Coordinates); }

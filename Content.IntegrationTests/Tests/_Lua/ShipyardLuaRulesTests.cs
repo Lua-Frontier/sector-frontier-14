@@ -155,6 +155,7 @@ public sealed class ShipyardLuaRulesTests
         "MachineFTLDrive",
         "MachineFTLDrive50",
         "MachineFTLDrive25S",
+        "MachineWarpDrive",
     };
 
     private static readonly string[] FtlBannedAll =

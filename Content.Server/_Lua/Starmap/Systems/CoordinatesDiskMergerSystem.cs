@@ -39,7 +39,6 @@ public sealed class CoordinatesDiskMergerSystem : EntitySystem
     {
         ent.Comp.IsMerging = false;
         ent.Comp.MergeStartedAt = TimeSpan.Zero;
-        Dirty(ent.Owner, ent.Comp);
         PushState(ent.Owner, ent.Comp);
     }
 
@@ -58,7 +57,6 @@ public sealed class CoordinatesDiskMergerSystem : EntitySystem
                 MergeNow((uid, comp));
                 comp.IsMerging = false;
                 comp.MergeStartedAt = TimeSpan.Zero;
-                Dirty(uid, comp);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/scan_finish.ogg"), uid);
                 PushState(uid, comp);
             }
@@ -74,7 +72,6 @@ public sealed class CoordinatesDiskMergerSystem : EntitySystem
         if (ent.Comp.IsMerging) return;
         ent.Comp.IsMerging = true;
         ent.Comp.MergeStartedAt = _timing.CurTime;
-        Dirty(ent.Owner, ent.Comp);
     }
 
     private void MergeNow(Entity<CoordinatesDiskMergerComponent> ent)
@@ -91,8 +88,6 @@ public sealed class CoordinatesDiskMergerSystem : EntitySystem
         bComp.AllowedSectors = setNames.ToList();
         aComp.AllowFtlToCentCom = aComp.AllowFtlToCentCom || bComp.AllowFtlToCentCom;
         bComp.AllowFtlToCentCom = aComp.AllowFtlToCentCom;
-        Dirty(a, aComp);
-        Dirty(b, bComp);
     }
 
     private void OnUiOpened(Entity<CoordinatesDiskMergerComponent> ent, ref BoundUIOpenedEvent args)
