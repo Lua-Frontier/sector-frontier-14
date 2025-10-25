@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/03/2025 12:47:48
-  entityCount: 1360
+  time: 10/23/2025 13:57:15
+  entityCount: 1361
 maps: []
 grids:
 - 1
@@ -808,7 +808,7 @@ entities:
       pos: 4.5,8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8162.3145
+      secondsUntilStateChange: -8221.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -819,7 +819,7 @@ entities:
       pos: -3.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8165.514
+      secondsUntilStateChange: -8225.169
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -830,7 +830,7 @@ entities:
       pos: -3.5,8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8164.7144
+      secondsUntilStateChange: -8224.369
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -841,7 +841,7 @@ entities:
       pos: -1.5,5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7005.182
+      secondsUntilStateChange: -7064.8374
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -857,7 +857,7 @@ entities:
       pos: 3.5,5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7125.9155
+      secondsUntilStateChange: -7185.571
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -881,7 +881,7 @@ entities:
       pos: -6.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8766.847
+      secondsUntilStateChange: -8826.502
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -899,7 +899,7 @@ entities:
       pos: -1.5,11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7552.715
+      secondsUntilStateChange: -7612.37
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -917,7 +917,7 @@ entities:
       pos: 3.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -6868.716
+      secondsUntilStateChange: -6928.371
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -929,7 +929,7 @@ entities:
       pos: -3.5,-7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8184.048
+      secondsUntilStateChange: -8243.703
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4442,7 +4442,7 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithPirateDisk
   entities:
   - uid: 711
     components:
@@ -5561,11 +5561,9 @@ entities:
       pos: -1.5,-9.5
       parent: 1
     - type: Battery
-      startingCharge: 139.33617
+      startingCharge: 0
     - type: ApcPowerReceiver
       powerLoad: 20
-    - type: ApcPowerReceiverBattery
-      enabled: True
 - proto: Gyroscope
   entities:
   - uid: 873
@@ -5669,6 +5667,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-5.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 51
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
       parent: 1
 - proto: MedicalBed
   entities:
@@ -8610,7 +8615,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -7195.3154
+      secondsUntilStateChange: -7254.9707
       state: Opening
     - type: Airlock
       autoClose: False

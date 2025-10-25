@@ -106,6 +106,12 @@ public sealed partial class SalvageSystem
                 return;
             }
         }
+        var consoleXform = Transform(uid);
+        if (consoleXform.MapUid != null)
+        {
+            data.ReturnMapUid = consoleXform.MapUid.Value;
+            data.ReturnWorldPosition = _transform.GetWorldPosition(consoleXform);
+        }
         SpawnMission(missionparams, station.Value, null);
         #endregion Frontier FTL changes
         // End Frontier

@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/19/2025 06:09:18
-  entityCount: 362
+  time: 10/22/2025 14:55:39
+  entityCount: 363
 maps: []
 grids:
 - 1
@@ -836,7 +836,7 @@ entities:
     - type: Transform
       pos: 12.5,-0.5
       parent: 1
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleWithMercenaryDisk
   entities:
   - uid: 132
     components:
@@ -1458,6 +1458,13 @@ entities:
     components:
     - type: Transform
       pos: 13.5,-4.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 356
+    components:
+    - type: Transform
+      pos: 12.5,-4.5
       parent: 1
 - proto: NFAmmunitionBoxShellShotgunBuckshot
   entities:

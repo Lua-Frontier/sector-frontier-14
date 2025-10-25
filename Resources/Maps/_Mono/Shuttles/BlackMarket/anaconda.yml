@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/19/2025 06:14:21
+  time: 10/23/2025 13:55:26
   entityCount: 951
 maps: []
 grids:
@@ -2972,7 +2972,7 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithPirateDisk
   entities:
   - uid: 450
     components:
@@ -4275,6 +4275,13 @@ entities:
     - type: Transform
       pos: 5.5,-22.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 3
+    components:
+    - type: Transform
+      pos: -3.5,-32.5
+      parent: 1
 - proto: NFHolopadShipAntag
   entities:
   - uid: 620
@@ -4996,6 +5003,12 @@ entities:
       parent: 1
 - proto: WallMining
   entities:
+  - uid: 2
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-31.5
+      parent: 1
   - uid: 719
     components:
     - type: Transform
@@ -5344,12 +5357,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-32.5
       parent: 1
-  - uid: 777
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-32.5
-      parent: 1
   - uid: 778
     components:
     - type: Transform
@@ -5577,12 +5584,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-37.5
-      parent: 1
-  - uid: 818
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-31.5
       parent: 1
   - uid: 819
     components:

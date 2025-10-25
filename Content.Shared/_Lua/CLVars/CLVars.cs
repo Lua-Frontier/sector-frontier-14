@@ -42,11 +42,14 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("zone.pvp_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE,
                 "Отключить или включить пвп зоны.");
 
-        /// <summary>
-        ///     Whether or not to generate FTL points roundstart.
-        /// </summary>
         public static readonly CVarDef<bool> GenerateStarmapRoundstart =
-            CVarDef.Create("starmap.generate_roundstart", false, CVar.ARCHIVE);
+            CVarDef.Create("starmap.generate_roundstart", true, CVar.ARCHIVE);
+        public static readonly CVarDef<int> StarmapMinStars =
+            CVarDef.Create("starmap.min_stars", 15, CVar.ARCHIVE);
+        public static readonly CVarDef<int> StarmapMaxStars =
+            CVarDef.Create("starmap.max_stars", 26, CVar.ARCHIVE);
+        public static readonly CVarDef<bool> StarmapIncludeSectors =
+            CVarDef.Create("starmap.include_sectors", true, CVar.ARCHIVE);
 
         /// <summary>
         ///     What weighted random prototype is being used?
