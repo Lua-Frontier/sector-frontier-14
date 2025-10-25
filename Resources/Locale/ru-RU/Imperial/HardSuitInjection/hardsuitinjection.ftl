@@ -14,6 +14,7 @@ hardsuitinjection-injection = Ввод веществ из отсека ЭП
 hardsuitinjection-injectiondescription = Вводит вещества из ампулы содержащейся в отсеке экстренной помощи
 hardsuitinjection-nobeaker = Ампула не вставлена в отсек ЭП
 hardsuitinjection-eject = Извлечь ампулу из отсека ЭП
+hardsuitinjection-fail-insert = Не удалось вставить ампулу в отсек ЭП
 ent-AmpulaTric = {ent-Ampula}
     .suffix = Трикордразин
     .desc = {ent-Ampula.desc}
@@ -32,11 +33,3 @@ ent-AmpulaDexa = {ent-Ampula}
 ent-AmpulaHyro = {ent-Ampula}
     .suffix = Хироналин
     .desc = {ent-Ampula.desc}
-
-  - type: Inject
-  - type: ItemSlots
-    slots:
-      beakerSlot:
-        whitelist:
-          tags:
-          - FitsHardsuit
