@@ -31,6 +31,8 @@
     openCloseDelay: 0.1
     autoClose: true
     autoCloseDelay: 3
+  - type: ThermalCloak
+    enabled: false
   - type: ItemSlots # _Lua
     slots: # _Lua
       beakerSlot: # _Lua
@@ -64,6 +66,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitTSFMCM73
@@ -91,6 +95,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.85
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitBaseNFNfsd
@@ -124,6 +130,8 @@
     openCloseDelay: 0.1
     autoClose: true
     autoCloseDelay: 3
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -152,6 +160,8 @@
     openCloseDelay: 0.1
     autoClose: true
     autoCloseDelay: 3
+  - type: ThermalCloak
+    enabled: false
 
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
@@ -190,6 +200,8 @@
     openCloseDelay: 0.1
     autoClose: true
     autoCloseDelay: 3
+  - type: ThermalCloak
+    enabled: false
 
 #Security Combat Hardsuit
 - type: entity

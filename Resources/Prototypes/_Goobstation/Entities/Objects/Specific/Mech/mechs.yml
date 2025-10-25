@@ -193,6 +193,8 @@
     brokenState: gygax-broken
     mechToPilotDamageMultiplier: 0.3
     airtight: true
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -252,7 +254,9 @@
     brokenState: durand-broken
     mechToPilotDamageMultiplier: 0.25
     airtight: true
-    maxIntegrity: 400
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
+    maxIntegrity: 720
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -319,7 +323,9 @@
     brokenState: marauder-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
+    maxIntegrity: 900
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -392,7 +398,9 @@
     brokenState: seraph-broken
     mechToPilotDamageMultiplier: 0.05
     airtight: true
-    maxIntegrity: 550
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
+    maxIntegrity: 990
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -468,7 +476,9 @@
     brokenState: darkgygax-broken
     mechToPilotDamageMultiplier: 0.15
     airtight: true
-    maxIntegrity: 300
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
+    maxIntegrity: 540
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -541,7 +551,9 @@
     brokenState: mauler-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
+    nightVisionEnabled: true
+    nightVisionColor: "#999999"
+    maxIntegrity: 900
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:

@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# By ressuw.
+
+- type: vessel
+  parent: BaseVessel
+  id: Huke
+  name: NSF Huke
+  description: Средне-малый корабль для патруля космоса. Имеет крупное для своих размеров вооружение.
+   Также имеет посредственное бронирование.
+  limit: 5
+  price: 105000 #95646
+  category: Medium
+  group: Security
+  class:
+  - Nfsd
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/SD/Huke.yml
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+
+- type: gameMap
+  id: Huke
+  mapName: 'NSF Huke'
+  mapPath: /Maps/_Lua/Shuttles/SD/Huke.yml
+  minPlayers: 0
+  stations:
+    Huke:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'NSF Huke {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

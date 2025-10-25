@@ -33,8 +33,8 @@
     impactEffect: BulletImpactEffectRedDisabler
     damage:
       types:
-        Blunt: 3
-        Heat: 15
+        Blunt: 6 #Lua 3<6
+        Heat: 30 #Lua 15<30
     soundHit:
       collection: MeatLaserImpact
 

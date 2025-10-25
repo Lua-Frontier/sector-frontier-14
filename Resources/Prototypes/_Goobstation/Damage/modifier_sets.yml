@@ -72,3 +72,26 @@
     Blunt: 10
     Heat: 7
 # Lua end
+
+# Enhanced Mech Armor - Better resistance for all mechs
+- type: damageModifierSet
+  id: EnhancedMechArmor
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.375
+    Shock: 1.25
+    Heat: 0.5
+    Cold: 0.75
+    Radiation: 0.8
+    Cellular: 0.9
+    Asphyxiation: 0.7
+    Structural: 0.4
+  flatReductions:
+    Blunt: 20
+    Heat: 20
+    Cold: 15
+    Radiation: 10
+    Cellular: 5
+    Asphyxiation: 10
+    Structural: 25

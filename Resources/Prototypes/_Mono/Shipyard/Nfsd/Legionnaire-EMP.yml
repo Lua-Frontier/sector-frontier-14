@@ -1,0 +1,44 @@
+# Ship by Starch
+# Minor edits + Refit by Redrover
+
+#Lua remake by fox76055
+
+- type: vessel
+  id: Legionnaire-EMP
+  parent: BaseVesselAntag
+  name: Legionnaire-EMP
+  description: слабо бронированный Корабль поддержки, предназначенный для радиоэлектронного подавления вражеских суден.
+  limit: 2
+  price: 141500 #123000 x 1.15
+  category: Medium
+  group: Security
+  access: Security
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-EMP.yml
+  guidebookPage: Null
+  class:
+  - Patrol
+  - Pursuit
+  - Nfsd
+  engine:
+  - Uranium
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+- type: gameMap
+  id: Legionnaire-EMP
+  mapName: 'Legionnaire-EMP'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-EMP.yml
+  minPlayers: 0
+  stations:
+    Legionnaire-EMP:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Legionnaire-EMP {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Deputy: [ 0, 0 ]
+

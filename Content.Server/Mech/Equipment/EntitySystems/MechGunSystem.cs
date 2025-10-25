@@ -23,6 +23,24 @@ public sealed class MechGunSystem : EntitySystem
         SubscribeLocalEvent<MechEquipmentComponent, GunShotEvent>(MechGunShot);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var query = EntityQueryEnumerator<MechEquipmentComponent, BatteryComponent>();
+        while (query.MoveNext(out var uid, out var mechEquipment, out var battery))
+        {
+            if (!mechEquipment.EquipmentOwner.HasValue) continue;
+            if (!TryComp<MechComponent>(mechEquipment.EquipmentOwner.Value, out var mech)) continue;
+            if (battery.CurrentCharge >= battery.MaxCharge || mech.Energy <= 0) continue;
+            var chargeRate = 10f * frameTime;
+            var chargeDelta = Math.Min(chargeRate, battery.MaxCharge - battery.CurrentCharge);
+            chargeDelta = Math.Min(chargeDelta, mech.Energy.Float());
+            if (chargeDelta <= 0) continue;
+            if (_mech.TryChangeEnergy(mechEquipment.EquipmentOwner.Value, -chargeDelta, mech))
+            { _battery.SetCharge(uid, battery.CurrentCharge + chargeDelta, battery); }
+        }
+    }
+
     private void MechGunShot(EntityUid uid, MechEquipmentComponent component, ref GunShotEvent args)
     {
         if (!component.EquipmentOwner.HasValue)

@@ -25,6 +25,7 @@
   id: WizardsGrimoire
   name: wizards grimoire
   suffix: Wizard
+  categories: [ HideSpawnMenu ] # _Lua
   parent: [ BaseItem, StorePresetSpellbook, BaseC3WizardContraband ] # Frontier: BaseMagicalContraband<BaseC3WizardContraband
   components:
     - type: Sprite

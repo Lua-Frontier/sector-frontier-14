@@ -42,3 +42,11 @@ uplink-fsf-medical = Медицина
 uplink-fsf-ammo = Боеприпасы
 uplink-fsf-other = Прочее
 uplink-fsf-explosions = Взрывчатка
+
+uplink-stealth-jetpack-name = Стелс-джетпак
+uplink-stealth-jetpack-desc = Медленный джетпак, невидимый для радара
+uplink-pirate-stealth-jetpack-name = Стелс-джетпак
+uplink-pirate-stealth-jetpack-desc = Медленный джетпак, невидимый для радара
+
+uplink-syndicate-sector-banner-name = Секторный баннер Синдиката
+uplink-syndicate-sector-banner-desc = Позволяет захватить звезду. Установите баннер на гриде маяка в системе звезды.

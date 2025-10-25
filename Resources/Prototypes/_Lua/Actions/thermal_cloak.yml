@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleThermalCloak
+  name: Thermal Masking
+  description: Toggle the suit's thermal masking to suppress your heat signature.
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/action_hardsuit_temperature.png
+    useDelay: 1.0
+  - type: InstantAction
+    event: !type:ToggleThermalCloakEvent
+
+

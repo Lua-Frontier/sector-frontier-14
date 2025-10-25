@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/23/2025 12:46:49
-  entityCount: 1622
+  time: 10/23/2025 11:22:12
+  entityCount: 1623
 maps: []
 grids:
 - 1
@@ -1152,7 +1152,7 @@ entities:
   - uid: 76
     components:
     - type: Transform
-      pos: 2.768816,-9.329248
+      pos: 1.5515668,-9.044987
       parent: 1
 - proto: AmeShielding
   entities:
@@ -3904,7 +3904,7 @@ entities:
   - uid: 595
     components:
     - type: Transform
-      pos: 11.172439,-20.041084
+      pos: 12.421471,-20.09027
       parent: 1
   - uid: 596
     components:
@@ -3922,7 +3922,7 @@ entities:
   - uid: 598
     components:
     - type: Transform
-      pos: 11.494845,-6.1946125
+      pos: 11.485569,-7.444578
       parent: 1
   - uid: 599
     components:
@@ -4907,7 +4907,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-11.5
       parent: 1
-- proto: ComputerShuttleAntag
+- proto: ComputerShuttleWithPirateDisk
   entities:
   - uid: 730
     components:
@@ -7547,6 +7547,13 @@ entities:
     - type: Transform
       pos: 3.5,-12.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 1623
+    components:
+    - type: Transform
+      pos: 1.5,-11.5
+      parent: 1
 - proto: MedicatedSuture
   entities:
   - uid: 15
@@ -7637,12 +7644,12 @@ entities:
   - uid: 1067
     components:
     - type: Transform
-      pos: 9.694695,-13.260197
+      pos: 10.004826,-14.471113
       parent: 1
   - uid: 1068
     components:
     - type: Transform
-      pos: 9.163445,-13.603947
+      pos: 10.39838,-13.797433
       parent: 1
   - uid: 1069
     components:
@@ -7652,7 +7659,7 @@ entities:
   - uid: 1070
     components:
     - type: Transform
-      pos: 9.194695,-13.228947
+      pos: 10.061711,-14.129381
       parent: 1
 - proto: NFAshtray
   entities:

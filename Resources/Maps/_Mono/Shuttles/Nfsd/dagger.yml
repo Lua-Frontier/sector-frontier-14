@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 08:12:59
+  time: 10/23/2025 14:52:46
   entityCount: 695
 maps: []
 grids:
@@ -630,7 +630,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -2297,7 +2296,7 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithFrontierDisk
   entities:
   - uid: 22
     components:
@@ -3251,19 +3250,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-29.5
       parent: 1
-- proto: MachineFrame
-  entities:
-  - uid: 361
-    components:
-    - type: Transform
-      pos: 2.5,-28.5
-      parent: 1
 - proto: MachineFTLDrive600
   entities:
   - uid: 365
     components:
     - type: Transform
       pos: 0.5,-26.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      pos: 2.5,-28.5
       parent: 1
 - proto: NFHolopadShip
   entities:

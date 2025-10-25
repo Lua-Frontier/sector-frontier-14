@@ -288,10 +288,9 @@ public sealed partial class MapScreen : BoxContainer
 
         while (mapComps.MoveNext(out var mapUid, out var mapComp, out var mapXform, out var mapMetadata))
         {
+            if (mapComp.MapId != ourMap) continue; // Lua StarMap
             if (_console != null && !_shuttles.CanFTLTo(_shuttleEntity.Value, mapComp.MapId, _console.Value))
-            {
-                continue;
-            }
+            { continue; }
             var mapName = mapMetadata.EntityName;
 
             if (string.IsNullOrEmpty(mapName))

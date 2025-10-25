@@ -19,6 +19,18 @@
 #       price: 1500 # these should be super rare
 
 - type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerStarmapDiskMergerCircuitboard
+  name: плата компьютера объединения координат
+  description: Компьютерная печатная плата для компьютера объединения координат.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerStarmapDiskMerger
+
+- type: entity
   id: ShuttleGunPirateCannonCircuitboard
   parent: BaseMachineCircuitboard
   name: Пиратская Пушка машинная плата

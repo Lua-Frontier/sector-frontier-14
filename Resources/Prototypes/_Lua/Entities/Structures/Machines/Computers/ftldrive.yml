@@ -5,15 +5,17 @@
   description: An advanced FTL drive that extends a ship's FTL range to ~600 meters, but with upgrades to allow for faster recharge and flight times. Does not stack.
   components:
     - type: Sprite
-      sprite: _Mono/Structures/ShuttleComponents/drive.rsi
+      sprite: _Lua/Structures/Shuttles/ftlengine.rsi
       snapCardinals: true
+      offset: 0,0.5
+      drawdepth: Mobs
       layers:
       - state: control
       - state: control_on
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         visible: false
         shader: unshaded
-        color: "#2e6cca"
+        color: "#8fcfff"
     - type: FTLDrive
       range: 600
       cooldown: 7.5

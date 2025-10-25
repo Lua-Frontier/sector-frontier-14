@@ -49,6 +49,21 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: MachineWarpDriveFlatpack
+  name: упакованный межзвёздный блюспейс двигатель
+  description: Упакованный межзвёздный блюспейс двигатель необходимый для межзвёздных путешествий
+  components:
+  - type: Flatpack
+    entity: MachineWarpDrive
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
   id: PlayerStationAiVesselFlatpack
   name: упакованный ИИ шаттла
   description: Упакованный ИИ шаттла, составит компанию вашим путешествиям
@@ -111,6 +126,56 @@
 
 - type: entity
   parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTechFrontier
+  suffix: Lua, Диск Фронтир
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskFrontier
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTechMercenary
+  suffix: Lua, Диск Наёмники
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskMercenary
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTechNordfall
+  suffix: Lua, Диск Нордфолл
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskNordfall
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTechPirate
+  suffix: Lua, Диск Пиратов
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskPirate
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTechCentCom
+  suffix: Lua, Диск Центком
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskCentCom
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
   id: ComputerShuttleTabletopLuaTech
   name: консоль управления шаттлом
   description: Используется для пилотирования корабля.
@@ -141,3 +206,53 @@
       state: holo_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: holo_generic_panel_open
+
+- type: entity
+  parent: [ComputerShuttleTabletopLuaTech, ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaTechFrontier
+  suffix: Lua, Tabletop, Диск Фронтир
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskFrontier
+
+- type: entity
+  parent: [ComputerShuttleTabletopLuaTech, ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaTechMercenary
+  suffix: Lua, Tabletop, Диск Наёмники
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskMercenary
+
+- type: entity
+  parent: [ComputerShuttleTabletopLuaTech, ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaTechNordfall
+  suffix: Lua, Tabletop, Диск Нордфолл
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskNordfall
+
+- type: entity
+  parent: [ComputerShuttleTabletopLuaTech, ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaTechPirate
+  suffix: Lua, Tabletop, Диск Пираты
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskPirate
+
+- type: entity
+  parent: [ComputerShuttleTabletopLuaTech, ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaTechCentCom
+  suffix: Lua, Tabletop, Диск Центкомм
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskCentCom

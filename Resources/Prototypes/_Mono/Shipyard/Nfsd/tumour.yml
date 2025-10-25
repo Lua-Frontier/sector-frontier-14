@@ -12,13 +12,12 @@
   class:
   - Pursuit
   - Patrol
+  - Nfsd
   engine:
   - Uranium
   addComponents:
     - type: IFF
       color: "#96B089"
-    - type: NanotrasenFtl
-
 - type: gameMap
   id: Tumour
   mapName: 'Tumour'

@@ -1,15 +1,16 @@
+// LuaWorld - This file is licensed under AGPLv3
+// Copyright (c) 2025 LuaWorld
+// See AGPLv3.txt for details.
+
 using Content.Server.Maps.NameGenerators;
 using JetBrains.Annotations;
 using Robust.Shared.Random;
 
-namespace Content.Server._Lua.FTLPoints.Generators;
+namespace Content.Server._Lua.Starmap.Generators;
 
 [UsedImplicitly]
 public sealed partial class IndependentNameGenerator : StationNameGenerator
 {
-    /// <summary>
-    ///     Where the map comes from. Should be a two or three letter code, for example "VG" for Packedstation.
-    /// </summary>
     [DataField("prefixCreator")] public string PrefixCreator = default!;
 
     private string Prefix => "ISV";
@@ -18,8 +19,6 @@ public sealed partial class IndependentNameGenerator : StationNameGenerator
     public override string FormatName(string input)
     {
         var random = IoCManager.Resolve<IRobustRandom>();
-
-        // No way in hell am I writing custom format code just to add nice names. You can live with {0}
         return string.Format(input, $"{Prefix}-{PrefixCreator}", $"{random.Pick(SuffixCodes)}-{random.Next(0, 999):D3}");
     }
 }

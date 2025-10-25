@@ -1,0 +1,52 @@
+- type: parallax
+  id: LuaDarkSpace
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/LuaDarkSpaceBG.png"
+      slowness: 0.998046875
+      scale: "0.2, 0.2"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/ParallaxFog.png"
+      slowness: 0.998026875
+      scale: "0.3, 0.3"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/WhiteStarsLua.png"
+      slowness: 0.998042875
+      scale: "0.5, 0.5"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/VioletStarsLua.png"
+      slowness: 0.998032875
+      scale: "0.5, 0.5"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/LuaVioletMoon.png"
+      slowness: 0.998046875
+      scale: "0.50, 0.50"
+      controlHomePosition: "361, 292"
+      worldHomePosition: "0, 0"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/LuaVioletMoon.png"
+      slowness: 0.998040075
+      scale: "0.50, 0.50"
+      controlHomePosition: "361, 292"
+      worldHomePosition: "0, 0"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/LuaDarkSpace/FogFG.png"
+      slowness: 0.97
+      scale: 1.3,1.3
+      scrolling: "0.0, 0.3"
+  layersLQ:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.875
+  layersLQUseHQ: false

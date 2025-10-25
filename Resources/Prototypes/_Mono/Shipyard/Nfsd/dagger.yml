@@ -13,13 +13,12 @@
   class:
   - Patrol
   - Pursuit
+  - Nfsd
   engine:
   - AME
   addComponents:
     - type: IFF
       color: "#96B089"
-    - type: NanotrasenFtl
-
 - type: gameMap
   id: DaggerSD
   mapName: 'Dagger'
