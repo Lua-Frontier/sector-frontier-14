@@ -1,0 +1,58 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasCaptain
+  name: пижама капитана
+  description: Капитанская пижама с золотой тканью и грозным видом снаружи, но мягкой отделкой внутри."
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/pajamascaptain.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/pajamascaptain.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasCEngineer
+  name: пижама главного инженера
+  description: Пижама главного инженера с золотистой и яркой тканью, но мягкой и лёгкой отделкой внутри. Не защищает от радиации"
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/pajamasce_nt.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/pajamasce_nt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasCMO
+  name: пижама главного врача
+  description: Пижама главного врача с белой тканью и тёплой, нитриловой отделкой внутри. Выглядит профессионально и чисто."
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/pajamascmo.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/pajamascmo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasQM
+  name: пижама квартермейстре
+  description: Пижама квартермейстра в коричневой расцветке и бархатными вставками. Очень удобная и тёплая."
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/pajamasqm.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/pajamasqm.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPajamasRND
+  name: пижама научного руководителя
+  description: Пижама научного руководителя с фиолетовой тканью и очень-очень мягкой отделкой внутри. Идеальна для долгих ночей в лаборатории или сна в скафандре."
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/pajamasrnd.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/pajamasrnd.rsi

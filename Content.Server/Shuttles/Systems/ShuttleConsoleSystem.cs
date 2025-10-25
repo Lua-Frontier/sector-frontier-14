@@ -21,38 +21,39 @@
 
 using Content.Server._Mono.Ships.Systems;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._Lua.Starmap;
+using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shuttles.Events; // Frontier
+using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
+using Content.Shared.Construction.Components; // Frontier
+using Content.Shared.Lua.CLVar; // Lua
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared.Tag;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Power;
 using Content.Shared.Shuttles.UI.MapObjects;
+using Content.Shared.Tag;
 using Content.Shared.Timing;
+using Content.Shared.UserInterface;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
+using Robust.Shared.Configuration; // Lua
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Utility;
-using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
-using Content.Shared.Access.Systems; // Frontier
-using Content.Shared.Construction.Components; // Frontier
-using Content.Server.Radio.EntitySystems;
-using Content.Shared._Mono.Ships.Components;
-using Content.Shared.Verbs;
-using Content.Shared._NF.Shipyard.Components;
 using Robust.Shared.Timing;// Lua add timer panic button
-using Content.Shared.Lua.CLVar; // Lua
-using Robust.Shared.Configuration; // Lua
+using Robust.Shared.Utility;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -108,11 +109,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
             subs.Event<ToggleFTLLockRequestMessage>(OnToggleFTLLock);
+            subs.Event<WarpToStarMessage>(OnWarpToStarMessage); // Lua
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
         SubscribeLocalEvent<DroneConsoleComponent, ConsoleShuttleEvent>(OnCargoGetConsole);
         SubscribeLocalEvent<DroneConsoleComponent, AfterActivatableUIOpenEvent>(OnDronePilotConsoleOpen);
+        SubscribeLocalEvent<ShuttleConsoleComponent, EntInsertedIntoContainerMessage>(OnConsoleDiskInserted); // Lua
+        SubscribeLocalEvent<ShuttleConsoleComponent, EntRemovedFromContainerMessage>(OnConsoleDiskRemoved); // Lua
         Subs.BuiEvents<DroneConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
             subs.Event<BoundUIClosedEvent>(OnDronePilotConsoleClose);
@@ -457,7 +461,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
         {
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
+            var currentMap = consoleXform?.MapID ?? MapId.Nullspace;
+            var starMapState = GetStarMapState(currentMap, shuttleGridUid, consoleUid);
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, starMapState));
         }
     }
 

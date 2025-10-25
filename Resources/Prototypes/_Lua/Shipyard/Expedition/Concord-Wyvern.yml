@@ -6,8 +6,8 @@
   id: Wyvern
   parent: BaseVessel
   name: Concord-Wyvern
-  description: Один из немногих гражданских флагманов от корпораций LaFleur Industries. На ней есть всё... Буквально.
-  price: 700000 #601050 x 1.15 "nakrytka" (nakrytka reasons: Major Ship, Advanced radars, RnD canisters(Nitrous oxide, Carbon oxide, plasma, amonia) ChemicalVendingMachine, hydroponic)
+  description: Научно-исследовательское судно от LaFleur Industries. Один из немногих флагманов гражданской верфи. 
+  price: 700000 # "nakrytka" (nakrytka reasons: Major Ship, Advanced radar, RnD canisters(Nitrous oxide, Carbon oxide, plasma, amonia) ChemicalVendingMachine, hydroponic)
   category: Large
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/Concord-Wyvern.yml
@@ -20,8 +20,6 @@
   addComponents:
     - type: IFF
       color: "#ffffff"
-    - type: NanotrasenFtl
-
 - type: gameMap
   id: Wyvern
   mapName: 'Concord-Wyvern'
@@ -36,3 +34,4 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
+            

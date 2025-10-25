@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/13/2025 06:09:55
+  time: 10/22/2025 12:36:35
   entityCount: 3203
 maps: []
 grids:
@@ -8199,7 +8199,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,33.5
       parent: 2
-- proto: ComputerShuttleTabletopLuaTech
+- proto: ComputerShuttleTabletopLuaTechFrontier
   entities:
   - uid: 792
     components:
@@ -13967,6 +13967,7 @@ entities:
     - type: Transform
       pos: 14.5,5.5
       parent: 2
+    - type: BluespaceDrive
 - proto: MaintenanceFluffSpawner
   entities:
   - uid: 1873
@@ -16676,7 +16677,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -6.770281,35.389053
+      pos: -5.534483,35.201164
       parent: 2
 - proto: VendingMachineBooze
   entities:

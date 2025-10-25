@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/19/2025 11:55:27
-  entityCount: 574
+  time: 10/23/2025 14:07:45
+  entityCount: 575
 maps: []
 grids:
 - 1
@@ -1900,7 +1900,7 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithPirateDisk
   entities:
   - uid: 249
     components:
@@ -2736,6 +2736,13 @@ entities:
     - type: Transform
       pos: -2.5,-3.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 558
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
 - proto: NFHolopadShipAntag
   entities:
   - uid: 354
@@ -2776,17 +2783,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,9.5
       parent: 1
-  - uid: 359
+  - uid: 563
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-9.5
-      parent: 1
-  - uid: 360
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-9.5
+      pos: -0.5,-9.5
       parent: 1
 - proto: PoweredLEDSmallLight
   entities:
@@ -2939,6 +2939,24 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-7.5
+      parent: 1
+- proto: SolidReinforcedSecretDoor
+  entities:
+  - uid: 391
+    components:
+    - type: Transform
+      pos: 0.5,-8.5
+      parent: 1
+  - uid: 542
+    components:
+    - type: Transform
+      pos: -0.5,8.5
+      parent: 1
+  - uid: 559
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-9.5
       parent: 1
 - proto: SpawnPointLatejoin
   entities:
@@ -3635,6 +3653,16 @@ entities:
       parent: 1
 - proto: WallReinforced
   entities:
+  - uid: 359
+    components:
+    - type: Transform
+      pos: -1.5,8.5
+      parent: 1
+  - uid: 360
+    components:
+    - type: Transform
+      pos: -2.5,8.5
+      parent: 1
   - uid: 514
     components:
     - type: Transform
@@ -3773,12 +3801,7 @@ entities:
   - uid: 541
     components:
     - type: Transform
-      pos: -2.5,8.5
-      parent: 1
-  - uid: 542
-    components:
-    - type: Transform
-      pos: -1.5,8.5
+      pos: -0.5,-8.5
       parent: 1
   - uid: 543
     components:
@@ -3855,16 +3878,6 @@ entities:
     - type: Transform
       pos: -1.5,-8.5
       parent: 1
-  - uid: 558
-    components:
-    - type: Transform
-      pos: 0.5,-8.5
-      parent: 1
-  - uid: 559
-    components:
-    - type: Transform
-      pos: -0.5,-8.5
-      parent: 1
   - uid: 560
     components:
     - type: Transform
@@ -3879,11 +3892,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-9.5
-      parent: 1
-  - uid: 563
-    components:
-    - type: Transform
-      pos: -0.5,8.5
       parent: 1
   - uid: 564
     components:

@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/14/2025 07:57:26
-  entityCount: 730
+  time: 10/23/2025 14:58:09
+  entityCount: 731
 maps: []
 grids:
 - 1
@@ -2021,7 +2021,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,9.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithFrontierDisk
   entities:
   - uid: 264
     components:
@@ -3241,6 +3241,13 @@ entities:
     components:
     - type: Transform
       pos: 8.5,10.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 731
+    components:
+    - type: Transform
+      pos: -2.5,6.5
       parent: 1
 - proto: NFHolopadShip
   entities:

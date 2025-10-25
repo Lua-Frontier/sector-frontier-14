@@ -64,9 +64,10 @@
       lockedFailPopup: ame-controller-component-fuel-slot-fail-locked
       insertSuccessPopup: ame-controller-component-fuel-slot-success-insert
   - type: Explosive
-    explosionType: Default
+    explosionType: DefaultAME #_Lua Default<DefaultAME
     intensitySlope: 5
     maxIntensity: 60
+    totalIntensity: 400 # _Lua
   - type: ActivatableUI
     key: enum.AmeControllerUiKey.Key
   - type: UserInterface

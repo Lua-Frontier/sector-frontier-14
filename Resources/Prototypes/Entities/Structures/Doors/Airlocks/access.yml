@@ -1234,6 +1234,15 @@
 
 - type: entity
   parent: HighSecDoor
+  id: HighSecMedicalLocked
+  suffix: Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: HighSecDoor
   id: HighSecArmoryLocked
   suffix: Armory, Locked
   components:

@@ -1,0 +1,273 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: FishBoomerang
+  parent: BaseFish
+  name: Fish Boomerang
+  description: A fish that returns when thrown.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-boomerang
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 2
+
+- type: entity
+  id: FishErsh
+  parent: BaseFish
+  name: Fish Ersh
+  description: A fish that is known for its speed.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-ersh
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 2
+
+- type: entity
+  id: FishForel
+  parent: BaseFishRare
+  name: Fish Forel
+  description: A fish that is known for its vibrant colors.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-forel
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishGoldKaras
+  parent: BaseFish
+  name: Fish Gold Karas
+  description: A fish that is known for its golden scales.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-gold-karas
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishGorbusha
+  parent: BaseFish
+  name: Fish Gorbusha
+  description: A fish that is known for its rich flavor.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+    state: fish-gorbusha
+    scale: 0.55, 0.725
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 6
+
+- type: entity
+  id: FishKaras
+  parent: BaseFish
+  name: Fish Karas
+  description: A fish that is known for its unique shape.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-karas
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishKilka
+  parent: BaseFish
+  name: Fish Kilka
+  description: A fish that is known for its small size.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-kilka
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishOkun
+  parent: BaseFish
+  name: Fish Okun
+  description: A fish that is known for its unique flavor.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-okun
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishOmul
+  parent: BaseFishRare
+  name: Fish Omul
+  description: A fish that is known for its delicate taste.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+    state: fish-omul
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 4
+
+- type: entity
+  id: FishPiskun
+  parent: BaseFish
+  name: Fish Piskun
+  description: A fish that is known for its unique jumping ability.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-piskun
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishRing
+  parent: BaseFish
+  name: Fish Ring
+  description: A fish that is known for its circular shape.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-ring
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishScumbria
+  parent: BaseFish
+  name: Fish Scumbria
+  description: A fish that is known for its unique appearance.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+    state: fish-scumbria
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishSeld
+  parent: BaseFish
+  name: Fish Seld
+  description: A fish that is known for its unique coloration.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+    state: fish-seld
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/Fish.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 3
+
+- type: entity
+  id: FishSterlad
+  parent: BaseFishRare
+  name: Fish Sterlad
+  description: A fish that is known for its unique shape.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+    state: fish-sterlad
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 4
+
+- type: entity
+  id: FishTunets
+  parent: BaseFish
+  name: Fish Tunets
+  description: A fish that is known for its unique coloration.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+    state: fish-tunets
+  - type: Item
+    sprite: _Lua/Objects/Specific/Fishing/FishLong.rsi
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFishGeneric
+      amount: 1
+      maxAmount: 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+

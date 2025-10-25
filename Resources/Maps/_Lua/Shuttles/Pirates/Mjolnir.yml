@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/23/2025 12:36:06
-  entityCount: 572
+  time: 10/23/2025 11:33:22
+  entityCount: 573
 maps: []
 grids:
 - 1
@@ -998,7 +998,7 @@ entities:
   - uid: 132
     components:
     - type: Transform
-      pos: 1.7502408,2.67367
+      pos: 0.5324831,2.9557447
       parent: 1
   - uid: 133
     components:
@@ -1754,7 +1754,7 @@ entities:
   - uid: 269
     components:
     - type: Transform
-      pos: 3.7244523,-0.38272977
+      pos: 4.7729416,0.22797918
       parent: 1
 - proto: Cobweb1
   entities:
@@ -1811,7 +1811,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-1.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleWithPirateDisk
   entities:
   - uid: 278
     components:
@@ -1875,7 +1875,7 @@ entities:
   - uid: 280
     components:
     - type: Transform
-      pos: 3.3077855,-0.45564646
+      pos: 1.0163306,-0.81504893
       parent: 1
 - proto: DrinkSodaWaterBottleFull
   entities:
@@ -2615,6 +2615,13 @@ entities:
     - type: Transform
       pos: 3.5,1.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 573
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 1
 - proto: Nakrutka1
   entities:
   - uid: 341
@@ -2968,7 +2975,7 @@ entities:
   - uid: 394
     components:
     - type: Transform
-      pos: -0.7395867,1.5503116
+      pos: 0.50768626,1.6328354
       parent: 1
 - proto: SignalButton
   entities:

@@ -303,7 +303,7 @@
     impactEffect: BulletImpactEffectLaser
     damage:
       types:
-        Heat: 20
+        Heat: 40 #Lua 20<40
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -875,13 +875,13 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 250 #150 # a ~2 tile radius
+    totalIntensity: 150 #150 # a ~2 tile radius
     intensitySlope: 5 #5
-    maxIntensity: 100 #10
+    maxIntensity: 10 #10
   - type: Projectile # Wasn't, couldn't penetrate any entity (MONO still fixing it)
     damage:
       types:
-        Blunt: 200
+        Blunt: 150 #Lua 200<150
         Heat: 100
         Structural: 400
 

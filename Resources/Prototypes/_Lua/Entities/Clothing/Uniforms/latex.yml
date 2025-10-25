@@ -1,0 +1,47 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformLatexJanimaid
+  name: латексный наряд уборщика
+  description: У меня есть подозрение что он не предназначен для уборки.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/janimaid.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/janimaid.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformLatexFemale
+  name: латексный наряд для девушек
+  description: У меня есть подозрение что он не для работы с высоким  напряжением.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/latex_catsuit_female.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/latex_catsuit_female.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformLatexMale
+  name: латексный наряд для мужчин
+  description: У меня есть подозрение что он не для работы с высоким  напряжением.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/latex_catsuit_male.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/latex_catsuit_male.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformLatexLovedmaid
+  name: латексный наряд горничной
+  description: Тут и так всё очевидно.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/lovedmaid.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/lovedmaid.rsi

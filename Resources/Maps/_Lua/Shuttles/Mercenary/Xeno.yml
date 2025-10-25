@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/03/2025 12:50:04
-  entityCount: 1048
+  time: 10/22/2025 15:04:24
+  entityCount: 1049
 maps: []
 grids:
 - 1
@@ -1375,7 +1375,7 @@ entities:
       pos: -6.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10403.842
+      secondsUntilStateChange: -10635.177
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1405,7 +1405,7 @@ entities:
       pos: 3.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10908.441
+      secondsUntilStateChange: -11139.776
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1428,7 +1428,7 @@ entities:
       pos: -6.5,12.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13065.239
+      secondsUntilStateChange: -13296.574
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1446,7 +1446,7 @@ entities:
       pos: -1.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10894.309
+      secondsUntilStateChange: -11125.644
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1576,12 +1576,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,3.5
       parent: 1
-  - uid: 51
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 4.5,3.5
-      parent: 1
   - uid: 54
     components:
     - type: Transform
@@ -1608,6 +1602,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,15.5
+      parent: 1
+  - uid: 933
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,3.5
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -4146,7 +4146,7 @@ entities:
     - type: Transform
       pos: 4.5,13.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithMercenaryDisk
   entities:
   - uid: 538
     components:
@@ -4367,7 +4367,7 @@ entities:
   - uid: 676
     components:
     - type: Transform
-      pos: 5.5,5.5
+      pos: 5.5,3.5
       parent: 1
 - proto: FloorDrain
   entities:
@@ -5213,6 +5213,13 @@ entities:
     components:
     - type: Transform
       pos: 7.5,5.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 51
+    components:
+    - type: Transform
+      pos: 5.5,5.5
       parent: 1
 - proto: MedicalBed
   entities:

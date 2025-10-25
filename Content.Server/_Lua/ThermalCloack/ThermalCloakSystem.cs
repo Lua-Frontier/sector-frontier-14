@@ -3,12 +3,14 @@ using Content.Server.Temperature.Systems;
 using Content.Shared._Lua.ThermalCloack;
 using Content.Shared.Actions;
 using Content.Shared.Inventory.Events;
+using Content.Server.Popups;
 
 namespace Content.Server._Lua.ThermalCloack;
 
 public sealed class ThermalCloakSystem : EntitySystem
 {
     [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -58,8 +60,11 @@ public sealed class ThermalCloakSystem : EntitySystem
     }
 
     private void OnToggle(Entity<ThermalCloakComponent> ent, ref ToggleThermalCloakEvent args)
-    { SetEnabled(ent, !ent.Comp.Enabled); }
-
+    {
+        SetEnabled(ent, !ent.Comp.Enabled);
+        _popupSystem.PopupEntity(Loc.GetString("thermal-cloak-toggle"), args.Performer, args.Performer);
+        args.Handled = true;
+    }
     private void OnGetActions(Entity<ThermalCloakComponent> ent, ref GetItemActionsEvent args)
     { args.AddAction(ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction); }
 
