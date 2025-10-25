@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/19/2025 04:48:07
-  entityCount: 867
+  time: 10/23/2025 13:30:49
+  entityCount: 868
 maps: []
 grids:
 - 1
@@ -569,8 +569,6 @@ entities:
     - type: GasTileOverlay
     - type: SpreaderGrid
     - type: GridPathfinding
-    - type: NanotrasenFtl
-    - type: TypanFtl
     - type: ImplicitRoof
 - proto: AirlockExternal
   entities:
@@ -2585,7 +2583,7 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleWithNordfallDisk
   entities:
   - uid: 320
     components:
@@ -2786,12 +2784,12 @@ entities:
   - uid: 355
     components:
     - type: Transform
-      pos: 2.0779252,-19.21155
+      pos: 2.252654,-19.502996
       parent: 1
   - uid: 356
     components:
     - type: Transform
-      pos: 2.3123002,-19.21155
+      pos: 2.533904,-19.487371
       parent: 1
 - proto: DrinkMugDog
   entities:
@@ -2819,12 +2817,12 @@ entities:
   - uid: 360
     components:
     - type: Transform
-      pos: 5.6435027,-21.180143
+      pos: 5.50642,-21.487371
       parent: 1
   - uid: 361
     components:
     - type: Transform
-      pos: 5.7372527,-21.398893
+      pos: 5.31892,-21.331121
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -2861,7 +2859,7 @@ entities:
   - uid: 365
     components:
     - type: Transform
-      pos: 5.5401826,-21.187487
+      pos: 5.334545,-21.581121
       parent: 1
 - proto: FoodSnackSyndi
   entities:
@@ -3776,6 +3774,13 @@ entities:
     - type: Transform
       pos: -3.5,-23.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 467
+    components:
+    - type: Transform
+      pos: 5.5,-23.5
+      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 500
@@ -3788,7 +3793,7 @@ entities:
   - uid: 501
     components:
     - type: Transform
-      pos: -3.5847354,-3.1584928
+      pos: -3.7442708,-4.3982706
       parent: 1
   - uid: 502
     components:
@@ -4243,6 +4248,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,-17.5
       parent: 1
+  - uid: 468
+    components:
+    - type: Transform
+      pos: 4.5,-23.5
+      parent: 1
   - uid: 505
     components:
     - type: Transform
@@ -4259,11 +4269,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-22.5
-      parent: 1
-  - uid: 567
-    components:
-    - type: Transform
-      pos: 5.5,-23.5
       parent: 1
   - uid: 568
     components:
@@ -5732,11 +5737,11 @@ entities:
   - uid: 832
     components:
     - type: Transform
-      pos: 5.4749,-23.512577
+      pos: 4.3571177,-23.429258
       parent: 1
   - uid: 833
     components:
     - type: Transform
-      pos: 5.63115,-23.481327
+      pos: 4.5758677,-23.413633
       parent: 1
 ...

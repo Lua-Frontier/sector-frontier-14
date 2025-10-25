@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/06/2025 13:35:15
-  entityCount: 1065
+  time: 10/23/2025 11:32:19
+  entityCount: 1066
 maps: []
 grids:
 - 1
@@ -588,7 +588,7 @@ entities:
       pos: 2.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3827.4043
+      secondsUntilStateChange: -3869.7153
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3123,7 +3123,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,6.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleWithPirateDisk
   entities:
   - uid: 446
     components:
@@ -4051,6 +4051,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,3.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 1066
+    components:
+    - type: Transform
+      pos: -3.5,3.5
       parent: 1
 - proto: MedkitAdvanced
   entities:

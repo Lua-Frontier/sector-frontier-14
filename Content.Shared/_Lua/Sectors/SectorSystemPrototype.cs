@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.Shared._Lua.Sectors;
 
@@ -47,6 +48,12 @@ public sealed partial class SectorSystemPrototype : IPrototype
 
     [DataField]
     public int DeadDropCount = 2;
+
+    [DataField]
+    public Vector2? StarmapPosition;
+
+    [DataField]
+    public Color? StarmapColor;
 }
 
 [DataDefinition]

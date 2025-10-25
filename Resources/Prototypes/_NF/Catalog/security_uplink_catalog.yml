@@ -161,6 +161,21 @@
           - SecurityUplink
 
 - type: listing
+  id: UplinkSecuritySectorBanner
+  name: uplink-security-sector-banner-name
+  description: uplink-security-sector-banner-desc
+  productEntity: BannerSectorSecurity
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
   id: UplinkSecurityDisabler
   name:  uplink-security-disabler-name
   description: uplink-security-disabler-desc

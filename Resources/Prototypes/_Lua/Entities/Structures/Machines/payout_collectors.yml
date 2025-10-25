@@ -1,0 +1,70 @@
+- type: entity
+  id: NfsdSectorPayoutCollector
+  parent: [BaseComputer, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/atm/sector_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: atm_sector_nfsd
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.PayoutCollectorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PayoutCollectorUiKey.Key:
+        type: PayoutCollectorBoundUserInterface
+  - type: FactionPayoutCollector
+    faction: Nfsd
+    currencyPrototypePerUnit: FrontierUplinkCoin1
+    payoutIntervalSeconds: 900
+    payoutPerSector: 15
+
+- type: entity
+  id: SyndicateSectorPayoutCollector
+  parent: [BaseComputer, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/atm/sector_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: atm_sector_syndie
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.PayoutCollectorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PayoutCollectorUiKey.Key:
+        type: PayoutCollectorBoundUserInterface
+  - type: FactionPayoutCollector
+    faction: Syndicate
+    currencyPrototypePerUnit: Telecrystal1
+    payoutIntervalSeconds: 900
+    payoutPerSector: 15
+
+- type: entity
+  id: PirateSectorPayoutCollector
+  parent: [BaseComputer, BaseStructureDisableToolUse, BaseStructureIndestructible]
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/atm/sector_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: atm_sector_pirates
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: ActivatableUI
+    key: enum.PayoutCollectorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PayoutCollectorUiKey.Key:
+        type: PayoutCollectorBoundUserInterface
+  - type: FactionPayoutCollector
+    faction: Pirates
+    currencyPrototypePerUnit: Doubloon1
+    payoutIntervalSeconds: 900
+    payoutPerSector: 15
+
+
