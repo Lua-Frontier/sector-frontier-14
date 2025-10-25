@@ -16,7 +16,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Reflect
-    reflectProb: 0.1 #Lua 0.2<0.1
+    reflectProb: 0.2
   - type: Armor
     modifiers:
       coefficients:
@@ -94,8 +94,8 @@
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits/fsf_charlie_commander_hardsuit.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.4
-#  - type: Reflect #comment from _Lua
-#    reflectProb: 0.3
+  - type: Reflect
+    reflectProb: 0.3
   - type: Armor
     modifiers:
       coefficients:
