@@ -28,7 +28,7 @@
     walkModifier: 0.95 #Lua 0.9<0.95
     sprintModifier: 0.95 #Lua 0.9<0.95
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
   - type: ThermalCloak
@@ -127,7 +127,7 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
   - type: ThermalCloak
@@ -157,7 +157,7 @@
   - type: StaminaDamageResistance #Lua
     coefficient: 0.4
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
   - type: ThermalCloak
@@ -197,7 +197,7 @@
   - type: FactionClothing
     faction: NanoTrasen
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
   - type: ThermalCloak
@@ -233,7 +233,7 @@
     walkModifier: 0.825
     sprintModifier: 0.825
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
 
@@ -267,6 +267,6 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
