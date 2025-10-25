@@ -4,7 +4,7 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/21/2025 04:58:25
+  time: 10/23/2025 15:02:58
   entityCount: 991
 maps: []
 grids:
@@ -479,7 +479,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -491,7 +490,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -503,7 +501,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -515,7 +512,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -527,7 +523,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -539,7 +534,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -551,7 +545,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -563,7 +556,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -575,7 +567,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -587,7 +578,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -599,7 +589,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -611,7 +600,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -623,7 +611,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -635,7 +622,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -647,7 +633,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -2955,60 +2940,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,5.5
       parent: 1
-- proto: CircularShieldBase
-  entities:
-  - uid: 459
-    components:
-    - type: Transform
-      pos: -4.5,3.5
-      parent: 1
-      width: 6.283185307179586 rad
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.45,-0.45
-            - 0.45,-0.45
-            - 0.45,0.45
-            - -0.45,0.45
-          mask:
-          - Impassable
-          - TableLayer
-          - LowImpassable
-          layer:
-          - TableLayer
-          - LowImpassable
-          density: 60
-          hard: True
-          restitution: 0
-          friction: 0.4
-        ShieldFixture:
-          shape: !type:PhysShapeCircle
-            radius: 0
-            position: 0.5004036,2.3651865
-          mask: []
-          layer:
-          - BulletImpassable
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
-- proto: CircularShieldConsole
-  entities:
-  - uid: 461
-    components:
-    - type: Transform
-      pos: 3.5,6.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        459:
-        - - CircularShieldConsoleSender
-          - CircularShieldConsoleReceiver
-    - type: ApcPowerReceiver
-      powerLoad: 5
 - proto: ClosetToolFilled
   entities:
   - uid: 462
@@ -3068,7 +2999,7 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithFrontierDisk
   entities:
   - uid: 468
     components:
@@ -4365,6 +4296,13 @@ entities:
     - type: Transform
       pos: 5.5,3.5
       parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 461
+    components:
+    - type: Transform
+      pos: 3.5,6.5
+      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 635
@@ -4556,6 +4494,45 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
       parent: 1
+- proto: ShieldGeneratorSmall
+  entities:
+  - uid: 459
+    components:
+    - type: Transform
+      pos: -4.5,3.5
+      parent: 1
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.45,-0.45
+            - 0.45,-0.45
+            - 0.45,0.45
+            - -0.45,0.45
+          mask:
+          - Impassable
+          - TableLayer
+          - LowImpassable
+          layer:
+          - TableLayer
+          - LowImpassable
+          density: 60
+          hard: True
+          restitution: 0
+          friction: 0.4
+        ShieldFixture:
+          shape: !type:PhysShapeCircle
+            radius: 0
+            position: 0.5004036,2.3651865
+          mask: []
+          layer:
+          - BulletImpassable
+          density: 1
+          hard: False
+          restitution: 0
+          friction: 0.4
 - proto: SinkWide
   entities:
   - uid: 664

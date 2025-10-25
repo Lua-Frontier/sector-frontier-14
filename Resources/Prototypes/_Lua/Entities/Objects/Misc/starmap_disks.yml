@@ -1,0 +1,132 @@
+- type: entity
+  parent: CoordinatesDisk
+  id: CoordinatesDiskFrontier
+  name: coordinates disk (Frontier)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors:
+    - Frontier Sector
+    - Asteroid Field
+    allowedSectorIds:
+    - FrontierSector
+    - AsteroidSectorDefault
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+- type: entity
+  parent: CoordinatesDisk
+  id: CoordinatesDiskNordfall
+  name: coordinates disk (Nordfall)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors:
+    - Nordfall Sector
+    - Asteroid Field
+    allowedSectorIds:
+    - TypanSector
+    - AsteroidSectorDefault
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+- type: entity
+  parent: CoordinatesDisk
+  id: CoordinatesDiskPirate
+  name: coordinates disk (Pirate)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors:
+    - Pirate Sector
+    - Asteroid Field
+    allowedSectorIds:
+    - PirateSector
+    - AsteroidSectorDefault
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+- type: entity
+  parent: CoordinatesDisk
+  id: CoordinatesDiskMercenary
+  name: coordinates disk (Mercenary)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors:
+    - Mercenary Sector
+    - Asteroid Field
+    allowedSectorIds:
+    - MercenarySector
+    - AsteroidSectorDefault
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+- type: entity
+  parent: CoordinatesDisk
+  id: CoordinatesDiskDEBUG
+  name: coordinates disk (DEBUG)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors:
+    - Frontier Sector
+    - Nordfall Sector
+    - Pirate Sector
+    - Mercenary Sector
+    - Asteroid Field
+    allowedSectorIds:
+    - FrontierSector
+    - TypanSector
+    - PirateSector
+    - MercenarySector
+    - AsteroidSectorDefault
+    allowFtlToCentCom: true
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+
+- type: entity
+  parent: CoordinatesDisk
+  id: CoordinatesDiskCentCom
+  name: coordinates disk (CentCom)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors: []
+    allowedSectorIds: []
+    allowFtlToCentCom: true
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+

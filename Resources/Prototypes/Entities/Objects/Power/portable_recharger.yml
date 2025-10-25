@@ -5,7 +5,7 @@
   description: High-tech recharger adapted for portability.
   components:
   - type: Item
-    size: Ginormous # Frontier Huge<Ginormous
+    size: Huge # Frontier Huge<Ginormous #Lua Ginormous<Huge
   - type: Sprite
     sprite: Objects/Power/portable_recharger.rsi
     state: charging
@@ -13,7 +13,8 @@
     equippedPrefix: charging
     quickEquip: false
     slots:
-    - back
+      - Back
+      - Belt
   - type: Charger
     chargeRate: 50 # Frontier: chargeRate: 50 
     slotId: charger_slot

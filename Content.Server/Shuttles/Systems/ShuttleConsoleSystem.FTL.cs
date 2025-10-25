@@ -153,11 +153,11 @@ public sealed partial class ShuttleConsoleSystem
         if (shuttleComp.Enabled == false)
             return;
 
-        // Check shuttle can even FTL
         if (!_shuttle.CanFTL(shuttleUid.Value, out var reason))
         {
-            // TODO: Session popup
-            return;
+            PlayDenySound(ent);
+            if (!string.IsNullOrEmpty(reason)) _popupSystem.PopupEntity(reason!, ent.Owner, PopupType.Medium);
+            UpdateConsoles(shuttleUid.Value); return;
         }
 
         // Check shuttle can FTL to this target.

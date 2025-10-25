@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/21/2025 16:26:55
-  entityCount: 1347
+  time: 10/23/2025 15:01:02
+  entityCount: 1348
 maps: []
 grids:
 - 1
@@ -3931,7 +3931,7 @@ entities:
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: Battery
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithFrontierDisk
   entities:
   - uid: 568
     components:
@@ -5753,6 +5753,13 @@ entities:
     components:
     - type: Transform
       pos: -5.5,3.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 1348
+    components:
+    - type: Transform
+      pos: -7.5,-4.5
       parent: 1
 - proto: MedicalBed
   entities:

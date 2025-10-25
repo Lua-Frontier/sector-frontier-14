@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/18/2025 16:52:02
-  entityCount: 665
+  time: 10/22/2025 14:56:47
+  entityCount: 666
 maps: []
 grids:
 - 1
@@ -1981,7 +1981,7 @@ entities:
     - type: Transform
       pos: -0.5,9.5
       parent: 1
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleWithMercenaryDisk
   entities:
   - uid: 197
     components:
@@ -3243,6 +3243,13 @@ entities:
     components:
     - type: Transform
       pos: 8.5,3.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 443
+    components:
+    - type: Transform
+      pos: -7.5,-2.5
       parent: 1
 - proto: MedicalBed
   entities:

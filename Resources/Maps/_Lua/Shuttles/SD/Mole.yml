@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/21/2025 07:18:26
-  entityCount: 914
+  time: 10/23/2025 12:36:17
+  entityCount: 915
 maps: []
 grids:
 - 1
@@ -445,7 +445,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -544,7 +543,7 @@ entities:
       pos: 0.5,-0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7397.6255
+      secondsUntilStateChange: -7447.593
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2398,7 +2397,7 @@ entities:
     - type: Transform
       pos: 7.5,4.5
       parent: 1
-- proto: ComputerTabletopShuttle
+- proto: ComputerTabletopShuttleWithFrontierDisk
   entities:
   - uid: 363
     components:
@@ -2422,7 +2421,7 @@ entities:
       pos: 0.5,-9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28589.623
+      secondsUntilStateChange: -28639.59
       state: Opening
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -3688,7 +3687,7 @@ entities:
       pos: 14.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27367.959
+      secondsUntilStateChange: -27417.926
       state: Opening
 - proto: ImpulseLaserUnanchor
   entities:
@@ -3815,6 +3814,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,-10.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 915
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
       parent: 1
 - proto: MedicalBed
   entities:

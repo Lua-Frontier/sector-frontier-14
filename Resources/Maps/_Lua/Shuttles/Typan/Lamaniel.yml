@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 07:50:09
-  entityCount: 432
+  time: 10/23/2025 13:32:18
+  entityCount: 433
 maps: []
 grids:
 - 1
@@ -825,7 +825,7 @@ entities:
   - uid: 79
     components:
     - type: Transform
-      pos: -1.6162338,7.820147
+      pos: -1.4563276,7.4762816
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1297,7 +1297,7 @@ entities:
     - type: Transform
       pos: 0.5,11.5
       parent: 1
-- proto: ComputerTabletopShuttleAntag
+- proto: ComputerTabletopShuttleWithNordfallDisk
   entities:
   - uid: 168
     components:
@@ -1813,6 +1813,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,9.5
+      parent: 1
+- proto: MachineWarpDrive
+  entities:
+  - uid: 433
+    components:
+    - type: Transform
+      pos: 0.5,2.5
       parent: 1
 - proto: MedicalBed
   entities:

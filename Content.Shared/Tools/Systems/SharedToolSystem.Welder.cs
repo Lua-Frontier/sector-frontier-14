@@ -56,7 +56,7 @@ public abstract partial class SharedToolSystem
 
     public (FixedPoint2 fuel, FixedPoint2 capacity) GetWelderFuelAndCapacity(EntityUid uid, WelderComponent? welder = null, SolutionContainerManagerComponent? solutionContainer = null)
     {
-        if (!Resolve(uid, ref welder, ref solutionContainer))
+        if (!Resolve(uid, ref welder, ref solutionContainer, false))
             return default;
 
         if (!SolutionContainerSystem.TryGetSolution(

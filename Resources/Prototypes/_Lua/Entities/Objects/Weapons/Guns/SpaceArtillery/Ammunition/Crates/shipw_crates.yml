@@ -146,6 +146,17 @@
         amount: 1
 
 - type: entity
+  id: CrateMachineWarpDriveFlatpack
+  parent: CrateShipWeaponBase
+  name: ящик с упакованным межзвёздным блюспейс двигателем
+  description: Содержит 1 упакованный межзвёздный блюспейс двигатель
+  components:
+  - type: StorageFill
+    contents:
+      - id: MachineWarpDriveFlatpack
+        amount: 1
+
+- type: entity
   id: CratePlayerStationAiVesselFlatpack
   parent: CrateShipWeaponBase
   name: ящик с упакованным ИИ шаттла
