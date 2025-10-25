@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/23/2025 13:29:12
-  entityCount: 356
+  time: 10/15/2025 15:45:21
+  entityCount: 355
 maps: []
 grids:
 - 1
@@ -1210,19 +1210,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-- proto: ComputerTabletopShuttleWithNordfallDisk
+- proto: ComputerTabletopShuttle
   entities:
   - uid: 171
     components:
     - type: Transform
       pos: 0.5,0.5
-      parent: 1
-- proto: CratePlasma
-  entities:
-  - uid: 172
-    components:
-    - type: Transform
-      pos: -0.5,-9.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -1721,13 +1714,6 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 1
-- proto: MachineWarpDrive
-  entities:
-  - uid: 218
-    components:
-    - type: Transform
-      pos: -1.5,-3.5
-      parent: 1
 - proto: PaperCaptainsThoughts
   entities:
   - uid: 233
@@ -2026,16 +2012,16 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 217
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
-      parent: 1
   - uid: 274
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,0.5
+      parent: 1
+  - uid: 275
+    components:
+    - type: Transform
+      pos: -1.5,-3.5
       parent: 1
   - uid: 276
     components:

@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/23/2025 13:27:28
-  entityCount: 502
+  time: 10/15/2025 15:43:17
+  entityCount: 486
 maps: []
 grids:
 - 1
@@ -833,6 +833,16 @@ entities:
       parent: 86
     - type: Physics
       canCollide: False
+    - type: InsideEntityStorage
+- proto: BoxBodyBag
+  entities:
+  - uid: 87
+    components:
+    - type: Transform
+      parent: 86
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: BoxSterileMask
   entities:
   - uid: 5
@@ -1628,7 +1638,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,5.5
       parent: 1
-- proto: ComputerTabletopShuttleWithNordfallDisk
+- proto: ComputerTabletopShuttleAntag
   entities:
   - uid: 229
     components:
@@ -2399,7 +2409,14 @@ entities:
     - type: Transform
       pos: -3.5,-1.5
       parent: 1
-- proto: LockerWallColorMedical
+- proto: LockerWallMaterialsFuelUraniumFilled2
+  entities:
+  - uid: 324
+    components:
+    - type: Transform
+      pos: 6.5,-0.5
+      parent: 1
+- proto: LockerWallMedical
   entities:
   - uid: 86
     components:
@@ -2410,7 +2427,8 @@ entities:
     - type: EntityStorage
       air:
         volume: 200
-        temperature: 293.14923
+        immutable: False
+        temperature: 293.14908
         moles:
         - 1.606311
         - 6.042789
@@ -2424,10 +2442,6 @@ entities:
         - 0
         - 0
         - 0
-      closeSound: !type:SoundPathSpecifier
-        path: /Audio/Effects/closetclose.ogg
-      openSound: !type:SoundPathSpecifier
-        path: /Audio/Effects/closetopen.ogg
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2439,23 +2453,13 @@ entities:
           - 89
           - 90
           - 91
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
+          - 168
 - proto: MachineFTLDrive600
   entities:
   - uid: 216
     components:
     - type: Transform
       pos: -3.5,1.5
-      parent: 1
-- proto: MachineWarpDrive
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      pos: 6.5,-2.5
       parent: 1
 - proto: MedicalBed
   entities:
