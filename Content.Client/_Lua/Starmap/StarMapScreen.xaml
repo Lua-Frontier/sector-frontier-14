@@ -1,0 +1,38 @@
+<controls:BoxContainer xmlns="https://spacestation14.io"
+              xmlns:controls="https://spacestation14.io"
+              xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
+              xmlns:ftlPoints="clr-namespace:Content.Client._Lua.Starmap"
+              HorizontalExpand="True"
+              VerticalExpand="True">
+    <ftlPoints:StarmapControl Name="StarMapCanvas"
+                              MouseFilter="Stop"
+                              VerticalAlignment="Stretch"
+                              VerticalExpand="True"
+                              HorizontalExpand="True"
+                              RectClipContent="True"
+                              Margin="5 4 10 5"/>
+    <controls:BoxContainer Name="RightDisplayStarMap"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Right"
+                  MinWidth="256"
+                  MaxWidth="256"
+                  Margin="5 0 5 5"
+                  Orientation="Vertical"
+                  VerticalExpand="True">
+        <controls1:StripeBack MinSize="48 48">
+            <controls:Label Name="StarMapDisplayLabel" Text="{controls:Loc 'starmap-ui-title'}" HorizontalAlignment="Center"/>
+        </controls1:StripeBack>
+        <controls:Label Name="CurrentStarLabel" Text="" HorizontalAlignment="Left"/>
+        <controls:Label Name="SelectedStarLabel" Text="" HorizontalAlignment="Left"/>
+        <controls1:StripeBack MinSize="48 48">
+            <controls:Label Text="Статус БСС" HorizontalAlignment="Center"/>
+        </controls1:StripeBack>
+        <controls:Label Name="WarpStatusLabel" Text="Готово" HorizontalAlignment="Center"/>
+        <controls:ProgressBar Name="WarpBar" HorizontalExpand="True"
+                              Margin="5"
+                              MinValue="0.0"
+                              MaxValue="1.0"
+                              Value="1.0"/>
+        <controls:Button Name="WarpButton" Text="БСС" Disabled="True"/>
+    </controls:BoxContainer>
+</controls:BoxContainer>

@@ -240,52 +240,57 @@ public sealed partial class SalvageSystem
                         {
                             if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
                                 continue;
-
-                            // Frontier: try to find a potential destination for ship that doesn't collide with other grids.
-                            var mapId = _gameTicker.DefaultMap;
-                            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                            EntityCoordinates destination;
+                            var hasReturn = false;
+                            if (TryComp<SalvageExpeditionDataComponent>(comp.Station, out var stationData) && stationData.ReturnMapUid != null)
                             {
-                                Log.Error($"Could not get DefaultMap EntityUID, shuttle {shuttleUid} may be stuck on expedition.");
-                                continue;
+                                destination = new EntityCoordinates(stationData.ReturnMapUid.Value, stationData.ReturnWorldPosition);
+                                hasReturn = true;
                             }
-
-                            // Destination generator parameters (move to CVAR?)
-                            int numRetries = 20; // Maximum number of retries
-                            float minDistance = 200f; // Minimum distance from another object, in meters
-                            float minRange = 750f; // Minimum distance from sector centre, in meters
-                            float maxRange = 3500f; // Maximum distance from sector centre, in meters
-
-                            // Get a list of all grid positions on the destination map
-                            List<Vector2> gridCoords = new();
-                            var gridQuery = EntityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
-                            while (gridQuery.MoveNext(out var _, out _, out var xform))
+                            else
                             {
-                                if (xform.MapID == mapId)
-                                    gridCoords.Add(_transform.GetWorldPosition(xform));
-                            }
+                                // Frontier: try to find a potential destination for ship that doesn't collide with other grids.
+                                var mapId = _gameTicker.DefaultMap;
+                                if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                                { continue; }
 
-                            Vector2 dropLocation = _random.NextVector2(minRange, maxRange);
-                            for (int i = 0; i < numRetries; i++)
-                            {
-                                bool positionIsValid = true;
-                                foreach (var station in gridCoords)
+                                // Destination generator parameters (move to CVAR?)
+                                int numRetries = 20; // Maximum number of retries
+                                float minDistance = 200f; // Minimum distance from another object, in meters
+                                float minRange = 750f; // Minimum distance from sector centre, in meters
+                                float maxRange = 3500f; // Maximum distance from sector centre, in meters
+
+                                // Get a list of all grid positions on the destination map
+                                List<Vector2> gridCoords = new();
+                                var gridQuery = EntityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
+                                while (gridQuery.MoveNext(out var _, out _, out var xform))
                                 {
-                                    if (Vector2.Distance(station, dropLocation) < minDistance)
-                                    {
-                                        positionIsValid = false;
-                                        break;
-                                    }
+                                    if (xform.MapID == mapId)
+                                        gridCoords.Add(_transform.GetWorldPosition(xform));
                                 }
 
-                                if (positionIsValid)
-                                    break;
+                                Vector2 dropLocation = _random.NextVector2(minRange, maxRange);
+                                for (int i = 0; i < numRetries; i++)
+                                {
+                                    bool positionIsValid = true;
+                                    foreach (var station in gridCoords)
+                                    {
+                                        if (Vector2.Distance(station, dropLocation) < minDistance)
+                                        {
+                                            positionIsValid = false;
+                                            break;
+                                        }
+                                    }
 
-                                // No good position yet, pick another random position.
-                                dropLocation = _random.NextVector2(minRange, maxRange);
+                                    if (positionIsValid)
+                                        break;
+
+                                    // No good position yet, pick another random position.
+                                    dropLocation = _random.NextVector2(minRange, maxRange);
+                                }
+                                destination = new EntityCoordinates(mapUid.Value, dropLocation);
                             }
-
-                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, ftlTime, TravelTime);
-                            // End Frontier:  try to find a potential destination for ship that doesn't collide with other grids.
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, destination, 0f, ftlTime, TravelTime);
                             //_shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime); // Frontier: use above instead
                         }
 

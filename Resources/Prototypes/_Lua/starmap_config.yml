@@ -1,0 +1,34 @@
+- type: starmapConfigPrototype
+  id: StarmapConfig
+  basePixelsPerDistance: 90
+  zoomMin: 0.25
+  zoomMax: 4.0
+  gridLines: 10
+  gridColor: "#2F4F4F"
+  backgroundColor: "#05050AFF"
+  minStars: 15
+  maxStars: 26
+  starDistanceMin: 5
+  starDistanceMax: 15
+  hyperlaneMaxDistance: 1200
+  hyperlaneNeighbors: 3
+  parallaxLayers:
+    - tile: 256
+      slowness: 0.30
+      starsPerTile: 8
+      color: "#FFFFFF14"
+      seed: 13
+    - tile: 512
+      slowness: 0.60
+      starsPerTile: 4
+      color: "#C8DCFF23"
+      seed: 37
+  specialSectors:
+    - id: FrontierSector
+      position: 0, 0
+      color: "#2595db"
+    - id: CentCom
+      position: 25, -25
+      color: "#2595db"
+
+

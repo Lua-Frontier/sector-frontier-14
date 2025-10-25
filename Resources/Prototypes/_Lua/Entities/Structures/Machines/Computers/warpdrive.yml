@@ -1,0 +1,46 @@
+- type: entity
+  id: MachineWarpDrive
+  parent: BaseMachinePowered
+  name: bluespace drive
+  description: A bluespace drive required for inter-star travel. Does not stack.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Mono/Structures/ShuttleComponents/drive.rsi
+    snapCardinals: true
+    layers:
+    - state: control
+    - state: control_on
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      visible: false
+      shader: unshaded
+      color: "#7bdc6a"
+  - type: BluespaceDrive
+    cooldownSeconds: 600
+  - type: ApcPowerReceiver
+    powerLoad: 2000
+  - type: PointLight
+    enabled: false
+    color: "#7bdc6a"
+    radius: 2.0
+    energy: 1.5
+  - type: LitOnPowered
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/anomaly_generator.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }

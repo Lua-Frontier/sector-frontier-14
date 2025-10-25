@@ -155,6 +155,7 @@ public sealed class ShipyardLuaRulesTests
         "MachineFTLDrive",
         "MachineFTLDrive50",
         "MachineFTLDrive25S",
+        "MachineWarpDrive",
     };
 
     private static readonly string[] FtlBannedAll =
@@ -200,6 +201,35 @@ public sealed class ShipyardLuaRulesTests
         "ThrusterLuaBuild",
         "ThrusterLua",
     };
+
+    private static readonly string[] UniversalShuttleConsoles =
+    {
+        "ComputerShuttle",
+        "ComputerTabletopShuttle",
+    };
+
+    private static readonly Dictionary<VesselClass, string[]> FactionShuttleConsoles = new()
+    {
+        { VesselClass.Civilian, new[] { "ComputerShuttleWithFrontierDisk", "ComputerTabletopShuttleWithFrontierDisk" } },
+        { VesselClass.Expedition, new[] { "ComputerShuttleWithFrontierDisk", "ComputerTabletopShuttleWithFrontierDisk" } },
+        { VesselClass.Nfsd, new[] { "ComputerShuttleWithFrontierDisk", "ComputerTabletopShuttleWithFrontierDisk" } },
+        { VesselClass.Mercenary, new[] { "ComputerShuttleWithMercenaryDisk", "ComputerTabletopShuttleWithMercenaryDisk" } },
+        { VesselClass.Syndicate, new[] { "ComputerShuttleWithNordfallDisk", "ComputerTabletopShuttleWithNordfallDisk" } },
+        { VesselClass.Pirate, new[] { "ComputerShuttleWithPirateDisk", "ComputerTabletopShuttleWithPirateDisk" } },
+    };
+
+    private static readonly Dictionary<VesselClass, string[]> FactionDisks = new()
+    {
+        { VesselClass.Civilian, new[] { "CoordinatesDiskFrontier" } },
+        { VesselClass.Expedition, new[] { "CoordinatesDiskFrontier" } },
+        { VesselClass.Nfsd, new[] { "CoordinatesDiskFrontier" } },
+        { VesselClass.Mercenary, new[] { "CoordinatesDiskMercenary" } },
+        { VesselClass.Syndicate, new[] { "CoordinatesDiskNordfall" } },
+        { VesselClass.Pirate, new[] { "CoordinatesDiskPirate" } },
+    };
+
+    private static readonly string[] ForbiddenDisksAll =
+    { "CoordinatesDiskDEBUG", };
 
     [Test]
     public async Task CheckLuaShipWeaponAndInfrastructureLimits()
@@ -336,6 +366,40 @@ public sealed class ShipyardLuaRulesTests
                         if (FtlBannedAll.Contains(pid)) { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён на всех шаттлах."); }
                         if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && FtlBannedCivilianExpedition.Contains(pid))
                         { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition."); }
+                        var allFactionConsoles = FactionShuttleConsoles.SelectMany(kvp => kvp.Value).ToArray();
+                        if (allFactionConsoles.Contains(pid) && !UniversalShuttleConsoles.Contains(pid))
+                        {
+                            bool consoleAllowed = false;
+                            if (vessel.Classes != null)
+                            {
+                                foreach (var vesselClass in vessel.Classes)
+                                { if (FactionShuttleConsoles.TryGetValue(vesselClass, out var allowedConsoles) && allowedConsoles.Contains(pid)) { consoleAllowed = true; break; } }
+                            }
+                            if (!consoleAllowed)
+                            {
+                                var factionName = FactionShuttleConsoles.FirstOrDefault(kvp => kvp.Value.Contains(pid)).Key.ToString();
+                                var vesselClassesStr = vessel.Classes != null ? string.Join(", ", vessel.Classes) : "нет";
+                                sb.AppendLine($"[Консоли] {vessel.ID}: консоль '{pid}' (фракция {factionName}) запрещена для классов шаттла [{vesselClassesStr}].");
+                            }
+                        }
+                        var allFactionDisks = FactionDisks.SelectMany(kvp => kvp.Value).ToArray();
+                        if (allFactionDisks.Contains(pid))
+                        {
+                            bool diskAllowed = false;
+                            if (vessel.Classes != null)
+                            {
+                                foreach (var vesselClass in vessel.Classes)
+                                { if (FactionDisks.TryGetValue(vesselClass, out var allowedDisks) && allowedDisks.Contains(pid)) { diskAllowed = true; break; } }
+                            }
+                            if (!diskAllowed)
+                            {
+                                var factionName = FactionDisks.FirstOrDefault(kvp => kvp.Value.Contains(pid)).Key.ToString();
+                                var vesselClassesStr = vessel.Classes != null ? string.Join(", ", vessel.Classes) : "нет";
+                                sb.AppendLine($"[Диски] {vessel.ID}: диск '{pid}' (фракция {factionName}) запрещён для классов шаттла [{vesselClassesStr}].");
+                            }
+                        }
+                        if (ForbiddenDisksAll.Contains(pid))
+                        { sb.AppendLine($"[Диски] {vessel.ID}: диск '{pid}' запрещён на всех шаттлах."); }
                     }
                     int godmodeCount = 0;
                     var godQuery = entManager.EntityQueryEnumerator<GodmodeComponent, TransformComponent>();

@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 07:47:31
-  entityCount: 1460
+  time: 10/23/2025 12:49:27
+  entityCount: 1459
 maps: []
 grids:
 - 1
@@ -790,7 +790,6 @@ entities:
       parent: 1
     - type: RadarBlip
       enabled: False
-      visibleFromOtherGrids: True
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
@@ -1310,7 +1309,7 @@ entities:
   - uid: 88
     components:
     - type: Transform
-      pos: -3.2555802,-4.257917
+      pos: -4.470214,-4.553152
       parent: 1
   - uid: 89
     components:
@@ -4013,7 +4012,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,14.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerShuttleWithFrontierDisk
   entities:
   - uid: 595
     components:
@@ -6638,7 +6637,7 @@ entities:
   - uid: 967
     components:
     - type: Transform
-      pos: 1.1822467,-5.154647
+      pos: 1.4024382,-6.3851004
       parent: 1
   - uid: 968
     components:
@@ -6836,7 +6835,7 @@ entities:
   - uid: 992
     components:
     - type: Transform
-      pos: -1.5,-7.5
+      pos: -1.5,-6.25
       parent: 1
   - uid: 993
     components:
@@ -6851,7 +6850,7 @@ entities:
   - uid: 995
     components:
     - type: Transform
-      pos: 2.5,-7.5
+      pos: 2.5,-6.25
       parent: 1
 - proto: LockerNfsdSilver
   entities:
@@ -6995,12 +6994,11 @@ entities:
         - 0
         - 0
         - 0
-- proto: MachineFrame
+- proto: MachineWarpDrive
   entities:
-  - uid: 596
+  - uid: 594
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,1.5
       parent: 1
 - proto: MedicalBed
@@ -7169,7 +7167,7 @@ entities:
   - uid: 1028
     components:
     - type: Transform
-      pos: 6.635344,4.236247
+      pos: 6.8613462,5.4656467
       parent: 1
   - uid: 1029
     components:
@@ -7184,7 +7182,7 @@ entities:
   - uid: 1031
     components:
     - type: Transform
-      pos: 0.81826514,-5.2205915
+      pos: 0.6056843,-6.452383
       parent: 1
   - uid: 1032
     components:

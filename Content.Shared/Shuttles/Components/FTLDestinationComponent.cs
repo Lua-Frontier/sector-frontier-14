@@ -12,8 +12,8 @@ public sealed partial class FTLDestinationComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public EntityWhitelist? Whitelist { get; set; } = new EntityWhitelist
     {
-        RequireAll = false,
-        Components = new[] { "NanotrasenFtl" }
+        RequireAll = false//,
+        //Components = new[] { "NanotrasenFtl" }
     };
 
     /// <summary>

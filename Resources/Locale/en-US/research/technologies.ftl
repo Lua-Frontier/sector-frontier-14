@@ -40,6 +40,16 @@ research-technology-basic-shuttle-armament = Shuttle Basic Armament
 research-technology-advanced-shuttle-weapon = Advanced Shuttle Weapons
 research-technology-thermal-weaponry = Thermal Weaponry
 
+research-technology-basic-weaponpad = Basic Weapon Pad
+research-technology-basic-weapon = Basic Shuttle Weapon
+research-technology-shuttle-powercage = Shuttle Power Cages
+research-technology-shuttle-perforator = Shuttle Gun Perforator
+research-technology-shuttle-grenade = Shuttle Grenades
+research-technology-shuttle-friendshippirate = Friendship & Pirate Guns
+research-technology-shuttle-cannonball = Cannonballs
+research-technology-shuttle-grenadeemp = EMP/Non-lethal Grenades
+research-technology-shuttle-gunduster = Duster Grenade System
+
 research-technology-basic-robotics = Basic Robotics
 research-technology-basic-anomalous-research = Basic Anomalous Research
 research-technology-basic-xenoarcheology = Basic XenoArcheology

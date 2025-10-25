@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 09/20/2025 07:40:39
-  entityCount: 843
+  time: 10/22/2025 14:54:13
+  entityCount: 844
 maps: []
 grids:
 - 1
@@ -2020,12 +2020,12 @@ entities:
   - uid: 526
     components:
     - type: Transform
-      pos: -12.152724,13.880119
+      pos: -12.339854,12.644206
       parent: 1
   - uid: 527
     components:
     - type: Transform
-      pos: -12.465224,13.895744
+      pos: -12.393404,12.647809
       parent: 1
 - proto: ChemistryHotplate
   entities:
@@ -2128,7 +2128,7 @@ entities:
     - type: Transform
       pos: -0.5,15.5
       parent: 1
-- proto: ComputerShuttleLuaTech
+- proto: ComputerShuttleLuaTechMercenary
   entities:
   - uid: 425
     components:
@@ -2227,7 +2227,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -12.746474,13.613901
+      pos: -11.529307,12.550867
       parent: 1
   - uid: 515
     components:
@@ -2239,7 +2239,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -12.793349,13.598276
+      pos: -11.649687,12.524032
       parent: 1
   - uid: 522
     components:
@@ -3496,6 +3496,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,11.5
       parent: 1
+- proto: MachineFTLDriveLT600
+  entities:
+  - uid: 318
+    components:
+    - type: Transform
+      pos: -2.5,3.5
+      parent: 1
+    - type: BluespaceDrive
 - proto: MedicalBed
   entities:
   - uid: 371
@@ -4884,10 +4892,10 @@ entities:
       parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:
-  - uid: 318
+  - uid: 339
     components:
     - type: Transform
-      pos: -2.5,3.5
+      pos: 0.5,1.5
       parent: 1
 - proto: VendingMachineWallMedical
   entities:
