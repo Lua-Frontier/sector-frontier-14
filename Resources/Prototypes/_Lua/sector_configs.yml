@@ -9,7 +9,7 @@
   defaultGamePreset: NFPirates # Режим игры который мы используем по дефолту на нашем фронтире
   addFtlDestination: true # Включаем возможность перемещаться на наш сектор
   ftlWhitelist: [ NanotrasenFtl, MercenaryFtl, PirateFtl, TypanFtl ] # Указываем белые списки кому дозволено коснуться нашего сектора, данные компоненты должны быть указаны в прототипе корабля vessel
-  parallaxPool: [ LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
+  parallaxPool: [ LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
   deadDropEnabled: true # Включаем систему DeadDrop для сектора
   deadDropCount: 8 # Максимальное количество DeadDrop на сектор
   poiGroups: # Ниже перечисляем точки интереса что будут раундстартом в секторе, их id и настройку можно получить из PointOfInterest в папке NF прототипов (либо Lua)
@@ -68,7 +68,7 @@
   station: ShipVsShipRedGrid
   requiredGamePreset: ShipVsShip
   addFtlDestination: false
-  parallaxPool: [ OriginStation ]
+  parallaxPool: [ LuaDarkSpace ]
   poiGroups:
   - group: ShipVsShipRedRequired
     count: 1
@@ -79,7 +79,7 @@
   station: ShipVsShipBlueGrid
   requiredGamePreset: ShipVsShip
   addFtlDestination: false
-  parallaxPool: [ OriginStation ]
+  parallaxPool: [ LuaDarkSpace ]
   poiGroups:
   - group: ShipVsShipBlueRequired
     count: 1
