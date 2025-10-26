@@ -218,13 +218,6 @@ namespace Content.Server._Lua.Starmap.Systems
             { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
             if (!_shuttleSystem.TryGetBluespaceDrive(shuttleUid.Value, out var warpDriveUid, out var warpDrive) || warpDriveUid == null)
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-warpdrive"), consoleUid); return; }
-            if (warpDrive != null && _gameTiming.CurTime < warpDrive.CooldownEndsAt)
-            {
-                var remaining = warpDrive.CooldownEndsAt - _gameTiming.CurTime;
-                var minutes = Math.Max(0, (int) Math.Floor(remaining.TotalMinutes));
-                var seconds = Math.Max(0, remaining.Seconds);
-                PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-warp-cooldown-time", ("minutes", minutes), ("seconds", seconds)), consoleUid); return;
-            }
             if (TryComp<MapGridComponent>(shuttleUid.Value, out var grid))
             {
                 var xform = Transform(shuttleUid.Value);
@@ -293,14 +286,6 @@ namespace Content.Server._Lua.Starmap.Systems
             var mapUid = _mapManager.GetMapEntityId(transit.TargetMap);
             var targetCoords = new EntityCoordinates(mapUid, transit.TargetPosition);
             _shuttleSystem.TryFTLProximity((shuttle, Transform(shuttle)), targetCoords);
-            var query = AllEntityQuery<BluespaceDriveComponent, TransformComponent>();
-            while (query.MoveNext(out var driveUid, out var driveComp, out var xform))
-            {
-                if (xform.GridUid != shuttle) continue;
-                var secs = Math.Max(0f, driveComp.CooldownSeconds);
-                driveComp.CooldownEndsAt = _gameTiming.CurTime + TimeSpan.FromSeconds(secs);
-                Dirty(driveUid, driveComp);
-            }
             if (TryComp<WarpTransitComponent>(shuttle, out var arriving))
             {
                 Dirty(shuttle, arriving);

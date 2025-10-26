@@ -4,6 +4,7 @@
 
 using System.Numerics;
 using Content.Server._Lua.Sectors;
+using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
@@ -19,6 +20,7 @@ public sealed class SectorStarMapSystem : EntitySystem
     [Dependency] private readonly SectorSystem _sectorSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     private float _updateTimer = 0f;
 
     private bool TryGetConfiguredPosition(string sectorProtoId, out Vector2 position)
@@ -66,7 +68,7 @@ public sealed class SectorStarMapSystem : EntitySystem
         try
         {
             var frontierMapId = GetFrontierSectorMapId();
-            if (frontierMapId != MapId.Nullspace || frontierMapId.Equals(new MapId(0)))
+            if (frontierMapId != MapId.Nullspace)
             {
                 if (TryGetSpecialPosition("FrontierSector", out var position))
                 {
@@ -124,31 +126,8 @@ public sealed class SectorStarMapSystem : EntitySystem
     {
         try
         {
-            var stationQuery = AllEntityQuery<StationDataComponent>();
-            var stationCount = 0;
-            while (stationQuery.MoveNext(out var uid, out var stationData))
-            {
-                stationCount++;
-                if (TryComp<MetaDataComponent>(uid, out var meta))
-                {
-                    var stationName = meta.EntityName ?? "Unknown";
-                    if (stationName.Contains("Frontier", StringComparison.OrdinalIgnoreCase) ||
-                        stationName.Contains("Station", StringComparison.OrdinalIgnoreCase) ||
-                        stationName.Contains("Main", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var transform = Transform(uid);
-                        var mapId = transform.MapID;
-                        return mapId;
-                    }
-                }
-            }
-            var anyStationQuery = AllEntityQuery<StationDataComponent>();
-            if (anyStationQuery.MoveNext(out var anyUid, out _))
-            {
-                var transform = Transform(anyUid);
-                var mapId = transform.MapID;
-                return mapId;
-            }
+            var defaultMap = _ticker.DefaultMap;
+            if (_mapManager.MapExists(defaultMap)) return defaultMap;
         }
         catch { }
         return MapId.Nullspace;
@@ -167,7 +146,7 @@ public sealed class SectorStarMapSystem : EntitySystem
                 Dirty(uid, starMap);
                 updatedCount++;
             }
-            try { EntityManager.System<StarmapSystem>().InvalidateCache(); }
+            try { EntityManager.System<StarmapSystem>().InvalidateCache(refreshConsoles: false); }
             catch { }
         }
         catch { }

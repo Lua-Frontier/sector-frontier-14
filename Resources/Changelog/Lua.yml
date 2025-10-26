@@ -2098,3 +2098,38 @@ Entries:
   id: 154
   time: '2025-10-25T09:27:45.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/317
+- author: LeptonComm
+  changes:
+    - type: Fix
+      message: На шаттлах фиш, хантер, скиф исправлено электропитание
+    - type: Tweak
+      message: На шаттлах фиш, ильмус переработано освещение
+    - type: Tweak
+      message: На шаттл фиш возвращены гипо, аптечки, пробирка плазмы, мензурки, мешки
+  id: 155
+  time: '2025-10-25T14:39:01.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/299
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Пересмотрены резисты элитного бладскафа синдиката; скафандра волшебника
+    - type: Fix
+      message: >-
+        Всем скафандрам КСО, СБ, синдиката добавлен ЭП с временем открытия в 1
+        секунду
+    - type: Tweak
+      message: >-
+        Гражданскому ЭП незначительно уменьшено время открывания; Увеличен в 2
+        раза интервал до автозакрытия
+  id: 156
+  time: '2025-10-25T14:42:15.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/302
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлен новый параллакс для сектора наёмников
+    - type: Fix
+      message: Фикс параллакс ДаркСпэйс.
+  id: 157
+  time: '2025-10-25T15:08:28.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/319

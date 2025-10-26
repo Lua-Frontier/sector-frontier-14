@@ -593,9 +593,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
+        Blunt: 0.45 #Lua 0.6<0.45
+        Slash: 0.45 #Lua 0.6<0.45
+        Piercing: 0.45 #Lua 0.6<0.45
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
@@ -684,7 +684,7 @@
     - MonkeyWearable
     - WhitelistChameleon
   - type: Inject
-    openCloseDelay: 0.1
+    openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
 
@@ -709,13 +709,13 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.3 #Lua 0.4<0.3
-        Heat: 0.5 #Lua 0.25<0.5
+        Piercing: 0.25 #Lua 0.4<0.25
+        Heat: 0.3 #Lua 0.25<0.3
         Radiation: 0.25
         Caustic: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.8
-    sprintModifier: 0.9 #Lua 0.8<0.9
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard

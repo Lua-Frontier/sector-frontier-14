@@ -7,7 +7,7 @@
   worldgenConfig: AsteroidSectorDefault # будут ли в нашем секторе спавнится астероиды, тут указывается тип спавна астероидов, есть 2 типа Default где их минимум и AsteroidSectorDefault, где их обилие и большие размеры
   autoStart: true # Необходим для основной группы секторов, более понятно для чего и зачем не буду пояснять, просто включайте если используете в стандартном режиме игры, выключить если не нужно загружать сектор
   defaultGamePreset: NFPirates # Режим игры который мы используем по дефолту на нашем фронтире
-  parallaxPool: [ LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
+  parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
   deadDropEnabled: true # Включаем систему DeadDrop для сектора
   deadDropCount: 8 # Максимальное количество DeadDrop на сектор
   starmapPosition: 3.0, 4.8 # Позиция на StarMap
@@ -56,7 +56,7 @@
   station: MercMap
   autoStart: true
   defaultGamePreset: NFPirates
-  parallaxPool: [ Sky ]
+  parallaxPool: [ MercenaryPlanet, Sky ]
   deadDropEnabled: true
   deadDropCount: 1
   starmapPosition: -14.8, -16.2
