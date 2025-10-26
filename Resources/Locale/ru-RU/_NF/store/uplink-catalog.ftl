@@ -233,3 +233,6 @@ uplink-security-magazinepistol-rubber-name = Коробка магазинов �
 uplink-security-magazinepistol-rubber-desc = Коробка, содержащая 4 полных магазина .35 (Резина)
 uplink-security-30riflemagazine-name = Коробка магазинов калибрка .30
 uplink-security-30riflemagazine-desc = Коробка содержащая 4 магазина .30 калибра.
+
+uplink-security-coordinates-disk-frontier-name = Диск координат Фронтира
+uplink-security-coordinates-disk-frontier-desc = Защищённый диск с навигационными координатами сектора Фронтир.

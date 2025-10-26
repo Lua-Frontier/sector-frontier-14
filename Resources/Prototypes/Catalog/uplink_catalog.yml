@@ -2393,3 +2393,14 @@
   # - !type:BuyerJobCondition # Frontier
   #   whitelist: # Frontier
   #   - MedicalDoctor # Frontier
+
+- type: listing
+  id: UplinkCoordinatesDiskNordfall
+  name: uplink-coordinates-disk-nordfall-name
+  description: uplink-coordinates-disk-nordfall-desc
+  productEntity: CoordinatesDiskNordfall
+  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkWearables
