@@ -14,14 +14,14 @@
     - !type:RoleTimeRequirement
       role: JobBrigmedic
       time: 21600
-    - !type:RoleTimeRequirement
-      role: JobSecurityCadet
-      time: 21600
+    # - !type:RoleTimeRequirement
+    #   role: JobSecurityCadet
+    #   time: 21600
     - !type:OverallPlaytimeRequirement
       time: 22800
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 39600 #60 hrs
+      time: 61200 #17 hrs
   startingGear: MercenaryGear
   canBeAntag: true
   icon: "JobIconMercenary" 
