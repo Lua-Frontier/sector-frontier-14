@@ -24,12 +24,14 @@ public sealed class AutoBooSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, AutoBooComponent comp, MapInitEvent args)
     {
-        if (comp.SpawnAnomalyOnInit != null && !comp.AnomalySpawned)
+        if (comp.SpawnAnomalyOnInit == null || comp.AnomalySpawned) return;
+        Timer.Spawn(TimeSpan.FromMilliseconds(200), () =>
         {
+            if (Deleted(uid) || comp.AnomalySpawned) return;
             var xform = Transform(uid);
             Spawn(comp.SpawnAnomalyOnInit, xform.Coordinates);
             comp.AnomalySpawned = true;
-        }
+        });
     }
 
     public override void Update(float frameTime)
