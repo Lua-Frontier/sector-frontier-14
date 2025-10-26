@@ -21,6 +21,7 @@ using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Content.Server._Lua.Sectors;
+using Content.Server._Lua.Starmap.Systems;
 using Content.Server._Mono.GridClaimer;
 
 namespace Content.Server._NF.StationEvents.Events;
@@ -45,6 +46,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly StationSystem _station = default!; // Lua
     [Dependency] private readonly SectorSystem _sectors = default!; // Lua
+    [Dependency] private readonly StarmapSystem _starmap = default!; // Lua
 
     private MapId _relevantMapId = MapId.Nullspace;
 
@@ -55,16 +57,13 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
     protected override void Added(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        MapId targetMapId;
-        if (component.Asteroid)
+        if (TryComp<MetaDataComponent>(uid, out var meta) && meta.EntityPrototype?.ID == "BluespaceShipyardLuaTech")
         {
-            if (!_sectors.TryGetMapId("AsteroidSectorDefault", out targetMapId))
-            { targetMapId = MapId.Nullspace; }
-            if (targetMapId == MapId.Nullspace)
-            { targetMapId = GameTicker.DefaultMap; }
+            _relevantMapId = GameTicker.DefaultMap;
+            base.Added(uid, component, gameRule, args);
+            return;
         }
-        else
-        { targetMapId = GameTicker.DefaultMap; }
+        var targetMapId = TryGetRandomGeneratedSectorMapId(includeAsteroid: component.Asteroid) ?? (component.Asteroid && _sectors.TryGetMapId("AsteroidSectorDefault", out var ast) ? ast : GameTicker.DefaultMap);
         _relevantMapId = targetMapId;
         base.Added(uid, component, gameRule, args);
     }
@@ -78,24 +77,32 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         MapId targetMapId;
         EntityUid mapUid;
-        if (component.Asteroid)
+        if (TryComp<MetaDataComponent>(uid, out var meta) && meta.EntityPrototype?.ID == "BluespaceShipyardLuaTech")
         {
-            if (!_sectors.TryGetMapId("AsteroidSectorDefault", out targetMapId))
-            { targetMapId = MapId.Nullspace; }
-            if (targetMapId == MapId.Nullspace)
+            if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
+            targetMapId = GameTicker.DefaultMap;
+            mapUid = defaultMapUid.Value;
+            _relevantMapId = targetMapId;
+        }
+        else
+        {
+            var chosen = TryGetRandomGeneratedSectorMapId(includeAsteroid: component.Asteroid);
+            if (chosen != null)
+            {
+                targetMapId = chosen.Value;
+                mapUid = _mapManager.GetMapEntityId(targetMapId);
+            }
+            else if (component.Asteroid && _sectors.TryGetMapId("AsteroidSectorDefault", out var ast))
+            {
+                targetMapId = ast;
+                mapUid = _mapManager.GetMapEntityId(targetMapId);
+            }
+            else
             {
                 if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
                 targetMapId = GameTicker.DefaultMap;
                 mapUid = defaultMapUid.Value;
             }
-            else
-            { mapUid = _mapManager.GetMapEntityId(targetMapId); }
-        }
-        else
-        {
-            if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
-            targetMapId = GameTicker.DefaultMap;
-            mapUid = defaultMapUid.Value;
         }
 
         _relevantMapId = targetMapId;
@@ -172,6 +179,31 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         }
 
         _map.DeleteMap(mapId);
+    }
+
+    private MapId? TryGetRandomGeneratedSectorMapId(bool includeAsteroid = false)
+    {
+        try
+        {
+            var stars = _starmap.CollectStars();
+            if (stars.Count == 0) return null;
+            var exclude = new HashSet<MapId> { GameTicker.DefaultMap };
+            if (!includeAsteroid && _sectors.TryGetMapId("AsteroidSectorDefault", out var asteroid)) exclude.Add(asteroid);
+            if (_sectors.TryGetMapId("MercenarySector", out var merc)) exclude.Add(merc);
+            if (_sectors.TryGetMapId("PirateSector", out var pirate)) exclude.Add(pirate);
+            if (_sectors.TryGetMapId("TypanSector", out var typan)) exclude.Add(typan);
+            var candidates = new List<MapId>();
+            foreach (var s in stars)
+            {
+                if (s.Map == MapId.Nullspace) continue;
+                if (exclude.Contains(s.Map)) continue;
+                if (!_map.MapExists(s.Map)) continue;
+                candidates.Add(s.Map);
+            }
+            if (candidates.Count == 0) return null;
+            return candidates[_random.Next(candidates.Count)];
+        }
+        catch { return null; }
     }
 
     private bool TryDungeonSpawn(EntityCoordinates spawnCoords, BluespaceErrorRuleComponent component, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
