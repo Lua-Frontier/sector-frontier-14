@@ -1,4 +1,4 @@
-﻿using Content.Server.Power.EntitySystems;
+using Content.Server.Power.EntitySystems;
 
 namespace Content.Server.Power.Components
 {
@@ -11,7 +11,7 @@ namespace Content.Server.Power.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("transferRange")]
-        public int TransferRange { get; set; } = 3;
+        public int TransferRange { get; set; } = 6;
 
         [ViewVariables] public List<Entity<ExtensionCableReceiverComponent>> LinkedReceivers { get; } = new();
 
