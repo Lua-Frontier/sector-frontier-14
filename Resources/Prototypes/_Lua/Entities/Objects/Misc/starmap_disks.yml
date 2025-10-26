@@ -117,8 +117,12 @@
   name: coordinates disk (CentCom)
   components:
   - type: StarMapCoordinatesDisk
-    allowedSectors: []
-    allowedSectorIds: []
+    allowedSectors:
+    - Frontier Sector
+    - Asteroid Field
+    allowedSectorIds:
+    - FrontierSector
+    - AsteroidSectorDefault
     allowFtlToCentCom: true
   - type: Damageable
     damageContainer: Inorganic
