@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Server.Shuttles.Systems;
+using Content.Server._Lua.Sectors;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.Examine;
@@ -19,6 +20,7 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsole = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
 
     public override void Initialize()
     {
@@ -212,6 +214,31 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
             else
             { Union(a2, b2); }
         }
+        try
+        {
+            if (_sectors.TryGetMapId("AsteroidSectorDefault", out var asteroidMap))
+            {
+                var asteroidIdx = stars.FindIndex(s => s.Map == asteroidMap);
+                if (asteroidIdx >= 0)
+                {
+                    var mainSectors = new[] { "TypanSector", "PirateSector", "MercenarySector" };
+                    foreach (var sectorId in mainSectors)
+                    {
+                        if (_sectors.TryGetMapId(sectorId, out var sectorMap))
+                        {
+                            var sectorIdx = stars.FindIndex(s => s.Map == sectorMap);
+                            if (sectorIdx >= 0 && sectorIdx != asteroidIdx)
+                            {
+                                var a = Math.Min(asteroidIdx, sectorIdx);
+                                var b = Math.Max(asteroidIdx, sectorIdx);
+                                if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch { }
         return edges;
     }
 
