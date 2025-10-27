@@ -26,8 +26,8 @@
     drawdepth: Mobs
     layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
-      - state: horror
         sprite: _Lua/admem/horror.rsi
+        state: horror
       - state: spookysmoke
         sprite: _Lua/admem/horror.rsi
       - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
