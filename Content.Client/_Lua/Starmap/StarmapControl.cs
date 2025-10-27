@@ -91,7 +91,7 @@ public sealed class StarmapControl : Control
     public void SetZoom(float zoom)
     {
         var min = _config?.ZoomMin ?? 0.25f;
-        var max = _config?.ZoomMax ?? 4f;
+        var max = _config?.ZoomMax ?? 14f;
         Zoom = Math.Clamp(zoom, min, max);
         UpdateDraw();
     }
