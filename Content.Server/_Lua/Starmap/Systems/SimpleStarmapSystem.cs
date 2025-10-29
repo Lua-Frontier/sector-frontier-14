@@ -249,7 +249,7 @@ namespace Content.Server._Lua.Starmap.Systems
             if (TryComp<MapGridComponent>(shuttleUid.Value, out var grid))
             {
                 var xform = Transform(shuttleUid.Value);
-                var bounds = xform.WorldMatrix.TransformBox(grid.LocalAABB).Enlarged(200f);
+                var bounds = xform.WorldMatrix.TransformBox(grid.LocalAABB).Enlarged(ShuttleConsoleSystem.ShuttleFTLRange);
                 foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
                 {
                     if (other.Owner == shuttleUid.Value) continue;
