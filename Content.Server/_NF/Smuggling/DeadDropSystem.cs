@@ -1,11 +1,11 @@
-using System.Linq;
-using System.Text;
+using Content.Server._Lua.Starmap.Systems;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.SectorServices;
+using Content.Server._NF.Shipyard.Systems;
 using Content.Server._NF.Smuggling.Components;
+using Content.Server._NF.Station.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
-using Content.Server._NF.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
@@ -21,12 +21,13 @@ using Content.Shared.Paper;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Configuration;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server._NF.Station.Systems;
-using Robust.Shared.EntitySerialization.Systems;
+using System.Linq;
+using System.Text;
 
 namespace Content.Server._NF.Smuggling;
 
@@ -50,6 +51,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SharedGameTicker _ticker = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly StationRenameWarpsSystems _stationRenameWarps = default!;
+    [Dependency] private readonly StarmapSystem _starmap = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
@@ -444,10 +446,26 @@ public sealed class DeadDropSystem : EntitySystem
         //this is where we set up all the information that FTL is going to need, including a new null entity as a destination target because FTL needs it for reasons?
         //dont ask me im just fulfilling FTL requirements.
         var dropLocation = _random.NextVector2(component.MinimumDistance, component.MaximumDistance);
-        var mapId = Transform(user).MapID;
+        var targetMapId = Transform(user).MapID;
+        try
+        {
+            var stars = _starmap.CollectStars();
+            if (stars.Count > 0)
+            {
+                var candidates = new List<MapId>();
+                foreach (var star in stars)
+                {
+                    if (star.Map == MapId.Nullspace) continue;
+                    if (!_mapManager.MapExists(star.Map)) continue;
+                    candidates.Add(star.Map);
+                }
+                if (candidates.Count > 0) targetMapId = _random.Pick(candidates);
+            }
+        }
+        catch { }
 
         //tries to get the map uid, if it fails, it will return which I would assume will make the component try again.
-        if (!_mapManager.TryGetMap(mapId, out var mapUid))
+        if (!_mapManager.TryGetMap(targetMapId, out var mapUid))
         {
             return;
         }
