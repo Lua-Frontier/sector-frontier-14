@@ -2404,3 +2404,9 @@
     Telecrystal: 1
   categories:
     - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
