@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: RandomBoard
   name: random board spawner
   parent: MarkerBase
@@ -30,3 +30,37 @@
     - ProtolatheMachineCircuitboard
     - SalvageMagnetMachineCircuitboard
     rareChance: 0.05
+
+- type: entity
+  id: RandomSurivalSpawndWrecks
+  name: random survival spawner wrecks
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/module.rsi
+      state: boris
+  - type: RandomSpawner
+    prototypes:
+    - AirAlarmElectronics
+    - FireAlarmElectronics
+    - DoorElectronics
+    - FirelockElectronics
+    - IntercomElectronics
+    - APCElectronics
+    - SignalTimerElectronics
+    - APECircuitboard
+    - SMESMachineCircuitboard
+    - SubstationMachineCircuitboard
+    - TelecomServerCircuitboard
+    chance: 0.999
+    rarePrototypes:
+    - ShuttleConsoleCircuitboard
+    - AutolatheMachineCircuitboard
+    - OreProcessorMachineCircuitboard
+    - CircuitImprinterMachineCircuitboard
+    - ThrusterMachineCircuitboard
+    - CoordinatesDiskFrontier
+    - MachineWarpDriveFlatpack
+    rareChance: 0.001
