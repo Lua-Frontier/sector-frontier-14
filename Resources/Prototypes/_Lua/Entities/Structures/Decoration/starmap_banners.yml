@@ -34,6 +34,9 @@
   name: sector security banner
   description: Special NFSD sector banner. Colors the sector star in the starmap.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-banner
   - type: StarMapSectorColorOverride
     colorHex: "#96B089"
     faction: "Nfsd"
