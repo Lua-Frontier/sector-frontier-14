@@ -1,0 +1,36 @@
+# Creator Info
+# Discord: you_my_kill
+# Cikey: twoi_podarok
+
+- type: vessel
+  id: Mover
+  parent: BaseVessel
+  name: Mover
+  description: Судно больше похоже на заготовку, но является грузовым.
+  price: 47000
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/Mover.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  - Expedition
+  engine:
+  - Uranium
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+- type: gameMap
+  id: Mover
+  mapName: 'Mover'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/Mover.yml
+  minPlayers: 0
+  stations:
+    Mover:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Mover {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
