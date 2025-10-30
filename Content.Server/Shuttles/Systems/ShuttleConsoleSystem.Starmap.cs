@@ -69,8 +69,8 @@ public sealed partial class ShuttleConsoleSystem
         var edges = _starmap.GetHyperlanesCached();
         if ((edges == null || edges.Count == 0) && stars.Count > 0)
         { edges = EntityManager.System<StarmapSystem>().GetHyperlanesCached(); }
-        bool allowCentComStar = false;
-        if (consoleUid != null)
+        bool allowCentComStar = _centcomm.CentComStarUnlocked; // Lua
+        if (!allowCentComStar && consoleUid != null)
         {
             try
             {
@@ -157,6 +157,12 @@ public sealed partial class ShuttleConsoleSystem
                 }
             }
             catch { }
+        }
+        if (_centcomm.CentComStarUnlocked && _centcomm.CentComMap != MapId.Nullspace)
+        {
+            var ccMap = _centcomm.CentComMap;
+            if (!visibleSectorMaps.Contains(ccMap)) visibleSectorMaps.Add(ccMap);
+            if (!sectorIdByMap.ContainsKey(ccMap)) sectorIdByMap[ccMap] = "CentCom";
         }
         try
         {

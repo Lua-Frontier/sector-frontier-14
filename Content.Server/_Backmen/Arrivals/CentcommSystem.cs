@@ -67,6 +67,7 @@ public sealed class CentcommSystem : EntitySystem
     public MapId CentComMap { get; private set; } = MapId.Nullspace;
     public Entity<MapComponent>? CentComMapUid { get; private set; }
     public float ShuttleIndex { get; set; } = 0;
+    public bool CentComStarUnlocked { get; set; } = false; // Lua
 
     //private WeightedRandomPrototype _stationCentComMapPool = default!;
 
