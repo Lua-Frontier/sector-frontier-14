@@ -4,6 +4,7 @@
 
 using Content.Server.Station.Components;
 using Robust.Shared.Map;
+using Content.Server.Shuttles.Systems;
 using System.Linq;
 using System.Numerics;
 
@@ -28,9 +29,11 @@ public sealed class SectorOwnershipSystem : EntitySystem
     {
         base.Update(frameTime);
         _accum += frameTime;
-        if (_accum < 60f) return;
-        _accum = 0f;
-        RecomputeOwnership();
+        if (_accum >= 60f)
+        {
+            _accum = 0f;
+            RecomputeOwnership();
+        }
     }
 
     public IReadOnlyDictionary<MapId, string> GetOwnerByMap() => _ownerByMap;
@@ -133,9 +136,20 @@ public sealed class SectorOwnershipSystem : EntitySystem
         return null;
     }
 
+    public bool IsOnBeaconGrid(MapId mapId, TransformComponent xform)
+    {
+        try
+        {
+            var beaconGrid = FindBeaconGrid(mapId);
+            if (beaconGrid == null) return false;
+            return xform.GridUid == beaconGrid;
+        }
+        catch { return false; }
+    }
+
     private void TryRefreshConsoles()
     {
-        try { EntityManager.System<Content.Server.Shuttles.Systems.ShuttleConsoleSystem>().RefreshShuttleConsoles(); }
+        try { EntityManager.System<ShuttleConsoleSystem>().RefreshShuttleConsoles(); }
         catch { }
     }
 }
