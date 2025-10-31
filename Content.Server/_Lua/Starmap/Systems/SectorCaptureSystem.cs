@@ -45,12 +45,12 @@ public sealed class SectorCaptureSystem : EntitySystem
             var elapsed = (now - comp.CaptureStartedAt).TotalSeconds;
             if (elapsed >= duration)
             {
+                comp.IsCapturing = false;
+                comp.CaptureStartedAt = TimeSpan.Zero;
                 EnsureComp<StarMapSectorColorOverrideComponent>(uid, out var banner);
                 banner.Faction = comp.Faction;
                 banner.ColorHex = comp.ColorHex;
                 Dirty(uid, banner);
-                comp.IsCapturing = false;
-                comp.CaptureStartedAt = TimeSpan.Zero;
                 PushState(uid, comp);
             }
             else
