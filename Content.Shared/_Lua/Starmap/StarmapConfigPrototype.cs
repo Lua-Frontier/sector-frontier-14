@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace Content.Shared._Lua.Starmap;
 
-[Prototype("starmapConfig")]
+[Prototype("starmapConfigPrototype")]
 public sealed partial class StarmapConfigPrototype : IPrototype
 {
     [IdDataField]
@@ -20,7 +20,7 @@ public sealed partial class StarmapConfigPrototype : IPrototype
     public float ZoomMin = 0.25f;
 
     [DataField]
-    public float ZoomMax = 14f;
+    public float ZoomMax = 4f;
 
     [DataField]
     public int GridLines = 10;
