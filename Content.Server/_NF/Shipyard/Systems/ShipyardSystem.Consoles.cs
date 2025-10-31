@@ -43,6 +43,9 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared._Lua.LuaTech; // Lua
+using Content.Server._Lua.ShipProtection; // Lua
+using Content.Server.Construction.Components; // Lua
+using Content.Shared.Construction.Components; // Lua
 using Content.Shared._Mono.Company;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared._Mono.Shipyard;
@@ -418,6 +421,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         EntityManager.AddComponents(shuttleUid, vessel.AddComponents);
 
         if (vessel.Category == VesselSize.Small) EnsureComp<WhitelistConsolesComponent>(shuttleUid); // Lua
+
+        // Lua
+        if (isLuaTech)
+        {
+            var shipProtection = _entityManager.System<ShipProtectionSystem>();
+            var protectionDuration = TimeSpan.FromMinutes(30);
+            var xformQuery = GetEntityQuery<TransformComponent>();
+            var machineQuery = AllEntityQuery<MachineComponent, TransformComponent>();
+            var anchorableQuery = AllEntityQuery<AnchorableComponent, TransformComponent>();
+            while (machineQuery.MoveNext(out var machineUid, out _, out var xform))
+            { if (xform.GridUid == shuttleUid) { shipProtection.ProtectEntity(machineUid, protectionDuration); } }
+            while (anchorableQuery.MoveNext(out var anchorableUid, out _, out var xform))
+            { if (xform.GridUid == shuttleUid) { shipProtection.ProtectEntity(anchorableUid, protectionDuration); } }
+        }
 
         // Ensure cleanup on ship sale
         EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
