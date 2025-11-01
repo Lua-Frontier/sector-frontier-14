@@ -178,6 +178,7 @@
     staticPacks:
     - NFNfsdTechfabDeprecatedStatic
     - NfsdPracticeStatic
+    - RoundstartShipgunAmmo # Mono
     - NfsdAmmoStatic
     - ReportingStatic # DeltaV
   - type: BlueprintReceiver
@@ -212,6 +213,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - RoundstartShipgunAmmo # Mono
     - GoobWeaponAmmo
     - NFMercenaryTechfabDeprecatedStatic
     - NfsdPracticeStatic
@@ -261,6 +263,7 @@
     idleState: mercenary-hacked
     runningState: mercenary-hacked
     staticPacks:
+    - RoundstartShipgunAmmo # Mono
     - NFHackedMercenaryTechfabDeprecatedStatic
   - type: BlueprintReceiver
     whitelist:

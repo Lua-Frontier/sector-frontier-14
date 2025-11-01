@@ -2,10 +2,12 @@
 # SPDX-FileCopyrightText: 2025 Blu
 # SPDX-FileCopyrightText: 2025 Disguised Bear
 # SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 Nope1356
 # SPDX-FileCopyrightText: 2025 Onezero0
 # SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 RikuTheKiller
 # SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 significant harassment
 # SPDX-FileCopyrightText: 2025 starch
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -24,7 +26,6 @@
         Radiation: 1250
         Structural: 4250
         Heat: 350
-        Ion: 350
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     layers:
@@ -63,7 +64,6 @@
         Radiation: 600
         Structural: 900
         Heat: 120
-        Ion: 150
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     layers:
@@ -74,9 +74,9 @@
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#C92BCC"
-    scale: 1
+    scale: 1.45
     requireNoGrid: true
-    shape: triangle
+    shape: arrow
   - type: TimedDespawn
     lifetime: 4.2
   - type: PointLight
@@ -84,7 +84,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DefaultShipGun
-    totalIntensity: 20
+    totalIntensity: 25
     intensitySlope: 2
     maxIntensity: 40
     maxTileBreak: 1
@@ -103,7 +103,6 @@
         Radiation: 700
         Structural: 4000
         Heat: 5000
-        Ion: 500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     layers:
@@ -176,7 +175,6 @@
       types:
         Radiation: 75
         Heat: 115
-        Ion: 375
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
     layers:
@@ -197,7 +195,6 @@
     range: 4
     energyConsumption: 2700000
     disableDuration: 10
-
 
 # DYMERE
 
@@ -225,7 +222,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 6
+    lifetime: 10
   - type: PointLight
     color: "#6BC1FF"
   - type: ExplodeOnTrigger
@@ -238,6 +235,85 @@
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
+
+# SCYTHE
+
+- type: entity
+  id: ShipNeutronProjectile
+  name: neutron projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 1500
+        Structural: 5000
+        Heat: 1000
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_projectiles.rsi
+    layers:
+    - state: neutron_bolt
+    scale: 1.5, 1.5
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectHeavyLaser
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#ffffff"
+    scale: 2.5
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 3
+  - type: PointLight
+    radarColor: "#ffffff"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 500
+    intensitySlope: 35
+    maxIntensity: 50
+
+# Harbringer
+
+- type: entity
+  id: ShipIonProjectile
+  name: ion shot
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 750
+        Heat: 500
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_projectiles.rsi
+    layers:
+    - state: ion_blast
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempCold
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#9507fa"
+    scale: 3
+    requireNoGrid: true
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    color: "#FB00FF"
+  - type: EmpOnTrigger
+    range: 3
+    energyConsumption: 6000000
+    disableDuration: 27.5
+  - type: LightningOnTrigger
+    chance: 1
+    count: 5
+    range: 24
+    lightningProto: LightningEMP
+    lightningEffects: false
+
 
 # region Laser Hitscans
 
@@ -297,11 +373,98 @@
   - type: HitscanBasicRaycast
     maxDistance: 600
 
+# Reaper
+
+- type: entity
+  parent: BasicHitscan
+  id: TachyonLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: muzzle_superheavy_prefrac
+    travelFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: Beam_SuperHeavy_prefrac
+    impactFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: impact_superheavy_prefrac
+  - type: HitscanRadarSignature
+    radarColor: "#1cd471"
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Heat: 30000
+      Structural: 100000
+  - type: HitscanSpawnEntity
+    spawnedEntity: TachyonExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 1500
+
+# Sunder
+
+- type: entity
+  parent: BasicHitscan
+  id: SunderLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: proton_muzzle
+    travelFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: proton_beam
+    impactFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: proton_impact
+  - type: HitscanRadarSignature
+    radarColor: "#f29705"
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Heat: 350
+      Structural: 2500
+  - type: HitscanSpawnEntity
+    spawnedEntity: SunderExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 750
+
+# Flayer
+
+- type: entity
+  parent: BasicHitscan
+  id: GaussRound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: gauss_muzzle
+    travelFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: gauss_trail
+    impactFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_lasers.rsi
+      state: gauss_impact
+  - type: HitscanRadarSignature
+    radarColor: "#FFFFFF"
+    lifeTime: 0.1
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Piercing: 125
+      Heat: 25
+      Structural: 200
+  - type: HitscanBasicRaycast
+    maxDistance: 500
+
 # Hitscan Explosions
 
 - type: entity
   id: ApolloExplosion
-  categories: [ HideSpawnMenu, Spawner ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger
@@ -311,3 +474,27 @@
     intensitySlope: 50
     maxIntensity: 100
     maxTileBreak: 2
+
+- type: entity
+  id: TachyonExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 7000
+    intensitySlope: 100
+    maxIntensity: 2400
+
+- type: entity
+  id: SunderExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 22
+    intensitySlope: 2
+    maxIntensity: 5

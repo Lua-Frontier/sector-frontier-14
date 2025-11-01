@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2025 Avalon
 # SPDX-FileCopyrightText: 2025 Blu
 # SPDX-FileCopyrightText: 2025 Disguised Bear
 # SPDX-FileCopyrightText: 2025 Ilya246
@@ -33,7 +34,7 @@
     radarColor: "#FCBA03"
     scale: 1
     requireNoGrid: true
-    shape: triangle
+    shape: hexagon
   - type: TimedDespawn
     lifetime: 3.5
   - type: PointLight
@@ -82,7 +83,7 @@
     radarColor: "#FCBA03"
     scale: 1.5
     requireNoGrid: true
-    shape: triangle
+    shape: hexagon
   - type: TimedDespawn
     lifetime: 4.5
   - type: PointLight
@@ -131,7 +132,7 @@
     radarColor: "#FCBA03"
     scale: 4
     requireNoGrid: true
-    shape: triangle
+    shape: hexagon
   - type: TimedDespawn
     lifetime: 15
   - type: PointLight
@@ -168,7 +169,6 @@
       types:
         Structural: 7500
         Heat: 30
-        Ion: 2500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/hybrid_missile.rsi
     layers:
@@ -180,7 +180,7 @@
     radarColor: "#FB00FF"
     scale: 1
     requireNoGrid: true
-    shape: triangle
+    shape: hexagon
   - type: TimedDespawn
     lifetime: 6.5
   - type: PointLight
@@ -208,3 +208,52 @@
     launchSpeed: 50
     maxSpeed: 125
     trackDelay: 0.6
+
+# Serpent Torpedo
+
+- type: entity
+  id: ShipMissileSerpent
+  name: serpent torpedo
+  parent: BaseTorpedo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 12500
+        Blunt: 1500
+        Heat: 500
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#FCBA03"
+    scale: 4
+    requireNoGrid: true
+    shape: hexagon
+  - type: TimedDespawn
+    lifetime: 15
+  - type: PointLight
+    radius: 5
+    color: orange
+    energy: 2
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    maxIntensity: 4500
+    intensitySlope: 20
+    totalIntensity: 4500
+  - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
+  - type: TargetSeeking
+    acceleration: 50
+    detectionRange: 600
+    scanArc: 30
+    launchSpeed: 25
+    maxSpeed: 30
+    trackDelay: 2

@@ -1,0 +1,94 @@
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# T1 scaf
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitPirateScafRogue
+  parent: MonoHardsuitT1Recipe
+  result: ClothingOuterHardsuitPirateScaf
+
+# T2 VG
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitViperGroupStandardRogue
+  parent: MonoHardsuitT2Recipe
+  result: ClothingOuterHardsuitViperGroupStandard
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitViperGroupMedicRogue
+  parent: MonoHardsuitT2Recipe
+  result: ClothingOuterHardsuitViperGroupMedic
+
+# T2 syndie
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSyndieRogue
+  parent: MonoHardsuitT2Recipe
+  result: ClothingOuterHardsuitAshen
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSyndieEliteRogue
+  parent: MonoHardsuitT2Recipe
+  result: ClothingOuterHardsuitAshenElite
+
+# T2 stealthsuit
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitCybersunStealthRogue
+  parent: MonoHardsuitT3Recipe
+  result: ClothingOuterHardsuitCybersunStealth
+
+# T3 modsuit
+
+- type: latheRecipe
+  id: ClothingModsuitRoguePowerCellRogue
+  parent: MonoHardsuitT3Recipe
+  result: ClothingModsuitRoguePowerCell
+
+# T3 synthalloy
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitJuggernautRogue
+  parent: MonoHardsuitT3TsfRecipe
+  result: ClothingOuterHardsuitJuggernaut
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSyndieCommanderRogue
+  parent: MonoHardsuitT3TsfRecipe
+  result: ClothingOuterHardsuitSyndieCommander
+
+# misc
+
+- type: latheRecipe
+  id: ClothingMaskGasSyndicateRogue
+  categories:
+  - ClothesNF
+  - FactionEquipment
+  parent: NFBaseMaskArmoredRecipe
+  result: ClothingMaskGasSyndicate
+
+- type: latheRecipe
+  id: ClothingOuterVestWebRogue
+  categories:
+  - ArmorNF
+  - ClothesNF
+  - FactionEquipment
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterVestWeb
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagSyndieRogue
+  categories:
+  - ClothesNF
+  - FactionEquipment
+  result: ClothingShoesBootsMagAshen
+  completetime: 5
+  materials:
+    Steel: 1000
+    Silver: 750
+    Plasteel: 300
+    Plastic: 300
+    Plasma: 350
+    Uranium: 100

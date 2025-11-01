@@ -1,0 +1,67 @@
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 significant harassment
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL
+
+- type: latheRecipe
+  id: CharonSlugUniversal
+  parent: BaseRailgunSlugRecipe
+  result: CharonSlugAmmo
+
+- type: latheRecipe
+  id: CharonSubnuclearSlugUniversal
+  parent: BaseRailgunSlugRecipe
+  result: CharonSubnuclearSlugAmmo
+  materials:
+    Steel: 1500
+    Plasteel: 500
+    Plasma: 100 # ionized plasma gas
+    Uranium: 3000 # payload
+
+- type: latheRecipe
+  id: ASM220TorpedoHEUniversal
+  parent: BaseTorpedoRecipe
+  result: Asm220TorpedoHE
+
+- type: latheRecipe
+  id: ASM220TorpedoECMUniversal
+  parent: BaseTorpedoRecipe
+  result: Asm220TorpedoECM
+
+- type: latheRecipe
+  id: ASM220TorpedoLOSATUniversal
+  parent: BaseTorpedoRecipe
+  result: Asm220TorpedoLOSAT
+  materials:
+    Steel: 1200 # shell/casing
+    Plasteel: 600 # penetrator
+    Synthalloy: 200 # penetrator
+    Glass: 400 # opticals
+    Gold: 200 # electronics
+    Silver: 200 # electronics
+
+- type: latheRecipe
+  id: 150mmApShellUniversal
+  parent: Base150mmShellAmmoRecipe
+  result: 150mmApShell
+
+- type: latheRecipe
+  id: 150mmEmpShellUniversal
+  parent: Base150mmShellAmmoRecipe
+  result: 150mmEmpShell
+
+- type: latheRecipe
+  id: GPOL50BombUniversal
+  parent: BaseLightOrdinanceAmmoRecipe
+  result: LightFighterOrdinanceGPOItem
+
+- type: latheRecipe
+  id: ZenithRocketUniversal
+  parent: BaseLightOrdinanceAmmoRecipe
+  result: LightFighterOrdinanceZenithItem
+
+- type: latheRecipe
+  id: QuasarAcceleratorUniversal
+  parent: BaseLightOrdinanceAdvancedAmmoRecipe
+  result: LightFighterOrdinanceQuasarItem

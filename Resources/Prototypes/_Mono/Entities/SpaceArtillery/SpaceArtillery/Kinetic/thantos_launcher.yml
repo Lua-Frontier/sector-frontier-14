@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2025 Avalon
 # SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 starch
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -29,12 +30,14 @@
     range: 500
   - type: Gun
     fireRate: 0.1
+    minAngle: 0
+    maxAngle: 0
     burstCooldown: 20
     burstFireRate: 2
     shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
-    projectileSpeed: 900
+    projectileSpeed: 1100
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
     soundEmpty:

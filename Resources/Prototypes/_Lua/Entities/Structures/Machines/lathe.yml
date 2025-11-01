@@ -54,6 +54,15 @@
     runningState: base_machine_processing
     dynamicPacks:
       - ArmoryLatheDynamicPack
+      # Mono start
+      - ResearchedExplosives
+      - UniversalRailgunAmmo
+      - UniversalMissileAmmo
+      - UniversalShellAmmo
+      - UniversalOrdinance
+      # Mono end
+    staticPacks:
+      - RoundstartShipgunAmmo # Mono
 
 - type: entity
   id: MedipenTechfab

@@ -1,0 +1,76 @@
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
+- type: entity
+  id: Magazine57mm
+  name: "57x210mm APHE ammo drum"
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - Magazine57mm
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    proto: 57mmCartridge
+    capacity: 600
+    mayTransfer: true
+    whitelist:
+      tags:
+      - 57mmCartridge
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Guns/Ammunition/Magazines/SmartGuns/magazine_smart_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: 57mmCartridge
+  name: cartridge (57x210mm APHE)
+  parent: [ BaseCartridge, BaseC1Contraband ]
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - 57mmCartridge
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: ShipDravonProjectile
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/generic_cartridges.rsi
+    layers:
+    - state: 57mm
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 3
+    totalIntensity: 1
+  - type: ExplodeOnTrigger
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
