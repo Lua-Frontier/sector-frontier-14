@@ -1,3 +1,19 @@
+# SPDX-FileCopyrightText: 2022 Leon Friedrich
+# SPDX-FileCopyrightText: 2022 Snowni
+# SPDX-FileCopyrightText: 2022 Visne
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2022 rolfero
+# SPDX-FileCopyrightText: 2023 AJCM-git
+# SPDX-FileCopyrightText: 2023 Julian Giebel
+# SPDX-FileCopyrightText: 2023 deltanedas
+# SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
+# SPDX-FileCopyrightText: 2024 Ed
+# SPDX-FileCopyrightText: 2024 Flareguy
+# SPDX-FileCopyrightText: 2025 EckoAurum
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
 #Remote Signaller Device
 
 - type: entity
@@ -24,6 +40,23 @@
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
     range: 15
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+      params:
+        volume: -2
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+      params:
+        volume: -2
+  # Goobstation edit end
 
 - type: entity
   parent: RemoteSignaller
