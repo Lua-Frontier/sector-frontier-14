@@ -50,6 +50,17 @@
     price: 400
   - type: NFWeaponDetails
     class: weapon-details-class-rifle
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Goobstation edit end
 
 #region manufacturer
 - type: entity

@@ -28,6 +28,17 @@
     # pvsIncrease: 0.25
   - type: NFWeaponDetails
     class: weapon-details-class-assault-rifle
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  # Goobstation edit end
 
 #region manufacturer
 - type: entity

@@ -25,6 +25,17 @@
     price: 350
   - type: NFWeaponDetails
     class: weapon-details-class-submachine-gun
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SMGPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SMGDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SMGDrop
+  # Goobstation edit end
 
 #region manufacturer
 - type: entity

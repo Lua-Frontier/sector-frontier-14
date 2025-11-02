@@ -25,6 +25,17 @@
     price: 200
   - type: NFWeaponDetails
     class: weapon-details-class-revolver
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
+  # Goobstation edit end
 
 #region manufacturer
 - type: entity

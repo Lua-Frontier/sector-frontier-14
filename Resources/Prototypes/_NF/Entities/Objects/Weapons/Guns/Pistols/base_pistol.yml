@@ -20,6 +20,17 @@
   - type: NFWeaponDetails
     class: weapon-details-class-pistol
   - type: FireOnLand # DeltaV - gun safety
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
+  # Goobstation edit end
 
 #region manufacturer
 - type: entity

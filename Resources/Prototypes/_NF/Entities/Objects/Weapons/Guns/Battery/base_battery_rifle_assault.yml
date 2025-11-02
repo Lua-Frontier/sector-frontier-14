@@ -49,6 +49,17 @@
     autoRechargeRate: 4 # Default recharge rate: 1 shot per 20 seconds with 80 fireCost
   - type: NFWeaponDetails
     class: weapon-details-class-assault-rifle
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Goobstation edit end
 
 #region manufacturer
 - type: entity
