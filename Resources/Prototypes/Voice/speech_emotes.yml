@@ -25,6 +25,14 @@
     - yells
     - yelled
     - yelling
+    - кричит
+    - кричать
+    - крик
+    - орёт
+    - орет
+    - орать
+    - визжит
+    - визжать
 
 - type: emote
   id: Laugh
@@ -54,7 +62,13 @@
     - chortle
     - chortles
     - chortling
-    - chortled # Frontier
+    - chortled
+    - смеётся
+    - смеется
+    - смеяться
+    - смеюсь
+    - хохочет
+    - хохотать
 
 - type: emote
   id: Honk
@@ -73,6 +87,9 @@
     - honks
     - honked
     - honking
+    - хонкает
+    - хонкать
+    - хонк
 
 - type: emote
   id: Sigh
@@ -90,7 +107,10 @@
     - sigh
     - sighs
     - sighed
-    - sighing # Frontier
+    - sighing
+    - вздыхает
+    - вздыхать
+    - вздохнул
 
 - type: emote
   id: Whistle
@@ -108,7 +128,10 @@
     - whistle
     - whistles
     - whistleblowing
-    - whistled # Frontier
+    - whistled
+    - свистит
+    - свистеть
+    - свист
 
 - type: emote
   id: Crying
@@ -129,8 +152,11 @@
     - sob
     - sobs
     - sobbing
-    - sobbed # Frontier
-    - cried # Frontier
+    - sobbed
+    - cried
+    - плачет
+    - плакать
+    - рыдает
 
 - type: emote
   id: Squish
@@ -149,7 +175,9 @@
     - squish
     - squishing
     - squishes
-    - squished # Frontier
+    - squished
+    - хлюпает
+    - хлюпать
 
 - type: emote
   id: Chitter
@@ -168,7 +196,10 @@
    - chitter
    - chitters
    - chittered
-   - chittering # Frontier
+   - chittering
+   - стрекочет
+   - стрекотать
+   - щебечет
 
 - type: emote
   id: Squeak
@@ -187,7 +218,10 @@
    - squeak
    - squeaks
    - squeaked
-   - squeaking # Frontier
+   - squeaking
+   - пищит
+   - пищать
+   - писк
 
 - type: emote
   id: Click
@@ -205,8 +239,10 @@
   chatTriggers:
    - click
    - clicks
-   - clicked # Frontier
-   - clicking # Frontier
+   - clicked
+   - clicking
+   - клацает
+   - клацать
 
 # hand emotes
 - type: emote
@@ -225,6 +261,9 @@
     - claps
     - clapping
     - clapped
+    - хлопает
+    - хлопать
+    - аплодирует
 
 - type: emote
   id: ClapSingle
@@ -244,6 +283,7 @@
     - claps her hands together
     - claps his hands together
     - claps its hands together
+    - хлопает в ладоши
 
 - type: emote
   id: Snap
@@ -270,6 +310,10 @@
     - snaps its fingers
     - snapping fingers
     - snapped fingers
+    - щёлкает
+    - щелкает
+    - щёлкает пальцами
+    - щелкает пальцами
 
 - type: emote
   id: Thump
@@ -295,6 +339,10 @@
     - thumps her tail
     - thumps his tail
     - thumps its tail
+    - бьёт хвостом
+    - бьет хвостом
+    - машет хвостом
+    - стучит хвостом
 
 - type: emote
   id: Salute
@@ -311,8 +359,13 @@
   chatTriggers:
     - salute
     - salutes
-    - saluted # Frontier
-    - saluting # Frontier
+    - saluted
+    - saluting
+    - отдаёт честь
+    - отдает честь
+    - салютует
+    - салютовать
+    - салют
 
 - type: emote
   id: Gasp
@@ -325,7 +378,10 @@
    - gasp
    - gasps
    - gasped
-   - gasping # Frontier
+   - gasping
+   - задыхается
+   - задыхаться
+   - хватает воздух
 
 - type: emote
   id: DefaultDeathgasp
@@ -361,6 +417,8 @@
     - buzz
     - buzzed
     - buzzes
+    - жужжит
+    - жужжать
 
 - type: emote
   id: Weh
@@ -395,6 +453,9 @@
     - chirps
     - chirped
     - chirping
+    - чирикает
+    - чирикать
+    - чирик
 
 # Machine Emotes
 - type: emote
@@ -414,6 +475,9 @@
     - beeps
     - beeped
     - beeping
+    - бипает
+    - бипать
+    - пикает
 
 - type: emote
   id: Chime
@@ -432,6 +496,9 @@
     - chimes
     - chimed
     - chiming
+    - звенит
+    - звенеть
+    - звонит
 
 - type: emote
   id: Buzz-Two
@@ -456,7 +523,8 @@
     - buzzes twice
     - buzzing twice
     - buzzed twice
-    - buzzedtwice # Frontier
+    - жужжит дважды
+    - жужжать дважды
 
 - type: emote
   id: Ping
@@ -475,3 +543,5 @@
     - pings
     - pinged
     - pinging
+    - пингует
+    - пинг

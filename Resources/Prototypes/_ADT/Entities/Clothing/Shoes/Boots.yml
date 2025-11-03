@@ -31,7 +31,7 @@
   components:
     - type: Action
       icon: { sprite: ADT/Clothing/Shoes/Boots/advanced.rsi, state: icon }
-      iconOn: ADT/Clothing/Shoes/Boots/advanced.rsi/icon-on.png
+      iconOn: { sprite: ADT/Clothing/Shoes/Boots/advanced.rsi, state: icon-on }
 
 - type: entity
   id: ActionToggleADTGasTank

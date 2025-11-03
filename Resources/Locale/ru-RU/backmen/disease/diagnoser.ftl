@@ -12,7 +12,6 @@ diagnoser-disease-report-cureresist-medium = Сопротивление косм
 diagnoser-disease-report-cureresist-high = Сопротивление космоцилину: [color=red]Сильное[/color]
 diagnoser-no-cures = Для это болезни отсутвуют особые лекарства.
 diagnoser-cure-has = Против заболевания имеются следующие лекарства:
-    Перед лечением внутривенно ввести ипекак 15u
 
 diagnoser-cure-bedrest = Лежать в кровати {$time} секунд, или {$sleep} на сон.
 diagnoser-cure-reagent = Следует принимать {$reagent} в объёме {$units}u.

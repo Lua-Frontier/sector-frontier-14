@@ -79,6 +79,9 @@
     damage:
       groups:
         Brute: 6
+  - type: InfectOnMelee
+    disease: XenoVirus
+    infectChance: 0.05
   - type: DamageStateVisuals
     states:
       Alive:
@@ -184,6 +187,9 @@
     damage:
       groups:
         Brute: 6
+  - type: InfectOnMelee
+    disease: XenoVirus
+    infectChance: 0.05
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: Fixtures
@@ -223,6 +229,9 @@
     damage:
      groups:
        Brute: 12
+  - type: InfectOnMelee
+    disease: XenoVirus
+    infectChance: 0.05
   - type: Fixtures
     fixtures:
       fix1:
@@ -261,6 +270,9 @@
     damage:
      groups:
        Brute: 10
+  - type: InfectOnMelee
+    disease: XenoVirus
+    infectChance: 0.05
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 0.7
@@ -295,6 +307,9 @@
     damage:
      groups:
        Brute: 5
+  - type: InfectOnMelee
+    disease: XenoVirus
+    infectChance: 0.05
   - type: Fixtures
     fixtures:
       fix1:

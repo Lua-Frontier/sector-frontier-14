@@ -16,7 +16,7 @@ public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
     public string ID { get; private set; } = default!;
 
     [DataField("name")]
-    public string Name { get; private set; } = string.Empty;
+    public LocId Name { get; private set; } = string.Empty;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<DiseasePrototype>))]
     public string[]? Parents { get; private set; }
@@ -62,13 +62,10 @@ public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField("cures", serverOnly: true)]
     public List<DiseaseCure> Cures { get; private set; } = new(0);
-    /// <summary>
-    /// Whether the disease can infect other people.
-    /// Since this isn't just a virology thing, this
-    /// primary determines what sort of disease it is.
-    /// This also affects things like the vaccine machine.
-    /// You can't print a cancer vaccine
-    /// </summary>
+
+    [DataField("cureResist", serverOnly: true)]
+    public float CureResist = 0.05f;
+
     [DataField("infectious", serverOnly: true)]
     public bool Infectious = true;
 }

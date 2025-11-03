@@ -8,7 +8,7 @@ namespace Content.Shared.Backmen.CCVar;
 public sealed partial class CCVars
 {
     public static readonly CVarDef<bool>
-        GameDiseaseEnabled = CVarDef.Create("game.disease", false, CVar.SERVERONLY);
+        GameDiseaseEnabled = CVarDef.Create("game.disease", true, CVar.SERVERONLY);
 
     /*
      * GPT

@@ -30,6 +30,11 @@ public sealed partial class DiseaseEffectSystem
         if(args.Handled)
             return;
         args.Handled = true;
-        _damageable.TryChangeDamage(args.DiseasedEntity, args.DiseaseEffect.Damage, true, false);
+        
+        // Check if entity still exists
+        if (!Exists(ent.Owner))
+            return;
+            
+        _damageable.TryChangeDamage(ent.Owner, args.DiseaseEffect.Damage, true, false);
     }
 }
