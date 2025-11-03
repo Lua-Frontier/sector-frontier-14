@@ -45,16 +45,19 @@ public sealed partial class DiseaseEffectSystem
         if (args.DiseaseEffect.Reagent == null)
             return;
 
-        if (!TryComp<BloodstreamComponent>(args.DiseasedEntity, out var bloodstream))
+        // Check if entity still exists
+        if (!Exists(ent.Owner))
             return;
 
-        var stream = bloodstream.ChemicalSolution;
-        if (stream == null)
+        if (!TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream))
             return;
 
-        if (args.DiseaseEffect.Amount < 0 && stream.Value.Comp.Solution.ContainsReagent(args.DiseaseEffect.Reagent.Value))
-            _solutionContainer.RemoveReagent(stream.Value,args.DiseaseEffect.Reagent.Value, -args.DiseaseEffect.Amount);
+        if (!_solutionContainer.ResolveSolution(ent.Owner, bloodstream.ChemicalSolutionName, ref bloodstream.ChemicalSolution, out var chemicalSolution))
+            return;
+
+        if (args.DiseaseEffect.Amount < 0 && chemicalSolution.ContainsReagent(args.DiseaseEffect.Reagent.Value))
+            _solutionContainer.RemoveReagent(bloodstream.ChemicalSolution.Value, args.DiseaseEffect.Reagent.Value, -args.DiseaseEffect.Amount);
         if (args.DiseaseEffect.Amount > 0)
-            _solutionContainer.TryAddReagent(stream.Value, args.DiseaseEffect.Reagent.Value, args.DiseaseEffect.Amount, out _);
+            _solutionContainer.TryAddReagent(bloodstream.ChemicalSolution.Value, args.DiseaseEffect.Reagent.Value, args.DiseaseEffect.Amount, out _);
     }
 }

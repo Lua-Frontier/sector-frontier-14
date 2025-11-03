@@ -1,9 +1,17 @@
-namespace Content.Client.Medical;
+using Content.Shared.Backmen.Disease;
+using Robust.Shared.Prototypes;
 
-/* Here be dragons */
+namespace Content.Client.Backmen.Disease;
 
-public enum DiseaseMachineVisualLayers : byte
+public sealed class DiseaseSystem : SharedDiseaseSystem
 {
-    IsOn,
-    IsRunning
+    public override void TryAddDisease(EntityUid host, DiseasePrototype addedDisease, DiseaseCarrierComponent? target = null)
+    {
+        // server-only handling
+    }
+
+    public override void TryAddDisease(EntityUid host, ProtoId<DiseasePrototype> addedDisease, DiseaseCarrierComponent? target = null)
+    {
+        // server-only handling
+    }
 }
