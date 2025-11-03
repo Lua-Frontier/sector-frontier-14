@@ -1,15 +1,16 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
+# remap 03.11.2025 by ressuw
 
 - type: vessel
   parent: BaseVessel
   id: Wasp
   name: NSF Wasp
-  description: Крупный корабль для патруля космоса. Имеет вооружение и медицинский
+  description: Крупный корабль для патруля космоса. Имеет крупное вооружение и медицинский
     отсек.
   limit: 1
-  price: 193000 #133000
+  price: 310000 #195000 старая
   category: Large
   group: Security
   class:
