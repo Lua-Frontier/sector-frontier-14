@@ -99,6 +99,15 @@
       min: 20
       stages:
         - 0
+    - !type:DiseaseReagentCure
+      reagent:
+        ReagentId: Antibiotic
+      min: 5
+      stages:
+        - 0
+        - 1
+        - 2
+      cureChance: 0.1
     # - !type:DiseaseReagentCure
     #   reagent:
     #     ReagentId: LotophagoiOil
