@@ -19,8 +19,6 @@
     layers:
       Snout: Mask
     hideOnToggle: true
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.1
 
 - type: entity
   parent: [ClothingMaskGas, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband
@@ -61,8 +59,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
 
 - type: entity
   parent: ClothingMaskGas
@@ -141,8 +137,6 @@
     tags:
     - PetWearable
     - WhitelistChameleon
-  - type: DiseaseProtection #Backmen & Ataraxia anti viral
-    protection: 0.2
   - type: PhysicalComposition
     materialComposition:
       Steel: 50

@@ -2,8 +2,9 @@
   id: Ultragigacancer
   name: disease-proto-ultragigacancer
   infectious: false
-  cureResist: 0.15
   effects:
+  - !type:DiseaseHunger
+    probability: 0.1
   - !type:DiseaseHealthChange
     probability: 0.3
     damage:
@@ -14,6 +15,8 @@
   - !type:DiseasePopUp
     probability: 0.03
   cures:
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Phalanximine
@@ -21,19 +24,20 @@
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Antibiotic
-    min: 5
-    cureChance: 0.1
+    min: 1
 
 - type: disease
   id: SpectralTiredness
   name: disease-proto-spectral-tiredness
-  infectious: false
+  infectious: true
   effects:
+  - !type:DiseaseHunger
+    probability: 0.1
   - !type:DiseaseGenericStatusEffect
     probability: 0.03
     key: ForcedSleep
     component: ForcedSleeping
-    time: 6
+    time: 3
     type: Add
   - !type:DiseaseSnough
     probability: 0.025
@@ -45,19 +49,19 @@
         Poison: 4
   cures:
   - !type:DiseaseJustWaitCure
-    maxLength: 240
+    maxLength: 900
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Antibiotic
-    min: 5
-    cureChance: 0.1
+    min: 1
 
 - type: disease
   id: StageIIIALungCancer
   name: disease-proto-lung-cancer
   infectious: false
-  cureResist: 1.0
   effects:
+  - !type:DiseaseHunger
+    probability: 0.1
   - !type:DiseaseHealthChange
     probability: 0.3
     damage:
@@ -71,11 +75,12 @@
   - !type:DiseasePopUp
     probability: 0.03
   cures:
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Antibiotic
-    min: 10
-    cureChance: 0.1
+    min: 1
 
 
 ### Once radiation is refactored I want it to have a small chance of giving you regular cancer
@@ -83,13 +88,14 @@
 - type: disease
   id: XenoVirus
   name: disease-proto-xeno
-  cureResist: 1
   infectious: false
   stages:
   - 0
   - 120
   - 900
   effects:
+  - !type:DiseaseHunger
+    probability: 0.1
   # compulsion pop ups
   - !type:DiseasePopUp
     probability: 0.015
@@ -156,23 +162,49 @@
       path: /Audio/Animals/space_dragon_roar.ogg
     stages:
     - 2
+  - !type:DiseasePolymorph
+    probability: 0.050
+    polymorphId: MobXenoSpitterMorph
+    polymorphMessage: disease-xeno-polymorph
+    polymorphSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    stages:
+    - 2
   cures:
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
+    stages:
+    - 0
+    - 120
+    - 900
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Diphenylmethylamine # the hardest-to-get med known to mankind... good luck
+    min: 5
+    stages:
+    - 0
+    - 120
+    - 900
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Antibiotic
-    min: 5
-    cureChance: 0.1
+    min: 1
+    stages:
+    - 0
+    - 120
+    - 900
 
 - type: disease
-  id: XenoMaidVirus
+  id: chambermaidxenoVirus
   name: disease-proto-xeno-slerm
-  cureResist: 1
   infectious: false
   stages:
   - 0
   - 120
   - 600
   effects:
+  - !type:DiseaseHunger
+    probability: 0.1
   # compulsion pop ups
   - !type:DiseasePopUp
     probability: 0.015
@@ -224,7 +256,7 @@
     - 2
   - !type:DiseasePolymorph
     probability: 0.07
-    polymorphId: XenoMaidMorph # >w<
+    polymorphId: chambermaidxenoMorph # >w<
     polymorphMessage: disease-xeno-polymorph
     polymorphSound:
       path: /Audio/Animals/cat_meow.ogg
@@ -239,12 +271,25 @@
     stages:
     - 2
   cures:
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
+    stages:
+    - 0
+    - 120
+    - 600
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Diphenylmethylamine # the hardest-to-get med known to mankind... good luck
     min: 5
+    stages:
+    - 0
+    - 120
+    - 600
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Antibiotic
-    min: 5
-    cureChance: 0.1
+    min: 1
+    stages:
+    - 0
+    - 120
+    - 600

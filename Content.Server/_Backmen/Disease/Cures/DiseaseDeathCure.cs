@@ -1,4 +1,4 @@
-using Content.Shared.Backmen.Disease;
+﻿using Content.Shared.Backmen.Disease;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Prototypes;
@@ -27,13 +27,14 @@ public sealed partial class DiseaseCureSystem
         if(args.Handled)
             return;
 
-        if (!_mobStateQuery.TryGetComponent(ent.Owner, out var mobStateComponent))
+        args.Handled = true;
+
+        if (!_mobStateQuery.TryGetComponent(ent, out var mobStateComponent))
             return;
 
-        if (_mobStateSystem.IsIncapacitated(ent.Owner, mobStateComponent))
+        if (_mobStateSystem.IsIncapacitated(ent, mobStateComponent))
         {
-            args.Handled = true;
-            _disease.CureDisease(ent, args.Disease);
+            _disease.CureDisease(args.DiseasedEntity, args.Disease);
         }
     }
 }

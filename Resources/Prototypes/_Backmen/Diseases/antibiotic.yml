@@ -9,15 +9,6 @@
   recognizable: true
   boilingPoint: 147.0
   meltingPoint: -11.0
-  metabolisms:
-    Medicine:
-      metabolismRate: 0.02
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 0.01
-  pricePerUnit: 2
 
 # - type: reaction
 #   id: Antibiotic
@@ -31,7 +22,7 @@
 
 - type: entity
   name: таблетка
-  suffix: Антибиотик 15u
+  suffix: Антибиотик 1u
   parent: Pill
   id: PillAntibiotic
   description: Это не свеча.
@@ -41,24 +32,24 @@
   - type: Sprite
     state: pill5
   - type: Label
-    currentLabel: antibiotic 15u
+    currentLabel: antibiotic 1u
   - type: SolutionContainerManager
     solutions:
       food:
         maxVol: 20
         reagents:
         - ReagentId: Antibiotic
-          Quantity: 15
+          Quantity: 1
 
 - type: entity
   name: баночка для таблеток
   parent: PillCanister
   id: PillCanisterAntibiotic
-  suffix: Антибиотик 15u, 7
+  suffix: Антибиотик 1u, 7
   description: На этикетке написано "Антибиотик"
   components:
   - type: Label
-    currentLabel: antibiotic 15u
+    currentLabel: antibiotic 1u
   - type: StorageFill
     contents:
     - id: PillAntibiotic

@@ -1,4 +1,4 @@
-using Robust.Shared.Serialization;
+﻿using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Disease;
 
@@ -49,19 +49,13 @@ public sealed class VaccineMachineUpdateState : BoundUserInterfaceState
 
     public bool HasServer;
 
-    public float Progress;
-
-    public int TimeRemaining;
-
-    public VaccineMachineUpdateState(int biomass, int biomassCost, List<(string id, string name)> diseases, bool locked, bool hasServer, float progress = 0f, int timeRemaining = 0)
+    public VaccineMachineUpdateState(int biomass, int biomassCost, List<(string id, string name)> diseases, bool locked, bool hasServer)
     {
         Biomass = biomass;
         BiomassCost = biomassCost;
         Diseases = diseases;
         Locked = locked;
         HasServer = hasServer;
-        Progress = progress;
-        TimeRemaining = timeRemaining;
     }
 }
 

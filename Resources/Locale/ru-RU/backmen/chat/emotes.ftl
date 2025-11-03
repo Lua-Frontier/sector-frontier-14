@@ -1,3 +1,0 @@
-chat-emote-name-BCatMeow = Фурри
-chat-emote-msg-BCatMeow = рррр...
-

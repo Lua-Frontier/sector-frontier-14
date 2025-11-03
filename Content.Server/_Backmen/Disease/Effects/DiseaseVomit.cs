@@ -31,11 +31,6 @@ public sealed partial class DiseaseEffectSystem
         if(args.Handled)
             return;
         args.Handled = true;
-        
-        // Check if entity still exists (might have been polymorphed or deleted)
-        if (!Exists(ent.Owner))
-            return;
-            
-        _vomit.Vomit(ent.Owner, args.DiseaseEffect.ThirstAmount, args.DiseaseEffect.HungerAmount);
+        _vomit.Vomit(args.DiseasedEntity, args.DiseaseEffect.ThirstAmount, args.DiseaseEffect.HungerAmount);
     }
 }

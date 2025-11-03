@@ -5,7 +5,6 @@ using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server._Lua.ChatFilter; // Lua
 using Content.Server.Discord.DiscordLink;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
@@ -47,7 +46,6 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
-    [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -206,7 +204,7 @@ internal sealed partial class ChatManager : IChatManager
     {
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         var wrappedMessage = Loc.GetString("chat-manager-send-hook-admin-wrap-message", ("senderName", sender), ("message", FormattedMessage.EscapeText(message)));
-
+        
         ChatMessageToMany(ChatChannel.AdminChat, message, wrappedMessage, source: EntityUid.Invalid, hideChat: false, recordReplay: false, clients);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Hook admin from {sender}: {message}");
     }
@@ -250,8 +248,6 @@ internal sealed partial class ChatManager : IChatManager
             DispatchServerMessage(player, Loc.GetString("chat-manager-max-message-length-exceeded-message", ("limit", MaxMessageLength)));
             return;
         }
-
-        if (_chatFilter.IsProhibitedContent(player, message)) return; // Lua
 
         switch (type)
         {

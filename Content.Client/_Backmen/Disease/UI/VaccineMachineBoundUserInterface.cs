@@ -51,7 +51,6 @@ public sealed class VaccineMachineBoundUserInterface : BoundUserInterface
                 _machineMenu?.PopulateBiomass(Owner);
                 _machineMenu?.UpdateCost(msg.BiomassCost);
                 _machineMenu?.UpdateServerConnection(msg.HasServer);
-                _machineMenu?.UpdateProgress(msg.Progress, msg.TimeRemaining);
                 break;
         }
     }

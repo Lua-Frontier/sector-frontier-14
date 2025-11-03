@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Content.Server._Lua.ChatFilter; // Lua
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Database;
@@ -48,7 +47,6 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly DiscordChatLink _discordChatLink = default!;
-        [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
 
         [GeneratedRegex(@"^https://(?:(?:canary|ptb)\.)?discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -668,9 +666,7 @@ namespace Content.Server.Administration.Systems
 
             var senderSession = eventArgs.SenderSession;
 
-            if (_chatFilter.IsProhibitedContent(senderSession, message.Text))
-                return;
-
+            // TODO: Sanitize text?
             // Confirm that this person is actually allowed to send a message here.
             var personalChannel = senderSession.UserId == message.UserId;
             var senderAdmin = _adminManager.GetAdminData(senderSession);

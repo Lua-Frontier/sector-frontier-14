@@ -36,18 +36,16 @@ public sealed partial class DiseaseEffectSystem
         if (args.DiseaseEffect.Components.Count == 0)
             return;
 
-        // Check if entity still exists
-        if (!Exists(ent.Owner))
-            return;
+        var uid = args.DiseasedEntity;
 
         foreach (var compReg in args.DiseaseEffect.Components.Values)
         {
             var compType = compReg.Component.GetType();
 
-            if (HasComp(ent.Owner, compType))
+            if (HasComp(uid, compType))
                 continue;
             var comp = (Component) _serialization.CreateCopy(compReg.Component, notNullableOverride: true);
-            AddComp(ent.Owner, comp, true);
+            AddComp(uid, comp, true);
         }
     }
 }

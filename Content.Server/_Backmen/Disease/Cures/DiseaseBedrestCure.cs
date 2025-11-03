@@ -1,4 +1,4 @@
-using Content.Server.Bed.Components;
+﻿using Content.Server.Bed.Components;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
@@ -37,20 +37,21 @@ public sealed partial class DiseaseCureSystem
         if(args.Handled)
             return;
 
-        if (!_buckleQuery.TryGetComponent(ent.Owner, out var buckle) ||
+        args.Handled = true;
+
+        if (!_buckleQuery.TryGetComponent(args.DiseasedEntity, out var buckle) ||
             !_healOnBuckleQuery.HasComponent(buckle.BuckledTo))
             return;
 
         var ticks = 1;
-        if (_sleepingComponentQuery.HasComponent(ent.Owner))
+        if (_sleepingComponentQuery.HasComponent(args.DiseasedEntity))
             ticks *= args.DiseaseCure.SleepMultiplier;
 
         if (buckle.Buckled)
             args.DiseaseCure.Ticker += ticks;
         if (args.DiseaseCure.Ticker >= args.DiseaseCure.MaxLength)
         {
-            args.Handled = true;
-            _disease.CureDisease(ent, args.Disease);
+            _disease.CureDisease(args.DiseasedEntity, args.Disease);
         }
     }
 }

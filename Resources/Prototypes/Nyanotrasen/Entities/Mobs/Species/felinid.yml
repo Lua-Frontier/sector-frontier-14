@@ -41,12 +41,9 @@
       types:
         Slash: 4
         Piercing: 1
-  - type: InfectOnMelee
-    disease: OwOnavirus
-    infectChance: 0.01
-  - type: DiseaseCarrier
-    naturalImmunities:
-    - OwOnavirus
+#  - type: DiseaseCarrier
+#    naturalImmunities:
+#    - OwOnavirus
   - type: Speech
     speechSounds: Alto
     allowedEmotes:
