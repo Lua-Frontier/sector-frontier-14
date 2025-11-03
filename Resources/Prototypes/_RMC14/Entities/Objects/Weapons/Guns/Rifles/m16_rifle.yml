@@ -95,11 +95,11 @@
     - RMCCartridgeRifleM16
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    proto: BulletRifle5.56x45mm
+    proto: BulletRifle556x45mm
 
 - type: entity
   parent: BulletRifle10x24mm
-  id: BulletRifle5.56x45mm
+  id: BulletRifle556x45mm
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
