@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/03/2025 13:08:31
-  entityCount: 1928
+  time: 11/03/2025 13:35:49
+  entityCount: 1930
 maps: []
 grids:
 - 1
@@ -3863,11 +3863,6 @@ entities:
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
-  - uid: 947
-    components:
-    - type: Transform
-      pos: -1.5,-2.5
-      parent: 1
   - uid: 1017
     components:
     - type: Transform
@@ -3877,6 +3872,11 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-1.5
+      parent: 1
+  - uid: 1089
+    components:
+    - type: Transform
+      pos: 1.5,-7.5
       parent: 1
   - uid: 1309
     components:
@@ -3901,7 +3901,12 @@ entities:
   - uid: 1350
     components:
     - type: Transform
-      pos: 1.5,-7.5
+      pos: -2.5,-1.5
+      parent: 1
+  - uid: 1930
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
       parent: 1
 - proto: CableMV
   entities:
@@ -4579,6 +4584,11 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-5.5
+      parent: 1
+  - uid: 1929
+    components:
+    - type: Transform
+      pos: -2.5,-1.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -9298,11 +9308,6 @@ entities:
       parent: 1
 - proto: SubstationBasic
   entities:
-  - uid: 50
-    components:
-    - type: Transform
-      pos: -1.5,-2.5
-      parent: 1
   - uid: 1188
     components:
     - type: Transform
@@ -9312,6 +9317,14 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-7.5
+      parent: 1
+- proto: SubstationWallBasic
+  entities:
+  - uid: 50
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-1.5
       parent: 1
 - proto: SuitStorageCadet
   entities:
@@ -10242,6 +10255,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 5.5,1.5
       parent: 1
+  - uid: 947
+    components:
+    - type: Transform
+      pos: 6.5,-1.5
+      parent: 1
   - uid: 951
     components:
     - type: Transform
@@ -10416,11 +10434,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,10.5
-      parent: 1
-  - uid: 1089
-    components:
-    - type: Transform
-      pos: 6.5,-1.5
       parent: 1
   - uid: 1128
     components:
