@@ -38,7 +38,6 @@ public sealed class GatewayGeneratorSystem : EntitySystem
 
     private static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
     private static readonly ProtoId<BiomeTemplatePrototype> BiomeTemplate = "Grassland";
-    private static readonly ProtoId<DungeonConfigPrototype> DungeonConfig = "GateMineshaft";
 
     // TODO:
     // Fix shader some more
@@ -187,7 +186,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         var dungeonRotation = _dungeon.GetDungeonRotation(seed);
         var dungeonPosition = (origin + dungeonRotation.RotateVec(new Vector2i(0, dungeonDistance))).Floored();
 
-        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfig>("GateMineshaft"), "GateMineshaft", args.MapUid, grid, dungeonPosition, seed); // Lua NFMineshaft
+        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("GateMineshaft"), "GateMineshaft", args.MapUid, grid, dungeonPosition, seed); // Lua NFMineshaft
 
         // TODO: Dungeon mobs + loot.
 

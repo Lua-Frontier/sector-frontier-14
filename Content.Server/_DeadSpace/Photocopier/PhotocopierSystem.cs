@@ -24,6 +24,7 @@ using Content.Shared.Database;
 using Content.Server.GameTicking;
 using Content.Shared.UserInterface;
 using Content.Shared.Power;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Server._DeadSpace.Photocopier;
 
@@ -39,6 +40,7 @@ public sealed class PhotocopierSystem : EntitySystem
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     private const string PaperSlotId = "Paper";
 
@@ -204,7 +206,7 @@ public sealed class PhotocopierSystem : EntitySystem
             Act = () =>
             {
                 if (EntityManager.TryGetComponent(args.User, out HandsComponent? hands)
-                    && hands.ActiveHandEntity is { } held
+                    && _handsSystem.GetActiveItem((args.User, hands)) is { } held
                     && EntityManager.TryGetComponent(held, out TonerCartridgeComponent? toner))
                 {
                     if (component.TonerLeft == component.MaxTonerAmount)

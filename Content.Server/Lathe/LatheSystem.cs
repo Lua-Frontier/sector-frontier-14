@@ -574,7 +574,7 @@ namespace Content.Server.Lathe
                 else // Lua start
                 {
                     // Queue check and refund as needed
-                    var newBatch = new LatheRecipeBatch(component.CurrentRecipe, 0, 1);
+                    var newBatch = new LatheRecipeBatch(component.CurrentRecipe.Value, 0, 1);
                     component.Queue.Insert(0, newBatch);
                 }
                 // Lua end

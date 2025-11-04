@@ -21,15 +21,15 @@ public sealed partial class StaminaSystem : SharedStaminaSystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<StaminaComponent, AfterAutoHandleStateEvent>(OnStamHandleState);
+        SubscribeLocalEvent<StaminaComponent, ComponentShutdown>(OnClientStaminaShutdown);
         SubscribeLocalEvent<StaminaComponent, AnimationCompletedEvent>(OnAnimationCompleted);
         SubscribeLocalEvent<ActiveStaminaComponent, ComponentShutdown>(OnActiveStaminaShutdown);
         SubscribeLocalEvent<StaminaComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
-    protected override void OnStamHandleState(Entity<StaminaComponent> entity, ref AfterAutoHandleStateEvent args)
+    private void OnStamHandleState(Entity<StaminaComponent> entity, ref AfterAutoHandleStateEvent args)
     {
-        base.OnStamHandleState(entity, ref args);
-
         TryStartAnimation(entity);
     }
 
@@ -42,10 +42,8 @@ public sealed partial class StaminaSystem : SharedStaminaSystem
         StopAnimation((entity, stamina));
     }
 
-    protected override void OnShutdown(Entity<StaminaComponent> entity, ref ComponentShutdown args)
+    private void OnClientStaminaShutdown(Entity<StaminaComponent> entity, ref ComponentShutdown args)
     {
-        base.OnShutdown(entity, ref args);
-
         StopAnimation(entity);
     }
 

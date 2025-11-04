@@ -1,15 +1,6 @@
-using Content.Server.Popups;
-using Content.Shared.Popups;
-using Content.Shared.Mobs;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Clothing.Systems;
-using Content.Shared.Chat.Prototypes;
-using Robust.Shared.Random;
-using Content.Shared.Stunnable;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage;
-using Robust.Shared.Prototypes;
 using Content.Server.Emoting.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.EntitySystems;
@@ -17,6 +8,12 @@ using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Mobs;
+using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared.Popups;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -108,11 +105,16 @@ public sealed class CluwneSystem : EntitySystem
                 _chat.TrySendInGameICMessage(uid, "honks", InGameICChatType.Emote, ChatTransmitRange.Normal);
             }
 
-        else if (_robustRandom.Prob(component.KnockChance))
+            else if (_robustRandom.Prob(component.KnockChance))
+            {
+                _audio.PlayPvs(component.KnockSound, uid);
+                _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(component.ParalyzeTime));
+                _chat.TrySendInGameICMessage(uid, "spasms", InGameICChatType.Emote, ChatTransmitRange.Normal);
+            }
+        }
+        finally
         {
-            _audio.PlayPvs(component.KnockSound, uid);
-            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(component.ParalyzeTime));
-            _chat.TrySendInGameICMessage(uid, "spasms", InGameICChatType.Emote, ChatTransmitRange.Normal);
+            _inEmoteHandler = false;
         }
     }
 

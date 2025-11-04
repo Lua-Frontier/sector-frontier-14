@@ -7,10 +7,10 @@ using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics; //Lua
-using Robust.Shared.Maths; //Lua
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Client.Humanoid;
 

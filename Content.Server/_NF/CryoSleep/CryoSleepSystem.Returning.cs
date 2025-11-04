@@ -17,7 +17,6 @@ namespace Content.Server._NF.CryoSleep;
 
 public sealed partial class CryoSleepSystem
 {
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     private void InitReturning()
@@ -44,7 +43,7 @@ public sealed partial class CryoSleepSystem
     /// </summary>
     public ReturnToBodyStatus TryReturnToBody(MindComponent mind, bool force = false)
     {
-        if (!_configurationManager.GetCVar(NFCCVars.CryoReturnEnabled))
+        if (!_cfg.GetCVar(NFCCVars.CryoReturnEnabled))
             return ReturnToBodyStatus.Disabled;
 
         var id = mind.UserId;

@@ -1,7 +1,9 @@
-﻿using Content.Server.Chat.Managers;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Content.Server.Chat.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
-using NetCord.Gateway;
+using Discord.WebSocket;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -83,7 +85,7 @@ public sealed class DiscordChatLink : IPostInjectInit
 
         var contents = message.Content.ReplaceLineEndings(" ");
 
-        if (message.ChannelId == _oocChannelId)
+        if (message.Channel.Id == _oocChannelId)
         {
             // Get Discord user info for better formatting
             _ = Task.Run(async () =>
@@ -92,7 +94,7 @@ public sealed class DiscordChatLink : IPostInjectInit
                 _taskManager.RunOnMainThread(() => _chatManager.SendHookOOC(displayName, contents));
             });
         }
-        else if (message.ChannelId == _adminChannelId)
+        else if (message.Channel.Id == _adminChannelId)
         {
             // Get Discord user info for better formatting
             _ = Task.Run(async () =>

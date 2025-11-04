@@ -1,7 +1,5 @@
-using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Chat.Systems;
-using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Disease;
@@ -12,12 +10,14 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Threading;
+using System.Linq;
 
 namespace Content.Server.Backmen.Disease;
 

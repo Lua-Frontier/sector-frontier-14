@@ -142,14 +142,11 @@ public sealed class DiscordLink : IPostInjectInit
         if (_client != null)
         {
             _sawmill.Info("Disconnecting from Discord.");
-
-            // Unsubscribe from the events.
             _client.MessageReceived -= OnCommandReceivedInternal;
             _client.MessageReceived -= OnMessageReceivedInternal;
-
             await _client.LogoutAsync();
             await _client.StopAsync();
-            await _client.DisposeAsync();
+            _client.Dispose();
             _client = null;
         }
 
@@ -177,11 +174,8 @@ public sealed class DiscordLink : IPostInjectInit
     {
         DebugTools.Assert(_client != null);
         DebugTools.Assert(_client.LoginState == LoginState.LoggedOut);
-
         await _client.LoginAsync(TokenType.Bot, token);
         await _client.StartAsync();
-
-
         _sawmill.Info("Connected to Discord.");
     }
 
@@ -257,14 +251,12 @@ public sealed class DiscordLink : IPostInjectInit
         {
             return;
         }
-
         var channel = _client.GetChannel(channelId) as IMessageChannel;
         if (channel == null)
         {
             _sawmill.Error("Tried to send a message to Discord but the channel {Channel} was not found.", channel);
             return;
         }
-
         await channel.SendMessageAsync(message, allowedMentions: AllowedMentions.None);
     }
 
@@ -277,7 +269,6 @@ public sealed class DiscordLink : IPostInjectInit
         {
             return null;
         }
-
         var channel = _client.GetChannel(forumChannelId) as IForumChannel;
         if (channel == null)
         {
@@ -287,23 +278,15 @@ public sealed class DiscordLink : IPostInjectInit
 
         try
         {
-            // Build thread title with Round ID and character name
             var titleParts = new List<string>();
-
             if (roundId.HasValue)
                 titleParts.Add($"R{roundId.Value}");
-
             if (!string.IsNullOrEmpty(characterName))
                 titleParts.Add(characterName);
-
             titleParts.Add($"{playerName} ({userId})");
-
             var threadName = string.Join(" - ", titleParts);
 
-            // Since we use AllowedMentions.None, we don't need to escape @ symbols
-            // Only escape < and / to prevent unwanted formatting
             var sanitizedMessage = initialMessage.Replace("<", "\\<").Replace("/", "\\/");
-
             var thread = await channel.CreatePostAsync(threadName, ThreadArchiveDuration.OneDay, null, sanitizedMessage, allowedMentions: AllowedMentions.None);
             return thread.Id;
         }
@@ -328,19 +311,13 @@ public sealed class DiscordLink : IPostInjectInit
         {
             var guild = _client.GetGuild(_guildId);
             if (guild == null)
-            {
                 return ("Unknown", null, null);
-            }
 
             var user = guild.GetUser(userId);
             if (user == null)
-            {
                 return ("Unknown", null, null);
-            }
 
-            var displayName = user.DisplayName; // This gets nickname if set, otherwise username
-
-            // Get the highest role (excluding @everyone)
+            var displayName = user.DisplayName;
             var topRole = user.Roles
                 .Where(r => !r.IsEveryone)
                 .OrderByDescending(r => r.Position)
@@ -348,7 +325,6 @@ public sealed class DiscordLink : IPostInjectInit
 
             var roleTitle = topRole?.Name;
             var roleColor = topRole?.Color.RawValue;
-
             return (displayName, roleTitle, roleColor);
         }
         catch (Exception e)
@@ -367,7 +343,6 @@ public sealed class DiscordLink : IPostInjectInit
         {
             return;
         }
-
         var thread = _client.GetChannel(threadId) as IMessageChannel;
         if (thread == null)
         {
@@ -377,8 +352,6 @@ public sealed class DiscordLink : IPostInjectInit
 
         try
         {
-            // Since we use AllowedMentions.None, we don't need to escape @ symbols
-            // Only escape < and / to prevent unwanted formatting
             var sanitizedMessage = message.Replace("<", "\\<").Replace("/", "\\/");
             await thread.SendMessageAsync(sanitizedMessage, allowedMentions: AllowedMentions.None);
         }
@@ -390,3 +363,4 @@ public sealed class DiscordLink : IPostInjectInit
 
     #endregion
 }
+

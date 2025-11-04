@@ -72,7 +72,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
             return;
 
-        if (_standing.IsDown(uid, standing))
+        if (_standing.IsDown((uid, standing)))
             TryStandUp(uid, layingDown, standing);
         else
             TryLieDown(uid, layingDown, standing);
@@ -143,7 +143,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             standingState.CurrentState is not StandingState.Standing)
         {
             if (behavior == DropHeldItemsBehavior.AlwaysDrop)
-                RaiseLocalEvent(uid, new DropHandItemsEvent());
+            {
+                var dropEvent = new DropHandItemsEvent();
+                RaiseLocalEvent(uid, ref dropEvent);
+            }
 
             return false;
         }
