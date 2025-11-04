@@ -14,15 +14,14 @@
   В отличие от других антагов, [bold]не попадаться почти обязательно[/bold] из-за импланта.
   Бежать можно только если [color=#cb0000]СБ[/color] начнёт с вами драку, а работаете вы в одиночку — друзей для спасения нет.
 
-  И всё же вы сможете тащить желаемое решимостью, ловкостью, несколькими инструментами и [color=cyan]воровскими перчатками[/color].
+  И всё же вы сможете тащить желаемое решимостью, ловкостью, несколькими инструментами и [color=cyan]воровскими навыками карманника[/color].
 
-  Эти перчатки дают главное преимущество: [bold]снимать вещи с людей, не будучи замеченным[/bold]. С практикой вы сможете утащить кошелёк, продолжая беседу.
+  Эти навыки дают главное преимущество: [bold]снимать вещи с людей, не будучи замеченным[/bold]. С практикой вы сможете утащить кошелёк, продолжая беседу.
 
-  Ткань перчаток — первоклассные [bold]голографические хамелеоновые волокна[/bold], может маскироваться под изолированные перчатки. Но от ожогов спасут лишь настоящие изолированные.
+  Рекомендуется достать перчатки, так как ваши отпечатки всё ещё могут привести к украденным вещам, если их найдут.
 
-  <Box>
-    <GuideEntityEmbed Entity="ClothingHandsChameleonThief" Caption="your thieving gloves"/>
-  </Box>
+
+
 
   ## Инструменты ремесла
   У вас ещё два туза в рукаве: [color=cyan]маяк[/color] и [color=cyan]сумка[/color].
@@ -42,14 +41,14 @@
     <GuideEntityEmbed Entity="SatchelThief"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="StorageImplanter" Caption="Anatomy"/>
+    <GuideEntityEmbed Entity="Implanter" Caption="Anatomy"/>
     <GuideEntityEmbed Entity="C4" Caption="Breacher"/>
     <GuideEntityEmbed Entity="ChameleonProjector" Caption="Chameleon"/>
-    <GuideEntityEmbed Entity="EncryptionKeyStationMaster" Caption="Communicator"/>
+    <GuideEntityEmbed Entity="BaseUplinkRadio" Caption="Communicator"/>
   </Box>
   <Box>
     <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Sleeper"/>
-    <GuideEntityEmbed Entity="Emag" Caption="Smuggler"/>
+    <GuideEntityEmbed Entity="Fulton" Caption="Smuggler"/>
     <GuideEntityEmbed Entity="Telecrystal" Caption="Syndie"/>
   </Box>
 
@@ -65,10 +64,10 @@
   Объекты желаний включают, но не ограничиваются:
 
   <Box>
-   <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Figurines"/>
-   <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID cards"/>
-   <GuideEntityEmbed Entity="ChemDispenser" Caption="Structures"/>
-   <GuideEntityEmbed Entity="MobCorgiIan" Caption="Animals/Pets"/>
+    <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Figurines"/>
+    <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID cards"/>
+    <GuideEntityEmbed Entity="ChemDispenser" Caption="Structures"/>
+    <GuideEntityEmbed Entity="MobCorgiIan" Caption="Animals/Pets"/>
   </Box>
 
 </Document>

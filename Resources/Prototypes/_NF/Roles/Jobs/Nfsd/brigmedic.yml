@@ -14,6 +14,9 @@
     longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 21600 # 6 hours as security guard
   startingGear: BrigmedicGear
   icon: JobIconBrigmedicNF
   supervisors: job-supervisors-bailiff
@@ -41,11 +44,12 @@
     pocket1: NFWeaponPistolUniversalNfsdLessLethal
   storage:
     back:
-    - EncryptionKeyMedical
     - Flash
     - NFMagazineHighCapacityPistol35Overpressure
     - NFMagazineHighCapacityPistol35Rubber
     - FrontierUplinkCoin10
+  encryptionKeys:
+  - EncryptionKeyMedical
 
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit

@@ -164,6 +164,7 @@
                                                 StyleClasses="ButtonBig"
                                                 Text="{Loc 'ui-lobby-leave-button'}"
                                                 Margin="8 0 8 12"/>
+                                        <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
                                     </GridContainer>
                                 </GridContainer>
                             </PanelContainer>

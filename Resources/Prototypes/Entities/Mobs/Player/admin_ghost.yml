@@ -25,6 +25,14 @@
     receiveAllChannels: true
     globalReceive: true
   - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
   - type: ComplexInteraction
   - type: Puller
     needsHands: false
@@ -139,6 +147,8 @@
     successChance: 1
     interactSuccessString: hugging-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   abstract: true
@@ -146,8 +156,8 @@
   id: BaseAGhostAction
   components:
   - type: Action
-    icon: _Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/solar.png # Corvax-Resprite
+    icon: { sprite: _Corvax/Interface/AdminActions, state: solar }
+    iconOn: { sprite: _Corvax/Interface/AdminActions, state: solar }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
 
@@ -167,8 +177,8 @@
   description: View a Communications Interface.
   components:
   - type: Action
-    icon: _Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/communications.png # Corvax-Resprite
+    icon: { sprite: _Corvax/Interface/AdminActions, state: communications }
+    iconOn: { sprite: _Corvax/Interface/AdminActions, state: communications }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -181,8 +191,8 @@
   description: View a Mass Scanner Interface.
   components:
   - type: Action
-    icon: _Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/radar.png # Corvax-Resprite
+    icon: { sprite: _Corvax/Interface/AdminActions, state: radar }
+    iconOn: { sprite: _Corvax/Interface/AdminActions, state: radar }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -195,8 +205,8 @@
   description: View a Cargo Ordering Interface.
   components:
   - type: Action
-    icon: _Corvax/Interface/AdminActions/cargo.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/cargo.png # Corvax-Resprite
+    icon: { sprite: _Corvax/Interface/AdminActions, state: cargo }
+    iconOn: { sprite: _Corvax/Interface/AdminActions, state: cargo }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -209,8 +219,8 @@
   description: View a Crew Monitoring Interface.
   components:
   - type: Action
-    icon: _Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/monitoring.png # Corvax-Resprite
+    icon: { sprite: _Corvax/Interface/AdminActions, state: monitoring }
+    iconOn: { sprite: _Corvax/Interface/AdminActions, state: monitoring }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -223,8 +233,8 @@
   description: View a Station Records Interface.
   components:
   - type: Action
-    icon: _Corvax/Interface/AdminActions/records.png # Corvax-Resprite
-    iconOn: _Corvax/Interface/AdminActions/records.png # Corvax-Resprite
+    icon: { sprite: _Corvax/Interface/AdminActions, state: records }
+    iconOn: { sprite: _Corvax/Interface/AdminActions, state: records }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -236,8 +246,8 @@
   description: Используется для мониторинга атмосферных сетей станции
   components:
   - type: Action
-    icon: _Lua/Interface/AdminActions/atmos.png
-    iconOn: _Lua/Interface/AdminActions/atmos.png
+    icon: { sprite: _Lua/Interface/AdminActions, state: atmos }
+    iconOn: { sprite: _Lua/Interface/AdminActions, state: atmos }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -249,8 +259,8 @@
   description: Используется для доступа к автоматизированной системе оповещения станции
   components:
   - type: Action
-    icon: _Lua/Interface/AdminActions/atmosalert.png
-    iconOn: _Lua/Interface/AdminActions/atmosalert.png
+    icon: { sprite: _Lua/Interface/AdminActions, state: atmosalert }
+    iconOn: { sprite: _Lua/Interface/AdminActions, state: atmosalert }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -262,8 +272,8 @@
   description: Он отслеживает показатели энергии по всей станции
   components:
   - type: Action
-    icon: _Lua/Interface/AdminActions/energy.png
-    iconOn: _Lua/Interface/AdminActions/energy.png
+    icon: { sprite: _Lua/Interface/AdminActions, state: energy }
+    iconOn: { sprite: _Lua/Interface/AdminActions, state: energy }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction

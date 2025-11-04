@@ -56,8 +56,8 @@ namespace Content.Server.Examine
             var channel = player.Channel;
             var entity = GetEntity(request.NetEntity);
 
-            if (session.AttachedEntity is not { Valid: true } playerEnt
-                || !EntityManager.EntityExists(entity))
+            if (session.AttachedEntity is not {Valid: true} playerEnt
+                || !Exists(entity))
             {
                 RaiseNetworkEvent(new ExamineSystemMessages.ExamineInfoResponseMessage(
                     request.NetEntity, request.Id, _entityNotFoundMessage), channel);

@@ -25,7 +25,6 @@ public sealed class GatewayGeneratorSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
@@ -37,8 +36,9 @@ public sealed class GatewayGeneratorSystem : EntitySystem
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly TileSystem _tile = default!;
 
-    [ValidatePrototypeId<LocalizedDatasetPrototype>]
-    private const string PlanetNames = "NamesBorer";
+    private static readonly ProtoId<LocalizedDatasetPrototype> PlanetNames = "NamesBorer";
+    private static readonly ProtoId<BiomeTemplatePrototype> BiomeTemplate = "Grassland";
+    private static readonly ProtoId<DungeonConfigPrototype> DungeonConfig = "GateMineshaft";
 
     // TODO:
     // Fix shader some more
@@ -102,7 +102,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         var random = new Random(seed);
         var mapUid = _maps.CreateMap();
 
-        var gatewayName = _salvage.GetFTLName(_protoManager.Index<LocalizedDatasetPrototype>(PlanetNames), seed);
+        var gatewayName = _salvage.GetFTLName(_protoManager.Index(PlanetNames), seed);
         _metadata.SetEntityName(mapUid, gatewayName);
 
         var origin = new Vector2i(random.Next(-MaxOffset, MaxOffset), random.Next(-MaxOffset, MaxOffset));
@@ -113,7 +113,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         };
         AddComp(mapUid, restricted);
 
-        _biome.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>("Grasslands"), seed);
+        _biome.EnsurePlanet(mapUid, _protoManager.Index(BiomeTemplate), seed);
 
         var grid = Comp<MapGridComponent>(mapUid);
 
@@ -187,7 +187,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         var dungeonRotation = _dungeon.GetDungeonRotation(seed);
         var dungeonPosition = (origin + dungeonRotation.RotateVec(new Vector2i(0, dungeonDistance))).Floored();
 
-        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("GateMineshaft"), "GateMineshaft", args.MapUid, grid, dungeonPosition, seed); // Lua NFMineshaft
+        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfig>("GateMineshaft"), "GateMineshaft", args.MapUid, grid, dungeonPosition, seed); // Lua NFMineshaft
 
         // TODO: Dungeon mobs + loot.
 

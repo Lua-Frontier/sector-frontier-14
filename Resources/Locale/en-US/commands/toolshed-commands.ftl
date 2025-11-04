@@ -96,28 +96,11 @@ command-description-xenoartifact-unlockAllNodes =
     Unlocks all nodes of artifact.
 command-description-jobboard-completeJob =
     Completes a given salvage job board job for the station.
-
-# Lua Language and translator commands
-command-description-language-add =
-    Adds a language to the target entity. Universal adds universal speaker.
-command-description-language-rm =
-    Removes a language from the target entity. Universal removes universal speaker.
-command-description-language-lsspoken =
-    Lists languages the target entity can speak.
-command-description-language-lsunderstood =
-    Lists languages the target entity can understand.
-
-command-description-translator-addlang =
-    Adds a language to a translator device, for speaking and/or understanding.
-command-description-translator-rmlang =
-    Removes a language from a translator device.
-command-description-translator-addrequired =
-    Adds a required language for using the translator.
-command-description-translator-rmrequired =
-    Removes a required language from the translator.
-command-description-translator-lsspoken =
-    Lists languages that the translator can speak.
-command-description-translator-lsunderstood =
-    Lists languages that the translator can understand.
-command-description-translator-lsrequired =
-    Lists languages required to use the translator.
+command-description-scale-set =
+    Sets an entity's sprite size to a certain scale (without changing its fixture).
+command-description-scale-get =
+    Get an entity's sprite scale as set by ScaleVisualsComponent. Does not include any changes directly made in the SpriteComponent.
+command-description-scale-multiply =
+    Multiply an entity's sprite size with a certain factor (without changing its fixture).
+command-description-scale-multiplywithfixture =
+    Multiply an entity's sprite size with a certain factor (including its fixture).
