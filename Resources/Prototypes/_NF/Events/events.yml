@@ -54,14 +54,12 @@
   components:
   - type: StationEvent
     startAudio:
-      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_solar_flare_start.ogg
+      path: /Audio/_Lua/Announcements/attention.ogg # Lua
     weight: 4
     earliestStart: 15
     reoccurrenceDelay: 45
     startAnnouncement: station-event-solar-flare-nf-start-announcement
     endAnnouncement: station-event-solar-flare-nf-end-announcement
-    startAudio:
-      path: /Audio/_Lua/Announcements/attention.ogg # Lua
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
