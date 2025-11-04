@@ -41,8 +41,6 @@
     ignorePaused: true
     bodyType: Kinematic
   - type: Body
-    prototype: Aghost
-    thermalVisibility: false # WD EDIT
   - type: Access
     groups:
     - AllAccess
@@ -156,8 +154,8 @@
   id: BaseAGhostAction
   components:
   - type: Action
-    icon: { sprite: _Corvax/Interface/AdminActions, state: solar }
-    iconOn: { sprite: _Corvax/Interface/AdminActions, state: solar }
+    icon: { sprite: _Corvax/Interface/AdminActions.rsi, state: solar }
+    iconOn: { sprite: _Corvax/Interface/AdminActions.rsi, state: solar }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
 
@@ -177,8 +175,8 @@
   description: View a Communications Interface.
   components:
   - type: Action
-    icon: { sprite: _Corvax/Interface/AdminActions, state: communications }
-    iconOn: { sprite: _Corvax/Interface/AdminActions, state: communications }
+    icon: { sprite: _Corvax/Interface/AdminActions.rsi, state: communications }
+    iconOn: { sprite: _Corvax/Interface/AdminActions.rsi, state: communications }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -191,8 +189,8 @@
   description: View a Mass Scanner Interface.
   components:
   - type: Action
-    icon: { sprite: _Corvax/Interface/AdminActions, state: radar }
-    iconOn: { sprite: _Corvax/Interface/AdminActions, state: radar }
+    icon: { sprite: _Corvax/Interface/AdminActions.rsi, state: radar }
+    iconOn: { sprite: _Corvax/Interface/AdminActions.rsi, state: radar }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -205,8 +203,8 @@
   description: View a Cargo Ordering Interface.
   components:
   - type: Action
-    icon: { sprite: _Corvax/Interface/AdminActions, state: cargo }
-    iconOn: { sprite: _Corvax/Interface/AdminActions, state: cargo }
+    icon: { sprite: _Corvax/Interface/AdminActions.rsi, state: cargo }
+    iconOn: { sprite: _Corvax/Interface/AdminActions.rsi, state: cargo }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -219,8 +217,8 @@
   description: View a Crew Monitoring Interface.
   components:
   - type: Action
-    icon: { sprite: _Corvax/Interface/AdminActions, state: monitoring }
-    iconOn: { sprite: _Corvax/Interface/AdminActions, state: monitoring }
+    icon: { sprite: _Corvax/Interface/AdminActions.rsi, state: monitoring }
+    iconOn: { sprite: _Corvax/Interface/AdminActions.rsi, state: monitoring }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -233,8 +231,8 @@
   description: View a Station Records Interface.
   components:
   - type: Action
-    icon: { sprite: _Corvax/Interface/AdminActions, state: records }
-    iconOn: { sprite: _Corvax/Interface/AdminActions, state: records }
+    icon: { sprite: _Corvax/Interface/AdminActions.rsi, state: records }
+    iconOn: { sprite: _Corvax/Interface/AdminActions.rsi, state: records }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -246,8 +244,8 @@
   description: Используется для мониторинга атмосферных сетей станции
   components:
   - type: Action
-    icon: { sprite: _Lua/Interface/AdminActions, state: atmos }
-    iconOn: { sprite: _Lua/Interface/AdminActions, state: atmos }
+    icon: { sprite: _Lua/Interface/AdminActions.rsi, state: atmos }
+    iconOn: { sprite: _Lua/Interface/AdminActions.rsi, state: atmos }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -259,8 +257,8 @@
   description: Используется для доступа к автоматизированной системе оповещения станции
   components:
   - type: Action
-    icon: { sprite: _Lua/Interface/AdminActions, state: atmosalert }
-    iconOn: { sprite: _Lua/Interface/AdminActions, state: atmosalert }
+    icon: { sprite: _Lua/Interface/AdminActions.rsi, state: atmosalert }
+    iconOn: { sprite: _Lua/Interface/AdminActions.rsi, state: atmosalert }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
@@ -272,8 +270,8 @@
   description: Он отслеживает показатели энергии по всей станции
   components:
   - type: Action
-    icon: { sprite: _Lua/Interface/AdminActions, state: energy }
-    iconOn: { sprite: _Lua/Interface/AdminActions, state: energy }
+    icon: { sprite: _Lua/Interface/AdminActions.rsi, state: energy }
+    iconOn: { sprite: _Lua/Interface/AdminActions.rsi, state: energy }
     keywords: [ "AI", "console", "interface" ]
     priority: 20
   - type: InstantAction
