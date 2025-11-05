@@ -38,6 +38,11 @@ public sealed partial class DiseaseEffectSystem
         if(args.Handled)
             return;
         args.Handled = true;
-        _disease.SneezeCough(args.DiseasedEntity, args.Disease, args.DiseaseEffect.EmoteId, args.DiseaseEffect.AirTransmit);
+        
+        // Check if entity still exists
+        if (!Exists(ent.Owner))
+            return;
+            
+        _disease.SneezeCough(ent.Owner, args.Disease, args.DiseaseEffect.EmoteId, args.DiseaseEffect.AirTransmit);
     }
 }

@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Ship by corval
+
+- type: vessel
+  parent: BaseVessel
+  id: Afaneor
+  name: BM-WK Afaneor
+  description: капитальный шаттл пиратов, с малым бронированием, в угоду манёвренности и огневой мощи.
+  limit: 1
+  price: 276000
+  category: Large
+  group: BlackMarket
+  class:
+  - Pirate
+  engine:
+  - Bananium
+  shuttlePath: /Maps/_Lua/Shuttles/Pirates/Afaneor.yml
+  addComponents:
+    - type: IFF
+      color: "#948471"
+- type: gameMap
+  id: Afaneor
+  mapName: 'BM-WK Afaneor'
+  mapPath: /Maps/_Lua/Shuttles/Pirates/Afaneor.yml
+  minPlayers: 0
+  stations:
+    Afaneor:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'BM-WK Afaneor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

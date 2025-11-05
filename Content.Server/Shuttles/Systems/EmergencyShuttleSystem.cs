@@ -256,6 +256,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
             _deviceNetworkSystem.QueuePacket(shuttle, null, payload, net.TransmitFrequency);
         }
+        _centcommSystem.CentComStarUnlocked = true;
     }
 
     /// <summary>

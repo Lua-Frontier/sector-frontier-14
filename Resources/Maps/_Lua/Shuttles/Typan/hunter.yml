@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/23/2025 13:29:12
-  entityCount: 356
+  time: 10/15/2025 15:45:21
+  entityCount: 355
 maps: []
 grids:
 - 1
@@ -24,6 +24,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
+      name: TY-Hunter
     - type: Transform
       pos: -1.6250114,-0.453125
       parent: invalid
@@ -1209,19 +1210,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-- proto: ComputerTabletopShuttleWithNordfallDisk
+- proto: ComputerTabletopShuttle
   entities:
   - uid: 171
     components:
     - type: Transform
       pos: 0.5,0.5
-      parent: 1
-- proto: CratePlasma
-  entities:
-  - uid: 172
-    components:
-    - type: Transform
-      pos: -0.5,-9.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -1706,19 +1700,19 @@ entities:
     - type: Transform
       pos: -2.5,-7.5
       parent: 1
+- proto: LockerWallMaterialsFuelUraniumFilled2
+  entities:
+  - uid: 172
+    components:
+    - type: Transform
+      pos: -1.5,-8.5
+      parent: 1
 - proto: MachineFTLDrive600
   entities:
   - uid: 180
     components:
     - type: Transform
       pos: 3.5,-3.5
-      parent: 1
-- proto: MachineWarpDrive
-  entities:
-  - uid: 218
-    components:
-    - type: Transform
-      pos: -1.5,-3.5
       parent: 1
 - proto: PaperCaptainsThoughts
   entities:
@@ -1727,9 +1721,9 @@ entities:
     - type: Transform
       pos: -0.49426842,0.2933393
       parent: 1
-- proto: PortableGeneratorPacmanShuttle
+- proto: PortableGeneratorSuperPacmanShuttle
   entities:
-  - uid: 234
+  - uid: 217
     components:
     - type: Transform
       pos: 3.5,-12.5
@@ -2018,16 +2012,16 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 217
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
-      parent: 1
   - uid: 274
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,0.5
+      parent: 1
+  - uid: 275
+    components:
+    - type: Transform
+      pos: -1.5,-3.5
       parent: 1
   - uid: 276
     components:

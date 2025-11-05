@@ -1,0 +1,28 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  id: ShadowPulse
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 25
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Lua/admem/horror.rsi
+      state: spookysmoke
+    travelFlash:
+      sprite: _Lua/admem/horror.rsi
+      state: spookysmoke
+    impactFlash:
+      sprite: _Lua/admem/horror.rsi
+      state: spookysmoke
+  - type: HitscanBasicEffects
+    sound:
+      path: /Audio/Weapons/click.ogg
+    forceSound: true
+

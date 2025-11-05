@@ -1013,3 +1013,19 @@
     - !type:BuyerJobCondition
       whitelist:
         - MercenaryBase
+
+- type: listing
+  id: UplinkMercenaryCoordinatesDiskMercenary
+  name: uplink-mercenary-coordinates-disk-mercenary-name
+  description: uplink-mercenary-coordinates-disk-mercenary-desc
+  productEntity: CoordinatesDiskMercenary
+  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
+  cost:
+    Speso: 1000
+  categories:
+    - UplinkMercenaryNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: NFBaseWreckDebris
   parent: NFBaseDebris
   abstract: true
@@ -77,6 +77,8 @@
           prob: 0.05
         - id: NFSalvageTankSpawnerHighCapacity
           prob: 0.0005
+        - id: RandomSurivalSpawndWrecks
+          prob: 0.0004
         # Medical
         - id: MedicalPodFilled # Medical bounties
           prob: 0.03

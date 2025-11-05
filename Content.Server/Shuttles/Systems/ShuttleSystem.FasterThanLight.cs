@@ -467,18 +467,9 @@ public sealed partial class ShuttleSystem
             SpawnEmpVisualOnly(_transform.ToMapCoordinates(target), comp.SkipHyperspaceEmpRange);
             if (TryComp<FTLDestinationComponent>(uid, out var dest))
             { dest.Enabled = true; }
-            if (HasComp<WarpTransitComponent>(uid)) // Lua
-            {
-                comp.State = FTLState.Available;
-                comp.StateTime = default;
-                _console.RefreshShuttleConsoles(uid);
-            }
-            else
-            {
-                comp.State = FTLState.Cooldown;
-                comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
-                _console.RefreshShuttleConsoles(uid);
-            }
+            comp.State = FTLState.Cooldown;
+            comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
+            _console.RefreshShuttleConsoles(uid);
             _mapSystem.SetPaused(mapId, false);
             Smimsh(uid, xform: xform);
             var ftlEvent = new FTLCompletedEvent(uid, _mapSystem.GetMap(mapId));
@@ -659,19 +650,9 @@ public sealed partial class ShuttleSystem
         {
             dest.Enabled = true;
         }
-
-        if (HasComp<WarpTransitComponent>(uid)) // Lua
-        {
-            comp.State = FTLState.Available;
-            comp.StateTime = default;
-            _console.RefreshShuttleConsoles(uid);
-        }
-        else
-        {
-            comp.State = FTLState.Cooldown;
-            comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
-            _console.RefreshShuttleConsoles(uid);
-        }
+        comp.State = FTLState.Cooldown;
+        comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
+        _console.RefreshShuttleConsoles(uid);
         _mapSystem.SetPaused(mapId, false);
         Smimsh(uid, xform: xform);
 

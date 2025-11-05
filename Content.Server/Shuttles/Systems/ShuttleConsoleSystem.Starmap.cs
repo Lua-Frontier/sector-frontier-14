@@ -6,6 +6,7 @@ using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Systems;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Shuttles.Components;
+using Content.Server.GameTicking;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.Backmen.Arrivals;
@@ -28,6 +29,7 @@ public sealed partial class ShuttleConsoleSystem
     [Dependency] private readonly CentcommSystem _centcomm = default!; // CentCom
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!; // Lua
+    [Dependency] private readonly GameTicker _ticker = default!;
 
     private void OnConsoleDiskInserted(EntityUid uid, ShuttleConsoleComponent component, EntInsertedIntoContainerMessage args) // Lua
     {
@@ -67,8 +69,8 @@ public sealed partial class ShuttleConsoleSystem
         var edges = _starmap.GetHyperlanesCached();
         if ((edges == null || edges.Count == 0) && stars.Count > 0)
         { edges = EntityManager.System<StarmapSystem>().GetHyperlanesCached(); }
-        bool allowCentComStar = false;
-        if (consoleUid != null)
+        bool allowCentComStar = _centcomm.CentComStarUnlocked; // Lua
+        if (!allowCentComStar && consoleUid != null)
         {
             try
             {
@@ -133,7 +135,7 @@ public sealed partial class ShuttleConsoleSystem
                                 if (string.IsNullOrWhiteSpace(sid)) continue;
                                 MapId mapId;
                                 if (sid == "FrontierSector")
-                                { mapId = new MapId(0); }
+                                { mapId = _ticker.DefaultMap; }
                                 else if (_sectors.TryGetMapId(sid, out var resolved))
                                 { mapId = resolved; }
                                 else
@@ -156,9 +158,15 @@ public sealed partial class ShuttleConsoleSystem
             }
             catch { }
         }
+        if (_centcomm.CentComStarUnlocked && _centcomm.CentComMap != MapId.Nullspace)
+        {
+            var ccMap = _centcomm.CentComMap;
+            if (!visibleSectorMaps.Contains(ccMap)) visibleSectorMaps.Add(ccMap);
+            if (!sectorIdByMap.ContainsKey(ccMap)) sectorIdByMap[ccMap] = "CentCom";
+        }
         try
         {
-            var frontierMap = new MapId(0);
+            var frontierMap = _ticker.DefaultMap;
             if (!sectorIdByMap.ContainsKey(frontierMap)) sectorIdByMap[frontierMap] = "FrontierSector";
         }
         catch { }
@@ -168,24 +176,21 @@ public sealed partial class ShuttleConsoleSystem
         StartEndTime ftlTime = default;
         if (shuttleGridUid != null)
         {
-            var now = IoCManager.Resolve<IGameTiming>().CurTime;
-            var query = AllEntityQuery<BluespaceDriveComponent, TransformComponent>();
-            while (query.MoveNext(out var uid, out var drive, out var xform))
-            {
-                if (xform.GridUid != shuttleGridUid) continue;
-                var remaining = (float)Math.Max(0, (drive.CooldownEndsAt - now).TotalSeconds);
-                if (remaining > cooldown) cooldown = remaining;
-                if (drive.CooldownSeconds > cooldownTotal) cooldownTotal = drive.CooldownSeconds;
-            }
             try
             {
                 var ms = GetMapState(shuttleGridUid.Value);
                 ftlState = ms.FTLState;
                 ftlTime = ms.FTLTime;
+                if (ftlState == FTLState.Cooldown)
+                {
+                    var now = IoCManager.Resolve<IGameTiming>().CurTime;
+                    cooldown = (float)Math.Max(0, (ms.FTLTime.End - now).TotalSeconds);
+                    if (ms.FTLTime.Start != default && ms.FTLTime.End > ms.FTLTime.Start) cooldownTotal = (float)(ms.FTLTime.End - ms.FTLTime.Start).TotalSeconds;
+                }
             }
             catch
             {
-                ftlState = cooldown > 0f ? FTLState.Cooldown : FTLState.Available;
+                ftlState = FTLState.Available;
                 ftlTime = default;
             }
         }
@@ -193,7 +198,7 @@ public sealed partial class ShuttleConsoleSystem
         { if (_sectors.TryGetMapId(sid, out var mid) && !sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = sid; }
         if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
         {
-            var frontierIdx = stars.FindIndex(s => s.Map == new MapId(0));
+            var frontierIdx = stars.FindIndex(s => s.Map == _ticker.DefaultMap);
             var ccIdx = stars.FindIndex(s => s.Map == _centcomm.CentComMap);
             if (frontierIdx >= 0 && ccIdx >= 0)
             {

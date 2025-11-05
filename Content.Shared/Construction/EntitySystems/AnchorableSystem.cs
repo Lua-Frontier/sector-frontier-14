@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
+using Content.Shared._Lua.ShipProtection;
 
 namespace Content.Shared.Construction.EntitySystems;
 
@@ -94,6 +95,14 @@ public sealed partial class AnchorableSystem : EntitySystem
         // If the used entity doesn't have a tool, return early.
         if (!TryComp(args.Used, out ToolComponent? usedTool) || !_tool.HasQuality(args.Used, anchorable.Tool, usedTool))
             return;
+
+        // Luw
+        if (HasComp<ShipProtectionComponent>(uid))
+        {
+            _popup.PopupClient(Loc.GetString("ship-protection-active"), uid, args.User);
+            args.Handled = true;
+            return;
+        }
 
         args.Handled = true;
         TryToggleAnchor(uid, args.User, args.Used, anchorable, usingTool: usedTool);

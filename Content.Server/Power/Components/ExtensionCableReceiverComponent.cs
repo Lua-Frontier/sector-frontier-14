@@ -1,4 +1,4 @@
-﻿using Content.Server.Power.EntitySystems;
+using Content.Server.Power.EntitySystems;
 
 namespace Content.Server.Power.Components
 {
@@ -17,6 +17,6 @@ namespace Content.Server.Power.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("receptionRange")]
-        public int ReceptionRange { get; set; } = 3;
+        public int ReceptionRange { get; set; } = 6;
     }
 }

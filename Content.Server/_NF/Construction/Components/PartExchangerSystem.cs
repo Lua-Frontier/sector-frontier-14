@@ -17,6 +17,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared._Lua.ShipProtection;
 
 namespace Content.Server._NF.Construction;
 
@@ -323,6 +324,13 @@ public sealed class PartExchangerSystem : EntitySystem
 
         if (!HasComp<MachineComponent>(args.Target) && !HasComp<MachineFrameComponent>(args.Target))
             return;
+
+        if (HasComp<ShipProtectionComponent>(args.Target))
+        {
+            _popup.PopupEntity(Loc.GetString("ship-protection-active"), args.Target.Value, args.User);
+            args.Handled = true;
+            return;
+        }
 
         if (TryComp<WiresPanelComponent>(args.Target, out var panel) && !panel.Open)
         {

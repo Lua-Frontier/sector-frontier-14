@@ -1282,3 +1282,19 @@
         - Bailiff
         - SeniorOfficer
         - NFDetective
+
+- type: listing
+  id: UplinkSecurityCoordinatesDiskFrontier
+  name: uplink-security-coordinates-disk-frontier-name
+  description: uplink-security-coordinates-disk-frontier-desc
+  productEntity: CoordinatesDiskFrontier
+  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink

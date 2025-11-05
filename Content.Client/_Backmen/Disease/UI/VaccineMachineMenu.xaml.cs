@@ -100,6 +100,23 @@ public sealed partial class VaccineMachineMenu : DefaultWindow
     public void UpdateLocked(bool locked)
     {
         Locked = locked;
+        CreateButton.Disabled = locked || !Enough;
+    }
+
+    public void UpdateProgress(float progress, int timeRemaining)
+    {
+        if (progress > 0)
+        {
+            ProgressBar.Value = progress;
+            ProgressBar.Visible = true;
+            TimeRemainingLabel.Text = Loc.GetString("vaccine-machine-time-remaining", ("time", timeRemaining));
+            TimeRemainingLabel.Visible = true;
+        }
+        else
+        {
+            ProgressBar.Visible = false;
+            TimeRemainingLabel.Visible = false;
+        }
     }
 
     public void UpdateServerConnection(bool hasServer)

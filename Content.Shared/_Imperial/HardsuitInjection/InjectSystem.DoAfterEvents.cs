@@ -9,6 +9,10 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Content.Shared.Strip;
+using Content.Shared.Imperial.HardsuitInjection.EntitySystems;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared.Imperial.HardsuitInjection.EntitySystems;
 
@@ -18,6 +22,7 @@ public sealed partial class InjectSystem
     {
         SubscribeLocalEvent<InjectComponent, GetVerbsEvent<EquipmentVerb>>(OnGetVerbs);
         SubscribeLocalEvent<InjectComponent, ToggleSlotDoAfterEvent>(OnDoAfterComplete);
+        SubscribeLocalEvent<InjectComponent, AmpulaInsertDoAfterEvent>(OnAmpulaInsertComplete);
     }
 
     private void OnGetVerbs(EntityUid uid, InjectComponent component, GetVerbsEvent<EquipmentVerb> args)
@@ -83,6 +88,50 @@ public sealed partial class InjectSystem
         if (_netManager.IsClient) return;
 
         ToggleEC(uid, args.User);
+        args.Handled = true;
+    }
+
+    private void OnAmpulaInsertComplete(EntityUid uid, InjectComponent component, AmpulaInsertDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled) return;
+        if (_netManager.IsClient) return;
+
+        var user = args.User;
+        var ampula = args.Used;
+
+        if (ampula == null || !Exists(ampula.Value))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (!TryComp<ItemSlotsComponent>(uid, out var itemslots))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (!_itemSlotsSystem.TryGetSlot(uid, component.ContainerId, out var itemslot, itemslots))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (!TryComp<HandsComponent>(user, out var handsComponent))
+        {
+            args.Handled = true;
+            return;
+        }
+
+        if (_itemSlotsSystem.TryInsert(uid, component.ContainerId, ampula.Value, user))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-success-insert", ("ampula", ampula.Value)), user, user);
+        }
+        else
+        {
+            _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-fail-insert"), user, user);
+        }
+
         args.Handled = true;
     }
 }

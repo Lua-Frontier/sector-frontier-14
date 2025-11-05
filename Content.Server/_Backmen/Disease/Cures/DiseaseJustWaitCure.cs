@@ -1,17 +1,10 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Cures;
 
-/// <summary>
-/// Automatically removes the disease after a
-/// certain amount of time.
-/// </summary>
 public sealed partial class DiseaseJustWaitCure : DiseaseCure
 {
-    /// <summary>
-    /// All of these are in seconds
-    /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public int Ticker = 0;
     [DataField("maxLength", required: true)]
@@ -36,12 +29,11 @@ public sealed partial class DiseaseCureSystem
         if(args.Handled)
             return;
 
-        args.Handled = true;
-
         args.DiseaseCure.Ticker++;
         if (args.DiseaseCure.Ticker >= args.DiseaseCure.MaxLength)
         {
-            _disease.CureDisease(args.DiseasedEntity, args.Disease);
+            args.Handled = true;
+            _disease.CureDisease(ent, args.Disease);
         }
     }
 }

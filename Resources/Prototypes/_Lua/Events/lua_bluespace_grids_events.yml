@@ -10,10 +10,10 @@
     endAnnouncement: station-event-bluespace-shipyardluatech-end-announcement
     earliestStart: 100
     minimumPlayers: 15
-    weight: 3
+    weight: 5
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
-    reoccurrenceDelay: 30 # once per 4 hours
+    reoccurrenceDelay: 360 # once per 4 hours
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup

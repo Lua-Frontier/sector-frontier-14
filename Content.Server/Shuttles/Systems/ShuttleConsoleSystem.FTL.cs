@@ -20,7 +20,7 @@ public sealed partial class ShuttleConsoleSystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private const float ShuttleFTLRange = 200f;
+    public const float ShuttleFTLRange = 1500f;
     private const float ShuttleFTLMassThreshold = 50f;
 
     private bool IsGcAbleGrid(EntityUid gridUid) // Lua start создание проблемы и её героическое решение

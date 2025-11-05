@@ -132,6 +132,8 @@
   name: скафандр "LuaTech"
   description: Скафандр специализированный под расу "Вульпканинов" сделанный на заказ LuaTech.
   components:
+  - type: ThermalCloak
+    enabled: false
   - type: BreathMask
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/OuterClothing/Hardsuits/lua_hardsuit.rsi

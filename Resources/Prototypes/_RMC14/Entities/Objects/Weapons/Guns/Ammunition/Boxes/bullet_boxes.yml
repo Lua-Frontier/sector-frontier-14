@@ -182,14 +182,14 @@
 
 - type: entity
   parent: RMCBaseMagazineBoxRifle
-  id: MagazineBoxCMCartridgePistol.22mm
+  id: MagazineBoxCMCartridgePistol22mm
   name: коробка патронов (.22)
   components:
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-        - CMCartridgePistol.22mm
-    proto: CMCartridgePistol.22mm
+        - CMCartridgePistol22mm
+    proto: CMCartridgePistol22mm
   - type: Icon
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
     state: base

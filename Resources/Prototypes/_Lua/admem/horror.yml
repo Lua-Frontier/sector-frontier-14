@@ -8,6 +8,15 @@
   name: Теневой Кошмар
   suffix: адмем
   components:
+  - type: LumenAversion
+  - type: AutoBoo
+    spawnAnomalyOnInit: AnomalyShadowTimed
+  - type: Prying
+    force: true
+    pryPowered: true
+    speedModifier: 7
+  - type: PryUnpowered
+  - type: Insulated
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
@@ -17,8 +26,8 @@
     drawdepth: Mobs
     layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
-      - state: horror
         sprite: _Lua/admem/horror.rsi
+        state: horror
       - state: spookysmoke
         sprite: _Lua/admem/horror.rsi
       - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
@@ -100,7 +109,7 @@
     baseWalkSpeed: 1.0
     baseSprintSpeed: 1.6
   - type: HitscanBatteryAmmoProvider
-    proto: VioletLaser
+    proto: ShadowPulse
     fireCost: 1
   - type: Gun
     useKey: false
@@ -109,7 +118,7 @@
     - SemiAuto
     fireRate: 0.4
     soundGunshot:
-      path: /Audio/_Lua/Weapons/Guns/Gunshots/laser_shot.ogg
+      path: /Audio/Weapons/click.ogg
       params:
         volume: -2
   - type: CombatMode
