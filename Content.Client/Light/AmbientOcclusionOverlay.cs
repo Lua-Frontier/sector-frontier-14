@@ -120,7 +120,7 @@ public sealed class AmbientOcclusionOverlay : Overlay
                 {
                     var transform = xformSystem.GetWorldMatrix(grid.Owner);
                     var worldToTextureMatrix = Matrix3x2.Multiply(transform, invMatrix);
-                    var tiles = maps.GetTilesEnumerator(grid.Owner, grid, worldBounds);
+                    var tiles = maps.GetTilesEnumerator(grid.Owner, grid, worldBounds, ignoreEmpty: false); // Lua small patch? ignoreEmpty: false
                     worldHandle.SetTransform(worldToTextureMatrix);
                     while (tiles.MoveNext(out var tileRef))
                     {
