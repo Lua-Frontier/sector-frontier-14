@@ -36,11 +36,75 @@
         <GuideEntityEmbed Entity="ComputerAdvancedRadar"/>
     </Box>
     <Box>
-       # ОПИСАНИЕ ОТДЕЛОВ
+       # ОТДЕЛЫ
     </Box>
     <Box>
         [color=#8bc9da]МЕДИЦИНСКИЙ ОТДЕЛ:[/color]
     </Box>
 
-    [color=#8bc9da]МЕД-БЕЙ:[/color]
+    ## Мед отсек (содержание оборудования):
+
+    - Стазисные кровати в размере x2
+
+    - Больничные койки x2
+
+    - Дефиблиряторы x2
+
+    - Медицинский ТехФаб
+
+    - Мед-О-Мат
+
+    - НаноМед Плюс
+
+    <Box>
+        <GuideEntityEmbed Entity="StasisBed"/>
+        <GuideEntityEmbed Entity="MedicalBed"/>
+        <GuideEntityEmbed Entity="Defibrillator"/>
+    </Box>
+
+    <Box>
+        <GuideEntityEmbed Entity="MedicalTechFab"/>
+        <GuideEntityEmbed Entity="MedicalAssembler"/>
+        <GuideEntityEmbed Entity="VendingMachineMedical"/>
+    </Box>
+
+    ## Химическая лаборотория (содержание оборудования):
+
+    - Раздатчик химикатов
+
+    - ХимМастер 4000
+
+    - Электролизерная установка
+
+    - Электроплитка
+
+    - Шкаф химика
+
+    - Умный холодильник
+
+    <Box>
+        <GuideEntityEmbed Entity="ChemDispenser"/>
+        <GuideEntityEmbed Entity="ChemMaster"/>
+        <GuideEntityEmbed Entity="MachineElectrolysisUnit"/>
+    </Box>
+
+    <Box>
+        <GuideEntityEmbed Entity="ChemistryHotplate"/>
+        <GuideEntityEmbed Entity="LockerChemistryFilled"/>
+        <GuideEntityEmbed Entity="DVSmartFridge"/>
+    </Box>
+
+    ## Хирургия и Морг (содержание оборудования):
+
+    - Операционный стол
+
+    - Стол для аутопсии
+
+    - Морг
+
+    <Box>
+        <GuideEntityEmbed Entity="OperatingTable"/>
+        <GuideEntityEmbed Entity="AutopsyTable"/>
+        <GuideEntityEmbed Entity="Morgue"/>
+    </Box>
 </Document>
