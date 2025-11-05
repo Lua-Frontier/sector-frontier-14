@@ -75,9 +75,10 @@ public abstract partial class SharedStunSystem
         SubscribeAllEvent<ForceStandUpEvent>(OnForceStandup);
         SubscribeLocalEvent<KnockedDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
 
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(HandleToggleKnockdown, handle: false))
-            .Register<SharedStunSystem>();
+        // Lua: Disabled ToggleKnockdown
+        // CommandBinds.Builder
+        //     .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(HandleToggleKnockdown, handle: false))
+        //     .Register<SharedStunSystem>();
     }
 
     public override void Update(float frameTime)
@@ -121,23 +122,9 @@ public abstract partial class SharedStunSystem
         entity.Comp.FrictionModifier = 1f;
         entity.Comp.SpeedModifier = 1f;
 
-        // WD EDIT START: Check LayingDown system for auto stand-up
-        if (!TryComp(entity, out StandingStateComponent? standing))
-        {
-            Alerts.ClearAlert(entity, KnockdownAlert);
-            return;
-        }
-
-        if (TryComp(entity, out LayingDownComponent? layingDown))
-        {
-            if (layingDown.AutoGetUp && !_container.IsEntityInContainer(entity))
-                _layingDown.TryStandUp(entity, layingDown);
-        }
-        else
-        {
+        // Lua: unify ToggleKnockdown
+        if (TryComp(entity, out StandingStateComponent? standing))
             _standingState.Stand(entity, standing);
-        }
-        // WD EDIT END
 
         Alerts.ClearAlert(entity, KnockdownAlert);
     }
@@ -245,39 +232,41 @@ public abstract partial class SharedStunSystem
 
     #region Knockdown Logic
 
-    private void HandleToggleKnockdown(ICommonSession? session)
-    {
-        if (session is not { } playerSession)
-            return;
-
-        if (playerSession.AttachedEntity is not { Valid: true } playerEnt || !Exists(playerEnt))
-            return;
-
-        ToggleKnockdown(playerEnt);
-    }
+    // Lua: Disabled ToggleKnockdown
+    // private void HandleToggleKnockdown(ICommonSession? session)
+    // {
+    //     if (session is not { } playerSession)
+    //         return;
+    //
+    //     if (playerSession.AttachedEntity is not { Valid: true } playerEnt || !Exists(playerEnt))
+    //         return;
+    //
+    //     ToggleKnockdown(playerEnt);
+    // }
 
     /// <summary>
     /// Handles an entity trying to make itself fall down.
     /// </summary>
     /// <param name="entity">Entity who is trying to fall down</param>
-    private void ToggleKnockdown(Entity<CrawlerComponent?, KnockedDownComponent?> entity)
-    {
-        // We resolve here instead of using TryCrawling to be extra sure someone without crawler can't stand up early.
-        if (!Resolve(entity, ref entity.Comp1, false) || !_cfgManager.GetCVar(CCVars.MovementCrawling))
-            return;
+    //private void ToggleKnockdown(Entity<CrawlerComponent?, KnockedDownComponent?> entity)
+    //{
+    //    // We resolve here instead of using TryCrawling to be extra sure someone without crawler can't stand up early.
+    //    if (!Resolve(entity, ref entity.Comp1, false) || !_cfgManager.GetCVar(CCVars.MovementCrawling))
+    //        return;
 
-        if (!Resolve(entity, ref entity.Comp2, false))
-        {
-            TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false);
-            return;
-        }
+    //    if (!Resolve(entity, ref entity.Comp2, false))
+    //    {
+    //        TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false);
+    //        return;
+    //    }
 
-        var stand = !entity.Comp2.DoAfterId.HasValue;
-        SetAutoStand((entity, entity.Comp2), stand);
+    //    var stand = !entity.Comp2.DoAfterId.HasValue;
+    //    SetAutoStand((entity, entity.Comp2), stand);
 
-        if (!stand || !TryStanding((entity, entity.Comp2)))
-            CancelKnockdownDoAfter((entity, entity.Comp2));
-    }
+    //    if (!stand || !TryStanding((entity, entity.Comp2)))
+    //        CancelKnockdownDoAfter((entity, entity.Comp2));
+    //}
+    // Lue end
 
     public bool TryStanding(Entity<KnockedDownComponent?> entity)
     {
