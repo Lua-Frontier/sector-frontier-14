@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2025 11:10:53
+  time: 11/05/2025 16:12:34
   entityCount: 707
 maps: []
 grids:
@@ -2264,7 +2264,7 @@ entities:
   - uid: 301
     components:
     - type: Transform
-      pos: -2.5,1.5
+      pos: -1.5,3.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -3499,13 +3499,6 @@ entities:
     - type: Transform
       pos: -1.5,-5.5
       parent: 1
-- proto: MachineWarpDrive
-  entities:
-  - uid: 272
-    components:
-    - type: Transform
-      pos: -1.5,3.5
-      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 480
@@ -3960,6 +3953,11 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
+  - uid: 272
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 1
   - uid: 554
     components:
     - type: Transform
