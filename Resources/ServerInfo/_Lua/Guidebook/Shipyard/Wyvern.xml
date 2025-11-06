@@ -91,7 +91,7 @@
     <Box>
         <GuideEntityEmbed Entity="ChemistryHotplate"/>
         <GuideEntityEmbed Entity="LockerChemistryFilled"/>
-        <GuideEntityEmbed Entity="DVSmartFridge"/>
+        <GuideEntityEmbed Entity="SmartFridge"/>
     </Box>
 
     ## Хирургия и Морг (содержание оборудования):
@@ -109,6 +109,74 @@
     </Box>
 
     <Box>
-        [color=#be6bc3]НАУЧНО ИССЛЕДОВАТЕЛЬСКИЙ ОТДЕЛ:[/color]
+        [color=#be6bc3]НАУЧНО-ИССЛЕДОВАТЕЛЬСКИЙ ОТДЕЛ:[/color]
+    </Box>
+
+    ## Холл (содержание оборудования):
+
+    - Шкаф научного руководителя (со скафандром)
+
+    - Шкаф радиационных костюмов
+
+    - Шкаф снаряжения 3-го уровня биологической опастности
+
+    - Исследовательская консоль
+
+    <Box>
+        <GuideEntityEmbed Entity="LockerResearchDirectorFilledHardsuit"/>
+        <GuideEntityEmbed Entity="ClosetRadiationSuitFilled"/>
+        <GuideEntityEmbed Entity="ClosetL3ScienceFilled"/>
+    </Box>
+    <Box>
+        <GuideEntityEmbed Entity="ComputerTabletopResearchAndDevelopment"/>
+    </Box>
+
+    ## Рабочая зона (содержание оборудования):
+
+    - Протолат
+
+    - Автолат
+
+    - Принтер схем
+
+    - Упаковщик
+
+    -Сервер РнД
+
+    <Box>
+        <GuideEntityEmbed Entity="CircuitImprinter"/>
+        <GuideEntityEmbed Entity="Autolathe"/>
+        <GuideEntityEmbed Entity="Protolathe"/>
+        <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
+        <GuideEntityEmbed Entity="MachineFlatpacker"/>
+    </Box>
+
+    ## Ксеноархеология и утилизаторский отсек (содержание оборудования):
+
+    - Аналитическая консоль
+
+    - Анализатор артефактов
+
+    - Нагреватель
+
+    <Box>
+        <GuideEntityEmbed Entity="ComputerTabletopAnalysisConsole"/>
+        <GuideEntityEmbed Entity="GasThermoMachineHeater"/>
+        <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+    </Box>
+    - Переработчик руды
+
+    - Утилизационный ТехФаб
+
+    - снярежние для утилизаций
+
+    <Box>
+        <GuideEntityEmbed Entity="OreProcessor"/>
+        <GuideEntityEmbed Entity="LockerSalvageSpecialistFilledHardsuit"/>
+        <GuideEntityEmbed Entity="SalvageTechfabNF"/>
+    </Box>
+
+    <Box>
+        [color=#9fed58]ГИДРОПОНИКА:[/color]
     </Box>
 </Document>
