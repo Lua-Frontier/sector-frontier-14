@@ -27,7 +27,15 @@
         hard: false
         mask:
         - Opaque
-      fly-by: *flybyfixture
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
   - type: Ammo
   - type: Projectile
     impactEffect: BulletImpactEffectLaser
