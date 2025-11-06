@@ -1,8 +1,10 @@
-using System.Text;
 using Content.Server.Backmen.Speech.Components;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
 
@@ -17,6 +19,7 @@ public sealed class XenoAccentSystem : EntitySystem
 
     public string Accentuate(string message)
     {
+        bool ru = Regex.IsMatch(message, @"[а-яА-ЯёЁ]");
         var words = message.Split();
         var accentedMessage = new StringBuilder(message.Length + 2);
 
@@ -26,29 +29,60 @@ public sealed class XenoAccentSystem : EntitySystem
 
             if (_random.NextDouble() >= 0.5)
             {
-                accentedMessage.Append("HI");
+                if (ru)
+                    accentedMessage.Append("Хи");
+                else
+                    accentedMessage.Append("HI");
                 if (word.Length > 1)
                 {
                     foreach (var _ in word)
                     {
-                        accentedMessage.Append('S');
+                        if (ru)
+                            accentedMessage.Append('с');
+                        else
+                            accentedMessage.Append('S');
                     }
 
                     if (_random.NextDouble() >= 0.3)
-                        accentedMessage.Append('s');
+                    {
+                        if (ru)
+                            accentedMessage.Append('с');
+                        else
+                            accentedMessage.Append('s');
+                    }
                 }
                 else
-                    accentedMessage.Append('S');
+                {
+                    if (ru)
+                        accentedMessage.Append('с');
+                    else
+                        accentedMessage.Append('S');
+                }
             }
             else
             {
-                accentedMessage.Append("HI");
+                if (ru)
+                    accentedMessage.Append("Хи");
+                else
+                    accentedMessage.Append("HI");
                 foreach (var _ in word)
                 {
                     if (_random.NextDouble() >= 0.8)
-                        accentedMessage.Append('H');
+                    {
+                        if (ru)
+                            accentedMessage.Append('х');
+                        else
+                            accentedMessage.Append('H');
+                    }
                     else
-                        accentedMessage.Append('S');
+                    {
+                        if (ru && _random.NextDouble() >= 0.7)
+                            accentedMessage.Append('ш');
+                        else if (ru)
+                            accentedMessage.Append('с');
+                        else
+                            accentedMessage.Append('S');
+                    }
                 }
 
             }

@@ -443,7 +443,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
-        if (!EntityManager.TryGetComponent<StationDataComponent>(station, out var stationDataComp)) return;
+        if (!TryComp<StationDataComponent>(station, out var stationDataComp)) return;
 
         var filter = _stationSystem.GetInStation(stationDataComp);
 
@@ -602,7 +602,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
 
             var canUnderstandLanguage = _language.CanUnderstand(listener, language.ID); // backmen: language
-            if (data.Range <= WhisperClearRange)
+            if (data.Range <= WhisperClearRange || data.Observer)
             {
                 var perceivedMessage = FormattedMessage.EscapeText(canUnderstandLanguage ? message : languageObfuscatedMessage); // backmen: language
                 var wrappedPerceivedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", nameIdentity, perceivedMessage, language);
@@ -676,17 +676,14 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
-        bool soundEmoteSent = true; // Frontier: if check emote is false, assume somebody's sending an emote
-        if (checkEmote)
-            soundEmoteSent = TryEmoteChatInput(source, action); // Frontier: assign value to soundEmoteSent
-
-        // Frontier: send emote message
-        if (!soundEmoteSent)
+        if (checkEmote &&
+            !TryEmoteChatInput(source, action))
         {
-            var ev = new NFEntityEmotedEvent(source, action);
-            RaiseLocalEvent(source, ev, true);
+            var ev = new NFEntityEmotedEvent(source, action); // Frontier
+            RaiseLocalEvent(source, ev, true); // Frontier
+            return;
         }
-        // End Frontier
+
 
         SendInVoiceRange(ChatChannel.Emotes, name, action, wrappedMessage, obfuscated: "", obfuscatedWrappedMessage: "", source, range, author); // Lua
         if (!hideLog)
@@ -928,8 +925,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         return message;
     }
 
-    [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public const string ChatSanitize_Accent = "chatsanitize";
+    public static readonly ProtoId<ReplacementAccentPrototype> ChatSanitize_Accent = "chatsanitize";
 
     public string SanitizeMessageReplaceWords(string message)
     {

@@ -1,11 +1,11 @@
-using Content.Shared._NF.SizeAttribute;
-using Content.Shared.Nyanotrasen.Item.PseudoItem;
-using Content.Shared.Sprite;
+using System.Numerics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
-using System.Numerics;
+using Content.Shared.Sprite;
+using Content.Shared._NF.SizeAttribute;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
 {

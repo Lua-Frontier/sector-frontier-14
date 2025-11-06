@@ -278,7 +278,7 @@
   productEntity: NFWeaponEnergyRifleCarbine
   icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2 #Lua: It's fucking SHIT. From 8 to 2
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -294,7 +294,7 @@
   productEntity: NFWeaponEnergyRifleSniperCannon
   icon: { sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 4 #Lua: It's pretty much shit too. From 14 to 4
+    FrontierUplinkCoin: 10
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -310,7 +310,7 @@
   productEntity: NFWeaponEnergySubMachineGunDisabler
   icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
   cost:
-    FrontierUplinkCoin: 3 #Lua: From 6 to 3. It's pretty shit too, even with stun meta
+    FrontierUplinkCoin: 4
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -341,6 +341,26 @@
   description: uplink-security-energygun-desc
   productEntity: NFWeaponEnergySubMachineGunDeltaV
   icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityEmpRpg
+  name:  uplink-security-emprpg-name
+  description: uplink-security-emprpg-desc
+  productEntity: NFWeaponLauncherRocketEmp
+  icon: { sprite: Objects/Weapons/Guns/Launchers/rocket.rsi, state: base }
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -1125,7 +1145,7 @@
   productEntity: HoverbikeNfsdFlatpack
   icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: vehicle }
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 10
   categories:
     - UplinkSecurityUtility
   conditions:

@@ -40,6 +40,9 @@ public sealed partial class ContentAudioSystem
     /// </summary>
     private LobbySoundtrackInfo? _lobbySoundtrackInfo;
 
+    private bool _musicManuallyStopped = false;
+    private string? _lastPlayedTrack;
+
     private Action<LobbySoundtrackChangedEvent>? _lobbySoundtrackChanged;
 
     /// <summary>
@@ -99,6 +102,8 @@ public sealed partial class ContentAudioSystem
     private void OnLeave(object? sender, PlayerEventArgs args)
     {
         EndLobbyMusic();
+        _lastPlayedTrack = null;
+        _musicManuallyStopped = false;
     }
 
     private void LobbyMusicVolumeCVarChanged(float volume)
@@ -137,6 +142,7 @@ public sealed partial class ContentAudioSystem
         }
 
         EndLobbyMusic();
+        _lastPlayedTrack = null;
         StartLobbyMusic(playlistChangedEvent.Playlist);
     }
 
@@ -167,12 +173,14 @@ public sealed partial class ContentAudioSystem
         {
             return;
         }
-
+        _musicManuallyStopped = false;
         PlaySoundtrack(playlist[0]);
     }
 
     private void PlaySoundtrack(string soundtrackFilename)
     {
+        if (_lobbySoundtrackInfo != null)
+        { _audio.Stop(_lobbySoundtrackInfo.MusicStreamEntityUid); }
         if (!_resourceCache.TryGetResource(new ResPath(soundtrackFilename), out AudioResource? audio))
         {
             return;
@@ -194,6 +202,7 @@ public sealed partial class ContentAudioSystem
 
         var nextTrackOn = _timing.CurTime + audio.AudioStream.Length;
         _lobbySoundtrackInfo = new LobbySoundtrackInfo(soundtrackFilename, nextTrackOn, playResult.Value.Entity);
+        _lastPlayedTrack = soundtrackFilename;
 
         var lobbySongChangedEvent = new LobbySoundtrackChangedEvent(soundtrackFilename);
         _lobbySoundtrackChanged?.Invoke(lobbySongChangedEvent);
@@ -246,6 +255,7 @@ public sealed partial class ContentAudioSystem
             _lobbySoundtrackInfo != null
             && _timing.CurTime >= _lobbySoundtrackInfo.NextTrackOn
             && _lobbyPlaylist?.Length > 0
+            && !_musicManuallyStopped
             )
         {
             var nextSoundtrackFilename = GetNextSoundtrackFromPlaylist(_lobbySoundtrackInfo.Filename, _lobbyPlaylist);
@@ -264,6 +274,56 @@ public sealed partial class ContentAudioSystem
 
         return playlist[nextTrackIndex];
     }
+
+    private static string GetPreviousSoundtrackFromPlaylist(string currentSoundtrackFilename, string[] playlist)
+    {
+        var indexOfCurrent = Array.IndexOf(playlist, currentSoundtrackFilename);
+        var previousTrackIndex = indexOfCurrent - 1;
+        if (previousTrackIndex < 0)
+        { previousTrackIndex = playlist.Length - 1; }
+        return playlist[previousTrackIndex];
+    }
+
+    public void PlayNextTrack()
+    {
+        if (_lobbyPlaylist == null || _lobbyPlaylist.Length == 0) return;
+        _musicManuallyStopped = false;
+        string nextSoundtrackFilename;
+        if (_lobbySoundtrackInfo == null)
+        { nextSoundtrackFilename = _lobbyPlaylist[0]; }
+        else { nextSoundtrackFilename = GetNextSoundtrackFromPlaylist(_lobbySoundtrackInfo.Filename, _lobbyPlaylist); }
+        PlaySoundtrack(nextSoundtrackFilename);
+    }
+
+    public void PlayPreviousTrack()
+    {
+        if (_lobbyPlaylist == null || _lobbyPlaylist.Length == 0) return;
+        _musicManuallyStopped = false;
+        string previousSoundtrackFilename;
+        if (_lobbySoundtrackInfo == null)
+        { previousSoundtrackFilename = _lobbyPlaylist[_lobbyPlaylist.Length - 1]; }
+        else { previousSoundtrackFilename = GetPreviousSoundtrackFromPlaylist(_lobbySoundtrackInfo.Filename, _lobbyPlaylist); }
+        PlaySoundtrack(previousSoundtrackFilename);
+    }
+    public bool ToggleMusicPlayback()
+    {
+        if (_lobbySoundtrackInfo != null)
+        {
+            _musicManuallyStopped = true;
+            EndLobbyMusic();
+            return false;
+        }
+        else
+        {
+            _musicManuallyStopped = false;
+            if (_lastPlayedTrack != null && _lobbyPlaylist != null && _lobbyPlaylist.Contains(_lastPlayedTrack))
+            { PlaySoundtrack(_lastPlayedTrack); }
+            else { StartLobbyMusic(); }
+            return true;
+        }
+    }
+    public bool IsMusicPlaying()
+    { return _lobbySoundtrackInfo != null; }
 
     /// <summary> Container for lobby soundtrack information. </summary>
     /// <param name="Filename">Soundtrack filename.</param>

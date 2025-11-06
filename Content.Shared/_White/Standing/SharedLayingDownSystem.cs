@@ -1,4 +1,5 @@
 using Content.Shared.DoAfter;
+using Content.Shared.Alert;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Systems;
@@ -17,6 +18,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
 
     public override void Initialize()
     {
@@ -29,6 +31,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
         SubscribeLocalEvent<StandingStateComponent, StandingUpDoAfterEvent>(OnStandingUpDoAfter);
         SubscribeLocalEvent<LayingDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<LayingDownComponent, EntParentChangedMessage>(OnParentChanged);
+        SubscribeLocalEvent<LayingDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
     }
 
     public override void Shutdown()
@@ -72,10 +75,16 @@ public abstract class SharedLayingDownSystem : EntitySystem
         if (HasComp<KnockedDownComponent>(uid) || !_mobState.IsAlive(uid))
             return;
 
-        if (_standing.IsDown(uid, standing))
+        if (_standing.IsDown((uid, standing)))
+        {
             TryStandUp(uid, layingDown, standing);
+            if (!HasComp<KnockedDownComponent>(uid)) _alerts.ClearAlert(uid, SharedStunSystem.KnockdownAlert);
+        }
         else
-            TryLieDown(uid, layingDown, standing);
+        {
+            if (TryLieDown(uid, layingDown, standing))
+            { if (!HasComp<KnockedDownComponent>(uid)) _alerts.ShowAlert(uid, SharedStunSystem.KnockdownAlert); }
+        }
     }
 
     private void OnStandingUpDoAfter(EntityUid uid, StandingStateComponent component, StandingUpDoAfterEvent args)
@@ -88,6 +97,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
 
         component.CurrentState = StandingState.Standing;
+        if (!HasComp<KnockedDownComponent>(uid))
+            _alerts.ClearAlert(uid, SharedStunSystem.KnockdownAlert);
     }
 
     private void OnRefreshMovementSpeed(EntityUid uid, LayingDownComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -109,6 +120,16 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
 
         _standing.Stand(uid, standingState);
+        if (!HasComp<KnockedDownComponent>(uid)) _alerts.ClearAlert(uid, SharedStunSystem.KnockdownAlert);
+    }
+
+    private void OnKnockedDownAlert(Entity<LayingDownComponent> ent, ref KnockedDownAlertEvent args)
+    {
+        if (args.Handled) return;
+        if (HasComp<KnockedDownComponent>(ent)) return;
+        if (!TryComp(ent, out StandingStateComponent? standing)) return;
+        if (_standing.IsDown((ent, standing))) TryStandUp(ent, ent.Comp, standing);
+        args.Handled = true;
     }
 
     public bool TryStandUp(EntityUid uid, LayingDownComponent? layingDown = null, StandingStateComponent? standingState = null)
@@ -143,7 +164,10 @@ public abstract class SharedLayingDownSystem : EntitySystem
             standingState.CurrentState is not StandingState.Standing)
         {
             if (behavior == DropHeldItemsBehavior.AlwaysDrop)
-                RaiseLocalEvent(uid, new DropHandItemsEvent());
+            {
+                var dropEvent = new DropHandItemsEvent();
+                RaiseLocalEvent(uid, ref dropEvent);
+            }
 
             return false;
         }

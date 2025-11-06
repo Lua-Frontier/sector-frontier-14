@@ -91,6 +91,12 @@
                 VerticalExpand="True">
                 <Control Name="DefaultState" VerticalExpand="True">
                     <BoxContainer Name="TopLeft" Orientation="Vertical">
+                        <PanelContainer Margin="0 0 0 8" MinHeight="40" Visible="False" Name="PlaytimeCommentContainer" Access="Public" HorizontalAlignment="Left">
+                            <PanelContainer.PanelOverride>
+                                <graphics:StyleBoxFlat BackgroundColor="#44222288" BorderColor="#88222288" BorderThickness="2" />
+                            </PanelContainer.PanelOverride>
+                            <RichTextLabel Name="PlaytimeComment" Access="Public" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8 8 8 8" />
+                        </PanelContainer>
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
                             <!-- Center Panel -->
                             <PanelContainer
@@ -113,6 +119,7 @@
                                             Margin="4 4 4 4"
                                             StyleClasses="LabelHeadingXL"
                                             VAlign="Center"
+                                            HorizontalAlignment="Center"
                                             Text="Сектор Фронтир"
                                             FontColorOverride="{x:Static maths:Color.White}"/>
                                     </PanelContainer>
@@ -199,8 +206,18 @@
                         </BoxContainer>
                     </BoxContainer>
                     <!-- Left Bot Panel -->
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" SeparationOverride="4">
                         <Button Name="MinimizeButton" Access="Public" ToggleMode="True" Text="{Loc 'ui-lobby-minimize-button'}" />
+                        <controls:VSpacer Spacing="10" />
+                        <!-- Music Control Buttons -->
+                        <Button Name="PreviousTrackButton" Access="Public" Text="{Loc 'ui-lobby-previous-track'}" MinSize="40 32" />
+                        <Button Name="StopTrackButton" Access="Public" ToggleMode="True" Text="{Loc 'ui-lobby-stop-track'}" MinSize="40 32" />
+                        <Button Name="NextTrackButton" Access="Public" Text="{Loc 'ui-lobby-next-track'}" MinSize="40 32" />
+                        <controls:VSpacer Spacing="20" />
+                        <!-- Background Control Buttons -->
+                        <Button Name="PreviousBackgroundButton" Access="Public" Text="{Loc 'ui-lobby-background-prev'}" MinSize="32 32" />
+                        <Label Text="{Loc 'ui-lobby-background-label'}" VAlign="Center" Margin="6 0 6 0" />
+                        <Button Name="NextBackgroundButton" Access="Public" Text="{Loc 'ui-lobby-background-next'}" MinSize="32 32" />
                     </BoxContainer>
                 </Control>
                 <!-- Character setup state -->

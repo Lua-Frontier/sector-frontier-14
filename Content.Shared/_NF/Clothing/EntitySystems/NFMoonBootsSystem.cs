@@ -79,7 +79,11 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
             if (args.Handled)
                 return;
 
-            var wearer = args.Entity;
+            // Для прямого события на ботинках - получаем носителя из контейнера
+            if (!_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
+                return;
+
+            var wearer = container.Owner;
 
             // Если ботинки выключены и на этой сетке/карте есть гравитация — явно фиксируем, что невесомости нет,
             // чтобы избежать дерганья от конкурирующих обработчиков.
@@ -109,6 +113,34 @@ namespace Content.Shared._NF.Clothing.EntitySystems;
 
     private void OnIsWeightless(Entity<NFMoonBootsComponent> ent, ref InventoryRelayedEvent<IsWeightlessEvent> args)
     {
-        OnIsWeightless(ent, ref args.Args);
+            if (args.Args.Handled)
+                return;
+
+            var wearer = args.Owner;
+
+            // Если ботинки выключены и на этой сетке/карте есть гравитация — явно фиксируем, что невесомости нет,
+            // чтобы избежать дерганья от конкурирующих обработчиков.
+            if (!_toggle.IsActivated(ent.Owner))
+            {
+                if (_gravity.EntityGridOrMapHaveGravity((wearer, null)))
+                {
+                    args.Args.IsWeightless = false;
+                    args.Args.Handled = true;
+                }
+                return;
+            }
+
+            // Если персонаж лежит — автоматически поднимаем перед включением невесомости
+            if (HasComp<StandingStateComponent>(wearer) && _standing.IsDown(wearer))
+            {
+                _standing.Stand(wearer, force: true);
+            }
+
+        // Не завершаем обработку если уже выставлено состояние другим компонентом
+        if (!args.Args.Handled)
+        {
+            args.Args.IsWeightless = true;
+            args.Args.Handled = true;
+        }
     }
 }
