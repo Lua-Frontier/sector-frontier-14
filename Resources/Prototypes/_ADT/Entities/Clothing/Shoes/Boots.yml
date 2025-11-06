@@ -31,12 +31,12 @@
   components:
     - type: Action
       icon: { sprite: ADT/Clothing/Shoes/Boots/advanced.rsi, state: icon }
-      iconOn: { sprite: ADT/Clothing/Shoes/Boots/advanced.rsi, state: icon-on }
+      iconOn:
+        sprite: ADT/Clothing/Shoes/Boots/advanced.rsi
+        state: icon-on
 
 - type: entity
   id: ActionToggleADTGasTank
-  name: action-name-internals-toggle
-  description: action-description-internals-toggle
   categories: [ HideSpawnMenu ]
   components:
     - type: Action

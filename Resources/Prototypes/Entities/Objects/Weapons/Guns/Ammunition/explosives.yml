@@ -14,7 +14,7 @@
   - type: Item
     size: Small
   - type: CartridgeAmmo
-    # proto: BulletRocket # Frontier
+    proto: BulletRocket
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -34,7 +34,7 @@
     - type: Item
       size: Small
     - type: CartridgeAmmo
-      # proto: BulletWeakRocket # Frontier
+      proto: BulletWeakRocket
       deleteOnSpawn: true
     - type: Sprite
       sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -64,7 +64,7 @@
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    # proto: BulletGrenadeBaton # Frontier
+    proto: BulletGrenadeBaton
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -82,7 +82,7 @@
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    # proto: BulletGrenadeBlast # Frontier
+    proto: BulletGrenadeBlast
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -100,7 +100,7 @@
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    # proto: BulletGrenadeFlash # Frontier
+    proto: BulletGrenadeFlash
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -118,7 +118,7 @@
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    # proto: BulletGrenadeFrag # Frontier
+    proto: BulletGrenadeFrag
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -136,7 +136,7 @@
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    # proto: BulletGrenadeCleanade # Frontier
+    proto: BulletGrenadeCleanade
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -154,7 +154,7 @@
   components:
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    # proto: BulletGrenadeEMP # Frontier
+    proto: BulletGrenadeEMP
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
@@ -187,7 +187,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    # proto: NFBulletCannonBall # Frontier
+    proto: NFBulletCannonBall
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -200,7 +200,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    # proto: NFPelletGrapeshotSpread # Frontier
+    proto: NFPelletGrapeshotSpread
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -213,7 +213,7 @@
   parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    # proto: NFPelletGlassSpread # Frontier
+    proto: NFPelletGlassSpread
     deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi

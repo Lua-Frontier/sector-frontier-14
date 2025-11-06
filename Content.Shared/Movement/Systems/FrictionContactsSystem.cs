@@ -80,15 +80,14 @@ public sealed class FrictionContactsSystem : EntitySystem
     {
         if (HasComp<VehicleComponent>(entity))
             return; // Lua
-
-        if (!EntityManager.TryGetComponent<PhysicsComponent>(entity, out var physicsComponent))
+        if (!TryComp<PhysicsComponent>(entity, out var physicsComponent))
             return;
 
         var friction = 0.0f;
         var frictionNoInput = 0.0f;
         var acceleration = 0.0f;
 
-        var isAirborne = physicsComponent.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(entity, physicsComponent);
+        var isAirborne = physicsComponent.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(entity.Owner);
 
         var remove = true;
         var entries = 0;

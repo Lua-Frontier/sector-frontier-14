@@ -6,12 +6,16 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: GhostTakeoverAvailable
+    - type: IdBind
 
 - type: randomHumanoidSettings
   id: EventHumanoidMindShielded
   parent: EventHumanoid
   components:
-    - type: MindShield
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: AntagImmune
 
 - type: randomHumanoidSettings
   id: EventHumanoidMindShieldedHuman
@@ -87,9 +91,10 @@
     - IPS
   randomizeName: false
   components:
-    - type: AutoImplant
-      implants:
-      - TrackingImplant
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - DeathRattleImplantCentcomm
 
 - type: randomHumanoidSettings
   id: EventHumanoidFSF

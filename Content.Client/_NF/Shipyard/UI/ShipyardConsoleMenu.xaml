@@ -56,10 +56,13 @@
                 Text="{Loc 'shipyard-console-unassign-deed'}"
                 ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
                 Disabled="True" />
-            <BoxContainer Orientation="Vertical">
-                <Label Text="{Loc 'shipyard-console-deed-label'}" />
-                <Label Name="DeedTitle"
-                    Text=""/>
+            <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True">
+                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}"/>
+                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" Name="DeedContainer" Visible="False">
+                <Label Text="{Loc 'shipyard-console-deed-label'}"/>
+                <Label Name="DeedTitle" Text=""/>
             </BoxContainer>
         </GridContainer>
         <BoxContainer Orientation="Horizontal" Margin="0 2 0 2" Name="RenameContainer" Visible="False">

@@ -2,7 +2,6 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using Content.Server.Administration.Commands;
 using Content.Server._Lua.Cloning.Components;
 using Content.Server._Lua.Cloning.Events;
 using Content.Server.GameTicking;
@@ -47,7 +46,7 @@ public sealed class CloningAppearanceSystem : EntitySystem
 
         if (ev.Component.Gear != null)
         {
-            SetOutfitCommand.SetOutfit(mobUid, ev.Component.Gear, EntityManager);
+            _spawning.EquipStartingGear(mobUid, ev.Component.Gear);
         }
 
         foreach (var nearbyEntity in _entityLookupSystem.GetEntitiesInRange(mobUid, 1f))

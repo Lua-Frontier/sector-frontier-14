@@ -1,3 +1,5 @@
+using Content.Shared.Administration;
+using Content.Shared.CCVar.CVarAccess;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
@@ -64,4 +66,10 @@ public sealed partial class CCVars
     public static readonly CVarDef<float> JukeboxVolume =
         CVarDef.Create("audio.jukebox_volume", 1.0f, CVar.ARCHIVE | CVar.CLIENTONLY);
 
+    /// <summary>
+    ///     Lobby music collection string
+    /// </summary>
+    [CVarControl(AdminFlags.VarEdit)]
+    public static readonly CVarDef<string> LobbyMusicCollection =
+        CVarDef.Create("audio.lobby_music_collection", "LuaLobbyMusic", CVar.REPLICATED | CVar.SERVER); // Lua: LobbyMusic<LuaLobbyMusic
 }

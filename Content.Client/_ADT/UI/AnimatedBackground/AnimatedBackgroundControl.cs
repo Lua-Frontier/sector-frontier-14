@@ -19,6 +19,8 @@ public sealed class AnimatedBackgroundControl : TextureRect
     public RSI? _RSI;
     private const int States = 1;
 
+    private List<AnimatedLobbyScreenPrototype>? _backgrounds;
+    private int _currentBackgroundIndex = -1;
     private IRenderTexture? _buffer;
 
     private readonly float[] _timer = new float[States];
@@ -33,9 +35,33 @@ public sealed class AnimatedBackgroundControl : TextureRect
         InitializeStates();
     }
 
+    private void EnsureBackgroundsLoaded()
+    {
+        if (_backgrounds != null) return;
+        _backgrounds = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>().ToList();
+        if (_backgrounds.Count == 0) return;
+        _currentBackgroundIndex = _backgrounds.FindIndex(p => NormalizeTexturePath(p.Path) == _rsiPath);
+        if (_currentBackgroundIndex < 0) _currentBackgroundIndex = 0;
+    }
+
+    private static string NormalizeTexturePath(string path)
+    {
+        if (string.IsNullOrEmpty(path)) return "/Textures/";
+        return path.StartsWith("/Textures/") ? path : $"/Textures/{path}";
+    }
+
     private void InitializeStates()
     {
-        _RSI ??= _resourceCache.GetResource<RSIResource>(_rsiPath).RSI;
+        try
+        {
+            _RSI = _resourceCache.GetResource<RSIResource>(_rsiPath).RSI;
+        }
+        catch
+        {
+            var normalized = NormalizeTexturePath(_rsiPath);
+            _RSI = _resourceCache.GetResource<RSIResource>(normalized).RSI;
+            _rsiPath = normalized;
+        }
 
         for (var i = 0; i < States; i++)
         {
@@ -51,6 +77,25 @@ public sealed class AnimatedBackgroundControl : TextureRect
     public void SetRSI(RSI? rsi)
     {
         _RSI = rsi;
+        InitializeStates();
+    }
+
+    public void NextBackground()
+    {
+        EnsureBackgroundsLoaded();
+        if (_backgrounds == null || _backgrounds.Count == 0) return;
+        _currentBackgroundIndex = (_currentBackgroundIndex + 1) % _backgrounds.Count;
+        _rsiPath = NormalizeTexturePath(_backgrounds[_currentBackgroundIndex].Path);
+        InitializeStates();
+    }
+
+    public void PreviousBackground()
+    {
+        EnsureBackgroundsLoaded();
+        if (_backgrounds == null || _backgrounds.Count == 0) return;
+        _currentBackgroundIndex--;
+        if (_currentBackgroundIndex < 0)  _currentBackgroundIndex = _backgrounds.Count - 1;
+        _rsiPath = NormalizeTexturePath(_backgrounds[_currentBackgroundIndex].Path);
         InitializeStates();
     }
 
@@ -105,7 +150,7 @@ public sealed class AnimatedBackgroundControl : TextureRect
         var backgroundsProto = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>().ToList();
         var random = new Random();
         var index = random.Next(backgroundsProto.Count);
-        _rsiPath = $"/Textures/{backgroundsProto[index].Path}";
+        _rsiPath = NormalizeTexturePath(backgroundsProto[index].Path);
         InitializeStates();
     }
 }

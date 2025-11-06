@@ -14,6 +14,7 @@ using Content.Client.Launcher;
 using Content.Client.Mapping;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.Playtime;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
@@ -64,6 +65,7 @@ namespace Content.Client.IoC
             collection.Register<TitleWindowManager>();
             collection.Register<JoinQueueManager>(); // Corvax-Queue
             collection.Register<DiscordAuthManager>(); // Corvax-DiscordAuth
+            collection.Register<ClientsidePlaytimeTrackingManager>();
         }
     }
 }

@@ -201,7 +201,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!TryComp<HandsComponent>(rider, out var hands))
             return false;
 
-        var emptyHands = hands.Hands.Values.Where(hand => hand.IsEmpty).ToList();
+        var emptyHands = hands.Hands.Keys.Where(handId => _hands.HandIsEmpty((rider, hands), handId)).ToList();
         if (emptyHands.Count < 2)
             return false;
 
@@ -216,10 +216,15 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!TryComp<HandsComponent>(rider, out var hands))
             return;
 
-        foreach (var hand in hands.Hands.Values)
+        foreach (var handId in hands.Hands.Keys)
         {
-            if (hand.IsEmpty
-                || !TryComp<VirtualItemComponent>(hand.HeldEntity, out var virt)
+            if (!_hands.TryGetHeldItem((rider, hands), handId, out var heldEntity))
+            {
+                _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
+                continue;
+            }
+            
+            if (!TryComp<VirtualItemComponent>(heldEntity.Value, out var virt)
                 || virt.BlockingEntity != vehicle)
             {
                 _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);

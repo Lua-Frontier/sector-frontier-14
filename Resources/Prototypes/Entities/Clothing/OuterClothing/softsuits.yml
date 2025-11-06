@@ -13,6 +13,7 @@
     tags:
     - SuitEVA
     - MonkeyWearable
+    - CorgiWearable
     - WhitelistChameleon
   - type: StaticPrice # Frontier
     price: 30 # Frontier
@@ -34,6 +35,8 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
+  - type: StaticPrice
+    price: 1000 # Helmet is 500
 
 #Emergency EVA
 - type: entity
@@ -62,6 +65,12 @@
       storagebase: !type:Container # Frontier
         ents: [] # Frontier
       beakerSlot: !type:ContainerSlot # _Lua imperial hardsuit injection
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - ScurretWearable
+    - MonkeyWearable
+    - WhitelistChameleon
 
 #Prisoner EVA
 - type: entity
@@ -164,3 +173,7 @@
       storagebase: !type:Container # Frontier
         ents: [] # Frontier
       beakerSlot: !type:ContainerSlot # _Lua imperial hardsuit injection
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

@@ -73,6 +73,7 @@ namespace Content.Client.Lobby.UI
                     DefaultState.Visible = true;
                     RightSide.Visible = false;
                     CenterPanel.Visible = false;
+                    PlaytimeCommentContainer.Visible = false;
                     DiscordsAndServers.Visible = false;
                     break;
                 case LobbyGuiState.Servers:
