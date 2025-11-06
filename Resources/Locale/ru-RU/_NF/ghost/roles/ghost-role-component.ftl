@@ -34,6 +34,13 @@ ghost-role-information-punk-boss-dungeon-name = Лидер панк-банды
 ghost-role-information-punk-boss-dungeon-description = Защищайте этот комплекс и свою добычу вместе с другими панками!
 ghost-role-information-syndie-boss-dungeon-name = Командир Синдиката
 ghost-role-information-syndie-boss-dungeon-description = Вы - Командир отряда Синдиката. Защищайте это место от незваных гостей из NT. Покажите, кто тут БОСС.
+ghost-role-information-curie-name = Кьюри
+ghost-role-information-curie-description = Слизнекот, что может собрать ТЭГ лапками меньше, чем за пять минут.
+ghost-role-information-cult-cat-name = Кот Культа Крови
+ghost-role-information-cult-cat-description = Самое милое и доброжелательное создание Культа Крови... Ведь так?
+ghost-role-information-cult-cat-rules = Вы являетесь [color=yellow][bold]свободным агентом[/bold][/color] и вольны выбирать свой образ жизни самостоятельно.
+                                        Пожалуйста, обратите внимание, что [color=yellow]все правила сервера по-прежнему применяются к вам.[/color] Кроме того:
+                                        - [color=red]НЕ НАНОСИТЕ[/color] урон шаттлам игроков или их содержимому.
 ghost-role-information-dungeon-boss-rules = Вы — [color=red][bold]командный антагонист[/bold][/color] для всех монстров этой экспедиции.
                                         Сражайтесь с игроками в комплексе, защищая свой комплекс.
                                         Обратите внимание, что [color=yellow]все правила сервера по-прежнему применяются к вам.[/color] Кроме того:
