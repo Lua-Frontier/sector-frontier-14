@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/05/2025 21:49:13
-  entityCount: 2030
+  time: 11/06/2025 13:15:26
+  entityCount: 2029
 maps: []
 grids:
 - 1
@@ -6354,7 +6354,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.8
       inletOneConcentration: 0.2
-      enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPipeBend
@@ -7172,18 +7171,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,5.5
       parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 793
-    components:
-    - type: Transform
-      anchored: False
-      rot: -1.5707963267948966 rad
-      pos: 4.5,5.5
-      parent: 1
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 794
