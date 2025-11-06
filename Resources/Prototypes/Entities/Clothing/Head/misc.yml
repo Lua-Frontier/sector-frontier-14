@@ -204,6 +204,7 @@
     price: 3000 # Frontier
   - type: AddAccentClothing
     accent: MobsterAccent
+  - type: NFTreasure # Frontier
 
 - type: entity
   parent: [ ClothingHeadBase, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
@@ -220,6 +221,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: AddAccentClothing
     accent: OwOAccent
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: [ClothingHeadHatCatEars, BaseToggleClothing]

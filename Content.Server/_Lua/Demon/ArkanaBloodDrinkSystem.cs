@@ -1,25 +1,26 @@
-using System;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Damage.Systems;
+using Content.Server.DoAfter;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.DoAfter;
-using Content.Shared.Humanoid;
-using Content.Shared.Verbs;
 using Content.Shared._Lua.Demon;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
-using Content.Server.DoAfter;
-using Content.Server.Damage.Systems;
-using Content.Shared.Body.Components;
-using Robust.Shared.Localization;
+using Content.Shared.Humanoid;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System;
 
 namespace Content.Server._Lua.Demon;
 

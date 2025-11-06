@@ -1,6 +1,7 @@
 using Content.Server._NF.Auth;
 using Content.Server.Acz;
 using Content.Server.Administration;
+using Content.Server._Lua.ChatFilter; // Lua
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
@@ -135,6 +136,7 @@ namespace Content.Server.Entry
             base.PostInit();
 
             IoCManager.Resolve<IChatSanitizationManager>().Initialize();
+            IoCManager.Resolve<ChatFilterManager>().Initialize(); // Lua
             IoCManager.Resolve<IChatManager>().Initialize();
             var configManager = IoCManager.Resolve<IConfigurationManager>();
             var resourceManager = IoCManager.Resolve<IResourceManager>();

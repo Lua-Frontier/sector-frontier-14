@@ -372,13 +372,13 @@ public sealed class ShuttleConsoleLockSystem : SharedShuttleConsoleLockSystem
         var hands = _handsSystem.EnumerateHands(user);
         foreach (var hand in hands)
         {
-            if (hand.HeldEntity == null)
+            if (!_handsSystem.TryGetHeldItem(user, hand, out var heldEntity))
                 continue;
 
-            if (TryComp<IdCardComponent>(hand.HeldEntity, out _))
-                results.Add(hand.HeldEntity.Value);
+            if (TryComp<IdCardComponent>(heldEntity, out _))
+                results.Add(heldEntity.Value);
 
-            if (TryComp<PdaComponent>(hand.HeldEntity, out var pdaComponent) && pdaComponent.ContainedId is not null)
+            if (TryComp<PdaComponent>(heldEntity, out var pdaComponent) && pdaComponent.ContainedId is not null)
                 results.Add(pdaComponent.ContainedId.Value);
         }
 
@@ -396,11 +396,11 @@ public sealed class ShuttleConsoleLockSystem : SharedShuttleConsoleLockSystem
         var hands = _handsSystem.EnumerateHands(user);
         foreach (var hand in hands)
         {
-            if (hand.HeldEntity == null)
+            if (!_handsSystem.TryGetHeldItem(user, hand, out var heldEntity))
                 continue;
 
-            if (TryComp<ShipyardVoucherComponent>(hand.HeldEntity, out _))
-                results.Add(hand.HeldEntity.Value);
+            if (TryComp<ShipyardVoucherComponent>(heldEntity, out _))
+                results.Add(heldEntity.Value);
         }
 
         return results;

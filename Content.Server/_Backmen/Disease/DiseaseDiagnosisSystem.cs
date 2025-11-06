@@ -1,10 +1,6 @@
-using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Server;
-using Content.Server.Nutrition.Components;
-using Content.Shared.Paper;
 using Content.Server.Popups;
-using Content.Shared.Power;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Disease;
@@ -15,11 +11,14 @@ using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Paper;
+using Content.Shared.Power;
 using Content.Shared.Tools.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server.Backmen.Disease;
 
@@ -116,7 +115,8 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
     /// </summary>
     private void OnAfterInteractUsing(EntityUid uid, DiseaseDiagnoserComponent component, AfterInteractUsingEvent args)
     {
-        var machine = Comp<DiseaseMachineComponent>(uid);
+        if (!TryComp<DiseaseMachineComponent>(uid, out var machine))
+            return;
         if (args.Handled || !args.CanReach)
             return;
 
@@ -163,9 +163,12 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
             _popupSystem.PopupEntity(Loc.GetString("diagnoser-cant-use-swab", ("machine", uid), ("swab", args.Used)), uid, args.User);
             return;
         }
+        
+        if (!TryComp<DiseaseMachineComponent>(uid, out var vaccineMachine))
+            return;
+            
         _popupSystem.PopupEntity(Loc.GetString("machine-insert-item", ("machine", uid), ("item", args.Used), ("user", args.User)), uid, args.User);
-        var machine = Comp<DiseaseMachineComponent>(uid);
-        machine.Disease = swab.Disease;
+        vaccineMachine.Disease = swab.Disease;
         EntityManager.DeleteEntity(args.Used);
 
         EnsureComp<DiseaseMachineRunningComponent>(uid);
@@ -212,6 +215,16 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
             report.AddMarkup(Loc.GetString("diagnoser-disease-report-not-infectious"));
             report.PushNewline();
         }
+        string cureResistLine = string.Empty;
+        cureResistLine += disease.CureResist switch
+        {
+            < 0f => Loc.GetString("diagnoser-disease-report-cureresist-none"),
+            <= 0.05f => Loc.GetString("diagnoser-disease-report-cureresist-low"),
+            <= 0.14f => Loc.GetString("diagnoser-disease-report-cureresist-medium"),
+            _ => Loc.GetString("diagnoser-disease-report-cureresist-high")
+        };
+        report.AddMarkup(cureResistLine);
+        report.PushNewline();
 
         // Add Cures
         if (disease.Cures.Count == 0)

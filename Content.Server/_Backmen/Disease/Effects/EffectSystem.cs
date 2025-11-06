@@ -1,10 +1,8 @@
-using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Effects;
 using Content.Shared.Interaction;
 using Robust.Shared.CPUJob.JobQueues.Queues;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Effects;
 
@@ -26,7 +24,6 @@ public sealed partial class DiseaseEffectSystem : SharedDiseaseEffectSystem
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseasePopUp>>(DiseasePopUp);
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseSnough>>(DiseaseSnough);
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseVomit>>(DiseaseVomit);
-        SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseHunger>>(DiseaseHunger);
         SubscribeLocalEvent<DiseaseCarrierComponent, DiseaseEffectArgs<DiseaseCyborgConversion>>(DiseaseCyborgConversion);
 
         SubscribeLocalEvent<DiseaseInfectionSpreadEvent>(OnSpreadEvent);

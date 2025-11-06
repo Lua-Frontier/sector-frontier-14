@@ -41,9 +41,14 @@ public sealed partial class DiseaseEffectSystem
         if(args.Handled)
             return;
         args.Handled = true;
+
+        // Check if entity still exists
+        if (!Exists(ent.Owner))
+            return;
+
         if (args.DiseaseEffect.Type == PopupRecipients.Local)
-            _popup.PopupEntity(Loc.GetString(args.DiseaseEffect.Message), args.DiseasedEntity, args.DiseasedEntity, args.DiseaseEffect.VisualType);
+            _popup.PopupEntity(Loc.GetString(args.DiseaseEffect.Message), ent.Owner, ent.Owner, args.DiseaseEffect.VisualType);
         else if (args.DiseaseEffect.Type == PopupRecipients.Pvs)
-            _popup.PopupEntity(Loc.GetString(args.DiseaseEffect.Message, ("person", Identity.Entity(args.DiseasedEntity, EntityManager))), args.DiseasedEntity, args.DiseaseEffect.VisualType);
+            _popup.PopupEntity(Loc.GetString(args.DiseaseEffect.Message, ("person", Identity.Entity(ent.Owner, EntityManager))), ent.Owner, args.DiseaseEffect.VisualType);
     }
 }

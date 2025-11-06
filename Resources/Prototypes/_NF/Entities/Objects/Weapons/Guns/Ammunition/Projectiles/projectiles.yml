@@ -306,6 +306,10 @@
   parent: BulletAcid
   id: NFBulletAcid
   categories: [ HideSpawnMenu ]
+  components:
+  - type: InfectOnProjectileHit
+    disease: XenoVirus
+    infectChance: 0.05
 
 - type: entity
   parent: BulletCannonBall

@@ -19,6 +19,8 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_breaker_flip.ogg
     weight: 7
     earliestStart: 15 # Frontier
     duration: 1
@@ -30,14 +32,18 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    weight: 5
     earliestStart: 15 # Frontier
     startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
     endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
     startAudio:
-      path: /Audio/_Lua/Announcements/poweroff2.ogg # Lua
       params:
-        volume: -4
+        volume: -0
+      path: /Audio/_Lua/Announcements/poweroff2.ogg # Lua
+  #  endAudio:
+  #    path: /Audio/_NF/Announcements/PocketSizedAndy/andy1_power_onnf.ogg  ##PowerGridCheckRule handles end audio, leaving this incase that breaks
+  #    params:
+  #     volume: -4
+    weight: 5
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -47,13 +53,13 @@
   id: NFSolarFlare
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_Lua/Announcements/attention.ogg # Lua
     weight: 4
     earliestStart: 15
     reoccurrenceDelay: 45
     startAnnouncement: station-event-solar-flare-nf-start-announcement
     endAnnouncement: station-event-solar-flare-nf-end-announcement
-    startAudio:
-      path: /Audio/_Lua/Announcements/attention.ogg # Lua
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule

@@ -1,0 +1,20 @@
+- type: latheRecipe
+  abstract: true
+  id: BaseBorgModuleRecipe
+  categories:
+    - Modules
+  completetime: 3
+  materials:
+    Steel: 250
+    Glass: 250
+    Plastic: 250
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseBorgModuleRecipe
+  id: BaseGoldBorgModuleRecipe
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50

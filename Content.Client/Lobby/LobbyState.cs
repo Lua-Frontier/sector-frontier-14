@@ -5,6 +5,7 @@ using Content.Client.Eui;
 using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
+using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
 using Content.Shared.CCVar;
@@ -34,6 +35,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
+        [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
 
         [ViewVariables] private CharacterSetupGui? _characterSetup;
 
@@ -53,7 +55,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby = (LobbyGui) _userInterfaceManager.ActiveScreen;
+            Lobby = (LobbyGui)_userInterfaceManager.ActiveScreen;
 
             var chatController = _userInterfaceManager.GetUIController<ChatUIController>();
             _gameTicker = _entityManager.System<ClientGameTicker>();
@@ -88,6 +90,21 @@ namespace Content.Client.Lobby
             Lobby.MinimizeButton.OnToggled += OnMinimizeToggled;
 
             Lobby.ServersButton.OnToggled += OnServersToggled;
+
+            Lobby.PreviousTrackButton.OnPressed += _ =>
+            {
+                _contentAudioSystem.PlayPreviousTrack();
+                UpdateMusicButtonState();
+            };
+            Lobby.StopTrackButton.OnToggled += OnMusicToggled;
+            Lobby.NextTrackButton.OnPressed += _ =>
+            {
+                _contentAudioSystem.PlayNextTrack();
+                UpdateMusicButtonState();
+            };
+            Lobby.PreviousBackgroundButton.OnPressed += _ => Lobby.Background.PreviousBackground();
+            Lobby.NextBackgroundButton.OnPressed += _ => Lobby.Background.NextBackground();
+            UpdateMusicButtonState();
         }
 
         protected override void Shutdown()
@@ -113,7 +130,10 @@ namespace Content.Client.Lobby
             if (args.Pressed)
                 Lobby?.SwitchState(LobbyGui.LobbyGuiState.Minimize);
             else
+            {
                 Lobby?.SwitchState(LobbyGui.LobbyGuiState.Default);
+                UpdateLobbyUi();
+            }
         }
 
         private void OnServersToggled(BaseButton.ButtonToggledEventArgs args)
@@ -122,6 +142,21 @@ namespace Content.Client.Lobby
                 Lobby?.SwitchState(LobbyGui.LobbyGuiState.Servers);
             else
                 Lobby?.SwitchState(LobbyGui.LobbyGuiState.Default);
+        }
+
+        private void OnMusicToggled(BaseButton.ButtonToggledEventArgs args)
+        {
+            if (Lobby == null) return;
+            _contentAudioSystem.ToggleMusicPlayback();
+            UpdateMusicButtonState();
+        }
+
+        private void UpdateMusicButtonState()
+        {
+            if (Lobby == null) return;
+            var isPlaying = _contentAudioSystem.IsMusicPlaying();
+            Lobby.StopTrackButton.Text = isPlaying ? Loc.GetString("ui-lobby-stop-track") : Loc.GetString("ui-lobby-resume-track");
+            Lobby.StopTrackButton.Pressed = !isPlaying;
         }
 
         public void SwitchState(LobbyGui.LobbyGuiState state)
@@ -219,7 +254,7 @@ namespace Content.Client.Lobby
             else
             {
                 Lobby!.StartTime.Text = string.Empty;
-                Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
+                Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready" : "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
@@ -230,6 +265,25 @@ namespace Content.Client.Lobby
             {
                 //Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob); // Frontier: ???
             }
+
+            var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
+            if (minutesToday > 60)
+            {
+                if (Lobby!.CenterPanel.Visible)
+                { Lobby.PlaytimeCommentContainer.Visible = true; }
+                var hoursToday = Math.Round(minutesToday / 60f, 1);
+
+                var chosenString = minutesToday switch
+                {
+                    < 180 => "lobby-state-playtime-comment-normal",
+                    < 360 => "lobby-state-playtime-comment-concerning",
+                    < 720 => "lobby-state-playtime-comment-grasstouchless",
+                    _ => "lobby-state-playtime-comment-selfdestructive"
+                };
+
+                Lobby.PlaytimeComment.SetMarkup(Loc.GetString(chosenString, ("hours", hoursToday)));
+            }
+            else Lobby!.PlaytimeCommentContainer.Visible = false;
         }
 
         //private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
