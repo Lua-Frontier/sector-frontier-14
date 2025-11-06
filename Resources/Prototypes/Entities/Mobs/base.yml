@@ -9,6 +9,7 @@
     noRot: true
     drawdepth: Mobs
   - type: MobCollision
+  - type: GravityAffected
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -49,6 +50,7 @@
   - type: PassiveThermalSignature # Mono
     signature: 225 # if nothing else is generating heat, 30m radius, 60m with 4 mobs, 120 with 16
   - type: ThermalSignature # Mono
+  - type: StunVisuals
 
 - type: entity
   save: false
@@ -112,6 +114,8 @@
     - Shock
     - Cold
     - Caustic
+    - Asphyxiation
+    - Radiation
   - type: DamageOnHighSpeedImpact
     damage:
       types:

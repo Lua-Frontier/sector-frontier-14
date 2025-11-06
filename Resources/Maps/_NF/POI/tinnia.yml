@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/30/2025 12:42:18
-  entityCount: 2257
+  time: 10/18/2025 17:33:25
+  entityCount: 2252
 maps: []
 grids:
 - 1
@@ -35,9 +35,6 @@ entities:
     - type: MetaData
     - type: Transform
       parent: invalid
-    - type: GridGodMode
-      protectedEntities: []
-    - type: NoShuttleFTL
     - type: MapGrid
       chunks:
         0,0:
@@ -92,7 +89,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
-      dampingModifier: 0.45
+      dampingModifier: 0.25
     - type: GridPathfinding
     - type: BecomesStation
       id: Tinnia
@@ -747,7 +744,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
-    - type: NavMap
 - proto: AirCanister
   entities:
   - uid: 1335
@@ -1333,20 +1329,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,1.5
-      parent: 1
-- proto: Biogenerator
-  entities:
-  - uid: 2255
-    components:
-    - type: Transform
-      pos: -2.5,5.5
-      parent: 1
-- proto: BiomassReclaimer
-  entities:
-  - uid: 2254
-    components:
-    - type: Transform
-      pos: 1.5,9.5
       parent: 1
 - proto: BookHowToCookForFortySpaceman
   entities:
@@ -4975,7 +4957,7 @@ entities:
     - type: Transform
       pos: 11.5,-11.5
       parent: 1
-- proto: CatwalkMono
+- proto: Catwalk
   entities:
   - uid: 228
     components:
@@ -6547,13 +6529,6 @@ entities:
     - type: Transform
       pos: 6.234462,10.665316
       parent: 1
-- proto: ClothingBeltUtilityFilled
-  entities:
-  - uid: 2257
-    components:
-    - type: Transform
-      pos: -0.53622466,13.488812
-      parent: 1
 - proto: ClothingEyesGlassesMercenary
   entities:
   - uid: 1453
@@ -7499,7 +7474,7 @@ entities:
   - uid: 1826
     components:
     - type: Transform
-      pos: -3.6199157,-4.3256507
+      pos: -4.760083,-3.3409824
       parent: 1
   - uid: 1827
     components:
@@ -7512,13 +7487,13 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -3.577674,-4.1456046
+      pos: -4.806958,-4.3722324
       parent: 1
   - uid: 1832
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -3.5615754,-4.6670704
+      pos: -4.806958,-4.5597324
       parent: 1
   - uid: 1833
     components:
@@ -7899,14 +7874,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-  - uid: 1787
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,11.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
 - proto: FoodBowlBig
   entities:
   - uid: 1818
@@ -7950,7 +7917,7 @@ entities:
   - uid: 1814
     components:
     - type: Transform
-      pos: 6.8379154,4.546718
+      pos: 6.624832,5.7784224
       parent: 1
   - uid: 1815
     components:
@@ -10553,20 +10520,13 @@ entities:
     - type: Transform
       pos: 2.5,5.5
       parent: 1
-- proto: KitchenDeepFryerCauldronPOI
+- proto: KitchenDeepFryerPOI
   entities:
   - uid: 2172
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,5.5
-      parent: 1
-- proto: KitchenElectricGrillFlatpack
-  entities:
-  - uid: 2256
-    components:
-    - type: Transform
-      pos: 2.0714335,5.6394625
       parent: 1
 - proto: KitchenElectricRangePOI
   entities:
@@ -10606,7 +10566,7 @@ entities:
   - uid: 206
     components:
     - type: Transform
-      pos: -0.5,8.5
+      pos: 1.5,9.5
       parent: 1
 - proto: LampGold
   entities:
@@ -11934,7 +11894,7 @@ entities:
   - uid: 2169
     components:
     - type: Transform
-      pos: 2.18116,-3.075414
+      pos: 1.695943,-2.2313094
       parent: 1
 - proto: Screwdriver
   entities:
@@ -12488,9 +12448,6 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -110.84267
-      state: Opening
 - proto: SpaceCash
   entities:
   - uid: 1855

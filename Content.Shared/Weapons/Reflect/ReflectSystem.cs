@@ -39,6 +39,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Examine;
+using Content.Shared.Localizations;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Reflect;
@@ -79,6 +81,7 @@ public sealed class ReflectSystem : EntitySystem
         // Subscribe to inventory events to catch vest slot changes
         SubscribeLocalEvent<ReflectUserComponent, DidEquipEvent>(OnDidEquip);
         SubscribeLocalEvent<ReflectUserComponent, DidUnequipEvent>(OnDidUnequip);
+        SubscribeLocalEvent<ReflectComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnReflectUserHitscan(EntityUid uid, ReflectUserComponent component, ref HitScanReflectAttemptEvent args)
@@ -93,14 +96,14 @@ public sealed class ReflectSystem : EntitySystem
         if (TryComp<HandsComponent>(uid, out var handsComp))
         {
             // Check items in hands
-            foreach (var hand in handsComp.Hands.Values)
+            foreach (var (handId, hand) in handsComp.Hands)
             {
-                if (hand.HeldEntity == null)
+                if (!_handsSystem.TryGetHeldItem(uid, handId, out var heldEntity))
                     continue;
 
-                var ent = hand.HeldEntity.Value;
+                var ent = heldEntity.Value;
                 if (TryComp<ReflectComponent>(ent, out var reflectComp) &&
-                    _toggle.IsActivated((ent, null)) &&
+                    _toggle.IsActivated(ent) &&
                     (reflectComp.Reflects & args.Reflective) != 0x0)
                 {
                     reflectiveItems.Add((ent, reflectComp));
@@ -112,7 +115,7 @@ public sealed class ReflectSystem : EntitySystem
         if (_inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var outerEntity) &&
             outerEntity != null &&
             TryComp<ReflectComponent>(outerEntity.Value, out var outerReflectComp) &&
-            _toggle.IsActivated((outerEntity.Value, null)) &&
+            _toggle.IsActivated(outerEntity.Value) &&
             (outerReflectComp.Reflects & args.Reflective) != 0x0)
         {
             reflectiveItems.Add((outerEntity.Value, outerReflectComp));
@@ -122,7 +125,7 @@ public sealed class ReflectSystem : EntitySystem
         if (_inventorySystem.TryGetSlotEntity(uid, "vest", out var vestEntity) &&
             vestEntity != null &&
             TryComp<ReflectComponent>(vestEntity.Value, out var vestReflectComp) &&
-            _toggle.IsActivated((vestEntity.Value, null)) &&
+            _toggle.IsActivated(vestEntity.Value) &&
             (vestReflectComp.Reflects & args.Reflective) != 0x0)
         {
             reflectiveItems.Add((vestEntity.Value, vestReflectComp));
@@ -156,14 +159,14 @@ public sealed class ReflectSystem : EntitySystem
         if (TryComp<HandsComponent>(uid, out var handsComp))
         {
             // Check items in hands
-            foreach (var hand in handsComp.Hands.Values)
+            foreach (var (handId, hand) in handsComp.Hands)
             {
-                if (hand.HeldEntity == null)
+                if (!_handsSystem.TryGetHeldItem(uid, handId, out var heldEntity))
                     continue;
 
-                var ent = hand.HeldEntity.Value;
+                var ent = heldEntity.Value;
                 if (TryComp<ReflectComponent>(ent, out var reflectComp) &&
-                    _toggle.IsActivated((ent, null)) &&
+                    _toggle.IsActivated(ent) &&
                     (reflectComp.Reflects & reflective.Reflective) != 0x0)
                 {
                     reflectiveItems.Add((ent, reflectComp));
@@ -175,7 +178,7 @@ public sealed class ReflectSystem : EntitySystem
         if (_inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var outerEntity) &&
             outerEntity != null &&
             TryComp<ReflectComponent>(outerEntity.Value, out var outerReflectComp) &&
-            _toggle.IsActivated((outerEntity.Value, null)) &&
+            _toggle.IsActivated(outerEntity.Value) &&
             (outerReflectComp.Reflects & reflective.Reflective) != 0x0)
         {
             reflectiveItems.Add((outerEntity.Value, outerReflectComp));
@@ -185,7 +188,7 @@ public sealed class ReflectSystem : EntitySystem
         if (_inventorySystem.TryGetSlotEntity(uid, "vest", out var vestEntity) &&
             vestEntity != null &&
             TryComp<ReflectComponent>(vestEntity.Value, out var vestReflectComp) &&
-            _toggle.IsActivated((vestEntity.Value, null)) &&
+            _toggle.IsActivated(vestEntity.Value) &&
             (vestReflectComp.Reflects & reflective.Reflective) != 0x0)
         {
             reflectiveItems.Add((vestEntity.Value, vestReflectComp));
@@ -216,7 +219,7 @@ public sealed class ReflectSystem : EntitySystem
     private bool TryReflectProjectile(EntityUid user, EntityUid reflector, EntityUid projectile, ProjectileComponent? projectileComp = null, ReflectComponent? reflect = null)
     {
         if (!Resolve(reflector, ref reflect, false) ||
-            !_toggle.IsActivated((reflector, null)) ||
+            !_toggle.IsActivated(reflector) ||
             !TryComp<ReflectiveComponent>(projectile, out var reflective) ||
             (reflect.Reflects & reflective.Reflective) == 0x0 ||
             !_random.Prob(reflect.ReflectProb) ||
@@ -294,7 +297,7 @@ public sealed class ReflectSystem : EntitySystem
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if (!TryComp<ReflectComponent>(reflector, out var reflect) ||
-            !_toggle.IsActivated((reflector, null)) ||
+            !_toggle.IsActivated(reflector) ||
             !_random.Prob(reflect.ReflectProb))
         {
             newDirection = null;
@@ -380,13 +383,13 @@ public sealed class ReflectSystem : EntitySystem
         if (TryComp<HandsComponent>(user, out var handsComp))
         {
             // Check items in hands
-            foreach (var hand in handsComp.Hands.Values)
+            foreach (var (handId, hand) in handsComp.Hands)
             {
-                if (hand.HeldEntity == null)
+                if (!_handsSystem.TryGetHeldItem(user, handId, out var heldEntity))
                     continue;
 
-                var ent = hand.HeldEntity.Value;
-                if (HasComp<ReflectComponent>(ent) && _toggle.IsActivated((ent, null)))
+                var ent = heldEntity.Value;
+                if (TryComp<ReflectComponent>(ent, out var reflectComp) && _toggle.IsActivated(ent))
                 {
                     hasReflectItem = true;
                     break;
@@ -400,16 +403,16 @@ public sealed class ReflectSystem : EntitySystem
             // Try standard "outerClothing" slot first
             if (_inventorySystem.TryGetSlotEntity(user, "outerClothing", out var outerEntity) &&
                 outerEntity != null &&
-                HasComp<ReflectComponent>(outerEntity.Value) &&
-                _toggle.IsActivated((outerEntity.Value, null)))
+                TryComp<ReflectComponent>(outerEntity.Value, out var outerReflectComp) &&
+                _toggle.IsActivated(outerEntity.Value))
             {
                 hasReflectItem = true;
             }
             // Fallback to "vest" slot if the first check fails
             else if (_inventorySystem.TryGetSlotEntity(user, "vest", out var vestEntity) &&
                 vestEntity != null &&
-                HasComp<ReflectComponent>(vestEntity.Value) &&
-                _toggle.IsActivated((vestEntity.Value, null)))
+                TryComp<ReflectComponent>(vestEntity.Value, out var vestReflectComp) &&
+                _toggle.IsActivated(vestEntity.Value))
             {
                 hasReflectItem = true;
             }
@@ -420,5 +423,31 @@ public sealed class ReflectSystem : EntitySystem
         else
             RemCompDeferred<ReflectUserComponent>(user);
     }
+
+    #region Examine
+    private void OnExamine(Entity<ReflectComponent> ent, ref ExaminedEvent args)
+    {
+        // This isn't examine verb or something just because it looks too much bad.
+        // Trust me, universal verb for the potential weapons, armor and walls looks awful.
+        var value = MathF.Round(ent.Comp.ReflectProb * 100, 1);
+
+        if (!_toggle.IsActivated(ent.Owner) || value == 0 || ent.Comp.Reflects == ReflectType.None)
+            return;
+
+        var compTypes = ent.Comp.Reflects.ToString().Split(", ");
+
+        List<string> typeList = new(compTypes.Length);
+
+        for (var i = 0; i < compTypes.Length; i++)
+        {
+            var type = Loc.GetString(("reflect-component-" + compTypes[i]).ToLower());
+            typeList.Add(type);
+        }
+
+        var msg = ContentLocalizationManager.FormatList(typeList);
+
+        args.PushMarkup(Loc.GetString("reflect-component-examine", ("value", value), ("type", msg)));
+    }
+    #endregion
 }
 

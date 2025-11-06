@@ -594,3 +594,11 @@
     - !type:BiomeTileLayer
       threshold: -1.0
       tile: FloorAsteroidSand
+
+# Alias: Grassland -> reuse Grasslands template
+- type: biomeTemplate
+  id: Grassland
+  layers:
+    - !type:BiomeMetaLayer
+      template: Grasslands
+      threshold: -1

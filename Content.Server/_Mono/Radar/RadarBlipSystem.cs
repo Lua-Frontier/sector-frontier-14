@@ -12,6 +12,7 @@ using Content.Shared._Mono.Radar;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -171,7 +172,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
                     if (distDyn > 160f) distDyn = 160f;
                     maxDistance = distDyn;
                 }
-                if (distance > maxDistance) continue;
+                var radarMax = component?.MaxRange ?? SharedRadarConsoleSystem.DefaultMaxRange;
+                var allowedDistance = Math.Min(maxDistance, radarMax);
+                if (distance > allowedDistance) continue;
                 if ((blip.RequireNoGrid && blipGrid != null) || (!blip.VisibleFromOtherGrids && blipGrid != radarGrid)) continue;
 
                 // due to PVS being a thing, things will break if we try to parent to not the map or a grid

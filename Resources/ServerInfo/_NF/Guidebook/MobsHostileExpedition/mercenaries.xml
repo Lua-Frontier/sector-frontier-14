@@ -104,9 +104,10 @@
   </Box>
   - [bold][color=#a4885c]Порог здоровья:[/color][/bold] 100 (критическое), 130 (смерть)
   - [bold][color=#a4885c]Скорость (бег/ходьба):[/color][/bold] 4.5 м/с (2.5 м/с)
-  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 14 [color=orange]тепловой[/color] (ретро лазерный пистолет); 5 [color=red]тупой[/color], 5 [color=red]режущий[/color], 5 [color=yellow]колющий[/color] (циркулярная пила)
+  - [bold][color=#a4885c]Урон (тип):[/color][/bold] 15 [color=yellow]колющий[/color] (.30 патрон)
   - [bold][color=#a4885c]Сопротивления урону:[/color][/bold] [color=red]тупой[/color], [color=red]режущий[/color] и [color=yellow]колющий[/color] 25%; [color=orange]тепловой[/color] 20%; [color=orange]едкий[/color] 10%
-  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (ретро лазерный пистолет)
+  - [bold][color=#a4885c]Особые способности:[/color][/bold] Стрелок (Gestio)
+
 
   [bold][color=#a4885c]________________________________________________________________________[/color]
 
@@ -125,8 +126,17 @@
 
   [bold][color=#a4885c]________________________________________________________________________[/color]
 
-  # Награды
-
+  # Цели миссий
+  ## Устранение
+  <Box>
+  <GuideEntityEmbed Entity="MobMercenaryCaptain"/>
+  </Box>
   Устраните крупное и опасное существо — [color=#a4885c]капитана наймников[/color] в отведённое время, чтобы получить денежное вознаграждение.
+
+  ## Уничтожение
+  <Box>
+  <GuideEntityEmbed Entity="MercenaryCounterfeitCache"/>
+  </Box>
+  Уничтожьте определённое количество [color=#a4885c]тайников с контрафактом[/color] в отведённое время, чтобы получить денежное вознаграждение.
 
 </Document>

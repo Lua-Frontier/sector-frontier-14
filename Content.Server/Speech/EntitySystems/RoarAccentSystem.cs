@@ -1,6 +1,7 @@
-using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
+using System.Text.RegularExpressions;
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -25,11 +26,7 @@ public sealed class RoarAccentSystem : EntitySystem
 
         // ADT-Localization-Start
         // р => ррр
-        message = Regex.Replace(
-            message,
-            "р+",
-            _random.Pick(new List<string>() { "рр", "ррр" })
-        );
+        message = Regex.Replace(message, "р+", _random.Pick(new List<string>() { "рр", "ррр" }));
         // ADT-Localization-End
         args.Message = message;
     }
