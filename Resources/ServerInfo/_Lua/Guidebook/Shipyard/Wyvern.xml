@@ -39,10 +39,10 @@
        # ОТДЕЛЫ
     </Box>
     <Box>
-        [color=#8bc9da]МЕДИЦИНСКИЙ ОТДЕЛ:[/color]
+       ## МЕДИЦИНСКИЙ ОТДЕЛ:
     </Box>
 
-    ## Медицинский отсек (содержание оборудования):
+    ### Медицинский отсек (содержание оборудования):
 
     - Стазисные кровати в размере x2
 
@@ -68,7 +68,7 @@
         <GuideEntityEmbed Entity="VendingMachineMedical"/>
     </Box>
 
-    ## Химическая лаборотория (содержание оборудования):
+    ### Химическая лаборотория (содержание оборудования):
 
     - Раздатчик химикатов
 
@@ -94,7 +94,7 @@
         <GuideEntityEmbed Entity="SmartFridge"/>
     </Box>
 
-    ## Хирургия и Морг (содержание оборудования):
+    ### Хирургия и Морг (содержание оборудования):
 
     - Операционный стол
 
@@ -109,10 +109,10 @@
     </Box>
 
     <Box>
-        [color=#be6bc3]НАУЧНО-ИССЛЕДОВАТЕЛЬСКИЙ ОТДЕЛ:[/color]
+       ## НАУЧНО-ИССЛЕДОВАТЕЛЬСКИЙ ОТДЕЛ:
     </Box>
 
-    ## Холл (содержание оборудования):
+    ### Холл (содержание оборудования):
 
     - Шкаф научного руководителя (со скафандром)
 
@@ -131,7 +131,7 @@
         <GuideEntityEmbed Entity="ComputerTabletopResearchAndDevelopment"/>
     </Box>
 
-    ## Рабочая зона (содержание оборудования):
+    ### Рабочая зона (содержание оборудования):
 
     - Протолат
 
@@ -139,7 +139,7 @@
 
     - Принтер схем
 
-    - Упаковщик
+    - ТехФаб Наёмников
 
     -Сервер РнД
 
@@ -148,10 +148,10 @@
         <GuideEntityEmbed Entity="Autolathe"/>
         <GuideEntityEmbed Entity="Protolathe"/>
         <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
-        <GuideEntityEmbed Entity="MachineFlatpacker"/>
+        <GuideEntityEmbed Entity="MercenaryTechFab"/>
     </Box>
 
-    ## Ксеноархеология и утилизаторский отсек (содержание оборудования):
+    ### Ксеноархеология и утилизаторский отсек (содержание оборудования):
 
     - Аналитическая консоль
 
@@ -177,7 +177,7 @@
     </Box>
 
     <Box>
-        [color=#9fed58]ГИДРОПОНИКА:[/color]
+       ## ГИДРОПОНИКА:
     </Box>
 
     - Гидропонные лотки x12
@@ -202,7 +202,7 @@
     </Box>
 
     <Box>
-        [color=#9fed58]БАР:[/color]
+       ## БАР:
     </Box>
 
     - Раздатчик безалкоголя
@@ -224,7 +224,7 @@
     </Box>
 
     <Box>
-        [color=#9fed58]КУХНЯ:[/color]
+       ## КУХНЯ:
     </Box>
 
     - Микроволновка
@@ -252,14 +252,87 @@
     </Box>
 
     <Box>
-        [color=#9fed58]ЗОНА ОТДЫХА:[/color]
+       ## ЗОНА ОТДЫХА:
     </Box>
 
     Зона отдыха состоит из 3 небольших блоков, а точнее из:
 
-    - Кафетерия
+    - Кафетерий
 
     - Библиотеки
 
     - Дорматориев
+
+    <Box>
+       ## ИНЖЕНЕРНЫЙ ОТДЕЛ:
+    </Box>
+
+    - Шкаф атмосферного техника
+
+    - Шкаф инженера
+
+    - ТвоИнструменты
+
+    - ИнжеМат
+
+    - Инженерный ТехФаб
+
+    <Box>
+        <GuideEntityEmbed Entity="LockerEngineerFilledHardsuit"/>
+        <GuideEntityEmbed Entity="VendingMachineYouTool"/>
+        <GuideEntityEmbed Entity="LockerAtmosphericsFilledHardsuit"/>
+        <GuideEntityEmbed Entity="VendingMachineEngivend"/>
+        <GuideEntityEmbed Entity="EngineeringTechFab"/>
+    </Box>
+
+    <Box>
+       ### ПРЕДПОЛЁТНЫЙ ЧЕК-ЛИСТ (питание):
+    </Box>
+
+    - Убедитесь, что генератор ДАМ включён.
+
+    <Box>
+        <GuideEntityEmbed Entity="AmeController"/>
+    </Box>
+
+    - Убедитесь, что все узлы питания в норме и работают.
+
+    <Box>
+        <GuideEntityEmbed Entity="SMESAdvanced"/>
+        <GuideEntityEmbed Entity="SubstationBasic"/>
+        <GuideEntityEmbed Entity="APCBasic"/>
+    </Box>
+
+    ### Особенности питания:
+
+    - Питание на данном корабля раздельное для западной и восточной части.
+
+    <Box>
+       ## АТМОСФЕРНЫЙ ОТДЕЛ:
+    </Box>
+
+    <Box>
+    ### ПРЕДПОЛЁТНЫЙ ЧЕК-ЛИСТ (атмосфера):
+    </Box>
+    - Трубы покрашенные в [color=#6c3a92]ДАННЫЙ ЦВЕТ[/color], являются системой труб ведущие к смесителю газов.
+
+    - Смеситель газов уже настроен на 22% O2 и 78% N2, необходимых для оптимальной воздушной смеси.
+
+    <Box>
+        <GuideEntityEmbed Entity="GasMixer"/>
+    </Box>
+    
+    - Трубы покрашенные в [color=#0000b9]ДАННЫЙ ЦВЕТ[/color], соединены с вентиляцией судна и транспортируют воздушную смесь.
+
+    <Box>
+        <GuideEntityEmbed Entity="GasVentPump"/>
+        <GuideEntityEmbed Entity="AirCanister"/>
+    </Box>
+
+    - Трубы покрашенные в [color=#b70000]ДАННЫЙ ЦВЕТ[/color], соединены с скрубберами судна и необходимы для выведения газовых отходов.
+
+    <Box>
+        <GuideEntityEmbed Entity="GasVentScrubber"/>
+        <GuideEntityEmbed Entity="CarbonDioxideCanister"/>
+    </Box>
 </Document>
