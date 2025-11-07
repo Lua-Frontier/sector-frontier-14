@@ -106,17 +106,25 @@ public sealed partial class SalvageSystem
                 return;
             }
         }
+        if (missionparams.Seed != args.Seed)
+        {
+            PlayDenySound((uid, component));
+            UpdateConsoles((station.Value, data));
+            return;
+        }
+
         var consoleXform = Transform(uid);
         if (consoleXform.MapUid != null)
         {
             data.ReturnMapUid = consoleXform.MapUid.Value;
             data.ReturnWorldPosition = _transform.GetWorldPosition(consoleXform);
         }
+
+        data.ActiveMission = args.Index;
         SpawnMission(missionparams, station.Value, null);
         #endregion Frontier FTL changes
         // End Frontier
 
-        data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, _prototypeManager.Index<SalvageDifficultyPrototype>(missionparams.Difficulty), missionparams.Seed); // Frontier: add MissionType
         // Frontier - TODO: move this to progression for secondary window timer
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);

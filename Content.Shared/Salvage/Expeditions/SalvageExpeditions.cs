@@ -62,6 +62,7 @@ public sealed partial class SalvageExpeditionConsoleComponent : Component
 public sealed class ClaimSalvageMessage : BoundUserInterfaceMessage
 {
     public ushort Index;
+    public int Seed;
 }
 
 // Frontier: early expedition finish

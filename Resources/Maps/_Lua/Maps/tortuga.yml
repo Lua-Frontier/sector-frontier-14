@@ -8674,58 +8674,16 @@ entities:
   entities:
   - uid: 1246
     components:
-    - type: MetaData
-      desc: Это привлекательная игрушка, почему вам кажется, что он хочет удалить пиратов?
-      name: Плюшевый Хакс
     - type: Transform
       pos: 24.375187,4.541689
       parent: 1
-    - type: MovedByPressure
-      enabled: False
-    - type: Godmode
-      wasMovedByPressure: True
-    missingComponents:
-    - Item
-    - Pullable
 - proto: PlushieIrisLua
   entities:
   - uid: 1529
     components:
-    - type: MetaData
-      desc: >-
-        Мы живём прямо как в книге 1984 Джорджа Оруэлла.
-
-        Нет, я ее не читал, но мне кажется, что в книжке всё так же как у и нас..
     - type: Transform
       pos: 25.492704,4.57891
       parent: 1
-    - type: UseDelay
-      delays:
-        default:
-          endTime: 0
-          startTime: 0
-          length: 1
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - food
-    - type: MovedByPressure
-      enabled: False
-    - type: ContainerContainer
-      containers:
-        solution@food: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1530
-        stash: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Godmode
-      wasMovedByPressure: True
-    missingComponents:
-    - Item
-    - Pullable
 - proto: PlushiePinkFox
   entities:
   - uid: 1027
