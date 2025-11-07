@@ -13,6 +13,7 @@ using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -49,6 +50,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly DiscordChatLink _discordChatLink = default!;
         [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
+        [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
 
         [GeneratedRegex(@"^https://(?:(?:canary|ptb)\.)?discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -709,9 +711,8 @@ namespace Content.Server.Administration.Systems
             base.OnBwoinkTextMessage(message, eventArgs);
 
             var senderSession = eventArgs.SenderSession;
-
-            if (_chatFilter.IsProhibitedContent(senderSession, message.Text))
-                return;
+            var experienced = _playTimeTracking.GetOverallPlaytime(senderSession) >= TimeSpan.FromHours(40);
+            if (!experienced && _chatFilter.IsProhibitedContent(senderSession, message.Text)) return;
 
             // Confirm that this person is actually allowed to send a message here.
             var personalChannel = senderSession.UserId == message.UserId;

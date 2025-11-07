@@ -14,6 +14,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Server.Players.PlayTimeTracking;
 
 namespace Content.Server._Lua.ChatFilter;
 
@@ -26,10 +27,12 @@ public sealed class ChatFilterManager
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
     private readonly Dictionary<NetUserId, Queue<(string Message, TimeSpan Timestamp)>> _messageHistory = new();
     private const int MaxRepeatedMessages = 3;
     private const int MessageHistorySize = 5;
-    private static readonly TimeSpan MessageHistoryTimeout = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan MessageHistoryTimeout = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan ExperiencedThreshold = TimeSpan.FromHours(40);
     private static readonly Regex SingleWordRegex = new(@"^(\w+)$", RegexOptions.Compiled);
     private static readonly Regex WordBoundaryRegex = new(@"\b(\w+)\b", RegexOptions.Compiled);
 
@@ -523,13 +526,14 @@ public sealed class ChatFilterManager
             return false;
 
         if (_adminManager.IsAdmin(session)) return false;
+        var experienced = _playTimeTracking.GetOverallPlaytime(session) >= ExperiencedThreshold;
         if (CheckRepeatedMessages(session.UserId, message))
         {
-            LogAndNotify(source, "повторяющиеся сообщения");
+            LogAndNotify(source, _loc.GetString("chat-filter-repeated-message"));
             session.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
             return true;
         }
-        if (!CheckProhibitedContent(message)) return false;
+        if (!CheckProhibitedContent(message, experienced)) return false;
         LogAndNotify(source, message);
         session.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
         return true;
@@ -538,22 +542,28 @@ public sealed class ChatFilterManager
     public bool IsProhibitedContent(ICommonSession source, string message)
     {
         if (_adminManager.IsAdmin(source)) return false;
+        var experienced = _playTimeTracking.GetOverallPlaytime(source) >= ExperiencedThreshold;
         if (CheckRepeatedMessages(source.UserId, message))
         {
-            LogAndNotify(source, "повторяющиеся сообщения");
+            LogAndNotify(source, _loc.GetString("chat-filter-repeated-message"));
             source.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
             return true;
         }
 
-        if (!CheckProhibitedContent(message)) return false;
+        if (!CheckProhibitedContent(message, experienced)) return false;
         LogAndNotify(source, message);
         source.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
         return true;
     }
 
-    private bool CheckProhibitedContent(string message)
+    private bool CheckProhibitedContent(string message, bool experienced)
     {
         var normalized = message.TrimEnd().ToLower();
+        if (experienced)
+        {
+            normalized = normalized.Replace("набегатор", "_");
+            normalized = normalized.Replace("набег", "_");
+        }
         foreach (var phrase in ProhibitedPhrases)
         { if (normalized.Contains(phrase)) return true; }
         foreach (var pattern in ProhibitedPatterns)
