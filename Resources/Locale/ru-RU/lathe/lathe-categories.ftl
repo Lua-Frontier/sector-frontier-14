@@ -20,3 +20,7 @@ lathe-category-neck = Neck
 # Frontier lines below
 lathe-category-evasuits = ЕВА
 lathe-category-armor-nf = Броня
+lathe-category-rmc-ammo = Боеприпасы RMC
+lathe-category-rmc-magazines = Магазины RMC
+lathe-category-n14-ammo = Боеприпасы N14
+lathe-category-n14-magazines = Магазины N14

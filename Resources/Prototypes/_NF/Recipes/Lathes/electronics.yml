@@ -1,22 +1,6 @@
 # region Machines
 
 - type: latheRecipe
-  id: CargoTechFabCircuitboardNF
-  parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
-  result: CargoTechFabCircuitboardNF
-  materials:
-    Steel: 800
-    Glass: 900
-
-- type: latheRecipe
-  id: SalvageTechFabCircuitboardNF
-  parent: [BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
-  result: SalvageTechFabCircuitboardNF
-  materials:
-    Steel: 800
-    Glass: 900
-
-- type: latheRecipe
   id: BlueprintLithographMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory]
   result: BlueprintLithographMachineCircuitboard
