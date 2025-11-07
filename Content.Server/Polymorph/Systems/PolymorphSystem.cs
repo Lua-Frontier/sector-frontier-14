@@ -20,6 +20,9 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Physics.Components; // Lua
+using Robust.Shared.Physics.Systems; // Lua
+using System.Numerics; // Lua
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -42,6 +45,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Lua
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
 
@@ -364,6 +368,16 @@ public sealed partial class PolymorphSystem : EntitySystem
                 ("child", Identity.Entity(parent, EntityManager))),
                 parent);
         QueueDel(uid);
+
+        // Lua
+        if (component.Configuration.Entity == "DesynchronizedPocket")
+        {
+            if (TryComp<PhysicsComponent>(parent, out var physics))
+            {
+                _physics.SetLinearVelocity(parent, Vector2.Zero, body: physics);
+                _physics.SetAngularVelocity(parent, 0f, body: physics);
+            }
+        }
 
         return parent;
     }
