@@ -311,7 +311,7 @@
   name:  uplink-merc-lightrifle-name
   description: uplink-merc-lightrifle-desc
   productEntity: NFMagazineRifle30
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: red }
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
   cost:
     Speso: 1000
   categories:
@@ -1013,3 +1013,19 @@
     - !type:BuyerJobCondition
       whitelist:
         - MercenaryBase
+
+- type: listing
+  id: UplinkMercenaryCoordinatesDiskMercenary
+  name: uplink-mercenary-coordinates-disk-mercenary-name
+  description: uplink-mercenary-coordinates-disk-mercenary-desc
+  productEntity: CoordinatesDiskMercenary
+  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
+  cost:
+    Speso: 1000
+  categories:
+    - UplinkMercenaryNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink

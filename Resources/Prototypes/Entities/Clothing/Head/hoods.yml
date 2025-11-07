@@ -25,6 +25,8 @@
       Snout: HEAD
       HeadTop: HEAD
       HeadSide: HEAD
+  - type: DiseaseProtection #Backmen & Ataraxia anti viral
+    protection: 0.2
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -205,6 +207,11 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - ClothMade
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase

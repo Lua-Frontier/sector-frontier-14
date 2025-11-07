@@ -2133,3 +2133,186 @@ Entries:
   id: 157
   time: '2025-10-25T15:08:28.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/319
+- author: LeptonComm
+  changes:
+    - type: Fix
+      message: >-
+        Залил нормальный сейв МЦ. В прошлый раз залился старый, недоделанный.
+        Прошу прощения у игроков МК, что испытали с ним проблемы
+  id: 158
+  time: '2025-10-26T07:07:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/322
+- author: HacksLua
+  changes:
+    - type: Add
+      message: События теперь появляются в любом секторе
+    - type: Tweak
+      message: Увеличен разрыв между генерациями звёзд
+    - type: Fix
+      message: Исправлено перемещение на фронтир
+    - type: Fix
+      message: Исправлена разборка тёмного мостика
+    - type: Fix
+      message: Исправлена работа ваучеров
+    - type: Tweak
+      message: Кулдан БСС по сектору и по звёздам теперь единая система
+    - type: Tweak
+      message: Через голопады теперь можно звонить везде
+    - type: Tweak
+      message: Увеличена дистанция кабелей до 6 тайлов вместо 3
+    - type: Tweak
+      message: Уменьшена дистанция основных секторов до фронтира
+    - type: Add
+      message: Добавлены прямые гиперлинии от основных секторов к ПА
+    - type: Add
+      message: Добавлены диски координат в аплинки фракций
+  id: 159
+  time: '2025-10-26T11:30:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/324
+- author: salo2016
+  changes:
+    - type: Tweak
+      message: L-20 Apollo Heavy Laser Cannon хп 20.000<275.000
+  id: 160
+  time: '2025-10-26T11:36:28.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/325
+- author: salo2016
+  changes:
+    - type: Fix
+      message: >-
+        Ампулу нельзя вставить/заменить через закрытый ЭП отсек; Исправлен баг в
+        коде вызывающий ранее не критичные ошибки;
+    - type: Tweak
+      message: Вставка ампулы занимает две секунды;
+    - type: Tweak
+      message: Ампула больше не взрывается;
+  id: 161
+  time: '2025-10-26T11:36:58.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/311
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлено руководство по StarMap
+    - type: Remove
+      message: Удалено веселье!
+    - type: Tweak
+      message: >-
+        Шаттлы луатех временно нельзя будет разобрать на компоненты после
+        покупки
+    - type: Tweak
+      message: 'Увеличено отдаление в StarMap '
+    - type: Tweak
+      message: Изменен спрайт секторального баннера ДСБФ
+    - type: Tweak
+      message: Помеха для БСС теперь в радиусе 1500 метров, откат БСС 60 секунд
+    - type: Fix
+      message: Исправлен ERROR теневого кошмара
+    - type: Fix
+      message: Легаси турели прошлой сборки теперь тоже требуют сервер
+    - type: Fix
+      message: События теперь появляются в месте оповещения
+    - type: Fix
+      message: Удален диск координат НФ из Контравенда
+    - type: Add
+      message: >-
+        Добавлен спавн случайных плат и компонентов на обломки (теперь можно
+        шаттл создать не имея шаттла при должном везении)
+    - type: Tweak
+      message: DeadDrop теперь появляются в случайных секторах
+    - type: Tweak
+      message: >-
+        В конце раунда после стыковки эвакуационного шаттла с ЦК теперь можно
+        будет прыгнуть к ЦК
+    - type: Tweak
+      message: >-
+        Теперь чтобы захватить сектор требуется нажать на баннер после его
+        закрепления и в открывшемся UI нажать на кнопку "Захватить сектор" в
+        течении 5ти минут сектор будет захвачен
+  id: 162
+  time: '2025-10-31T11:14:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/335
+- author: salo2016
+  changes:
+    - type: Add
+      message: Станция Нордфолл!
+    - type: Remove
+      message: Станция Тайпан;
+    - type: Fix
+      message: >-
+        Время на наёмника не требует игры именно за "Кадета", а суммировано с
+        общим временем ДСБФ;
+    - type: Fix
+      message: Маленькие правки на станции ДСБФ;
+  id: 163
+  time: '2025-10-31T11:47:35.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/327
+- author: ressuw
+  changes:
+    - type: Tweak
+      message: Изменен шаттл Huke
+  id: 164
+  time: '2025-10-31T11:47:55.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/331
+- author: ressuw
+  changes:
+    - type: Add
+      message: >-
+        Добавлен Биогенератор, био преработчик, упакованный электрогриль на
+        Тинию
+  id: 165
+  time: '2025-10-31T12:06:19.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/337
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Europa: Изменено название на радаре на BM-WK Europa. 90mm заменены на
+        импульсные лазеры и добавлен щит, слои брони увеличены. Remap by Covral.
+  id: 166
+  time: '2025-10-31T12:09:21.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/338
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Baron: Добавлено на судно начальное снаряжение, убран мусор внутри,
+        увеличена броня. Remap by Covral.
+  id: 167
+  time: '2025-10-31T12:19:33.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/339
+- author: fox76055
+  changes:
+    - type: Add
+      message: Новое судно для пиратов - Afaneor от Covral.
+  id: 168
+  time: '2025-10-31T12:51:47.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/342
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Concord-Wyvern: Переработан сервисный отдел, добавлен электролизер в
+        мед. отдел, добавлена комната уборщика в инженерный отдел, немного
+        расширен научный отдел, добавлена рояль в бар, накрутка уменьшена до
+        200000.
+  id: 169
+  time: '2025-10-31T17:19:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/343
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Возвращение кнопки Сеть во вкладку Настроек
+  id: 170
+  time: '2025-10-31T17:31:45.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/344
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Обновлен RobustToolbox до версии 267.3.0
+    - type: Add
+      message: Обновлен код болезней
+    - type: Add
+      message: Добавлен фильтр сообщений
+  id: 171
+  time: '2025-11-03T15:48:10.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/353

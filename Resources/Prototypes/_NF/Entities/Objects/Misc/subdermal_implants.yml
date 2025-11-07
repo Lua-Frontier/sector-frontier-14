@@ -108,7 +108,9 @@
   components:
   - type: SubdermalImplant
     permanent: true
-  - type: BibleUserImplant
+  - type: AddComponentsImplant
+    componentsToAdd:
+      - type: BibleUser
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -119,7 +121,10 @@
   components:
   - type: SubdermalImplant
     permanent: true
-  - type: MimePowersImplant
+  - type: AddComponentsImplant
+    componentsToAdd:
+    - type: MimePowers
+      preventWriting: false # Explicit in case upstream changes its mind on this.
 
 - type: entity
   parent: BaseSubdermalImplant

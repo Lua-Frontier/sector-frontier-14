@@ -4,6 +4,8 @@
 
 using Content.Server.Station.Components;
 using Robust.Shared.Map;
+using Content.Server.Shuttles.Systems;
+using Content.Server._Lua.Starmap.Components;
 using System.Linq;
 using System.Numerics;
 
@@ -14,6 +16,7 @@ public sealed class SectorOwnershipSystem : EntitySystem
     private readonly Dictionary<MapId, string> _ownerByMap = new();
     private readonly Dictionary<MapId, string> _sectorColorOverrideHex = new();
     private float _accum;
+    private float _blinkAccumulator = 0f;
 
     public override void Initialize()
     {
@@ -28,14 +31,46 @@ public sealed class SectorOwnershipSystem : EntitySystem
     {
         base.Update(frameTime);
         _accum += frameTime;
-        if (_accum < 60f) return;
-        _accum = 0f;
-        RecomputeOwnership();
+        _blinkAccumulator += frameTime;
+        if (_blinkAccumulator > 10f) _blinkAccumulator = 0f;
+        UpdateCapturingColors();
+        if (_accum >= 60f)
+        {
+            _accum = 0f;
+            RecomputeOwnership();
+        }
     }
 
     public IReadOnlyDictionary<MapId, string> GetOwnerByMap() => _ownerByMap;
 
     public IReadOnlyDictionary<MapId, string> GetSectorColorOverridesHex() => _sectorColorOverrideHex;
+
+    private void UpdateCapturingColors() // srry C# gods, it's my shitcode....
+    {
+        var colorChanged = false;
+        var captureQuery = AllEntityQuery<SectorCaptureComponent, TransformComponent>();
+        while (captureQuery.MoveNext(out var uid, out var comp, out var xform))
+        {
+            if (!comp.IsCapturing || xform.MapID == MapId.Nullspace) continue;
+            if (!IsOnBeaconGrid(xform.MapID, xform)) continue;
+            var mapId = xform.MapID;
+            var blinkCycle = _blinkAccumulator % 1.0f;
+            var t = MathF.Abs(MathF.Sin(blinkCycle * MathF.PI));
+            Color factionColor;
+            try { factionColor = Color.FromHex(comp.ColorHex); }
+            catch { factionColor = Color.White; }
+            var neutralColor = Color.White;
+            var blinkColor = Color.InterpolateBetween(neutralColor, factionColor, t);
+            var blinkHex = blinkColor.ToHex();
+            if (!_sectorColorOverrideHex.TryGetValue(mapId, out var currentColor) || currentColor != blinkHex)
+            {
+                _sectorColorOverrideHex[mapId] = blinkHex;
+                colorChanged = true;
+            }
+        }
+        if (colorChanged)
+        { TryRefreshConsoles(); }
+    }
 
     private void OnColorOverrideAdded(Entity<StarMapSectorColorOverrideComponent> ent, ref ComponentStartup args)
     {
@@ -67,6 +102,14 @@ public sealed class SectorOwnershipSystem : EntitySystem
     {
         var newOwners = new Dictionary<MapId, string>();
         var newColors = new Dictionary<MapId, string>();
+        var capturingMaps = new HashSet<MapId>();
+        var captureQuery = AllEntityQuery<SectorCaptureComponent, TransformComponent>();
+        while (captureQuery.MoveNext(out var uid, out var comp, out var xform))
+        {
+            if (comp.IsCapturing && xform.MapID != MapId.Nullspace)
+            { capturingMaps.Add(xform.MapID); }
+        }
+
         var starMapQuery = AllEntityQuery<Content.Shared._Lua.Starmap.Components.StarMapComponent>();
         while (starMapQuery.MoveNext(out var uid, out var starMap))
         {
@@ -88,9 +131,25 @@ public sealed class SectorOwnershipSystem : EntitySystem
         foreach (var (k, v) in newOwners)
         { if (!_ownerByMap.TryGetValue(k, out var old) || old != v) { _ownerByMap[k] = v; changed = true; } }
         foreach (var key in _sectorColorOverrideHex.Keys.ToList())
-        { if (!newColors.TryGetValue(key, out var _)) { _sectorColorOverrideHex.Remove(key); changed = true; } }
+        {
+            if (!newColors.TryGetValue(key, out var _) && !capturingMaps.Contains(key))
+            {
+                _sectorColorOverrideHex.Remove(key);
+                changed = true;
+            }
+        }
+
         foreach (var (k, v) in newColors)
-        { if (!_sectorColorOverrideHex.TryGetValue(k, out var old) || old != v) { _sectorColorOverrideHex[k] = v; changed = true; } }
+        {
+            if (!capturingMaps.Contains(k))
+            {
+                if (!_sectorColorOverrideHex.TryGetValue(k, out var old) || old != v)
+                {
+                    _sectorColorOverrideHex[k] = v;
+                    changed = true;
+                }
+            }
+        }
         if (changed) TryRefreshConsoles();
     }
 
@@ -133,9 +192,20 @@ public sealed class SectorOwnershipSystem : EntitySystem
         return null;
     }
 
+    public bool IsOnBeaconGrid(MapId mapId, TransformComponent xform)
+    {
+        try
+        {
+            var beaconGrid = FindBeaconGrid(mapId);
+            if (beaconGrid == null) return false;
+            return xform.GridUid == beaconGrid;
+        }
+        catch { return false; }
+    }
+
     private void TryRefreshConsoles()
     {
-        try { EntityManager.System<Content.Server.Shuttles.Systems.ShuttleConsoleSystem>().RefreshShuttleConsoles(); }
+        try { EntityManager.System<ShuttleConsoleSystem>().RefreshShuttleConsoles(); }
         catch { }
     }
 }

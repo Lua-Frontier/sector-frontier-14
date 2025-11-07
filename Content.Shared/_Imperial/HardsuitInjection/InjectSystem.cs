@@ -14,6 +14,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Robust.Shared.Timing;
 using Content.Shared.Imperial.HardsuitInjection.Components;
 using Content.Shared.Clothing.EntitySystems;
+using Content.Shared.Interaction;
 
 namespace Content.Shared.Imperial.HardsuitInjection.EntitySystems;
 
@@ -39,6 +40,7 @@ public sealed partial class InjectSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<InjectComponent, UpdateECEvent>(OnUpdateEC);
+        SubscribeLocalEvent<InjectComponent, InteractUsingEvent>(OnHardsuitInteractUsing, before: new[] { typeof(ItemSlotsSystem) });
 
         InitializeBaseEvents();
         InitializeActionEvents();
@@ -54,12 +56,48 @@ public sealed partial class InjectSystem : EntitySystem
         if (!TryComp<SolutionContainerManagerComponent>(beakerUid, out var solutionContainerComponent)) return;
         if (!_solutions.TryGetSolution((beakerUid, solutionContainerComponent), "beaker", out var solutionEntity, out var _)) return;
 
-        var removedSolution = _solutions.SplitSolution((beakerUid, solutionEntity.Value.Comp), args.ReagentTransfer.Value);
+        var removedSolution = _solutions.SplitSolution(solutionEntity.Value, args.ReagentTransfer.Value);
         args.RemovedReagentAmount = removedSolution;
+    }
+    private void OnHardsuitInteractUsing(EntityUid uid, InjectComponent component, InteractUsingEvent args)
+    {
+        if (args.Handled) return;
+        
+        var used = args.Used;
+        var user = args.User;
 
-        if (!TryComp<AppearanceComponent>(beakerUid, out var appearance)) return;
+        if (!TryComp<AmpulaComponent>(used, out var ampulaComponent)) 
+        {
+            return;
+        }
+        args.Handled = true;
 
-        _solutions.UpdateAppearance((beakerUid, solutionEntity.Value.Comp, appearance));
+        if (_netManager.IsClient) return;
+
+        if (!TryComp<ItemSlotsComponent>(uid, out var itemslots)) return;
+        if (!_itemSlotsSystem.TryGetSlot(uid, component.ContainerId, out var itemslot, itemslots)) return;
+        if (!itemslot.InsertOnInteract) return;
+
+        if (itemslot.Locked)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("hardsuitinjection-closed"), user, user);
+            return;
+        }
+
+        if (!_itemSlotsSystem.CanInsert(uid, used, user, itemslot, swap: itemslot.Swap)) return;
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, component.AmpulaInsertDelay, new AmpulaInsertDoAfterEvent(), uid, target: args.Target, used: used)
+        {
+            BreakOnMove = false,
+            BreakOnDamage = false,
+            NeedHand = true,
+            BlockDuplicate = true,
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfterArgs))
+        {
+            return;
+        }
     }
 
     #endregion

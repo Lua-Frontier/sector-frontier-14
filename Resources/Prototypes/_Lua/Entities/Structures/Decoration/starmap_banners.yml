@@ -14,7 +14,14 @@
   name: pirate sector banner
   description: A pirate banner marking control over a sector.
   components:
-  - type: StarMapSectorColorOverride
+  - type: ActivatableUI
+    key: enum.SectorCaptureUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SectorCaptureUiKey.Key:
+        type: SectorCaptureBoundUserInterface
+  - type: SectorCapture
+    captureDurationSeconds: 300
     colorHex: "#948471"
     faction: "Pirates"
 
@@ -24,7 +31,14 @@
   name: syndicate sector banner
   description: A syndicate banner marking control over a sector.
   components:
-  - type: StarMapSectorColorOverride
+  - type: ActivatableUI
+    key: enum.SectorCaptureUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SectorCaptureUiKey.Key:
+        type: SectorCaptureBoundUserInterface
+  - type: SectorCapture
+    captureDurationSeconds: 300
     colorHex: "#d93204"
     faction: "Syndicate"
 
@@ -34,7 +48,17 @@
   name: sector security banner
   description: Special NFSD sector banner. Colors the sector star in the starmap.
   components:
-  - type: StarMapSectorColorOverride
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-banner
+  - type: ActivatableUI
+    key: enum.SectorCaptureUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SectorCaptureUiKey.Key:
+        type: SectorCaptureBoundUserInterface
+  - type: SectorCapture
+    captureDurationSeconds: 300
     colorHex: "#96B089"
     faction: "Nfsd"
 

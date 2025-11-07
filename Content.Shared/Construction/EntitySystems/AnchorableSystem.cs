@@ -18,6 +18,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
+using Content.Shared._Lua.ShipProtection;
 
 namespace Content.Shared.Construction.EntitySystems;
 
@@ -95,6 +96,14 @@ public sealed partial class AnchorableSystem : EntitySystem
         if (!TryComp(args.Used, out ToolComponent? usedTool) || !_tool.HasQuality(args.Used, anchorable.Tool, usedTool))
             return;
 
+        // Luw
+        if (HasComp<ShipProtectionComponent>(uid))
+        {
+            _popup.PopupClient(Loc.GetString("ship-protection-active"), uid, args.User);
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = true;
         TryToggleAnchor(uid, args.User, args.Used, anchorable, usingTool: usedTool);
     }
@@ -122,7 +131,7 @@ public sealed partial class AnchorableSystem : EntitySystem
         _adminLogger.Add(
             LogType.Unanchor,
             LogImpact.Low,
-            $"{EntityManager.ToPrettyString(args.User):user} unanchored {EntityManager.ToPrettyString(uid):anchored} using {EntityManager.ToPrettyString(used):using}"
+            $"{ToPrettyString(args.User):user} unanchored {ToPrettyString(uid):anchored} using {ToPrettyString(used):using}"
         );
     }
 
@@ -174,7 +183,7 @@ public sealed partial class AnchorableSystem : EntitySystem
         _adminLogger.Add(
             LogType.Anchor,
             LogImpact.Low,
-            $"{EntityManager.ToPrettyString(args.User):user} anchored {EntityManager.ToPrettyString(uid):anchored} using {EntityManager.ToPrettyString(used):using}"
+            $"{ToPrettyString(args.User):user} anchored {ToPrettyString(uid):anchored} using {ToPrettyString(used):using}"
         );
     }
 

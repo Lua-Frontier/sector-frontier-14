@@ -1,4 +1,4 @@
-﻿using Content.Server.Temperature.Components;
+using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Disease;
 using Robust.Shared.Prototypes;
 
@@ -35,14 +35,13 @@ public sealed partial class DiseaseCureSystem
         if(args.Handled)
             return;
 
-        args.Handled = true;
-
-        if (!_temperatureQuery.TryGetComponent(args.DiseasedEntity, out var temp))
+        if (!_temperatureQuery.TryGetComponent(ent.Owner, out var temp))
             return;
 
         if(temp.CurrentTemperature > args.DiseaseCure.Min && temp.CurrentTemperature < float.MaxValue)
         {
-            _disease.CureDisease(args.DiseasedEntity, args.Disease);
+            args.Handled = true;
+            _disease.CureDisease(ent, args.Disease);
         }
     }
 }

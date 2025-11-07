@@ -66,17 +66,22 @@ public sealed partial class DiseaseEffectSystem
         if(args.Handled)
             return;
         args.Handled = true;
+        
+        // Check if entity still exists
+        if (!Exists(ent.Owner))
+            return;
+        
         if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Add && args.DiseaseEffect.Component != "")
         {
-            _effectsSystem.TryAddStatusEffect(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time), args.DiseaseEffect.Refresh, args.DiseaseEffect.Component);
+            _effectsSystem.TryAddStatusEffect(ent.Owner, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time), args.DiseaseEffect.Refresh, args.DiseaseEffect.Component);
         }
         else if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Remove)
         {
-            _effectsSystem.TryRemoveTime(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
+            _effectsSystem.TryRemoveTime(ent.Owner, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
         }
         else if (args.DiseaseEffect.Type == StatusEffectDiseaseType.Set)
         {
-            _effectsSystem.TrySetTime(args.DiseasedEntity, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
+            _effectsSystem.TrySetTime(ent.Owner, args.DiseaseEffect.Key, TimeSpan.FromSeconds(args.DiseaseEffect.Time));
         }
     }
 }

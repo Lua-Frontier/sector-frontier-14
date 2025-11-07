@@ -1,10 +1,10 @@
-﻿using Content.Server.Humanoid;
-using Content.Server.Repairable;
+using Content.Server.Humanoid;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Repairable;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 
@@ -36,9 +36,9 @@ public sealed partial class DiseaseEffectSystem
         }
 
         var repairableComponent = EnsureComp<RepairableComponent>(ent);
-        repairableComponent.AllowSelfRepair = true;
-        repairableComponent.SelfRepairPenalty = 0.45f;
-        repairableComponent.FuelCost = 10;
+        repairableComponent.AllowSelfRepair = false;
+        repairableComponent.SelfRepairPenalty = 3f;
+        repairableComponent.FuelCost = 50;
         repairableComponent.DoAfterDelay = 8;
 
         _disease.CureDisease(ent, args.Disease);
@@ -63,6 +63,7 @@ public sealed partial class DiseaseEffectSystem
                 }
             }
 
+            _appearanceSystem.AddMarking(ent, "LongEarsWide", Color.Red, true, true, appearanceComponent);
             _appearanceSystem.AddMarking(ent, "MothAntennasFeathery", Color.Red, true, true, appearanceComponent);
             _appearanceSystem.AddMarking(ent, "TailSuccubus", Color.Red, true, true, appearanceComponent);
             appearanceComponent.Age = 1;

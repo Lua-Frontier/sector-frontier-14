@@ -24,11 +24,32 @@
   - type: Tag
     tags:
     - FitsHardsuit
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior
+        solution: beaker
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   id: ActionToggleInjection
-  name: hardsuitinjection-toggle
-  description: hardsuitinjection-toggledescription
   components:
   - type: Action
     itemIconStyle: NoItem
@@ -41,8 +62,6 @@
 
 - type: entity
   id: ActionInjection
-  name: hardsuitinjection-injection
-  description: hardsuitinjection-injectiondescription
   components:
   - type: Action
     itemIconStyle: NoItem

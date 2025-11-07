@@ -68,6 +68,9 @@ public sealed partial class InjectComponent : Component
     [DataField("autoCloseDelay")]
     public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(5);
 
+    [DataField("ampulaInsertDelay")]
+    public TimeSpan AmpulaInsertDelay = TimeSpan.FromSeconds(2);
+
     [ViewVariables]
     public TimeSpan LastOpenTime;
 

@@ -1,6 +1,6 @@
-using Content.Server.Administration.Commands;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
+using Content.Server.Clothing.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.EntitySystems;
@@ -10,7 +10,6 @@ using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
@@ -23,6 +22,8 @@ namespace Content.Server.Cluwne;
 
 public sealed class CluwneSystem : EntitySystem
 {
+    private static readonly ProtoId<DamageGroupPrototype> GeneticDamageGroup = "Genetic";
+
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
@@ -32,6 +33,7 @@ public sealed class CluwneSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
+    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
 
     private bool _inEmoteHandler = false;
     public override void Initialize()
@@ -55,7 +57,7 @@ public sealed class CluwneSystem : EntitySystem
             RemComp<CluwneComponent>(uid);
             RemComp<ClumsyComponent>(uid);
             RemComp<AutoEmoteComponent>(uid);
-            var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 300);
+            var damageSpec = new DamageSpecifier(_prototypeManager.Index(GeneticDamageGroup), 300);
             _damageableSystem.TryChangeDamage(uid, damageSpec);
         }
     }
@@ -80,7 +82,7 @@ public sealed class CluwneSystem : EntitySystem
 
         _nameMod.RefreshNameModifiers(uid);
 
-        SetOutfitCommand.SetOutfit(uid, "CluwneGear", EntityManager);
+        _outfitSystem.SetOutfit(uid, "CluwneGear");
     }
 
     /// <summary>
@@ -106,7 +108,7 @@ public sealed class CluwneSystem : EntitySystem
             else if (_robustRandom.Prob(component.KnockChance))
             {
                 _audio.PlayPvs(component.KnockSound, uid);
-                _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+                _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(component.ParalyzeTime));
                 _chat.TrySendInGameICMessage(uid, "spasms", InGameICChatType.Emote, ChatTransmitRange.Normal);
             }
         }

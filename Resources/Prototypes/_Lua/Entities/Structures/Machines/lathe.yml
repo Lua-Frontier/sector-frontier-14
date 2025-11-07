@@ -88,9 +88,6 @@
 - type: entity
   id: RMCAmmoTechFab
   parent: BaseLatheLube # Frontier: added NFBlueprintReceiverBase
-  name: ent-RMCAmmoTechFab
-  description: ent-RMCAmmoTechFab.desc
-  suffix: ent-RMCAmmoTechFab.suffix
   components:
     - type: Sprite
       sprite: /Textures/_Lua/Structures/Machines/ammolathe.rsi
@@ -126,9 +123,6 @@
 - type: entity
   id: NF14AmmoTechFab
   parent: BaseLatheLube # Frontier: added NFBlueprintReceiverBase
-  name: ent-NF14AmmoTechFab
-  description: ent-NF14AmmoTechFab.desc
-  suffix: ent-NF14AmmoTechFab.suffix
   components:
     - type: Sprite
       sprite: /Textures/_Lua/Structures/Machines/ammolathe.rsi
@@ -164,9 +158,6 @@
 - type: entity
   id: RMCAmmoTechFabCircuitboard
   parent: BaseMachineCircuitboard
-  name: ent-RMCAmmoTechFabCircuitboard
-  description: ent-RMCAmmoTechFabCircuitboard.desc
-  suffix: ent-RMCAmmoTechFabCircuitboard.suffix
   components:
     - type: Sprite
       state: security
@@ -179,9 +170,6 @@
 - type: entity
   id: NF14AmmoTechFabCircuitboard
   parent: BaseMachineCircuitboard
-  name: ent-NF14AmmoTechFabCircuitboard
-  description: ent-NF14AmmoTechFabCircuitboard.desc
-  suffix: ent-NF14AmmoTechFabCircuitboard.suffix
   components:
     - type: Sprite
       state: security

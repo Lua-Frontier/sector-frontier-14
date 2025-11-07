@@ -71,13 +71,17 @@ namespace Content.Server._Lua.Starmap.Systems
                 maxStars = temp;
             }
             var starCount = _random.Next(minStars, maxStars + 1);
+            var minSep = MathF.Max(0f, 800f / MathF.Max(1f, _cfg.BasePixelsPerDistance));
+            var existing = new List<Vector2>(component.StarMap.Count);
+            foreach (var s in component.StarMap) existing.Add(s.Position);
             for (int i = 0; i < starCount; i++)
             {
                 var starName = GenerateRandomStarName();
                 var starType = GetRandomStarType();
-                var coordinates = GenerateRandomCoordinates(Transform(uid).MapID);
+                var coordinates = GenerateRandomCoordinatesSeparated(Transform(uid).MapID, existing, minSep, _cfg.StarDistanceMax);
                 var star = GenerateRandomStar(starName, starType, coordinates);
                 component.StarMap.Add(star);
+                existing.Add(star.Position);
             }
             try { EntityManager.System<StarmapSystem>().InvalidateCache(); } catch { }
         }
@@ -90,14 +94,38 @@ namespace Content.Server._Lua.Starmap.Systems
 
         private MapCoordinates GenerateRandomCoordinates(MapId mapId)
         {
-            var minR = (int)MathF.Floor(_cfg!.StarDistanceMin);
-            var maxR = (int)MathF.Ceiling(_cfg!.StarDistanceMax);
-            if (minR > maxR) (minR, maxR) = (maxR, minR);
-            var radius = _random.Next(minR, maxR + 1);
+            var maxR = MathF.Max(0f, _cfg!.StarDistanceMax);
+            var r = (float)Math.Sqrt(_random.NextDouble()) * maxR;
             var angle = _random.NextDouble() * 2 * Math.PI;
-            var x = (float)(radius * Math.Cos(angle));
-            var y = (float)(radius * Math.Sin(angle));
+            var x = (float)(r * Math.Cos(angle));
+            var y = (float)(r * Math.Sin(angle));
             return new MapCoordinates(new Vector2(x, y), mapId);
+        }
+
+        private MapCoordinates GenerateRandomCoordinatesSeparated(MapId mapId, List<Vector2> existing, float minSeparation, float baseMaxRadius)
+        {
+            var maxRadius = MathF.Max(baseMaxRadius, minSeparation);
+            for (var expand = 0; expand < 8; expand++)
+            {
+                for (var attempt = 0; attempt < 64; attempt++)
+                {
+                    var r = (float)Math.Sqrt(_random.NextDouble()) * maxRadius;
+                    var angle = _random.NextDouble() * 2 * Math.PI;
+                    var x = (float)(r * Math.Cos(angle));
+                    var y = (float)(r * Math.Sin(angle));
+                    var pos = new Vector2(x, y);
+                    var ok = true;
+                    for (var i = 0; i < existing.Count; i++)
+                    {
+                        if (Vector2.Distance(existing[i], pos) < minSeparation)
+                        { ok = false; break; }
+                    }
+                    if (ok)
+                        return new MapCoordinates(pos, mapId);
+                }
+                maxRadius += minSeparation * 0.5f;
+            }
+            return GenerateRandomCoordinates(mapId);
         }
 
         public Star GenerateRandomStar(string starName, string starType, MapCoordinates coordinates)
@@ -212,7 +240,7 @@ namespace Content.Server._Lua.Starmap.Systems
             var isCentComTarget = _centcomm != null && _centcomm.CentComMap != MapId.Nullspace && star.Map == _centcomm.CentComMap;
             if (!isCentComTarget && !IsAdjacentByHyperlane(currentMap, star, stars))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
-            if (isCentComTarget && !HasComp<AllowFtlToCentComComponent>(shuttleUid.Value))
+            if (isCentComTarget && _centcomm != null && !_centcomm.CentComStarUnlocked && !HasComp<AllowFtlToCentComComponent>(shuttleUid.Value))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
             if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason))
             { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
@@ -221,7 +249,7 @@ namespace Content.Server._Lua.Starmap.Systems
             if (TryComp<MapGridComponent>(shuttleUid.Value, out var grid))
             {
                 var xform = Transform(shuttleUid.Value);
-                var bounds = xform.WorldMatrix.TransformBox(grid.LocalAABB).Enlarged(200f);
+                var bounds = xform.WorldMatrix.TransformBox(grid.LocalAABB).Enlarged(ShuttleConsoleSystem.ShuttleFTLRange);
                 foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
                 {
                     if (other.Owner == shuttleUid.Value) continue;
@@ -261,13 +289,17 @@ namespace Content.Server._Lua.Starmap.Systems
             return;
 #endif
             var newStarCount = _random.Next(2, 5);
+            var minSep = MathF.Max(0f, 800f / MathF.Max(1f, _cfg!.BasePixelsPerDistance));
+            var existing = new List<Vector2>(component.StarMap.Count);
+            foreach (var s in component.StarMap) existing.Add(s.Position);
             for (int i = 0; i < newStarCount; i++)
             {
                 var starName = GenerateRandomStarName();
                 var starType = GetRandomStarType();
-                var coordinates = GenerateRandomCoordinates(Transform(uid).MapID);
+                var coordinates = GenerateRandomCoordinatesSeparated(Transform(uid).MapID, existing, minSep, _cfg.StarDistanceMax);
                 var newStar = GenerateRandomStar(starName, starType, coordinates);
                 component.StarMap.Add(newStar);
+                existing.Add(newStar.Position);
             }
         }
 

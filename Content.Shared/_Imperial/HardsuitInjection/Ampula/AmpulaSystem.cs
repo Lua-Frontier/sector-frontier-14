@@ -1,5 +1,4 @@
 using Content.Shared.Interaction;
-// using Content.Shared.Clothing.Components; Lua removed
 using Content.Shared.Inventory;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
@@ -12,10 +11,12 @@ public sealed partial class AmpulaSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
+    
     public override void Initialize()
     {
         SubscribeLocalEvent<AmpulaComponent, AfterInteractEvent>(OnAfterInteract);
     }
+    
     private void OnAfterInteract(EntityUid uid, AmpulaComponent component, AfterInteractEvent args)
     {
         if (!args.CanReach)
@@ -36,25 +37,5 @@ public sealed partial class AmpulaSystem : EntitySystem
             return;
         if (!TryComp<InjectComponent>(slot, out var containerlock))
             return;
-        if (!sys.TryGetSlot(slot.Value, containerlock.ContainerId, out var itemslot, itemslots))
-            return;
-        if (!TryComp<HandsComponent>(user, out var handscomp))
-            return;
-        if (!itemslot.InsertOnInteract)
-            return;
-
-        if (!sys.CanInsert(slot.Value, args.Used, args.User, itemslot, swap: itemslot.Swap))
-            return;
-
-        // Drop the held item onto the floor. Return if the user cannot drop.
-        if (!_handsSystem.TryDrop(args.User, args.Used, handsComp: handscomp))
-            return;
-
-        if (itemslot.Item != null)
-            _handsSystem.TryPickupAnyHand(args.User, itemslot.Item.Value, handsComp: handscomp);
-
-        sys.TryInsert(slot.Value, itemslot, args.Used, user);
-        args.Handled = true;
     }
-
 }

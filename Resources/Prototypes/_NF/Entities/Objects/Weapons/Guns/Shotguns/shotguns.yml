@@ -13,6 +13,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: GunSpreadModifier
+    spread: 1.1
   - type: Gun
     soundGunshot:
       path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
@@ -41,6 +43,8 @@
     shape:
     - 0,0,3,0
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
+  - type: GunSpreadModifier
+    spread: 0.5
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Gun
@@ -88,6 +92,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
     shape:
     - 0,0,4,0
+  - type: GunSpreadModifier
+    spread: 0.7
   - type: BallisticAmmoProvider
     capacity: 5
   - type: Gun
@@ -110,12 +116,16 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
+    size: Normal
+    shape:
+      - 0,0,2,1
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
-    size: Small
   - type: Gun
     soundGunshot:
       path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_sawed.ogg
     fireRate: 4
+  - type: GunSpreadModifier
+    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 2
   - type: NFWeaponDetails
@@ -144,6 +154,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Item
     size: Small
+  - type: GunSpreadModifier
+    spread: 1.5
   - type: BallisticAmmoProvider
     capacity: 1
   - type: NFWeaponDetails
@@ -176,6 +188,8 @@
     shape:
     - 0,0,3,0
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
+  - type: GunSpreadModifier
+    spread: 1.1
   - type: BallisticAmmoProvider
     capacity: 1
   - type: NFWeaponDetails
@@ -194,6 +208,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
+  - type: GunSpreadModifier
+    spread: 1.2
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null

@@ -11,7 +11,6 @@ using Content.Shared._Lua.Language.Components.Translators;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
-using Content.Shared._Lua.Language; // LanguagePrototype
 
 namespace Content.Server._Lua.Language;
 

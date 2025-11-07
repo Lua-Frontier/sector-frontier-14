@@ -34,6 +34,7 @@
     - type: DeviceLinkSink
       ports:
       - Toggle
+    - type: FireControllable
     - type: ExplosionResistance
       damageCoefficient: 0.5 # Lua
     - type: Destructible

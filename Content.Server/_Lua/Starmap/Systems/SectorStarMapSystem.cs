@@ -143,7 +143,6 @@ public sealed class SectorStarMapSystem : EntitySystem
             while (starMapQuery.MoveNext(out var uid, out var starMap))
             {
                 UpdateStarMap(starMap, sectorStars);
-                Dirty(uid, starMap);
                 updatedCount++;
             }
             try { EntityManager.System<StarmapSystem>().InvalidateCache(refreshConsoles: false); }
