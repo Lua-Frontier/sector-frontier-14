@@ -143,9 +143,8 @@ public abstract partial class SharedXenoArtifactSystem
         foreach (var nodeIndex in GetAllNodeIndices((ent, ent)))
         {
             var artifactComponent = ent.Comp2;
-            if (!TryGetNode((ent, artifactComponent), nodeIndex, out var curNode))
-                continue;
-            if (!curNode.Value.Comp.Locked || !CanUnlockNode((curNode.Value, curNode.Value)))
+            var curNode = GetNode((ent, artifactComponent), nodeIndex);
+            if (!curNode.Comp.Locked || !CanUnlockNode((curNode, curNode)))
                 continue;
 
             var requiredIndices = GetPredecessorNodes((ent, artifactComponent), nodeIndex);
@@ -165,12 +164,12 @@ public abstract partial class SharedXenoArtifactSystem
 
                 if (requiredIndices.Count == artifactUnlockingComponent.TriggeredNodeIndexes.Count)
                 {
-                    node = curNode.Value;
+                    node = curNode;
                     return true; // exit early
                 }
                 else
                 {
-                    potentialNodes.Add(curNode.Value);
+                    potentialNodes.Add(curNode);
                 }
                 // End Frontier: allow supersets
             }
@@ -200,7 +199,7 @@ public abstract partial class SharedXenoArtifactSystem
                 continue;
             // End Frontier: fast path the count check, allow supersets
 
-            potentialNodes.Add(curNode.Value);
+            potentialNodes.Add(curNode);
         }
 
         if (potentialNodes.Count != 0)
