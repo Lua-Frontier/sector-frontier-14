@@ -21,3 +21,22 @@
   - type: Store
     balance:
       FrontierUplinkCoin: 0
+
+- type: entity
+  parent: UplinkCharlie
+  id: UplinkCharlieFilled45
+  suffix: Рейнджер Чарли базовый
+  components:
+  - type: Store
+    balance:
+      FrontierUplinkCoin: 45
+
+- type: entity
+  parent: UplinkCharlie
+  id: UplinkCharlieFilled60
+  suffix: Рейнджер Чарли командир
+  components:
+  - type: Store
+    balance:
+      FrontierUplinkCoin: 60
+

@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 10/28/2025 17:46:40
-  entityCount: 565
+  time: 11/03/2025 08:54:52
+  entityCount: 559
 maps: []
 grids:
 - 1
@@ -615,17 +615,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 1
-- proto: Asm220TorpedoLOSAT
+- proto: Asm220TorpedoECM
+  entities:
+  - uid: 139
+    components:
+    - type: Transform
+      parent: 145
+    - type: Physics
+      canCollide: False
+  - uid: 358
+    components:
+    - type: Transform
+      parent: 482
+    - type: Physics
+      canCollide: False
+- proto: Asm220TorpedoHE
   entities:
   - uid: 138
     components:
     - type: Transform
-      pos: 4.5648336,-2.6737165
-      parent: 1
-  - uid: 139
-    components:
-    - type: Transform
-      pos: 4.4554586,-2.2674665
+      pos: 4.546875,-2.6209402
       parent: 1
   - uid: 146
     components:
@@ -648,63 +657,56 @@ entities:
   - uid: 149
     components:
     - type: Transform
-      parent: 145
-    - type: Physics
-      canCollide: False
-  - uid: 358
-    components:
-    - type: Transform
-      pos: 4.5335836,-2.5330915
+      pos: 4.578125,-2.5740652
       parent: 1
   - uid: 378
     components:
     - type: Transform
-      pos: 4.5023336,-2.4549665
-      parent: 1
+      parent: 482
+    - type: Physics
+      canCollide: False
   - uid: 382
     components:
     - type: Transform
-      pos: -3.5445414,-2.7205915
-      parent: 1
+      parent: 482
+    - type: Physics
+      canCollide: False
   - uid: 477
     components:
     - type: Transform
-      pos: -3.5601664,-2.5330915
-      parent: 1
+      parent: 482
+    - type: Physics
+      canCollide: False
   - uid: 478
     components:
     - type: Transform
-      pos: -3.5289164,-2.4705915
+      pos: -3.484375,-2.7146902
       parent: 1
   - uid: 479
     components:
     - type: Transform
-      pos: -3.4976666,-2.2362165
+      pos: -3.578125,-2.1990652
       parent: 1
   - uid: 483
     components:
     - type: Transform
-      parent: 482
-    - type: Physics
-      canCollide: False
+      pos: 4.546875,-2.7146902
+      parent: 1
   - uid: 484
     components:
     - type: Transform
-      parent: 482
-    - type: Physics
-      canCollide: False
+      pos: 4.53125,-2.2615652
+      parent: 1
   - uid: 485
     components:
     - type: Transform
-      parent: 482
-    - type: Physics
-      canCollide: False
+      pos: -3.453125,-2.5428152
+      parent: 1
   - uid: 486
     components:
     - type: Transform
-      parent: 482
-    - type: Physics
-      canCollide: False
+      pos: -3.46875,-2.5896902
+      parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 74
@@ -2530,46 +2532,6 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 1
-- proto: PoweredlightRed
-  entities:
-  - uid: 564
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-1.5
-      parent: 1
-  - uid: 565
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,-1.5
-      parent: 1
-- proto: PoweredlightSodium
-  entities:
-  - uid: 560
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-7.5
-      parent: 1
-  - uid: 561
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-9.5
-      parent: 1
-  - uid: 562
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-9.5
-      parent: 1
-  - uid: 563
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-5.5
-      parent: 1
 - proto: PoweredSmallLight
   entities:
   - uid: 441
@@ -2768,10 +2730,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,4.5
       parent: 1
-    - type: Thruster
-      enabled: False
-    - type: ApcPowerReceiver
-      powerLoad: 1
   - uid: 344
     components:
     - type: Transform
@@ -3831,20 +3789,20 @@ entities:
       parent: 1
     - type: BallisticAmmoProvider
       entities:
+      - 139
       - 146
       - 147
       - 148
-      - 149
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
           showEnts: False
           occludes: True
           ents:
+          - 139
           - 146
           - 147
           - 148
-          - 149
   - uid: 482
     components:
     - type: Transform
@@ -3853,20 +3811,20 @@ entities:
       parent: 1
     - type: BallisticAmmoProvider
       entities:
-      - 483
-      - 484
-      - 485
-      - 486
+      - 358
+      - 378
+      - 382
+      - 477
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 483
-          - 484
-          - 485
-          - 486
+          - 358
+          - 378
+          - 382
+          - 477
 - proto: WeaponTurretRAC30
   entities:
   - uid: 158

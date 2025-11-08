@@ -11,11 +11,33 @@
     - BravoUplinkWeapon
 
 - type: listing
-  id: BravoUplinkSubMachineGunDrozd
-  name: Дрозд
-  description: Добротный пистолет-пулемет, использует пистолетные патроны 35 калибра
-  icon: { sprite: Objects/Weapons/Guns/SMGs/drozd.rsi, state: base }
-  productEntity: NFWeaponSubMachineGunDrozd
+  id: BravoUplinklekter
+  name: Лектер
+  description: Первоклассная армейская штурмовая винтовка. Использует патроны калибра .20 винтовочный.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  productEntity: NFWeaponRifleAssaultLecter
+  cost:
+    FrontierUplinkCoin: 6
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkSubMachineGunWT-550
+  name: WT-550
+  description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 пистолетный.
+  icon: { sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
+  productEntity: NFWeaponSubMachineGunWt550
+  cost:
+    FrontierUplinkCoin: 6
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkRifleAnnie
+  name: Энни
+  description: Винтовка, созданная для выполнения невыполнимых заданий. Использует винтовочные патроны 30-го калибра.
+  icon: { sprite: _Goobstation/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
+  productEntity: WeaponRifleAnnie
   cost:
     FrontierUplinkCoin: 6
   categories:
@@ -158,11 +180,121 @@
 
 #Боеприпасы
 - type: listing
+  id: BravoUplinkAmmoNFMagazineRifle30Overpressure
+  name: magazine (.30 rifle, overpressure)
+  description: магазин заполненный летальными боеприпасами для автомата Энни
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Overpressure
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFMagazineRifle30Incendiary
+  name: magazine (.30 rifle, incendiary)
+  description: магазин заполненный летальными боеприпасами с зажигательным покрытием для автомата Энни
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Incendiary
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkNFMagazineRifle30Rubber
+  name: magazine (.30 rifle, rubber)
+  description: магазин заполненный нелетальными боеприпасами для автомата Энни
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Rubber
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFMagazineRifle30Uranium
+  name: magazine (.30 rifle, uranium)
+  description: магазин заполненный летальными боеприпасами с урановым покрытием для автомата Энни
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Uranium
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+ 
+- type: listing
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
+  name: Ящик патронов (.20 винтовочные, урановые)
+  description: ящик урановых боеприпасов калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Uranium
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkNFAmmunitionBoxBigRifle20Overpressure
+  name: Ящик патронов (.20 винтовочные, усиленные)
+  description: ящик летальных боеприпасов калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Overpressure
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Incendiary
+  name: Ящик патронов (.20 винтовочные, зажигательные)
+  description: Ящик заполненный зажигательными боеприпасами калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Incendiary
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+    
+- type: listing
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
+  name: Ящик патронов (.30 винтовочные, урановые)
+  description: ящик урановых боеприпасов калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Uranium
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkNFAmmunitionBoxBigRifle30Overpressure
+  name: Ящик патронов (.30 винтовочные, усиленные)
+  description: ящик летальных боеприпасов калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Overpressure
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
+  name: Ящик патронов (.30 винтовочные, зажигательные)
+  description: Ящик заполненный зажигательными боеприпасами калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Incendiary
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
   id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
-  name: smg magazine (.35 pistol, overpressure)
-  description: магазин заполненный летальными боеприпасами для ПП "Дрозд"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Overpressure
+  name: магазин ПП (.35 пистолетные, усиленные)
+  description: магазин заполненный летальными боеприпасами для WT-550
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
+  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -171,8 +303,8 @@
 - type: listing
   id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
   name: smg magazine (.35 pistol, rubber)
-  description: магазин заполненный не летальными боеприпасами для ПП "Дрозд"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
+  description: магазин заполненный нелетальными боеприпасами для WT-550
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
   productEntity: NFMagazineSubMachineGun35Rubber
   cost:
     FrontierUplinkCoin: 1
@@ -193,7 +325,7 @@
 - type: listing
   id: BravoUplinkAmmoNFSpeedLoaderPistol45Rubber
   name: speed loader (.45 pistol, Rubber)
-  description: спидлодер заполненный не летальными боеприпасами для револьвера Ward-45
+  description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
   productEntity: NFSpeedLoaderPistol45Rubber
   cost:
@@ -207,6 +339,17 @@
   description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
   productEntity: NFSpeedLoaderPistol45
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoNFMagazineDrumRifle20Empty
+  name: drum magazine (.20 rifle, any)
+  description: барабанный магазин для винтовки "лектер" боеприпас в комплект не входит.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi, state: base }
+  productEntity: NFMagazineDrumRifle20Empty
   cost:
     FrontierUplinkCoin: 1
   categories:

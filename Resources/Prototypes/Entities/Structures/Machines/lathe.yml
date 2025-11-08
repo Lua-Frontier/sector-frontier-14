@@ -527,6 +527,8 @@
       staticPacks:
       - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
       - NFMercenaryMagazineStatic
+      - RMCAmmoPack
+      - N14AmmoPack
     - type: MaterialStorage
       whitelist:
         tags:
@@ -564,31 +566,32 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    #- TopicalsStatic # Frontier
-    #- ChemistryStatic # Frontier
-    #- MedicalStatic # Frontier
-    #- RollerBedsStatic # Frontier
-    #- MedicalClothingStatic # Frontier
-    #- EmptyMedkitsStatic # Frontier
-    #- SurgeryStatic # Frontier
-    - NFLightsStatic # Frontier
-    - NFBasicToolsStatic # Frontier
-    - NFBasicStorageStatic # Frontier
-    - NFBasicPartsStatic # Frontier
-    - NFBasicElectronicsStatic # Frontier
-    - NFBasicEvaStatic # Frontier
-    - NFBasicEVAToolsStatic # Frontier
-    - ReportingStatic # DeltaV
-    - NFPaperAndPaperAccessories # Frontier
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - SurgeryStatic
     - NFMedicalStatic # Frontier
-    - NFMedicalClothingStatic # Frontier
-    - NFChemistryBasicStatic # Frontier
-    - NFMedicalMobilityStatic # Frontier
-    - NFEmptyMedkitsStatic # Frontier
-    - NFSurgeryBasicStatic # Frontier
-    - NFSurgeryMedicalToolsStatic #Frontier
-    - NFTopicalsStatic # Frontier
-    - NFMedicalArchetypeStatic # Frontier
+    - LuaBasicChemistryStatic # Lua
+    # - NFLightsStatic # Frontier
+    # - NFBasicToolsStatic # Frontier
+    # - NFBasicStorageStatic # Frontier
+    # - NFBasicPartsStatic # Frontier
+    # - NFBasicElectronicsStatic # Frontier
+    # - NFBasicEvaStatic # Frontier
+    # - NFBasicEVAToolsStatic # Frontier
+    # - ReportingStatic # DeltaV
+    # - NFPaperAndPaperAccessories # Frontier
+    # - NFMedicalClothingStatic # Frontier
+    # - NFChemistryBasicStatic # Frontier
+    # - NFMedicalMobilityStatic # Frontier
+    # - NFEmptyMedkitsStatic # Frontier
+    # - NFSurgeryBasicStatic # Frontier
+    # - NFSurgeryMedicalToolsStatic #Frontier
+    # - NFTopicalsStatic # Frontier
+    # - NFMedicalArchetypeStatic # Frontier
     # dynamicPacks: # Frontier
     # - Chemistry # Frontier
   - type: Machine

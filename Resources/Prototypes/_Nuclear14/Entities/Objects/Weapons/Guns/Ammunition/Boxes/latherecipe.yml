@@ -1,6 +1,28 @@
 # КОРОБКИ
 - type: latheRecipe
+  abstract: true
+  parent: BaseAmmoBoxRecipe
+  id: BaseN14AmmoBoxRecipe
+  categories:
+  - N14Ammo
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseAmmoRecipe
+  id: BaseN14AmmoRecipe
+  categories:
+  - N14Ammo
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseEmptyAmmoRecipe
+  id: BaseN14MagazineRecipe
+  categories:
+  - N14Magazines
+
+- type: latheRecipe
   id: MagazineBoxN14CartridgePistol5
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBoxN14CartridgePistol5
   completetime: 5
   materials:
@@ -8,6 +30,7 @@
 
 - type: latheRecipe
   id: MagazineLightRifleSubsonic
+  parent: BaseN14AmmoRecipe
   result: MagazineLightRifleSubsonic
   completetime: 5
   materials:
@@ -15,6 +38,7 @@
 
 - type: latheRecipe
   id: MagazineBoxLightRifleSubsonic
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBoxLightRifleSubsonic
   completetime: 5
   materials:
@@ -22,6 +46,7 @@
 
 - type: latheRecipe
   id: MagazineBox556
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox556
   completetime: 5
   materials:
@@ -29,6 +54,7 @@
 
 - type: latheRecipe
   id: MagazineBox9mm
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox9mm
   completetime: 5
   materials:
@@ -36,6 +62,7 @@
 
 - type: latheRecipe
   id: MagazineBox10mm
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox10mm
   completetime: 5
   materials:
@@ -43,6 +70,7 @@
 
 - type: latheRecipe
   id: MagazineBox45
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox45
   completetime: 5
   materials:
@@ -50,6 +78,7 @@
 
 - type: latheRecipe
   id: MagazineBox12
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox12
   completetime: 5
   materials:
@@ -57,6 +86,7 @@
 
 - type: latheRecipe
   id: MagazineBox22
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox22
   completetime: 5
   materials:
@@ -64,6 +94,7 @@
 
 - type: latheRecipe
   id: MagazineBox45-70
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox45-70
   completetime: 5
   materials:
@@ -71,6 +102,7 @@
 
 - type: latheRecipe
   id: MagazineBox44
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox44
   completetime: 5
   materials:
@@ -78,6 +110,7 @@
 
 - type: latheRecipe
   id: MagazineBox762
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox762
   completetime: 5
   materials:
@@ -85,6 +118,7 @@
 
 - type: latheRecipe
   id: MagazineBox308
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox308
   completetime: 5
   materials:
@@ -92,6 +126,7 @@
 
 - type: latheRecipe
   id: MagazineBox12gauge
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox12gauge
   completetime: 5
   materials:
@@ -99,6 +134,7 @@
 
 - type: latheRecipe
   id: MagazineBox20gauge
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox20gauge
   completetime: 5
   materials:
@@ -106,6 +142,7 @@
 
 - type: latheRecipe
   id: MagazineBox50
+  parent: BaseN14AmmoBoxRecipe
   result: MagazineBox50
   completetime: 5
   materials:
@@ -115,6 +152,7 @@
 
 - type: latheRecipe
   id: N14MagazineMinigun5mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazineMinigun5mmEmpty
   completetime: 5
   materials:
@@ -122,6 +160,7 @@
 
 - type: latheRecipe
   id: Magazine556RifleEmpty
+  parent: BaseN14MagazineRecipe
   result: Magazine556RifleEmpty
   completetime: 5
   materials:
@@ -129,6 +168,7 @@
 
 - type: latheRecipe
   id: LongMagazine556RifleEmpty
+  parent: BaseN14MagazineRecipe
   result: LongMagazine556RifleEmpty
   completetime: 5
   materials:
@@ -136,6 +176,7 @@
 
 - type: latheRecipe
   id: LMGMagazine556RifleEmpty
+  parent: BaseN14MagazineRecipe
   result: LMGMagazine556RifleEmpty
   completetime: 5
   materials:
@@ -143,6 +184,7 @@
 
 - type: latheRecipe
   id: Magazine762RifleEmpty
+  parent: BaseN14MagazineRecipe
   result: Magazine762RifleEmpty
   completetime: 5
   materials:
@@ -150,6 +192,7 @@
 
 - type: latheRecipe
   id: N14MagazinePistol9mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazinePistol9mmEmpty
   completetime: 5
   materials:
@@ -157,6 +200,7 @@
 
 - type: latheRecipe
   id: N14MagazineSMG9mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazineSMG9mmEmpty
   completetime: 5
   materials:
@@ -164,6 +208,7 @@
 
 - type: latheRecipe
   id: N14MagazinePistol10mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazinePistol10mmEmpty
   completetime: 5
   materials:
@@ -171,6 +216,7 @@
 
 - type: latheRecipe
   id: N14MagazineSMG10mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazineSMG10mmEmpty
   completetime: 5
   materials:
@@ -178,6 +224,7 @@
 
 - type: latheRecipe
   id: N14MagazinePistol12mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazinePistol12mmEmpty
   completetime: 5
   materials:
@@ -185,6 +232,7 @@
 
 - type: latheRecipe
   id: N14MagazineSMG12mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazineSMG12mmEmpty
   completetime: 5
   materials:
@@ -192,6 +240,7 @@
 
 - type: latheRecipe
   id: N14TopMagazineSMG12mmEmpty
+  parent: BaseN14MagazineRecipe
   result: N14TopMagazineSMG12mmEmpty
   completetime: 5
   materials:
@@ -199,6 +248,7 @@
 
 - type: latheRecipe
   id: N14MagazineShotgun12Empty
+  parent: BaseN14MagazineRecipe
   result: N14MagazineShotgun12Empty
   completetime: 5
   materials:
@@ -206,6 +256,7 @@
 
 - type: latheRecipe
   id: N14MagazineShotgun20Empty
+  parent: BaseN14MagazineRecipe
   result: N14MagazineShotgun20Empty
   completetime: 5
   materials:
@@ -213,6 +264,7 @@
 
 - type: latheRecipe
   id: N14MagazinePistol22lrEmpty
+  parent: BaseN14MagazineRecipe
   result: N14MagazinePistol22lrEmpty
   completetime: 5
   materials:
@@ -220,6 +272,7 @@
 
 - type: latheRecipe
   id: N14MagazinePistol45Empty
+  parent: BaseN14MagazineRecipe
   result: N14MagazinePistol45Empty
   completetime: 5
   materials:
@@ -227,6 +280,7 @@
 
 - type: latheRecipe
   id: Magazine45SubMachineGunEmpty
+  parent: BaseN14MagazineRecipe
   result: Magazine45SubMachineGunEmpty
   completetime: 5
   materials:
@@ -234,6 +288,7 @@
 
 - type: latheRecipe
   id: N14Magazine50AMREmpty
+  parent: BaseN14MagazineRecipe
   result: N14Magazine50AMREmpty
   completetime: 5
   materials:
@@ -241,6 +296,7 @@
 
 - type: latheRecipe
   id: N14Magazine50AMRHEIAPEmpty
+  parent: BaseN14MagazineRecipe
   result: N14Magazine50AMRHEIAPEmpty
   completetime: 5
   materials:
@@ -248,6 +304,7 @@
 
 - type: latheRecipe
   id: ClipMagazine308RifleEmpty
+  parent: BaseN14MagazineRecipe
   result: ClipMagazine308RifleEmpty
   completetime: 5
   materials:
@@ -255,6 +312,7 @@
 
 - type: latheRecipe
   id: SpeedLoader9Empty
+  parent: BaseN14MagazineRecipe
   result: SpeedLoader9Empty
   completetime: 5
   materials:
@@ -262,6 +320,7 @@
 
 - type: latheRecipe
   id: SpeedLoader10Empty
+  parent: BaseN14MagazineRecipe
   result: SpeedLoader10Empty
   completetime: 5
   materials:
@@ -269,6 +328,7 @@
 
 - type: latheRecipe
   id: SpeedLoader44Empty
+  parent: BaseN14MagazineRecipe
   result: SpeedLoader44Empty
   completetime: 5
   materials:
@@ -276,6 +336,7 @@
 
 - type: latheRecipe
   id: SpeedLoader45-70Empty
+  parent: BaseN14MagazineRecipe
   result: SpeedLoader45-70Empty
   completetime: 5
   materials:
@@ -283,6 +344,7 @@
 
 - type: latheRecipe
   id: SpeedLoader45-70TubeEmpty
+  parent: BaseN14MagazineRecipe
   result: SpeedLoader45-70TubeEmpty
   completetime: 5
   materials:

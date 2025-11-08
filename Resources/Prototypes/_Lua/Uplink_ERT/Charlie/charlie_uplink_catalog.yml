@@ -11,20 +11,20 @@
     - CharlieUplinkWeapon
 
 - type: listing
-  id: CharlieUplinkSubMachineGunDrozd
-  name: Дрозд
-  description: Добротный пистолет-пулемет, использует пистолетные патроны 35 калибра
-  icon: { sprite: Objects/Weapons/Guns/SMGs/drozd.rsi, state: base }
-  productEntity: NFWeaponSubMachineGunDrozd
+  id: CharlieUplinkWeaponlekter
+  name: Лектер
+  description: Первоклассная армейская штурмовая винтовка. Использует патроны калибра .20 винтовочный.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  productEntity: NFWeaponRifleAssaultLecter
   cost:
-    FrontierUplinkCoin: 3
+    FrontierUplinkCoin: 6
   categories:
     - CharlieUplinkWeapon
 
 - type: listing
   id: CharlieUplinkWeaponSubMachineGunVector
   name: Вектор
-  description: Старший брат "Дрозда" все так-же использует пистолетные патроны 35 калибра
+  description: Старший брат "WT-550" все так-же использует пистолетные патроны 35 калибра
   icon: { sprite: Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
   productEntity: WeaponSubMachineGunVector
   cost:
@@ -225,9 +225,75 @@
 
 # Боеприпасы
 - type: listing
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
+  name: Ящик патронов (.20 винтовочные, урановые)
+  description: ящик урановых боеприпасов калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Uranium
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Overpressure
+  name: Ящик патронов (.20 винтовочные, усиленные)
+  description: ящик летальных боеприпасов калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Overpressure
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Incendiary
+  name: Ящик патронов (.20 винтовочные, зажигательные)
+  description: Ящик заполненный зажигательными боеприпасами калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Incendiary
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkAmmo
+    
+- type: listing
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
+  name: Ящик патронов (.30 винтовочные, урановые)
+  description: ящик урановых боеприпасов калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Uranium
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Overpressure
+  name: Ящик патронов (.30 винтовочные, усиленные)
+  description: ящик летальных боеприпасов калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Overpressure
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
+  name: Ящик патронов (.30 винтовочные, зажигательные)
+  description: Ящик заполненный зажигательными боеприпасами калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Incendiary
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkAmmo
+
+- type: listing
   id: CharlieUplinkAmmoMagazineSubMachineGun35Overpressure
   name: smg magazine (.35 pistol, overpressure)
-  description: магазин заполненный летальными боеприпасами для ПП "Дрозд"
+  description: магазин заполненный летальными боеприпасами для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
   productEntity: NFMagazineSubMachineGun35Overpressure
   cost:
@@ -238,7 +304,7 @@
 - type: listing
   id: CharlieUplinkAmmoMagazineSubMachineGun35Rubber
   name: smg magazine (.35 pistol, rubber)
-  description: магазин заполненный не летальными боеприпасами для ПП "Дрозд"
+  description: магазин заполненный не летальными боеприпасами для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
   productEntity: NFMagazineSubMachineGun35Rubber
   cost:
@@ -249,7 +315,7 @@
 - type: listing
   id: CharlieUplinkAmmoNFMagazineSubMachineGun35Uranium
   name: smg magazine (.35 pistol, uranium)
-  description: магазин заполненный летальными боеприпасами с урановым покрытием для ПП "Дрозд"
+  description: магазин заполненный летальными боеприпасами с урановым покрытием для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
   productEntity: NFMagazineSubMachineGun35Uranium
   cost:
@@ -260,7 +326,7 @@
 - type: listing
   id: CharlieUplinkAmmoNFMagazineSubMachineGun35Emp
   name: smg magazine (.35 pistol, EMP)
-  description: магазин заполненный летальными боеприпасами с наэлектризованным покрытием для ПП "Дрозд"
+  description: магазин заполненный летальными боеприпасами с наэлектризованным покрытием для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
   productEntity: NFMagazineSubMachineGun35Emp
   cost:
@@ -271,7 +337,7 @@
 - type: listing
   id: CharlieUplinkAmmoNFMagazineSubMachineGun35Incendiary
   name: smg magazine (.35 pistol, incendiary)
-  description: магазин заполненный летальными боеприпасами с зажигательными наконечниками для ПП "Дрозд"
+  description: магазин заполненный летальными боеприпасами с зажигательными наконечниками для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
   productEntity: NFMagazineSubMachineGun35Incendiary
   cost:
@@ -326,7 +392,7 @@
 - type: listing
   id: CharlieUplinkAmmoNFSpeedLoaderPistol45Rubber
   name: speed loader (.45 pistol, Rubber)
-  description: спидлодер заполненный не летальными боеприпасами для револьвера Ward-45
+  description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
   productEntity: NFSpeedLoaderPistol45Rubber
   cost:
@@ -392,7 +458,7 @@
 - type: listing
   id: CharlieUplinkNFMagazineRifle30Rubber
   name: magazine (.30 rifle, rubber)
-  description: магазин заполненный не летальными боеприпасами для автомата AEK
+  description: магазин заполненный нелетальными боеприпасами для автомата AEK
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
   productEntity: NFMagazineRifle30Rubber
   cost:
@@ -408,6 +474,17 @@
   productEntity: NFMagazineRifle30Uranium
   cost:
     FrontierUplinkCoin: 2
+  categories:
+    - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkAmmoNFMagazineDrumRifle20Empty
+  name: drum magazine (.20 rifle, any)
+  description: барабанный магазин для винтовки "лектер" боеприпас в комплект не входит.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi, state: base }
+  productEntity: NFMagazineDrumRifle20Empty
+  cost:
+    FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 

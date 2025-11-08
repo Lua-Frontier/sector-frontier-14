@@ -21,3 +21,25 @@
   - type: Store
     balance:
       FrontierUplinkCoin: 0
+
+- type: entity
+  parent: UplinkBravo
+  id: UplinkBravofilled40
+  suffix: Рейнджер Браво базовый
+  components:
+  - type: Store
+    balance:
+      FrontierUplinkCoin: 40
+
+- type: entity
+  parent: UplinkBravo
+  id: UplinkBravofilled50
+  suffix: Рейнджер Браво командир
+  components:
+  - type: Store
+    balance:
+      FrontierUplinkCoin: 50
+
+
+
+
