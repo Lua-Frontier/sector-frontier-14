@@ -378,7 +378,7 @@
   description: An excellent fully automatic SMG. Uses .45 ACP ammo.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
@@ -388,7 +388,9 @@
     minAngle: -5
     maxAngle: -5
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd_inhands_32x.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd_inhands_32x.rsi
   - type: Gun
     fireRate: 6
     selectedMode: FullAuto

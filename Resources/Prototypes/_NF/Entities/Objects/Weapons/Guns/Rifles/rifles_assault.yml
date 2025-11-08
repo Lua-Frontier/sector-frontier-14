@@ -1,19 +1,4 @@
 #region WizDen
-- type: entity # TODO: switch to .25 rifle (caseless)
-  id: NFWeaponRifleAssaultSm
-  parent: [ NFBaseWeaponRifleAssaultChamber30, NFBaseWeaponFrameRifleAssaultCybersun ]
-  name: Soland-Moss # Renamed: real brand name
-  description: |-
-    An iconic weapon of war. An illegal firearm often used by Syndicate agents.
-  components:
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/solandmoss.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
 
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
@@ -26,35 +11,6 @@
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
-
-- type: entity
-  id: NFWeaponRifleAssaultLecter
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultNanotrasen ]
-  name: Lecter
-  description: |-
-    A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
-  components: &lecterComponents
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 3
-    zeroVisible: true
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
-
-#region WizDen: Rubber
-- type: entity
-  id: NFWeaponRifleAssaultLecterLessLethal
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20Rubber, NFBaseWeaponFrameRifleAssaultNanotrasen ]
-  name: Lecter
-  description: |-
-    A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
-  suffix: Frontier, Less-lethal
-  components: *lecterComponents
 
 #region DeltaV
 - type: entity
