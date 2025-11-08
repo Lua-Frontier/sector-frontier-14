@@ -95,7 +95,7 @@
 
 #Security patrol suit
 - type: entity
-  parent: NFClothingHeadHardsuitWithLightBaseNfsd
+  parent: [NFClothingHeadHardsuitWithLightBaseNfsd, ShowSecurityIcons] #ShowSecurityIcons from _Lua
   id: ClothingHeadHelmetHardsuitNfsdBronze
   categories: [ HideSpawnMenu ]
   name: NFSD patrol suit helmet
