@@ -8,6 +8,7 @@
 # SPDX-FileCopyrightText: 2024 Nemanja
 # SPDX-FileCopyrightText: 2024 Whatstone
 # SPDX-FileCopyrightText: 2025 Ps3Moira
+# SPDX-FileCopyrightText: 2025 Redrover1760
 # SPDX-FileCopyrightText: 2025 core-mene
 # SPDX-FileCopyrightText: 2025 starch
 #
@@ -28,7 +29,7 @@
     whitelist:
       tags:
         - Cartridge8x65mmSKR
-    capacity: 20
+    capacity: 25
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -43,7 +44,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 7
     zeroVisible: false
   - type: Appearance
 
@@ -71,27 +72,54 @@
     proto: Cartridge8x65mmSKR
   - type: Sprite
     layers:
-    - state: red
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: BaseMagazine8x55mmBox
-  name: SAW box (8x55mm SKR)
+  id: Magazine8x65mmSKRIncendiary
+  name: STANAG magazine (8x65mm SKR incendiary)
+  parent: BaseMagazine8x65mm
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKRIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine8x65mmSKRPractice
+  name: STANAG magazine (8x65mm SKR practice)
+  parent: BaseMagazine8x65mm
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKRPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: BaseMagazine8x65mmBox
+  name: SAW box (8x65mm SKR)
   parent: [BaseItem, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny
   abstract: true
   components:
   - type: Tag
     tags:
-    - Magazine8x55mmSKRBox
-    - MagazineBox8x55mmSKR
+    - MagazineBox8x65mmSKR
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - Cartridge8x55mmSKR
-    capacity: 150
+      - Cartridge8x65mmSKR
+    capacity: 100
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -111,10 +139,10 @@
   - type: Appearance
 
 - type: entity
-  id: Magazine8x55mmEmptyBox
-  name: SAW box (8x55mm SKR any)
+  id: Magazine8x65mmEmptyBox
+  name: SAW box (8x65mm SKR any)
   suffix: empty
-  parent: BaseMagazine8x55mmBox
+  parent: BaseMagazine8x65mmBox
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -126,15 +154,15 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine8x55mmSKRBox
-  name: SAW box (8x55mm SKR)
-  parent: BaseMagazine8x55mmBox
+  id: Magazine8x65mmSKRBox
+  name: SAW box (8x65mm SKR)
+  parent: BaseMagazine8x65mmBox
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge8x55mmSKR
+    proto: Cartridge8x65mmSKR
   - type: Sprite
     layers:
-    - state: red
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
