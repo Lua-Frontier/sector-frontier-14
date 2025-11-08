@@ -4,8 +4,8 @@ meta:
   engineVersion: 261.2.0
   forkId: ""
   forkVersion: ""
-  time: 11/08/2025 18:57:35
-  entityCount: 2023
+  time: 11/08/2025 19:04:22
+  entityCount: 2021
 maps: []
 grids:
 - 1
@@ -3704,7 +3704,7 @@ entities:
     - type: Transform
       pos: -2.5,-5.5
       parent: 1
-  - uid: 1017
+  - uid: 1000
     components:
     - type: Transform
       pos: 1.5,1.5
@@ -3896,25 +3896,25 @@ entities:
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
-  - uid: 1019
+  - uid: 1016
     components:
     - type: Transform
       pos: -0.5,-2.5
       parent: 1
-  - uid: 1033
+  - uid: 1019
     components:
     - type: Transform
       pos: -0.5,-4.5
+      parent: 1
+  - uid: 1032
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
       parent: 1
   - uid: 1089
     components:
     - type: Transform
       pos: 1.5,-7.5
-      parent: 1
-  - uid: 1188
-    components:
-    - type: Transform
-      pos: -0.5,-3.5
       parent: 1
   - uid: 1309
     components:
@@ -3947,6 +3947,11 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-1.5
+      parent: 1
+  - uid: 31
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
       parent: 1
   - uid: 57
     components:
@@ -4491,24 +4496,14 @@ entities:
   - uid: 623
     components:
     - type: Transform
-      pos: 1.5,-0.5
+      pos: 0.5,-0.5
       parent: 1
   - uid: 624
     components:
     - type: Transform
-      pos: -0.5,-0.5
-      parent: 1
-  - uid: 625
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 1
-  - uid: 626
-    components:
-    - type: Transform
       pos: 0.5,2.5
       parent: 1
-  - uid: 627
+  - uid: 625
     components:
     - type: Transform
       pos: 0.5,0.5
@@ -4553,7 +4548,7 @@ entities:
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
-  - uid: 1032
+  - uid: 1017
     components:
     - type: Transform
       pos: -1.5,-1.5
@@ -5262,35 +5257,35 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
-  - uid: 628
+  - uid: 626
     components:
     - type: Transform
       pos: -0.5,-4.5
       parent: 1
-  - uid: 629
+  - uid: 627
     components:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
-  - uid: 630
+  - uid: 628
     components:
     - type: Transform
       pos: -1.5,-3.5
       parent: 1
-  - uid: 631
+  - uid: 629
     components:
     - type: Transform
       pos: 2.5,-1.5
+      parent: 1
+  - uid: 630
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
       parent: 1
   - uid: 633
     components:
     - type: Transform
       pos: -1.5,-5.5
-      parent: 1
-  - uid: 634
-    components:
-    - type: Transform
-      pos: 2.5,-0.5
       parent: 1
   - uid: 955
     components:
@@ -5934,7 +5929,7 @@ entities:
         - 0
 - proto: CrateNfsdSecure1
   entities:
-  - uid: 636
+  - uid: 634
     components:
     - type: Transform
       pos: -0.5,-0.5
@@ -5963,14 +5958,14 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 635
+          - 636
           - 637
           - 638
           - 639
           - 685
           - 793
           - 963
-          - 1000
-          - 1016
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -6161,59 +6156,59 @@ entities:
       fixtures: {}
 - proto: FuelBananium
   entities:
+  - uid: 635
+    components:
+    - type: Transform
+      parent: 634
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 636
+    components:
+    - type: Transform
+      parent: 634
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
   - uid: 637
     components:
     - type: Transform
-      parent: 636
+      parent: 634
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
   - uid: 638
     components:
     - type: Transform
-      parent: 636
+      parent: 634
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
   - uid: 639
     components:
     - type: Transform
-      parent: 636
+      parent: 634
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
   - uid: 685
     components:
     - type: Transform
-      parent: 636
+      parent: 634
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
   - uid: 793
     components:
     - type: Transform
-      parent: 636
+      parent: 634
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
   - uid: 963
     components:
     - type: Transform
-      parent: 636
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 1000
-    components:
-    - type: Transform
-      parent: 636
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 1016
-    components:
-    - type: Transform
-      parent: 636
+      parent: 634
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -7791,7 +7786,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.2435443,1.3585086
       parent: 1
-  - uid: 635
+  - uid: 631
     components:
     - type: Transform
       pos: 0.4466694,-3.4383664
@@ -9774,6 +9769,11 @@ entities:
       parent: 1
 - proto: SubstationBasic
   entities:
+  - uid: 366
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
   - uid: 1685
     components:
     - type: Transform
@@ -9781,12 +9781,6 @@ entities:
       parent: 1
 - proto: SubstationWallBasic
   entities:
-  - uid: 31
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-1.5
-      parent: 1
   - uid: 291
     components:
     - type: Transform
@@ -10007,13 +10001,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,14.5
-      parent: 1
-- proto: TelecomServerFilledNfsd
-  entities:
-  - uid: 366
-    components:
-    - type: Transform
-      pos: 0.5,-1.5
       parent: 1
 - proto: ThrusterLarge
   entities:
