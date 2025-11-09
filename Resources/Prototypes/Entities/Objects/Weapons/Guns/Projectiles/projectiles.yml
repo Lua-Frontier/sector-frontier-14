@@ -886,23 +886,6 @@
     damage: 80
 
 - type: entity
-  id: 40mmGrenadeThermobaric
-  name: 40mm thermobaric grenade
-  parent: BaseGrenade
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet40mmGrenadeThermobaric
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: blast
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: blast
-    suffix: false
-
-- type: entity
   id: 40mmGrenadeFlash
   name: 40mm flash grenade
   parent: BaseGrenade
