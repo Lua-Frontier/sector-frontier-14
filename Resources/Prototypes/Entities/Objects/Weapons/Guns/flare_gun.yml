@@ -48,6 +48,23 @@
       path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
   - type: StaticPrice # Frontier
     price: 150 # Frontier
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/gun_pickup.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/gun_drop.ogg
+      params:
+        volume: -8
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/gun_drop.ogg
+      params:
+        volume: -8
+  # Goobstation edit end
 
 
 - type: entity
