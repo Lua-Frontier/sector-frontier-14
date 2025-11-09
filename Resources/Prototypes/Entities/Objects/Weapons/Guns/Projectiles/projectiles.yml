@@ -1118,19 +1118,6 @@
     energy: 0.5
 
 - type: entity
-  id: CannonBallEmp
-  name: shockshot
-  suffix: EMP
-  parent: BaseCannonBall
-  components:
-  - type: CartridgeAmmo
-    proto: BulletCannonBallEmp
-    deleteOnSpawn: true
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: ball-emp
-
-- type: entity
   id: GrapplingHook
   name: grappling hook
   categories: [ HideSpawnMenu ]
