@@ -32,6 +32,14 @@
 
 #AMMO START
 
+#127x99mm tags
+
+- type: Tag
+  id: Magazine127x99mm
+
+- type: Tag
+  id: Cartridge127x99mm
+
 #762x51mm tags
 
 - type: Tag
@@ -85,6 +93,9 @@
 - type: Tag
   id: Magazine556x45mmBox
 
+- type: Tag
+  id: SpeedLoader556x45mmFMJ
+
 #762x39mm tags
 
 - type: Tag
@@ -101,6 +112,12 @@
 
 - type: Tag
   id: Magazine762x39mmPan
+
+- type: Tag
+  id: Magazine762x39mmSubsonic
+
+- type: Tag
+  id: Cartridge762x39mmSubsonic
 
 #46x30mm tags
 
@@ -213,6 +230,9 @@
 - type: Tag
   id: MagazineDP29
 
+- type: Tag
+  id: MagazineNovaliteC1
+
 #8x65mm SKR tags
 
 - type: Tag
@@ -245,6 +265,9 @@
 
 - type: Tag
   id: ShellShotgun12_gaugeBuckshot
+
+- type: Tag
+  id: ShellShotgun12_gaugeLight
 
 #4 gauge tags
 
@@ -439,3 +462,17 @@
 
 - type: Tag
   id: MachineBoard3x3
+
+# Ship Ammo
+
+- type: Tag
+  id: Asm220Torpedo
+
+- type: Tag
+  id: CharonSlug
+
+- type: Tag
+  id: 150mmShell
+
+- type: Tag
+  id: LightFighterOrdinance

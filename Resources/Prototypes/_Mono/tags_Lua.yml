@@ -1,11 +1,22 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Lua
 
-- type: Tag
-  id: Magazine8x55mmSKRBox
+# Lathes Ammo
 
-- type: Tag
-  id: MagazineBox8x55mmSKR
+- type: latheCategory
+  id: FMJAmmo
+  name: FMJ Ammo
 
-- type: Tag
-  id: Cartridge8x55mmSKR
+- type: latheCategory
+  id: PlasteelAPAmmo
+  name: Plasteel AP Ammo
+
+- type: latheCategory
+  id: HPammo
+  name: Hollow Point Ammo
+
+- type: latheCategory
+  id: RIPammo
+  name: RIP Ammo
+
+# 
