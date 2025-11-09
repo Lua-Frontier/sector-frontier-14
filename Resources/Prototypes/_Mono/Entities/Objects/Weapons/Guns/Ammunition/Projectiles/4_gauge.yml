@@ -52,7 +52,6 @@
         Piercing: 75
         Blunt: 10
         Structural: 200
-    armorPenetration: 0.1
 
 - type: entity
   id: Pellet23x75mmFlashbang
@@ -84,7 +83,6 @@
     damage:
       types:
         Blunt: 20
-    armorPenetration: -0.2
   - type: StaminaDamageOnCollide
     damage: 95
 
@@ -101,7 +99,6 @@
     damage:
       types:
         Piercing: 24
-    armorPenetration: -0.5
 
 - type: entity
   id: Pellet23x75mmBuckshotSpread
@@ -127,7 +124,6 @@
       types:
         Blunt: 8
         Heat: 14
-    armorPenetration: -0.3
   - type: IgnitionSource
     ignited: true
 
@@ -226,7 +222,6 @@
       types:
         Radiation: 10
         Piercing: 12
-    armorPenetration: -0.05
 
 - type: entity
   id: Pellet23x75mmUraniumSpread
@@ -251,7 +246,6 @@
     damage:
       types:
         Piercing: 8
-    armorPenetration: -0.2
 
 - type: entity
   id: Pellet23x75mmDozdSpread
@@ -278,7 +272,6 @@
     damage:
       types:
         Piercing: 40
-    armorPenetration: -0.2
 
 - type: entity
   id: Pellet23x75mmOOBuckshotSpread
@@ -304,7 +297,6 @@
       types:
         Piercing: 160
         Structural: 250
-    armorPenetration: -0.9
 
 #armor-piercing ammo
 - type: entity
@@ -321,7 +313,6 @@
       types:
         Piercing: 40
         Structural: 250
-    armorPenetration: 0.5
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
@@ -339,7 +330,6 @@
     damage:
       types:
         Piercing: 15
-    armorPenetration: 0.3
   - type: Tracer
     color: "#6f7c82ff"
     length: 3

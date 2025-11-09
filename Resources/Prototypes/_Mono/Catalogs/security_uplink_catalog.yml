@@ -169,36 +169,6 @@
       - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMagazineBox8x55mm
-  name: uplink-security-8x55mm-boxmag-name
-  description: uplink-security-8x55mm-boxmag-desc
-  productEntity: Magazine8x55mmSKRBox
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityAmmoBox8x55mm
-  name: uplink-security-8x55mm-box-name
-  description: uplink-security-8x55mm-box-desc
-  productEntity: AmmoBox8x55mmSKR
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
   id: UplinkSecurityMagazineMG8x65mm
   name: uplink-security-8x65mm-box-name
   description: uplink-security-8x65mm-box-desc

@@ -33,7 +33,6 @@
     damage:
       types:
         Piercing: 24
-    armorPenetration: 0.05
 
 - type: entity
   id: Bullet9x19mmPractice
@@ -68,7 +67,6 @@
       types:
         Blunt: 4
         Heat: 18
-    armorPenetration: -0.15
 
 - type: entity
   id: Bullet9x19mmUranium
@@ -81,7 +79,6 @@
       types:
         Radiation: 8
         Piercing: 13
-    armorPenetration: -0.1
 
 # Upstream
 - type: entity
@@ -108,7 +105,6 @@
       types:
         Slash: 3
         Piercing: 26
-    armorPenetration: -0.6
 
 - type: entity
   id: Bullet9x19mmRIP
@@ -121,7 +117,6 @@
       types:
         Slash: 5
         Piercing: 35
-    armorPenetration: -0.95
 
 #armor-piercing:
 
@@ -135,4 +130,3 @@
     damage:
       types:
         Piercing: 7
-    armorPenetration: 0.9

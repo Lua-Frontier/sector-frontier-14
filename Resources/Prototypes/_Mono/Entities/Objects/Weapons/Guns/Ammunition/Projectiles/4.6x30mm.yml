@@ -33,7 +33,6 @@
     damage:
       types:
         Piercing: 16
-    armorPenetration: 0.075
 
 - type: entity
   id: Bullet46x30mmPractice
@@ -45,7 +44,6 @@
     damage:
       types:
         Blunt: 2
-    armorPenetration: 0.025
 
 - type: entity
   id: Bullet46x30mmRubber
@@ -57,7 +55,6 @@
     damage:
       types:
         Blunt: 3
-    armorPenetration: 0.025
 
 - type: entity
   id: Bullet46x30mmIncendiary
@@ -70,7 +67,6 @@
       types:
         Blunt: 3
         Heat: 15
-    armorPenetration: 0.025
 
 - type: entity
   id: Bullet46x30mmUranium
@@ -83,7 +79,6 @@
       types:
         Radiation: 6
         Piercing: 10
-    armorPenetration: 0.025
 
 # Upstream
 - type: entity
@@ -96,7 +91,6 @@
     damage:
       types:
         Shock: 0
-    armorPenetration: 0.025
 
 # Mono AP syst
 # + 0.05 base AP
@@ -112,7 +106,6 @@
       types:
         Slash: 3
         Piercing: 24
-    armorPenetration: -0.55
 
 - type: entity
   id: Bullet46x30mmRIP
@@ -125,7 +118,6 @@
       types:
         Slash: 5
         Piercing: 30
-    armorPenetration: -0.9
 
 #armor-piercing:
 
@@ -139,4 +131,3 @@
     damage:
       types:
         Piercing: 8
-    armorPenetration: 0.6

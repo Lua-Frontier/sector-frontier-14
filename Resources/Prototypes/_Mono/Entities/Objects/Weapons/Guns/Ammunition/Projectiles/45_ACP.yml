@@ -33,7 +33,6 @@
     damage:
       types:
         Piercing: 26
-    armorPenetration: 0.05
 
 - type: entity
   id: Bullet45_ACPPractice
@@ -68,7 +67,6 @@
       types:
         Blunt: 3
         Heat: 22
-    armorPenetration: -0.1
 
 - type: entity
   id: Bullet45_ACPUranium
@@ -81,7 +79,6 @@
       types:
         Radiation: 9
         Piercing: 15
-    armorPenetration: -0.075
 
 # Upstream
 - type: entity
@@ -109,7 +106,6 @@
       types:
         Slash: 4
         Piercing: 32
-    armorPenetration: -0.7
 
 - type: entity
   id: Bullet45_ACPRIP
@@ -122,7 +118,6 @@
       types:
         Slash: 7
         Piercing: 42
-    armorPenetration: -0.95
 
 #armor-piercing:
 
@@ -136,4 +131,3 @@
     damage:
       types:
         Piercing: 12
-    armorPenetration: 0.7
