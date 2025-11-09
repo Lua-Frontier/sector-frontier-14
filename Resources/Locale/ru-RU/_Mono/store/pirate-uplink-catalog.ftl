@@ -127,7 +127,7 @@ uplink-pirate-viper-desc = Небольшой, легко скрываемый, 
 uplink-pirate-kanabou-name = Канабоу
 uplink-pirate-kanabou-desc = Оружие для тех, кто хочет отказаться от тонкости. Особенно подходит для Они.
 
-uplink-pirate-ak-name = Соланд-Мосс
+uplink-pirate-ak-name = AK-74M
 uplink-pirate-ak-desc = Легендарное оружие войны. Использует винтовочные патроны .30.
 
 uplink-pirate-laser-gun-name = Лазерный пистолет

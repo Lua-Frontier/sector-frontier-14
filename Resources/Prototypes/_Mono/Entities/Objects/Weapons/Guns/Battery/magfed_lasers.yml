@@ -67,8 +67,6 @@
     - back
     - suitStorage
   - type: AmmoCounter
-  - type: PirateBountyItem # Mono
-    id: ExperimentalFactionWeapon
 
 - type: entity
   name: NT-WS LRC-21 PPL
@@ -127,11 +125,7 @@
     slots:
     - back
     - suitStorage
-  - type: AmmoCounter
-  - type: PirateBountyItem # Mono
-    id: ExperimentalFactionWeapon
-    targetedColor: "#03c2fc"
-    defaultColor: "#03c2fc"
+    - type: AmmoCounter
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 12
