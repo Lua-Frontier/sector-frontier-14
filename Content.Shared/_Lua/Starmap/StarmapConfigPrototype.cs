@@ -35,12 +35,6 @@ public sealed partial class StarmapConfigPrototype : IPrototype
     public StarmapParallaxLayer[] ParallaxLayers = Array.Empty<StarmapParallaxLayer>();
 
     [DataField]
-    public int MinStars = 15;
-
-    [DataField]
-    public int MaxStars = 26;
-
-    [DataField]
     public float StarDistanceMin = 5f;
 
     [DataField]

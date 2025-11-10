@@ -8,6 +8,8 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
+using Content.Shared.Lua.CLVar;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
@@ -21,6 +23,7 @@ public sealed class SectorStarMapSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     private float _updateTimer = 0f;
 
     private bool TryGetConfiguredPosition(string sectorProtoId, out Vector2 position)
@@ -65,6 +68,8 @@ public sealed class SectorStarMapSystem : EntitySystem
     public List<Star> GetSectorStars()
     {
         var sectorStars = new List<Star>();
+        if (!_configurationManager.GetCVar(CLVars.StarmapIncludeSectors))
+        { return sectorStars; }
         try
         {
             var frontierMapId = GetFrontierSectorMapId();
