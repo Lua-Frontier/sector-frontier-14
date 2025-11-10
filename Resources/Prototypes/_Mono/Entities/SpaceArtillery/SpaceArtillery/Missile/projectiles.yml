@@ -46,6 +46,22 @@
     maxSpeed: 180
     trackDelay: 0.1
 
+- type: entity
+  id: ShipMissileASM417Weak
+  name: Stock ASM-417 Mini Missile
+  parent: ShipMissileASM417
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 360
+        Blunt: 52
+        Heat: 8
+  - type: Explosive
+    totalIntensity: 60
+    intensitySlope: 6
+    maxIntensity: 20
+
 # ASM-302
 
 - type: entity
@@ -93,6 +109,71 @@
     launchSpeed: 90
     maxSpeed: 210
     trackDelay: 0.2
+
+- type: entity
+  id: ShipMissileASM302Weak
+  name: Stock ASM-302 Missile
+  parent: ShipMissileASM302
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 800
+        Blunt: 140
+        Heat: 40
+  - type: Explosive
+    totalIntensity: 48
+    intensitySlope: 5
+    maxIntensity: 16
+
+# ASM-501
+
+- type: entity
+  id: ShipMissileASM501
+  name: ASM-501 missile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 15000
+        Blunt: 2000
+        Heat: 500
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#FCBA03"
+    scale: 4
+    requireNoGrid: true
+    shape: hexagon
+  - type: TimedDespawn
+    lifetime: 15
+  - type: PointLight
+    radius: 5
+    color: orange
+    energy: 2
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    maxIntensity: 6000
+    intensitySlope: 30
+    totalIntensity: 6000
+  - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
+  - type: TargetSeeking
+    acceleration: 50
+    detectionRange: 600
+    scanArc: 30
+    launchSpeed: 25
+    maxSpeed: 30
+    trackDelay: 2
 
 # TOVEK
 
@@ -145,6 +226,25 @@
     launchSpeed: 50
     maxSpeed: 125
     trackDelay: 0.6
+
+- type: entity
+  id: ShipMissileASM557Weak
+  name: Stock ASM-557 Hybrid EMP Missile
+  parent: ShipMissileASM557
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 6000
+        Heat: 24
+  - type: Explosive
+    totalIntensity: 80
+    intensitySlope: 8
+    maxIntensity: 40
+  - type: EmpOnTrigger
+    range: 5
+    energyConsumption: 2300000
+    disableDuration: 4
 
 # Serpent Torpedo
 

@@ -257,7 +257,28 @@ public sealed partial class FireControlSystem : EntitySystem
 
         if (TryComp<BallisticAmmoProviderComponent>(weaponEntity, out var ballisticAmmo))
         {
-            return (ballisticAmmo.Count, ballisticAmmo.Cycleable);
+            // if we're InfiniteUnspawned consider us to be non-reloading when at 0 ammo
+            return (ballisticAmmo.Count, ballisticAmmo.Cycleable && (ballisticAmmo.Count != 0 || !ballisticAmmo.InfiniteUnspawned));
+        }
+
+        if (TryComp<MagazineAmmoProviderComponent>(weaponEntity, out var magazineAmmo))
+        {
+            var magazineEntity = GetMagazineEntity(weaponEntity);
+            if (magazineEntity != null)
+            {
+                if (TryComp<BallisticAmmoProviderComponent>(magazineEntity, out var magazineBallisticAmmo))
+                {
+                    var hasAmmo = magazineBallisticAmmo.Cycleable
+                             && (magazineBallisticAmmo.Count != 0 || !magazineBallisticAmmo.InfiniteUnspawned);
+                    return (magazineBallisticAmmo.Count, hasAmmo);
+                }
+
+                if (TryComp<BasicEntityAmmoProviderComponent>(magazineEntity, out var magazineBasicAmmo))
+                {
+                    var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(magazineEntity);
+                    return (magazineBasicAmmo.Count, !hasRecharge);
+                }
+            }
         }
 
         return (null, false);

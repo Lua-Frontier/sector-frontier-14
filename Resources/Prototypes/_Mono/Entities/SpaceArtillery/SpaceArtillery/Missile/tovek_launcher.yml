@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 kasature90
+#
+# SPDX-License-Identifier: MPL-2.0
+
 - type: entity
   id: WeaponTurretTovek
   name: ADMX-23 TOVEK 250mm Missile Pod
@@ -33,12 +38,12 @@
     scale: 2
     visibleFromOtherGrids: true
   - type: BallisticAmmoProvider
-    infiniteUnspawned: false
+    infiniteUnspawned: true
     whitelist:
       tags:
       - TovekCartridge
-    capacity: 2
-    proto: TovekCartridge
+    capacity: 6
+    proto: TovekCartridgeWeak
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: ShipGunType

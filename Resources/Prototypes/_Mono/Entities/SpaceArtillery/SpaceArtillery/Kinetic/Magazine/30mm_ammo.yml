@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2025 Ark
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 kasature90
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
 - type: entity
   id: Magazine30mm
   name: "30mm solid ammo loader"
@@ -72,3 +79,20 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+
+- type: entity
+  id: Magazine30mmWeak
+  name: "30x173mm ammo drum"
+  parent: Magazine30mm
+  components:
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: 30mmCartridgeWeak
+
+- type: entity
+  id: 30mmCartridgeWeak
+  name: "cartridge (30x173mm)"
+  parent: 30mmCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: 30mmBulletWeak

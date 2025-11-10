@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2025 Ilya246
+# SPDX-FileCopyrightText: 2025 kasature90
+# SPDX-FileCopyrightText: 2025 significant harassment
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
 - type: entity
   id: WeaponTurretVanyk
   name: ASM-302 "Vanyk" 150mm missile pod
@@ -42,12 +49,12 @@
         sound:
           collection: MetalBreak
   - type: BallisticAmmoProvider
-    infiniteUnspawned: false
+    infiniteUnspawned: true
     whitelist:
       tags:
       - VanykCartridge
     capacity: 12
-    proto: VanykCartridge
+    proto: VanykCartridgeWeak
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip

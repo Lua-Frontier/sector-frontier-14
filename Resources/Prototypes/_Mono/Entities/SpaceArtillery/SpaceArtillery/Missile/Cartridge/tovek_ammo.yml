@@ -37,3 +37,12 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+
+- type: entity
+  id: TovekCartridgeWeak
+  name: stock ASM-557 EMPHE missile
+  description: An individual ASM-557 EMPHE missile for a Tovek launcher. Weaker due to stock specs.
+  parent: TovekCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: ShipMissileASM557Weak

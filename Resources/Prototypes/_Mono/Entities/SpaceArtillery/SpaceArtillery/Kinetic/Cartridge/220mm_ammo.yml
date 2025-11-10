@@ -37,3 +37,10 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+
+- type: entity
+  id: 220mmCartridgeWeak
+  parent: 220mmCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: ShipCyrexaProjectileWeak

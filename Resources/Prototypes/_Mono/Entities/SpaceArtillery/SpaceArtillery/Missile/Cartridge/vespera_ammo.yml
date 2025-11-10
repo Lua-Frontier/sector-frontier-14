@@ -70,3 +70,12 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
+
+- type: entity
+  id: VesperaCartridgeWeak
+  name: ASM-417 missile
+  description: An individual ASM-417 missile.
+  parent: VesperaCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: ShipMissileASM417Weak

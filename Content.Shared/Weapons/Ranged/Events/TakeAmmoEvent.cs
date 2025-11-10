@@ -1,3 +1,12 @@
+// SPDX-FileCopyrightText: 2022 Kara
+// SPDX-FileCopyrightText: 2023 TaralGit
+// SPDX-FileCopyrightText: 2023 and_a
+// SPDX-FileCopyrightText: 2023 metalgearsloth
+// SPDX-FileCopyrightText: 2024 Whatstone
+// SPDX-FileCopyrightText: 2025 Ilya246
+//
+// SPDX-License-Identifier: MPL-2.0
+
 using Robust.Shared.Map;
 
 namespace Content.Shared.Weapons.Ranged.Events;
@@ -5,7 +14,7 @@ namespace Content.Shared.Weapons.Ranged.Events;
 /// <summary>
 /// Raised on a gun when it would like to take the specified amount of ammo.
 /// </summary>
-public sealed class TakeAmmoEvent : EntityEventArgs
+public class TakeAmmoEvent : EntityEventArgs // Mono: unseal
 {
     public readonly EntityUid? User;
     public readonly int Shots;
