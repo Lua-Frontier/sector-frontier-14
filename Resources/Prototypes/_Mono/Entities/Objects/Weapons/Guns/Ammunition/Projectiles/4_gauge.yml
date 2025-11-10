@@ -49,9 +49,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 75
-        Blunt: 10
-        Structural: 200
+        Piercing: 52,5 #Lua -30%
+        Blunt: 7 #Lua -30%
+        Structural: 100 #Lua -50%
 
 - type: entity
   id: Pellet23x75mmFlashbang
@@ -82,9 +82,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 20
+        Blunt: 14 #Lua -30%
   - type: StaminaDamageOnCollide
-    damage: 95
+    damage: 76 #Lua -20%
 
 - type: entity
   id: Pellet23x75mmBuckshot
@@ -98,7 +98,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 24
+        Piercing: 16.8 #Lua -30%
 
 - type: entity
   id: Pellet23x75mmBuckshotSpread
@@ -107,7 +107,7 @@
   components:
   - type: ProjectileSpread
     proto: Pellet23x75mmBuckshot
-    count: 6
+    count: 5 #Lua -1
     spread: 15
 
 - type: entity
@@ -122,8 +122,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 8
-        Heat: 14
+        Blunt: 5.6 #Lua -30%
+        Heat: 9.8 #Lia -30%
   - type: IgnitionSource
     ignited: true
 
@@ -134,7 +134,7 @@
   components:
   - type: ProjectileSpread
     proto: Pellet23x75mmIncendiary
-    count: 6
+    count: 5 #Lua -1
     spread: 15
 
 - type: entity
@@ -149,7 +149,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
+        Blunt: 1 #Lua -2
 
 - type: entity
   id: Pellet23x75mmPracticeSpread
@@ -158,7 +158,7 @@
   components:
   - type: ProjectileSpread
     proto: Pellet23x75mmPractice
-    count: 6
+    count: 5 #Lua -1
     spread: 15
 
 - type: entity
@@ -220,8 +220,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 10
-        Piercing: 12
+        Radiation: 7 #Lua -30%
+        Piercing: 8.4 #Lua -30%
 
 - type: entity
   id: Pellet23x75mmUraniumSpread
@@ -245,7 +245,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8
+        Piercing: 7 #Lua -1
 
 - type: entity
   id: Pellet23x75mmDozdSpread
@@ -254,7 +254,7 @@
   components:
   - type: ProjectileSpread
     proto: Pellet23x75mmDozd
-    count: 12
+    count: 10 #Lua -2
     spread: 30
 
 #Mono AP system
@@ -271,7 +271,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40
+        Piercing: 28 #Lua -30%
 
 - type: entity
   id: Pellet23x75mmOOBuckshotSpread
@@ -295,8 +295,10 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 160
-        Structural: 250
+        Blunt: 12.5 #Lua add
+        Piercing: 12.5 #Lua add
+        Slash: 12.5 #Lua add
+        Structural: 125 #Lua -50%
 
 #armor-piercing ammo
 - type: entity
@@ -311,8 +313,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40
-        Structural: 250
+        Piercing: 50 #Lua +10
+        Structural: 500 #Lua +100%
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
@@ -329,7 +331,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 13.5 #Lua -10%
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
@@ -341,5 +343,5 @@
   components:
   - type: ProjectileSpread
     proto: Pellet23x75mmFlechette
-    count: 6
+    count: 5 #Lua -1
     spread: 12
