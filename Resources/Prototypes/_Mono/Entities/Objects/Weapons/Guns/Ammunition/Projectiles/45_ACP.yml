@@ -134,5 +134,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30 #Lua +18
+        Piercing: 20 #Lua +8
         Structural: 200 #Lua add
+      ignoreResistances: true

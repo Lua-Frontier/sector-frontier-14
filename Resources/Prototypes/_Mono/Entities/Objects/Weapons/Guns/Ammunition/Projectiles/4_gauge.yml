@@ -314,8 +314,9 @@
     damage:
       types:
         Piercing: 15 #Lua -25
-        blunt: 20 # Lua add
+        blunt: 15 # Lua add
         Structural: 500 #Lua +100%
+      ignoreResistances: true
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
