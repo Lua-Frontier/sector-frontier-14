@@ -32,7 +32,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 24
+        Piercing: 15 #Lua -9
+        Blunt: 7 #Lua add
 
 - type: entity
   id: Bullet9x19mmPractice
@@ -43,7 +44,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2
+        Blunt: 1 #Lua -1
 
 - type: entity
   id: Bullet9x19mmRubber
@@ -55,6 +56,8 @@
     damage:
       types:
         Blunt: 3
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 15
 
 - type: entity
   id: Bullet9x19mmIncendiary
@@ -77,8 +80,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 8
-        Piercing: 13
+        Radiation: 18 #Lua +10
+        Piercing: 4 #Lua -9
 
 # Upstream
 - type: entity
@@ -103,8 +106,8 @@
   - type: Projectile
     damage:
       types:
-        Slash: 3
-        Piercing: 26
+        Slash: 6 #Lua +3
+        Piercing: 16 #Lua -10
 
 - type: entity
   id: Bullet9x19mmRIP
@@ -115,8 +118,9 @@
   - type: Projectile
     damage:
       types:
-        Slash: 5
-        Piercing: 35
+        Slash: 10 #Lua +5
+        Piercing: 10 #Lua -25
+        Blunt: 10 #Lua add
 
 #armor-piercing:
 
@@ -129,4 +133,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7
+        Piercing: 18 #Lua +9
+    ignoreResistances: true
