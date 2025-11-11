@@ -1,6 +1,55 @@
 #region WizDen
 
 - type: entity # TODO: switch to .25 rifle (caseless)
+  id: NFWeaponRifleAssaultSm
+  parent: [ NFBaseWeaponRifleAssaultChamber30, NFBaseWeaponFrameRifleAssaultCybersun ]
+  name: AK-74M
+  description: |-
+    An iconic weapon of war. An illegal firearm often used by Syndicate agents.
+  components:
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/akm_inhands_32x.rsi
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/akm.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+
+- type: entity
+  id: NFWeaponRifleAssaultLecter
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultNanotrasen ]
+  name: Lecter
+  description: |-
+    A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
+  components: &lecterComponents
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter_inhands_32x.rsi
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+
+- type: entity
+  id: NFWeaponRifleAssaultLecterLessLethal
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20Rubber, NFBaseWeaponFrameRifleAssaultNanotrasen ]
+  name: Lecter
+  description: |-
+    A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
+  suffix: Frontier, Less-lethal
+  components: *lecterComponents
+  
+- type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
   parent: [ NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultCybersun ]
   name: M-90gl
