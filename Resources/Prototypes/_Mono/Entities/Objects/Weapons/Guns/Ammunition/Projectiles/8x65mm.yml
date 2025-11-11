@@ -29,7 +29,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 27.5
+        Piercing: 45 #Lua 45
 
 - type: entity
   id: Bullet8x65mmSKRPractice
@@ -40,7 +40,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
+        Blunt: 1 #Lua -2
 
 - type: entity
   id: Bullet8x65mmSKRIncendiary
@@ -51,5 +51,5 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
-        Heat: 32
+        piercing: 20 #Lua add
+        Heat: 20 #Lua -12
