@@ -142,7 +142,7 @@
   id: UplinkSecurityBoxSubsonic
   name:  uplink-subsonic-box-name
   description: uplink-subsonic-box-desc
-  productEntity: Magazine762x39mmSubsonic
+  productEntity: AmmoBox762x39mmSubsonic
   cost:
     FrontierUplinkCoin: 3
   categories:
@@ -182,6 +182,22 @@
     whitelist:
       tags:
       - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMagazineSAW8x65mm
+  name: uplink-security-SAW8x65mm-boxmag-name
+  description: uplink-security-SAW8x65mm-boxmag-desc
+  productEntity: Magazine8x65mmSKRBox
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
 
 # - type: listing
 #   id: UplinkSecurityAuroraExosuit
