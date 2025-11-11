@@ -58,7 +58,7 @@ public sealed class ChaoticJumpSystem : VirtualController
         var direction = _random.NextAngle();
         var range = _random.NextFloat(component.RangeMin, component.RangeMax);
         var ray = new CollisionRay(startPos, direction.ToVec(), component.CollisionMask);
-        var rayCastResults = _physics.IntersectRay(transform.MapID, ray, range, uid, returnOnFirstHit: false).FirstOrNull();
+        var rayCastResults = _physics.IntersectRay(transform.MapID, ray, range, uid, returnOnFirstHit: true).FirstOrNull(); // Lua hit true
 
         if (rayCastResults != null)
         {
