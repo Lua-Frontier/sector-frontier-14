@@ -27,7 +27,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 19
+        Piercing: 22 #Lua +3
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 - type: entity
   id: Bullet635x40mmCaselessPractice
@@ -38,7 +40,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2
+        Blunt: 1 #Lua -1
 
 - type: entity
   id: Bullet635x40mmCaselessRubber
@@ -50,3 +52,5 @@
     damage:
       types:
         Blunt: 3
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 14
