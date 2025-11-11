@@ -32,7 +32,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 26
+        Piercing: 19 #Lua -7
+        Blunt: 17 #Lua add
 
 - type: entity
   id: Bullet45_ACPPractice
@@ -43,7 +44,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2
+        Blunt: 1 #Lua -1
 
 - type: entity
   id: Bullet45_ACPRubber
@@ -55,6 +56,8 @@
     damage:
       types:
         Blunt: 4
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 19
 
 - type: entity
   id: Bullet45_ACPIncendiary
@@ -65,7 +68,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
+        Blunt: 13 #Lua +10
         Heat: 22
 
 - type: entity
@@ -77,8 +80,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 9
-        Piercing: 15
+        Radiation: 22 #Lua +13
+        Piercing: 13 #Lua -2
 
 # Upstream
 - type: entity
@@ -104,8 +107,8 @@
   - type: Projectile
     damage:
       types:
-        Slash: 4
-        Piercing: 32
+        Slash: 10 #Lua +6
+        Piercing: 28 #Lua -4
 
 - type: entity
   id: Bullet45_ACPRIP
@@ -116,8 +119,9 @@
   - type: Projectile
     damage:
       types:
-        Slash: 7
-        Piercing: 42
+        Slash: 10 #Lua +3
+        Piercing: 30 #Lua -12
+        Blunt: 10 #Lua add
 
 #armor-piercing:
 
@@ -130,4 +134,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12
+        Piercing: 30 #Lua +18
+        Structural: 200 #Lua add
