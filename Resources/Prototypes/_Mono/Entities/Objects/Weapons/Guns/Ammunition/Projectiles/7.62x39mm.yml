@@ -50,7 +50,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2
+        Blunt: 1 #Lua -1
 
 - type: entity
   id: Bullet762x39mmRubber
@@ -62,6 +62,8 @@
     damage:
       types:
         Blunt: 3
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 15
 
 - type: entity
   id: Bullet762x39mmIncendiary
@@ -72,7 +74,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 5
+        piercing: 8 #Lua +3
         Heat: 18
 
 - type: entity
@@ -84,8 +86,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 10
-        Piercing: 13
+        Radiation: 14 #Lua +4
+        Piercing: 12 #Lua -1
 
 - type: entity
   id: Bullet762x39mmSubsonic
@@ -96,7 +98,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 23
+        Piercing: 27 #Lua +4
 
 # Mono AP syst
 # - 0.05 base AP
@@ -111,7 +113,7 @@
     damage:
       types:
         Slash: 6
-        Piercing: 35
+        Piercing: 20 #Lua -15
 
 - type: entity
   id: Bullet762x39mmRIP
@@ -122,8 +124,9 @@
   - type: Projectile
     damage:
       types:
-        Slash: 8
-        Piercing: 42
+        Slash: 10 #Lua +2
+        Piercing: 10 #Lua -32
+        Blunt: 10 #Lua add
 
 #armor-piercing:
 
@@ -136,4 +139,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 27 #Lua +2
+        Structural: 250 #Lua add
