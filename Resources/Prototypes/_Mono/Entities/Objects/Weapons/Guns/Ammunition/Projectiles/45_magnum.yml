@@ -86,7 +86,7 @@
     damage:
       types:
         Piercing: 25 #Lua -1
-    ignoreResistances: true
+    ignoreResistances: true #Lua add (замена пробитию на монолите)
 
 - type: entity
   id: Bullet45_magnumUranium
@@ -138,4 +138,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20
+        Piercing: 30 #Lua +10
+        Structural: 200 #Lua add
