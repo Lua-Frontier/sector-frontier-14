@@ -84,7 +84,7 @@
       types:
         Blunt: 14 #Lua -30%
   - type: StaminaDamageOnCollide
-    damage: 76 #Lua -20%
+    damage: 65 #Lua -30%
 
 - type: entity
   id: Pellet23x75mmBuckshot
@@ -313,7 +313,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 50 #Lua +10
+        Piercing: 15 #Lua -25
+        blunt: 20 # Lua add
         Structural: 500 #Lua +100%
   - type: Tracer
     color: "#6f7c82ff"
