@@ -149,6 +149,11 @@
     soundRack:
       path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
   - type: Gun
+    availableModes: #Lua add
+    - SemiAuto
+    - FullAuto
+    selectedMode: FullAuto
+    fireRate: 3.5 #Lua add
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_2.ogg # Mono
   - type: ItemSlots
@@ -162,6 +167,7 @@
         whitelist:
           tags:
           - Magazine762x51mmFMJ
+          - Magazine762x51mmLowCapacityFMJ # Lua add
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
