@@ -27,7 +27,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 22 #Lua +3
+        Piercing: 15 #Lua -4
+        Blunt: 4 #Lua add
   - type: StaminaDamageOnCollide #Lua add
     damage: 5
 
@@ -53,4 +54,4 @@
       types:
         Blunt: 3
   - type: StaminaDamageOnCollide #Lua add
-    damage: 14
+    damage: 15

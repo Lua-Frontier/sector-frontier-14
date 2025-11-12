@@ -12,7 +12,7 @@
 
 - type: entity
   name: SKR-WS MLA-73 (635x40mm caseless)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseC2Contraband] # Frontier: added BaseC2Contraband
+  parent: [BaseWeaponSubMachineGun, BaseC2Contraband] # Frontier: added BaseC2Contraband #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunMla73
   description: A reliable PDW design, commonly issued to pilots and AFV crewmen. This one has been modified with an integral suppressor. Legends around this weapons say it's a Corporate-Era schematic that's been built by The Ashen Republic.
   components:
@@ -25,15 +25,10 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/mla73.rsi
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -34
   - type: Gun
-    minAngle: 21
-    maxAngle: 38
-    angleIncrease: 5
-    angleDecay: 20
-    fireRate: 9.5
+    angleIncrease: 1.1 #Lua 5 -> 1.1
+    angleDecay: 7.7 #Lua 20 -> 7.7
+    fireRate: 9.5 #Lua 635x40 balance DPS: 180.5
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/mla_fire.ogg
   - type: ChamberMagazineAmmoProvider
@@ -64,7 +59,7 @@
 
 - type: entity
   name: NCI AK-220 (9x19mm)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseC1Contraband]
+  parent: [BaseWeaponSubMachineGun, BaseC1Contraband] #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunAK220
   description: A mass produced 9x19mm bullpup SMG. The design originates from the USSP, but various TSF and ASR manufacturers produce it via licenses or suspiciously similar "original" designs.
   components:
@@ -123,7 +118,7 @@
 
 - type: entity
   name: LWC Vector (9x19mm)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseC2Contraband] # Frontier: added BaseC2Contraband
+  parent: [BaseWeaponSubMachineGun, BaseC2Contraband] # Frontier: added BaseC2Contraband #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunVector9x19mm
   description: An excellent fully automatic SMG. Uses 9x19mm ammo.
   components:
@@ -177,7 +172,7 @@
 
 - type: entity
   name: LWC Vector (.45 ACP)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseC2Contraband] # Frontier: added BaseC2Contraband
+  parent: [BaseWeaponSubMachineGun, BaseC2Contraband] # Frontier: added BaseC2Contraband #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunVector45_ACP
   description: An excellent fully automatic SMG. Uses .45 ACP ammo.
   components:
@@ -232,7 +227,7 @@
 #Pre-corpowar 45 magnum rare vector 
 - type: entity
   name: NTSF-HCLM-45 (.45 magnum)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  parent: [BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable] #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunVectorNtsfHclm
   description: The NTSF Heavy Caliber Light Machinegun. A very high-quality heavy SMG chambered in .45 magnum for use for the Nano Trasen Security Force and NT spec-ops.
   components:
@@ -286,7 +281,7 @@
 
 - type: entity
   name: LWC Knallstock (9x19mm/.45 ACP)
-  parent: [ BaseWeaponSubMachineGun, BaseGunWieldable, BaseC2Contraband ] # Frontier: added BaseC2Contraband
+  parent: [ BaseWeaponSubMachineGun, BaseC2Contraband ] # Frontier: added BaseC2Contraband #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunKnallstock
   description: A rugged and reliable SMG using large, rapid fire bursts. Accepts 9x19 or .45 ACP pistol magazines. Watch out for its ammo consumption.
   components:
@@ -367,7 +362,7 @@
 #old drozd sprite SMG
 - type: entity
   name: HWM Firestarter (.45 ACP)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseC2Contraband] # Frontier: added BaseC2Contraband
+  parent: [BaseWeaponSubMachineGun, BaseC2Contraband] # Frontier: added BaseC2Contraband #Lua: deleted BaseGunWieldable
   id: WeaponSubMachineGunFirestarter
   description: An excellent fully automatic SMG. Uses .45 ACP ammo.
   components:
