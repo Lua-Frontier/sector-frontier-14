@@ -52,18 +52,18 @@
     radarBlip: false
 
 #Filled pirate
-- type: entity
-  id: JetpackPirateFilled
-  parent: JetpackPirate
-  name: pirate jetpack
-  suffix: Filled
-  components:
-  - type: GasTank
-    outputPressure: 42.6
-    air:
-      # 13 minutes of thrust
-      volume: 5
-      temperature: 293.15
-      moles:
-        - 1.025689525 # oxygen
-        - 1.025689525 # nitrogen
+# - type: entity
+#   id: JetpackPirateFilled
+#   parent: JetpackPirate
+#   name: pirate jetpack
+#   suffix: Filled
+#   components:
+#   - type: GasTank
+#     outputPressure: 42.6
+#     air:
+#       # 13 minutes of thrust
+#       volume: 5
+#       temperature: 293.15
+#       moles:
+#         - 1.025689525 # oxygen
+#         - 1.025689525 # nitrogen
