@@ -6,7 +6,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
-using Content.Server.Tesla.Components;
 
 namespace Content.Server.Physics.Controllers;
 
@@ -101,6 +100,6 @@ public sealed class ChasingWalkSystem : VirtualController
         var speed = delta.Length() > 0 ? delta.Normalized() * component.Speed : Vector2.Zero;
 
         _physics.SetLinearVelocity(uid, speed);
-        if (component.KeepInAir || HasComp<TeslaEnergyBallComponent>(uid)) _physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
+        _physics.SetBodyStatus(uid, physics, BodyStatus.InAir); //If this is not done, from the explosion up close, the tesla will "Fall" to the ground, and almost stop moving.
     }
 }

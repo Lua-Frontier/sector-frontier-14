@@ -16,9 +16,6 @@ public sealed class AutoUnstuckSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     private readonly Dictionary<EntityUid, float> _stuckTime = new();
-    private readonly List<EntityUid> _awakeOwners = new();
-    private readonly List<EntityUid> _pendingRemovals = new();
-    private const int RemovalBudgetPerTick = 10000;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -27,26 +24,16 @@ public sealed class AutoUnstuckSystem : EntitySystem
         base.Initialize();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
-        SubscribeLocalEvent<PhysicsComponent, EntityTerminatingEvent>(OnEntityTerminating);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var processed = 0;
-        for (var i = _pendingRemovals.Count - 1; i >= 0 && processed < RemovalBudgetPerTick; i--, processed++)
-        {
-            var uid = _pendingRemovals[i];
-            _pendingRemovals.RemoveAt(i);
-            _stuckTime.Remove(uid);
-        }
         var toClear = new List<EntityUid>();
-        _awakeOwners.Clear();
-        foreach (var ent in _physics.AwakeBodies) { _awakeOwners.Add(ent.Owner); }
-        foreach (var uid in _awakeOwners)
+        var awake = new List<EntityUid>();
+        foreach (var ent in _physics.AwakeBodies) { awake.Add(ent.Owner); }
+        foreach (var uid in awake)
         {
-            if (!Exists(uid))
-            { toClear.Add(uid); continue; }
             if (!_physicsQuery.TryGetComponent(uid, out var body)) continue;
             if (body.BodyType == BodyType.Static || !body.CanCollide) continue;
             var hasStaticHardContact = false;
@@ -75,10 +62,10 @@ public sealed class AutoUnstuckSystem : EntitySystem
                 if (_xformQuery.TryGetComponent(uid, out var xform))
                 {
                     _physics.SetCanCollide(uid, false, body: body);
-                    var delta = pushDir * 10f;
+                    var delta = pushDir * 1.25f;
                     _xform.SetWorldPosition(uid, xform.WorldPosition + delta);
                     _physics.SetCanCollide(uid, true, body: body);
-                    var vel = pushDir * 1.0f;
+                    var vel = pushDir * 0.5f;
                     _physics.SetLinearVelocity(uid, vel, body: body);
                     _physics.WakeBody(uid, body: body);
                 }
@@ -88,9 +75,6 @@ public sealed class AutoUnstuckSystem : EntitySystem
         foreach (var uid in toClear)
         { _stuckTime.Remove(uid); }
     }
-
-    private void OnEntityTerminating(Entity<PhysicsComponent> ent, ref EntityTerminatingEvent args)
-    { _pendingRemovals.Add(ent.Owner); }
 }
 
 
