@@ -57,21 +57,22 @@ public sealed class ChaoticJumpSystem : VirtualController
 
         var direction = _random.NextAngle();
         var range = _random.NextFloat(component.RangeMin, component.RangeMax);
-        var ray = new CollisionRay(startPos, direction.ToVec(), component.CollisionMask);
-        var rayCastResults = _physics.IntersectRay(transform.MapID, ray, range, uid, returnOnFirstHit: false).FirstOrNull();
+        var dirVec = direction.ToVec();
+        var ray = new CollisionRay(startPos, dirVec, component.CollisionMask);
+        var rayCastResults = _physics.IntersectRay(transform.MapID, ray, range, uid, returnOnFirstHit: true).FirstOrNull(); // Lua hit true
 
         if (rayCastResults != null)
         {
-            targetPos = rayCastResults.Value.HitPos;
-            targetPos = new Vector2(targetPos.X - (float) Math.Cos(direction), targetPos.Y - (float) Math.Sin(direction)); //offset so that the teleport does not take place directly inside the target
+            targetPos = rayCastResults.Value.HitPos - dirVec;
         }
         else
         {
-            targetPos = new Vector2(startPos.X + range * (float) Math.Cos(direction), startPos.Y + range * (float) Math.Sin(direction));
+            targetPos = startPos + dirVec * range;
         }
 
         Spawn(component.Effect, transform.Coordinates);
 
-        _transform.SetWorldPosition(uid, targetPos);
+        if (float.IsFinite(targetPos.X) && float.IsFinite(targetPos.Y))
+            _transform.SetWorldPosition(uid, targetPos);
     }
 }

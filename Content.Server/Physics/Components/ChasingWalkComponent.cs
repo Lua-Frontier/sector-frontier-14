@@ -78,4 +78,7 @@ public sealed partial class ChasingWalkComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? ChasingEntity;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool KeepInAir = false;
 }
