@@ -10,9 +10,14 @@
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_bullet
+      sprite: _Impstation/Objects/Weapons/Guns/Projectiles/muzzleflashes.rsi #imp
+      state: kinetic #imp
   - type: EffectVisuals
+  - type: PointLight
+    enabled: true
+    color: "#ffa223" #imp
+    radius: 1.2 #imp
+    energy: 4.0 #imp
   - type: Tag
     tags:
       - HideContextMenu
