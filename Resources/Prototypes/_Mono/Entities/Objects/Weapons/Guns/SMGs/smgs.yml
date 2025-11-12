@@ -129,14 +129,13 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -5
-    maxAngle: -5
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
   - type: Gun
-    fireRate: 7.5
-    selectedMode: Burst
+    angleIncrease: 1.1 #Lua add
+    angleDecay: 7.7 #Lua add
+    fireRate: 6 #Lua 7.5 -> 6 DPS 132
+    selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
     availableModes:
@@ -183,22 +182,21 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -5
-    maxAngle: -5
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
   - type: Gun
-    fireRate: 6
-    selectedMode: Burst
+    angleIncrease: 1.1 #Lua add
+    angleDecay: 7.7 #Lua add
+    fireRate: 4.5 #Lua 6 -> 4.5 DPS 162
+    selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
     availableModes:
     - Burst
     - SemiAuto
     - FullAuto
-    burstCooldown: 0.5
-    burstFireRate: 14
+    burstCooldown: 0.65 #Lua 0.5 -> 0.65
+    burstFireRate: 11 #Lua 14 -> 11
     shotsPerBurst: 3
   - type: ItemSlots
     slots:

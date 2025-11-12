@@ -34,6 +34,8 @@
       types:
         Piercing: 19 #Lua -7
         Blunt: 17 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
 
 - type: entity
   id: Bullet45_ACPPractice
@@ -70,6 +72,8 @@
       types:
         Blunt: 13 #Lua +10
         Heat: 22
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
 
 - type: entity
   id: Bullet45_ACPUranium
@@ -82,6 +86,8 @@
       types:
         Radiation: 22 #Lua +13
         Piercing: 13 #Lua -2
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
 
 # Upstream
 - type: entity
@@ -93,7 +99,10 @@
   - type: Projectile
     damage:
       types:
-        Shock: 0
+        Shock: 6 #Lua +6
+        Blunt: 6 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
 
 
 # Mono AP syst
@@ -109,6 +118,8 @@
       types:
         Slash: 10 #Lua +6
         Piercing: 28 #Lua -4
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
 
 - type: entity
   id: Bullet45_ACPRIP
@@ -120,8 +131,10 @@
     damage:
       types:
         Slash: 10 #Lua +3
-        Piercing: 30 #Lua -12
+        Piercing: 20 #Lua -22
         Blunt: 10 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 6
 
 #armor-piercing:
 

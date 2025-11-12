@@ -34,6 +34,8 @@
       types:
         Piercing: 15 #Lua -9
         Blunt: 7 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 - type: entity
   id: Bullet9x19mmPractice
@@ -70,6 +72,8 @@
       types:
         Blunt: 4
         Heat: 18
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 - type: entity
   id: Bullet9x19mmUranium
@@ -82,6 +86,8 @@
       types:
         Radiation: 18 #Lua +10
         Piercing: 4 #Lua -9
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 # Upstream
 - type: entity
@@ -93,7 +99,10 @@
   - type: Projectile
     damage:
       types:
-        Shock: 0
+        Shock: 4 #Lua +4
+        Blunt: 5 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 # Mono AP syst
 #anti-flesh:
@@ -108,6 +117,8 @@
       types:
         Slash: 6 #Lua +3
         Piercing: 16 #Lua -10
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 - type: entity
   id: Bullet9x19mmRIP
@@ -121,6 +132,8 @@
         Slash: 10 #Lua +5
         Piercing: 10 #Lua -25
         Blunt: 10 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
 
 #armor-piercing:
 
@@ -135,3 +148,5 @@
       types:
         Piercing: 18 #Lua +9
     ignoreResistances: true #Lua add (замена пробитию на монолите)
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
