@@ -169,6 +169,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
+  - type: Reflect #Lua
+    reflectProb: 0.1
   - type: Armor
     modifiers:
       coefficients:
