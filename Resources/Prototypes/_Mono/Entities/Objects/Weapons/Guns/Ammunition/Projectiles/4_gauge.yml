@@ -49,9 +49,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 52.5 #Lua -30%
-        Blunt: 7 #Lua -30%
-        Structural: 100 #Lua -50%
+        Piercing: 75
+        Blunt: 10
+        Structural: 200
 
 - type: entity
   id: Pellet23x75mmFlashbang
@@ -69,6 +69,8 @@
   - type: ActiveTimerTrigger
     timeRemaining: 0.3
   - type: DeleteOnTrigger
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 40
 
 - type: entity
   id: Pellet23x75mmBeanbag
@@ -82,9 +84,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 14 #Lua -30%
+        Blunt: 15 #Lua -5
   - type: StaminaDamageOnCollide
-    damage: 65 #Lua -30%
+    damage: 80 #Lua -15
 
 - type: entity
   id: Pellet23x75mmBuckshot
@@ -98,7 +100,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 16.8 #Lua -30%
+        Piercing: 18 #Lua -6
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmBuckshotSpread
@@ -122,10 +126,12 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 5.6 #Lua -30%
-        Heat: 9.8 #Lia -30%
+        Piercing: 12 #Lua add
+        Heat: 10 #Lua -4
   - type: IgnitionSource
     ignited: true
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmIncendiarySpread
@@ -150,6 +156,8 @@
     damage:
       types:
         Blunt: 1 #Lua -2
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmPracticeSpread
@@ -220,8 +228,10 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 7 #Lua -30%
-        Piercing: 8.4 #Lua -30%
+        Radiation: 12 #Lua +2
+        Piercing: 10 #Lua -2
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmUraniumSpread
@@ -245,7 +255,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7 #Lua -1
+        Piercing: 8
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmDozdSpread
@@ -254,7 +266,7 @@
   components:
   - type: ProjectileSpread
     proto: Pellet23x75mmDozd
-    count: 10 #Lua -2
+    count: 12
     spread: 30
 
 #Mono AP system
@@ -271,7 +283,10 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 28 #Lua -30%
+        Slash: 15
+        Piercing: 20 #Lua -20
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmOOBuckshotSpread
@@ -295,10 +310,10 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 12.5 #Lua add
-        Piercing: 12.5 #Lua add
-        Slash: 12.5 #Lua add
-        Structural: 125 #Lua -50%
+        Piercing: 30 
+        Slash: 20 #Lua add
+        Blunt: 20 #Lua add
+        Structural: 250
 
 #armor-piercing ammo
 - type: entity
@@ -313,7 +328,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15 #Lua -25
+        Piercing: 30 #Lua -10
         blunt: 15 # Lua add
         Structural: 500 #Lua +100%
     ignoreResistances: true #Lua add (замена пробитию на монолите)
@@ -333,10 +348,13 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 13.5 #Lua -10%
+        Piercing: 15
+    ignoreResistances: true #Lua add (замена пробитию на монолите)
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
+  - type: TimedDespawn #Lua add
+    lifetime: 0.3 #taked from NFBasePellet
 
 - type: entity
   id: Pellet23x75mmFlechetteSpread
