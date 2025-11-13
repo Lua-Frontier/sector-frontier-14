@@ -34,7 +34,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      200: Dead #Lua 80<200
   - type: Stamina
     critThreshold: 150
   - type: MovementAlwaysTouching
@@ -101,7 +101,7 @@
       amount: 3
     - id: MaterialHideBear
       amount: 1
-      prob: 0.3
+      prob: 0.1 #Lua 0.3<0.1
   - type: ReplacementAccent
     accent: genericAggressive
   - type: Vocal
@@ -221,7 +221,7 @@
       amount: 2
     - id: EggSpider
       amount: 1
-      prob: 0.5
+      prob: 0.1 #Lua 0.5<0.1
   - type: Bloodstream
     bloodMaxVolume: 250
     bloodReagent: Cryoxadone
@@ -308,7 +308,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        45: Dead
+        100: Dead #Lua 45<100
     - type: Stamina
       critThreshold: 150
     - type: DamageStateVisuals

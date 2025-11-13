@@ -337,6 +337,7 @@
     equippedPrefix: bear
     slots:
       - HEAD
+      - NECK #Lua
   - type: PointLight
     radius: 1.2
     energy: 1.5
@@ -810,7 +811,7 @@
   - type: StaticPrice
     price: 0
   - type: StackPrice
-    price: 1500
+    price: 600 #Lua 1500<600
   - type: Appearance
   - type: Stack
     stackType: GoliathHide

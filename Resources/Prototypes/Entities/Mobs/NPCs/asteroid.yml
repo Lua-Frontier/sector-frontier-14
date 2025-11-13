@@ -332,7 +332,7 @@
     entity: FoodHivelordRemainsInert
     stage: 1
   - type: StaticPrice
-    price: 5000
+    price: 1000 #Lua 5000<1000
   - type: Tag
     tags:
     - HivelordRemains
@@ -380,7 +380,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      45: Dead
+      100: Dead #Lua 45<100
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -425,8 +425,8 @@
     reflectProb: 1
     reflects:
     - Energy
-  - type: Butcherable
-    spawned:
-    - id: DiamondOre1
-      amount: 1
-      maxAmount: 3
+#  - type: Butcherable #comment from _Lua
+#    spawned:
+#    - id: DiamondOre1
+#      amount: 1
+#      maxAmount: 3
