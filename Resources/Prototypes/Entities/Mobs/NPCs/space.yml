@@ -69,6 +69,7 @@
     speechVerb: LargeMob
   - type: TimedDespawn
     lifetime: 2400
+  - type: MovementAlwaysTouching #Lua
 
 - type: entity
   name: space bear
@@ -176,7 +177,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      60: Dead
+      200: Dead #Lua 60<200
 
 - type: entity
   id: MobKangarooSpaceSalvage
@@ -205,7 +206,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      45: Dead
+      150: Dead #Lua 45<150
   - type: Stamina
     critThreshold: 150
   - type: DamageStateVisuals
@@ -308,7 +309,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        100: Dead #Lua 45<100
+        200: Dead #Lua 45<200
     - type: Stamina
       critThreshold: 150
     - type: DamageStateVisuals

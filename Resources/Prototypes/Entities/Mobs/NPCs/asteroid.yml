@@ -28,6 +28,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+  - type: MovementAlwaysTouching #Lua
 
 - type: entity
   id: MobGoliath
@@ -55,7 +56,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      300: Dead #Lua 150<300
   - type: MeleeWeapon
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
@@ -96,6 +97,8 @@
       amount: 3
   - type: TimedDespawn
     lifetime: 2400
+  - type: Reflect
+    reflectProb: 0.2
 
 - type: entity
   parent: BaseAction
@@ -214,7 +217,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Dead
+      150: Dead #Lua 75<150
   - type: MeleeWeapon
     damage:
       types:
@@ -269,7 +272,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      5: Dead
+      15: Dead #Lua 5<15
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -380,7 +383,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead #Lua 45<100
+      150: Dead #Lua 45<150
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
