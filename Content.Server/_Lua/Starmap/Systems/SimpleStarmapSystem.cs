@@ -206,7 +206,8 @@ namespace Content.Server._Lua.Starmap.Systems
             "Asteroid Field",
             "Mercenary Sector",
             "Pirate Sector",
-            "Nordfall Sector"
+            "Nordfall Sector",
+            "LuaTech Sector"
         };
 
         private void TrySetMapEntityName(MapId mapId, string name)

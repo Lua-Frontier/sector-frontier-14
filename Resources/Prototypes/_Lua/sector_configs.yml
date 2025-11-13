@@ -39,6 +39,18 @@
   starmapColor: "#990816"
 
 - type: sectorSystemPrototype
+  id: LuaTechSector
+  name: "Сектор LuaTech"
+  station: LuaTech
+  #worldgenConfig: Default отключено до реализации LuaTech
+  autoStart: true
+  defaultGamePreset: NFPirates
+  parallaxPool: [ LuaDarkSpace ]
+  deadDropEnabled: false
+  starmapPosition: 14.5, 2.0
+  starmapColor: "#2595db"
+
+- type: sectorSystemPrototype
   id: PirateSector
   name: "Сектор Пиратов"
   station: Cove

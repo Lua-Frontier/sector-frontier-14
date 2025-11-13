@@ -194,7 +194,7 @@ public sealed partial class ShuttleConsoleSystem
                 ftlTime = default;
             }
         }
-        foreach (var sid in new[] { "AsteroidSectorDefault", "MercenarySector", "PirateSector", "TypanSector" })
+        foreach (var sid in new[] { "AsteroidSectorDefault", "MercenarySector", "PirateSector", "TypanSector", "LuaTechSector" })
         { if (_sectors.TryGetMapId(sid, out var mid) && !sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = sid; }
         if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
         {
