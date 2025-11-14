@@ -125,6 +125,13 @@ public sealed class ReflectSystem : EntitySystem
             reflectiveItems.Add((outerEntity.Value, outerReflectComp));
         }
 
+        if (_inventorySystem.TryGetSlotEntity(uid, "gloves", out var glovesEntity) &&
+            glovesEntity != null &&
+            TryComp<ReflectComponent>(glovesEntity.Value, out var glovesReflectComp) &&
+            _toggle.IsActivated(glovesEntity.Value) &&
+            (glovesReflectComp.Reflects & args.Reflective) != 0x0)
+        { reflectiveItems.Add((glovesEntity.Value, glovesReflectComp)); }
+
         // Fallback to "vest" slot
         if (_inventorySystem.TryGetSlotEntity(uid, "vest", out var vestEntity) &&
             vestEntity != null &&
@@ -187,6 +194,13 @@ public sealed class ReflectSystem : EntitySystem
         {
             reflectiveItems.Add((outerEntity.Value, outerReflectComp));
         }
+
+        if (_inventorySystem.TryGetSlotEntity(uid, "gloves", out var glovesEntity) &&
+            glovesEntity != null &&
+            TryComp<ReflectComponent>(glovesEntity.Value, out var glovesReflectComp) &&
+            _toggle.IsActivated(glovesEntity.Value) &&
+            (glovesReflectComp.Reflects & reflective.Reflective) != 0x0)
+        { reflectiveItems.Add((glovesEntity.Value, glovesReflectComp)); }
 
         // Fallback to "vest" slot
         if (_inventorySystem.TryGetSlotEntity(uid, "vest", out var vestEntity) &&
@@ -407,7 +421,7 @@ public sealed class ReflectSystem : EntitySystem
             }
         }
 
-        // Check the vest slot - try both "vest" and "outerClothing" which is the standard name
+        // Check clothing slots - try "outerClothing", "vest" and "gloves"
         if (!hasReflectItem)
         {
             // Try standard "outerClothing" slot first
@@ -426,6 +440,11 @@ public sealed class ReflectSystem : EntitySystem
             {
                 hasReflectItem = true;
             }
+            else if (_inventorySystem.TryGetSlotEntity(user, "gloves", out var glovesEntity) &&
+                glovesEntity != null &&
+                TryComp<ReflectComponent>(glovesEntity.Value, out var glovesReflectComp) &&
+                _toggle.IsActivated(glovesEntity.Value))
+            { hasReflectItem = true; }
         }
 
         if (hasReflectItem)

@@ -22,6 +22,7 @@ public sealed class ToggleableLocksOwnerSystem : EntitySystem
     private void OnRemovedFromContainer(EntityUid owner, ToggleableLocksOwnerComponent locker, ref EntRemovedFromContainerMessage args)
     {
         var removed = args.Entity;
+        if (TerminatingOrDeleted(owner)) return;
         if (!IsWhitelisted(removed, locker)) return;
         locker.ActiveLocks++;
         if (locker.ActiveLocks == 1) EnsureComp<UnremoveableComponent>(owner);
@@ -30,6 +31,7 @@ public sealed class ToggleableLocksOwnerSystem : EntitySystem
     private void OnInsertedIntoContainer(EntityUid owner, ToggleableLocksOwnerComponent locker, ref EntInsertedIntoContainerMessage args)
     {
         var inserted = args.Entity;
+        if (TerminatingOrDeleted(owner)) return;
         if (!IsWhitelisted(inserted, locker)) return;
         if (locker.ActiveLocks > 0) locker.ActiveLocks--;
         if (locker.ActiveLocks == 0 && HasComp<UnremoveableComponent>(owner)) RemComp<UnremoveableComponent>(owner);
