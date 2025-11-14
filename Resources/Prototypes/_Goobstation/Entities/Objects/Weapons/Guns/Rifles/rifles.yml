@@ -106,8 +106,9 @@
     availableModes:
     - Burst
     selectedMode: Burst
+    shotsPerBurst: 5
     burstFireRate: 20 # Mono
-    burstCooldown: 0.6 #Lua 0.4 -> 0.6
+    burstCooldown: 0.4
     projectileSpeed: 25 #Lua 45 -> 25 Tickrate reason
     fireRate: 7.5 # Mono, does nothing because its burst only but it makes it clear it can fire at this rate.
     soundGunshot:

@@ -70,20 +70,15 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -34
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/ak220.rsi
   - type: Gun
-    minAngle: 22
-    maxAngle: 40
     fireRate: 6
-    angleIncrease: 21
-    angleDecay: 14
+    angleIncrease: 1.1 #Lua 21 -> 1.1
+    angleDecay: 7.7 #Lua 14 -> 7.7
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/smg.ogg
@@ -290,17 +285,12 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -17
-    maxAngle: -18
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/knallstock.rsi
   - type: Gun
     fireRate: 6
-    minAngle: 19
-    maxAngle: 21
-    angleIncrease: 16
-    angleDecay: 10
+    angleIncrease: 1.1 #Lua 16 -> 1.1
+    angleDecay: 7.7 #Lua 10 -> 7.7
     selectedMode: Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
@@ -379,7 +369,7 @@
   - type: Item
     sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd_inhands_32x.rsi
   - type: Gun
-    fireRate: 6
+    fireRate: 5 #Lua 6 -> 5
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
