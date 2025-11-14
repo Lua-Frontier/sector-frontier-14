@@ -1034,32 +1034,14 @@ public sealed partial class ShuttleSystem
         // Frontier: spawn in our AABB
         // TODO: This should prefer the position's angle instead.
         // TODO: This is pretty crude for multiple landings.
-        /*
-        if (nearbyGrids.Count > 1 || !HasComp<MapComponent>(targetXform.GridUid))
-        {
-            // Pick a random angle
-            var offsetAngle = _random.NextAngle();
-
-            // Our valid spawn positions are <targetAABB width / height +  offset> away.
-            var minRadius = MathF.Max(targetAABB.Width / 2f, targetAABB.Height / 2f);
-            spawnPos = targetAABB.Center + offsetAngle.RotateVec(new Vector2(_random.NextFloat(minRadius + minOffset, minRadius + maxOffset), 0f));
-        }
-        else if (shuttleBody != null)
-        {
-            (spawnPos, angle) = _transform.GetWorldPositionRotation(targetXform);
-        }
-        else
-        {
-            spawnPos = _transform.GetWorldPosition(targetXform);
-        }
-        */
         spawnPos = targetAABB.Center;
         // End Frontier
 
         var offset = Vector2.Zero;
+        MapGridComponent? shuttleGrid = null;
 
         // Offset it because transform does not correspond to AABB position.
-        if (TryComp(shuttleUid, out MapGridComponent? shuttleGrid))
+        if (TryComp(shuttleUid, out shuttleGrid))
         {
             offset = -shuttleGrid.LocalAABB.Center;
         }
@@ -1073,11 +1055,32 @@ public sealed partial class ShuttleSystem
             angle = Angle.Zero;
         }
 
-        // Rotate our localcenter around so we spawn exactly where we "think" we should (center of grid on the dot).
+        if (shuttleGrid != null)
+        {
+            var mapId = targetXform.MapID;
+            const int maxResolveIterations = 6;
+            const float extraMargin = 2f;
+            for (var i = 0; i < maxResolveIterations; i++)
+            {
+                var aabb = new Box2Rotated(shuttleGrid.LocalAABB, angle) .CalcBoundingBox() .Enlarged(extraMargin) .Translated(spawnPos);
+                var intersecting = new List<Entity<MapGridComponent>>();
+                _mapManager.FindGridsIntersecting(mapId, aabb, ref intersecting);
+                intersecting.RemoveAll(e => e.Owner == shuttleUid || e.Owner == targetXform.GridUid);
+                if (intersecting.Count == 0) break;
+                var otherGridUid = intersecting[0].Owner;
+                if (!_xformQuery.TryGetComponent(otherGridUid, out var otherXform)) break;
+                var otherPos = _transform.GetWorldPosition(otherXform);
+                var dir = spawnPos - otherPos;
+                if (dir == Vector2.Zero) dir = _random.NextAngle().ToVec();
+                if (dir != Vector2.Zero) dir = Vector2.Normalize(dir);
+                var moveDist = MathF.Max(shuttleGrid.LocalAABB.Width, shuttleGrid.LocalAABB.Height) * 0.5f + maxMargin;
+                spawnPos += dir * moveDist;
+            }
+        }
         var transform = new Transform(spawnPos, angle);
-        spawnPos = Robust.Shared.Physics.Transform.Mul(transform, offset);
+        var adjustedOffset = Robust.Shared.Physics.Transform.Mul(transform, offset);
 
-        coordinates = new EntityCoordinates(targetXform.MapUid.Value, spawnPos - offset);
+        coordinates = new EntityCoordinates(targetXform.MapUid.Value, adjustedOffset);
         return true;
     }
 
