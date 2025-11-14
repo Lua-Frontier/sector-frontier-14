@@ -13,6 +13,8 @@ using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
@@ -39,6 +41,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -191,6 +194,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
+        PlayBanSound();
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }
@@ -228,6 +232,15 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     {
         var message = def.FormatBanMessage(_cfg, _localizationManager);
         player.Channel.Disconnect(message);
+    }
+
+    private void PlayBanSound()
+    {
+        var audioSystem = _systems.GetEntitySystem<SharedAudioSystem>();
+        audioSystem.PlayGlobal(new SoundPathSpecifier("/Audio/Machines/diagnoser_printing.ogg"),
+            Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
+            false,
+            AudioParams.Default.WithVolume(5f));
     }
 
     #endregion

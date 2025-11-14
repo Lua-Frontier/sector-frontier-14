@@ -9,6 +9,8 @@ using Content.Shared.Administration.Notes;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players.PlayTimeTracking;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -17,6 +19,8 @@ namespace Content.Server.Administration.Notes;
 
 public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
 {
+    private static readonly SoundPathSpecifier WarningSound = new("/Audio/Effects/snap.ogg");
+
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
@@ -135,6 +139,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
             case NoteType.Message:
                 noteId = await _db.AddAdminMessage(roundId, player, playtime, message, createdBy.UserId, createdAt, expiryTime);
                 seen = false;
+                PlayWarningSound();
                 break;
             case NoteType.ServerBan: // Add bans using the ban panel, not note edit
             case NoteType.RoleBan:
@@ -334,6 +339,13 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
     public async Task MarkMessageAsSeen(int id, bool dismissedToo)
     {
         await _db.MarkMessageAsSeen(id, dismissedToo);
+    }
+
+    private void PlayWarningSound()
+    {
+        var audioSystem = _systems.GetEntitySystem<SharedAudioSystem>();
+        var filter = Filter.Empty().AddPlayers(_admins.ActiveAdmins);
+        audioSystem.PlayGlobal(WarningSound, filter, false, AudioParams.Default.WithVolume(3f));
     }
 
     public void PostInject()

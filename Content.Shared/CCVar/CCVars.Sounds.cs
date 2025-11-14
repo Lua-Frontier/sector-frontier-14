@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -26,7 +26,7 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<string> AdminChatSoundPath =
         CVarDef.Create("audio.admin_chat_sound_path",
-            "/Audio/Items/pop.ogg",
+            "/Audio/Effects/Emotes/snap2.ogg",
             CVar.ARCHIVE | CVar.CLIENT | CVar.REPLICATED);
 
     public static readonly CVarDef<float> AdminChatSoundVolume =
