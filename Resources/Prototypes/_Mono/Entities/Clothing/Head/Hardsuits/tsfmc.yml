@@ -7,9 +7,9 @@
   description: An armored tacsuit helmet used by the TSFMC.
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M73-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M73-helmet.rsi #Lua
   - type: PointLight
     color: "#ffeead"
   - type: NightVision
@@ -36,9 +36,9 @@
   name: TSFMC M74 tacsuit helmet
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M74-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M74-helmet.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -47,9 +47,9 @@
   name: TSFMC M75 tacsuit helmet
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M75-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M75-helmet.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -61,9 +61,9 @@
   - type: PointLight
     radius: 5 # Mono
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M73c-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M73c-helmet.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitNfsdBronze
@@ -73,9 +73,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_sheriff.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M92-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_sheriff.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M92-helmet.rsi #Lua
   - type: NightVision
     flashDurationMultiplier: 2
     isEquipment: true
@@ -89,9 +89,9 @@
   description: Heavily armored hardsuit helmet for TSFMC raids.
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_experimental.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M92x-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_experimental.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M92x-helmet.rsi #Lua
   - type: NightVision
     flashDurationMultiplier: 2
     isEquipment: true
@@ -116,9 +116,9 @@
   description: Medium armored hardsuit helmet for TSFMC raids.
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_combat.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M93-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_combat.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M93-helmet.rsi #Lua
   - type: PointLight
     color: "#79bb66"
   - type: ThermalVision
@@ -146,9 +146,9 @@
   description: Medium armored hardsuit helmet for TSFMC raids.
   components:
   - type: Sprite
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_command.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M93c-helmet.rsi #Lua
   - type: Clothing
-    sprite: _EE/Clothing/Head/Hardsuits/tsfmc_command.rsi
+    sprite: _Lua/Clothing/Head/SDHardsuits/M93c-helmet.rsi #Lua
   - type: PointLight
     color: "#ffed7f"
   - type: NightVision
