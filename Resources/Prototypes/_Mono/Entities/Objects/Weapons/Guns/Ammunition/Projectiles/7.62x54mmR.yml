@@ -34,7 +34,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40 #Lua -5
+        Piercing: 45
 
 - type: entity
   id: Bullet762x54mmRPractice
@@ -70,7 +70,7 @@
     damage:
       types:
         piercing: 10 #Lua add
-        Heat: 25 #Lua -5
+        Heat: 35 #Lua +5
 
 - type: entity
   id: Bullet762x54mmRUranium
@@ -81,7 +81,7 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 25
+        Radiation: 35 #Lua +10
         Piercing: 10 #Lua -10
 
 # Mono AP syst
@@ -95,7 +95,7 @@
   - type: Projectile
     damage:
       types:
-        Slash: 10 #Lua +5
+        Slash: 15 #Lua +10
         Piercing: 25 #Lua -20
 
 - type: entity
