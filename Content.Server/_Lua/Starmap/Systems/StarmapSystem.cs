@@ -255,11 +255,11 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
         _cachedStars = null;
         _cachedEdges = null;
         if (refreshConsoles)
-        { try { _shuttleConsole.RefreshShuttleConsoles(); } catch { } }
+        { try { _shuttleConsole.RefreshStarMapForOpenConsoles(); } catch { } }
     }
 
     public void RefreshConsoles()
-    { try { _shuttleConsole.RefreshShuttleConsoles(); } catch { } }
+    { try { _shuttleConsole.RefreshStarMapForOpenConsoles(); } catch { } }
 
     private void OnDriveExamineEvent(EntityUid uid, BluespaceDriveComponent component, ExaminedEvent args)
     {

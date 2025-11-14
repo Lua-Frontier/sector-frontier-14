@@ -54,6 +54,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;// Lua add timer panic button
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -84,6 +85,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private readonly HashSet<EntityUid> _pendingPanicConfirm = new();// Lua add timer panic button
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
+    private readonly HashSet<EntityUid> _starMapVisibleConsoles = new();
 
     private static readonly ProtoId<TagPrototype> CanPilotTag = "CanPilot";
 
@@ -110,6 +112,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
             subs.Event<ToggleFTLLockRequestMessage>(OnToggleFTLLock);
             subs.Event<WarpToStarMessage>(OnWarpToStarMessage); // Lua
+            subs.Event<ShuttleConsoleStarMapVisibilityMessage>(OnStarMapVisibilityMessage); // Lua
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
@@ -136,6 +139,18 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         InitializeNFDrone(); // Frontier: add our drone subscriptions
 
         Subs.CVar(_cfg, CLVars.AutoDelteEnabled, value => _autoDeleteEnabled = value, true); // Lua
+    }
+
+    private void OnStarMapVisibilityMessage(EntityUid uid, ShuttleConsoleComponent component, ShuttleConsoleStarMapVisibilityMessage args)
+    {
+        if (args.Visible)
+        {
+            _starMapVisibleConsoles.Add(uid);
+            DockingInterfaceState? dockState = null;
+            UpdateState(uid, ref dockState);
+        }
+        else
+        { _starMapVisibleConsoles.Remove(uid); }
     }
 
     private bool _autoDeleteEnabled = true; // Lua
@@ -195,6 +210,17 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         while (query.MoveNext(out var uid, out _))
         {
+            UpdateState(uid, ref dockState);
+        }
+    }
+
+    public void RefreshStarMapForOpenConsoles()
+    {
+        if (_starMapVisibleConsoles.Count == 0) return;
+        DockingInterfaceState? dockState = null;
+        foreach (var uid in _starMapVisibleConsoles.ToArray())
+        {
+            if (Deleted(uid) || !TryComp<ShuttleConsoleComponent>(uid, out _)) continue;
             UpdateState(uid, ref dockState);
         }
     }

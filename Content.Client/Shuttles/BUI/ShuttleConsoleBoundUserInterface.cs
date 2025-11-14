@@ -31,6 +31,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         _window.UndockRequest += OnUndockRequest;
         _window.UndockAllRequest += OnUndockAllRequest;
         _window.ToggleFTLLockRequest += OnToggleFTLLockRequest;
+        _window.OnStarMapVisibilityChanged += visible => SendMessage(new ShuttleConsoleStarMapVisibilityMessage(visible));
         NfOpen(); // Frontier
     }
 
@@ -101,4 +102,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
 
     private void OnWarpToStar(Star star) // Lua StarMap
     { SendMessage(new WarpToStarMessage(star)); }
+
+    public void NotifyStarMapVisibility(bool visible)
+    { SendMessage(new ShuttleConsoleStarMapVisibilityMessage(visible)); }
 }
