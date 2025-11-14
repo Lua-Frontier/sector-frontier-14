@@ -26,6 +26,9 @@
     sprite: _Mono/Objects/Weapons/Guns/Rifles/annie_inhands_32x.rsi
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/annie_inhands_32x.rsi
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
   - type: Gun
     availableModes:
     - FullAuto
@@ -34,7 +37,7 @@
     burstCooldown: 0.8
     shotsPerBurst: 4
     fireRate: 6.5
-    projectileSpeed: 42.5 # Mono
+    projectileSpeed: 25 #Lua 42.5 -> 25 Tickrate reason
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/thock.ogg
   - type: ChamberMagazineAmmoProvider
@@ -51,6 +54,7 @@
         whitelist:
           tags:
             - Magazine762x39mmFMJ
+            - Magazine762x39mmLowCapacityFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -88,17 +92,23 @@
     sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr_inhands_32x.rsi
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr_inhands_32x.rsi # Mono
-  - type: GunWieldBonus
-    minAngle: -14
-    maxAngle: -41
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -14 -> -0
+    maxAngle: -0 #Lua -41 -> -0
   - type: Gun
+    minAngle: 1
+    maxAngle: 3
+    angleDecay: 5
+    angleIncrease: 0.2
     availableModes:
     - Burst
-    - FullAuto
     selectedMode: Burst
     burstFireRate: 20 # Mono
-    burstCooldown: 0.4 # Mono
-    projectileSpeed: 45 # Mono
+    burstCooldown: 0.6 #Lua 0.4 -> 0.6
+    projectileSpeed: 25 #Lua 45 -> 25 Tickrate reason
     fireRate: 7.5 # Mono, does nothing because its burst only but it makes it clear it can fire at this rate.
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/wspr_fire.ogg # Mono change - Changed audio path
@@ -148,12 +158,15 @@
   - type: ChamberMagazineAmmoProvider # Mono
     soundRack:
       path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
   - type: Gun
-    availableModes: #Lua add
+    availableModes:
     - SemiAuto
     - FullAuto
     selectedMode: FullAuto
-    fireRate: 3.5 #Lua add
+    fireRate: 4 #Lua add
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_2.ogg # Mono
   - type: ItemSlots

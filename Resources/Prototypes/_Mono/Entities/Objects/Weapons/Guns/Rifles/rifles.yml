@@ -26,15 +26,18 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -21
     maxAngle: -47
   - type: Gun
     minAngle: 21
     maxAngle: 48
-    angleIncrease: 27
-    angleDecay: 2
-    fireRate: 3.5 # 240 rpm #Lua 4<3.5
+    angleIncrease: 20 #Lua 27 -> 20
+    angleDecay: 4 #Lua 2 -> 4
+    fireRate: 3.5 #Lua 4<3.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -98,14 +101,17 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -47
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -21 -> -0
+    maxAngle: -0 #Lua -47 -> -0
   - type: Gun
-    minAngle: 21
-    maxAngle: 52
-    angleIncrease: 6
-    angleDecay: 24
+    minAngle: 1 #Lua 21 -> 1
+    maxAngle: 5 #Lua 52 -> 5
+    angleIncrease: 3 #Lua 6 -> 3
+    angleDecay: 20 #Lua 24 -> 20
     fireRate: 5 # 300 rpm
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/ak_fire.ogg
@@ -133,6 +139,7 @@
         whitelist:
           tags:
           - Cartridge762x39mmFMJ
+          - Magazine762x39mmLowCapacityFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -164,11 +171,11 @@
     minAngle: -14
     maxAngle: -17
   - type: Gun
-    minAngle: 18
+    minAngle: 20 #Lua +2
     maxAngle: 35
-    angleIncrease: 4
-    angleDecay: 40
-    fireRate: 11 # 660 rpm
+    angleIncrease: 5 #Lua +1
+    angleDecay: 45 #Lua +5
+    fireRate: 10 # 600 rpm #Lua -1
     shotsPerBurst: 3
     availableModes:
     - Burst
@@ -231,6 +238,9 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -20
     maxAngle: -50
@@ -288,16 +298,19 @@
   - type: ChamberMagazineAmmoProvider # Mono
     soundRack:
       path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
-  - type: GunWieldBonus
-    minAngle: -27
-    maxAngle: -40
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -27 -> -0
+    maxAngle: -0 #Lua -40 -> -0
   - type: Gun
-    minAngle: 30
-    maxAngle: 46
-    angleIncrease: 76
-    angleDecay: 7
-    cameraRecoilScalar: 0
-    fireRate: 3
+    minAngle: 1 #Lua 30 -> 1
+    maxAngle: 3.5 #Lua 46 -> 3.5
+    angleIncrease: 0.2 #Lua 76 -> 0.2
+    angleDecay: 1 #Lua 7 -> 1
+    cameraRecoilScalar: 1 #Lua 0 -> 1
+    fireRate: 4 #Lua 3 -> 4
     selectedMode: Burst
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_1.ogg # Mono
@@ -359,18 +372,22 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
-  - type: GunWieldBonus
-    minAngle: -32
-    maxAngle: -52
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -32 -> -0
+    maxAngle: -0 #Lua -52 -> -0
   - type: Gun
-    minAngle: 45
-    maxAngle: 62
-    angleIncrease: 6
+    minAngle: 1 #Lua 45 -> 1
+    maxAngle: 3.5 #Lua 62 -> 3.5
+    angleIncrease: 0.2 #Lua 6 -> 0.2
     angleDecay: 40
-    cameraRecoilScalar: 0
-    fireRate: 9
+    cameraRecoilScalar: 0.5 #Lua 0 -> 0.5
+    fireRate: 5 #Lua 9 -> 5
     availableModes:
     - FullAuto
+    - SemiAuto
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_3.ogg
   - type: ItemSlots

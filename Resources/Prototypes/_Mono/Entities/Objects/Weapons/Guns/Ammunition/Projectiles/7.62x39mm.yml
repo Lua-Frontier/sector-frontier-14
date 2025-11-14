@@ -39,7 +39,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
+        Piercing: 26.5 #Lua +1.5
 
 - type: entity
   id: Bullet762x39mmPractice
@@ -75,7 +75,7 @@
     damage:
       types:
         piercing: 8 #Lua +3
-        Heat: 18
+        Heat: 18.5 #Lua +0.5
 
 - type: entity
   id: Bullet762x39mmUranium
@@ -86,8 +86,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 14 #Lua +4
-        Piercing: 12 #Lua -1
+        Radiation: 18.5 #Lua +8.5
+        Piercing: 8 #Lua -5
 
 - type: entity
   id: Bullet762x39mmSubsonic
@@ -125,7 +125,7 @@
     damage:
       types:
         Slash: 10 #Lua +2
-        Piercing: 10 #Lua -32
+        Piercing: 12 #Lua -30
         Blunt: 10 #Lua add
 
 #armor-piercing:
@@ -139,6 +139,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
+        Piercing: 26 #Lua +1
         Structural: 250 #Lua add
     ignoreResistances: true #Lua add (замена пробитию на монолите)
