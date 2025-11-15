@@ -84,6 +84,11 @@ public sealed partial class ShuttleSystem
     private const float CoordRollover = 40000f;
     // End Frontier: coordinate rollover
 
+    // Lua start: fallback
+    private const float MaxWorldRadius = 30_000f;
+    private const float SafeWorldRadius = 25_000f;
+    // Lua end: fallback
+
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
     private readonly HashSet<Entity<NoFTLComponent>> _noFtls = new();
@@ -422,6 +427,18 @@ public sealed partial class ShuttleSystem
         var uid = entity.Owner;
         var comp = entity.Comp1;
         var xform = _xformQuery.GetComponent(entity);
+        // Lua start: fallback
+        var grid = Comp<MapGridComponent>(uid);
+        if (!ValidateGridForFtl(uid, grid, xform))
+        {
+            Log.Error($"[FTL-DIAG] Aborting FTL for {ToPrettyString(uid)} on map {xform.MapID} due to invalid world AABB.");
+            comp.State = FTLState.Cooldown;
+            comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
+            _console.RefreshShuttleConsoles(uid);
+            return;
+        }
+        // Lua end: fallback
+
         DoTheDinosaur(xform);
 
         if (comp.SkipHyperspace) // Lua start
@@ -481,7 +498,6 @@ public sealed partial class ShuttleSystem
         var fromMatrix = _transform.GetWorldMatrix(xform);
         var fromRotation = _transform.GetWorldRotation(xform);
 
-        var grid = Comp<MapGridComponent>(uid);
         var width = grid.LocalAABB.Width;
         var ftlMap = EnsureFTLMap();
         var body = _physicsQuery.GetComponent(entity);
@@ -722,6 +738,50 @@ public sealed partial class ShuttleSystem
 
         return MathF.Max(grid.LocalAABB.Width, grid.LocalAABB.Height) + 12.5f;
     }
+
+    // Lua start: fallback
+    private bool ValidateGridForFtl(EntityUid gridUid, MapGridComponent grid, TransformComponent xform)
+    {
+        var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
+        var aabb = grid.LocalAABB.Translated(worldPos);
+        var worldAabb = new Box2Rotated(aabb, worldRot, worldPos).CalcBoundingBox();
+
+        if (!worldAabb.IsValid() || worldAabb.HasNan())
+        {
+            Log.Error($"[FTL-DIAG] Invalid grid world AABB for {ToPrettyString(gridUid)} on map {xform.MapID}: {worldAabb}");
+            return false;
+        }
+
+        var c = worldAabb.Center;
+        if (MathF.Abs(c.X) > MaxWorldRadius ||
+            MathF.Abs(c.Y) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Left) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Right) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Top) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Bottom) > MaxWorldRadius)
+        {
+            var length = c.Length();
+            if (length > 0f)
+            {
+                var clampedRadius = SafeWorldRadius;
+                var newCenter = c * (clampedRadius / length);
+                var delta = newCenter - c;
+
+                var current = _transform.GetMapCoordinates(gridUid);
+                var newCoords = new MapCoordinates(current.Position + delta, current.MapId);
+
+                Log.Error($"[FTL-DIAG] Repositioning grid {ToPrettyString(gridUid)} from {c} to {newCenter} before FTL (world limit {MaxWorldRadius}, safe {SafeWorldRadius}).");
+                _transform.SetMapCoordinates(gridUid, newCoords);
+            }
+            else
+            {
+                Log.Error($"[FTL-DIAG] Out-of-range grid world AABB with zero-length center for {ToPrettyString(gridUid)} on map {xform.MapID}: center={c}, bounds={worldAabb} (limit={MaxWorldRadius})");
+            }
+        }
+
+        return true;
+    }
+    // Lua end: fallback
 
     /// <summary>
     /// Puts everyone unbuckled on the floor, paralyzed.
