@@ -182,6 +182,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 SendMessage(new ClaimSalvageMessage()
                 {
                     Index = missionParams.Index,
+                    Seed = missionParams.Seed,
                 });
             };
 

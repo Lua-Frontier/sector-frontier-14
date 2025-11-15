@@ -211,10 +211,6 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - SalvageTechfabNF
-    - SalvageTechfabNF
-    - SalvageTechfabNF
-    - SalvageTechfabNF
     - OreProcessor
     - Autolathe
     chance: 1
@@ -275,7 +271,6 @@
     - ComputerIFFCircuitboard
     - ComputerStarmapDiskMergerCircuitboard
     # Lathes
-    - SalvageTechFabCircuitboardNF
     - AutolatheMachineCircuitboard
     - OreProcessorMachineCircuitboard
     # Machines
@@ -314,12 +309,10 @@
     prototypes:
     - TelecomServerFlatpack
     - OreProcessorFlatpack
-    - SalvageTechfabNFFlatpack
     - ProtolatheFlatpack
     - OreProcessorIndustrialFlatpack
     - MaterialReclaimerFlatpack
     - WeaponCapacitorRechargerFlatpack
-    - CargoTechfabNFFlatpack
     chance: 0.95
     offset: 0.0
     rarePrototypes:

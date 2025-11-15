@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/26/2025 06:13:48
-  entityCount: 7368
+  time: 11/06/2025 09:41:29
+  entityCount: 7370
 maps: []
 grids:
 - 1
@@ -8220,11 +8220,6 @@ entities:
       parent: 1
 - proto: APCBasic
   entities:
-  - uid: 157
-    components:
-    - type: Transform
-      pos: 42.5,66.5
-      parent: 1
   - uid: 4121
     components:
     - type: Transform
@@ -11630,88 +11625,173 @@ entities:
   - uid: 159
     components:
     - type: Transform
+      anchored: True
       pos: 21.5,16.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 160
     components:
     - type: Transform
+      anchored: True
       pos: 59.5,16.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 161
     components:
     - type: Transform
+      anchored: True
       pos: 55.5,-15.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 162
     components:
     - type: Transform
+      anchored: True
       pos: 13.5,-4.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 163
     components:
     - type: Transform
+      anchored: True
       pos: 4.5,-1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 164
     components:
     - type: Transform
+      anchored: True
       pos: 22.5,-1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 165
     components:
     - type: Transform
+      anchored: True
       pos: 67.5,-4.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 166
     components:
     - type: Transform
+      anchored: True
       pos: 76.5,-1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 167
     components:
     - type: Transform
+      anchored: True
       pos: 58.5,-1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 168
     components:
     - type: Transform
+      anchored: True
       pos: 37.5,26.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 169
     components:
     - type: Transform
+      anchored: True
       pos: 43.5,26.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 170
     components:
     - type: Transform
+      anchored: True
       pos: 40.5,36.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 171
     components:
     - type: Transform
+      anchored: True
       pos: 55.5,-13.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 172
     components:
     - type: Transform
+      anchored: True
       pos: 25.5,-13.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 173
     components:
     - type: Transform
+      anchored: True
       pos: 25.5,-15.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 174
     components:
     - type: Transform
+      anchored: True
       pos: 40.5,1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 175
     components:
     - type: Transform
+      anchored: True
       pos: 40.5,15.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: Barricade
   entities:
   - uid: 153
@@ -12660,14 +12740,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 61.5,50.5
       parent: 1
-- proto: BluespaceBeaker
-  entities:
-  - uid: 6931
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 59.41855,49.102253
-      parent: 1
 - proto: BodyBag
   entities:
   - uid: 321
@@ -12906,6 +12978,11 @@ entities:
       parent: 1
 - proto: CableApcExtension
   entities:
+  - uid: 157
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 1
   - uid: 1935
     components:
     - type: Transform
@@ -17176,6 +17253,11 @@ entities:
     - type: Transform
       pos: 40.5,70.5
       parent: 1
+  - uid: 6931
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
   - uid: 6940
     components:
     - type: Transform
@@ -17350,6 +17432,16 @@ entities:
     components:
     - type: Transform
       pos: 58.5,59.5
+      parent: 1
+  - uid: 7369
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 1
+  - uid: 7370
+    components:
+    - type: Transform
+      pos: 60.5,14.5
       parent: 1
 - proto: CableHV
   entities:
@@ -21945,57 +22037,107 @@ entities:
   - uid: 3755
     components:
     - type: Transform
+      anchored: True
       pos: 26.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3756
     components:
     - type: Transform
+      anchored: True
       pos: 22.5,28.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3759
     components:
     - type: Transform
+      anchored: True
       pos: 14.5,40.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: ClosetEmergencyN2FilledRandom
   entities:
   - uid: 3754
     components:
     - type: Transform
+      anchored: True
       pos: 27.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3757
     components:
     - type: Transform
+      anchored: True
       pos: 21.5,28.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3760
     components:
     - type: Transform
+      anchored: True
       pos: 15.5,40.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: ClosetFireFilled
   entities:
   - uid: 3447
     components:
     - type: Transform
+      anchored: True
       pos: 28.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3448
     components:
     - type: Transform
+      anchored: True
       pos: 18.5,40.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3753
     components:
     - type: Transform
+      anchored: True
       pos: 25.5,36.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3758
     components:
     - type: Transform
+      anchored: True
       pos: 20.5,28.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: ClosetJanitorFilled
   entities:
   - uid: 3601
@@ -22008,18 +22150,33 @@ entities:
   - uid: 725
     components:
     - type: Transform
+      anchored: True
       pos: 54.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 726
     components:
     - type: Transform
+      anchored: True
       pos: 52.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 727
     components:
     - type: Transform
+      anchored: True
       pos: 55.5,36.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 728
     components:
     - type: Transform
@@ -22033,25 +22190,45 @@ entities:
   - uid: 730
     components:
     - type: Transform
+      anchored: True
       pos: 56.5,58.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: ClosetMaintenanceFilledRandom
   entities:
   - uid: 1976
     components:
     - type: Transform
+      anchored: True
       pos: 70.5,43.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3767
     components:
     - type: Transform
+      anchored: True
       pos: 18.5,34.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3768
     components:
     - type: Transform
+      anchored: True
       pos: 10.5,43.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: ClothingBackpackDuffelSurgeryAdvancedFilled
   entities:
   - uid: 310
@@ -22612,15 +22789,25 @@ entities:
   - uid: 782
     components:
     - type: Transform
+      anchored: True
       pos: 45.5,28.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CrateEngineering
   entities:
   - uid: 783
     components:
     - type: Transform
+      anchored: True
       pos: 47.5,56.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -22637,8 +22824,13 @@ entities:
   - uid: 787
     components:
     - type: Transform
+      anchored: True
       pos: 48.5,56.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -22657,13 +22849,23 @@ entities:
   - uid: 791
     components:
     - type: Transform
+      anchored: True
       pos: 15.5,27.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 792
     components:
     - type: Transform
+      anchored: True
       pos: 35.5,28.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 793
     components:
     - type: Transform
@@ -22674,8 +22876,13 @@ entities:
   - uid: 794
     components:
     - type: Transform
+      anchored: True
       pos: 23.5,22.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CrateTrashCartFilled
   entities:
   - uid: 7023
@@ -22688,51 +22895,91 @@ entities:
   - uid: 3652
     components:
     - type: Transform
+      anchored: True
       pos: 47.5,61.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CrateVendingMachineRestockChefvendFilled
   entities:
   - uid: 3441
     components:
     - type: Transform
+      anchored: True
       pos: 47.5,62.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CrateVendingMachineRestockChemVendFilled
   entities:
   - uid: 3648
     components:
     - type: Transform
+      anchored: True
       pos: 47.5,63.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3649
     components:
     - type: Transform
+      anchored: True
       pos: 33.5,61.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CrateVendingMachineRestockMedicalFilled
   entities:
   - uid: 3650
     components:
     - type: Transform
+      anchored: True
       pos: 33.5,62.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3651
     components:
     - type: Transform
+      anchored: True
       pos: 33.5,63.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CrateVirologyBiosuit
   entities:
   - uid: 795
     components:
     - type: Transform
+      anchored: True
       pos: 57.5,25.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 796
     components:
     - type: Transform
+      anchored: True
       pos: 59.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: CryogenicSleepUnit
   entities:
   - uid: 275
@@ -24730,18 +24977,6 @@ entities:
     - type: Transform
       pos: 50.5,-26.5
       parent: 1
-- proto: DVSmartFridge
-  entities:
-  - uid: 836
-    components:
-    - type: Transform
-      pos: 48.5,27.5
-      parent: 1
-  - uid: 3769
-    components:
-    - type: Transform
-      pos: 31.5,26.5
-      parent: 1
 - proto: EmergencyRollerBedSpawnFolded
   entities:
   - uid: 316
@@ -24802,8 +25037,13 @@ entities:
   - uid: 844
     components:
     - type: Transform
+      anchored: True
       pos: 61.5,23.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 845
     components:
     - type: Transform
@@ -24812,8 +25052,13 @@ entities:
   - uid: 846
     components:
     - type: Transform
+      anchored: True
       pos: 66.5,40.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: FireAxeCabinetFilledCommand
   entities:
   - uid: 847
@@ -24852,7 +25097,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 30.5,20.5
       parent: 1
-- proto: GasMixerFlipped
+- proto: GasMixerOnFlipped
   entities:
   - uid: 5187
     components:
@@ -24863,7 +25108,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.22000003
       inletOneConcentration: 0.78
-      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 850
@@ -33813,8 +34057,13 @@ entities:
   - uid: 1189
     components:
     - type: Transform
+      anchored: True
       pos: 46.5,57.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: LockerBoozeFilled
   entities:
   - uid: 1190
@@ -33839,8 +34088,13 @@ entities:
   - uid: 1193
     components:
     - type: Transform
+      anchored: True
       pos: 45.5,29.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: LockerChiefMedicalOfficerFilledHardsuit
   entities:
   - uid: 1194
@@ -33853,13 +34107,23 @@ entities:
   - uid: 1195
     components:
     - type: Transform
+      anchored: True
       pos: 44.5,57.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 1196
     components:
     - type: Transform
+      anchored: True
       pos: 45.5,57.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: LockerFreezerBase
   entities:
   - uid: 1197
@@ -33875,8 +34139,13 @@ entities:
       desc: Содержит все, что нужно для работы мясника.
       name: шкаф патологоанатома
     - type: Transform
+      anchored: True
       pos: 17.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -33902,8 +34171,13 @@ entities:
   - uid: 1198
     components:
     - type: Transform
+      anchored: True
       pos: 62.5,40.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 1199
     components:
     - type: Transform
@@ -34442,7 +34716,7 @@ entities:
     - type: Transform
       pos: 35.5,54.5
       parent: 1
-- proto: PacifiedZone100
+- proto: PacifiedZonePanicBunker100
   entities:
   - uid: 6929
     components:
@@ -38240,6 +38514,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 49.5,-39.5
+      parent: 1
+- proto: SmartFridge
+  entities:
+  - uid: 836
+    components:
+    - type: Transform
+      pos: 48.5,27.5
+      parent: 1
+  - uid: 3769
+    components:
+    - type: Transform
+      pos: 31.5,26.5
       parent: 1
 - proto: SMESBasic
   entities:
@@ -47991,13 +48277,23 @@ entities:
   - uid: 3254
     components:
     - type: Transform
+      anchored: True
       pos: 51.5,47.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3255
     components:
     - type: Transform
+      anchored: True
       pos: 52.5,47.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: WardrobeMedicalDoctorFilled
   entities:
   - uid: 3256
@@ -48010,20 +48306,35 @@ entities:
   - uid: 3257
     components:
     - type: Transform
+      anchored: True
       pos: 57.5,26.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3258
     components:
     - type: Transform
+      anchored: True
       pos: 53.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: WardrobeWhite
   entities:
   - uid: 737
     components:
     - type: Transform
+      anchored: True
       pos: 26.5,20.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -48043,8 +48354,13 @@ entities:
   - uid: 744
     components:
     - type: Transform
+      anchored: True
       pos: 26.5,21.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -48064,8 +48380,13 @@ entities:
   - uid: 3259
     components:
     - type: Transform
+      anchored: True
       pos: 23.5,26.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -48087,18 +48408,33 @@ entities:
   - uid: 3266
     components:
     - type: Transform
+      anchored: True
       pos: 63.5,27.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3267
     components:
     - type: Transform
+      anchored: True
       pos: 67.5,29.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3268
     components:
     - type: Transform
+      anchored: True
       pos: 58.5,42.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: WarpPoint
   entities:
   - uid: 3968
@@ -48111,28 +48447,53 @@ entities:
   - uid: 3269
     components:
     - type: Transform
+      anchored: True
       pos: 19.5,23.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3270
     components:
     - type: Transform
+      anchored: True
       pos: 31.5,32.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3271
     components:
     - type: Transform
+      anchored: True
       pos: 65.5,27.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3272
     components:
     - type: Transform
+      anchored: True
       pos: 69.5,29.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3273
     components:
     - type: Transform
+      anchored: True
       pos: 58.5,44.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3275
     components:
     - type: Transform
@@ -48146,13 +48507,23 @@ entities:
   - uid: 3276
     components:
     - type: Transform
+      anchored: True
       pos: 11.5,42.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3277
     components:
     - type: Transform
+      anchored: True
       pos: 69.5,42.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 3278
@@ -48268,13 +48639,23 @@ entities:
   - uid: 3293
     components:
     - type: Transform
+      anchored: True
       pos: 11.5,41.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
   - uid: 3294
     components:
     - type: Transform
+      anchored: True
       pos: 69.5,41.5
       parent: 1
+    - type: Physics
+      bodyType: Static
+    - type: GravityAffected
+      weightless: False
 - proto: WindoorSecure
   entities:
   - uid: 3295

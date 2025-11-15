@@ -54581,43 +54581,11 @@ entities:
     - type: Transform
       pos: 45.256584,47.91295
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 9
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 9
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 10
     components:
     - type: Transform
       pos: 49.869274,47.8192
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 11
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 11
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 6684
     components:
     - type: Transform
@@ -55975,9 +55943,6 @@ entities:
     - type: Transform
       pos: 18.45026,63.662334
       parent: 1
-    - type: GasTank
-      toggleActionEntity: 5
-    - type: ActionsContainer
     - type: ContainerContainer
       containers:
         actions: !type:Container
@@ -55988,9 +55953,6 @@ entities:
     - type: Transform
       pos: 18.715885,63.58421
       parent: 1
-    - type: GasTank
-      toggleActionEntity: 7
-    - type: ActionsContainer
     - type: ContainerContainer
       containers:
         actions: !type:Container

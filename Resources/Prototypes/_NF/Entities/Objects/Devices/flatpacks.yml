@@ -37,17 +37,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: EngineeringTechFabFlatpack
-  name: engineering techfab flatpack
-  description: A flatpack used for constructing an engineering techfab.
-  components:
-  - type: Flatpack
-    entity: EngineeringTechFab
-  - type: StaticPrice
-    price: 250
-
-- type: entity
-  parent: BaseNFFlatpack
   id: GasThermoMachineFreezerFlatpack
   name: freezer flatpack
   description: A flatpack used for constructing a freezer.
@@ -331,17 +320,6 @@
 
 - type: entity
   parent: UniformPrinterFlatpack
-  id: ServiceTechFabFlatpack
-  name: service techfab flatpack
-  description: A flatpack used for constructing a service techfab.
-  components:
-  - type: Flatpack
-    entity: ServiceTechFab
-  - type: StaticPrice
-    price: 250
-
-- type: entity
-  parent: UniformPrinterFlatpack
   id: MaterialReclaimerFlatpack
   name: material reclaimer flatpack
   description: A flatpack used for constructing a material reclaimer.
@@ -563,15 +541,6 @@
 
 - type: entity
   parent: OreProcessorFlatpack
-  id: SalvageTechfabNFFlatpack
-  name: salvage techfab flatpack
-  description: A flatpack used for constructing a salvage techfab.
-  components:
-  - type: Flatpack
-    entity: SalvageTechfabNF
-
-- type: entity
-  parent: OreProcessorFlatpack
   id: OreProcessorIndustrialFlatpack
   name: industrial ore processor flatpack
   description: A flatpack used for constructing an industrial ore processor.
@@ -587,15 +556,6 @@
   components:
   - type: Flatpack
     entity: ScrapProcessor
-
-- type: entity
-  parent: OreProcessorFlatpack
-  id: CargoTechfabNFFlatpack
-  name: cargo techfab flatpack
-  description: A flatpack used for constructing a cargo techfab.
-  components:
-  - type: Flatpack
-    entity: CargoTechFabNF
 
 - type: entity
   parent: OreProcessorFlatpack
@@ -629,20 +589,6 @@
     entity: MercenaryTechFab
   - type: StaticPrice
     price: 600
-
-#region Pirate
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: PirateTechFabFlatpack
-  name: pirate techfab flatpack
-  description: A flatpack used for constructing a pirate techfab.
-  components:
-  - type: Flatpack
-    entity: PirateTechFab
-  - type: Sprite
-    layers:
-    - state: pirate_lathe
 
 #region Consoles
 - type: entity

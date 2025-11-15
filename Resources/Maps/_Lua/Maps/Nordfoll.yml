@@ -51391,20 +51391,6 @@ entities:
     - type: Transform
       pos: 4.566609,-0.33690816
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 233
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 233
-    - type: ActionsContainer
 - proto: ClothingHeadHatSurgcapBlue
   entities:
   - uid: 7690
@@ -59884,20 +59870,6 @@ entities:
     - type: Transform
       pos: -0.4236927,13.281482
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 219
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 219
-    - type: ActionsContainer
 - proto: FlippoEngravedLighter
   entities:
   - uid: 9022
@@ -59912,20 +59884,6 @@ entities:
     - type: Transform
       pos: 11.057142,18.182617
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 231
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 231
-    - type: ActionsContainer
 - proto: FloodlightBroken
   entities:
   - uid: 9023
@@ -94578,43 +94536,11 @@ entities:
     - type: Transform
       pos: -38.05777,-47.900833
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 221
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 221
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 228
     components:
     - type: Transform
       pos: -13.497667,3.891713
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 229
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 229
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
 - proto: LampGold
   entities:
   - uid: 2
@@ -94624,139 +94550,31 @@ entities:
     - type: Transform
       pos: -85.60367,-20.3198
       parent: 1
-    - type: HandheldLight
-      selfToggleActionEntity: 6
-      toggleActionEntity: 5
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 3
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 5
-          - 6
-    - type: Physics
-      canCollide: True
-    - type: EmitSoundOnCollide
-      nextSound: -28596.2023191
-    - type: ActionsContainer
-    - type: Actions
-      actions:
-      - 6
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
   - uid: 222
     components:
     - type: Transform
       pos: 4.443304,-0.3785757
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 223
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 223
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 224
     components:
     - type: Transform
       pos: 4.519734,3.584967
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 225
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 225
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 226
     components:
     - type: Transform
       pos: 4.443304,7.668299
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 227
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 227
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 234
     components:
     - type: Transform
       pos: -5.635268,3.553717
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 235
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 235
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 236
     components:
     - type: Transform
       pos: -5.369643,-0.32128316
       parent: 1
-    - type: HandheldLight
-      toggleActionEntity: 237
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 237
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
 - proto: LampInterrogator
   entities:
   - uid: 14014

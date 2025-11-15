@@ -170,21 +170,21 @@
         tags:
           - PirateUplink
 
-- type: listing
-  id: UplinkPirateCannon
-  name:  uplink-pirate-cannon-name
-  description: uplink-pirate-cannon-desc
-  productEntity: NFWeaponLauncherPirateCannon
-  icon: { sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi, state: icon }
-  cost:
-    Doubloon: 6
-  categories:
-    - UplinkPirateWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - PirateUplink
+# - type: listing
+#   id: UplinkPirateCannon
+#   name:  uplink-pirate-cannon-name
+#   description: uplink-pirate-cannon-desc
+#   productEntity: NFWeaponLauncherPirateCannon
+#   icon: { sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi, state: icon }
+#   cost:
+#     Doubloon: 6
+#   categories:
+#     - UplinkPirateWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - PirateUplink
 
 - type: listing
   id: UplinkFlintlock
@@ -542,18 +542,18 @@
   categories:
   - UplinkPirateUtility
 
-- type: listing
-  id: UplinkPirateJetpack
-  name:  uplink-pirate-jetpack-name
-  description: uplink-pirate-jetpack-desc
-  productEntity: JetpackPirateFilled
-  icon: { sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi, state: icon }
-  cost:
-    Doubloon: 2
-  categories:
-    - UplinkPirateUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - PirateUplink
+# - type: listing
+#   id: UplinkPirateJetpack
+#   name:  uplink-pirate-jetpack-name
+#   description: uplink-pirate-jetpack-desc
+#   productEntity: JetpackPirateFilled
+#   icon: { sprite: _NF/Objects/Tanks/Jetpacks/pirate.rsi, state: icon }
+#   cost:
+#     Doubloon: 2
+#   categories:
+#     - UplinkPirateUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - PirateUplink

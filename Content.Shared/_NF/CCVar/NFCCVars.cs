@@ -48,15 +48,6 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.game.showobjectives", false, CVar.ARCHIVE | CVar.SERVERONLY);
 
     /*
-     *  Public Transit
-     */
-    /// <summary>
-    /// Whether public transit is enabled.
-    /// </summary>
-    public static readonly CVarDef<bool> PublicTransit =
-        CVarDef.Create("nf14.publictransit.enabled", false, CVar.SERVERONLY);
-
-    /*
      *  World Gen
      */
     /// <summary>
