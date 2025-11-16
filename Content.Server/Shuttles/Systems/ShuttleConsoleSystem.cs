@@ -310,7 +310,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private void OnGetState(EntityUid uid, PilotComponent component, ref ComponentGetState args)
     {
-        args.State = new PilotComponentState(GetNetEntity(component.Console));
+        NetEntity consoleNet = NetEntity.Invalid;
+        if (component.Console != null && TryGetNetEntity(component.Console.Value, out NetEntity? consoleNetMaybe)) consoleNet = consoleNetMaybe.Value;
+        args.State = new PilotComponentState(consoleNet);
     }
 
     private void OnStopPilotingAlert(Entity<PilotComponent> ent, ref StopPilotingAlertEvent args)
@@ -619,20 +621,52 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Dictionary<string, string>? portNames = null)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true, portNames, GetExclusionList()); // Frontier: add inertial dampening, target // Lua add GetExclusionList
+        {
+            var netCoordsFallback = GetNetCoordinatesSafe(coordinates);
+            return new NavInterfaceState(
+                SharedRadarConsoleSystem.DefaultMaxRange,
+                netCoordsFallback,
+                angle,
+                docks,
+                InertiaDampeningMode.Dampen,
+                ServiceFlags.None,
+                null,
+                NetEntity.Invalid,
+                true,
+                portNames,
+                GetExclusionList()); // Frontier: add inertial dampening, target // Lua add GetExclusionList
+        }
+
+        var netCoords = GetNetCoordinatesSafe(coordinates);
+
+        // Target entity may be deleted or lack metadata; resolve it quietly.
+        var targetNetEntity = NetEntity.Invalid;
+        if (entity.Comp1.TargetEntity != null &&
+            TryGetNetEntity(entity.Comp1.TargetEntity.Value, out NetEntity? targetNetMaybe))
+        {
+            targetNetEntity = targetNetMaybe.Value;
+        }
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
-            GetNetCoordinates(coordinates),
+            netCoords,
             angle,
             docks,
             _shuttle.NfGetInertiaDampeningMode(entity), // Frontier
             _shuttle.NfGetServiceFlags(entity), // Frontier
             entity.Comp1.Target, // Frontier
-            GetNetEntity(entity.Comp1.TargetEntity), // Frontier
+            targetNetEntity, // Frontier
             entity.Comp1.HideTarget, // Frontier
             portNames,
             GetExclusionList()); // Lua
+    }
+
+    private NetCoordinates GetNetCoordinatesSafe(EntityCoordinates coordinates)
+    {
+        if (!TryGetNetEntity(coordinates.EntityId, out NetEntity? netEntMaybe) || netEntMaybe == null)
+            return new NetCoordinates(NetEntity.Invalid, coordinates.Position);
+
+        return new NetCoordinates(netEntMaybe.Value, coordinates.Position);
     }
 
     //Lua start
