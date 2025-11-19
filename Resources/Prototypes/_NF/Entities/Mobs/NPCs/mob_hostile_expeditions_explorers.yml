@@ -16,12 +16,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      105: Dead
+      160: Critical #Lua 80>160
+      210: Dead #Lua 105<210
   - type: SlowOnDamage
     speedModifierThresholds:
-      48: 0.7
-      64: 0.5
+      96: 0.7 #Lua 48<96
+      128: 0.5 #Lua 64<128
   - type: DamageStateVisuals
   - type: RotationVisuals
     defaultRotation: 90
@@ -60,6 +60,9 @@
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
+  - type: Tag #Lua
+    tags:
+    - DoorBumpOpener
 
 # Variations
 #region Tier 1
@@ -447,7 +450,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Dead
+      320: Dead #Lua 160<320
   - type: Destructible
     thresholds:
     - trigger:
