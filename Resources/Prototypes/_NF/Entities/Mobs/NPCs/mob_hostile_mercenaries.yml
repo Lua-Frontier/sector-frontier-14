@@ -24,7 +24,7 @@
     thresholds:
       0: Alive
       140: Critical #Lua 80<140
-      200: Dead #Lua 140<200
+      200: Dead #Lua 100<200
   - type: SlowOnDamage
     speedModifierThresholds:
       100: 0.7 #Lua 48<100
