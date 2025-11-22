@@ -17,9 +17,11 @@
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 60
         mask:
-        - MidImpassable # Frontier - Stop AI Abuse - MachineMask<TableMask
+        - MachineMask #Lua
+#        - MidImpassable # Frontier - Stop AI Abuse - MachineMask<TableMask
         layer:
-        - TableLayer # Frontier - Stop AI Abuse - GlassAirlockLayer<TableLayer
+        - MachineLayer #Lua
+#        - TableLayer # Frontier - Stop AI Abuse - GlassAirlockLayer<TableLayer
   - type: InteractionOutline
   - type: Construction
     graph: Girder
