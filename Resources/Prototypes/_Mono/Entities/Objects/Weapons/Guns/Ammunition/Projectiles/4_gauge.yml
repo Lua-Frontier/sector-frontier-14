@@ -330,8 +330,8 @@
       types:
         Piercing: 30 #Lua -10
         blunt: 15 # Lua add
-        Structural: 500 #Lua +100%
-    ignoreResistances: true #Lua add (замена пробитию на монолите)
+        Structural: 500 #Lua +250
+    ignoreResistances: true #Lua add
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
@@ -349,7 +349,7 @@
     damage:
       types:
         Piercing: 15
-    ignoreResistances: true #Lua add (замена пробитию на монолите)
+    ignoreResistances: true #Lua add
   - type: Tracer
     color: "#6f7c82ff"
     length: 3
