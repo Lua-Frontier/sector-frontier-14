@@ -184,4 +184,43 @@
       <GuideEntityEmbed Entity="VendingMachineTankDispenserEngineering" Caption="   "/>
    </Box>
 
+   <Box>
+    - [bold]Прочее:[/bold] топливный резервуар, водяной резервуар, переносной скруббер, пожарный топор.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="WeldingFuelTankFull" Caption="   "/>
+      <GuideEntityEmbed Entity="WaterTankFull" Caption="   "/>
+      <GuideEntityEmbed Entity="PortableScrubber" Caption="   "/>
+      <GuideEntityEmbed Entity="FireAxeCabinetFilled" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Атмосфера (жизнеобеспечение):[/bold] 
+   </Box>
+
+   - На корабле есть базовый запас (6200кПа в каждой) [bold][color=#4b5bab]кислорода[/color][/bold] и [bold][color=#b0305c]азота[/color][/bold] в специальных камерах хранения газов, которые можно при необходимости пополнять через канистры. 
+
+   - Вам же лишь необходимо будет включить необходимые насосы и смеситель газов. Смеситель газов уже настроен на необходимые 78% азота и 22% кислорода для необходимого состава атмосферы. Трубы ведущие к смесителю, как и сам смеситель покрашены в [bold][color=#562656]ДАННЫЙ ЦВЕТ.[/color][/bold]
+
+   - Трубы с воздушной смесью покрашены в [bold][color=#17E8E2FF]ДАННЫЙ ЦВЕТ[/color][/bold], а трубы с газообразными отходами в [bold][color=#FF0000FF]ДАННЫЙ ЦВЕТ.[/color][/bold]
+
+   <Box>
+     - Для устранения пробоин и утечек атмосферы на корабле имеются:
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="LockerWallEvacRepairFilled"/>
+      <GuideEntityEmbed Entity="LockerWallMaterialsBasicFilled"/>
+   </Box>
+
+   <Box>
+     - В них содержаться необходимые материалы и расходники для ремонта и устранения утечек атмосферы.
+   </Box>
+
+   <Box>
+    - [bold]Энергоснабжение:[/bold] 
+   </Box>
+
+   - Питание корабля обеспечено с помощью двух [bold][color=#eb564b]Двигателей Антиматерий (ДАМ)[/color][/bold], а хранение запасов электричества осуществлено с помощью четырёх [bold][color=#eb564b]СМЭС-ов.[/color][/bold]
 </Document>
