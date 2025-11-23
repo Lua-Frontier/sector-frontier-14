@@ -26,7 +26,6 @@ public sealed class SharedMagbootsSystem : EntitySystem
         SubscribeLocalEvent<MagbootsComponent, ItemToggledEvent>(OnToggled);
         SubscribeLocalEvent<MagbootsComponent, ClothingGotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<MagbootsComponent, ClothingGotUnequippedEvent>(OnGotUnequipped);
-        SubscribeLocalEvent<MagbootsComponent, EntParentChangedMessage>(OnParentChanged);
         SubscribeLocalEvent<MagbootsComponent, IsWeightlessEvent>(OnIsWeightless);
         SubscribeLocalEvent<MagbootsComponent, InventoryRelayedEvent<IsWeightlessEvent>>(OnIsWeightless);
     }
@@ -47,21 +46,13 @@ public sealed class SharedMagbootsSystem : EntitySystem
         UpdateMagbootEffects(args.Wearer, ent, _toggle.IsActivated(ent.Owner));
     }
 
-    // Lua start
-    private void OnParentChanged(Entity<MagbootsComponent> ent, ref EntParentChangedMessage args)
-    {
-        if (!_toggle.IsActivated(ent.Owner)) return;
-        if (_container.TryGetContainingContainer((ent.Owner, null, null), out var container)) UpdateMagbootEffects(container.Owner, ent, true);
-    }
-    // Lua end
-
     public void UpdateMagbootEffects(EntityUid user, Entity<MagbootsComponent> ent, bool state)
     {
         // TODO: public api for this and add access
         if (TryComp<MovedByPressureComponent>(user, out var moved))
             moved.Enabled = !state;
 
-        _gravity.RefreshWeightless(user, !state);
+        _gravity.RefreshWeightless(user);
 
         if (state)
             _alerts.ShowAlert(user, ent.Comp.MagbootsAlert);
@@ -73,22 +64,17 @@ public sealed class SharedMagbootsSystem : EntitySystem
     {
         if (args.Handled || !_toggle.IsActivated(ent.Owner))
             return;
-        // Lua start
-        if (!_container.TryGetContainingContainer((ent.Owner, null, null), out var container)) return;
-        var wearer = container.Owner;
-        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(wearer)) return;
-        // Lua end
+
+        // do not cancel weightlessness if the person is in off-grid.
+        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(ent.Owner))
+            return;
+
         args.IsWeightless = false;
         args.Handled = true;
     }
 
     private void OnIsWeightless(Entity<MagbootsComponent> ent, ref InventoryRelayedEvent<IsWeightlessEvent> args)
     {
-        // Lua start
-        if (args.Args.Handled || !_toggle.IsActivated(ent.Owner)) return;
-        if (ent.Comp.RequiresGrid && !_gravity.EntityOnGravitySupportingGridOrMap(args.Owner)) return;
-        args.Args.IsWeightless = false;
-        args.Args.Handled = true;
-        // Lua end
+        OnIsWeightless(ent, ref args.Args);
     }
 }

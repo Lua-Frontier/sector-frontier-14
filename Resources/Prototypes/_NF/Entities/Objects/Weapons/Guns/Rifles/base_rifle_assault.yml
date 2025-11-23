@@ -36,10 +36,10 @@
   id: NFBaseWeaponFrameRifleAssaultNanotrasen
   components:
   - type: Gun
-    minAngle: 2.3
-    maxAngle: 11.5
-    angleIncrease: 0.8
-    angleDecay: 2.7
+    minAngle: 1 #Lua 2.3<1
+    maxAngle: 3.5 #Lua 11.5<3
+    angleIncrease: 0.2 #Lua 0.8<0.2
+    angleDecay: 1 #Lua 2.7<1
     fireRate: 5 #Lua 3.4<5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
@@ -62,11 +62,11 @@
   id: NFBaseWeaponFrameRifleAssaultFrontierGunsmith
   components:
   - type: Gun
-    minAngle: 2.4
-    maxAngle: 12
-    angleIncrease: 1.2
-    angleDecay: 3.8
-    fireRate: 3.2
+    minAngle: 1 #Lua 2.4<1
+    maxAngle: 5 #Lua 12<5
+    angleIncrease: 0.4 #Lua 1.2<0.4
+    angleDecay: 1.2 #Lua 3.8<1.2
+    fireRate: 4.5 #Lua 3.2<4.5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium
 
@@ -113,6 +113,33 @@
         whitelist:
           tags:
             - NFCartridgeRifle20
+
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRifleAssaultChamber
+  id: NFBaseWeaponRifleAssaultChamber25
+  components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-25
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: LuaMagazineCaselessRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - LuaMagazineCaselessRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: NFCartridgeRifle25
+        priority: 1
+        whitelist:
+          tags:
+            - NFCartridgeRifle25
 
 - type: entity
   abstract: true

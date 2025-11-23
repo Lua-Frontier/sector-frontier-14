@@ -18,10 +18,6 @@ public sealed class FinanceConsoleSlotsSystem : EntitySystem
 
         SubscribeLocalEvent<FinanceDepositConsoleComponent, ComponentInit>(OnDepositConsoleInit);
         SubscribeLocalEvent<FinanceDepositConsoleComponent, ComponentRemove>(OnDepositConsoleRemove);
-
-        SubscribeLocalEvent<FinanceIssuanceConsoleComponent, ComponentInit>(OnIssuanceConsoleInit);
-        SubscribeLocalEvent<FinanceIssuanceConsoleComponent, ComponentRemove>(OnIssuanceConsoleRemove);
-
         SubscribeLocalEvent<FinanceRatingConsoleComponent, ComponentInit>(OnRatingConsoleInit);
         SubscribeLocalEvent<FinanceRatingConsoleComponent, ComponentRemove>(OnRatingConsoleRemove);
     }
@@ -34,16 +30,6 @@ public sealed class FinanceConsoleSlotsSystem : EntitySystem
     private void OnDepositConsoleRemove(EntityUid uid, FinanceDepositConsoleComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.TargetIdSlot);
-    }
-
-    private void OnIssuanceConsoleInit(EntityUid uid, FinanceIssuanceConsoleComponent component, ComponentInit args)
-    {
-        _itemSlotsSystem.AddItemSlot(uid, FinanceIssuanceConsoleComponent.PrivilegedIdCardSlotId, component.PrivilegedIdSlot);
-    }
-
-    private void OnIssuanceConsoleRemove(EntityUid uid, FinanceIssuanceConsoleComponent component, ComponentRemove args)
-    {
-        _itemSlotsSystem.RemoveItemSlot(uid, component.PrivilegedIdSlot);
     }
 
     private void OnRatingConsoleInit(EntityUid uid, FinanceRatingConsoleComponent component, ComponentInit args)

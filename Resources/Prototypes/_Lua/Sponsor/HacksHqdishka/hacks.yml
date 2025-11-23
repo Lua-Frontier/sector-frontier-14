@@ -28,6 +28,9 @@
     clothingPrototype: ClothingOuterHardsuitLua
     requiredSlot: BACK
     slot: outerClothing
+  - type: ToggleableLocksOwner
+    clothingPrototypes:
+    - ClothingOuterHardsuitLua
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -87,6 +90,9 @@
       - id: PlushieHacksLua
       - id: ClothingBeltLua
       - id: ShipVoucherLuaTechSimple
+  - type: ToggleableLocksOwner
+    clothingPrototypes:
+    - ClothingOuterHardsuitLua
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -159,9 +165,13 @@
       beakerSlot: !type:ContainerSlot # imperial hardsuit injection
   - type: ItemSlots
     slots:
+      beakerSlot:
+        whitelist:
+          tags:
+          - FitsHardsuit
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellPurcell
         disableEject: true
         whitelist:
           tags:

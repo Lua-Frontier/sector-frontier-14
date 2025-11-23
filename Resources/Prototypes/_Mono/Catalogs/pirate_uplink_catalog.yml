@@ -852,21 +852,21 @@
       tags:
       - PirateUplink
 
-- type: listing
-  id: UplinkPirateBurner
-  name: uplink-pirate-burner-name
-  description: uplink-pirate-burner-desc
-  productEntity: ClothingBackpackDuffelSyndicateBurner
-  icon: { sprite: _Goobstation/Objects/Weapons/Guns/Rifles/burner.rsi, state: icon }
-  cost:
-    Doubloon: 25
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
+# - type: listing
+#   id: UplinkPirateBurner
+#   name: uplink-pirate-burner-name
+#   description: uplink-pirate-burner-desc
+#   productEntity: ClothingBackpackDuffelSyndicateBurner
+#   icon: { sprite: _Goobstation/Objects/Weapons/Guns/Rifles/burner.rsi, state: icon }
+#   cost:
+#     Doubloon: 25
+#   categories:
+#   - UplinkPirateWeapons
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - PirateUplink
 
 - type: listing
   id: UplinkPirateAnaconda

@@ -136,7 +136,7 @@
   parent: BaseComputerAiAccess
   id: NFFinanceIssuanceComputer
   name: "Loan Issuance Console" #Lua
-  description: "Secure terminal for issuing new loans. Requires Command authorization and a privileged ID card."
+  description: "Terminal for issuing new loans."
   components:
   - type: Computer
     board: IDComputerCircuitboard
@@ -151,26 +151,13 @@
       state: eris_control
     - map: ["computerLayerKeys"]
       state: generic_keys
-  - type: AccessReader
-    access: [[ "Command" ]]
   - type: ActivatableUI
     key: enum.NFFinanceIssuanceUiKey.Key
     singleUser: true
-  - type: ItemSlots
   - type: ContainerContainer
     containers:
       board: !type:Container
-      FinanceIssuanceConsole-privilegedId: !type:ContainerSlot {}
   - type: FinanceIssuanceConsole
-    privilegedIdSlot:
-      name: finance-issuance-console-privileged-id #Lua: локализуем через FTL
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: true
-      whitelist:
-        components:
-        - IdCard
   - type: UserInterface
     interfaces:
       enum.NFFinanceIssuanceUiKey.Key:

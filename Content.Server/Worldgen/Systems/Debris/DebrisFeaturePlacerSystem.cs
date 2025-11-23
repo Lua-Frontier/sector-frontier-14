@@ -1,5 +1,5 @@
-using Content.Server._Lua.Worldgen;
-using Content.Server._NF.Worldgen.Components.Debris; // Frontier
+using System.Linq;
+using System.Numerics;
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.GC;
@@ -10,8 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using System.Linq;
-using System.Numerics;
+using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 
 namespace Content.Server.Worldgen.Systems.Debris;
 
@@ -40,20 +39,17 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         SubscribeLocalEvent<DebrisFeaturePlacerControllerComponent, WorldChunkUnloadedEvent>(OnChunkUnloaded);
         SubscribeLocalEvent<OwnedDebrisComponent, ComponentShutdown>(OnDebrisShutdown);
         SubscribeLocalEvent<OwnedDebrisComponent, MoveEvent>(OnDebrisMove);
-        SubscribeLocalEvent<OwnedDebrisComponent, TryCancelGC>(OnTryCancelGC);
+        SubscribeLocalEvent<OwnedDebrisComponent, TryCancelGC>(OnTryCancelGC); // Mono Re-add
         SubscribeLocalEvent<SimpleDebrisSelectorComponent, TryGetPlaceableDebrisFeatureEvent>(
             OnTryGetPlacableDebrisEvent);
     }
 
     /// <summary>
-    ///     Handles GC cancellation in case the chunk is still loaded.
+    ///     Handles GC cancellation in case the chunk is still loaded. - Mono Note: GC is a Discontinued Wizden Feature, but we still use it. Do not remove randomly!
     /// </summary>
     private void OnTryCancelGC(EntityUid uid, OwnedDebrisComponent component, ref TryCancelGC args)
     {
         args.Cancelled |= HasComp<LoadedChunkComponent>(component.OwningController);
-
-        if (TryComp(uid, out TransformComponent? xform) && xform.GridUid is { Valid: true } grid)
-        { if (HasComp<SafeMiningComponent>(grid)) args.Cancelled = true; }
     }
 
     /// <summary>
@@ -110,7 +106,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     private void OnChunkUnloaded(EntityUid uid, DebrisFeaturePlacerControllerComponent component,
         ref WorldChunkUnloadedEvent args)
     {
-        foreach (var (_, debris) in component.OwnedDebris)
+        foreach (var (_, debris) in component.OwnedDebris) // Mono Re-add
         {
             if (debris is not null)
                 _gc.TryGCEntity(debris.Value); // gonb.
@@ -196,8 +192,6 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         var failures = 0; // Avoid severe log spam.
         foreach (var point in points)
         {
-            if (point.Length() > 30000f) continue;  // Lua
-
             if (component.OwnedDebris.TryGetValue(point, out var existing))
             {
                 DebugTools.Assert(Exists(existing));
@@ -270,7 +264,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     /// </summary>
     private List<Vector2> GeneratePointsInChunk(EntityUid chunk, float density, Vector2 coords, EntityUid map)
     {
-        var offs = (int) ((WorldGen.ChunkSize - WorldGen.ChunkSize / 8.0f) / 2.0f);
+        var offs = (int)((WorldGen.ChunkSize - WorldGen.ChunkSize / 8.0f) / 2.0f);
         var topLeft = new Vector2(-offs, -offs);
         var lowerRight = new Vector2(offs, offs);
         var enumerator = _sampler.SampleRectangle(topLeft, lowerRight, density);
@@ -301,4 +295,3 @@ public record struct PrePlaceDebrisFeatureEvent(EntityCoordinates Coords, Entity
 [PublicAPI]
 public record struct TryGetPlaceableDebrisFeatureEvent(EntityCoordinates Coords, EntityUid Chunk,
     string? DebrisProto = null);
-

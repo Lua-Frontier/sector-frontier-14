@@ -1,0 +1,52 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: job
+  id: OpsLuaTech
+  name: job-name-ops-luatech
+  playTimeTracker: JobOpsLuaTech
+  salary: 1000
+  description: Оперативник Lua Technologies из пустоты.
+  startingGear: LuaTechFormal
+  icon: "JobIconLuaTech"
+  supervisors: job-supervisors-none
+  canBeAntag: true
+  hideConsoleVisibility: true
+  requirements:
+    - !type:CompanyRequirement
+      companies:
+        - LuaTech
+  accessGroups:
+  - LuaTech
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: LuaTech
+      - type: SpecialSectorStationRecord
+        recordGeneration: FalseRecord
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaTech
+
+- type: startingGear
+  id: LuaTechFormal
+  equipment:
+    eyes: ClothingEyesHudLuaTech
+    shoes: ClothingShoesBootsLua
+    jumpsuit: ClothingUniformJumpsuitMedicLua
+    gloves: ClothingHandsGlovesCombatLua
+    id: LuaPDAOps
+    back: LuaClothingBackpackOpsFilled
+    belt: ClothingBeltLua
+    pocket1: WeaponPistolLua
+    pocket2: HyposprayLua
+
+- type: chameleonOutfit
+  id: OpsLuaTechChameleonOutfit
+  job: OpsLuaTech
+  hasMindShield: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicLua

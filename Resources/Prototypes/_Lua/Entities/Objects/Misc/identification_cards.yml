@@ -486,3 +486,17 @@
     - NuclearOperative
     groups:
     - AllAccess
+
+- type: entity
+  parent: IDCardStandard
+  id: OpsLuaTechIDCard
+  name: ID карта
+  description: Карта, необходимая для доступа в различные отделы станции
+  components:
+  - type: AgentIDCard
+  - type: Sprite
+    sprite: _Lua/Objects/Misc/opsluatech.rsi
+    layers:
+    - state: opsluatech
+  - type: PresetIdCard
+    job: OpsLuaTech

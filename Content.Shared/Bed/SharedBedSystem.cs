@@ -55,8 +55,8 @@ public abstract class SharedBedSystem : EntitySystem
         _actionsSystem.AddAction(args.Buckle, ref bed.Comp.SleepAction, SleepingSystem.SleepActionId, bed);
         Dirty(bed);
 
-        // Single action entity, cannot strap multiple entities to the same bed.
-        DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
+        if (args.Strap.Comp.Size <= 100)
+            DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
     }
 
     private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)

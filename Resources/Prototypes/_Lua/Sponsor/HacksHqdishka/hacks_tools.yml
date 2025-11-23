@@ -151,7 +151,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellPurcell
 
 - type: entity
   parent: JawsOfLife
@@ -233,6 +233,11 @@
         shader: unshaded
         visible: true
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellPurcell
 
 - type: entity
   parent: Multitool
@@ -290,3 +295,29 @@
   - type: Item
     size: Small
     sprite: _Lua/Sponsor/Lua/Lua_Black/Tools/lua_welder.rsi
+
+- type: entity
+  parent: [BasePowerCell, RecyclableItemDeviceSmall]
+  categories: [ HideSpawnMenu ]
+  id: PowerCellPurcell
+  name: pure power cell
+  description: A rechargeable standardized purspace cell.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Power/power_cells.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: purcell
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1203
+    startingCharge: 1203
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 234
+  - type: MachinePart
+    part: PowerCell
+    rating: 3

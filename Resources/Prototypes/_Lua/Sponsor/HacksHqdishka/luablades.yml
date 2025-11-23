@@ -59,9 +59,12 @@
       angle: 100
       damage:
         types:
-          Slash: 15
-          Heat: 15
-          Structural: 20
+          Structural: 150
+          Slash: 20
+          Blunt: 20
+          Heat: 20
+          Piercing: 20
+          Radiation: 10
       mustBeEquippedToUse: true
       animation: WeaponArcClaw
       wideAnimation: WeaponArcClaw
@@ -83,7 +86,7 @@
     - type: Execution
       doAfterDuration: 4.0
     - type: Reflect
-      reflectProb: .75
+      reflectProb: .10
       spread: 75
 
 - type: entity

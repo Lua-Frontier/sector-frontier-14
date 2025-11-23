@@ -289,3 +289,21 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: Vip
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconLuaTech
+  icon:
+    sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
+    state: ops_luatech
+
+- type: entity
+  parent: HacksPDA
+  id: LuaPDAOps
+  name: КПК Оперативника "Lua Technologies"
+  description: Оснащён всеми средствами и возможностями для получения приказов.
+  components:
+  - type: Pda
+    id: OpsLuaTechIDCard
+  - type: PdaBorderColor
+    borderColor: "#35a5da"

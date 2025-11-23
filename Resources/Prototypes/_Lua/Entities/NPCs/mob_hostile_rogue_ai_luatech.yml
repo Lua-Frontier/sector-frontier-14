@@ -25,7 +25,7 @@
       color: "#ffff00"
   - type: NpcFactionMember
     factions:
-    - SiliconsLuaTech
+    - LuaTech
   - type: ProjectileBatteryAmmoProvider
     proto: NFAnomalousParticleSigmaStrong
     fireCost: 100
@@ -54,31 +54,7 @@
       color: "#990000"
   - type: NpcFactionMember
     factions:
-    - SiliconsLuaTech
-
-- type: npcFaction
-  id: SiliconsLuaTech
-  hostile:
-  ## SS14 factions
-  - NanoTrasen
-  - Syndicate
-  - SimpleHostile
-  - Passive
-  - PetsNT
-  - Zombie
-  - Revolutionary
-  - Xeno
-  ## Frontier Factions
-  - WizFedFaction
-  - BloodCultNF
-  - NFPirate
-  - ExplorersExpeditionNF
-  - ArtifactConstruct
-  - StreetGangNF
-  - DinosaursNF
-  - MercenariesExpeditionNF
-  #- SiliconsExpeditionNF
-  - AberrantFleshExpeditionNF
+    - LuaTech
 
 - type: entity
   name: drone spawner

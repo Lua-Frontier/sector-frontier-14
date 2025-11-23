@@ -1,0 +1,36 @@
+# Creator Info
+# Discord: daeqa1us_
+# Cikey: wh1te
+
+- type: vessel
+  id: kaleidoscope
+  parent: BaseVessel
+  name: Kaleidoscope
+  description: Горно и газо добывабщий фрегат, предназначенный для исследования и добычи ресурсов в отдаленных уголках космоса.
+  price: 66000
+  category: medium
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/kaleidoscope.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  - Atmospherics
+  engine:
+  - AME
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+- type: gameMap
+  id: kaleidoscope
+  mapName: 'Kaleidoscope'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/kaleidoscope.yml
+  minPlayers: 0
+  stations:
+    kaleidoscope:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Kaleidoscope {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

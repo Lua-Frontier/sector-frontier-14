@@ -28,11 +28,20 @@ public sealed class WarpToStarMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class ShuttleConsoleStarMapVisibilityMessage : BoundUserInterfaceMessage
+{
+    public bool Visible;
+    public ShuttleConsoleStarMapVisibilityMessage(bool visible)
+    { Visible = visible; }
+}
+
+[Serializable, NetSerializable]
 public sealed class StarmapConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
     public List<Star> Stars;
     public float Range;
     public List<HyperlaneEdge> Edges;
+    public List<MapId> CapturingMaps;
     public float WarpCooldownRemainingSeconds;
     public float WarpCooldownTotalSeconds;
     public FTLState FTLState;
@@ -42,11 +51,12 @@ public sealed class StarmapConsoleBoundUserInterfaceState : BoundUserInterfaceSt
     public Dictionary<MapId, string> OwnerByMap;
     public Dictionary<MapId, string> SectorColorOverrideHexByMap;
 
-    public StarmapConsoleBoundUserInterfaceState(List<Star> stars, float range, List<HyperlaneEdge>? edges = null, float warpCooldownRemainingSeconds = 0f, float warpCooldownTotalSeconds = 0f, FTLState ftlState = FTLState.Invalid, StartEndTime ftlTime = default, List<MapId>? visibleSectorMaps = null, Dictionary<MapId, string>? sectorIdByMap = null, Dictionary<MapId, string>? ownerByMap = null, Dictionary<MapId, string>? sectorColorOverrideHexByMap = null)
+    public StarmapConsoleBoundUserInterfaceState(List<Star> stars, float range, List<HyperlaneEdge>? edges = null, List<MapId>? capturingMaps = null, float warpCooldownRemainingSeconds = 0f, float warpCooldownTotalSeconds = 0f, FTLState ftlState = FTLState.Invalid, StartEndTime ftlTime = default, List<MapId>? visibleSectorMaps = null, Dictionary<MapId, string>? sectorIdByMap = null, Dictionary<MapId, string>? ownerByMap = null, Dictionary<MapId, string>? sectorColorOverrideHexByMap = null)
     {
         Stars = stars;
         Range = range;
         Edges = edges ?? new List<HyperlaneEdge>();
+        CapturingMaps = capturingMaps ?? new List<MapId>();
         WarpCooldownRemainingSeconds = warpCooldownRemainingSeconds;
         WarpCooldownTotalSeconds = warpCooldownTotalSeconds;
         FTLState = ftlState;
