@@ -1,16 +1,16 @@
-# Creator Info
-# Discord: daeqa1us_
-# Cikey: wh1te
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
 
 - type: vessel
   id: Venture
   parent: BaseVessel
-  name: Concord-Venture
+  name: NT-Venture
   description: небольшое медико-научное судно с минимальными удобствами.
   price: 54500
   category: Medium
   group: Expedition
-  shuttlePath: /Maps/_Lua/Shuttles/Expedition/Concord-Venture.yml
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/Venture.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -22,15 +22,15 @@
       color: "#ffffff"
 - type: gameMap
   id: Venture
-  mapName: 'Concord-Venture'
-  mapPath: /Maps/_Lua/Shuttles/Expedition/Concord-Venture.yml
+  mapName: 'NT-Venture'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/Venture.yml
   minPlayers: 0
   stations:
     Venture:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Concord-Venture {1}'
+          mapNameTemplate: 'NT-Venture {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
