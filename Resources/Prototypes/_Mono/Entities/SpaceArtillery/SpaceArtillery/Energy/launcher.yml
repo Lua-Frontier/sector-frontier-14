@@ -18,7 +18,7 @@
 - type: entity
   id: WeaponTurretType35
   name: Type-35 MARAUDER-type plasma cannon
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
   - type: StaticPrice
@@ -85,7 +85,7 @@
 - type: entity
   id: WeaponTurretType54
   name: Type-54C plasma autopulser
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   suffix: TSF ONLY, ADS ONLY
   description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
   components:
@@ -232,7 +232,7 @@
 - type: entity
   id: WeaponTurretM25
   name: M25 mining pulser
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Uses mechanisms to launch... something. Destroys rock easily.
   components:
   - type: StaticPrice
@@ -299,7 +299,7 @@
 - type: entity
   id: WeaponTurretM220
   name: M220 RUBICON EMP launcher
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches EMP projectiles at ships, disabling systems with powerful electromagnetic pulses. Ideal for non-lethal engagements and can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
@@ -434,7 +434,7 @@
 - type: entity
   id: WeaponLaserTurretL1Phalanx
   name: L-1 Phalanx
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A light laser emplactment designed by the Pantheon Collective, used to shred threats of all types
   components:
   - type: StaticPrice
