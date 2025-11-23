@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/22/2025 14:29:29
-  entityCount: 366
+  time: 11/23/2025 10:44:44
+  entityCount: 368
 maps: []
 grids:
 - 2
@@ -395,6 +395,22 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 2
+    - type: AmeController
+      injecting: True
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 361
+- proto: AmeJar
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      parent: 107
+    - type: Physics
+      canCollide: False
 - proto: AmeShielding
   entities:
   - uid: 28
@@ -402,6 +418,9 @@ entities:
     - type: Transform
       pos: -6.5,1.5
       parent: 2
+    - type: PointLight
+      radius: 2
+      enabled: True
   - uid: 35
     components:
     - type: Transform
@@ -1560,6 +1579,13 @@ entities:
     components:
     - type: Transform
       pos: -3.5,3.5
+      parent: 2
+- proto: Nakrutka2
+  entities:
+  - uid: 368
+    components:
+    - type: Transform
+      pos: 0.5,0.5
       parent: 2
 - proto: NFHolopadShip
   entities:
