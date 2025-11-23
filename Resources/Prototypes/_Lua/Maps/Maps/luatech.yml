@@ -1,0 +1,21 @@
+- type: gameMap
+  id: LuaTech
+  mapName: 'Верфь LuaTech'
+  mapPath: /Maps/_Lua/Maps/luatech_shipyard.yml
+  isGrid: true
+  minPlayers: 0
+  stations:
+    LuaTech:
+      stationProto: StandardLuaTechVessel
+      components:
+        - type: MailStationDisabled
+        - type: StationNameSetup
+          mapNameTemplate: 'Верфь LuaTech'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_Lua/Structures/Wallmounts/flags.rsi/luatech.png
+          stationSubtext: 'luatech-lobby-outpost-subtext'
+          stationDescription: 'luatech-lobby-outpost-description'
+        - type: StationJobs
+          availableJobs:
+            OpsLuaTech: [ 0, 3 ]
+

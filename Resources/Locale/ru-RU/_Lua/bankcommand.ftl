@@ -22,3 +22,13 @@ cmd-bank-hint-remove = Снять { $amount } кредитов
 cmd-bank-desc = Изменяет баланс банковского счёта игрока.
 cmd-bank-help = Использование: bank <имя/ID> <сумма>\nДобавляет или снимает указанную сумму с банковского счёта игрока. Используйте положительные значения для пополнения и отрицательные для снятия.
 
+cmd-bank-prev-current = Предыдущий баланс: { $prev }, Текущий баланс: { $current }
+cmd-bank-offline-not-enough = У игрока '{ $player }' только { $balance }, невозможно снять { $removeAmount }.
+cmd-bank-offline-unchanged = Баланс игрока '{ $player }' не изменён: { $balance }
+cmd-bank-offline-failed = Не удалось изменить баланс оффлайн игрока '{ $player }'.
+cmd-bank-offline-added = Добавлено { $amount } оффлайн игроку '{ $player }'. Новый баланс: { $balance }.
+cmd-bank-offline-removed = Удалено { $amount } у оффлайн игрока '{ $player }'. Новый баланс: { $balance }.
+cmd-bank-batch-summary = Выдано { $amount } кредитов { $count } игрокам в игре: { $recipients }
+cmd-bank-batch-none = Никому не выдано. Нет подходящих игроков в игре.
+cmd-bank-batch-recipient = { $name } (Предыдущий баланс: { $prev } Текущий баланс: { $next })
+cmd-bank-completion-arg-hint = <имя/персонаж>

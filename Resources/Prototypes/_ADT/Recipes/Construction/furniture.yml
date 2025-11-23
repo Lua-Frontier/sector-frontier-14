@@ -69,26 +69,12 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ADTDoubleBedTopRecipe
-  name: double-bed-top
-  description: double-bed-top-desc
+  id: ADTDoubleBedSplitRecipe
+  name: double-bed-split
+  description: double-bed-split-desc
   graph: bed
   startNode: start
-  targetNode: adtdoublebedtop
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: ADTDoubleBedBottomRecipe
-  name: double-bed-bottom
-  description: double-bed-top-desc
-  graph: bed
-  startNode: start
-  targetNode: adtdoublebedbottom
+  targetNode: adtdoublebedsplit
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter

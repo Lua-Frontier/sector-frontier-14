@@ -1,0 +1,44 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# LuaTech
+- type: accessLevel
+  id: LuaTechOps
+  name: id-card-access-level-luatech-ops
+
+- type: accessLevel
+  id: LuaTechScience
+  name: id-card-access-level-luatech-science
+
+- type: accessLevel
+  id: LuaTechEngineer
+  name: id-card-access-level-luatech-engineer
+
+- type: accessLevel
+  id: LuaTechMedic
+  name: id-card-access-level-luatech-medic
+
+- type: accessLevel
+  id: LuaTechService
+  name: id-card-access-level-luatech-service
+
+- type: accessLevel
+  id: LuaTechCommand
+  name: id-card-access-level-luatech-command
+
+- type: accessGroup
+  id: LuaTechOps
+  tags:
+  - LuaTechOps
+
+- type: accessGroup
+  id: LuaTech
+  tags:
+  - LuaTechOps
+  - LuaTechScience
+  - LuaTechEngineer
+  - LuaTechMedic
+  - LuaTechService
+  - LuaTechCommand
+

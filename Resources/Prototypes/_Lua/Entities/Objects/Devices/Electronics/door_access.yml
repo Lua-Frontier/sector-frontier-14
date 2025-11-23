@@ -1,0 +1,58 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Ops
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLuaTechOps
+  suffix: LuaTech Ops, Locked
+  components:
+  - type: AccessReader
+    access: [["LuaTechOps"]]
+
+# Science
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLuaTechScience
+  suffix: LuaTech Science, Locked
+  components:
+  - type: AccessReader
+    access: [["LuaTechScience"]]
+
+# Engineer
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLuaTechEngineer
+  suffix: LuaTech Engineer, Locked
+  components:
+  - type: AccessReader
+    access: [["LuaTechEngineer"]]
+
+# Medic
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLuaTechMedic
+  suffix: LuaTech Medic, Locked
+  components:
+  - type: AccessReader
+    access: [["LuaTechMedic"]]
+
+# Service
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLuaTechService
+  suffix: LuaTech Service, Locked
+  components:
+  - type: AccessReader
+    access: [["LuaTechService"]]
+
+# Command
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLuaTechCommand
+  suffix: LuaTech Command, Locked
+  components:
+  - type: AccessReader
+    access: [["LuaTechCommand"]]
+

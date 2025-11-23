@@ -161,6 +161,9 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction #Lua
+    graph: GoliathCloack
+    node: GoliathCloack
 
 - type: entity
   parent: ClothingNeckBase

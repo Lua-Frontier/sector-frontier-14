@@ -75,6 +75,9 @@ public sealed class SmokeSystem : EntitySystem
             if (curTime < smoke.NextSecond)
                 continue;
 
+            if (!Exists(smoke.SmokeEntity) || !_smokeQuery.HasComponent(smoke.SmokeEntity))
+            { RemComp<SmokeAffectedComponent>(uid); continue; }
+
             smoke.NextSecond += TimeSpan.FromSeconds(1);
             SmokeReact(uid, smoke.SmokeEntity);
         }
@@ -243,8 +246,7 @@ public sealed class SmokeSystem : EntitySystem
     /// </summary>
     public void SmokeReact(EntityUid entity, EntityUid smokeUid, SmokeComponent? component = null)
     {
-        if (!Resolve(smokeUid, ref component))
-            return;
+        if (!Resolve(smokeUid, ref component, false)) return;
 
         if (!_solutionContainerSystem.ResolveSolution(smokeUid, SmokeComponent.SolutionName, ref component.Solution, out var solution) ||
             solution.Contents.Count == 0)

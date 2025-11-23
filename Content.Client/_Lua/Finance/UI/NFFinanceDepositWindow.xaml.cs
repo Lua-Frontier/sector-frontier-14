@@ -3,6 +3,7 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
+using System;
 using Content.Shared._Lua.Finance.Events;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
@@ -152,8 +153,8 @@ public sealed partial class NFFinanceDepositWindow : DefaultWindow
                 ("principal", principal),
                 ("accrued", accrued),
                 ("apr", row.AprPercent.ToString("F1")),
-                ("next", row.NextCapSeconds),
-                ("stop", row.StopAtSeconds),
+                ("next", FormatDuration(row.NextCapSeconds)),
+                ("stop", FormatDuration(row.StopAtSeconds)),
                 ("penalty", penalty));
             DepositsList.AddItem(text);
         }
@@ -166,6 +167,15 @@ public sealed partial class NFFinanceDepositWindow : DefaultWindow
         if (eta.TotalMinutes >= 1)
             return $"через {eta.Minutes}м {eta.Seconds}с";
         return $"через {eta.Seconds}с";
+    }
+
+    private static string FormatDuration(int seconds)
+    {
+        if (seconds <= 0)
+            return "00:00:00";
+        var span = TimeSpan.FromSeconds(seconds);
+        var hours = (int)span.TotalHours;
+        return $"{hours:D2}:{span.Minutes:D2}:{span.Seconds:D2}";
     }
 }
 

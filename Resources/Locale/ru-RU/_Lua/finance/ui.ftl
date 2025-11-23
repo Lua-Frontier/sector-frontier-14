@@ -30,7 +30,7 @@ finance-deposit-part-id-placeholder = Частичное снятие: ID
 finance-deposit-part-button = Снять частично
 finance-deposit-list-title = Мои вклады
 finance-refresh = Обновить
-finance-deposit-row-format = {$id} | {$principal}+{$accrued} | {$apr}% | до кап. ~{$next}s | стоп ~{$stop}s | штраф ~{$penalty}
+finance-deposit-row-format = {$id} | {$principal}+{$accrued} | {$apr}% | до кап. ~{$next} | стоп ~{$stop} | штраф ~{$penalty}
 
 # Окно кредитов/обзора вкладов
 finance-loans-window-title = Финансы

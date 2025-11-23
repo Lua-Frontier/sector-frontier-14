@@ -53,19 +53,17 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
         _window.Claimed = current.Claimed;
         _window.SetFinishDisabled(!current.CanFinish); // Frontier
         _window.ClearOptions();
-        var salvage = _entManager.System<SalvageSystem>();
 
         for (var i = 0; i < current.Missions.Count; i++)
         {
-            var missionParams = current.Missions[i];
+            var listing = current.Missions[i];
+            var missionParams = listing.Params;
+            var mission = listing.Mission;
 
             var offering = new OfferingWindowOption();
             offering.Title = Loc.GetString($"salvage-expedition-type-{missionParams.MissionType}");
 
-            var difficultyId = missionParams.Difficulty; // Frontier: Moderate<missionParams.Difficulty
-            var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(difficultyId);
-            // TODO: Selectable difficulty soon.
-            var mission = salvage.GetMission(missionParams.MissionType, difficultyProto, missionParams.Seed); // Frontier: add missionParams.MissionType
+            var difficultyProto = _protoManager.Index<SalvageDifficultyPrototype>(mission.Difficulty);
 
             // Difficulty
             // Details

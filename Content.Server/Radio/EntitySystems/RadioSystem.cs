@@ -225,8 +225,17 @@ public sealed class RadioSystem : EntitySystem
         {
             if (!radio.ReceiveAllChannels)
             {
-                if (!radio.Channels.Contains(channel.ID) || (TryComp<IntercomComponent>(receiver, out var intercom) &&
-                                                             !intercom.SupportedChannels.Contains(channel.ID)))
+                radio.Channels ??= new HashSet<string>();
+                if (!radio.Channels.Contains(channel.ID)) continue;
+                if (TryComp<IntercomComponent>(receiver, out var intercom))
+                {
+                    intercom.SupportedChannels ??= new List<ProtoId<RadioChannelPrototype>>();
+                    if (!intercom.SupportedChannels.Contains(channel.ID)) continue;
+                }
+            }
+            else if (TryComp<IntercomComponent>(receiver, out var intercom) && intercom.SupportedChannels != null)
+            {
+                if (!intercom.SupportedChannels.Contains(channel.ID))
                     continue;
             }
 

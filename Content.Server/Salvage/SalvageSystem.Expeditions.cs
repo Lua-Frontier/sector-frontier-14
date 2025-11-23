@@ -254,7 +254,15 @@ public sealed partial class SalvageSystem
 
     private SalvageExpeditionConsoleState GetState(SalvageExpeditionDataComponent component)
     {
-        var missions = component.Missions.Values.ToList();
+        var missions = new List<SalvageMissionListing>(component.Missions.Count);
+
+        foreach (var missionParams in component.Missions.Values.OrderBy(m => m.Index))
+        {
+            var difficulty = _prototypeManager.Index<SalvageDifficultyPrototype>(missionParams.Difficulty);
+            var mission = GetMission(missionParams.MissionType, difficulty, missionParams.Seed);
+            missions.Add(new SalvageMissionListing(missionParams, mission));
+        }
+
         return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions, component.CanFinish, component.CooldownTime); // Frontier: add CanFinish, CooldownTime
     }
 

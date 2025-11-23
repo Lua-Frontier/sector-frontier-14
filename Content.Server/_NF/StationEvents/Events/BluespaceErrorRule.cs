@@ -174,6 +174,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             if (_sectors.TryGetMapId("MercenarySector", out var merc)) exclude.Add(merc);
             if (_sectors.TryGetMapId("PirateSector", out var pirate)) exclude.Add(pirate);
             if (_sectors.TryGetMapId("TypanSector", out var typan)) exclude.Add(typan);
+            if (_sectors.TryGetMapId("LuaTechSector", out var luaTech)) exclude.Add(luaTech);
             var candidates = new List<MapId>();
             foreach (var s in stars)
             {

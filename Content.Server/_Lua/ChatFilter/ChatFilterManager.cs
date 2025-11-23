@@ -14,6 +14,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Server.Players.PlayTimeTracking;
 
 namespace Content.Server._Lua.ChatFilter;
 
@@ -26,10 +27,12 @@ public sealed class ChatFilterManager
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
     private readonly Dictionary<NetUserId, Queue<(string Message, TimeSpan Timestamp)>> _messageHistory = new();
     private const int MaxRepeatedMessages = 3;
     private const int MessageHistorySize = 5;
-    private static readonly TimeSpan MessageHistoryTimeout = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan MessageHistoryTimeout = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan ExperiencedThreshold = TimeSpan.FromHours(40);
     private static readonly Regex SingleWordRegex = new(@"^(\w+)$", RegexOptions.Compiled);
     private static readonly Regex WordBoundaryRegex = new(@"\b(\w+)\b", RegexOptions.Compiled);
 
@@ -225,6 +228,131 @@ public sealed class ChatFilterManager
         {"бум аллах", "аллах"},
     };
 
+    private static readonly Dictionary<string, string> RPWordReplacements = new()
+    {
+        { "фид", "подставиться"},
+        { "фидить", "подставляться"},
+        { "фидил", "подставлялся"},
+        { "фидишь", "подставляешься"},
+        { "фидят", "подставляются"},
+        { "фидим", "подставляемся"},
+        { "фидите", "подставляетесь"},
+        { "фидер", "подставляющийся"},
+        { "пуш", "лобовая атака"},
+        { "пушить", "атаковать в лоб"},
+        { "пушу", "атакую в лоб"},
+        { "пушишь", "атакуешь в лоб"},
+        { "пушит", "атакует в лоб"},
+        { "пушат", "атакуют в лоб"},
+        { "пушил", "атаковал в лоб"},
+        { "ганк", "засада"},
+        { "ганкать", "устраивать засаду"},
+        { "ганкаю", "устраиваю засаду"},
+        { "ганкаешь", "устраиваешь засаду"},
+        { "ганкает", "устраивает засаду"},
+        { "ганкают", "устраивают засаду"},
+        { "ганканул", "устроил засаду"},
+        { "ганкнул", "устроил засаду"},
+        { "кайт", "маневрирование"},
+        { "кайтить", "маневрировать под огнём"},
+        { "кайчу", "маневрирую под огнём"},
+        { "кайтишь", "маневрируешь под огнём"},
+        { "кайтит", "маневрирует под огнём"},
+        { "кайтят", "маневрируют под огнём"},
+        { "кайтил", "маневрировал под огнём"},
+        { "кд", "время перезарядки"},
+        { "кдшится", "перезаряжается"},
+        { "кулдаун", "время перезарядки"},
+        { "кулдауна", "времени перезарядки"},
+        { "кулдауне", "времени перезарядки"},
+        { "кулдауны", "времена перезарядки"},
+        { "го", "пойдём"},
+        { "раш", "штурм"},
+        { "рашить", "штурмовать"},
+        { "рашу", "штурмую"},
+        { "рашим", "штурмуем"},
+        { "рашат", "штурмуют"},
+        { "рашишь", "штурмуешь"},
+        { "рашил", "штурмовал"},
+        { "ок", "хорошо"},
+        { "гг", "хорошо сработано"},
+        { "хз", "не знаю"},
+        { "лаг", "задержка"},
+        { "лаги", "задержки"},
+        { "лагать", "зависать"},
+        { "лагаю", "зависаю"},
+        { "лагает", "зависает"},
+        { "лагали", "зависали"},
+        { "фриз", "зависание"},
+        { "фризы", "зависания"},
+        { "пинг", "задержка связи"},
+        { "пингует", "задерживает связь"},
+        { "баг", "ошибка"},
+        { "баги", "ошибки"},
+        { "багает", "работает с ошибками"},
+        { "фича", "особенность"},
+        { "стак", "полный"},
+        { "стаки", "полные"},
+        { "дпс", "урон в секунду"},
+        { "нерф", "ослабление"},
+        { "нерфить", "ослаблять"},
+        { "нерфанули", "ослабили"},
+        { "баф", "усиление"},
+        { "бафать", "усиливать"},
+        { "бафнул", "усилил"},
+        { "крафт", "создание"},
+        { "крафтить", "создавать"},
+        { "лут", "добыча"},
+        { "лутать", "обыскивать"},
+        { "лутал", "обыскивал"},
+        { "фарм", "добыча"},
+        { "фармить", "добывать"},
+        { "фармил", "добывал"},
+        { "агрит", "привлекает внимание"},
+        { "агрить", "привлекать внимание"},
+        { "агро", "внимание противника"},
+        { "танк", "защитник"},
+        { "хил", "лекарь"},
+        { "дд", "боец"},
+        { "пати", "отряд"},
+        { "сквад", "отряд"},
+        { "тимка", "команда"},
+        { "прок", "успешный шанс"},
+        { "прокнуло", "сработал шанс"},
+        { "отхил", "лечение"},
+        { "отхилил", "вылечил"},
+        { "похиль", "полечи"},
+        { "похилить", "полечить"},
+        { "похилил", "полечил"},
+        { "похилю", "полечу"},
+        { "рес", "возрождение"},
+        { "реснуть", "воскресить"},
+        { "ресаю", "воскрешаю"},
+        { "ресаешь", "воскрешаешь"},
+        { "хэдшот", "выстрел в голову"},
+        { "кэмпить", "сидеть в засаде"},
+        { "кэмпер", "засадный стрелок"},
+        { "тимкил", "убийство союзника"},
+        { "рофл", "шутка"},
+        { "кринж", "неловкость"},
+        { "тильт", "потеря самообладания"},
+        { "тильтануть", "потерять самообладание"},
+        { "скил", "мастерство"},
+        { "скилы", "умения"},
+        { "рандом", "случайность"},
+        { "рандомщик", "непредсказуемый игрок"},
+        { "грифер", "нарушитель"},
+        { "гриферство", "намеренное вредительство"},
+        { "форсить", "ускорять"},
+        { "фулл", "полный"},
+        { "фуллу", "полной"},
+        { "фуловый", "полный"},
+        { "фуловая", "полная"},
+        { "фуловое", "полное"},
+        { "фуловые", "полные"},
+        { "фуллиться", "полностью"},
+    };
+
     private static readonly Dictionary<string, string> SingleWordReplacements = new()
     {
         {"гп", "глава персонала"},
@@ -403,13 +531,10 @@ public sealed class ChatFilterManager
         {"К С Ш"},
         {"дискорд сервер"},
         {"сервер дискорд"},
-        {"другой сервер"},
         {"лучший сервер"},
         {"играю на другом"},
         {"другой проект"},
         {"наш проект"},
-        {"наш сервер"},
-        {"мой сервер"},
         {"админы даун"},
         {"даун админ"},
         {"админы уебаны"},
@@ -496,18 +621,25 @@ public sealed class ChatFilterManager
     public string FilterMessage(string message)
     {
         if (string.IsNullOrEmpty(message)) return message;
+
         var filtered = SingleWordRegex.Replace(message, match =>
         {
             var lower = match.Value.ToLower();
-            if (SingleWordReplacements.TryGetValue(lower, out var replacement)) return match.Value.All(char.IsUpper) ? replacement.ToUpper() : replacement;
+            if (SingleWordReplacements.TryGetValue(lower, out var replacement))
+                return match.Value.All(char.IsUpper) ? replacement.ToUpper() : replacement;
             return match.Value;
         });
+
         filtered = WordBoundaryRegex.Replace(filtered, match =>
         {
             var lower = match.Value.ToLower();
-            if (WordReplacements.TryGetValue(lower, out var replacement)) return match.Value.All(char.IsUpper) ? replacement.ToUpper() : replacement;
+            if (WordReplacements.TryGetValue(lower, out var replacement))
+                return match.Value.All(char.IsUpper) ? replacement.ToUpper() : replacement;
+            if (RPWordReplacements.TryGetValue(lower, out var rpReplacement))
+                return match.Value.All(char.IsUpper) ? rpReplacement.ToUpper() : rpReplacement;
             return match.Value;
         });
+
         return filtered;
     }
 
@@ -523,13 +655,14 @@ public sealed class ChatFilterManager
             return false;
 
         if (_adminManager.IsAdmin(session)) return false;
+        var experienced = _playTimeTracking.GetOverallPlaytime(session) >= ExperiencedThreshold;
         if (CheckRepeatedMessages(session.UserId, message))
         {
-            LogAndNotify(source, "повторяющиеся сообщения");
+            LogAndNotify(source, _loc.GetString("chat-filter-repeated-message"));
             session.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
             return true;
         }
-        if (!CheckProhibitedContent(message)) return false;
+        if (!CheckProhibitedContent(message, experienced)) return false;
         LogAndNotify(source, message);
         session.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
         return true;
@@ -538,22 +671,28 @@ public sealed class ChatFilterManager
     public bool IsProhibitedContent(ICommonSession source, string message)
     {
         if (_adminManager.IsAdmin(source)) return false;
+        var experienced = _playTimeTracking.GetOverallPlaytime(source) >= ExperiencedThreshold;
         if (CheckRepeatedMessages(source.UserId, message))
         {
-            LogAndNotify(source, "повторяющиеся сообщения");
+            LogAndNotify(source, _loc.GetString("chat-filter-repeated-message"));
             source.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
             return true;
         }
 
-        if (!CheckProhibitedContent(message)) return false;
+        if (!CheckProhibitedContent(message, experienced)) return false;
         LogAndNotify(source, message);
         source.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
         return true;
     }
 
-    private bool CheckProhibitedContent(string message)
+    private bool CheckProhibitedContent(string message, bool experienced)
     {
         var normalized = message.TrimEnd().ToLower();
+        if (experienced)
+        {
+            normalized = normalized.Replace("набегатор", "_");
+            normalized = normalized.Replace("набег", "_");
+        }
         foreach (var phrase in ProhibitedPhrases)
         { if (normalized.Contains(phrase)) return true; }
         foreach (var pattern in ProhibitedPatterns)

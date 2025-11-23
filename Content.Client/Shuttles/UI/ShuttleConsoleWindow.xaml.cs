@@ -27,6 +27,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
     public event Action<NetEntity>? UndockRequest;
     public event Action<List<NetEntity>>? UndockAllRequest;
     public event Action<List<NetEntity>, bool>? ToggleFTLLockRequest;
+    public event Action<bool>? OnStarMapVisibilityChanged;
 
     public ShuttleConsoleWindow()
     {
@@ -163,9 +164,12 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         if (_mode == mode)
             return;
 
+        var wasStarMap = _mode == ShuttleConsoleMode.StarMap;
         _mode = mode;
         ClearModes(mode);
         SetupMode(_mode);
+        var isStarMap = _mode == ShuttleConsoleMode.StarMap;
+        if (wasStarMap != isStarMap) OnStarMapVisibilityChanged?.Invoke(isStarMap);
     }
 
     public enum ShuttleConsoleMode : byte
