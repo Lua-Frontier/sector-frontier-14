@@ -1,329 +1,187 @@
 <Document>
    <Box>
-      # CONCORD-WYVERN
+      # NT-WYVERN
    </Box>
+
    <Box>
       ## CLASS-UNIVERSAL
    </Box>
+
    <Box>
-   <GuideEntityEmbed Entity="ShuttleMapWyvern" Caption=""/>
+      <GuideEntityEmbed Entity="ShuttleMapWyvern" Caption=""/>
    </Box>
+
    <Box>
-      # ОПИСАНИЕ
+      # ИНФОРМАЦИЯ О КОРАБЛЕ.
    </Box>
+
    <Box>
       ### "Экспедиционный флагман универсального назначения, предназначенный для
-    </Box>
-    <Box>
+   </Box>
+
+   <Box>
       ### длительных исследований в дальнем космосе."
-    </Box>
+   </Box>
     
-    [color=#a4885c]Размер корабля:[/color] Большой
+   [color=#a4885c]Размер корабля:[/color] Большой.
 
-    [color=#a4885c]Тип электропитания:[/color] ДАМ
+   [color=#a4885c] Рекомендуемый кол-во экипажа:[/color] 3-4
 
-    <Box>
-        <GuideEntityEmbed Entity="AmeController"/>
-    </Box>
+   [color=#a4885c]Тип электропитания:[/color] ДАМ.
 
-    [color=#a4885c] Рекомендуемый кол-во экипажа:[/color] 3-4
+   <Box>
+      <GuideEntityEmbed Entity="AmeController"/>
+   </Box>
 
-    [color=#a4885c]Консоли:[/color] Экспедиционный, мониторинг экипажа, продвинутый сканер масс
+   <Box>
+      ## ОБОЗНАЧЕНИЕ ЦВЕТОВ.
+   </Box>
 
-    <Box>
-        <GuideEntityEmbed Entity="ComputerSalvageExpedition"/>
-        <GuideEntityEmbed Entity="ComputerCrewMonitoring"/>
-        <GuideEntityEmbed Entity="ComputerAdvancedRadar"/>
-    </Box>
-    <Box>
-       # ОТДЕЛЫ
-    </Box>
-    <Box>
-       ## МЕДИЦИНСКИЙ ОТДЕЛ:
-    </Box>
+   <Box>
+      ### ОБОЗНАЧЕНИЕ ПОМЕЩЕНИЙ:
+   </Box>
+ 
+   - [bold][color=#999999]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения общего назначения.
 
-    ### Медицинский отсек (содержание оборудования):
+   - [bold][color=#724264]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения научно-исследовательского назначения.
 
-    - Стазисные кровати в размере x2
+   - [bold][color=#ff9166]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения инженерного и технического назначения.
 
-    - Больничные койки x2
+   - [bold][color=#334e6d]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения командного назначения.
 
-    - Дефиблиряторы x2
+   - [bold][color=#37789b]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения медицинского назначения.
 
-    - Медицинский ТехФаб
+   - [bold][color=#639137]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения сервисного назначения.
 
-    - Мед-О-Мат
+   - [bold][color=#bc863f]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения отдела снабжения.
 
-    - НаноМед Плюс
+   <Box>
+      ### ОБОЗНАЧЕНИЕ ТЕХНИЧЕСКОЙ ЧАСТИ:
+   </Box>
 
-    <Box>
-        <GuideEntityEmbed Entity="StasisBed"/>
-        <GuideEntityEmbed Entity="MedicalBed"/>
-        <GuideEntityEmbed Entity="Defibrillator"/>
-    </Box>
+   - [bold][color=#ffa726]ДАННЫЙ ЦВЕТ:[/color][/bold] Местонахождения ракетных двигателей.
 
-    <Box>
-        <GuideEntityEmbed Entity="MedicalTechFab"/>
-        <GuideEntityEmbed Entity="MedicalAssembler"/>
-        <GuideEntityEmbed Entity="VendingMachineMedical"/>
-    </Box>
+   - [bold][color=#4b5bab]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещение для хранения газообразного кислорода для системы жизнеобеспечения.
 
-    ### Химическая лаборотория (содержание оборудования):
+   - [bold][color=#b0305c]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещение для хранения газообразного азота для системы жизнеобеспечения.
 
-    - Раздатчик химикатов
+   - [bold][color=#eb564b]ДАННЫЙ ЦВЕТ:[/color][/bold] Помещения местонахождения источника(ов) питания и/или СМЭС-овых резервов.
 
-    - ХимМастер 4000
+   - [bold][color=#4da6ff]ДАННЫЙ ЦВЕТ:[/color][/bold] Окна.
 
-    - Электролизерная установка
+   - [bold][color=#c2c2d1]ДАННЫЙ ЦВЕТ:[/color][/bold] Шлюзы и гермозатровы.
 
-    - Электроплитка
+   - [bold][color=#464646]ДАННЫЙ ЦВЕТ:[/color][/bold] обшивка корабля (Укреплённые стены).
 
-    - Шкаф химика
+   <Box>
+      ## ОБОРУДОВАНИЕ НА КОРАБЛЕ.
+   </Box>
 
-    - Умный холодильник
+   <Box>
+      [bold][color=#334e6d]МОСТИК:[/color][/bold]
+   </Box>
 
-    <Box>
-        <GuideEntityEmbed Entity="ChemDispenser"/>
-        <GuideEntityEmbed Entity="ChemMaster"/>
-        <GuideEntityEmbed Entity="MachineElectrolysisUnit"/>
-    </Box>
+   <Box>
+    - [bold]Консоли:[/bold] продвинутый сканер массы, утилизаторских экспедиций, мониторинга экипажа.
+   </Box>
 
-    <Box>
-        <GuideEntityEmbed Entity="ChemistryHotplate"/>
-        <GuideEntityEmbed Entity="LockerChemistryFilled"/>
-        <GuideEntityEmbed Entity="SmartFridge"/>
-    </Box>
+   <Box>
+      <GuideEntityEmbed Entity="ComputerTabletopAdvancedRadar" Caption="   "/>
+      <GuideEntityEmbed Entity="ComputerTabletopSalvageExpedition" Caption="   "/>
+      <GuideEntityEmbed Entity="ComputerCrewMonitoring" Caption="   "/>
+   </Box>
 
-    ### Хирургия и Морг (содержание оборудования):
+   <Box>
+    - [bold]Связь:[/bold] факс дальнего действия, голопад, копировальный аппарат.
+   </Box>
 
-    - Операционный стол
+   <Box>
+      <GuideEntityEmbed Entity="FaxMachineShip" Caption="   "/>
+      <GuideEntityEmbed Entity="NFHolopadShip" Caption="   "/>
+      <GuideEntityEmbed Entity="PhotocopierBase" Caption="   "/>
+   </Box>
 
-    - Стол для аутопсии
+   <Box>
+       [bold][color=#724264]НАУЧНО-ИССЛЕДОВАТЕЛЬСКИЙ ОТДЕЛ:[/color][/bold]
+   </Box>
 
-    - Морг
+   <Box>
+    - [bold]Шкафы:[/bold] Гардероб учёного, научный шкаф, шкаф НР, шкафы радиационных и биозащитных костюмов.
+   </Box>
 
-    <Box>
-        <GuideEntityEmbed Entity="OperatingTable"/>
-        <GuideEntityEmbed Entity="AutopsyTable"/>
-        <GuideEntityEmbed Entity="Morgue"/>
-    </Box>
+   <Box>
+      <GuideEntityEmbed Entity="WardrobeScienceFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="NFLockerScienceFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerResearchDirectorFilledHardsuit" Caption="   "/>
+      <GuideEntityEmbed Entity="ClosetRadiationSuitFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="ClosetL3ScienceFilled" Caption="   "/>
+   </Box>
 
-    <Box>
-       ## НАУЧНО-ИССЛЕДОВАТЕЛЬСКИЙ ОТДЕЛ:
-    </Box>
+   <Box>
+    - [bold]Рабочие станки:[/bold] Автолат, протолат, упаковщик 1001, принтер схем.
+   </Box>
 
-    ### Холл (содержание оборудования):
+   <Box>
+      <GuideEntityEmbed Entity="Autolathe" Caption="   "/>
+      <GuideEntityEmbed Entity="Protolathe" Caption="   "/>
+      <GuideEntityEmbed Entity="MachineFlatpacker" Caption="   "/>
+      <GuideEntityEmbed Entity="CircuitImprinter" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Сервера:[/bold] телекоммуникационный сервер, сервер РнД
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="TelecomServerFilledShuttle" Caption="   "/>
+      <GuideEntityEmbed Entity="ResearchAndDevelopmentServer" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Ксеноархеология:[/bold] анализатор артефактов, аналитическая консоль, исследовательская консоль.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="MachineArtifactAnalyzer" Caption="   "/>
+      <GuideEntityEmbed Entity="ComputerAnalysisConsole" Caption="   "/>
+      <GuideEntityEmbed Entity="ComputerResearchAndDevelopment" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Прочее:[/bold] Роботех Делюкс, НаучШкаф, контейнер артефактов, М.А.К.А.К. 
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="VendingMachineRobotics" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineSciDrobe" Caption="   "/>
+      <GuideEntityEmbed Entity="CrateArtifactContainer" Caption="   "/>
+      <GuideEntityEmbed Entity="MachineAPE" Caption="   "/>
+   </Box>
+
+   <Box>
+       [bold][color=#ff9166]ИНЖЕНЕРНЫЙ ОТДЕЛ:[/color][/bold]
+   </Box>
+
+   <Box>
+    - [bold]Шкафы:[/bold] Инженера, атмосферного техника, сварочного оборудования, аварийный шкаф.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="LockerEngineerFilledHardsuit" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerAtmosphericsFilledHardsuit" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerWeldingSuppliesFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="ClosetEmergencyFilledRandom" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Вендоматы:[/bold] ТвоИнструменты, ИнжеМат, раздатчик газовых баллонов (обычный и инженерный).
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="VendingMachineYouTool" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineEngivend" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineTankDispenserEVA" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineTankDispenserEngineering" Caption="   "/>
+   </Box>
 
-    - Шкаф научного руководителя (со скафандром)
-
-    - Шкаф радиационных костюмов
-
-    - Шкаф снаряжения 3-го уровня биологической опастности
-
-    - Исследовательская консоль
-
-    <Box>
-        <GuideEntityEmbed Entity="LockerResearchDirectorFilledHardsuit"/>
-        <GuideEntityEmbed Entity="ClosetRadiationSuitFilled"/>
-        <GuideEntityEmbed Entity="ClosetL3ScienceFilled"/>
-    </Box>
-    <Box>
-        <GuideEntityEmbed Entity="ComputerTabletopResearchAndDevelopment"/>
-    </Box>
-
-    ### Рабочая зона (содержание оборудования):
-
-    - Протолат
-
-    - Автолат
-
-    - Принтер схем
-
-    - ТехФаб Наёмников
-
-    -Сервер РнД
-
-    <Box>
-        <GuideEntityEmbed Entity="CircuitImprinter"/>
-        <GuideEntityEmbed Entity="Autolathe"/>
-        <GuideEntityEmbed Entity="Protolathe"/>
-        <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
-        <GuideEntityEmbed Entity="MercenaryTechFab"/>
-    </Box>
-
-    ### Ксеноархеология и утилизаторский отсек (содержание оборудования):
-
-    - Аналитическая консоль
-
-    - Анализатор артефактов
-
-    - Нагреватель
-
-    <Box>
-        <GuideEntityEmbed Entity="ComputerTabletopAnalysisConsole"/>
-        <GuideEntityEmbed Entity="GasThermoMachineHeater"/>
-        <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
-    </Box>
-    - Переработчик руды
-
-    - снярежние для утилизаций
-
-    <Box>
-        <GuideEntityEmbed Entity="OreProcessor"/>
-        <GuideEntityEmbed Entity="LockerSalvageSpecialistFilledHardsuit"/>
-    </Box>
-
-    <Box>
-       ## ГИДРОПОНИКА:
-    </Box>
-
-    - Гидропонные лотки x12
-
-    - МегаРаздатчик семян
-
-    - БотаМакс
-
-    - Экстрактор семян
-
-    - Шкаф ботаника
-
-    <Box>
-        <GuideEntityEmbed Entity="VendingMachineSeedsUnlocked"/>
-        <GuideEntityEmbed Entity="VendingMachineNutri"/>
-        <GuideEntityEmbed Entity="hydroponicsTray"/>
-        <GuideEntityEmbed Entity="SeedExtractor"/>
-        <GuideEntityEmbed Entity="LockerBotanistFilled"/>
-    </Box>
-
-    <Box>
-       ## БАР:
-    </Box>
-
-    - Раздатчик безалкоголя
-
-    - Раздатчик алкоголя
-
-    - Алкомат
-
-    - Кофемашина
-
-    - Шкафчик со спиртным
-
-    <Box>
-        <GuideEntityEmbed Entity="SodaDispenser"/>
-        <GuideEntityEmbed Entity="ImpCoffeeMachine"/>
-        <GuideEntityEmbed Entity="VendingMachineBooze"/>
-        <GuideEntityEmbed Entity="LockerBoozeFilled"/>
-        <GuideEntityEmbed Entity="BoozeDispenser"/>
-    </Box>
-
-    <Box>
-       ## КУХНЯ:
-    </Box>
-
-    - Микроволновка
-
-    - Фуд-О-Мат
-
-    - Измельчитель реагентов
-
-    - Электрогриль
-
-    - Электроплита
-
-    - ПосудоМат
-
-    - Шефвенд
-
-    <Box>
-        <GuideEntityEmbed Entity="KitchenMicrowave"/>
-        <GuideEntityEmbed Entity="KitchenAssembler"/>
-        <GuideEntityEmbed Entity="VendingMachineChefvend"/>
-        <GuideEntityEmbed Entity="KitchenReagentGrinder"/>
-        <GuideEntityEmbed Entity="VendingMachineDinnerware"/>
-        <GuideEntityEmbed Entity="KitchenElectricGrill"/>
-        <GuideEntityEmbed Entity="KitchenElectricRange"/>
-    </Box>
-
-    <Box>
-       ## ЗОНА ОТДЫХА:
-    </Box>
-
-    Зона отдыха состоит из 3 небольших блоков, а точнее из:
-
-    - Кафетерий
-
-    - Библиотеки
-
-    - Дорматориев
-
-    <Box>
-       ## ИНЖЕНЕРНЫЙ ОТДЕЛ:
-    </Box>
-
-    - Шкаф атмосферного техника
-
-    - Шкаф инженера
-
-    - ТвоИнструменты
-
-    - ИнжеМат
-
-    <Box>
-        <GuideEntityEmbed Entity="LockerEngineerFilledHardsuit"/>
-        <GuideEntityEmbed Entity="VendingMachineYouTool"/>
-        <GuideEntityEmbed Entity="LockerAtmosphericsFilledHardsuit"/>
-        <GuideEntityEmbed Entity="VendingMachineEngivend"/>
-    </Box>
-
-    <Box>
-       ### ПРЕДПОЛЁТНЫЙ ЧЕК-ЛИСТ (питание):
-    </Box>
-
-    - Убедитесь, что генератор ДАМ включён.
-
-    <Box>
-        <GuideEntityEmbed Entity="AmeController"/>
-    </Box>
-
-    - Убедитесь, что все узлы питания в норме и работают.
-
-    <Box>
-        <GuideEntityEmbed Entity="SMESAdvanced"/>
-        <GuideEntityEmbed Entity="SubstationBasic"/>
-        <GuideEntityEmbed Entity="APCBasic"/>
-    </Box>
-
-    ### Особенности питания:
-
-    - Питание на данном корабля раздельное для западной и восточной части.
-
-    <Box>
-       ## АТМОСФЕРНЫЙ ОТДЕЛ:
-    </Box>
-
-    <Box>
-    ### ПРЕДПОЛЁТНЫЙ ЧЕК-ЛИСТ (атмосфера):
-    </Box>
-    - Трубы покрашенные в [color=#6c3a92]ДАННЫЙ ЦВЕТ[/color], являются системой труб ведущие к смесителю газов.
-
-    - Смеситель газов уже настроен на 22% O2 и 78% N2, необходимых для оптимальной воздушной смеси.
-
-    <Box>
-        <GuideEntityEmbed Entity="GasMixer"/>
-    </Box>
-    
-    - Трубы покрашенные в [color=#0000b9]ДАННЫЙ ЦВЕТ[/color], соединены с вентиляцией судна и транспортируют воздушную смесь.
-
-    <Box>
-        <GuideEntityEmbed Entity="GasVentPump"/>
-        <GuideEntityEmbed Entity="AirCanister"/>
-    </Box>
-
-    - Трубы покрашенные в [color=#b70000]ДАННЫЙ ЦВЕТ[/color], соединены с скрубберами судна и необходимы для выведения газовых отходов.
-
-    <Box>
-        <GuideEntityEmbed Entity="GasVentScrubber"/>
-        <GuideEntityEmbed Entity="CarbonDioxideCanister"/>
-    </Box>
 </Document>
