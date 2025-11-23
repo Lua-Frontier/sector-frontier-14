@@ -1,0 +1,432 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: AirlockHatchClearLua
+  id: AirlockHatchClearLuaLocked
+  suffix: Lua, Чистый, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchClearBlackLua
+  id: AirlockHatchClearBlackLuaLocked
+  suffix: Lua, Чистый, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchDormLua
+  id: AirlockHatchDormLuaLocked
+  suffix: Lua, Дормы, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchDormBlackLua
+  id: AirlockHatchDormBlackLuaLocked
+  suffix: Lua, Дормы, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchAtmosLua
+  id: AirlockHatchAtmosLuaLocked
+  suffix: Lua, Атмос, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchAtmosBlackLua
+  id: AirlockHatchAtmosBlackLuaLocked
+  suffix: Lua, Атмос, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchEngineerLua
+  id: AirlockHatchEngineerLuaLocked
+  suffix: Lua, Инженерный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchEngineerBlackLua
+  id: AirlockHatchEngineerBlackLuaLocked
+  suffix: Lua, Инженерный, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchBotanyLua
+  id: AirlockHatchBotanyLuaLocked
+  suffix: Lua, Ботаника, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockHatchBotanyBlackLua
+  id: AirlockHatchBotanyBlackLuaLocked
+  suffix: Lua, Ботаника, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockHatchScienceLua
+  id: AirlockHatchScienceLuaLocked
+  suffix: Lua, Научный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: AirlockHatchScienceBlackLua
+  id: AirlockHatchScienceBlackLuaLocked
+  suffix: Lua, Научный, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: AirlockHatchChemLua
+  id: AirlockHatchChemLuaLocked
+  suffix: Lua, Химия, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+
+- type: entity
+  parent: AirlockHatchChemBlackLua
+  id: AirlockHatchChemBlackLuaLocked
+  suffix: Lua, Химия, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+
+- type: entity
+  parent: AirlockHatchMedicalLua
+  id: AirlockHatchMedicalLuaLocked
+  suffix: Lua, Медицинский, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: AirlockHatchMedicalBlackLua
+  id: AirlockHatchMedicalBlackLuaLocked
+  suffix: Lua, Медицинский, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: AirlockHatchCommLua
+  id: AirlockHatchCommLuaLocked
+  suffix: Lua, Командный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechCommand ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockHatchCommBlackLua
+  id: AirlockHatchCommBlackLuaLocked
+  suffix: Lua, Командный, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechCommand ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockHatchSecurityBlackLua
+  id: AirlockHatchSecurityBlackLuaLocked
+  suffix: Lua, Стража, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockHatchMaintenanceLua
+  id: AirlockHatchMaintenanceLuaLocked
+  suffix: Lua, Технический, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  parent: AirlockHatchMaintenanceBlackLua
+  id: AirlockHatchMaintenanceBlackLuaLocked
+  suffix: Lua, Технический, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
+
+# Glass
+- type: entity
+  parent: AirlockHatchClearGlassLua
+  id: AirlockHatchClearGlassLuaLocked
+  suffix: Lua, Чистый, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchClearGlassBlackLua
+  id: AirlockHatchClearGlassBlackLuaLocked
+  suffix: Lua, Чистый, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchDormGlassLua
+  id: AirlockHatchDormGlassLuaLocked
+  suffix: Lua, Дормы, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchDormGlassBlackLua
+  id: AirlockHatchDormGlassBlackLuaLocked
+  suffix: Lua, Дормы, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechService ]
+
+- type: entity
+  parent: AirlockHatchAtmosGlassLua
+  id: AirlockHatchAtmosGlassLuaLocked
+  suffix: Lua, Атмос, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchAtmosGlassBlackLua
+  id: AirlockHatchAtmosGlassBlackLuaLocked
+  suffix: Lua, Атмос, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchEngineerGlassLua
+  id: AirlockHatchEngineerGlassLuaLocked
+  suffix: Lua, Инженерный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchEngineerGlassBlackLua
+  id: AirlockHatchEngineerGlassBlackLuaLocked
+  suffix: Lua, Инженерный, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechEngineer ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: AirlockHatchBotanyGlassLua
+  id: AirlockHatchBotanyGlassLuaLocked
+  suffix: Lua, Ботаника, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockHatchBotanyGlassBlackLua
+  id: AirlockHatchBotanyGlassBlackLuaLocked
+  suffix: Lua, Ботаника, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockHatchScienceGlassLua
+  id: AirlockHatchScienceGlassLuaLocked
+  suffix: Lua, Научный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: AirlockHatchScienceGlassBlackLua
+  id: AirlockHatchScienceGlassBlackLuaLocked
+  suffix: Lua, Научный, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechScience ]
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: AirlockHatchChemGlassLua
+  id: AirlockHatchChemGlassLuaLocked
+  suffix: Lua, Химия, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+
+- type: entity
+  parent: AirlockHatchChemGlassBlackLua
+  id: AirlockHatchChemGlassBlackLuaLocked
+  suffix: Lua, Химия, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+
+- type: entity
+  parent: AirlockHatchMedicalGlassLua
+  id: AirlockHatchMedicalGlassLuaLocked
+  suffix: Lua, Медицинский, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: AirlockHatchMedicalGlassBlackLua
+  id: AirlockHatchMedicalGlassBlackLuaLocked
+  suffix: Lua, Медицинский, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechMedic ]
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: AirlockHatchCommGlassLua
+  id: AirlockHatchCommGlassLuaLocked
+  suffix: Lua, Командный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechCommand ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockHatchCommGlassBlackLua
+  id: AirlockHatchCommGlassBlackLuaLocked
+  suffix: Lua, Командный, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLuaTechCommand ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockHatchMaintenanceGlassLua
+  id: AirlockHatchMaintenanceGlassLuaLocked
+  suffix: Lua, Технический, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  parent: AirlockHatchMaintenanceGlassBlackLua
+  id: AirlockHatchMaintenanceGlassBlackLuaLocked
+  suffix: Lua, Технический, Тёмный, Закрытый
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
+

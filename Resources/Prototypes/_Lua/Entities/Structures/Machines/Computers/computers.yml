@@ -176,6 +176,16 @@
 
 - type: entity
   parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleLuaTechDisk
+  suffix: Lua, Диск Луатех
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskLuaTech
+
+- type: entity
+  parent: [ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
   id: ComputerShuttleTabletopLuaTech
   name: консоль управления шаттлом
   description: Используется для пилотирования корабля.
@@ -256,3 +266,13 @@
     containers:
       disk_slot:
       - CoordinatesDiskCentCom
+
+- type: entity
+  parent: [ComputerShuttleTabletopLuaTech, ComputerShuttleLuaTech, ComputerShuttle, BaseComputerShuttle, BaseShuttleIntercom]
+  id: ComputerShuttleTabletopLuaDisk
+  suffix: Lua, Tabletop, Диск Луатех
+  components:
+  - type: ContainerFill
+    containers:
+      disk_slot:
+      - CoordinatesDiskLuaTech

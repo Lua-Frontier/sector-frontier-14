@@ -36,6 +36,9 @@ public sealed partial class GunComponent : Component
     [DataField]
     public SoundSpecifier? SoundMode = new SoundPathSpecifier("/Audio/Weapons/Guns/Misc/selector.ogg");
 
+    [DataField]
+    public SoundSpecifier? SoundBurstCooldown;
+
     #endregion
 
     #region Recoil

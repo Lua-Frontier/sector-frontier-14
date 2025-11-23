@@ -230,3 +230,11 @@
   - StandardFrontierVessel
   - BaseStationExpeditions
   categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: StandardLuaTechSecurityVessel
+  parent:
+  - StandardFrontierVessel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform

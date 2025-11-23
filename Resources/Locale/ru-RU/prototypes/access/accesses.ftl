@@ -35,3 +35,11 @@ id-card-access-level-borg = Cyborg
 id-card-access-level-basic-silicon = Robot
 id-card-access-level-syndicate-agent = Агент Синдиката
 id-card-access-level-central-command = Центральное командование
+
+# Временно
+id-card-access-level-luatech-ops = Оперативник
+id-card-access-level-luatech-science = Учёный
+id-card-access-level-luatech-engineer = Инженер
+id-card-access-level-luatech-medic = Медик
+id-card-access-level-luatech-service = Сервис
+id-card-access-level-luatech-command = Командование
