@@ -44,10 +44,12 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<bool> GenerateStarmapRoundstart =
             CVarDef.Create("starmap.generate_roundstart", true, CVar.ARCHIVE);
+        public static readonly CVarDef<bool> StarmapRandomGenerationEnabled =
+            CVarDef.Create("starmap.random_enabled", false, CVar.ARCHIVE);
         public static readonly CVarDef<int> StarmapMinStars =
-            CVarDef.Create("starmap.min_stars", 15, CVar.ARCHIVE);
+            CVarDef.Create("starmap.min_stars", 1, CVar.ARCHIVE);
         public static readonly CVarDef<int> StarmapMaxStars =
-            CVarDef.Create("starmap.max_stars", 26, CVar.ARCHIVE);
+            CVarDef.Create("starmap.max_stars", 1, CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapIncludeSectors =
             CVarDef.Create("starmap.include_sectors", true, CVar.ARCHIVE);
 

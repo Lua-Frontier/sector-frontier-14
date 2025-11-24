@@ -41,17 +41,7 @@
             - material: WoodPlank
               amount: 5
               doAfter: 1
-        - to: adtdoublebedtop
-          completed:
-            - !type:SnapToGrid { }
-          steps:
-            - material: Steel
-              amount: 2
-              doAfter: 1
-            - material: Cloth
-              amount: 2
-              doAfter: 1
-        - to: adtdoublebedbottom
+        - to: adtdoublebedsplit
           completed:
             - !type:SnapToGrid { }
           steps:
@@ -113,22 +103,8 @@
           steps:
             - tool: Screwing
               doAfter: 1
-    - node: adtdoublebedtop
-      entity: ADTDoubleBedTop
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 2
-            - !type:SpawnPrototype
-              prototype: MaterialCloth1
-              amount: 2
-          steps:
-            - tool: Screwing
-              doAfter: 1
-    - node: adtdoublebedbottom
-      entity: ADTDoubleBedBottom
+    - node: adtdoublebedsplit
+      entity: ADTDoubleBedSplit
       edges:
         - to: start
           completed:

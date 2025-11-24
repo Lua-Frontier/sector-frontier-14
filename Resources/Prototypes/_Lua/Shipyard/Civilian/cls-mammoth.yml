@@ -2,35 +2,37 @@
 # Discord: daeqa1us_
 # Cikey: wh1te
 
-- type: vessel
-  id: mammoth
-  parent: BaseVessel
-  name: CLS-Mammoth
-  description: Судно предназнеченное для экспресс доставки большого количества груза. Производитель - Nakamura Engineering
-  price: 47150 #41000 x 1,15
-  category: medium
-  group: Shipyard
-  shuttlePath: /Maps/_Lua/Shuttles/Civilian/cls-mammoth.yml
-  guidebookPage: Null
-  class:
-  - Civilian
-  - Salvage
-  engine:
-  - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
-- type: gameMap
-  id: mammoth
-  mapName: 'CLS-Mammoth'
-  mapPath: /Maps/_Lua/Shuttles/Civilian/cls-mammoth.yml
-  minPlayers: 0
-  stations:
-    mammoth:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'CLS-Mammoth {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+# Needs remap
+
+#- type: vessel
+#  id: mammoth
+#  parent: BaseVessel
+#  name: CLS-Mammoth
+#  description: Судно предназнеченное для экспресс доставки большого количества груза. Производитель - Nakamura Engineering
+#  price: 47150 #41000 x 1,15
+#  category: medium
+#  group: Shipyard
+#  shuttlePath: /Maps/_Lua/Shuttles/Civilian/cls-mammoth.yml
+#  guidebookPage: Null
+#  class:
+#  - Civilian
+#  - Salvage
+#  engine:
+#  - Uranium
+#  addComponents:
+#    - type: IFF
+#      color: "#ffffff"
+#- type: gameMap
+#  id: mammoth
+#  mapName: 'CLS-Mammoth'
+#  mapPath: /Maps/_Lua/Shuttles/Civilian/cls-mammoth.yml
+#  minPlayers: 0
+#  stations:
+#    mammoth:
+#      stationProto: StandardFrontierVessel
+#      components:
+#        - type: StationNameSetup
+#          mapNameTemplate: 'CLS-Mammoth {1}'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'

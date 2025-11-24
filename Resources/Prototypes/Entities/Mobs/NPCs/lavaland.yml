@@ -89,8 +89,8 @@
       shader: unshaded
       color: red
   - type: PointLight
-    radius: 1.5
-    energy: 0.5
+    radius: 1
+    energy: 3
     color: red
 
 - type: entity
@@ -107,8 +107,8 @@
       shader: unshaded
       color: deepskyblue
   - type: PointLight
-    radius: 1.5
-    energy: 1
+    radius: 1
+    energy: 3
     color: deepskyblue
 
 - type: entity
@@ -125,8 +125,8 @@
       shader: unshaded
       color: orangered
   - type: PointLight
-    radius: 1.5
-    energy: 1
+    radius: 1
+    energy: 3
     color: orangered
   - type: ProjectileBatteryAmmoProvider
     proto: NFWatcherBoltMagmawing # Frontier: use NF variant
@@ -147,7 +147,7 @@
       state: unshaded
       shader: unshaded
   - type: PointLight
-    radius: 1.5
-    energy: 1
+    radius: 1
+    energy: 3
   - type: RgbLightController
     layers: [ 1 ]

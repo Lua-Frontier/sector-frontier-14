@@ -193,20 +193,6 @@ public sealed partial class FinanceSystem
     private void SendIssuanceRating(EntityUid console, EntityUid player, string? queryName = null)
     {
         var state = BuildRatingState(player, queryName);
-        // Show the name from privileged ID if present for issuer context
-        if (TryComp<FinanceIssuanceConsoleComponent>(console, out var issueComp) &&
-            issueComp.PrivilegedIdSlot.ContainerSlot?.ContainedEntity is { Valid: true } privId)
-        {
-            string? targetName = null;
-            if (TryComp<Content.Shared.Access.Components.IdCardComponent>(privId, out var id))
-                targetName = id.FullName;
-            if (string.IsNullOrWhiteSpace(targetName) && TryComp<MetaDataComponent>(privId, out var meta))
-                targetName = meta.EntityName;
-            if (!string.IsNullOrWhiteSpace(targetName))
-            {
-                state = new FinanceRatingState(state.Query, state.Score, state.MaxLoan, state.ActiveLoans, targetName, state.NextChargeSeconds);
-            }
-        }
         _ui.SetUiState(console, NFFinanceIssuanceUiKey.Key, state);
     }
 
@@ -233,27 +219,7 @@ public sealed partial class FinanceSystem
     {
         if (args.Actor is not { Valid: true } player)
             return;
-        // Require privileged Command ID card inserted into the console slot
-        var ok = false;
-        if (comp.PrivilegedIdSlot.Item is { Valid: true } idCard)
-        {
-            // Check that ID has Command access via AccessSystem by reading tags
-            var accessSys = EntityManager.System<Content.Shared.Access.Systems.SharedAccessSystem>();
-            var tags = accessSys.TryGetTags(idCard);
-            if (tags != null)
-            {
-                foreach (var t in tags)
-                {
-                    if (t == "Command")
-                    {
-                        ok = true;
-                        break;
-                    }
-                }
-            }
-            if (ok)
-                ok = TryCreateLoan(GetSession(player), args.Amount);
-        }
+        var ok = TryCreateLoan(GetSession(player), args.Amount);
         string msg = ok ? "Кредит выдан" : "Отказано в выдаче";
         _ui.SetUiState(uid, NFFinanceIssuanceUiKey.Key, new FinanceIssueLoanResponseState(ok, msg));
     }

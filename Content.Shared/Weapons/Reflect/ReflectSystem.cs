@@ -39,6 +39,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Robust.Shared.Containers;
 using Content.Shared.Examine;
 using Content.Shared.Localizations;
 using Robust.Shared.Timing;
@@ -62,6 +63,7 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!; // WD EDIT
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -74,6 +76,8 @@ public sealed class ReflectSystem : EntitySystem
         SubscribeLocalEvent<ReflectComponent, GotEquippedHandEvent>(OnReflectHandEquipped);
         SubscribeLocalEvent<ReflectComponent, GotUnequippedHandEvent>(OnReflectHandUnequipped);
         SubscribeLocalEvent<ReflectComponent, ItemToggledEvent>(OnToggleReflect);
+        SubscribeLocalEvent<ReflectComponent, ComponentStartup>(OnReflectStartup);
+        SubscribeLocalEvent<ReflectComponent, ComponentShutdown>(OnReflectShutdown);
 
         SubscribeLocalEvent<ReflectUserComponent, ProjectileReflectAttemptEvent>(OnReflectUserCollide);
         SubscribeLocalEvent<ReflectUserComponent, HitScanReflectAttemptEvent>(OnReflectUserHitscan);
@@ -120,6 +124,13 @@ public sealed class ReflectSystem : EntitySystem
         {
             reflectiveItems.Add((outerEntity.Value, outerReflectComp));
         }
+
+        if (_inventorySystem.TryGetSlotEntity(uid, "gloves", out var glovesEntity) &&
+            glovesEntity != null &&
+            TryComp<ReflectComponent>(glovesEntity.Value, out var glovesReflectComp) &&
+            _toggle.IsActivated(glovesEntity.Value) &&
+            (glovesReflectComp.Reflects & args.Reflective) != 0x0)
+        { reflectiveItems.Add((glovesEntity.Value, glovesReflectComp)); }
 
         // Fallback to "vest" slot
         if (_inventorySystem.TryGetSlotEntity(uid, "vest", out var vestEntity) &&
@@ -183,6 +194,13 @@ public sealed class ReflectSystem : EntitySystem
         {
             reflectiveItems.Add((outerEntity.Value, outerReflectComp));
         }
+
+        if (_inventorySystem.TryGetSlotEntity(uid, "gloves", out var glovesEntity) &&
+            glovesEntity != null &&
+            TryComp<ReflectComponent>(glovesEntity.Value, out var glovesReflectComp) &&
+            _toggle.IsActivated(glovesEntity.Value) &&
+            (glovesReflectComp.Reflects & reflective.Reflective) != 0x0)
+        { reflectiveItems.Add((glovesEntity.Value, glovesReflectComp)); }
 
         // Fallback to "vest" slot
         if (_inventorySystem.TryGetSlotEntity(uid, "vest", out var vestEntity) &&
@@ -358,6 +376,12 @@ public sealed class ReflectSystem : EntitySystem
             RefreshReflectUser(user);
     }
 
+    private void OnReflectStartup(EntityUid uid, ReflectComponent component, ref ComponentStartup args)
+    { RefreshReflectHolder(uid); }
+
+    private void OnReflectShutdown(EntityUid uid, ReflectComponent component, ref ComponentShutdown args)
+    { RefreshReflectHolder(uid); }
+
     private void OnDidEquip(EntityUid uid, ReflectUserComponent component, DidEquipEvent args)
     {
         // We only care if we're the equipee
@@ -397,7 +421,7 @@ public sealed class ReflectSystem : EntitySystem
             }
         }
 
-        // Check the vest slot - try both "vest" and "outerClothing" which is the standard name
+        // Check clothing slots - try "outerClothing", "vest" and "gloves"
         if (!hasReflectItem)
         {
             // Try standard "outerClothing" slot first
@@ -416,12 +440,33 @@ public sealed class ReflectSystem : EntitySystem
             {
                 hasReflectItem = true;
             }
+            else if (_inventorySystem.TryGetSlotEntity(user, "gloves", out var glovesEntity) &&
+                glovesEntity != null &&
+                TryComp<ReflectComponent>(glovesEntity.Value, out var glovesReflectComp) &&
+                _toggle.IsActivated(glovesEntity.Value))
+            { hasReflectItem = true; }
         }
 
         if (hasReflectItem)
             EnsureComp<ReflectUserComponent>(user);
         else
             RemCompDeferred<ReflectUserComponent>(user);
+    }
+
+    private void RefreshReflectHolder(EntityUid uid)
+    {
+        if (_gameTiming.ApplyingState) return;
+        var owner = GetRootOwner(uid);
+        if (owner == uid) return;
+        RefreshReflectUser(owner);
+    }
+
+    private EntityUid GetRootOwner(EntityUid ent)
+    {
+        var current = ent;
+        while (_container.TryGetContainingContainer(current, out var container))
+        { current = container.Owner; }
+        return current;
     }
 
     #region Examine

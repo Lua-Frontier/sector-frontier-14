@@ -194,7 +194,7 @@ public sealed partial class ShuttleConsoleSystem
                 ftlTime = default;
             }
         }
-        foreach (var sid in new[] { "AsteroidSectorDefault", "MercenarySector", "PirateSector", "TypanSector" })
+        foreach (var sid in new[] { "AsteroidSectorDefault", "MercenarySector", "PirateSector", "TypanSector", "LuaTechSector" })
         { if (_sectors.TryGetMapId(sid, out var mid) && !sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = sid; }
         if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
         {
@@ -223,7 +223,9 @@ public sealed partial class ShuttleConsoleSystem
             { colorOverrides[kv.Key] = kv.Value; }
         }
         catch { }
-        return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, colorOverrides);
+        List<MapId> capturing = new();
+        try { capturing = _ownership.GetCapturingMaps().ToList(); } catch { }
+        return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, capturing, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, colorOverrides);
     }
 
     private void OnWarpToStarMessage(EntityUid uid, ShuttleConsoleComponent component, WarpToStarMessage args) // Lua

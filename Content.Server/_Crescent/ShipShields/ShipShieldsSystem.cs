@@ -121,10 +121,14 @@ public sealed partial class ShipShieldsSystem : EntitySystem
     // Mono notes: THIS CODE BASICALLY DOES NOT WORK (especially for raycasted projectiles)
     private void OnCollide(EntityUid uid, ShipShieldComponent component, StartCollideEvent args)
     {
-        if (Transform(args.OtherEntity).Anchored)
+        if (!TryComp<TransformComponent>(args.OtherEntity, out var otherXform))
             return;
 
-        if (!TryComp<PhysicsComponent>(Transform(uid).GridUid, out var ourPhysics) || !TryComp<PhysicsComponent>(args.OtherEntity, out var theirPhysics))
+        if (otherXform.Anchored)
+            return;
+
+        if (!TryComp<PhysicsComponent>(Transform(uid).GridUid, out var ourPhysics) ||
+            !TryComp<PhysicsComponent>(args.OtherEntity, out var theirPhysics))
             return;
 
         // only handle ship weapons for now. engine update introduced physics regressions. Let's polish everything else and circle back yeah?
@@ -135,9 +139,11 @@ public sealed partial class ShipShieldsSystem : EntitySystem
             return;
         if (projectile.Weapon is not null)
         {
-            // dont collide with projectiles coming from the same , grid  SPCR 2025
-            if (component.Shielded == Transform(projectile.Weapon.Value).GridUid)
+            if (TryComp<TransformComponent>(projectile.Weapon.Value, out var weaponXform) &&
+                component.Shielded == weaponXform.GridUid)
+            {
                 return;
+            }
         }
 
         var ourVelocity = ourPhysics.LinearVelocity;

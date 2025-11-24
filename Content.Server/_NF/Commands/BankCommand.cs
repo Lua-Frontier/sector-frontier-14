@@ -10,11 +10,11 @@ using Content.Shared.Administration;
 using Content.Shared.Database; //Lua logs
 using Content.Shared.Preferences;
 using Content.Shared._NF.Bank.Components;
+using Content.Shared.Chat;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Utility;
 
 namespace Content.Server._NF.Commands;
 
@@ -45,7 +45,6 @@ public sealed class BankCommand : IConsoleCommand
 
 
         var target = args[0];
-        var bankSystem = _entitySystemManager.GetEntitySystem<BankSystem>();
 
         if (!int.TryParse(args[1], out var amount))
         {
@@ -105,7 +104,7 @@ public sealed class BankCommand : IConsoleCommand
             return;
         }
 
-        shell.WriteError($"Unable to find player or character '{target}'.");
+        shell.WriteError(Loc.GetString("cmd-bank-player-not-found", ("player", target)));
     }
 
     private async Task HandleOnlinePlayer(IConsoleShell shell, ICommonSession targetSession, int amount, string target)
@@ -141,37 +140,24 @@ public sealed class BankCommand : IConsoleCommand
 
         if (playerEntity != null && _entityManager.HasComponent<BankAccountComponent>(playerEntity.Value))
         {
-            // Player is in-game with entity that has bank account - use entity methods which will update the profile
+            var bankCompBefore = _entityManager.GetComponent<BankAccountComponent>(playerEntity.Value);
+            var prevBalance = bankCompBefore.Balance;
             if (amount > 0)
             {
                 success = bankSystem.TryBankDeposit(playerEntity.Value, amount);
-                if (success)
-                {
-                    // Get updated balance after deposit
-                    success = bankSystem.TryGetBalance(targetSession, out int updatedBalance);
-                    if (success)
-                        newBalance = updatedBalance;
-                }
+                if (success) newBalance = _entityManager.GetComponent<BankAccountComponent>(playerEntity.Value).Balance;
             }
             else if (amount < 0)
             {
                 success = bankSystem.TryBankWithdraw(playerEntity.Value, Math.Abs(amount));
-                if (success)
-                {
-                    // Get updated balance after withdrawal
-                    success = bankSystem.TryGetBalance(targetSession, out int updatedBalance);
-                    if (success)
-                        newBalance = updatedBalance;
-                }
+                if (success) newBalance = _entityManager.GetComponent<BankAccountComponent>(playerEntity.Value).Balance;
             }
             else
             {
                 shell.WriteLine(Loc.GetString("cmd-bank-no-change", ("player", target), ("balance", currentBalance))); // Lua Localization
                 return;
             }
-
-            if (success)
-                shell.WriteLine(Loc.GetString("cmd-bank-updated")); // Lua Localization
+            currentBalance = prevBalance;
         }
         else
         {
@@ -197,9 +183,12 @@ public sealed class BankCommand : IConsoleCommand
             return;
         }
 
-        shell.WriteLine(amount > 0
-            ? Loc.GetString("cmd-bank-added", ("amount", amount), ("player", target), ("balance", newBalance.Value)) // Lua Localization
-            : Loc.GetString("cmd-bank-removed", ("amount", Math.Abs(amount)), ("player", target), ("balance", newBalance.Value))); // Lua Localization
+        var finalBalance = newBalance.Value;
+        shell.WriteLine(amount > 0 ? Loc.GetString("cmd-bank-added", ("amount", amount), ("player", target), ("balance", finalBalance)) : Loc.GetString("cmd-bank-removed", ("amount", Math.Abs(amount)), ("player", target), ("balance", finalBalance)));
+        shell.WriteLine(Loc.GetString("cmd-bank-prev-current", ("prev", currentBalance), ("current", finalBalance)));
+        var changeText = amount >= 0 ? $"+{Math.Abs(amount)}" : $"-{Math.Abs(amount)}";
+        var notify = Loc.GetString("bank-program-change-balance-notification", ("balance", finalBalance), ("change", changeText), ("currencySymbol", "$"));
+        _chatManager.ChatMessageToOne(ChatChannel.Notifications, notify, notify, EntityUid.Invalid, false, targetSession.Channel);
 
         //Lua start logs
         var executor = shell.Player?.Name ?? "CONSOLE";
@@ -207,11 +196,7 @@ public sealed class BankCommand : IConsoleCommand
         var actionText = amount > 0 ? Loc.GetString("cmd-bank-log-deposited") : Loc.GetString("cmd-bank-log-withdrew");
 
         _adminLogger.Add(LogType.BankTransaction, LogImpact.Extreme,
-        $"{executor} {actionText} {absAmount} {(amount > 0 ? Loc.GetString("cmd-bank-admin-to") : Loc.GetString("cmd-bank-admin-from"))} {target}. {Loc.GetString("cmd-bank-admin-new-balance", ("balance", newBalance.Value))}");
-
-        //_chatManager.DispatchServerAnnouncement(Loc.GetString("cmd-bank-admin-chat", ("executor", executor), ("action", actionText), ("amount", absAmount), ("target", target), ("balance", newBalance.Value))
-        //);
-        //Lua end logs
+        $"{executor} {actionText} {absAmount} {(amount > 0 ? Loc.GetString("cmd-bank-admin-to") : Loc.GetString("cmd-bank-admin-from"))} {target}. {Loc.GetString("cmd-bank-admin-new-balance", ("balance", finalBalance))}");
     }
 
     private async Task HandleOfflinePlayer(IConsoleShell shell, NetUserId userId, PlayerPreferences prefs, HumanoidCharacterProfile profile, int amount, string target)
@@ -221,16 +206,10 @@ public sealed class BankCommand : IConsoleCommand
 
         // Ensure the player won't have negative balance after withdrawal
         if (amount < 0 && Math.Abs(amount) > currentBalance)
-        {
-            shell.WriteError($"Player '{target}' only has {currentBalance}, cannot remove {Math.Abs(amount)}.");
-            return;
-        }
+        { shell.WriteError(Loc.GetString("cmd-bank-offline-not-enough", ("player", target), ("balance", currentBalance), ("removeAmount", Math.Abs(amount)))); return; }
 
         if (amount == 0)
-        {
-            shell.WriteLine($"Player '{target}' balance unchanged: {currentBalance}");
-            return;
-        }
+        { shell.WriteLine(Loc.GetString("cmd-bank-offline-unchanged", ("player", target), ("balance", currentBalance))); return; }
 
         bool success;
         int? newBalance = null;
@@ -250,55 +229,45 @@ public sealed class BankCommand : IConsoleCommand
         }
 
         if (!success || newBalance == null)
-        {
-            shell.WriteError($"Failed to modify offline player '{target}' bank balance.");
-            return;
-        }
-
-        shell.WriteLine(amount > 0
-            ? $"Added {amount} to offline player '{target}' balance. New balance: {newBalance.Value}"
-            : $"Removed {Math.Abs(amount)} from offline player '{target}' balance. New balance: {newBalance.Value}");
+        { shell.WriteError(Loc.GetString("cmd-bank-offline-failed", ("player", target))); return; }
+        shell.WriteLine(amount > 0 ? Loc.GetString("cmd-bank-offline-added", ("amount", amount), ("player", target), ("balance", newBalance.Value)) : Loc.GetString("cmd-bank-offline-removed", ("amount", Math.Abs(amount)), ("player", target), ("balance", newBalance.Value)));
     }
 
     private async Task HandleAllCharacters(IConsoleShell shell, int amount)
     {
-        var processed = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var bankSystem = _entitySystemManager.GetEntitySystem<BankSystem>();
+        var processedUsers = new HashSet<NetUserId>();
+        var processedCount = 0;
+        var recipients = new List<string>();
 
         foreach (var session in _playerManager.Sessions)
         {
-            if (_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+            if (!processedUsers.Add(session.UserId)) continue;
+            var entity = session.AttachedEntity;
+            if (entity == null) continue;
+            if (!_entityManager.HasComponent<ActorComponent>(entity.Value)) continue;
+            if (!_entityManager.HasComponent<BankAccountComponent>(entity.Value)) continue;
+            var oldBalance = _entityManager.GetComponent<BankAccountComponent>(entity.Value).Balance;
+            var success = false;
+            if (amount > 0) success = bankSystem.TryBankDeposit(entity.Value, amount);
+            else if (amount < 0) success = bankSystem.TryBankWithdraw(entity.Value, Math.Abs(amount));
+            else continue;
+            if (success)
             {
-                foreach (var (_, profile) in prefs.Characters)
-                {
-                    if (profile is HumanoidCharacterProfile humanoid)
-                    {
-                        if (!processed.Add(humanoid.Name))
-                            continue;
-
-                        await HandleOnlinePlayer(shell, session, amount, humanoid.Name);
-                    }
-                }
+                processedCount++;
+                var displayName = session.Name;
+                if (_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs) && prefs.SelectedCharacter is HumanoidCharacterProfile humanoidProfile)
+                { displayName = humanoidProfile.Name; }
+                var newBalance = _entityManager.GetComponent<BankAccountComponent>(entity.Value).Balance;
+                recipients.Add(Loc.GetString("cmd-bank-batch-recipient", ("name", displayName), ("prev", oldBalance), ("next", newBalance)));
+                var changeText = amount >= 0 ? $"+{Math.Abs(amount)}" : $"-{Math.Abs(amount)}";
+                var notify = Loc.GetString("bank-program-change-balance-notification", ("balance", newBalance), ("change", changeText), ("currencySymbol", "$"));
+                _chatManager.ChatMessageToOne(ChatChannel.Notifications, notify, notify, EntityUid.Invalid, false, session.Channel);
             }
         }
 
-        foreach (var playerData in _playerManager.GetAllPlayerData())
-        {
-            if (_prefsManager.TryGetCachedPreferences(playerData.UserId, out var prefs))
-            {
-                foreach (var (_, profile) in prefs.Characters)
-                {
-                    if (profile is HumanoidCharacterProfile humanoid)
-                    {
-                        if (!processed.Add(humanoid.Name))
-                            continue;
-
-                        await HandleOfflinePlayer(shell, playerData.UserId, prefs, humanoid, amount, humanoid.Name);
-                    }
-                }
-            }
-        }
-
-        shell.WriteLine($"Выдано {amount} кредитов всем уникальным персонажам.");
+        if (processedCount > 0) shell.WriteLine(Loc.GetString("cmd-bank-batch-summary", ("amount", amount), ("count", processedCount), ("recipients", string.Join(", ", recipients))));
+        else shell.WriteLine(Loc.GetString("cmd-bank-batch-none"));
     }
 
     private bool TryGetOfflinePlayerData(string username, out NetUserId userId, out PlayerPreferences prefs, out HumanoidCharacterProfile profile)
@@ -352,8 +321,7 @@ public sealed class BankCommand : IConsoleCommand
                     }
                 }
             }
-
-            return CompletionResult.FromHintOptions(options.Distinct(), "<username/character>");
+            return CompletionResult.FromHintOptions(options.Distinct(), Loc.GetString("cmd-bank-completion-arg-hint"));
         }
 
         if (args.Length == 2)

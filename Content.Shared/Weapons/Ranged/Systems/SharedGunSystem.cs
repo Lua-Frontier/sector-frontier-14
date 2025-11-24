@@ -401,6 +401,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             gun.BurstShotsCount = 0;
             gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
 
+            if (gun.SoundBurstCooldown != null)
+                Audio.PlayPredicted(gun.SoundBurstCooldown, gunUid, user);
+
             // Play empty gun sounds if relevant
             // If they're firing an existing clip then don't play anything.
             if (shots > 0)
@@ -428,6 +431,10 @@ public abstract partial class SharedGunSystem : EntitySystem
             if (gun.BurstShotsCount >= gun.ShotsPerBurstModified)
             {
                 gun.NextFire += TimeSpan.FromSeconds(gun.BurstCooldown);
+
+                if (gun.SoundBurstCooldown != null)
+                    Audio.PlayPredicted(gun.SoundBurstCooldown, gunUid, user);
+
                 gun.BurstActivated = false;
                 gun.BurstShotsCount = 0;
             }

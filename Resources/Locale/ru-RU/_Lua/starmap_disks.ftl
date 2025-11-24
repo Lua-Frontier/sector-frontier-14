@@ -7,6 +7,9 @@ ent-CoordinatesDiskMercenary = диск координат
 ent-CoordinatesDiskNordfall = диск координат
     .desc = Содержит координаты сектора Нордфолл.
     .suffix = Нордфолл
+ent-CoordinatesDiskLuaTech = диск координат
+    .desc = Содержит координаты сектора LuaTech, на диске надпись: ВНИМАНИЕ! Диск должен быть уничтожен если вы покинули сектор подконтрольный Lua Technologies, вы сами по себе или ждите своего связного, утрата диска посторонним - приведет к УНИЧТОЖЕНИЮ вашего клона.
+    .suffix = LuaTech
 ent-CoordinatesDiskPirate = диск координат
     .desc = Содержит координаты Пиратского сектора.
     .suffix = Пираты
@@ -30,6 +33,7 @@ sector-name-AsteroidSectorDefault = Пояс астероидов
 sector-name-MercenarySector = Наёмники
 sector-name-PirateSector = Пираты
 sector-name-TypanSector = Тайпан
+sector-name-LuaTechSector = LuaTech
 sector-name-CentCom = ЦентКом
 
 

@@ -7,6 +7,7 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared._Lua.Chat.Systems;
+using Content.Server.GameTicking;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
@@ -35,6 +36,7 @@ public sealed class HardsuitReanimationSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private readonly Dictionary<EntityUid, ReanimationData> _activeReanimations = new();
 
@@ -106,7 +108,8 @@ public sealed class HardsuitReanimationSystem : EntitySystem
     private void TeleportToOrigin(EntityUid wearer, HardsuitReanimationComponent comp)
     {
         var transform = Transform(wearer);
-        var originCoords = new MapCoordinates(0, 0, transform.MapID);
+        var defaultMapId = _gameTicker.DefaultMap;
+        var originCoords = new MapCoordinates(0, 0, defaultMapId);
         Spawn(comp.EmpPulseEffect, transform.Coordinates);
         transform.Coordinates = EntityCoordinates.FromMap(_mapManager, originCoords);
         Spawn(comp.EmpPulseEffect, originCoords);

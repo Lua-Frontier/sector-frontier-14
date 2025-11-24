@@ -108,7 +108,14 @@ namespace Content.Client.Popups
                     _replayRecording.RecordClientMessage(new PopupCoordinatesEvent(message, type, GetNetCoordinates(coordinates)));
             }
 
-            // WD EDIT START
+            var popupData = new WorldPopupData(message, type, coordinates, entity);
+            if (_aliveWorldLabels.TryGetValue(popupData, out var existingLabel))
+            {
+                WrapAndRepeatPopup(existingLabel, popupData.Message);
+                return;
+            }
+
+            // WD EDIT START - log to chat only when creating a new popup (avoid spam on repeats)
             if (_shouldLogInChat &&
                 _playerManager.LocalEntity != null &&
                 _examine.InRangeUnOccluded(_playerManager.LocalEntity.Value, coordinates, 10))
@@ -123,13 +130,6 @@ namespace Content.Client.Popups
                 _uiManager.GetUIController<ChatUIController>().ProcessChatMessage(chatMsg);
             }
             // WD EDIT END
-
-            var popupData = new WorldPopupData(message, type, coordinates, entity);
-            if (_aliveWorldLabels.TryGetValue(popupData, out var existingLabel))
-            {
-                WrapAndRepeatPopup(existingLabel, popupData.Message);
-                return;
-            }
 
             var label = new WorldPopupLabel(coordinates)
             {

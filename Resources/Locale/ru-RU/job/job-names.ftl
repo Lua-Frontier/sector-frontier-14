@@ -107,6 +107,10 @@ job-name-typan-rd = Директор Боевых Операций
 job-name-typan-science = Научный Сотрудник Нордфолла
 job-name-typan-telecommunications-officer = Офицер телекомуникаций Нордфолла
 
+# luatech
+job-name-ops-luatech = Оперативник Lua Technologies
+JobOpsLuaTech = Оперативник Lua Technologies
+
 # Typan
 JobTypanAtmosTech = Военный Инженер Нордфолла
 JobTypanBotanist = Ботаник Синдиката

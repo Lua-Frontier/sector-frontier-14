@@ -1,31 +1,39 @@
 - type: entity
   parent: Bed
-  id: ADTDoubleBedTop
+  id: ADTDoubleBedSplit
   name: double bed
   description: You now, hot to use it.
   components:
   - type: Sprite
     sprite: ADT/Structures/Furniture/doublebed.rsi
-    state: top
+    noRot: true
+    state: splitbed
   - type: Construction
     graph: bed
-    node: adtdoublebedtop
-  #- type: GuideHelp
-  #  guides:
-  #  - Medical Doctor
-
-- type: entity
-  parent: Bed
-  id: ADTDoubleBedBottom
-  name: double bed
-  description: You now, hot to use it.
-  components:
-  - type: Sprite
-    sprite: ADT/Structures/Furniture/doublebed.rsi
-    state: bottom
-  - type: Construction
-    graph: bed
-    node: adtdoublebedbottom
+    node: adtdoublebedsplit
+  - type: Transform
+    noRot: true
+  - type: Strap
+    size: 200
+    rotation: -90
+    position: Down
+    unbuckleDistanceSquared: 1.0
+  - type: DoubleStrap
+    slots:
+    - "0,0.25"
+    - "0,-0.05"
+    slotsCameraNorth:
+    - "0,0.75"
+    - "0,-0.15"
+    slotsCameraEast:
+    - "0.25,0.50"
+    - "-0.05,-0.10"
+    slotsCameraSouth:
+    - "0,0.25"
+    - "0,-0.05"
+    slotsCameraWest:
+    - "-0.25,0.50"
+    - "0.05,-0.10"
   #- type: GuideHelp
   #  guides:
   #  - Medical Doctor

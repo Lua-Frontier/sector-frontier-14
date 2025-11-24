@@ -35,6 +35,21 @@
     - type: Transform
 
 - type: entity
+  id: StandardLuaTechVessel
+  parent:
+    - BaseStation
+    - BaseStationCargoMarket
+    - NFBaseStationCargo
+    - MarketFrontierOutpost
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+    - BaseStationSectorServices
+    - BaseStationAlertLevels
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierVesselCargo
   parent:
     - NFBaseStationCargo
@@ -215,3 +230,11 @@
   - StandardFrontierVessel
   - BaseStationExpeditions
   categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: StandardLuaTechSecurityVessel
+  parent:
+  - StandardFrontierVessel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform

@@ -100,6 +100,8 @@ public sealed class StarmapControl : Control
     public void SetCapturingMaps(HashSet<MapId> capturing)
     { _capturingMaps = capturing ?? new HashSet<MapId>(); }
 
+    public bool IsCapturing(MapId mapId) => _capturingMaps != null && _capturingMaps.Contains(mapId);
+
     private void InvalidateGraph()
     { _graphDirty = true; }
 
@@ -271,8 +273,14 @@ public sealed class StarmapControl : Control
             var color = Color.White;
             var name = star.Name;
             var isSector = IsSectorStar(star.Map);
-            if (Vector2.Distance(Vector2.Zero, star.Position) >= Range) color = Color.Red;
-            if (Vector2.Distance(Vector2.Zero, star.Position) >= Range * 1.5)
+            var capturing = _capturingMaps != null && _capturingMaps.Contains(star.Map);
+            if (capturing)
+            {
+                var factionCol = GetSectorColorCached(star.Map);
+                color = factionCol;
+            }
+            if (!capturing && Vector2.Distance(Vector2.Zero, star.Position) >= Range) color = Color.Red;
+            if (!capturing && Vector2.Distance(Vector2.Zero, star.Position) >= Range * 1.5)
             {
                 color = Color.DarkRed;
                 name = Loc.GetString("ship-ftl-tag-oor");
@@ -288,19 +296,44 @@ public sealed class StarmapControl : Control
             if (hovered) { radius = isSector ? 12f : 10f; }
             if (isSector)
             {
-                var blinking = _capturingMaps != null && _capturingMaps.Contains(star.Map);
-                if (blinking)
+                if (capturing)
                 {
-                    var pulse = 0.5f + 0.5f * MathF.Sin(tSeconds * 6f);
-                    var ringAlpha = (byte) Math.Clamp((int) (120 + 80 * pulse), 0, 255);
-                    handle.DrawCircle(uiPosition, radius + 3 + 1.5f * pulse, color with { A = ringAlpha }, false);
+                    var ring = Color.White with { A = 230 };
+                    handle.DrawCircle(uiPosition, radius + 2f, ring, false);
+                    var exPos = uiPosition + new Vector2(radius + 6f, -radius - 4f);
+                    handle.DrawString(_font, exPos + new Vector2(1f, 1f), "!", Color.Black);
+                    handle.DrawString(_font, exPos, "!", ring);
                 }
-                handle.DrawCircle(uiPosition, radius + 2, color with { A = 100 }, false);
+                else
+                {
+                    var ring = color with { A = 255 };
+                    handle.DrawCircle(uiPosition, radius + 2f, ring, false);
+                    handle.DrawCircle(uiPosition, radius + 1f, ring, false);
+                }
                 handle.DrawCircle(uiPosition, radius, color);
                 handle.DrawCircle(uiPosition, radius - 2, Color.White with { A = 150 });
             }
             else
-            { handle.DrawCircle(uiPosition, radius, color); }
+            {
+                if (capturing)
+                {
+                    var ring = Color.White with { A = 230 };
+                    handle.DrawCircle(uiPosition, radius + 2f, ring, false);
+                    var exPos = uiPosition + new Vector2(radius + 6f, -radius - 4f);
+                    handle.DrawString(_font, exPos + new Vector2(1f, 1f), "!", Color.Black);
+                    handle.DrawString(_font, exPos, "!" , ring);
+                }
+                else
+                {
+                    if (_ownerByMap != null && _ownerByMap.ContainsKey(star.Map))
+                    {
+                        var ring = GetSectorColorCached(star.Map) with { A = 255 };
+                        handle.DrawCircle(uiPosition, radius + 2f, ring, false);
+                        handle.DrawCircle(uiPosition, radius + 1f, ring, false);
+                    }
+                }
+                handle.DrawCircle(uiPosition, radius, color);
+            }
             if (hovered)
             {
                 handle.DrawString(_font, uiPosition + new Vector2(10, 0), name);
@@ -312,6 +345,7 @@ public sealed class StarmapControl : Control
     private bool IsStarVisible(Star star)
     {
         var isSector = IsSectorStar(star.Map);
+        if (_capturingMaps != null && _capturingMaps.Contains(star.Map)) return true;
         if (!isSector) return true;
         if (star.Position == Vector2.Zero) return true;
         if (_visibleSectorMaps.Count == 0) return false;

@@ -116,7 +116,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 14
+        Piercing: 15 #Lua 14<15
+        Slash: 9 #Lua 
 
 - type: entity
   id: NFBulletRifle25Overpressure
