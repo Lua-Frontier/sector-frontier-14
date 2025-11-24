@@ -28,6 +28,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+  - type: MovementAlwaysTouching #Lua
 
 - type: entity
   id: MobGoliath
@@ -55,7 +56,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      300: Dead #Lua 150<300
   - type: MeleeWeapon
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
@@ -93,9 +94,11 @@
     - id: FoodMeatGoliath
       amount: 3
     - id: MaterialGoliathHide1
-      amount: 3
+      amount: 1 #Lua 3<1
   - type: TimedDespawn
     lifetime: 2400
+  - type: Reflect #Lua
+    reflectProb: 0.2
 
 - type: entity
   parent: BaseAction
@@ -214,7 +217,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Dead
+      150: Dead #Lua 75<150
   - type: MeleeWeapon
     damage:
       types:
@@ -269,7 +272,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      5: Dead
+      15: Dead #Lua 5<15
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
@@ -332,7 +335,7 @@
     entity: FoodHivelordRemainsInert
     stage: 1
   - type: StaticPrice
-    price: 5000
+    price: 1000 #Lua 5000<1000
   - type: Tag
     tags:
     - HivelordRemains
@@ -380,7 +383,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      45: Dead
+      150: Dead #Lua 45<150
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -425,8 +428,8 @@
     reflectProb: 1
     reflects:
     - Energy
-  - type: Butcherable
-    spawned:
-    - id: DiamondOre1
-      amount: 1
-      maxAmount: 3
+#  - type: Butcherable #comment from _Lua
+#    spawned:
+#    - id: DiamondOre1
+#      amount: 1
+#      maxAmount: 3

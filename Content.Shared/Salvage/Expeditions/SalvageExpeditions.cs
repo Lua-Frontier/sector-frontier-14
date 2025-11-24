@@ -15,11 +15,11 @@ public sealed class SalvageExpeditionConsoleState : BoundUserInterfaceState
     public bool Claimed;
     public bool Cooldown;
     public ushort ActiveMission;
-    public List<SalvageMissionParams> Missions;
+    public List<SalvageMissionListing> Missions;
     public bool CanFinish; // Frontier
     public TimeSpan CooldownTime; // Frontier: separate fail vs. success time
 
-    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionParams> missions, bool canFinish, TimeSpan cooldownTime) // Frontier: add canFinish, cooldownTime
+    public SalvageExpeditionConsoleState(TimeSpan nextOffer, bool claimed, bool cooldown, ushort activeMission, List<SalvageMissionListing> missions, bool canFinish, TimeSpan cooldownTime) // Frontier: add canFinish, cooldownTime
     {
         NextOffer = nextOffer;
         Claimed = claimed;
@@ -144,6 +144,7 @@ public sealed record SalvageMissionParams
 /// Created from <see cref="SalvageMissionParams"/>. Only needed for data the client also needs for mission
 /// display.
 /// </summary>
+[Serializable, NetSerializable]
 public sealed record SalvageMission(
     int Seed,
     string Dungeon,
@@ -213,6 +214,9 @@ public sealed record SalvageMission(
     public readonly SalvageMissionType MissionType = MissionType;
     // End Frontier: additional parameters
 }
+
+[Serializable, NetSerializable]
+public sealed record SalvageMissionListing(SalvageMissionParams Params, SalvageMission Mission);
 
 [Serializable, NetSerializable]
 public enum SalvageConsoleUiKey : byte

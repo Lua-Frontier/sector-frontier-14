@@ -11,6 +11,7 @@ using Robust.Shared.Timing;
 using System.Numerics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Map;
+using System.Linq;
 
 namespace Content.Server._Lua.Starmap.Systems;
 
@@ -32,6 +33,53 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
 
     private float _hyperlaneMaxDistance = 1200f;
     private int _hyperlaneNeighbors = 3;
+
+    private readonly HashSet<(MapId a, MapId b)> _manualHyperlanes = new();
+    private readonly HashSet<(MapId a, MapId b)> _blockedHyperlanes = new();
+
+    private static (MapId a, MapId b) NormalizeMapPair(MapId a, MapId b)
+    { return ((int) a <= (int) b) ? (a, b) : (b, a); }
+
+    public void ClearHyperlaneOverrides(bool invalidateCache = true)
+    {
+        _manualHyperlanes.Clear();
+        _blockedHyperlanes.Clear();
+        if (invalidateCache) InvalidateCache();
+    }
+
+    public bool TryAddHyperlane(MapId mapA, MapId mapB)
+    {
+        if (mapA == mapB) return false;
+
+        var stars = CollectStars();
+        var idxA = stars.FindIndex(s => s.Map == mapA);
+        var idxB = stars.FindIndex(s => s.Map == mapB);
+        if (idxA < 0 || idxB < 0) return false;
+        var pair = NormalizeMapPair(mapA, mapB);
+        var added = _manualHyperlanes.Add(pair);
+        if (added)
+        {
+            _blockedHyperlanes.Remove(pair);
+            InvalidateCache();
+        }
+        return added;
+    }
+
+    public bool TryBlockHyperlane(MapId mapA, MapId mapB)
+    {
+        if (mapA == mapB) return false;
+        var stars = CollectStars();
+        var idxA = stars.FindIndex(s => s.Map == mapA);
+        var idxB = stars.FindIndex(s => s.Map == mapB);
+        if (idxA < 0 || idxB < 0) return false;
+        var edges = GetHyperlanesCached();
+        var exists = edges.Any(e => (e.A == idxA && e.B == idxB) || (e.A == idxB && e.B == idxA));
+        var pair = NormalizeMapPair(mapA, mapB);
+        var removedManual = _manualHyperlanes.Remove(pair);
+        var addedBlocked = _blockedHyperlanes.Add(pair);
+        if (removedManual || addedBlocked) InvalidateCache();
+        return exists;
+    }
 
     private void TryLoadConfig()
     {
@@ -129,6 +177,12 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
         var edgeSet = new HashSet<(int a, int b)>();
         int n = stars.Count;
         if (n <= 1) return edges;
+        var mapIndex = new Dictionary<MapId, int>(n);
+        for (var i = 0; i < n; i++)
+        {
+            var map = stars[i].Map;
+            if (!mapIndex.ContainsKey(map)) mapIndex[map] = i;
+        }
         for (var i = 0; i < n; i++)
         {
             var dists = new List<(int j, float d)>(n - 1);
@@ -221,7 +275,7 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
                 var asteroidIdx = stars.FindIndex(s => s.Map == asteroidMap);
                 if (asteroidIdx >= 0)
                 {
-                    var mainSectors = new[] { "TypanSector", "PirateSector", "MercenarySector" };
+                    var mainSectors = new[] { "TypanSector", "PirateSector", "MercenarySector", "LuaTechSector" };
                     foreach (var sectorId in mainSectors)
                     {
                         if (_sectors.TryGetMapId(sectorId, out var sectorMap))
@@ -239,6 +293,36 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
             }
         }
         catch { }
+        if (_blockedHyperlanes.Count > 0)
+        {
+            for (var i = edges.Count - 1; i >= 0; i--)
+            {
+                var e = edges[i];
+                var mapA = stars[e.A].Map;
+                var mapB = stars[e.B].Map;
+                var pair = NormalizeMapPair(mapA, mapB);
+                if (_blockedHyperlanes.Contains(pair))
+                {
+                    edges.RemoveAt(i);
+                    var a = Math.Min(e.A, e.B);
+                    var b = Math.Max(e.A, e.B);
+                    edgeSet.Remove((a, b));
+                }
+            }
+        }
+
+        if (_manualHyperlanes.Count > 0)
+        {
+            foreach (var pair in _manualHyperlanes)
+            {
+                if (!mapIndex.TryGetValue(pair.a, out var idxA)) continue;
+                if (!mapIndex.TryGetValue(pair.b, out var idxB)) continue;
+                if (idxA == idxB) continue;
+                var a = Math.Min(idxA, idxB);
+                var b = Math.Max(idxA, idxB);
+                if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
+            }
+        }
         return edges;
     }
 
@@ -255,11 +339,11 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
         _cachedStars = null;
         _cachedEdges = null;
         if (refreshConsoles)
-        { try { _shuttleConsole.RefreshShuttleConsoles(); } catch { } }
+        { try { _shuttleConsole.RefreshStarMapForOpenConsoles(); } catch { } }
     }
 
     public void RefreshConsoles()
-    { try { _shuttleConsole.RefreshShuttleConsoles(); } catch { } }
+    { try { _shuttleConsole.RefreshStarMapForOpenConsoles(); } catch { } }
 
     private void OnDriveExamineEvent(EntityUid uid, BluespaceDriveComponent component, ExaminedEvent args)
     {

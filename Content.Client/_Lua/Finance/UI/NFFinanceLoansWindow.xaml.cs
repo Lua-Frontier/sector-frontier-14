@@ -3,6 +3,7 @@
  * Copyright (c) 2025 LuaWorld Contributors
  * See AGPLv3.txt for details.
  */
+using System;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
@@ -102,7 +103,7 @@ public sealed partial class NFFinanceLoansWindow : DefaultWindow
             {
                 Rows.AddChild(new Label { Text = r.Name });
                 Rows.AddChild(new Label { Text = r.Principal.ToString() });
-                Rows.AddChild(new Label { Text = r.SecondsUntilCharge < 0 ? "—" : Loc.GetString("finance-seconds-short", ("seconds", r.SecondsUntilCharge)) });
+                Rows.AddChild(new Label { Text = r.SecondsUntilCharge < 0 ? "—" : FormatDuration(r.SecondsUntilCharge) });
                 Rows.AddChild(new Label { Text = r.YupiCode });
             }
         }
@@ -126,8 +127,8 @@ public sealed partial class NFFinanceLoansWindow : DefaultWindow
             {
                 Rows.AddChild(new Label { Text = r.Name });
                 Rows.AddChild(new Label { Text = $"{r.Principal}+{r.Accrued}" });
-                Rows.AddChild(new Label { Text = Loc.GetString("finance-seconds-short", ("seconds", r.NextCapSeconds)) });
-                Rows.AddChild(new Label { Text = Loc.GetString("finance-seconds-short", ("seconds", r.StopAtSeconds)) });
+                Rows.AddChild(new Label { Text = FormatDuration(r.NextCapSeconds) });
+                Rows.AddChild(new Label { Text = FormatDuration(r.StopAtSeconds) });
                 Rows.AddChild(new Label { Text = r.RateModel switch { DepositRateModel.FixedApr => Loc.GetString("finance-rate-model-fixed"), DepositRateModel.FloatingApr => Loc.GetString("finance-rate-model-floating"), DepositRateModel.ProgressiveApr => Loc.GetString("finance-rate-model-progressive"), _ => r.RateModel.ToString() } });
                 if (_allowForceClose)
                 {
@@ -142,5 +143,14 @@ public sealed partial class NFFinanceLoansWindow : DefaultWindow
                 }
             }
         }
+    }
+
+    private static string FormatDuration(int seconds)
+    {
+        if (seconds <= 0)
+            return "00:00:00";
+        var span = TimeSpan.FromSeconds(seconds);
+        var hours = (int)span.TotalHours;
+        return $"{hours:D2}:{span.Minutes:D2}:{span.Seconds:D2}";
     }
 }

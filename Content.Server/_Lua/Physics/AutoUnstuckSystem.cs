@@ -7,6 +7,9 @@ using JetBrains.Annotations;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
+using Robust.Shared.Map.Components;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Server._Lua.Physics;
 
@@ -15,6 +18,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     private readonly Dictionary<EntityUid, float> _stuckTime = new();
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -36,6 +40,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
         {
             if (!_physicsQuery.TryGetComponent(uid, out var body)) continue;
             if (body.BodyType == BodyType.Static || !body.CanCollide) continue;
+            if (HasComp<MapGridComponent>(uid) || HasComp<MapComponent>(uid) || HasComp<ShuttleComponent>(uid)) continue;
             var hasStaticHardContact = false;
             var dirSum = Vector2.Zero;
             var contacts = _physics.GetContacts(uid);
@@ -56,19 +61,15 @@ public sealed class AutoUnstuckSystem : EntitySystem
             if (_stuckTime.TryGetValue(uid, out var t)) _stuckTime[uid] = t + frameTime;
             else _stuckTime[uid] = frameTime;
             if (_stuckTime[uid] < 15f) continue;
-            if (dirSum != Vector2.Zero)
+            if (_xformQuery.TryGetComponent(uid, out var xform))
             {
-                var pushDir = Vector2.Normalize(dirSum);
-                if (_xformQuery.TryGetComponent(uid, out var xform))
-                {
-                    _physics.SetCanCollide(uid, false, body: body);
-                    var delta = pushDir * 1.25f;
-                    _xform.SetWorldPosition(uid, xform.WorldPosition + delta);
-                    _physics.SetCanCollide(uid, true, body: body);
-                    var vel = pushDir * 0.5f;
-                    _physics.SetLinearVelocity(uid, vel, body: body);
-                    _physics.WakeBody(uid, body: body);
-                }
+                var offsets = new[] { new Vector2(2f, 0f), new Vector2(-2f, 0f), new Vector2(0f, 2f), new Vector2(0f, -2f) };
+                var offset = _random.Pick(offsets);
+                _physics.SetCanCollide(uid, false, body: body);
+                _xform.SetCoordinates(uid, xform, xform.Coordinates.Offset(offset));
+                _physics.SetCanCollide(uid, true, body: body);
+                _physics.SetLinearVelocity(uid, Vector2.Zero, body: body);
+                _physics.WakeBody(uid, body: body);
             }
             toClear.Add(uid);
         }

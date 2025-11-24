@@ -9,6 +9,9 @@
   description: Рюкзак разработанный "LuaTech" с функцией РИГ.
   categories: [ HideSpawnMenu ]
   components:
+  - type: ToggleableLocksOwner
+    clothingPrototypes:
+    - ClothingOuterHardsuitLuaD
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitLuaD
     requiredSlot: BACK
@@ -42,7 +45,7 @@
         Blunt: 0.3
         Slash: 0.4
         Piercing: 0.3
-        Heat: 0.5
+        Heat: 0.3
         Radiation: 0.2
         Caustic: 0.2
   - type: ClothingSpeedModifier

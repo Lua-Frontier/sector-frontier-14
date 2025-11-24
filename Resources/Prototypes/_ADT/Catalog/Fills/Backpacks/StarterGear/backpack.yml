@@ -14,6 +14,26 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
+  parent: ClothingBackpackERTMedical
+  id: LuaClothingBackpackOpsFilled
+  name: Medical backpack ops
+  description: A spacious backpack with lots of pockets.
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: CoordinatesDiskLuaTech
+        - id: MedkitCombatFilled
+        - id: MedkitCombatFilled
+        - id: CombatMedipen
+        - id: CombatMedipen
+        - id: CombatMedipen
+        - id: CombatMedipen
+        - id: AmpulaDexa
+        - id: NFWeaponEnergyPistolPulse
+
+- type: entity
+  categories: [ HideSpawnMenu ]
   parent: ClothingBackpackERTSecurity
   id: ADTClothingBackpackERTSecurityFilledL
   components:

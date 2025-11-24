@@ -2,36 +2,38 @@
 # Discord: daeqa1us_
 # Cikey: wh1te
 
-- type: vessel
-  id: hermes
-  parent: BaseVessel
-  name: CLS-Hermes
-  description: утилизаторское судно для промышленной горно и газодобычи. Производитель - Nakamura Engineering
-  price: 95450 #83000 x 1,15
-  category: Large
-  group: Shipyard
-  shuttlePath: /Maps/_Lua/Shuttles/Civilian/cls-hermes.yml
-  guidebookPage: Null
-  class:
-  - Civilian
-  - Salvage
-  - Atmospherics
-  engine:
-  - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
-- type: gameMap
-  id: hermes
-  mapName: 'CLS-Hermes'
-  mapPath: /Maps/_Lua/Shuttles/Civilian/cls-hermes.yml
-  minPlayers: 0
-  stations:
-    hermes:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'CLS-Hermes {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+# Needs remap
+
+#- type: vessel
+#  id: hermes
+#  parent: BaseVessel
+#  name: CLS-Hermes
+#  description: утилизаторское судно для промышленной горно и газодобычи. Производитель - Nakamura Engineering
+#  price: 95450 #83000 x 1,15
+#  category: Large
+#  group: Shipyard
+#  shuttlePath: /Maps/_Lua/Shuttles/Civilian/cls-hermes.yml
+#  guidebookPage: Null
+#  class:
+#  - Civilian
+#  - Salvage
+#  - Atmospherics
+#  engine:
+#  - AME
+#  addComponents:
+#    - type: IFF
+#      color: "#ffffff"
+#- type: gameMap
+#  id: hermes
+#  mapName: 'CLS-Hermes'
+#  mapPath: /Maps/_Lua/Shuttles/Civilian/cls-hermes.yml
+#  minPlayers: 0
+#  stations:
+#    hermes:
+#      stationProto: StandardFrontierVessel
+#      components:
+#        - type: StationNameSetup
+#          mapNameTemplate: 'CLS-Hermes {1}'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'

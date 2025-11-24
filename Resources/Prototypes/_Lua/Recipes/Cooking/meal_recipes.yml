@@ -59,7 +59,7 @@
   time: 10
   group: Savory
   solids:
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
     FoodTomato: 1
   reagents:
     OilOlive: 5
@@ -76,7 +76,7 @@
   group: Pasta
   solids:
     FoodNoodlesBoiled: 1
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
     FoodTomato: 1
   reagents:
     JuiceLemon: 5
@@ -98,7 +98,7 @@
     Blackpepper: 2
   solids:
     FoodBowlBig: 1
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
     FoodPotato: 1
     FoodOnionSlice: 2
   recipeType:
@@ -114,28 +114,28 @@
     Vinaigrette: 5
   solids:
     FoodBowlBig: 1
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
     FoodCucumber: 1
     FoodTomato: 1
   recipeType:
   - Assembler
 
-- type: microwaveMealRecipe
-  id: RecipeCarpSushiFish
-  name: carp sushi recipe (fish fillet)
-  result: FoodMealCarpSushi
-  time: 5
-  group: Savory
-  solids:
-    FoodAvocadoSlice: 2
-    FoodCucumberSlice: 2
-    FoodMeatFishGeneric: 1
-  reagents:
-    Rice: 15
-    Water: 10
-  recipeType:
-  - Assembler
-  hideInGuidebook: true
+# - type: microwaveMealRecipe
+#   id: RecipeCarpSushiFish
+#   name: carp sushi recipe (fish fillet)
+#   result: FoodMealCarpSushi
+#   time: 5
+#   group: Savory
+#   solids:
+#     FoodAvocadoSlice: 2
+#     FoodCucumberSlice: 2
+#     FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
+#   reagents:
+#     Rice: 15
+#     Water: 10
+#   recipeType:
+#   - Assembler
+#   hideInGuidebook: true
 
 - type: microwaveMealRecipe
   id: RecipeCuredCarpSushiFish
@@ -146,7 +146,7 @@
   solids:
     FoodAvocadoSlice: 2
     FoodCucumberSlice: 2
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
   reagents:
     Rice: 15
     Water: 10
@@ -164,7 +164,7 @@
     Flour: 5
     Egg: 6
   solids:
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
   recipeType:
   - Oven
   - Microwave
@@ -178,7 +178,7 @@
   group: Savory
   solids:
     FoodTacoShell: 1
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
     FoodOnionSlice: 2
     FoodTomato: 1
     FoodCabbage: 1
@@ -195,7 +195,7 @@
   reagents:
     TableSalt: 1
   solids:
-    FoodMeatFishGeneric: 2
+    FoodCuredCarp: 2  # Lua FoodMeatFishGeneric<FoodCuredCarp
   recipeType: Assembler
   hideInGuidebook: true
 
@@ -209,7 +209,7 @@
     FoodDough: 1
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
-    FoodMeatFishGeneric: 2
+    FoodCuredCarp: 2  # Lua FoodMeatFishGeneric<FoodCuredCarp
   recipeType: Oven
   hideInGuidebook: true
 
@@ -225,7 +225,7 @@
     FoodBowlBig: 1
     FoodTomato: 1
     FoodMushroom: 1
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
   recipeType: Oven
   hideInGuidebook: true
 
@@ -237,7 +237,7 @@
   group: Savory
   solids:
     FoodBreadBun: 1
-    FoodMeatFishGeneric: 1
+    FoodCuredCarp: 1  # Lua FoodMeatFishGeneric<FoodCuredCarp
     FoodCheeseSlice: 1
   recipeType: Oven # Lua
   hideInGuidebook: true

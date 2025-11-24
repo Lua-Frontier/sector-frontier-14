@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 261.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/03/2025 11:31:52
-  entityCount: 6553
+  time: 11/13/2025 06:25:48
+  entityCount: 6557
 maps:
 - 1
 grids:
@@ -5024,7 +5024,7 @@ entities:
       pos: 57.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -51665.562
+      secondsUntilStateChange: -52016.465
       state: Opening
     - type: Docking
       name: 5A
@@ -7258,7 +7258,7 @@ entities:
   - uid: 455
     components:
     - type: Transform
-      pos: 11.268167,15.84083
+      pos: 12.660848,13.680832
       parent: 2
 - proto: BoxFolderGrey
   entities:
@@ -16109,16 +16109,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -49.5,12.5
       parent: 2
-  - uid: 3284
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 16.5,10.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts: {}
-      lastSignals: {}
-      ports: []
 - proto: ComputerId
   entities:
   - uid: 749
@@ -20437,7 +20427,7 @@ entities:
   - uid: 6324
     components:
     - type: Transform
-      pos: -14.6027975,15.557285
+      pos: -15.569802,16.559011
       parent: 2
 - proto: FaxMachineBase
   entities:
@@ -32092,12 +32082,12 @@ entities:
     - type: Transform
       pos: -3.5,22.5
       parent: 2
-- proto: Jukebox
+- proto: JukeboxWallmount
   entities:
-  - uid: 3135
+  - uid: 3268
     components:
     - type: Transform
-      pos: -0.5,13.5
+      pos: -0.5,14.5
       parent: 2
 - proto: KitchenReagentGrinder
   entities:
@@ -32741,6 +32731,48 @@ entities:
     - type: Transform
       pos: -41.45708,7.738378
       parent: 2
+- proto: NFFinanceDepositComputerPublic
+  entities:
+  - uid: 3237
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -50.5,6.5
+      parent: 2
+- proto: NFFinanceDepositsViewComputerService
+  entities:
+  - uid: 3135
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,10.5
+      parent: 2
+- proto: NFFinanceIssuanceComputer
+  entities:
+  - uid: 3227
+    components:
+    - type: Transform
+      pos: -0.5,13.5
+      parent: 2
+  - uid: 3231
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -50.5,8.5
+      parent: 2
+  - uid: 3259
+    components:
+    - type: Transform
+      pos: 4.5,28.5
+      parent: 2
+- proto: NFFinanceRatingComputer
+  entities:
+  - uid: 3232
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -50.5,7.5
+      parent: 2
 - proto: NFPosterLegitMagnusWatching
   entities:
   - uid: 3204
@@ -33248,6 +33280,11 @@ entities:
       parent: 2
 - proto: PottedPlantRandom
   entities:
+  - uid: 3229
+    components:
+    - type: Transform
+      pos: 4.5,10.5
+      parent: 2
   - uid: 3261
     components:
     - type: Transform
@@ -33282,11 +33319,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5,6.5
-      parent: 2
-  - uid: 3268
-    components:
-    - type: Transform
-      pos: 4.5,10.5
       parent: 2
   - uid: 3269
     components:
@@ -36620,13 +36652,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -36.5,-2.5
       parent: 2
-- proto: ServiceTechFab
-  entities:
-  - uid: 3858
-    components:
-    - type: Transform
-      pos: 32.5,18.5
-      parent: 2
 - proto: ShadowBasaltFour
   entities:
   - uid: 3859
@@ -37224,7 +37249,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -6.5081263,7.9931254
+      pos: -6.5,7.5
       parent: 2
 - proto: SignDirectionalBridge
   entities:
@@ -37238,31 +37263,31 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -46.514065,5.748536
+      pos: -46.5,5.5
       parent: 2
   - uid: 3934
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 5.514795,7.244797
+      pos: 5.5,7.5
       parent: 2
   - uid: 3935
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 26.504622,5.2688055
+      pos: 26.5,5.5
       parent: 2
   - uid: 3936
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 50.49234,4.7419767
+      pos: 50.5,4.5
       parent: 2
   - uid: 4015
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -26.58567,5.2271237
+      pos: -26.5,5.5
       parent: 2
 - proto: SignDirectionalCryo
   entities:
@@ -37284,25 +37309,25 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -26.58567,5.9771237
+      pos: -26.5,5.5
       parent: 2
   - uid: 3939
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 50.49234,4.2590494
+      pos: 50.5,4.5
       parent: 2
   - uid: 3940
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 26.483353,5.9712443
+      pos: 26.5,5.5
       parent: 2
   - uid: 3941
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -6.4937606,7.2536445
+      pos: -6.5,7.5
       parent: 2
 - proto: SignDirectionalHop
   entities:
@@ -37350,19 +37375,19 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -46.496323,5.987752
+      pos: -46.5,5.5
       parent: 2
   - uid: 3952
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -53.504513,9.259142
+      pos: -53.5,9.5
       parent: 2
   - uid: 4014
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -26.58567,5.4771237
+      pos: -26.5,5.5
       parent: 2
 - proto: SignDirectionalSec
   entities:
@@ -37370,25 +37395,25 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -26.58567,5.7271237
+      pos: -26.5,5.5
       parent: 2
   - uid: 3954
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -6.4911785,7.749557
+      pos: -6.5,7.5
       parent: 2
   - uid: 3955
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 5.5047026,7.749557
+      pos: 5.5,7.5
       parent: 2
   - uid: 3956
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 26.506998,5.7339015
+      pos: 26.5,5.5
       parent: 2
   - uid: 3958
     components:
@@ -37402,7 +37427,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 5.500069,8.002018
+      pos: 5.5,8.5
       parent: 2
   - uid: 3960
     components:
@@ -44239,10 +44264,10 @@ entities:
       parent: 2
 - proto: WardrobeBotanistFilled
   entities:
-  - uid: 6463
+  - uid: 3230
     components:
     - type: Transform
-      pos: -18.5,6.25
+      pos: -21.5,6.5
       parent: 2
 - proto: WardrobeGrey
   entities:

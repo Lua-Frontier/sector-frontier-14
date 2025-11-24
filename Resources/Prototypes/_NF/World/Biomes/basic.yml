@@ -13,12 +13,12 @@
     noiseChannel: Carver
   - type: PointSetDistanceCarver
 
-# region Inner Ring
 - type: spaceBiome
-  id: NFAsteroidsNear
+  id: NFAsteroidsFar
   parent: NFBiomeBase
-  priority: 2
-  distanceRange: 0, 5000
+  priority: 0
+  # no distanceRange, accepts all remaining distance
+  noiseRanges: {}
   chunkComponents:
   - type: SimpleDebrisSelector
     debrisTable:
@@ -29,46 +29,12 @@
     - id: NFAsteroidScrapDebrisSmall
       prob: 0.06
       orGroup: debris
-  - type: NoiseDrivenDebrisSelector
-    debrisTable:
-    - id: NFWreckDebrisSmall
-      prob: 0.06
-      orGroup: wreck
-
-# region Middle Ring
-- type: spaceBiome
-  id: NFAsteroidsMid
-  parent: NFBiomeBase
-  priority: 1
-  distanceRange: 5000, 9500
-  chunkComponents:
-  - type: SimpleDebrisSelector
-    debrisTable:
+    # Medium
     - id: NFAsteroidDebrisMedium
-      prob: 0.05
+      prob: 0.06
       orGroup: debris
     - id: NFAsteroidScrapDebrisMedium
       prob: 0.05
-      orGroup: debris
-  - type: NoiseDrivenDebrisSelector
-    debrisTable:
-    - id: NFWreckDebrisMedium
-      prob: 0.06
-      orGroup: wreck
-
-# region Outer Ring
-- type: spaceBiome
-  id: NFAsteroidsFar
-  parent: NFBiomeBase
-  priority: 0
-  # no distanceRange, accepts all remaining distance
-  noiseRanges: {}
-  chunkComponents:
-  - type: SimpleDebrisSelector
-    debrisTable:
-    # Medium (1.44)
-    - id: NFAsteroidDebrisMedium
-      prob: 0.06
       orGroup: debris
     - id: NFAsteroidAndesiteDebrisMedium
       prob: 0.06
@@ -89,8 +55,8 @@
     noiseChannel: Wreck
     debrisTable:
     - id: NFWreckDebrisSmall
-      prob: 0.06
+      prob: 0.05
       orGroup: wreck
     - id: NFWreckDebrisMedium
-      prob: 0.06
+      prob: 0.08
       orGroup: wreck

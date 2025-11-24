@@ -84,6 +84,11 @@ public sealed partial class ShuttleSystem
     private const float CoordRollover = 40000f;
     // End Frontier: coordinate rollover
 
+    // Lua start: fallback
+    private const float MaxWorldRadius = 30_000f;
+    private const float SafeWorldRadius = 25_000f;
+    // Lua end: fallback
+
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
     private readonly HashSet<Entity<NoFTLComponent>> _noFtls = new();
@@ -422,6 +427,18 @@ public sealed partial class ShuttleSystem
         var uid = entity.Owner;
         var comp = entity.Comp1;
         var xform = _xformQuery.GetComponent(entity);
+        // Lua start: fallback
+        var grid = Comp<MapGridComponent>(uid);
+        if (!ValidateGridForFtl(uid, grid, xform))
+        {
+            Log.Error($"[FTL-DIAG] Aborting FTL for {ToPrettyString(uid)} on map {xform.MapID} due to invalid world AABB.");
+            comp.State = FTLState.Cooldown;
+            comp.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
+            _console.RefreshShuttleConsoles(uid);
+            return;
+        }
+        // Lua end: fallback
+
         DoTheDinosaur(xform);
 
         if (comp.SkipHyperspace) // Lua start
@@ -481,7 +498,6 @@ public sealed partial class ShuttleSystem
         var fromMatrix = _transform.GetWorldMatrix(xform);
         var fromRotation = _transform.GetWorldRotation(xform);
 
-        var grid = Comp<MapGridComponent>(uid);
         var width = grid.LocalAABB.Width;
         var ftlMap = EnsureFTLMap();
         var body = _physicsQuery.GetComponent(entity);
@@ -722,6 +738,50 @@ public sealed partial class ShuttleSystem
 
         return MathF.Max(grid.LocalAABB.Width, grid.LocalAABB.Height) + 12.5f;
     }
+
+    // Lua start: fallback
+    private bool ValidateGridForFtl(EntityUid gridUid, MapGridComponent grid, TransformComponent xform)
+    {
+        var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
+        var aabb = grid.LocalAABB.Translated(worldPos);
+        var worldAabb = new Box2Rotated(aabb, worldRot, worldPos).CalcBoundingBox();
+
+        if (!worldAabb.IsValid() || worldAabb.HasNan())
+        {
+            Log.Error($"[FTL-DIAG] Invalid grid world AABB for {ToPrettyString(gridUid)} on map {xform.MapID}: {worldAabb}");
+            return false;
+        }
+
+        var c = worldAabb.Center;
+        if (MathF.Abs(c.X) > MaxWorldRadius ||
+            MathF.Abs(c.Y) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Left) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Right) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Top) > MaxWorldRadius ||
+            MathF.Abs(worldAabb.Bottom) > MaxWorldRadius)
+        {
+            var length = c.Length();
+            if (length > 0f)
+            {
+                var clampedRadius = SafeWorldRadius;
+                var newCenter = c * (clampedRadius / length);
+                var delta = newCenter - c;
+
+                var current = _transform.GetMapCoordinates(gridUid);
+                var newCoords = new MapCoordinates(current.Position + delta, current.MapId);
+
+                Log.Error($"[FTL-DIAG] Repositioning grid {ToPrettyString(gridUid)} from {c} to {newCenter} before FTL (world limit {MaxWorldRadius}, safe {SafeWorldRadius}).");
+                _transform.SetMapCoordinates(gridUid, newCoords);
+            }
+            else
+            {
+                Log.Error($"[FTL-DIAG] Out-of-range grid world AABB with zero-length center for {ToPrettyString(gridUid)} on map {xform.MapID}: center={c}, bounds={worldAabb} (limit={MaxWorldRadius})");
+            }
+        }
+
+        return true;
+    }
+    // Lua end: fallback
 
     /// <summary>
     /// Puts everyone unbuckled on the floor, paralyzed.
@@ -1034,32 +1094,14 @@ public sealed partial class ShuttleSystem
         // Frontier: spawn in our AABB
         // TODO: This should prefer the position's angle instead.
         // TODO: This is pretty crude for multiple landings.
-        /*
-        if (nearbyGrids.Count > 1 || !HasComp<MapComponent>(targetXform.GridUid))
-        {
-            // Pick a random angle
-            var offsetAngle = _random.NextAngle();
-
-            // Our valid spawn positions are <targetAABB width / height +  offset> away.
-            var minRadius = MathF.Max(targetAABB.Width / 2f, targetAABB.Height / 2f);
-            spawnPos = targetAABB.Center + offsetAngle.RotateVec(new Vector2(_random.NextFloat(minRadius + minOffset, minRadius + maxOffset), 0f));
-        }
-        else if (shuttleBody != null)
-        {
-            (spawnPos, angle) = _transform.GetWorldPositionRotation(targetXform);
-        }
-        else
-        {
-            spawnPos = _transform.GetWorldPosition(targetXform);
-        }
-        */
         spawnPos = targetAABB.Center;
         // End Frontier
 
         var offset = Vector2.Zero;
+        MapGridComponent? shuttleGrid = null;
 
         // Offset it because transform does not correspond to AABB position.
-        if (TryComp(shuttleUid, out MapGridComponent? shuttleGrid))
+        if (TryComp(shuttleUid, out shuttleGrid))
         {
             offset = -shuttleGrid.LocalAABB.Center;
         }
@@ -1073,11 +1115,32 @@ public sealed partial class ShuttleSystem
             angle = Angle.Zero;
         }
 
-        // Rotate our localcenter around so we spawn exactly where we "think" we should (center of grid on the dot).
+        if (shuttleGrid != null)
+        {
+            var mapId = targetXform.MapID;
+            const int maxResolveIterations = 6;
+            const float extraMargin = 2f;
+            for (var i = 0; i < maxResolveIterations; i++)
+            {
+                var aabb = new Box2Rotated(shuttleGrid.LocalAABB, angle) .CalcBoundingBox() .Enlarged(extraMargin) .Translated(spawnPos);
+                var intersecting = new List<Entity<MapGridComponent>>();
+                _mapManager.FindGridsIntersecting(mapId, aabb, ref intersecting);
+                intersecting.RemoveAll(e => e.Owner == shuttleUid || e.Owner == targetXform.GridUid);
+                if (intersecting.Count == 0) break;
+                var otherGridUid = intersecting[0].Owner;
+                if (!_xformQuery.TryGetComponent(otherGridUid, out var otherXform)) break;
+                var otherPos = _transform.GetWorldPosition(otherXform);
+                var dir = spawnPos - otherPos;
+                if (dir == Vector2.Zero) dir = _random.NextAngle().ToVec();
+                if (dir != Vector2.Zero) dir = Vector2.Normalize(dir);
+                var moveDist = MathF.Max(shuttleGrid.LocalAABB.Width, shuttleGrid.LocalAABB.Height) * 0.5f + maxMargin;
+                spawnPos += dir * moveDist;
+            }
+        }
         var transform = new Transform(spawnPos, angle);
-        spawnPos = Robust.Shared.Physics.Transform.Mul(transform, offset);
+        var adjustedOffset = Robust.Shared.Physics.Transform.Mul(transform, offset);
 
-        coordinates = new EntityCoordinates(targetXform.MapUid.Value, spawnPos - offset);
+        coordinates = new EntityCoordinates(targetXform.MapUid.Value, adjustedOffset);
         return true;
     }
 

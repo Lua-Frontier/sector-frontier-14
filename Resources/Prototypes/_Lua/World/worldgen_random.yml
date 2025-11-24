@@ -7,7 +7,7 @@
         - AsteroidsFallback
         - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsNear
+        - NFAsteroidsFar
 
 - type: worldgenConfig
   id: WG_Asteroids_Mix_02
@@ -18,7 +18,7 @@
         - AsteroidsFallback
         - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsMid
+        - NFAsteroidsFar
 
 - type: worldgenConfig
   id: WG_Asteroids_Mix_03
@@ -40,7 +40,7 @@
         - AsteroidSectorFallback
         - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsNear
+        - NFAsteroidsFar
 
 - type: worldgenConfig
   id: WG_Sector_Rich_02
@@ -51,7 +51,7 @@
         - AsteroidSectorFallback
         - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsMid
+        - NFAsteroidsFar
 
 - type: worldgenConfig
   id: WG_Sector_Rich_03
@@ -71,8 +71,6 @@
     - type: BiomeSelection
       biomes:
         - Failsafe
-        - NFAsteroidsNear
-        - NFAsteroidsMid
         - NFAsteroidsFar
 
 - type: worldgenConfig
@@ -82,8 +80,6 @@
     - type: BiomeSelection
       biomes:
         - AsteroidsFallback
-        - NFAsteroidsNear
-        - NFAsteroidsMid
         - NFAsteroidsFar
 
 - type: worldgenConfig
@@ -93,8 +89,6 @@
     - type: BiomeSelection
       biomes:
         - AsteroidSectorFallback
-        - NFAsteroidsNear
-        - NFAsteroidsMid
         - NFAsteroidsFar
 
 - type: worldgenConfig
@@ -105,7 +99,7 @@
       biomes:
         - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsMid
+        - NFAsteroidsFar
 
 - type: worldgenConfig
   id: WG_Balanced_02
@@ -115,7 +109,7 @@
       biomes:
         - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsMid
+        - NFAsteroidsFar
 
 - type: worldgenConfig
   id: WG_Balanced_03
@@ -155,7 +149,6 @@
       biomes:
         - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsNear
-        - NFAsteroidsMid
+        - NFAsteroidsFar
 
 

@@ -4,5 +4,7 @@ role-timer-overall-insufficient = Требуется ещё [color=yellow]{ TOST
 role-timer-overall-too-high = Требуется на [color=yellow]{ TOSTRING($time, "0") }[/color] меньше минут общего игрового времени. (Вы пытаетесь играть за роль для новичков?)
 role-timer-role-insufficient = Требуется ещё [color=yellow]{ TOSTRING($time, "0") }[/color] минут игры в качестве [color={ $departmentColor }]{ $job }[/color] для этой роли.
 role-timer-role-too-high = Требуется на [color=yellow]{ TOSTRING($time, "0") }[/color] меньше минут игры в качестве [color={ $departmentColor }]{ $job }[/color] для этой роли. (Вы пытаетесь играть за роль для новичков?)
+role-timer-company-whitelisted = Ваш персонаж должен состоять в одной из следующих фракций: [color=yellow]{ $companies }[/color].
+role-timer-company-blacklisted = Ваш персонаж не должен состоять ни в одной из следующих фракций: [color=yellow]{ $companies }[/color].
 role-timer-locked = Закрыто (наведите курсор для подробностей)
 role-ban = Эта должность для вас заблокирована.

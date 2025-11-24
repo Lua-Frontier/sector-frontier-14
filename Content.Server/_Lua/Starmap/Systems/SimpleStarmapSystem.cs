@@ -2,6 +2,7 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
+using System;
 using Content.Server._Lua.Starmap.Components;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Popups;
@@ -15,10 +16,12 @@ using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Dataset;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Parallax;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -43,6 +46,7 @@ namespace Content.Server._Lua.Starmap.Systems
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly ISerializationManager _serializer = default!;
         [Dependency] private readonly CentcommSystem _centcomm = default!;
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         private StarmapConfigPrototype? _cfg;
 
         public override void Initialize()
@@ -62,8 +66,14 @@ namespace Content.Server._Lua.Starmap.Systems
             return;
 #endif
             if (_cfg == null) return;
-            var minStars = _cfg.MinStars;
-            var maxStars = _cfg.MaxStars;
+            var randomEnabled = _configurationManager.GetCVar(CLVars.StarmapRandomGenerationEnabled);
+            if (!randomEnabled)
+            {
+                try { EntityManager.System<StarmapSystem>().InvalidateCache(); }
+                catch { } return;
+            }
+            var minStars = Math.Max(0, _configurationManager.GetCVar(CLVars.StarmapMinStars));
+            var maxStars = Math.Max(minStars, _configurationManager.GetCVar(CLVars.StarmapMaxStars));
             if (minStars > maxStars)
             {
                 var temp = minStars;
@@ -196,7 +206,8 @@ namespace Content.Server._Lua.Starmap.Systems
             "Asteroid Field",
             "Mercenary Sector",
             "Pirate Sector",
-            "Nordfall Sector"
+            "Nordfall Sector",
+            "LuaTech Sector"
         };
 
         private void TrySetMapEntityName(MapId mapId, string name)
@@ -288,6 +299,8 @@ namespace Content.Server._Lua.Starmap.Systems
 #if DEBUG
             return;
 #endif
+            if (!_configurationManager.GetCVar(CLVars.StarmapRandomGenerationEnabled))
+                return;
             var newStarCount = _random.Next(2, 5);
             var minSep = MathF.Max(0f, 800f / MathF.Max(1f, _cfg!.BasePixelsPerDistance));
             var existing = new List<Vector2>(component.StarMap.Count);

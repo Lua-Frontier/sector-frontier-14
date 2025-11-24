@@ -16,6 +16,7 @@
     sprite: _Lua/MPPlayer/mpplayer.rsi
     layers:
       - state: MP3player-base
+        map: [ "enum.JukeboxVisualLayers.Base" ]
       - state: MP3player-on-overlay
         shader: unshaded
         visible: true

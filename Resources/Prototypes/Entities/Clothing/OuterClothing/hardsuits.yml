@@ -169,6 +169,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
+  - type: Reflect #Lua
+    reflectProb: 0.1
   - type: Armor
     modifiers:
       coefficients:
@@ -625,6 +627,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+  - type: ThermalCloak #Lua
+    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -649,8 +653,8 @@
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 1 #Lua 0.9<1
+    sprintModifier: 1 #Lua 0.9<1
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -674,6 +678,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+  - type: ThermalCloak #Lua
+    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -714,6 +720,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+  - type: ThermalCloak #Lua
+    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -758,6 +766,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/wizard.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/wizard.rsi
+  - type: ThermalCloak #Lua
+    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -985,6 +995,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+  - type: ThermalCloak #Lua
+    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000

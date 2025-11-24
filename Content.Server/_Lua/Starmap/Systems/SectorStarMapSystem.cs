@@ -8,6 +8,8 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
+using Content.Shared.Lua.CLVar;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
@@ -21,6 +23,7 @@ public sealed class SectorStarMapSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     private float _updateTimer = 0f;
 
     private bool TryGetConfiguredPosition(string sectorProtoId, out Vector2 position)
@@ -65,6 +68,8 @@ public sealed class SectorStarMapSystem : EntitySystem
     public List<Star> GetSectorStars()
     {
         var sectorStars = new List<Star>();
+        if (!_configurationManager.GetCVar(CLVars.StarmapIncludeSectors))
+        { return sectorStars; }
         try
         {
             var frontierMapId = GetFrontierSectorMapId();
@@ -114,6 +119,16 @@ public sealed class SectorStarMapSystem : EntitySystem
                 {
                     var display = GetMapEntityName(typanMapId) ?? "Nordfall Sector";
                     var star = new Star(position, typanMapId, display, Vector2.Zero);
+                    sectorStars.Add(star);
+                }
+            }
+            var luaTechMapId = _sectorSystem.TryGetMapId("LuaTechSector", out var luaTechMap) ? luaTechMap : MapId.Nullspace;
+            if (luaTechMapId != MapId.Nullspace)
+            {
+                if (TryGetConfiguredPosition("LuaTechSector", out var position))
+                {
+                    var display = GetMapEntityName(luaTechMapId) ?? "LuaTech Sector";
+                    var star = new Star(position, luaTechMapId, display, Vector2.Zero);
                     sectorStars.Add(star);
                 }
             }
@@ -220,6 +235,13 @@ public sealed class SectorStarMapSystem : EntitySystem
         }
         catch (Exception ex)
         { info.AppendLine($"  Nordfall Sector: ERROR - {ex.Message}"); }
+        try
+        {
+            var luaTechMapId = _sectorSystem.TryGetMapId("LuaTechSector", out var luaTechMap) ? luaTechMap : MapId.Nullspace;
+            info.AppendLine($"  LuaTech Sector: {luaTechMapId}");
+        }
+        catch (Exception ex)
+        { info.AppendLine($"  LuaTech Sector: ERROR - {ex.Message}"); }
         var starMapQuery = AllEntityQuery<StarMapComponent>();
         var starMapCount = 0;
         while (starMapQuery.MoveNext(out var uid, out var starMap))

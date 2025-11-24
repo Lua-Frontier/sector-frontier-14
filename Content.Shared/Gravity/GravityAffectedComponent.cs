@@ -1,4 +1,4 @@
-﻿using Robust.Shared.GameStates;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Gravity;
 
@@ -12,6 +12,6 @@ public sealed partial class GravityAffectedComponent : Component
     /// <summary>
     /// If true, this entity will be considered "weightless"
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public bool Weightless = true;
 }
