@@ -240,6 +240,19 @@
 
    - Запуск корабля с 0% заряда во всех [bold][color=#eb564b]накопителях[/color][/bold] составляет: [bold]7.5 секунд.[/bold]
 
+   - Выработка одного [bold][color=#eb564b]ДАМ[/color][/bold] составляет - [bold]120 кВт[/bold], соответственно общая выработка составляет - [bold]240 кВт.[/bold]
+
+   <Box>
+    - [bold]Технические детали:[/bold] [bold][color=#eb564b]продвинутый СМЭС x4, подстанция x2, мини генератор гравитаций, ДАМ x2.[/color][/bold]
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="SMESAdvanced" Caption="   "/>
+      <GuideEntityEmbed Entity="SubstationBasic" Caption="   "/>
+      <GuideEntityEmbed Entity="GravityGeneratorMini" Caption="   "/>
+      <GuideEntityEmbed Entity="AmeController" Caption="   "/>
+   </Box>
+
    <Box>
        [bold][color=#639137]ГИДРОПОНИКА:[/color][/bold]
    </Box>
@@ -279,7 +292,7 @@
    </Box>
 
    <Box>
-       [bold][color=#639137]Кухня:[/color][/bold]
+       [bold][color=#639137]КУХНЯ:[/color][/bold]
    </Box>
 
    <Box>
@@ -295,7 +308,7 @@
    </Box>
 
    <Box>
-    - [bold]Прочее:[/bold] поварской гардероб, ПосудоМат, Шефвенд, мясной крюк.
+    - [bold]Прочее:[/bold] Поварской гардероб, ПосудоМат, Шефвенд, мясной крюк.
    </Box>
 
    <Box>
@@ -304,4 +317,81 @@
       <GuideEntityEmbed Entity="VendingMachineChefvend" Caption="   "/>
       <GuideEntityEmbed Entity="KitchenSpike" Caption="   "/>
    </Box>
+
+   <Box>
+       [bold][color=#bc863f]КАРГО:[/color][/bold]
+   </Box>
+
+   <Box>
+    - [bold]Оборудование:[/bold] Снаряжение утилизатора x2, переработчик руды, раздатчик газовых баллонов.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="LockerSalvageSpecialistFilledHardsuit" Caption="   "/>
+      <GuideEntityEmbed Entity="OreProcessor" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineTankDispenserEVA" Caption="   "/>
+   </Box>
+
+   <Box>
+       [bold][color=#37789b]МЕДИЦИНСКИЙ ОТДЕЛ:[/color][/bold]
+   </Box>
+
+   <Box>
+    - [bold]Мед-бей:[/bold] Больничная койка, стазисная кровать, шкаф для медикаментов, НаноМед Плюс, дефибриллятор.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="MedicalBed" Caption="   "/>
+      <GuideEntityEmbed Entity="StasisBed" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerMedicineFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineMedical" Caption="   "/>
+      <GuideEntityEmbed Entity="DefibrillatorCabinetFilled" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Рабочая зона:[/bold] Мед-О-Мат, мед. ТехФаб, шкафы медика и химика, ящик химического оборудования.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="MedicalAssembler" Caption="   "/>
+      <GuideEntityEmbed Entity="MedicalTechFab" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerMedicalFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerChemistryFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="CrateChemistrySupplies" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Химическая лаборотория:[/bold] ХимМастер 4000, раздатчик химикатов, электроплитка.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="ChemMaster" Caption="   "/>
+      <GuideEntityEmbed Entity="ChemDispenser" Caption="   "/>
+      <GuideEntityEmbed Entity="ChemistryHotplate" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Операционная:[/bold] Операционный стол, сканер тела, продвинутый  хирургический набор.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="OperatingTable" Caption="   "/>
+      <GuideEntityEmbed Entity="computerBodyScanner" Caption="   "/>
+      <GuideEntityEmbed Entity="ClothingBackpackDuffelSurgeryAdvancedFilled" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Морг:[/bold] Стол для аутопсии, сканер тела, морг.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="AutopsyTable" Caption="   "/>
+      <GuideEntityEmbed Entity="computerBodyScanner" Caption="   "/>
+      <GuideEntityEmbed Entity="Morgue" Caption="   "/>
+   </Box>
+
+   <Box>
+      ## NT-WYVERN: Version 3.2
+   </Box>
+
 </Document>
