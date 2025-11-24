@@ -222,5 +222,86 @@
     - [bold]Энергоснабжение:[/bold] 
    </Box>
 
-   - Питание корабля обеспечено с помощью двух [bold][color=#eb564b]Двигателей Антиматерий (ДАМ)[/color][/bold], а хранение запасов электричества осуществлено с помощью четырёх [bold][color=#eb564b]СМЭС-ов.[/color][/bold]
+   - Питание корабля обеспечено с помощью двух [bold][color=#eb564b]Двигателей Антиматерий (ДАМ),[/color][/bold] по 1 ядру каждый, а хранение запасов электричества осуществлено с помощью четырёх [bold][color=#eb564b]Продвинутых СМЭС-ов.[/color][/bold]
+
+   - Две [bold][color=#eb564b]подстанций[/color][/bold] делят питание корабля на западную и восточную части. Но [bold][color=#eb564b]ДАМ-ы[/color][/bold] соединены в одну сеть и питают все четыре [bold][color=#eb564b]СМЭС-а.[/color][/bold]
+
+   - Время питания без выработки электроэнергий, с 100% заряженными [bold][color=#eb564b]СМЭС-ами[/color][/bold] составляет: [bold]7 минут.[/bold]
+
+   - Время перехода с постоянного питания на резервное со [bold][color=#eb564b]СМЭС-ов[/color][/bold] составляет: [bold]7.5 секунд.[/bold]
+
+   - Время зарядки всех [bold][color=#eb564b]СМЭС-ов[/color][/bold] с 0% заряда до 100% составляет: [bold]30 минут.[/bold]
+
+   - Потребление энергий вне время зарядки [bold][color=#eb564b]СМЭС-ов и подстанций[/color][/bold] составляет: [bold]192.8 кВт.[/bold]
+
+   - Потребление энергий во время зарядки [bold][color=#eb564b]СМЭС-ов и подстанций[/color][/bold] составляет: [bold]240.8 кВт.[/bold]
+
+   - Оптимальный запас питания составляет: [bold]30 кВт.[/bold]
+
+   - Запуск корабля с 0% заряда во всех [bold][color=#eb564b]накопителях[/color][/bold] составляет: [bold]7.5 секунд.[/bold]
+
+   <Box>
+       [bold][color=#639137]ГИДРОПОНИКА:[/color][/bold]
+   </Box>
+
+   <Box>
+    - [bold]Оборудование:[/bold] Гидропонный лоток x9, экстрактор семян, МегаРаздатчик Семян, шкаф ботаника.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="hydroponicsTray" Caption="   "/>
+      <GuideEntityEmbed Entity="SeedExtractor" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineSeeds" Caption="   "/>
+      <GuideEntityEmbed Entity="LockerBotanistFilled" Caption="   "/>
+   </Box>
+
+   <Box>
+       [bold][color=#639137]БАР:[/color][/bold]
+   </Box>
+
+   <Box>
+    - [bold]Раздатчики:[/bold] Кофемашина, раздатчик безалкоголя, раздатчик алкоголя.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="ImpCoffeeMachine" Caption="   "/>
+      <GuideEntityEmbed Entity="SodaDispenser" Caption="   "/>
+      <GuideEntityEmbed Entity="BoozeDispenser" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Вендоматы:[/bold] АлкоМат, ShadyCigs Делюкс.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="VendingMachineBooze" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineCigs" Caption="   "/>
+   </Box>
+
+   <Box>
+       [bold][color=#639137]Кухня:[/color][/bold]
+   </Box>
+
+   <Box>
+    - [bold]Оборудование:[/bold] Измельчитель, электрогриль, микроволновка, электроплита, Фуд-О-Мат.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="KitchenReagentGrinder" Caption="   "/>
+      <GuideEntityEmbed Entity="KitchenElectricGrill" Caption="   "/>
+      <GuideEntityEmbed Entity="KitchenMicrowave" Caption="   "/>
+      <GuideEntityEmbed Entity="KitchenElectricRange" Caption="   "/>
+      <GuideEntityEmbed Entity="KitchenAssembler" Caption="   "/>
+   </Box>
+
+   <Box>
+    - [bold]Прочее:[/bold] поварской гардероб, ПосудоМат, Шефвенд, мясной крюк.
+   </Box>
+
+   <Box>
+      <GuideEntityEmbed Entity="ClosetChefFilled" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineDinnerware" Caption="   "/>
+      <GuideEntityEmbed Entity="VendingMachineChefvend" Caption="   "/>
+      <GuideEntityEmbed Entity="KitchenSpike" Caption="   "/>
+   </Box>
 </Document>
