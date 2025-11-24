@@ -224,7 +224,7 @@
 
 - type: entity
   name: TCA MMG-68 "Grizzly" (6.8x52mm Caseless)
-  parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  parent: [BaseWeaponLightMachineGun, BaseC2ContrabandUnredeemable]
   id: WeaponLMGGrizzly
   description: A medium machine gun chambered in 6.8x52mm Caseless, accepts both box and standard magazines. A label on the side reads "FOR MILITARY USE ONLY". The weight of the machine gun make it hard to wield easily. To assist with standardization, it also accepts 5.56x45mm and 7.62x39mm.
   components:
@@ -235,15 +235,17 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -20
+    minAngle: -23 #Lua -20 -> -23
+    maxAngle: -25 #Lua -20 -> -25
   - type: Gun
     minAngle: 24
     maxAngle: 36
     angleIncrease: 3
     angleDecay: 34
-    fireRate: 6.2 #Lua +0.2
+    fireRate: 7 #Lua +1
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -308,8 +310,8 @@
     id: ExperimentalFactionWeapon
   - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    sprintModifier: 0.9
-    walkModifier: 0.9
+    sprintModifier: 0.6 #Lua 0.9 -> 0.6
+    walkModifier: 0.6 #Lua 0.9 -> 0.6
   - type: SpeedModifiedOnWield
     walkModifier: 0.4
     sprintModifier: 0.35
