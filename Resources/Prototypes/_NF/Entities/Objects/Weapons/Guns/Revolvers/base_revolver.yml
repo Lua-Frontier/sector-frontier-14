@@ -165,6 +165,23 @@
     chambers: [ True ]
     ammoSlots: [ null ]
 
+- type: entity
+  abstract: true
+  parent: NFBaseWeaponRevolverChamber
+  id: NFBaseWeaponRevolverChamber50
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeHighCaliber
+    capacity: 1
+    proto: CartridgeHighCaliber
+    chambers: [ True ]
+    ammoSlots: [ null ]
+    
 # Cap guns and fake cap guns
 - type: entity
   abstract: true
