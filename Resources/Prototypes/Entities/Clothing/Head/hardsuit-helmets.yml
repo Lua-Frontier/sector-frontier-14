@@ -682,9 +682,9 @@
   description: A bizarre gem-encrusted helmet that radiates magical energies.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/wizard.rsi
+    sprite: _Lua/Clothing/Head/Hardsuits/wizard.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/wizard.rsi
+    sprite: _Lua/Clothing/Head/Hardsuits/wizard.rsi #Lua
   - type: PointLight
     color: "#ffadfb"
   - type: PressureProtection
@@ -699,7 +699,7 @@
         Heat: 0.9
   - type: Tag
     tags:
-    - CorgiWearable
+#    - CorgiWearable #Lua
     - WhitelistChameleon
 
 #Organic Space Suit

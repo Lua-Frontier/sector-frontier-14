@@ -763,9 +763,9 @@
   description: A bizarre gem-encrusted suit that radiates magical energies.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/wizard.rsi
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/wizard.rsi #Lua
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/wizard.rsi
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/wizard.rsi #Lua
   - type: ThermalCloak #Lua
     enabled: false
   - type: PressureProtection
@@ -790,7 +790,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
   - type: Tag
     tags:
-    - CorgiWearable
+#    - CorgiWearable #Lua
     - Hardsuit
     - WhitelistChameleon
 
