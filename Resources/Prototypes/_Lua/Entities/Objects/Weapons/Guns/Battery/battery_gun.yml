@@ -29,11 +29,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletDisabler
+    proto: LuaBulletLaserCold
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: NFBulletDisabler
+    - proto: LuaBulletLaserCold #Lua NFBulletDisabler<LuaBulletLaserCold
       fireCost: 100
 #    - proto: NFBulletTaser #comment from _Lua
 #      fireCost: 200
