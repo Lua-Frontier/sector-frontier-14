@@ -1,16 +1,16 @@
-# Creator Info
-# Discord: daeqa1us_
-# Cikey: wh1te
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
 
 - type: vessel
-  id: kaleidoscope
+  id: Devastator
   parent: BaseVessel
-  name: Kaleidoscope
+  name: NT-Devastator
   description: Горно и газо добывабщий фрегат, предназначенный для исследования и добычи ресурсов в отдаленных уголках космоса.
   price: 66000
   category: medium
   group: Shipyard
-  shuttlePath: /Maps/_Lua/Shuttles/Civilian/kaleidoscope.yml
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/Devastator.yml
   guidebookPage: Null
   class:
   - Civilian
@@ -21,16 +21,16 @@
     - type: IFF
       color: "#ffffff"
 - type: gameMap
-  id: kaleidoscope
-  mapName: 'Kaleidoscope'
-  mapPath: /Maps/_Lua/Shuttles/Civilian/kaleidoscope.yml
+  id: Devastator
+  mapName: 'NT-Devastator'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/Devastator.yml
   minPlayers: 0
   stations:
-    kaleidoscope:
+    Devastator:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Kaleidoscope {1}'
+          mapNameTemplate: 'NT-Devastator {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
