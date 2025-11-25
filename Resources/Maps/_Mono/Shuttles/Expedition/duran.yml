@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 267.3.0
+  engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/23/2025 10:44:44
-  entityCount: 368
+  time: 11/25/2025 11:59:37
+  entityCount: 386
 maps: []
 grids:
 - 2
@@ -823,6 +823,97 @@ entities:
     - type: Transform
       pos: -5.5,-0.5
       parent: 2
+  - uid: 386
+    components:
+    - type: Transform
+      pos: -2.5,-0.5
+      parent: 2
+- proto: CableHV
+  entities:
+  - uid: 369
+    components:
+    - type: Transform
+      pos: -4.5,2.5
+      parent: 2
+  - uid: 370
+    components:
+    - type: Transform
+      pos: -5.5,2.5
+      parent: 2
+  - uid: 371
+    components:
+    - type: Transform
+      pos: -6.5,2.5
+      parent: 2
+  - uid: 372
+    components:
+    - type: Transform
+      pos: -7.5,2.5
+      parent: 2
+  - uid: 373
+    components:
+    - type: Transform
+      pos: -7.5,1.5
+      parent: 2
+  - uid: 374
+    components:
+    - type: Transform
+      pos: -7.5,0.5
+      parent: 2
+  - uid: 375
+    components:
+    - type: Transform
+      pos: -7.5,-0.5
+      parent: 2
+  - uid: 376
+    components:
+    - type: Transform
+      pos: -8.5,-0.5
+      parent: 2
+- proto: CableMV
+  entities:
+  - uid: 379
+    components:
+    - type: Transform
+      pos: -8.5,-0.5
+      parent: 2
+  - uid: 380
+    components:
+    - type: Transform
+      pos: -7.5,-0.5
+      parent: 2
+  - uid: 381
+    components:
+    - type: Transform
+      pos: -6.5,-0.5
+      parent: 2
+  - uid: 382
+    components:
+    - type: Transform
+      pos: -5.5,-0.5
+      parent: 2
+  - uid: 383
+    components:
+    - type: Transform
+      pos: -4.5,-0.5
+      parent: 2
+  - uid: 384
+    components:
+    - type: Transform
+      pos: -3.5,-0.5
+      parent: 2
+  - uid: 385
+    components:
+    - type: Transform
+      pos: -2.5,-0.5
+      parent: 2
+- proto: CableTerminal
+  entities:
+  - uid: 377
+    components:
+    - type: Transform
+      pos: -7.5,0.5
+      parent: 2
 - proto: CarpetBlack
   entities:
   - uid: 235
@@ -922,7 +1013,7 @@ entities:
   - uid: 238
     components:
     - type: Transform
-      pos: -0.5,3.5
+      pos: -0.5,1.5
       parent: 2
 - proto: ClosetWallO2N2Filled
   entities:
@@ -1992,6 +2083,14 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 2
+- proto: SubstationWallBasic
+  entities:
+  - uid: 378
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,-0.5
+      parent: 2
 - proto: Table
   entities:
   - uid: 162
@@ -2585,7 +2684,7 @@ entities:
   - uid: 247
     components:
     - type: Transform
-      pos: 0.5,3.5
+      pos: 0.5,1.5
       parent: 2
 - proto: WeaponCapacitorRecharger
   entities:
