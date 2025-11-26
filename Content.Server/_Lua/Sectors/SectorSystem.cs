@@ -84,8 +84,17 @@ public sealed class SectorSystem : EntitySystem
         {
             if (!proto.AutoStart) continue;
             if (!_cfg.GetCVar(CLVars.AsteroidSectorEnabled)) continue;
-            if (!string.IsNullOrEmpty(proto.RequiredGamePreset))
-            { var preset = _ticker.CurrentPreset?.ID; if (!string.Equals(proto.RequiredGamePreset, preset, StringComparison.Ordinal)) continue; }
+            var currentPreset = _ticker.CurrentPreset?.ID;
+            if (!string.IsNullOrEmpty(proto.RequiredGamePreset) || (proto.RequiredGamePresets != null && proto.RequiredGamePresets.Length > 0))
+            {
+                if (string.IsNullOrEmpty(currentPreset)) continue;
+                var allowed = false;
+                if (!string.IsNullOrEmpty(proto.RequiredGamePreset) && string.Equals(proto.RequiredGamePreset, currentPreset, StringComparison.Ordinal))
+                { allowed = true; }
+                if (!allowed && proto.RequiredGamePresets != null && proto.RequiredGamePresets.Contains(currentPreset))
+                { allowed = true; }
+                if (!allowed) continue;
+            }
             EnsureSector(proto.ID);
         }
 
@@ -122,7 +131,16 @@ public sealed class SectorSystem : EntitySystem
         if (!_protos.TryIndex<SectorSystemPrototype>(configId, out var cfg)) { Log.Error($"Sector config '{configId}' not ffund"); return; }
         Log.Info($"[SectorSystem] EnsureSector begin id='{configId}' name='{cfg.Name}' station='{cfg.Station}'");
         var preset = _ticker.CurrentPreset?.ID;
-        if (!string.IsNullOrEmpty(cfg.RequiredGamePreset) && !string.Equals(cfg.RequiredGamePreset, preset, StringComparison.Ordinal)) return;
+        if (!string.IsNullOrEmpty(cfg.RequiredGamePreset) || (cfg.RequiredGamePresets != null && cfg.RequiredGamePresets.Length > 0))
+        {
+            if (string.IsNullOrEmpty(preset)) return;
+            var allowed = false;
+            if (!string.IsNullOrEmpty(cfg.RequiredGamePreset) && string.Equals(cfg.RequiredGamePreset, preset, StringComparison.Ordinal))
+            { allowed = true; }
+            if (!allowed && cfg.RequiredGamePresets != null && cfg.RequiredGamePresets.Contains(preset))
+            { allowed = true; }
+            if (!allowed) return;
+        }
         var mapUid = _map.CreateMap(out var mapId, false);
         var opts = Robust.Shared.EntitySerialization.DeserializationOptions.Default with { InitializeMaps = true };
         var stationGrid = _ticker.MergeGameMap(_protos.Index<GameMapPrototype>(cfg.Station), mapId, opts).FirstOrNull(HasComp<BecomesStationComponent>)!.Value;

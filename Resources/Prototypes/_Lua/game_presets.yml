@@ -10,3 +10,21 @@
   supportedMaps: ShipVsShip
   rules:
     - ShipVsShip
+
+- type: gamePreset
+  id: LuaAdventure
+  alias:
+    - luaadventure
+    - luaadv
+  name: lua-adventure-title
+  description: lua-adventure-description
+  showInVote: true
+  supportedMaps: LuaMapPool
+  rules:
+    - NFAdventure
+    - NFBasicStationEventScheduler
+    - BluespaceEventScheduler
+    - BluespaceSalvageEventScheduler
+    - SmugglingEventScheduler
+    - MonoAISTCShuttleSpawnerScheduler
+    - NFRoundstartVariation

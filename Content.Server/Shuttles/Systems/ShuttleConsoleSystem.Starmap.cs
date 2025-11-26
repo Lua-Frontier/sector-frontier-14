@@ -1,4 +1,4 @@
-// LuaWorld - This file is licensed under AGPLv3
+ // LuaWorld - This file is licensed under AGPLv3
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
@@ -119,6 +119,7 @@ public sealed partial class ShuttleConsoleSystem
         }
         var visibleSectorMaps = new List<MapId>();
         var sectorIdByMap = new Dictionary<MapId, string>();
+        var currentPreset = _ticker.CurrentPreset?.ID;
         if (consoleUid != null)
         {
             try
@@ -138,6 +139,16 @@ public sealed partial class ShuttleConsoleSystem
                                 { mapId = _ticker.DefaultMap; }
                                 else if (_sectors.TryGetMapId(sid, out var resolved))
                                 { mapId = resolved; }
+                                else if (currentPreset == "LuaAdventure")
+                                {
+                                    string? altId = sid switch
+                                    {
+                                        "TypanSector" => "TypanSectorLua",
+                                        "PirateSector" => "PirateSectorLua",
+                                        _ => null
+                                    };
+                                    if (altId == null || !_sectors.TryGetMapId(altId, out resolved)) continue; mapId = resolved;
+                                }
                                 else
                                 { continue; }
                                 {
@@ -195,7 +206,20 @@ public sealed partial class ShuttleConsoleSystem
             }
         }
         foreach (var sid in new[] { "AsteroidSectorDefault", "MercenarySector", "PirateSector", "TypanSector", "LuaTechSector" })
-        { if (_sectors.TryGetMapId(sid, out var mid) && !sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = sid; }
+        {
+            if (_sectors.TryGetMapId(sid, out var mid))
+            { if (!sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = sid; continue; }
+            if (currentPreset == "LuaAdventure")
+            {
+                string? altId = sid switch
+                {
+                    "TypanSector" => "TypanSectorLua",
+                    "PirateSector" => "PirateSectorLua",
+                    _ => null
+                };
+                if (altId != null && _sectors.TryGetMapId(altId, out mid) && !sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = altId;
+            }
+        }
         if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
         {
             var frontierIdx = stars.FindIndex(s => s.Map == _ticker.DefaultMap);

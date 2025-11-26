@@ -30,3 +30,29 @@
           OutpostSyndicateRD: [ 0, 1 ]
           OutpostSyndicateScience: [ 0, 2 ]
           OutpostSyndicateTelecommunicationsOfficer: [ 0, 1 ]
+
+- type: gameMap
+  id: TypanLua
+  mapName: 'Нордфолл'
+  mapPath: /Maps/_Lua/Maps/Nordfoll.yml
+  isGrid: true
+  minPlayers: 0
+  stations:
+    Typan:
+      stationProto: StandardTypanVessel
+      components:
+      - type: MailStationDisabled
+      - type: StationNameSetup
+        mapNameTemplate: 'Нордфолл'
+      - type: ExtraStationInformation
+        iconPath: /Textures/Structures/Wallmounts/flags.rsi/syndie_flag.png # used the biggest one, looks better when downscaling than upscaling
+        stationSubtext: 'typan-lobby-outpost-subtext'
+        stationDescription: 'typan-lobby-outpost-description'
+      - type: StationJobs
+        availableJobs:
+          OutpostSyndicateResearcher: [ 0, 4 ]
+          OutpostSyndicateAtmosTech: [ 0, 1 ]
+          OutpostSyndicateMedic: [ 0, 1 ]
+          OutpostSyndicateRD: [ 0, 1 ]
+          OutpostSyndicateScience: [ 0, 1 ]
+          OutpostSyndicateTelecommunicationsOfficer: [ 0, 1 ]

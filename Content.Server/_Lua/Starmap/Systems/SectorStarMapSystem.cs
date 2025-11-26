@@ -70,6 +70,7 @@ public sealed class SectorStarMapSystem : EntitySystem
         var sectorStars = new List<Star>();
         if (!_configurationManager.GetCVar(CLVars.StarmapIncludeSectors))
         { return sectorStars; }
+        var currentPreset = _ticker.CurrentPreset?.ID;
         try
         {
             var frontierMapId = GetFrontierSectorMapId();
@@ -102,20 +103,22 @@ public sealed class SectorStarMapSystem : EntitySystem
                     sectorStars.Add(star);
                 }
             }
-            var pirateMapId = _sectorSystem.TryGetMapId("PirateSector", out var pirateMap) ? pirateMap : MapId.Nullspace;
+            var pirateConfigId = currentPreset == "LuaAdventure" ? "PirateSectorLua" : "PirateSector";
+            var pirateMapId = _sectorSystem.TryGetMapId(pirateConfigId, out var pirateMap) ? pirateMap : MapId.Nullspace;
             if (pirateMapId != MapId.Nullspace)
             {
-                if (TryGetConfiguredPosition("PirateSector", out var position))
+                if (TryGetConfiguredPosition(pirateConfigId, out var position))
                 {
                     var display = GetMapEntityName(pirateMapId) ?? "Pirate Sector";
                     var star = new Star(position, pirateMapId, display, Vector2.Zero);
                     sectorStars.Add(star);
                 }
             }
-            var typanMapId = _sectorSystem.TryGetMapId("TypanSector", out var typanMap) ? typanMap : MapId.Nullspace;
+            var typanConfigId = currentPreset == "LuaAdventure" ? "TypanSectorLua" : "TypanSector";
+            var typanMapId = _sectorSystem.TryGetMapId(typanConfigId, out var typanMap) ? typanMap : MapId.Nullspace;
             if (typanMapId != MapId.Nullspace)
             {
-                if (TryGetConfiguredPosition("TypanSector", out var position))
+                if (TryGetConfiguredPosition(typanConfigId, out var position))
                 {
                     var display = GetMapEntityName(typanMapId) ?? "Nordfall Sector";
                     var star = new Star(position, typanMapId, display, Vector2.Zero);

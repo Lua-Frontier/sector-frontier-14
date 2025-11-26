@@ -8,6 +8,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.Discord.DiscordLink;
 using Content.Shared._Lua.Chat.Systems;
 using Content.Shared._Lua.Language;
 using Content.Shared.ActionBlocker;
@@ -67,6 +68,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly DiscordChatLink _discordChatLink = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
 
@@ -714,6 +716,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         SendInVoiceRange(ChatChannel.LOOC, name, message, wrappedMessage, obfuscated: string.Empty, obfuscatedWrappedMessage: string.Empty, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId, languageOverride: LanguageSystem.Universal); // Lua
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
+        _discordChatLink.SendMessage(message, player.Name, ChatChannel.LOOC);
     }
 
     private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
@@ -739,6 +742,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         _chatManager.ChatMessageToMany(ChatChannel.Dead, message, wrappedMessage, source, hideChat, true, clients.ToList(), author: player.UserId);
+        _discordChatLink.SendMessage(message, player.Name, ChatChannel.Dead);
     }
     #endregion
 
