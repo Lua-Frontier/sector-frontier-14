@@ -3,7 +3,7 @@
   abstract: true
   minimumDistance: 2000 # Some sane defaults
   maximumDistance: 4000
-  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGamePreset: [ NFAdventure, NFPirate, LuaAdventure ]
   spawnGroup: Optional
   addComponents:
   - type: IFF

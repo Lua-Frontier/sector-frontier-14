@@ -23,6 +23,8 @@ public sealed class DiscordChatLink : IPostInjectInit
     private ulong? _oocChannelId;
     private ulong? _adminChannelId;
     private ulong? _ahelpChannelId;
+    private ulong? _loocChannelId;
+    private ulong? _deadChannelId;
 
     // Track ahelp threads for each user
     private readonly Dictionary<NetUserId, ulong> _ahelpThreads = new();
@@ -34,6 +36,8 @@ public sealed class DiscordChatLink : IPostInjectInit
         _configurationManager.OnValueChanged(CCVars.OocDiscordChannelId, OnOocChannelIdChanged, true);
         _configurationManager.OnValueChanged(CCVars.AdminChatDiscordChannelId, OnAdminChannelIdChanged, true);
         _configurationManager.OnValueChanged(CCVars.AhelpDiscordChannelId, OnAhelpChannelIdChanged, true);
+        _configurationManager.OnValueChanged(CCVars.LoocDiscordChannelId, OnLoocChannelIdChanged, true);
+        _configurationManager.OnValueChanged(CCVars.DeadDiscordChannelId, OnDeadChannelIdChanged, true);
     }
 
     public void Shutdown()
@@ -43,6 +47,8 @@ public sealed class DiscordChatLink : IPostInjectInit
         _configurationManager.UnsubValueChanged(CCVars.OocDiscordChannelId, OnOocChannelIdChanged);
         _configurationManager.UnsubValueChanged(CCVars.AdminChatDiscordChannelId, OnAdminChannelIdChanged);
         _configurationManager.UnsubValueChanged(CCVars.AhelpDiscordChannelId, OnAhelpChannelIdChanged);
+        _configurationManager.UnsubValueChanged(CCVars.LoocDiscordChannelId, OnLoocChannelIdChanged);
+        _configurationManager.UnsubValueChanged(CCVars.DeadDiscordChannelId, OnDeadChannelIdChanged);
     }
 
     private void OnOocChannelIdChanged(string channelId)
@@ -76,6 +82,20 @@ public sealed class DiscordChatLink : IPostInjectInit
         }
 
         _ahelpChannelId = ulong.Parse(channelId);
+    }
+
+    private void OnLoocChannelIdChanged(string channelId)
+    {
+        if (string.IsNullOrEmpty(channelId))
+        { _loocChannelId = null; return; }
+        _loocChannelId = ulong.Parse(channelId);
+    }
+
+    private void OnDeadChannelIdChanged(string channelId)
+    {
+        if (string.IsNullOrEmpty(channelId))
+        { _deadChannelId = null; return; }
+        _deadChannelId = ulong.Parse(channelId);
     }
 
     private void OnMessageReceived(SocketMessage message)
@@ -112,7 +132,7 @@ public sealed class DiscordChatLink : IPostInjectInit
                 // Check for "ao:" prefix to determine if message should be admin-only
                 var adminOnly = false;
                 var processedContents = contents;
-                
+
                 if (contents.StartsWith("ao:", StringComparison.OrdinalIgnoreCase))
                 {
                     adminOnly = true;
@@ -139,6 +159,8 @@ public sealed class DiscordChatLink : IPostInjectInit
         {
             ChatChannel.OOC => _oocChannelId,
             ChatChannel.AdminChat => _adminChannelId,
+            ChatChannel.LOOC => _loocChannelId,
+            ChatChannel.Dead => _deadChannelId,
             _ => throw new InvalidOperationException("Channel not linked to Discord."),
         };
 

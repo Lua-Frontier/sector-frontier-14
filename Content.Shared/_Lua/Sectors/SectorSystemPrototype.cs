@@ -32,6 +32,9 @@ public sealed partial class SectorSystemPrototype : IPrototype
     public string? RequiredGamePreset;
 
     [DataField]
+    public string[]? RequiredGamePresets;
+
+    [DataField]
     public string? DefaultGamePreset;
 
     [DataField]
