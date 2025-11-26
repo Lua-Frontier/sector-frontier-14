@@ -43,11 +43,11 @@
     maxCharge: 5250
     startingCharge: 5250
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyGunFrost_NonLethal
+    proto: BulletEnergyGunFrostNonLethal
     fireCost: 75
   - type: EnergyGun
     fireModes:
-    - proto: BulletEnergyGunFrost_NonLethal
+    - proto: BulletEnergyGunFrostNonLethal
       fireCost: 75
       name: disable
   - type: MagazineVisuals
