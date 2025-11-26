@@ -23,6 +23,12 @@ public sealed partial class MonoCVars
     #region Audio
 
     /// <summary>
+    ///     Whether the client should hear combat music triggered by ship artillery.
+    /// </summary>
+    public static readonly CVarDef<bool> CombatMusicEnabled =
+        CVarDef.Create("mono.combat_music.enabled", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
     ///     Whether to render sounds with echo when they are in 'large' open, rooved areas.
     /// </summary>
     /// <seealso cref="AreaEchoSystem"/>
