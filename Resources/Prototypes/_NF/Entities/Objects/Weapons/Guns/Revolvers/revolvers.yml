@@ -78,7 +78,7 @@
 
 - type: entity
   id: NFWeaponPistolFlintlock
-  parent: [ NFBaseWeaponRevolverChamber60, NFBaseWeaponFrameRevolverSteelbolt ]
+  parent: [ NFBaseWeaponRevolverChamber50, NFBaseWeaponFrameRevolverSteelbolt ]
   name: flintlock pistol
   description: |-
     A pirate's companion. Yarrr! An illegal weapon often used by pirates.
@@ -88,7 +88,7 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
   - type: UseDelay
-    delay: 8
+    delay: 5
 
 # WizDen: Rubber
 - type: entity

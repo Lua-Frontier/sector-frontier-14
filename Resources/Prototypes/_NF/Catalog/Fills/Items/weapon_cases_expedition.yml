@@ -9,7 +9,7 @@
 # Gun cases with contraband (unregistered) guns for expeditions
 #region Pistols
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortMk58Expedition
   suffix: Dungeon, Mk58
   categories: [ HideSpawnMenu ]
@@ -22,7 +22,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortN1984Expedition
   suffix: Dungeon, N1984
   categories: [ HideSpawnMenu ]
@@ -35,7 +35,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortViper
   suffix: Dungeon, Viper
   categories: [ HideSpawnMenu ]
@@ -48,7 +48,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortCobra
   suffix: Dungeon, Cobra
   categories: [ HideSpawnMenu ]
@@ -61,7 +61,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortUniversalExpedition
   suffix: Dungeon, Universal
   categories: [ HideSpawnMenu ]
@@ -74,7 +74,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortPollockExpedition
   suffix: Dungeon, Pollock
   categories: [ HideSpawnMenu ]
@@ -88,7 +88,7 @@
 
 #region Revolvers
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortArgentiExpedition
   suffix: Dungeon, Argenti
   categories: [ HideSpawnMenu ]
@@ -101,7 +101,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortDeckardExpedition
   suffix: Dungeon, Deckard
   categories: [ HideSpawnMenu ]
@@ -114,7 +114,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortRitland45Expedition
   suffix: Dungeon, Ritland-45
   categories: [ HideSpawnMenu ]
@@ -127,7 +127,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortWard45Expedition
   suffix: Dungeon, Ward-45
   categories: [ HideSpawnMenu ]
@@ -140,7 +140,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortFitzExpedition
   suffix: Dungeon, Fitz
   categories: [ HideSpawnMenu ]
@@ -153,7 +153,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortFaithExpedition
   suffix: Dungeon, Faith
   categories: [ HideSpawnMenu ]
@@ -166,7 +166,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortLuckyExpedition
   suffix: Dungeon, Lucky 37
   categories: [ HideSpawnMenu ]
@@ -179,7 +179,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortRevolverPirate
   suffix: Dungeon, Pirate Revolver
   categories: [ HideSpawnMenu ]
@@ -193,7 +193,7 @@
 
 #region Shotguns
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongKammererExpedition
   suffix: Dungeon, Kammerer
   categories: [ HideSpawnMenu ]
@@ -206,7 +206,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongEnforcerExpedition
   suffix: Dungeon, Enforcer
   categories: [ HideSpawnMenu ]
@@ -219,7 +219,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongBulldog
   suffix: Dungeon, Bulldog
   categories: [ HideSpawnMenu ]
@@ -233,7 +233,7 @@
 
 #region SMGs
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongWT550Expedition
   suffix: Dungeon, WT550
   categories: [ HideSpawnMenu ]
@@ -246,7 +246,7 @@
       amount: 3
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongAtreidesExpedition
   suffix: Dungeon, Atreides
   categories: [ HideSpawnMenu ]
@@ -259,7 +259,7 @@
       amount: 3
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongDrozdExpedition
   suffix: Dungeon, Drozd
   categories: [ HideSpawnMenu ]
@@ -272,7 +272,7 @@
       amount: 3
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongC20r
   suffix: Dungeon, C20r
   categories: [ HideSpawnMenu ]
@@ -285,7 +285,7 @@
       amount: 3
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongTypewriterExpedition
   suffix: Dungeon, Typewriter
   categories: [ HideSpawnMenu ]
@@ -299,7 +299,7 @@
 
 #region Rifles
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongGestioExpedition
   suffix: Dungeon, Gestio
   categories: [ HideSpawnMenu ]
@@ -312,7 +312,7 @@
       amount: 3
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongWeaponRifleNovaliteC1Expedition
   suffix: Dungeon, NovaliteC1
   categories: [ HideSpawnMenu ]
@@ -325,7 +325,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongLecterExpedition
   suffix: Dungeon, Lecter
   categories: [ HideSpawnMenu ]
@@ -338,7 +338,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongSm
   suffix: Dungeon, Soland-Moss AR
   categories: [ HideSpawnMenu ]
@@ -364,7 +364,7 @@
 #       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongSVSExpedition
   suffix: Dungeon, SVS
   categories: [ HideSpawnMenu ]
@@ -377,7 +377,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongVulcanExpedition
   suffix: Dungeon, Vulcan
   categories: [ HideSpawnMenu ]
@@ -390,7 +390,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongJackdaw
   suffix: Dungeon, Jackdaw
   categories: [ HideSpawnMenu ]
@@ -404,7 +404,7 @@
 
 #region Energy
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortLaserGunExpedition
   suffix: Dungeon, Laser Pistol
   categories: [ HideSpawnMenu ]
@@ -415,7 +415,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortSvalinnExpedition
   suffix: Dungeon, Svalinn
   categories: [ HideSpawnMenu ]
@@ -428,7 +428,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongLaserCarbineExpedition
   suffix: Dungeon, Laser Carbine
   categories: [ HideSpawnMenu ]
@@ -439,7 +439,7 @@
       amount: 1
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongEnergyGunExpedition
   suffix: Dungeon, Energy Gun
   categories: [ HideSpawnMenu ]
@@ -450,7 +450,7 @@
       amount: 1
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortAntiqueLaserExpedition
   suffix: Dungeon, Antique Laser
   categories: [ HideSpawnMenu ]
@@ -461,7 +461,7 @@
       amount: 1
 
 - type: entity
-  parent: [WeaponCaseShort, RareWeaponCase]
+  parent: [WeaponCaseShort] #Lua
   id: WeaponCaseShortAdvancedLaserExpedition
   suffix: Dungeon, Advanced Laser
   categories: [ HideSpawnMenu ]
@@ -472,7 +472,7 @@
       amount: 1
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongLaserCannonExpedition
   suffix: Dungeon, Laser Cannon
   categories: [ HideSpawnMenu ]
@@ -483,7 +483,7 @@
       amount: 1
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongXrayCannonExpedition
   suffix: Dungeon, Xray Cannon
   categories: [ HideSpawnMenu ]
@@ -494,7 +494,7 @@
       amount: 1
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongTemperatureGunExpedition
   suffix: Dungeon, Temperature Gun
   categories: [ HideSpawnMenu ]
@@ -506,7 +506,7 @@
 
 #region Sniper
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongBarlowsBoltExpedition
   suffix: Dungeon, Mosin
   categories: [ HideSpawnMenu ]
@@ -519,7 +519,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongHristovExpedition
   suffix: Dungeon, Hristov
   categories: [ HideSpawnMenu ]
@@ -532,7 +532,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongRepeaterExpedition
   suffix: Dungeon, Repeater
   categories: [ HideSpawnMenu ]
@@ -545,7 +545,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongMusketExpedition
   suffix: Dungeon, Musket
   categories: [ HideSpawnMenu ]
@@ -558,7 +558,7 @@
       amount: 2
 
 - type: entity
-  parent: [WeaponCaseLong, RareWeaponCase]
+  parent: [WeaponCaseLong] #Lua
   id: WeaponCaseLongSniperCeremonialExpedition
   suffix: Dungeon, Ceremonial Rifle
   categories: [ HideSpawnMenu ]
@@ -599,7 +599,7 @@
 
 #region LMG
 - type: entity
-  parent: [WeaponCaseHeavy, RareWeaponCase]
+  parent: [WeaponCaseHeavy] #Lua
   id: WeaponCaseHeavyLightMachineGunL6
   suffix: Dungeon, L6
   categories: [ HideSpawnMenu ]

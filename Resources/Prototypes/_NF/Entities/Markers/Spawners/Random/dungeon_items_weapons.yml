@@ -208,22 +208,22 @@
     - WeaponCaseShortCobra
     - WeaponCaseShortN1984Expedition
     - WeaponCaseShortViper
-    - WeaponCaseShortFitzExpedition
+#    - WeaponCaseShortFitzExpedition #Lua
     - WeaponCaseShortWard45Expedition
     - WeaponCaseShortRevolverPirate
     - WeaponCaseLongC20r
     - WeaponCaseLongJackdaw
-    - WeaponCaseLongGestioExpedition
-    - WeaponCaseLongWeaponRifleNovaliteC1Expedition
-    - WeaponCaseLongSVSExpedition
+#    - WeaponCaseLongGestioExpedition #Lua
+#    - WeaponCaseLongWeaponRifleNovaliteC1Expedition #Lua
+#    - WeaponCaseLongSVSExpedition #Lua
     - WeaponCaseLongKammererExpedition
-    - WeaponCaseShortLaserGunExpedition
+#    - WeaponCaseShortLaserGunExpedition #Lua
     chance: 1.0
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT3
     - SpawnDungeonLootGunT3L # Lua
-    rareChance: 0.05
+    rareChance: 0.1 #Lua 0.05<0.1
 
 #region guns T3
 - type: entity
@@ -248,16 +248,16 @@
     - WeaponCaseLongAtreidesExpedition
     - WeaponCaseLongWT550Expedition
     - WeaponCaseLongDrozdExpedition
-    # - WeaponCaseLongM90Expedition
+#    - WeaponCaseLongM90Expedition
     - WeaponCaseLongLecterExpedition
     - WeaponCaseShortSvalinnExpedition
     - WeaponCaseLongHristovExpedition
-    - WeaponCaseLongMusketExpedition
+#    - WeaponCaseLongMusketExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT4
-    rareChance: 0.05
+    rareChance: 0.1 #Lua 0.05<1
 
 #region guns T4
 - type: entity
@@ -291,7 +291,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT5
-    rareChance: 0.05
+    rareChance: 0.1 #Lua 0.05<1
 
 #region guns T5
 - type: entity

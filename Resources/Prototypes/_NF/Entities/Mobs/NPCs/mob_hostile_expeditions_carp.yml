@@ -20,11 +20,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      32: Dead
+      100: Dead #Lua 32<100
   - type: SlowOnDamage
     speedModifierThresholds:
-      19: 0.7
-      26: 0.5
+      80: 0.7 #Lua 19<80
+#      26: 0.5 #Lua
 
 - type: entity
   id: NFMobCarpMagic
@@ -37,11 +37,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      40: Dead
+      140: Dead #Lua 40<140
   - type: SlowOnDamage
     speedModifierThresholds:
-      24: 0.7
-      32: 0.5
+      120: 0.7 #Lua 24<120
+#      32: 0.5 #Lua
   - type: Sprite
     sprite: _NF/Mobs/Aliens/Carps/magic.rsi
     layers:
@@ -87,11 +87,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      48: Dead
+      160: Dead #Lua 48<160
   - type: SlowOnDamage
     speedModifierThresholds:
-      28: 0.7
-      38: 0.5
+      130: 0.7 #Lua 28<130
+#      38: 0.5 #Lua
 
 - type: entity
   id: NFMobShark
@@ -104,11 +104,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      64: Dead
+      200: Dead #Lua 64<200
   - type: SlowOnDamage
     speedModifierThresholds:
-      38: 0.7
-      52: 0.5
+      170: 0.7 #Lua 38<170
+#      52: 0.5 #Lua
   - type: MeleeWeapon
     damage:
       types:

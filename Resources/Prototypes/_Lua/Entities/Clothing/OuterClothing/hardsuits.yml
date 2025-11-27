@@ -34,6 +34,9 @@
     openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: HardsuitIdentification
     emaggable: false
   - type: HardsuitDNARadial
@@ -61,12 +64,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.4
+        Caustic: 0.4
   - type: Tag
     tags:
     - Hardsuit
@@ -117,6 +120,9 @@
     openCloseDelay: 1
     autoClose: true
     autoCloseDelay: 3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: HardsuitIdentification
     emaggable: false
   - type: HardsuitDNARadial
@@ -144,12 +150,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
+        Blunt: 0.325
+        Slash: 0.325
+        Piercing: 0.325
+        Heat: 0.325
+        Radiation: 0.325
+        Caustic: 0.325
   - type: Tag
     tags:
     - Hardsuit

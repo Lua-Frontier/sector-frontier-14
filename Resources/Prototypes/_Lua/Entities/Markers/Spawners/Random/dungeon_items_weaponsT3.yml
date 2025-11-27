@@ -203,3 +203,49 @@
     rarePrototypes:
     - SpawnDungeonLootGunT4
     rareChance: 0.05
+
+#TreasureSpawner from Armories
+- type: entity
+  parent: MarkerBase
+  id: LuaArmorySpawnerTreasure
+  name: Armory Treasure Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - SpaceCash5000
+    - SpaceCash10000
+    - SpaceCash20000
+    - SpaceCash30000
+    chance: 0.4
+    offset: 0.0
+    rarePrototypes:
+    - MaterialDiamond
+    rareChance: 0.1
+
+#Circuitboard spawner for armories (to prevent ammotechfab from appearing in every armory)
+- type: entity
+  parent: MarkerBase
+  id: LuaArmorySpawnerCircuitBoard
+  name: Armory CirsuitBoard Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AmmoTechFabCircuitboard
+    - MercenaryTechFabCircuitboardNF
+    - MedicalTechFabCircuitboard
+    - ComputerIFFCircuitboard
+    chance: 0.2
+    offset: 0.0
+    rarePrototypes:
+    - SecurityTechFabCircuitboard
+    rareChance: 0.05

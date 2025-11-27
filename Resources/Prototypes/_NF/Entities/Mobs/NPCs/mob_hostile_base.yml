@@ -260,8 +260,8 @@
   abstract: true
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4.2 # ~10% slowdown
-    baseSprintSpeed : 4.2 # ~10% slowdown
+    baseWalkSpeed : 4.7 # ~10% slowdown #Lua 4.2<4.7
+    baseSprintSpeed : 4.7 # ~10% slowdown #Lua 4.2<4.7
 
 - type: entity
   id: MobMovementSpeedModifierEVAMelee
@@ -403,7 +403,7 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true
+        false #Lua true<false
       NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
         true
 

@@ -61,10 +61,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      150: Dead #Lua 50<150
+  - type: MovementSpeedModifier #Lua
+    baseSprintSpeed: 4.7
   - type: SlowOnDamage
     speedModifierThresholds:
-      25: 0.5
+      100: 0.75 #Lua 25<100; 0.5<0.75
   - type: Stamina
     critThreshold: 200
   - type: Bloodstream
@@ -78,7 +80,7 @@
     animation: WeaponArcBite
     damage:
       groups:
-        Brute: 6
+        Brute: 18 #Lua 6<18
   - type: InfectOnMelee
     disease: XenoVirus
     infectChance: 0.05
@@ -145,12 +147,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      300: Dead #Lua 100<300
   - type: Stamina
     critThreshold: 300
   - type: SlowOnDamage
     speedModifierThresholds:
-      50: 0.7
+      200: 0.7 #Lua 50<200
   - type: Fixtures
     fixtures:
       fix1:
@@ -179,14 +181,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      240: Dead #Lua 80<240
   - type: SlowOnDamage
     speedModifierThresholds:
       40: 0.7
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 6
+        Brute: 18 #Lua 6<18
   - type: InfectOnMelee
     disease: XenoVirus
     infectChance: 0.05
@@ -228,7 +230,7 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 12
+       Brute: 36 #Lua 12<36
   - type: InfectOnMelee
     disease: XenoVirus
     infectChance: 0.05
@@ -263,19 +265,19 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Dead
+      200: Dead #Lua 100<200
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 10
+       Brute: 30 #Lua 10<30
   - type: InfectOnMelee
     disease: XenoVirus
     infectChance: 0.05
   - type: SlowOnDamage
     speedModifierThresholds:
-      50: 0.7
+      150: 0.7 #Lua 50<150
   - type: Fixtures
     fixtures:
       fix1:
@@ -306,7 +308,7 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 5
+       Brute: 15 #Lua 5<15
   - type: InfectOnMelee
     disease: XenoVirus
     infectChance: 0.05
@@ -354,10 +356,10 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      150: Dead #Lua 50<150
   - type: SlowOnDamage
     speedModifierThresholds:
-      25: 0.7
+      100: 0.7 #Lua 25<100
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound

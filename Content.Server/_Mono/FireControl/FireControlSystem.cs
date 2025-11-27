@@ -21,7 +21,9 @@ using Robust.Shared.Physics.Systems;
 using System.Linq;
 using Content.Shared.Physics;
 using System.Numerics;
+using Content.Server._Mono.CombatMusic;
 using Content.Server._Mono.SpaceArtillery;
+using Content.Server._Mono.SpaceArtillery.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Timing;
@@ -41,6 +43,7 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PowerReceiverSystem _power = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private readonly CombatMusicSystem _combatMusic = default!;
 
     /// <summary>
     /// Dictionary of entities that have visualization enabled
@@ -415,6 +418,7 @@ public sealed partial class FireControlSystem : EntitySystem
             return;
 
         var targetCoords = GetCoordinates(coordinates);
+        var artilleryFired = false; // Track if any artillery weapons fired
 
         foreach (var weapon in weapons)
         {
@@ -466,8 +470,20 @@ public sealed partial class FireControlSystem : EntitySystem
             if (!CanFireInDirection(localWeapon, weaponPos, direction, targetPos.Position, weaponX.MapID))
                 continue;
 
+            var isArtillery = HasComp<SpaceArtilleryComponent>(localWeapon);
+
             // If we can fire, fire the weapon
             _gun.AttemptShoot(localWeapon, localWeapon, gun, targetCoords);
+
+            if (isArtillery)
+            {
+                artilleryFired = true;
+            }
+        }
+
+        if (artilleryFired)
+        {
+            TriggerCombatMusic(server);
         }
     }
 
@@ -767,6 +783,18 @@ public sealed partial class FireControlSystem : EntitySystem
         var directions = CheckAllDirections(entityUid);
         RaiseNetworkEvent(new FireControlVisualizationEvent(netEntity, directions));
         return true;
+    }
+
+    /// <summary>
+    /// Triggers combat music for the grid that the console is on.
+    /// </summary>
+    private void TriggerCombatMusic(EntityUid consoleUid)
+    {
+        var gridUid = _xform.GetGrid(consoleUid);
+        if (gridUid == null)
+            return;
+
+        _combatMusic.TriggerCombatMusic(gridUid.Value);
     }
 }
 

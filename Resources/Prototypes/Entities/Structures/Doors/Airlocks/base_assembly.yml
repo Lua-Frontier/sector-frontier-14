@@ -18,9 +18,9 @@
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 110
         mask:
-        - FullTileMask
+        - MachineMask #Lua FullTileMask<MachineMask
         layer:
-        - HumanoidBlockLayer
+        - MachineLayer #Lua HumanoidBlockLayer<MachineLayer
   - type: Anchorable
     delay: 2
   - type: Pullable

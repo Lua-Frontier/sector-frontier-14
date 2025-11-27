@@ -4,7 +4,7 @@
   id: NFModerate
   lootTable: NFSalvageLootModerate
   lootBudget: 30
-  mobBudget: 25
+  mobBudget: 40 #Lua 25<40
   modifierBudget: 2
   color: "#EFB34196"
   recommendedPlayers: 2
@@ -13,7 +13,7 @@
 - type: salvageDifficulty
   id: NFHazardous
   lootTable: NFSalvageLootHazardous
-  lootBudget: 40
+  lootBudget: 55 #Kua 40<55
   mobBudget: 32
   modifierBudget: 3
   color: "#DE3A3A96"
@@ -23,7 +23,7 @@
 - type: salvageDifficulty
   id: NFExtreme
   lootTable: NFSalvageLootExtreme
-  lootBudget: 50
+  lootBudget: 65 #Lua 50<65
   mobBudget: 40
   modifierBudget: 4
   color: "#D381C996"

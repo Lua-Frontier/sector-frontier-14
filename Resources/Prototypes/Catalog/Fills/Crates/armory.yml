@@ -92,12 +92,12 @@
 - type: entity
   id: CrateArmoryRifle
   parent: [ CrateWeaponSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
-  name: rifle crate
-  description: Contains two high-powered assault rifles with four mags. Requires Armory access to open.
+  name: SMG crate #Lua rifle<SMG
+  description: Contains two high-powered SMGs with four mags. Requires Armory access to open. #Lua rifles<SMGs
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleAssaultLecter
-      amount: 2
-    - id: NFMagazineRifle20
+    - id: NFWeaponSubMachineGunDrozd #Lua NFWeaponRifleAssaultLecter<NFWeaponSubMachineGunDrozd
+      amount: 1 #Lua 2<1
+    - id: NFMagazineSubMachineGun35 #Lua NFMagazineRifle20<NFMagazineSubMachineGun35
       amount: 4

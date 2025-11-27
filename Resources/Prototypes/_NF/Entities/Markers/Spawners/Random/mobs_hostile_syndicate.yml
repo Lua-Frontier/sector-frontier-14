@@ -195,14 +195,14 @@
         state: inhand-left
   - type: RandomSpawner
     prototypes:
-    - MobSyndicateNavalGrenadierB
+#    - MobSyndicateNavalGrenadierB #Lua
     - MobSyndicateNavalGrenadierC
     - MobSyndicateNavalGrenadierD
     chance: 1
     offset: 0.0
     rarePrototypes:
     - MobSyndicateNavalGrenadierA
-    rareChance: 0.1
+    rareChance: 0.5 #Lua 0.1<0.5
 
 - type: entity
   name: syndicate naval saboteur spawner
@@ -423,7 +423,7 @@
         state: inhand-right
   - type: RandomSpawner
     prototypes:
-    - MobSyndicateNavalGrenadierB
+    - MobSyndicateNavalGrenadierA #Lua B<A
     - MobSyndicateNavalGrenadierC
     - MobSyndicateNavalGrenadierD
     - MobSyndicateNavalChemwarriorB

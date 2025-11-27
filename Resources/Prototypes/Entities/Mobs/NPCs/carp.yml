@@ -43,7 +43,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        40: Dead
+        100: Dead #Lua 40<100
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3.5
@@ -74,6 +74,8 @@
         types:
           Blunt: 5
           Slash: 7
+    - type: StaminaDamageOnCollide #Lua
+      damage: 5
     - type: TypingIndicator
       proto: alien
     - type: Tag
