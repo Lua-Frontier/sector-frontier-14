@@ -1,19 +1,21 @@
 - type: entity
+  parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
+  id: BaseAmmoProvider
+  abstract: true
+  components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+
+- type: entity
   parent: [BaseAmmoProvider, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: AmmoProviderShotgunShell
   abstract: true
   components:
-  # Goobstation edit start
-  - type: EmitSoundOnPickup
-    sound:
-      path: /Audio/_Goobstation/Items/handling/ammobox_pickup.ogg
-  - type: EmitSoundOnDrop
-    sound:
-      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
-  # Goobstation edit end
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
   - type: BallisticAmmoProvider
@@ -27,6 +29,17 @@
     steps: 5
     zeroVisible: false
   - type: Appearance
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  # Goobstation edit end
 
 # Shotgun Shells
 - type: entity

@@ -1,9 +1,8 @@
 #region WizDen
-
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultSm
   parent: [ NFBaseWeaponRifleAssaultChamber30, NFBaseWeaponFrameRifleAssaultCybersun ]
-  name: AK-74M
+  name: Soland-Moss # Renamed: real brand name
   description: |-
     An iconic weapon of war. An illegal firearm often used by Syndicate agents.
   components:
@@ -20,6 +19,18 @@
     magState: mag
     steps: 1
     zeroVisible: true
+
+- type: entity # TODO: switch to .25 rifle (caseless)
+  id: NFWeaponRifleAssaultM90GrenadeLauncher
+  parent: [ NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultCybersun ]
+  name: M-90gl
+  description: |-
+    An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
+  components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
 
 - type: entity
   id: NFWeaponRifleAssaultLecter
@@ -40,6 +51,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
+#region WizDen: Rubber
 - type: entity
   id: NFWeaponRifleAssaultLecterLessLethal
   parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20Rubber, NFBaseWeaponFrameRifleAssaultNanotrasen ]
@@ -48,18 +60,6 @@
     A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
   suffix: Frontier, Less-lethal
   components: *lecterComponents
-  
-- type: entity # TODO: switch to .25 rifle (caseless)
-  id: NFWeaponRifleAssaultM90GrenadeLauncher
-  parent: [ NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultCybersun ]
-  name: M-90gl
-  description: |-
-    An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
-  components:
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
 
 #region DeltaV
 - type: entity

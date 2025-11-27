@@ -33,7 +33,7 @@
     - Belt
   - type: Gun
     fireRate: 3
-    projectileSpeed: 40 # Mono
+    projectileSpeed: 22.5
     availableModes:
       - SemiAuto
     soundGunshot:
@@ -43,7 +43,7 @@
     capacity: 7
     count: 7
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1 # Mono
+    rechargeCooldown: 4
     rechargeSound:
       path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
   - type: AmmoCounter
