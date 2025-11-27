@@ -6,6 +6,6 @@
         Margin="4">
     <BoxContainer Orientation="Vertical">
         <CheckBox Name="Department"/> <!-- Toggles all jobs in the department at once -->
-	    <GridContainer Name="JobsContainer" Columns="4"/> <!-- Populated with each job to toggle individually-->
+        <BoxContainer Name="JobsContainer" Orientation="Vertical" Margin="20 0 0 0"/> <!-- Populated with each job to toggle individually-->
     </BoxContainer>
 </PanelContainer>

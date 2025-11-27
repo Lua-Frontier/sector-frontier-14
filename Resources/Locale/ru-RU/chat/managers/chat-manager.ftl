@@ -44,6 +44,8 @@ chat-manager-send-hook-ooc-wrap-message = OOC: [bold](ДС) {$senderName}:[/bold
 chat-manager-send-hook-admin-wrap-message = ADMIN: [bold](ДС) {$senderName}:[/bold] {$message}
 chat-channel-humanized-ooc = OOC
 chat-channel-humanized-admin = ADMIN
+chat-channel-humanized-looc = LOOC
+chat-channel-humanized-dead = МЁРТВЫЕ
 
 chat-manager-dead-channel-name = МЁРТВЫЕ
 chat-manager-admin-channel-name = АДМИН

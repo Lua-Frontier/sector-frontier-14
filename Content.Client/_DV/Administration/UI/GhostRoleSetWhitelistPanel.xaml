@@ -6,6 +6,6 @@
         Margin="4"> <!-- Frontier: ghost role set whitelist -->
     <BoxContainer Orientation="Vertical">
         <CheckBox Name="GhostRoleSet"/> <!-- Toggles all jobs in the department at once -->
-	    <GridContainer Name="RolesContainer" Columns="4"/> <!-- Populated with each job to toggle individually-->
+        <BoxContainer Name="RolesContainer" Orientation="Vertical" Margin="20 0 0 0"/> <!-- Populated with each job to toggle individually-->
     </BoxContainer>
 </PanelContainer>

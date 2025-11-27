@@ -458,6 +458,7 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: ActivatableUI
+    adminOnly: true
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
     radius: 1.5

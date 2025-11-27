@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client._DV.Administration.UI;
 
@@ -13,29 +14,22 @@ public sealed partial class DepartmentWhitelistPanel : PanelContainer
 {
     public Action<ProtoId<JobPrototype>, bool>? OnSetJob;
 
-    public DepartmentWhitelistPanel(DepartmentPrototype department, IPrototypeManager proto, HashSet<ProtoId<JobPrototype>> whitelists, bool globalWhitelist) // Frontier: add globalWhitelist
+    public DepartmentWhitelistPanel(DepartmentPrototype department, IPrototypeManager proto, HashSet<ProtoId<JobPrototype>> whitelists, bool globalWhitelist, HashSet<ProtoId<JobPrototype>> addedJobs) // Frontier: add globalWhitelist, addedJobs
     {
         RobustXamlLoader.Load(this);
 
-        var anyValid = false;//
+        var anyValid = false;
         var allWhitelisted = true;
-        var grey = Color.FromHex("#ccc");
-        foreach (var id in department.Roles)
+        var sortedRoles = department.Roles
+            .Select(id => (Id: id, Proto: proto.Index(id))).Where(x => x.Proto.Whitelisted && !addedJobs.Contains(x.Id)).OrderBy(x => x.Proto.LocalizedName).ToList();
+        foreach (var (id, jobProto) in sortedRoles)
         {
             var thisJob = id; // closure capturing funny
-
-            // Frontier: skip non-whitelisted roles, cache prototype
-            var jobProto = proto.Index(id);
-            if (!jobProto.Whitelisted)
-                continue;
-            else
-                anyValid = true;
-            // End Frontier
+            anyValid = true;
+            addedJobs.Add(id);
 
             var button = new CheckBox();
             button.Text = jobProto.LocalizedName;
-            if (!jobProto.Whitelisted)
-                button.Modulate = grey; // Let admins know whitelisting this job is only for futureproofing.
             button.Pressed = whitelists.Contains(id) || globalWhitelist;
             button.OnPressed += _ => OnButtonPressed(thisJob, button, globalWhitelist); // Frontier: check global whitelist
             JobsContainer.AddChild(button);

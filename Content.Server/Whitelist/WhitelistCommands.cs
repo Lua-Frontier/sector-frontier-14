@@ -9,7 +9,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Whitelist;
 
-[AdminCommand(AdminFlags.Whitelist)] // DeltaV - Custom permission for whitelist
+[AdminCommand(AdminFlags.Host)]
 public sealed class AddWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly IPlayerLocator _locator = default!;
@@ -57,7 +57,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.Ban)]
+[AdminCommand(AdminFlags.Host)]
 public sealed class RemoveWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly IPlayerLocator _locator = default!;

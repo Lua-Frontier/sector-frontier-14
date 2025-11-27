@@ -12,14 +12,6 @@
     sprite: _Lua/Clothing/Head/SDHardsuits/M73-helmet.rsi #Lua
   - type: PointLight
     color: "#ffeead"
-  - type: NightVision
-    flashDurationMultiplier: 2
-    isEquipment: true
-    color: "#999999"
-  - type: ThermalVision
-    flashDurationMultiplier: 2
-    pulseTime: 6
-    isEquipment: true
     toggleAction: PulseThermalVision
   - type: Armor
     modifiers:
@@ -76,10 +68,6 @@
     sprite: _Lua/Clothing/Head/SDHardsuits/M92-helmet.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/Head/SDHardsuits/M92-helmet.rsi #Lua
-  - type: NightVision
-    flashDurationMultiplier: 2
-    isEquipment: true
-    color: "#999999"
 
 - type: entity
   parent: NFClothingHeadHardsuitWithLightBaseNfsd
@@ -92,10 +80,6 @@
     sprite: _Lua/Clothing/Head/SDHardsuits/M92x-helmet.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/Head/SDHardsuits/M92x-helmet.rsi #Lua
-  - type: NightVision
-    flashDurationMultiplier: 2
-    isEquipment: true
-    color: "#999999"
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -121,11 +105,6 @@
     sprite: _Lua/Clothing/Head/SDHardsuits/M93-helmet.rsi #Lua
   - type: PointLight
     color: "#79bb66"
-  - type: ThermalVision
-    flashDurationMultiplier: 2
-    pulseTime: 6
-    isEquipment: true
-    toggleAction: PulseThermalVision
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -151,10 +130,6 @@
     sprite: _Lua/Clothing/Head/SDHardsuits/M93c-helmet.rsi #Lua
   - type: PointLight
     color: "#ffed7f"
-  - type: NightVision
-    flashDurationMultiplier: 2
-    isEquipment: true
-    color: "#999999"
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
