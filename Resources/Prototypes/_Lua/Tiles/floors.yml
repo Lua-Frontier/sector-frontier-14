@@ -57,3 +57,29 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWood
   heatCapacity: 10000
+
+  # Hull Reinforced Corners
+
+- type: tile
+  id: HullReinforcedCornerNE
+  parent: FloorHullReinforced
+  name: tiles-HullReinforcedcornerNE
+  sprite: /Textures/_Lua/Tiles/hull_reinforced/ne.png
+
+- type: tile
+  id: HullReinforcedCornerNW
+  parent: FloorHullReinforced
+  name: tiles-HullReinforcedcornerNW
+  sprite: /Textures/_Lua/Tiles/hull_reinforced/nw.png
+
+- type: tile
+  id: HullReinforcedCornerSE
+  parent: FloorHullReinforced
+  name: tiles-HullReinforcedcornerSE
+  sprite: /Textures/_Lua/Tiles/hull_reinforced/se.png
+
+- type: tile
+  id: HullReinforcedCornerSW
+  parent: FloorHullReinforced
+  name: tiles-HullReinforcedcornerSW
+  sprite: /Textures/_Lua/Tiles/hull_reinforced/sw.png
