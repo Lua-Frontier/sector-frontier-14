@@ -28,3 +28,35 @@
     Piercing: 25
     Heat: 25
     Structural: 50
+
+#Dragon fauna
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetCarpMelee
+  coefficients:
+    Blunt: 0.6
+    Slash: 1.3
+    Piercing: 1.3
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetCarpSpit
+  coefficients:
+    Blunt: 1.3
+    Slash: 1.3
+    Piercing: 0.6
+
+#Xeno fauna
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetXenoMelee
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Piercing: 1.3
+    Heat: 1.5
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetXenoSpit
+  coefficients:
+    Blunt: 1.3
+    Slash: 1.3
+    Piercing: 0.6
+    Heat: 1.5

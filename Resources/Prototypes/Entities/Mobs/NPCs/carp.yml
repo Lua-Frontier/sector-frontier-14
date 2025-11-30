@@ -93,6 +93,8 @@
       interactFailureSound:
         path: /Audio/Effects/bite.ogg
     - type: Carriable # DeltaV
+    - type: Damageable #Lua
+      damageModifierSet: MobHostileDamageModifierSetCarpMelee
 
 - type: entity
   parent: BaseMobCarp

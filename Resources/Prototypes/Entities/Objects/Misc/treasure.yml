@@ -17,7 +17,7 @@
     castShadows: false
     color: "#0000ff"
   - type: StaticPrice
-    price: 500
+    price: 1000 #Lua 500<1000
 
 - type: entity
   parent: BaseItem
@@ -39,7 +39,7 @@
         harddisk_mini: ""
         harddisk_micro: ""
   - type: StaticPrice
-    price: 275
+    price: 550 #Lua 275<550
 
 - type: entity
   parent: BaseItem
@@ -54,7 +54,7 @@
   - type: Item
     storedRotation: -90
   - type: StaticPrice
-    price: 350
+    price: 700 #Lua 350<700
 
 - type: entity
   parent: BaseItem
@@ -69,7 +69,7 @@
   - type: Item
     storedRotation: -90
   - type: StaticPrice
-    price: 300
+    price: 600 #Lua 300<600
 
 - type: entity
   parent: BaseItem
@@ -84,7 +84,7 @@
   - type: Item
     size: Tiny
   - type: StaticPrice
-    price: 750
+    price: 1500 #Lua 750<1500
 
 - type: entity
   parent: BaseItem
@@ -107,7 +107,7 @@
         synchronizer: ""
         stabilizer: ""
   - type: StaticPrice
-    price: 120
+    price: 240 #Lua 120<240
 
 - type: entityTable
   id: TreasureCoinPile
@@ -151,7 +151,7 @@
   - type: Item
     size: Tiny
   - type: StackPrice # Frontier: Static<Stack
-    price: 75
+    price: 150 #Lua 75<150
   - type: Stack # Frontier
     stackType: TreasureCoinIron # Frontier
     count: 1 # Frontier
@@ -164,7 +164,7 @@
   - type: Sprite
     state: coin_silver
   - type: StackPrice # Frontier: Static<Stack
-    price: 125
+    price: 250 #Lua 125<250
   - type: Stack # Frontier
     stackType: TreasureCoinSilver # Frontier
     count: 1 # Frontier
@@ -176,7 +176,7 @@
   - type: Sprite
     state: coin_gold
   - type: StackPrice # Frontier: Static<Stack
-    price: 175
+    price: 350 #Lua 175<350
   - type: Stack # Frontier
     stackType: TreasureCoinGold # Frontier
     count: 1 # Frontier
@@ -188,7 +188,7 @@
   - type: Sprite
     state: coin_adamantine
   - type: StackPrice # Frontier: Static<Stack
-    price: 250
+    price: 500 #Lua 250<500
   - type: Stack # Frontier
     stackType: TreasureCoinAdamantine # Frontier
     count: 1 # Frontier
@@ -200,7 +200,7 @@
   - type: Sprite
     state: coin_diamond
   - type: StackPrice # Frontier: Static<Stack
-    price: 500
+    price: 1000 #Lua 500<1000
   - type: Stack # Frontier
     stackType: TreasureCoinDiamond # Frontier
     count: 1 # Frontier
