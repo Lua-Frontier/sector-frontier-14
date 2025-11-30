@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Static
+
+# Ship Test tiles
+
+- type: latheRecipePack
+  id: ShiptestFloorTilesStatic
+  recipes:
+  - FloorTileItemMaintSterile
+  - FloorTileItemTechmaintSterile
+  - FloorTileItemMaintMonoSterile
+  - FloorTileItemGridDark
+  - FloorTileItemGrid
+
+# Bee Station tiles
+
+- type: latheRecipePack
+  id: BeestationFloorTilesStatic
+  recipes:
+  - FloorTileItemSteelGreyMonoCommercial
+  - FloorTileItemGreySteelCommercial
+  - FloorTileItemSteelCommercial
+  - FloorTileItemSteelMonoCommercial
+  - FloorTileItemSteelDarkMonoCommercial
+  - FloorTileItemDarkSteelCommercial
+
+# LuaWorld
+
+- type: latheRecipePack
+  id: LuaWorldFloorTilesStatic # to avoid conflicts not named - Lua
+  recipes:
+  - FloorTileItemRedWood
+  - FloorTileItemDarkWood
+  - FloorTileItemSoft
