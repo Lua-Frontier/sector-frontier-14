@@ -74,6 +74,126 @@
   rotation: Fixed
   fx: EffectRCDConstruct1
 
+  #Lua add start
+
+  #Corner Floor Platings
+
+- type: rcd
+  id: PlatingCornerSE
+  name: rcd-component-PlatingCornerSE
+  category: FloorCornersPlating
+  sprite: /Textures/_Mono/Tiles/plating/se.png
+  mode: ConstructTile
+  prototype: PlatingCornerSE
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: PlatingCornerNE
+  name: rcd-component-PlatingCornerNE
+  category: FloorCornersPlating
+  sprite: /Textures/_Mono/Tiles/plating/ne.png
+  mode: ConstructTile
+  prototype: PlatingCornerNE
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: PlatingCornerNW
+  name: rcd-component-PlatingCornerNW
+  category: FloorCornersPlating
+  sprite: /Textures/_Mono/Tiles/plating/nw.png
+  mode: ConstructTile
+  prototype: PlatingCornerNW
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: PlatingCornerSW
+  name: rcd-component-PlatingCornerSW
+  category: FloorCornersPlating
+  sprite: /Textures/_Mono/Tiles/plating/sw.png
+  mode: ConstructTile
+  prototype: PlatingCornerSW
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+  #Corner Floor Lattices
+
+- type: rcd
+  id: LatticeCornerSE
+  name: rcd-component-LatticeCornerSE
+  category: FloorCornersLattice
+  sprite: /Textures/_Lua/Tiles/lattice/se.png
+  mode: ConstructTile
+  prototype: LatticeCornerSE
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: LatticeCornerNE
+  name: rcd-component-LatticeCornerNE
+  category: FloorCornersLattice
+  sprite: /Textures/_Lua/Tiles/lattice/ne.png
+  mode: ConstructTile
+  prototype: LatticeCornerNE
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: LatticeCornerNW
+  name: rcd-component-LatticeCornerNW
+  category: FloorCornersLattice
+  sprite: /Textures/_Lua/Tiles/lattice/nw.png
+  mode: ConstructTile
+  prototype: LatticeCornerNW
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: LatticeCornerSW
+  name: rcd-component-LatticeCornerSW
+  category: FloorCornersLattice
+  sprite: /Textures/_Lua/Tiles/lattice/sw.png
+  mode: ConstructTile
+  prototype: LatticeCornerSW
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1
+
+  #Lua add end
+
 # Walls
 - type: rcd
   id: WallSolid
