@@ -131,7 +131,7 @@
     activateSound: null
     deactivateSound: null
   - type: Damageable #Lua
-    damageModifierSet: MobHostileDamageModifierSetXenoMelee
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMinor
 
 - type: entity
   name: praetorian
@@ -171,6 +171,8 @@
     spawned:
     - id: XenoBioResearchDisk5000
       amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMajor
 
 - type: entity
   name: drone
@@ -217,6 +219,8 @@
     spawned:
     - id: XenoBioResearchDisk2000
       amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMajor
 
 - type: entity
   name: queen
@@ -311,6 +315,8 @@
     spawned:
     - id: XenoBioResearchDisk5000
       amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMajor
 
 - type: entity
   name: runner

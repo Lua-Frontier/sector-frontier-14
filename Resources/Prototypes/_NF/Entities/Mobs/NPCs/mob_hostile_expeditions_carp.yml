@@ -375,7 +375,7 @@
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
-  # fix for his actions, he must shoot fireballs itself, he was a dragon
+  # fix for his actions, he must shoot fireballs itself, he was a dragon; changes from _Lua (378-384)
   - type: NPCUseActionOnTarget
     actionId: ActionDragonsBreath
   # fix for self-damaging fireballs (he can burst flames, and he dont have fire protection???)

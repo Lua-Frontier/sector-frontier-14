@@ -504,6 +504,8 @@
   - type: ActionGun
     action: ActionTRexRoar
     gunProto: TRexRoarGun
+  - type: NPCUseActionOnTarget #Lua
+    actionId: ActionTRexRoar
 
 - type: entity
   id: TRexRoarGun
