@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/06/2025 15:08:24
-  entityCount: 1404
+  time: 12/06/2025 16:26:30
+  entityCount: 1393
 maps: []
 grids:
 - 1
@@ -515,7 +515,8 @@ entities:
           -1,-1:
             1: 61007
           -1,0:
-            1: 14
+            1: 6
+            3: 8
             2: 49152
           0,-2:
             1: 65280
@@ -627,7 +628,8 @@ entities:
           2,5:
             0: 32
           4,0:
-            1: 14
+            3: 2
+            1: 12
             2: 24576
           4,1:
             2: 4
@@ -713,65 +715,24 @@ entities:
           - 0
           - 0
           - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: 150mmApShell
-  entities:
-  - uid: 553
-    components:
-    - type: Transform
-      parent: 552
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 891
-    components:
-    - type: Transform
-      parent: 889
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: 150mmEmpShell
-  entities:
-  - uid: 244
-    components:
-    - type: Transform
-      parent: 243
-    - type: Physics
-      canCollide: False
-  - uid: 245
-    components:
-    - type: Transform
-      parent: 243
-    - type: Physics
-      canCollide: False
-  - uid: 331
-    components:
-    - type: Transform
-      parent: 330
-    - type: Physics
-      canCollide: False
-  - uid: 332
-    components:
-    - type: Transform
-      parent: 330
-    - type: Physics
-      canCollide: False
-  - uid: 554
-    components:
-    - type: Transform
-      parent: 552
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 890
-    components:
-    - type: Transform
-      parent: 889
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: AirAlarm
   entities:
   - uid: 1342
@@ -1172,11 +1133,6 @@ entities:
     - type: Transform
       pos: 25.5,-5.5
       parent: 1
-  - uid: 1303
-    components:
-    - type: Transform
-      pos: -3.5,-0.5
-      parent: 1
   - uid: 1304
     components:
     - type: Transform
@@ -1186,11 +1142,6 @@ entities:
     components:
     - type: Transform
       pos: 16.5,3.5
-      parent: 1
-  - uid: 1306
-    components:
-    - type: Transform
-      pos: 20.5,-0.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -2004,16 +1955,6 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
-  - uid: 320
-    components:
-    - type: Transform
-      pos: 20.5,-0.5
-      parent: 1
-  - uid: 555
-    components:
-    - type: Transform
-      pos: -3.5,-0.5
-      parent: 1
 - proto: BlastDoorOpen
   entities:
   - uid: 1313
@@ -2049,11 +1990,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,1.5
-      parent: 1
-  - uid: 35
-    components:
-    - type: Transform
-      pos: 18.5,1.5
       parent: 1
   - uid: 771
     components:
@@ -4087,7 +4023,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.22000003
       inletOneConcentration: 0.78
-      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 930
@@ -5335,8 +5270,8 @@ entities:
         immutable: False
         temperature: 293.14923
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -5347,18 +5282,6 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 553
-          - 554
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
   - uid: 889
     components:
     - type: Transform
@@ -5373,8 +5296,8 @@ entities:
         immutable: False
         temperature: 293.14923
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -5385,18 +5308,6 @@ entities:
         - 0
         - 0
         - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 890
-          - 891
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
   - uid: 1077
     components:
     - type: Transform
@@ -5978,16 +5889,6 @@ entities:
       parent: 1
 - proto: SignalButton
   entities:
-  - uid: 36
-    components:
-    - type: Transform
-      pos: 18.5,1.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        320:
-        - - Pressed
-          - Toggle
   - uid: 38
     components:
     - type: Transform
@@ -6013,11 +5914,6 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        555:
-        - - Pressed
-          - Toggle
   - uid: 1319
     components:
     - type: Transform
@@ -7044,6 +6940,18 @@ entities:
     components:
     - type: Transform
       pos: 2.5,5.5
+      parent: 1
+  - uid: 243
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-0.5
+      parent: 1
+  - uid: 244
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 20.5,-0.5
       parent: 1
   - uid: 246
     components:
@@ -8655,6 +8563,14 @@ entities:
     - type: Transform
       pos: 11.5,5.5
       parent: 1
+- proto: WarpPoint
+  entities:
+  - uid: 245
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 8.5,-4.5
+      parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 598
@@ -8667,6 +8583,20 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,2.5
+      parent: 1
+- proto: WeaponTurretBofors
+  entities:
+  - uid: 320
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,6.5
+      parent: 1
+  - uid: 325
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 14.5,6.5
       parent: 1
 - proto: WeaponTurretCharonReload
   entities:
@@ -8702,58 +8632,20 @@ entities:
           occludes: True
           ents:
           - 329
-- proto: WeaponTurretKargil
+- proto: WeaponTurretM220
   entities:
-  - uid: 325
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,6.5
-      parent: 1
-  - uid: 327
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,6.5
-      parent: 1
-- proto: WeaponTurretTarnyxReload
-  entities:
-  - uid: 243
+  - uid: 35
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,-0.5
       parent: 1
-    - type: BallisticAmmoProvider
-      entities:
-      - 244
-      - 245
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 244
-          - 245
-  - uid: 330
+  - uid: 36
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,-0.5
       parent: 1
-    - type: BallisticAmmoProvider
-      entities:
-      - 331
-      - 332
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 331
-          - 332
 - proto: WindoorSecure
   entities:
   - uid: 233

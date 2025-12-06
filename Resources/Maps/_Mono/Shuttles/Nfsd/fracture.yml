@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/06/2025 13:14:03
+  time: 12/06/2025 16:15:03
   entityCount: 560
 maps: []
 grids:
@@ -1865,7 +1865,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.22000003
       inletOneConcentration: 0.78
-      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 242
@@ -3782,21 +3781,21 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -23.5,-4.5
       parent: 1
-- proto: WeaponTurretKargil
+- proto: WeaponTurretBofors
   entities:
   - uid: 549
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -34.5,1.5
+      pos: -26.5,1.5
       parent: 1
   - uid: 550
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -26.5,1.5
+      pos: -34.5,1.5
       parent: 1
-- proto: WeaponTurretTarnyx
+- proto: WeaponTurretM220
   entities:
   - uid: 551
     components:
