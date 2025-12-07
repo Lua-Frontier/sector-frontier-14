@@ -6,11 +6,12 @@
   parent: BaseVessel
   id: GFRetribution
   name: SD-GF Возмездие
-  description: Урепленный шаттл с тяжелым вооруженим типа *Броненосец*
+  description: Укрепленный шаттл с тяжелым вооруженим типа *Броненосец*
   limit: 1
-  price: 474851
+  price: 474851 #Цена грида была 324851 наценка идет за оружие и экипировку
   category: Large
   group: Security
+  access: Armory
   class:
     - Nfsd
   engine:
