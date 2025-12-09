@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/07/2025 09:37:40
+  time: 12/09/2025 11:49:40
   entityCount: 579
 maps: []
 grids:
@@ -2315,6 +2315,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 33.5,24.5
       parent: 1
+- proto: HypoBrigmedic
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 30.537115,28.494854
+      parent: 1
 - proto: LockerEngineerFilled
   entities:
   - uid: 325
@@ -2547,13 +2555,6 @@ entities:
     components:
     - type: Transform
       pos: 34.5,19.5
-      parent: 1
-- proto: SpawnDungeonClutterHypospray
-  entities:
-  - uid: 361
-    components:
-    - type: Transform
-      pos: 30.5,28.5
       parent: 1
 - proto: StasisBed
   entities:
@@ -2922,16 +2923,6 @@ entities:
     - type: Transform
       pos: 30.5,33.5
       parent: 1
-  - uid: 436
-    components:
-    - type: Transform
-      pos: 31.5,33.5
-      parent: 1
-  - uid: 438
-    components:
-    - type: Transform
-      pos: 32.5,33.5
-      parent: 1
   - uid: 441
     components:
     - type: Transform
@@ -3096,11 +3087,6 @@ entities:
     components:
     - type: Transform
       pos: 34.5,33.5
-      parent: 1
-  - uid: 481
-    components:
-    - type: Transform
-      pos: 33.5,33.5
       parent: 1
   - uid: 483
     components:
@@ -3475,10 +3461,22 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 29.5,30.5
       parent: 1
+  - uid: 436
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,33.5
+      parent: 1
   - uid: 437
     components:
     - type: Transform
       pos: 31.5,34.5
+      parent: 1
+  - uid: 438
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 32.5,33.5
       parent: 1
   - uid: 439
     components:
@@ -3531,6 +3529,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 35.5,30.5
+      parent: 1
+  - uid: 481
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.5,33.5
       parent: 1
   - uid: 482
     components:
