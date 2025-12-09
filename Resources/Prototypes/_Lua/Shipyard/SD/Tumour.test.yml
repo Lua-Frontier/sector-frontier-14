@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# By ressuw.
+
+- type: vessel
+  parent: BaseVessel
+  id: Tumour.test
+  name: NSF Tumour.test
+  description: Средне-малый корабль для патруля космоса. Имеет Торпедное вооружение малых размеров.
+   Также имеет посредственное бронирование.
+  limit: 5
+  price: 118141
+  category: Medium
+  group: Security
+  class:
+  - Nfsd
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/SD/Tumour.test.yml
+  addComponents:
+    - type: IFF
+      color: "#96B089"
+
+- type: gameMap
+  id: Tumour.test
+  mapName: 'NSF Tumour.test'
+  mapPath: /Maps/_Lua/Shuttles/SD/Tumour.test.yml
+  minPlayers: 0
+  stations:
+    Tumour.test:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'NSF Tumour.test {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
