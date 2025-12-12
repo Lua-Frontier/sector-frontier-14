@@ -259,6 +259,8 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetCarpSpit
 
 - type: entity
   parent: NFMobRainbowWyvernIce
@@ -295,6 +297,8 @@
     proto: BulletFireBolt
     capacity: 1
     count: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetCarpSpit
 
 - type: entity
   parent: NFMobRainbowWyvernIce
@@ -331,6 +335,8 @@
     proto: NFBulletAcid
     capacity: 1
     count: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetCarpSpit
 
 #region boss
 - type: entity
@@ -369,3 +375,10 @@
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
+  # fix for his actions, he must shoot fireballs itself, he was a dragon; changes from _Lua (378-384)
+  - type: NPCUseActionOnTarget
+    actionId: ActionDragonsBreath
+  # fix for self-damaging fireballs (he can burst flames, and he dont have fire protection???)
+  - type: Flammable
+    damage:
+      types: {}

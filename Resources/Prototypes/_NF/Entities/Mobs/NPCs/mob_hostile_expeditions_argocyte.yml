@@ -77,6 +77,8 @@
       amount: 1
     - id: FoodMeatXeno
       amount: 3
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetArgoMeleeMinor
 
 # VARIANTS
 #region Stalkers morphotype
@@ -229,6 +231,8 @@
       types:
         Slash: 10
         Structural: 20
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetArgoMeleeMajor
 
 - type: entity
   parent:
@@ -267,6 +271,8 @@
       amount: 3
     - id: FoodMeatXeno
       amount: 5
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetArgoMeleeMajor
 
 - type: entity
   parent:
@@ -306,6 +312,8 @@
       amount: 1
     - id: FoodMeatXeno
       amount: 7
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetArgoMeleeMajor
 
 #region Guardian morphotype
 - type: entity
@@ -451,6 +459,8 @@
       amount: 3
     - id: FoodMeatXeno
       amount: 5
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetArgoMeleeMajor
 
 - type: entity
   parent: BaseMobArgocyteExpeditions
@@ -487,6 +497,8 @@
       amount: 1
     - id: FoodMeatXeno
       amount: 7
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetArgoMeleeMajor
 
 #region boss
 - type: entity

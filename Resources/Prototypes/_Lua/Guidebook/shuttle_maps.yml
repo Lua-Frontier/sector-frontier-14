@@ -1,0 +1,11 @@
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapWyvern
+  name: "Concord-Wyvern"
+  description: "Детальная карта корабля."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Guidebook/shuttle_maps/Wyvern.rsi
+    state: wyvern
+    scale: 1.3, 1.3

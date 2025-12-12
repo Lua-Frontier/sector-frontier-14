@@ -1,0 +1,60 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: Red wood floor
+  parent: FloorTileItemBase
+  id: FloorTileItemRedWood
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodRed
+  - type: Stack
+    stackType: FloorTileWood
+  - type: Construction
+    graph: TileWood
+    node: woodtile
+
+- type: entity
+  name: Dark wood floor
+  parent: FloorTileItemBase
+  id: FloorTileItemDarkWood
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodDark
+  - type: Stack
+    stackType: FloorTileWood
+  - type: Construction
+    graph: TileWood
+    node: woodtile
+
+- type: entity
+  name: Soft floor
+  parent: FloorTileItemBase
+  id: FloorTileItemSoft
+  components:
+  - type: Sprite
+    state: wood
+  - type: Item
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSoft
+  - type: Stack
+    stackType: FloorTileWood
+  - type: Construction
+    graph: TileWood
+    node: woodtile
