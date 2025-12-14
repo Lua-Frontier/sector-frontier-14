@@ -6,7 +6,7 @@
   description: Металлические ножки, составляющие основу столика.
   components:
   - type: Sprite
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: frame
   - type: Fixtures
     fixtures:
@@ -59,7 +59,7 @@
   category: construction-category-furniture
   description: Не размещайте рядом с огнем. Ходят слухи, что они хорошо горят.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: wood
   objectType: Structure
   placementMode: SnapgridCenter
@@ -78,7 +78,7 @@
   category: construction-category-furniture
   description: Лист металла, стоящий на четырех металлических ножках.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: steel
   objectType: Structure
   placementMode: SnapgridCenter
@@ -97,7 +97,7 @@
   category: construction-category-furniture
   description: Лист металла, стоящий на четырех металлических ножках. Очень прочный.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced
   objectType: Structure
   placementMode: SnapgridCenter
@@ -116,7 +116,7 @@
   category: construction-category-furniture
   description: Лист стекла, стоящий на четырех металлических ножках.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: glass
   objectType: Structure
   placementMode: SnapgridCenter
@@ -135,7 +135,7 @@
   category: construction-category-furniture
   description: Лист плазменного стекла, стоящий на четырех металлических ножках.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: plasma
   objectType: Structure
   placementMode: SnapgridCenter
@@ -154,7 +154,7 @@
   category: construction-category-furniture
   description: Лист стекла, стоящий на четырех металлических ножках. Очень прочный.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_glass
   objectType: Structure
   placementMode: SnapgridCenter
@@ -173,7 +173,7 @@
   category: construction-category-furniture
   description: Лист уранового стекла, стоящий на четырех металлических ножках. Симпатичный!
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: uranium
   objectType: Structure
   placementMode: SnapgridCenter
@@ -192,7 +192,7 @@
   category: construction-category-furniture
   description: Лист укрепленного уранового стекла, стоящий на четырех металлических ножках. Очень прочный.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_uranium
   objectType: Structure
   placementMode: SnapgridCenter
@@ -211,7 +211,7 @@
   category: construction-category-furniture
   description: Лист укрепленного плазменного стекла, стоящий на четырех металлических ножках.
   icon:
-    sprite: /Uploaded/ToSteal/coffee_table.rsi
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_plasma
   objectType: Structure
   placementMode: SnapgridCenter
@@ -228,7 +228,7 @@
   category: construction-category-furniture
   description: Стильный зелёный кусок стекла с примесью урана, установленный на каркас стола.
   icon:
-    sprite: Imperial/Structures/Furniture/GlassTables/uranium.rsi
+    sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -245,7 +245,7 @@
   category: construction-category-furniture
   description: "Стильный квадратный лист уранового стекла, установленный на укреплённый каркас стола"
   icon:
-    sprite: Imperial/Structures/Furniture/GlassTables/r_uranium.rsi
+    sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
@@ -262,7 +262,7 @@
   category: construction-category-furniture
   description: Стильный квадратный лист плазменного стекла, установленный на укреплённый каркас стола
   icon:
-    sprite: Imperial/Structures/Furniture/GlassTables/r_plasma.rsi
+    sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
   objectType: Structure
   placementMode: SnapgridCenter
