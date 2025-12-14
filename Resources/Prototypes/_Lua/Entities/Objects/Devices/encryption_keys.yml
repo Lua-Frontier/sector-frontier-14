@@ -1,0 +1,121 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyTrade
+  name: Trade control encryption key
+  description: An encryption key for trade.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Trade
+    defaultChannel: Trade
+  - type: Item
+    sprite: _Lua/Objects/Devices/encryption_keys.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: _Lua/Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+    - state: trade_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyMercenary
+  name: Mercenary control encryption key
+  description: An encryption key for mercenary.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Mercenary
+    defaultChannel: Mercenary
+  - type: Item
+    sprite: _Lua/encryption_keys.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: _Lua/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+    - state: merc_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyDeathSquad
+  name: ключ шифрования эскадрона смерти
+  description: Ключ шифрования отряда, несущего смерть.
+  components:
+  - type: EncryptionKey
+    channels:
+    - DeathSquad
+    defaultChannel: DeathSquad
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyKSO
+  name: ключ шифрования КСО
+  description: Ключ шифрования Корпуса Специальных Операций.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SOC
+    defaultChannel: SOC
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyOutpostSyndicate
+  name: красный ключ шифрования
+  description: Ключ шифрования, используемый... хм... кем же?
+  suffix: Нордфолл
+  components:
+  - type: EncryptionKey
+    channels:
+    - Typan
+    defaultChannel: Typan
+  - type: Sprite
+    sprite: _Lua/Objects/Devices/Encryption_keys/typankey.rsi
+    layers:
+    - state: crypt_typ
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyLaw
+  name: ключ шифрования юридического отдела
+  description: Ключ шифрования, используемый самыми ненавидимыми (после клоуна) персонами.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Law
+    defaultChannel: Law
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyVip
+  name: Vip control encryption key
+  description: An encryption key for vip.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Vip
+    defaultChannel: Vip
+  - type: Item
+    sprite: _Lua/encryption_keys.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: _Lua/encryption_keys.rsi
+    layers:
+    - state: crypt_black
+    - state: vip_label
