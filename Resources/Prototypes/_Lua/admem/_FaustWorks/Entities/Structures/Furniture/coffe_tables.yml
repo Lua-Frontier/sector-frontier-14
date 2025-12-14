@@ -92,7 +92,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -132,7 +132,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/woodhit.ogg
+          collection: WoodDestroy
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:
@@ -172,7 +172,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -222,7 +222,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:SpawnEntitiesBehavior
         spawn:
           ShardGlass:
@@ -269,7 +269,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -319,7 +319,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -369,7 +369,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -411,7 +411,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -469,7 +469,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
