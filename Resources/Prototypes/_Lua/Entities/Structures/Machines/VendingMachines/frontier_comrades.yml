@@ -1,0 +1,33 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineDrinksBrennNight
+  name: Фронтир-Комрад Венд
+  description: Автомат с напитками величайших людей! Имеет этикетку "Созданно BrennNight Industries"
+  components:
+  - type: VendingMachine
+    pack: FrontierComradesInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Speech
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/VendingMachines/FrontierComrades.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 3.8
+    energy: 0.6
+    color: "#ed3cca"

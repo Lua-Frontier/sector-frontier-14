@@ -24,3 +24,14 @@
         Heat: 0.90
   - type: ExplosionResistance
     damageCoefficient: 0.95
+
+- type: entity
+  parent: ClothingOuterCoatHoSGreatcoat
+  id: ClothingOuterArmorBasicBlueShield
+  name: бронежилет офицера "Синий Щит"
+  description: Защитные характеристики данного бронежилета превосходят обычный и идентичны бронированной шинели главы службы безопасности.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Armor/blueshield_armor.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Armor/blueshield_armor.rsi

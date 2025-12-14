@@ -39,3 +39,21 @@
     containers:
       key_slots:
       - EncryptionKeyOutpostSyndicate
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltVip
+  name: vip over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
+      - EncryptionKeyTrade
+      - EncryptionKeyTraffic
+      - EncryptionKeyVip
+  - type: Sprite
+    sprite: _Lua/Ears/vipalt.rsi
+  - type: Clothing
+    sprite: _Lua/Ears/vipalt.rsi
