@@ -81,6 +81,39 @@
               amount: 1
               doAfter: 1
 
+- type: constructionGraph
+  id: Table
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DeleteEntity {}
+      edges:
+        - to: TableFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 1
+        - to: CounterWoodFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 1
+        - to: CounterMetalFrame
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1
+
     - node: CoffeeTableWood
       entity: CoffeeTableWood
       edges:
@@ -186,45 +219,5 @@
                 prototype: SheetRUGlass1
                 amount: 1
           steps:
-            - tool: Anchoring
-              doAfter: 1
-
-    - node: TableUraniumGlass
-      entity: TableUraniumGlass
-      edges:
-        - to: TableFrame
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetUGlass1
-              amount: 1
-          steps:
-            - tool: Anchoring
-              doAfter: 1
-
-    - node: TableReinforcedUraniumGlass
-      entity: TableReinforcedUraniumGlass
-      edges:
-        - to: TableFrame
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetRUGlass1
-              amount: 1
-          steps:
-            - tool: Welding
-              doAfter: 3
-            - tool: Anchoring
-              doAfter: 1
-
-    - node: TablePlasmaGlassReinforced
-      entity: TablePlasmaGlassReinforced
-      edges:
-        - to: TableFrame
-          completed:
-            - !type:SpawnPrototype
-              prototype: SheetRPGlass1
-              amount: 1
-          steps:
-            - tool: Welding
-              doAfter: 3
             - tool: Anchoring
               doAfter: 1
