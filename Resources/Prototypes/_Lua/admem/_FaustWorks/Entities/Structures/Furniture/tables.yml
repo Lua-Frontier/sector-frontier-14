@@ -30,7 +30,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: TableFrame
       - !type:SpawnEntitiesBehavior
@@ -79,7 +79,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: TableFrame
       - !type:SpawnEntitiesBehavior
@@ -128,7 +128,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: Audio/Effects/glass_break2.ogg
+          collection: GlassBreak
       - !type:ChangeConstructionNodeBehavior
         node: TableFrame
       - !type:SpawnEntitiesBehavior
