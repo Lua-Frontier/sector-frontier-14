@@ -1,12 +1,12 @@
 # Wood
 - type: construction
-  name: Wooden coffee table
+  name: recipe-CoffeeTableWood-name
   id: CoffeeTableWood
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableWood
   category: construction-category-furniture
-  description: Do not place it near any fire.
+  description: recipe-CoffeeTableWood-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: wood
@@ -19,13 +19,13 @@
 
 # Steel
 - type: construction
-  name: Coffee table
+  name: recipe-CoffeeTableSteel-name
   id: CoffeeTableSteel
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableSteel
   category: construction-category-furniture
-  description: Coffee table, but clearly for tea.
+  description: recipe-CoffeeTableSteel-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: steel
@@ -38,13 +38,13 @@
 
 # Reinforced
 - type: construction
-  name: Reinforced coffee table
+  name: recipe-CoffeeTableReinforced-name
   id: CoffeeTableReinforced
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforced
   category: construction-category-furniture
-  description: Robust.
+  description: recipe-CoffeeTableReinforced-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced
@@ -57,13 +57,13 @@
 
 # Glass
 - type: construction
-  name: Glass coffee table
+  name: recipe-CoffeeTableGlass-name
   id: CoffeeTableGlass
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableGlass
   category: construction-category-furniture
-  description: Not really robust.
+  description: recipe-CoffeeTableGlass-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: glass
@@ -76,13 +76,13 @@
 
 # Plasma
 - type: construction
-  name: Plasma coffee table
+  name: recipe-CoffeeTablePlasma-name
   id: CoffeeTablePlasma
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTablePlasma
   category: construction-category-furniture
-  description: Suspicious furnitorous creation of blood-red friends.
+  description: recipe-CoffeeTablePlasma-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: plasma
@@ -95,13 +95,13 @@
 
 # Reinforced glass
 - type: construction
-  name: Reinforced glass coffee table
+  name: recipe-CoffeeTableReinforcedGlass-name
   id: CoffeeTableReinforcedGlass
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedGlass
   category: construction-category-furniture
-  description: Extremely robust.
+  description: recipe-CoffeeTableReinforcedGlass-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_glass
@@ -114,13 +114,13 @@
 
 # Uranium
 - type: construction
-  name: Uranium coffee table
+  name: recipe-CoffeeTableUranium-name
   id: CoffeeTableUranium
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableUranium
   category: construction-category-furniture
-  description: Not radioactive and absolutely OSHA approved.
+  description: recipe-CoffeeTableUranium-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: uranium
@@ -133,13 +133,13 @@
 
 # Reinforced Uranium
 - type: construction
-  name: Reinforced uranium glass coffee table
+  name: recipe-CoffeeTableReinforcedUranium-name
   id: CoffeeTableReinforcedUranium
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedUranium
   category: construction-category-furniture
-  description: Megahypersupergigarobust.
+  description: recipe-CoffeeTableReinforcedUranium-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_uranium
@@ -152,13 +152,13 @@
 
 # Reinforced plasma
 - type: construction
-  name: Reinforced plasma glass coffee table
+  name: recipe-CoffeeTableReinforcedPlasma-name
   id: CoffeeTableReinforcedPlasma
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedPlasma
   category: construction-category-furniture
-  description: Well, still suspicious.
+  description: recipe-CoffeeTableReinforcedPlasma-desc
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_plasma
@@ -169,13 +169,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Uranium glass table
+  name: recipe-TableUraniumGlass-name
   id: TableUraniumGlass
   graph: Table
   startNode: start
   targetNode: TableUraniumGlass
   category: construction-category-furniture
-  description: Is it save? Yes, it isn't.... sorry, i wanted to say yesn't.
+  description: recipe-TableUraniumGlass-desc
   icon:
     sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
@@ -186,13 +186,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Reinforced uranium glass table
+  name: recipe-TableReinforcedUraniumGlass-name
   id: TableReinforcedUraniumGlass
   graph: Table
   startNode: start
   targetNode: TableReinforcedUraniumGlass
   category: construction-category-furniture
-  description: You must work in mine for days, just to create this piece of art.
+  description: recipe-TableReinforcedUraniumGlass-desc
   icon:
     sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
@@ -203,13 +203,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Reinforced plasma glass table
+  name: recipe-TablePlasmaGlassReinforced-name
   id: TablePlasmaGlassReinforced
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlassReinforced
   category: construction-category-furniture
-  description: It's litteraly electifying taste forces you to acknowledge the price of this table.
+  description: recipe-TablePlasmaGlassReinforced-desc
   icon:
     sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
