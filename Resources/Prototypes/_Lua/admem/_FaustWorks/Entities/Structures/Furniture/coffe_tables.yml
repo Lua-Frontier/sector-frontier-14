@@ -1,5 +1,55 @@
 # Taken from ImperialSpace, made by BROtania
 
+# Frame
+- type: entity
+  id: CoffeeTableFrame
+  parent: BaseStructure
+  name: coffee table frame
+  description: Металлические ножки, составляющие основу столика.
+  components:
+  - type: Sprite
+    sprite: Structures/Furniture/Tables/coffee_table.rsi
+    state: frame
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 80
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/metalbreak.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: CoffeeTableGraph
+    node: CoffeeTableFrame
+
 # Steel
 - type: entity
   parent: BaseStructure
@@ -42,7 +92,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          path: Audio/Effects/metalbreak.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -82,7 +132,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/woodhit.ogg
+          path: Audio/Effects/woodhit.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank:
@@ -122,7 +172,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
+          path: Audio/Effects/metalbreak.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
@@ -172,7 +222,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:SpawnEntitiesBehavior
         spawn:
           ShardGlass:
@@ -219,7 +269,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -269,7 +319,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -319,7 +369,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -361,7 +411,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior
@@ -419,7 +469,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: CoffeeTableFrame
       - !type:SpawnEntitiesBehavior

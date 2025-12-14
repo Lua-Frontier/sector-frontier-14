@@ -1,63 +1,12 @@
-# Frame
-- type: entity
-  id: CoffeeTableFrame
-  parent: BaseStructure
-  name: Каркас кофейного столика
-  description: Металлические ножки, составляющие основу столика.
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/Tables/coffee_table.rsi
-    state: frame
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.3,-0.3,0.3,0.3"
-        density: 80
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 25
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 5
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/metalbreak.ogg
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PartRodMetal1:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Construction
-    graph: CoffeeTableGraph
-    node: CoffeeTableFrame
-
-
 # Wood
 - type: construction
-  name: Деревянный кофейный столик
+  name: Wooden coffee table
   id: CoffeeTableWood
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableWood
   category: construction-category-furniture
-  description: Не размещайте рядом с огнем. Ходят слухи, что они хорошо горят.
+  description: Do not place it near any fire.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: wood
@@ -70,13 +19,13 @@
 
 # Steel
 - type: construction
-  name: Кофейный столик
+  name: Coffee table
   id: CoffeeTableSteel
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableSteel
   category: construction-category-furniture
-  description: Лист металла, стоящий на четырех металлических ножках.
+  description: Coffee table, but clearly for tea.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: steel
@@ -89,13 +38,13 @@
 
 # Reinforced
 - type: construction
-  name: Укреплённый кофейный столик
+  name: Reinforced coffee table
   id: CoffeeTableReinforced
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforced
   category: construction-category-furniture
-  description: Лист металла, стоящий на четырех металлических ножках. Очень прочный.
+  description: Robust.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced
@@ -108,13 +57,13 @@
 
 # Glass
 - type: construction
-  name: Стеклянный кофейный столик
+  name: Glass coffee table
   id: CoffeeTableGlass
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableGlass
   category: construction-category-furniture
-  description: Лист стекла, стоящий на четырех металлических ножках.
+  description: Not really robust.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: glass
@@ -127,13 +76,13 @@
 
 # Plasma
 - type: construction
-  name: Плазменный кофейный столик
+  name: Plasma coffee table
   id: CoffeeTablePlasma
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTablePlasma
   category: construction-category-furniture
-  description: Лист плазменного стекла, стоящий на четырех металлических ножках.
+  description: Suspicious furnitorous creation of blood-red friends.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: plasma
@@ -146,13 +95,13 @@
 
 # Reinforced glass
 - type: construction
-  name: Укреплённый стеклянный кофейный столик
+  name: Reinforced glass coffee table
   id: CoffeeTableReinforcedGlass
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedGlass
   category: construction-category-furniture
-  description: Лист стекла, стоящий на четырех металлических ножках. Очень прочный.
+  description: Extremely robust.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_glass
@@ -165,13 +114,13 @@
 
 # Uranium
 - type: construction
-  name: Урановый кофейный столик
+  name: Uranium coffee table
   id: CoffeeTableUranium
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableUranium
   category: construction-category-furniture
-  description: Лист уранового стекла, стоящий на четырех металлических ножках. Симпатичный!
+  description: Not radioactive and absolutely OSHA approved.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: uranium
@@ -184,13 +133,13 @@
 
 # Reinforced Uranium
 - type: construction
-  name: Укреплённый урановый кофейный столик
+  name: Reinforced uranium glass coffee table
   id: CoffeeTableReinforcedUranium
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedUranium
   category: construction-category-furniture
-  description: Лист укрепленного уранового стекла, стоящий на четырех металлических ножках. Очень прочный.
+  description: Megahypersupergigarobust.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_uranium
@@ -203,13 +152,13 @@
 
 # Reinforced plasma
 - type: construction
-  name: Укреплённый плазменный кофейный столик
+  name: Reinforced plasma glass coffee table
   id: CoffeeTableReinforcedPlasma
   graph: CoffeeTableGraph
   startNode: start
   targetNode: CoffeeTableReinforcedPlasma
   category: construction-category-furniture
-  description: Лист укрепленного плазменного стекла, стоящий на четырех металлических ножках.
+  description: Well, still suspicious.
   icon:
     sprite: Structures/Furniture/Tables/coffee_table.rsi
     state: reinforced_plasma
@@ -220,13 +169,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: стол из уранового стекла
+  name: Uranium glass table
   id: TableUraniumGlass
   graph: Table
   startNode: start
   targetNode: TableUraniumGlass
   category: construction-category-furniture
-  description: Стильный зелёный кусок стекла с примесью урана, установленный на каркас стола.
+  description: Is it save? Yes, it isn't.... sorry, i wanted to say yesn't.
   icon:
     sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
@@ -237,13 +186,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: стол из уранового бронестекла
-  id: TableUraniumGlassReinforced
+  name: Reinforced uranium glass table
+  id: TableReinforcedUraniumGlass
   graph: Table
   startNode: start
-  targetNode: TableUraniumGlassReinforced
+  targetNode: TableReinforcedUraniumGlass
   category: construction-category-furniture
-  description: "Стильный квадратный лист уранового стекла, установленный на укреплённый каркас стола"
+  description: You must work in mine for days, just to create this piece of art.
   icon:
     sprite: Structures/Furniture/Tables/uranium.rsi
     state: full
@@ -254,13 +203,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: стол из плазменного бронестекла
+  name: Reinforced plasma glass table
   id: TablePlasmaGlassReinforced
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlassReinforced
   category: construction-category-furniture
-  description: Стильный квадратный лист плазменного стекла, установленный на укреплённый каркас стола
+  description: It's litteraly electifying taste forces you to acknowledge the price of this table.
   icon:
     sprite: Structures/Furniture/Tables/uranium.rsi
     state: full

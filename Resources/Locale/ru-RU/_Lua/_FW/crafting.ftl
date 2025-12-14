@@ -1,0 +1,25 @@
+recipe-CoffeeTableWood-name = Деревянный кофейный столик
+recipe-CoffeeTableSteel-name = Кофейный столик
+recipe-CoffeeTableReinforced-name = Укреплённый кофейный столик
+recipe-CoffeeTableGlass-name = Стеклянный кофейный столик
+recipe-CoffeeTablePlasma-name = Плазменный кофейный столик
+recipe-CoffeeTableReinforcedGlass-name = Укреплённый стеклянный кофейный столик
+recipe-CoffeeTableUranium-name = Урановый кофейный столик
+recipe-CoffeeTableReinforcedUranium-name = Укреплённый урановый кофейный столик
+recipe-CoffeeTableReinforcedPlasma-name = Укреплённый плазменный кофейный столик
+recipe-TableUraniumGlass-name = Стол из уранового стекла
+recipe-TableReinforcedUraniumGlass-name = Стол из уранового бронестекла
+recipe-TablePlasmaGlassReinforced-name = Стол из плазменного бронестекла
+
+recipe-CoffeeTableWood-desc = Не размещайте рядом с огнем. Ходят слухи, что они хорошо горят.
+recipe-CoffeeTableSteel-desc = Лист металла, стоящий на четырех металлических ножках.
+recipe-CoffeeTableReinforced-desc = Лист металла, стоящий на четырех металлических ножках. Очень прочный.
+recipe-CoffeeTableGlass-desc = Лист стекла, стоящий на четырех металлических ножках.
+recipe-CoffeeTablePlasma-desc = Лист плазменного стекла, стоящий на четырех металлических ножках.
+recipe-CoffeeTableReinforcedGlass-desc = Лист стекла, стоящий на четырех металлических ножках. Очень прочный.
+recipe-CoffeeTableUranium-desc = Лист уранового стекла, стоящий на четырех металлических ножках. Симпатичный!
+recipe-CoffeeTableReinforcedUranium-desc = Лист укрепленного уранового стекла, стоящий на четырех металлических ножках. Очень прочный.
+recipe-CoffeeTableReinforcedPlasma-desc =  Лист укрепленного плазменного стекла, стоящий на четырех металлических ножках.
+recipe-TableUraniumGlass-desc = Стильный зелёный кусок стекла с примесью урана, установленный на каркас стола.
+recipe-TableReinforcedUraniumGlass-desc = Стильный квадратный лист уранового стекла, установленный на укреплённый каркас стола.
+recipe-TablePlasmaGlassReinforced-desc =  Стильный квадратный лист плазменного стекла, установленный на укреплённый каркас стола.

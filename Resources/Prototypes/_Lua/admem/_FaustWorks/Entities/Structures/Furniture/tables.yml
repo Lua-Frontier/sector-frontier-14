@@ -30,7 +30,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: TableFrame
       - !type:SpawnEntitiesBehavior
@@ -79,7 +79,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: TableFrame
       - !type:SpawnEntitiesBehavior
@@ -94,7 +94,7 @@
         acts: [ "Destruction" ]
   - type: Construction
     graph: Table
-    node: TableUraniumGlassReinforced
+    node: TableReinforcedUraniumGlass
 
 - type: entity
   id: TableReinforcedPlasmaGlass
@@ -128,7 +128,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/glass_break2.ogg
+          path: Audio/Effects/glass_break2.ogg
       - !type:ChangeConstructionNodeBehavior
         node: TableFrame
       - !type:SpawnEntitiesBehavior
