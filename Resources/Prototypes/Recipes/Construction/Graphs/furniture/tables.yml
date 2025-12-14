@@ -88,6 +88,24 @@
               amount: 1
               doAfter: 1
 
+        - to: TableUraniumGlass
+          steps:
+            - material: UraniumGlass
+              amount: 1
+              doAfter: 1
+
+        - to: TableReinforcedUraniumGlass
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 1
+              doAfter: 1
+
+        - to: TablePlasmaGlassReinforced
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 1
+              doAfter: 1
+
 
     - node: CounterWoodFrame
       entity: CounterWoodFrame
