@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/23/2025 13:42:15
-  entityCount: 595
+  time: 11/26/2025 14:17:20
+  entityCount: 582
 maps: []
 grids:
 - 1
@@ -593,7 +593,7 @@ entities:
       pos: -7.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -12423.598
+      secondsUntilStateChange: -12591.687
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -684,22 +684,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 2
-- proto: AirTankFilled
-  entities:
-  - uid: 22
-    components:
-    - type: Transform
-      parent: 21
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 27
-    components:
-    - type: Transform
-      parent: 26
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: APCHighCapacity
   entities:
   - uid: 31
@@ -1913,38 +1897,6 @@ entities:
     - type: Transform
       pos: 5.5,-1.5
       parent: 1
-- proto: ClothingmodsuitBloodRedHardsuit
-  entities:
-  - uid: 23
-    components:
-    - type: Transform
-      parent: 21
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 28
-    components:
-    - type: Transform
-      parent: 26
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingShoesBootsMagSyndie
-  entities:
-  - uid: 24
-    components:
-    - type: Transform
-      parent: 21
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 29
-    components:
-    - type: Transform
-      parent: 26
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ComputerGunneryConsole
   entities:
   - uid: 244
@@ -1988,25 +1940,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-0.5
-      parent: 1
-- proto: DrinkPremiumWhiskeyBottleFull
-  entities:
-  - uid: 250
-    components:
-    - type: Transform
-      pos: 6.474514,-4.469611
-      parent: 1
-- proto: DrinkShotGlass
-  entities:
-  - uid: 251
-    components:
-    - type: Transform
-      pos: 6.3582573,-3.2983713
-      parent: 1
-  - uid: 252
-    components:
-    - type: Transform
-      pos: 6.413812,-3.5344827
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -2473,11 +2406,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 25
+          - 26
+          - 24
+          - 23
           - 369
-          - 241
-          - 243
-          - 367
-          - 319
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2511,11 +2444,9 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 28
+          - 27
           - 601
-          - 598
-          - 599
-          - 600
-          - 602
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2553,29 +2484,6 @@ entities:
     - type: Transform
       pos: 0.50956583,1.5695664
       parent: 1
-- proto: HypoMini
-  entities:
-  - uid: 325
-    components:
-    - type: Transform
-      pos: 3.8148217,0.6165459
-      parent: 1
-- proto: JetpackBlackFilled
-  entities:
-  - uid: 25
-    components:
-    - type: Transform
-      parent: 21
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 30
-    components:
-    - type: Transform
-      parent: 26
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: LockerFreezerBase
   entities:
   - uid: 255
@@ -2647,60 +2555,46 @@ entities:
     - type: Transform
       pos: 3.5092657,0.46376777
       parent: 1
-- proto: NFAmmunitionBoxShellShotgunOverpressure
+- proto: NFAmmunitionBoxShellShotgunBuckshot
   entities:
-  - uid: 241
+  - uid: 23
     components:
     - type: Transform
       parent: 240
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 243
+  - uid: 24
     components:
     - type: Transform
       parent: 240
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 319
+  - uid: 25
     components:
     - type: Transform
       parent: 240
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 367
+  - uid: 26
     components:
     - type: Transform
       parent: 240
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFMagazineSubMachineGun35Overpressure
+- proto: NFMagazineSubMachineGun35
   entities:
-  - uid: 598
+  - uid: 27
     components:
     - type: Transform
       parent: 242
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 599
-    components:
-    - type: Transform
-      parent: 242
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 600
-    components:
-    - type: Transform
-      parent: 242
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 602
+  - uid: 28
     components:
     - type: Transform
       parent: 242
@@ -2967,6 +2861,13 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
+- proto: SpawnDungeonClutterHypospray
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      pos: 3.5,0.5
+      parent: 1
 - proto: StasisBed
   entities:
   - uid: 368
@@ -2982,74 +2883,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
-- proto: SuitStorageBase
+- proto: SuitStorageSyndie
   entities:
   - uid: 21
     components:
     - type: Transform
       pos: -4.5,0.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 22
-          - 24
-          - 25
-          - 23
-  - uid: 26
+  - uid: 22
     components:
     - type: Transform
       pos: -4.5,-0.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 27
-          - 29
-          - 30
-          - 28
 - proto: TableReinforced
   entities:
   - uid: 371
