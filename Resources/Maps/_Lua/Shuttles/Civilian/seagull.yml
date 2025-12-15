@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 10/19/2025 15:52:46
-  entityCount: 763
+  time: 11/05/2025 11:02:05
+  entityCount: 760
 maps: []
 grids:
 - 1
@@ -1685,7 +1685,7 @@ entities:
     - type: Transform
       pos: 3.5,-20.5
       parent: 1
-  - uid: 333
+  - uid: 331
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1699,7 +1699,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-22.5
       parent: 1
-  - uid: 332
+  - uid: 330
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1713,7 +1713,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-21.5
       parent: 1
-  - uid: 334
+  - uid: 323
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1726,7 +1726,7 @@ entities:
     - type: Transform
       pos: 2.5,-20.5
       parent: 1
-  - uid: 335
+  - uid: 328
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1748,13 +1748,6 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-4.5
-      parent: 1
-- proto: BoxBodyBag
-  entities:
-  - uid: 360
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
       parent: 1
 - proto: BoxFolderWhite
   entities:
@@ -2701,6 +2694,27 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-16.5
       parent: 1
+- proto: ChemDispenser
+  entities:
+  - uid: 332
+    components:
+    - type: Transform
+      pos: -1.5,-10.5
+      parent: 1
+- proto: ChemistryHotplate
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      pos: -1.5,-12.5
+      parent: 1
+- proto: ChemMaster
+  entities:
+  - uid: 288
+    components:
+    - type: Transform
+      pos: -1.5,-11.5
+      parent: 1
 - proto: ClothingShoesSlippers
   entities:
   - uid: 356
@@ -2760,21 +2774,11 @@ entities:
       parent: 1
 - proto: CrateChemistrySupplies
   entities:
-  - uid: 323
+  - uid: 327
     components:
     - type: Transform
-      pos: -1.5,-12.5
-      parent: 1
-- proto: CrateFreezer
-  entities:
-  - uid: 288
-    components:
-    - type: Transform
-      anchored: True
       pos: 1.5,-5.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: CurtainsBlackOpen
   entities:
   - uid: 35
@@ -2836,10 +2840,10 @@ entities:
       parent: 1
 - proto: DVSmartFridge
   entities:
-  - uid: 324
+  - uid: 334
     components:
     - type: Transform
-      pos: -1.5,-10.5
+      pos: -1.5,-9.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -3918,6 +3922,13 @@ entities:
     - type: Transform
       pos: -1.5,-3.5
       parent: 1
+- proto: PlasmaChemistryVial
+  entities:
+  - uid: 326
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 1
 - proto: PottedPlantRandom
   entities:
   - uid: 65
@@ -3925,10 +3936,10 @@ entities:
     - type: Transform
       pos: 2.5,-21.5
       parent: 1
-  - uid: 364
+  - uid: 360
     components:
     - type: Transform
-      pos: -1.5,-9.5
+      pos: -0.5,-12.5
       parent: 1
   - uid: 365
     components:
@@ -4098,34 +4109,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-8.5
       parent: 1
-  - uid: 328
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
-      parent: 1
-  - uid: 329
-    components:
-    - type: Transform
-      pos: 2.5,-9.5
-      parent: 1
 - proto: RailingCornerSmall
   entities:
   - uid: 314
     components:
     - type: Transform
       pos: -4.5,-8.5
-      parent: 1
-  - uid: 330
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-9.5
-      parent: 1
-  - uid: 331
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-9.5
       parent: 1
 - proto: RandomDrinkBottle
   entities:
@@ -4258,21 +4247,29 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-3.5
       parent: 1
+  - uid: 329
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-9.5
+      parent: 1
+  - uid: 333
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-12.5
+      parent: 1
+  - uid: 335
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-12.5
+      parent: 1
   - uid: 359
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-5.5
-      parent: 1
-  - uid: 361
-    components:
-    - type: Transform
-      pos: 2.5,-9.5
-      parent: 1
-  - uid: 363
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
       parent: 1
 - proto: TableWood
   entities:
@@ -5370,9 +5367,10 @@ entities:
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
-  - uid: 362
+  - uid: 324
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 2.5,-9.5
       parent: 1
 - proto: WindowReinforcedDirectional
@@ -5400,15 +5398,5 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,-8.5
-      parent: 1
-  - uid: 326
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
-      parent: 1
-  - uid: 327
-    components:
-    - type: Transform
-      pos: 2.5,-9.5
       parent: 1
 ...

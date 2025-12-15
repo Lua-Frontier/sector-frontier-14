@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/23/2025 14:53:41
+  time: 12/09/2025 11:48:05
   entityCount: 494
 maps: []
 grids:
@@ -424,8 +424,7 @@ entities:
             2: 53201
           0,-1:
             2: 6337
-            3: 1024
-            4: 16
+            3: 1040
           0,-3:
             0: 512
           0,0:
@@ -497,21 +496,6 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.15
-          moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14996
           moles:
           - 21.824879
           - 82.10312
@@ -2071,35 +2055,30 @@ entities:
     - type: Transform
       pos: 2.5,-1.5
       parent: 1
-    - type: Lock
-      locked: False
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.25,-0.48
-            - 0.25,-0.48
-            - 0.25,0.48
-            - -0.25,0.48
-          mask:
-          - Impassable
-          - TableLayer
-          - LowImpassable
-          layer:
-          - BulletImpassable
-          - Opaque
-          density: 75
-          hard: True
-          restitution: 0
-          friction: 0.4
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 488
+          - 484
+          - 483
+          - 278
+          - 493
+          - 492
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: EntityStorage
       air:
         volume: 200
         immutable: False
         temperature: 293.14923
         moles:
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -2110,12 +2089,6 @@ entities:
         - 0
         - 0
         - 0
-        - 0
-        - 0
-      open: True
-      removedMasks: 20
-    - type: PlaceableSurface
-      isPlaceable: True
 - proto: GyroscopeNfsd
   entities:
   - uid: 250
@@ -2187,40 +2160,52 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
-- proto: NFMagazinePistol45Overpressure
+- proto: NFMagazinePistol45
   entities:
+  - uid: 278
+    components:
+    - type: Transform
+      parent: 487
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 483
+    components:
+    - type: Transform
+      parent: 487
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 484
+    components:
+    - type: Transform
+      parent: 487
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
   - uid: 488
     components:
     - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
-  - uid: 489
-    components:
-    - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
-  - uid: 490
-    components:
-    - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
-  - uid: 491
-    components:
-    - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
+      parent: 487
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: NFWeaponPistolN1984
   entities:
   - uid: 492
     components:
     - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
+      parent: 487
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
   - uid: 493
     components:
     - type: Transform
-      pos: 2.5,-1.5
-      parent: 1
+      parent: 487
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: NitrogenCanister
   entities:
   - uid: 259
@@ -2351,9 +2336,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-5.5
       parent: 1
-- proto: SuitStorageNfsdCommand
+- proto: SuitStorageCadet
   entities:
-  - uid: 278
+  - uid: 489
     components:
     - type: Transform
       pos: 0.5,-2.5
@@ -3443,15 +3428,15 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 1
-- proto: WeaponTurretCyrexa
+- proto: WeaponTurretKargil
   entities:
-  - uid: 483
+  - uid: 490
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,1.5
       parent: 1
-  - uid: 484
+  - uid: 491
     components:
     - type: Transform
       rot: 3.141592653589793 rad

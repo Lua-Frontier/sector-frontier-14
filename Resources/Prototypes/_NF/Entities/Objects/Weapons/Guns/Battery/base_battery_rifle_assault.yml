@@ -5,6 +5,17 @@
   id: NFBaseWeaponFrameEnergyRifleAssault
   suffix: Frontier
   components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Goobstation edit end
   - type: Sprite
     layers:
     - state: base

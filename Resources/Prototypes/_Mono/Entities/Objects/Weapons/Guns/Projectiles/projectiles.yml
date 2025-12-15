@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2025 Avalon
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MPL-2.0
+
 - type: entity
   name: 45_magnum bolt
   id: BulletEnergyGun45_magnum
@@ -36,3 +43,37 @@
     soundHit:
       collection: MeatLaserImpact
 
+#Lua add
+
+- type: entity
+  name: non lethal Laser bolt
+  id: BulletEnergyGunFrostNonLethal
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: Ammo
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Cold: 2
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: ChangeTemperatureOnCollide
+    heat: -35500

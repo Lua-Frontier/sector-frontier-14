@@ -624,7 +624,7 @@
   id: UplinkPirateMagazineSubsonic
   name: uplink-subsonic-mag-name
   description: uplink-subsonic-mag-desc
-  productEntity: MagazineLightRifleSubsonic
+  productEntity: Magazine762x39mmSubsonic
   cost:
     Doubloon: 1
   categories:
@@ -639,7 +639,7 @@
   id: UplinkPirateBoxSubsonic
   name: uplink-subsonic-box-name
   description: uplink-subsonic-box-desc
-  productEntity: MagazineBoxLightRifleSubsonic
+  productEntity: AmmoBox762x39mmSubsonic
   cost:
     Doubloon: 2
   categories:
@@ -654,7 +654,7 @@
   id: UplinkPirateBurnerBox
   name: uplink-pirate-box-highcal-name
   description: uplink-pirate-box-highcal-desc
-  productEntity: MagazineBoxHighCaliber
+  productEntity: AmmoBox127x99mm
   cost:
     Doubloon: 3
   categories:
@@ -669,7 +669,7 @@
   id: UplinkPirateBurnerBoxHE
   name: uplink-pirate-box-highcal-he-name
   description: uplink-pirate-box-highcal-he-desc
-  productEntity: MagazineBoxHighCaliberExplosive
+  productEntity: AmmoBox127x99mmExplosive
   cost:
     Doubloon: 6
   categories:
@@ -889,9 +889,9 @@
   name: uplink-pirate-wspr-name
   description: uplink-pirate-wspr-desc
   productEntity: ClothingBackpackDuffelSyndicateFilledWSPR
-  icon: { sprite: _Goobstation/Objects/Weapons/Guns/Rifles/wspr.rsi, state: icon }
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr.rsi, state: icon }
   cost:
-    Doubloon: 15
+    Doubloon: 25 #Lua 15 -> 25
   categories:
   - UplinkPirateWeapons
   conditions:
