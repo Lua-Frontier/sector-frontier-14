@@ -1,0 +1,160 @@
+- type: parallax
+  id: Xmas
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/XmasParallaxBG.png"
+      slowness: 0.99899999
+      scale: "0.23, 0.23"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/1.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "4400, 2000"
+      worldHomePosition: "2000, 2000"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/2.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "7361, 992"
+      worldHomePosition: "7961, 7361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/4.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "2361, 3792"
+      worldHomePosition: "3061, 2361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/5.png"
+      slowness: 0.992046875
+      scale: "0.3, 0.3"
+      controlHomePosition: "-2361, -2992"
+      worldHomePosition: "-2961, -2361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/6.png"
+      slowness: 0.992046875
+      scale: "0.3, 0.3"
+      controlHomePosition: "-4061, -3292"
+      worldHomePosition: "-5061, -4361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/7.png"
+      slowness: 0.992046875
+      scale: "0.3, 0.3"
+      controlHomePosition: "6361, -6992"
+      worldHomePosition: "6961, -4961"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/10.png"
+      slowness: 0.992046875
+      scale: "0.2, 0.2"
+      controlHomePosition: "8361, 2292"
+      worldHomePosition: "5961, 7361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/11.png"
+      slowness: 0.992046875
+      scale: "0.5, 0.5"
+      controlHomePosition: "11361, -7992"
+      worldHomePosition: "-6961, 6361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/12.png"
+      slowness: 0.992046875
+      scale: "0.2, 0.2"
+      controlHomePosition: "2361, 2992"
+      worldHomePosition: "6961, 6361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/13.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "-1361, -1992"
+      worldHomePosition: "-6961, -7361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/2.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "-5361, 5992"
+      worldHomePosition: "-961, 5361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/B1.png"
+      slowness: 0.992046875
+      scale: "0.3, 0.3"
+      controlHomePosition: "8361, -6692"
+      worldHomePosition: "8961, -6361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/B2.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "-8361, 992"
+      worldHomePosition: "-8961, 1361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/B2.png"
+      slowness: 0.992046875
+      scale: "0.5, 0.5"
+      controlHomePosition: "4361, 4992"
+      worldHomePosition: "4961, 4361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/E1.png"
+      slowness: 0.992046875
+      scale: "0.4, 0.4"
+      controlHomePosition: "-2361, -2992"
+      worldHomePosition: "-2961, -2361"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/E2.png"
+      slowness: 0.992046875
+      scale: "0.3, 0.3"
+      controlHomePosition: "-15361, 992"
+      worldHomePosition: "1061, -8061"
+      tiled: false
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/WhiteSnow.png"
+      slowness: 0.97
+      scale: 0.7, 0.7
+      scrolling: "0.118, 0.11"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/SnowParallaxNeb.png"
+      slowness: 0.998046875
+      scale: "0.6, 0.6"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Lua/Parallaxes/Xmas/WhiteSnow.png"
+      slowness: 0.97
+      scale: 1, 1
+      scrolling: "0.118, 0.11"
+  layersLQ:
+    - texture:
+        !type:GeneratedParallaxTextureSource
+        id: ""
+        configPath: "/Prototypes/Parallaxes/parallax_config.toml"
+      slowness: 0.875
+  layersLQUseHQ: false
