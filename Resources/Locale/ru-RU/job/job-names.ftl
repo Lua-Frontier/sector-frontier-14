@@ -107,6 +107,8 @@ job-name-typan-rd = Директор Боевых Операций
 job-name-typan-science = Научный Сотрудник Нордфолла
 job-name-typan-telecommunications-officer = Офицер телекомуникаций Нордфолла
 
+job-name-outpost-syndicate-shareholder = Акционер Синдиката
+
 # luatech
 job-name-ops-luatech = Оперативник Lua Technologies
 JobOpsLuaTech = Оперативник Lua Technologies
@@ -120,6 +122,8 @@ JobTypanMedic = Полевой Медик Нордфолла
 JobTypanRD = Директор Боевых Операций
 JobTypanScience = Научный Сотрудник Нордфолла
 JobTypanTelecommunicationsOfficer = Офицер телекомуникаций Нордфолла
+
+JobOutpostSyndicateShareholder = Акционер Синдиката
 
 # CentComm
 

@@ -93,6 +93,8 @@ public sealed partial class StoreSystem : EntitySystem
         if (!TryComp<StoreComponent>(args.Target, out var store))
             return;
 
+        if (store.UseBankAccount) return;
+
         var ev = new CurrencyInsertAttemptEvent(args.User, args.Target.Value, args.Used, store);
         RaiseLocalEvent(args.Target.Value, ev);
         if (ev.Cancelled)

@@ -1,0 +1,412 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#NOCATEGORY
+
+- type: listing
+  id: UplinkVipNocatMedkit
+  name:  uplink-vip-medkit-name
+  description: uplink-vip-medkit-desc
+  productEntity: MedkitAdvancedFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: advkit }
+  cost:
+    Speso: 2800
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatCardBoxSyndicate
+  name: uplink-vip-CardBoxSyndicate-name
+  description: uplink-vip-CardBoxSyndicate-desc
+  productEntity: CardBoxSyndicate
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatCardBoxNanotrasen
+  name: uplink-vip-CardBoxNanotrasen-name
+  description: uplink-vip-CardBoxNanotrasen-desc
+  productEntity: CardBoxNanotrasen
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatCardBoxBlack
+  name: uplink-vip-CardBoxBlack-name
+  description: uplink-vip-CardBoxBlack-desc
+  productEntity: CardBoxBlack
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatMpplayerDefault
+  name: uplink-vip-MpplayerDefault-name
+  description: uplink-vip-MpplayerDefault-desc
+  productEntity: MpplayerDefault
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatMpplayerBoich
+  name: uplink-vip-MpplayerBoich-name
+  description: uplink-vip-MpplayerBoich-desc
+  productEntity: MpplayerBoich
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatMpplayer
+  name: uplink-vip-Mpplayer-name
+  description: uplink-vip-Mpplayer-desc
+  productEntity: Mpplayer
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatMpplayerNetscape
+  name: uplink-vip-MpplayerNetscape-name
+  description: uplink-vip-MpplayerNetscape-desc
+  productEntity: MpplayerNetscape
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatCrateCargoGambling
+  name: uplink-vip-CrateCargoGambling-name
+  description: uplink-vip-CrateCargoGambling-desc
+  productEntity: CrateCargoGambling
+  cost:
+    Speso: 800000
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatLauncherCreamPie
+  name: uplink-vip-LauncherCreamPie-name
+  description: uplink-vip-LauncherCreamPie-desc
+  productEntity: LauncherCreamPie
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatCoordinatesDiskFrontier
+  name: uplink-vip-CoordinatesDiskFrontier-name
+  description: uplink-vip-CoordinatesDiskFrontier-desc
+  productEntity: CoordinatesDiskFrontier
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    #Only Frontier Vipe
+    - Vip
+
+- type: listing
+  id: UplinkVipNocatCoordinatesDiskNordfall
+  name: uplink-vip-CoordinatesDiskNordfall-name
+  description: uplink-vip-CoordinatesDiskNordfall-desc
+  productEntity: CoordinatesDiskNordfall
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    #Only NF Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatAnomalyScanner
+  name: uplink-vip-AnomalyScanner-name
+  description: uplink-vip-AnomalyScanner-desc
+  productEntity: AnomalyScanner
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatAdvancedMineralScanner
+  name: uplink-vip-AdvancedMineralScanner-name
+  description: uplink-vip-AdvancedMineralScanner-desc
+  productEntity: AdvancedMineralScanner
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatMedicalAppraisalTool
+  name: uplink-vip-MedicalAppraisalTool-name
+  description: uplink-vip-MedicalAppraisalTool-desc
+  productEntity: MedicalAppraisalTool
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatHandHeldMassScanner
+  name: uplink-vip-HandHeldMassScanner-name
+  description: uplink-vip-HandHeldMassScanner-desc
+  productEntity: HandHeldMassScanner
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatContrabandAppraisalTool
+  name: uplink-vip-ContrabandAppraisalTool-name
+  description: uplink-vip-ContrabandAppraisalTool-desc
+  productEntity: ContrabandAppraisalTool
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatAppraisalTool
+  name: uplink-vip-AppraisalTool-name
+  description: uplink-vip-AppraisalTool-desc
+  productEntity: AppraisalTool
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+
+
+- type: listing
+  id: UplinkVipNocatHypospray
+  name:  uplink-vip-Hypospray-name
+  description: uplink-vip-Hypospray-desc
+  productEntity: Hypospray
+  icon: { sprite: Objects/Specific/Medical/hypospray.rsi, state: hypo }
+  cost:
+    Speso: 21000
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatPrizeBall
+  name:  uplink-vip-PrizeBall-name
+  description: uplink-vip-PrizeBall-desc
+  productEntity: PrizeBall
+  icon: { sprite: _NF/Objects/Fun/prizeticket.rsi, state: prizeball }
+  cost:
+    Speso: 360
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipNocatEncryption
+  name:  uplink-vip-Encryption-name
+  description: uplink-vip-Encryption-desc
+  productEntity: EncryptionKeyVip
+  icon: { sprite: _Lua/encryption_keys.rsi, state: crypt_black_uplink }
+  cost:
+    Speso: 360
+  categories:
+    - UplinkVipNocat
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+

@@ -1,0 +1,102 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#FUEL
+
+- type: listing
+  id: UplinkVipFuelPlasma
+  name: uplink-vip-FuelPlasma-name
+  description: uplink-vip-FuelPlasma-desc
+  productEntity: FuelPlasma
+  cost:
+    Speso: 3600
+  categories:
+  - UplinkVipFuel
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFuelBananium
+  name: uplink-vip-FuelBananium-name
+  description: uplink-vip-FuelBananium-desc
+  productEntity: FuelBananium
+  cost:
+    Speso: 15000
+  categories:
+  - UplinkVipFuel
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFuelAmeJar
+  name: uplink-vip-AmeJar-name
+  description: uplink-vip-AmeJar-desc
+  productEntity: AmeJar
+  cost:
+    Speso: 12000
+  categories:
+  - UplinkVipFuel
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFuelUranium
+  name: uplink-vip-FuelUranium-name
+  description: uplink-vip-FuelUranium-desc
+  productEntity: FuelUranium
+  cost:
+    Speso: 7500
+  categories:
+  - UplinkVipFuel
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFuelBluespace
+  name: uplink-vip-FuelBluespace-name
+  description: uplink-vip-FuelBluespace-desc
+  productEntity: FuelBluespace
+  cost:
+    Speso: 37500
+  categories:
+  - UplinkVipFuel
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+

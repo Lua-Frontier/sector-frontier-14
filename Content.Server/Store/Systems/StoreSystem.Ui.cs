@@ -3,6 +3,8 @@ using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
+using Content.Server._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared.Actions;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
@@ -30,6 +32,7 @@ public sealed partial class StoreSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly BankSystem _bank = default!;
 
     private void InitializeUi()
     {
@@ -94,11 +97,29 @@ public sealed partial class StoreSystem
                 .ToHashSet();
         }
 
-        //dictionary for all currencies, including 0 values for currencies on the whitelist
         Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> allCurrency = new();
+        EntityUid? bankOwner = null;
+        if (component.UseBankAccount && user is { } buyerUid) bankOwner = buyerUid;
+        BankAccountComponent? bankComp = null;
+        if (bankOwner != null) TryComp(bankOwner.Value, out bankComp);
+        var maxDisplayAmount = (int) FixedPoint2.MaxValue;
+
         foreach (var supported in component.CurrencyWhitelist)
         {
             allCurrency.Add(supported, FixedPoint2.Zero);
+
+            if (component.UseBankAccount &&
+                bankComp != null &&
+                supported == "Speso")
+            {
+                var speso = bankComp.Balance;
+                if (speso > maxDisplayAmount)
+                    allCurrency[supported] = FixedPoint2.MaxValue;
+                else
+                    allCurrency[supported] = FixedPoint2.New(speso);
+
+                continue;
+            }
 
             if (component.Balance.TryGetValue(supported, out var value))
                 allCurrency[supported] = value;
@@ -110,7 +131,9 @@ public sealed partial class StoreSystem
         // only tell operatives to lock their uplink if it can be locked
         var showFooter = HasComp<RingerUplinkComponent>(store);
 
-        var state = new StoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed);
+        var allowWithdraw = !component.UseBankAccount;
+
+        var state = new StoreUpdateState( component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, allowWithdraw, bankComp?.Balance ?? 0, component.UseBankAccount && bankComp != null);
         _ui.SetUiState(store, StoreUiKey.Key, state);
     }
 
@@ -153,22 +176,38 @@ public sealed partial class StoreSystem
                 return;
         }
 
-        //check that we have enough money
         var cost = listing.Cost;
-        foreach (var (currency, amount) in cost)
+        if (component.UseBankAccount)
         {
-            if (!component.Balance.TryGetValue(currency, out var balance) || balance < amount)
+            var totalSpesoCost = FixedPoint2.Zero;
+            foreach (var (currency, amount) in cost)
+            { if (currency == "Speso") totalSpesoCost += amount; }
+            foreach (var (currency, amount) in cost)
             {
-                return;
+                if (currency == "Speso") continue;
+                if (!component.Balance.TryGetValue(currency, out var balance) || balance < amount) return;
+            }
+            var spesoInt = totalSpesoCost.Int();
+            if (spesoInt > 0 && !_bank.TryBankWithdraw(buyer, spesoInt)) return;
+        }
+        else
+        {
+            foreach (var (currency, amount) in cost)
+            {
+                if (!component.Balance.TryGetValue(currency, out var balance) || balance < amount)
+                {
+                    return;
+                }
             }
         }
 
         if (!IsOnStartingMap(uid, component))
             DisableRefund(uid, component);
 
-        //subtract the cash
         foreach (var (currency, amount) in cost)
         {
+            if (component.UseBankAccount && currency == "Speso") continue;
+
             component.Balance[currency] -= amount;
 
             component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
@@ -288,14 +327,14 @@ public sealed partial class StoreSystem
     /// </remarks>
     private void OnRequestWithdraw(EntityUid uid, StoreComponent component, StoreRequestWithdrawMessage msg)
     {
+        if (component.UseBankAccount) return;
+
         if (msg.Amount <= 0)
             return;
 
-        //make sure we have enough cash in the bank and we actually support this currency
         if (!component.Balance.TryGetValue(msg.Currency, out var currentAmount) || currentAmount < msg.Amount)
             return;
 
-        //make sure a malicious client didn't send us random shit
         if (!_proto.TryIndex<CurrencyPrototype>(msg.Currency, out var proto))
             return;
 

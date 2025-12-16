@@ -1738,6 +1738,83 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         #endregion
 
+        #region Sponsors
+
+        public async Task AddOrUpdateSponsor(Guid player, string playerName, string role, DateTime startDate, DateTime? plannedEndDate)
+        {
+            await using var db = await GetDb();
+
+            var existing = await db.DbContext.Set<Sponsor>()
+                .Where(s => s.PlayerUserId == player)
+                .Where(s => s.Role == role)
+                .Where(s => s.EndDate == null)
+                .SingleOrDefaultAsync();
+
+            if (existing == null)
+            {
+                var sponsor = new Sponsor
+                {
+                    PlayerUserId = player,
+                    Player = null!,
+                    PlayerName = playerName,
+                    Role = role,
+                    StartDate = startDate,
+                    EndDate = null,
+                    PlannedEndDate = plannedEndDate
+                };
+
+                db.DbContext.Set<Sponsor>().Add(sponsor);
+            }
+            else
+            {
+                existing.PlayerName = playerName;
+                existing.PlannedEndDate = plannedEndDate;
+            }
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task CloseSponsor(Guid player, string role, DateTime endDate)
+        {
+            await using var db = await GetDb();
+
+            var existing = await db.DbContext.Set<Sponsor>()
+                .Where(s => s.PlayerUserId == player)
+                .Where(s => s.Role == role)
+                .Where(s => s.EndDate == null)
+                .SingleOrDefaultAsync();
+
+            if (existing == null)
+                return;
+
+            existing.EndDate = endDate;
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<Sponsor?> GetActiveSponsor(Guid player, string role)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.Set<Sponsor>()
+                .Where(s => s.PlayerUserId == player)
+                .Where(s => s.Role == role)
+                .Where(s => s.EndDate == null)
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task<Sponsor?> GetActiveSponsor(Guid player)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.Set<Sponsor>()
+                .Where(s => s.PlayerUserId == player)
+                .Where(s => s.EndDate == null)
+                .OrderByDescending(s => s.StartDate)
+                .FirstOrDefaultAsync();
+        }
+
+        #endregion
+
         #region Job Whitelists
 
         public async Task<bool> AddJobWhitelist(Guid player, ProtoId<JobPrototype> job)
