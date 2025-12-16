@@ -135,17 +135,17 @@
     prototypes:
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootGunT2
+    - SpawnDungeonLootGunT3L # Lua
     - SpawnDungeonLootMeleeT2
+    - SpawnDungeonLootMeleeT3L # Lua
     - SpawnDungeonLootAmmoLethal
-    chance: 0.6 #Lua 0.8<0.6
+    chance: 0.8
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
-    - SpawnDungeonLootMeleeT3L # Lua
     - SpawnDungeonLootGunT3
-    - SpawnDungeonLootGunT3L # Lua
     - SpawnDungeonLootExplosivesT2
-    rareChance: 0.1
+    rareChance: 0.2 #Lua 0.1<0.2
 
 - type: entity
   name: random weapon

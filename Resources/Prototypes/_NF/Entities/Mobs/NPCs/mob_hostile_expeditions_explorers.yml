@@ -130,6 +130,8 @@
         Structural: 30
     soundHit:
       collection: MetalThud
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetExplorersMeleeT1
 
 - type: entity
   name: scrapper
@@ -209,6 +211,8 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetExplorersSpitT1
 
 #region Tier 2
 - type: entity
@@ -224,7 +228,7 @@
     prototypes:
     - MobHumanoidExplorerGearMeleeT2
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetMedium
+    damageModifierSet: MobHostileDamageModifierSetExplorersMeleeT2 #Lua
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -266,7 +270,7 @@
     prototypes:
     - MobHumanoidExplorerGearRangedT2
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetMedium
+    damageModifierSet: MobHostileDamageModifierSetExplorersSpitT2 #Lua
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -317,7 +321,7 @@
     prototypes:
     - MobHumanoidExplorerGearMeleeT3
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetHigh
+    damageModifierSet: MobHostileDamageModifierSetExplorersMeleeT3 #Lua
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -370,7 +374,7 @@
     prototypes:
     - MobHumanoidExplorerGearRangedT3
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetHigh
+    damageModifierSet: MobHostileDamageModifierSetExplorersSpitT3 #Lua
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -571,6 +575,8 @@
   - type: ActionGun
     action: ActionSeismicCharge
     gunProto: SeismicChargeGun
+  - type: NPCUseActionOnTarget #Lua
+    actionId: ActionSeismicCharge
 
 - type: entity
   id: SeismicChargeGun

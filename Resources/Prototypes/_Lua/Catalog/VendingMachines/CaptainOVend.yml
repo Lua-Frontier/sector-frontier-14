@@ -1,0 +1,57 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vendingMachineInventory
+  id: CapOVendInventory
+  startingInventory:
+  # Storage
+    ClothingBackpackCaptain: 3
+    ClothingBackpackSatchelCaptain: 3
+    ClothingBackpackDuffelCaptain: 3
+    ClothingBackpackMessengerCaptain: 3
+  # Jumpskuirts
+    ClothingUniformJumpsuitCaptain: 4
+    ClothingUniformJumpskirtCaptain: 4
+    ClothingUniformJumpsuitCapFormal: 2
+    ClothingUniformJumpskirtCapFormalDress: 2
+    ClothingUniformPajamasCaptain: 2
+    ClothingUniformJumpsuitMilitaryCaptain: 2
+  # Cloaks
+    ClothingNeckCloakCap: 3
+    ClothingNeckMantleCap: 3
+    ClothingNeckCloakCapFormal: 2
+  # Armor, not only carapace, but also other armored stuff like my jumpsuits, also winter clothing
+    ClothingOuterArmorCaptainCarapace: 2
+
+    ClothingBackpackDuffelEVABundleCaptain: 2
+    ClothingOuterWinterCap: 2
+    ClothingShoesBootsWinterCap: 2
+  # Gloves and eyewear
+    ClothingHandsGlovesCaptain: 2
+    ClothingEyesGlassesSunglasses: 2
+    ClothingEyesGlassesBigSunset: 2
+        # ClothingEyesGlassesCommand
+        # ClothingEyesHudCommand
+        # Administrative glasses for HoP only
+  # Hats
+    ClothingHeadHatCaptain: 3
+    ClothingHeadHatCapcap: 3
+
+  # Misc
+    RubberStampCaptain: 1
+    BoxPaperCaptainsThoughts: 2
+    PenCap: 1
+    DrinkFlask: 1
+    ToyFigurineCaptain: 2
+    NFPouchCaptain: 1
+    ClothingMaskGasCaptain: 2
+    BedsheetCaptain: 2
+    ClothingShoesBootsLaceup: 2 # Will move to SHOES category, when i will make new jordans for captain
+  contrabandInventory:
+    N14WeaponRevolverCaptainMagnun: 1
+    NukeDiskFake: 1
+    ClothingOuterEVASuitCaptain: 1
+    CaptainPDA: 1
+    ClothingBeltSheathFilledHilt: 1
+    PinpointerUniversal: 1

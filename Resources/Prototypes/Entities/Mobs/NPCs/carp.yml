@@ -93,6 +93,8 @@
       interactFailureSound:
         path: /Audio/Effects/bite.ogg
     - type: Carriable # DeltaV
+    - type: Damageable #Lua
+      damageModifierSet: MobHostileDamageModifierSetCarpMeleeMinor
 
 - type: entity
   parent: BaseMobCarp
@@ -161,6 +163,8 @@
     energy: 2
   - type: RgbLightController
     layers: [ 0 ]
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetCarpMeleeMajor
 
 - type: entity
   id: MobCarpSalvage
@@ -267,6 +271,8 @@
         types:
           Slash: 10
           Bloodloss: 5
+    - type: Damageable #Lua
+      damageModifierSet: MobHostileDamageModifierSetCarpMeleeMajor
 
 - type: entity
   id: MobSharkSalvage

@@ -1,0 +1,38 @@
+- type: entity
+  name: Консоль продажи Синдиката
+  suffix: Normal
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  id: ComputerPalletConsoleSyndicateMarket
+  description: Продаёт предметы на поддоне Синдикату
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard_trade
+    - map: ["computerLayerScreen"]
+      state: transferSyndicateN
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: NFCargoPalletConsole
+  - type: ActivatableUI
+    key: enum.CargoPalletConsoleUiKey.Sale
+  - type: UserInterface
+    interfaces:
+      enum.CargoPalletConsoleUiKey.Sale:
+        type: CargoPalletConsoleNFBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: Null
+  - type: MarketModifier
+    buy: false

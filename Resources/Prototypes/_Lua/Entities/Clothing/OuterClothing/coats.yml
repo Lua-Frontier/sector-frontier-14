@@ -45,3 +45,89 @@
     sprite: _Lua/Clothing/OuterClothing/Coats/letterman_s.rsi
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Coats/letterman_s.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterApronOutpostSyndicateChef
+  name: фартук шеф-повара синдиката
+  description: Пятна крови на нём смотрятся как влитые.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/apron_chef.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/apron_chef.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatRDOutpostSyndicate
+  name: лабораторный халат директора исследований
+  description: Яркий лабораторный халат, предоставляющий защиту от окружающей среды.
+  components:
+  - type: Clothing
+    sprite: ADT/Clothing/OuterClothing/Coats/labcyber.rsi
+  - type: Sprite
+    sprite: ADT/Clothing/OuterClothing/Coats/labcyber.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterMedOutpostSyndicate
+  name: халат медика синдиката
+  description: Халат с едва заметными неотстиранными пятнами крови. Пахнет пытками.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/labcoat_robo.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: ClothingOuterWinterOutpostSyndicateChef
+  name: куртка шеф-повара синдиката
+  description:  Куртка, разработанная специально для работы в холодильных камерах.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/chefjacket.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/chefjacket.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterApronOutpostSyndicateBotanist
+  name: фартук ботаника синдиката
+  suffix: Botanical
+  description: Толстый фартук, идеально подходящий для защиты вашей нежной плоти от пятен, грязи и крови.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/apron_botanist.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/apron_botanist.rsi
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterPathologist
+  name: зимняя куртка патологоанатома
+  description: Идеальное сочетание тепла и стиля для тех, кто любит замораживать не только своих пациентов, но и окружающих своим холодом.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/WinterCoats/pathologist.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/WinterCoats/pathologist.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterPathologist
+  name: роба патологоанатома
+  description: Роба которая помогает не испачкаться для тех, кто считает, что черный – единственный цвет радуги, который они видят каждый день.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Coats/pathologist.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Coats/pathologist.rsi

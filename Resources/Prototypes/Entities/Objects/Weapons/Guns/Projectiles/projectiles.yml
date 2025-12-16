@@ -10,9 +10,14 @@
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_bullet
+      sprite: _Impstation/Objects/Weapons/Guns/Projectiles/muzzleflashes.rsi #imp
+      state: kinetic #imp
   - type: EffectVisuals
+  - type: PointLight
+    enabled: true
+    color: "#ffa223" #imp
+    radius: 1.2 #imp
+    energy: 4.0 #imp
   - type: Tag
     tags:
       - HideContextMenu
@@ -1422,3 +1427,28 @@
         Heat: 20 # Slightly more damage than the 17heat from the Captain's Hitscan lasgun
     soundHit:
       collection: MeatLaserImpact
+
+# Frontier projectiles
+# The game wont allow them to sit under _NF.
+# TODO: redefine the flybyfixture anchor locally; it probably will.
+
+- type: entity
+  id: BulletRocketEmp
+  name: rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: TimedDespawn
+    lifetime: 15
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: frag-emp
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 2700000
+    disableDuration: 60

@@ -113,7 +113,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 10
+        Blunt: 15 #Lua 10<15
         Structural: 30
   - type: Ammo
     muzzleFlash: HitscanEffect
@@ -136,7 +136,7 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 13
+        Blunt: 20 #Lua 13<20
         Structural: 30
 
 - type: entity

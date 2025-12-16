@@ -1,0 +1,102 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeCrystal
+  name: плащ Кристалл
+  description: Нежно-розовый плащ с голубым кристаллом на спине.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/crystal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeNeon
+  name: плащ Неон
+  description: Плащ в неоновой расцветке.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/neon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeViolet
+  name: плащ Вайолет
+  description: Плащ в лиловых тонах с сердцем на спине.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/violet.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeGalaxy
+  name: плащ Галакси
+  description: На этом плаще изображена далёкая галактика.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/galaxy.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeSirius
+  name: плащ Сириус
+  description: На этом плаще изображена ярчайшая звезда ночного неба, видимая с Марса.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/sirius.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeLua
+  name: плащ Луа
+  description: Пахнет сладкой фыркалкой.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/lua.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeFlame
+  name: пламенный плащ
+  description: На этом плаще изображено плазменное пламя.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/hqdishka/Neck/flame.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakUnnown
+  name: unnown ckoak
+  description: Unnown
+  components:
+  - type: Sprite
+    sprite: _Lua/Cloack/unnown.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakNanotrasenVip
+  name: unnown ckoak
+  description: Unnown
+  components:
+  - type: Sprite
+    sprite: _Lua/Cloack/nanotrasenvip.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakFoxyorg
+  name: Scient Org Fox
+  description: What is it?
+  components:
+  - type: Sprite
+    sprite: _Lua/Cloack/foxorg.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakSunset
+  name: Sunsent Cloack
+  description: Purple cloack
+  components:
+  - type: Sprite
+    sprite: _Lua/Cloack/sunsetcloack.rsi

@@ -1,0 +1,75 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: MpplayerBase
+  name: base mpplayer
+  parent: [ BaseItem, PowerCellSlotSmallItem]
+  description: just base proto
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    scale: 0.45, 0.45
+    sprite: _Lua/MPPlayer/mpplayer.rsi
+    layers:
+      - state: MP3player-base
+        map: [ "enum.JukeboxVisualLayers.Base" ]
+      - state: MP3player-on-overlay
+        shader: unshaded
+        visible: true
+        map: [ "enum.JukeboxVisualLayers.OverlayStatic" ]
+      - state: MP3player-off-overlay
+        shader: unshaded
+        visible: true
+        map: [ "enum.JukeboxVisualLayers.OverlayDynamic" ]
+  - type: Jukebox
+    menuTitle: mpplayer-lua-menu-title
+    onRandomStates:
+    - MP3player-on-BLUE
+    - MP3player-on-BLUE_SKY
+    - MP3player-on-GREEN
+    - MP3player-on-MITN_GREEN
+    - MP3player-on-PINK
+    - MP3player-on-YELLOW
+    offState: MP3player-off-overlay
+    selectState: MP3player-on-SEARCH
+    selectIsLoop: true
+    onOverlayState: MP3player-on-overlay
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.JukeboxVisualLayers.Base:
+          True: { visible: true }
+          False: { visible: false }
+        enum.JukeboxVisualLayers.OverlayStatic:
+          True: { visible: true }
+          False: { visible: false }
+        enum.JukeboxVisualLayers.OverlayDynamic:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 0.1
+    useRate: 0.1
+  - type: ActivatableUIRequiresPowerCell
+  - type: ActivatableUI
+    key: enum.JukeboxUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+        enum.JukeboxUiKey.Key:
+          type: JukeboxBoundUserInterface
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: MpplayerDefault
+  name: Плеер
+  parent: [ MpplayerBase, BaseItem, PowerCellSlotSmallItem]
+  description: Музыкальный плеер который можно носить в кармане
+  components:
+  - type: Jukebox
+    menuTitle: mpplayer-menu-title

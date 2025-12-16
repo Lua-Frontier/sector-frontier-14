@@ -28,3 +28,110 @@
     Piercing: 25
     Heat: 25
     Structural: 50
+
+#Dragon fauna (vulnerable to slash)
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetCarpMeleeMinor
+  coefficients:
+    Blunt: 1.5
+    Slash: 2
+    Piercing: 0.6
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetCarpMeleeMajor
+  coefficients:
+    Blunt: 0.6
+    Slash: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetCarpSpit
+  coefficients:
+    Blunt: 0.6
+    Slash: 2
+
+#Xeno fauna (vulnerable to heat)
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetXenoMeleeMinor
+  coefficients:
+    Blunt: 1.5
+    Slash: 1.5
+    Piercing: 0.6
+    Heat: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetXenoMeleeMajor
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Heat: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetXenoSpit
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Heat: 2
+
+#Argocytes (vulnerable to radiation)
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetArgoMeleeMinor
+  coefficients:
+    Blunt: 1.5
+    Slash: 1.5
+    Piercing: 0.6
+    Radiation: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetArgoMeleeMajor
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Radiation: 2
+
+#Explorers (vulnerable to caustic)
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetExplorersMeleeT1
+  coefficients:
+    Blunt: 1.5
+    Slash: 1.5
+    Piercing: 0.6
+    Caustic: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetExplorersMeleeT2
+  coefficients:
+    Blunt: 1.4
+    Slash: 1.4
+    Piercing: 0.5
+    Caustic: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetExplorersMeleeT3
+  coefficients:
+    Blunt: 1.3
+    Slash: 1.3
+    Piercing: 0.4
+    Caustic: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetExplorersSpitT1
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.8
+    Caustic: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetExplorersSpitT2
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.7
+    Piercing: 0.9
+    Caustic: 2
+
+- type: damageModifierSet
+  id: MobHostileDamageModifierSetExplorersSpitT3
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Piercing: 0.8
+    Caustic: 2

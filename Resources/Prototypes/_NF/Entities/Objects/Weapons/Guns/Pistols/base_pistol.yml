@@ -5,6 +5,17 @@
   id: NFBaseWeaponFramePistol
   name: pistol
   components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
+  # Goobstation edit end
   - type: Gun
     projectileSpeed: 22.5
     minAngle: 2.7

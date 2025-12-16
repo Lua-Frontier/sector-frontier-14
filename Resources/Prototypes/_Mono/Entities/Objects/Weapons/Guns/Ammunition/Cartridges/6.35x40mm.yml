@@ -1,0 +1,72 @@
+# SPDX-FileCopyrightText: 2022 Kara
+# SPDX-FileCopyrightText: 2022 Visne
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2023 Checkraze
+# SPDX-FileCopyrightText: 2023 Vordenburg
+# SPDX-FileCopyrightText: 2023 lzk
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 Nemanja
+# SPDX-FileCopyrightText: 2024 PoorMansDreams
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2024 Winkarst
+# SPDX-FileCopyrightText: 2025 BramvanZijp
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BaseCartridge635x40mmCaseless
+  name: cartridge (.25 rifle)
+  parent: [ BaseCartridge, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSecurityContraband<BaseC3SyndicateContraband
+  description: Developed during corporate wars for subsonic weapons to keep a low-profile during operations.
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - Cartridge635x40mmCaseless
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+  - type: Sprite
+    noRot: false
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Casings/caseless_ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  id: Cartridge635x40mmCaseless
+  name: cartridge (635x40mm Caseless)
+  parent: BaseCartridge635x40mmCaseless
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet635x40mmCaseless
+
+- type: entity
+  id: Cartridge635x40mmCaselessRubber
+  name: cartridge (635x40mm Caseless rubber)
+  parent: BaseCartridge635x40mmCaseless
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet635x40mmCaselessRubber
+
+- type: entity
+  id: Cartridge635x40mmCaselessPractice
+  name: cartridge (635x40mm Caseless practice)
+  parent: BaseCartridge635x40mmCaseless
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet635x40mmCaselessPractice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+

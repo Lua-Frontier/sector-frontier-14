@@ -130,6 +130,8 @@
     color: "#808080"
     activateSound: null
     deactivateSound: null
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMinor
 
 - type: entity
   name: praetorian
@@ -164,6 +166,13 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Butcherable #Lua
+    butcheringType: Spike
+    spawned:
+    - id: XenoBioResearchDisk5000
+      amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMajor
 
 - type: entity
   name: drone
@@ -205,6 +214,13 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Butcherable #Lua
+    butcheringType: Spike
+    spawned:
+    - id: XenoBioResearchDisk2000
+      amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMajor
 
 - type: entity
   name: queen
@@ -248,6 +264,11 @@
   - type: Tag
     tags:
     - CannotSuicide
+  - type: Butcherable #Lua
+    butcheringType: Spike
+    spawned:
+    - id: XenoBioResearchDisk10000
+      amount: 1
 
 - type: entity
   name: ravager
@@ -289,6 +310,13 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Butcherable #Lua
+    butcheringType: Spike
+    spawned:
+    - id: XenoBioResearchDisk5000
+      amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoMeleeMajor
 
 - type: entity
   name: runner
@@ -323,6 +351,11 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Butcherable #Lua
+    butcheringType: Spike
+    spawned:
+    - id: XenoBioResearchDisk2000
+      amount: 1
 
 - type: entity
   name: rouny
@@ -387,6 +420,13 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Butcherable #Lua
+    butcheringType: Spike
+    spawned:
+    - id: XenoBioResearchDisk5000
+      amount: 1
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetXenoSpit
 
 - type: entity
   name: space adder

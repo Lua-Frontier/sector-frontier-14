@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  id: Aeon
+  parent: BaseVessel
+  name: NT-Aeon
+  description: небольшое медицинское судно парамедика для спасательных операций.
+  price: 47150
+  category: small
+  group: Medical
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/Aeon.yml
+  guidebookPage: null
+  class:
+  - Civilian
+  - Medical
+  engine:
+  - Uranium
+  addComponents:
+    - type: IFF
+      color: "#ffffff"
+- type: gameMap
+  id: Aeon
+  mapName: 'NT-Aeon'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/Aeon.yml
+  minPlayers: 0
+  stations:
+    Aeon:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'NT-Aeon {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

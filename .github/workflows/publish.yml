@@ -25,6 +25,24 @@ jobs:
       with:
         submodules: 'recursive'
 
+    # Lua-secrets-start
+    - name: Setup secrets (lua-secrets)
+      env:
+        SSH_KEY: ${{ secrets.SECRETS_PRIVATE_KEY }}
+      if: ${{ env.SSH_KEY != '' }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SECRETS_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo "HOST *" > ~/.ssh/config
+        echo "StrictHostKeyChecking no" >> ~/.ssh/config
+        git clone git@github.com:HacksLua/lua-secrets.git LuaSecrets
+        cp -R LuaSecrets/Resources/Audio/_Lua/* Resources/Audio/_LuaSecrets
+        cp -R LuaSecrets/Resources/Prototypes/_Lua/* Resources/Prototypes/_LuaSecrets
+        cp -R LuaSecrets/Resources/Locale/_Lua/* Resources/Locale/ru-RU/_LuaSecrets
+        cp -R LuaSecrets/Resources/Textures/_Lua/* Resources/Textures/_LuaSecrets
+    # Lua-secrets-end
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
       with:

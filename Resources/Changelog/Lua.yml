@@ -2648,3 +2648,198 @@ Entries:
   id: 194
   time: '2025-11-27T14:00:43.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/375
+- author: fox76055
+  changes:
+    - type: Add
+      message: Guidebook for NT-Wyvern
+    - type: Tweak
+      message: >-
+        Concord-Wyvern название -> NT-Wyvern. Цена 530000 -> 391000 (Накрутка:
+        100000). Полный ремап внутренней части корабля с учётом отзывов игроков
+        о ней.
+  id: 195
+  time: '2025-12-02T09:24:10.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/351
+- author: fox76055
+  changes:
+    - type: Add
+      message: >-
+        Добавлена возможность крафта в резательном станке новых полов с
+        Shiptest, Beestation, LuaWorld.
+    - type: Add
+      message: Переводы недавно добавленных полов с Shiptest, Beestation, LuaWorld.
+    - type: Add
+      message: Диагональные покрытия, решётки, укреплённая внешняя обшивка (ГМпол)
+    - type: Add
+      message: Возможность установки диагональных покрытий, решёток в корабельном РСУ.
+    - type: Fix
+      message: Полы LuaWorld теперь выпадают.
+  id: 196
+  time: '2025-12-02T13:29:19.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/391
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Максимальное количество мобов в кучке понижено с 5 до 3
+    - type: Add
+      message: >-
+        С фауны ксено при разделке теперь выпадают ядра ксено, работающие как
+        диски рнд (2к, 5к, 10к в зависимости от опасности моба)
+    - type: Tweak
+      message: >-
+        Значительно повышен шанс на выпадение фоллаут и марин ганов;
+        Незначительно - на повышение тира до т4
+    - type: Tweak
+      message: >-
+        Повышен шанс на деньги и ценные платы в хранах, уменьшен шанс на
+        охранный техфаб
+    - type: Tweak
+      message: Незначительно повышен урон стреляющих мобов фауны шахтеров
+    - type: Tweak
+      message: >-
+        В два раза повышена стоимость "драгоценного" лута (монеток, кубков,
+        часов, колечек), теперь их сбор может принести вам до 20к за т3 экспу,
+        до 30 за т4
+    - type: Tweak
+      message: >-
+        Ксено, карпам, шахтерам, аргоцитам добавлены резисты и уязвимости к
+        разным типам урона в зависимости от их класса: маленькие мили мобы имеют
+        повышенный урон от порезов и ушибов, резист к уколам; толстые мобы и
+        дальники - резист к ушибам и порезам; Ксено имеют повышенный урон к
+        терме, карпы к порезам, аргоциты к радиации, шахтеры к кислоте ВНЕ
+        зависимости от их класса
+    - type: Tweak
+      message: >-
+        Дракон, капитан шахтеров, тирекс теперь могут использовать свои
+        способности (сейсмы, фаерболы, рык) даже без наличия души
+    - type: Tweak
+      message: Уменьшен шанс на гипоспреи чуть меньше чем в 2 раза
+    - type: Tweak
+      message: >-
+        Понижено общее количество мобов на экспедициях в угоду оптимизации
+        работы сервера
+    - type: Tweak
+      message: Незначительно снижен шанс на спавн кучки голокарпов
+  id: 197
+  time: '2025-12-02T15:28:08.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/392
+- author: LeptonComm
+  changes:
+    - type: Fix
+      message: >-
+        С Нордфолла убраны сущности с измененными вручную компонентами, в т. ч.
+        компонентом metadata
+  id: 198
+  time: '2025-12-11T10:16:09.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/394
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        Барону убран стыковочный порт в носу; Конфигурация орудий заменена на 2
+        бофорса; 2 кирехи
+    - type: Tweak
+      message: >-
+        Афанеору лобовое бронирование было усилено; Конфигурация орудий заменена
+        на 3 кирехи; 2 рельсы;
+    - type: Fix
+      message: 'Незначительно изменена форма Афанеора: теперь щит работает без ошибок'
+    - type: Tweak
+      message: >-
+        Анаконде весперы заменены на мародеры и ак570; Незначительно усилено
+        бронирование бортов
+    - type: Tweak
+      message: >-
+        Европе усилено бронирование бортов в слабых местах; Изменена
+        конфигурация двигателей
+    - type: Tweak
+      message: Меркурию чаронетты были заменены на аполло
+  id: 199
+  time: '2025-12-11T10:17:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/395
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: >-
+        На шаттлах СБ и Норда верфи Гефест убрана мажор снаряга, избыток
+        снарядов корабельных орудий
+    - type: Tweak
+      message: >-
+        Восходу добавлен капитальный щит, тарниксы заменены на кирехи, каргилы -
+        на 4 ак570 (90мм)
+    - type: Tweak
+      message: >-
+        Капитальный ремап Пурги (Починено электропитание, незначительно улучшено
+        бронирование и вооружение, добавлен щит)
+    - type: Tweak
+      message: Незначительно улучшено вооружение Шукры-2 (по аналогии с Пургой)
+    - type: Tweak
+      message: >-
+        Капитальный ремап Скифа: Инженерный и медицинский отдел поменялись
+        местами, убран ненужный хлам, мародеры заменены на 4 тайп54; Кирехи
+        заменены на каргилы
+    - type: Tweak
+      message: Сигулу добавлена химка (теперь точно)
+    - type: Tweak
+      message: Незначительно изменено наполнение дорм на Ксено
+  id: 200
+  time: '2025-12-15T09:22:38.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/387
+- author: fox76055
+  changes:
+    - type: Add
+      message: >-
+        ПП: LWC Knallstock (9x19mm/.45 ACP), LWC Vector (.45 ACP), LWC Vector
+        (9x19mm), NCI AK-220 (9x19mm), HWM Firestarter (.45 ACP), NTSF-HCLM-45
+        (.45 magnum), SKR-WS MLA-73 (635x40mm caseless).
+    - type: Add
+      message: 'Снайперские винтовки: NCI AK-410 (7.62x54mmR)'
+    - type: Add
+      message: >-
+        Лазерное вооружение: NT-WS LRC-21 PPL, VFD EN-5 FROST, kunisa-pattern
+        plasma autopulser
+    - type: Add
+      message: >-
+        Ручные пулемёты: DP-29, NCI AK-150 HAMMER (7.62x39mm), TCA MMG-68
+        "Grizzly" (6.8x52mm Caseless), VFD PSW "Ratel" (7.62x51mm)
+    - type: Add
+      message: >-
+        Штурмовые винтовки: HWM FCL "Prometheus" (5.56x45mm), HWM FCM-C "Vulcan"
+        (7.62x51mm), NCI AK-502 (7.62x39mm), NTSF-LTR-556 (5.56x45mm,6.8x52mm
+        Caseless), PA M-90 (7.62x51mm), VFD XLR-556 ICWS (5.56x45mm)
+    - type: Add
+      message: >-
+        Дробовики: Big Buddy (4 gauge), Big Johnny (4 gauge), Big Leady (4
+        gauge)
+    - type: Add
+      message: 'Пистолеты: LWC HAWK-4 I.S (самозарядный)'
+    - type: Tweak
+      message: 'Респрайты: Соланд-Мосс, WSPR, Lecter, Энни, MR-8C DMR'
+    - type: Tweak
+      message: >-
+        Названия: Соланд-Мосс -> AK-74M, WSPR -> CS KMP-WSPR (7.62x39mm), Annie
+        -> TCA M27 Annie (7.62x39mm), MR-8C DMR  -> VFD MR-8C DMR (8x65mm SKR).
+    - type: Add
+      message: Новые звуки окружения и предметов
+    - type: Add
+      message: Новая анимация стрельбы.
+    - type: Add
+      message: Рецепты патронов в ТехФаб патронов, ДСБФ, Наёмников.
+    - type: Add
+      message: Доступность в аплинках будет после тестов баланса огнестрельного оружия.
+    - type: Tweak
+      message: >-
+        CS KMP-WSPR (7.62x39mm): цена в аплинке пиратов увеличена до 25 ДБ,
+        удалена с аплинка Нордфолла.
+  id: 201
+  time: '2025-12-15T15:20:25.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/368
+- author: KiraFaust
+  changes:
+    - type: Add
+      message: >-
+        Кофейные столики, урановый стол, укреплённый урановый стол и укреплённый
+        плазменный стол.
+  id: 202
+  time: '2025-12-15T17:27:41.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/404

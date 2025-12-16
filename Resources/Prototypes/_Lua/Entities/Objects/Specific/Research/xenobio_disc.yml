@@ -1,0 +1,37 @@
+#Prototypes taken from SS14 server StarHorizon
+
+- type: entity
+  parent: BaseItem
+  id: XenoBioResearchDisk2000
+  name: ксеноядро
+  description: Странная часть ксеноса, которую можно исследовать для получения очков (2000).
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Xenobio/xenobio_disc.rsi
+    state: biodisc
+  - type: ResearchDisk
+    points: 2000
+
+- type: entity
+  parent: BaseItem
+  id: XenoBioResearchDisk5000
+  name: ксеноядро
+  description: Странная часть ксеноса, которую можно исследовать для получения очков (5000).
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Xenobio/xenobio_disc.rsi
+    state: biodisc
+  - type: ResearchDisk
+    points: 5000
+
+- type: entity
+  parent: BaseItem
+  id: XenoBioResearchDisk10000
+  name: ксеноядро
+  description: Странная часть ксеноса, которую можно исследовать для получения очков (10000).
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Xenobio/xenobio_disc.rsi
+    state: biodisc
+  - type: ResearchDisk
+    points: 10000

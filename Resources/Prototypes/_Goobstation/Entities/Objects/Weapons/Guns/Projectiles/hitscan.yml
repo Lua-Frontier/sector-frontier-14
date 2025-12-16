@@ -1,7 +1,14 @@
+# SPDX-FileCopyrightText: 2025 ScyronX
+# SPDX-FileCopyrightText: 2025 bitcrushing
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: MIT
+
+# Mono Start - Changed types from hitscan to entity, components also changed
 - type: entity
+  id: SmallRedLaser
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
-  id: SmallRedLaser
   components:
   - type: HitscanBasicDamage
     damage:
@@ -19,29 +26,9 @@
       state: impact_beam_light
 
 - type: entity
-  parent: BasicHitscan
-  categories: [ HideSpawnMenu ]
-  id: SmallIonLaser
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Ion: 10
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
-      state: muzzle_beam_light_ion
-    travelFlash:
-      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
-      state: beam_light_ion
-    impactFlash:
-      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
-      state: impact_beam_light_ion
-
-- type: entity
-  parent: BasicHitscan
-  categories: [ HideSpawnMenu ]
   id: SmallXrayLaser
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:
@@ -60,9 +47,9 @@
       state: impact_beam_light_xray
 
 - type: entity
+  id: SmallOverchargedLaser
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
-  id: SmallOverchargedLaser
   components:
   - type: HitscanBasicDamage
     damage:
@@ -80,9 +67,9 @@
       state: impact_beam_light_overcharged
 
 - type: entity
+  id: SmallPulseLaser
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
-  id: SmallPulseLaser
   components:
   - type: HitscanBasicDamage
     damage:
@@ -100,9 +87,9 @@
       state: impact_beam_light_pulse
 
 - type: entity
+  id: MediumRedLaser
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
-  id: MediumRedLaser
   components:
   - type: HitscanBasicDamage
     damage:
@@ -120,29 +107,9 @@
       state: impact_beam_light
 
 - type: entity
-  parent: BasicHitscan
-  categories: [ HideSpawnMenu ]
-  id: MediumIonLaser
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Ion: 14
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
-      state: muzzle_beam_light_ion
-    travelFlash:
-      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
-      state: beam_light_ion
-    impactFlash:
-      sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
-      state: impact_beam_light_ion
-
-- type: entity
-  parent: BasicHitscan
-  categories: [ HideSpawnMenu ]
   id: MediumXrayLaser
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:
@@ -161,9 +128,9 @@
       state: impact_beam_light_xray
 
 - type: entity
+  id: MediumOverchargedLaser
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
-  id: MediumOverchargedLaser
   components:
   - type: HitscanBasicDamage
     damage:
@@ -181,9 +148,9 @@
       state: impact_beam_light_overcharged
 
 - type: entity
+  id: MediumPulseLaser
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
-  id: MediumPulseLaser
   components:
   - type: HitscanBasicDamage
     damage:
@@ -199,3 +166,4 @@
     impactFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
       state: impact_beam_light_pulse
+# Mono End - Changed types from hitscan to entity, components also changed

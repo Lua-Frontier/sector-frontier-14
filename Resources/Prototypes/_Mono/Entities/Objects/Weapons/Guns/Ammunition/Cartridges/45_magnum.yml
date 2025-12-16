@@ -1,0 +1,186 @@
+# SPDX-FileCopyrightText: 2020 AJCM-git
+# SPDX-FileCopyrightText: 2020 Paul Ritter
+# SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto
+# SPDX-FileCopyrightText: 2021 Leon Friedrich
+# SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 Swept
+# SPDX-FileCopyrightText: 2022 Kara
+# SPDX-FileCopyrightText: 2022 Peptide90
+# SPDX-FileCopyrightText: 2022 Visne
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2022 ninruB
+# SPDX-FileCopyrightText: 2023 Boaz1111
+# SPDX-FileCopyrightText: 2023 Flareguy
+# SPDX-FileCopyrightText: 2023 LankLTE
+# SPDX-FileCopyrightText: 2023 Vordenburg
+# SPDX-FileCopyrightText: 2023 brainfood1183
+# SPDX-FileCopyrightText: 2023 chromiumboy
+# SPDX-FileCopyrightText: 2023 lzk
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 Nairod
+# SPDX-FileCopyrightText: 2024 Nemanja
+# SPDX-FileCopyrightText: 2024 PoorMansDreams
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2024 Winkarst
+# SPDX-FileCopyrightText: 2025 BramvanZijp
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BaseCartridge45_magnum
+  name: cartridge (.45 magnum)
+  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  description: Heavy magnum round, usually only seen in magnums or manually-cycled rifles.
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - Cartridge45_magnumFMJ
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet45_magnumFMJ
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  id: Cartridge45_magnumFMJ
+  name: cartridge (.45 magnum)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumFMJ
+
+- type: entity
+  id: Cartridge45_magnumPractice
+  name: cartridge (.45 magnum practice)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumPractice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+
+- type: entity
+  id: Cartridge45_magnumIncendiary
+  name: cartridge (.45 magnum incendiary)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumIncendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: entity
+  id: Cartridge45_magnumAP
+  name: cartridge (.45 magnum armor-piercing)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#0a0a0a"
+
+- type: entity
+  id: Cartridge45_magnumUranium
+  name: cartridge (.45 magnum uranium)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumUranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"
+
+- type: entity
+  id: Cartridge45_magnumRubber
+  name: cartridge (.45 magnum rubber)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumRubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#43c4f7"
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  id: Cartridge45_magnumHP
+  name: cartridge (.45 magnum hollow-point)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumHP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#90EE90"
+
+- type: entity
+  id: Cartridge45_magnumRIP
+  name: cartridge (.45 magnum RIP)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumRIP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#C04000"
+
+#armor-piercing:
+
+- type: entity
+  id: Cartridge45_magnumPlasteelAP
+  name: cartridge (.45 magnum AP)
+  parent: BaseCartridge45_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_magnumPlasteelAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#888888"

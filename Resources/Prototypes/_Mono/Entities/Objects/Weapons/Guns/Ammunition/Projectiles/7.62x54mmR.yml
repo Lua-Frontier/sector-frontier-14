@@ -1,0 +1,127 @@
+# SPDX-FileCopyrightText: 2020 AJCM-git
+# SPDX-FileCopyrightText: 2020 DrSmugleaf
+# SPDX-FileCopyrightText: 2020 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 Leon Friedrich
+# SPDX-FileCopyrightText: 2021 Swept
+# SPDX-FileCopyrightText: 2022 Charlese2
+# SPDX-FileCopyrightText: 2022 Kara
+# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2023 Boaz1111
+# SPDX-FileCopyrightText: 2023 Vordenburg
+# SPDX-FileCopyrightText: 2023 kerisargit
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 IProduceWidgets
+# SPDX-FileCopyrightText: 2024 Nemanja
+# SPDX-FileCopyrightText: 2024 Plykiya
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 ScyronX
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Данный калибр используется для снайперской винтовки... (WeaponRifleAK410)
+
+
+- type: entity
+  id: Bullet762x54mmRFMJ
+  name: bullet (7.62x54mmR FMJ)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 45
+
+- type: entity
+  id: Bullet762x54mmRPractice
+  name: bullet (7.62x54mmR practice)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1 #Lua -2
+
+- type: entity
+  id: Bullet762x54mmRRubber
+  name: bullet (7.62x54mmR rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 35
+
+- type: entity
+  id: Bullet762x54mmRIncendiary
+  parent: BaseBulletIncendiary
+  name: bullet (7.62x54mmR incendiary)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        piercing: 10 #Lua add
+        Heat: 35 #Lua +5
+
+- type: entity
+  id: Bullet762x54mmRUranium
+  parent: BaseBulletUranium
+  name: bullet (7.62x54mmR uranium)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 35 #Lua +10
+        Piercing: 10 #Lua -10
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  id: Bullet762x54mmRHP
+  parent: BaseBullet
+  name: bullet (7.62x54mmR hollow-point)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 15 #Lua +10
+        Piercing: 25 #Lua -20
+
+- type: entity
+  id: Bullet762x54mmRRIP
+  parent: BaseBullet
+  name: bullet (7.62x54mmR RIP)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 10
+        Piercing: 25 #Lua -35
+        Blunt: 15 #Lua add
+
+#armor-piercing:
+
+- type: entity
+  id: Bullet762x54mmRPlasteelAP
+  parent: BaseBullet
+  name: bullet (7.62x54mmR AP)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 35 #Lua +15
+        Structural: 450 #Lua add
+    ignoreResistances: true #Lua add

@@ -79,3 +79,189 @@
   category: construction-category-structures
   placementMode: SnapgridCenter
   canBuildInImpassable: false
+
+# Wood
+- type: construction
+  name: recipe-CoffeeTableWood-name
+  id: CoffeeTableWood
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableWood
+  category: construction-category-furniture
+  description: recipe-CoffeeTableWood-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Steel
+- type: construction
+  name: recipe-CoffeeTableSteel-name
+  id: CoffeeTableSteel
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableSteel
+  category: construction-category-furniture
+  description: recipe-CoffeeTableSteel-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced
+- type: construction
+  name: recipe-CoffeeTableReinforced-name
+  id: CoffeeTableReinforced
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforced
+  category: construction-category-furniture
+  description: recipe-CoffeeTableReinforced-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Glass
+- type: construction
+  name: recipe-CoffeeTableGlass-name
+  id: CoffeeTableGlass
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableGlass
+  category: construction-category-furniture
+  description: recipe-CoffeeTableGlass-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Plasma
+- type: construction
+  name: recipe-CoffeeTablePlasma-name
+  id: CoffeeTablePlasma
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTablePlasma
+  category: construction-category-furniture
+  description: recipe-CoffeeTablePlasma-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced glass
+- type: construction
+  name: recipe-CoffeeTableReinforcedGlass-name
+  id: CoffeeTableReinforcedGlass
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforcedGlass
+  category: construction-category-furniture
+  description: recipe-CoffeeTableReinforcedGlass-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Uranium
+- type: construction
+  name: recipe-CoffeeTableUranium-name
+  id: CoffeeTableUranium
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableUranium
+  category: construction-category-furniture
+  description: recipe-CoffeeTableUranium-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced Uranium
+- type: construction
+  name: recipe-CoffeeTableReinforcedUranium-name
+  id: CoffeeTableReinforcedUranium
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforcedUranium
+  category: construction-category-furniture
+  description: recipe-CoffeeTableReinforcedUranium-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+# Reinforced plasma
+- type: construction
+  name: recipe-CoffeeTableReinforcedPlasma-name
+  id: CoffeeTableReinforcedPlasma
+  graph: CoffeeTableGraph
+  startNode: start
+  targetNode: CoffeeTableReinforcedPlasma
+  category: construction-category-furniture
+  description: recipe-CoffeeTableReinforcedPlasma-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: recipe-TableUraniumGlass-name
+  id: TableUraniumGlass
+  graph: Table
+  startNode: start
+  targetNode: TableUraniumGlass
+  category: construction-category-furniture
+  description: recipe-TableUraniumGlass-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: recipe-TableReinforcedUraniumGlass-name
+  id: TableReinforcedUraniumGlass
+  graph: Table
+  startNode: start
+  targetNode: TableReinforcedUraniumGlass
+  category: construction-category-furniture
+  description: recipe-TableReinforcedUraniumGlass-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  name: recipe-TablePlasmaGlassReinforced-name
+  id: TablePlasmaGlassReinforced
+  graph: Table
+  startNode: start
+  targetNode: TablePlasmaGlassReinforced
+  category: construction-category-furniture
+  description: recipe-TablePlasmaGlassReinforced-desc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
