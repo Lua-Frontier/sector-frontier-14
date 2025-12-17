@@ -137,3 +137,33 @@
   components:
   - type: Pda
     id: FSFCommanderCharlieIDCard
+
+- type: entity
+  parent: BasePDA
+  id: VipPDA
+  name: vip PDA
+  description: Why isn't it not gray?
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: VipIDCard
+  - type: PdaBorderColor
+    borderColor: "#171511"
+    accentVColor: "#b0a813"
+  - type: Icon
+    sprite: _Lua/Objects/Devices/pda.rsi
+    state: pda-vip

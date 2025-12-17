@@ -1,7 +1,29 @@
+# SPDX-FileCopyrightText: 2020 AJCM-git
+# SPDX-FileCopyrightText: 2020 Swept
+# SPDX-FileCopyrightText: 2021 Leon Friedrich
+# SPDX-FileCopyrightText: 2021 Paul Ritter
+# SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2022 Kara
+# SPDX-FileCopyrightText: 2022 Peptide90
+# SPDX-FileCopyrightText: 2022 T-Stalker
+# SPDX-FileCopyrightText: 2022 Visne
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2022 mirrorcult
+# SPDX-FileCopyrightText: 2023 Dvir
+# SPDX-FileCopyrightText: 2023 lzk
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2024 Winkarst
+# SPDX-FileCopyrightText: 2025 BramvanZijp
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: entity
   id: BaseCartridge8x65mmSKR
   name: cartridge (8x65mm SKR)
   parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  description: An experimental high performance round. Standard round for high-power rifles across all branches of the TSF's armed forces.
   abstract: true
   components:
   - type: Tag
@@ -9,6 +31,7 @@
       - Cartridge
       - Cartridge8x65mmSKR
   - type: CartridgeAmmo
+    deleteOnSpawn: true
     proto: Bullet8x65mmSKR
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -22,38 +45,38 @@
 
 - type: entity
   id: Cartridge8x65mmSKR
-  name: cartridge (8x65mm SKR)
+  name: cartridge (8x65mm SKR FMJ)
   parent: BaseCartridge8x65mmSKR
   components:
   - type: CartridgeAmmo
     proto: Bullet8x65mmSKR
 
 - type: entity
-  id: BaseCartridge8x55mmSKR
-  name: cartridge (8x55mm SKR)
-  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
-  abstract: true
+  id: Cartridge8x65mmSKRPractice
+  name: cartridge (8x65mm SKR practice)
+  parent: BaseCartridge8x65mmSKR
   components:
-  - type: Tag
-    tags:
-      - Cartridge
-      - Cartridge8x55mmSKR
   - type: CartridgeAmmo
-    proto: Bullet8x55mmSKR
+    proto: Bullet8x65mmSKRPractice
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: base
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-  - type: StaticPrice
-    price: 1
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#38b1d6"
 
 - type: entity
-  id: Cartridge8x55mmSKR
-  name: cartridge (8x55mm SKR)
-  parent: BaseCartridge8x55mmSKR
+  id: Cartridge8x65mmSKRIncendiary
+  name: cartridge (8x65mm SKR incendiary)
+  parent: BaseCartridge8x65mmSKR
   components:
   - type: CartridgeAmmo
-    proto: Bullet8x55mmSKR
+    proto: Bullet8x65mmSKRIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#f53b31"

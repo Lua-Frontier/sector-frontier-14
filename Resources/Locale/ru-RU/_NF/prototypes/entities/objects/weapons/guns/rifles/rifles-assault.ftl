@@ -1,4 +1,4 @@
-ent-NFWeaponRifleAssaultSm = Соланд-Мосс
+ent-NFWeaponRifleAssaultSm = AK-74M
    .desc = Культовое оружие всех войн. Использует патроны калибра .30 винтовочный.
 ent-NFWeaponRifleAssaultM90GrenadeLauncher = М-90gl
    .desc = Карабин старой модели, выполненный по схеме булл-пап, с подствольным гранатомётом. Использует патроны калибра .20 винтовочный.

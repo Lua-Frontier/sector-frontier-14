@@ -61,11 +61,11 @@
       types:
         Blunt: 50
     openSound:
-      path: /Audio/Machines/airlock_open.ogg
+      path: /Audio/_Lua/Machines/airlock_open.ogg #Lua edit
     closeSound:
-      path: /Audio/Machines/airlock_close.ogg
+      path: /Audio/_Lua/Machines/airlock_close.ogg #Lua edit
     denySound:
-      path: /Audio/Machines/airlock_deny.ogg
+      path: /Audio/_Lua/Machines/airlock_deny.ogg #Lua edit
   - type: Weldable
     fuel: 10
     time: 10

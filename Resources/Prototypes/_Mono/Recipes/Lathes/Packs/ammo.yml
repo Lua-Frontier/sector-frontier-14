@@ -1,0 +1,627 @@
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 significant harassment
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+#All the ammo recipes
+# MARK: Debug
+- type: latheRecipePack
+  id: MonoAmmoPack #DO NOT use this or test breaks. Unless its static for some kind of debugg lathe
+  recipes:
+  - AmmoBox23x75mmBuckshot
+  - AmmoBox23x75mmBeanbag
+  - AmmoBox23x75mmIncendiary
+  - AmmoBox23x75mmFlashbang
+  - AmmoBox23x75mmPractice
+  - AmmoBox23x75mmUranium
+  - AmmoBox23x75mmSlug
+  - AmmoBox23x75mmDozd
+  - AmmoBox23x75mmSlugRIP
+ #- AmmoBox23x75mmSlugAP
+  - AmmoBox23x75mmOOBuckshot
+  #- AmmoBox23x75mmFlechette
+  - Magazine762x51mmFMJ
+  #- Magazine762x51mmPlasteelAP
+  - Magazine762x51mmRubber
+  - Magazine762x51mmIncendiary
+  - Magazine762x51mmPractice
+  - Magazine762x51mmEmpty
+  - Magazine762x51mmUranium
+  - Magazine762x51mmHP
+  - Magazine762x51mmRIP
+  - AmmoBox762x51mmFMJ
+  #- AmmoBox762x51mmPlasteelAP
+  - AmmoBox762x51mmRubber
+  - AmmoBox762x51mmIncendiary
+  - AmmoBox762x51mmPractice
+  - AmmoBox762x51mmUranium
+  - AmmoBox762x51mmHP
+  - AmmoBox762x51mmRIP
+  - Magazine762x54mmRFMJ
+  #- Magazine762x54mmRPlasteelAP
+  - Magazine762x54mmRRubber
+  - Magazine762x54mmRIncendiary
+  - Magazine762x54mmRPractice
+  - Magazine762x54mmREmpty
+  - Magazine762x54mmRUranium
+  - Magazine762x54mmRHP
+  - Magazine762x54mmRRIP
+  - SpeedLoader762x54mmRFMJ
+  - AmmoBox762x54mmRFMJ
+  #- AmmoBox762x54mmRPlasteelAP
+  - AmmoBox762x54mmRRubber
+  - AmmoBox762x54mmRIncendiary
+  - AmmoBox762x54mmRPractice
+  - AmmoBox762x54mmRUranium
+  - AmmoBox762x54mmRHP
+  - AmmoBox762x54mmRRIP
+  - Magazine8x65mmSKR
+  - Magazine8x65mmSKRPractice
+  - Magazine8x65mmSKRIncendiary
+  - AmmoBox8x65mmSKR
+  - AmmoBox8x65mmSKRIncendiary
+  - AmmoBox8x65mmSKRPractice
+  - Magazine556x45mmFMJ
+  #- Magazine556x45mmPlasteelAP
+  - Magazine556x45mmRubber
+  - Magazine556x45mmIncendiary
+  - Magazine556x45mmPractice
+  - Magazine556x45mmEmpty
+  - Magazine556x45mmUranium
+  - Magazine556x45mmHP
+  - Magazine556x45mmRIP
+  - SpeedLoader556x45mmFMJ
+  - SpeedLoader556x45mmRubber
+  - SpeedLoader556x45mmIncendiary
+  - SpeedLoader556x45mmPractice
+  - SpeedLoader556x45mmEmpty
+  - SpeedLoader556x45mmUranium
+  - AmmoBox556x45mmFMJ
+  #- AmmoBox556x45mmPlasteelAP
+  - AmmoBox556x45mmRubber
+  - AmmoBox556x45mmIncendiary
+  - AmmoBox556x45mmPractice
+  - AmmoBox556x45mmUranium
+  - AmmoBox556x45mmHP
+  - AmmoBox556x45mmRIP
+  - Magazine762x39mmFMJ
+  #- Magazine762x39mmPlasteelAP
+  - Magazine762x39mmRubber
+  - Magazine762x39mmIncendiary
+  - Magazine762x39mmPractice
+  - Magazine762x39mmEmpty
+  - Magazine762x39mmUranium
+  - MagazineDP29
+  - Magazine762x39mmSubsonic
+  - Magazine762x39mmHP
+  - Magazine762x39mmRIP
+  - SpeedLoader762x39mmFMJ
+  - AmmoBox762x39mmFMJ
+  #- AmmoBox762x39mmPlasteelAP
+  - AmmoBox762x39mmRubber
+  - AmmoBox762x39mmIncendiary
+  - AmmoBox762x39mmPractice
+  - AmmoBox762x39mmUranium
+  - AmmoBox762x39mmSubsonic
+  - AmmoBox762x39mmHP
+  - AmmoBox762x39mmRIP
+  - Magazine45_magnumPistolFMJ
+  #- Magazine45_magnumPistolPlasteelAP
+  - Magazine45_magnumPistolRubber
+  - Magazine45_magnumPistolIncendiary
+  - Magazine45_magnumPistolPractice
+  - Magazine45_magnumPistolEmpty
+  - Magazine45_magnumPistolUranium
+  - Magazine45_magnumPistolHP
+  - Magazine45_magnumPistolRIP
+  #- AmmoBox45_magnumPlasteelAP
+  - AmmoBox45_magnumRubber
+  - AmmoBox45_magnumIncendiary
+  - AmmoBox45_magnumPractice
+  - AmmoBox45_magnumUranium
+  #- AmmoBox45_magnumAP
+  - AmmoBox45_magnumHP
+  - AmmoBox45_magnumRIP
+  - Magazine68x52mmRubber
+  - Magazine68x52mmPractice
+  - AmmoBox68x52mmRubber
+  - AmmoBox68x52mmPractice
+  - Magazine635x40mmCaseless
+  - AmmoBox635x40mmCaseless
+  - Magazine9x19mmPistolFMJ
+  #- Magazine9x19mmPistolPlasteelAP
+  - Magazine9x19mmPistolRubber
+  - Magazine9x19mmPistolIncendiary
+  - Magazine9x19mmPistolPractice
+  - Magazine9x19mmPistolEmpty
+  - Magazine9x19mmPistolUranium
+  - Magazine9x19mmPistolHP
+  - Magazine9x19mmPistolRIP
+  - Magazine9x19mmSubMachineGunFMJ
+  #- Magazine9x19mmSubMachineGunPlasteelAP
+  - Magazine9x19mmSubMachineGunRubber
+  - Magazine9x19mmSubMachineGunIncendiary
+  - Magazine9x19mmSubMachineGunPractice
+  - Magazine9x19mmSubMachineGunEmpty
+  - Magazine9x19mmSubMachineGunUranium
+  - Magazine9x19mmSubMachineGunTopMountedFMJ
+  - Magazine9x19mmSubMachineGunTopMountedEmpty
+  - Magazine9x19mmSubMachineGunHP
+  - Magazine9x19mmSubMachineGunRIP
+  - SpeedLoader9x19mmFMJ
+  - SpeedLoader9x19mmRubber
+  - SpeedLoader9x19mmIncendiary
+  - SpeedLoader9x19mmPractice
+  - SpeedLoader9x19mmEmpty
+  - SpeedLoader9x19mmUranium
+  - AmmoBox9x19mmFMJ
+  #- AmmoBox9x19mmPlasteelAP
+  - AmmoBox9x19mmRubber
+  - AmmoBox9x19mmIncendiary
+  - AmmoBox9x19mmPractice
+  - AmmoBox9x19mmUranium
+  - AmmoBox9x19mmHP
+  - AmmoBox9x19mmRIP
+  - Magazine45_ACPPistolFMJ
+  #- Magazine45_ACPPistolPlasteelAP
+  - Magazine45_ACPPistolRubber
+  - Magazine45_ACPPistolIncendiary
+  - Magazine45_ACPPistolPractice
+  - Magazine45_ACPPistolEmpty
+  - Magazine45_ACPPistolUranium
+  - Magazine45_ACPPistolHP
+  - Magazine45_ACPPistolRIP
+  - Magazine45_ACPSubMachineGunFMJ
+  #- Magazine45_ACPSubMachineGunPlasteelAP
+  - Magazine45_ACPSubMachineGunRubber
+  - Magazine45_ACPSubMachineGunIncendiary
+  - Magazine45_ACPSubMachineGunPractice
+  - Magazine45_ACPSubMachineGunEmpty
+  - Magazine45_ACPSubMachineGunUranium
+  - Magazine45_ACPSubMachineGunTopMountedFMJ
+  - Magazine45_ACPSubMachineGunTopMountedEmpty
+  - Magazine45_ACPSubMachineGunHP
+  - Magazine45_ACPSubMachineGunRIP
+  - AmmoBox45_ACPFMJ
+  #- AmmoBox45_ACPPlasteelAP
+  - AmmoBox45_ACPRubber
+  - AmmoBox45_ACPIncendiary
+  - AmmoBox45_ACPPractice
+  - AmmoBox45_ACPUranium
+  - AmmoBox45_ACPHP
+  - AmmoBox45_ACPRIP
+
+#Uranium recipes
+
+  - AmmoBox23x75mmUranium
+  - Magazine762x51mmUranium
+  - AmmoBox762x51mmUranium
+  - Magazine762x54mmRUranium
+  - AmmoBox762x54mmRUranium
+  - Magazine556x45mmUranium
+  - SpeedLoader556x45mmUranium
+  - AmmoBox556x45mmUranium
+  - Magazine762x39mmUranium
+  - AmmoBox762x39mmUranium
+  - Magazine45_magnumPistolUranium
+  - AmmoBox45_magnumUranium
+  - Magazine9x19mmPistolUranium
+  - Magazine9x19mmSubMachineGunUranium
+  - SpeedLoader9x19mmUranium
+  - AmmoBox9x19mmUranium
+  - Magazine45_ACPPistolUranium
+  - Magazine45_ACPSubMachineGunUranium
+  - AmmoBox45_ACPUranium
+
+#Empty recipes
+
+  - Magazine762x51mmEmpty
+  - Magazine762x54mmREmpty
+  - Magazine8x65mmEmpty
+  - Magazine556x45mmEmpty
+  - SpeedLoader556x45mmEmpty
+  - Magazine762x39mmEmpty
+  - Magazine45_magnumPistolEmpty
+  - Magazine68x52mmEmpty
+  - Magazine9x19mmPistolEmpty
+  - Magazine9x19mmSubMachineGunEmpty
+  - Magazine9x19mmSubMachineGunTopMountedEmpty
+  - SpeedLoader9x19mmEmpty
+  - Magazine45_ACPPistolEmpty
+  - Magazine45_ACPSubMachineGunEmpty
+  - Magazine45_ACPSubMachineGunTopMountedEmpty
+
+#Practice recipes
+
+  - AmmoBox23x75mmPractice
+  - Magazine762x51mmPractice
+  - AmmoBox762x51mmPractice
+  - Magazine762x54mmRPractice
+  - AmmoBox762x54mmRPractice
+  - Magazine8x65mmSKRPractice
+  - AmmoBox8x65mmSKRPractice
+  - Magazine556x45mmPractice
+  - SpeedLoader556x45mmPractice
+  - AmmoBox556x45mmPractice
+  - Magazine762x39mmPractice
+  - AmmoBox762x39mmPractice
+  - Magazine45_magnumPistolPractice
+  - AmmoBox45_magnumPractice
+  - Magazine68x52mmPractice
+  - AmmoBox68x52mmPractice
+  - Magazine9x19mmPistolPractice
+  - Magazine9x19mmSubMachineGunPractice
+  - SpeedLoader9x19mmPractice
+  - AmmoBox9x19mmPractice
+  - Magazine45_ACPPistolPractice
+  - Magazine45_ACPSubMachineGunPractice
+  - AmmoBox45_ACPPractice
+
+#Incendiary recipes
+
+  - AmmoBox23x75mmIncendiary
+  - Magazine762x51mmIncendiary
+  - AmmoBox762x51mmIncendiary
+  - Magazine762x54mmRIncendiary
+  - AmmoBox762x54mmRIncendiary
+  - Magazine8x65mmSKRIncendiary
+  - AmmoBox8x65mmSKRIncendiary
+  - Magazine556x45mmIncendiary
+  - SpeedLoader556x45mmIncendiary
+  - AmmoBox556x45mmIncendiary
+  - Magazine762x39mmIncendiary
+  - AmmoBox762x39mmIncendiary
+  - Magazine45_magnumPistolIncendiary
+  - AmmoBox45_magnumIncendiary
+  - Magazine9x19mmPistolIncendiary
+  - Magazine9x19mmSubMachineGunIncendiary
+  - SpeedLoader9x19mmIncendiary
+  - AmmoBox9x19mmIncendiary
+  - Magazine45_ACPPistolIncendiary
+  - Magazine45_ACPSubMachineGunIncendiary
+  - AmmoBox45_ACPIncendiary
+  - AmmoBox23x75mmFlashbang
+
+#Rubber recipes
+
+  - Magazine762x51mmRubber
+  - AmmoBox762x51mmRubber
+  - Magazine762x54mmRRubber
+  - AmmoBox762x54mmRRubber
+  - Magazine556x45mmRubber
+  - SpeedLoader556x45mmRubber
+  - AmmoBox556x45mmRubber
+  - Magazine762x39mmRubber
+  - AmmoBox762x39mmRubber
+  - Magazine45_magnumPistolRubber
+  - AmmoBox45_magnumRubber
+  - Magazine68x52mmRubber
+  - AmmoBox68x52mmRubber
+  - Magazine9x19mmPistolRubber
+  - Magazine9x19mmSubMachineGunRubber
+  - SpeedLoader9x19mmRubber
+  - AmmoBox9x19mmRubber
+  - Magazine45_ACPPistolRubber
+  - Magazine45_ACPSubMachineGunRubber
+  - AmmoBox45_ACPRubber
+  - AmmoBox23x75mmBeanbag
+
+#FMJ recipes
+
+  - AmmoBox23x75mmBuckshot
+  - Magazine762x51mmFMJ
+  - AmmoBox762x51mmFMJ
+  - Magazine762x54mmRFMJ
+  - SpeedLoader762x54mmRFMJ
+  - AmmoBox762x54mmRFMJ
+  - Magazine556x45mmFMJ
+  - SpeedLoader556x45mmFMJ
+  - AmmoBox556x45mmFMJ
+  - Magazine762x39mmFMJ
+  - SpeedLoader762x39mmFMJ
+  - AmmoBox762x39mmFMJ
+  - Magazine45_magnumPistolFMJ
+  - AmmoBox45_magnumFMJ
+  - Magazine68x52mmFMJ
+  - AmmoBox68x52mmFMJ
+  - Magazine9x19mmPistolFMJ
+  - Magazine9x19mmSubMachineGunFMJ
+  - Magazine9x19mmSubMachineGunTopMountedFMJ
+  - SpeedLoader9x19mmFMJ
+  - AmmoBox9x19mmFMJ
+  - Magazine45_ACPPistolFMJ
+  - Magazine45_ACPSubMachineGunFMJ
+  - Magazine45_ACPSubMachineGunTopMountedFMJ
+  - AmmoBox45_ACPFMJ
+  - AmmoBox23x75mmOOBuckshot
+  - AmmoBox23x75mmSlug
+
+#Plasteel AP recipes
+
+  #- Magazine762x51mmPlasteelAP
+  #- AmmoBox762x51mmPlasteelAP
+  #- Magazine762x54mmRPlasteelAP
+  #- AmmoBox762x54mmRPlasteelAP
+  #- Magazine556x45mmPlasteelAP
+  #- AmmoBox556x45mmPlasteelAP
+  #- Magazine762x39mmPlasteelAP
+  #- AmmoBox762x39mmPlasteelAP
+  #- Magazine45_magnumPistolPlasteelAP
+  #- AmmoBox45_magnumPlasteelAP
+  #- Magazine9x19mmPistolPlasteelAP
+  #- Magazine9x19mmSubMachineGunPlasteelAP
+  #- AmmoBox9x19mmPlasteelAP
+  #- Magazine45_ACPPistolPlasteelAP
+  #- Magazine45_ACPSubMachineGunPlasteelAP
+  #- AmmoBox45_ACPPlasteelAP
+  #- AmmoBox23x75mmSlugAP
+  #- AmmoBox23x75mmFlechette
+
+#HP recipes
+
+  - Magazine762x51mmHP
+  - AmmoBox762x51mmHP
+  - Magazine762x54mmRHP
+  - AmmoBox762x54mmRHP
+  - Magazine556x45mmHP
+  - AmmoBox556x45mmHP
+  - Magazine762x39mmHP
+  - AmmoBox762x39mmHP
+  - Magazine45_magnumPistolHP
+  - AmmoBox45_magnumHP
+  - Magazine9x19mmPistolHP
+  - Magazine9x19mmSubMachineGunHP
+  - AmmoBox9x19mmHP
+  - Magazine45_ACPPistolHP
+  - Magazine45_ACPSubMachineGunHP
+  - AmmoBox45_ACPHP
+
+#RIP recipes
+
+  - AmmoBox23x75mmSlugRIP
+  - Magazine762x51mmRIP
+  - AmmoBox762x51mmRIP
+  - Magazine762x54mmRRIP
+  - AmmoBox762x54mmRRIP
+  - Magazine556x45mmRIP
+  - AmmoBox556x45mmRIP
+  - Magazine762x39mmRIP
+  - AmmoBox762x39mmRIP
+  - Magazine45_magnumPistolRIP
+  - AmmoBox45_magnumRIP
+  - Magazine9x19mmPistolRIP
+  - Magazine9x19mmSubMachineGunRIP
+  - AmmoBox9x19mmRIP
+  - Magazine45_ACPPistolRIP
+  - Magazine45_ACPSubMachineGunRIP
+  - AmmoBox45_ACPRIP
+
+#civilian = FMJ + practice + empty + rubber + HP + Steel AP
+# MARK: Static
+- type: latheRecipePack
+  id: StaticAmmoRecipePack
+  recipes:
+#FMJ recipes
+
+  - AmmoBox23x75mmBuckshot
+  - Magazine762x51mmFMJ
+  - AmmoBox762x51mmFMJ
+  - Magazine762x54mmRFMJ
+  - SpeedLoader762x54mmRFMJ
+  - AmmoBox762x54mmRFMJ
+  - Magazine556x45mmFMJ
+  - SpeedLoader556x45mmFMJ
+  - AmmoBox556x45mmFMJ
+  - Magazine762x39mmFMJ
+  - SpeedLoader762x39mmFMJ
+  - AmmoBox762x39mmFMJ
+  - Magazine45_magnumPistolFMJ
+  - AmmoBox45_magnumFMJ
+  - Magazine68x52mmFMJ
+  - AmmoBox68x52mmFMJ
+  - Magazine9x19mmPistolFMJ
+  - Magazine9x19mmSubMachineGunFMJ
+  - Magazine9x19mmSubMachineGunTopMountedFMJ
+  - SpeedLoader9x19mmFMJ
+  - AmmoBox9x19mmFMJ
+  - Magazine45_ACPPistolFMJ
+  - Magazine45_ACPSubMachineGunFMJ
+  - Magazine45_ACPSubMachineGunTopMountedFMJ
+  - AmmoBox45_ACPFMJ
+  - AmmoBox23x75mmOOBuckshot
+  - AmmoBox23x75mmSlug
+
+#SKR
+
+  - Magazine8x65mmSKR
+
+#Practice recipes
+
+  - AmmoBox23x75mmPractice
+  - Magazine762x51mmPractice
+  - AmmoBox762x51mmPractice
+  - Magazine762x54mmRPractice
+  - AmmoBox762x54mmRPractice
+  - Magazine8x65mmSKRPractice
+  - AmmoBox8x65mmSKRPractice
+  - Magazine556x45mmPractice
+  - SpeedLoader556x45mmPractice
+  - AmmoBox556x45mmPractice
+  - Magazine762x39mmPractice
+  - AmmoBox762x39mmPractice
+  - Magazine45_magnumPistolPractice
+  - AmmoBox45_magnumPractice
+  - Magazine68x52mmPractice
+  - AmmoBox68x52mmPractice
+  - Magazine9x19mmPistolPractice
+  - Magazine9x19mmSubMachineGunPractice
+  - SpeedLoader9x19mmPractice
+  - AmmoBox9x19mmPractice
+  - Magazine45_ACPPistolPractice
+  - Magazine45_ACPSubMachineGunPractice
+  - AmmoBox45_ACPPractice
+
+#Empty recipes
+
+  - Magazine762x51mmEmpty
+  - Magazine762x54mmREmpty
+  - Magazine8x65mmEmpty
+  - Magazine556x45mmEmpty
+  - SpeedLoader556x45mmEmpty
+  - Magazine762x39mmEmpty
+  - Magazine45_magnumPistolEmpty
+  - Magazine68x52mmEmpty
+  - Magazine9x19mmPistolEmpty
+  - Magazine9x19mmSubMachineGunEmpty
+  - Magazine9x19mmSubMachineGunTopMountedEmpty
+  - SpeedLoader9x19mmEmpty
+  - Magazine45_ACPPistolEmpty
+  - Magazine45_ACPSubMachineGunEmpty
+  - Magazine45_ACPSubMachineGunTopMountedEmpty
+
+#Rubber recipes
+
+  - Magazine762x51mmRubber
+  - AmmoBox762x51mmRubber
+  - Magazine762x54mmRRubber
+  - AmmoBox762x54mmRRubber
+  - Magazine556x45mmRubber
+  - SpeedLoader556x45mmRubber
+  - AmmoBox556x45mmRubber
+  - Magazine762x39mmRubber
+  - AmmoBox762x39mmRubber
+  - Magazine45_magnumPistolRubber
+  - AmmoBox45_magnumRubber
+  - Magazine68x52mmRubber
+  - AmmoBox68x52mmRubber
+  - Magazine9x19mmPistolRubber
+  - Magazine9x19mmSubMachineGunRubber
+  - SpeedLoader9x19mmRubber
+  - AmmoBox9x19mmRubber
+  - Magazine45_ACPPistolRubber
+  - Magazine45_ACPSubMachineGunRubber
+  - AmmoBox45_ACPRubber
+  - AmmoBox23x75mmBeanbag
+
+#HP recipes
+
+  - Magazine762x51mmHP
+  - AmmoBox762x51mmHP
+  - Magazine762x54mmRHP
+  - AmmoBox762x54mmRHP
+  - Magazine556x45mmHP
+  - AmmoBox556x45mmHP
+  - Magazine762x39mmHP
+  - AmmoBox762x39mmHP
+  - Magazine45_magnumPistolHP
+  - AmmoBox45_magnumHP
+  - Magazine9x19mmPistolHP
+  - Magazine9x19mmSubMachineGunHP
+  - AmmoBox9x19mmHP
+  - Magazine45_ACPPistolHP
+  - Magazine45_ACPSubMachineGunHP
+  - AmmoBox45_ACPHP
+
+#advanced = Uranium + Incendiary + Plasteel AP + Synth AP + RIP
+# MARK: Dynamic
+- type: latheRecipePack
+  id: DynamicAmmoRecipePack
+  recipes:
+#Uranium recipes
+
+  - AmmoBox23x75mmUranium
+  - Magazine762x51mmUranium
+  - AmmoBox762x51mmUranium
+  - Magazine762x54mmRUranium
+  - AmmoBox762x54mmRUranium
+  - Magazine556x45mmUranium
+  - SpeedLoader556x45mmUranium
+  - AmmoBox556x45mmUranium
+  - Magazine762x39mmUranium
+  - AmmoBox762x39mmUranium
+  - Magazine45_magnumPistolUranium
+  - AmmoBox45_magnumUranium
+  - Magazine9x19mmPistolUranium
+  - Magazine9x19mmSubMachineGunUranium
+  - SpeedLoader9x19mmUranium
+  - AmmoBox9x19mmUranium
+  - Magazine45_ACPPistolUranium
+  - Magazine45_ACPSubMachineGunUranium
+  - AmmoBox45_ACPUranium
+
+#Incendiary recipes
+
+  - AmmoBox23x75mmIncendiary
+  - Magazine762x51mmIncendiary
+  - AmmoBox762x51mmIncendiary
+  - Magazine762x54mmRIncendiary
+  - AmmoBox762x54mmRIncendiary
+  - Magazine8x65mmSKRIncendiary
+  - AmmoBox8x65mmSKRIncendiary
+  - Magazine556x45mmIncendiary
+  - SpeedLoader556x45mmIncendiary
+  - AmmoBox556x45mmIncendiary
+  - Magazine762x39mmIncendiary
+  - AmmoBox762x39mmIncendiary
+  - Magazine45_magnumPistolIncendiary
+  - AmmoBox45_magnumIncendiary
+  - Magazine9x19mmPistolIncendiary
+  - Magazine9x19mmSubMachineGunIncendiary
+  - SpeedLoader9x19mmIncendiary
+  - AmmoBox9x19mmIncendiary
+  - Magazine45_ACPPistolIncendiary
+  - Magazine45_ACPSubMachineGunIncendiary
+  - AmmoBox45_ACPIncendiary
+  - AmmoBox23x75mmFlashbang
+
+#Plasteel AP recipes
+
+  #- Magazine762x51mmPlasteelAP
+  #- AmmoBox762x51mmPlasteelAP
+  #- Magazine762x54mmRPlasteelAP
+  #- AmmoBox762x54mmRPlasteelAP
+  #- Magazine556x45mmPlasteelAP
+  #- AmmoBox556x45mmPlasteelAP
+  #- Magazine762x39mmPlasteelAP
+  #- AmmoBox762x39mmPlasteelAP
+  #- Magazine45_magnumPistolPlasteelAP
+  #- AmmoBox45_magnumPlasteelAP
+  #- Magazine9x19mmPistolPlasteelAP
+  #- Magazine9x19mmSubMachineGunPlasteelAP
+  #- AmmoBox9x19mmPlasteelAP
+  #- Magazine45_ACPPistolPlasteelAP
+  #- Magazine45_ACPSubMachineGunPlasteelAP
+  #- AmmoBox45_ACPPlasteelAP
+  #- AmmoBox23x75mmSlugAP
+  #- AmmoBox23x75mmFlechette
+
+#RIP recipes
+
+  - AmmoBox23x75mmSlugRIP
+  - Magazine762x51mmRIP
+  - AmmoBox762x51mmRIP
+  - Magazine762x54mmRRIP
+  - AmmoBox762x54mmRRIP
+  - Magazine556x45mmRIP
+  - AmmoBox556x45mmRIP
+  - Magazine762x39mmRIP
+  - AmmoBox762x39mmRIP
+  - Magazine45_magnumPistolRIP
+  - AmmoBox45_magnumRIP
+  - Magazine9x19mmPistolRIP
+  - Magazine9x19mmSubMachineGunRIP
+  - AmmoBox9x19mmRIP
+  - Magazine45_ACPPistolRIP
+  - Magazine45_ACPSubMachineGunRIP
+  - AmmoBox45_ACPRIP
+
+#Misc
+  - Magazine762x39mmSubsonic
+  - AmmoBox762x39mmSubsonic
+  - AmmoBox635x40mmCaseless
+  - Magazine635x40mmCaseless
+
+#DP
+  - MagazineDP29

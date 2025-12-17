@@ -1,3 +1,25 @@
+# SPDX-FileCopyrightText: 2020 AJCM-git
+# SPDX-FileCopyrightText: 2020 DamianX
+# SPDX-FileCopyrightText: 2020 Visne
+# SPDX-FileCopyrightText: 2021 Acruid
+# SPDX-FileCopyrightText: 2021 DrSmugleaf
+# SPDX-FileCopyrightText: 2021 Galactic Chimp
+# SPDX-FileCopyrightText: 2021 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 RemberBL
+# SPDX-FileCopyrightText: 2022 Flipp Syder
+# SPDX-FileCopyrightText: 2022 Leon Friedrich
+# SPDX-FileCopyrightText: 2022 Paul Ritter
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2022 mirrorcult
+# SPDX-FileCopyrightText: 2022 wrexbe
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 sleepyyapril
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: entity
   id: Bullet8x65mmSKR
   name: bullet (8x65mm SKR)
@@ -7,15 +29,27 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 45
+        Piercing: 45 #Lua 45
 
 - type: entity
-  id: Bullet8x55mmSKR
-  name: bullet (8x55mm SKR)
-  parent: BaseBullet
+  id: Bullet8x65mmSKRPractice
+  name: bullet (8x65mm SKR practice)
+  parent: BaseBulletPractice
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Blunt: 1 #Lua -2
+
+- type: entity
+  id: Bullet8x65mmSKRIncendiary
+  parent: BaseBulletIncendiary
+  name: bullet (8x65mm SKR incendiary)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        piercing: 20 #Lua add
+        Heat: 25 #Lua -7

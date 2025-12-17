@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+#Magazines
+
+- type: latheRecipe
+  parent: BaseAmmoFMJIntermediateMagazineRecipe
+  id: Magazine68x52mmFMJ
+  result: Magazine68x52mmCaseless
+
+- type: latheRecipe
+  parent: BaseAmmoRubberIntermediateMagazineRecipe
+  id: Magazine68x52mmRubber
+  result: Magazine68x52mmCaselessRubber
+
+- type: latheRecipe
+  parent: BaseAmmoPracticeIntermediateMagazineRecipe
+  id: Magazine68x52mmPractice
+  result: Magazine68x52mmCaselessPractice
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyIntermediateMagazineRecipe
+  id: Magazine68x52mmEmpty
+  result: Magazine68x52mmCaselessEmpty
+
+#Boxes
+
+- type: latheRecipe
+  parent: BaseAmmoFMJIntermediateAmmoBoxRecipe
+  id: AmmoBox68x52mmFMJ
+  result: AmmoBox68x52mmCaseless
+
+- type: latheRecipe
+  parent: BaseAmmoRubberIntermediateAmmoBoxRecipe
+  id: AmmoBox68x52mmRubber
+  result: AmmoBox68x52mmCaselessRubber
+
+- type: latheRecipe
+  parent: BaseAmmoPracticeIntermediateAmmoBoxRecipe
+  id: AmmoBox68x52mmPractice
+  result: AmmoBox68x52mmCaselessPractice

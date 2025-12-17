@@ -127,7 +127,7 @@ uplink-pirate-viper-desc = Небольшой, легко скрываемый, 
 uplink-pirate-kanabou-name = Канабоу
 uplink-pirate-kanabou-desc = Оружие для тех, кто хочет отказаться от тонкости. Особенно подходит для Они.
 
-uplink-pirate-ak-name = Соланд-Мосс
+uplink-pirate-ak-name = AK-74M
 uplink-pirate-ak-desc = Легендарное оружие войны. Использует винтовочные патроны .30.
 
 uplink-pirate-laser-gun-name = Лазерный пистолет
@@ -146,10 +146,10 @@ uplink-pirate-anaconda-name = Анаконда
 uplink-pirate-anaconda-desc = Гордость инженеров Cybersun. Портативное, компактное, самоперезаряжающееся баллистическое огнестрельное оружие.
 
 uplink-pirate-wspr-name = WSPR
-uplink-pirate-wspr-desc = Создано против Энни от ДСБФ. Использует те же .30 дозвуковые боеприпасы.
+uplink-pirate-wspr-desc = Создано против Энни от ДСБФ. Использует те же 7.62x39mm дозвуковые боеприпасы.
 
 uplink-pirate-burner-name = Тяжелая винтовка Burner
-uplink-pirate-burner-desc = Разрушительная винтовка калибра .50. Поддерживает боеприпасы HE. Ужасно разрушительна.
+uplink-pirate-burner-desc = Разрушительная винтовка калибра 12.7x99mm. Поддерживает боеприпасы HE. Ужасно разрушительна.
 
 uplink-pirate-energy-sword-name = Энергетический меч
 uplink-pirate-energy-sword-desc = Очень громкий и опасный меч с лучом чистой, концентрированной плазмы. Разрезает небронированные обьекты как масло.
@@ -190,16 +190,16 @@ uplink-pirate-bulldog-slug-ammo-desc = Барабан для дробовика 
 uplink-pirate-smg-magazine-name = .35 магазин для пистолета-пулемета
 uplink-pirate-smg-magazine-desc = Магазин на 30 патронов .35. Совместим с C-20r, Drozd и многими другими.
 
-uplink-subsonic-mag-name = .30 дозвуковой винтовочный магазин
+uplink-subsonic-mag-name = 7.62x39mm дозвуковой винтовочный магазин
 uplink-subsonic-mag-desc = Поддерживает WSPR и Энни.
 
-uplink-subsonic-box-name = .30 дозвуковая винтовка коробка
+uplink-subsonic-box-name = 7.62x39mm дозвуковая винтовка коробка
 uplink-subsonic-box-desc = Коробка с боеприпасами для WSPR и Энни.
 
-uplink-pirate-box-highcal-name = коробка для боеприпасов .50
+uplink-pirate-box-highcal-name = коробка для боеприпасов 12.7x99mm
 uplink-pirate-box-highcal-desc = Коробка универсальных боеприпасов для тяжелой винтовки Burner.
 
-uplink-pirate-box-highcal-he-name = Коробка для боеприпасов HE .50
+uplink-pirate-box-highcal-he-name = Коробка для боеприпасов 12.7x99mm Explosive
 uplink-pirate-box-highcal-he-desc = Коробка с разрывными боеприпасами для тяжелой винтовки Burner.
 
 # equipment

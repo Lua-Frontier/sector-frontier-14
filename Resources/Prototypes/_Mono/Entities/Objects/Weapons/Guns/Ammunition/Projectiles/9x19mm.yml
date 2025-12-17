@@ -1,0 +1,152 @@
+# SPDX-FileCopyrightText: 2020 AJCM-git
+# SPDX-FileCopyrightText: 2020 DrSmugleaf
+# SPDX-FileCopyrightText: 2020 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 Leon Friedrich
+# SPDX-FileCopyrightText: 2021 Swept
+# SPDX-FileCopyrightText: 2022 Charlese2
+# SPDX-FileCopyrightText: 2022 Kara
+# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2023 Boaz1111
+# SPDX-FileCopyrightText: 2023 Vordenburg
+# SPDX-FileCopyrightText: 2023 kerisargit
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 IProduceWidgets
+# SPDX-FileCopyrightText: 2024 Nemanja
+# SPDX-FileCopyrightText: 2024 Plykiya
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 ScyronX
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 sleepyyapril
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: Bullet9x19mmFMJ
+  name: bullet (9x19mm FMJ)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15 #Lua -9
+        Blunt: 7 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
+
+- type: entity
+  id: Bullet9x19mmPractice
+  name: bullet (9x19mm practice)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1 #Lua -1
+
+- type: entity
+  id: Bullet9x19mmRubber
+  name: bullet (9x19mm rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 15
+
+- type: entity
+  id: Bullet9x19mmIncendiary
+  parent: BaseBulletIncendiary
+  name: bullet (9x19mm incendiary)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 4
+        Heat: 18
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
+
+- type: entity
+  id: Bullet9x19mmUranium
+  parent: BaseBulletUranium
+  name: bullet (9x19mm uranium)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 18 #Lua +10
+        Piercing: 4 #Lua -9
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
+
+# Upstream
+- type: entity
+  id: Bullet9x19mmEmp
+  name: bullet (9x19mm emp)
+  parent: BaseBulletEmp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 4 #Lua +4
+        Blunt: 5 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  id: Bullet9x19mmHP
+  parent: BaseBullet
+  name: bullet (9x19mm hollow-point)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 6 #Lua +3
+        Piercing: 16 #Lua -10
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
+
+- type: entity
+  id: Bullet9x19mmRIP
+  parent: BaseBullet
+  name: bullet (9x19mm RIP)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 10 #Lua +5
+        Piercing: 10 #Lua -25
+        Blunt: 10 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
+
+#armor-piercing:
+
+- type: entity
+  id: Bullet9x19mmPlasteelAP
+  parent: BaseBullet
+  name: bullet (9x19mm AP)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 18 #Lua +9
+    ignoreResistances: true #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 5
