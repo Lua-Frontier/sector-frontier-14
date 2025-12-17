@@ -430,3 +430,30 @@
     containers:
       board: [ DoorElectronicsMaintenance ]
 
+#Standart
+- type: entity
+  parent: Airlock
+  id: AirlockSecurityOldLocked
+  suffix: Security, Locked
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/secairlockred.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+#Glass
+- type: entity
+  parent: AirlockGlass
+  id: AirlockGlassSecurityOldLocked
+  suffix: Security, Locked
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/secairlockredglass.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity

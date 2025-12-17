@@ -10,6 +10,63 @@
     roundEndBehavior: Nothing
 
 - type: entity
+  id: DiseaseOutbreak
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 8
+    duration: 1
+    earliestStart: 15
+  - type: DiseaseOutbreakRule
+
+- type: entity
+  id: BluespaceShipyardLuaTech
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-shipyardluatech-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    warningAnnouncement: station-event-bluespace-shipyardluatech-warning-announcement
+    endAnnouncement: station-event-bluespace-shipyardluatech-end-announcement
+    earliestStart: 100
+    minimumPlayers: 15
+    weight: 5
+    duration: 1800 # 30 minutes
+    maxDuration: 1800 # 30 minutes
+    reoccurrenceDelay: 360 # once per 4 hours
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-ShipyardLuatech
+        minimumDistance: 1000
+        maximumDistance: 800
+        stationGrid: true
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: '#407dc4FF'
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: True
+          preventExplosions: True
+          preventEmpEvents: True
+          preventRCDUse: True
+          preventFloorPlacement: True
+          preventFloorRemoval: True
+          preventClaiming: True
+        - type: PreventPilot
+        - type: ForceAnchor
+        - type: Company
+          companyName: LuaTech
+        paths:
+        - /Maps/_Lua/Bluespace/luatech_shipyard.yml
+
+- type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseGameRule
   id: RuleFSFBravo

@@ -2,6 +2,75 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
+#region Civilian
+
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetAriralExosuit
+  name: Шлем экзоскафандра Арирал
+  description: Как вы это увидели?
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/ariral.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/ariral.rsi
+  - type: RaceRequirement
+    allowedRaces:
+      - Ariral
+  - type: PointLight
+    radius: 7
+    energy: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+
+#region Nanotrasen
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurityRed
+  id: ClothingHeadHelmetHardsuitBlueShield
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра офицера "Синий Щит"
+  description: Предназначен для защитника командования.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: PointLight
+    color: '#4ac4ff'
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+
+#region FSF
 - type: entity
   parent: ClothingHeadHelmetHardsuitSyndieCommander
   id: ClothingHeadHelmetHardsuitFSFCommanderBravo
@@ -166,3 +235,62 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+#region Modsuit Helmets
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitBloodRedHardsuit
+  name: Blood-red hardsuit helmet
+  description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/nukeops.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/nukeops.rsi
+  - type: PointLight
+    color: "#00ff2a"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitBloodRedHardsuitelite
+  name: Blood-red elite hardsuit helmet
+  description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/pmc.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/pmc.rsi
+  - type: PointLight
+    color: "#00ff2a"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide

@@ -1,0 +1,152 @@
+# SPDX-FileCopyrightText: 2020 AJCM-git
+# SPDX-FileCopyrightText: 2020 DrSmugleaf
+# SPDX-FileCopyrightText: 2020 Pieter-Jan Briers
+# SPDX-FileCopyrightText: 2021 Leon Friedrich
+# SPDX-FileCopyrightText: 2021 Swept
+# SPDX-FileCopyrightText: 2022 Charlese2
+# SPDX-FileCopyrightText: 2022 Kara
+# SPDX-FileCopyrightText: 2022 Vera Aguilera Puerto
+# SPDX-FileCopyrightText: 2022 metalgearsloth
+# SPDX-FileCopyrightText: 2023 Boaz1111
+# SPDX-FileCopyrightText: 2023 Vordenburg
+# SPDX-FileCopyrightText: 2023 kerisargit
+# SPDX-FileCopyrightText: 2024 Dvir
+# SPDX-FileCopyrightText: 2024 IProduceWidgets
+# SPDX-FileCopyrightText: 2024 Nemanja
+# SPDX-FileCopyrightText: 2024 Plykiya
+# SPDX-FileCopyrightText: 2024 Whatstone
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 ScyronX
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 sleepyyapril
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: Bullet45_ACPFMJ
+  name: bullet (.45 ACP FMJ)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 19 #Lua -7
+        Blunt: 17 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
+
+- type: entity
+  id: Bullet45_ACPPractice
+  name: bullet (.45 ACP practice)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1 #Lua -1
+
+- type: entity
+  id: Bullet45_ACPRubber
+  name: bullet (.45 ACP rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 4
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 19
+
+- type: entity
+  id: Bullet45_ACPIncendiary
+  parent: BaseBulletIncendiary
+  name: bullet (.45 ACP incendiary)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 13 #Lua +10
+        Heat: 22
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
+
+- type: entity
+  id: Bullet45_ACPUranium
+  parent: BaseBulletUranium
+  name: bullet (.45 ACP uranium)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 22 #Lua +13
+        Piercing: 13 #Lua -2
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
+
+# Upstream
+- type: entity
+  id: Bullet45_ACPEmp
+  name: bullet (.45 ACP emp)
+  parent: BaseBulletEmp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 6 #Lua +6
+        Blunt: 6 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
+
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  id: Bullet45_ACPHP
+  parent: BaseBullet
+  name: bullet (.45 hollow-point)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 10 #Lua +6
+        Piercing: 28 #Lua -4
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 7
+
+- type: entity
+  id: Bullet45_ACPRIP
+  parent: BaseBullet
+  name: bullet (.45 RIP)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 10 #Lua +3
+        Piercing: 20 #Lua -22
+        Blunt: 10 #Lua add
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 6
+
+#armor-piercing:
+
+- type: entity
+  id: Bullet45_ACPPlasteelAP
+  parent: BaseBullet
+  name: bullet (.45 AP)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20 #Lua +8
+        Structural: 75 #Lua add
+    ignoreResistances: true #Lua add

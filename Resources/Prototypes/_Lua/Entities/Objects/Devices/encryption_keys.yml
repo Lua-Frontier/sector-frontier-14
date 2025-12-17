@@ -100,3 +100,22 @@
     layers:
     - state: crypt_silver
     - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyVip
+  name: Vip control encryption key
+  description: An encryption key for vip.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Vip
+    defaultChannel: Vip
+  - type: Item
+    sprite: _Lua/encryption_keys.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: _Lua/encryption_keys.rsi
+    layers:
+    - state: crypt_black
+    - state: vip_label

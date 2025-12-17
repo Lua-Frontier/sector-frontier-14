@@ -127,7 +127,7 @@
   id: UplinkSecurityMagazineSubsonic
   name:  uplink-subsonic-mag-name
   description: uplink-subsonic-mag-desc
-  productEntity: MagazineLightRifleSubsonic
+  productEntity: Magazine762x39mmSubsonic
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -142,7 +142,7 @@
   id: UplinkSecurityBoxSubsonic
   name:  uplink-subsonic-box-name
   description: uplink-subsonic-box-desc
-  productEntity: MagazineBoxLightRifleSubsonic
+  productEntity: AmmoBox762x39mmSubsonic
   cost:
     FrontierUplinkCoin: 3
   categories:
@@ -169,36 +169,6 @@
       - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMagazineBox8x55mm
-  name: uplink-security-8x55mm-boxmag-name
-  description: uplink-security-8x55mm-boxmag-desc
-  productEntity: Magazine8x55mmSKRBox
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityAmmoBox8x55mm
-  name: uplink-security-8x55mm-box-name
-  description: uplink-security-8x55mm-box-desc
-  productEntity: AmmoBox8x55mmSKR
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
   id: UplinkSecurityMagazineMG8x65mm
   name: uplink-security-8x65mm-box-name
   description: uplink-security-8x65mm-box-desc
@@ -212,6 +182,22 @@
     whitelist:
       tags:
       - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMagazineSAW8x65mm
+  name: uplink-security-SAW8x65mm-boxmag-name
+  description: uplink-security-SAW8x65mm-boxmag-desc
+  productEntity: Magazine8x65mmSKRBox
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
 
 # - type: listing
 #   id: UplinkSecurityAuroraExosuit

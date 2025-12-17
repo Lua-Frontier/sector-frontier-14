@@ -1,0 +1,121 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingHeadBase
+  id: LWClothingHeadHatFoxyO
+  name: лисьи ушки
+  description: Frrrr!
+  suffix: Оранжевые
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/foxyears_orange.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/foxyears_orange.rsi
+  # - type: InteractionPopup
+    # successChance: 1
+    # interactSuccessSpawn: EffectHearts
+    # interactSuccessString: hugging-success-generic
+    # interactSuccessSound: /Audio/_Lua/Plushie/frfrfr.ogg
+
+- type: entity
+  parent: LWClothingHeadHatFoxyO
+  id: LWClothingHeadHatFoxyW
+  suffix: Белые
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/foxyears_white.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/foxyears_white.rsi
+
+- type: entity
+  parent: LWClothingHeadHatFoxyO
+  id: LWClothingHeadHatFoxyB
+  suffix: Чёрные
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/foxyears_black.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/foxyears_black.rsi
+
+- type: entity
+  parent: LWClothingHeadHatFoxyO
+  id: LWClothingHeadHatFoxyBl
+  suffix: Синие
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/foxyears_blue.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/foxyears_blue.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterPathologist
+  categories: [ HideSpawnMenu ]
+  name: капюшон зимней куртки патологоанатома
+  description: Капюшон, чтобы держать голову в тепле.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hoods/Coat/pathologist.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hoods/Coat/pathologist.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPathologist
+  name: шапочка патологоанатома
+  description: Чёрная шапочка, которая не дает вашим волосам щекотать внутренности трупов.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/pathologist.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/pathologist.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretBlueShield
+  name: берет офицера "Синий Щит"
+  description: Серый берет, с кокардой подразделения "Синий Щит".
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/beret_blueshield.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/beret_blueshield.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadOutpostSyndicate
+  name: берет офицера телекоммуникаций
+  description: Черный берет с позолоченной вышивкой, предпочитаемый офицерами телекоммуникаций.
+  components:
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret_hos.rsi
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret_hos.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatXmas
+  name: шапочка рождественского эльфа
+  description: Этот год был тяжёлый... Но следующий будет лучше, не так ли?
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/xmas.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/xmas.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon

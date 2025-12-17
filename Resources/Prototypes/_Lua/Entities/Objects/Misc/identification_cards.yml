@@ -500,3 +500,18 @@
     - state: opsluatech
   - type: PresetIdCard
     job: OpsLuaTech
+
+- type: entity
+  parent: IDCardStandard
+  id: VipIDCard
+  name: vip ID card
+  components:
+  - type: PresetIdCard
+    job: Vip
+  - type: Sprite
+    sprite: _Lua/Objects/Misc/id_cards.rsi
+    layers:
+    - state: vip
+    - state: idvip
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi

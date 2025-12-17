@@ -1,0 +1,590 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#MARK: Old weapon flatpacks
+- type: entity
+  parent: BaseNFFlatpack
+  id: DiseaseDiagnoserFlatpack
+  name: упакованный диагностировщик заболеваний
+  description: Упакованный диагностировщик заболеваний Дельта Экстрим
+  components:
+  - type: Flatpack
+    entity: DiseaseDiagnoser
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: diagnoser
+
+#MARK:Mono - Energy turrets
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretType35FlatPack
+  name: MARAUDER-type plasma weapon
+  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType35
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretType54FlatPack
+  name: Type-54C plasma autopulser
+  description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType54
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretM220FlatPack
+  name: M220 RUBICON EMP launcher
+  description: Launches EMP projectiles at ships. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretM220
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretDymereFlatPack
+  name: ADEX-9 DYMERE Turbolaser
+  description: Aetherion Dynamics Weapons Development Branch's most iconic product. Ionized gas projectiles will melt through anything you put in front of them. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretDymere
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponLaserTurretL1PhalanxFlatPack
+  name: L-1 Phalanx
+  description: A light laser emplactment designed by the Pantheon Collective, used to shred threats of all types
+  components:
+  - type: Flatpack
+    entity: WeaponLaserTurretL1Phalanx
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponLaserTurretApolloFlatPack
+  name: L-20 Apollo Heavy Laser Cannon
+  description: One of the Pantheon Collective's top weapons, the Apollo is aptly named for its beams heating surfaces to beyond the temperature of nearby stars.
+  components:
+  - type: Flatpack
+    entity: WeaponLaserTurretApollo
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretType241FlatPack
+  name: Type-241 plasma lance
+  description: A devastating weapon, usually used for large scale fire support and strategic destruction.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType241
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+#MARK: Mono - Kinetic turrets
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretL85AutocannonFlatPack
+  name: L85 20mm autocannon
+  description: A cheap and light 20mm autocannon. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretL85Autocannon
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretRAC30FlatPack
+  name: RAC-30 Draupnir Autocannon
+  description: A more heavy duty rapid rife autocannon, firing a hail of rounds much like its namesake became a hail of spears.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretRAC30
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretDravonFlatPack
+  name: ADBP-7 DRAVON 57mm Autocannon
+  description: A single-barrel autocannon made by Aetherion Dynamics. High fire rate, but relatively low impact. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretDravon
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretAK570FlatPack
+  name: AK570 90mm heavy autocannon
+  description: A dual barrel, heavy autocannon. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretAK570
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretTarnyxFlatPack
+  name: ADBX-31 TARNYX 150mm EMP Cannon
+  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretTarnyx
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretCyrexaFlatPack
+  name: CYREXA 220mm cannon
+  description: A dual barrel, main-battery cannon firing 220mm auto shells with slight reduction in brute strength. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCyrexa
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretHadesFlatPack
+  name: HADES 305mm cannon
+  description: One of the largest chemical-based kinetic weapons in the sector. Its power is only rivaled by mass drivers such as the M381.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretHades
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretCharonReloadFlatPack
+  name: M381 CHARON mass driver
+  description: A heavy linear accelerator, capable of devastating targets with kinetic energy. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCharonReload
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretCharonetteFlatPack
+  name: M194 CHARONETTE mass driver
+  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCharonette
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretBoforsFlatPack
+  name: Bofors 255mm cannon
+  description: A single barrelled, heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretBofors
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretKargilFlatPack
+  name: Kargil 203mm cannon
+  description: A single barrelled, medium-heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretKargil
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+#MARK:Mono - missle turrets
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretLightMunitionsBayFlatPack
+  name: GPOB-L Light Munitions Bay
+  description: A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretLightMunitionsBay
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretASM220FlatPack
+  name: ASM-220 torpedo VLS
+  description: A heavy torpedo VLS relying on manual loading to work, usually done at harbor. However, it has high-yield missiles for its size.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretASM220
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretVesperaFlatPack
+  name: ADMP-27 VESPERA Rapid-Fire Pod
+  description: A rapid-fire swarm missile pod manufactured by Aetherion Dynamics. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretVespera
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretASM501FlatPack
+  name: ASM-501 pod
+  description: ASM-501 Smerchs heavy torpedo launcher. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity:
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretVanykFlatPack
+  name: ASM-302 pod
+  description:  ASM-302 Vanyk basic guided missile pod. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretVanyk
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretTovekFlatPack
+  name: ADMX-23 TOVEK Hybrid EMP Pod
+  description: A hybrid EMP missile pod manufactured by Aetherion Dynamics. Deals both physical and EMP damage. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretTovek
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+#MARK: WallsFlatpacks
+- type: entity
+  parent: BaseNFFlatpack
+  id: WallPlastitaniumFlatPack
+  name: пластитановая стена
+  description: пластитановая стена
+  components:
+  - type: Flatpack
+    entity: WallPlastitanium
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PlastitaniumWindowFlatPack
+  name: пластитановое стекло
+  description: Смотри не заляпай.
+  components:
+  - type: Flatpack
+    entity: PlastitaniumWindow
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WallPlastitaniumStationFlatPack
+  name: Station plastitanium wall
+  description: Keeps the air in and the greytide out.
+  components:
+  - type: Flatpack
+    entity: WallPlastitaniumStation
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PlastitaniumWindowStationFlatPack
+  name: Station plastitanium Window
+  description: Keeps the air in and the greytide out.
+  components:
+  - type: Flatpack
+    entity: PlastitaniumWindowStation
+  - type: StaticPrice
+    price: 500
+
+#MARK: Misc Flatpacks
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerAdvancedRadarFlatPack
+  name: продвинутая консоль сканера массы
+  description: Более мощный процессор и усовершенствованные компоненты делают этот радар идеальным для обнаружения объектов на большом расстоянии. Получите технологическое и тактическое преимущество при отслеживании удалённых космических тел.
+  components:
+  - type: Flatpack
+    entity: ComputerAdvancedRadar
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: CryopodFlatpack
+  name: cryopod flatpack
+  description: A flatpack used for constructing a cryopod.
+  components:
+  - type: Flatpack
+    entity: MachineCryoSleepPod
+  - type: StaticPrice
+    price: 1500
+  - type: Sprite
+    layers:
+    - state: cryopod_flat
+
+#MARK: Shield Flatpacks
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ShieldGeneratorSmallFlatPack
+  name: MS-100 "Sentinel" Shield Generator
+  description: Слабый распостранённый щит на малые судна.
+  components:
+  - type: Flatpack
+    entity: ShieldGeneratorSmall
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ShieldGeneratorMediumFlatPack
+  name: MS-250 "Aegis" Shield Generator
+  description: Продвинутый малый щит для особых суден.
+  components:
+  - type: Flatpack
+    entity: ShieldGeneratorMedium
+  - type: StaticPrice
+    price: 5500
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ShieldGeneratorFlatPack
+  name: MS-500 "Titan" Shield Generator
+  description: Обычный большой щит для крупных суден.
+  components:
+  - type: Flatpack
+    entity: ShieldGenerator
+  - type: StaticPrice
+    price: 3500
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ShieldGeneratorTSFCapitalFlatPack
+  name: LM-212 "Vanguard" Capital Shield Generator
+  description: Продвинутый большой щит для крупных суден.
+  components:
+  - type: Flatpack
+    entity: ShieldGeneratorTSFCapital
+  - type: StaticPrice
+    price: 12500
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ShieldGeneratorPOIFlatPack
+  name: FS-421 "Fortress" Outpost Shield Generator
+  suffix: СТАНЦИЯ
+  description: Стационный щит, крайне живучий, регенеративный, потребительный, масштабный.
+  components:
+  - type: Flatpack
+    entity:
+  - type: StaticPrice
+    price: 25000
+
+#region Ship gunnery
+- type: entity
+  parent: BaseNFFlatpack
+  id: ComputerGunneryConsoleFlatpack
+  name: упакованная консоль управления огнём
+  description: Упакованная консоль управления огнём для наведения и управления огнём оружия, обеспечивающий точное прицеливание и стрельбу.
+  components:
+  - type: Flatpack
+    entity: ComputerGunneryConsole
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: GunneryServerFlatpack
+  name: упакованный сервер управления огнём
+  description: Упакованный сервер управления огнём для наведения и управления огнём оружия установленного на шаттле.
+  components:
+  - type: Flatpack
+    entity: GunneryServerMedium
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: MachineFTLDrive600Flatpack
+  name: упакованный FSS-600 блюспейс двигатель
+  description: Упакованный FSS-600 блюспейс двигатель который увеличивает дальность сверхсветового перемещения корабля до 600 метров
+  components:
+  - type: Flatpack
+    entity: MachineFTLDrive600
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: MachineWarpDriveFlatpack
+  name: упакованный межзвёздный блюспейс двигатель
+  description: Упакованный межзвёздный блюспейс двигатель необходимый для межзвёздных путешествий
+  components:
+  - type: Flatpack
+    entity: MachineWarpDrive
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: PlayerStationAiVesselFlatpack
+  name: упакованный ИИ шаттла
+  description: Упакованный ИИ шаттла, составит компанию вашим путешествиям
+  components:
+  - type: Flatpack
+    entity: PlayerStationAiVessel
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

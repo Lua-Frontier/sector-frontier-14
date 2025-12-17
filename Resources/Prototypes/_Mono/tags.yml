@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 Blu
+# SPDX-FileCopyrightText: 2025 BlueHNT
+# SPDX-FileCopyrightText: 2025 Ilya246
 # SPDX-FileCopyrightText: 2025 LukeZurg22
 # SPDX-FileCopyrightText: 2025 Onezero0
 # SPDX-FileCopyrightText: 2025 Redrover1760
@@ -7,6 +10,8 @@
 # SPDX-FileCopyrightText: 2025 significant harassment
 # SPDX-FileCopyrightText: 2025 sleepyyapril
 # SPDX-FileCopyrightText: 2025 starch
+# SPDX-FileCopyrightText: 2025 tonotom
+# SPDX-FileCopyrightText: 2025 tonotom1
 # SPDX-FileCopyrightText: 2025 wewman222
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -17,7 +22,25 @@
 - type: Tag
   id: MREFood
 
-#7.62x51mm tags
+# Crafting for desert planet
+
+- type: Tag
+  id: RockMaterial
+
+- type: Tag
+  id: SandMaterial
+
+#AMMO START
+
+#127x99mm tags
+
+- type: Tag
+  id: Magazine127x99mm
+
+- type: Tag
+  id: Cartridge127x99mm
+
+#762x51mm tags
 
 - type: Tag
   id: Cartridge762x51mmFMJ
@@ -29,9 +52,12 @@
   id: Magazine762x51mmLowCapacityFMJ
 
 - type: Tag
-  id: Magazine762x51mmBox
+  id: Magazine762x51mmBoxSmall
 
-#7.62x54mmR tags
+- type: Tag
+  id: Magazine762x51mmBoxBig
+
+#762x54mmR tags
 
 - type: Tag
   id: Cartridge762x54mmRFMJ
@@ -42,7 +68,21 @@
 - type: Tag
   id: Magazine762x54mmRBox
 
-#5.56x45mm tags
+#6.8x52mm tags
+
+- type: Tag
+  id: Cartridge68x52mmCaseless
+
+- type: Tag
+  id: Magazine68x52mmCaseless
+
+- type: Tag
+  id: Magazine68x52mmCaselessBoxSmall
+
+- type: Tag
+  id: Magazine68x52mmCaselessBoxBig
+
+#556x45mm tags
 
 - type: Tag
   id: Cartridge556x45mmFMJ
@@ -53,7 +93,10 @@
 - type: Tag
   id: Magazine556x45mmBox
 
-#7.62x39mm tags
+- type: Tag
+  id: SpeedLoader556x45mmFMJ
+
+#762x39mm tags
 
 - type: Tag
   id: Cartridge762x39mmFMJ
@@ -67,25 +110,14 @@
 - type: Tag
   id: Magazine762x39mmBox
 
-#4.6x30mm tags
+- type: Tag
+  id: Magazine762x39mmPan
 
 - type: Tag
-  id: Cartridge46x30mmFMJ
+  id: Magazine762x39mmSubsonic
 
 - type: Tag
-  id: Magazine46x30mmPistolFMJ
-
-- type: Tag
-  id: Magazine46x30mmPistolHighCapacityFMJ
-
-- type: Tag
-  id: Magazine46x30mmSubMachineGunFMJ
-
-- type: Tag
-  id: Magazine46x30mmSubMachineGunTopMountedFMJ
-
-- type: Tag
-  id: Magazine46x30mmFMJBox
+  id: Cartridge762x39mmSubsonic
 
 #45 ACP tags
 
@@ -107,6 +139,20 @@
 - type: Tag
   id: Magazine45_ACPFMJBox
 
+#45 magnum tags
+
+- type: Tag
+  id: Cartridge45_magnumFMJ
+
+- type: Tag
+  id: Magazine45_magnumPistolHighCapacityFMJ
+
+- type: Tag
+  id: Magazine45_magnumPistolFMJ
+
+- type: Tag
+  id: Magazine45_magnumSubMachineGunFMJ
+
 #9x19mm tags
 
 - type: Tag
@@ -127,31 +173,22 @@
 - type: Tag
   id: Magazine9x19mmFMJBox
 
-#5.7x28mm tags
-
 - type: Tag
-  id: Cartridge57x28mmFMJ
+  id: SpeedLoader9x19mmFMJ
 
-- type: Tag
-  id: Magazine57x28mmPistolFMJ
-
-- type: Tag
-  id: Magazine57x28mmPistolHighCapacityFMJ
-
-- type: Tag
-  id: Magazine57x28mmSubMachineGunFMJ
-
-- type: Tag
-  id: Magazine57x28mmSubMachineGunTopMountedFMJ
-
-- type: Tag
-  id: Magazine57x28mmFMJBox
+# Misc ammo shit
 
 - type: Tag
   id: MilitaryPowerCellMG
 
 - type: Tag
+  id: PPLCell
+
+- type: Tag
   id: MagazineDP29
+
+- type: Tag
+  id: MagazineNovaliteC1
 
 #8x65mm SKR tags
 
@@ -178,10 +215,13 @@
 #12 gauge tags
 
 - type: Tag
-  id: Magazine12_gaugeBuckshot
+  id: WeaponShotgunHelopolis
 
 - type: Tag
   id: ShellShotgun12_gaugeBuckshot
+
+- type: Tag
+  id: ShellShotgun12_gaugeLight
 
 #4 gauge tags
 
@@ -192,7 +232,27 @@
   id: WeaponShotgunBigJohnny
 
 - type: Tag
+  id: WeaponShotgunBigBuddy
+
+- type: Tag
   id: ShellShotgun23x75mmBuckshot
+
+# 635x40mm tags
+- type: Tag
+  id: Cartridge635x40mmCaseless
+
+- type: Tag
+  id: Magazine635x40mmCaseless
+
+- type: Tag
+  id: Magazine635x40mmCaselessPistol
+
+#40mm tags
+
+- type: Tag
+  id: Magazine40mm
+
+#AMMO END
 
 #Misc emote tags
 
@@ -306,6 +366,52 @@
 - type: Tag
   id: BiomassBounty
 
+# Man portable rockets :trollface:
+
+- type: Tag
+  id: MPSSMMissile
+
+# Kudzu ignore tag
+
+- type: Tag
+  id: Chimera
+
+- type: Tag
+  id: ChimeraFloor
+
+# hhhh (Mono tech disk, whoever put it unsorted fuck you)
+
+- type: Tag
+  id: TechDiskMono
+
+# survival kit
+
+- type: Tag
+  id: SurvivalBox
+
+# for letoferol chimeras
+- type: Tag
+  id: Humanoid
+
+# stamps
+
+- type: Tag
+  id: PaycheckBratvaStamp
+
+# Multi-tile lathe board tags
+
+- type: Tag
+  id: MachineBoard2x1
+
+- type: Tag
+  id: MachineBoard2x2
+
+- type: Tag
+  id: MachineBoard3x2
+
+- type: Tag
+  id: MachineBoard3x3
+
 # Ship Ammo
 
 - type: Tag
@@ -319,16 +425,3 @@
 
 - type: Tag
   id: LightFighterOrdinance
-
-# Kudzu ignore tag
-
-- type: Tag
-  id: Chimera
-
-- type: Tag
-  id: ChimeraFloor
-
-# hhhh
-
-- type: Tag
-  id: TechDiskMono

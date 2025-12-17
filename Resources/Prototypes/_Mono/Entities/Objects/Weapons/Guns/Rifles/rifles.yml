@@ -1,14 +1,23 @@
+# SPDX-FileCopyrightText: 2025 Blu
+# SPDX-FileCopyrightText: 2025 BlueHNT
+# SPDX-FileCopyrightText: 2025 Daniel Lenrd
+# SPDX-FileCopyrightText: 2025 Ghagliiarghii
 # SPDX-FileCopyrightText: 2025 HungryCuban
+# SPDX-FileCopyrightText: 2025 Onezero0
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 ScyronX
 # SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 halycon
+# SPDX-FileCopyrightText: 2025 significant harassment
 # SPDX-FileCopyrightText: 2025 starch
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  name: MR-8C BR
+  name: VFD MR-8C DMR (8x65mm SKR)
   parent: [BaseWeaponRifle, BaseGunWieldable, BaseC2ContrabandUnredeemable]
   id: WeaponRifleMR8C
-  description: The BR variant of the MR-8 series, firing with incredible accuracy. Chambered in 8x65mm SKR. A label on the side reads "FOR MILITARY USE ONLY".
+  description: The DMR variant of the MR-8 series, firing with incredible accuracy. Chambered in 8x65mm SKR. A label on the side reads "FOR MILITARY USE ONLY".
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi
@@ -17,21 +26,26 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -21
     maxAngle: -47
   - type: Gun
     minAngle: 21
     maxAngle: 48
-    angleIncrease: 6
-    angleDecay: 24
-    fireRate: 3.5 # 240 rpm #Lua 4<3.5
+    angleIncrease: 20 #Lua 27 -> 20
+    angleDecay: 4 #Lua 2 -> 4
+    fireRate: 3.5 #Lua 4<3.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/_DV/Weapons/Guns/Gunshots/jackdaw.ogg
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/heavy_rifle_1.ogg
   - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/batrifle_cock.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -61,22 +75,14 @@
     zeroVisible: true
   - type: Appearance
   - type: Clothing
-    sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c_inhands_32x.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c_inhands_32x.rsi
   - type: StaticPrice
-    price: 1750
-
-    # uncomment all of the following and readd to the yaml when it stops making it shoot offset for some reason
-
-  #- type: SpeedModifiedOnWield
-  #  walkModifier: 0.95
-  #  sprintModifier: 0.95
-  #- type: CursorOffsetRequiresWield
-  #- type: EyeCursorOffset
-  #  maxOffset: 5
-  #  pvsIncrease: 0.5
+    price: 2400
 
 - type: entity
-  name: AK-502
+  name: NCI AK-502 (7.62x39mm)
   parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponRifleAK502
   description: A standard-issue USSP combat rifle. Uses 7.62x39mm ammo.
@@ -88,38 +94,45 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -47
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -21 -> -0
+    maxAngle: -0 #Lua -47 -> -0
   - type: Gun
-    minAngle: 21
-    maxAngle: 52
-    angleIncrease: 6
-    angleDecay: 24
+    minAngle: 1 #Lua 21 -> 1
+    maxAngle: 5 #Lua 52 -> 5
+    angleIncrease: 3 #Lua 6 -> 3
+    angleDecay: 20 #Lua 24 -> 20
     fireRate: 5 # 300 rpm
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/ak_fire.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/ak502.rsi
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle30
+        startingItem: Magazine762x39mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - NFMagazineRifle30
+          - Magazine762x39mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle30
+        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
-          - NFCartridgeRifle30
+          - Cartridge762x39mmFMJ
+          - Magazine762x39mmLowCapacityFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -130,5 +143,277 @@
     zeroVisible: true
   - type: Appearance
   - type: StaticPrice
-    price: 100
+    price: 1200
+  - type: PirateBountyItem
+    id: StandardFactionLongarm
+
+- type: entity
+  name: VFD XLR-556 ICWS (5.56x45mm)
+  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  id: WeaponRifleXlr556
+  description: A proposed next-gen "rifle" for TSF standard infantry. Chambered in 5.56x45mm rifle rounds, its RPM is incredible - but with great firerate comes great fire control...
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: GunWieldBonus
+    minAngle: -14
+    maxAngle: -17
+  - type: Gun
+    minAngle: 20 #Lua +2
+    maxAngle: 35
+    angleIncrease: 5 #Lua +1
+    angleDecay: 45 #Lua +5
+    fireRate: 10 # 600 rpm #Lua -1
+    shotsPerBurst: 3
+    availableModes:
+    - Burst
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Goobstation/Weapons/Guns/Gunshots/smartgun_shoot.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556_inhands_32x.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556_inhands_32x.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine556x45mmFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - Magazine556x45mmFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge556x45mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+          - Cartridge556x45mmFMJ
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 3500
     vendPrice: 9000
+  - type: PirateBountyItem
+    id: ExperimentalFactionWeapon
+
+#Mercenary vulcan
+- type: entity
+  name: HWM FCM-C "Vulcan" (7.62x51mm)
+  parent: WeaponRifleVulcan
+  id: WeaponRifleVulcanFCMC
+  description: The Herstal Weapon Manufacture "Vulcan" Civilian Medium combat rifle (Fusil de Combat Moyen Civil) in 762x51mm, this civilian version only has semi-automatic mode and reduced firerate.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/WeaponRifleVulcanFCMC.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -50
+  - type: Gun
+    minAngle: 21
+    maxAngle: 52
+    angleIncrease: 1.4
+    angleDecay: 24
+    fireRate: 3 #Lua -1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762x51mmFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine762x51mmFMJ
+            - Magazine762x51mmLowCapacityFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge762x51mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge762x51mmFMJ
+  - type: StaticPrice
+    price: 1200
+    vendPrice: 30000
+
+#Mercenary lecter
+- type: entity
+  name: HWM FCL "Prometheus" (5.56x45mm)
+  parent: [BaseWeaponRifle, BaseC1Contraband]
+  id: WeaponRiflePrometheus
+  description: The Herstal Weapon Manufacture "Prometheus" Light combat rifle (Fusil de Combat Léger) in 556x45mm. Made to be mass producable for fight against xenos. Its firerate is decent with burst being superior and accuracy poor.
+  components:
+  - type: Item # Mono
+    size: Huge
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/prometheus.rsi # Mono
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/prometheus.rsi
+  - type: ChamberMagazineAmmoProvider # Mono
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -27 -> -0
+    maxAngle: -0 #Lua -40 -> -0
+  - type: Gun
+    minAngle: 1 #Lua 30 -> 1
+    maxAngle: 3.5 #Lua 46 -> 3.5
+    angleIncrease: 0.2 #Lua 76 -> 0.2
+    angleDecay: 1 #Lua 7 -> 1
+    cameraRecoilScalar: 1 #Lua 0 -> 1
+    fireRate: 4 #Lua 3 -> 4
+    selectedMode: Burst
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_1.ogg # Mono
+    availableModes:
+    - Burst
+    - SemiAuto
+    - FullAuto
+    burstCooldown: 0.5
+    burstFireRate: 15
+    shotsPerBurst: 3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine556x45mmFMJ # Mono
+        insertSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagIn/m16_magin.ogg # Mono
+        ejectSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagOut/skm_magout.ogg # Mono
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine556x45mmFMJ # Mono
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge556x45mmFMJ # Mono
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge556x45mmFMJ # Mono
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice # Mono
+    price: 1500
+
+#Pre-fracture NT lecter/prometheus
+
+- type: entity
+  name: NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)
+  parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable]
+  id: WeaponRifleNtsfLtr
+  description: An old pre-fracture gun. The Nano Trasen Security Forces and Special Forces's Light Tactical Rifle chambered in 5.56x45mm, also accepts 6.8x52mm due to it being a brand new caliber of its time and being a prototype. This rifle is of high-quality with plastitanium internal and plasteel furnitures.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/NTSF-LTR-556
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/NTSF-LTR-556
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+    minAngle: -0 #Lua -32 -> -0
+    maxAngle: -0 #Lua -52 -> -0
+  - type: Gun
+    minAngle: 1 #Lua 45 -> 1
+    maxAngle: 3.5 #Lua 62 -> 3.5
+    angleIncrease: 0.2 #Lua 6 -> 0.2
+    angleDecay: 40
+    cameraRecoilScalar: 0.5 #Lua 0 -> 0.5
+    fireRate: 5 #Lua 9 -> 5
+    availableModes:
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_3.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine556x45mmFMJ
+        insertSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagIn/m16_magin.ogg
+        ejectSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagOut/skm_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine68x52mmCaseless
+            - Magazine556x45mmFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge556x45mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge68x52mmCaseless
+            - Cartridge556x45mmFMJ
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 750
+  - type: PirateBountyItem
+    id: StandardFactionLongarm
