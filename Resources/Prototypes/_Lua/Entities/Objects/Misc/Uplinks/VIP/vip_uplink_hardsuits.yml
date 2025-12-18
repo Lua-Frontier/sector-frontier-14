@@ -43,4 +43,40 @@
     - Vip
     - OutpostSyndicateShareholder
 
+- type: listing
+  id: UplinkClothingOuterHardsuitShareholder
+  name: uplink-vip-HardsuitShareholder-name
+  description: uplink-vip-HardsuitShareholder-desc
+  productEntity: ClothingOuterHardsuitShareholder
+  cost:
+    Speso: 36350
+  categories:
+  - UplinkVipHardsuits
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+
+- type: listing
+  id: UplinkClothingOuterHardsuitShareholderSyn
+  name: uplink-vip-HardsuitShareholderSyn-name
+  description: uplink-vip-HardsuitShareholderSyn-desc
+  productEntity: ClothingOuterHardsuitShareholderSyn
+  cost:
+    Speso: 36350
+  categories:
+  - UplinkVipHardsuits
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - OutpostSyndicateShareholder
+
 

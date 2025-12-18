@@ -554,3 +554,14 @@ ent-ClothingNeckCapeLua = плащ LuaWorld
 
 ent-ClothingNeckCapeNeon = неоновый плащ
     .desc = Яркий неоновый плащ, светящийся всеми цветами рекламы.
+
+ent-HardsuitShareholder = десантный скафандр акционера
+    .desc = Выглядит неприлично дорого, неизвестно чья это разработка но на бирке по стирке выгравировано "lt&cs"
+ent-HardsuitShareholderSyn = десантный скафандр акционера синдиката
+    .desc = Выглядит неприлично дорого, неизвестно чья это разработка но на бирке по стирке выгравировано "lt&cs"
+
+uplink-vip-HardsuitShareholder-name = { ent-HardsuitShareholder }
+uplink-vip-HardsuitShareholder-desc = { ent-HardsuitShareholder.desc }
+
+uplink-vip-HardsuitShareholderSyn-name = { ent-HardsuitShareholderSyn }
+uplink-vip-HardsuitShareholderSyn-desc = { ent-HardsuitShareholderSyn.desc }
