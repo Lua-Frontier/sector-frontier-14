@@ -1,0 +1,29 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSecDrobeAux
+  name: SDDrobe
+  description: You defy the light above. Your existence is a crime. Be wise. Give up.
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryAux
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: DatasetVocalizer
+    dataset: SecDrobeAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/VendingMachines/SDDrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#326e3f"

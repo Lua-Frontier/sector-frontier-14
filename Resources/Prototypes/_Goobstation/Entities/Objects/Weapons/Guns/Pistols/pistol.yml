@@ -1,8 +1,16 @@
+# SPDX-FileCopyrightText: 2025 Eden077
+# SPDX-FileCopyrightText: 2025 Redrover1760
+# SPDX-FileCopyrightText: 2025 UltimateJester
+# SPDX-FileCopyrightText: 2025 core-mene
+# SPDX-FileCopyrightText: 2025 starch
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 - type: entity
   parent: [ BaseItem, BaseC3PirateContraband ]
   id: WeaponPistolAnaconda
-  name: Anaconda
-  description: A heavy pistol capable of supplying itself with the ammo on the way using a built-in fabricator.
+  name: LWC Anaconda
+  description: A heavy pistol capable of supplying itself with the ammo on the way using a built-in fabricator. Technology once belonging to Cybersun now supplies the Insurgent forces of The Ashen Republic
   components:
   - type: Item
     size: Small
@@ -25,7 +33,7 @@
     - Belt
   - type: Gun
     fireRate: 3
-    projectileSpeed: 22.5 # _Lua
+    projectileSpeed: 22.5
     availableModes:
       - SemiAuto
     soundGunshot:

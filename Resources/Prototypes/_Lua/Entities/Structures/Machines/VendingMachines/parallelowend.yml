@@ -1,0 +1,34 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineClothingParallelOwend
+  name: Параллель-О-Венд
+  description: Лучшие наряды из неизведанных краёв! Создано BrennNight Industries
+  components:
+  - type: VendingMachine
+    pack: FrontierParallelInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/VendingMachines/ParallelOWend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#fa3667"
+
+
+
+

@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/22/2025 15:04:24
-  entityCount: 1049
+  time: 11/26/2025 14:44:04
+  entityCount: 1067
 maps: []
 grids:
 - 1
@@ -38,7 +38,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: CV-GF Xeno
+      name: MC-Xeno
     - type: Transform
       parent: invalid
     - type: MapGrid
@@ -152,7 +152,6 @@ entities:
             859: 2,9
             872: -5,11
             873: -4,11
-            1070: 1,6
         - node:
             color: '#B3B3B3FF'
             id: BrickTileDarkLineW
@@ -181,8 +180,8 @@ entities:
             824: 2,2
             832: -4,2
             833: 7,2
-            864: 2,8
             877: -3,10
+            1073: 2,8
         - node:
             color: '#B8B873FF'
             id: BrickTileSteelCornerNe
@@ -214,8 +213,8 @@ entities:
             823: 0,2
             830: 6,2
             831: -5,2
-            863: 0,8
             868: -5,10
+            1072: 0,8
         - node:
             color: '#B8B873FF'
             id: BrickTileSteelCornerNw
@@ -236,8 +235,8 @@ entities:
             826: 2,1
             827: 7,1
             834: -4,1
-            865: 2,6
             878: -3,8
+            1074: 2,6
         - node:
             color: '#B8B873FF'
             id: BrickTileSteelCornerSe
@@ -258,8 +257,8 @@ entities:
             825: 0,1
             828: -5,1
             829: 6,1
-            866: 0,6
             867: -5,8
+            1076: 0,6
         - node:
             color: '#B8B873FF'
             id: BrickTileSteelCornerSw
@@ -539,8 +538,8 @@ entities:
             color: '#B8B873FF'
             id: BrickTileWhiteLineE
           decals:
-            897: 2,7
             917: 1,-4
+            1079: 2,7
         - node:
             color: '#FA7500FF'
             id: BrickTileWhiteLineE
@@ -550,8 +549,8 @@ entities:
             color: '#B8B873FF'
             id: BrickTileWhiteLineN
           decals:
-            896: 1,8
             915: 1,2
+            1078: 1,8
         - node:
             color: '#FA7500FF'
             id: BrickTileWhiteLineN
@@ -573,12 +572,13 @@ entities:
           decals:
             914: 1,1
             1002: 1,11
+            1080: 1,6
         - node:
             color: '#B8B873FF'
             id: BrickTileWhiteLineW
           decals:
-            895: 0,7
             916: 1,-4
+            1077: 0,7
         - node:
             color: '#BC863FFF'
             id: ConcreteTrimInnerSe
@@ -933,51 +933,6 @@ entities:
             797: -7,11
             798: -7,12
             799: -7,13
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo1
-          decals:
-            1061: 0,8
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo2
-          decals:
-            1062: 1,8
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo3
-          decals:
-            1063: 2,8
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo4
-          decals:
-            1067: 0,7
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo5
-          decals:
-            1064: 1,7
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo6
-          decals:
-            1066: 2,7
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo7
-          decals:
-            1068: 0,6
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo8
-          decals:
-            1071: 1,6
-        - node:
-            color: '#B8B873FF'
-            id: concernlogo9
-          decals:
-            1065: 2,6
         - node:
             color: '#729953FF'
             id: tile_diagonal
@@ -1375,7 +1330,7 @@ entities:
       pos: -6.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -10635.177
+      secondsUntilStateChange: -10965.48
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1405,7 +1360,7 @@ entities:
       pos: 3.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11139.776
+      secondsUntilStateChange: -11470.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1428,7 +1383,7 @@ entities:
       pos: -6.5,12.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13296.574
+      secondsUntilStateChange: -13626.878
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1446,7 +1401,7 @@ entities:
       pos: -1.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11125.644
+      secondsUntilStateChange: -11455.947
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2289,17 +2244,27 @@ entities:
       parent: 1
 - proto: Bed
   entities:
+  - uid: 236
+    components:
+    - type: Transform
+      pos: -2.5,7.5
+      parent: 1
+  - uid: 457
+    components:
+    - type: Transform
+      pos: -4.5,7.5
+      parent: 1
+- proto: BedsheetBlack
+  entities:
   - uid: 456
     components:
     - type: Transform
-      pos: -3.5,7.5
+      pos: -2.5,7.5
       parent: 1
-- proto: BedsheetGreen
-  entities:
-  - uid: 455
+  - uid: 666
     components:
     - type: Transform
-      pos: -3.5,7.5
+      pos: -4.5,7.5
       parent: 1
 - proto: BedsheetMedical
   entities:
@@ -4340,12 +4305,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-- proto: CurtainsGreenOpen
+- proto: CurtainsBlackOpen
   entities:
-  - uid: 52
+  - uid: 667
     components:
     - type: Transform
-      pos: -3.5,7.5
+      pos: -2.5,7.5
+      parent: 1
+  - uid: 668
+    components:
+    - type: Transform
+      pos: -4.5,7.5
+      parent: 1
+- proto: CurtainsOrangeOpen
+  entities:
+  - uid: 1007
+    components:
+    - type: Transform
+      pos: -6.5,14.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -4355,19 +4332,19 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,7.5
       parent: 1
-- proto: Dresser
+- proto: DonkpocketBoxSpawner
   entities:
-  - uid: 38
+  - uid: 1003
     components:
     - type: Transform
-      pos: -4.5,7.5
+      pos: -2.5,8.5
       parent: 1
-- proto: EngineeringTechFab
+- proto: DresserFilled
   entities:
   - uid: 676
     components:
     - type: Transform
-      pos: 5.5,3.5
+      pos: -2.5,10.5
       parent: 1
 - proto: FloorDrain
   entities:
@@ -4379,6 +4356,13 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: FoodBoxDonut
+  entities:
+  - uid: 936
+    components:
+    - type: Transform
+      pos: -3.5,11.5
+      parent: 1
 - proto: GasMixerOn
   entities:
   - uid: 539
@@ -5120,46 +5104,6 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
-- proto: LockerSteel
-  entities:
-  - uid: 665
-    components:
-    - type: Transform
-      pos: -2.5,7.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 667
-          - 666
-          - 668
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Pullable
-      prevFixedRotation: True
 - proto: LockerWallColorMedicalFilled
   entities:
   - uid: 669
@@ -5184,7 +5128,6 @@ entities:
     - type: EntityStorage
       air:
         volume: 200
-        immutable: False
         temperature: 293.14923
         moles:
         - 1.7459903
@@ -5199,6 +5142,10 @@ entities:
         - 0
         - 0
         - 0
+      closeSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/closetclose.ogg
+      openSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/closetopen.ogg
 - proto: LockerWallMaterialsFuelAmeJarFilled
   entities:
   - uid: 673
@@ -5273,6 +5220,14 @@ entities:
     components:
     - type: Transform
       pos: -0.5,7.5
+      parent: 1
+- proto: Mirror
+  entities:
+  - uid: 1009
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,13.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -5529,6 +5484,16 @@ entities:
       parent: 1
 - proto: Railing
   entities:
+  - uid: 38
+    components:
+    - type: Transform
+      pos: -2.5,8.5
+      parent: 1
+  - uid: 52
+    components:
+    - type: Transform
+      pos: -4.5,8.5
+      parent: 1
   - uid: 217
     components:
     - type: Transform
@@ -5576,6 +5541,69 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,8.5
+      parent: 1
+- proto: RandomDrinkBottle
+  entities:
+  - uid: 1004
+    components:
+    - type: Transform
+      pos: -5.5,8.5
+      parent: 1
+- proto: RandomDrinkGlass
+  entities:
+  - uid: 665
+    components:
+    - type: Transform
+      pos: -4.5,11.5
+      parent: 1
+- proto: RandomPosterAny
+  entities:
+  - uid: 948
+    components:
+    - type: Transform
+      pos: -1.5,8.5
+      parent: 1
+  - uid: 959
+    components:
+    - type: Transform
+      pos: 2.5,14.5
+      parent: 1
+  - uid: 976
+    components:
+    - type: Transform
+      pos: -0.5,17.5
+      parent: 1
+  - uid: 988
+    components:
+    - type: Transform
+      pos: 8.5,12.5
+      parent: 1
+  - uid: 995
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
+  - uid: 996
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+  - uid: 997
+    components:
+    - type: Transform
+      pos: -6.5,3.5
+      parent: 1
+- proto: RandomPosterContraband
+  entities:
+  - uid: 947
+    components:
+    - type: Transform
+      pos: -2.5,11.5
+      parent: 1
+  - uid: 998
+    components:
+    - type: Transform
+      pos: 8.5,4.5
       parent: 1
 - proto: SignalButton
   entities:
@@ -5663,6 +5691,14 @@ entities:
     - type: Transform
       pos: -5.5,0.5
       parent: 1
+- proto: StairStageWood
+  entities:
+  - uid: 455
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,8.5
+      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 727
@@ -5708,11 +5744,15 @@ entities:
       parent: 1
 - proto: TableWood
   entities:
-  - uid: 457
+  - uid: 224
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -5.5,8.5
+      parent: 1
+  - uid: 1001
+    components:
+    - type: Transform
+      pos: -2.5,8.5
       parent: 1
   - uid: 1062
     components:
@@ -5842,12 +5882,19 @@ entities:
     - type: Transform
       pos: -6.5,16.5
       parent: 1
-- proto: VendingMachineBooze
+- proto: TowelColorTeal
   entities:
-  - uid: 236
+  - uid: 1030
     components:
     - type: Transform
-      pos: -2.5,10.5
+      pos: -4.4907455,10.869024
+      parent: 1
+- proto: VendingMachineBooze
+  entities:
+  - uid: 1000
+    components:
+    - type: Transform
+      pos: -4.5,8.5
       parent: 1
 - proto: VendingMachineChemicals
   entities:
@@ -5863,29 +5910,6 @@ entities:
     - type: Transform
       pos: 6.5,11.5
       parent: 1
-- proto: VendingMachineRestockBooze
-  entities:
-  - uid: 666
-    components:
-    - type: Transform
-      parent: 665
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 667
-    components:
-    - type: Transform
-      parent: 665
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 668
-    components:
-    - type: Transform
-      parent: 665
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 660
@@ -7509,6 +7533,11 @@ entities:
     - type: Transform
       pos: 2.5,10.5
       parent: 1
+  - uid: 1006
+    components:
+    - type: Transform
+      pos: -5.5,12.5
+      parent: 1
 - proto: WarpPoint
   entities:
   - uid: 1056
@@ -7519,14 +7548,6 @@ entities:
       parent: 1
     - type: WarpPoint
       queryStationName: True
-- proto: WeaponCapacitorRecharger
-  entities:
-  - uid: 224
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,11.5
-      parent: 1
 - proto: WeaponTurretCharonReload
   entities:
   - uid: 823

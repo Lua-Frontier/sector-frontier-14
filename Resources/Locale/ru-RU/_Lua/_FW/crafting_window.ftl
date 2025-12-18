@@ -1,0 +1,25 @@
+recipe-CoffeeTableWood-name = { ent-CoffeeTableWood }
+recipe-CoffeeTableSteel-name = { ent-CoffeeTableSteel }
+recipe-CoffeeTableReinforced-name = { ent-CoffeeTableReinforced }
+recipe-CoffeeTableGlass-name = { ent-CoffeeTableGlass }
+recipe-CoffeeTablePlasma-name = { ent-CoffeeTablePlasma }
+recipe-CoffeeTableReinforcedGlass-name = { ent-CoffeeTableReinforcedGlass }
+recipe-CoffeeTableUranium-name = { ent-CoffeeTableUranium }
+recipe-CoffeeTableReinforcedUranium-name = { ent-CoffeeTableReinforcedUranium }
+recipe-CoffeeTableReinforcedPlasma-name = { ent-CoffeeTableReinforcedPlasma }
+recipe-TableUraniumGlass-name = { ent-TableUraniumGlass }
+recipe-TableReinforcedUraniumGlass-name = { ent-TableReinforcedUraniumGlass }
+recipe-TablePlasmaGlassReinforced-name = { ent-TablePlasmaGlassReinforced }
+
+recipe-CoffeeTableWood-desc = { ent-CoffeeTableWood.desc }
+recipe-CoffeeTableSteel-desc = { ent-CoffeeTableSteel.desc }
+recipe-CoffeeTableReinforced-desc = { ent-CoffeeTableReinforced.desc }
+recipe-CoffeeTableGlass-desc = { ent-CoffeeTableGlass.desc }
+recipe-CoffeeTablePlasma-desc = { ent-CoffeeTablePlasma.desc }
+recipe-CoffeeTableReinforcedGlass-desc = { ent-CoffeeTableReinforcedGlass.desc }
+recipe-CoffeeTableUranium-desc = { ent-CoffeeTableUranium.desc }
+recipe-CoffeeTableReinforcedUranium-desc = { ent-CoffeeTableReinforcedUranium.desc }
+recipe-CoffeeTableReinforcedPlasma-desc = { ent-CoffeeTableReinforcedPlasma.desc }
+recipe-TableUraniumGlass-desc = { ent-TableUraniumGlass.desc }
+recipe-TableReinforcedUraniumGlass-desc = { ent-TableReinforcedUraniumGlass.desc }
+recipe-TablePlasmaGlassReinforced-desc = { ent-TablePlasmaGlassReinforced.desc }
