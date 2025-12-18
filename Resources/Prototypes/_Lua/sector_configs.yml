@@ -8,7 +8,7 @@
   autoStart: true # Необходим для основной группы секторов, более понятно для чего и зачем не буду пояснять, просто включайте если используете в стандартном режиме игры, выключить если не нужно загружать сектор
   defaultGamePreset: NFPirate # Режим игры который мы используем по дефолту на нашем фронтире
   requiredGamePresets: [ NFPirate, LuaAdventure ] # Сектор будет автоматически загружаться только в перечисленных режимах
-  parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default ] # задний фон сектора, выбирается случайным образом
+  parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default, Xmas ] # задний фон сектора, выбирается случайным образом
   deadDropEnabled: true # Включаем систему DeadDrop для сектора
   deadDropCount: 8 # Максимальное количество DeadDrop на сектор
   starmapPosition: 3.0, 4.8 # Позиция на StarMap
