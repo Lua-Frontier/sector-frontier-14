@@ -75,6 +75,9 @@ public sealed partial class StationEventComponent : Component
     [DataField]
     public int EarliestStart = 5;
 
+    [DataField]
+    public int LatestStart = int.MaxValue;
+
     /// <summary>
     ///     In minutes, the amount of time before the same event can occur again
     /// </summary>
