@@ -9,23 +9,39 @@
   playTimeTracker: JobOutpostSyndicateShareholder
   whitelisted: true
   startingGear: OutpostSyndicateShareholderGear
-  canBeAntag: true
+  canBeAntag: false
+  hideConsoleVisibility: true
   icon: "JobIconSyndicateShareholder"
   supervisors: job-supervisors-hire
   setPreference: true
+  access:
+  - SyndicateAgent
+  - NuclearOperative
   accessGroups:
-  - GeneralAccess
+  - AllAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Syndicate
+      - type: SpecialSectorStationRecord
+        recordGeneration: FalseRecord
+      - type: MailDisabled
+      - type: NpcFactionMember
+        factions:
+        - LuaNordFoll
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplantNordfoll ]
 
 - type: startingGear
   id: OutpostSyndicateShareholderGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
-    back: ClothingBackpackMessengerHolding
+    back: ClothingBackpackMessengerHoldingFilled
     shoes: ClothingShoesBootsLaceup
     id: SyndieShareholderPDA
-    ears: ClothingHeadsetAltVip
+    ears: ClothingHeadsetAltVipSyndicate
     pocket1: BaseVipUplinkRadioVip
-    pocket2: BoxSurvival
     neck: ClothingNeckCloakNanotrasenVip
 
 - type: chameleonOutfit

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterHardsuitAtmos
+  parent: [ClothingOuterHardsuitAtmos, HardsuitSpeedBuff]
   id: ClothingOuterHardsuitShareholder
   name: десантный скафандр акционера
   description: Выглядит неприлично дорого, неизвестно чья это разработка но на бирке по стирке выгравировано "lt&cs"
@@ -11,8 +11,6 @@
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/shareholder_hardsuit.rsi
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/shareholder_hardsuit.rsi
-  - type: HardsuitSpeedBuff
-    powerConsumption: 0.9
   - type: HardsuitIdentification
     emaggable: false
   - type: HardsuitDNARadial
