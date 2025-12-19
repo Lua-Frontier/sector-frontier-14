@@ -1,0 +1,167 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#CRATES
+
+- type: listing
+  id: UplinkVipCratesLabBundle
+  name:  uplink-vip-LabBundle-name
+  description: uplink-vip-LabBundle-desc
+  productEntity: CrateScienceLabBundle
+  icon: { sprite: Structures/Storage/Crates/scicrate_secure.rsi, state: icon }
+  cost:
+    Speso: 66000
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipSteel
+  name:  uplink-vip-VipSteel-name
+  description: uplink-vip-VipSteel-desc
+  productEntity: CrateVipSteel
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 9900
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipGlass
+  name:  uplink-vip-VipGlass-name
+  description: uplink-vip-VipGlass-desc
+  productEntity: CrateVipGlass
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 16500
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipPlasteel
+  name:  uplink-vip-VipPlasteel-name
+  description: uplink-vip-VipPlasteel-desc
+  productEntity: CrateVipPlasteel
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 24750
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipPlasma
+  name:  uplink-vip-VipPlasma-name
+  description: uplink-vip-VipPlasma-desc
+  productEntity: CrateVipPlasma
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 9900
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipCloth
+  name:  uplink-vip-VipCloth-name
+  description: uplink-vip-VipCloth-desc
+  productEntity: CrateVipCloth
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 16500
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipDonkpocket
+  name:  uplink-vip-VipDonkpocket-name
+  description: uplink-vip-VipDonkpocket-desc
+  productEntity: CrateVipDonkpocket
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 18000
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCratesVipPlastic
+  name:  uplink-vip-VipPlastic-name
+  description: uplink-vip-VipPlastic-desc
+  productEntity: CrateVipPlastic
+  icon: { sprite: /Textures/_Lua/Crates/vipcrate.rsi, state: icon }
+  cost:
+    Speso: 16500
+  categories:
+    - UplinkVipCrates
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+

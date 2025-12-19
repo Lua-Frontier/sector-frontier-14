@@ -1,0 +1,47 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#BACKPACK
+
+- type: listing
+  id: UplinkVipBackpackIan
+  name:  uplink-vip-Ian-name
+  description: uplink-vip-Ian-desc
+  productEntity: ClothingBackpackIan
+  icon: { sprite: Clothing/Back/Backpacks/ian.rsi, state: icon }
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipBackpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBackpackClippy
+  name:  uplink-vip-Clippy-name
+  description: uplink-vip-Clippy-desc
+  productEntity: ClothingBackpackClippy
+  icon: { sprite: _NF/Clothing/Back/Backpacks/clippy.rsi, state: icon }
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipBackpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+

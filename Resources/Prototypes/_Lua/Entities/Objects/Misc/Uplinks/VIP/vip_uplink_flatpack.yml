@@ -1,0 +1,204 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#FLATPACK
+
+# - type: listing
+#   id: UplinkVipFlatpackCryopod
+#   name:  uplink-vip-Cryopod-name
+#   description: uplink-vip-Cryopod-desc
+#   productEntity: CryopodFlatpack
+#   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: cryopod_flat }
+#   cost:
+#     Speso: 41250
+#   categories:
+#     - UplinkVipFlatpack
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - VipUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Vip
+
+- type: listing
+  id: UplinkVipFlatpackDawInstrument
+  name:  uplink-vip-DawInstrument-name
+  description: uplink-vip-DawInstrument-desc
+  productEntity: DawInstrumentFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: service_music }
+  cost:
+    Speso: 66000
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackIFFFlatpack
+  name:  uplink-vip-IFFFlatpack-name
+  description: uplink-vip-IFFFlatpack-desc
+  productEntity: ComputerIFFFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: iff_console }
+  cost:
+    Speso: 99000
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackAutolathe
+  name:  uplink-vip-Autolathe-name
+  description: uplink-vip-Autolathe-desc
+  productEntity: AutolatheFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: supply_lathe }
+  cost:
+    Speso: 12375
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackTrayEmptyFlatpack
+  name:  uplink-vip-TrayEmptyFlatpack-name
+  description: uplink-vip-TrayEmptyFlatpack-desc
+  productEntity: HydroponicsTrayEmptyFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: service_tray }
+  cost:
+    Speso: 12375
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackProtolatheFlatpack
+  name:  uplink-vip-ProtolatheFlatpack-name
+  description: uplink-vip-ProtolatheFlatpack-desc
+  productEntity: ProtolatheFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: science_lathe }
+  cost:
+    Speso: 20625
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackImprinterFlatpack
+  name:  uplink-vip-ImprinterFlatpack-name
+  description: uplink-vip-ImprinterFlatpack-desc
+  productEntity: CircuitImprinterFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: science_lathe }
+  cost:
+    Speso: 20625
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackOreMachine
+  name:  uplink-vip-OreMachine-name
+  description: uplink-vip-OreMachine-desc
+  productEntity: OreMachineFlatpack
+  icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: ore_machine }
+  cost:
+    Speso: 20625
+  categories:
+    - UplinkVipFlatpack
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackFTLDrive600
+  name: uplink-vip-MachineFTLDrive600Flatpack-name
+  description: uplink-vip-MachineFTLDrive600Flatpack-desc
+  productEntity: MachineFTLDrive600Flatpack
+  cost:
+    Speso: 20625
+  categories:
+  - UplinkVipFlatpack
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipFlatpackWarpDrive
+  name: uplink-vip-MachineWarpDriveFlatpack-name
+  description: uplink-vip-MachineWarpDriveFlatpack-desc
+  productEntity: MachineWarpDriveFlatpack
+  cost:
+    Speso: 20625
+  categories:
+  - UplinkVipFlatpack
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+

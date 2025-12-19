@@ -515,3 +515,18 @@
     - state: idvip
   - type: Clothing
     sprite: _NF/Objects/Misc/id_cards.rsi
+
+- type: entity
+  parent: IDCardStandard
+  id: SynShareholderIDCard
+  name: shareholder ID card
+  components:
+  - type: PresetIdCard
+    job: OutpostSyndicateShareholder
+  - type: Sprite
+    sprite: _Lua/Objects/Misc/id_cards.rsi
+    layers:
+    - state: synsharehold
+    - state: idsynsharehold
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi

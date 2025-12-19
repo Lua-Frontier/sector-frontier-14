@@ -1,0 +1,178 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#USEFUL
+
+- type: listing
+  id: UplinkVipUsefulFoodSnackNutribrick
+  name: uplink-vip-FoodSnackNutribrick-name
+  description: uplink-vip-FoodSnackNutribrick-desc
+  productEntity: FoodSnackNutribrick
+  cost:
+    Speso: 2700
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulDrinkWaterBottleFull
+  name: uplink-vip-DrinkWaterBottleFull-name
+  description: uplink-vip-DrinkWaterBottleFull-desc
+  productEntity: DrinkWaterBottleFull
+  cost:
+    Speso: 1100
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulBoxHug
+  name: uplink-vip-BoxHug-name
+  description: uplink-vip-BoxHug-desc
+  productEntity: BoxHug
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulBoxHugNitrogen
+  name: uplink-vip-BoxHugNitrogen-name
+  description: uplink-vip-BoxHugNitrogen-desc
+  productEntity: BoxHugNitrogen
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulSyringeBluespace
+  name: uplink-vip-SyringeBluespace-name
+  description: uplink-vip-SyringeBluespace-desc
+  productEntity: SyringeBluespace
+  cost:
+    Speso: 1700
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulVialBluespace
+  name: uplink-vip-VialBluespace-name
+  description: uplink-vip-VialBluespace-desc
+  productEntity: VialBluespace
+  cost:
+    Speso: 3200
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulBluespaceBeaker
+  name: uplink-vip-BluespaceBeaker-name
+  description: uplink-vip-BluespaceBeaker-desc
+  productEntity: BluespaceBeaker
+  cost:
+    Speso: 6250
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulJugBluespace
+  name: uplink-vip-JugBluespace-name
+  description: uplink-vip-JugBluespace-desc
+  productEntity: JugBluespace
+  cost:
+    Speso: 5250
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUsefulMiningDrillDiamond
+  name: uplink-vip-MiningDrillDiamond-name
+  description: uplink-vip-MiningDrillDiamond-desc
+  productEntity: MiningDrillDiamond
+  cost:
+    Speso: 4600
+  categories:
+  - UplinkVipUseful
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+

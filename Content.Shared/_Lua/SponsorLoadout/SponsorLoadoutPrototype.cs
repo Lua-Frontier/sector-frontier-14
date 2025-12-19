@@ -28,4 +28,7 @@ public sealed partial class SponsorLoadoutPrototype : IPrototype
 
     [DataField]
     public string? Login { get; }
+
+    [DataField("sponsorRole")]
+    public string? SponsorRole { get; }
 }

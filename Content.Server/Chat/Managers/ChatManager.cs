@@ -1,14 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.InteropServices;
+using Content.Server._Lua.ChatFilter; // Lua
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server._Lua.ChatFilter; // Lua
 using Content.Server.Discord.DiscordLink;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
+using Content.Server.Sponsors;
+using Content.Shared._Lua.SponsorLoadout;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -20,6 +19,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Content.Server.Chat.Managers;
 
@@ -48,6 +50,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
     [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
+    [Dependency] private readonly SponsorManager _sponsorManager = default!; // Lua
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -283,7 +286,23 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         Color? colorOverride = null;
-        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
+        var displayName = player.Name;
+        if (_sponsorManager.TryGetActiveSponsor(player.UserId, out var sponsor))
+        {
+            string? donorHex = sponsor.Role switch
+            {
+                var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) => "#F05C29",
+                var r when string.Equals(r, DonorGroups.God, StringComparison.OrdinalIgnoreCase) => "#00FF4A",
+                _ => null
+            };
+
+            if (donorHex != null)
+                displayName = $"[color={donorHex}]{player.Name}[/color]";
+        }
+
+        var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
+            ("playerName", displayName),
+            ("message", FormattedMessage.EscapeText(message)));
         if (_adminManager.HasAdminFlag(player, AdminFlags.Admin))
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
@@ -294,7 +313,10 @@ internal sealed partial class ChatManager : IChatManager
             PatronOocColors.TryGetValue(patron, out var patronColor) &&
             !string.IsNullOrEmpty(patronColor))
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message",
+                ("patronColor", patronColor),
+                ("playerName", player.Name),
+                ("message", FormattedMessage.EscapeText(message)));
         }
 
         if (player.Name == "ahahahahha")

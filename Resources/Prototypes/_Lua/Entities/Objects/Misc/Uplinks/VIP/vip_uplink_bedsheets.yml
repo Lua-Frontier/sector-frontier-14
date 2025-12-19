@@ -1,0 +1,482 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#BEDSHEETS
+
+- type: listing
+  id: UplinkVipBedsheetNfsd
+  name: uplink-vip-BedsheetNfsd-name
+  description: uplink-vip-BedsheetNfsd-desc
+  productEntity: BedsheetNfsd
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetIan
+  name: uplink-vip-BedsheetIan-name
+  description: uplink-vip-BedsheetIan-desc
+  productEntity: BedsheetIan
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetHOP
+  name: uplink-vip-BedsheetHOP-name
+  description: uplink-vip-BedsheetHOP-desc
+  productEntity: BedsheetHOP
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetCaptain
+  name: uplink-vip-BedsheetCaptain-name
+  description: uplink-vip-BedsheetCaptain-desc
+  productEntity: BedsheetCaptain
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetQM
+  name: uplink-vip-BedsheetQM-name
+  description: uplink-vip-BedsheetQM-desc
+  productEntity: BedsheetQM
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetClown
+  name: uplink-vip-BedsheetClown-name
+  description: uplink-vip-BedsheetClown-desc
+  productEntity: BedsheetClown
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetCult
+  name: uplink-vip-BedsheetCult-name
+  description: uplink-vip-BedsheetCult-desc
+  productEntity: BedsheetCult
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetUSA
+  name: uplink-vip-BedsheetUSA-name
+  description: uplink-vip-BedsheetUSA-desc
+  productEntity: BedsheetUSA
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetHOS
+  name: uplink-vip-BedsheetHOS-name
+  description: uplink-vip-BedsheetHOS-desc
+  productEntity: BedsheetHOS
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetSyndie
+  name: uplink-vip-BedsheetSyndie-name
+  description: uplink-vip-BedsheetSyndie-desc
+  productEntity: BedsheetSyndie
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetNfsdBrigmedic
+  name: uplink-vip-BedsheetNfsdBrigmedic-name
+  description: uplink-vip-BedsheetNfsdBrigmedic-desc
+  productEntity: BedsheetNfsdBrigmedic
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetRD
+  name: uplink-vip-BedsheetRD-name
+  description: uplink-vip-BedsheetRD-desc
+  productEntity: BedsheetRD
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetMime
+  name: uplink-vip-BedsheetMime-name
+  description: uplink-vip-BedsheetMime-desc
+  productEntity: BedsheetMime
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetCentcom
+  name: uplink-vip-BedsheetCentcom-name
+  description: uplink-vip-BedsheetCentcom-desc
+  productEntity: BedsheetCentcom
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetCMO
+  name: uplink-vip-BedsheetCMO-name
+  description: uplink-vip-BedsheetCMO-desc
+  productEntity: BedsheetCMO
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetRainbow
+  name: uplink-vip-BedsheetRainbow-name
+  description: uplink-vip-BedsheetRainbow-desc
+  productEntity: BedsheetRainbow
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetOrange
+  name: uplink-vip-BedsheetOrange-name
+  description: uplink-vip-BedsheetOrange-desc
+  productEntity: BedsheetOrange
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetNfsdSheriff
+  name: uplink-vip-BedsheetNfsdSheriff-name
+  description: uplink-vip-BedsheetNfsdSheriff-desc
+  productEntity: BedsheetNfsdSheriff
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetCE
+  name: uplink-vip-BedsheetCE-name
+  description: uplink-vip-BedsheetCE-desc
+  productEntity: BedsheetCE
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetBrigmedic
+  name: uplink-vip-BedsheetBrigmedic-name
+  description: uplink-vip-BedsheetBrigmedic-desc
+  productEntity: BedsheetBrigmedic
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetWiz
+  name: uplink-vip-BedsheetWiz-name
+  description: uplink-vip-BedsheetWiz-desc
+  productEntity: BedsheetWiz
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetBlack
+  name: uplink-vip-BedsheetBlack-name
+  description: uplink-vip-BedsheetBlack-desc
+  productEntity: BedsheetBlack
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetPurple
+  name: uplink-vip-BedsheetPurple-name
+  description: uplink-vip-BedsheetPurple-desc
+  productEntity: BedsheetPurple
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetBlue
+  name: uplink-vip-BedsheetBlue-name
+  description: uplink-vip-BedsheetBlue-desc
+  productEntity: BedsheetBlue
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipBedsheetGrey
+  name: uplink-vip-BedsheetGrey-name
+  description: uplink-vip-BedsheetGrey-desc
+  productEntity: BedsheetGrey
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipBedsheets
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+

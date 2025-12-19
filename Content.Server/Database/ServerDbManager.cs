@@ -339,6 +339,15 @@ namespace Content.Server.Database
 
         #endregion
 
+        #region Sponsors
+
+        Task AddOrUpdateSponsor(Guid player, string playerName, string role, DateTime startDate, DateTime? plannedEndDate);
+        Task CloseSponsor(Guid player, string role, DateTime endDate);
+        Task<Sponsor?> GetActiveSponsor(Guid player, string role);
+        Task<Sponsor?> GetActiveSponsor(Guid player);
+
+        #endregion
+
         #region IPintel
 
         Task<bool> UpsertIPIntelCache(DateTime time, IPAddress ip, float score);
@@ -1067,6 +1076,30 @@ namespace Content.Server.Database
         public Task<IPIntelCache?> GetIPIntelCache(IPAddress ip)
         {
             return RunDbCommand(() => _db.GetIPIntelCache(ip));
+        }
+
+        public Task AddOrUpdateSponsor(Guid player, string playerName, string role, DateTime startDate, DateTime? plannedEndDate)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddOrUpdateSponsor(player, playerName, role, startDate, plannedEndDate));
+        }
+
+        public Task CloseSponsor(Guid player, string role, DateTime endDate)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.CloseSponsor(player, role, endDate));
+        }
+
+        public Task<Sponsor?> GetActiveSponsor(Guid player, string role)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetActiveSponsor(player, role));
+        }
+
+        public Task<Sponsor?> GetActiveSponsor(Guid player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetActiveSponsor(player));
         }
 
         public Task<bool> CleanIPIntelCache(TimeSpan range)

@@ -15,6 +15,9 @@ public sealed partial class StoreComponent : Component
     [DataField]
     public LocId Name = "store-ui-default-title";
 
+    [DataField("useBankAccount")]
+    public bool UseBankAccount;
+
     /// <summary>
     /// All the listing categories that are available on this store.
     /// The available listings are partially based on the categories.

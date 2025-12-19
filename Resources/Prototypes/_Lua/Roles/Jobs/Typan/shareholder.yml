@@ -1,0 +1,35 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: job
+  id: OutpostSyndicateShareholder
+  name: job-name-outpost-syndicate-shareholder
+  description: job-description-outpost-syndicate-shareholder
+  playTimeTracker: JobOutpostSyndicateShareholder
+  whitelisted: true
+  startingGear: OutpostSyndicateShareholderGear
+  canBeAntag: true
+  icon: "JobIconSyndicateShareholder"
+  supervisors: job-supervisors-hire
+  setPreference: true
+  accessGroups:
+  - GeneralAccess
+
+- type: startingGear
+  id: OutpostSyndicateShareholderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    back: ClothingBackpackMessengerHolding
+    shoes: ClothingShoesBootsLaceup
+    id: SyndieShareholderPDA
+    ears: ClothingHeadsetAltVip
+    pocket1: BaseVipUplinkRadioVip
+    pocket2: BoxSurvival
+    neck: ClothingNeckCloakNanotrasenVip
+
+- type: chameleonOutfit
+  id: OutpostSyndicateShareholderChameleonOutfit
+  job: OutpostSyndicateShareholder
+
+

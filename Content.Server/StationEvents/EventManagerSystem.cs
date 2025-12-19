@@ -263,9 +263,15 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        if (currentTime != TimeSpan.Zero && currentTime.TotalMinutes < stationEvent.EarliestStart)
+        if (currentTime != TimeSpan.Zero)
         {
-            return false;
+            if (currentTime.TotalMinutes < stationEvent.EarliestStart)
+            {
+                return false;
+            }
+
+            if (currentTime.TotalMinutes > stationEvent.LatestStart)
+            { return false; }
         }
 
         var lastRun = TimeSinceLastEvent(prototype);

@@ -146,9 +146,9 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _NF/Objects/Devices/pda.rsi
+    - sprite: _Lua/Objects/Devices/pda.rsi
       map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
+      state: "pda_vip"
     - sprite: _NF/Objects/Devices/pda.rsi
       state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
@@ -159,6 +159,11 @@
       map: [ "enum.PdaVisualLayers.IdLight" ]
       shader: "unshaded"
       visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda_vip
   - type: Pda
     id: VipIDCard
   - type: PdaBorderColor
@@ -166,4 +171,39 @@
     accentVColor: "#b0a813"
   - type: Icon
     sprite: _Lua/Objects/Devices/pda.rsi
-    state: pda-vip
+    state: pda_vip
+
+- type: entity
+  parent: BasePDA
+  id: SyndieShareholderPDA
+  name: shareholder PDA
+  description: Why isn't it not gray?
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Lua/Objects/Devices/pda.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda_shareholder_syndicate"
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda_shareholder_syndicate
+  - type: Pda
+    id: SynShareholderIDCard
+  - type: PdaBorderColor
+    borderColor: "#171511"
+    accentVColor: "#b0a813"
+  - type: Icon
+    sprite: _Lua/Objects/Devices/pda.rsi
+    state: pda_shareholder_syndicate

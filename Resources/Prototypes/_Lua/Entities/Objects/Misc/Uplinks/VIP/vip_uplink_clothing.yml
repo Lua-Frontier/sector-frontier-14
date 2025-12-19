@@ -1,0 +1,312 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#CLOTHING
+
+- type: listing
+  id: UplinkVipClothingBootsMagAdv
+  name:  uplink-vip-BootsMagAdv-name
+  description: uplink-vip-BootsMagAdv-desc
+  productEntity: ClothingShoesBootsMagAdv
+  icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
+  cost:
+    Speso: 5400
+  categories:
+    - UplinkVipClothing
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingOuterSuitFox
+  name: uplink-vip-ClothingOuterSuitFox-name
+  description: uplink-vip-ClothingOuterSuitFox-desc
+  productEntity: ADTClothingOuterSuitFox
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingOuterSuitRacoon
+  name: uplink-vip-ClothingOuterSuitRacoon-name
+  description: uplink-vip-ClothingOuterSuitRacoon-desc
+  productEntity: ADTClothingOuterSuitRacoon
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingHeadHatFox
+  name: uplink-vip-ClothingHeadHatFox-name
+  description: uplink-vip-ClothingHeadHatFox-desc
+  productEntity: ADTClothingHeadHatFox
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingHeadHatRacoon
+  name: uplink-vip-ClothingHeadHatRacoon-name
+  description: uplink-vip-ClothingHeadHatRacoon-desc
+  productEntity: ADTClothingHeadHatRacoon
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingHandsTacticalMaidGloves
+  name: uplink-vip-ClothingHandsTacticalMaidGloves-name
+  description: uplink-vip-ClothingHandsTacticalMaidGloves-desc
+  productEntity: ClothingHandsTacticalMaidGloves
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingHeadHatTacticalMaidHeadband
+  name: uplink-vip-ClothingHeadHatTacticalMaidHeadband-name
+  description: uplink-vip-ClothingHeadHatTacticalMaidHeadband-desc
+  productEntity: ClothingHeadHatTacticalMaidHeadband
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipUniformMaid
+  name: uplink-vip-UniformMaid-name
+  description: uplink-vip-UniformMaid-desc
+  productEntity: UniformMaid
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformLatexLovedmaid
+  name: uplink-vip-ClothingUniformLatexLovedmaid-name
+  description: uplink-vip-ClothingUniformLatexLovedmaid-desc
+  productEntity: ClothingUniformLatexLovedmaid
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformJumpskirtTacticalMaid
+  name: uplink-vip-ClothingUniformJumpskirtTacticalMaid-name
+  description: uplink-vip-ClothingUniformJumpskirtTacticalMaid-desc
+  productEntity: ClothingUniformJumpskirtTacticalMaid
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformJumpsuitGalaxyBlue
+  name: uplink-vip-ClothingUniformJumpsuitGalaxyBlue-name
+  description: uplink-vip-ClothingUniformJumpsuitGalaxyBlue-desc
+  productEntity: ClothingUniformJumpsuitGalaxyBlue
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformJumpsuitGalaxyRed
+  name: uplink-vip-ClothingUniformJumpsuitGalaxyRed-name
+  description: uplink-vip-ClothingUniformJumpsuitGalaxyRed-desc
+  productEntity: ClothingUniformJumpsuitGalaxyRed
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformJumpsuitDameDane
+  name: uplink-vip-ClothingUniformJumpsuitDameDane-name
+  description: uplink-vip-ClothingUniformJumpsuitDameDane-desc
+  productEntity: ClothingUniformJumpsuitDameDane
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformJumpsuitJester
+  name: uplink-vip-ClothingUniformJumpsuitJester-name
+  description: uplink-vip-ClothingUniformJumpsuitJester-desc
+  productEntity: ClothingUniformJumpsuitJester
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingHeadHatJester
+  name: uplink-vip-ClothingHeadHatJester-name
+  description: uplink-vip-ClothingHeadHatJester-desc
+  productEntity: ClothingHeadHatJester
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipClothingUniformJumpskirtJanimaid
+  name: uplink-vip-ClothingUniformJumpskirtJanimaid-name
+  description: uplink-vip-ClothingUniformJumpskirtJanimaid-desc
+  productEntity: ClothingUniformJumpskirtJanimaid
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipClothing
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+
