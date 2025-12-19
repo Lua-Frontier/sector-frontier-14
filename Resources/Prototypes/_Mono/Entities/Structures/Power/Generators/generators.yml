@@ -97,9 +97,16 @@
     receiveFrequencyId: BasicDevice
   - type: GeneratorExhaustGas
     gasType: CarbonDioxide
-    moleRatio: 0.5
+    # 1 moles of gas for every sheet of bluespace.
+    moleRatio: 1 # Lua 0.5 -> 1
   - type: WirelessNetworkConnection
     range: 200
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
   - type: Climbable
   - type: FootstepModifier
     footstepSoundCollection:
@@ -137,7 +144,7 @@
   parent:
   - StaticGeneratorBase
   id: GeneratorCRPinch
-  suffix: Plasma, Rad+, 105 kW
+  suffix: Bluespace, Rad+, 105 kW # Lua plasma -> bluespace
   placement:
     mode: AlignTileAny
   components:
@@ -160,17 +167,18 @@
           False: { state: portgen0 }
   - type: FuelGenerator
     minTargetPower: 50000
-    maxTargetPower: 160000
+    maxTargetPower: 150000 # Lua 160000 -> 150000
     targetPower: 105000
     optimalPower: 105000
-    optimalBurnRate: 0.001
-    fuelEfficiencyConstant: 0.95
+    optimalBurnRate: 0.005 # Lua 0.001 -> 0.005 more balanced
+    fuelEfficiencyConstant: 0.75 # Lua 0.95 -> 0.75 against balance
     radiationColor: "#662040"
   - type: SolidFuelGeneratorAdapter
-    fuelMaterial: FuelGradePlasma
+    fuelMaterial: FuelGradeBluespace # Lua plasma -> bluespace
     multiplier: 0.01
   - type: MaterialStorage
-    materialWhiteList: [Plasma, FuelGradePlasma]
+    materialWhiteList: [Bluespace, FuelGradeBluespace] # Lua plasma -> bluespace
+    storageLimit: 3000 # Lua add just fix unlimited storage limit
   - type: PowerMonitoringDevice
     sprite: _Mono/Structures/Power/Generators/pinchreactor.rsi
     state: portgen0
@@ -197,15 +205,17 @@
     supplyRampTolerance: 3000
   - type: FuelGradeAdapter
     conversions:
-    - input: Plasma
-      output: FuelGradePlasma
-      rate: 1
+    - input: Bluespace # Lua plasma -> bluespace
+      output: FuelGradeBluespace
+      rate: 5 # Lua 1 -> 5 Because now uses bluespace
 
 - type: entity
-  parent: [BaseGeneratorShuttle, GeneratorCRPinch]
+  parent:
+  - BaseGeneratorShuttle
+  - GeneratorCRPinch
   id: GeneratorCRPinchShuttle
-  suffix: Plasma, Rad+, 105 kW, Ship
+  suffix: Bluespace, Rad+, 105 kW, Ship # Lua plasma -> bluespace
   components:
   - type: MaterialStorage
     storage:
-      Plasma: 2500
+      FuelGradeBluespace: 2500

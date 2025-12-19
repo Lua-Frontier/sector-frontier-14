@@ -113,7 +113,7 @@
     sprite: _Mono/Objects/Weapons/Guns/Battery/nt_longarm_inhands_32x.rsi
     size: Huge
     shape:
-    - 0,0,5,1
+    - 0,0,5,2
   - type: MagazineVisuals
     magState: mag
     steps: 2
@@ -130,6 +130,6 @@
     maxOffset: 12
     pvsIncrease: 4
   - type: SpeedModifiedOnWield
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.75 #Lua 0.95 -> 0.75
+    sprintModifier: 0.75 #Lua 0.95 -> 0.75
   - type: Appearance

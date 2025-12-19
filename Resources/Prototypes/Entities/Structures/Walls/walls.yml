@@ -527,10 +527,10 @@
       tags:
       - Wall
     - type: Sprite
-      sprite: Structures/Walls/plastitanium.rsi
+      sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
       color: "#cdf3cd" # Frontier
     - type: Icon
-      sprite: Structures/Walls/plastitanium.rsi
+      sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
     - type: IconSmooth
       key: walls
       base: plastitanium
@@ -594,11 +594,11 @@
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua
     state: state0
     color: "#cdf3cd" # Lua
   - type: Icon
-    sprite: Structures/Walls/plastitanium_diagonal.rsi
+    sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua 
     state: state0
   - type: Damageable
     damageContainer: StructuralInorganic

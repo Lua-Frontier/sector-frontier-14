@@ -7,9 +7,9 @@
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: Structures/Walls/railing.rsi
+    sprite: _Corvax/Structures/Walls/railing.rsi # Lua
   - type: Icon
-    sprite: Structures/Walls/railing.rsi
+    sprite: _Corvax/Structures/Walls/railing.rsi # Lua
   - type: Physics
     bodyType: Static
   - type: InteractionOutline

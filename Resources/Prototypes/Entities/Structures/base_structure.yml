@@ -4,6 +4,10 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Mono start
+  - type: ExaminableDamage
+    messages: WindowMessages
+  # Mono end
   - type: Transform
     anchored: true
   - type: Clickable

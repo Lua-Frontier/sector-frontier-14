@@ -97,9 +97,9 @@
   - type: Gun
     minAngle: 24
     maxAngle: 36
-    angleIncrease: 3
+    angleIncrease: 1.5 #Lua 3 -> 1.5
     angleDecay: 34
-    fireRate: 6 # 360 rpm
+    fireRate: 5 #Lua 6 -> 5
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -310,11 +310,11 @@
     id: ExperimentalFactionWeapon
   - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    sprintModifier: 0.6 #Lua 0.9 -> 0.6
-    walkModifier: 0.6 #Lua 0.9 -> 0.6
+    sprintModifier: 0.65 #Lua 0.9 -> 0.65
+    walkModifier: 0.65 #Lua 0.9 -> 0.65
   - type: SpeedModifiedOnWield
-    walkModifier: 0.4
-    sprintModifier: 0.35
+    walkModifier: 0.7 #Lua 0.4 -> 0.7
+    sprintModifier: 0.5 #Lua 0.35 -> 0.5
 
 - type: entity
   name: VFD PSW "Ratel" (7.62x51mm)

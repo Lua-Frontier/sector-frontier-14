@@ -34,7 +34,7 @@
     capacity: 12
     count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1.5
+    rechargeCooldown: 3 #Lua 1.5 -> 3
     rechargeSound:
       path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
   - type: AmmoCounter
@@ -52,4 +52,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40
+        Piercing: 20 #Lua -20
+        Blunt: 20 #Lua add

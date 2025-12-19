@@ -73,10 +73,10 @@
   - type: Appearance
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2.5
+    maxOffset: 4 #Lua 2.5 -> 4
     pvsIncrease: 0.4
   - type: SpeedModifiedOnWield # Mono
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.80 #Lua 0.85 -> 0.80
+    sprintModifier: 0.80 #Lua 0.85 -> 0.80
   - type: PirateBountyItem # Mono
     id: StandardFactionLongarm

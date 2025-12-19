@@ -170,3 +170,52 @@
       map: ["enum.WeldableLayers.BaseWelded"]
   - type: AccessReader
     access: [["SyndicateAgent"]]
+
+# Fuel lockers
+
+# Bluespace fuel locker
+
+- type: entity
+  parent: [ LockerWallColorFuelBluespace, StorageFillMaterialsFuelBluespace ]
+  id: LockerWallMaterialsFuelBluespaceFilled
+  suffix: Filled, Bluespace
+
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallColorFuelBluespace
+  parent: NFBaseLockerGridInvWallColor
+  name: bluespace fuel wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#047285"
+    - state: fillFuelCell-0
+      map: ["enum.StorageFillLayers.Fill"]
+      color: "#0777c2"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#047285"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#93057a"
+    - state: door-decal-fuel-plasma
+      map: [ decal2 ]
+      color: "#fff4e2"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: fillFuelCell
+
+- type: entity # Full stack
+  abstract: true
+  id: StorageFillMaterialsFuelBluespace
+  components:
+  - type: StorageFill
+    contents:
+    - id: FuelBluespace

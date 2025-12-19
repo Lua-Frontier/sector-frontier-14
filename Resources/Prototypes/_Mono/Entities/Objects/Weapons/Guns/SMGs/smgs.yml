@@ -231,13 +231,12 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -5
-    maxAngle: -5
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/NTSF-HCLM-45rsi
   - type: Gun
-    fireRate: 6
+    angleIncrease: 1.1 #Lua add
+    angleDecay: 7.7 #Lua add
+    fireRate: 5 #Lua 6 -> 5
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/dmr.ogg
@@ -288,10 +287,10 @@
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/knallstock.rsi
   - type: Gun
-    fireRate: 6
+    fireRate: 5.5 #Lua 6 -> 5.5
     angleIncrease: 1.1 #Lua 16 -> 1.1
     angleDecay: 7.7 #Lua 10 -> 7.7
-    selectedMode: Burst
+    selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
     availableModes:
@@ -335,15 +334,10 @@
   id: WeaponSubMachineGunTypewriterPMC
   description: A modern take on the classic design used by mobsters throughout space and time. This one is an offbrand mercenary version of the typewritter nicknamed the "keyboard", its barrel heat rapidly which reduce accuracy. Uses .45 ACP ammo.
   components:
-  - type: GunWieldBonus
-    minAngle: -27
-    maxAngle: -45
   - type: Gun
-    minAngle: 30
-    maxAngle: 55
-    angleIncrease: 18
-    angleDecay: 4
-    fireRate: 7
+    angleIncrease: 1.1 #Lua 18 -> 1.1
+    angleDecay: 7.7 #Lua 4 -> 7.7
+    fireRate: 6 #Lua 7 -> 6
   - type: StaticPrice
     price: 500
 
@@ -361,14 +355,13 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -5
-    maxAngle: -5
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd_inhands_32x.rsi
   - type: Item
     sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd_inhands_32x.rsi
   - type: Gun
+    angleIncrease: 1.1 #Lua add
+    angleDecay: 7.7 #Lua add
     fireRate: 5 #Lua 6 -> 5
     selectedMode: FullAuto
     soundGunshot:
