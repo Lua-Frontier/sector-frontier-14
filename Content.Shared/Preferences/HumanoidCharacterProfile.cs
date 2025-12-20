@@ -143,7 +143,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
-            PreferenceUnavailableMode.StayInLobby;
+            PreferenceUnavailableMode.SpawnAsOverflow;
 
         /// <summary>
         /// The company affiliation of the character
