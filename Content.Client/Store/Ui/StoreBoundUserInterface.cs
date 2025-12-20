@@ -69,7 +69,7 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
             case StoreUpdateState msg:
                 _listings = msg.Listings;
 
-                _menu?.UpdateBalance(msg.Balance);
+                _menu?.UpdateBalance(msg.Balance, msg.AllowWithdraw, msg.HasBankBalance, msg.BankBalance);
 
                 UpdateListingsWithSearchFilter();
                 _menu?.SetFooterVisibility(msg.ShowFooter);

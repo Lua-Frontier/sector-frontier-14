@@ -2,9 +2,11 @@ using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Connection;
 using Content.Server.Corvax.DiscordAuth;
+using Content.Server.Sponsors;
 using Content.Shared.CCVar;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.JoinQueue;
+using Content.Shared._Lua.SponsorLoadout;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -43,6 +45,7 @@ public sealed class JoinQueueManager
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly DiscordAuthManager _discordAuthManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly SponsorManager _sponsorManager = default!;
 
     /// <summary>
     ///     Queue of active player sessions
@@ -87,7 +90,13 @@ public sealed class JoinQueueManager
             return;
         }
 
-        var isPrivileged = await _connectionManager.HavePrivilegedJoin(session.UserId);
+        var isPrivilegedAdmin = await _connectionManager.HavePrivilegedJoin(session.UserId);
+        var isPrivilegedDonor =
+            _sponsorManager.TryGetActiveSponsor(session.UserId, out var sponsor) &&
+            (string.Equals(sponsor.Role, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) ||
+             string.Equals(sponsor.Role, DonorGroups.God, StringComparison.OrdinalIgnoreCase));
+
+        var isPrivileged = isPrivilegedAdmin || isPrivilegedDonor;
         var players = GetPlayersCount() - 1;
         if (players < 0) players = 0;
         var haveFreeSlot = players < _cfg.GetCVar(CCVars.SoftMaxPlayers);

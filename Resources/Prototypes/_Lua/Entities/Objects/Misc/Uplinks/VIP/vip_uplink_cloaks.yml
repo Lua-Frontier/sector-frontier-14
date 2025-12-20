@@ -1,0 +1,843 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#CLOAKS
+
+- type: listing
+  id: UplinkVipCloakUnnown
+  name:  uplink-vip-CloakUnnown-name
+  description: uplink-vip-CloakUnnown-desc
+  productEntity: ClothingNeckCloakUnnown
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakCe
+  name:  uplink-vip-CloakCe-name
+  description: uplink-vip-CloakCe-desc
+  productEntity: ClothingNeckCloakCe
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakTrans
+  name:  uplink-vip-CloakTrans-name
+  description: uplink-vip-CloakTrans-desc
+  productEntity: ClothingNeckCloakTrans
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakNanotrasen
+  name:  uplink-vip-CloakNanotrasen-name
+  description: uplink-vip-CloakNanotrasen-desc
+  productEntity: ClothingNeckCloakNanotrasen
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakAdmin
+  name:  uplink-vip-CloakAdmin-name
+  description: uplink-vip-CloakAdmin-desc
+  productEntity: ClothingNeckCloakAdmin
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakBi
+  name:  uplink-vip-CloakBi-name
+  description: uplink-vip-CloakBi-desc
+  productEntity: ClothingNeckCloakBi
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakCapFormal
+  name:  uplink-vip-CloakCapFormal-name
+  description: uplink-vip-CloakCapFormal-desc
+  productEntity: ClothingNeckCloakCapFormal
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakJanitorFilled
+  name:  uplink-vip-CloakJanitorFilled-name
+  description: uplink-vip-CloakJanitorFilled-desc
+  productEntity: ClothingNeckCloakJanitorFilled
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakIntersex
+  name:  uplink-vip-CloakIntersex-name
+  description: uplink-vip-CloakIntersex-desc
+  productEntity: ClothingNeckCloakIntersex
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakMiner
+  name:  uplink-vip-CloakMiner-name
+  description: uplink-vip-CloakMiner-desc
+  productEntity: ClothingNeckCloakMiner
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakPan
+  name:  uplink-vip-CloakPan-name
+  description: uplink-vip-CloakPan-desc
+  productEntity: ClothingNeckCloakPan
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakPyotr
+  name:  uplink-vip-CloakPyotr-name
+  description: uplink-vip-CloakPyotr-desc
+  productEntity: ADTClothingNeckPyotrCloak
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakDarkGrey
+  name:  uplink-vip-CloakDarkGrey-name
+  description: uplink-vip-CloakDarkGrey-desc
+  productEntity: ADTClothingNeckDarkGreyCloak
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeCrystal
+  name:  uplink-vip-CapeCrystal-name
+  description: uplink-vip-CapeCrystal-desc
+  productEntity: ClothingNeckCapeCrystal
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeGalaxy
+  name:  uplink-vip-CapeGalaxy-name
+  description: uplink-vip-CapeGalaxy-desc
+  productEntity: ClothingNeckCapeGalaxy
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeViolet
+  name:  uplink-vip-CapeViolet-name
+  description: uplink-vip-CapeViolet-desc
+  productEntity: ClothingNeckCapeViolet
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakHerald
+  name:  uplink-vip-CloakHerald-name
+  description: uplink-vip-CloakHerald-desc
+  productEntity: ClothingNeckCloakHerald
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakEnby
+  name:  uplink-vip-CloakEnby-name
+  description: uplink-vip-CloakEnby-desc
+  productEntity: ClothingNeckCloakEnby
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakLesbian
+  name:  uplink-vip-CloakLesbian-name
+  description: uplink-vip-CloakLesbian-desc
+  productEntity: ClothingNeckCloakLesbian
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakVoid
+  name:  uplink-vip-CloakVoid-name
+  description: uplink-vip-CloakVoid-desc
+  productEntity: ClothingNeckCloakVoid
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakMoth
+  name:  uplink-vip-CloakMoth-name
+  description: uplink-vip-CloakMoth-desc
+  productEntity: ClothingNeckCloakMoth
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakHop
+  name:  uplink-vip-CloakHop-name
+  description: uplink-vip-CloakHop-desc
+  productEntity: ClothingNeckCloakHop
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakRaincoatShortDress
+  name:  uplink-vip-CloakRaincoatShortDress-name
+  description: uplink-vip-CloakRaincoatShortDress-desc
+  productEntity: ADTClothingNeckRaincoatForAShortDress
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeLua
+  name:  uplink-vip-CapeLua-name
+  description: uplink-vip-CapeLua-desc
+  productEntity: ClothingNeckCapeLua
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeNeon
+  name:  uplink-vip-CapeNeon-name
+  description: uplink-vip-CapeNeon-desc
+  productEntity: ClothingNeckCapeNeon
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakGothic
+  name:  uplink-vip-CloakGothic-name
+  description: uplink-vip-CloakGothic-desc
+  productEntity: ADTClothingNeckGothicCloak
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakHos
+  name:  uplink-vip-CloakHos-name
+  description: uplink-vip-CloakHos-desc
+  productEntity: ClothingNeckCloakHos
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakRd
+  name:  uplink-vip-CloakRd-name
+  description: uplink-vip-CloakRd-desc
+  productEntity: ClothingNeckCloakRd
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakRosy
+  name:  uplink-vip-CloakRosy-name
+  description: uplink-vip-CloakRosy-desc
+  productEntity: ClothingNeckCloakRosy
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakKnight
+  name:  uplink-vip-CloakKnight-name
+  description: uplink-vip-CloakKnight-desc
+  productEntity: ADTClothingNeckKnightCloak
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakFoxyorg
+  name:  uplink-vip-CloakFoxyorg-name
+  description: uplink-vip-CloakFoxyorg-desc
+  productEntity: ClothingNeckCloakFoxyorg
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakGoliath
+  name:  uplink-vip-CloakGoliath-name
+  description: uplink-vip-CloakGoliath-desc
+  productEntity: ClothingNeckCloakGoliathCloak
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakWeb
+  name:  uplink-vip-CloakWeb-name
+  description: uplink-vip-CloakWeb-desc
+  productEntity: ClothingNeckCloakWeb
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeFlame
+  name:  uplink-vip-CapeFlame-name
+  description: uplink-vip-CapeFlame-desc
+  productEntity: ClothingNeckCapeFlame
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCapeSirius
+  name:  uplink-vip-CapeSirius-name
+  description: uplink-vip-CapeSirius-desc
+  productEntity: ClothingNeckCapeSirius
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakAro
+  name:  uplink-vip-CloakAro-name
+  description: uplink-vip-CloakAro-desc
+  productEntity: ClothingNeckCloakAro
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakSunset
+  name:  uplink-vip-CloakSunset-name
+  description: uplink-vip-CloakSunset-desc
+  productEntity: ClothingNeckCloakSunset
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakCap
+  name:  uplink-vip-CloakCap-name
+  description: uplink-vip-CloakCap-desc
+  productEntity: ClothingNeckCloakCap
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakAce
+  name:  uplink-vip-CloakAce-name
+  description: uplink-vip-CloakAce-desc
+  productEntity: ClothingNeckCloakAce
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakGay
+  name:  uplink-vip-CloakGay-name
+  description: uplink-vip-CloakGay-desc
+  productEntity: ClothingNeckCloakGay
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakQm
+  name:  uplink-vip-CloakQm-name
+  description: uplink-vip-CloakQm-desc
+  productEntity: ClothingNeckCloakQm
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakNanotrasenVip
+  name:  uplink-vip-CloakNanotrasenVip-name
+  description: uplink-vip-CloakNanotrasenVip-desc
+  productEntity: ClothingNeckCloakNanotrasenVip
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakWitchHunter
+  name:  uplink-vip-CloakWitchHunter-name
+  description: uplink-vip-CloakWitchHunter-desc
+  productEntity: ClothingOuterCoatWitchHunter
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipCloakSupremeCommander
+  name:  uplink-vip-CloakSupremeCommander-name
+  description: uplink-vip-CloakSupremeCommander-desc
+  productEntity: ADTClothingNeckSupremeCommanderCloak
+  cost:
+    Speso: 300
+  categories:
+    - UplinkVipCloaks
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+

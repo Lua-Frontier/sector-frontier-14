@@ -1,0 +1,82 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#HARDSUIT
+
+- type: listing
+  id: UplinkVipLuxury
+  name:  uplink-vip-Luxury-name
+  description: uplink-vip-Luxury-desc
+  productEntity: ClothingOuterHardsuitLuxury
+  icon: { sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi, state: icon }
+  cost:
+    Speso: 24600
+  categories:
+    - UplinkVipHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Vip
+        - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkVipHardsuitSanta
+  name: uplink-vip-HardsuitSanta-name
+  description: uplink-vip-HardsuitSanta-desc
+  productEntity: ClothingOuterHardsuitSanta
+  cost:
+    Speso: 21100
+  categories:
+  - UplinkVipHardsuits
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+    - OutpostSyndicateShareholder
+
+- type: listing
+  id: UplinkClothingOuterHardsuitShareholder
+  name: uplink-vip-HardsuitShareholder-name
+  description: uplink-vip-HardsuitShareholder-desc
+  productEntity: ClothingOuterHardsuitShareholder
+  cost:
+    Speso: 36350
+  categories:
+  - UplinkVipHardsuits
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Vip
+
+- type: listing
+  id: UplinkClothingOuterHardsuitShareholderSyn
+  name: uplink-vip-HardsuitShareholderSyn-name
+  description: uplink-vip-HardsuitShareholderSyn-desc
+  productEntity: ClothingOuterHardsuitShareholderSyn
+  cost:
+    Speso: 36350
+  categories:
+  - UplinkVipHardsuits
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - OutpostSyndicateShareholder
+
+

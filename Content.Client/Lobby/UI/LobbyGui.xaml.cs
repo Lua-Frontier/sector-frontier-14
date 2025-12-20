@@ -30,7 +30,7 @@ namespace Content.Client.Lobby.UI
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
 
             Wiki.OnPressed += _ => _uriOpener.OpenUri(new Uri("https://wiki.deadspace14.net"));
-            Boosty.OnPressed += _ => _uriOpener.OpenUri(new Uri("https://boosty.to/luaworld"));
+            Boosty.OnPressed += _ => _uriOpener.OpenUri(new Uri("https://luacorp.ru/"));
             Discord.OnPressed += _ => _uriOpener.OpenUri(new Uri("https://discord.gg/ds14"));
             Telegram.OnPressed += _ => _uriOpener.OpenUri(new Uri("https://t.me/mk_ss14"));
             Site.OnPressed += _ => _uriOpener.OpenUri(new Uri("https://deadspace14.net"));

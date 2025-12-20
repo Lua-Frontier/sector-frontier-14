@@ -1,14 +1,25 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "resprite by semkagamez (discord) for Space Station 14 server Dead Space",
+  "copyright": "resprite by semkagamez (discord) for Space Station 14 server Dead Space, Syndicate by HacksLua",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "pda-vip",
+      "name": "pda_vip",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "pda_shareholder_syndicate",
       "delays": [
         [
           0.3,

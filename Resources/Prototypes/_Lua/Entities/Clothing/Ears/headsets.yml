@@ -57,3 +57,27 @@
     sprite: _Lua/Ears/vipalt.rsi
   - type: Clothing
     sprite: _Lua/Ears/vipalt.rsi
+  - type: Headset
+    color: "#F05C29"
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltVipSyndicate
+  name: vip over-ear headset
+  suffix: Syndicate
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
+      - EncryptionKeyTrade
+      - EncryptionKeyTraffic
+      - EncryptionKeyVip
+      - EncryptionKeyOutpostSyndicate
+  - type: Sprite
+    sprite: _Lua/Ears/vipalt.rsi
+  - type: Clothing
+    sprite: _Lua/Ears/vipalt.rsi
+  - type: Headset
+    color: "#F05C29"

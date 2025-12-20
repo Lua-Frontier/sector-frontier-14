@@ -2843,3 +2843,31 @@ Entries:
   id: 202
   time: '2025-12-15T17:27:41.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/404
+- author: fox76055
+  changes:
+    - type: Add
+      message: Добавлено отображение угловых тайлов на сканере масс.
+  id: 203
+  time: '2025-12-18T09:22:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/403
+- author: fox76055
+  changes:
+    - type: Add
+      message: >-
+        Добавление и обновление угловых тайлов на кораблях, для работы новой
+        системы отображения на сканере масс (Некоторые корабли остались в
+        стороне из-за спорного внешнего вида после обновления на них углов.)
+    - type: Tweak
+      message: SuitStorageNfsdCombat -> SuitStorageCadet, на всех кораблях NFSD.
+  id: 204
+  time: '2025-12-18T09:24:14.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/402
+- author: BrennNight
+  changes:
+    - type: Add
+      message: Добавлен новый параллакс! "Xmas"
+    - type: Fix
+      message: Исправлены швы и звёзды на параллаксах Asteroids и DarkLuaSpace
+  id: 205
+  time: '2025-12-18T09:25:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/406

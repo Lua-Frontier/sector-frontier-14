@@ -21,12 +21,21 @@ public sealed class StoreUpdateState : BoundUserInterfaceState
 
     public readonly bool AllowRefund;
 
-    public StoreUpdateState(HashSet<ListingDataWithCostModifiers> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund)
+    public readonly bool AllowWithdraw;
+
+    public readonly int BankBalance;
+
+    public readonly bool HasBankBalance;
+
+    public StoreUpdateState(HashSet<ListingDataWithCostModifiers> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund, bool allowWithdraw = true, int bankBalance = 0, bool hasBankBalance = false)
     {
         Listings = listings;
         Balance = balance;
         ShowFooter = showFooter;
         AllowRefund = allowRefund;
+        AllowWithdraw = allowWithdraw;
+        BankBalance = bankBalance;
+        HasBankBalance = hasBankBalance;
     }
 }
 

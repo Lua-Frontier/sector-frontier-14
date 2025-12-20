@@ -1,0 +1,173 @@
+- type: loadoutGroup
+  id: VipJumpsuit
+  name: loadout-group-vip-jumpsuit
+  loadouts:
+  - VipClothingUniformJumpsuitLawyerBlack
+  fallbacks:
+  - VipClothingUniformJumpsuitLawyerBlack
+
+- type: loadout
+  id: VipClothingUniformJumpsuitLawyerBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+
+- type: loadoutGroup
+  id: VipShoes
+  name: loadout-group-vip-shoes
+  loadouts:
+  - VipClothingShoesBootsLaceup
+  subgroups:
+  - ContractorShoes
+  fallbacks:
+  - VipClothingShoesBootsLaceup
+
+- type: loadout
+  id: VipClothingShoesBootsLaceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+- type: loadoutGroup
+  id: VipBackpack
+  name: loadout-group-vip-backpack
+  loadouts:
+  - VipClothingBackpackMessengerHoldingEmpty
+  fallbacks:
+  - VipClothingBackpackMessengerHoldingEmpty
+
+- type: loadout
+  id: VipClothingBackpackMessengerHoldingEmpty
+  equipment:
+    back: ClothingBackpackMessengerHoldingEmpty
+
+- type: loadoutGroup
+  id: VipEars
+  name: loadout-group-vip-ears
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - VipClothingHeadsetAltVip
+  fallbacks:
+  - VipClothingHeadsetAltVip
+
+- type: loadout
+  id: VipClothingHeadsetAltVip
+  equipment:
+    ears: ClothingHeadsetAltVip
+
+- type: loadoutGroup
+  id: VipPDA
+  name: loadout-group-vip-pda
+  hidden: true
+  loadouts:
+  - VipPDA
+  fallbacks:
+  - VipPDA
+
+- type: loadout
+  id: VipPDA
+  equipment:
+    id: VipPDA
+
+- type: loadoutGroup
+  id: VipNeck
+  name: loadout-group-vip-neck
+  minLimit: 0
+  loadouts:
+  - VipClothingNeckCloakNanotrasenVip
+  subgroups:
+  - ContractorNeck
+  fallbacks:
+  - VipClothingNeckCloakNanotrasenVip
+
+- type: loadout
+  id: VipClothingNeckCloakNanotrasenVip
+  equipment:
+    neck: ClothingNeckCloakNanotrasenVip
+
+- type: loadoutGroup
+  id: OutpostSyndicateShareholderJumpsuit
+  name: loadout-group-outpost-syndicate-shareholder-jumpsuit
+  loadouts:
+  - OutpostSyndicateShareholderClothingUniformJumpsuitLawyerBlack
+  fallbacks:
+  - OutpostSyndicateShareholderClothingUniformJumpsuitLawyerBlack
+
+- type: loadout
+  id: OutpostSyndicateShareholderClothingUniformJumpsuitLawyerBlack
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+
+- type: loadoutGroup
+  id: OutpostSyndicateShareholderShoes
+  name: loadout-group-outpost-syndicate-shareholder-shoes
+  loadouts:
+  - OutpostSyndicateShareholderClothingShoesBootsLaceup
+  subgroups:
+  - ContractorShoes
+  fallbacks:
+  - OutpostSyndicateShareholderClothingShoesBootsLaceup
+
+- type: loadout
+  id: OutpostSyndicateShareholderClothingShoesBootsLaceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+- type: loadoutGroup
+  id: OutpostSyndicateShareholderBackpack
+  name: loadout-group-outpost-syndicate-shareholder-backpack
+  loadouts:
+  - OutpostSyndicateShareholderClothingBackpackMessengerHoldingFilled
+  fallbacks:
+  - OutpostSyndicateShareholderClothingBackpackMessengerHoldingFilled
+
+- type: loadout
+  id: OutpostSyndicateShareholderClothingBackpackMessengerHoldingFilled
+  equipment:
+    back: ClothingBackpackMessengerHoldingFilled
+
+- type: loadoutGroup
+  id: OutpostSyndicateShareholderEars
+  name: loadout-group-outpost-syndicate-shareholder-ears
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - OutpostSyndicateShareholderClothingHeadsetAltVipSyndicate
+  fallbacks:
+  - OutpostSyndicateShareholderClothingHeadsetAltVipSyndicate
+
+- type: loadout
+  id: OutpostSyndicateShareholderClothingHeadsetAltVipSyndicate
+  equipment:
+    ears: ClothingHeadsetAltVipSyndicate
+
+- type: loadoutGroup
+  id: OutpostSyndicateShareholderPDA
+  name: loadout-group-outpost-syndicate-shareholder-pda
+  hidden: true
+  loadouts:
+  - OutpostSyndicateShareholderPDA
+  fallbacks:
+  - OutpostSyndicateShareholderPDA
+
+- type: loadout
+  id: OutpostSyndicateShareholderPDA
+  equipment:
+    id: SyndieShareholderPDA
+
+- type: loadoutGroup
+  id: OutpostSyndicateShareholderNeck
+  name: loadout-group-outpost-syndicate-shareholder-neck
+  minLimit: 0
+  loadouts:
+  - OutpostSyndicateShareholderClothingNeckCloakNanotrasenVip
+  subgroups:
+  - ContractorNeck
+  fallbacks:
+  - OutpostSyndicateShareholderClothingNeckCloakNanotrasenVip
+
+- type: loadout
+  id: OutpostSyndicateShareholderClothingNeckCloakNanotrasenVip
+  equipment:
+    neck: ClothingNeckCloakNanotrasenVip
+
+

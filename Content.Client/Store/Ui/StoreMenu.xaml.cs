@@ -44,7 +44,7 @@ public sealed partial class StoreMenu : DefaultWindow
         SearchBar.OnTextChanged += _ => SearchTextUpdated?.Invoke(this, SearchBar.Text);
     }
 
-    public void UpdateBalance(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance)
+    public void UpdateBalance(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool allowWithdraw, bool hasBankBalance, int bankBalance)
     {
         Balance = balance;
 
@@ -52,10 +52,17 @@ public sealed partial class StoreMenu : DefaultWindow
             (type.Key, type.Value), type => _prototypeManager.Index(type.Key));
 
         var balanceStr = string.Empty;
-        foreach (var ((_, amount), proto) in currency)
+        if (hasBankBalance && currency.Count == 1)
         {
-            balanceStr += Loc.GetString("store-ui-balance-display", ("amount", BankSystemExtensions.ToIndependentString((int) amount)), // Frontier: amount<BankSystemExtensions.GetIndependentString((int)amount)
-                ("currency", Loc.GetString(proto.DisplayName, ("amount", 1))));
+            var ((_, _), proto) = currency.First();
+            balanceStr = Loc.GetString("store-ui-balance-display", ("amount", BankSystemExtensions.ToSpesoString(bankBalance)), ("currency", Loc.GetString(proto.DisplayName, ("amount", 1))));
+        }
+        else
+        {
+            foreach (var ((_, amount), proto) in currency)
+            {
+                balanceStr += Loc.GetString("store-ui-balance-display", ("amount", BankSystemExtensions.ToIndependentString((int)amount)), ("currency", Loc.GetString(proto.DisplayName, ("amount", 1))));
+            }
         }
 
         BalanceInfo.SetMarkup(balanceStr.TrimEnd());
@@ -70,7 +77,8 @@ public sealed partial class StoreMenu : DefaultWindow
             }
         }
 
-        WithdrawButton.Disabled = disabled;
+        WithdrawButton.Disabled = disabled || !allowWithdraw;
+        WithdrawButton.Visible = allowWithdraw;
     }
 
     public void UpdateListing(List<ListingDataWithCostModifiers> listings)

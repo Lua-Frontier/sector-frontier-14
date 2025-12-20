@@ -7,10 +7,11 @@
   name: job-name-vip
   description: job-description-vip
   playTimeTracker: JobVip
+  whitelisted: true
 #  sponsorOnly: true
   startingGear: VipGear
   canBeAntag: true
-  icon: "JobIconVip" 
+  icon: "JobIconVip"
   supervisors: job-supervisors-hire
   setPreference: true
   accessGroups: # Frontier
@@ -18,12 +19,8 @@
 
 - type: startingGear
   id: VipGear
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerBlack
-    back: ClothingBackpackMessengerHolding
-    shoes: ClothingShoesBootsLaceup
-    id: VipPDA
-    ears: ClothingHeadsetAltVip
-    pocket1: BaseVipUplinkRadioVip
-    pocket2: BoxSurvival
-    neck: ClothingNeckCloakNanotrasenVip
+  equipment: {}
+
+- type: chameleonOutfit
+  id: VipChameleonOutfit
+  job: Vip
