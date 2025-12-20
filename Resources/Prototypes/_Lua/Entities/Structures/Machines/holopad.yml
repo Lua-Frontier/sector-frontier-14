@@ -1,0 +1,160 @@
+- type: entity
+  name: "Новогоднее обращение Луа"
+  description: "Особый голопад, транслирующий автономное новогоднее обращение."
+  parent: BaseStructure
+  suffix: НЕ СПАВНИТЬ БЕЗ РАЗРЕШЕНИЯ! ОСТОРОЖНО, СПОЙЛЕРЫ!
+  # Не проверяйте на сервере с онлайном оно точно работает!!
+  id: HolopadLuaNewYear
+  components:
+  - type: Telephone
+    unlistedNumber: true
+    transmissionRange: Unlimited
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        mask:
+        - Impassable
+  - type: ApcPowerReceiver
+    powerLoad: 300
+  - type: StationAiVision
+    range: 1
+    needsAnchoring: true
+  - type: Sprite
+    sprite: Structures/Machines/holopad.rsi
+    drawdepth: HighFloorObjects
+    snapCardinals: true
+    layers:
+    - state: base
+    - map: [ "lights" ]
+      state: blank
+      shader: unshaded
+  - type: Appearance
+  - type: PointLight
+    radius: 1.3
+    energy: 1.8
+    color: "#afe1fe"
+    enabled: false
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/buzzing.ogg
+  - type: GenericVisualizer
+    visuals:
+      enum.TelephoneVisuals.Key:
+        lights:
+          Idle: { state: blank }
+          Calling: { state: lights_calling }
+          Ringing: { state: lights_ringing }
+          InCall: { state: lights_in_call }
+          EndingCall: { state: lights_hanging_up }
+  - type: Holopad
+    hologramProtoId: HolopadHologram
+    scriptedSenderName: "Хакс Луа"
+    scriptedVoiceId: Annah
+    scriptedAvatarProto: MobHacksLuaNewYear
+    scriptedAvatarOutfit: HacksLuaNewYearGear
+    scriptedStartDelaySeconds: 2.0
+    scriptedEndDelaySeconds: 2.0
+    scriptedBroadcastToSector: true #Вещание по экстренной связи!
+    scriptedAvatarAppearance:
+      name: "Хакс Луа"
+      voice: Annah
+      species: Vulpkanin
+      sex: Female
+      gender: Female
+      age: 26
+      skinColor: '#FFFFFFFF'
+      eyeColor: '#4682B4FF'
+      hairColor: '#FFFFFFFF'
+      facialHairColor: '#878596FF'
+      hairStyleId: HumanHairLongBedhead
+      facialHairStyleId: FacialHairShaved
+      markings:
+      - markingId: VulpEar
+        markingColor: ['#8D8E8FFF', '#FFFFFFFF']
+      - markingId: VulpTailWagTip
+        markingColor: ['#FFFFFFFF', '#A5A5A5FF']
+    scriptedMessages:
+    - message: "..."
+      delaySeconds: 1
+    - message: "Уважаемые исследователи Фронтира, капитаны, экипажи и друзья. Дорогие администраторы и модераторы."
+      delaySeconds: 1
+      musicPath: "/Audio/_Lua/Music/Aloboi_Give_Me_More.ogg"
+      musicVolumeDb: -9
+    - message: "Через несколько минут для нас наступит новый, две тысячи двадцать шестой год."
+      delaySeconds: 10
+    - message: "Ещё один цикл в истории Сектора Фронтир, в истории Мёртвого Космоса и всех тех, кто называет этот уголок космоса своим."
+      delaySeconds: 6
+    - message: "Уходящий период был наполнен для нас огромным количеством событий."
+      delaySeconds: 9
+    - message: "Мы запускали новые шаттлы, перестраивали старые, расширяли карту Сектора через Стармап, осваивали новые системы и возвращали к жизни забытые идеи."
+      delaySeconds: 6
+    - message: "Мы укрепляли станции, пересматривали вооружение и щиты, настраивали экономику, учились зарабатывать на экспедициях и обломках, а не только выживать среди них."
+      delaySeconds: 10
+    - message: "Мы ставили перед собой амбициозные цели и снова и снова достигали их, потому что делали всё вместе"
+      delaySeconds: 11
+    - message: "Именно так крепло наше сообщество - единство исследователей, наёмников, инженеров, медиков, шахтёров и администраторов."
+      delaySeconds: 7
+    - message: "Так укреплялась вера в себя, в наш сервер, в корабль под ногами и в тех, кто прикрывает тебя или помогает на консоли управления вооружением"
+      delaySeconds: 10
+    - message: "Нам ещё многое предстоит наладить, сбалансировать и починить, но мы вправе гордиться тем, что уже сделали"
+      delaySeconds: 10
+    - message: " Это наше общее достижение и прочная основа для развития Фронтира дальше"
+      delaySeconds: 7
+    - message: "Наш Сектор Фронтир - сложное, но свободное пространство. Здесь соседствуют Корпорации, ДСБФ, Нордфолл, Пираты, Независимые Капитаны"
+      delaySeconds: 7
+    - message: "Но при всех противоречиях мы смогли ответить на самые жёсткие вызовы:"
+      delaySeconds: 9
+    - message: "перестроили логистику, усилили оборону станций, научились жить среди хаоса и постоянных изменений, придумали, как сделать даже хаос прибыльным."
+      delaySeconds: 5
+    - message: "И сейчас, на пороге нового года, мы по-настоящему думаем о будущем Фронтира и уверены, что оно у нас есть"
+      delaySeconds: 11
+    - message: "Для нас абсолютной ценностью была и остаётся судьба людей, которые проводят время здесь:"
+      delaySeconds: 8
+    - message: "на станциях, аванпостах, на борту исследовательских, военных и гражданских шаттлов"
+      delaySeconds: 6
+      musicPath: "/Audio/_Lua/Music/Aloboi_Give_Me_More.ogg"
+      musicVolumeDb: -10
+    - message: "Каждая смена, каждый этап развития проекта дает возможность выбрать свой путь - всё это наполняет нашу работу смыслом"
+      delaySeconds: 6
+    - message: "Стремление вносить свой вклад в развитие Сектора Фронтир, его стабильность и свободное развитие стало для меня делом чести, а не только идеей"
+      delaySeconds: 8
+    - message: "Вы - настоящие основатели Фронтира. Вы те, кто каждый день принимает на себя удар: будь то неисправность сервера, вылеты и ошибки в коде."
+      delaySeconds: 11
+    - message: "Я горжусь вашим желанием, вашим терпением в критические моменты и вашей способностью возвращаться к нашему проекту"
+      delaySeconds: 10
+    - message: "Я верю в вас и строю будущее Сектора, опираясь на вашу поддержку"
+      delaySeconds: 8
+    - message: "Дорогие друзья"
+      delaySeconds: 8
+    - message: "Мы встречаем Новый год с особым теплом. Где бы вы ни находились: на станции Фронтир, на дальнем Аванпосте, в поле астероидов или в уютном баре на борту своего корабля"
+      delaySeconds: 4
+    - message: "Я желаю благополучия и процветания каждому, каждой станции, каждому вашему экипажу"
+      delaySeconds: 11
+    - message: "Пусть щиты держат удар, а маршруты приводят не только к риску, но и к награде"
+      delaySeconds: 6
+    - message: "Пусть в новом году будет больше удачных идей, приятных друзей, успешных экспедиций и спокойных смен"
+      delaySeconds: 6
+    - message: "Когда мы действуем вместе - слаженно, по уму и с уважением друг к другу, - исполняется почти невозможное"
+      delaySeconds: 7
+    - message: "С Новым годом, друзья Фронтира!"
+      delaySeconds: 8
+    - message: "С Новым, две тысячи двадцать шестым годом!"
+      delaySeconds: 4
+    - message: "..."
+      delaySeconds: 3
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    speechBubbleOffset: 0.45
