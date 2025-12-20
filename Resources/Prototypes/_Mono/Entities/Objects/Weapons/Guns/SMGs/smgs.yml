@@ -144,12 +144,8 @@
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/smg.ogg # Lua
     availableModes:
-    - Burst
     - SemiAuto
     - FullAuto
-    burstCooldown: 0.5
-    burstFireRate: 14
-    shotsPerBurst: 3
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -199,12 +195,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
     availableModes:
-    - Burst
     - SemiAuto
     - FullAuto
-    burstCooldown: 0.65 #Lua 0.5 -> 0.65
-    burstFireRate: 11 #Lua 14 -> 11
-    shotsPerBurst: 3
   - type: ItemSlots
     slots:
       gun_magazine:
