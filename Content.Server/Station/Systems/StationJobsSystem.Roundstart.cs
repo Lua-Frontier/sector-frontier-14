@@ -10,6 +10,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.GameTicking.Events;
 
 namespace Content.Server.Station.Systems;
 
@@ -280,7 +281,8 @@ public sealed partial class StationJobsSystem
         IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles,
         IReadOnlyList<EntityUid> stations)
     {
-        if (stations.Count == 0)
+        var givenStations = stations.ToList();
+        if (givenStations.Count == 0)
             return; // Don't attempt to assign them if there are no stations.
         foreach (var player in allPlayersToAssign)
         {
@@ -289,7 +291,35 @@ public sealed partial class StationJobsSystem
                 continue;
             }
 
-            assignedJobs.Add(player, (null, EntityUid.Invalid));
+            var profile = profiles[player];
+            if (profile.PreferenceUnavailable != PreferenceUnavailableMode.SpawnAsOverflow)
+            {
+                assignedJobs.Add(player, (null, EntityUid.Invalid));
+                continue;
+            }
+            _random.Shuffle(givenStations);
+            _player.TryGetSessionById(player, out var session);
+            var gotJob = false;
+            foreach (var station in givenStations)
+            {
+                var overflows = GetOverflowJobs(station).ToList();
+                _random.Shuffle(overflows);
+                foreach (var overflowJob in overflows)
+                {
+                    if (session == null)
+                        break;
+
+                    var ev = new IsJobAllowedEvent(session, overflowJob);
+                    RaiseLocalEvent(ref ev);
+                    if (ev.Cancelled) continue;
+                    assignedJobs.Add(player, (overflowJob, station));
+                    gotJob = true;
+                    break;
+                }
+                if (gotJob) break;
+            }
+            if (!gotJob)
+            { assignedJobs.Add(player, (null, EntityUid.Invalid)); }
         }
     }
 
