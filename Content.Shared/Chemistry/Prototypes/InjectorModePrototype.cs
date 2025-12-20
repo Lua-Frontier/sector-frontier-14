@@ -20,11 +20,11 @@ public sealed partial class InjectorModePrototype : IPrototype, IInheritingProto
 
     /// <inheritdoc/>
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<InjectorModePrototype>))]
-    public string[]? Parents { get; private set; }
+    public string[]? Parents { get; }
 
     /// <inheritdoc/>
     [AbstractDataField, NeverPushInheritance]
-    public bool Abstract { get; private set; }
+    public bool Abstract { get; }
 
     /// <summary>
     /// The name of the mode that will be shown on the label UI.
