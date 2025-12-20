@@ -1,10 +1,8 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag;
-using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
-using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -21,7 +19,6 @@ public sealed partial class StationJobsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!; // Frontier
 
     private Dictionary<int, HashSet<string>> _jobsByWeight = default!;
     private List<int> _orderedWeights = default!;
@@ -283,10 +280,8 @@ public sealed partial class StationJobsSystem
         IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles,
         IReadOnlyList<EntityUid> stations)
     {
-        var givenStations = stations.ToList();
-        if (givenStations.Count == 0)
+        if (stations.Count == 0)
             return; // Don't attempt to assign them if there are no stations.
-        // For players without jobs, give them the overflow job if they have that set...
         foreach (var player in allPlayersToAssign)
         {
             if (assignedJobs.ContainsKey(player))
@@ -294,53 +289,7 @@ public sealed partial class StationJobsSystem
                 continue;
             }
 
-            var profile = profiles[player];
-            if (profile.PreferenceUnavailable != PreferenceUnavailableMode.SpawnAsOverflow)
-            {
-                assignedJobs.Add(player, (null, EntityUid.Invalid));
-                continue;
-            }
-
-            _random.Shuffle(givenStations);
-
-            // Frontier: get player session
-            _player.TryGetSessionById(player, out var nfSession);
-            // End Frontier
-
-            foreach (var station in givenStations)
-            {
-                // Pick a random overflow job from that station
-                var overflows = GetOverflowJobs(station).ToList();
-                _random.Shuffle(overflows);
-
-                // Frontier: check job requirements on overflow jobs
-                bool nfJobAssigned = false;
-                foreach (var overflowJob in overflows)
-                {
-                    if (nfSession != null && _playTime.IsAllowed(nfSession, overflowJob))
-                    {
-                        assignedJobs.Add(player, (overflowJob, station));
-                        nfJobAssigned = true;
-                        break;
-                    }
-                }
-                // No need to look at other stations, we have a job.
-                if (nfJobAssigned)
-                {
-                    break;
-                }
-                // End Frontier
-
-                // Frontier: commented out the implementation below
-                // // Stations with no overflow slots should simply get skipped over.
-                // if (overflows.Count == 0)
-                //     continue;
-
-                // // If the overflow exists, put them in as it.
-                // assignedJobs.Add(player, (overflows[0], givenStations[0]));
-                // break;
-                // End Frontier
-            }
+            assignedJobs.Add(player, (null, EntityUid.Invalid));
         }
     }
 
