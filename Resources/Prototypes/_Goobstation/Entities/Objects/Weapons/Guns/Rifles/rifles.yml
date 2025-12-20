@@ -37,7 +37,7 @@
     burstCooldown: 0.8
     shotsPerBurst: 4
     fireRate: 6.5
-    projectileSpeed: 25 #Lua 42.5 -> 25 Tickrate reason
+    projectileSpeed: 25 #Lua 42.5 -> 25
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/thock.ogg
   - type: ChamberMagazineAmmoProvider
@@ -106,10 +106,10 @@
     availableModes:
     - Burst
     selectedMode: Burst
-    shotsPerBurst: 5
+    shotsPerBurst: 4 #Lua 5 -> 4
     burstFireRate: 20 # Mono
-    burstCooldown: 0.4
-    projectileSpeed: 25 #Lua 45 -> 25 Tickrate reason
+    burstCooldown: 0.5 # Lua 0.4 -> 0.5
+    projectileSpeed: 25 #Lua 45 -> 25
     fireRate: 7.5 # Mono, does nothing because its burst only but it makes it clear it can fire at this rate.
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/wspr_fire.ogg # Mono change - Changed audio path

@@ -1,0 +1,25 @@
+# Uplink catalog
+
+- type: entity
+  id: WeaponCaseLongVector45ACPBundle
+  parent: WeaponCaseLong
+  suffix: Vector45ACP
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunVector45_ACP
+      - id: Magazine45_ACPSubMachineGunFMJ
+        amount: 3
+      - id: AmmoBox45_ACPFMJ
+
+- type: entity
+  id: WeaponCaseLongVector9x19mmBundle
+  parent: WeaponCaseLong
+  suffix: Vector9x19mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunVector9x19mm
+      - id: Magazine9x19mmSubMachineGunFMJ
+        amount: 3
+      - id: AmmoBox9x19mmFMJ

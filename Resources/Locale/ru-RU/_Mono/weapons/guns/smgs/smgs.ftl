@@ -4,11 +4,11 @@ ent-WeaponSubMachineGunMla73 = SKR-WS MLA-73 (635x40mm caseless)
 ent-WeaponSubMachineGunAK220 = NCI AK-220 (9x19mm)
     .desc = Серийно производимый пистолет-пулемёт калибра 9x19 мм с затыльником. Конструкция разработана USSP, но различные производители TSF и ASR выпускают его по лицензии или под подозрительно похожими «оригинальными» конструкциями.
 
-ent-WeaponSubMachineGunVector9x19mm = LWC Vector (9x19mm)
-    .desc = Отличный полностью автоматический пистолет-пулемет. Использует патроны калибра 9x19 мм.
+ent-WeaponSubMachineGunVector9x19mm = LWC Vector CRB (9x19mm)
+    .desc = Отличный полностью автоматический пистолет-пулемет, гражданской модификаций CBR с удлинённым стволом. Использует патроны калибра 9x19 мм.
 
-ent-WeaponSubMachineGunVector45_ACP = LWC Vector (.45 ACP)
-    .desc = Отличный полностью автоматический пистолет-пулемет. Использует патроны калибра .45 ACP.
+ent-WeaponSubMachineGunVector45_ACP = LWC Vector SBR (.45 ACP)
+    .desc = Отличный полностью автоматический пистолет-пулемет, военной модификаций SBR. Использует патроны калибра .45 ACP.
 
 ent-WeaponSubMachineGunVectorNtsfHclm = NTSF-HCLM-45 (.45 magnum)
     .desc = Тяжелый калибр NTSF. Очень высококачественный тяжелый пистолет-пулемет калибра .45 Magnum, предназначенный для использования силами безопасности Nano Trasen и спецназом NT.

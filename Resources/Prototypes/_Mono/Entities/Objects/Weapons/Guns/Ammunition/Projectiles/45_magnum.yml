@@ -38,7 +38,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 40 #Lua +5
+        Piercing: 35
 
 - type: entity
   id: Bullet45_magnumPractice
@@ -62,7 +62,7 @@
       types:
         Blunt: 3
   - type: StaminaDamageOnCollide
-    damage: 30 # Lua -5
+    damage: 35
 
 - type: entity
   id: Bullet45_magnumIncendiary
@@ -73,7 +73,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10 #Lua +7
+        Blunt: 5 #Lua +2
         Heat: 30 #Lua -2
 
 - type: entity
@@ -99,7 +99,7 @@
     damage:
       types:
         Radiation: 30 #Lua +20
-        Piercing: 10 #Lua -10
+        Piercing: 5 #Lua -15
 
 # Mono AP syst
 # + 0.05 base AP
@@ -126,7 +126,7 @@
     damage:
       types:
         Slash: 10
-        Piercing: 30 #Lua -20
+        Piercing: 20 #Lua -30
         Blunt: 10 #Lua add
 
 #armor-piercing:
@@ -140,4 +140,4 @@
     damage:
       types:
         Piercing: 30 #Lua +10
-        Structural: 200 #Lua add
+        Structural: 100 #Lua add

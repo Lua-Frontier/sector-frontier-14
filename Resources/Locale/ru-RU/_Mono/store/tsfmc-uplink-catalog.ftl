@@ -39,3 +39,9 @@ uplink-security-mr8b-desc = Дорогой (относительно) легки
 
 uplink-security-SAW8x65mm-boxmag-name = Магазин "SAW" (8x65mm SKR)
 uplink-security-SAW8x65mm-boxmag-desc = Магазин для пулемёта VFD MR-8B LWMMG. Используются патроны 8x65mm SKR.
+
+uplink-security-vector45acp-name = Набор "LWC Vector SBR (.45 ACP)"
+uplink-security-vector45acp-desc = Отличный полностью автоматический пистолет-пулемет, военной модификаций SBR. Использует патроны калибра .45 ACP. Набор содержит в себе 3 дополнительных магазина и 1 коробку патронов.
+
+uplink-submachinegun-mag-45ACP-name = SMG magazine (.45 ACP FMJ)
+uplink-submachinegun-mag-45ACP-desc = магазин для ПП калибра .45 ACP

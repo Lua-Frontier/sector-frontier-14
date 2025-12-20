@@ -24,7 +24,7 @@
     - Belt
   - type: Gun
     fireRate: 2
-    projectileSpeed: 25 #Lua 65 -> 25 Tickrate reason
+    projectileSpeed: 25 #Lua 65 -> 25
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -34,7 +34,7 @@
     capacity: 12
     count: 12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3 #Lua 1.5 -> 3
+    rechargeCooldown: 1.5
     rechargeSound:
       path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
   - type: AmmoCounter

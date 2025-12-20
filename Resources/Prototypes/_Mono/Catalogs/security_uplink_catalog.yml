@@ -51,6 +51,21 @@
           - Sheriff
 
 - type: listing
+  id: UplinkSecurityVector45ACPBundle
+  name: uplink-security-vector45acp-name
+  description: uplink-security-vector45acp-desc
+  productEntity: WeaponCaseLongVector45ACPBundle
+  cost:
+    FrontierUplinkCoin: 12
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
   id: UplinkSecurityEg4
   name:  uplink-security-eg4-name
   description: uplink-security-eg4-desc
@@ -128,6 +143,21 @@
   name:  uplink-subsonic-mag-name
   description: uplink-subsonic-mag-desc
   productEntity: Magazine762x39mmSubsonic
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityMagazineSubMachineGun45ACP
+  name: uplink-submachinegun-mag-45ACP-name
+  description: uplink-submachinegun-mag-45ACP-desc
+  productEntity: Magazine45_ACPSubMachineGunFMJ
   cost:
     FrontierUplinkCoin: 1
   categories:

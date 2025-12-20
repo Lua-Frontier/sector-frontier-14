@@ -775,6 +775,63 @@
       whitelist:
         - MercenaryBase
 
+# Vector9x19mm
+- type: listing
+  id: UplinkMercenaryWeaponVector9x19mm
+  name: Набор "LWC Vector CRB (9x19mm)"
+  description: Отличный полностью автоматический пистолет-пулемет, гражданской модификаций CBR. Использует патроны калибра 9x19mm. Набор содержит в себе 3 дополнительных магазина и 1 коробку патронов.
+  productEntity: WeaponCaseLongVector9x19mmBundle
+  cost:
+    Speso: 110000
+  categories:
+    - UplinkMercenaryGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase
+
+- type: listing
+  id: UplinkMercenaryMagazineSubMachineGun9x19mmFMJ
+  name: SMG magazine (9x19mm FMJ)
+  description: магазин для ПП калибра 9x19mm
+  productEntity: Magazine9x19mmSubMachineGunFMJ
+  cost:
+    Speso: 3000
+  categories:
+    - UplinkMercenaryAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase
+
+# LWC HAWK-4 I.S
+
+- type: listing
+  id: UplinkMercenaryWeaponPistolHawk4
+  name: LWC HAWK-4 I.S
+  description: Модифицированный тяжелый Anaconda, предназначенный для ликвидации особо важных целей. Лазерный и голографический прицел, матовое черное шасси и специально изготовленный встроенный глушитель делают это оружие чрезвычайно смертоносным и незаметным, подходящим только для настоящего командира.
+  productEntity: WeaponPistolHawk4
+  cost:
+    Speso: 65000
+  categories:
+    - UplinkMercenaryGun
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - MercenaryUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase
+
 #X-01
 #- type: listing
 #  id: UplinkMercenaryADTWeaponPistolX01
@@ -1029,3 +1086,6 @@
       whitelist:
         tags:
           - MercenaryUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase

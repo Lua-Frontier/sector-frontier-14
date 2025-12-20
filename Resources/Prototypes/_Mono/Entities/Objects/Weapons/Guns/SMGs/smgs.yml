@@ -25,6 +25,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/mla73.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/mla73.rsi
   - type: Gun
     angleIncrease: 1.1 #Lua 5 -> 1.1
     angleDecay: 7.7 #Lua 20 -> 7.7
@@ -75,6 +77,8 @@
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/ak220.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/ak220.rsi
   - type: Gun
     fireRate: 6
     angleIncrease: 1.1 #Lua 21 -> 1.1
@@ -118,21 +122,27 @@
   description: An excellent fully automatic SMG. Uses 9x19mm ammo.
   components:
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/vector-crb.rsi # Lua
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    shape:
+    - 0,0,4,1
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/vector-crb_inhands_32x.rsi # Lua
   - type: Clothing
-    sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/vector-crb_inhands_32x.rsi # Lua
   - type: Gun
+    minAngle: 3
+    maxAngle: 9
     angleIncrease: 1.1 #Lua add
-    angleDecay: 7.7 #Lua add
-    fireRate: 6 #Lua 7.5 -> 6 DPS 132
+    angleDecay: 8 #Lua add
+    fireRate: 6.5 #Lua 7.5 -> 6.5
     selectedMode: FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/smg.ogg # Lua
     availableModes:
     - Burst
     - SemiAuto
@@ -178,6 +188,8 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
+  - type: Item
     sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
   - type: Gun
     angleIncrease: 1.1 #Lua add
@@ -233,6 +245,8 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/NTSF-HCLM-45rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/NTSF-HCLM-45rsi
   - type: Gun
     angleIncrease: 1.1 #Lua add
     angleDecay: 7.7 #Lua add
@@ -285,6 +299,8 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
+    sprite: _Mono/Objects/Weapons/Guns/SMGs/knallstock.rsi
+  - type: Item
     sprite: _Mono/Objects/Weapons/Guns/SMGs/knallstock.rsi
   - type: Gun
     fireRate: 5.5 #Lua 6 -> 5.5

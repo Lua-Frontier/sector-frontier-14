@@ -1,0 +1,34 @@
+#Guns
+
+- type: listing
+  id: UplinkEnergyAsakim
+  name: uplink-syndicate-Asakim-name
+  description: uplink-syndicate-Asakim-desc
+  productEntity: WeaponRifleAsakimAutopulser
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkSubMachineGunVector45ACP
+  name: uplink-syndicate-vector45acp-name
+  description: uplink-syndicate-vector45acp-desc
+  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
+  productEntity: WeaponCaseLongVector45ACPBundle
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkWeaponry
+
+#Ammo
+
+- type: listing
+  id: UplinkMagazineSubMachineGun45ACP
+  name: uplink-submachinegun-magazine-45ACP-name
+  description: uplink-submachinegun-magazine-45ACP-desc
+  productEntity: Magazine45_ACPSubMachineGunFMJ
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo

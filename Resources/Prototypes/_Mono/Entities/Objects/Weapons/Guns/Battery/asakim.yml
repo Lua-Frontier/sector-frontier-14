@@ -17,6 +17,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
+  - type: Item
+    sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
   - type: GunWieldBonus
     minAngle: -18
     maxAngle: -14
@@ -45,4 +47,4 @@
     price: 1750
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 15
+    autoRechargeRate: 20 # Lua 15 -> 20
