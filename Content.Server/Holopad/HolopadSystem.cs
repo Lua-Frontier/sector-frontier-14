@@ -10,6 +10,7 @@ using Content.Shared.Audio;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Holopad;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Power;
 using Content.Shared.Silicons.StationAi;
@@ -26,7 +27,7 @@ using System.Linq;
 
 namespace Content.Server.Holopad;
 
-public sealed class HolopadSystem : SharedHolopadSystem
+public sealed partial class HolopadSystem : SharedHolopadSystem
 {
     [Dependency] private readonly TelephoneSystem _telephoneSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
@@ -58,6 +59,8 @@ public sealed class HolopadSystem : SharedHolopadSystem
         SubscribeLocalEvent<HolopadComponent, HolopadActivateProjectorMessage>(OnHolopadActivateProjector);
         SubscribeLocalEvent<HolopadComponent, HolopadStartBroadcastMessage>(OnHolopadStartBroadcast);
         SubscribeLocalEvent<HolopadComponent, HolopadStationAiRequestMessage>(OnHolopadStationAiRequest);
+
+        SubscribeLocalEvent<HolopadComponent, InteractHandEvent>(OnInteractHand);
 
         // Holopad telephone events
         SubscribeLocalEvent<HolopadComponent, TelephoneStateChangeEvent>(OnTelephoneStateChange);
@@ -179,6 +182,9 @@ public sealed class HolopadSystem : SharedHolopadSystem
 
         if (!_accessReaderSystem.IsAllowed(args.Actor, source))
             return;
+
+        if (source.Comp.ScriptedMessages.Count != 0)
+        { StartScriptedBroadcast(source, args.Actor); return; }
 
         // AI broadcasting
         if (TryComp<StationAiHeldComponent>(args.Actor, out var stationAiHeld))
@@ -544,6 +550,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
                 }
             }
         }
+        UpdateScriptedBroadcasts();
     }
 
     public void UpdateUIState(Entity<HolopadComponent> entity, TelephoneComponent? telephone = null)
@@ -636,7 +643,7 @@ public sealed class HolopadSystem : SharedHolopadSystem
             entity.Comp.User = (user.Value, holopadUser);
         }
 
-        // Add the new user to PVS and sync their appearance with any 
+        // Add the new user to PVS and sync their appearance with any
         // holopads connected to the one they are using
         _pvs.AddGlobalOverride(user.Value);
         SyncHolopadHologramAppearanceWithTarget(entity, entity.Comp.User);

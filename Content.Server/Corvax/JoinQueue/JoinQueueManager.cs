@@ -91,10 +91,7 @@ public sealed class JoinQueueManager
         }
 
         var isPrivilegedAdmin = await _connectionManager.HavePrivilegedJoin(session.UserId);
-        var isPrivilegedDonor =
-            _sponsorManager.TryGetActiveSponsor(session.UserId, out var sponsor) &&
-            (string.Equals(sponsor.Role, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) ||
-             string.Equals(sponsor.Role, DonorGroups.God, StringComparison.OrdinalIgnoreCase));
+        var isPrivilegedDonor = _sponsorManager.TryGetActiveSponsor(session.UserId, out _);
 
         var isPrivileged = isPrivilegedAdmin || isPrivilegedDonor;
         var players = GetPlayersCount() - 1;
