@@ -6,7 +6,9 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Strip.Components;
+using Content.Shared.Humanoid;
 using Robust.Shared.GameStates;
+using Robust.Shared.Containers;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
@@ -15,6 +17,7 @@ public abstract class ClothingSystem : EntitySystem
     [Dependency] private readonly SharedItemSystem _itemSys = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidSystem = default!;
 
     public override void Initialize()
     {
@@ -78,6 +81,46 @@ public abstract class ClothingSystem : EntitySystem
             }
 
             break;
+        }
+    }
+
+    private void ToggleVisualLayers(EntityUid equipee, HashSet<HumanoidVisualLayers> layers, HashSet<HumanoidVisualLayers> appearanceLayers)
+    {
+        foreach (HumanoidVisualLayers layer in layers)
+        {
+            if (!appearanceLayers.Contains(layer))
+                continue;
+
+            InventorySystem.InventorySlotEnumerator enumerator = _invSystem.GetSlotEnumerator(equipee);
+
+            bool shouldLayerShow = true;
+            while (enumerator.NextItem(out EntityUid item, out SlotDefinition? slot))
+            {
+                if (TryComp(item, out HideLayerClothingComponent? comp))
+                {
+                    if (comp.Slots.Contains(layer))
+                    {
+                        if (TryComp(item, out ClothingComponent? clothing) && clothing.Slots == slot.SlotFlags)
+                        {
+                            //Checks for mask toggling. TODO: Make a generic system for this
+                            if (comp.HideOnToggle && TryComp(item, out MaskComponent? mask))
+                            {
+                                if (clothing.EquippedPrefix != mask.EquippedPrefix)
+                                {
+                                    shouldLayerShow = false;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                shouldLayerShow = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            _humanoidSystem.SetLayerVisibility(equipee, layer, shouldLayerShow);
         }
     }
 

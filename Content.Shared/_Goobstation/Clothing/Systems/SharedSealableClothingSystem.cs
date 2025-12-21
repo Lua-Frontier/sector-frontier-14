@@ -26,7 +26,7 @@ public abstract class SharedSealableClothingSystem : EntitySystem
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainerSystem = default!;
-    [Dependency] private readonly ComponentTogglerSystem _componentTogglerSystem = default!; 
+    [Dependency] private readonly ComponentTogglerSystem _componentTogglerSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
@@ -297,15 +297,31 @@ public abstract class SharedSealableClothingSystem : EntitySystem
         if (ev.Cancelled)
             return false;
 
-        // All parts required to be toggled to perform sealing
-        if (_toggleableSystem.GetAttachedToggleStatus(uid) != ToggleableClothingAttachedStatus.AllToggled)
+        // For sealing: All parts required to be toggled
+        // For unsealing: Only check currently available parts (more lenient for limb loss)
+        if (!comp.IsCurrentlySealed)
         {
-            _popupSystem.PopupClient(Loc.GetString(comp.ToggleFailedPopup), uid, user);
-            _audioSystem.PlayPredicted(comp.FailSound, uid, user);
-            return false;
+            // Sealing requires all parts to be toggled
+            if (_toggleableSystem.GetAttachedToggleStatus(uid) != ToggleableClothingAttachedStatus.AllToggled)
+            {
+                _popupSystem.PopupClient(Loc.GetString(comp.ToggleFailedPopup), uid, user);
+                _audioSystem.PlayPredicted(comp.FailSound, uid, user);
+                return false;
+            }
+        }
+        else
+        {
+            // Unsealing: Allow if we have any parts to unseal (more lenient)
+            var toggleStatus = _toggleableSystem.GetAttachedToggleStatus(uid);
+            if (toggleStatus == ToggleableClothingAttachedStatus.NoneToggled)
+            {
+                _popupSystem.PopupClient(Loc.GetString(comp.ToggleFailedPopup), uid, user);
+                _audioSystem.PlayPredicted(comp.FailSound, uid, user);
+                return false;
+            }
         }
 
-        // Trying to get all clothing to seal
+        // Trying to get all clothing to seal/unseal
         var sealeableList = _toggleableSystem.GetAttachedClothingsList(uid);
         if (sealeableList == null)
             return false;
@@ -365,8 +381,21 @@ public abstract class SharedSealableClothingSystem : EntitySystem
         var processingPart = EntityManager.GetEntity(comp.ProcessQueue.Dequeue());
         Dirty(control);
 
+        // If the entity no longer exists (e.g., due to limb loss), skip it and continue
+        if (!EntityManager.EntityExists(processingPart))
+        {
+            NextSealProcess(control);
+            return;
+        }
+
         if (!TryComp<SealableClothingComponent>(processingPart, out var sealableComponent) || !comp.IsInProcess)
         {
+            // For unsealing, if a part is missing, just skip it instead of failing
+            if (comp.IsCurrentlySealed)
+            {
+                NextSealProcess(control);
+                return;
+            }
             _popupSystem.PopupClient(Loc.GetString(comp.ToggleFailedPopup), uid, comp.WearerEntity);
             _audioSystem.PlayPredicted(comp.FailSound, uid, comp.WearerEntity);
 
