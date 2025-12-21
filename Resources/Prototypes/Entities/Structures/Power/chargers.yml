@@ -34,7 +34,7 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 30 # Frontier: 75<30
+    price: 75
 
 - type: entity
   abstract: true
@@ -268,6 +268,7 @@
     whitelist:
       components:
       - BorgChassis
+      - Inventory #Goobstation - Modsuits
   - type: Construction
     containers:
     - machine_parts

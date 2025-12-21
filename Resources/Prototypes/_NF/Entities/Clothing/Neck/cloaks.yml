@@ -27,7 +27,8 @@
   - type: Sprite
     sprite: _NF/Clothing/Neck/Cloaks/rosy.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodRosyCloak
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodRosyCloak
     requiredSlot:
     - neck
     slot: head

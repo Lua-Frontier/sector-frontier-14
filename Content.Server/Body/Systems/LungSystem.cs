@@ -5,14 +5,16 @@ using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Inventory.Events;
-using BreathToolComponent = Content.Shared.Atmos.Components.BreathToolComponent;
-using InternalsComponent = Content.Shared.Body.Components.InternalsComponent;
+using Content.Shared.Inventory;
+using Content.Server.Power.EntitySystems;
+using Robust.Server.Containers;
 
 namespace Content.Server.Body.Systems;
 
 public sealed class LungSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; // Goobstaiton
     [Dependency] private readonly InternalsSystem _internals = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
@@ -22,6 +24,7 @@ public sealed class LungSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<LungComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<BreathToolComponent, ComponentInit>(OnBreathToolInit); // Goobstation - Modsuits - Update on component toggle
         SubscribeLocalEvent<BreathToolComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<BreathToolComponent, GotUnequippedEvent>(OnGotUnequipped);
     }
@@ -51,6 +54,45 @@ public sealed class LungSystem : EntitySystem
         {
             solution.MaxVolume = 100.0f;
             solution.CanReact = false; // No dexalin lungs
+        }
+    }
+
+    // Goobstation - Update component state on component toggle
+    private void OnBreathToolInit(Entity<BreathToolComponent> ent, ref ComponentInit args)
+    {
+        var comp = ent.Comp;
+
+        comp.IsFunctional = true;
+
+        if (!_inventory.TryGetContainingEntity(ent.Owner, out var parent) || !_inventory.TryGetContainingSlot(ent.Owner, out var slot))
+            return;
+
+        if ((slot.SlotFlags & comp.AllowedSlots) == 0)
+            return;
+
+        if (TryComp(parent, out InternalsComponent? internals))
+        {
+            ent.Comp.ConnectedInternalsEntity = parent;
+            _internals.ConnectBreathTool((parent.Value, internals), ent);
+        }
+    }
+
+
+    private void OnMaskToggled(Entity<BreathToolComponent> ent, ref ItemMaskToggledEvent args)
+    {
+        if (args.IsToggled || args.IsEquip)
+        {
+            _atmos.DisconnectInternals(ent);
+        }
+        else
+        {
+            ent.Comp.IsFunctional = true;
+
+            if (TryComp(args.Wearer, out InternalsComponent? internals))
+            {
+                ent.Comp.ConnectedInternalsEntity = args.Wearer;
+                _internals.ConnectBreathTool((args.Wearer, internals), ent);
+            }
         }
     }
 

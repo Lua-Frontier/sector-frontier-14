@@ -42,6 +42,7 @@
   - BorgModuleAdvancedParamedic # Frontier
   - BorgModuleRCD # Frontier
 
+# Mono/Goob changes start
 - type: latheRecipePack
   id: MechParts
   recipes:
@@ -73,3 +74,15 @@
     - MechEquipmentHorn
     - MechEquipmentGrabberSmall
     - MechEquipmentFork # Frontier
+
+- type: latheRecipePack
+  id: Modsuits
+  recipes:
+  - ModsuitChestplate
+  - ModsuitBoots
+  - ModsuitHelmet
+  - ModsuitGauntlets
+  - ModsuitShell
+  - ModsuitPlatingExternal
+  - ModsuitCoreStandard
+# Mono/Goob changes end

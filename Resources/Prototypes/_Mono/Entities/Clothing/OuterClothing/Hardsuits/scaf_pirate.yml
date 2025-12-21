@@ -31,7 +31,8 @@
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPirateScaf
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitPirateScaf
   - type: StaticPrice
     price: 750
     vendPrice: 2500

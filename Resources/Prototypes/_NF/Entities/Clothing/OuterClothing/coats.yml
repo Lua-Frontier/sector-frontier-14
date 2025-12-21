@@ -40,7 +40,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/witch_hunter_coat.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodChaplainHood
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodChaplainHood
 
 - type: entity
   parent:  ClothingOuterBaseToggleable
@@ -53,7 +54,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/cardinal_robe.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodCardinalHood
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodCardinalHood
 
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]

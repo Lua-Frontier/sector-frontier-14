@@ -16,26 +16,20 @@ public sealed class ComponentTogglerSystem : EntitySystem
 
     private void OnToggled(Entity<ComponentTogglerComponent> ent, ref ItemToggledEvent args)
     {
-        if (args.Activated)
-        {
-            var target = ent.Comp.Parent ? Transform(ent).ParentUid : ent.Owner;
+        ToggleComponent(ent, args.Activated);
+    }
 
-            if (TerminatingOrDeleted(target))
-                return;
+    // Goobstation - Make this system more flexible
+    public void ToggleComponent(EntityUid uid, bool activate)
+    {
+        if (!TryComp<ComponentTogglerComponent>(uid, out var component))
+            return;
 
-            ent.Comp.Target = target;
+        var target = component.Parent ? Transform(uid).ParentUid : uid;
 
-            EntityManager.AddComponents(target, ent.Comp.Components);
-        }
+        if (activate)
+            EntityManager.AddComponents(target, component.Components);
         else
-        {
-            if (ent.Comp.Target == null)
-                return;
-
-            if (TerminatingOrDeleted(ent.Comp.Target.Value))
-                return;
-
-            EntityManager.RemoveComponents(ent.Comp.Target.Value, ent.Comp.RemoveComponents ?? ent.Comp.Components);
-        }
+            EntityManager.RemoveComponents(target, component.RemoveComponents ?? component.Components);
     }
 }

@@ -67,7 +67,7 @@
   - type: ReagentSpeed
     solution: lube
     modifiers:
-      SpaceLube: 0.5 # Frontier: 0.25<0.5 (we double dip on time with lube and machine parts)
+      SpaceLube: 0.25
       SpaceGlue: 5
   - type: SolutionContainerManager
     solutions:
@@ -86,7 +86,7 @@
   components:
   - type: Lathe
     materialUseMultiplier: 0.5
-    timeMultiplier: 3 # Frontier: 1.5<3 (we double dip on time with lube and machine parts)
+    timeMultiplier: 1.5
   - type: LatheHeatProducing
   - type: ReagentSpeed
     modifiers:
@@ -405,7 +405,6 @@
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
-  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/biofabricator.rsi
@@ -445,7 +444,6 @@
   parent: BaseLatheLube
   name: security techfab
   description: Prints equipment for use by security crew.
-  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
@@ -654,7 +652,7 @@
     - NFPouches # Frontier
   - type: EmagLatheRecipes
     emagStaticPacks:
-    # - ClothingCentComm # Frontier
+    - ClothingCentComm
     - ClothingSyndie
   - type: MaterialStorage
     whitelist:

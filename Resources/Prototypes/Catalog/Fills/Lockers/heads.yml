@@ -359,15 +359,6 @@
     # - id: WeaponDisabler # Frontier
     # - id: WantedListCartridge # Frontier
     - id: DrinkHosFlask
-    - id: ClothingUniformJumpskirtHoSAlt # Frontier: consistency with old fill
-    - id: ClothingUniformJumpsuitHoSAlt # Frontier: consistency with old fill
-    - id: ClothingHeadHatBeretHoS # Frontier: consistency with old fill
-    - id: ClothingHeadHatHoshat # Frontier: consistency with old fill
-    - id: ClothingUniformJumpskirtHosFormal # Frontier: consistency with old fill
-    - id: ClothingUniformJumpsuitHosFormal # Frontier: consistency with old fill
-    - id: ClothingNeckMantleHOS # Frontier: consistency with old fill
-    - id: ClothingOuterWinterHoS # Frontier: consistency with old fill
-    - id: ClothingShoesBootsWinterHoS # Frontier: consistency with old fill
     - id: Demag # Frontier
 
 # Hardsuit table, used for suit storage as well
@@ -376,9 +367,10 @@
   table: !type:AllSelector
     children:
     - id: ClothingMaskGasSwat
-    - id: ClothingOuterHardsuitSecurityRed
+    - id: UndeterminedVoidsuitHeadOfSecurity # Goob edit
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled
 
 # No hardsuit locker
 - type: entity
@@ -410,7 +402,6 @@
   id: LockerFreezerVaultFilled
   suffix: Vault, Locked
   parent: LockerFreezerBase
-  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: AccessReader
     access: [ [ "Command" ] ]

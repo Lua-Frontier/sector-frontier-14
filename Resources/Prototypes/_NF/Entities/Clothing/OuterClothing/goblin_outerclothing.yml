@@ -10,7 +10,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/goblin_robes.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodGoblin
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodGoblin
     slot: head
   - type: Construction
     graph: ClothingOuterCoatRobesGoblin
@@ -31,7 +32,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/goblin_eva_robes.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadEVAHelmetGoblin
+    clothingPrototypes:
+      head:  ClothingHeadEVAHelmetGoblin
     slot: head
   - type: ContainerContainer
     containers:

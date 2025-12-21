@@ -62,7 +62,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSB
+    clothingPrototypes:
+      head:  ClothingHeadHelmetHardsuitFSB
     slot: head
 
 - type: entity

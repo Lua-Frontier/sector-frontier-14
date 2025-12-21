@@ -15,7 +15,8 @@
       coefficients:
         Caustic: 0.4
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodAcidRaincoat
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodAcidRaincoat
 
 - type: entity
   parent: ClothingOuterCoatAcidRaincoat
@@ -27,7 +28,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/acid_raincoat_blue.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodAcidRaincoatBlue
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodAcidRaincoatBlue
 
 - type: entity
   parent: ClothingOuterCoatAcidRaincoat
@@ -39,7 +41,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/acid_raincoat_green.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodAcidRaincoatGreen
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodAcidRaincoatGreen
 
 - type: entity
   parent: ClothingOuterCoatAcidRaincoat
@@ -51,7 +54,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/acid_raincoat_magenta.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodAcidRaincoatMagenta
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodAcidRaincoatMagenta
 
 - type: entity
   parent: ClothingOuterCoatAcidRaincoat
@@ -63,7 +67,8 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/acid_raincoat_yellow.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodAcidRaincoatGreen
+    clothingPrototypes:
+      head:  ClothingHeadHatHoodAcidRaincoatGreen
 
 #region Jackets
 - type: entity
