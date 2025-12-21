@@ -1,14 +1,14 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Strip.Components;
-using Content.Shared.Humanoid;
-using Robust.Shared.GameStates;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
@@ -96,28 +96,38 @@ public abstract class ClothingSystem : EntitySystem
             bool shouldLayerShow = true;
             while (enumerator.NextItem(out EntityUid item, out SlotDefinition? slot))
             {
-                if (TryComp(item, out HideLayerClothingComponent? comp))
+                if (slot == null)
+                    continue;
+
+                if (!TryComp(item, out HideLayerClothingComponent? comp))
+                    continue;
+
+                var hidesThisLayer = (comp.Slots != null && comp.Slots.Contains(layer)) || comp.Layers.ContainsKey(layer);
+                if (!hidesThisLayer)
+                    continue;
+
+                if (!TryComp(item, out ClothingComponent? clothing))
+                    continue;
+
+                // Determine expected slot flags depending on whether the component uses the old Slots set or the new Layers map.
+                var expectedSlotFlags = comp.Slots != null ? slot.SlotFlags : comp.Layers.GetValueOrDefault(layer, slot.SlotFlags);
+
+                if (clothing.Slots != expectedSlotFlags)
+                    continue;
+
+                //Checks for mask toggling. TODO: Make a generic system for this
+                if (comp.HideOnToggle && TryComp(item, out MaskComponent? mask))
                 {
-                    if (comp.Slots.Contains(layer))
+                    if (clothing.EquippedPrefix != mask.EquippedPrefix)
                     {
-                        if (TryComp(item, out ClothingComponent? clothing) && clothing.Slots == slot.SlotFlags)
-                        {
-                            //Checks for mask toggling. TODO: Make a generic system for this
-                            if (comp.HideOnToggle && TryComp(item, out MaskComponent? mask))
-                            {
-                                if (clothing.EquippedPrefix != mask.EquippedPrefix)
-                                {
-                                    shouldLayerShow = false;
-                                    break;
-                                }
-                            }
-                            else
-                            {
-                                shouldLayerShow = false;
-                                break;
-                            }
-                        }
+                        shouldLayerShow = false;
+                        break;
                     }
+                }
+                else
+                {
+                    shouldLayerShow = false;
+                    break;
                 }
             }
             _humanoidSystem.SetLayerVisibility(equipee, layer, shouldLayerShow);
@@ -185,7 +195,10 @@ public abstract class ClothingSystem : EntitySystem
     private void CheckEquipmentForLayerHide(EntityUid equipment, EntityUid equipee)
     {
         if (TryComp(equipment, out HideLayerClothingComponent? clothesComp) && TryComp(equipee, out HumanoidAppearanceComponent? appearanceComp))
-            ToggleVisualLayers(equipee, clothesComp.Slots, appearanceComp.HideLayersOnEquip);
+        {
+            var layers = clothesComp.Slots 
+                ?? new HashSet<HumanoidVisualLayers>(clothesComp.Layers.Keys);
+        }
     }
 
     // Goobstation - Uses when hide layer component is removed to return layers back
@@ -201,7 +214,8 @@ public abstract class ClothingSystem : EntitySystem
         if (!_invSystem.TryGetContainingEntity(uid, out var equipee))
             return;
 
-        CheckEquipmentForLayerHide(equipee.Value, component.Slots);
+        var layers = component.Slots 
+            ?? new HashSet<HumanoidVisualLayers>(component.Layers.Keys);
     }
 
     #region Public API

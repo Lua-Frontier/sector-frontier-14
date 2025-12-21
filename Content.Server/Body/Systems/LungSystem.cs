@@ -1,5 +1,7 @@
+using Content.Shared.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
@@ -62,7 +64,7 @@ public sealed class LungSystem : EntitySystem
     {
         var comp = ent.Comp;
 
-        comp.IsFunctional = true;
+        // BreathToolComponent.IsFunctional is read-only and derived from ConnectedInternalsEntity.
 
         if (!_inventory.TryGetContainingEntity(ent.Owner, out var parent) || !_inventory.TryGetContainingSlot(ent.Owner, out var slot))
             return;
@@ -80,18 +82,19 @@ public sealed class LungSystem : EntitySystem
 
     private void OnMaskToggled(Entity<BreathToolComponent> ent, ref ItemMaskToggledEvent args)
     {
-        if (args.IsToggled || args.IsEquip)
+        // Use the mask component state from the event to determine toggle
+        if (args.Mask.Comp.IsToggled)
         {
             _atmos.DisconnectInternals(ent);
         }
         else
         {
-            ent.Comp.IsFunctional = true;
+            // BreathToolComponent.IsFunctional is read-only and reflects ConnectedInternalsEntity.
 
-            if (TryComp(args.Wearer, out InternalsComponent? internals))
+            if (args.Wearer != null && TryComp(args.Wearer.Value, out InternalsComponent? internals))
             {
-                ent.Comp.ConnectedInternalsEntity = args.Wearer;
-                _internals.ConnectBreathTool((args.Wearer, internals), ent);
+                ent.Comp.ConnectedInternalsEntity = args.Wearer.Value;
+                _internals.ConnectBreathTool((args.Wearer.Value, internals), ent);
             }
         }
     }
