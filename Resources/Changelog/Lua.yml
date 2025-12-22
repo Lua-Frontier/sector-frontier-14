@@ -2871,3 +2871,57 @@ Entries:
   id: 205
   time: '2025-12-18T09:25:57.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/406
+- author: HacksLua
+  changes:
+    - type: Fix
+      message: Исправлен случайны выбор ролей при готовности в лобби
+    - type: Add
+      message: >-
+        Добавлено новогоднее поздравление, при желании на локалке можете себе
+        конечно заспойлерить. 
+  id: 206
+  time: '2025-12-20T17:04:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/410
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Изменено название LWC Vector (9x19mm) -> LWC Vector CRB (9x19mm). А
+        также изменён спрайт и описание. 
+    - type: Tweak
+      message: >-
+        Изменено название LWC Vector (.45 ACP) -> LWC Vector SBR (.45 ACP) и
+        изменено описание.
+    - type: Tweak
+      message: >-
+        Изменён SKR CR-class Z-pinch термоядерный реактор: теперь он потребляет
+        блюспейс топливо.
+    - type: Fix
+      message: >-
+        Исправлен SKR CR-class Z-pinch термоядерный реактор: исправлено
+        бесконечное хранилище, КПД и выработка энергий.
+    - type: Fix
+      message: Исправлено отображение в руках AK-74M и Лектер.
+    - type: Fix
+      message: Исправлено отображение в руках всех нововведённых ПП.
+    - type: Tweak
+      message: >-
+        Пластитановые стены теперь имеют новый спрайт. Перила теперь имеют новый
+        спрайт.
+    - type: Add
+      message: >-
+        Отображение целостности у структур на подобий консолей, стен,
+        раздатчиков и т.д.
+    - type: Fix
+      message: Теперь двигатели не игнорируют проджектайлы.
+    - type: Add
+      message: LWC Vector SBR (.45 ACP) теперь есть в аплинках ДСБФ и Нордфолла.
+    - type: Add
+      message: LWC Vector CRB (9x19mm) теперь есть в аплинке наёмников.
+    - type: Add
+      message: kunisa-pattern plasma autopulser теперь есть в аплинке Нордфолла.
+    - type: Add
+      message: LWC HAWK-4 I.S теперь есть в аплинке наёмников.
+  id: 207
+  time: '2025-12-22T07:47:40.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/407

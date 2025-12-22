@@ -1,0 +1,20 @@
+- type: entity
+  id: MobHacksLuaNewYear
+  parent: BaseMobVulpkanin
+  name: "Хакс Луа"
+  description: "Вульпканин, офицер специальных операций LuaTech. Используется как источник внешности для новогодней голограммы."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+
+
+- type: startingGear
+  id: HacksLuaNewYearGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlack
+    shoes: ClothingShoesCentcomBlack
+    head: ClothingHeadCapCentcomBlack
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckCloakCentcomBlack
+    ears: ClothingHeadsetDeathSquad
+

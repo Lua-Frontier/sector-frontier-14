@@ -13,3 +13,25 @@
         - id: BoxSurvival
         - id: NFWeaponPistolViper
         - id: Telecrystal10
+
+- type: entity
+  parent: ClothingBackpackMessengerHolding
+  id: ClothingBackpackMessengerHoldingFilled
+  name: messenger bag of holding
+  description:
+  components:
+    - type: StorageFill
+      contents:
+        - id: NFWeaponPistolViper
+        - id: Telecrystal10
+        - id: BaseVipUplinkRadioVip
+
+- type: entity
+  parent: ClothingBackpackMessengerHolding
+  id: ClothingBackpackMessengerHoldingEmpty
+  name: messenger bag of holding
+  description:
+  components:
+    - type: StorageFill
+      contents:
+        - id: BaseVipUplinkRadioVip
