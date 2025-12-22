@@ -39,8 +39,6 @@
   - type: CombatMode
   - type: Physics
     ignorePaused: true
-    bodyType: Kinematic
-  - type: Body
   - type: Access
     groups:
     - AllAccess
@@ -240,8 +238,8 @@
 
 - type: entity
   id: ActionAGhostShowStationAtmos
-  name: Мониторинг Атмосферной Сети
-  description: Используется для мониторинга атмосферных сетей станции
+  name: ���������� ����������� ����
+  description: ������������ ��� ����������� ����������� ����� �������
   components:
   - type: Action
     icon: { sprite: _Lua/Interface/AdminActions.rsi, state: atmos }
@@ -253,8 +251,8 @@
 
 - type: entity
   id: ActionAGhostShowStationAtmosAlerts
-  name: Консоль Оповещений
-  description: Используется для доступа к автоматизированной системе оповещения станции
+  name: ������� ����������
+  description: ������������ ��� ������� � ������������������ ������� ���������� �������
   components:
   - type: Action
     icon: { sprite: _Lua/Interface/AdminActions.rsi, state: atmosalert }
@@ -266,8 +264,8 @@
 
 - type: entity
   id: ActionAGhostShowStationPowerMonitor
-  name: Консоль Контроля Питания
-  description: Он отслеживает показатели энергии по всей станции
+  name: ������� �������� �������
+  description: �� ����������� ���������� ������� �� ���� �������
   components:
   - type: Action
     icon: { sprite: _Lua/Interface/AdminActions.rsi, state: energy }
