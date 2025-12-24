@@ -34,14 +34,14 @@
         priority: 2
         whitelist:
           tags:
-            - NFMagazineSubMachineGunPistol35
+            - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol35
+        startingItem: Cartridge9x19mmFMJ #Lua 35 -> 9x19
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol35
+            - Cartridge9x19mmFMJ #Lua 35 -> 9x19
         whitelistFailPopup: gun-magazine-whitelist-fail
   - type: MagazineVisuals
     magState: mag

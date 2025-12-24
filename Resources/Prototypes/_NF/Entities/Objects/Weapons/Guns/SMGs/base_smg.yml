@@ -5,11 +5,13 @@
   id: NFBaseWeaponFrameSubMachineGun
   name: submachine gun
   components:
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -0.7
-    maxAngle: -3
+  # Lua ignored start
+  #- type: Wieldable
+  #  unwieldOnUse: false
+  #- type: GunWieldBonus
+  #  minAngle: -0.7
+  #  maxAngle: -3
+  # Lua ignored end
   - type: Gun
     projectileSpeed: 22.5
     minAngle: 3.1
@@ -108,38 +110,38 @@
 - type: entity
   abstract: true
   parent: NFBaseWeaponSubMachineGunChamber
-  id: NFBaseWeaponSubMachineGunChamber35
+  id: NFBaseWeaponSubMachineGunChamber9x19 #Lua 35 -> 9x19 base
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGun35
+        startingItem: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19 base
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist: &mag35Whitelist
           tags:
-            - NFMagazineSubMachineGunPistol35
+            - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19 base
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Standard
         name: Chamber
-        startingItem: NFCartridgePistol35
+        startingItem: Cartridge9x19mmFMJ #Lua 35 -> 9x19 base
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol35
+            - Cartridge9x19mmFMJ #Lua 35 -> 9x19 base
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponSubMachineGunChamber35
-  id: NFBaseWeaponSubMachineGunChamber35Rubber
+  parent: NFBaseWeaponSubMachineGunChamber9x19 #Lua 35 -> 9x19 base
+  id: NFBaseWeaponSubMachineGunChamber9x19Rubber #Lua 35 -> 9x19 base
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGun35Rubber
+        startingItem: Magazine9x19mmSubMachineGunRubber #Lua 35 -> 9x19 base
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -147,40 +149,40 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Rubber
         name: Chamber
-        startingItem: NFCartridgePistol35Rubber
+        startingItem: Cartridge9x19mmRubber #Lua 35 -> 9x19 base
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol35
+            - Magazine9x19mmSubMachineGunRubber #Lua 35 -> 9x19 base
 
 - type: entity
   abstract: true
   parent: NFBaseWeaponSubMachineGunChamber
-  id: NFBaseWeaponSubMachineGunChamber35TopMounted
+  id: NFBaseWeaponSubMachineGunChamber9x19TopMounted #Lua 35 -> 9x19 base
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGunTopMounted35
+        startingItem: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist: &mag35TopMountedWhitelist
           tags:
-            - NFMagazineSubMachineGunTopMountedPistol35
+            - NFMagazineSubMachineGunTopMountedPistol9x19 #Lua 35 -> 9x19 base
       gun_chamber: *chamber35Standard
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponSubMachineGunChamber35TopMounted
-  id: NFBaseWeaponSubMachineGunChamber35TopMountedRubber
+  parent: NFBaseWeaponSubMachineGunChamber9x19TopMounted #Lua 35 -> 9x19 base
+  id: NFBaseWeaponSubMachineGunChamber9x19TopMountedRubber #Lua 35 -> 9x19 base
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGunTopMounted35Rubber
+        startingItem: NFMagazineSubMachineGunTopMounted9x19Rubber #Lua 35 -> 9x19 base
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2

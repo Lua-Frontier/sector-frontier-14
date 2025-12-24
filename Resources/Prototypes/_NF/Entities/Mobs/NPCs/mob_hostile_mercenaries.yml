@@ -145,7 +145,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol35Overpressure
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     capacity: 4
     count: 4
   - type: Gun
@@ -288,7 +288,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol35Overpressure
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     capacity: 6
     count: 6
   - type: Gun
@@ -557,7 +557,7 @@
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol45Incendiary
+    proto: Cartridge45_magnumFMJ #Lua 45 -> magnum
     capacity: 6
     count: 6
   - type: Gun

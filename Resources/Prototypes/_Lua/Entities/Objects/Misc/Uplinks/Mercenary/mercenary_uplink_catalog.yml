@@ -329,8 +329,8 @@
   id: UplinkMercenaryAmmoMagazinePistol
   name:  uplink-merc-magazineoistol-name
   description: uplink-merc-magazineoistol-desc
-  productEntity: NFMagazinePistol35
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+  productEntity: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon } Lua ignored
   cost:
     Speso: 150
   categories:
@@ -500,9 +500,9 @@
 
 - type: listing
   id: UplinkMercenaryMagazinePistolSubMachineGun
-  name:  магазин ПП (.35 авто)
-  description: магазин ПП (.35 авто)
-  productEntity: NFMagazineSubMachineGun35
+  name:  магазин ПП (9x19mm)
+  description: магазин ПП (9x19mm)
+  productEntity: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
   cost:
     Speso: 1200
   categories:
@@ -705,7 +705,7 @@
 - type: listing
   id: UplinkMercenaryWeaponSubMachineGunWt550
   name: WT550
-  description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 авто. Запрещено к использованию гражданскими.
+  description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра 9x19mm. Запрещено к использованию гражданскими.
   productEntity: NFWeaponSubMachineGunWt550
   cost:
     Speso: 150000 #Lua 7k<150k
@@ -722,9 +722,9 @@
 
 - type: listing
   id: UplinkMercenaryMagazinePistolSubMachineGunTopMounted
-  name: магазин WT550 (.35 авто, надствольный)
-  description: магазин WT550 (.35 авто, надствольный)
-  productEntity: NFMagazineSubMachineGunTopMounted35
+  name: магазин WT550 (9x19mm, надствольный)
+  description: магазин WT550 (9x19mm, надствольный)
+  productEntity: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19
   cost:
     Speso: 5000 #Lua 0.6k<5k
   categories:

@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponPistolMk58
-  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber35, NFBaseWeaponFramePistolNanotrasen ]
+  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber9x19, NFBaseWeaponFramePistolNanotrasen ] #Lua 35 -> 9x19
   name: mk58
   description: A cheap semiauto sidearm.
   components:
@@ -15,7 +15,7 @@
 
 - type: entity
   id: NFWeaponPistolN1984
-  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber45, NFBaseWeaponFramePistolNanotrasen ]
+  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber45ACP, NFBaseWeaponFramePistolNanotrasen ] #Lua 45 -> 45ACP
   name: N1984
   description: |-
     The sidearm of any self respecting officer. On the handle is a label that says 'for authorized use only.'
@@ -27,7 +27,7 @@
 
 - type: entity
   id: NFWeaponPistolCobra
-  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber45, NFBaseWeaponFramePistolCybersun ]
+  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber45ACP, NFBaseWeaponFramePistolCybersun ] #Lua 45 -> 45ACP
   name: cobra
   description: |-
     A rugged, robust operator handgun with inbuilt silencer. An illegal firearm often used by Syndicate agents.
@@ -45,7 +45,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponPistolUniversal
-  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber35, NFBaseWeaponFramePistolNanotrasen ]
+  parent: [ BaseC1Contraband, NFBaseWeaponPistolChamber9x19, NFBaseWeaponFramePistolNanotrasen ] #Lua 35 -> 9x19
   name: mk32 "Universal"
   description: The Mark 32 Offensive Handgun.
   components:
@@ -59,7 +59,7 @@
 
 - type: entity
   id: NFWeaponPistolUniversalNfsd
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponPistolChamber35HighCapacityOverpressure, NFWeaponPistolUniversal ]
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponPistolChamber9x19HighCapacity, NFWeaponPistolUniversal ] #Lua 35 -> 9x19
   name: mk32-M "Universal" service pistol
   description: |-
     The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'
@@ -71,6 +71,6 @@
 #region DeltaV: rubber
 - type: entity
   id: NFWeaponPistolUniversalNfsdLessLethal
-  parent: [ NFBaseWeaponPistolChamber35HighCapacityRubber, NFWeaponPistolUniversalNfsd ]
+  parent: [ NFBaseWeaponPistolChamber9x19HighCapacityRubber, NFWeaponPistolUniversalNfsd ] #Lua 35 -> 9x19
   suffix: Frontier, Less-lethal
   components: *universalComponents

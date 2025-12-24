@@ -78,7 +78,7 @@
 - type: entity
   abstract: true
   parent: NFBaseWeaponPistolChamber
-  id: NFBaseWeaponPistolChamber35
+  id: NFBaseWeaponPistolChamber9x19 #Lua 35 -> 9x19
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-35
@@ -86,33 +86,33 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazinePistol35
+        startingItem: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist: &whitelist35
           tags:
-            - NFMagazinePistol35
-            - NFMagazineHighCapacityPistol35
+            - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+            - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Standard
         name: Chamber
-        startingItem: NFCartridgePistol35
+        startingItem: Cartridge9x19mmFMJ #Lua 35 -> 9x19
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol35
+            - Cartridge9x19mmFMJ #Lua 35 -> 9x19
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponPistolChamber35
-  id: NFBaseWeaponPistolChamber35HighCapacity
+  parent: NFBaseWeaponPistolChamber9x19 #Lua 35 -> 9x19
+  id: NFBaseWeaponPistolChamber9x19HighCapacity #Lua 35 -> 9x19
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35
+        startingItem: Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -120,39 +120,41 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: *chamber35Standard
 
-- type: entity
-  abstract: true
-  parent: NFBaseWeaponPistolChamber35
-  id: NFBaseWeaponPistolChamber35HighCapacityOverpressure
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35Overpressure
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist: *whitelist35
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: NFCartridgePistol35Overpressure
-        priority: 1
-        whitelist:
-          tags:
-            - NFCartridgePistol35
+#Lua ignored start
+#- type: entity
+#  abstract: true
+#  parent: NFBaseWeaponPistolChamber35
+#  id: NFBaseWeaponPistolChamber35HighCapacityOverpressure
+#  components:
+#  - type: ItemSlots
+#    slots:
+#      gun_magazine:
+#        name: Magazine
+#        startingItem: NFMagazineHighCapacityPistol35Overpressure
+#        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+#        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+#        priority: 2
+#        whitelist: *whitelist35
+#        whitelistFailPopup: gun-magazine-whitelist-fail
+#      gun_chamber:
+#        name: Chamber
+#        startingItem: NFCartridgePistol35Overpressure
+#        priority: 1
+#        whitelist:
+#          tags:
+#            - NFCartridgePistol35
+#Lua ignored end
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponPistolChamber35
-  id: NFBaseWeaponPistolChamber35HighCapacityRubber
+  parent: NFBaseWeaponPistolChamber9x19 #Lua 35 -> 9x19
+  id: NFBaseWeaponPistolChamber9x19HighCapacityRubber #Lua 35 -> 9x19
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineHighCapacityPistol35Rubber
+        startingItem: Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -160,16 +162,16 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol35Rubber
+        startingItem: Cartridge9x19mmFMJ #Lua 35 -> 9x19
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol35
+            - Cartridge9x19mmFMJ #Lua 35 -> 9x19
 
 - type: entity
   abstract: true
   parent: NFBaseWeaponPistolChamber
-  id: NFBaseWeaponPistolChamber45
+  id: NFBaseWeaponPistolChamber45ACP #Lua 45 -> 45ACP
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-45
@@ -179,18 +181,19 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazinePistol45
+        startingItem: Magazine45_ACPPistolFMJ #Lua 45 -> 45ACP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - NFMagazinePistol45
+            - Magazine45_ACPPistolFMJ #Lua 45 -> 45ACP
+            - Magazine45_ACPPistolHighCapacityFMJ #Lua 45 -> 45ACP
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol45
+        startingItem: Cartridge45_ACPFMJ #Lua 45 -> 45ACP
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol45
+            - Cartridge45_ACPFMJ #Lua 45 -> 45ACP

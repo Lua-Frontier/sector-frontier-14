@@ -127,7 +127,7 @@
   description: Designed to quickly refill an empty revolver, it fits up to six rounds. Intended to hold rare armor-piercing ammunition.
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45
+    proto: Cartridge45_magnumFMJ #Lua 45 -> magnum
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
     layers:

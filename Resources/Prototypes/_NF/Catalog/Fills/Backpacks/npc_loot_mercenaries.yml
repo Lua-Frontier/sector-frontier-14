@@ -125,16 +125,16 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: NFMagazinePistol35Overpressure
+    - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
       prob: 0.9
-    - id: NFMagazinePistol35Empty
+    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
       prob: 0.9
-    - id: NFMagazinePistol35Empty
+    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
       prob: 0.8
-    - id: NFMagazinePistol35Empty
+    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
       amount: 2
       prob: 0.4
-    - id: NFAmmunitionBoxPistol35Overpressure
+    - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
       prob: 0.3
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -314,9 +314,9 @@
       prob: 0.6
     - id: NFSpeedLoaderPistol35Empty
       prob: 0.1
-    - id: NFAmmunitionBoxPistol35Overpressure
+    - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
       prob: 0.9
-    - id: NFAmmunitionBoxPistol35Overpressure
+    - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg

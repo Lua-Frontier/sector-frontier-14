@@ -102,38 +102,38 @@
   id: DEBUGVendingMachineInventoryMagazines
   startingInventory:
   # .35 Pistol
-    NFMagazinePistol35Empty: 4294967295
-    NFMagazinePistol35: 4294967295
-    NFMagazinePistol35Overpressure: 4294967295
-    NFMagazinePistol35Incendiary: 4294967295
-    NFMagazinePistol35Uranium: 4294967295
-    NFMagazinePistol35Practice: 4294967295
-    NFMagazinePistol35Emp: 4294967295
-    NFMagazinePistol35Rubber: 4294967295
-    NFMagazineHighCapacityPistol35Empty: 4294967295
-    NFMagazineHighCapacityPistol35: 4294967295
-    NFMagazineHighCapacityPistol35Overpressure: 4294967295
-    NFMagazineHighCapacityPistol35Incendiary: 4294967295
-    NFMagazineHighCapacityPistol35Uranium: 4294967295
-    NFMagazineHighCapacityPistol35Practice: 4294967295
-    NFMagazineHighCapacityPistol35Emp: 4294967295
-    NFMagazineHighCapacityPistol35Rubber: 4294967295
-    NFMagazineSubMachineGun35Empty: 4294967295
-    NFMagazineSubMachineGun35: 4294967295
-    NFMagazineSubMachineGun35Overpressure: 4294967295
-    NFMagazineSubMachineGun35Incendiary: 4294967295
-    NFMagazineSubMachineGun35Uranium: 4294967295
-    NFMagazineSubMachineGun35Practice: 4294967295
-    NFMagazineSubMachineGun35Rubber: 4294967295
-    NFMagazineSubMachineGun35Emp: 4294967295
-    NFMagazineSubMachineGunTopMounted35Empty: 4294967295
-    NFMagazineSubMachineGunTopMounted35: 4294967295
-    NFMagazineSubMachineGunTopMounted35Overpressure: 4294967295
-    NFMagazineSubMachineGunTopMounted35Incendiary: 4294967295
-    NFMagazineSubMachineGunTopMounted35Uranium: 4294967295
-    NFMagazineSubMachineGunTopMounted35Practice: 4294967295
-    NFMagazineSubMachineGunTopMounted35Emp: 4294967295
-    NFMagazineSubMachineGunTopMounted35Rubber: 4294967295
+    Magazine9x19mmPistolEmpty: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolFMJ: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolRIP: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolIncendiary: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolUranium: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolPractice: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolHP: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolRubber: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolHighCapacityEmpty: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolHighCapacityFMJ: 4294967295 #Lua 35 -> 9x19 base
+    #NFMagazineHighCapacityPistol35Overpressure: 4294967295 Lua ignored
+    #NFMagazineHighCapacityPistol35Incendiary: 4294967295 Lua ignored
+    #NFMagazineHighCapacityPistol35Uranium: 4294967295 Lua ignored
+    #Magazine9x19mmPistolHighCapacityPractice: 4294967295 #Lua 35 -> 9x19 base
+    #NFMagazineHighCapacityPistol35Emp: 4294967295 Lua ignored
+    Magazine9x19mmPistolHighCapacityRubber: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunEmpty: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunFMJ: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunRIP: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunIncendiary: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunUranium: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunPractice: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunRubber: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunEmp: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Empty: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Overpressure: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Incendiary: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Uranium: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Practice: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Emp: 4294967295 #Lua 35 -> 9x19 base
+    NFMagazineSubMachineGunTopMounted9x19Rubber: 4294967295 #Lua 35 -> 9x19 base
   # .35 Pistol Speed loaders
     NFSpeedLoaderPistol35Empty: 4294967295
     NFSpeedLoaderPistol35: 4294967295
@@ -220,13 +220,13 @@
   id: DEBUGVendingMachineInventoryAmmoBoxes
   startingInventory:
   # .35 Pistol
-    NFAmmunitionBoxPistol35: 4294967295
-    NFAmmunitionBoxPistol35Overpressure: 4294967295
-    NFAmmunitionBoxPistol35Practice: 4294967295
-    NFAmmunitionBoxPistol35Incendiary: 4294967295
-    NFAmmunitionBoxPistol35Uranium: 4294967295
-    NFAmmunitionBoxPistol35Rubber: 4294967295
-    NFAmmunitionBoxPistol35Emp: 4294967295
+    AmmoBox9x19mmFMJ: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmRIP: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmPractice: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmIncendiary: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmUranium: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmRubber: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmEmp: 4294967295 #Lua 35 -> 9x19 base
   # .45 Pistol
     NFAmmunitionBoxPistol45: 4294967295
     NFAmmunitionBoxPistol45Overpressure: 4294967295

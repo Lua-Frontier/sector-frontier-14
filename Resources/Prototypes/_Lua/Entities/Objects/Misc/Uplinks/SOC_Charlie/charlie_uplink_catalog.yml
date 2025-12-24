@@ -23,10 +23,9 @@
 
 - type: listing
   id: CharlieUplinkWeaponSubMachineGunVector
-  name: Вектор
-  description: Старший брат "WT-550" все так-же использует пистолетные патроны 35 калибра
-  icon: { sprite: Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
-  productEntity: WeaponSubMachineGunVector
+  name: LWC Vector SBR (.45 ACP)
+  description: Отличный полностью автоматический пистолет-пулемет, военной модификаций SBR. Использует патроны калибра .45 ACP.
+  productEntity: WeaponSubMachineGunVector45_ACP
   cost:
     FrontierUplinkCoin: 6
   categories:
@@ -291,55 +290,50 @@
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoMagazineSubMachineGun35Overpressure
-  name: smg magazine (.35 pistol, overpressure)
-  description: магазин заполненный летальными боеприпасами для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Overpressure
+  id: CharlieUplinkAmmoMagazineSubMachineGun45ACPRIP
+  name: smg magazine (.45 ACP, RIP)
+  description: магазин заполненный мясными боеприпасами для ПП "LWC Vector SBR (.45 ACP)"
+  productEntity: Magazine45_ACPSubMachineGunRIP
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoMagazineSubMachineGun35Rubber
-  name: smg magazine (.35 pistol, rubber)
-  description: магазин заполненный не летальными боеприпасами для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Rubber
+  id: CharlieUplinkAmmoMagazineSubMachineGun45ACPRubber
+  name: smg magazine (.45 ACP, rubber)
+  description: магазин заполненный не летальными боеприпасами для ПП "LWC Vector SBR (.45 ACP)"
+  productEntity: Magazine45_ACPSubMachineGunRubber
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineSubMachineGun35Uranium
-  name: smg magazine (.35 pistol, uranium)
-  description: магазин заполненный летальными боеприпасами с урановым покрытием для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Uranium
+  id: CharlieUplinkAmmoNFMagazineSubMachineGun45ACPUranium
+  name: smg magazine (.45 ACP, uranium)
+  description: магазин заполненный летальными боеприпасами с урановым покрытием для ПП "LWC Vector SBR (.45 ACP)"
+  productEntity: Magazine45_ACPSubMachineGunUranium
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineSubMachineGun35Emp
-  name: smg magazine (.35 pistol, EMP)
-  description: магазин заполненный летальными боеприпасами с наэлектризованным покрытием для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Emp
+  id: CharlieUplinkAmmoNFMagazineSubMachineGun45ACPEmp
+  name: smg magazine (.45 ACP, EMP)
+  description: магазин заполненный летальными боеприпасами с наэлектризованным покрытием для ПП "LWC Vector SBR (.45 ACP)"
+  productEntity: Magazine45_ACPSubMachineGunEmp
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineSubMachineGun35Incendiary
-  name: smg magazine (.35 pistol, incendiary)
-  description: магазин заполненный летальными боеприпасами с зажигательными наконечниками для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Incendiary
+  id: CharlieUplinkAmmoNFMagazineSubMachineGun45ACPIncendiary
+  name: smg magazine (.45 ACP, incendiary)
+  description: магазин заполненный летальными боеприпасами с зажигательными наконечниками для ПП "LWC Vector SBR (.45 ACP)"
+  productEntity: Magazine45_ACPSubMachineGunIncendiary
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -390,44 +384,44 @@
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFSpeedLoaderPistol45Rubber
-  name: speed loader (.45 pistol, Rubber)
+  id: CharlieUplinkAmmoNFSpeedLoaderPistol45MagnumRubber #Lua 45 -> Magnum
+  name: speed loader (.45 Magnum, Rubber) #Lua 45 -> Magnum
   description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
-  productEntity: NFSpeedLoaderPistol45Rubber
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber } Lua ignored
+  productEntity: SpeedLoader45_magnumRubber #Lua 45 -> Magnum
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoSpeedLoaderPistol45
-  name: speed loader (.45 pistol)
+  id: CharlieUplinkAmmoSpeedLoaderPistol45Magnum #Lua 45 -> Magnum
+  name: speed loader (.45 Magnum) #Lua 45 -> Magnum
   description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base } Lua ignore
+  productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoSpeedLoaderPistol45Uranium
-  name: speed loader (.45 pistol, uranium)
+  id: CharlieUplinkAmmoSpeedLoaderPistol45MagnumUranium #Lua 45 -> Magnum
+  name: speed loader (.45 Magnum, uranium) #Lua 45 -> Magnum
   description: спидлодер заполненный летальными боеприпасами с урановым покрытием для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45Uranium
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base } Lua ignore
+  productEntity: SpeedLoader45_magnumUranium #Lua 45 -> Magnum
   cost:
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFSpeedLoaderPistol45Incendiary
-  name: speed loader (.45 pistol, incendiary)
+  id: CharlieUplinkAmmoNFSpeedLoaderPistol45MagnumIncendiary #Lua 45 -> Magnum
+  name: speed loader (.45 pistol, incendiary) #Lua 45 -> Magnum
   description: спидлодер заполненный летальными боеприпасами с зажигательным покрытием для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45Incendiary
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base } Lua ignore
+  productEntity: SpeedLoader45_magnumIncendiary #Lua 45 -> Magnum
   cost:
     FrontierUplinkCoin: 1
   categories:

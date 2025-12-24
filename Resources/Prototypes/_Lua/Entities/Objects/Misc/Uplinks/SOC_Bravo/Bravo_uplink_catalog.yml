@@ -222,7 +222,7 @@
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
- 
+
 - type: listing
   id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
   name: Ящик патронов (.20 винтовочные, урановые)
@@ -255,7 +255,7 @@
     FrontierUplinkCoin: 3
   categories:
     - BravoUplinkAmmo
-    
+
 - type: listing
   id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
   name: Ящик патронов (.30 винтовочные, урановые)
@@ -290,22 +290,22 @@
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
-  name: магазин ПП (.35 пистолетные, усиленные)
+  id: BravoUplinkAmmoMagazineSubMachineGun9x19RIP #Lua 35 -> 9x19
+  name: магазин ПП (9x19mm, мясо)
   description: магазин заполненный летальными боеприпасами для WT-550
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
+  productEntity: NFMagazineSubMachineGunTopMounted9x19RIP #Lua 35 -> 9x19
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
-  name: smg magazine (.35 pistol, rubber)
+  id: BravoUplinkAmmoMagazineSubMachineGun9x19Rubber #Lua 35 -> 9x19
+  name: smg magazine (9x19mm, rubber)
   description: магазин заполненный нелетальными боеприпасами для WT-550
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Rubber
+  productEntity: NFMagazineSubMachineGunTopMounted9x19Rubber #Lua 35 -> 9x19
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -323,22 +323,22 @@
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFSpeedLoaderPistol45Rubber
-  name: speed loader (.45 pistol, Rubber)
+  id: BravoUplinkAmmoNFSpeedLoaderPistol45MagnumRubber #Lua 45 -> Magnum
+  name: speed loader (.45 Magnum, Rubber) #Lua 45 -> Magnum
   description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
-  productEntity: NFSpeedLoaderPistol45Rubber
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber } Lua ignored
+  productEntity: SpeedLoader45_magnumRubber #Lua 45 -> Magnum
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoSpeedLoaderPistol45
-  name: speed loader (.45 pistol)
+  id: BravoUplinkAmmoSpeedLoaderPistol45Magnum #Lua 45 -> Magnum
+  name: speed loader (.45 Magnum) #Lua 45 -> Magnum
   description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base } Lua ignored
+  productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
   cost:
     FrontierUplinkCoin: 1
   categories:

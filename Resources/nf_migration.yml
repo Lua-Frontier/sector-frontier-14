@@ -308,12 +308,12 @@ BoxMagazinePistolCaselessRifle: null
 BoxMagazinePistolHighCapacity: NFMagazineHighCapacityPistol35 # close enough
 BoxMagazinePistolHighCapacityPractice: NFMagazineHighCapacityPistol35Practice # close enough
 BoxMagazinePistolPractice: NFMagazinePistol35Practice # close enough
-BoxMagazinePistolRubber: NFBoxMagazinePistol35Rubber
+BoxMagazinePistolRubber: NFBoxMagazinePistol9x19Rubber #Lua 35 -> 9x19 base
 BoxMagazinePistolSubMachineGun: NFMagazineSubMachineGun35 # close enough
 BoxMagazinePistolSubMachineGunEmp: NFMagazineSubMachineGun35Emp # close enough
 BoxMagazinePistolSubMachineGunPractice: NFMagazineSubMachineGun35Practice # close enough
 BoxMagazinePistolSubMachineGunRubber: NFMagazineSubMachineGun35Rubber
-BoxMagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted35 # close enough
+BoxMagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
 BoxMagazineRifle: NFMagazineRifle20 # close enough
 BoxMagazineRiflePractice: NFMagazineRifle20Practice # close enough
 BoxMagazineRifleRubber: NFBoxMagazineRifle20Rubber
@@ -445,8 +445,8 @@ MagazinePistolSubMachineGunEmpty: NFMagazineSubMachineGun35Empty
 MagazinePistolSubMachineGunIncendiary: NFMagazineSubMachineGun35Incendiary
 MagazinePistolSubMachineGunPractice: NFMagazineSubMachineGun35Practice
 MagazinePistolSubMachineGunUranium: NFMagazineSubMachineGun35Uranium
-MagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted35
-MagazinePistolSubMachineGunTopMountedEmpty: NFMagazineSubMachineGunTopMounted35Empty
+MagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+MagazinePistolSubMachineGunTopMountedEmpty: NFMagazineSubMachineGunTopMounted9x19Empty #Lua 35 -> 9x19 base
 MagazinePistolUranium: NFMagazinePistol35Uranium
 MagazineRifle: NFMagazineRifle20
 MagazineRifleEmpty: NFMagazineRifle20Empty

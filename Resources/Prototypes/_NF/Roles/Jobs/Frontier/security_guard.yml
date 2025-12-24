@@ -39,12 +39,12 @@
   equipment:
     eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
     pocket1: NFWeaponPistolUniversalNfsdLessLethal
-    pocket2: NFMagazineHighCapacityPistol35
+    pocket2: Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
   storage:
     back:
     - Flash
-    - NFMagazineHighCapacityPistol35
-    - NFMagazineHighCapacityPistol35Rubber
+    - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
+    - Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
     - ShipVoucherFrontierGuard
   encryptionKeys:
   - EncryptionKeyService

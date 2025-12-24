@@ -544,8 +544,8 @@
   id: UplinkPirateSMGMag
   name: uplink-pirate-smg-magazine-name
   description: uplink-pirate-smg-magazine-desc
-  productEntity: NFAmmunitionBoxPistol35
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-35 }
+  productEntity: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-35 } Lua ignored
   cost:
     Doubloon: 1
   categories:
@@ -592,8 +592,8 @@
   id: UplinkPirateAmmoBoxMagnum
   name: uplink-pirate-magazine-box-magnum-name
   description: uplink-pirate-magazine-box-magnum-desc
-  productEntity: NFAmmunitionBoxPistol45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 }
+  productEntity: AmmoBox45_ACPFMJ #Lua 45 -> ACP
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 } Lua ignore
   cost:
     Doubloon: 1
   categories:
