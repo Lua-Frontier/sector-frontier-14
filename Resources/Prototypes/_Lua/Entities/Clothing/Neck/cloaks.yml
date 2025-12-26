@@ -1,0 +1,48 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakCapShoulder
+  name: captain shoulder cloak
+  description: Extremely expensive mantle, that is made of thick light durathread cloth and golden threads.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/capcloakformal.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/capcloakformal.rsi
+
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakHoSShoulder
+  name: head of security formal shoulder cloak
+  description: Can't hide bloodstains of your prisoners, but can definetly hide all your war crimes.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/hoscloakformal.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/hoscloakformal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakCentralCommandShoulder
+  name: CC shoulder cloak
+  description: Just looking at it you might think about how you would need to sell the whole station, if it will get dirty.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/centcomcloakformal.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/centcomcloakformal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakFormalCE
+  name: chief engineer's formal cloak
+  description: Bob-the-Builder.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/ce.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/ce.rsi

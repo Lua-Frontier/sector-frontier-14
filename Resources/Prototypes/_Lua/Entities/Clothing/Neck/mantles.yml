@@ -14,3 +14,14 @@
     sprite: Clothing/Neck/mantles/hosmantle_shoulder.rsi
   - type: Clothing
     sprite: Clothing/Neck/mantles/hosmantle_shoulder.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleCapFormal
+  name: captain formal mantle
+  description: Very formal. In fact, You might go away from me, Sir.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/capmantle.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/capmantle.rsi

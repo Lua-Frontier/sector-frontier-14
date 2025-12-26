@@ -531,9 +531,9 @@
   description: 'What can brown do for you?'
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/qm.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/qm.rsi # Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/qm.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/qm.rsi # Lua
 
 - type: entity
   parent: ClothingUniformBase # Frontier: remove BaseCommandContraband
@@ -608,21 +608,23 @@
   description: A jumpsuit made of strong material, providing robust protection.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/security.rsi # Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/security.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#C12D30"
-        sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      - state: overlay-inhand-left
-      right:
-      - state: inhand-right
-        color: "#C12D30"
-        sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      - state: overlay-inhand-right
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/security.rsi # Lua
+# - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-left
+#        sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+#      right:
+#      - state: inhand-right
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-right
+#        sprite: Clothing/Uniforms/Jumpsuit/security.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -642,9 +644,23 @@
   description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/security_grey.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/security_grey.rsi # Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/security_grey.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/security_grey.rsi # Lua
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-left
+#        sprite: Clothing/Uniforms/Jumpsuit/security_gray.rsi
+#      right:
+#      - state: inhand-right
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-right
+#        sprite: Clothing/Uniforms/Jumpsuit/security_gray.rsi
 
 - type: entity
   parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -664,21 +680,23 @@
   description: A formal security suit for officers complete with Nanotrasen belt buckle.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/warden.rsi # Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        color: "#C12D30"
-        sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      - state: overlay-inhand-left
-      right:
-      - state: inhand-right
-        color: "#C12D30"
-        sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      - state: overlay-inhand-right
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/warden.rsi # Lua
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-left
+#        sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
+#     right:
+#      - state: inhand-right
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-right
+#        sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -1217,9 +1235,23 @@
   description: A sign of skill and prestige within the security department.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/senior_officer.rsi # Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/senior_officer.rsi # Lua
+# - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-left
+#        sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
+#      right:
+#      - state: inhand-right
+#        color: "#C12D30"
+#        sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+#      - state: overlay-inhand-right
+#        sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
 
 - type: entity
   parent: ClothingUniformBase

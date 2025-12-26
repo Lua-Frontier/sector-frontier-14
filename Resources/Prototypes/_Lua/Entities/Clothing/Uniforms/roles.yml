@@ -125,6 +125,16 @@
   - type: Clothing
     sprite: _Lua/Clothing/Uniforms/pajamasrnd.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCentComRep
+  name: central command representative uniform
+  description: A sign of faith and actually just old HoP jumsuit.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
 
 
 # region Typan

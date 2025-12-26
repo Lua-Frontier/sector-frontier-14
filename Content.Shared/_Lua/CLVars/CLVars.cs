@@ -12,6 +12,8 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<bool> BankFlushCacheEnabled = CVarDef.Create("bank.flushcache.enabled", false, CVar.SERVER | CVar.REPLICATED);
         public static readonly CVarDef<int> BankFlushCacheInterval = CVarDef.Create("bank.flushcache.interval", 300, CVar.SERVER | CVar.REPLICATED);
 
+        public static readonly CVarDef<string> TransferApiSecret = CVarDef.Create("transfer.api.secret", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
         public static readonly CVarDef<bool> NetDynamicTick =
             CVarDef.Create("net.dynamictick", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
 
