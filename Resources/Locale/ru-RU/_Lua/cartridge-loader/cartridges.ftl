@@ -61,7 +61,3 @@ yupi-ui-balance = Баланс:
 yupi-ui-target-code = Код получателя:
 yupi-ui-amount = Сумма:
 yupi-ui-send = Отправить
-yupi-ui-repay = Погасить кредит
-yupi-repay-success = Погашено { $amount } кредитов по займу.
-yupi-ui-outstanding = Остаток по кредиту:
-yupi-repay-nothing = Нет задолженности для погашения.

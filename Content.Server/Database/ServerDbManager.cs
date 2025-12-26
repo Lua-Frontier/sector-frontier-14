@@ -32,6 +32,11 @@ namespace Content.Server.Database
 
         void Shutdown();
 
+        #region DynamicMarket
+        Task<Dictionary<string, double>> GetAllDynamicMarketModPrices();
+        Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice)> updates);
+        #endregion
+
         #region Preferences
         Task<PlayerPreferences> InitPrefsAsync(
             NetUserId userId,
@@ -471,6 +476,17 @@ namespace Content.Server.Database
             _sqliteInMemoryConnection?.Dispose();
             _db.Shutdown();
         }
+
+        #region DynamicMarket
+        public Task<Dictionary<string, double>> GetAllDynamicMarketModPrices()
+        {
+            return RunDbCommand(() => _db.GetAllDynamicMarketModPrices());
+        }
+        public Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice)> updates)
+        {
+            return RunDbCommand(() => _db.UpsertDynamicMarketEntries(updates));
+        }
+        #endregion
 
         public Task<PlayerPreferences> InitPrefsAsync(
             NetUserId userId,

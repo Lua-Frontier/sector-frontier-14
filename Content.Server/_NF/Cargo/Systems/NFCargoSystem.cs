@@ -1,4 +1,4 @@
-using Content.Server._Lua.Market.Systems; // Lua
+using Content.Server._Lua.DynamicMarket.Systems; // Lua
 using Content.Server._NF.Bank;
 using Content.Server._NF.SectorServices;
 using Content.Server.Cargo.Components;
@@ -15,6 +15,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Paper;
+using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -28,6 +29,7 @@ namespace Content.Server._NF.Cargo.Systems;
 public sealed partial class NFCargoSystem : SharedNFCargoSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly DynamicMarketDbSystem _dynamicMarket = default!; // Lua
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
@@ -85,29 +87,18 @@ public sealed partial class NFCargoSystem : SharedNFCargoSystem
         ResetOrders();
         CleanupTradeCrateDestinations();
     }
-    // Lua start
-    private BaseMarketDynamicSystem? ResolveRoutingSystem(EntityUid console)
+
+    private bool TryGetDynamicPrototypeId(EntityUid uid, out string prototypeId)
     {
-        var proto = MetaData(console).EntityPrototype;
-        if (proto != null)
+        prototypeId = string.Empty;
+        var proto = MetaData(uid).EntityPrototype;
+        if (proto == null) return false;
+        prototypeId = proto.ID;
+        if (TryComp<StackComponent>(uid, out var stack))
         {
-            var id = proto.ID;
-            if (id.Contains("BlackMarket", StringComparison.OrdinalIgnoreCase))
-            {
-                var sys = EntityManager.System<MarketSystemBlackMarket>();
-                sys.LoadDomainConfig("BlackMarket");
-                return sys;
-            }
-            if (id.Contains("Syndicate", StringComparison.OrdinalIgnoreCase))
-            {
-                var sys = EntityManager.System<MarketSystemSyndicate>();
-                sys.LoadDomainConfig("SyndicateMarket");
-                return sys;
-            }
+            var singularId = _proto.Index<StackPrototype>(stack.StackTypeId).Spawn.Id;
+            prototypeId = singularId;
         }
-        var def = EntityManager.System<MarketSystemDefault>();
-        def.LoadDomainConfig("DefaultMarket");
-        return def;
+        return true;
     }
-    // Lua end
 }

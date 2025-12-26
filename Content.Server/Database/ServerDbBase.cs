@@ -395,6 +395,45 @@ namespace Content.Server.Database
         }
         #endregion
 
+        #region DynamicMarket
+        public async Task<Dictionary<string, double>> GetAllDynamicMarketModPrices()
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.DynamicMarket
+                .AsNoTracking()
+                .ToDictionaryAsync(e => e.ProtoId, e => e.ModPrice);
+        }
+
+        public async Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice)> updates)
+        {
+            if (updates.Count == 0) return;
+            await using var db = await GetDb();
+            var ids = updates.Select(u => u.protoId).Distinct().ToArray();
+            var existing = await db.DbContext.DynamicMarket
+                .Where(e => ids.Contains(e.ProtoId))
+                .ToListAsync();
+            var byId = existing.ToDictionary(e => e.ProtoId);
+            foreach (var (protoId, basePrice, modPrice) in updates)
+            {
+                if (byId.TryGetValue(protoId, out var row))
+                {
+                    row.BasePrice = basePrice;
+                    row.ModPrice = modPrice;
+                }
+                else
+                {
+                    db.DbContext.DynamicMarket.Add(new DynamicMarketEntry
+                    {
+                        ProtoId = protoId,
+                        BasePrice = basePrice,
+                        ModPrice = modPrice
+                    });
+                }
+            }
+            await db.DbContext.SaveChangesAsync();
+        }
+        #endregion
+
         #region User Ids
         public async Task<NetUserId?> GetAssignedUserIdAsync(string name)
         {

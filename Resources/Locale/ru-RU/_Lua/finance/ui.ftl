@@ -43,13 +43,12 @@ finance-loans-sort-by-name = По имени
 finance-loans-col-name = Имя
 finance-loans-col-amount = Сумма
 finance-loans-col-until-charge = До списания
-finance-col-yupi = YUPI
 finance-deposits-col-name = Имя
 finance-deposits-col-total = Вклад (осн+%)
 finance-deposits-col-nextcap = До кап.
 finance-deposits-col-stop = До стопа
 finance-deposits-col-rate = Ставка
-finance-deposits-col-yupi = YUPI
+finance-deposits-col-actions = Действия
 finance-seconds-short = {$seconds}s
 
 # Модели ставки (для таблиц)

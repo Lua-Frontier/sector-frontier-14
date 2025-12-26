@@ -1,14 +1,14 @@
 - type: gameMap
   id: Frontier
   mapName: 'Сектор Фронтир'
-  mapPath: /Maps/_Lua/Outpost/frontier.yml
+  mapPath: /Maps/_Lua/Outpost/rust-frontier.yml
   minPlayers: 0
   maxPlayers: 100
   randomRotation: false
   maxRandomOffset: 0
   stations:
     Frontier:
-      stationProto: StandardFrontierStation
+      stationProto: MarketFrontierOutpost #Lua StandardFrontierStation<MarketFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Станция Фронтир'
@@ -25,8 +25,8 @@
             Vip: [ -1, -1 ]
             Contractor: [ -1, -1 ]
             Pilot: [ -1, -1 ]
-            MedicalDoctor: [ 1, 1 ] #Lua 3<1
-            Chemist: [ 1, 1 ]
+#            MedicalDoctor: [ 1, 1 ] #comment (28-29) from _Lua
+#            Chemist: [ 1, 1 ]
             Borg: [ -1, -1 ]
             StationRepresentative: [ 1, 1 ]
             StationTrafficController: [ 1, 1 ]

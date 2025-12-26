@@ -17,6 +17,8 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<bool> NetDynamicTick =
             CVarDef.Create("net.dynamictick", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
 
+        public static readonly CVarDef<int> TransferMaxAmountPerOperation =
+            CVarDef.Create("yupi.transfer.max_amount_per_operation", 50_000, CVar.SERVER | CVar.ARCHIVE);
         /// <summary>
         /// Whether to automatically spawn escape shuttles.
         /// </summary>
