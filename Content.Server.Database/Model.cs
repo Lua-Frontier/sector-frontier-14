@@ -47,6 +47,7 @@ namespace Content.Server.Database
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
         public DbSet<Sponsor> Sponsor { get; set; } = null!;
+        public DbSet<DynamicMarketEntry> DynamicMarket { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1365,5 +1366,19 @@ namespace Content.Server.Database
         /// The score IPIntel returned
         /// </summary>
         public float Score { get; set; }
+    }
+
+    [Table("dynamic_market")]
+    public sealed class DynamicMarketEntry
+    {
+        [Key]
+        [Column("protoid")]
+        public string ProtoId { get; set; } = default!;
+
+        [Column("baseprice")]
+        public double BasePrice { get; set; }
+
+        [Column("modprice")]
+        public double ModPrice { get; set; }
     }
 }

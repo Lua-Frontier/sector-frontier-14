@@ -634,6 +634,26 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
+            modelBuilder.Entity("Content.Server.Database.DynamicMarketEntry", b =>
+                {
+                    b.Property<string>("ProtoId")
+                        .HasColumnType("text")
+                        .HasColumnName("protoid");
+
+                    b.Property<double>("BasePrice")
+                        .HasColumnType("double precision")
+                        .HasColumnName("baseprice");
+
+                    b.Property<double>("ModPrice")
+                        .HasColumnType("double precision")
+                        .HasColumnName("modprice");
+
+                    b.HasKey("ProtoId")
+                        .HasName("PK_dynamic_market");
+
+                    b.ToTable("dynamic_market", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")

@@ -8,12 +8,14 @@ using Content.Shared._NF.Bank.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Content.Shared._NF.CrateMachine.Components;
+using Content.Server._Lua.DynamicMarket.Systems; // Lua
 
 namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
     [Dependency] private readonly CrateMachineSystem _crateMachine = default!;
+    [Dependency] private readonly DynamicMarketDbSystem _dynamicMarket = default!; // Lua
 
     private void InitializeCrateMachine()
     {
@@ -83,22 +85,19 @@ public sealed partial class MarketSystem
         consoleComponent.CartDataList = [];
         _crateMachine.OpenFor(crateMachineUid, component);
         // Lua start
-        var grid = Transform(consoleUid).GridUid;
-        if (grid != null)
+        var boughtRows = new List<(string prototypeId, int units, double baseUnitPrice)>(capacity: itemSpawner.ItemsToSpawn.Count);
+        foreach (var data in itemSpawner.ItemsToSpawn)
         {
-            var system = ResolveRoutingSystem(grid.Value);
-            foreach (var data in itemSpawner.ItemsToSpawn)
+            var units = 1;
+            var amountPer = GetAmountPerEntitySpace(data);
+            if (amountPer != null)
             {
-                var units = 1;
-                var amountPer = GetAmountPerEntitySpace(data);
-                if (amountPer != null)
-                {
-                    units = (int) Math.Ceiling((double) data.Quantity / Math.Max(1, amountPer.Value));
-                    units = Math.Max(1, units);
-                }
-                system?.RegisterPurchaseForPrototype(data.Prototype, units);
+                units = (int) Math.Ceiling((double) data.Quantity / Math.Max(1, amountPer.Value));
+                units = Math.Max(1, units);
             }
+            if (data.Price > 0) boughtRows.Add((data.Prototype, units, data.Price));
         }
+        _dynamicMarket.ApplyPurchase(boughtRows);
         // Lua end
     }
 
