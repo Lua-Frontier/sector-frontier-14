@@ -651,10 +651,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMagazineRifle20Overpressure
+  id: UplinkSecurityMagazineRifle556x45 #Lua 20 -> 556x45 base
   name:  uplink-security-20riflemagazine-name
   description: uplink-security-20riflemagazine-desc
-  productEntity: NFBoxMagazineRifle20Overpressure
+  productEntity: NFBoxMagazineRifle556x45 #Lua 20 -> 556x45 base
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     FrontierUplinkCoin: 1
@@ -667,10 +667,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMagazineRifle30Overpressure
+  id: UplinkSecurityMagazineRifle762x39 #Lua 30 -> 762x39
   name:  uplink-security-30riflemagazine-name
   description: uplink-security-30riflemagazine-desc
-  productEntity: NFBoxMagazineRifle30Overpressure
+  productEntity: NFBoxMagazineRifle762x39 #Lua 30 -> 762x39
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     FrontierUplinkCoin: 1
@@ -699,7 +699,7 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityPistolMagazineRubber
+  id: UplinkSecurityPistolMagazineRubber9x19 #Lua 35 -> 9x19 base
   name:  uplink-security-magazinepistol-rubber-name
   description: uplink-security-magazinepistol-rubber-desc
   productEntity: NFBoxMagazinePistol9x19Rubber #Lua 35 -> 9x19 base
@@ -715,10 +715,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurity20RifleMagazineRubber
+  id: UplinkSecurity556x45RifleMagazineRubber #Lua 20 -> 556x45 base
   name: uplink-security-20riflemagazine-rubber-name
   description: uplink-security-20riflemagazine-rubber-desc
-  productEntity: NFBoxMagazineRifle20Rubber
+  productEntity: NFBoxMagazineRifle556x45Rubber #Lua 20 -> 556x45 base
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     FrontierUplinkCoin: 1
@@ -731,10 +731,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurity30RifleMagazineRubber
+  id: UplinkSecurity762x39RifleMagazineRubber #Lua 30 -> 762x39
   name: uplink-security-30riflemagazine-rubber-name
   description: uplink-security-30riflemagazine-rubber-desc
-  productEntity: NFBoxMagazineRifle30Rubber
+  productEntity: NFBoxMagazineRifle762x39Rubber #Lua 30 -> 762x39
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     FrontierUplinkCoin: 1

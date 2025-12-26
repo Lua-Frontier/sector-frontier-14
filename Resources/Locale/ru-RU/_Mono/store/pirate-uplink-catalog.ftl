@@ -119,16 +119,16 @@ uplink-pirate-energy-cutlass-name = Энергетическая абордаж�
 uplink-pirate-energy-cutlass-desc = Экзотическое энергетическое оружие.
 
 uplink-pirate-python-name = Ритланд
-uplink-pirate-python-desc = Жестко простой, эффективный и громкий револьвер. Поставляется с патронами .45 магнум.
+uplink-pirate-python-desc = Жестко простой, эффективный и громкий револьвер. Поставляется с патронами .45 Magnum.
 
 uplink-pirate-viper-name = Гадюка
-uplink-pirate-viper-desc = Небольшой, легко скрываемый, но несколько маломощный пистолет. Модернизированный с полностью автоматическим стволом. Использует пистолетные магазины (.35 auto).
+uplink-pirate-viper-desc = Небольшой, легко скрываемый, но несколько маломощный пистолет. Модернизированный с полностью автоматическим стволом. Использует пистолетные магазины (9x19mm).
 
 uplink-pirate-kanabou-name = Канабоу
 uplink-pirate-kanabou-desc = Оружие для тех, кто хочет отказаться от тонкости. Особенно подходит для Они.
 
 uplink-pirate-ak-name = AK-74M
-uplink-pirate-ak-desc = Легендарное оружие войны. Использует винтовочные патроны .30.
+uplink-pirate-ak-desc = Легендарное оружие войны. Использует винтовочные патроны 7.62x39mm.
 
 uplink-pirate-laser-gun-name = Лазерный пистолет
 uplink-pirate-laser-gun-desc = Слабое гражданское оружие, имеющее два режима стрельбы.
@@ -160,17 +160,17 @@ uplink-pirate-GrapeShot-name = Сундук с Картечью
 
 uplink-pirate-glassshots-name = Сундук с Стеклянной картечью
 
-uplink-pirate-speed-loader-magnum-name = Спидлоадер (.45 магнум)
-uplink-pirate-speed-loader-magnum-desc = Спидлоадер для револьвера с 6 патронами .45 Магнум.
+uplink-pirate-speed-loader-magnum-name = Спидлоадер (.45 Magnum)
+uplink-pirate-speed-loader-magnum-desc = Спидлоадер для револьвера с 6 патронами .45 Magnum.
 
-uplink-pirate-box-magazine-pistol-name = Коробка магазинов для пистолета .35
-uplink-pirate-box-magazine-pistol-desc = Коробка, заполненная четырьмя магазинами для пистолета 35-го калибра.
+uplink-pirate-box-magazine-pistol-name = Коробка магазинов для пистолета 9x19mm
+uplink-pirate-box-magazine-pistol-desc = Коробка, заполненная четырьмя магазинами для пистолета 9x19mm.
 
-uplink-pirate-box-magazine-light-rifle-name = Коробка магазинов для винтовки .30
-uplink-pirate-box-magazine-light-rifle-desc = Коробка, заполненная четырьмя магазинами для винтовки .30 калибра.
+uplink-pirate-box-magazine-light-rifle-name = Коробка магазинов для винтовки 7.62x39mm
+uplink-pirate-box-magazine-light-rifle-desc = Коробка, заполненная четырьмя магазинами для винтовки 7.62x39mm калибра.
 
-uplink-pirate-magazine-box-magnum-name = коробка с боеприпасами (.45 магнум)
-uplink-pirate-magazine-box-magnum-desc = Коробка с 12 патронами магнум калибра .45.
+uplink-pirate-magazine-box-magnum-name = коробка с боеприпасами (.45 Magnum)
+uplink-pirate-magazine-box-magnum-desc = Коробка c патронами калибра .45 Magnum.
 
 uplink-pirate-light-rifle-magazine-box-big-name = коробка с винтовочными боеприпасами (.20)
 uplink-pirate-light-rifle-magazine-box-big-desc = Коробка с 200 винтовочными патронами калибра .20.
@@ -178,8 +178,8 @@ uplink-pirate-light-rifle-magazine-box-big-desc = Коробка с 200 винт
 uplink-pirate-shell-box-lethal-name = Коробка с патронами (летальными)
 uplink-pirate-shell-box-lethal-desc = Коробка с 16 патронами калибра .50.
 
-uplink-pirate-smg-ammo-box-name = Коробка с боеприпасами (.35)
-uplink-pirate-smg-ammo-box-desc = Коробка, содержащая 60 патронов .35 для пистолета. Может использоваться для снаряжения магазинов пистолета-пулемета.
+uplink-pirate-smg-ammo-box-name = Коробка с боеприпасами (9x19mm)
+uplink-pirate-smg-ammo-box-desc = Коробка, содержащая 60 патронов 9x19mm для пистолета. Может использоваться для снаряжения магазинов пистолета-пулемета.
 
 uplink-pirate-bulldog-ammo-name = .50 барабан
 uplink-pirate-bulldog-ammo-desc = Барабан для дробовика Бульдог. Может использоваться для ручной зарядки других ружей.
@@ -187,8 +187,8 @@ uplink-pirate-bulldog-ammo-desc = Барабан для дробовика Бу�
 uplink-pirate-bulldog-slug-ammo-name = .50 барабан пуль
 uplink-pirate-bulldog-slug-ammo-desc = Барабан для дробовика Бульдог. Может использоваться для ручной зарядки других ружей. Использует цельные снаряды (Пули).
 
-uplink-pirate-smg-magazine-name = .35 магазин для пистолета-пулемета
-uplink-pirate-smg-magazine-desc = Магазин на 30 патронов .35. Совместим с C-20r, Drozd и многими другими.
+uplink-pirate-smg-magazine-name = 9x19mm магазин для пистолета-пулемета
+uplink-pirate-smg-magazine-desc = Магазин на 30 патронов 9x19mm. Совместим с C-20r, Drozd и многими другими.
 
 uplink-subsonic-mag-name = 7.62x39mm дозвуковой винтовочный магазин
 uplink-subsonic-mag-desc = Поддерживает WSPR и Энни.

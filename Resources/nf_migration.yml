@@ -299,7 +299,7 @@ BoxMagazineCaselessRiflePractice: null
 BoxMagazineCaselessRifleRubber: null
 BoxMagazineLightRifle: NFMagazineRifle30 # close enough
 BoxMagazineLightRiflePractice: NFMagazineRifle30Practice # close enough
-BoxMagazineLightRifleRubber: NFBoxMagazineRifle30Rubber
+BoxMagazineLightRifleRubber: NFBoxMagazineRifle762x39Rubber #Lua 30 -> 762x39 base
 BoxMagazineMagnumSubMachineGun: null
 BoxMagazineMagnumSubMachineGunPractice: null
 BoxMagazineMagnumSubMachineGunRubber: null
@@ -316,7 +316,7 @@ BoxMagazinePistolSubMachineGunRubber: NFMagazineSubMachineGun35Rubber
 BoxMagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
 BoxMagazineRifle: NFMagazineRifle20 # close enough
 BoxMagazineRiflePractice: NFMagazineRifle20Practice # close enough
-BoxMagazineRifleRubber: NFBoxMagazineRifle20Rubber
+BoxMagazineRifleRubber: NFBoxMagazineRifle556x45Rubber #Lua 20 -> 556x45
 BoxMagazineShotgun: NFMagazineShotgunDrum # close enough
 BoxMagazineShotgunBeanbag: NFMagazineShotgunDrumBeanbag # close enough
 BoxMagazineShotgunIncendiary: NFMagazineShotgunDrumIncendiary # close enough
@@ -402,7 +402,7 @@ MagazineGrenadeEmpty: NFMagazineGrenadeEmpty
 MagazineGrenadeFlash: NFMagazineGrenadeFlash
 MagazineGrenadeFrag: NFMagazineGrenadeFrag
 MagazineLightRifle: NFMagazineRifle30
-MagazineLightRifleBox: NFMagazineBoxRifle20 # 20??
+MagazineLightRifleBox: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
 MagazineLightRifleEmpty: NFMagazineRifle30Empty
 MagazineLightRifleIncendiary: NFMagazineRifle30Incendiary
 MagazineLightRifleLowCapacity: NFMagazineLowCapacityRifle30
@@ -427,9 +427,9 @@ MagazineMagnumSubMachineGunPiercing: NFMagazineSubMachineGun45Overpressure
 MagazineMagnumSubMachineGunPractice: NFMagazineSubMachineGun45Rubber # close enough
 MagazineMagnumSubMachineGunRubber: NFMagazineSubMachineGun45Rubber
 MagazineMagnumSubMachineGunUranium: NFMagazineSubMachineGun45Overpressure # close enough
-MagazineNovaliteC1: NFMagazineClipRifle20
-MagazineNovaliteC1Empty: NFMagazineClipRifle20Empty
-MagazineNovaliteC1Rubber: NFMagazineClipRifle20Rubber
+MagazineNovaliteC1: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
+MagazineNovaliteC1Empty: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
+MagazineNovaliteC1Rubber: NFMagazineClipRifle556x45Rubber #Lua 20 -> 556x45
 MagazinePistol: NFMagazinePistol35
 MagazinePistolCaselessRifle: NFMagazinePistol45 # oddball but .25 currently deprecated
 MagazinePistolCaselessRiflePractice: NFMagazinePistol45Practice # oddball but .25 currently deprecated

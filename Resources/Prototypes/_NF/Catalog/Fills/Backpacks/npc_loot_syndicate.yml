@@ -304,8 +304,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRifleAssaultSmExpedition
-      - id: NFMagazineRifle30Uranium
-      - id: NFMagazineRifle30Uranium
+      - id: Magazine762x39mmUranium #Lua 30 -> 762x39
+      - id: Magazine762x39mmUranium #Lua 30 -> 762x39
         prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -334,8 +334,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRifleAssaultM90GrenadeLauncherExpedition
-      - id: NFMagazineRifle20Incendiary
-      - id: NFMagazineRifle20Incendiary
+      - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
+      - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
         prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -363,8 +363,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFMagazineRifle30Overpressure
-      - id: NFMagazineRifle30Overpressure
+      - id: Magazine762x39mmHP #Lua 30 -> 762x39
+      - id: Magazine762x39mmHP #Lua 30 -> 762x39
         prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000

@@ -224,70 +224,73 @@
 
 # Боеприпасы
 - type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
-  name: Ящик патронов (.20 винтовочные, урановые)
-  description: ящик урановых боеприпасов калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Uranium
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle556x45Uranium #Lua 20 -> 556x45
+  name: Ящик патронов (5.56x45mm, урановые) #Lua 20 -> 556x45
+  description: ящик урановых боеприпасов калибра 5.56x45mm #Lua 20 -> 556x45
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 } Lua ignored
+  productEntity: AmmoBox556x45mmUranium #Lua 20 -> 556x45
   cost:
     FrontierUplinkCoin: 3
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Overpressure
-  name: Ящик патронов (.20 винтовочные, усиленные)
-  description: ящик летальных боеприпасов калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Overpressure
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle556x45RIP #Lua 20 -> 556x45
+  name: Ящик патронов (5.56x45mm, мясо) #Lua 20 -> 556x45
+  description: ящик мясных боеприпасов калибра 5.56x45mm #Lua 20 -> 556x45
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 } Lua ignored
+  productEntity: AmmoBox556x45mmRIP #Lua 20 -> 556x45
   cost:
     FrontierUplinkCoin: 3
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Incendiary
-  name: Ящик патронов (.20 винтовочные, зажигательные)
-  description: Ящик заполненный зажигательными боеприпасами калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Incendiary
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-    
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
-  name: Ящик патронов (.30 винтовочные, урановые)
-  description: ящик урановых боеприпасов калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Uranium
+  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle556x45Incendiary #Lua 20 -> 556x45
+  name: Ящик патронов (5.56x45mm, зажигательные) #Lua 20 -> 556x45
+  description: Ящик заполненный зажигательными боеприпасами калибра 5.56x45mm #Lua 20 -> 556x45
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 } Lua ignored
+  productEntity: AmmoBox556x45mmIncendiary #Lua 20 -> 556x45
   cost:
     FrontierUplinkCoin: 3
   categories:
     - CharlieUplinkAmmo
 
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Overpressure
-  name: Ящик патронов (.30 винтовочные, усиленные)
-  description: ящик летальных боеприпасов калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Overpressure
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
+# Lua ignore (Dont using)
+#- type: listing
+#  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
+#  name: Ящик патронов (.30 винтовочные, урановые)
+#  description: ящик урановых боеприпасов калибра .30
+#  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+#  productEntity: NFAmmunitionBoxBigRifle30Uranium
+#  cost:
+#    FrontierUplinkCoin: 3
+#  categories:
+#    - CharlieUplinkAmmo
 
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
-  name: Ящик патронов (.30 винтовочные, зажигательные)
-  description: Ящик заполненный зажигательными боеприпасами калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Incendiary
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
+# Lua ignore (Dont using)
+# - type: listing
+#   id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Overpressure
+#   name: Ящик патронов (.30 винтовочные, усиленные)
+#   description: ящик летальных боеприпасов калибра .30
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+#   productEntity: NFAmmunitionBoxBigRifle30Overpressure
+#   cost:
+#     FrontierUplinkCoin: 3
+#   categories:
+#     - CharlieUplinkAmmo
+
+# Lua ignore (Dont using)
+# - type: listing
+#   id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
+#   name: Ящик патронов (.30 винтовочные, зажигательные)
+#   description: Ящик заполненный зажигательными боеприпасами калибра .30
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+#   productEntity: NFAmmunitionBoxBigRifle30Incendiary
+#   cost:
+#     FrontierUplinkCoin: 3
+#   categories:
+#     - CharlieUplinkAmmo
 
 - type: listing
   id: CharlieUplinkAmmoMagazineSubMachineGun45ACPRIP
@@ -428,55 +431,55 @@
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineRifle30Overpressure
-  name: magazine (.30 rifle, overpressure)
-  description: магазин заполненный летальными боеприпасами для автомата AEK
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Overpressure
+  id: CharlieUplinkAmmoNFMagazineRifle762x39RIP #Lua 30 -> 762x39
+  name: magazine (762x39mm, RIP) #Lua 30 -> 762x39
+  description: магазин заполненный мясными боеприпасами для автомата AEK #Lua 30 -> 762x39
+  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignore
+  productEntity: Magazine762x39mmRIP #Lua 30 -> 762x39
   cost:
     FrontierUplinkCoin: 2
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineRifle30Incendiary
-  name: magazine (.30 rifle, incendiary)
+  id: CharlieUplinkAmmoNFMagazineRifle762x39Incendiary #Lua 30 -> 762x39
+  name: magazine (762x39mm, incendiary) #Lua 30 -> 762x39
   description: магазин заполненный летальными боеприпасами с зажигательным покрытием для автомата AEK
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Incendiary
+  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignore
+  productEntity: Magazine762x39mmIncendiary #Lua 30 -> 762x39
   cost:
     FrontierUplinkCoin: 2
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkNFMagazineRifle30Rubber
-  name: magazine (.30 rifle, rubber)
+  id: CharlieUplinkNFMagazineRifle762x39Rubber #Lua 30 -> 762x39
+  name: magazine (762x39mm, rubber) #Lua 30 -> 762x39
   description: магазин заполненный нелетальными боеприпасами для автомата AEK
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Rubber
+  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignore
+  productEntity: Magazine762x39mmRubber #Lua 30 -> 762x39
   cost:
     FrontierUplinkCoin: 2
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineRifle30Uranium
-  name: magazine (.30 rifle, uranium)
+  id: CharlieUplinkAmmoNFMagazineRifle762x39Uranium #Lua 30 -> 762x39
+  name: magazine (762x39mm, uranium) #Lua 30 -> 762x39
   description: магазин заполненный летальными боеприпасами с урановым покрытием для автомата AEK
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Uranium
+  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignore
+  productEntity: Magazine762x39mmUranium #Lua 30 -> 762x39
   cost:
     FrontierUplinkCoin: 2
   categories:
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoNFMagazineDrumRifle20Empty
-  name: drum magazine (.20 rifle, any)
+  id: CharlieUplinkAmmoNFMagazineDrumRifle556x45Empty #20 -> 556x45
+  name: drum magazine (5.56x45mm rifle, any)
   description: барабанный магазин для винтовки "лектер" боеприпас в комплект не входит.
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi, state: base }
-  productEntity: NFMagazineDrumRifle20Empty
+  productEntity: NFMagazineDrumRifle556x45Empty #20 -> 556x45
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -494,7 +497,7 @@
     FrontierUplinkCoin: 1
   categories:
     - CharlieUplinkMisc
-    
+
 - type: listing
   id: CharlieUplinkMiscMicroBombImplanter
   name: имплантер микробомбы

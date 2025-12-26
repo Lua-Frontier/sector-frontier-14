@@ -191,7 +191,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRifle20Overpressure
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
     capacity: 10
     count: 10
   - type: Gun
@@ -514,7 +514,7 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgeRifle30Overpressure
+    proto: Cartridge762x39mmHP #Lua 30 -> 762x39
     capacity: 10
     count: 10
   - type: Gun

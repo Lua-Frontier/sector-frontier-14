@@ -2,57 +2,57 @@
 - type: entity
   name: box of .20 rifle (rubber) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle20Rubber
+  id: NFBoxMagazineRifle556x45Rubber #Lua 20 -> 556x45 base
   description: A box full of .20 rifle (rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle20Rubber
+      - id: Magazine556x45mmRubber #Lua 20 -> 556x45
         amount: 4
 
 - type: entity
   name: box of .20 rifle (overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle20Overpressure
+  id: NFBoxMagazineRifle556x45 #Lua 20 -> 556x45 base
   description: A box full of .20 rifle (overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle20Overpressure
+      - id: Magazine556x45mmFMJ #Lua 20 -> 556x45
         amount: 4
 
 #region .30 rifle
 - type: entity
   name: box of .30 rifle (rubber) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle30Rubber
+  id: NFBoxMagazineRifle762x39Rubber #Lua 30 -> 762x39 base
   description: A box full of .30 rifle (rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle30Rubber
+      - id: Magazine762x39mmRubber #Lua 30 -> 762x39
         amount: 4
 
 - type: entity
   name: box of .30 rifle magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle30
+  id: NFBoxMagazineRifle762x39 #Lua 30 -> 762x39 base
   description: A box full of .30 rifle magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle30
+      - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
         amount: 4
 
 - type: entity
   name: box of .30 rifle (overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle30Overpressure
+  id: NFBoxMagazineRifle762x39HP #Lua 30 -> 762x39
   description: A box full of .30 rifle (overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle30Overpressure
+      - id: Magazine762x39mmHP #Lua 30 -> 762x39
         amount: 4
 
 #region .35 pistol

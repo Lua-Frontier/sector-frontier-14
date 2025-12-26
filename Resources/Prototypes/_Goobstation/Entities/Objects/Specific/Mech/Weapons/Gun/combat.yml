@@ -227,7 +227,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: NFCartridgeRifle30
+    proto: Cartridge762x39mmFMJ #Lua 30 -> 762x39
     fireCost: 15
   - type: Appearance
   - type: AmmoCounter

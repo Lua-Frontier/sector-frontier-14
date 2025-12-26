@@ -187,9 +187,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - CartridgeHighCaliber
+        - Cartridge127x99mm #Lua 50 -> 127x99 (@Pcol PR fix)
     capacity: 1
-    proto: CartridgeHighCaliber
+    proto: Cartridge127x99mm #Lua 50 -> 127x99 (@Pcol PR fix)
     chambers: [ True ]
     ammoSlots: [ null ]
 

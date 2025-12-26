@@ -159,33 +159,33 @@
     SpeedLoader45_magnumPractice: 4294967295 #Lua 45 -> magnum
     SpeedLoader45_magnumRubber: 4294967295 #Lua 45 -> magnum
   # .20 Rifle
-    NFMagazineRifle20Empty: 4294967295
-    NFMagazineDrumRifle20: 4294967295
-    NFMagazineRifle20: 4294967295
-    NFMagazineRifle20Overpressure: 4294967295
-    NFMagazineRifle20Incendiary: 4294967295
-    NFMagazineRifle20Uranium: 4294967295
-    NFMagazineRifle20Practice: 4294967295
-    NFMagazineRifle20Rubber: 4294967295
-    NFMagazineBoxRifle20: 4294967295
-    NFMagazineClipRifle20Empty: 4294967295
-    NFMagazineClipRifle20: 4294967295
-    NFMagazineClipRifle20Rubber: 4294967295
+    Magazine556x45mmEmpty: 4294967295 #Lua 20 -> 556x45
+    NFMagazineDrumRifle556x45: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmFMJ: 4294967295 #Lua 20 -> 556x45
+    #NFMagazineRifle20Overpressure: 4294967295 Lua ignored
+    Magazine556x45mmIncendiary: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmUranium: 4294967295 #Lua 20 -> 556x45
+    NMagazine556x45mmPractice: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmRubber: 4294967295 #Lua 20 -> 556x45
+    NFMagazineBoxRifle556x45: 4294967295 #Lua 20 -> 556x45
+    NFMagazineClipRifle556x45Empty: 4294967295 #Lua 20 -> 556x45
+    NFMagazineClipRifle556x45: 4294967295 #Lua 20 -> 556x45
+    NFMagazineClipRifle556x45Rubber: 4294967295 #Lua 20 -> 556x45
   # .30 Rifle
-    NFMagazineRifle30Empty: 4294967295
-    NFMagazineRifle30: 4294967295
-    NFMagazineRifle30Overpressure: 4294967295
-    NFMagazineRifle30Incendiary: 4294967295
-    NFMagazineRifle30Uranium: 4294967295
-    NFMagazineRifle30Practice: 4294967295
-    NFMagazineRifle30Rubber: 4294967295
-    NFMagazineLowCapacityRifle30Empty: 4294967295
-    NFMagazineLowCapacityRifle30: 4294967295
-    NFMagazineLowCapacityRifle30Overpressure: 4294967295
-    NFMagazineLowCapacityRifle30Incendiary: 4294967295
-    NFMagazineLowCapacityRifle30Uranium: 4294967295
-    NFMagazineLowCapacityRifle30Practice: 4294967295
-    NFMagazineLowCapacityRifle30Rubber: 4294967295
+    Magazine762x39mmEmpty: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmFMJ: 4294967295 #Lua 30 -> 762x39
+    #NFMagazineRifle30Overpressure: 4294967295 Lua ignored
+    Magazine762x39mmIncendiary: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmUranium: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmPractice: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmRubber: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityEmpty: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityFMJ: 4294967295 #Lua 30 -> 762x39
+    #NFMagazineLowCapacityRifle30Overpressure: 4294967295 Lua ignored
+    Magazine762x39mmLowCapacityIncendiary: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityUranium: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityPractice: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityRubber: 4294967295 #Lua 30 -> 762x39
   # ASMGT turret
     MagazineAsmgtUniversalEmpty: 4294967295
     MagazineAsmgtUniversalPistol: 4294967295
@@ -243,18 +243,18 @@
     NFAmmunitionBoxRifle10Rubber: 4294967295
     NFAmmunitionBoxBigRifle10Rubber: 4294967295
   # .20 Rifle
-    NFAmmunitionBoxRifle20: 4294967295
-    NFAmmunitionBoxBigRifle20: 4294967295
-    NFAmmunitionBoxRifle20Overpressure: 4294967295
-    NFAmmunitionBoxBigRifle20Overpressure: 4294967295
-    NFAmmunitionBoxRifle20Incendiary: 4294967295
-    NFAmmunitionBoxBigRifle20Incendiary: 4294967295
-    NFAmmunitionBoxRifle20Uranium: 4294967295
-    NFAmmunitionBoxBigRifle20Uranium: 4294967295
-    NFAmmunitionBoxRifle20Practice: 4294967295
-    NFAmmunitionBoxBigRifle20Practice: 4294967295
-    NFAmmunitionBoxRifle20Rubber: 4294967295
-    NFAmmunitionBoxBigRifle20Rubber: 4294967295
+    AmmoBox556x45mmFMJ: 4294967295 #Lua 20 -> 556x45
+    AmmoBox556x45mmBigFMJ: 4294967295 #Lua -> 556x45
+    #NFAmmunitionBoxRifle20Overpressure: 4294967295 Lua ignored
+    #NFAmmunitionBoxBigRifle20Overpressure: 4294967295 Lua ignored
+    AmmoBox556x45mmIncendiary: 4294967295 #Lua 20 -> 556x45
+    #NFAmmunitionBoxBigRifle20Incendiary: 4294967295 Lua ignored
+    AmmoBox556x45mmUranium: 4294967295 #Lua 20 -> 556x45
+    #NFAmmunitionBoxBigRifle20Uranium: 4294967295 Lua ignored
+    AmmoBox556x45mmPractice: 4294967295 #Lua 20 -> 556x45
+    #NFAmmunitionBoxBigRifle20Practice: 4294967295 Lua ignored
+    AmmoBox556x45mmRubber: 4294967295 #Lua 20 -> 556x45
+    AmmoBox556x45mmBigRubber: 4294967295 #Lua 20 -> 556x45
   # .25 Rifle
     NFAmmunitionBoxRifle25: 4294967295
     NFAmmunitionBoxBigRifle25: 4294967295
@@ -269,18 +269,18 @@
     NFAmmunitionBoxRifle25Rubber: 4294967295
     NFAmmunitionBoxBigRifle25Rubber: 4294967295
   # .30 Rifle
-    NFAmmunitionBoxRifle30: 4294967295
-    NFAmmunitionBoxBigRifle30: 4294967295
-    NFAmmunitionBoxRifle30Overpressure: 4294967295
-    NFAmmunitionBoxBigRifle30Overpressure: 4294967295
-    NFAmmunitionBoxRifle30Incendiary: 4294967295
-    NFAmmunitionBoxBigRifle30Incendiary: 4294967295
-    NFAmmunitionBoxRifle30Uranium: 4294967295
-    NFAmmunitionBoxBigRifle30Uranium: 4294967295
-    NFAmmunitionBoxRifle30Practice: 4294967295
-    NFAmmunitionBoxBigRifle30Practice: 4294967295
-    NFAmmunitionBoxRifle30Rubber: 4294967295
-    NFAmmunitionBoxBigRifle30Rubber: 4294967295
+    AmmoBox762x39mmFMJ: 4294967295 #Lua 30 -> 762x39
+    AmmoBox762x39mmBigFMJ: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxRifle30Overpressure: 4294967295 Lua ignored
+    #NFAmmunitionBoxBigRifle30Overpressure: 4294967295 Lua ignored
+    AmmoBox762x39mmIncendiary: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Incendiary: 4294967295 Lua ignored
+    AmmoBox762x39mmUranium: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Uranium: 4294967295 Lua ignored
+    AmmoBox762x39mmPractice: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Practice: 4294967295 Lua ignored
+    AmmoBox762x39mmRubber: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Rubber: 4294967295 Lua ignored
   # .60 Rifle
     NFAmmunitionBoxRifle60: 4294967295
     NFAmmunitionBoxBigRifle60: 4294967295

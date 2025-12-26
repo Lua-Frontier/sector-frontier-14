@@ -36,14 +36,14 @@
         whitelist:
           tags:
             - ADTExtMagazineRifle
-            - NFMagazineRifle20
+            - Magazine556x45mmFMJ #Lua 20 -> 556x45
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle20
+        startingItem: Cartridge556x45mmFMJ #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:
-            - NFCartridgeRifle20
+            - Cartridge556x45mmFMJ #Lua 20 -> 556x45
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

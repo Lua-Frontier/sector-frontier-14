@@ -310,8 +310,8 @@
   id: UplinkMercenaryAmmoLightRifle
   name:  uplink-merc-lightrifle-name
   description: uplink-merc-lightrifle-desc
-  productEntity: NFMagazineRifle30
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: Magazine762x39mmFMJ #Lua 30 -> 762x39
+  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignore
   cost:
     Speso: 1000
   categories:
@@ -648,9 +648,9 @@
 
 - type: listing
   id: UplinkMercenaryMagazineLightRifleBox
-  name:  короб патронов L6 SAW (.30 винтовочные)
-  description: короб патронов L6 SAW (.30 винтовочные)
-  productEntity: NFMagazineBoxRifle20
+  name:  короб патронов L6 SAW (5.56x45mm) #Lua 20 -> 556x45
+  description: короб патронов L6 SAW (5.56x45mm) #Lua 20 -> 556x45
+  productEntity: NFBaseMagazineBoxRifle556x45 #Lua 20 -> 556x45
   cost:
     Speso: 20000 #Lua 3k<20k
   categories:

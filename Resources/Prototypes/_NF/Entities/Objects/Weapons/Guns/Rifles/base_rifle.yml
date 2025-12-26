@@ -98,31 +98,31 @@
 - type: entity
   abstract: true
   parent: NFBaseWeaponRifleChamber
-  id: NFBaseWeaponRifleChamber20
+  id: NFBaseWeaponRifleChamber556x45 #Lua 20 -> 556x45
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
   - type: BallisticAmmoProvider
     capacity: 15
-    proto: NFCartridgeRifle20
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
     whitelist:
       tags:
-      - NFCartridgeRifle20
+      - Cartridge556x45mmFMJ #Lua 20 -> 556x45
 
 - type: entity
   abstract: true
   parent: NFBaseWeaponRifleChamber
-  id: NFBaseWeaponRifleChamber30
+  id: NFBaseWeaponRifleChamber762x39 #Lua 30 -> 762x39
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-30
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30
+    proto: Cartridge762x39mmFMJ #Lua 30 -> 762x39
     whitelist:
       tags:
-      - NFCartridgeRifle30
+      - Cartridge762x39mmFMJ #Lua 30 -> 762x39
 
 - type: entity
   abstract: true

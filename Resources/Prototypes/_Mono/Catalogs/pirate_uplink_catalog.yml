@@ -572,21 +572,22 @@
       tags:
       - PirateUplink
 
-- type: listing
-  id: UplinkPirateRifleAmmoBoxBig
-  name: uplink-pirate-light-rifle-magazine-box-big-name
-  description: uplink-pirate-light-rifle-magazine-box-big-desc
-  productEntity: NFAmmunitionBoxBigRifle20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  cost:
-    Doubloon: 2
-  categories:
-  - UplinkPirateAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
+# Lua ignore (Dont using)
+# - type: listing
+#   id: UplinkPirateRifleAmmoBoxBig
+#   name: uplink-pirate-light-rifle-magazine-box-big-name
+#   description: uplink-pirate-light-rifle-magazine-box-big-desc
+#   productEntity: NFAmmunitionBoxBigRifle20
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+#   cost:
+#     Doubloon: 2
+#   categories:
+#   - UplinkPirateAmmo
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - PirateUplink
 
 - type: listing
   id: UplinkPirateAmmoBoxMagnum
@@ -608,7 +609,7 @@
   id: UplinkPirateBoxMagazineRifle
   name: uplink-pirate-box-magazine-light-rifle-name
   description: uplink-pirate-box-magazine-light-rifle-desc
-  productEntity: NFBoxMagazineRifle30
+  productEntity: NFBoxMagazineRifle762x39
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-30 }
   cost:
     Doubloon: 1
@@ -650,35 +651,35 @@
       tags:
       - PirateUplink
 
-- type: listing
-  id: UplinkPirateBurnerBox
-  name: uplink-pirate-box-highcal-name
-  description: uplink-pirate-box-highcal-desc
-  productEntity: AmmoBox127x99mm
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
+# - type: listing
+#   id: UplinkPirateBurnerBox
+#   name: uplink-pirate-box-highcal-name
+#   description: uplink-pirate-box-highcal-desc
+#   productEntity: AmmoBox127x99mm
+#   cost:
+#     Doubloon: 3
+#   categories:
+#   - UplinkPirateAmmo
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - PirateUplink
 
-- type: listing
-  id: UplinkPirateBurnerBoxHE
-  name: uplink-pirate-box-highcal-he-name
-  description: uplink-pirate-box-highcal-he-desc
-  productEntity: AmmoBox127x99mmExplosive
-  cost:
-    Doubloon: 6
-  categories:
-  - UplinkPirateAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
+# - type: listing
+#   id: UplinkPirateBurnerBoxHE
+#   name: uplink-pirate-box-highcal-he-name
+#   description: uplink-pirate-box-highcal-he-desc
+#   productEntity: AmmoBox127x99mmExplosive
+#   cost:
+#     Doubloon: 6
+#   categories:
+#   - UplinkPirateAmmo
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - PirateUplink
 
 # - type: listing
 #   id: UplinkPirateEmpRocket

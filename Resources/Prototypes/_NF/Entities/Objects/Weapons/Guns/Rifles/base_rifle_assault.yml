@@ -100,7 +100,7 @@
 - type: entity
   abstract: true
   parent: NFBaseWeaponRifleAssaultChamber
-  id: NFBaseWeaponRifleAssaultChamber20
+  id: NFBaseWeaponRifleAssaultChamber556x45 #Lua 20 -> 556x45
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -108,22 +108,22 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle20
+        startingItem: Magazine556x45mmFMJ #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist: &mag20Whitelist
           tags:
-            - NFMagazineRifle20
-            - NFMagazineDrumRifle20
+            - Magazine556x45mmFMJ #Lua 20 -> 556x45
+            - NFMagazineDrumRifle556x45 #Lua 20 -> 556x45
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber20Standard
         name: Chamber
-        startingItem: NFCartridgeRifle20
+        startingItem: Cartridge556x45mmFMJ #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:
-            - NFCartridgeRifle20
+            - Cartridge556x45mmFMJ #Lua 20 -> 556x45
 
 - type: entity
   abstract: true
@@ -154,14 +154,14 @@
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponRifleAssaultChamber20
-  id: NFBaseWeaponRifleAssaultChamber20Rubber
+  parent: NFBaseWeaponRifleAssaultChamber556x45 #Lua 20 -> 556x45
+  id: NFBaseWeaponRifleAssaultChamber556x45Rubber #Lua 20 -> 556x45
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle20Rubber
+        startingItem: Magazine556x45mmRubber #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -169,16 +169,16 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle20Rubber
+        startingItem: Cartridge556x45mmRubber #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:
-            - NFCartridgeRifle20
+            - Cartridge556x45mmFMJ #Lua 20 -> 556x45
 
 - type: entity
   abstract: true
   parent: NFBaseWeaponRifleAssaultChamber
-  id: NFBaseWeaponRifleAssaultChamber20Clip
+  id: NFBaseWeaponRifleAssaultChamber556x45Clip #Lua 20 -> 556x45
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -186,20 +186,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineClipRifle20
+        startingItem: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - NFMagazineClipRifle20
+            - NFMagazineClipRifle556x45 #Lua 20 -> 556x45
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: *chamber20Standard
 
 - type: entity
   abstract: true
   parent: NFBaseWeaponRifleAssaultChamber
-  id: NFBaseWeaponRifleAssaultChamber30
+  id: NFBaseWeaponRifleAssaultChamber762x39 #Lua 30 -> 762x39
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-30
@@ -209,33 +209,33 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle30
+        startingItem: Magazine762x39mmFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist: &mag30Whitelist
           tags:
-            - NFMagazineRifle30
-            - NFMagazineLowCapacityRifle30
+            - Magazine762x39mmFMJ #Lua 30 -> 762x39
+            - Magazine762x39mmLowCapacityFMJ #Lua 30 -> 762x39
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber30Standard
         name: Chamber
-        startingItem: NFCartridgeRifle30
+        startingItem: Cartridge762x39mmFMJ #Lua 30 -> 762x39
         priority: 1
         whitelist: &chamber30Whitelist
           tags:
-            - NFCartridgeRifle30
+            - Cartridge762x39mmFMJ #Lua 30 -> 762x39
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponRifleAssaultChamber30
-  id: NFBaseWeaponRifleAssaultChamber30Rubber
+  parent: NFBaseWeaponRifleAssaultChamber762x39 #Lua 30 -> 762x39
+  id: NFBaseWeaponRifleAssaultChamber762x39Rubber #Lua 30 -> 762x39
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle30Rubber
+        startingItem: Magazine762x39mmRubber #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -243,20 +243,20 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber30Rubber
         name: Chamber
-        startingItem: NFCartridgeRifle30Rubber
+        startingItem: Cartridge762x39mmRubber #Lua 30 -> 762x39
         priority: 1
         whitelist: *chamber30Whitelist
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponRifleAssaultChamber30
-  id: NFBaseWeaponRifleAssaultChamber30LowCapacity
+  parent: NFBaseWeaponRifleAssaultChamber762x39 #Lua 30 -> 762x39
+  id: NFBaseWeaponRifleAssaultChamber762x39LowCapacity #Lua 30 -> 762x39
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineLowCapacityRifle30
+        startingItem: Magazine762x39mmLowCapacityFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -266,14 +266,14 @@
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponRifleAssaultChamber30LowCapacity
-  id: NFBaseWeaponRifleAssaultChamber30LowCapacityRubber
+  parent: NFBaseWeaponRifleAssaultChamber762x39LowCapacity #Lua 30 -> 762x39
+  id: NFBaseWeaponRifleAssaultChamber762x39LowCapacityRubber #Lua 30 -> 762x39
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineLowCapacityRifle30Rubber
+        startingItem: Magazine762x39mmLowCapacityRubber #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
