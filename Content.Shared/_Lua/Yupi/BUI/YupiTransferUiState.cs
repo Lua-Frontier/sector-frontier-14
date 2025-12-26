@@ -12,15 +12,11 @@ public sealed class YupiTransferUiState : BoundUserInterfaceState
 {
     public readonly string OwnCode;
     public readonly int Balance;
-    public readonly int Outstanding;
-    public readonly int Due;
 
-    public YupiTransferUiState(string ownCode, int balance, int outstanding = 0, int due = 0)
+    public YupiTransferUiState(string ownCode, int balance)
     {
         OwnCode = ownCode;
         Balance = balance;
-        Outstanding = outstanding;
-        Due = due;
     }
 }
 
