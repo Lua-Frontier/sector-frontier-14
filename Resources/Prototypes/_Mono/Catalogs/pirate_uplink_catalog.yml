@@ -560,8 +560,8 @@
   id: UplinkPirateShellBoxLethal
   name: uplink-pirate-shell-box-lethal-name
   description: uplink-pirate-shell-box-lethal-desc
-  productEntity: NFAmmunitionBoxShellShotgunBuckshot
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
+  productEntity: AmmoBox23x75mmBuckshot #Lua 4 gauge
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot } Lua ignored
   cost:
     Doubloon: 1
   categories:

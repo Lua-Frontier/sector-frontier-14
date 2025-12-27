@@ -3,7 +3,7 @@
   id: NFWeaponShotgunBulldog
   parent:
   - BaseC3SyndicateContraband
-  - NFBaseWeaponShotgunChamber50Magazine
+  - NFBaseWeaponShotgunChamber23x75Magazine #Lua 4 gauge
   - NFBaseWeaponFrameShotgunWieldable
   name: Bulldog
   description: |-
@@ -30,7 +30,7 @@
 
 - type: entity
   id: NFWeaponShotgunDoubleBarreled
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge
   name: double-barreled shotgun
   description: |-
     An immortal classic. A civilian grade shotgun.
@@ -57,7 +57,7 @@
 
 - type: entity
   id: NFWeaponShotgunEnforcer
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge
   name: Enforcer
   description: |-
     A premium semi-automatic shotgun, featuring an upgraded tube capacity.
@@ -79,7 +79,7 @@
 
 - type: entity
   id: NFWeaponShotgunKammerer
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge
   name: Kammerer
   description: |-
     An old yet faithful design, and a favorite among irregular forces on many worlds.
@@ -106,7 +106,7 @@
 
 - type: entity
   id: NFWeaponShotgunSawn
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgun ] #Lua 4 gauge
   name: sawn-off shotgun
   description: |-
     Groovy!
@@ -143,7 +143,7 @@
 
 - type: entity
   id: NFWeaponShotgunHandmade
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgun ]
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgun ] #Lua 4 gauge
   name: handmade pistol
   description: |-
     Looks unreliable, but legal.
@@ -175,7 +175,7 @@
 
 - type: entity
   id: NFWeaponShotgunBlunderbuss
-  parent: [ BaseC3PirateContraband, NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ BaseC3PirateContraband, NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge
   name: blunderbuss
   description: |-
     Deadly at close range, an illegal shotgun often found at the side of a pirate.
@@ -197,7 +197,7 @@
 
 - type: entity
   id: NFWeaponShotgunImprovised
-  parent: [ NFBaseWeaponShotgunChamber50, NFBaseWeaponFrameShotgunWieldable ]
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauges
   name: improvised shotgun
   description: |-
     A shitty, but legal, hand-made shotgun. It can only hold one round in the chamber.

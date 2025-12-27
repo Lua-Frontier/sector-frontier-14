@@ -988,8 +988,8 @@
   id: UplinkSecurityShotLethal
   name:  uplink-security-shotlethal-name
   description: uplink-security-shotlethal-desc
-  productEntity: NFAmmunitionBoxShellShotgunBuckshot
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
+  productEntity: AmmoBox23x75mmBuckshot #Lua 4 gauge
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot } Lua ignored
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -1004,8 +1004,8 @@
   id: UplinkSecurityShotBeanbag
   name:  uplink-security-shotbeanbag-name
   description: uplink-security-shotbeanbag-desc
-  productEntity: NFAmmunitionBoxShellShotgunBeanbag
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-beanbag }
+  productEntity: AmmoBox23x75mmBeanbag #Lua 4 gauge
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-beanbag } Lua ignored
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -1020,8 +1020,8 @@
   id: UplinkSecurityShotSlug
   name:  uplink-security-shotslug-name
   description: uplink-security-shotslug-desc
-  productEntity: NFAmmunitionBoxShellShotgunSlug
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-slug }
+  productEntity: AmmoBox23x75mmSlug #Lua 4 gauge
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-slug } Lua ignored
   cost:
     FrontierUplinkCoin: 1
   categories:

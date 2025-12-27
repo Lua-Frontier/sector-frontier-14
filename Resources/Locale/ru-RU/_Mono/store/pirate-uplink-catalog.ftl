@@ -137,7 +137,7 @@ uplink-pirate-c20-name = Набор "C-20r"
 uplink-pirate-c20-desc = Автоматический, лёгкий пистолет-пулемёт, укомплектованный несколькими магазинами.
 
 uplink-pirate-bulldog-name = Набор "Бульдог"
-uplink-pirate-bulldog-desc = Автоматический дробовик .50 калибра, укомплектованное с несколькими барабанами.
+uplink-pirate-bulldog-desc = Автоматический дробовик 4 gauge калибра, укомплектованное с несколькими барабанами.
 
 uplink-pirate-vt7-name = VT7 HF Клинок
 uplink-pirate-vt7-desc = Высококачественное лезвие HF.
@@ -176,15 +176,15 @@ uplink-pirate-light-rifle-magazine-box-big-name = коробка с винтов
 uplink-pirate-light-rifle-magazine-box-big-desc = Коробка с 200 винтовочными патронами калибра .20.
 
 uplink-pirate-shell-box-lethal-name = Коробка с патронами (летальными)
-uplink-pirate-shell-box-lethal-desc = Коробка с 16 патронами калибра .50.
+uplink-pirate-shell-box-lethal-desc = Коробка с 16 патронами калибра 4 gauge.
 
 uplink-pirate-smg-ammo-box-name = Коробка с боеприпасами (9x19mm)
 uplink-pirate-smg-ammo-box-desc = Коробка, содержащая 60 патронов 9x19mm для пистолета. Может использоваться для снаряжения магазинов пистолета-пулемета.
 
-uplink-pirate-bulldog-ammo-name = .50 барабан
+uplink-pirate-bulldog-ammo-name = 4 gauge барабан
 uplink-pirate-bulldog-ammo-desc = Барабан для дробовика Бульдог. Может использоваться для ручной зарядки других ружей.
 
-uplink-pirate-bulldog-slug-ammo-name = .50 барабан пуль
+uplink-pirate-bulldog-slug-ammo-name = 4 gauge барабан пуль
 uplink-pirate-bulldog-slug-ammo-desc = Барабан для дробовика Бульдог. Может использоваться для ручной зарядки других ружей. Использует цельные снаряды (Пули).
 
 uplink-pirate-smg-magazine-name = 9x19mm магазин для пистолета-пулемета
