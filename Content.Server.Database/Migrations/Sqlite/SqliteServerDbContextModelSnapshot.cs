@@ -597,6 +597,38 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("connection_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.DynamicMarketEntry", b =>
+                {
+                    b.Property<string>("ProtoId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("protoid");
+
+                    b.Property<double>("BasePrice")
+                        .HasColumnType("REAL")
+                        .HasColumnName("baseprice");
+
+                    b.Property<long>("BoughtUnits")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("bought_units");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_update");
+
+                    b.Property<double>("ModPrice")
+                        .HasColumnType("REAL")
+                        .HasColumnName("modprice");
+
+                    b.Property<long>("SoldUnits")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sold_units");
+
+                    b.HasKey("ProtoId")
+                        .HasName("PK_dynamic_market");
+
+                    b.ToTable("dynamic_market", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")

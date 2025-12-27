@@ -45,8 +45,7 @@ public sealed class CargoPalletConsoleNFBoundUserInterface : BoundUserInterface
             return;
 
         _menu?.SetEnabled(palletState.Enabled);
-        _menu?.SetAppraisal(palletState.Appraisal);
-        _menu?.SetReal(palletState.Real); // Lua
+        _menu?.SetAppraisalBreakdown(palletState.BaseAmount, palletState.ConsoleDeltaAmount, palletState.DynamicDeltaAmount, palletState.Real);
         _menu?.SetCount(palletState.Count);
         if (palletState.TaxEntries != null) _menu?.SetTaxEntries(palletState.TaxEntries); // Lua
     }

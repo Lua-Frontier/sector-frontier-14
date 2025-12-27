@@ -25,7 +25,10 @@ public sealed class NFCargoPalletConsoleInterfaceState : BoundUserInterfaceState
     public int ReductionPercent;
     public bool MinimalUi;
     public List<PalletTaxEntry> TaxEntries = new(); // Lua
-    public NFCargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled, string? totalReductionText = null, int real = 0, int reductionPercent = 0, bool minimalUi = false, List<PalletTaxEntry>? taxEntries = null)
+    public int BaseAmount;
+    public int ConsoleDeltaAmount;
+    public int DynamicDeltaAmount;
+    public NFCargoPalletConsoleInterfaceState(int appraisal, int count, bool enabled, string? totalReductionText = null, int real = 0, int reductionPercent = 0, bool minimalUi = false, List<PalletTaxEntry>? taxEntries = null, int baseAmount = 0, int consoleDeltaAmount = 0, int dynamicDeltaAmount = 0)
     {
         Appraisal = appraisal;
         Count = count;
@@ -35,6 +38,9 @@ public sealed class NFCargoPalletConsoleInterfaceState : BoundUserInterfaceState
         ReductionPercent = reductionPercent;
         MinimalUi = minimalUi;
         if (taxEntries != null) TaxEntries = taxEntries;
+        BaseAmount = baseAmount;
+        ConsoleDeltaAmount = consoleDeltaAmount;
+        DynamicDeltaAmount = dynamicDeltaAmount;
     }
     // Lua end
 }
