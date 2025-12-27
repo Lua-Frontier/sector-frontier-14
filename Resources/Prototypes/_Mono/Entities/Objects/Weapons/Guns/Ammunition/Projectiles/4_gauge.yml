@@ -49,9 +49,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 75
+        Piercing: 55 #Lua -20
         Blunt: 10
-        Structural: 200
+        Structural: 50 #Lua -150
 
 - type: entity
   id: Pellet23x75mmFlashbang
@@ -100,7 +100,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 18 #Lua -6
+        Piercing: 13 #Lua -11
   - type: TimedDespawn #Lua add
     lifetime: 0.3 #taked from NFBasePellet
 
@@ -126,8 +126,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 12 #Lua add
-        Heat: 10 #Lua -4
+        Piercing: 4 #Lua add
+        Heat: 9 #Lua -5
   - type: IgnitionSource
     ignited: true
   - type: TimedDespawn #Lua add
@@ -228,8 +228,8 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 12 #Lua +2
-        Piercing: 10 #Lua -2
+        Radiation: 9 #Lua -1
+        Piercing: 4 #Lua -8
   - type: TimedDespawn #Lua add
     lifetime: 0.3 #taked from NFBasePellet
 
@@ -255,7 +255,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 8
+        Piercing: 6 #Lua -2
   - type: TimedDespawn #Lua add
     lifetime: 0.3 #taked from NFBasePellet
 
@@ -283,8 +283,8 @@
   - type: Projectile
     damage:
       types:
-        Slash: 15
-        Piercing: 20 #Lua -20
+        Slash: 10 #Lua -5
+        Piercing: 10 #Lua -30
   - type: TimedDespawn #Lua add
     lifetime: 0.3 #taked from NFBasePellet
 
@@ -310,7 +310,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30 
+        Piercing: 25 #Lua -5
         Slash: 20 #Lua add
         Blunt: 20 #Lua add
         Structural: 250
