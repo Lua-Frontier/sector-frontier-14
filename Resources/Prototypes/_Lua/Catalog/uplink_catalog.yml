@@ -42,3 +42,17 @@
     blacklist:
       components:
         - SurplusBundle
+
+- type: listing
+  id: UplinkBoxEncryptionKeyAllBasic
+  name: all-basic-encryption-keys-box-uplink-name
+  description: all-basic-encryption-keys-box-uplink-desc
+  icon: { sprite: /Textures/Objects/Storage/boxes.rsi, state: box }
+  productEntity: BoxEncryptionKeyAllBasic
+  discountCategory: RareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkPointless

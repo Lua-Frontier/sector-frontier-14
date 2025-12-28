@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: all basic encryption keys box
+  parent: BoxCardboard
+  id: BoxEncryptionKeyAllBasic
+  components:
+  - type: StorageFill
+    contents:
+      - id: EncryptionKeyCommon
+        amount: 2
+      - id: EncryptionKeyCargo
+        amount: 1
+      - id: EncryptionKeyEngineering
+        amount: 2
+      - id: EncryptionKeyService
+        amount: 2
+      - id: EncryptionKeyTraffic
+        amount: 2
+      - id: EncryptionKeyMedical
+        amount: 1
+      - id: EncryptionKeyScience
+        amount: 1
+      - id: EncryptionKeyMedicalScience
+        amount: 1
+  - type: Sprite
+    layers:
+      - state: box
+      - state: encryptokey
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+    whitelist:
+      components:
+      - EncryptionKey
