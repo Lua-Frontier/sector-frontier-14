@@ -62,13 +62,14 @@
     boardName: wires-board-name-airalarm
     layoutId: AirAlarm
   - type: AccessReader
-    access: [["Atmospherics"], ["Captain"]] # Frontier: allowed ["Captain"] to access air alarms
+    enabled: False # Lua
+    #access: [["Atmospherics"], ["Captain"]] # Frontier: allowed ["Captain"] to access air alarms # Lua
   - type: ContainerFill
     containers:
       board: [ AirAlarmElectronics ]
   - type: ContainerContainer
     containers:
-      board: !type:Container
+      board: !type:Container {}
   - type: Appearance
   - type: WiresVisuals
   - type: Sprite
