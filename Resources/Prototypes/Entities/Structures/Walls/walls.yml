@@ -598,7 +598,7 @@
     state: state0
     color: "#cdf3cd" # Lua
   - type: Icon
-    sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua 
+    sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua
     state: state0
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -801,6 +801,9 @@
   - type: Icon
     sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
     state: state0
+  - type: RCDDeconstructable # Lua
+    cost: 6 # Lua
+    delay: 8 # Lua
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -831,7 +834,7 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalReinforcedWall
-    
+
 # Riveting
 - type: entity
   parent: BaseWall
@@ -1158,6 +1161,9 @@
   - type: Icon
     sprite: _NF/Structures/Walls/solid_diagonal.rsi # Frontier: use _NF variant
     state: state0
+  - type: RCDDeconstructable # Lua
+    cost: 6 # Lua
+    delay: 8 # Lua
   - type: Destructible
     thresholds:
     - trigger:
@@ -1589,7 +1595,7 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: WallMiningDiagonal
-    
+
 # Vault Walls
 
 - type: entity
