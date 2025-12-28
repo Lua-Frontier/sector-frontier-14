@@ -58,7 +58,7 @@
   - type: StaticPrice
     price: 350
   - type: Paintable
-    group: null
+    group: SAStandart # Lua
 
 - type: entity
   id: AirlockGlassShuttle
@@ -71,6 +71,8 @@
     sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
   - type: Occluder
     enabled: false
+  - type: Paintable # Lua
+    group: SAGlass # Lua
   - type: Door
     occludes: false
   - type: Fixtures

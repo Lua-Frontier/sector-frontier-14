@@ -1,0 +1,23 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: paintableGroup
+  id: SAStandard # ShuttleAirlocksStandart
+  time: 5
+  cost: 5
+  defaultStyle: basic
+  styles:
+    basic: AirlockShuttle
+    nfsd: AirlockShuttleNfsd
+    black: AirlockShuttleSyndicate
+
+- type: paintableGroup
+  id: SAGlass # ShuttleAirlocksStandart
+  time: 5
+  cost: 5
+  defaultStyle: basic
+  styles:
+    basic: AirlockGlassShuttle
+    nfsd: AirlockGlassShuttleNfsd
+    black: AirlockGlassShuttleSyndicate

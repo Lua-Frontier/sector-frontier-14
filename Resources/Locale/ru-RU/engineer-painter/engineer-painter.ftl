@@ -1,5 +1,5 @@
 spray-painter-window-title = Краскопульт
-spray-painter-style-not-available = Невозможно применить выбранный стиль к данному типу шлюза
+##spray-painter-style-not-available = Невозможно применить выбранный стиль к данному типу шлюза ##Lua
 spray-painter-selected-style = Выбранный стиль:
 spray-painter-selected-color = Выбранный цвет:
 spray-painter-color-red = красный
