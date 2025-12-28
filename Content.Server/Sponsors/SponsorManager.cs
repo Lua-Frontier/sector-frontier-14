@@ -106,6 +106,9 @@ public sealed class SponsorManager : IPostInjectInit
 
     public bool TryGetActiveSponsor(NetUserId userId, out Sponsor sponsor)
     { return _activeSponsors.TryGetValue(userId, out sponsor!); }
+
+    public async Task<Sponsor?> GetActiveSponsorAsync(NetUserId userId)
+    { return await _db.GetActiveSponsor(userId.UserId); }
 }
 
 
