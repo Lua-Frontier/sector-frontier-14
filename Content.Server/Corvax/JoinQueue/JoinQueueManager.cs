@@ -6,7 +6,6 @@ using Content.Server.Sponsors;
 using Content.Shared.CCVar;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.JoinQueue;
-using Content.Shared._Lua.SponsorLoadout;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -91,9 +90,10 @@ public sealed class JoinQueueManager
         }
 
         var isPrivilegedAdmin = await _connectionManager.HavePrivilegedJoin(session.UserId);
-        var isPrivilegedDonor = _sponsorManager.TryGetActiveSponsor(session.UserId, out _);
+        var sponsor = await _sponsorManager.GetActiveSponsorAsync(session.UserId);
+        var isPrivilegedSponsor = sponsor != null;
 
-        var isPrivileged = isPrivilegedAdmin || isPrivilegedDonor;
+        var isPrivileged = isPrivilegedAdmin || isPrivilegedSponsor;
         var players = GetPlayersCount() - 1;
         if (players < 0) players = 0;
         var haveFreeSlot = players < _cfg.GetCVar(CCVars.SoftMaxPlayers);

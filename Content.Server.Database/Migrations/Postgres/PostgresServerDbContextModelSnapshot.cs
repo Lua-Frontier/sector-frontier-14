@@ -644,9 +644,21 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("double precision")
                         .HasColumnName("baseprice");
 
+                    b.Property<long>("BoughtUnits")
+                        .HasColumnType("bigint")
+                        .HasColumnName("bought_units");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("last_update");
+
                     b.Property<double>("ModPrice")
                         .HasColumnType("double precision")
                         .HasColumnName("modprice");
+
+                    b.Property<long>("SoldUnits")
+                        .HasColumnType("bigint")
+                        .HasColumnName("sold_units");
 
                     b.HasKey("ProtoId")
                         .HasName("PK_dynamic_market");

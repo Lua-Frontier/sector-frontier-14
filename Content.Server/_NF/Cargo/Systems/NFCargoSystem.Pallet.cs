@@ -53,8 +53,8 @@ public sealed partial class NFCargoSystem
         {
             taxMultiplier = priceMod.Mod; // Lua ammount * < taxMultiplier
         }
-        amount *= taxMultiplier; // Lua
-        amount += noModAmount;
+        var baseTotal = amount + noModAmount;
+        var appraisalTotal = amount * taxMultiplier + noModAmount;
 
         // Lua start
         var reductionText = "";
@@ -76,7 +76,7 @@ public sealed partial class NFCargoSystem
             foreach (var (pid, count) in previewBatchByProto)
             {
                 var projected = _dynamicMarket.GetProjectedMultiplierAfterSale(pid, count);
-                sumWeighted += projected * count;
+                sumWeighted += (taxMultiplier * projected) * count;
                 totalUnits += count;
             }
             afterWeighted = totalUnits > 0 ? sumWeighted / totalUnits : 1.0;
@@ -95,6 +95,8 @@ public sealed partial class NFCargoSystem
             var dyn = _dynamicMarket.GetCurrentMultiplier(pid);
             real += basePrice * taxMultiplier * dyn;
         }
+        var consoleDelta = appraisalTotal - baseTotal;
+        var dynamicDelta = real - appraisalTotal;
         var minimalUi = !showDetails;
         var taxEntries = new List<PalletTaxEntry>();
         if (showDetails)
@@ -114,7 +116,18 @@ public sealed partial class NFCargoSystem
                 taxEntries.Add(new PalletTaxEntry(name, percent));
             }
         }
-        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale, new NFCargoPalletConsoleInterfaceState((int)amount, toSell.Count, true, reductionText, (int)real, dynPercentInt, minimalUi, taxEntries));
+        _ui.SetUiState(ent.Owner, CargoPalletConsoleUiKey.Sale, new NFCargoPalletConsoleInterfaceState(
+            (int) Math.Round(appraisalTotal),
+            toSell.Count,
+            true,
+            reductionText,
+            (int) Math.Round(real),
+            dynPercentInt,
+            minimalUi,
+            taxEntries,
+            (int) Math.Round(baseTotal),
+            (int) Math.Round(consoleDelta),
+            (int) Math.Round(dynamicDelta)));
         // Lua end
     }
 

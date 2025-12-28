@@ -33,8 +33,9 @@ namespace Content.Server.Database
         void Shutdown();
 
         #region DynamicMarket
-        Task<Dictionary<string, double>> GetAllDynamicMarketModPrices();
-        Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice)> updates);
+        Task<List<DynamicMarketEntry>> GetAllDynamicMarketEntries();
+        Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice, long soldDelta, long boughtDelta, DateTime lastUpdate)> updates);
+        Task ApplyDynamicMarketDrift(DateTime now, double ratePerHour, double maxModPrice, double minModPrice);
         #endregion
 
         #region Preferences
@@ -478,13 +479,17 @@ namespace Content.Server.Database
         }
 
         #region DynamicMarket
-        public Task<Dictionary<string, double>> GetAllDynamicMarketModPrices()
+        public Task<List<DynamicMarketEntry>> GetAllDynamicMarketEntries()
         {
-            return RunDbCommand(() => _db.GetAllDynamicMarketModPrices());
+            return RunDbCommand(() => _db.GetAllDynamicMarketEntries());
         }
-        public Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice)> updates)
+        public Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice, long soldDelta, long boughtDelta, DateTime lastUpdate)> updates)
         {
             return RunDbCommand(() => _db.UpsertDynamicMarketEntries(updates));
+        }
+        public Task ApplyDynamicMarketDrift(DateTime now, double ratePerHour, double maxModPrice, double minModPrice)
+        {
+            return RunDbCommand(() => _db.ApplyDynamicMarketDrift(now, ratePerHour, maxModPrice, minModPrice));
         }
         #endregion
 

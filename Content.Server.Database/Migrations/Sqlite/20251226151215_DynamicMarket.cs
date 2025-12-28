@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Content.Server.Database.Migrations.Postgres
+namespace Content.Server.Database.Migrations.Sqlite
 {
     /// <inheritdoc />
     public partial class DynamicMarket : Migration
@@ -14,9 +15,12 @@ namespace Content.Server.Database.Migrations.Postgres
                 name: "dynamic_market",
                 columns: table => new
                 {
-                    protoid = table.Column<string>(type: "text", nullable: false),
-                    baseprice = table.Column<double>(type: "double precision", nullable: false),
-                    modprice = table.Column<double>(type: "double precision", nullable: false)
+                    protoid = table.Column<string>(type: "TEXT", nullable: false),
+                    baseprice = table.Column<double>(type: "REAL", nullable: false),
+                    modprice = table.Column<double>(type: "REAL", nullable: false),
+                    sold_units = table.Column<long>(type: "INTEGER", nullable: false),
+                    bought_units = table.Column<long>(type: "INTEGER", nullable: false),
+                    last_update = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

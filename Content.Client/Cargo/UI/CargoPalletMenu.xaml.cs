@@ -27,9 +27,17 @@ public sealed partial class CargoPalletMenu : FancyWindow
     }
 
     // Lua start
-    public void SetReal(int amount)
+    public void SetAppraisalBreakdown(int baseAmount, int consoleDelta, int dynamicDelta, int total)
     {
-        RealLabel.Text = BankSystemExtensions.ToSpesoString(amount);
+        if (total == 0 && baseAmount == 0)
+        { AppraisalLabel.Text = "-"; return; }
+        var baseText = BankSystemExtensions.ToSpesoString(baseAmount);
+        var consoleText = BankSystemExtensions.ToSpesoString(Math.Abs(consoleDelta));
+        var dynText = BankSystemExtensions.ToSpesoString(Math.Abs(dynamicDelta));
+        var totalText = BankSystemExtensions.ToSpesoString(total);
+        var consoleSign = consoleDelta >= 0 ? "+" : "-";
+        var dynSign = dynamicDelta >= 0 ? "+" : "-";
+        AppraisalLabel.Text = $"{baseText} {consoleSign} {consoleText} {dynSign} {dynText} = {totalText}";
     }
     public void SetCount(int count)
     {

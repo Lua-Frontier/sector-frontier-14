@@ -12,13 +12,6 @@
                        HorizontalExpand="True"
                        Text="-" />
             </BoxContainer>
-            <BoxContainer Orientation="Horizontal" Name="RealRow">
-                <Label Text="{Loc 'cargo-pallet-menu-real-label'}"
-                       StyleClasses="LabelKeyText" />
-                <Label Name="RealLabel"
-                       HorizontalExpand="True"
-                       Text="-" />
-            </BoxContainer>
             <BoxContainer Orientation="Horizontal">
                 <Label Text="{Loc 'cargo-pallet-menu-count-label'}"
                        StyleClasses="LabelKeyText" />

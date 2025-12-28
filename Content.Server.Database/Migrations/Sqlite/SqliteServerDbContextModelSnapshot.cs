@@ -607,9 +607,21 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("REAL")
                         .HasColumnName("baseprice");
 
+                    b.Property<long>("BoughtUnits")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("bought_units");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_update");
+
                     b.Property<double>("ModPrice")
                         .HasColumnType("REAL")
                         .HasColumnName("modprice");
+
+                    b.Property<long>("SoldUnits")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("sold_units");
 
                     b.HasKey("ProtoId")
                         .HasName("PK_dynamic_market");

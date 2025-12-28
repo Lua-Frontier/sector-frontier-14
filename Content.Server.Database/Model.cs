@@ -1380,5 +1380,14 @@ namespace Content.Server.Database
 
         [Column("modprice")]
         public double ModPrice { get; set; }
+
+        [Column("sold_units")]
+        public long SoldUnits { get; set; }
+
+        [Column("bought_units")]
+        public long BoughtUnits { get; set; }
+
+        [Column("last_update")]
+        public DateTime LastUpdate { get; set; }
     }
 }

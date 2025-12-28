@@ -396,41 +396,50 @@ namespace Content.Server.Database
         #endregion
 
         #region DynamicMarket
-        public async Task<Dictionary<string, double>> GetAllDynamicMarketModPrices()
+        public async Task<List<DynamicMarketEntry>> GetAllDynamicMarketEntries()
         {
             await using var db = await GetDb();
             return await db.DbContext.DynamicMarket
                 .AsNoTracking()
-                .ToDictionaryAsync(e => e.ProtoId, e => e.ModPrice);
+                .ToListAsync();
         }
 
-        public async Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice)> updates)
+        public async Task UpsertDynamicMarketEntries(IReadOnlyCollection<(string protoId, double basePrice, double modPrice, long soldDelta, long boughtDelta, DateTime lastUpdate)> updates)
         {
             if (updates.Count == 0) return;
             await using var db = await GetDb();
-            var ids = updates.Select(u => u.protoId).Distinct().ToArray();
-            var existing = await db.DbContext.DynamicMarket
-                .Where(e => ids.Contains(e.ProtoId))
-                .ToListAsync();
-            var byId = existing.ToDictionary(e => e.ProtoId);
-            foreach (var (protoId, basePrice, modPrice) in updates)
+            foreach (var (protoId, basePrice, modPrice, soldDelta, boughtDelta, lastUpdate) in updates)
             {
-                if (byId.TryGetValue(protoId, out var row))
-                {
-                    row.BasePrice = basePrice;
-                    row.ModPrice = modPrice;
-                }
-                else
-                {
-                    db.DbContext.DynamicMarket.Add(new DynamicMarketEntry
-                    {
-                        ProtoId = protoId,
-                        BasePrice = basePrice,
-                        ModPrice = modPrice
-                    });
-                }
+                if (string.IsNullOrWhiteSpace(protoId)) continue;
+                await db.DbContext.Database.ExecuteSqlInterpolatedAsync($@"
+                INSERT INTO dynamic_market (protoid, baseprice, modprice, sold_units, bought_units, last_update)
+                VALUES ({protoId}, {basePrice}, {modPrice}, {soldDelta}, {boughtDelta}, {lastUpdate})
+                ON CONFLICT (protoid) DO UPDATE SET
+                  baseprice = EXCLUDED.baseprice,
+                  modprice = EXCLUDED.modprice,
+                  sold_units = dynamic_market.sold_units + EXCLUDED.sold_units,
+                  bought_units = dynamic_market.bought_units + EXCLUDED.bought_units,
+                  last_update = EXCLUDED.last_update;
+                ");
             }
-            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task ApplyDynamicMarketDrift(DateTime now, double ratePerHour, double maxModPrice, double minModPrice)
+        {
+            await using var db = await GetDb();
+            await db.DbContext.Database.ExecuteSqlInterpolatedAsync($@"
+            UPDATE dynamic_market
+            SET
+              modprice = LEAST(
+                {maxModPrice},
+                GREATEST(
+                  {minModPrice},
+                  modprice + ({ratePerHour} * (EXTRACT(EPOCH FROM ({now} - last_update)) / 3600.0))
+                )
+              ),
+              last_update = {now}
+            WHERE modprice < {maxModPrice};
+            ");
         }
         #endregion
 
