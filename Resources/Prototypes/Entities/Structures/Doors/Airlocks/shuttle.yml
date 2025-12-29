@@ -58,7 +58,7 @@
   - type: StaticPrice
     price: 350
   - type: Paintable
-    group: SAStandart # Lua
+    group: AS-Standart # Lua
 
 - type: entity
   id: AirlockGlassShuttle
@@ -72,7 +72,7 @@
   - type: Occluder
     enabled: false
   - type: Paintable # Lua
-    group: SAGlass # Lua
+    group: AS-Glass # Lua
   - type: Door
     occludes: false
   - type: Fixtures
