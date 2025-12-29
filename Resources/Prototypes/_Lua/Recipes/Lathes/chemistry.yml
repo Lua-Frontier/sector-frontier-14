@@ -1,6 +1,31 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
 - type: latheRecipe
   id: Ampula
   result: Ampula
   completetime: 2
   materials:
     Glass: 200
+
+- type: latheRecipe
+  id: ChemistryEmptyBottle02
+  result: ChemistryEmptyBottle02
+  completetime: 2
+  materials:
+    Glass: 50
+
+- type: latheRecipe
+  id: ChemistryEmptyBottle03
+  result: ChemistryEmptyBottle03
+  completetime: 2
+  materials:
+    Glass: 50
+
+- type: latheRecipe
+  id: ChemistryEmptyBottle04
+  result: ChemistryEmptyBottle04
+  completetime: 2
+  materials:
+    Glass: 50
