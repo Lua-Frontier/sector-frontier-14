@@ -34,7 +34,7 @@
   - type: BodyPart #Backmen-Edit
     partType: Torso
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "torso_m"
   - type: Extractable
     juiceSolution:
@@ -57,7 +57,7 @@
     tags:
     - Head
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "head_m"
   - type: Extractable
     juiceSolution:
@@ -73,7 +73,7 @@
   parent: [BaseLeftArm, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "l_arm"
   - type: BodyPart #Backmen-Edit
     partType: Arm
@@ -86,7 +86,7 @@
   parent: [BaseRightArm, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "r_arm"
   - type: BodyPart #Backmen-Edit
     partType: Arm
@@ -98,7 +98,7 @@
   parent: [BaseLeftHand, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "l_hand"
   - type: BodyPart #Backmen-Edit
     partType: Hand
@@ -110,7 +110,7 @@
   parent: [BaseRightHand, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "r_hand"
   - type: BodyPart #Backmen-Edit
     partType: Hand
@@ -122,7 +122,7 @@
   parent: [BaseLeftLeg, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "l_leg"
   - type: MovementBodyPart
     walkSpeed : 2.5
@@ -137,7 +137,7 @@
   parent: [BaseRightLeg, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "r_leg"
   - type: MovementBodyPart
     walkSpeed : 2.5
@@ -152,7 +152,7 @@
   parent: [BaseLeftFoot, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "l_foot"
   - type: BodyPart #Backmen-Edit
     partType: Foot
@@ -164,7 +164,7 @@
   parent: [BaseRightFoot, PartDemon]
   components:
   - type: Sprite
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: "r_foot"
   - type: BodyPart #Backmen-Edit
     partType: Foot

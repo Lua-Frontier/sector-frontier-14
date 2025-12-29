@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Icon
-    sprite: _ADT/Mobs/Demon/parts.rsi
+    sprite: _ADT/Mobs/Species/Demon/parts.rsi
     state: full_m
   - type: HumanoidAppearance
     species: Demon
@@ -14,22 +14,11 @@
     - HeadTop
     - HeadSide
     - Tail
-  - type: Hunger
-  - type: Thirst
-  - type: Sprite
-    netsync: false
-    noRot: true
-    drawdepth: Mobs
   - type: Body
     prototype: Demon
     requiredLegs: 2
-  - type: Speech
-    speechSounds: Lizard
-  - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
+  - type: Hunger
+  - type: Thirst
   - type: Damageable
     damageContainer: Biological
   - type: MeleeWeapon
@@ -41,6 +30,7 @@
     damage:
       types:
         Piercing: 5
+  - type: Wagging
   - type: Temperature
     heatDamageThreshold: 400
     coldDamageThreshold: 193  #starting temperature damage treshold
@@ -53,6 +43,13 @@
       types:
         Heat : 0.3 #per second, scales with temperature & other constants
   - type: Perishable
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: FemaleHuman
+  - type: Speech
+    speechSounds: Lizard
   - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
