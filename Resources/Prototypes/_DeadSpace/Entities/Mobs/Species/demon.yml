@@ -14,11 +14,22 @@
     - HeadTop
     - HeadSide
     - Tail
+  - type: Hunger
+  - type: Thirst
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: Mobs
   - type: Body
     prototype: Demon
     requiredLegs: 2
-  - type: Hunger
-  - type: Thirst
+  - type: Speech
+    speechSounds: Lizard
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: FemaleHuman
   - type: Damageable
     damageContainer: Biological
   - type: MeleeWeapon
@@ -43,13 +54,6 @@
       types:
         Heat : 0.3 #per second, scales with temperature & other constants
   - type: Perishable
-  - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
-  - type: Speech
-    speechSounds: Lizard
   - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
