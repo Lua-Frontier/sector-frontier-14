@@ -1,7 +1,7 @@
 - type: vessel
   id: Anaconda
   parent: BaseVesselAntag
-  name: RG Anaconda
+  name: Anaconda
   description: Легкая боевая артиллерия для стрельбы от второй линии
   limit: 1
   price: 150000
@@ -13,9 +13,7 @@
   - Pirate
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Anaconda
   mapName: 'Anaconda'
@@ -26,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Anaconda RG{1}'
+          mapNameTemplate: 'Anaconda {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

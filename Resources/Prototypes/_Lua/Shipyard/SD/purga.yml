@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: GFPurga
-  name: SD-GF Пурга
+  name: Пурга
   description: Хорошо бронированный штурмовик первой линии с 8 орудиями типа Marauder
   limit: 4
   price: 165000
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/purga.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: GFPurga
-  mapName: 'SD-GF Пурга'
+  mapName: 'Пурга'
   mapPath: /Maps/_Lua/Shuttles/SD/purga.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SD-GF Пурга {1}'
+        mapNameTemplate: 'Пурга {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

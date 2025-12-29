@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Fish
-  name: TY Fish
+  name: Fish
   description: Гордость старого флота Синдиката. Предназначен для перехвата шаттлов
     и экспедиций.
   price: 105270
@@ -17,13 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/fish.yml
-  addComponents:
 
-    - type: IFF
-      color: "#d93204"
 - type: gameMap
   id: Fish
-  mapName: 'TY Fish'
+  mapName: 'Fish'
   mapPath: /Maps/_Lua/Shuttles/Typan/fish.yml
   minPlayers: 0
   stations:
@@ -31,7 +28,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'TY Fish {1}'
+        mapNameTemplate: 'Fish {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

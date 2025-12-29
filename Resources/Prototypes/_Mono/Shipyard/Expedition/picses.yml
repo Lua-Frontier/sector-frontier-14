@@ -7,7 +7,7 @@
 - type: vessel
   id: Picses
   parent: BaseVessel
-  name: SKR Picses
+  name: Picses
   description: A compact but capable expedition ship, with durable hull plating too. This ship has a military IFF designation.
   price: 80250 # plastitanium tax...
   category: Medium
@@ -19,9 +19,7 @@
   - Expedition
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Picses
   mapName: 'Picses'
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Picses MIL{1}'
+          mapNameTemplate: 'Picses {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

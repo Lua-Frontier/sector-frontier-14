@@ -5,7 +5,7 @@
 - type: vessel
   id: Dram
   parent: BaseVessel
-  name: SHM Dram
+  name: Dram
   description: Originally a fuel tanker, refitted to accomodate a mobile space-bar. Bottoms up!
   price: 32250
   category: Medium
@@ -16,12 +16,10 @@
   - Civilian
   engine:
   - Plasma
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Dram
-  mapName: 'SHM Dram'
+  mapName: 'Dram'
   mapPath: /Maps/_Mono/Shuttles/dram.yml
   minPlayers: 0
   stations:
@@ -29,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Dram CIV{1}'
+          mapNameTemplate: 'Dram {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

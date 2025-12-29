@@ -6,7 +6,7 @@
 - type: vessel
   id: Legionnaire-DRV
   parent: BaseVesselAntag
-  name: Legionnaire-DRV
+  name: Legionnaire
   description: Слабо бронированный корабль поддержки, с совмещённым типом орудий.
   limit: 2
   price: 126500 #110000 x 1.15
@@ -21,12 +21,10 @@
   - Nfsd
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Legionnaire-DRV
-  mapName: 'Legionnaire-DRV'
+  mapName: 'Legionnaire'
   mapPath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-DRV.yml
   minPlayers: 0
   stations:
@@ -34,7 +32,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Legionnaire-DRV {1}'
+        mapNameTemplate: 'Legionnaire {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

@@ -7,7 +7,7 @@
 - type: vessel
   id: Seraphim
   parent: BaseVessel
-  name: SKR Seraphim
+  name: Seraphim
   description: A large, unarmed heavy freight transport.
   limit: 2
   price: 82530
@@ -20,12 +20,10 @@
   - Cargo
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Seraphim
-  mapName: 'SKR Seraphim'
+  mapName: 'Seraphim'
   mapPath: /Maps/_Mono/Shuttles/seraphim.yml
   minPlayers: 0
   stations:
@@ -33,7 +31,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Seraphim CIV{1}'
+          mapNameTemplate: 'Seraphim {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

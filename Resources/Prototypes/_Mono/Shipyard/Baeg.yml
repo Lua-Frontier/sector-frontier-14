@@ -7,7 +7,7 @@
 - type: vessel
   id: Baeg
   parent: BaseVessel
-  name: Z-22 Baeg
+  name: Baeg
   description: Ironically named it's tiny, compact and primarily used for short excursions or small time mining operations by IPCs...or organics that misunderstand its name, or are just desperate.
   price: 4800
   category: Micro
@@ -19,12 +19,10 @@
   - Salvage
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Baeg
-  mapName: 'Z-22 Baeg'
+  mapName: 'Baeg'
   mapPath: /Maps/_Mono/Shuttles/Baeg.yml
   minPlayers: 0
   stations:
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Baeg CIV{1}'
+          mapNameTemplate: 'Baeg {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

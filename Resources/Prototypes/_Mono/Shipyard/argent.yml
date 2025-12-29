@@ -7,7 +7,7 @@
 - type: vessel
   id: Argent
   parent: BaseVessel
-  name: TSF-SKR Argent
+  name: Argent
   description: A retired frigate gutted out and refurbished for cargo transport.
   price: 59500
   category: Large
@@ -19,12 +19,10 @@
   - Cargo
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Argent
-  mapName: 'TSF-SKR Argent'
+  mapName: 'Argent'
   mapPath: /Maps/_Mono/Shuttles/argent.yml
   minPlayers: 0
   stations:
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Argent CIV{1}'
+          mapNameTemplate: 'Argent {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

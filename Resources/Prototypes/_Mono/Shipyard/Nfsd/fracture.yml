@@ -1,7 +1,7 @@
 - type: vessel
   id: Fracture
   parent: BaseVesselAntag
-  name: TSF-SKR Fracture
+  name: Fracture
   description: Шаттл поддержки с сильными ЭМИ-пушками и парой тяжелых артиллерийских орудий
   price: 120000
   category: Medium
@@ -15,9 +15,7 @@
   - Nfsd
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Fracture
   mapName: 'Fracture'
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Fracture TSF{1}'
+        mapNameTemplate: 'Fracture {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

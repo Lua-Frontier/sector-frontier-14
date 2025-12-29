@@ -1,7 +1,7 @@
 - type: vessel
   id: Vega
   parent: BaseVesselAntag
-  name: RG Vega
+  name: Vega
   description: A frame manufactured from the remains of mothballed TSFMC ships. Carries a single CYREXA as its main armament.
   limit: 4
   price: 98626 # 2000 above min
@@ -13,9 +13,7 @@
   - Pirate
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Vega
   mapName: 'Vega'

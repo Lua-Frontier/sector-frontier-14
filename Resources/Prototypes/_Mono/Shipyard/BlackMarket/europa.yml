@@ -1,7 +1,7 @@
 - type: vessel
   id: Europa
   parent: BaseVesselAntag
-  name: BM-WK Europa
+  name: Europa
   description: Большой боевой корабль с тяжелым вооружением и крепкими стенами
   price: 280000
   limit: 1
@@ -14,12 +14,10 @@
   - Capital
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#8A6642FF"
+
 - type: gameMap
   id: Europa
-  mapName: 'BM-WK Europa'
+  mapName: 'Europa'
   mapPath: /Maps/_Mono/Shuttles/BlackMarket/europa.yml
   minPlayers: 0
   stations:
@@ -27,7 +25,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'BM-WK Europa {1}'
+          mapNameTemplate: 'Europa {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

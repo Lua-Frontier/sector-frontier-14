@@ -1,7 +1,7 @@
 - type: vessel
   id: Gadyuka
   parent: BaseVesselAntag
-  name: NCS Gadyuka
+  name: Gadyuka
   description: A small attack craft, ideal for dealing with small threats.
   price: 43300
   category: Small
@@ -24,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Gadyuka USSP{1}'
+          mapNameTemplate: 'Gadyuka {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

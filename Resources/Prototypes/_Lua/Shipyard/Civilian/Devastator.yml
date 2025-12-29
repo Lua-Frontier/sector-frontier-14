@@ -5,7 +5,7 @@
 - type: vessel
   id: Devastator
   parent: BaseVessel
-  name: NT-Devastator
+  name: Devastator
   description: Горно и газо добывабщий фрегат, предназначенный для исследования и добычи ресурсов в отдаленных уголках космоса.
   price: 66000
   category: medium
@@ -17,12 +17,10 @@
   - Atmospherics
   engine:
   - Bananium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Devastator
-  mapName: 'NT-Devastator'
+  mapName: 'Devastator'
   mapPath: /Maps/_Lua/Shuttles/Civilian/Devastator.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NT-Devastator {1}'
+          mapNameTemplate: 'Devastator {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

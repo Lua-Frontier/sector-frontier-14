@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Hunter
-  name: TY Hunter
+  name: Hunter
   description: Небольшой бронированный штурмовой шаттл синдиката, идеально подходящий для коварных операций!
   price: 70341
   category: Small
@@ -16,12 +16,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/hunter.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: Hunter
-  mapName: 'TY Hunter'
+  mapName: 'Hunter'
   mapPath: /Maps/_Lua/Shuttles/Typan/hunter.yml
   minPlayers: 0
   stations:
@@ -29,7 +27,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'TY Hunter {1}'
+          mapNameTemplate: 'Hunter {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

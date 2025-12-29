@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: MercXeno
-  name: MC Xeno
+  name: Xeno
   description: "Шаттл с тяжелыми артиллерийскими пушками и радаром. Для большой охоты."
   price: 255000
   category: Large
@@ -17,12 +17,10 @@
   engine:
   - AME
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Xeno.yml
-  addComponents:
-    - type: IFF
-      color: "#182faf"
+
 - type: gameMap
   id: MercXeno
-  mapName: 'NMXeno'
+  mapName: 'Xeno'
   mapPath: /Maps/_Lua/Shuttles/Mercenary/Xeno.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'MC Xeno {1}'
+          mapNameTemplate: 'Xeno {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

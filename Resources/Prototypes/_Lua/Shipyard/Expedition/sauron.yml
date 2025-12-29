@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Sauron
-  name: NT Sauron
+  name: Sauron
   description: Научный шаттл, сделанный под заказ известной компанией. Имеет возможность
     прыгать в экспедиции.
   limit: 3
@@ -18,12 +18,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/sauron.yml
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Sauron
-  mapName: 'NT Sauron'
+  mapName: 'Sauron'
   mapPath: /Maps/_Lua/Shuttles/Expedition/sauron.yml
   minPlayers: 0
   stations:
@@ -31,7 +29,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'NT Sauron {1}'
+        mapNameTemplate: 'Sauron {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

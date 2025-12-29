@@ -1,7 +1,7 @@
 - type: vessel
   id: Hydra
   parent: BaseVesselAntag
-  name: TY Hydra
+  name: Hydra
   description: A syndicate missile corvette meant for stealthy hit and runs and harassment.
   limit: 3
   price: 143428
@@ -14,9 +14,7 @@
   - Syndicate
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: Hydra
   mapName: 'Hydra'
@@ -27,7 +25,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NRD Hydra {1}'
+          mapNameTemplate: 'Hydra {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

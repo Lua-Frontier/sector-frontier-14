@@ -6,7 +6,7 @@
 - type: vessel
   id: Legionnaire-EMP
   parent: BaseVesselAntag
-  name: Legionnaire-EMP
+  name: Legionnaire
   description: слабо бронированный Корабль поддержки, предназначенный для радиоэлектронного подавления вражеских суден.
   limit: 2
   price: 141500 #123000 x 1.15
@@ -21,12 +21,10 @@
   - Nfsd
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Legionnaire-EMP
-  mapName: 'Legionnaire-EMP'
+  mapName: 'Legionnaire'
   mapPath: /Maps/_Mono/Shuttles/Nfsd/Legionnaire-EMP.yml
   minPlayers: 0
   stations:
@@ -34,7 +32,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Legionnaire-EMP {1}'
+        mapNameTemplate: 'Legionnaire {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

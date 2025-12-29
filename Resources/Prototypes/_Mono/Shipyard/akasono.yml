@@ -7,7 +7,7 @@
 - type: vessel
   id: Akasono
   parent: BaseVessel
-  name: SKR Akasono
+  name: Akasono
   description: A small entry-level gas deposit mining ship.
   price: 38250
   category: Medium
@@ -19,13 +19,10 @@
   - Civilian
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
 
 - type: gameMap
   id: Akasono
-  mapName: 'SKR Akasono'
+  mapName: 'Akasono'
   mapPath: /Maps/_Mono/Shuttles/akasono.yml
   minPlayers: 0
   stations:
@@ -33,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Akasono CIV{1}'
+          mapNameTemplate: 'Akasono {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

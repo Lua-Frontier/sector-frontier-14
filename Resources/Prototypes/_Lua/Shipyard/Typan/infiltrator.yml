@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Infiltrator
-  name: TY Infiltrator
+  name: Infiltrator
   description: Устаревший корабль для ядерных операций Синдиката, способный летать в экспедиции.
   limit: 1
   price: 112370 #85000
@@ -17,13 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/infiltrator.yml
-  addComponents:
 
-    - type: IFF
-      color: "#d93204"
 - type: gameMap
   id: Infiltrator
-  mapName: 'TY Infiltrator'
+  mapName: 'Infiltrator'
   mapPath: /Maps/_Lua/Shuttles/Typan/infiltrator.yml
   minPlayers: 0
   stations:
@@ -31,7 +28,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'TY Infiltrator {1}'
+          mapNameTemplate: 'Infiltrator {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

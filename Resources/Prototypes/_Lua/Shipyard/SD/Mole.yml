@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Mole
-  name: SD Mole
+  name: Mole
   description: Более укреплённый шаттл, в отличии от предшественника Граббера. Обладает
     импульсными пушками и медицинским отсеком.
   limit: 2
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/Mole.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Mole
-  mapName: 'SD Mole'
+  mapName: 'Mole'
   mapPath: /Maps/_Lua/Shuttles/SD/Mole.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SD Mole {1}'
+        mapNameTemplate: 'Mole {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

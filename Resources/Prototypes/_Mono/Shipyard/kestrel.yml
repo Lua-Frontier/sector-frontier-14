@@ -7,7 +7,7 @@
 - type: vessel
   id: Kestrel
   parent: BaseVessel
-  name: SKR Kestrel
+  name: Kestrel
   description: A small jump-capable science vessel meant for long-term missions. Comes with a living suite and a decent defensive armament for its size, though it is without much maneuvering performance.
   price: 54500
   category: Small
@@ -19,12 +19,10 @@
   - Civilian
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Kestrel
-  mapName: 'SKR Kestrel'
+  mapName: 'Kestrel'
   mapPath: /Maps/_Mono/Shuttles/kestrel.yml
   minPlayers: 0
   stations:
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Kestrel CIV{1}'
+          mapNameTemplate: 'Kestrel {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -7,7 +7,7 @@
 - type: vessel
   id: PraetorianEXPD
   parent: BaseVessel
-  name: TSF-SKR Praetorian-EX
+  name: Praetorian
   description: A Praetorian outfitted with a nav computer for expeditions. Other than that, functionally almost the same. This ship has a military IFF designation.
   price: 94801 # 2000 above min
   category: Medium
@@ -21,12 +21,10 @@
   - Expedition
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: PraetorianEXPD
-  mapName: 'TSF-SKR Praetorian-EX'
+  mapName: 'Praetorian'
   mapPath: /Maps/_Mono/Shuttles/Expedition/praetorian_expd.yml
   minPlayers: 0
   stations:
@@ -34,7 +32,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Praetorian-EX MIL{1}'
+          mapNameTemplate: 'Praetorian {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

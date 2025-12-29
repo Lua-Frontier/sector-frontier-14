@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: TYPioneer
-  name: TY Pioneer
+  name: Pioneer
   description: Корабль для секретных заданий и конспирации
   price: 42646
   category: Small
@@ -16,12 +16,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/pioneer.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: TYPioneer
-  mapName: 'TY Pioneer'
+  mapName: 'Pioneer'
   mapPath: /Maps/_Lua/Shuttles/Typan/pioneer.yml
   minPlayers: 0
   stations:
@@ -29,7 +27,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'TY Pioneer {1}'
+        mapNameTemplate: 'Pioneer {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -5,7 +5,7 @@
 - type: vessel
   id: Lancelot
   parent: BaseVesselAntag
-  name: ML-Lancelot
+  name: Lancelot
   description: Высокомобильный, но малобронированный эсминец, предназначенный для ближнего манёвренного боя и отлично показывающий себя в дуэли.
   limit: 1
   price: 305000
@@ -19,12 +19,10 @@
   - Syndicate
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: Lancelot
-  mapName: 'ML-Lancelot'
+  mapName: 'Lancelot'
   mapPath: /Maps/_Lua/Shuttles/Typan/Lancelot.yml
   minPlayers: 0
   stations:
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'ML-Lancelot {1}'
+          mapNameTemplate: 'Lancelot {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

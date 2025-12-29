@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: GFAsket
-  name: GF-Asket
+  name: Asket
   description: Большой корабль для исследования глубокого космоса и экспедиций. 
   price: 150000
   category: Large
@@ -17,12 +17,10 @@
   - Civilian
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: GFAsket
-  mapName: 'GF-Asket'
+  mapName: 'Asket'
   mapPath: /Maps/_Lua/Shuttles/Expedition/asket.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'GF Asket {1}'
+          mapNameTemplate: 'Asket {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

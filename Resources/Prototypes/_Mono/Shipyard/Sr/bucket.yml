@@ -13,9 +13,7 @@
   - Civilian
   engine:
   - Plasma
-  addComponents:
-    - type: IFF
-      color: "#d3ffa0"
+
 - type: gameMap
   id: Bucket
   mapName: 'Bucket'
@@ -26,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Bucket SRV{1}'
+          mapNameTemplate: 'Bucket {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

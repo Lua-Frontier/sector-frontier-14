@@ -5,7 +5,7 @@
 - type: vessel
   id: Eden
   parent: BaseVessel
-  name: SKR Eden
+  name: Eden
   description: A modestly sized botanical garden with a chemistry lab for pushing the bounds of hydroponics.
   price: 60000
   category: Medium
@@ -17,12 +17,10 @@
   - Medical
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Eden
-  mapName: 'SKR Eden'
+  mapName: 'Eden'
   mapPath: /Maps/_Mono/Shuttles/eden.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Eden MED{1}'
+          mapNameTemplate: 'Eden {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

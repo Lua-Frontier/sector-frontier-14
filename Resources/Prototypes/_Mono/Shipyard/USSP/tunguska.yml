@@ -1,7 +1,7 @@
 - type: vessel
   id: Tunguska
   parent: BaseVesselAntag
-  name: NCS Tunguska
+  name: Tunguska
   description: A refitted Seraphim with as many guns as it could sustain. Prepare for a onslaught of autocannon fire.
   limit: 1
   price: 301700 #215700
@@ -26,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Tunguska USSP{1}'
+          mapNameTemplate: 'Tunguska {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

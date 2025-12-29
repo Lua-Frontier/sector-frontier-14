@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Wasp
-  name: NSF Wasp
+  name: Wasp
   description: Крупный корабль для патруля космоса. Имеет вооружение и медицинский
     отсек.
   limit: 1
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/wasp.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Wasp
-  mapName: 'NSF Wasp'
+  mapName: 'Wasp'
   mapPath: /Maps/_Lua/Shuttles/SD/wasp.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'NSF Wasp {1}'
+        mapNameTemplate: 'Wasp {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

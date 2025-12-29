@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Hedgehog
-  name: MC Hedgehog
+  name: Hedgehog
   price: 16000
   category: Small
   group: Mercenary
@@ -15,12 +15,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Hedgehog.yml
-  addComponents:
-    - type: IFF
-      color: "#182faf"
+
 - type: gameMap
   id: Hedgehog
-  mapName: 'MC Hedgehog'
+  mapName: 'Hedgehog'
   mapPath: /Maps/_Lua/Shuttles/Mercenary/Hedgehog.yml
   minPlayers: 0
   stations:
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'MC Hedgehog {1}'
+          mapNameTemplate: 'Hedgehog {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
