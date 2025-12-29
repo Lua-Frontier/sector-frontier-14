@@ -9,21 +9,19 @@
   components:
   - type: StorageFill
     contents:
-      - id: EncryptionKeyCommon
-        amount: 2
-      - id: EncryptionKeyCargo
-        amount: 1
-      - id: EncryptionKeyEngineering
-        amount: 2
-      - id: EncryptionKeyService
-        amount: 2
       - id: EncryptionKeyTraffic
         amount: 2
+      - id: EncryptionKeyEngineering
+        amount: 2
+      - id: EncryptionKeyCargo
+        amount: 2
       - id: EncryptionKeyMedical
-        amount: 1
+        amount: 2
       - id: EncryptionKeyScience
-        amount: 1
+        amount: 2
       - id: EncryptionKeyMedicalScience
+        amount: 1
+      - id: EncryptionKeyCommon
         amount: 1
   - type: Sprite
     layers:

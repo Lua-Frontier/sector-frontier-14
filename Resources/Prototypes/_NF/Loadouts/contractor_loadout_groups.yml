@@ -900,12 +900,11 @@
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
   minLimit: 0
-  maxLimit: 6
+  maxLimit: 5
   loadouts:
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
   - ContractorEncryptionKeyCargo
-  - ContractorEncryptionKeyService # Lua
   - ContractorEncryptionKeyEngineering
   - ContractorEncryptionKeyScience
   fallbacks:
