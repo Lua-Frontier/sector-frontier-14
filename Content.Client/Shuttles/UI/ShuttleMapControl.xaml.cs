@@ -405,12 +405,12 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             var mapObject = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true);
             AddMapObject(existingEdges, existingVerts, mapObject);
 
-            // Text
-            if (iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0)
-                continue;
-
             // Force drawing it at this point.
             var iffText = _shuttles.GetIFFLabel(grid, self: true, component: iffComp);
+            if (iffText == null)
+            {
+                iffText = Loc.GetString("shuttle-console-unknown");
+            }
 
             if (string.IsNullOrEmpty(iffText))
                 continue;
