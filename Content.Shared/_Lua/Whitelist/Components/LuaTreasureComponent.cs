@@ -5,4 +5,4 @@
 namespace Content.Shared._Lua.Whitelist.Components;
 
 [RegisterComponent]
-public sealed partial class LuaSellableComponent : Component;
+public sealed partial class LuaTreasureComponent : Component;

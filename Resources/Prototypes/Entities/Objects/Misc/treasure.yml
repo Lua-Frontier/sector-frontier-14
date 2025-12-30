@@ -18,7 +18,7 @@
     color: "#0000ff"
   - type: StaticPrice
     price: 1000 #Lua 500<1000
-  - type: LuaSellable # Lua
+  - type: LuaTreasure # Lua
 
 - type: entity
   parent: BaseItem
@@ -41,7 +41,7 @@
         harddisk_micro: ""
   - type: StaticPrice
     price: 550 #Lua 275<550
-  - type: LuaSellable # Lua
+  - type: LuaTreasure # Lua
 
 - type: entity
   parent: BaseItem
@@ -57,7 +57,7 @@
     storedRotation: -90
   - type: StaticPrice
     price: 700 #Lua 350<700
-  - type: LuaSellable # Lua
+  - type: LuaTreasure # Lua
 
 - type: entity
   parent: BaseItem
@@ -73,7 +73,7 @@
     storedRotation: -90
   - type: StaticPrice
     price: 600 #Lua 300<600
-  - type: LuaSellable # Lua
+  - type: LuaTreasure # Lua
 
 - type: entity
   parent: BaseItem
@@ -89,7 +89,7 @@
     size: Tiny
   - type: StaticPrice
     price: 1500 #Lua 750<1500
-  - type: LuaSellable # Lua
+  - type: LuaTreasure # Lua
 
 - type: entity
   parent: BaseItem
@@ -113,7 +113,7 @@
         stabilizer: ""
   - type: StaticPrice
     price: 240 #Lua 120<240
-  - type: LuaSellable # Lua
+  - type: LuaTreasure # Lua
 
 - type: entityTable
   id: TreasureCoinPile
