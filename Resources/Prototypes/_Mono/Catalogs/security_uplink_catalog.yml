@@ -214,12 +214,12 @@
       - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMagazineSAW8x65mm
-  name: uplink-security-SAW8x65mm-boxmag-name
-  description: uplink-security-SAW8x65mm-boxmag-desc
-  productEntity: Magazine8x65mmSKRBox
+  id: UplinkSecurityMagazine762x51
+  name: uplink-security-762x51-boxmag-name
+  description: uplink-security-762x51-boxmag-desc
+  productEntity: AmmoBox762x51mmFMJ
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
   categories:
   - UplinkSecurityAmmo
   conditions:
@@ -356,24 +356,24 @@
         - Bailiff
         - Sheriff
 
-- type: listing
-  id: UplinkSecurityHardsuitJuggernaut
-  name:  uplink-security-hardsuit-experimental-name
-  description: uplink-security-hardsuit-experimental-desc
-  productEntity: ClothingOuterHardsuitTSFMCM92-X
-  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m92-x.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 40
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
+# - type: listing
+#   id: UplinkSecurityHardsuitJuggernaut
+#   name:  uplink-security-hardsuit-experimental-name
+#   description: uplink-security-hardsuit-experimental-desc
+#   productEntity: ClothingOuterHardsuitTSFMCM92-X
+#   icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m92-x.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 40
+#   categories:
+#     - UplinkSecurityHardsuits
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Sheriff
 
 - type: listing
   id: UplinkSecurityHardsuitM92
