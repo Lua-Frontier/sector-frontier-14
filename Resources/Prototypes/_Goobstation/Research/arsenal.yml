@@ -21,7 +21,7 @@
   - WeaponMechCombatUltraRifle
   technologyPrerequisites:
   - Ripley2
-  position: 4, 16
+  position: 3, 17 # Lua: 4, 16 < 3, 17
 
 # Tier 2
 
@@ -36,7 +36,7 @@
   - WeaponMechCombatMissileRack8
   technologyPrerequisites:
   - NFExplosiveTechnology
-  position: 4, 15
+  position: 4, 41 # Lua: 4, 15 < 4, 41
 
 - type: technology
   id: Durand
@@ -60,4 +60,4 @@
   - WeaponMechCombatShotgunIncendiary
   technologyPrerequisites:
   - Gygax
-  position: 5, 16
+  position: 4, 17 # Lua: 5, 16 < 4, 17
