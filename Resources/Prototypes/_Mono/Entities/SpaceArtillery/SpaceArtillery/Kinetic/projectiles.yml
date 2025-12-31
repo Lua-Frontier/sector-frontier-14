@@ -23,7 +23,6 @@
       types:
         Structural: 55000
         Blunt: 3000
-        Ion: 600
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
     layers:
@@ -211,6 +210,45 @@
   - type: Explosive
     explosionType: DefaultShipGun
 
+# 140mm Longbow
+
+- type: entity
+  id: ShipLongbowProjectile
+  name: longbow 140mm HEAT projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 3500
+        Piercing: 4000
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
+    layers:
+    - state: base-projectile
+    scale: 1.25, 1.25
+  - type: Ammo
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    scale: 3.25
+    requireNoGrid: true
+    shape: arrow
+    radarColor: "#f7dc0c"
+  - type: TimedDespawn
+    lifetime: 3
+  - type: PointLight
+    color: "#FCBA03"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 400
+    intensitySlope: 18
+    maxIntensity: 1900
+  - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
+
 # 220mm Cyrexa
 
 - type: entity
@@ -224,7 +262,6 @@
       types:
         Structural: 6500
         Blunt: 10000
-        Ion: 17500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:
@@ -264,7 +301,6 @@
       types:
         Structural: 8500
         Blunt: 12000
-        Ion: 20000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:
@@ -304,7 +340,6 @@
       types:
         Structural: 6000
         Blunt: 7500
-        Ion: 14000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:
@@ -345,7 +380,6 @@
       types:
         Structural: 12500
         Blunt: 15000
-        Ion: 30000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
     layers:

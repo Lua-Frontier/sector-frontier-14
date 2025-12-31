@@ -1,0 +1,65 @@
+# Mags
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: Magazine20mmPiercingAmmoRecipe
+  result: Magazine20mmPiercing
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine30mmAmmoRecipe
+  result: Magazine30mm
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine57mmAmmoRecipe
+  result: Magazine57mm
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: Magazine90mmAmmoRecipe
+  result: Magazine90mm
+
+- type: latheRecipe
+  parent: BaseHeavyShipgunAmmoRecipe
+  id: Magazine140mmAmmoRecipe
+  result: Magazine140mm
+
+# Individual
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: 220mmCartridgeAmmoRecipe
+  result: 220mmCartridge
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: 203mmCartridgeAmmoRecipe
+  result: 203mmCartridge
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: 255mmCartridgeAmmoRecipe
+  result: 255mmCartridge
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: CharonetteSlugCartridgeAmmoRecipe
+  result: CharonetteSlugAmmo
+
+# Missiles
+
+- type: latheRecipe
+  parent: BaseMissileShipgunAmmoRecipe
+  id: VanykCartridgeAmmoRecipe
+  result: VanykCartridge
+
+- type: latheRecipe
+  parent: BaseMissileShipgunAmmoRecipe
+  id: TovekCartridgeAmmoRecipe
+  result: TovekCartridge
+
+- type: latheRecipe
+  parent: BaseLightMissileShipgunAmmoRecipe
+  id: VesperaCartridgeAmmoRecipe
+  result: VesperaCartridge

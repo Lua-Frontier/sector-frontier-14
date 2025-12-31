@@ -531,6 +531,13 @@
       - RMCAmmoPack
       - N14AmmoPack
       - MonoAmmoPack
+      - RoundstartShipgunAmmo # Mono
+      dynamicPacks:
+      # Mono start
+      - UniversalRailgunAmmo
+      - UniversalMissileAmmo
+      - UniversalShellAmmo
+      # Mono end
     - type: MaterialStorage
       whitelist:
         tags:

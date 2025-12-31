@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Blu
+// SPDX-FileCopyrightText: 2025 ark1368
+//
+// SPDX-License-Identifier: MPL-2.0
+
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -36,5 +42,11 @@ public sealed partial class SpaceArtilleryComponent : Component
     /// </summary>
     [DataField("spaceArtilleryFirePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string SpaceArtilleryFirePort = "SpaceArtilleryFire";
+
+    /// <summary>
+    /// Signal port for receiving ammo from an ammo loader.
+    /// </summary>
+    [DataField("spaceArtilleryLoadPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+    public string SpaceArtilleryLoadPort = "SpaceArtilleryLoad";
 
 }

@@ -60,6 +60,13 @@
     - NfsdToolsStatic
     - NfsdTargetsStatic
     - NfsdBoardsStatic
+    - RoundstartShipgunAmmo # Mono
+    dynamicPacks:
+    # Mono start
+    - UniversalShellAmmo
+    - UniversalRailgunAmmo
+    - UniversalMissileAmmo
+    # Mono end
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -113,6 +120,13 @@
     - NFMercenaryMagazineStatic
     - NFTopicalsStatic
     - NFMercenaryArchetypeStatic
+    - RoundstartShipgunAmmo # Mono
+    dynamicPacks:
+    # Mono start
+    - UniversalRailgunAmmo
+    - UniversalMissileAmmo
+    - UniversalShellAmmo
+    # Mono end
   - type: BlueprintReceiver
     whitelist:
       tags:

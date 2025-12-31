@@ -4,7 +4,26 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: latheRecipePack
-  id: UniversalTorpedoAmmo
+  id: RoundstartShipgunAmmo
+  recipes:
+  # Magfed
+  - Magazine20mmPiercingAmmoRecipe
+  - Magazine30mmAmmoRecipe
+  - Magazine57mmAmmoRecipe
+  - Magazine90mmAmmoRecipe
+  - Magazine140mmAmmoRecipe
+  # Individual load
+  - 220mmCartridgeAmmoRecipe
+  - 203mmCartridgeAmmoRecipe
+  - 255mmCartridgeAmmoRecipe
+  - CharonetteSlugCartridgeAmmoRecipe
+  # Missiles
+  - VanykCartridgeAmmoRecipe
+  - TovekCartridgeAmmoRecipe
+  - VesperaCartridgeAmmoRecipe
+
+- type: latheRecipePack
+  id: UniversalMissileAmmo
   recipes:
   - ASM220TorpedoHEUniversal
   - ASM220TorpedoECMUniversal
