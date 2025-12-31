@@ -20,7 +20,7 @@
     - state: icon
       map: ["enum.GunVisualLayers.Base"]
   - type: Gun
-    projectileSpeed: 22.5
+    projectileSpeed: 45 #Lua
     minAngle: 2.3
     maxAngle: 11.5
     angleIncrease: 0.6
@@ -192,7 +192,7 @@
     proto: CartridgeHighCaliber
     chambers: [ True ]
     ammoSlots: [ null ]
-    
+
 # Cap guns and fake cap guns
 - type: entity
   abstract: true

@@ -71,7 +71,6 @@ using Robust.Shared.Containers;
 using Content.Shared.Interaction; // Frontier
 using Content.Shared.Examine; // Frontier
 using Content.Shared.Hands.Components;
-using Content.Shared._Mono;
 using Content.Shared.Power;
 using Robust.Shared.Physics.Components; // Frontier
 
