@@ -801,9 +801,6 @@
   - type: Icon
     sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
     state: state0
-  - type: RCDDeconstructable # Lua
-    cost: 6 # Lua
-    delay: 8 # Lua
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -834,6 +831,9 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalReinforcedWall
+  - type: RCDDeconstructable # Lua
+    cost: 6 # Lua
+    delay: 8 # Lua
 
 # Riveting
 - type: entity
@@ -1161,9 +1161,6 @@
   - type: Icon
     sprite: _NF/Structures/Walls/solid_diagonal.rsi # Frontier: use _NF variant
     state: state0
-  - type: RCDDeconstructable # Lua
-    cost: 6 # Lua
-    delay: 8 # Lua
   - type: Destructible
     thresholds:
     - trigger:
@@ -1189,6 +1186,9 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalWall
+  - type: RCDDeconstructable # Lua
+    cost: 6 # Lua
+    delay: 8 # Lua
 
 - type: entity
   parent: WallSolid

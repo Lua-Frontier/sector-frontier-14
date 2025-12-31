@@ -1,3 +1,21 @@
+ent-BaseChemistryEmptyBottle = бутылочка
+    .desc = Маленькая бутылочка.
+
+ent-ChemistryEmptyBottle01 = { ent-BaseChemistryEmptyBottle }
+    .desc = { ent-BaseChemistryEmptyBottle.desc }
+
+ent-ChemistryEmptyBottle02 = широкая { ent-BaseChemistryEmptyBottle } с наклейкой
+    .desc = { ent-BaseChemistryEmptyBottle.desc }
+
+ent-ChemistryEmptyBottle03 = { ent-BaseChemistryEmptyBottle } с наклейкой
+    .desc = { ent-BaseChemistryEmptyBottle.desc }
+
+ent-ChemistryEmptyBottle04 = широкая { ent-BaseChemistryEmptyBottle }
+    .desc = { ent-BaseChemistryEmptyBottle.desc }
+
+ent-BaseChemistryBottleFilled = { ent-BaseChemistryEmptyBottle }
+    .desc = { ent-BaseChemistryEmptyBottle.desc }
+
 ent-ChemistryBottleRobustHarvest = { ent-BaseChemistryBottleFilled }
     .desc = { ent-BaseChemistryBottleFilled.desc }
     .suffix = робаст харвест

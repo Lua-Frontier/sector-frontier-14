@@ -708,6 +708,12 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     protected void DrawData(DrawingHandleScreen handle, string text, Color color)
     {
         // Lua start
+
+        //var font = _font;
+        //var dimensions = handle.GetDimensions(font, text, 1f);
+        //var position = new Vector2(15f, Height - dimensions.Y - 15f);
+        //handle.DrawString(font, position, text, color);
+
         var uiScale = _cfg.GetCVar(CCVars.DisplayUIScale);
         var position = new Vector2(Width * 0.05f * uiScale, Height * 0.925f * uiScale);
         handle.DrawString(_font, position, text, color);

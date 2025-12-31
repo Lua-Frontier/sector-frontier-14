@@ -4,5 +4,8 @@
 
 namespace Content.Shared._Lua.Whitelist.Components;
 
+/// <summary>
+///     Marks entity as treasure to be stored in the treasure chest.
+/// </summary>
 [RegisterComponent]
 public sealed partial class LuaTreasureComponent : Component;
