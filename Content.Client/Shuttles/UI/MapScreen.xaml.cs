@@ -348,13 +348,14 @@ public sealed partial class MapScreen : BoxContainer
                     serviceFlagsText = _shuttles.GetServiceFlagsSuffix(iffComp.ServiceFlags);
                 }
 
+                var flags = iffComp?.Flags ?? IFFFlags.None; //Lua decrypt mod 
                 var gridObj = new GridMapObject()
                 {
                     Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName + serviceFlagsText,
                     // Frontier: Service Flags
                     ServiceFlags = iffComp?.ServiceFlags ?? ServiceFlags.None,
                     Entity = grid.Owner,
-                    HideButton = iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0,
+                    HideButton = (flags & IFFFlags.HideLabel) != 0x0 || (flags & IFFFlags.HideLabelShuttle) != 0x0, //Lua decrypt mod 
                 };
 
                 // Always show our shuttle immediately
@@ -364,9 +365,13 @@ public sealed partial class MapScreen : BoxContainer
                 }
 
                 // If we can show it then add it to pending.
-                else if (!_shuttles.IsBeaconMap(mapUid) && (iffComp == null ||
-                         (iffComp.Flags & IFFFlags.Hide | iffComp.Flags & IFFFlags.HideLabel) == 0x0) && // Frontier: add HideLabel check
-                         !gridObj.HideButton)
+                else if (
+                    !_shuttles.IsBeaconMap(mapUid) &&
+                    (iffComp == null ||
+                     ((flags & IFFFlags.Hide) == 0x0 &&
+                      (flags & IFFFlags.HideLabel) == 0x0 &&
+                      (flags & IFFFlags.HideLabelShuttle) == 0x0)) && // Lua decrypt mod
+                    !gridObj.HideButton)
                 {
                     _pendingMapObjects.Add((mapComp.MapId, gridObj));
                 }
