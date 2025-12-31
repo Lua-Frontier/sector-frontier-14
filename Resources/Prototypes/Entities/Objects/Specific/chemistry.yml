@@ -443,6 +443,12 @@
   - type: Tag
     tags:
     - Syringe
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25
+      Steel: 5
+  # Lua end
 
 - type: entity
   parent: BaseSyringe

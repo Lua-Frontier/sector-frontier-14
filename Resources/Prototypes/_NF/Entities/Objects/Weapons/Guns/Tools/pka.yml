@@ -41,6 +41,13 @@
     price: 0 # WizDen price
   - type: NFWeaponDetails
     class: weapon-details-class-tool
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      RawScrap: 30
+      Plastic: 30
+  # Lua end
 
 #region manufacturer
 - type: entity

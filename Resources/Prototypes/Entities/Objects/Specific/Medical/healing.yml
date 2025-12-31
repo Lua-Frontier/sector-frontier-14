@@ -51,6 +51,12 @@
     count: 10
   - type: StackPrice
     price: 5
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 5
+      Glass: 5
+  # Lua end
 
 - type: entity
   id: Ointment1
@@ -162,6 +168,12 @@
     count: 10
   - type: StackPrice
     price: 5
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 5
+      Steel: 5
+  # Lua end
 
 - type: entity
   id: Brutepack1
@@ -366,6 +378,11 @@
     count: 10
   - type: StackPrice
     price: 5 # Frontier 10<5
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+  # Lua end
 
 - type: entity
   id: Gauze1

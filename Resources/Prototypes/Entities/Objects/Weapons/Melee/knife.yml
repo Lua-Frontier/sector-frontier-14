@@ -44,6 +44,11 @@
       - Slicing
     useSound:
       path: /Audio/Items/Culinary/chop.ogg
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+  # Lua end
 
 - type: entity
   name: kitchen knife
