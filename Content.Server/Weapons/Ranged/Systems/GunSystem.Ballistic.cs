@@ -2,7 +2,9 @@
 // SPDX-FileCopyrightText: 2022 metalgearsloth
 // SPDX-FileCopyrightText: 2023 DrSmugleaf
 // SPDX-FileCopyrightText: 2023 TemporalOroboros
+// SPDX-FileCopyrightText: 2025 Ilya246
 // SPDX-FileCopyrightText: 2025 ark1368
+// SPDX-FileCopyrightText: 2025 kasature90
 // SPDX-FileCopyrightText: 2025 tonotom
 // SPDX-FileCopyrightText: 2025 tonotom1
 //
@@ -40,7 +42,7 @@ public sealed partial class GunSystem
             Containers.Remove(existing, component.Container);
             EnsureShootable(existing);
         }
-        else if (component.UnspawnedCount > 0)
+        else if (component.UnspawnedCount > 0 && !component.InfiniteUnspawned) // Mono - no ammo generator
         {
             component.UnspawnedCount--;
             DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));

@@ -34,6 +34,7 @@
 // SPDX-FileCopyrightText: 2024 keronshb
 // SPDX-FileCopyrightText: 2024 nikthechampiongr
 // SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Ilya246
 // SPDX-FileCopyrightText: 2025 Leon Friedrich
 // SPDX-FileCopyrightText: 2025 SlamBamActionman
 //
@@ -101,7 +102,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)
     {
-        if (string.IsNullOrEmpty(component.Proto) || component.UnspawnedCount == 0)
+        if (string.IsNullOrEmpty(component.Proto) || component.UnspawnedCount == 0 || component.InfiniteUnspawned) // Mono
             return;
 
         if (!ProtoManager.TryIndex<EntityPrototype>(component.Proto, out var proto))

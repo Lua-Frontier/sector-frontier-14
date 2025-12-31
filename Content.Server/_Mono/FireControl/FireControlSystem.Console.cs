@@ -1,23 +1,26 @@
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 ark1368
-// SPDX-FileCopyrightText: 2025 sleepyyapril
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 // Copyright Rane (elijahrane@gmail.com) 2025
 // All rights reserved. Relicensed under AGPL with permission
 
 using Content.Server._Mono.Ships.Systems;
+using Content.Server.Administration.Logs;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Mono.FireControl;
+using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.UserInterface;
+using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Timing;
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Server._Mono.FireControl;
 
@@ -28,6 +31,9 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IMapManager _mapMan = default!;
 
     private bool _completedCheck = false;
 
@@ -265,9 +271,44 @@ public sealed partial class FireControlSystem : EntitySystem
 
         if (TryComp<BallisticAmmoProviderComponent>(weaponEntity, out var ballisticAmmo))
         {
-            return (ballisticAmmo.Count, ballisticAmmo.Cycleable);
+            // if we're InfiniteUnspawned consider us to be non-reloading when at 0 ammo
+            return (ballisticAmmo.Count, ballisticAmmo.Cycleable && (ballisticAmmo.Count != 0 || !ballisticAmmo.InfiniteUnspawned));
+        }
+
+        if (TryComp<MagazineAmmoProviderComponent>(weaponEntity, out var magazineAmmo))
+        {
+            var magazineEntity = GetMagazineEntity(weaponEntity);
+            if (magazineEntity != null)
+            {
+                if (TryComp<BallisticAmmoProviderComponent>(magazineEntity, out var magazineBallisticAmmo))
+                {
+                    var hasAmmo = magazineBallisticAmmo.Cycleable
+                             && (magazineBallisticAmmo.Count != 0 || !magazineBallisticAmmo.InfiniteUnspawned);
+                    return (magazineBallisticAmmo.Count, hasAmmo);
+                }
+
+                if (TryComp<BasicEntityAmmoProviderComponent>(magazineEntity, out var magazineBasicAmmo))
+                {
+                    var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(magazineEntity);
+                    return (magazineBasicAmmo.Count, !hasRecharge);
+                }
+            }
         }
 
         return (null, false);
+    }
+
+    /// <summary>
+    /// Gets the magazine entity from a weapon's magazine slot.
+    /// </summary>
+    private EntityUid? GetMagazineEntity(EntityUid weaponEntity)
+    {
+        if (!_containers.TryGetContainer(weaponEntity, "gun_magazine", out var container) ||
+            container is not ContainerSlot slot)
+        {
+            return null;
+        }
+
+        return slot.ContainedEntity;
     }
 }

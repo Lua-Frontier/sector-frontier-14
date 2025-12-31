@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2025 Ark
+// SPDX-FileCopyrightText: 2025 Ilya246
 // SPDX-FileCopyrightText: 2025 ark1368
 //
 // SPDX-License-Identifier: MPL-2.0
@@ -151,7 +152,7 @@ public sealed partial class FireControlWindow : FancyWindow
     {
         if (button.Pressed && controllable.HasManualReload && controllable.AmmoCount.HasValue)
         {
-            button.Text = controllable.AmmoCount.Value.ToString();
+            button.Text = Loc.GetString("gunnery-gun-select-ammo", ("name", controllable.Name), ("ammo", controllable.AmmoCount.Value));
 
             if (controllable.AmmoCount.Value == 0)
             {
@@ -164,7 +165,7 @@ public sealed partial class FireControlWindow : FancyWindow
         }
         else
         {
-            button.Text = controllable.Name;
+            button.Text = Loc.GetString("gunnery-gun-select", ("name", controllable.Name));
             button.ModulateSelfOverride = null;
         }
     }

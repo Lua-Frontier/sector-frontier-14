@@ -1,6 +1,20 @@
+// SPDX-FileCopyrightText: 2022 Kara
+// SPDX-FileCopyrightText: 2022 Leon Friedrich
+// SPDX-FileCopyrightText: 2023 Scribbles0
+// SPDX-FileCopyrightText: 2023 TaralGit
+// SPDX-FileCopyrightText: 2023 and_a
+// SPDX-FileCopyrightText: 2023 metalgearsloth
+// SPDX-FileCopyrightText: 2024 DrSmugleaf
+// SPDX-FileCopyrightText: 2024 geraeumig
+// SPDX-FileCopyrightText: 2025 Ilya246
+// SPDX-FileCopyrightText: 2025 slarticodefast
+//
+// SPDX-License-Identifier: MPL-2.0
+
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Components; // Mono
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 
@@ -33,7 +47,13 @@ public abstract partial class SharedGunSystem
             return;
 
         var (count, _) = GetMagazineCountCapacity(uid, component);
-        args.PushMarkup(Loc.GetString("gun-magazine-examine", ("color", AmmoExamineColor), ("count", count)));
+
+        // Mono
+        var mag = GetMagazineEntity(uid);
+        if (TryComp<BallisticAmmoProviderComponent>(mag, out var ballistic) && ballistic.InfiniteUnspawned)
+            args.PushMarkup(Loc.GetString("gun-magazine-infinite-examine", ("color", AmmoExamineSpecialColor), ("count", count)));
+        else
+            args.PushMarkup(Loc.GetString("gun-magazine-examine", ("color", AmmoExamineColor), ("count", count)));
     }
 
     private void OnMagazineUse(EntityUid uid, MagazineAmmoProviderComponent component, UseInHandEvent args)
