@@ -18,8 +18,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Configuration; // Lua
-using Content.Shared.CCVar; // Lua
 
 namespace Content.Client.Shuttles.UI;
 
@@ -29,7 +27,6 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IInputManager _inputs = default!;
     [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
 
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
@@ -707,16 +704,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     /// </summary>
     protected void DrawData(DrawingHandleScreen handle, string text, Color color)
     {
-        // Lua start
-
-        //var font = _font;
-        //var dimensions = handle.GetDimensions(font, text, 1f);
-        //var position = new Vector2(15f, Height - dimensions.Y - 15f);
-        //handle.DrawString(font, position, text, color);
-
-        var uiScale = _cfg.GetCVar(CCVars.DisplayUIScale);
-        var position = new Vector2(Width * 0.05f * uiScale, Height * 0.925f * uiScale);
-        handle.DrawString(_font, position, text, color);
-        // Lua end
+        var font = _font;
+        var dimensions = handle.GetDimensions(font, text, 1f);
+        var position = new Vector2(15f, Height - dimensions.Y - 15f);
+        handle.DrawString(font, position, text, color);
     }
 }
