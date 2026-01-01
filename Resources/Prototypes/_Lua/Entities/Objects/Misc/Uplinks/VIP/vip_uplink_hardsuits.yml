@@ -60,6 +60,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Vip
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkClothingOuterHardsuitShareholderSyn
@@ -78,5 +80,7 @@
   - !type:BuyerJobCondition
     whitelist:
     - OutpostSyndicateShareholder
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 
