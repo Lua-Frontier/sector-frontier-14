@@ -11,6 +11,10 @@
   spawnGroup: AsteroidMarketStation
   gridPath: /Maps/_Lua/POI/asteroidtradeoutpost.yml
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/black_market.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: IFF
     color: "#741010"
   - type: ProtectedGrid

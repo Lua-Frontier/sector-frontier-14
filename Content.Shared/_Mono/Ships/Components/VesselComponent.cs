@@ -9,11 +9,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Mono.Ships.Components;
 
 /// <summary>
-/// This is used for storing the ID of the VesselPrototype for a ship.
+/// This is used for storing the ID of the VesselPrototype for a ship. Lua mod icon add Auto
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VesselComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField]
     public ProtoId<VesselPrototype> VesselId { get; set; }
 }

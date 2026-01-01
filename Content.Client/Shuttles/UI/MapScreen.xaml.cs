@@ -348,14 +348,14 @@ public sealed partial class MapScreen : BoxContainer
                     serviceFlagsText = _shuttles.GetServiceFlagsSuffix(iffComp.ServiceFlags);
                 }
 
-                var flags = iffComp?.Flags ?? IFFFlags.None; //Lua decrypt mod 
+                var flags = iffComp?.Flags ?? IFFFlags.None; // Lua decrypt mod
                 var gridObj = new GridMapObject()
                 {
                     Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName + serviceFlagsText,
                     // Frontier: Service Flags
                     ServiceFlags = iffComp?.ServiceFlags ?? ServiceFlags.None,
                     Entity = grid.Owner,
-                    HideButton = (flags & IFFFlags.HideLabel) != 0x0 || (flags & IFFFlags.HideLabelShuttle) != 0x0, //Lua decrypt mod 
+                    HideButton = (flags & IFFFlags.HideLabel) != 0x0 || (flags & IFFFlags.HideLabelShuttle) != 0x0, // Lua decrypt mod
                 };
 
                 // Always show our shuttle immediately

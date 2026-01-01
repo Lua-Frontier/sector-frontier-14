@@ -12,6 +12,10 @@
     Typan:
       stationProto: StandardTypanVessel
       components:
+      - type: RadarBlipIcon
+        icon: /Textures/_Lua/Interface/Radar/space-station.png
+        scale: 1.2
+        allowWhenHidden: true
       - type: MailStationDisabled
       - type: StationNameSetup
         mapNameTemplate: 'Нордфолл'
@@ -42,6 +46,10 @@
     Typan:
       stationProto: StandardTypanVessel
       components:
+      - type: RadarBlipIcon
+        icon: /Textures/_Lua/Interface/Radar/space-station.png
+        scale: 1.2
+        allowWhenHidden: true
       - type: MailStationDisabled
       - type: StationNameSetup
         mapNameTemplate: 'Нордфолл'

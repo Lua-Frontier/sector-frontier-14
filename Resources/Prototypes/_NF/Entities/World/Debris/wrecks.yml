@@ -3,6 +3,11 @@
   parent: NFBaseDebris
   abstract: true
   components:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/wreck.png
+    scale: 1.2
+    maxDistance: 600
+    allowWhenHidden: true
   - type: BlobFloorPlanBuilder
     floorTileset:
       - Plating
@@ -97,6 +102,7 @@
         - id: GrilleBroken
           prob: 0.25
   - type: IFF
+    flags: HideLabel
     color: "#88b0d1"
 
 - type: entity
@@ -104,6 +110,11 @@
   parent: NFBaseDebris
   abstract: true
   components:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/wreck.png
+    scale: 1.2
+    maxDistance: 600
+    allowWhenHidden: true
   - type: BlobFloorPlanBuilder
     floorTileset:
       - PlatingBrass
@@ -159,6 +170,7 @@
         - id: ClockworkGrilleBroken
           prob: 0.25
   - type: IFF
+    flags: HideLabel
     color: "#E1C16E"
 
 # region Wreck Sizes

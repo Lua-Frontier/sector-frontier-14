@@ -23,7 +23,13 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
+      flags: HideLabel
       color: "#d67e27"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidGas
@@ -76,7 +82,13 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
+      flags: HideLabel
       color: "#d6fffc"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidIceGas
@@ -132,7 +144,13 @@
             orGroup: rock
             prob: 0.0003
     - type: IFF
+      flags: HideLabel
       color: "#95c280"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidAndesiteGas
@@ -180,7 +198,13 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
+      flags: HideLabel
       color: "#b5b5b5"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidBasaltGas
@@ -227,7 +251,13 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
+      flags: HideLabel
       color: "#cad17b"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidSandGas
@@ -274,7 +304,13 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
+      flags: HideLabel
       color: "#8178cc"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidChromiteGas
@@ -321,7 +357,13 @@
             orGroup: rock
             prob: 0.0002
     - type: IFF
+      flags: HideLabel
       color: "#BF8C5C"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 
 - type: entity
   id: NFBaseAsteroidRockGas
@@ -366,7 +408,13 @@
             orGroup: rock
             prob: 0.05
     - type: IFF
+      flags: HideLabel
       color: "#fcdec7"
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
 # endregion Scrap Table
 
 # region Asteroid Sizes

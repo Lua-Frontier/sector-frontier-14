@@ -10,6 +10,10 @@
     Frontier:
       stationProto: MarketFrontierOutpost #Lua StandardFrontierStation<MarketFrontierOutpost
       components:
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/space-station.png
+          scale: 1.2
+          allowWhenHidden: true
         - type: StationNameSetup
           mapNameTemplate: 'Станция Фронтир'
 #          nameGenerator:

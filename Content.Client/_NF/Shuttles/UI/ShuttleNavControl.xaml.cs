@@ -112,22 +112,10 @@ public partial class ShuttleNavControl // Mono
         return shouldDrawIff;
     }
 
-    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color)
-    {
-        blipDataList.Add(new BlipData
-        {
-            IsOutsideRadarCircle = isOutsideRadarCircle,
-            UiPosition = uiPosition,
-            VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
-            Color = color
-        });
-    }
-
-
     /// <summary>
     /// Adds a blip to the blip data list for later drawing.
     /// </summary>
-    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color, EntityUid gridUid = default)
+    private static void NFAddBlipToList(List<BlipData> blipDataList, bool isOutsideRadarCircle, Vector2 uiPosition, int uiXCentre, int uiYCentre, Color color, float scale = 1f, EntityUid gridUid = default)
     {
         // Check if the entity has a company component and use that color if available
         Color blipColor = color;
@@ -148,7 +136,8 @@ public partial class ShuttleNavControl // Mono
             IsOutsideRadarCircle = isOutsideRadarCircle,
             UiPosition = uiPosition,
             VectorToPosition = uiPosition - new Vector2(uiXCentre, uiYCentre),
-            Color = blipColor
+            Color = blipColor,
+            Scale = scale
         });
     }
 
@@ -162,11 +151,12 @@ public partial class ShuttleNavControl // Mono
 
         foreach (var blipData in blipDataList)
         {
+            var s = blipData.Scale <= 0f ? 1f : blipData.Scale; // Lua mod icon
             var triangleShapeVectorPoints = new[]
             {
                 new Vector2(0, 0),
-                new Vector2(RadarBlipSize, 0),
-                new Vector2(RadarBlipSize * 0.5f, RadarBlipSize)
+                new Vector2(RadarBlipSize * s, 0), // Lua mod icon
+                new Vector2(RadarBlipSize * 0.5f * s, RadarBlipSize * s)  // Lua mod icon
             };
 
             if (blipData.IsOutsideRadarCircle)

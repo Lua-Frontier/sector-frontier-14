@@ -420,9 +420,10 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             var gridUiPos = ScalePosition(gridRelativePos);
 
             // Lua decrypt mod start
-            var hideLabel = iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0;
-            var hideLabelShuttle = iffComp != null && (iffComp.Flags & IFFFlags.HideLabelShuttle) != 0x0;
-            if (hideLabel && !hideLabelShuttle)
+            var flags = iffComp?.Flags ?? IFFFlags.None;
+            var hideLabel = (flags & IFFFlags.HideLabel) != 0x0;
+            var hideLabelShuttle = (flags & IFFFlags.HideLabelShuttle) != 0x0;
+            if (!hideLabelShuttle && hideLabel)
             {
                 var mapObject = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true);
                 AddMapObject(existingEdges, existingVerts, mapObject);
