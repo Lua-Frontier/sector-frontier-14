@@ -53,4 +53,16 @@ public sealed class CompanyPrototype : IPrototype
     /// </summary>
     [DataField("logins", required: false)]
     public List<string> Logins { get; private set; } = new();
+
+    /// <summary>
+    /// Дружественая видимость на радаре
+    /// </summary>
+    [DataField]
+    public bool AliesOnRadar { get; private set; } = false;
+
+    /// <summary>
+    /// Видно всегда на радаре
+    /// </summary>
+    [DataField]
+    public bool ShowCompanyRadar { get; private set; } = false;
 }

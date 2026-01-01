@@ -378,9 +378,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         // Lua start
         Vector2 viewerPos = default;
         var haveViewerPos = false;
-        if (_shuttleEntity != null &&
-            EntManager.EntityExists(_shuttleEntity.Value) &&
-            EntManager.TryGetComponent<MapGridComponent>(_shuttleEntity.Value, out var viewerGridComp))
+        if (_shuttleEntity != null && EntManager.EntityExists(_shuttleEntity.Value) && EntManager.TryGetComponent<MapGridComponent>(_shuttleEntity.Value, out var viewerGridComp))
         {
             var viewerPhysics = _physicsQuery.GetComponent(_shuttleEntity.Value);
             var (vp, vr) = _xformSystem.GetWorldPositionRotation(_shuttleEntity.Value);
@@ -388,6 +386,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             viewerPos = Maps.GetGridPosition((viewerGrid, viewerPhysics), vp, vr);
             haveViewerPos = true;
         }
+        var viewerCompanyName = string.Empty;
+        if (_shuttleEntity != null && EntManager.TryGetComponent(_shuttleEntity.Value, out CompanyComponent? viewerCompany))
+        { viewerCompanyName = viewerCompany.CompanyName; }
         // Lua end
 
         foreach (var mapObj in viewportObjects)
@@ -423,6 +424,10 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             var flags = iffComp?.Flags ?? IFFFlags.None;
             var hideLabel = (flags & IFFFlags.HideLabel) != 0x0;
             var hideLabelShuttle = (flags & IFFFlags.HideLabelShuttle) != 0x0;
+            var allyByCompany = false;
+            if (hideLabelShuttle && EntManager.TryGetComponent(grid.Owner, out CompanyComponent? targetCompany) && !string.IsNullOrEmpty(targetCompany.CompanyName) && !string.IsNullOrEmpty(viewerCompanyName) && viewerCompanyName == targetCompany.CompanyName && IoCManager.Resolve<IPrototypeManager>().TryIndex<CompanyPrototype>(targetCompany.CompanyName, out var targetProto) && targetProto.AliesOnRadar)
+            { allyByCompany = true; }
+            var effectiveHideLabelShuttle = hideLabelShuttle && !allyByCompany;
             if (!hideLabelShuttle && hideLabel)
             {
                 var mapObject = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true);
@@ -439,13 +444,14 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                 {
                     var realName = EntManager.TryGetComponent<MetaDataComponent>(grid.Owner, out var meta) ? meta.EntityName : string.Empty;
                     var dist = Vector2.Distance(viewerPos, gridPos);
-                    if (hideLabelShuttle)
+                    if (effectiveHideLabelShuttle)
                     {
                         var decrypt = _iffDecrypt.Get(_shuttleEntity.Value, grid.Owner, realName, dist, hideLabel: true);
                         if (decrypt.Phase != IFFDecryptPhase.Known) continue;
                         iffText = decrypt.Revealed;
                     }
-                    else { iffText = Loc.GetString("shuttle-console-unknown"); }
+                    else if (hideLabelShuttle && allyByCompany)
+                    { iffText = realName; } else { iffText = Loc.GetString("shuttle-console-unknown"); }
                 }
                 else { iffText = Loc.GetString("shuttle-console-unknown"); }
                 // Lua decrypt mod end

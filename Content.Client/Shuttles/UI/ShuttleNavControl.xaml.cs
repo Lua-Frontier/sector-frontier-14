@@ -233,17 +233,17 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         // Lua mod start
         EntityUid? ourGridIdNullable = xform.GridUid;
         EntityUid ourGridId = default;
+        var viewerCompanyName = string.Empty;
         if (ourGridIdNullable != null)
         {
             ourGridId = ourGridIdNullable.Value;
-            if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) &&
-                fixturesQuery.HasComponent(ourGridId))
+            if (EntManager.TryGetComponent(ourGridId, out CompanyComponent? ourCompany)) viewerCompanyName = ourCompany.CompanyName;
+            if (EntManager.TryGetComponent<MapGridComponent>(ourGridId, out var ourGrid) && fixturesQuery.HasComponent(ourGridId))
             {
                 var ourGridToWorld = _transform.GetWorldMatrix(ourGridId);
                 var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
                 var ourGridToView = ourGridToShuttle * shuttleToView;
                 var color = _shuttles.GetIFFColor(ourGridId, self: true);
-
                 DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), color);
                 DrawDocks(handle, ourGridId, ourGridToView);
             }
@@ -307,9 +307,27 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : _detection.IsGridDetected(grid.Owner, _consoleEntity.Value);
             var blipOnly = detectionLevel != DetectionLevel.Detected; // don't show outline outside of detection radius even if IFF on
 
+            // Lua company radar rules
+            CompanyPrototype? companyProto = null;
+            var targetCompanyName = string.Empty;
+            var aliesToViewer = false;
+            var allyByCompany = false;
+            var showCompanyOnUnknownRadar = false;
+            if (EntManager.TryGetComponent(gUid, out CompanyComponent? targetCompany) && !string.IsNullOrEmpty(targetCompany.CompanyName))
+            {
+                targetCompanyName = targetCompany.CompanyName;
+                allyByCompany = !string.IsNullOrEmpty(viewerCompanyName) && viewerCompanyName == targetCompanyName;
+                var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+                if (prototypeManager.TryIndex<CompanyPrototype>(targetCompany.CompanyName, out companyProto) && companyProto != null)
+                {
+                    showCompanyOnUnknownRadar = companyProto.ShowCompanyRadar;
+                    if (companyProto.AliesOnRadar && (string.IsNullOrEmpty(viewerCompanyName) || viewerCompanyName != targetCompany.CompanyName)) aliesToViewer = true;
+                }
+            }
+            var effectiveHideLabelShuttle = hideLabelShuttle && !(companyProto?.AliesOnRadar == true && allyByCompany);
             var gridCenterMap = _transform.ToMapCoordinates(new EntityCoordinates(gUid, gridBody.LocalCenter)).Position;
             var worldDist = Vector2.Distance(gridCenterMap, mapPos.Position);
-            var detected = detectionLevel != DetectionLevel.Undetected || (!hideLabel && !hideLabelShuttle) || (hideLabelShuttle && worldDist <= IFFDecryptionSystem.Range); // Lua Decrypt mod
+            var detected = detectionLevel != DetectionLevel.Undetected || (!hideLabel && !effectiveHideLabelShuttle) || (effectiveHideLabelShuttle && worldDist <= IFFDecryptionSystem.Range); // Lua Decrypt mod
             if (!detected) continue; // Lua Decrypt mod
             var beyondRadar = worldDist > CornerRadarRange;
             if (MaximumIFFDistance >= 0.0f && worldDist > MaximumIFFDistance) continue;
@@ -333,7 +351,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             string? labelName;
             bool cipherName = false;
             var unknownShuttle = false;
-            if (hideLabelShuttle)
+            if (effectiveHideLabelShuttle)
             {
                 var realName = EntManager.TryGetComponent<MetaDataComponent>(gUid, out var meta) ? meta.EntityName : string.Empty;
                 var viewerKey = ourGridIdNullable ?? gUid;
@@ -341,12 +359,34 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 if (decrypt.Phase == IFFDecryptPhase.Known)
                 { labelName = decrypt.Revealed; }
                 else if (decrypt.Phase == IFFDecryptPhase.Decrypting)
-                { labelName = string.Concat(decrypt.Revealed, CipherStart, decrypt.Cipher, CipherEnd); cipherName = true; unknownShuttle = true; }
+                {
+                    labelName = string.Concat(decrypt.Revealed, CipherStart, decrypt.Cipher, CipherEnd);
+                    cipherName = true;
+                    unknownShuttle = true;
+                }
                 else
-                { labelName = Loc.GetString("shuttle-console-unknown"); unknownShuttle = true; }
+                {
+                    labelName = Loc.GetString("shuttle-console-unknown");
+                    unknownShuttle = true;
+                }
+                if (showCompanyOnUnknownRadar && companyProto != null)
+                {
+                    labelColor = Color.FromSrgb(companyProto.Color);
+                    coordColor = new Color(labelColor.R * 0.8f, labelColor.G * 0.8f, labelColor.B * 0.8f, 0.5f);
+                    labelName = $"{labelName}\n{companyProto.Name}";
+                }
+                else if (unknownShuttle)
+                {
+                    labelColor = Color.White;
+                    coordColor = new Color(1f, 1f, 1f, 0.5f);
+                }
             }
             else if (hideLabel) { labelName = null; }
-            else { labelName = _shuttles.GetIFFLabel(grid, self: false, iff) ?? Loc.GetString("shuttle-console-unknown"); }
+            else
+            {
+                if (aliesToViewer) { labelName = EntManager.TryGetComponent<MetaDataComponent>(gUid, out var meta) ? meta.EntityName : Loc.GetString("shuttle-console-unknown"); }
+                else { labelName = _shuttles.GetIFFLabel(grid, self: false, iff) ?? Loc.GetString("shuttle-console-unknown"); }
+            }
             // Lua decrypt mod end
 
             var isPlayerShuttle = iff != null && (iff.Flags & IFFFlags.IsPlayerShuttle) != 0x0;
@@ -395,7 +435,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
             // Lua decrypt mod start
             var allowBlip = !hideLabel;
-            if (hideLabelShuttle) allowBlip = true;
+            if (effectiveHideLabelShuttle) allowBlip = true;
             Texture? vesselIcon = null;
             var blipScale = 1f;
             if (EntManager.TryGetComponent<VesselComponent>(gUid, out var vesselComp))
@@ -414,6 +454,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
             }
             if (unknownShuttle) { vesselIcon = _unknownVesselIcon; blipScale = 1.6f; }
+            var companyColorUid = (!aliesToViewer && !(unknownShuttle && !showCompanyOnUnknownRadar)) ? gUid : default;
             if (ShowIFF)
             {
                 RadarBlipIconComponent? blipComp = null;
@@ -439,9 +480,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             handle.DrawTextureRect(tex, box, labelColor);
                         }
                         else if (allowBlip)
-                        { NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, blipScale, gUid); }
+                        { NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, blipScale, companyColorUid); }
                     }
-                    else if (!beyondIconDistance && allowBlip) { NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, blipScale, gUid); }
+                    else if (!beyondIconDistance && allowBlip) { NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, blipScale, companyColorUid); }
                 }
                 else if (allowBlip && vesselIcon != null)
                 {
@@ -450,7 +491,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     var box = new UIBox2(uiPosition * UIScale - half, uiPosition * UIScale + half);
                     handle.DrawTextureRect(vesselIcon, box, labelColor);
                 }
-                else if (allowBlip) { NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, blipScale, gUid); }
+                else if (allowBlip) { NFAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor, blipScale, companyColorUid); }
             }
             if (shouldDrawIFF)
             { // Lua decrypt mod end
@@ -489,11 +530,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             : blipSize, // left align the text to the right of the blip
                         Y = -labelDimensions.Y / 2f
                     };
-
-                    // Get company color if entity has CompanyComponent
                     var displayColor = labelColor;
-                    if (EntManager.TryGetComponent(gUid, out Shared._Mono.Company.CompanyComponent? companyComp) &&
-                        !string.IsNullOrEmpty(companyComp.CompanyName))
+                    if (!aliesToViewer && !(unknownShuttle && !showCompanyOnUnknownRadar) && EntManager.TryGetComponent(gUid, out CompanyComponent? companyComp) && !string.IsNullOrEmpty(companyComp.CompanyName))
                     {
                         if (!_companyColorCache.TryGetValue(companyComp.CompanyName, out var compColor))
                         {
