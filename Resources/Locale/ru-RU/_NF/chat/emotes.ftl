@@ -22,7 +22,7 @@ delta-chat-emote-name-caw = Каркать
 
 # Vulpkanin
 delta-chat-emote-name-bark = Лаять
-delta-chat-emote-name-snarl = Рычать
+#delta-chat-emote-name-snarl = Рычать # Lua
 delta-chat-emote-name-whine = Скулить
 delta-chat-emote-name-howl = Выть
 delta-chat-emote-name-awoo = Аууууу
@@ -53,7 +53,7 @@ chat-emote-msg-harpy-honks = хонкает
 
 # Vulpkanin
 chat-emote-msg-vulpkanin-barks = лает
-chat-emote-msg-vulpkanin-snarls = рычит
-chat-emote-msg-vulpkanin-whines = скулит
+#chat-emote-msg-vulpkanin-snarls = рычит # Lua
+#chat-emote-msg-vulpkanin-whines = скулит # Lua
 chat-emote-msg-vulpkanin-howls = воет
 chat-emote-msg-vulpkanin-awoo = воет
