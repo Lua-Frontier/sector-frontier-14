@@ -32,7 +32,8 @@ public sealed partial class GatherableSystem
         }
         // Too strong (e.g. overpen) - gathers ore but destroys it
         if (TryComp<OreVeinComponent>(args.OtherEntity, out var oreVein)
-            && _whitelistSystem.IsWhitelistPass(oreVein.GatherDestructionWhitelist, gathering.Owner))
+            && _whitelistSystem.IsWhitelistPass(oreVein.GatherDestructionWhitelist, gathering.Owner)
+            && !gathering.Comp.Soft) // Lua
         {
             oreVein.PreventSpawning = true;
         }
