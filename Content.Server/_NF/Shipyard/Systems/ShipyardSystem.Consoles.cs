@@ -81,6 +81,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared.Lua.CLVar;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -919,6 +920,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var available = new List<string>();
         var unavailable = new List<string>();
 
+        var isErp = _configManager.GetCVar(CLVars.IsERP);
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             // Try to find a ui key that is an instance of the shipyard console ui key
@@ -967,7 +969,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
             bool hasAccess = initialHasAccess;
-
+            if (!vessel.IsAvailableOnServer(isErp)) continue;
             if (voucher is not null && vessel.NoVoucher)
                 continue;
 
