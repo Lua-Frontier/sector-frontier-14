@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 beck-thompson
-//
-// SPDX-License-Identifier: MIT
-
-using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;

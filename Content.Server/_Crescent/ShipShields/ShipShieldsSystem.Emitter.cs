@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared._Crescent.ShipShields;
 using Content.Server.Power.Components;
 using Content.Shared.Projectiles;
@@ -11,7 +7,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Station.Systems;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Examine;
-using Content.Server.Explosion.Components;
 using Content.Shared.Explosion.Components;
 
 namespace Content.Server._Crescent.ShipShields;
