@@ -607,10 +607,10 @@
 
 - type: listing
   id: UplinkPirateBoxMagazineRifle
-  name: uplink-pirate-box-magazine-light-rifle-name
-  description: uplink-pirate-box-magazine-light-rifle-desc
-  productEntity: NFBoxMagazineRifle762x39
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-30 }
+  name: uplink-security-Magazine762x39mmFMJ-name
+  description: uplink-security-Magazine762x39mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle762x39mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     Doubloon: 1
   categories:
