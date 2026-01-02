@@ -1,4 +1,4 @@
-#Guns
+#region weapon
 
 - type: listing
   id: UplinkEnergyAsakim
@@ -21,13 +21,14 @@
   categories:
   - UplinkWeaponry
 
-#Ammo
+#region ammo
 
 - type: listing
-  id: UplinkMagazineSubMachineGun45ACP
-  name: uplink-submachinegun-magazine-45ACP-name
-  description: uplink-submachinegun-magazine-45ACP-desc
-  productEntity: Magazine45_ACPSubMachineGunFMJ
+  id: UplinkMagazine45_ACPSubMachineGunFMJ
+  name: uplink-security-Magazine45_ACPSubMachineGunFMJ-name
+  description: uplink-security-Magazine45_ACPSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
     Telecrystal: 1
   categories:
