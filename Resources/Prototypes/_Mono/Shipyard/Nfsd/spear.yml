@@ -1,9 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 ark1368
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: vessel
   id: Spear
   parent: BaseVesselAntag
@@ -15,6 +9,9 @@
   access: Security
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/spear.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Patrol
   - Nfsd

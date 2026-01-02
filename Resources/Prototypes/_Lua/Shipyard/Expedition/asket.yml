@@ -7,11 +7,14 @@
   parent: BaseVessel
   id: GFAsket
   name: Asket
-  description: Большой корабль для исследования глубокого космоса и экспедиций. 
+  description: Большой корабль для исследования глубокого космоса и экспедиций.
   price: 150000
   category: Large
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/asket.yml
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Expedition
   - Civilian

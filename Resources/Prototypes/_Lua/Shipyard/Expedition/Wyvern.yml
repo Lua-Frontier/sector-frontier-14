@@ -6,12 +6,15 @@
   id: Wyvern
   parent: BaseVessel
   name: Wyvern
-  description: Научно-исследовательское судно от LaFleur Industries. Один из немногих флагманов гражданской верфи. 
+  description: Научно-исследовательское судно от LaFleur Industries. Один из немногих флагманов гражданской верфи.
   price: 391000 #Nakrytka 100000, Base value 340000 x 1.15
   category: Large
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/Wyvern.yml
   guidebookPage: ShipyardWyvern
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Expedition

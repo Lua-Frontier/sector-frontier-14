@@ -1,30 +1,12 @@
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 RikuTheKiller
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Client._Mono.Radar;
 using Content.Client.Shuttles.UI;
-using Content.Shared._Crescent.ShipShields;
-using Content.Shared._Mono.Detection;
 using Content.Shared._Mono.FireControl;
-using Content.Shared._Mono.Radar;
 using Content.Shared.Physics;
-using Content.Shared.Shuttles.BUIStates;
-using Content.Shared.Shuttles.Components;
-using Content.Shared.Shuttles.Systems;
 using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
-using Robust.Shared.Input;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using System.Linq; // Lua

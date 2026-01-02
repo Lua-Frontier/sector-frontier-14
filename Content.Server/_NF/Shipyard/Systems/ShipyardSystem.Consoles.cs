@@ -1,27 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Cheackraze
-// SPDX-FileCopyrightText: 2023 Debug
-// SPDX-FileCopyrightText: 2023 FoxxoTrystan
-// SPDX-FileCopyrightText: 2023 InsanityMoose
-// SPDX-FileCopyrightText: 2024 Alice "Arimah" Heurlin
-// SPDX-FileCopyrightText: 2024 Arimah
-// SPDX-FileCopyrightText: 2024 Checkraze
-// SPDX-FileCopyrightText: 2024 Dvir
-// SPDX-FileCopyrightText: 2024 GreaseMonk
-// SPDX-FileCopyrightText: 2024 Mnemotechnican
-// SPDX-FileCopyrightText: 2024 Salvantrix
-// SPDX-FileCopyrightText: 2024 Shroomerian
-// SPDX-FileCopyrightText: 2024 checkraze
-// SPDX-FileCopyrightText: 2024 neuPanda
-// SPDX-FileCopyrightText: 2025 Alkheemist
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 LukeZurg22
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 Whatstone
-// SPDX-FileCopyrightText: 2025 ark1368
-// SPDX-FileCopyrightText: 2025 sleepyyapril
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server._Mono.Shipyard;
 using Content.Server._Mono.Ships.Systems;
 using Content.Server._NF.Bank;
@@ -64,7 +40,6 @@ using Content.Shared.Database;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Preferences;
 using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
@@ -75,12 +50,12 @@ using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Log;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared.Lua.CLVar;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -919,6 +894,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var available = new List<string>();
         var unavailable = new List<string>();
 
+        var isErp = _configManager.GetCVar(CLVars.IsERP);
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             // Try to find a ui key that is an instance of the shipyard console ui key
@@ -967,7 +943,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
             bool hasAccess = initialHasAccess;
-
+            if (!vessel.IsAvailableOnServer(isErp)) continue;
             if (voucher is not null && vessel.NoVoucher)
                 continue;
 

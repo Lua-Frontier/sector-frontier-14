@@ -1,15 +1,8 @@
-# SPDX-FileCopyrightText: 2025 core-mene
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 # practice/empty = TOTAL/10
 # boxes = magazine * 3-ish
 #.45 magnum gonna use intermediate
-
 #Base intermediate ammo magazines for 5.56, 5.45, 762x39mm and potential others
 #Magazines:     [TOTAL = 475]
-
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoFMJIntermediateMagazineRecipe
