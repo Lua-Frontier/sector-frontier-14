@@ -7,7 +7,7 @@
 - type: vessel
   id: Spear
   parent: BaseVesselAntag
-  name: TSF-SKR Spear
+  name: Spear
   description: A small ship meant as an escort and stealth killer. Horrible interior space, and not much in the way of comfort.
   price: 40000
   category: Small
@@ -21,9 +21,7 @@
   engine:
   - Uranium
   cloakHunter: true
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Spear
   mapName: 'Spear'
@@ -34,7 +32,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Spear TSF{1}'
+        mapNameTemplate: 'Spear {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

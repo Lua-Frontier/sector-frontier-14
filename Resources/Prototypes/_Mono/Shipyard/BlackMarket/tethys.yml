@@ -1,7 +1,7 @@
 - type: vessel
   id: Tethys
   parent: BaseVesselAntag
-  name: RG Tethys
+  name: Tethys
   description: Маленький грузовой челнок, не обладающий выделяющимся бронированием или вооружением
   price: 48742 # 2000 above min
   category: Medium
@@ -12,9 +12,7 @@
   - Pirate
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Tethys
   mapName: 'Tethys'
@@ -25,7 +23,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Tethys RG{1}'
+          mapNameTemplate: 'Tethys {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

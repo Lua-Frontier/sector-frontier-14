@@ -32,8 +32,14 @@
                                VerticalAlignment="Top" Name="ScanModeLabel"
                                Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
                         <BoxContainer Orientation="Vertical" Name="PrintButtonsContainer">
+                            <!-- Lua start -->
+                            <!--
                             <Button Name="PrintRecordButton" HorizontalExpand="True">
-                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore"/>
+                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore"
+                            -->
+                            <Button Name="PrintRecordButton" HorizontalExpand="False">
+                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore" SetSize="30 30"/>
+                            <!-- Lua end -->
                             </Button>
                         </BoxContainer>
                     </BoxContainer>

@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Dagger
-  name: TY Dagger
+  name: Dagger
   description: Старый боевой корабль, найденный в ангарах Синдиката. Имеет три стороны
     стрельбы.
   price: 151943
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/dagger.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: Dagger
-  mapName: 'TY Dagger'
+  mapName: 'Dagger'
   mapPath: /Maps/_Lua/Shuttles/Typan/dagger.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'TY Dagger {1}'
+        mapNameTemplate: 'Dagger {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -34,7 +34,7 @@
   - type: Gun
     minAngle: 27
     maxAngle: 39
-    fireRate: 2.25
+    fireRate: 3.3 #Lua + 0.3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -73,7 +73,7 @@
   - type: Appearance
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 4 #Lua 2.5 -> 4
+    maxOffset: 13 #Lua 2.5 -> 13
     pvsIncrease: 0.4
   - type: SpeedModifiedOnWield # Mono
     walkModifier: 0.80 #Lua 0.85 -> 0.80

@@ -6,6 +6,10 @@
   spawnGamePreset: [ NFAdventure, NFPirate, LuaAdventure ]
   spawnGroup: Optional
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: IFF
     color: "#ffa600"
     readOnly: true

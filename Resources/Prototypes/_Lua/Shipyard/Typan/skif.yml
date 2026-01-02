@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: GFSkif
-  name: SYN-GF Skif
+  name: Skif
   description: Резкий, как удар серпом по пальцам и сильный, как удар молотом, этот шаттл обладает убойной огневой мощью и исчерпывающей броней.
   limit: 3
   price: 165000
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/skif-2.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: GFSkif
-  mapName: 'SYN-GF Skif'
+  mapName: 'Skif'
   mapPath: /Maps/_Lua/Shuttles/Typan/skif-2.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SYN-GF Skif {1}'
+        mapNameTemplate: 'Skif {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

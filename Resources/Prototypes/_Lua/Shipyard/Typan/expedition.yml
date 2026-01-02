@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Expedition
-  name: TY Expedition
+  name: Expedition
   price: 65000
   category: Small
   group: Typan
@@ -15,12 +15,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/expedition.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: Expedition
-  mapName: 'TY Expedition'
+  mapName: 'Expedition'
   mapPath: /Maps/_Lua/Shuttles/Typan/expedition.yml
   minPlayers: 0
   stations:
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'TY Expedition {1}'
+          mapNameTemplate: 'Expedition {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

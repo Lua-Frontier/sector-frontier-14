@@ -17,6 +17,10 @@
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/courthouse.yml
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/court.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: IFF
     color: "#ae7d57"
 

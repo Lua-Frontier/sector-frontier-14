@@ -7,7 +7,7 @@
 - type: vessel
   id: Littora
   parent: BaseVessel
-  name: SKR Littora
+  name: Littora
   description: A medium-to-large sized expedition ship with salvage equipment.
   price: 70000 #Lua
   category: Large
@@ -19,9 +19,7 @@
   - Expedition
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Littora
   mapName: 'Littora'
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Littora EXP{1}'
+          mapNameTemplate: 'Littora {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

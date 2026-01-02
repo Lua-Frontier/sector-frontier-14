@@ -408,7 +408,7 @@
   - ClothingOuterHardsuitEngineering
   technologyPrerequisites:
   - NFHardsuitsField
-  position: 2, 8
+  position: 1, 7 # Lua: 2, 8 < 1, 7
 
 - type: technology
   id: NFHardsuitsAdvanced
@@ -424,7 +424,7 @@
 
   technologyPrerequisites:
   - NFHardsuitsEngineering
-  position: 3, 8
+  position: 2, 7 # Lua: 3, 8 < 2, 7
 
 - type: technology
   id: NFHardsuitsExperimentalProtection
@@ -436,11 +436,11 @@
   recipeUnlocks:
   - ClothingOuterHardsuitRd
   - ClothingOuterHardsuitHostileEnvironment
-  prerequisiteLineType: Tree
+  #prerequisiteLineType: Tree # Lua
   technologyPrerequisites:
   - NFSuperParts
   - NFHardsuitsAdvanced
-  position: 4, 7
+  position: 3, 7 # Lua: 4, 7 < 3, 7
 
 - type: technology
   id: NFHardsuitsArmored
@@ -455,7 +455,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFHardsuitsAdvanced
-  position: 4, 9
+  position: 2, 8 # Lua: 4, 9 < 2, 8
 
 - type: technology
   id: NFHardsuitsOldWar
@@ -469,7 +469,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
     - NFHardsuitsArmored
-  position: 5, 10
+  position: 2, 9 # Lua: 5, 10 < 2, 9
 
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
@@ -481,11 +481,11 @@
   cost: 15000
   recipeUnlocks:
   - ClothingOuterHardsuitMaximPrototype
-  prerequisiteLineType: Tree
+  #prerequisiteLineType: Tree # Lua
   technologyPrerequisites:
   - NFHardsuitsExperimentalProtection
   - NFHardsuitsArmored
-  position: 5, 8
+  position: 3, 8 # Lua: 5, 8 < 3, 8
 
 - type: technology
   id: NFHardsuitsArmoredAdvanced
@@ -494,12 +494,13 @@
   discipline: NFArsenalMercenary
   tier: 1
   cost: 20000
+  prerequisiteLineType: Diagonal # Lua
   recipeUnlocks:
   - ClothingOuterHardsuitScaf
   - ClothingOuterHardsuitNoble
   technologyPrerequisites:
   - NFHardsuitsArmored
-  position: 5, 9
+  position: 3, 9 # Lua: 5, 9 < 3, 9
 
 # region Medical
 
@@ -683,7 +684,7 @@
   - ClothingShoesBootsMagMercenary
   technologyPrerequisites:
   - NFMagnetsTech
-  position: 2, 13
+  position: 2, 14 # Lua: 2, 13 < 2, 14
 
 - type: technology
   id: NFMagnetsTechAdvanced
@@ -698,7 +699,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFMagnetsTech
-  position: 2, 14
+  position: 2, 13 # Lua: 2, 14 < 2, 13
 
 # region Robotics & Mechs
 
@@ -836,7 +837,7 @@
   - MechEquipmentHorn
   technologyPrerequisites:
   - NFHONKMech
-  position: 2, 17
+  position: 3, 16 # Lua: 2, 17 < 3, 16
 
 # region Entertainment & Comms
 

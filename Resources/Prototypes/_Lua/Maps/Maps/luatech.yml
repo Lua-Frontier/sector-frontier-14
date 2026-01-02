@@ -8,6 +8,10 @@
     LuaTech:
       stationProto: StandardLuaTechVessel
       components:
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/space-station.png
+          scale: 1.2
+          allowWhenHidden: true
         - type: MailStationDisabled
         - type: StationNameSetup
           mapNameTemplate: 'Верфь LuaTech'

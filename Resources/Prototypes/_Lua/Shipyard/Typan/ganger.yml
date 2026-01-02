@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Ganger
-  name: TY Ganger
+  name: Ganger
   price: 19420
   category: Micro
   group: Typan
@@ -15,12 +15,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/ganger.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: Ganger
-  mapName: 'TY Ganger'
+  mapName: 'Ganger'
   mapPath: /Maps/_Lua/Shuttles/Typan/ganger.yml
   minPlayers: 0
   stations:
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'TY Ganger {1}'
+          mapNameTemplate: 'Ganger {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -31,7 +31,7 @@
     maxAngle: 40
     angleIncrease: 2
     angleDecay: 22
-    fireRate: 8
+    fireRate: 7 #Lua -1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -99,7 +99,7 @@
     maxAngle: 36
     angleIncrease: 1.5 #Lua 3 -> 1.5
     angleDecay: 34
-    fireRate: 5 #Lua 6 -> 5
+    fireRate: 6.2 #Lua -> 0.2
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -113,22 +113,23 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine8x65mmSKRBox
+        startingItem: AmmoBox762x51mmFMJ #Lua
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine8x65mmSKR
-          - MagazineBox8x65mmSKR
+          - Magazine762x51mmFMJ #Lua
+          - Magazine762x51mmBoxSmall #Lua
+          - Magazine762x51mmLowCapacityFMJ #Lua
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge8x65mmSKR
+        startingItem: Cartridge762x51mmFMJ #Lua
         priority: 1
         whitelist:
           tags:
-          - Cartridge8x65mmSKR
+          - Cartridge762x51mmFMJ #Lua
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

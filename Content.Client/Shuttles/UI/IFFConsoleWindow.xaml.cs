@@ -43,12 +43,12 @@ public sealed partial class IFFConsoleWindow : FancyWindow,
 
     public void UpdateState(IFFConsoleBoundUserInterfaceState state)
     {
-        if ((state.AllowedFlags & IFFFlags.HideLabel) != 0x0)
+        if ((state.AllowedFlags & IFFFlags.HideLabelShuttle) != 0x0) // Lua Decrypt mod
         {
             ShowIFFOffButton.Disabled = false;
             ShowIFFOnButton.Disabled = false;
 
-            if ((state.Flags & IFFFlags.HideLabel) != 0x0)
+            if ((state.Flags & IFFFlags.HideLabelShuttle) != 0x0) // Lua Decrypt mod
             {
                 ShowIFFOffButton.Pressed = true;
             }

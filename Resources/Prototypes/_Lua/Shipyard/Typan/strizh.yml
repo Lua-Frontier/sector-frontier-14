@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: GFStrizh
-  name: SYN-GF Strizh
+  name: Strizh
   description: Гибрид, способный одинаково хорошо уничтожать врага на любом расстоянии. Бронирован средне.
   limit: 3
   price: 150614
@@ -17,13 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/strizh.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
 
 - type: gameMap
   id: GFStrizh
-  mapName: 'SYN-GF Strizh'
+  mapName: 'Strizh'
   mapPath: /Maps/_Lua/Shuttles/Typan/strizh.yml
   minPlayers: 0
   stations:
@@ -31,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SYN-GF Strizh {1}'
+        mapNameTemplate: 'Strizh {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

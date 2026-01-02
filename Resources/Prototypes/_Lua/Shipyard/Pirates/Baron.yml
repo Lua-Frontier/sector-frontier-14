@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Baron
-  name: BM-WK Baron
+  name: Baron
   description: Грозный пиратский флагман с химическим оборудованием, для комфортного грабежа.
   limit: 2
   price: 290000
@@ -16,12 +16,10 @@
   engine:
   - AME
   shuttlePath: /Maps/_Lua/Shuttles/Pirates/Baron.yml
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Baron
-  mapName: 'BM-WK Baron'
+  mapName: 'Baron'
   mapPath: /Maps/_Lua/Shuttles/Pirates/Baron.yml
   minPlayers: 0
   stations:
@@ -29,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'BM-WK Baron {1}'
+          mapNameTemplate: 'Baron {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

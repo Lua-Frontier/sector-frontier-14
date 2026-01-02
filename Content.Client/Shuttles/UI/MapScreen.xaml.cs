@@ -1,6 +1,5 @@
-using System.Linq;
-using System.Numerics;
 using Content.Client.Shuttles.Systems;
+using Content.Shared._Mono.Company;
 using Content.Shared._NF.Shuttles.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -18,9 +17,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -335,6 +336,8 @@ public sealed partial class MapScreen : BoxContainer
             };
 
             _mapHeadings.Add(mapComp.MapId, gridContents);
+            var viewerCompanyName = string.Empty;
+            if (_entManager.TryGetComponent(_shuttleEntity.Value, out CompanyComponent? viewerCompany)) viewerCompanyName = viewerCompany.CompanyName;
             foreach (var grid in _mapManager.GetAllGrids(mapComp.MapId))
             {
                 _entManager.TryGetComponent(grid.Owner, out IFFComponent? iffComp);
@@ -348,13 +351,17 @@ public sealed partial class MapScreen : BoxContainer
                     serviceFlagsText = _shuttles.GetServiceFlagsSuffix(iffComp.ServiceFlags);
                 }
 
+                var flags = iffComp?.Flags ?? IFFFlags.None; // Lua decrypt mod
+                var hideLabelShuttle = (flags & IFFFlags.HideLabelShuttle) != 0x0;
+                if (hideLabelShuttle && _entManager.TryGetComponent(grid.Owner, out CompanyComponent? gridCompany) && !string.IsNullOrEmpty(gridCompany.CompanyName) && !string.IsNullOrEmpty(viewerCompanyName) && viewerCompanyName == gridCompany.CompanyName && IoCManager.Resolve<IPrototypeManager>().TryIndex<CompanyPrototype>(gridCompany.CompanyName, out var gridCompanyProto) && gridCompanyProto.AliesOnRadar)
+                { hideLabelShuttle = false; }
                 var gridObj = new GridMapObject()
                 {
                     Name = _entManager.GetComponent<MetaDataComponent>(grid.Owner).EntityName + serviceFlagsText,
                     // Frontier: Service Flags
                     ServiceFlags = iffComp?.ServiceFlags ?? ServiceFlags.None,
                     Entity = grid.Owner,
-                    HideButton = iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0,
+                    HideButton = (flags & IFFFlags.HideLabel) != 0x0 || hideLabelShuttle, // Lua decrypt mod + Lua alliesOnRadar
                 };
 
                 // Always show our shuttle immediately
@@ -364,9 +371,13 @@ public sealed partial class MapScreen : BoxContainer
                 }
 
                 // If we can show it then add it to pending.
-                else if (!_shuttles.IsBeaconMap(mapUid) && (iffComp == null ||
-                         (iffComp.Flags & IFFFlags.Hide | iffComp.Flags & IFFFlags.HideLabel) == 0x0) && // Frontier: add HideLabel check
-                         !gridObj.HideButton)
+                else if (
+                    !_shuttles.IsBeaconMap(mapUid) &&
+                    (iffComp == null ||
+                     ((flags & IFFFlags.Hide) == 0x0 &&
+                      (flags & IFFFlags.HideLabel) == 0x0 &&
+                      !hideLabelShuttle)) && // Lua decrypt mod + Lua alliesOnRadar
+                    !gridObj.HideButton)
                 {
                     _pendingMapObjects.Add((mapComp.MapId, gridObj));
                 }

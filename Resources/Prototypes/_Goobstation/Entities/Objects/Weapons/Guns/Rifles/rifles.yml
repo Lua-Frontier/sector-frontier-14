@@ -37,7 +37,7 @@
     burstCooldown: 0.8
     shotsPerBurst: 4
     fireRate: 6.5
-    projectileSpeed: 25 #Lua 42.5 -> 25
+    projectileSpeed: 42.5 # Mono
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/thock.ogg
   - type: ChamberMagazineAmmoProvider
@@ -216,6 +216,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     fireRate: 1.7
+    projectileSpeed: 40 # Mono
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: ChamberMagazineAmmoProvider

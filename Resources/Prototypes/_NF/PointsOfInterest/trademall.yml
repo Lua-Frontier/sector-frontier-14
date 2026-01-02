@@ -17,6 +17,10 @@
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trademall.yml
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/tradeoutpost.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: IFF
     color: "#37C837"
   - type: ProtectedGrid

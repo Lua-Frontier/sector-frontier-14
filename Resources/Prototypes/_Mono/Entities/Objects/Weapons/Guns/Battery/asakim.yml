@@ -26,7 +26,7 @@
     minAngle: 18
     maxAngle: 26
     fireRate: 6
-    burstFireRate: 15
+    burstFireRate: 10 #Lua 15 -> 10
     shotsPerBurst: 5
     selectedMode: FullAuto
     availableModes:
@@ -47,4 +47,4 @@
     price: 1750
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20 # Lua 15 -> 20
+    autoRechargeRate: 15

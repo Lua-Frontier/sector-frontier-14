@@ -44,7 +44,7 @@
   - PowerCageRechargerCircuitboard
   technologyPrerequisites:
   - BasicShuttleWeapon
-  position: 1, 47
+  position: 0, 48 # Lua: 1, 47 < 0, 48
 
 - type: technology
   id: ShuttleShuttleGunPerforator
@@ -57,7 +57,7 @@
   - ShuttleGunPerforatorCircuitboard
   technologyPrerequisites:
   - ShuttlePowerCage
-  position: 1, 46
+  position: 0, 49 # Lua: 1, 46 < 0, 49
 
 - type: technology
   id: ShuttleGrenade
@@ -73,7 +73,7 @@
   - NFGrenadeFlash
   technologyPrerequisites:
   - ShuttleShuttleGunPerforator
-  position: 2, 46
+  position: 1, 49 # Lua: 2, 46 < 1, 49
 
 - type: technology
   id: ShuttleFriendshipPirate
@@ -87,7 +87,7 @@
   - ShuttleGunPirateCannonCircuitboard
   technologyPrerequisites:
   - ShuttleGrenade
-  position: 2, 47
+  position: 1, 48 # Lua: 2, 47 < 1, 48
 
 - type: technology
   id: ShuttleCannonBall
@@ -101,7 +101,7 @@
   - NFCannonBallGlassshot
   technologyPrerequisites:
   - ShuttleFriendshipPirate
-  position: 3, 47
+  position: 2, 48 # Lua: 3, 47 < 2, 48
 
 - type: technology
   id: ShuttleGrenadeEMP
@@ -115,7 +115,7 @@
   - NFGrenadeBaton
   technologyPrerequisites:
   - ShuttleCannonBall
-  position: 3, 46
+  position: 2, 47 # Lua: 3, 46 < 2, 47
 
 - type: technology
   id: ShuttleGunDuster
@@ -129,4 +129,4 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - ShuttleGrenadeEMP
-  position: 4, 46
+  position: 2, 46 # Lua: 4, 46 < 2, 46

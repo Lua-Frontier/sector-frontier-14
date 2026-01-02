@@ -5,7 +5,7 @@
 - type: vessel
   id: Venture
   parent: BaseVessel
-  name: NT-Venture
+  name: Venture
   description: небольшое медико-научное судно с минимальными удобствами.
   price: 54500
   category: Medium
@@ -17,12 +17,10 @@
   - Expedition
   engine:
   - Bananium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Venture
-  mapName: 'NT-Venture'
+  mapName: 'Venture'
   mapPath: /Maps/_Lua/Shuttles/Expedition/Venture.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NT-Venture {1}'
+          mapNameTemplate: 'Venture {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Grabber
-  name: SD Grabber
+  name: Grabber
   description: Хвататель, или же Граббер обладает уникальной защитой по бокам и неплохое
     вооружение. Предназначен для космических боёв.
   limit: 4
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/Grabber.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Grabber
-  mapName: 'SD Grabber'
+  mapName: 'Grabber'
   mapPath: /Maps/_Lua/Shuttles/SD/Grabber.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SD Grabber {1}'
+        mapNameTemplate: 'Grabber {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

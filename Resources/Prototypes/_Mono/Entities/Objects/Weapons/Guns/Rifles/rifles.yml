@@ -37,7 +37,7 @@
     maxAngle: 48
     angleIncrease: 20 #Lua 27 -> 20
     angleDecay: 4 #Lua 2 -> 4
-    fireRate: 3.5 #Lua 4<3.5
+    fireRate: 4
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -80,6 +80,10 @@
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c_inhands_32x.rsi
   - type: StaticPrice
     price: 2400
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset #Lua add
+    maxOffset: 10
+    pvsIncrease: 0.7
 
 - type: entity
   name: NCI AK-502 (7.62x39mm)

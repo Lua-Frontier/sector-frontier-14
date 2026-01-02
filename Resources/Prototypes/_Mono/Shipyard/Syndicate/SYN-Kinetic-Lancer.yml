@@ -1,7 +1,7 @@
 - type: vessel
   id: SYNKineticLancer
   parent: BaseVesselAntag
-  name: SYN-Kinetic-Lancer
+  name: Kinetic-Lancer
   description: A light syndicate frigate meant for raiding enemy stations. Armed to the teeth in missiles and CYREXAs.
   limit: 1
   price: 304535 # 2000 below max
@@ -15,12 +15,10 @@
   - Syndicate
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: SYNKineticLancer
-  mapName: 'SYN-Kinetic-Lancer'
+  mapName: 'Kinetic-Lancer'
   mapPath: /Maps/_Mono/Shuttles/Syndicate/SYN-Kinetic-lancer.yml
   minPlayers: 0
   stations:
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'SYN-Kinetic-Lancer {1}'
+          mapNameTemplate: 'Kinetic-Lancer {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

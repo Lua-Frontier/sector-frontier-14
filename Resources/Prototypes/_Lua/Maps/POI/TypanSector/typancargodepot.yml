@@ -11,6 +11,10 @@
   spawnGroup: TypanCargoDepot
   gridPath: /Maps/_Lua/POI/typancargodepot.yml
   addComponents: &cargoComponents
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/black_market.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: IFF
     color: "#c00c0c"
   - type: ProtectedGrid

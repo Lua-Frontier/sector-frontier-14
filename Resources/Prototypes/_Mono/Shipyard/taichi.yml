@@ -7,7 +7,7 @@
 - type: vessel
   id: Taichi
   parent: BaseVessel
-  name: SKR Taichi
+  name: Taichi
   description: A extremely compact medical ship, with a full chemistry setup.
   price: 32500
   category: Small
@@ -20,12 +20,10 @@
   - Chemistry
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Taichi
-  mapName: 'SKR Taichi'
+  mapName: 'Taichi'
   mapPath: /Maps/_Mono/Shuttles/taichi.yml
   minPlayers: 0
   stations:
@@ -33,7 +31,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Taichi MED{1}'
+          mapNameTemplate: 'Taichi {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

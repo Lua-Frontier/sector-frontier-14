@@ -1,3 +1,7 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
 # Wearables
 - type: listing
   id: UplinkMantisGloves
@@ -42,3 +46,18 @@
     blacklist:
       components:
         - SurplusBundle
+
+# Pointless
+- type: listing
+  id: UplinkBoxEncryptionKeyAllBasic
+  name: all-basic-encryption-keys-box-uplink-name
+  description: all-basic-encryption-keys-box-uplink-desc
+  icon: { sprite: /Textures/Objects/Storage/boxes.rsi, state: box }
+  productEntity: BoxEncryptionKeyAllBasic
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkPointless

@@ -17,6 +17,10 @@
   spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalousgeode.yml
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true

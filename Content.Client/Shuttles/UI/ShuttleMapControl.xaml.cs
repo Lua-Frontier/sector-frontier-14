@@ -31,6 +31,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
+    private readonly IFFDecryptionSystem _iffDecrypt; // Lua Decrypt mod
 
     protected override bool Draggable => true;
 
@@ -85,6 +86,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         _mapSystem = EntManager.System<SharedMapSystem>();
         _shuttles = EntManager.System<ShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
+        _iffDecrypt = EntManager.System<IFFDecryptionSystem>(); // Lua Decrypt mod
         var cache = IoCManager.Resolve<IResourceCache>();
 
         _physicsQuery = EntManager.GetEntityQuery<PhysicsComponent>();
@@ -373,6 +375,22 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             }
         }
 
+        // Lua start
+        Vector2 viewerPos = default;
+        var haveViewerPos = false;
+        if (_shuttleEntity != null && EntManager.EntityExists(_shuttleEntity.Value) && EntManager.TryGetComponent<MapGridComponent>(_shuttleEntity.Value, out var viewerGridComp))
+        {
+            var viewerPhysics = _physicsQuery.GetComponent(_shuttleEntity.Value);
+            var (vp, vr) = _xformSystem.GetWorldPositionRotation(_shuttleEntity.Value);
+            Entity<MapGridComponent> viewerGrid = (_shuttleEntity.Value, viewerGridComp);
+            viewerPos = Maps.GetGridPosition((viewerGrid, viewerPhysics), vp, vr);
+            haveViewerPos = true;
+        }
+        var viewerCompanyName = string.Empty;
+        if (_shuttleEntity != null && EntManager.TryGetComponent(_shuttleEntity.Value, out CompanyComponent? viewerCompany))
+        { viewerCompanyName = viewerCompany.CompanyName; }
+        // Lua end
+
         foreach (var mapObj in viewportObjects)
         {
             if (mapObj is not GridMapObject gridObj || !EntManager.TryGetComponent(gridObj.Entity, out MapGridComponent? mapGrid))
@@ -402,18 +420,48 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             gridRelativePos = gridRelativePos with { Y = -gridRelativePos.Y };
             var gridUiPos = ScalePosition(gridRelativePos);
 
-            var mapObject = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true);
-            AddMapObject(existingEdges, existingVerts, mapObject);
-
-            // Text
-            if (iffComp != null && (iffComp.Flags & IFFFlags.HideLabel) != 0x0)
+            // Lua decrypt mod start
+            var flags = iffComp?.Flags ?? IFFFlags.None;
+            var hideLabel = (flags & IFFFlags.HideLabel) != 0x0;
+            var hideLabelShuttle = (flags & IFFFlags.HideLabelShuttle) != 0x0;
+            var allyByCompany = false;
+            if (hideLabelShuttle && EntManager.TryGetComponent(grid.Owner, out CompanyComponent? targetCompany) && !string.IsNullOrEmpty(targetCompany.CompanyName) && !string.IsNullOrEmpty(viewerCompanyName) && viewerCompanyName == targetCompany.CompanyName && IoCManager.Resolve<IPrototypeManager>().TryIndex<CompanyPrototype>(targetCompany.CompanyName, out var targetProto) && targetProto.AliesOnRadar)
+            { allyByCompany = true; }
+            var effectiveHideLabelShuttle = hideLabelShuttle && !allyByCompany;
+            if (!hideLabelShuttle && hideLabel)
+            {
+                var mapObject = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true);
+                AddMapObject(existingEdges, existingVerts, mapObject);
                 continue;
+            }
+            // Lua decrypt mod end
 
-            // Force drawing it at this point.
-            var iffText = _shuttles.GetIFFLabel(grid, self: true, component: iffComp);
+            var iffText = _shuttles.GetIFFLabel(grid, self: _shuttleEntity == grid.Owner, component: iffComp); // Lua decrypt mod
+            if (iffText == null)
+            {
+                // Lua decrypt mod start
+                if (haveViewerPos && _shuttleEntity != null)
+                {
+                    var realName = EntManager.TryGetComponent<MetaDataComponent>(grid.Owner, out var meta) ? meta.EntityName : string.Empty;
+                    var dist = Vector2.Distance(viewerPos, gridPos);
+                    if (effectiveHideLabelShuttle)
+                    {
+                        var decrypt = _iffDecrypt.Get(_shuttleEntity.Value, grid.Owner, realName, dist, hideLabel: true);
+                        if (decrypt.Phase != IFFDecryptPhase.Known) continue;
+                        iffText = decrypt.Revealed;
+                    }
+                    else if (hideLabelShuttle && allyByCompany)
+                    { iffText = realName; } else { iffText = Loc.GetString("shuttle-console-unknown"); }
+                }
+                else { iffText = Loc.GetString("shuttle-console-unknown"); }
+                // Lua decrypt mod end
+            }
 
             if (string.IsNullOrEmpty(iffText))
                 continue;
+
+            var mapObj2 = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true); // Lua decrypt mod
+            AddMapObject(existingEdges, existingVerts, mapObj2); // Lua decrypt mod
 
             var existingStrings = _strings.GetOrNew(gridColor);
             existingStrings.Add((gridUiPos, iffText));

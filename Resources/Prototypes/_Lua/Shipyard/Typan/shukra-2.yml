@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: GFShukraF
-  name: SYN-GF Shukra-2
+  name: Shukra-2
   description: Штурмовая версия корабля поддержки "Шукра". Этот шаттл схож по форме со своим предком, однако имеет более крепкую броню.
   limit: 2
   price: 175000
@@ -17,12 +17,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Typan/shukra-f.yml
-  addComponents:
-    - type: IFF
-      color: "#d93204"
+
 - type: gameMap
   id: GFShukraF
-  mapName: 'SYN-GF Shukra-2'
+  mapName: 'Shukra-2'
   mapPath: /Maps/_Lua/Shuttles/Typan/shukra-f.yml
   minPlayers: 0
   stations:
@@ -30,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SYN-GF Shukra-2 {1}'
+        mapNameTemplate: 'Shukra-2 {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

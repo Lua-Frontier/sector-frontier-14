@@ -17,6 +17,10 @@
   spawnGroup: Required
   gridPath: /Maps/_Lua/POI/nfsd.yml
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/nfsd.png
+    scale: 1.2
+    allowWhenHidden: true
   - type: IFF
     color: "#ae7d57"
 

@@ -7,7 +7,7 @@
 - type: vessel
   id: Twilight
   parent: BaseVessel
-  name: SKR Twilight
+  name: Twilight
   description: A small, fast jump-capable cargo transport with light rear-facing defensive armament.
   price: 36580
   category: Medium
@@ -19,12 +19,10 @@
   - Cargo
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Twilight
-  mapName: 'SKR Twilight'
+  mapName: 'Twilight'
   mapPath: /Maps/_Mono/Shuttles/twilight.yml
   minPlayers: 0
   stations:
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Twilight CIV{1}'
+          mapNameTemplate: 'Twilight {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

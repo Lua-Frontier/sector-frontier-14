@@ -14,9 +14,7 @@
   - Cargo
   engine:
   - Plasma
-  addComponents:
-    - type: IFF
-      color: "#d3ffa0"
+
 - type: gameMap
   id: Letterbox
   mapName: 'Letterbox'
@@ -27,7 +25,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Letterbox SRV{1}'
+          mapNameTemplate: 'Letterbox {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

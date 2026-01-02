@@ -7,7 +7,7 @@
 - type: vessel
   id: AClass
   parent: BaseVessel
-  name: TSF-SKR A-Class Atmospherics Rig
+  name: A-Class
   description: A variant of the M-Class with the carrier area refitted to a atmospherics bay.
   limit: 2
   price: 100700
@@ -21,12 +21,10 @@
   - Atmospherics
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: AClass
-  mapName: 'TSF-SKR A-Class Atmospherics Rig'
+  mapName: 'A-Class'
   mapPath: /Maps/_Mono/Shuttles/aclass.yml
   minPlayers: 0
   stations:
@@ -34,7 +32,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'A-Class CIV{1}'
+          mapNameTemplate: 'A-Class {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

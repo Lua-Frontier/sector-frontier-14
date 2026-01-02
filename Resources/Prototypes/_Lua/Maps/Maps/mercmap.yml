@@ -12,6 +12,10 @@
     MercMap:
       stationProto: StandardMercenaryVessel
       components:
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/space-station.png
+          scale: 1.2
+          allowWhenHidden: true
         - type: StationNameSetup
           mapNameTemplate: 'Аванпост Наёмников'
         - type: ExtraStationInformation

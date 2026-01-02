@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Caretaker
-  name: MC Caretaker
+  name: Caretaker
   price: 54150
   category: Small
   group: Mercenary
@@ -15,12 +15,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Caretaker.yml
-  addComponents:
-    - type: IFF
-      color: "#182faf"
+
 - type: gameMap
   id: Caretaker
-  mapName: 'MC Caretaker'
+  mapName: 'Caretaker'
   mapPath: /Maps/_Lua/Shuttles/Mercenary/Caretaker.yml
   minPlayers: 0
   stations:
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'MC Caretaker {1}'
+          mapNameTemplate: 'Caretaker {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

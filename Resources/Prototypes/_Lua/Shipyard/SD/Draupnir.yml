@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Draupnir
-  name: SD Draupnir
+  name: Draupnir
   description: Медицинский корабль департамента Шерифа
   limit: 2
   price: 173000 #100000
@@ -16,12 +16,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/Draupnir.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Draupnir
-  mapName: 'SD Draupnir'
+  mapName: 'Draupnir'
   mapPath: /Maps/_Lua/Shuttles/SD/Draupnir.yml
   minPlayers: 0
   stations:
@@ -29,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SD Draupnir {1}'
+        mapNameTemplate: 'Draupnir {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

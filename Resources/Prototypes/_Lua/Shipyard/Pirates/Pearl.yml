@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Pearl
-  name: BM Pearl
+  name: Pearl
   description: Деревянная пиратская яхта, продающаяся в коллекцию шаттлов. Вряд-ли пригоден для боев
   price: 101410
   category: Small
@@ -15,13 +15,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Pirates/Pearl.yml
-  addComponents:
-    - type: IFF
-      color: "#948471"
 
 - type: gameMap
   id: Pearl
-  mapName: 'BM Pearl'
+  mapName: 'Pearl'
   mapPath: /Maps/_Lua/Shuttles/Pirates/Pearl.yml
   minPlayers: 0
   stations:
@@ -29,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'BM Pearl {1}'
+          mapNameTemplate: 'Pearl {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

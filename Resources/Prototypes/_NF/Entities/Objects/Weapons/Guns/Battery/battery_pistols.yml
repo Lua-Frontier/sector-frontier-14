@@ -285,3 +285,8 @@
           Yellow: { state: mode-yellow }
   - type: StaticPrice
     price: 250
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  # Lua end

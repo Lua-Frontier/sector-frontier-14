@@ -1,7 +1,7 @@
 - type: vessel
   id: MonoInfiltrator
   parent: BaseVesselAntag
-  name: TY Mono-Infiltrator
+  name: Infiltrator
   description: A light syndicate frigate meant for raiding enemy stations. Armed to the teeth in missiles and CYREXAs.
   price: 241999
   category: Large
@@ -13,10 +13,7 @@
   - Syndicate
   engine:
   - AME
-  addComponents:
 
-    - type: IFF
-      color: "#d93204"
 - type: gameMap
   id: MonoInfiltrator
   mapName: 'Infiltrator'
@@ -27,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NRD Infiltrator {1}'
+          mapNameTemplate: 'Infiltrator {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

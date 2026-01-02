@@ -17,6 +17,10 @@
   spawnGroup: Required
   gridPath: /Maps/_Lua/POI/MedCenter.yml #Lua
   addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/medical.png
+    scale: 1.8
+    allowWhenHidden: true
   - type: IFF
     color: "#00b7eb"
 

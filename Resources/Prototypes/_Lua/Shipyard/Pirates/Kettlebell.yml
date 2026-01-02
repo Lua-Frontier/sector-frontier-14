@@ -5,7 +5,7 @@
 - type: vessel
   parent: BaseVessel
   id: Kettlebell
-  name: BM Kettlebell
+  name: Kettlebell
   description: Небольшой штурмовик с легкими орудиями и неплохой броней
   price: 121841
   category: Medium
@@ -15,12 +15,10 @@
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/Pirates/Kettlebell.yml
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Kettlebell
-  mapName: 'BM Kettlebell'
+  mapName: 'Kettlebell'
   mapPath: /Maps/_Lua/Shuttles/Pirates/Kettlebell.yml
   minPlayers: 0
   stations:
@@ -28,7 +26,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'BM Kettlebell {1}'
+          mapNameTemplate: 'Kettlebell {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

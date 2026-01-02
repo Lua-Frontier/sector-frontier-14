@@ -7,7 +7,7 @@
 - type: vessel
   id: Judiciary
   parent: BaseVessel
-  name: SHM Judiciary
+  name: Judiciary
   description: A refitted research vessel armed with expedition-rated combat equipment.
   price: 75000 #Lua
   category: Medium
@@ -19,9 +19,7 @@
   - Expedition
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Judiciary
   mapName: 'Judiciary'
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Judiciary EXP{1}'
+          mapNameTemplate: 'Judiciary {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

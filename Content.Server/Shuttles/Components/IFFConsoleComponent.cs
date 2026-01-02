@@ -10,5 +10,5 @@ public sealed partial class IFFConsoleComponent : Component
     /// Flags that this console is allowed to set.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("allowedFlags")]
-    public IFFFlags AllowedFlags = IFFFlags.HideLabel;
+    public IFFFlags AllowedFlags = IFFFlags.HideLabelShuttle; // Lua Decrypt mod
 }

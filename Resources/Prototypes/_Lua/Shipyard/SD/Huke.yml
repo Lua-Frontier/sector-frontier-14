@@ -6,7 +6,7 @@
 - type: vessel
   parent: BaseVessel
   id: Huke
-  name: NSF Huke
+  name: Huke
   description: Средне-малый корабль для патруля космоса. Имеет Торпедное вооружение малых размеров.
    Также имеет посредственное бронирование.
   limit: 5
@@ -18,13 +18,10 @@
   engine:
   - Uranium
   shuttlePath: /Maps/_Lua/Shuttles/SD/Huke.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
 
 - type: gameMap
   id: Huke
-  mapName: 'NSF Huke'
+  mapName: 'Huke'
   mapPath: /Maps/_Lua/Shuttles/SD/Huke.yml
   minPlayers: 0
   stations:
@@ -32,7 +29,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'NSF Huke {1}'
+        mapNameTemplate: 'Huke {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

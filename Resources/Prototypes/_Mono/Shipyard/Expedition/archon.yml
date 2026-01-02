@@ -7,7 +7,7 @@
 - type: vessel
   id: Archon
   parent: BaseVessel
-  name: SKR Archon
+  name: Archon
   description: A entry level expedition ship, outfitted with bare essentials.
   price: 60000 #Lua
   category: Large
@@ -19,9 +19,7 @@
   - Expedition
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Archon
   mapName: 'Archon'
@@ -32,7 +30,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Archon EXP{1}'
+          mapNameTemplate: 'Archon {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
