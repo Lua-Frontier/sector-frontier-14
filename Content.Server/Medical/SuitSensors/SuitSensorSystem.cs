@@ -230,7 +230,6 @@ public sealed class SuitSensorSystem : EntitySystem
         component.StationId ??= _stationSystem.GetOwningStation(uid);
         */
 
-        // ����� (�� ������ ������) ��������� ����������� ��������� (������).
         if (component.RandomMode)
         {
             var modesDist = new[]
