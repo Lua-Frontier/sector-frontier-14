@@ -1,102 +1,101 @@
 #region .20 rifle
 - type: entity
-  name: box of 5.56x45mm Rubber magazines #Lua 20 -> 556x45
+  name: box of .20 rifle (rubber) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle556x45mmRubber #Lua 20 -> 556x45 base
-  description: A box full of 5.56x45mm Rubber magazines. #Lua 20 -> 556x45
+  id: NFBoxMagazineRifle20Rubber
+  description: A box full of .20 rifle (rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine556x45mmRubber #Lua 20 -> 556x45
+      - id: NFMagazineRifle20Rubber
         amount: 4
 
 - type: entity
-  name: box of 5.56x45mm FMJ magazines #Lua 20 -> 556x45
+  name: box of .20 rifle (overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle556x45mmFMJ #Lua 20 -> 556x45 base
-  description: A box full of 5.56x45mm FMJ magazines. #Lua 20 -> 556x45
+  id: NFBoxMagazineRifle20Overpressure
+  description: A box full of .20 rifle (overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine556x45mmFMJ #Lua 20 -> 556x45
+      - id: NFMagazineRifle20Overpressure
         amount: 4
 
 #region .30 rifle
 - type: entity
-  name: box of 7.62x39mm Rubber magazines #Lua 30 -> 762x39
+  name: box of .30 rifle (rubber) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle762x39mmRubber #Lua 30 -> 762x39 base
-  description: A box full of 7.62x39mm Rubber magazines. #Lua 30 -> 762x39
+  id: NFBoxMagazineRifle30Rubber
+  description: A box full of .30 rifle (rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine762x39mmRubber #Lua 30 -> 762x39
+      - id: NFMagazineRifle30Rubber
         amount: 4
 
 - type: entity
-  name: box of 7.62x39mm FMJ magazines #Lua 30 -> 762x39
+  name: box of .30 rifle magazines
   parent: BoxMagazine
-  id: NFBoxMagazineRifle762x39mmFMJ #Lua 30 -> 762x39 base
-  description: A box full of 7.62x39mm FMJ magazines. #Lua 30 -> 762x39
+  id: NFBoxMagazineRifle30
+  description: A box full of .30 rifle magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
+      - id: NFMagazineRifle30
         amount: 4
 
-# Lua ignore
-# - type: entity
-#   name: box of .30 rifle (overpressure) magazines
-#   parent: BoxMagazine
-#   id: NFBoxMagazineRifle762x39mmHP #Lua 30 -> 762x39
-#   description: A box full of .30 rifle (overpressure) magazines.
-#   components:
-#   - type: StorageFill
-#     contents:
-#       - id: Magazine762x39mmHP #Lua 30 -> 762x39
-#         amount: 4
+- type: entity
+  name: box of .30 rifle (overpressure) magazines
+  parent: BoxMagazine
+  id: NFBoxMagazineRifle30Overpressure
+  description: A box full of .30 rifle (overpressure) magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFMagazineRifle30Overpressure
+        amount: 4
 
 #region .35 pistol
 - type: entity
   name: box of pistol (.35 pistol, rubber) magazines
   parent: BoxMagazine
-  id: NFBoxMagazinePistol9x19Rubber #Lua 35 -> 9x19 base
+  id: NFBoxMagazinePistol35Rubber
   description: A box full of pistol (.35 pistol, rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmPistolRubber #Lua 35 -> 9x19
+      - id: NFMagazineHighCapacityPistol35Rubber
         amount: 4
 
 - type: entity
   name: box of pistol (.35 pistol, practice) magazines
   parent: BoxMagazine
-  id: NFBoxMagazinePistol9x19Practice #Lua 35 -> 9x19 base
+  id: NFBoxMagazinePistol35Practice
   description: A box full of pistol (.35 pistol, practice) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmPistolPractice #Lua 35 -> 9x19
+      - id: NFMagazineHighCapacityPistol35Practice
         amount: 4
 
 - type: entity
-  name: box of SMG 9x19mm Rubber magazines #Lua 35 -> 9x19
+  name: box of SMG (.35 pistol, rubber) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineSubMachineGun9x19mmRubber #Lua 35 -> 9x19 base
-  description: A box full of SMG 9x19mm Rubber magazines. #Lua 35 -> 9x19
+  id: NFBoxMagazinePistolSubMachineGun35Rubber
+  description: A box full of SMG (.35 pistol, rubber) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmSubMachineGunRubber #Lua 35 -> 9x19
-        amount: 4
+      - id: NFMagazineSubMachineGun35Rubber
+        amount: 3
 
 - type: entity
-  name: box of SMG 9x19mm FMJ magazines #Lua 35 -> 9x19
+  name: box of pistol (.35 pistol, overpressure) magazines
   parent: BoxMagazine
-  id: NFBoxMagazineSubMachineGun9x19mmFMJ #Lua 35 -> 9x19 base
-  description: A box full of SMG 9x19mm FMJ magazines. #Lua 35 -> 9x19
+  id: NFBoxMagazineHighCapacityPistol35Overpressure
+  description: A box full of pistol (.35 pistol, overpressure) magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
+      - id: NFMagazineHighCapacityPistol35Overpressure
         amount: 4

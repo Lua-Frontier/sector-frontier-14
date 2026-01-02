@@ -91,20 +91,20 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm pistol) #Lua 35 -> 9x19 base
+  id: NFBaseMagazineSubMachineGunTopMounted35
+  name: top mounted smg magazine (.35 pistol)
   parent: [ BaseC1Contraband, MagazinePistolSubMachineGunTopMounted, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: Tag
     tags:
-      - NFMagazineSubMachineGunTopMountedPistol9x19 #Lua 35 -> 9x19 base
+      - NFMagazineSubMachineGunTopMountedPistol35
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19 base
+    proto: NFBulletPistol35
     whitelist:
       tags:
-      - Cartridge9x19mmFMJ #Lua 35 -> 9x19 base
+      - NFCartridgePistol35
     capacity: 30
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag_top_mounted.rsi
@@ -588,9 +588,9 @@
       - state: inhand-right-stripe
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19Empty #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, any) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Empty
+  name: top mounted smg magazine (.35 pistol, any)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -603,12 +603,12 @@
         shader: unshaded
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm pistol) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35
+  name: top mounted smg magazine (.35 pistol)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35
   - type: Sprite
     layers:
       - state: base
@@ -618,12 +618,12 @@
         shader: unshaded
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19RIP #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, RIP) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Overpressure
+  name: top mounted smg magazine (.35 pistol, overpressure)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmRIP #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35Overpressure
   - type: Sprite
     layers:
       - state: base
@@ -645,12 +645,12 @@
         color: "#ff8d00"
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19Incendiary #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, incendiary) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Incendiary
+  name: top mounted smg magazine (.35 pistol, incendiary)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmIncendiary #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35Incendiary
   - type: Sprite
     layers:
       - state: base
@@ -672,12 +672,12 @@
         color: "#ff0000"
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19Uranium #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, uranium) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Uranium
+  name: top mounted smg magazine (.35 pistol, uranium)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmUranium #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35Uranium
   - type: Sprite
     layers:
       - state: base
@@ -699,12 +699,12 @@
         color: "#00ff00"
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19Practice #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, practice) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Practice
+  name: top mounted smg magazine (.35 pistol, practice)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmPractice #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35Practice
   - type: Sprite
     layers:
       - state: base
@@ -776,12 +776,12 @@
         color: "#00ffff"
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19Emp #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, EMP) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Emp
+  name: top mounted smg magazine (.35 pistol, EMP)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmEmp #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35Emp
   - type: Sprite
     layers:
       - state: base
@@ -803,12 +803,12 @@
         color: "#00ffff"
 
 - type: entity
-  id: NFMagazineSubMachineGunTopMounted9x19Rubber #Lua 35 -> 9x19 base
-  name: top mounted smg magazine (9x19mm, rubber) #Lua 35 -> 9x19 base
-  parent: NFBaseMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+  id: NFMagazineSubMachineGunTopMounted35Rubber
+  name: top mounted smg magazine (.35 pistol, rubber)
+  parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmRubber #Lua 35 -> 9x19 base
+    proto: NFCartridgePistol35Rubber
   - type: Sprite
     layers:
       - state: base

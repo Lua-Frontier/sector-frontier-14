@@ -299,7 +299,7 @@ BoxMagazineCaselessRiflePractice: null
 BoxMagazineCaselessRifleRubber: null
 BoxMagazineLightRifle: NFMagazineRifle30 # close enough
 BoxMagazineLightRiflePractice: NFMagazineRifle30Practice # close enough
-BoxMagazineLightRifleRubber: NFBoxMagazineRifle762x39mmRubber #Lua 30 -> 762x39 base
+BoxMagazineLightRifleRubber: NFBoxMagazineRifle30Rubber
 BoxMagazineMagnumSubMachineGun: null
 BoxMagazineMagnumSubMachineGunPractice: null
 BoxMagazineMagnumSubMachineGunRubber: null
@@ -308,15 +308,15 @@ BoxMagazinePistolCaselessRifle: null
 BoxMagazinePistolHighCapacity: NFMagazineHighCapacityPistol35 # close enough
 BoxMagazinePistolHighCapacityPractice: NFMagazineHighCapacityPistol35Practice # close enough
 BoxMagazinePistolPractice: NFMagazinePistol35Practice # close enough
-BoxMagazinePistolRubber: NFBoxMagazinePistol9x19Rubber #Lua 35 -> 9x19 base
+BoxMagazinePistolRubber: NFBoxMagazinePistol35Rubber
 BoxMagazinePistolSubMachineGun: NFMagazineSubMachineGun35 # close enough
 BoxMagazinePistolSubMachineGunEmp: NFMagazineSubMachineGun35Emp # close enough
 BoxMagazinePistolSubMachineGunPractice: NFMagazineSubMachineGun35Practice # close enough
 BoxMagazinePistolSubMachineGunRubber: NFMagazineSubMachineGun35Rubber
-BoxMagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+BoxMagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted35 # close enough
 BoxMagazineRifle: NFMagazineRifle20 # close enough
 BoxMagazineRiflePractice: NFMagazineRifle20Practice # close enough
-BoxMagazineRifleRubber: NFBoxMagazineRifle556x45mmRubber #Lua 20 -> 556x45
+BoxMagazineRifleRubber: NFBoxMagazineRifle20Rubber
 BoxMagazineShotgun: NFMagazineShotgunDrum # close enough
 BoxMagazineShotgunBeanbag: NFMagazineShotgunDrumBeanbag # close enough
 BoxMagazineShotgunIncendiary: NFMagazineShotgunDrumIncendiary # close enough
@@ -402,7 +402,7 @@ MagazineGrenadeEmpty: NFMagazineGrenadeEmpty
 MagazineGrenadeFlash: NFMagazineGrenadeFlash
 MagazineGrenadeFrag: NFMagazineGrenadeFrag
 MagazineLightRifle: NFMagazineRifle30
-MagazineLightRifleBox: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
+MagazineLightRifleBox: NFMagazineBoxRifle20 # 20??
 MagazineLightRifleEmpty: NFMagazineRifle30Empty
 MagazineLightRifleIncendiary: NFMagazineRifle30Incendiary
 MagazineLightRifleLowCapacity: NFMagazineLowCapacityRifle30
@@ -445,8 +445,8 @@ MagazinePistolSubMachineGunEmpty: NFMagazineSubMachineGun35Empty
 MagazinePistolSubMachineGunIncendiary: NFMagazineSubMachineGun35Incendiary
 MagazinePistolSubMachineGunPractice: NFMagazineSubMachineGun35Practice
 MagazinePistolSubMachineGunUranium: NFMagazineSubMachineGun35Uranium
-MagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
-MagazinePistolSubMachineGunTopMountedEmpty: NFMagazineSubMachineGunTopMounted9x19Empty #Lua 35 -> 9x19 base
+MagazinePistolSubMachineGunTopMounted: NFMagazineSubMachineGunTopMounted35
+MagazinePistolSubMachineGunTopMountedEmpty: NFMagazineSubMachineGunTopMounted35Empty
 MagazinePistolUranium: NFMagazinePistol35Uranium
 MagazineRifle: NFMagazineRifle20
 MagazineRifleEmpty: NFMagazineRifle20Empty

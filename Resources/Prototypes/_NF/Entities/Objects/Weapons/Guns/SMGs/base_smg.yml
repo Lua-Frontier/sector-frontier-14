@@ -158,31 +158,31 @@
 - type: entity
   abstract: true
   parent: NFBaseWeaponSubMachineGunChamber
-  id: NFBaseWeaponSubMachineGunChamber9x19TopMounted #Lua 35 -> 9x19 base
+  id: NFBaseWeaponSubMachineGunChamber35TopMounted
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGunTopMounted9x19 #Lua 35 -> 9x19 base
+        startingItem: NFMagazineSubMachineGunTopMounted35
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist: &mag35TopMountedWhitelist
           tags:
-            - NFMagazineSubMachineGunTopMountedPistol9x19 #Lua 35 -> 9x19 base
+            - NFMagazineSubMachineGunTopMountedPistol35
       gun_chamber: *chamber35Standard
 
 - type: entity
   abstract: true
-  parent: NFBaseWeaponSubMachineGunChamber9x19TopMounted #Lua 35 -> 9x19 base
-  id: NFBaseWeaponSubMachineGunChamber9x19TopMountedRubber #Lua 35 -> 9x19 base
+  parent: NFBaseWeaponSubMachineGunChamber35TopMounted
+  id: NFBaseWeaponSubMachineGunChamber35TopMountedRubber
   components:
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGunTopMounted9x19Rubber #Lua 35 -> 9x19 base
+        startingItem: NFMagazineSubMachineGunTopMounted35Rubber
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
