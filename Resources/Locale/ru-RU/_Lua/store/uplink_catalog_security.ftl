@@ -58,3 +58,34 @@ uplink-security-Magazine762x51mmRubber-desc = полная коробка с м�
 uplink-security-Magazine8x65mmSKR-name = коробка магазинов (8x65mm FMJ)
 uplink-security-Magazine8x65mmSKR-desc = полная коробка с магазинами калибра 8x65mm, тип пуль: FMJ.
 
+security-store-category-medicine = медицина
+
+uplink-security-AnnieBundle-name = набор "TCA M27 Annie (7.62x39mm)"
+uplink-security-AnnieBundle-desc = Содержит в себе штурмовую винтовку TCA M27 Annie, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
+
+uplink-security-MR8CBundle-name = набор "VFD MR-8C DMR (8x65mm SKR)"
+uplink-security-MR8CBundle-desc = Содержит в себе пехотную снайперскую винтовку VFD MR-8C DMR, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
+
+uplink-security-MR8BBundle-name = набор "VFD MR-8B LWMMG (7.62x51mm)"
+uplink-security-MR8BBundle-desc = Содержит в себе пулемёт VFD MR-8B LWMMG, 2 запасных магазина и 1 большую коробку пуль. Тип пуль: FMJ.
+
+uplink-security-NtsfLtrBundle-name = набор "NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)"
+uplink-security-NtsfLtrBundle-desc = Содержит в себе штурмовую винтовку NTSF-LTR-556, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
+
+uplink-security-LecterBundle-name = набор "Lecter (5.56x45mm)"
+uplink-security-LecterBundle-desc = Содержит в себе штурмовую винтовку Lecter, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
+
+uplink-security-LRC21PPLBundle-name = набор "NT-WS LRC-21 PPL"
+uplink-security-LRC21PPLBundle-desc = Содержит в себе плазменную винтовку NT-WS LRC-21 PPL, и 2 запасных батареи.
+
+uplink-security-Wt550Bundle-name = набор "WT-550 (9x19mm)"
+uplink-security-Wt550Bundle-desc = Содержит в себе ПП WT-550, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
+
+uplink-security-N1984Bundle-name = набор "N1984 (.45_ACP)"
+uplink-security-N1984Bundle-desc = Содержит в себе пистолет N1984, и 2 запасных магазина высокой ёмкости.
+
+uplink-security-InspectorBundle-name = набор "Inspector (.45 Magnum)"
+uplink-security-InspectorBundle-desc = Содержит в себе револьвер Inspector, и 2 запасных спидлоадера.
+
+uplink-security-enforcerBundle-name = набор "Enforcer (4 gauge)"
+uplink-security-enforcerBundle-desc = содержит в себе дробовик Enforcer, и 3 пачки патронов.

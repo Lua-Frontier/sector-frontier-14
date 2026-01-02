@@ -206,10 +206,11 @@
 #region weapons
 
 - type: listing
-  id: UplinkSecurityAnnie # TCA M27 Annie (7.62x39mm)
-  name:  uplink-security-annie-name
-  description: uplink-security-annie-desc
-  productEntity: WeaponRifleAnnie
+  id: UplinkSecurityAnnieBundle # TCA M27 Annie (7.62x39mm)
+  name:  uplink-security-AnnieBundle-name
+  description: uplink-security-AnnieBundle-desc
+  productEntity: WeaponCaseLongAnnieBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 20
   categories:
@@ -230,6 +231,7 @@
   name: uplink-security-vector45acp-name
   description: uplink-security-vector45acp-desc
   productEntity: WeaponCaseLongVector45ACPBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 12
   categories:
@@ -256,10 +258,11 @@
       - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMR8C # VFD MR-8C DMR (8x65mm SKR)
-  name:  uplink-security-mr8c-name
-  description: uplink-security-mr8c-desc
-  productEntity: WeaponRifleMR8C
+  id: UplinkSecurityMR8CBundle # VFD MR-8C DMR (8x65mm SKR)
+  name:  uplink-security-MR8CBundle-name
+  description: uplink-security-MR8CBundle-desc
+  productEntity: WeaponCaseLongMR8CBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 25
   categories:
@@ -276,10 +279,11 @@
       - Sheriff
 
 - type: listing
-  id: UplinkSecurityMR8B # VFD MR-8B LWMMG (7.62x51mm)
-  name:  uplink-security-mr8b-name
-  description: uplink-security-mr8b-desc
-  productEntity: WeaponLMGMR8B
+  id: UplinkSecurityMR8BBundle # VFD MR-8B LWMMG (7.62x51mm)
+  name:  uplink-security-MR8BBundle-name
+  description: uplink-security-MR8BBundle-desc
+  productEntity: WeaponCaseLongLMGMR8BBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/LMGs/mr8b.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 35
   categories:
@@ -298,6 +302,7 @@
   name:  uplink-security-ashstorm-name
   description: uplink-security-ashstorm-desc
   productEntity: ClothingBackpackDuffelAshstormBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/cell_mg.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 40
   categories:
@@ -332,13 +337,13 @@
           - Sheriff
 
 - type: listing
-  id: UplinkSecurityHammer # Прбивной молот
-  name:  uplink-security-hammer-name
-  description: uplink-security-hammer-desc
-  productEntity: SecBreachingHammer
-  icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
+  id: UplinkSecurityNtsfLtrBundle # NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)
+  name:  uplink-security-NtsfLtrBundle-name
+  description: uplink-security-NtsfLtrBundle-desc
+  productEntity: WeaponCaseLongNtsfLtrBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/NTSF-LTR-556, state: icon }
   cost:
-    FrontierUplinkCoin: 4
+    FrontierUplinkCoin: 7
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -348,10 +353,11 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityEnforcer # Силовик (4 gauge)
-  name:  uplink-security-enforcer-name
-  description: uplink-security-enforcer-desc
-  productEntity: NFWeaponShotgunEnforcer
+  id: UplinkSecurityEnforcerBundle # Enforcer (4 gauge)
+  name:  uplink-security-enforcerBundle-name
+  description: uplink-security-enforcerBundle-desc
+  productEntity: WeaponCaseLongEnforcerBundle
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 3
   categories:
@@ -363,10 +369,11 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityLecter # Лектер (5.56x45mm)
-  name:  uplink-security-lecter-name
-  description: uplink-security-lecter-desc
-  productEntity: NFWeaponRifleAssaultLecter
+  id: UplinkSecurityLecterBundle # Lecter (5.56x45mm)
+  name:  uplink-security-LecterBundle-name
+  description: uplink-security-LecterBundle-desc
+  productEntity: WeaponCaseLongLecterBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 3
   categories:
@@ -378,12 +385,13 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityVulcan # Вулкан (7.62x39mm)
-  name:  uplink-security-vulcan-name
-  description: uplink-security-vulcan-desc
-  productEntity: NFWeaponRifleAssaultVulcan
+  id: UplinkSecurityLRC21PPLBundle # NT-WS LRC-21 PPL
+  name: uplink-security-LRC21PPLBundle-name
+  description: uplink-security-LRC21PPLBundle-desc
+  productEntity: WeaponCaseHeavyLRC21PPLBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/lrc21.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 4
+    FrontierUplinkCoin: 33
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -391,12 +399,16 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff
+        - Bailiff
 
 - type: listing
   id: UplinkSecurityWT550 # WT-550 (9x19mm)
-  name:  uplink-security-wt550-name
-  description: uplink-security-wt550-desc
-  productEntity: NFWeaponSubMachineGunWt550
+  name:  uplink-security-Wt550Bundle-name
+  description: uplink-security-Wt550Bundle-desc
+  productEntity: WeaponCaseLongWt550Bundle
   icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 10
@@ -409,11 +421,11 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityMk58 # МК-58 (9x19mm)
-  name:  uplink-security-mk58-name
-  description: uplink-security-mk58-desc
-  productEntity: NFWeaponPistolMk58
-  icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
+  id: UplinkSecurityN1984 # N1984 (.45_ACP)
+  name:  uplink-security-N1984Bundle-name
+  description: uplink-security-N1984Bundle-desc
+  productEntity: WeaponCaseLongN1984Bundle
+  icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 2
   categories:
@@ -425,10 +437,10 @@
           - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityInspector # Инспектор (.45 Magnum)
-  name:  uplink-security-inspector-name
-  description: uplink-security-inspector-desc
-  productEntity: NFWeaponRevolverInspector
+  id: UplinkSecurityInspectorBundle # Inspector (.45 Magnum)
+  name:  uplink-security-InspectorBundle-name
+  description: uplink-security-InspectorBundle-desc
+  productEntity: WeaponCaseLongInspectorBundle
   icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 1
@@ -869,7 +881,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityExplosives
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -885,7 +897,7 @@
   cost:
     FrontierUplinkCoin: 2
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityExplosives
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -901,7 +913,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityExplosives
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -939,7 +951,7 @@
   cost:
     FrontierUplinkCoin: 6
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -955,16 +967,16 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Sheriff
+    # - !type:BuyerJobCondition
+    #   whitelist:
+    #     - Brigmedic
+    #     - Sheriff
 
 - type: listing
   id: UplinkSecurityRadPen
@@ -975,7 +987,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -991,7 +1003,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1007,7 +1019,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1023,7 +1035,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1039,23 +1051,7 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityCyborgModule
-  name:  uplink-security-cyborg-module-name
-  description: uplink-security-cyborg-module-desc
-  productEntity: BorgModuleSecurity
-  icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1071,16 +1067,16 @@
   cost:
     FrontierUplinkCoin: 1
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Sheriff
+    # - !type:BuyerJobCondition
+    #   whitelist:
+    #     - Brigmedic
+    #     - Sheriff
 
 - type: listing
   id: UplinkSecurityMedkit
@@ -1091,7 +1087,7 @@
   cost:
     FrontierUplinkCoin: 2
   categories:
-    - UplinkSecurityUtility
+    - UplinkSecurityMedicine
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
@@ -1202,11 +1198,11 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+    # - !type:BuyerJobCondition
+    #   whitelist:
+    #     - Bailiff
+    #     - SeniorOfficer
+    #     - Sheriff
 
 - type: listing
   id: UplinkSecurityTeleShield
@@ -1239,11 +1235,11 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+    # - !type:BuyerJobCondition
+    #   whitelist:
+    #     - Bailiff
+    #     - SeniorOfficer
+    #     - Sheriff
 
 - type: listing
   id: UplinkSecurityCash2500
@@ -1345,8 +1341,24 @@
       whitelist:
         tags:
           - SecurityUplink
-    - !type:BuyerJobCondition
+    # - !type:BuyerJobCondition
+    #   whitelist:
+    #     - Bailiff
+    #     - SeniorOfficer
+    #     - Sheriff
+
+- type: listing
+  id: UplinkSecurityCyborgModule
+  name:  uplink-security-cyborg-module-name
+  description: uplink-security-cyborg-module-desc
+  productEntity: BorgModuleSecurity
+  icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
       whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+        tags:
+          - SecurityUplink
