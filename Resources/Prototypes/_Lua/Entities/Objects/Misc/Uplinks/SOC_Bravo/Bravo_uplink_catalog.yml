@@ -180,135 +180,132 @@
 
 #Боеприпасы
 - type: listing
-  id: BravoUplinkAmmoNFMagazineRifle762x39RIP #Lua 30 -> 762x39
-  name: magazine (762x39mm, RIP) #Lua 30 -> 762x39
-  description: магазин заполненный мясными боеприпасами для автомата Энни
-  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignored
-  productEntity: Magazine762x39mmRIP #Lua 30 -> 762x39
+  id: BravoUplinkAmmoNFMagazineRifle30Overpressure
+  name: magazine (.30 rifle, overpressure)
+  description: магазин заполненный летальными боеприпасами для автомата Энни
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Overpressure
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFMagazineRifle762x39Incendiary #Lua 30 -> 762x39
-  name: magazine (762x39mm, incendiary) #Lua 30 -> 762x39
+  id: BravoUplinkAmmoNFMagazineRifle30Incendiary
+  name: magazine (.30 rifle, incendiary)
   description: магазин заполненный летальными боеприпасами с зажигательным покрытием для автомата Энни
-  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignored
-  productEntity: Magazine762x39mmIncendiary #Lua 30 -> 762x39
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Incendiary
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkNFMagazineRifle762x39Rubber #Lua 30 -> 762x39
-  name: magazine (762x39mm, rubber) #Lua 30 -> 762x39
+  id: BravoUplinkNFMagazineRifle30Rubber
+  name: magazine (.30 rifle, rubber)
   description: магазин заполненный нелетальными боеприпасами для автомата Энни
-  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignored
-  productEntity: Magazine762x39mmRubber #Lua 30 -> 762x39
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Rubber
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFMagazineRifle762x39Uranium #Lua 30 -> 762x39
-  name: magazine (762x39mm, uranium) #Lua 30 -> 762x39
+  id: BravoUplinkAmmoNFMagazineRifle30Uranium
+  name: magazine (.30 rifle, uranium)
   description: магазин заполненный летальными боеприпасами с урановым покрытием для автомата Энни
-  #icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base } Lua ignored
-  productEntity: Magazine762x39mmUranium #Lua 30 -> 762x39
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
+  productEntity: NFMagazineRifle30Uranium
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
-
+ 
 - type: listing
-  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle556x45Uranium #Lua 20 -> 556x45
-  name: Ящик патронов (5.56x45mm, урановые) #Lua 20 -> 556x45
-  description: ящик урановых боеприпасов калибра 5.56x45mm #Lua 20 -> 556x45
-  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 } Lua ignored
-  productEntity: AmmoBox556x45mmUranium #Lua 20 -> 556x45
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
+  name: Ящик патронов (.20 винтовочные, урановые)
+  description: ящик урановых боеприпасов калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Uranium
   cost:
     FrontierUplinkCoin: 3
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkNFAmmunitionBoxBigRifle556x45RIP #Lua 20 -> 556x45
-  name: Ящик патронов (5.56x45mm, мясо) #Lua 20 -> 556x45
-  description: ящик мясных боеприпасов калибра 5.56x45mm #Lua 20 -> 556x45
-  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 } Lua ignored
-  productEntity: AmmoBox556x45mmRIP #Lua 20 -> 556x45
+  id: BravoUplinkNFAmmunitionBoxBigRifle20Overpressure
+  name: Ящик патронов (.20 винтовочные, усиленные)
+  description: ящик летальных боеприпасов калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Overpressure
   cost:
     FrontierUplinkCoin: 3
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle556x45Incendiary #Lua 20 -> 556x45
-  name: Ящик патронов (5.56x45mm, зажигательные) #Lua 20 -> 556x45
-  description: Ящик заполненный зажигательными боеприпасами калибра 5.56x45mm #Lua 20 -> 556x45
-  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 } Lua ignored
-  productEntity: AmmoBox556x45mmIncendiary #Lua 20 -> 556x45
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Incendiary
+  name: Ящик патронов (.20 винтовочные, зажигательные)
+  description: Ящик заполненный зажигательными боеприпасами калибра .20
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle20Incendiary
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+    
+- type: listing
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
+  name: Ящик патронов (.30 винтовочные, урановые)
+  description: ящик урановых боеприпасов калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Uranium
   cost:
     FrontierUplinkCoin: 3
   categories:
     - BravoUplinkAmmo
 
-# Lua ignore (Dont using)
-#- type: listing
-#  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
-#  name: Ящик патронов (.30 винтовочные, урановые)
-#  description: ящик урановых боеприпасов калибра .30
-#  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-#  productEntity: NFAmmunitionBoxBigRifle30Uranium
-#  cost:
-#    FrontierUplinkCoin: 3
-#  categories:
-#    - BravoUplinkAmmo
-
-# Lua ignore (Dont using)
-#- type: listing
-#  id: BravoUplinkNFAmmunitionBoxBigRifle30Overpressure
-#  name: Ящик патронов (.30 винтовочные, усиленные)
-#  description: ящик летальных боеприпасов калибра .30
-#  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-#  productEntity: NFAmmunitionBoxBigRifle30Overpressure
-#  cost:
-#    FrontierUplinkCoin: 3
-#  categories:
-#    - BravoUplinkAmmo
-
-# Lua ignore (Dont using)
-#- type: listing
-#  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
-#  name: Ящик патронов (.30 винтовочные, зажигательные)
-#  description: Ящик заполненный зажигательными боеприпасами калибра .30
-#  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-#  productEntity: NFAmmunitionBoxBigRifle30Incendiary
-#  cost:
-#    FrontierUplinkCoin: 3
-#  categories:
-#    - BravoUplinkAmmo
+- type: listing
+  id: BravoUplinkNFAmmunitionBoxBigRifle30Overpressure
+  name: Ящик патронов (.30 винтовочные, усиленные)
+  description: ящик летальных боеприпасов калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Overpressure
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun9x19RIP #Lua 35 -> 9x19
-  name: магазин ПП (9x19mm, мясо)
+  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
+  name: Ящик патронов (.30 винтовочные, зажигательные)
+  description: Ящик заполненный зажигательными боеприпасами калибра .30
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
+  productEntity: NFAmmunitionBoxBigRifle30Incendiary
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
+  name: магазин ПП (.35 пистолетные, усиленные)
   description: магазин заполненный летальными боеприпасами для WT-550
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGunTopMounted9x19RIP #Lua 35 -> 9x19
+  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun9x19Rubber #Lua 35 -> 9x19
-  name: smg magazine (9x19mm, rubber)
+  id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
+  name: smg magazine (.35 pistol, rubber)
   description: магазин заполненный нелетальными боеприпасами для WT-550
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGunTopMounted9x19Rubber #Lua 35 -> 9x19
+  productEntity: NFMagazineSubMachineGun35Rubber
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -326,33 +323,33 @@
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFSpeedLoaderPistol45MagnumRubber #Lua 45 -> Magnum
-  name: speed loader (.45 Magnum, Rubber) #Lua 45 -> Magnum
+  id: BravoUplinkAmmoNFSpeedLoaderPistol45Rubber
+  name: speed loader (.45 pistol, Rubber)
   description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
-  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber } Lua ignored
-  productEntity: SpeedLoader45_magnumRubber #Lua 45 -> Magnum
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
+  productEntity: NFSpeedLoaderPistol45Rubber
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoSpeedLoaderPistol45Magnum #Lua 45 -> Magnum
-  name: speed loader (.45 Magnum) #Lua 45 -> Magnum
+  id: BravoUplinkAmmoSpeedLoaderPistol45
+  name: speed loader (.45 pistol)
   description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
-  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base } Lua ignored
-  productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
+  productEntity: NFSpeedLoaderPistol45
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
-  name: drum magazine (5.56x45mm rifle, any) #Lua 20 -> 556x45
+  id: BravoUplinkAmmoNFMagazineDrumRifle20Empty
+  name: drum magazine (.20 rifle, any)
   description: барабанный магазин для винтовки "лектер" боеприпас в комплект не входит.
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi, state: base }
-  productEntity: NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
+  productEntity: NFMagazineDrumRifle20Empty
   cost:
     FrontierUplinkCoin: 1
   categories:
