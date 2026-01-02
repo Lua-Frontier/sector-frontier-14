@@ -25,6 +25,9 @@ uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc = полная коро
 uplink-security-Magazine9x19mmPistolHighCapacityRubber-name = коробка магазинов для пистолета (9x19mm Rubber)
 uplink-security-Magazine9x19mmPistolHighCapacityRubber-desc = полная коробка с магазинами для пистолета калибра 9x19mm, тип пуль: Rubber.
 
+uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-name = коробка надствольных магазинов для ПП (9x19mm FMJ)
+uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-desc = полная коробка с надствольными магазинами для ПП калибра 9x19mm, тип пуль: FMJ.
+
 uplink-security-Magazine45_ACPSubMachineGunFMJ-name = коробка магазинов для ПП (.45 ACP FMJ)
 uplink-security-Magazine45_ACPSubMachineGunFMJ-desc = полная коробка с магазинами для ПП калибра .45 ACP, тип пуль: FMJ.
 

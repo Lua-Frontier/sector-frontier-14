@@ -576,6 +576,22 @@
       tags:
       - SecurityUplink
 
+- type: listing
+  id: UplinkSecurityMagazine9x19mmSubMachineGunTopMountedFMJ # Mag topmount
+  name: uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-name
+  description: uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunTopMountedFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 6000
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
 # Rubber
 
 - type: listing

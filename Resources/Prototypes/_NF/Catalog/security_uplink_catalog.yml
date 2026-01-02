@@ -607,21 +607,22 @@
 #           - SecurityUplink
 # Lua ignored
 
-- type: listing
-  id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
-  name:  uplink-security-wt550magazine-name
-  description: uplink-security-wt550magazine-desc
-  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# - type: listing
+#   id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
+#   name:  uplink-security-wt550magazine-name
+#   description: uplink-security-wt550magazine-desc
+#   productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
 # Lua ignored
 # moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml

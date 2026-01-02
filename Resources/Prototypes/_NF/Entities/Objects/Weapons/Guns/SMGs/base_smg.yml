@@ -164,13 +164,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGunTopMounted35
+        startingItem: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist: &mag35TopMountedWhitelist
           tags:
-            - NFMagazineSubMachineGunTopMountedPistol35
+            - Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
       gun_chamber: *chamber35Standard
 
 - type: entity

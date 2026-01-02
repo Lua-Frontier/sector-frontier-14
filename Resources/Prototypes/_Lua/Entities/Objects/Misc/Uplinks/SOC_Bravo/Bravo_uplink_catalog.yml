@@ -289,16 +289,17 @@
   categories:
     - BravoUplinkAmmo
 
-- type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
-  name: магазин ПП (.35 пистолетные, усиленные)
-  description: магазин заполненный летальными боеприпасами для WT-550
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkAmmo
+# Lua ignore
+# - type: listing
+#   id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
+#   name: магазин ПП (.35 пистолетные, усиленные)
+#   description: магазин заполненный летальными боеприпасами для WT-550
+#   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
+#   productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - BravoUplinkAmmo
 
 - type: listing
   id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
