@@ -20,6 +20,6 @@ public sealed partial class NanotrasenNameGenerator : StationNameGenerator
         var random = IoCManager.Resolve<IRobustRandom>();
 
         //return string.Format(input, $"{Prefix}{PrefixCreator}", $"{random.Pick(SuffixCodes)}-{random.Next(0, 1000):D3}");
-        return string.Format(input, $"{Prefix}{PrefixCreator}", $"{random.Next(0, 1000):D3}");
+        return string.Format(input, $"{Prefix}{PrefixCreator}", $"{random.Next(0, 10000):D4}");
     }
 }

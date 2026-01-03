@@ -1129,8 +1129,31 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             originalSellValue = currentState.ShipSellValue;
         }
 
-        // Rename the ship using the existing method
-        if (TryRenameShuttle(targetId, deed, newName, deed.ShuttleNameSuffix))
+        string? preservedSuffix = deed.ShuttleNameSuffix;
+        if (string.IsNullOrEmpty(preservedSuffix))
+        {
+            if (!string.IsNullOrEmpty(deed.ShuttleName))
+            {
+                var nameParts = deed.ShuttleName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (nameParts.Length > 0)
+                {
+                    var lastPart = nameParts[^1];
+                    if (lastPart.Length == 4 && lastPart.All(char.IsDigit)) { preservedSuffix = lastPart; }
+                }
+            }
+            if (string.IsNullOrEmpty(preservedSuffix))
+            {
+                var fullName = GetFullName(deed);
+                var nameParts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (nameParts.Length > 0)
+                {
+                    var lastPart = nameParts[^1];
+                    if (lastPart.Length == 4 && lastPart.All(char.IsDigit)) { preservedSuffix = lastPart; }
+                }
+            }
+        }
+
+        if (TryRenameShuttle(targetId, deed, newName, preservedSuffix))
         {
             ConsolePopup(player, $"Ship renamed to '{GetFullName(deed)}'");
             PlayConfirmSound(player, uid, component);

@@ -19,6 +19,6 @@ public sealed partial class IndependentNameGenerator : StationNameGenerator
     public override string FormatName(string input)
     {
         var random = IoCManager.Resolve<IRobustRandom>();
-        return string.Format(input, $"{Prefix}-{PrefixCreator}", $"{random.Pick(SuffixCodes)}-{random.Next(0, 999):D3}");
+        return string.Format(input, $"{Prefix}-{PrefixCreator}", $"{random.Pick(SuffixCodes)}-{random.Next(0, 10000):D4}");
     }
 }

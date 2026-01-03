@@ -256,6 +256,17 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         // var suffix = newShuttleSuffix;
         var suffix = shuttleDeed.ShuttleNameSuffix;
 
+        if (string.IsNullOrEmpty(suffix))
+        {
+            var fullName = ShipyardSystem.GetFullName(shuttleDeed);
+            var nameParts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (nameParts.Length > 0)
+            {
+                var lastPart = nameParts[^1];
+                if (lastPart.Length == 4 && lastPart.All(char.IsDigit)) { suffix = lastPart; }
+            }
+        }
+
         if (name.Length > MaxNameLength)
             name = name[..MaxNameLength];
         // if (suffix.Length > MaxSuffixLength)
