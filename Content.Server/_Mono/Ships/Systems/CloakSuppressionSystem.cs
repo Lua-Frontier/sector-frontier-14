@@ -22,7 +22,7 @@ public sealed class CloakSuppressionSystem : EntitySystem
     /// <summary>
     /// Range in meters within which CloakHunter ships suppress IFF Hide flags.
     /// </summary>
-    private const float SuppressionRange = 256f; // Hardcode? Yes please!
+    private const float SuppressionRange = 1000f; // Hardcode? Yes please!
 
     /// <summary>
     /// How often to check for IFF suppression (in seconds).
@@ -118,9 +118,10 @@ public sealed class CloakSuppressionSystem : EntitySystem
                 continue;
 
             // Check if ship has IFF Hide flag
-            if (!TryComp<IFFComponent>(shipUid, out var iffComp) ||
-                (iffComp.Flags & IFFFlags.Hide) == 0)
-                continue;
+            if (!TryComp<IFFComponent>(shipUid, out var iffComp)) continue;
+            var flags = iffComp.Flags;
+            var hasHideFlags = (flags & (IFFFlags.Hide | IFFFlags.HideLabel | IFFFlags.HideLabelShuttle)) != 0;
+            if (!hasHideFlags) continue;
 
             // Check if the target ship has a matching company
             if (!ShouldSuppressShip(shipUid, hunterPrototype))
@@ -165,14 +166,19 @@ public sealed class CloakSuppressionSystem : EntitySystem
         if (HasComp<CloakSuppressionComponent>(shipUid))
             return;
 
+        var originalFlags = iffComp.Flags & (IFFFlags.Hide | IFFFlags.HideLabel | IFFFlags.HideLabelShuttle);
+
         // Add suppression component to track this suppression
         var suppressionComp = AddComp<CloakSuppressionComponent>(shipUid);
         suppressionComp.SuppressingShip = hunterUid;
         suppressionComp.SuppressionStartTime = _timing.CurTime;
         suppressionComp.OriginalReadOnlyState = iffComp.ReadOnly;
+        suppressionComp.OriginalIFFFlags = originalFlags;
 
         // Remove the Hide flag, which will make the ship visible
         _shuttle.RemoveIFFFlag(shipUid, IFFFlags.Hide, iffComp);
+        _shuttle.RemoveIFFFlag(shipUid, IFFFlags.HideLabel, iffComp);
+        _shuttle.RemoveIFFFlag(shipUid, IFFFlags.HideLabelShuttle, iffComp);
 
         // Set IFF to ReadOnly to prevent the ship from turning Hide flag back on
         _shuttle.SetIFFReadOnly(shipUid, true, iffComp);
@@ -224,10 +230,10 @@ public sealed class CloakSuppressionSystem : EntitySystem
         if (TryComp<IFFComponent>(shipUid, out var iffComp))
         {
             _shuttle.SetIFFReadOnly(shipUid, suppressionComp.OriginalReadOnlyState, iffComp);
+            if ((suppressionComp.OriginalIFFFlags & IFFFlags.Hide) != 0) _shuttle.AddIFFFlag(shipUid, IFFFlags.Hide);
+            if ((suppressionComp.OriginalIFFFlags & IFFFlags.HideLabel) != 0) _shuttle.AddIFFFlag(shipUid, IFFFlags.HideLabel);
+            if ((suppressionComp.OriginalIFFFlags & IFFFlags.HideLabelShuttle) != 0) _shuttle.AddIFFFlag(shipUid, IFFFlags.HideLabelShuttle);
         }
-
-        // Add the Hide flag back
-        _shuttle.AddIFFFlag(shipUid, IFFFlags.Hide);
 
         // Remove the suppression component
         RemComp<CloakSuppressionComponent>(shipUid);
