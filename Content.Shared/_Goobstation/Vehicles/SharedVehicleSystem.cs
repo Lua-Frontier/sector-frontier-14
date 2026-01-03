@@ -1,4 +1,3 @@
-using System.Linq; // Lua
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
@@ -6,8 +5,6 @@ using Content.Shared.Audio;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components; // Lua
-using Content.Shared.Hands.EntitySystems; // Lua
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -27,9 +24,6 @@ using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Timing; // Frontier
 using Content.Shared.Weapons.Melee.Events; // Frontier
 using Content.Shared.Emag.Systems; // Frontier
-using Robust.Shared.Map; // Lua
-using System.Numerics; // Lua
-using Robust.Shared.GameObjects; // Lua
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -44,22 +38,15 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly IGameTiming _timing = default!; // Frontier
-    [Dependency] private readonly SharedHandsSystem _hands = default!; // Lua
     [Dependency] private readonly INetManager _net = default!; // Frontier
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!; // Frontier
     [Dependency] private readonly EmagSystem _emag = default!; // Frontier
     [Dependency] private readonly SharedPopupSystem _popup = default!; // Frontier
     [Dependency] private readonly UnpoweredFlashlightSystem _flashlight = default!; // Frontier
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Lua
 
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
-
-    // Lua antispam popup
-    private readonly Dictionary<EntityUid, TimeSpan> _lastNoHandsPopup = new();
-    private static readonly TimeSpan NoHandsPopupCooldown = TimeSpan.FromSeconds(2);
-    // Lua antispam popup
 
     public override void Initialize()
     {
@@ -195,86 +182,6 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         args.Handled = true;
     }
 
-    // Lua start (fuck driver cowboy)
-    private bool TryOccupyHands(EntityUid rider, EntityUid vehicle)
-    {
-        if (!TryComp<HandsComponent>(rider, out var hands))
-            return false;
-
-        var emptyHands = hands.Hands.Keys.Where(handId => _hands.HandIsEmpty((rider, hands), handId)).ToList();
-        if (emptyHands.Count < 2)
-            return false;
-
-        foreach (var _ in emptyHands.Take(2))
-            _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
-
-        return true;
-    }
-
-    private void EnsureHandsAreCorrect(EntityUid rider, EntityUid vehicle)
-    {
-        if (!TryComp<HandsComponent>(rider, out var hands))
-            return;
-
-        foreach (var handId in hands.Hands.Keys)
-        {
-            if (!_hands.TryGetHeldItem((rider, hands), handId, out var heldEntity))
-            {
-                _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
-                continue;
-            }
-            
-            if (!TryComp<VirtualItemComponent>(heldEntity.Value, out var virt)
-                || virt.BlockingEntity != vehicle)
-            {
-                _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
-            }
-        }
-    }
-// Lua start
-    private bool ShouldShowNoHandsPopup(EntityUid user)
-    {
-        if (!_net.IsClient)
-            return true;
-
-        var now = _timing.CurTime;
-        if (_lastNoHandsPopup.TryGetValue(user, out var last) && now - last < NoHandsPopupCooldown)
-            return false;
-        _lastNoHandsPopup[user] = now;
-        return true;
-    }
-// Lua end
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        foreach (var comp in EntityQuery<VehicleRiderComponent>())
-        {
-            var rider = comp.Owner;
-            if (Transform(rider).ParentUid is { } vehicle &&
-                HasComp<VehicleComponent>(vehicle))
-            {
-                EnsureHandsAreCorrect(rider, vehicle);
-            }
-
-            // Lua start
-            if (TryComp(rider, out BuckleComponent? buckle) && buckle.BuckledTo is { } strapEnt)
-            {
-                var strapUid = strapEnt;
-                if (HasComp<VehicleComponent>(strapUid))
-                {
-                    var riderXform = Transform(rider);
-                    if (riderXform.ParentUid != strapUid)
-                    {
-                        var coords = new EntityCoordinates(strapUid, Vector2.Zero);
-                        _transform.SetCoordinates(rider, riderXform, coords, rotation: null);
-                    }
-                }
-            } // Lua end
-        }
-    }
-    // Lua end (fuck driver cowboy)
 
     private void OnStrapAttempt(Entity<VehicleComponent> ent, ref StrapAttemptEvent args)
     {
@@ -295,9 +202,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
         // End Frontier
 
-        if (ent.Comp.RequiredHands != 2)
+        if (ent.Comp.RequiredHands != 0)
         {
-            for (int hands = 2; hands < ent.Comp.RequiredHands; hands++)
+            for (int hands = 0; hands < ent.Comp.RequiredHands; hands++)
             {
                 if (!_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, driver, false))
                 {
@@ -311,19 +218,10 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         // AddHorns(driver, ent); // Frontier: delay until mounted
     }
 
-    protected virtual void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args) //Lua: private void<protected virtual void
+    protected virtual void OnStrapped(Entity<VehicleComponent> ent, ref StrappedEvent args) // Frontier: private<protected virtual
     {
         var driver = args.Buckle.Owner;
-        // Lua start (fuck driver cowboy)
-        if (!TryOccupyHands(driver, ent.Owner))
-        {
-            _buckle.TryUnbuckle(driver, ent.Owner);
-            // Lua start: покажем сообщение не чаще раза в NoHandsPopupCooldown и только предсказуемо
-            if (ShouldShowNoHandsPopup(driver))
-                _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), ent, driver); // lua end
-            return;
-        }
-        // Lua end  (fuck driver cowboy)
+
         if (!TryComp(driver, out MobMoverComponent? mover) || ent.Comp.Driver != null)
             return;
 
@@ -340,7 +238,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         Mount(driver, ent.Owner);
     }
 
-    protected virtual void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args) //Lua: private void<protected virtual void
+    protected virtual void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args) // Frontier: private<protected virtual
     {
         if (ent.Comp.Driver != args.Buckle.Owner)
             return;
