@@ -25,6 +25,9 @@
         minimumDistance: 1000
         maximumDistance: 2000
         addComponents:
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/salvage.png
+          scale: 1.4
         - type: IFF
           color: "#AAAAAA"
         - type: LinkedLifecycleGridParent
