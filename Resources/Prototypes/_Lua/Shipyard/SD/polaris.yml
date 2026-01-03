@@ -1,0 +1,29 @@
+- type: vessel
+  parent: BaseVessel
+  id: Polarisnfsd
+  name: TSFD - Polaris
+  description: Модифицированный и позаимствованный тяжёлый эсминец.
+  price: 725000 #85000
+  group: Security
+  limit: 1
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Nfsd/polaris.yml
+  whitelist:
+  - Luna
+  class:
+  - Capital
+  - Nfsd
+
+- type: gameMap
+  id: Polarisnfsd
+  mapName: 'TSFD - Polaris'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Nfsd/polaris.yml
+  minPlayers: 0
+  stations:
+    Polarisnfsd:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'TSFD - Polaris {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

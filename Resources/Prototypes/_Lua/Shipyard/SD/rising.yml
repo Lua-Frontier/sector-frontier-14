@@ -13,7 +13,6 @@
   category: Large
   group: Security
   whitelist:
-  - Luna
   - Frontier
   class:
   - Nfsd
@@ -28,6 +27,38 @@
   minPlayers: 0
   stations:
     GFRising:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Восход {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: vessel
+  parent: BaseVessel
+  id: GFRisingLuna
+  name: Восход
+  description: Сверх-Тяжелая артиллерия с радаром. Обладает неплохой защитой
+  limit: 1
+  price: 446452
+  category: Large
+  group: Security
+  whitelist:
+  - Luna
+  class:
+  - Nfsd
+  engine:
+  - Singularity
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/SD/rising.yml
+
+- type: gameMap
+  id: GFRisingLuna
+  mapName: 'Восход'
+  mapPath: /Maps/_Lua/Luna/Shuttles/SD/rising.yml
+  minPlayers: 0
+  stations:
+    GFRisingLuna:
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup

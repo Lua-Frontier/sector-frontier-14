@@ -1,0 +1,33 @@
+- type: vessel
+  id: Olympus
+  parent: BaseVessel
+  name: DIS Olympus
+  description: A ultreaheavy-class cargo freighter, the pride and joy of DIS. Large cargo space and 20mm defence system. In sum all you need to run smooth, large scale transport operations.
+  price: 225500
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/olympus.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Cargo
+  - Civilian
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: Olympus
+  mapName: 'DIS Olympus'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/olympus.yml
+  minPlayers: 0
+  stations:
+    Olympus:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'olympus CIV{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

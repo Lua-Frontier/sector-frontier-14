@@ -1,0 +1,28 @@
+- type: vessel
+  id: PZBrigand
+  parent: BaseVessel
+  name: PZ Brigand
+  description: Old great salvage and expeditor ship with 20mm turrets
+  price: 55000 #45000
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/brigand.yml
+  class:
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: PZBrigand
+  mapName: 'PZ Brigand'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/brigand.yml
+  minPlayers: 0
+  stations:
+    PZBrigand:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'PZ Brigand {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

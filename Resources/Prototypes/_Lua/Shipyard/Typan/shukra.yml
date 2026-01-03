@@ -13,7 +13,6 @@
   category: Large
   group: Typan
   whitelist:
-  - Luna
   - Frontier
   class:
   - Syndicate
@@ -32,6 +31,38 @@
       components:
       - type: StationNameSetup
         mapNameTemplate: 'Shukra {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: vessel
+  parent: BaseVessel
+  id: GFShukraLuna
+  name: SYN-GF Shukra
+  description: Этот корабль оборудован радаром и несет мощные дальнобойные орудия, однако за огневую мощь расплачивается слабой броней.
+  limit: 1
+  price: 226148
+  category: Large
+  group: Typan
+  whitelist:
+  - Luna
+  class:
+  - Syndicate
+  engine:
+  - Singularity
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Typan/shukra-2.yml
+
+- type: gameMap
+  id: GFShukraLuna
+  mapName: 'SYN-GF Shukra'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Typan/shukra-2.yml
+  minPlayers: 0
+  stations:
+    GFShukraLuna:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'SYN-GF Shukra {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

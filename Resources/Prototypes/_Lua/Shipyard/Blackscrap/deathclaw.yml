@@ -1,0 +1,29 @@
+- type: vessel
+  id: deathclaw
+  parent: BaseVessel
+  name: Scrap DeathClaw
+  description: Спизженный ДСБФ обломок шаттла подлежащий утилизации, но предоставлен вам для ремонта!
+  price: 133250 #103250 #Lua
+  limit: 2
+  category: Small
+  group: Custom
+  shuttlePath: /Maps/_Lua/Shuttles/Blackscrap/deathclaw.yml
+  whitelist:
+  - Luna
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: deathclaw
+  mapName: 'SCRAP DeathClaw'
+  mapPath: /Maps/_Lua/Shuttles/Blackscrap/deathclaw.yml
+  minPlayers: 0
+  stations:
+    deathclaw:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'SCRAP DeathClaw {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

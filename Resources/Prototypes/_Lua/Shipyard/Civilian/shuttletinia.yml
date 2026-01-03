@@ -12,7 +12,6 @@
   category: Large
   group: Shipyard # Lua ShipyardLarge<Shipyard
   whitelist:
-  - Luna
   - Frontier
   class:
   - Civilian
@@ -29,6 +28,38 @@
     ShuttleTinia:
       stationProto: StandardFrontierVesselCargo
       components: &cargoStationComponents
+        - type: StationNameSetup
+          mapNameTemplate: 'Тиния {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: vessel
+  parent: BaseVessel
+  id: ShuttleTiniaLuna
+  name: Тиния
+  description: Корабль-станция Тиния, предпочтителен для большой команды, в наличии Бар, Кухня, Ботаника.
+  limit: 1
+  price: 175000
+  category: Large
+  group: Shipyard # Lua ShipyardLarge<Shipyard
+  whitelist:
+  - Luna
+  class:
+  - Civilian
+  engine:
+  - Plasma
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Civilian/shuttletinia.yml
+
+- type: gameMap
+  id: ShuttleTiniaLuna
+  mapName: 'Тиния'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Civilian/shuttletinia.yml
+  minPlayers: 0
+  stations:
+    ShuttleTiniaLuna:
+      stationProto: StandardFrontierVesselCargo
+      components:
         - type: StationNameSetup
           mapNameTemplate: 'Тиния {1}'
           nameGenerator:

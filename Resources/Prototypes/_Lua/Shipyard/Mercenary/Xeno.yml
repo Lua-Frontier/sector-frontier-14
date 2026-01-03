@@ -13,7 +13,6 @@
   group: Mercenary
   access: Mercenary
   whitelist:
-  - Luna
   - Frontier
   class:
   - Mercenary
@@ -28,6 +27,38 @@
   minPlayers: 0
   stations:
     MercXeno:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Xeno {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: vessel
+  parent: BaseVessel
+  id: MercXenoLuna
+  name: Xeno
+  description: "Шаттл с тяжелыми артиллерийскими пушками и радаром. Для большой охоты."
+  price: 255000
+  category: Large
+  group: Mercenary
+  access: Mercenary
+  whitelist:
+  - Luna
+  class:
+  - Mercenary
+  engine:
+  - AME
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Mercenary/Xeno.yml
+
+- type: gameMap
+  id: MercXenoLuna
+  mapName: 'Xeno'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Mercenary/Xeno.yml
+  minPlayers: 0
+  stations:
+    MercXenoLuna:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

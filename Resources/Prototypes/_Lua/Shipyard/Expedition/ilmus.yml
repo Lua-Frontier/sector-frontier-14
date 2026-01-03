@@ -13,7 +13,6 @@
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
   whitelist:
-  - Luna
   - Frontier
   class:
   - Expedition
@@ -28,6 +27,39 @@
   minPlayers: 0
   stations:
     GFIlmus:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ilmus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: vessel
+  parent: BaseVessel
+  id: GFIlmusLuna
+  name: Ilmus
+  description: Средний шаттл для утилизации и экспедиций. Дополнительно оснащен кухней и медицинским отсеком
+  price: 65000
+  category: Medium
+  group: Expedition
+  limit: 3
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
+  whitelist:
+  - Luna
+  class:
+  - Expedition
+  - Civilian
+  engine:
+  - AME
+
+- type: gameMap
+  id: GFIlmusLuna
+  mapName: 'Ilmus'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
+  minPlayers: 0
+  stations:
+    GFIlmusLuna:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup

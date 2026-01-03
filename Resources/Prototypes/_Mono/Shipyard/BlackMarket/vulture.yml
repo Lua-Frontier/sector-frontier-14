@@ -35,3 +35,40 @@
         - type: StationJobs
           availableJobs:
             NFPirate: [ 0, 0 ]
+
+- type: vessel
+  id: VultureLuna
+  parent: BaseVesselAntag
+  name: Vulture
+  description: Огромный артиллерийский флагман с радаром. Неповоротлив, но при метком попадании способен нанести огромный урон.
+  limit: 1
+  price: 510000
+  category: Large
+  group: BlackMarket
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/BlackMarket/vulture.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Pirate
+  - Capital
+  engine:
+  - AME
+
+- type: gameMap
+  id: VultureLuna
+  mapName: 'Vulture'
+  mapPath: /Maps/_Lua/Luna/Shuttles/BlackMarket/vulture.yml
+  minPlayers: 0
+  stations:
+    VultureLuna:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Vulture {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]

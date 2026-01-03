@@ -1,0 +1,32 @@
+- type: vessel
+  id: Astraded
+  parent: BaseVessel
+  name: Astraded
+  description: Старый прототип FlashPoint наёмников что был модифицированн и уничтожен, оснащён тяжёлым вооружением.
+  price: 285000 # 277735 original #Lua
+  category: Large
+  group: Custom
+  shuttlePath: /Maps/_Lua/Shuttles/Blackscrap/astraded.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Expedition
+  - Capital
+  engine:
+  - AME
+
+- type: gameMap
+  id: Astraded
+  mapName: 'Astraded'
+  mapPath: /Maps/_Lua/Shuttles/Blackscrap/astraded.yml
+  minPlayers: 0
+  stations:
+    Astraded:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Astraded {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

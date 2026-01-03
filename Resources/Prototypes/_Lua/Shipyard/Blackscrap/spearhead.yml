@@ -1,0 +1,33 @@
+- type: vessel
+  id: Spearhead
+  parent: BaseVessel
+  name: Spearhead
+  description: Шаттл с глубин космоса который чудом смогли достать бравые утилизаторы, но не инженеры! Тяжёло оснащён но сложный в ремонте..
+  price: 140000 # 93910 original #Lua
+  category: Large
+  group: Custom
+  shuttlePath: /Maps/_Lua/Shuttles/Blackscrap/spearhead.yml
+  guidebookPage: Null
+  limit: 1
+  whitelist:
+  - Luna
+  class:
+  - Expedition
+  - Capital
+  engine:
+  - AME
+
+- type: gameMap
+  id: Spearhead
+  mapName: 'Spearhead'
+  mapPath: /Maps/_Lua/Shuttles/Blackscrap/spearhead.yml
+  minPlayers: 0
+  stations:
+    Spearhead:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Spearhead {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

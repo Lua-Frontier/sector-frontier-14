@@ -11,7 +11,6 @@
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/serpent.yml
   guidebookPage: Null
   whitelist:
-  - Luna
   - Frontier
   class:
   - Capital
@@ -36,3 +35,42 @@
       - type: StationJobs
         availableJobs:
           Deputy: [ 0, 0 ]
+
+- type: vessel
+  id: SerpentLuna
+  parent: BaseVesselAntag
+  name: Serpent
+  description: Большой боевой фрегат с впечатляющей броней и мощными артиллерийскими орудиями
+  limit: 1
+  price: 405000 # 2000 below max
+  category: Large
+  group: Security
+  access: Armory
+  shuttlePath: /Maps/_Mono/Luna/Shuttles/Nfsd/serpent.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Capital
+  - Nfsd
+  engine:
+  - AME
+
+- type: gameMap
+  id: SerpentLuna
+  mapName: 'Serpent'
+  mapPath: /Maps/_Mono/Luna/Shuttles/Nfsd/serpent.yml
+  minPlayers: 0
+  stations:
+    SerpentLuna:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Serpent {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Deputy: [ 0, 0 ]
+

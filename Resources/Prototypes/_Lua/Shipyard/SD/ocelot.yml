@@ -1,0 +1,30 @@
+- type: vessel
+  parent: BaseVessel
+  id: ocelot
+  name: TSFD - Ocelot
+  description: Последней нотки технологий массового производства штурмовик!
+  price: 210000 #85000
+  group: Security
+  category: Small
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Nfsd/serpent.yml
+  whitelist:
+  - Luna
+  class:
+  - Nfsd
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Ocelot
+  mapName: 'TSFD - Ocelot'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Nfsd/serpent.yml
+  minPlayers: 0
+  stations:
+    Ocelot:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'TSFD - Ocelot {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -1,0 +1,32 @@
+- type: vessel
+  id: Akula
+  parent: BaseVessel
+  name: LG Akula
+  description: A long range harasser, meant for hit and runs. Comes with a charonette (mini charon), two dravons and CTLA-25.
+  price: 67000
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/BlackMarket/akula.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Pirate
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Akula
+  mapName: 'LG Akula'
+  mapPath: /Maps/_Lua/Luna/Shuttles/BlackMarket/akula.yml
+  minPlayers: 0
+  stations:
+    Akula:
+      stationProto: StandardFrontierAntagVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'LG Akula{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

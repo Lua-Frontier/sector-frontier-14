@@ -10,7 +10,6 @@
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/anaconda.yml
   guidebookPage: Null
   whitelist:
-  - Luna
   - Frontier
   class:
   - Pirate
@@ -25,6 +24,42 @@
   stations:
     Anaconda:
       stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Anaconda {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]
+
+- type: vessel
+  id: AnacondaLuna
+  parent: BaseVesselAntag
+  name: Anaconda
+  description: Легкая боевая артиллерия для стрельбы от второй линии
+  limit: 1
+  price: 150000
+  category: Large
+  group: BlackMarket
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/BlackMarket/anaconda.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Pirate
+  engine:
+  - AME
+
+- type: gameMap
+  id: AnacondaLuna
+  mapName: 'Anaconda'
+  mapPath: /Maps/_Lua/Luna/Shuttles/BlackMarket/anaconda.yml
+  minPlayers: 0
+  stations:
+    AnacondaLuna:
+      stationProto: StandardFrontierAntagVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Anaconda {1}'

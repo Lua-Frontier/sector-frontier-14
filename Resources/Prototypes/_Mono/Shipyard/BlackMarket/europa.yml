@@ -10,7 +10,6 @@
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/europa.yml
   guidebookPage: Null
   whitelist:
-  - Luna
   - Frontier
   class:
   - Pirate
@@ -25,6 +24,43 @@
   minPlayers: 0
   stations:
     Europa:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Europa {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]
+
+- type: vessel
+  id: EuropaLuna
+  parent: BaseVesselAntag
+  name: Europa
+  description: Большой боевой корабль с тяжелым вооружением и крепкими стенами
+  price: 225000
+  limit: 1
+  category: Large
+  group: BlackMarket
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/BlackMarket/europa.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Pirate
+  - Capital
+  engine:
+  - AME
+
+- type: gameMap
+  id: EuropaLuna
+  mapName: 'Europa'
+  mapPath: /Maps/_Lua/Luna/Shuttles/BlackMarket/europa.yml
+  minPlayers: 0
+  stations:
+    EuropaLuna:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

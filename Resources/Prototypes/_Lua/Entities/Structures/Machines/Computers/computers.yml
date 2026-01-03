@@ -841,3 +841,37 @@
       disk_a: !type:ContainerSlot {}
       disk_b: !type:ContainerSlot {}
   - type: CoordinatesDiskMerger
+
+#region Luna shipyard
+
+- type: entity
+  id: ComputerShipyardBlackMarketScrapLuna
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: консоль кораблей чёрной верфи обломков
+  description: Консоль покупки кораблей из обломков на чёрной верфи
+  suffix: Обломки ЧР
+  categories: [ Erp ]
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Custom
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Custom:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: ShipyardListing
+    shuttles:
+    - DSVortex
+    - ScrapDeathClawDamaged
+    - Astraded
+    - Spearhead

@@ -3,19 +3,19 @@
 # See AGPLv3.txt for details.
 
 - type: vessel
-  id: Lancelot
+  id: Lancelotmktwo
   parent: BaseVesselAntag
-  name: Lancelot
-  description: Высокомобильный, но малобронированный эсминец, предназначенный для ближнего манёвренного боя и отлично показывающий себя в дуэли.
+  name: Lancelot MK2
+  description: Высокомобильный, но малобронированный эсминец, предназначенный для средней дистанции с турболазером на носу с качественной энергосетью.
   limit: 1
   price: 305000
   category: Large
   group: Typan
   access: SyndicateAgent
-  shuttlePath: /Maps/_Lua/Shuttles/Typan/Lancelot.yml
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Typan/Lancelotmktwo.yml
   guidebookPage: Null
   whitelist:
-  - Frontier
+  - Luna
   class:
   - Capital
   - Syndicate
@@ -23,16 +23,16 @@
   - AME
 
 - type: gameMap
-  id: Lancelot
-  mapName: 'Lancelot'
-  mapPath: /Maps/_Lua/Shuttles/Typan/Lancelot.yml
+  id: Lancelotmktwo
+  mapName: 'Lancelot MK2'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Typan/Lancelotmktwo.yml
   minPlayers: 0
   stations:
-    Lancelot:
+    Lancelotmktwo:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Lancelot {1}'
+          mapNameTemplate: 'Lancelot MK2-{1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

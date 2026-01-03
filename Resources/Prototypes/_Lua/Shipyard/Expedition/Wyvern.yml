@@ -13,7 +13,6 @@
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/Wyvern.yml
   guidebookPage: ShipyardWyvern
   whitelist:
-  - Luna
   - Frontier
   class:
   - Civilian
@@ -28,6 +27,40 @@
   minPlayers: 0
   stations:
     Wyvern:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Wyvern {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+
+- type: vessel
+  id: WyvernLuna
+  parent: BaseVessel
+  name: Wyvern
+  description: Научно-исследовательское судно от LaFleur Industries. Один из немногих флагманов гражданской верфи.
+  price: 450000 #Nakrytka 100000, Base value 340000 x 1.15
+  category: Large
+  group: Expedition
+  limit: 2
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Expedition/Wyvern.yml
+  guidebookPage: ShipyardWyvern
+  whitelist:
+  - Luna
+  class:
+  - Civilian
+  - Expedition
+  engine:
+  - AME
+
+- type: gameMap
+  id: WyvernLuna
+  mapName: 'Wyvern'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Expedition/Wyvern.yml
+  minPlayers: 0
+  stations:
+    WyvernLuna:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup

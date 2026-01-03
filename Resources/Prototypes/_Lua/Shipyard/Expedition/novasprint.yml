@@ -1,0 +1,33 @@
+- type: vessel
+  id: novasprint
+  parent: BaseVessel
+  name: PZ Nova Sprint
+  description: Оснащён лёгким вооружением, просторным карго, малым баром тягой на двух капитальных ракетных двигателях, что удобно скрыты пластитановыми крылами по бокам.
+  price: 145000
+  category: Medium
+  group: Expedition
+  access: Mercenary
+  shuttlePath: /Maps/_Lua/Shuttles/Expedition/novasprint.yml
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Expedition
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: novasprint
+  mapName: 'PZ Nova Sprint'
+  mapPath: /Maps/_Lua/Shuttles/Expedition/novasprint.yml
+  minPlayers: 0
+  stations:
+    novasprint:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'PZ Nova Sprint {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
