@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/30/2025 05:20:36
+  time: 01/03/2026 15:17:39
   entityCount: 20057
 maps:
 - 1
@@ -45,21 +45,19 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Map Entity
+      name: Frontier
     - type: Transform
     - type: Map
       mapPaused: True
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
-    - type: Weather
-      weather:
-        SnowfallHeavy:
-          endTime: 0
+    - type: Parallax
+      parallax: FrontierStation
   - uid: 2
     components:
     - type: MetaData
-      name: Frontier Outpost
+      name: Станция Фронтир
     - type: Transform
       pos: -0.484375,-0.5
       parent: 1
@@ -7562,8 +7560,6 @@ entities:
     - type: BecomesStation
       id: Frontier
     - type: NavMap
-    - type: Parallax
-      parallax: BagelStation
     - type: GridGodMode
       protectedEntities: []
     - type: ProtectedGrid
@@ -8096,7 +8092,7 @@ entities:
       pos: 44.5,-37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -36325.758
+      secondsUntilStateChange: -36541.37
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -123528,6 +123524,8 @@ entities:
     - type: Transform
       pos: 95.5,-54.5
       parent: 2
+    - type: WarpPoint
+      location: Фронтир
 - proto: WaterCooler
   entities:
   - uid: 20023
