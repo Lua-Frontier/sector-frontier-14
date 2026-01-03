@@ -371,7 +371,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
                 if (showCompanyOnUnknownRadar && companyProto != null)
                 {
-                    labelColor = Color.FromSrgb(companyProto.Color);
+                    //labelColor = Color.FromSrgb(companyProto.Color);
                     coordColor = new Color(labelColor.R * 0.8f, labelColor.G * 0.8f, labelColor.B * 0.8f, 0.5f);
                     labelName = $"{labelName}\n{companyProto.Name}";
                 }
