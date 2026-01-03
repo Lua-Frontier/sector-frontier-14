@@ -140,6 +140,7 @@
   description: It only has one wheel!
   components:
   - type: Vehicle
+    requiredHands: 0 # Lua
     renderOver: None
     northOffset: 0, -0.15
     southOffset: 0, -0.15
