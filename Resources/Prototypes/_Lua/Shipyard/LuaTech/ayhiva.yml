@@ -12,14 +12,15 @@
   marker: LuaTech
   group: LuaTech
   access: LuaTechOps
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - LuaTech
   engine:
   - Uranium
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/ayhiva.yml
-  addComponents:
-    - type: IFF
-      color: "#407dc4"
+
 - type: gameMap
   id: Ayhiva
   mapName: 'Айхива'

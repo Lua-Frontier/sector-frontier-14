@@ -22,20 +22,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle30
+        startingItem: Magazine762x39mmFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - NFMagazineRifle30
+            - Magazine762x39mmFMJ #Lua 30 -> 762x39
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle30
+        startingItem: Cartridge762x39mmFMJ #Lua 30 -> 762x39
         priority: 1
         whitelist:
           tags:
-            - NFCartridgeRifle30
+            - Cartridge762x39mmFMJ #Lua 30 -> 762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -84,20 +84,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineRifle30
+        startingItem: Magazine762x39mmFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - NFMagazineRifle30
+            - Magazine762x39mmFMJ #Lua 30 -> 762x39
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle30
+        startingItem: Cartridge762x39mmFMJ #Lua 30 -> 762x39
         priority: 1
         whitelist:
           tags:
-            - NFCartridgeRifle30
+            - Cartridge762x39mmFMJ #Lua 30 -> 762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

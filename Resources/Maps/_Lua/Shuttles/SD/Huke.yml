@@ -2449,7 +2449,7 @@ entities:
     - type: Transform
       pos: -3.5,-4.5
       parent: 1
-- proto: NFAmmunitionBoxPistol45
+- proto: AmmoBox45_magnumFMJ
   entities:
   - uid: 328
     components:
@@ -2465,7 +2465,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFAmmunitionBoxShellShotgunBuckshot
+- proto: AmmoBox23x75mmBuckshot
   entities:
   - uid: 330
     components:

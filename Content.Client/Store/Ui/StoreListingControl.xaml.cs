@@ -34,7 +34,7 @@ public sealed partial class StoreListingControl : Control
         _price = price;
         _discount = discount;
 
-        StoreItemName.Text = ListingLocalisationHelpers.GetLocalisedNameOrEntityName(_data, _prototype);
+        UpdateName(); // Lua stock mod
         StoreItemDescription.SetMessage(ListingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(_data, _prototype));
 
         UpdateBuyButtonText();
@@ -52,6 +52,7 @@ public sealed partial class StoreListingControl : Control
         if (_data.RestockTime > stationTime)
             return false;
 
+        if (_data.Stock.HasValue && _data.PurchaseAmount >= _data.Stock.Value) return false; // Lua stock mod
         return true;
     }
 
@@ -62,6 +63,11 @@ public sealed partial class StoreListingControl : Control
         {
             var timeLeftToBuy = stationTime - _data.RestockTime;
             StoreItemBuyButton.Text =  timeLeftToBuy.Duration().ToString(@"mm\:ss");
+        }
+        else if (_data.Stock.HasValue && _data.PurchaseAmount >= _data.Stock.Value) // Lua stock mod
+        {
+            DiscountSubText.Text = string.Empty;
+            StoreItemBuyButton.Text = Loc.GetString("store-ui-button-sold-out");
         }
         else
         {
@@ -78,6 +84,11 @@ public sealed partial class StoreListingControl : Control
         if (_data.RestockTime > stationTime)
         {
             name += Loc.GetString("store-ui-button-out-of-stock");
+        }
+        else if (_data.Stock.HasValue) // Lua stock mod
+        {
+            var available = Math.Max(0, _data.Stock.Value - _data.PurchaseAmount);
+            name += $" {available}/{_data.Stock.Value}";
         }
 
         StoreItemName.Text = name;

@@ -2635,7 +2635,7 @@ entities:
     - type: Transform
       pos: 3.5092657,0.46376777
       parent: 1
-- proto: NFAmmunitionBoxShellShotgunBuckshot
+- proto: AmmoBox23x75mmBuckshot
   entities:
   - uid: 335
     components:
@@ -2665,7 +2665,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFMagazineSubMachineGun35
+- proto: Magazine9x19mmSubMachineGunFMJ
   entities:
   - uid: 341
     components:

@@ -7,21 +7,22 @@
 - type: vessel
   id: Magus
   parent: BaseVessel
-  name: SHM Magus
+  name: Magus
   description: An armed, PMC-rated medical lighter designed for planetary expeditions.
   price: 110000 #Lua
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_Mono/Shuttles/Expedition/magus.yml
   guidebookPage: null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Expedition
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Magus
   mapName: 'Magus'
@@ -32,7 +33,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Magus EXP{1}'
+          mapNameTemplate: 'Magus {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

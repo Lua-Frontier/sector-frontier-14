@@ -1,7 +1,7 @@
 - type: vessel
   id: Tumour
   parent: BaseVesselAntag
-  name: TSF-SKR Tumour
+  name: Tumour
   description: A ugly potato of a carrier. Little armament to defend itself, but carries lathes to support its fighters and other ships.
   price: 64546 #44150
   category: Medium
@@ -9,15 +9,16 @@
   access: Security
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/tumour.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Pursuit
   - Patrol
   - Nfsd
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Tumour
   mapName: 'Tumour'
@@ -28,7 +29,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Tumour TSF{1}'
+        mapNameTemplate: 'Tumour {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

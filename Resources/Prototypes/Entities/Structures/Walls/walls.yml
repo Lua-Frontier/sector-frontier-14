@@ -598,7 +598,7 @@
     state: state0
     color: "#cdf3cd" # Lua
   - type: Icon
-    sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua 
+    sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua
     state: state0
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -831,7 +831,10 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalReinforcedWall
-    
+  - type: RCDDeconstructable # Lua
+    cost: 6 # Lua
+    delay: 8 # Lua
+
 # Riveting
 - type: entity
   parent: BaseWall
@@ -1183,6 +1186,9 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalWall
+  - type: RCDDeconstructable # Lua
+    cost: 6 # Lua
+    delay: 8 # Lua
 
 - type: entity
   parent: WallSolid
@@ -1589,7 +1595,7 @@
   - type: Construction # Lua
     graph: DiagonalGirder
     node: WallMiningDiagonal
-    
+
 # Vault Walls
 
 - type: entity

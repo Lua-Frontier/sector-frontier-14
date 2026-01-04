@@ -9,13 +9,14 @@
   access: HeadOfPersonnel
   shuttlePath: /Maps/_Mono/Shuttles/solarsail.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   engine:
   - Plasma
-  addComponents:
-    - type: IFF
-      color: "#d3ffa0"
+
 - type: gameMap
   id: Solarsail
   mapName: 'Solarsail'
@@ -26,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Solarsail SRV{1}'
+          mapNameTemplate: 'Solarsail {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

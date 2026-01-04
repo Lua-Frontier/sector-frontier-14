@@ -1,0 +1,223 @@
+#region 7.62x39mm
+
+- type: entity
+  id: LuaBoxMagazineRifle762x39mmFMJ # FMJ
+  parent: BoxMagazine
+  name: box of 7.62x39mm FMJ magazines
+  description: A box full of 7.62x39mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine762x39mmFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazineRifle762x39mmRubber # Rubber
+  parent: BoxMagazine
+  name: box of 7.62x39mm Rubber magazines
+  description: A box full of 7.62x39mm Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine762x39mmRubber
+        amount: 4
+
+#region 5.56x45mm
+
+- type: entity
+  id: LuaBoxMagazineRifle556x45mmFMJ # FMJ
+  parent: BoxMagazine
+  name: box of 5.56x45mm FMJ magazines
+  description: A box full of 5.56x45mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine556x45mmFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazineRifle556x45mmRubber # Rubber
+  parent: BoxMagazine
+  name: box of 5.56x45mm Rubber magazines
+  description: A box full of 5.56x45mm Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine556x45mmRubber
+        amount: 4
+
+#region 9x19mm
+
+# SubMachineGun
+
+- type: entity
+  id: LuaBoxMagazine9x19mmSubMachineGunFMJ # FMJ
+  parent: BoxMagazine
+  name: box of SMG 9x19mm FMJ magazines
+  description: A box full of SMG 9x19mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine9x19mmSubMachineGunFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazine9x19mmSubMachineGunRubber # Rubber
+  parent: BoxMagazine
+  name: box of SMG 9x19mm Rubber magazines
+  description: A box full of SMG 9x19mm Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine9x19mmSubMachineGunRubber
+        amount: 4
+
+# Pistol
+
+- type: entity
+  id: LuaBoxMagazine9x19mmPistolHighCapacityFMJ # FMJ
+  parent: BoxMagazine
+  name: box of pistol 9x19mm FMJ magazines
+  description: A box full of pistol 9x19mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine9x19mmPistolHighCapacityFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazine9x19mmPistolHighCapacityRubber # Rubber
+  parent: BoxMagazine
+  name: box of pistol 9x19mm Rubber magazines
+  description: A box full of pistol 9x19mm Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine9x19mmPistolHighCapacityRubber
+        amount: 4
+
+# topmount
+
+- type: entity
+  id: LuaBoxMagazine9x19mmSubMachineGunTopMountedFMJ # FMJ
+  parent: BoxMagazine
+  name: box of SMG 9x19mm FMJ top mount magazines
+  description: A box full of SMG 9x19mm FMJ top mount magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine9x19mmSubMachineGunTopMountedFMJ
+        amount: 4
+
+#region .45_ACP
+
+#SubmachineGun
+
+- type: entity
+  id: LuaBoxMagazine45_ACPSubMachineGunFMJ # FMJ
+  parent: BoxMagazine
+  name: box of SMG .45_ACP FMJ magazines
+  description: A box full of .45_ACP FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine45_ACPSubMachineGunFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazine45_ACPSubMachineGunRubber # Rubber
+  parent: BoxMagazine
+  name: box of SMG .45_ACP Rubber magazines
+  description: A box full of SMG .45_ACP Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine45_ACPSubMachineGunRubber
+        amount: 4
+
+#Pistol
+
+- type: entity
+  id: LuaBoxMagazine45_ACPPistolHighCapacityFMJ # FMJ
+  parent: BoxMagazine
+  name: box of pistol .45_ACP FMJ magazines
+  description: A box full of pistol .45_ACP FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine45_ACPPistolHighCapacityFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazine45_ACPPistolHighCapacityRubber # Rubber
+  parent: BoxMagazine
+  name: box of pistol .45_ACP Rubber magazines
+  description: A box full of pistol .45_ACP Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine45_ACPPistolHighCapacityRubber
+        amount: 4
+
+#region .45 Magnum
+
+# revolver
+
+- type: entity
+  id: LuaBoxSpeedLoader45_magnumFMJ # FMJ
+  parent: BoxMagazine
+  name: box of .45 Magnum FMJ speedloaders
+  description: A box full of .45 Magnum FMJ speedloaders.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpeedLoader45_magnumFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxSpeedLoader45_magnumRubber # Rubber
+  parent: BoxMagazine
+  name: box of .45 Magnum Rubber speedloaders
+  description: A box full of .45 Magnum Rubber speedloaders.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpeedLoader45_magnumRubber
+        amount: 4
+
+#region 7.62x51mm
+
+- type: entity
+  id: LuaBoxMagazine762x51mmFMJ # FMJ
+  parent: BoxMagazine
+  name: box of 7.62x51mm FMJ magazines
+  description: A box full of 7.62x51mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine762x51mmFMJ
+        amount: 4
+
+- type: entity
+  id: LuaBoxMagazine762x51mmRubber # Rubber
+  parent: BoxMagazine
+  name: box of 7.62x51mm Rubber magazines
+  description: A box full of 7.62x51mm Rubber magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine762x51mmRubber
+        amount: 4
+
+#region 8x65mm
+
+- type: entity
+  id: LuaBoxMagazine8x65mmSKR # FMJ
+  parent: BoxMagazine
+  name: box of 8x65mm FMJ magazines
+  description: A box full of 8x65mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine8x65mmSKR
+        amount: 4

@@ -5,24 +5,25 @@
 - type: vessel
   id: Aeon
   parent: BaseVessel
-  name: NT-Aeon
+  name: Aeon
   description: небольшое медицинское судно парамедика для спасательных операций.
   price: 47150
   category: small
   group: Medical
   shuttlePath: /Maps/_Lua/Shuttles/Civilian/Aeon.yml
   guidebookPage: null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Medical
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Aeon
-  mapName: 'NT-Aeon'
+  mapName: 'Aeon'
   mapPath: /Maps/_Lua/Shuttles/Civilian/Aeon.yml
   minPlayers: 0
   stations:
@@ -30,7 +31,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NT-Aeon {1}'
+          mapNameTemplate: 'Aeon {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

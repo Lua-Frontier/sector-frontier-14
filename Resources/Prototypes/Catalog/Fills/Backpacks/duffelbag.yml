@@ -53,7 +53,7 @@
   - type: StorageFill
     contents:
       - id: NFWeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r<NFWeaponSubMachineGunC20r
-      - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
+      - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
         amount: 2
 #     - id: SMGSuppressor
 
@@ -79,7 +79,7 @@
   - type: StorageFill
     contents:
       - id: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
-      - id: NFSpeedLoaderPistol45 # Frontier: SpeedLoaderMagnumAP<NFSpeedLoaderPistol45
+      - id: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
         amount: 2
 
 - type: entity
@@ -91,7 +91,7 @@
   - type: StorageFill
     contents:
       - id: NFWeaponLightMachineGunL6 # Frontier: WeaponLightMachineGunL6<NFWeaponLightMachineGunL6
-      - id: NFMagazineBoxRifle20 # Frontier: MagazineLightRifleBox<NFMagazineBoxRifle20
+      - id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
 
 # - type: entity
 #   parent: ClothingBackpackDuffelSyndicateBundle
@@ -133,7 +133,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
+      - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
         amount: 4
       - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
         amount: 4
@@ -141,7 +141,7 @@
         amount: 3
       - id: NFMagazineShotgunDrumSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
         amount: 1
-      - id: NFMagazineBoxRifle20 # Frontier: MagazineLightRifleBox<NFMagazineBoxRifle20
+      - id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
         amount: 2
 
 - type: entity
@@ -294,7 +294,8 @@
     contents:
       - id: SyringeRomerol
       - id: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPython<NFWeaponRevolverRitland45
-      - id: NFAmmunitionBoxPistol45Incendiary # Frontier: MagazineBoxMagnumIncendiary<NFAmmunitionBoxPistol45Incendiary
+      - id: AmmoBox45_magnumFMJ # Lua 45 -> Magnum
+        amount: 2
       - id: PillAmbuzolPlus
       - id: PillAmbuzol
         amount: 3
@@ -362,13 +363,13 @@
   - type: StorageFill
     contents:
       - id: NFWeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r<NFWeaponSubMachineGunC20r
-      - id: NFMagazineSubMachineGun35 # Frontier: MagazinePistolSubMachineGun<NFMagazineSubMachineGun35
+      - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
         amount: 2 # Frontier: 3<2
-      - id: NFMagazinePistol35 # Frontier: MagazinePistol<NFMagazinePistol35
+      - id: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
+        amount: 2
       - id: SyndicateJawsOfLife
       - id: C4
         amount: 2
       - id: MedkitCombatFilled
       - id: EmpImplanter
       - id: ClothingShoesBootsMagSyndie
-      - id: AgentIDCard

@@ -102,90 +102,90 @@
   id: DEBUGVendingMachineInventoryMagazines
   startingInventory:
   # .35 Pistol
-    NFMagazinePistol35Empty: 4294967295
-    NFMagazinePistol35: 4294967295
-    NFMagazinePistol35Overpressure: 4294967295
-    NFMagazinePistol35Incendiary: 4294967295
-    NFMagazinePistol35Uranium: 4294967295
-    NFMagazinePistol35Practice: 4294967295
-    NFMagazinePistol35Emp: 4294967295
-    NFMagazinePistol35Rubber: 4294967295
-    NFMagazineHighCapacityPistol35Empty: 4294967295
-    NFMagazineHighCapacityPistol35: 4294967295
-    NFMagazineHighCapacityPistol35Overpressure: 4294967295
-    NFMagazineHighCapacityPistol35Incendiary: 4294967295
-    NFMagazineHighCapacityPistol35Uranium: 4294967295
-    NFMagazineHighCapacityPistol35Practice: 4294967295
-    NFMagazineHighCapacityPistol35Emp: 4294967295
-    NFMagazineHighCapacityPistol35Rubber: 4294967295
-    NFMagazineSubMachineGun35Empty: 4294967295
-    NFMagazineSubMachineGun35: 4294967295
-    NFMagazineSubMachineGun35Overpressure: 4294967295
-    NFMagazineSubMachineGun35Incendiary: 4294967295
-    NFMagazineSubMachineGun35Uranium: 4294967295
-    NFMagazineSubMachineGun35Practice: 4294967295
-    NFMagazineSubMachineGun35Rubber: 4294967295
-    NFMagazineSubMachineGun35Emp: 4294967295
-    NFMagazineSubMachineGunTopMounted35Empty: 4294967295
-    NFMagazineSubMachineGunTopMounted35: 4294967295
-    NFMagazineSubMachineGunTopMounted35Overpressure: 4294967295
-    NFMagazineSubMachineGunTopMounted35Incendiary: 4294967295
-    NFMagazineSubMachineGunTopMounted35Uranium: 4294967295
-    NFMagazineSubMachineGunTopMounted35Practice: 4294967295
-    NFMagazineSubMachineGunTopMounted35Emp: 4294967295
-    NFMagazineSubMachineGunTopMounted35Rubber: 4294967295
+    Magazine9x19mmPistolEmpty: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolFMJ: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolRIP: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolIncendiary: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolUranium: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolPractice: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolHP: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolRubber: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolHighCapacityEmpty: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmPistolHighCapacityFMJ: 4294967295 #Lua 35 -> 9x19 base
+    #NFMagazineHighCapacityPistol35Overpressure: 4294967295 Lua ignored
+    #NFMagazineHighCapacityPistol35Incendiary: 4294967295 Lua ignored
+    #NFMagazineHighCapacityPistol35Uranium: 4294967295 Lua ignored
+    Magazine9x19mmPistolHighCapacityPractice: 4294967295 #Lua 35 -> 9x19 base
+    #NFMagazineHighCapacityPistol35Emp: 4294967295 Lua ignored
+    Magazine9x19mmPistolHighCapacityRubber: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunEmpty: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunFMJ: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunRIP: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunIncendiary: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunUranium: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunPractice: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunRubber: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunEmp: 4294967295 #Lua 35 -> 9x19 base
+    Magazine9x19mmSubMachineGunTopMountedEmpty: 4294967295 #Lua 35 -> 9x19
+    Magazine9x19mmSubMachineGunTopMountedFMJ: 4294967295 #Lua 35 -> 9x19
+    # NFMagazineSubMachineGunTopMounted35Overpressure: 4294967295 Lua ignored
+    # NFMagazineSubMachineGunTopMounted35Incendiary: 4294967295 Lua ignored
+    # NFMagazineSubMachineGunTopMounted35Uranium: 4294967295 Lua ignored
+    # NFMagazineSubMachineGunTopMounted35Practice: 4294967295 Lua ignored
+    # NFMagazineSubMachineGunTopMounted35Emp: 4294967295 Lua ignored
+    # NFMagazineSubMachineGunTopMounted35Rubber: 4294967295 Lua ignored
   # .35 Pistol Speed loaders
-    NFSpeedLoaderPistol35Empty: 4294967295
-    NFSpeedLoaderPistol35: 4294967295
-    NFSpeedLoaderPistol35Practice: 4294967295
-    NFSpeedLoaderPistol35Rubber: 4294967295
+    SpeedLoader9x19mmEmpty: 4294967295 #Lua 35 -> 9x19 base
+    SpeedLoader9x19mmFMJ: 4294967295 #Lua 35 -> 9x19 base
+    SpeedLoader9x19mmPractice: 4294967295 #Lua 35 -> 9x19 base
+    SpeedLoader9x19mmRubber: 4294967295 #Lua 35 -> 9x19 base
   # .45 Pistol
-    NFMagazinePistol45Empty: 4294967295
-    NFMagazinePistol45: 4294967295
-    NFMagazinePistol45Overpressure: 4294967295
-    NFMagazinePistol45Incendiary: 4294967295
-    NFMagazinePistol45Uranium: 4294967295
-    NFMagazinePistol45Practice: 4294967295
-    NFMagazinePistol45Rubber: 4294967295
-    NFMagazineSubMachineGun45Empty: 4294967295
-    NFMagazineSubMachineGun45: 4294967295
-    NFMagazineSubMachineGun45Overpressure: 4294967295
-    NFMagazineSubMachineGun45Rubber: 4294967295
+    Magazine45_ACPPistolEmpty: 4294967295 #Lua 45 -> ACP
+    Magazine45_ACPPistolFMJ: 4294967295 #Lua 45 -> ACP
+    #NFMagazinePistol45Overpressure: 4294967295 Lua ignored
+    Magazine45_ACPPistolIncendiary: 4294967295 #Lua 45 -> ACP
+    Magazine45_ACPPistolUranium: 4294967295 #Lua 45 -> ACP
+    Magazine45_ACPPistolPractice: 4294967295 #Lua 45 -> ACP
+    Magazine45_ACPPistolRubber: 4294967295 #Lua 45 -> ACP
+    Magazine45_ACPSubMachineGunEmpty: 4294967295 #Lua 45 -> ACP
+    Magazine45_ACPSubMachineGunFMJ: 4294967295 #Lua 45 -> ACP
+    #NFMagazineSubMachineGun45Overpressure: 4294967295 Lua ignored
+    Magazine45_ACPSubMachineGunRubber: 4294967295 #Lua 45 -> ACP
   # .45 Pistol Speed loaders
-    NFSpeedLoaderPistol45Empty: 4294967295
-    NFSpeedLoaderPistol45: 4294967295
-    NFSpeedLoaderPistol45Incendiary: 4294967295
-    NFSpeedLoaderPistol45Uranium: 4294967295
-    NFSpeedLoaderPistol45Practice: 4294967295
-    NFSpeedLoaderPistol45Rubber: 4294967295
+    SpeedLoader45_magnumEmpty: 4294967295 #Lua 45 -> magnum
+    SpeedLoader45_magnumFMJ: 4294967295 #Lua 45 -> magnum
+    SpeedLoader45_magnumIncendiary: 4294967295 #Lua 45 -> magnum
+    SpeedLoader45_magnumUranium: 4294967295 #Lua 45 -> magnum
+    SpeedLoader45_magnumPractice: 4294967295 #Lua 45 -> magnum
+    SpeedLoader45_magnumRubber: 4294967295 #Lua 45 -> magnum
   # .20 Rifle
-    NFMagazineRifle20Empty: 4294967295
-    NFMagazineDrumRifle20: 4294967295
-    NFMagazineRifle20: 4294967295
-    NFMagazineRifle20Overpressure: 4294967295
-    NFMagazineRifle20Incendiary: 4294967295
-    NFMagazineRifle20Uranium: 4294967295
-    NFMagazineRifle20Practice: 4294967295
-    NFMagazineRifle20Rubber: 4294967295
-    NFMagazineBoxRifle20: 4294967295
-    NFMagazineClipRifle20Empty: 4294967295
-    NFMagazineClipRifle20: 4294967295
-    NFMagazineClipRifle20Rubber: 4294967295
+    Magazine556x45mmEmpty: 4294967295 #Lua 20 -> 556x45
+    NFMagazineDrumRifle556x45: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmFMJ: 4294967295 #Lua 20 -> 556x45
+    #NFMagazineRifle20Overpressure: 4294967295 Lua ignored
+    Magazine556x45mmIncendiary: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmUranium: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmPractice: 4294967295 #Lua 20 -> 556x45
+    Magazine556x45mmRubber: 4294967295 #Lua 20 -> 556x45
+    NFMagazineBoxRifle556x45: 4294967295 #Lua 20 -> 556x45
+    NFMagazineClipRifle556x45Empty: 4294967295 #Lua 20 -> 556x45
+    NFMagazineClipRifle556x45: 4294967295 #Lua 20 -> 556x45
+    NFMagazineClipRifle556x45Rubber: 4294967295 #Lua 20 -> 556x45
   # .30 Rifle
-    NFMagazineRifle30Empty: 4294967295
-    NFMagazineRifle30: 4294967295
-    NFMagazineRifle30Overpressure: 4294967295
-    NFMagazineRifle30Incendiary: 4294967295
-    NFMagazineRifle30Uranium: 4294967295
-    NFMagazineRifle30Practice: 4294967295
-    NFMagazineRifle30Rubber: 4294967295
-    NFMagazineLowCapacityRifle30Empty: 4294967295
-    NFMagazineLowCapacityRifle30: 4294967295
-    NFMagazineLowCapacityRifle30Overpressure: 4294967295
-    NFMagazineLowCapacityRifle30Incendiary: 4294967295
-    NFMagazineLowCapacityRifle30Uranium: 4294967295
-    NFMagazineLowCapacityRifle30Practice: 4294967295
-    NFMagazineLowCapacityRifle30Rubber: 4294967295
+    Magazine762x39mmEmpty: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmFMJ: 4294967295 #Lua 30 -> 762x39
+    #NFMagazineRifle30Overpressure: 4294967295 Lua ignored
+    Magazine762x39mmIncendiary: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmUranium: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmPractice: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmRubber: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityEmpty: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityFMJ: 4294967295 #Lua 30 -> 762x39
+    #NFMagazineLowCapacityRifle30Overpressure: 4294967295 Lua ignored
+    Magazine762x39mmLowCapacityIncendiary: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityUranium: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityPractice: 4294967295 #Lua 30 -> 762x39
+    Magazine762x39mmLowCapacityRubber: 4294967295 #Lua 30 -> 762x39
   # ASMGT turret
     MagazineAsmgtUniversalEmpty: 4294967295
     MagazineAsmgtUniversalPistol: 4294967295
@@ -220,21 +220,21 @@
   id: DEBUGVendingMachineInventoryAmmoBoxes
   startingInventory:
   # .35 Pistol
-    NFAmmunitionBoxPistol35: 4294967295
-    NFAmmunitionBoxPistol35Overpressure: 4294967295
-    NFAmmunitionBoxPistol35Practice: 4294967295
-    NFAmmunitionBoxPistol35Incendiary: 4294967295
-    NFAmmunitionBoxPistol35Uranium: 4294967295
-    NFAmmunitionBoxPistol35Rubber: 4294967295
-    NFAmmunitionBoxPistol35Emp: 4294967295
+    AmmoBox9x19mmFMJ: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmRIP: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmPractice: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmIncendiary: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmUranium: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmRubber: 4294967295 #Lua 35 -> 9x19 base
+    AmmoBox9x19mmEmp: 4294967295 #Lua 35 -> 9x19 base
   # .45 Pistol
-    NFAmmunitionBoxPistol45: 4294967295
-    NFAmmunitionBoxPistol45Overpressure: 4294967295
-    NFAmmunitionBoxPistol45Practice: 4294967295
-    NFAmmunitionBoxPistol45Incendiary: 4294967295
-    NFAmmunitionBoxPistol45Uranium: 4294967295
-    NFAmmunitionBoxPistol45Rubber: 4294967295
-    NFAmmunitionBoxPistol45Emp: 4294967295
+    AmmoBox45_magnumFMJ: 4294967295 #Lua 45 -> magnum
+    #NFAmmunitionBoxPistol45Overpressure: 4294967295 Lua ignored
+    AmmoBox45_magnumPractice: 4294967295 #Lua 45 -> magnum
+    AmmoBox45_magnumIncendiary: 4294967295 #Lua 45 -> magnum
+    AmmoBox45_magnumUranium: 4294967295 #Lua 45 -> magnum
+    AmmoBox45_magnumRubber: 4294967295 #Lua 45 -> magnum
+    #NFAmmunitionBoxPistol45Emp: 4294967295 Lua ignored
   # .10 Rifle
     NFAmmunitionBoxRifle10: 4294967295
     NFAmmunitionBoxBigRifle10: 4294967295
@@ -243,18 +243,18 @@
     NFAmmunitionBoxRifle10Rubber: 4294967295
     NFAmmunitionBoxBigRifle10Rubber: 4294967295
   # .20 Rifle
-    NFAmmunitionBoxRifle20: 4294967295
-    NFAmmunitionBoxBigRifle20: 4294967295
-    NFAmmunitionBoxRifle20Overpressure: 4294967295
-    NFAmmunitionBoxBigRifle20Overpressure: 4294967295
-    NFAmmunitionBoxRifle20Incendiary: 4294967295
-    NFAmmunitionBoxBigRifle20Incendiary: 4294967295
-    NFAmmunitionBoxRifle20Uranium: 4294967295
-    NFAmmunitionBoxBigRifle20Uranium: 4294967295
-    NFAmmunitionBoxRifle20Practice: 4294967295
-    NFAmmunitionBoxBigRifle20Practice: 4294967295
-    NFAmmunitionBoxRifle20Rubber: 4294967295
-    NFAmmunitionBoxBigRifle20Rubber: 4294967295
+    AmmoBox556x45mmFMJ: 4294967295 #Lua 20 -> 556x45
+    AmmoBox556x45mmBigFMJ: 4294967295 #Lua -> 556x45
+    #NFAmmunitionBoxRifle20Overpressure: 4294967295 Lua ignored
+    #NFAmmunitionBoxBigRifle20Overpressure: 4294967295 Lua ignored
+    AmmoBox556x45mmIncendiary: 4294967295 #Lua 20 -> 556x45
+    #NFAmmunitionBoxBigRifle20Incendiary: 4294967295 Lua ignored
+    AmmoBox556x45mmUranium: 4294967295 #Lua 20 -> 556x45
+    #NFAmmunitionBoxBigRifle20Uranium: 4294967295 Lua ignored
+    AmmoBox556x45mmPractice: 4294967295 #Lua 20 -> 556x45
+    #NFAmmunitionBoxBigRifle20Practice: 4294967295 Lua ignored
+    AmmoBox556x45mmRubber: 4294967295 #Lua 20 -> 556x45
+    AmmoBox556x45mmBigRubber: 4294967295 #Lua 20 -> 556x45
   # .25 Rifle
     NFAmmunitionBoxRifle25: 4294967295
     NFAmmunitionBoxBigRifle25: 4294967295
@@ -269,18 +269,18 @@
     NFAmmunitionBoxRifle25Rubber: 4294967295
     NFAmmunitionBoxBigRifle25Rubber: 4294967295
   # .30 Rifle
-    NFAmmunitionBoxRifle30: 4294967295
-    NFAmmunitionBoxBigRifle30: 4294967295
-    NFAmmunitionBoxRifle30Overpressure: 4294967295
-    NFAmmunitionBoxBigRifle30Overpressure: 4294967295
-    NFAmmunitionBoxRifle30Incendiary: 4294967295
-    NFAmmunitionBoxBigRifle30Incendiary: 4294967295
-    NFAmmunitionBoxRifle30Uranium: 4294967295
-    NFAmmunitionBoxBigRifle30Uranium: 4294967295
-    NFAmmunitionBoxRifle30Practice: 4294967295
-    NFAmmunitionBoxBigRifle30Practice: 4294967295
-    NFAmmunitionBoxRifle30Rubber: 4294967295
-    NFAmmunitionBoxBigRifle30Rubber: 4294967295
+    AmmoBox762x39mmFMJ: 4294967295 #Lua 30 -> 762x39
+    AmmoBox762x39mmBigFMJ: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxRifle30Overpressure: 4294967295 Lua ignored
+    #NFAmmunitionBoxBigRifle30Overpressure: 4294967295 Lua ignored
+    AmmoBox762x39mmIncendiary: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Incendiary: 4294967295 Lua ignored
+    AmmoBox762x39mmUranium: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Uranium: 4294967295 Lua ignored
+    AmmoBox762x39mmPractice: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Practice: 4294967295 Lua ignored
+    AmmoBox762x39mmRubber: 4294967295 #Lua 30 -> 762x39
+    #NFAmmunitionBoxBigRifle30Rubber: 4294967295 Lua ignored
   # .60 Rifle
     NFAmmunitionBoxRifle60: 4294967295
     NFAmmunitionBoxBigRifle60: 4294967295
@@ -289,11 +289,11 @@
   # Mail Capsules
     BoxMailCapsulePrimed: 4294967295
   # .50 Shells
-    NFAmmunitionBoxShellShotgunBuckshot: 4294967295
-    NFAmmunitionBoxShellShotgunIncendiary: 4294967295
-    NFAmmunitionBoxShellShotgunPractice: 4294967295
-    NFAmmunitionBoxShellShotgunUranium: 4294967295
-    NFAmmunitionBoxShellShotgunSlug: 4294967295
-    NFAmmunitionBoxShellShotgunBeanbag: 4294967295
-    NFAmmunitionBoxShellShotgunFlare: 4294967295
-    NFAmmunitionBoxShellShotgunTranquilizer: 4294967295
+    AmmoBox23x75mmBuckshot: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmIncendiary: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmPractice: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmUranium: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmSlug: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmBeanbag: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmFlare: 4294967295 #Lua 4 gauges
+    #NFAmmunitionBoxShellShotgunTranquilizer: 4294967295 Lua ignored

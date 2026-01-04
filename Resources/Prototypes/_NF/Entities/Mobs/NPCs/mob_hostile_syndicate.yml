@@ -59,7 +59,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45Uranium
+      proto: Cartridge45_magnumUranium #Lua 45 -> magnum
       capacity: 1
       count: 1
     - type: Gun
@@ -79,7 +79,7 @@
       prototypes:
         - SyndicateNavalCaptainGearB
     - type: BasicEntityAmmoProvider
-      proto: NFBulletPistol45Incendiary
+      proto: Cartridge45_magnumIncendiary #Lua 45 -> magnum
       capacity: 1
       count: 1
 
@@ -92,7 +92,7 @@
       prototypes:
         - SyndicateNavalCaptainGearC
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45Overpressure
+      proto: Cartridge45_magnumFMJ #Lua 45 -> magnum
       capacity: 1
       count: 1
 
@@ -105,7 +105,7 @@
       prototypes:
         - SyndicateNavalCaptainGearD
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45
+      proto: Cartridge45_ACPFMJ #Lua 45 -> ACP
       capacity: 1
       count: 1
 
@@ -162,7 +162,7 @@
       prototypes:
         - SyndicateNavalEngineerGearC
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunBuckshotOverpressure
+      proto: ShellShotgun23x75mmDozd #Lua 4 gauge
       capacity: 1
       count: 1
 
@@ -326,7 +326,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol35Uranium
+      proto: Cartridge9x19mmUranium #Lua 35 -> 9x19
       capacity: 7
       count: 7
     - type: Gun
@@ -368,7 +368,7 @@
       prototypes:
         - SyndicateNavalOperatorGearD
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol35Overpressure
+      proto: Cartridge9x19mmRIP #Lua 35 -> 9x19
       capacity: 7
       count: 7
 
@@ -458,7 +458,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol35Emp
+      proto: Cartridge9x19mmEmp #Lua 35 -> 9x19
       capacity: 4
       count: 4
     - type: Gun
@@ -626,7 +626,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFBulletPistol35Uranium
+      proto: Cartridge9x19mmUranium #Lua 35 -> 9x19
       capacity: 4
       count: 4
     - type: Gun
@@ -646,7 +646,7 @@
       prototypes:
         - SyndicateNavalDeckhandGearB
     - type: BasicEntityAmmoProvider
-      proto: NFBulletPistol35Incendiary
+      proto: Cartridge9x19mmIncendiary #Lua 35 -> 9x19
       capacity: 4
       count: 4
 
@@ -659,7 +659,7 @@
       prototypes:
         - SyndicateNavalDeckhandGearC
     - type: BasicEntityAmmoProvider
-      proto: NFBulletPistol35Overpressure
+      proto: Cartridge9x19mmHP #Lua 35 -> 9x19
       capacity: 4
       count: 4
 
@@ -776,7 +776,7 @@
       prototypes:
         - SyndicateNavalCaptainVoidGear
     - type: BasicEntityAmmoProvider
-      proto: NFCartridgePistol45Uranium
+      proto: Cartridge45_ACPUranium #Lua 45 -> ACP
       capacity: 1
       count: 1
 

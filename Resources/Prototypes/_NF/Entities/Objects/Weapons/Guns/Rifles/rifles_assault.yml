@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultSm
-  parent: [ NFBaseWeaponRifleAssaultChamber30, NFBaseWeaponFrameRifleAssaultCybersun ]
+  parent: [ NFBaseWeaponRifleAssaultChamber762x39, NFBaseWeaponFrameRifleAssaultCybersun ] #Lua 30 -> 762x39
   name: Soland-Moss # Renamed: real brand name
   description: |-
     An iconic weapon of war. An illegal firearm often used by Syndicate agents.
@@ -24,7 +24,7 @@
 
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
-  parent: [ NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultCybersun ]
+  parent: [ NFBaseWeaponRifleAssaultChamber556x45, NFBaseWeaponFrameRifleAssaultCybersun ] #Lua 20 -> 556x45
   name: M-90gl
   description: |-
     An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
@@ -36,7 +36,7 @@
 
 - type: entity
   id: NFWeaponRifleAssaultLecter
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20, NFBaseWeaponFrameRifleAssaultNanotrasen ]
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber556x45, NFBaseWeaponFrameRifleAssaultNanotrasen ] #Lua 20 -> 556x45
   name: Lecter
   description: |-
     A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
@@ -58,7 +58,7 @@
 #region WizDen: Rubber
 - type: entity
   id: NFWeaponRifleAssaultLecterLessLethal
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber20Rubber, NFBaseWeaponFrameRifleAssaultNanotrasen ]
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber556x45Rubber, NFBaseWeaponFrameRifleAssaultNanotrasen ] #Lua 20 -> 556x45
   name: Lecter
   description: |-
     A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
@@ -68,7 +68,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponRifleAssaultVulcan
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber30, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ]
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber762x39, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 30 -> 762x39
   name: Vulcan
   description: |-
     One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
@@ -84,7 +84,7 @@
 
 - type: entity
   id: NFWeaponRifleAssaultJackdaw
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber25, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua NFBaseWeaponRifleAssaultChamber20<NFBaseWeaponRifleAssaultChamber25
+  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber556x45, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 25 -> 556x45
   name: Jackdaw
   description: |-
     The beginning of the end is heralded by the song of a Jackdaw.
@@ -100,7 +100,7 @@
 #region DeltaV: Rubber
 - type: entity
   id: NFWeaponRifleAssaultVulcanLessLethal
-  parent: [ NFBaseWeaponRifleAssaultChamber30Rubber, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ]
+  parent: [ NFBaseWeaponRifleAssaultChamber762x39Rubber, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 30 -> 762x39
   name: Vulcan
   description: |-
     One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
@@ -110,7 +110,7 @@
 #region Frontier
 - type: entity
   id: NFWeaponRifleAssaultGestio
-  parent: [ NFBaseWeaponRifleAssaultChamber30LowCapacity, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ]
+  parent: [ NFBaseWeaponRifleAssaultChamber762x39LowCapacity, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 30 -> 762x39
   name: Gestio
   description: |-
     An old burst-fire rifle designed by Silver Industries that never left trials.
@@ -133,7 +133,7 @@
 
 - type: entity
   id: NFWeaponRifleAssaultNovaliteC1
-  parent: [ NFBaseWeaponRifleAssaultChamber20Clip, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ]
+  parent: [ NFBaseWeaponRifleAssaultChamber556x45Clip, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 20 -> 556x45
   name: Novalite C1
   description: |-
     A civilian grade semi-automatic rifle with an internal magazine.

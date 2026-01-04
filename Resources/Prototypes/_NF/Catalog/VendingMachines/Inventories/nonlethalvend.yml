@@ -13,14 +13,14 @@
   # Ammo boxes
     NFBoxCartridgeCap: 4
     NFBoxDonkSoftBox: 4
-    NFAmmunitionBoxPistol35Practice: 10
-    NFAmmunitionBoxPistol45Practice: 10
-    NFAmmunitionBoxRifle20Practice: 8
+    AmmoBox9x19mmPractice: 10 #Lua 35 -> 9x19
+    AmmoBox45_magnumPractice: 10 #Lua 45 -> Magnum
+    AmmoBox556x45mmRubber: 8 #Lua 20 -> 556x45
     NFAmmunitionBoxRifle25Practice: 10
-    NFAmmunitionBoxRifle30Practice: 5
-    NFAmmunitionBoxShellShotgunPractice: 8
+    AmmoBox762x39mmPractice: 5 #Lua 30 -> 762x39
+    AmmoBox23x75mmPractice: 8 #Lua 4 gauges
   contrabandInventory:
-    NFSpeedLoaderPistol35Practice: 3
-    NFSpeedLoaderPistol45Practice: 3
+    SpeedLoader9x19mmPractice: 3 #Lua 35 -> 9x19
+    SpeedLoader45_magnumPractice: 3 #Lua 45 -> Magnum
   emaggedInventory:
     ThrowingKnife: 1

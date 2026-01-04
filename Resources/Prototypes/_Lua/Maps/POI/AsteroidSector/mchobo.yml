@@ -21,6 +21,11 @@
   maximumDistance: 9000 #5600 Lua
   spawnGroup: AsteroidRequired
   gridPath: /Maps/_NF/POI/mchobo.yml
+  addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+    scale: 1.2
+    allowWhenHidden: true
 
 - type: gameMap
   id: McHoboLua

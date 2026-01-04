@@ -7,25 +7,26 @@
 - type: vessel
   id: Victoria
   parent: BaseVessel
-  name: IHR Victoria
+  name: Victoria
   description: A reworked hull from an unknown salvage ship manufacturer refitted for xenoarcheology that still holds onto some of its mining and salvaging capabilities.
   price: 45000
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_Mono/Shuttles/Victoria.yml
   guidebookPage: null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Science
   - Salvage
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Victoria
-  mapName: 'IHR Victoria'
+  mapName: 'Victoria'
   mapPath: /Maps/_Mono/Shuttles/Victoria.yml
   minPlayers: 0
   stations:
@@ -33,7 +34,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Victoria CIV{1}'
+          mapNameTemplate: 'Victoria {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

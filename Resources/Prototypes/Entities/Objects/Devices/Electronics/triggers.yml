@@ -30,6 +30,11 @@
         path: /Audio/Machines/Nuke/general_beep.ogg
         params:
           volume: -2
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  # Lua end
 
 - type: entity
   parent: TimerTrigger
@@ -61,6 +66,11 @@
         path: /Audio/Machines/Nuke/general_beep.ogg
         params:
           volume: -2
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  # Lua end
 
 - type: entity
   parent: BaseItem
@@ -79,3 +89,8 @@
   - type: PayloadTrigger
     components:
     - type: TriggerOnVoice
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  # Lua end

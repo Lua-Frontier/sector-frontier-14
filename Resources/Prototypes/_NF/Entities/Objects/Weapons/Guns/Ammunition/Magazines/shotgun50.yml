@@ -9,11 +9,11 @@
     tags:
     - MagazineShotgun
   - type: BallisticAmmoProvider
-    proto: NFShellShotgunBuckshot
+    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
     mayTransfer: true
     whitelist:
       tags:
-        - ShellShotgun
+        - ShellShotgun23x75mmBuckshot #Lua 4 gauge
     capacity: 8
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
@@ -59,7 +59,7 @@
   parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: NFShellShotgunBuckshot
+    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
   - type: Sprite
     layers:
     - state: base
@@ -85,7 +85,7 @@
   parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: NFShellShotgunBeanbag
+    proto: ShellShotgun23x75mmBeanbag #Lua 4 gauge
   - type: Sprite
     layers:
     - state: base
@@ -111,7 +111,7 @@
   parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: NFShellShotgunSlug
+    proto: ShellShotgun23x75mmSlug #Lua 4 gauge
   - type: Sprite
     layers:
     - state: base
@@ -137,7 +137,7 @@
   parent: NFBaseMagazineShotgunDrum
   components:
   - type: BallisticAmmoProvider
-    proto: NFShellShotgunIncendiary
+    proto: ShellShotgun23x75mmIncendiary #Lua 4 gauge
   - type: Sprite
     layers:
     - state: base

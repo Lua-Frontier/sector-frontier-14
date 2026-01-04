@@ -10,12 +10,12 @@
     ClothingHandsKnuckleDusters: 1
     SurvivalKnife: 1
   # Magazines
-    NFSpeedLoaderPistol35Empty: 1
-    NFSpeedLoaderPistol45Empty: 1
+    SpeedLoader9x19mmEmpty: 1 #Lua 35 -> 9x19
+    SpeedLoader45_magnumEmpty: 1 #Lua 45 -> magnum
   # Ammo boxes
-    NFAmmunitionBoxPistol35: 2
-    NFAmmunitionBoxPistol45: 2
-    NFAmmunitionBoxRifle20: 2
+    AmmoBox9x19mmFMJ: 2 #Lua 35 -> 9x19
+    AmmoBox45_magnumFMJ: 2 #Lua 45 -> magnum
+    AmmoBox556x45mmFMJ: 2 #Lua 20 -> 556x45
   emaggedInventory:
     NFWeaponPistolViper: 1
 
@@ -31,13 +31,13 @@
     ClothingHandsKnuckleDusters: 4294967295
     SurvivalKnife: 4294967295
   # Magazines
-    NFSpeedLoaderPistol35Empty: 4294967295
-    NFSpeedLoaderPistol45Empty: 4294967295
+    SpeedLoader9x19mmEmpty: 4294967295 #Lua 35 -> 9x19
+    SpeedLoader45_magnumEmpty: 4294967295 #Lua 45 -> magnum
   # Ammo boxes
-    NFAmmunitionBoxPistol35: 4294967295
-    NFAmmunitionBoxPistol45: 4294967295
-    NFAmmunitionBoxRifle20: 4294967295
-    NFAmmunitionBoxShellShotgunBuckshot: 4294967295
-    NFAmmunitionBoxShellShotgunBeanbag: 4294967295
+    AmmoBox9x19mmFMJ: 4294967295 #Lua 35 -> 9x19
+    AmmoBox45_magnumFMJ: 4294967295 #Lua 45 -> magnum
+    AmmoBox556x45mmFMJ: 4294967295 #Lua 20 -> 556x45
+    AmmoBox23x75mmBuckshot: 4294967295 #Lua 4 gauges
+    AmmoBox23x75mmBeanbag: 4294967295 #Lua 4 gauges
   emaggedInventory:
     NFWeaponPistolViper: 1

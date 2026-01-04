@@ -86,7 +86,7 @@
     prototypes:
     - PunkGangerGearPistol
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol35
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     capacity: 1
     count: 1
   - type: Gun
@@ -130,7 +130,7 @@
     prototypes:
     - PunkGangerGearShotgun
   - type: BasicEntityAmmoProvider
-    proto: NFShellShotgunBuckshot
+    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
     capacity: 1
     count: 1
   - type: Gun
@@ -174,7 +174,7 @@
     prototypes:
     - PunkGangerGearSmg
   - type: BasicEntityAmmoProvider
-    proto: NFCartridgePistol35
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     capacity: 6
     count: 6
   - type: Gun

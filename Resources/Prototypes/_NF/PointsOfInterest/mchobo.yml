@@ -17,6 +17,11 @@
   maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/mchobo.yml
+  addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+    scale: 1.2
+    allowWhenHidden: true
 
 - type: gameMap
   id: McHobo

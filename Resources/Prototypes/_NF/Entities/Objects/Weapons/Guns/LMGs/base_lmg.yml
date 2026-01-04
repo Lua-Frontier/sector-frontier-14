@@ -23,7 +23,7 @@
     minAngle: -0 # Set to 0 because GunRequiresWield
     maxAngle: -0
   - type: Gun
-    projectileSpeed: 30
+    projectileSpeed: 55 #Lua
     minAngle: 2.7
     maxAngle: 13.5
     angleIncrease: 0.7
@@ -56,7 +56,7 @@
 #region chamber
 - type: entity
   abstract: true
-  id: NFBaseWeaponLightMachineGunChamber20
+  id: NFBaseWeaponLightMachineGunChamber556x45
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-20
@@ -71,20 +71,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineBoxRifle20
+        startingItem: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - NFMagazineBoxRifle20
+            - NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle20
+        startingItem: Cartridge556x45mmFMJ #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:
-            - NFCartridgeRifle20
+            - Cartridge556x45mmFMJ #Lua 20 -> 556x45
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

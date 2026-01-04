@@ -1,8 +1,8 @@
 # Weapons
 uplink-pistol-viper-name = Гадюка
-uplink-pistol-viper-desc = Небольшой, легко скрываемый, но маломощный пистолет. Оснащён полностью автоматическим ресивером. Использует патроны калибра .35 авто.
+uplink-pistol-viper-desc = Небольшой, легко скрываемый, но маломощный пистолет. Оснащён полностью автоматическим ресивером. Использует патроны калибра 9x19mm.
 uplink-revolver-python-name = Питон
-uplink-revolver-python-desc = Брутально простой, эффективный и громкий револьвер Синдиката. Поставляется с бронебойными патронами. Использует патроны калибра .45 магнум.
+uplink-revolver-python-desc = Брутально простой, эффективный и громкий револьвер Синдиката. Поставляется с бронебойными патронами. Использует патроны калибра .45 Magnum.
 uplink-pistol-cobra-name = Кобра
 uplink-pistol-cobra-desc = Пистолет суровых робастных агентов, с интегрированным глушителем. Использует патроны калибра .25 безгильзовый.
 uplink-rifle-mosin-name = Старая винтовка
@@ -56,21 +56,21 @@ uplink-shrapnel-grenade-name = Осколочная граната
 uplink-shrapnel-grenade-desc = Выпускает серию острых осколков, наносящих огромный урон по незащищённым целям.
 uplink-combat-bakery-desc = Набор секретного оружия из французской выпечки. В него входит багетный меч, пара круассанов для метания и машинные платы куханной утвари Donk Co. Когда работа будет выполнена, съешьте улики.
 # Ammo
-uplink-pistol-magazine-name = Пистолетный магазин (.35 авто)
+uplink-pistol-magazine-name = Пистолетный магазин (9x19mm)
 uplink-pistol-magazine-desc = Пистолетный магазин на 10 патронов. Совместим с "Гадюкой".
-uplink-pistol-magazine-c20r-name = Магазин ПП (.35 авто)
+uplink-pistol-magazine-c20r-name = Магазин ПП (9x19mm)
 uplink-pistol-magazine-c20r-desc = Магазин ПП на 30 патронов. Совместим с C-20r.
 uplink-pistol-magazine-caseless-name = Пистолетный магазин (.25 безгильзовые)
 uplink-pistol-magazine-caseless-desc = Пистолетный магазин на 10 патронов. Совместим с "Коброй".
-uplink-speedloader-magnum-name = Спидлоадер (.45 магнум ББ)
+uplink-speedloader-magnum-name = Спидлоадер (.45 Magnum)
 uplink-speedloader-magnu-desc = Спидлоадер с 6 бронебойными, полностью игнорирующими броню, патронами для револьвера. Совместим с "Питоном".
-uplink-mosin-ammo-name = Коробка патронов (.30 винтовочные)
+uplink-mosin-ammo-name = Коробка патронов (7.62x39mm)
 uplink-mosin-ammo-desc = Коробка с 60 патронами для резервной винтовки.
 uplink-sniper-ammo-name = Коробка патронов (.60 крупнокалиберные)
 uplink-sniper-ammo-desc = Коробка с 10 патронами для снайперской винтовки Христов.
-uplink-magazine-bulldog-pellet-name = Барабанный магазин (.50 дробь)
+uplink-magazine-bulldog-pellet-name = Барабанный магазин (4 gauge buckshot)
 uplink-magazine-bulldog-pellet-desc = Магазин для дробовика на 8 патронов, заряженных картечью. Совместим с "Бульдогом".
-uplink-magazine-bulldog-slug-name = Барабанный магазин (.50 пуля)
+uplink-magazine-bulldog-slug-name = Барабанный магазин (4 gauge slug)
 uplink-magazine-bulldog-slug-desc = Магазин для дробовика на 8 патронов, заряженных пулями. Совместим с "Бульдогом".
 # Utility
 uplink-holopara-kit-name = Набор "Голопаразит"

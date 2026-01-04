@@ -45,11 +45,11 @@
 
 # Ammo
 - type: listing
-  id: UplinkNFPistol9mmMagazine
+  id: UplinkNFPistol9x19Magazine #Lua 35 -> 9x19
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: NFMagazinePistol35
+  #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon } Lua ignored
+  productEntity: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
   cost:
     Telecrystal: 1
   categories:
@@ -59,8 +59,8 @@
   id: UplinkNFMagazinePistolSubMachineGun
   name: uplink-pistol-magazine-c20r-name
   description: uplink-pistol-magazine-c20r-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: NFMagazineSubMachineGun35
+  #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon } Lua ignored
+  productEntity: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
   cost:
     Telecrystal: 2
   categories:
@@ -93,7 +93,7 @@
   name: uplink-pistol-magazine-cobra-name
   description: uplink-pistol-magazine-cobra-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
-  productEntity: NFMagazinePistol45
+  productEntity: Magazine45_ACPPistolFMJ #Lua 45 -> ACP
   cost:
     Telecrystal: 1
   categories:
@@ -103,8 +103,8 @@
   id: UplinkNFSpeedLoaderMagnum
   name: uplink-speedloader-magnum-non-ap-name
   description: uplink-speedloader-magnum-non-ap-desc # Frontier: uplink-speedloader-magnu-desc<uplink-speedloader-magnum-non-ap-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: NFSpeedLoaderPistol45
+  #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon } Lua ignore
+  productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
   cost:
     Telecrystal: 3
   categories:
@@ -114,8 +114,8 @@
   id: UplinkNFMosinAmmo
   name: uplink-mosin-ammo-name
   description: uplink-mosin-ammo-desc
-  icon: { sprite: /Textures/_NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-30 }
-  productEntity: NFAmmunitionBoxRifle30
+  #icon: { sprite: /Textures/_NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-30 } Lua ignore
+  productEntity: AmmoBox762x39mmFMJ #Lua 30 -> 762x39
   cost:
     Telecrystal: 1
   categories:

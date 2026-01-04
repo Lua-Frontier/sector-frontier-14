@@ -593,8 +593,6 @@ entities:
           - 0
         chunkSize: 4
     - type: GasTileOverlay
-    - type: IFF
-      flags: HideLabel
     - type: RadiationGridResistance
     - type: NavMap
 - proto: AirAlarm
@@ -3365,7 +3363,7 @@ entities:
     - type: Transform
       pos: 2.5,9.5
       parent: 1
-- proto: NFMagazineSubMachineGun35Overpressure
+- proto: Magazine9x19mmSubMachineGunFMJ
   entities:
   - uid: 417
     components:

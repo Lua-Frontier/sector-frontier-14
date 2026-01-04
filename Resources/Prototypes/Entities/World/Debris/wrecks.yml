@@ -4,6 +4,11 @@
   name: Scrap Debris
   abstract: true
   components:
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/wreck.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:

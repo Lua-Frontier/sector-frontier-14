@@ -1,7 +1,7 @@
 # Empty mags
 - type: entity
   id: ADTBaseExtMagazineRifle
-  name: "extended magazine (.20 rifle)"
+  name: "extended magazine (5.56x45 rifle)" #Lua 20 -> 556x45
   parent: BaseItem
   abstract: true
   components:
@@ -14,7 +14,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - NFCartridgeRifle20
+        - Cartridge556x45mmFMJ #Lua 20 -> 556x45
     capacity: 50 #Lua 45<50
   - type: ContainerContainer
     containers:
@@ -35,11 +35,11 @@
 # Magazines
 - type: entity
   id: ADTExtMagazineRifle
-  name: "extended magazine (.20 rifle)"
+  name: "extended magazine (5.56x45 rifle)" #Lua 20 -> 556x45
   parent: ADTBaseExtMagazineRifle
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
   - type: Sprite
     layers:
     - state: base

@@ -75,7 +75,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite # TODO: add sprite for maintenance panel open
-    sprite: Structures/Power/substation.rsi
+    sprite: _Lua/Structures/Power/substation.rsi # Lua
     snapCardinals: true
     layers:
     - state: substation
@@ -196,7 +196,7 @@
     anchored: true
   - type: Sprite # TODO: add sprite for maintenance panel open
     drawdepth: WallMountedItems
-    sprite: Structures/Power/substation.rsi
+    sprite: _Lua/Structures/Power/substation.rsi # Lua
     layers:
     - state: substation_wall
     - state: screen_wall
@@ -205,7 +205,7 @@
     maxCharge: 2000000
     startingCharge: 0
   - type: PowerMonitoringDevice
-    sprite: Structures/Power/substation.rsi
+    sprite: _Lua/Structures/Power/substation.rsi # Lua
     state: substation_wall_static
   - type: Destructible
     thresholds:
@@ -292,7 +292,7 @@
     anchored: true
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: Structures/Power/substation.rsi
+    sprite: _Lua/Structures/Power/substation.rsi # Lua
     layers:
     - state: substation_wall
   - type: Construction

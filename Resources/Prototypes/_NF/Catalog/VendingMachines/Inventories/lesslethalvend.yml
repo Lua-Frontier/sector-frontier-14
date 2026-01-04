@@ -6,14 +6,14 @@
     NFWeaponRevolverArgentiLessLethal: 10
     Stunbaton: 10
   # Magazines
-    NFSpeedLoaderPistol35Rubber: 5
-    NFSpeedLoaderPistol45Rubber: 5
+    SpeedLoader9x19mmRubber: 5 #Lua 30 -> 9x19
+    SpeedLoader45_magnumRubber: 5 #Lua 45 -> Magnum
   # Ammo boxes
-    NFAmmunitionBoxPistol35Rubber: 10
-    NFAmmunitionBoxPistol45Rubber: 10
-    NFAmmunitionBoxShellShotgunBeanbag: 8
-    NFAmmunitionBoxRifle20Rubber: 8
-    NFAmmunitionBoxRifle30Rubber: 5
+    AmmoBox9x19mmRubber: 10 #Lua 35 -> 9x19mm
+    AmmoBox45_magnumRubber: 10 #Lua 45 -> Magnum
+    AmmoBox23x75mmBeanbag: 8 #Lua 4 gauges
+    AmmoBox556x45mmRubber: 8 #Lua 20 -> 556x45
+    AmmoBox762x39mmRubber: 5 #Lua 30 -> 762x39
   contrabandInventory:
     WeaponRifleBBEmpty: 2
     BoxCartridgeBB: 10
@@ -29,14 +29,14 @@
     NFWeaponRevolverArgentiLessLethal: 4294967295
     Stunbaton: 4294967295
   # Magazines
-    NFSpeedLoaderPistol35Rubber: 4294967295
-    NFSpeedLoaderPistol45Rubber: 4294967295
+    SpeedLoader9x19mmRubber: 4294967295 #Lua 45 -> Magnum
+    SpeedLoader45_magnumRubber: 4294967295 #Lua 45 -> Magnum
   # Ammo boxes
-    NFAmmunitionBoxPistol35Rubber: 4294967295
-    NFAmmunitionBoxPistol45Rubber: 4294967295
-    NFAmmunitionBoxRifle20Rubber: 4294967295
-    NFAmmunitionBoxRifle30Rubber: 4294967295
-    NFAmmunitionBoxShellShotgunBeanbag: 4294967295
+    AmmoBox9x19mmRubber: 4294967295 #Lua 35 -> 9x19mm
+    AmmoBox45_magnumRubber: 4294967295 #Lua 45 -> Magnum
+    AmmoBox556x45mmRubber: 4294967295 #Lua 20 -> 556x45
+    AmmoBox762x39mmRubber: 4294967295 #Lua 30 -> 762x39
+    AmmoBox23x75mmBeanbag: 4294967295 #Lua 4 gauges
   contrabandInventory:
     WeaponRifleBBEmpty: 2
     BoxCartridgeBB: 10

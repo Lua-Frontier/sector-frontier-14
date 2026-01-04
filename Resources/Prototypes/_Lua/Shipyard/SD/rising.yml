@@ -6,23 +6,24 @@
 - type: vessel
   parent: BaseVessel
   id: GFRising
-  name: SD-GF Восход
+  name: Восход
   description: Тяжелая артиллерия с радаром. Обладает неплохой защитой
   limit: 1
   price: 346452
   category: Large
   group: Security
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Nfsd
   engine:
   - Singularity
   shuttlePath: /Maps/_Lua/Shuttles/SD/rising.yml
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: GFRising
-  mapName: 'SD-GF Восход'
+  mapName: 'Восход'
   mapPath: /Maps/_Lua/Shuttles/SD/rising.yml
   minPlayers: 0
   stations:
@@ -30,7 +31,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'SD-GF Восход {1}'
+        mapNameTemplate: 'Восход {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -175,6 +175,8 @@
     whitelist:
     - Vip
     - OutpostSyndicateShareholder
+  - !type:ListingLimitedStockCondition
+    stock: 20
 
 - type: listing
   id: UplinkVipNocatLauncherCreamPie
@@ -368,6 +370,8 @@
       whitelist:
         - Vip
         - OutpostSyndicateShareholder
+    - !type:ListingLimitedStockCondition
+      stock: 1
 
 - type: listing
   id: UplinkVipNocatPrizeBall
@@ -388,6 +392,8 @@
       whitelist:
         - Vip
         - OutpostSyndicateShareholder
+    - !type:ListingLimitedStockCondition
+      stock: 30
 
 - type: listing
   id: UplinkVipNocatEncryption

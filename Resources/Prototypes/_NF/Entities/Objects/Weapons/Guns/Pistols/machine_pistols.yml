@@ -14,7 +14,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
   - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletPistol35
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     fireCost: 100
   - type: Battery
     maxCharge: 1000
@@ -25,7 +25,7 @@
 
 - type: entity
   id: NFWeaponPistolViper
-  parent: [ NFBaseWeaponPistolChamber35HighCapacity, NFBaseWeaponFrameMachinePistolGorlex ]
+  parent: [ NFBaseWeaponPistolChamber9x19HighCapacity, NFBaseWeaponFrameMachinePistolGorlex ] #Lua 35 -> 9x19
   name: viper
   description: |-
     A small, easily concealable machine pistol. An illegal firearm often used by Syndicate agents.
@@ -38,7 +38,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponPistolPollock
-  parent: [ NFBaseWeaponPistolChamber35, NFBaseWeaponFrameMachinePistolNanotrasen ]
+  parent: [ NFBaseWeaponPistolChamber9x19, NFBaseWeaponFrameMachinePistolNanotrasen ] #Lua 35 -> 9x19
   name: pollock
   description: A compact and mass-produced combat pistol.
   components:
@@ -49,5 +49,5 @@
 
 - type: entity
   id: NFWeaponPistolPollockHighCapacityMag
-  parent: [ NFBaseWeaponPistolChamber35HighCapacity, NFWeaponPistolPollock ]
+  parent: [ NFBaseWeaponPistolChamber9x19HighCapacity, NFWeaponPistolPollock ] #Lua 35 -> 9x19
   suffix: Frontier, High capacity mag

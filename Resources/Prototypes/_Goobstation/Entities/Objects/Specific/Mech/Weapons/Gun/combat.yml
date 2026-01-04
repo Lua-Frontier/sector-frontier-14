@@ -181,7 +181,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: NFShellShotgunBuckshot
+    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
     fireCost: 99
   - type: Appearance
   - type: AmmoCounter
@@ -227,7 +227,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: NFCartridgeRifle30
+    proto: Cartridge762x39mmFMJ #Lua 30 -> 762x39
     fireCost: 15
   - type: Appearance
   - type: AmmoCounter

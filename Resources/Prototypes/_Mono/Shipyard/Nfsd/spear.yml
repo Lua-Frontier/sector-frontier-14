@@ -1,13 +1,7 @@
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 ark1368
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: vessel
   id: Spear
   parent: BaseVesselAntag
-  name: TSF-SKR Spear
+  name: Spear
   description: A small ship meant as an escort and stealth killer. Horrible interior space, and not much in the way of comfort.
   price: 40000
   category: Small
@@ -15,15 +9,16 @@
   access: Security
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/spear.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Patrol
   - Nfsd
   engine:
   - Uranium
   cloakHunter: true
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Spear
   mapName: 'Spear'
@@ -34,7 +29,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Spear TSF{1}'
+        mapNameTemplate: 'Spear {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

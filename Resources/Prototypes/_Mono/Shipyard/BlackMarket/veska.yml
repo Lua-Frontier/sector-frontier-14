@@ -1,7 +1,7 @@
 - type: vessel
   id: Veska
   parent: BaseVesselAntag
-  name: RG Veska
+  name: Veska
   description: A modified Ample that tears out the mining equipment and installs a light autocannon.
   price: 5200
   category: Micro
@@ -9,6 +9,9 @@
   mapchecker_group_override: BlackMarket  # Treat this as a BlackMarket vessel for mapchecker purposes
   shuttlePath: /Maps/_Mono/Shuttles/Carrier/veska.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Pirate
   engine:
@@ -24,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Veska MIL{1}'
+        mapNameTemplate: 'Veska {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

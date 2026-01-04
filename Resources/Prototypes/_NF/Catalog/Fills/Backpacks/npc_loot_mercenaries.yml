@@ -125,16 +125,16 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: NFMagazinePistol35Overpressure
+    - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
       prob: 0.9
-    - id: NFMagazinePistol35Empty
+    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
       prob: 0.9
-    - id: NFMagazinePistol35Empty
+    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
       prob: 0.8
-    - id: NFMagazinePistol35Empty
+    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
       amount: 2
       prob: 0.4
-    - id: NFAmmunitionBoxPistol35Overpressure
+    - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
       prob: 0.3
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -186,15 +186,15 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: NFAmmunitionBoxRifle20Overpressure
+    - id: AmmoBox556x45mmHP #Lua 20 -> 556x45
       prob: 0.4
-    - id: NFMagazineClipRifle20
+    - id: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
       prob: 0.9
-    - id: NFMagazineClipRifle20Empty
+    - id: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
       prob: 0.9
-    - id: NFMagazineClipRifle20Empty
+    - id: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
       prob: 0.2
-    - id: NFAmmunitionBoxBigRifle20Overpressure
+    - id: AmmoBox556x45mmFMJ #Lua 20 -> 556x45
       prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -247,9 +247,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: NFAmmunitionBoxShellShotgunOverpressure
+    - id: AmmoBox23x75mmDozd #Lua 4 gauge
       prob: 0.4
-    - id: NFAmmunitionBoxShellShotgunOverpressure
+    - id: AmmoBox23x75mmDozd #Lua 4 gauge
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -314,9 +314,9 @@
       prob: 0.6
     - id: NFSpeedLoaderPistol35Empty
       prob: 0.1
-    - id: NFAmmunitionBoxPistol35Overpressure
+    - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
       prob: 0.9
-    - id: NFAmmunitionBoxPistol35Overpressure
+    - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -446,15 +446,15 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: NFMagazineRifle30Overpressure
+    - id: Magazine762x39mmHP #Lua 30 -> 762x39
       prob: 0.4
-    - id: NFMagazineRifle30Overpressure
+    - id: Magazine762x39mmHP #Lua 30 -> 762x39
       prob: 0.2
-    - id: NFAmmunitionBoxRifle30Overpressure
+    - id: AmmoBox762x39mmHP #Lua 30 -> 762x39
       prob: 0.3
     - id: Tourniquet
       prob: 0.4
-    - id: NFAmmunitionBoxBigRifle30Overpressure
+    - id: AmmoBox762x39mmHP #Lua 30 -> 762x39
       prob: 0.1
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -514,13 +514,13 @@
     - id: ClothingOuterArmorBulletproof
       prob: 0.4
     # Items
-    - id: NFAmmunitionBoxBigRifle30Overpressure
+    - id: AmmoBox762x39mmHP #Lua 30 -> 762x39
       prob: 0.7
-    - id: NFAmmunitionBoxBigRifle30Overpressure
+    - id: AmmoBox762x39mmHP #Lua 30 -> 762x39
       prob: 0.3
     - id: ClothingNeckIFFNeutral
       prob: 0.2
-    - id: NFAmmunitionBoxBigRifle30Overpressure
+    - id: AmmoBox762x39mmHP #Lua 30 -> 762x39
       prob: 0.1
     - id: AmmoTechFabCircuitboard
       prob: 0.1

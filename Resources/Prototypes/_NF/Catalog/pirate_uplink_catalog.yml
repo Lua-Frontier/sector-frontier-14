@@ -288,28 +288,29 @@
         tags:
           - PirateUplink
 
-- type: listing
-  id: UplinkPirateShotgunAmmo
-  name:  uplink-pirate-shotgunammo-name
-  description: uplink-pirate-shotgunammo-desc
-  productEntity: NFAmmunitionBoxShellShotgunBuckshot
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
-  cost:
-    Doubloon: 2
-  categories:
-    - UplinkPirateAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - PirateUplink
+# Lua ignored (Duplicated store listing)
+# - type: listing
+#   id: UplinkPirateShotgunAmmo
+#   name:  uplink-pirate-shotgunammo-name
+#   description: uplink-pirate-shotgunammo-desc
+#   productEntity: NFAmmunitionBoxShellShotgunBuckshot
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
+#   cost:
+#     Doubloon: 2
+#   categories:
+#     - UplinkPirateAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - PirateUplink
 
 - type: listing
   id: UplinkPirateRevolverAmmo
   name:  uplink-pirate-revolverammo-name
   description: uplink-pirate-revolverammo-desc
-  productEntity: NFAmmunitionBoxPistol45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 }
+  productEntity: AmmoBox45_magnumFMJ #Lua 45 -> Magnum
+  #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi, state: icon-45 } Lua ignore
   cost:
     Doubloon: 2
   categories:

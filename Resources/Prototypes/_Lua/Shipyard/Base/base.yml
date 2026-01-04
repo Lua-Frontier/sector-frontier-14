@@ -20,7 +20,7 @@
   group: BlackMarket
   addComponents:
   - type: IFF
-    flags: [IsPlayerShuttle, HideLabel]
+    flags: [IsPlayerShuttle]
 
 # Note: we keep the IsPlayerShuttle flag to hide consistently with other shuttles.
 - type: vessel

@@ -1,7 +1,7 @@
 - type: vessel
   id: Natisk
   parent: BaseVesselAntag
-  name: NCS Natisk
+  name: Natisk
   description: A tank with a layer of reinforced walls under its exterior hull, ensuring its able to send out obscene amounts of firepower.
   price: 64000 #53500
   category: Medium
@@ -24,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Natisk USSP{1}'
+          mapNameTemplate: 'Natisk {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

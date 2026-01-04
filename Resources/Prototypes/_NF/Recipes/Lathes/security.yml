@@ -387,8 +387,8 @@
 #region Empty Mags
 - type: latheRecipe # novalite mag empty
   parent: BaseEmptyMagazineRecipe
-  id: NFMagazineClipRifle20Empty
-  result: NFMagazineClipRifle20Empty
+  id: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
+  result: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
   materials:
     Steel: 20
 
@@ -471,8 +471,8 @@
 
 - type: latheRecipe
   parent: BaseEmptyMagazineRecipe
-  id: NFMagazineDrumRifle20Empty
-  result: NFMagazineDrumRifle20Empty
+  id: NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
+  result: NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
   materials:
     Steel: 40
 

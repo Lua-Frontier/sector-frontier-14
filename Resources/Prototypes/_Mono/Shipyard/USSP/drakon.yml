@@ -1,7 +1,7 @@
 - type: vessel
   id: Drakon
   parent: BaseVesselAntag
-  name: NCS Drakon
+  name: Drakon
   description: A fast brawler with heavy armor and ballistic armaments.
   price: 100333 # 2000 above min
   category: Large
@@ -24,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Drakon USSP{1}'
+          mapNameTemplate: 'Drakon {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -289,16 +289,17 @@
   categories:
     - BravoUplinkAmmo
 
-- type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
-  name: магазин ПП (.35 пистолетные, усиленные)
-  description: магазин заполненный летальными боеприпасами для WT-550
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkAmmo
+# Lua ignore
+# - type: listing
+#   id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
+#   name: магазин ПП (.35 пистолетные, усиленные)
+#   description: магазин заполненный летальными боеприпасами для WT-550
+#   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
+#   productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - BravoUplinkAmmo
 
 - type: listing
   id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
@@ -345,11 +346,11 @@
     - BravoUplinkAmmo
 
 - type: listing
-  id: BravoUplinkAmmoNFMagazineDrumRifle20Empty
-  name: drum magazine (.20 rifle, any)
+  id: BravoUplinkAmmoNFMagazineDrumRifle556x45Empty
+  name: drum magazine (5.56x45mm, any)
   description: барабанный магазин для винтовки "лектер" боеприпас в комплект не входит.
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi, state: base }
-  productEntity: NFMagazineDrumRifle20Empty
+  productEntity: NFMagazineDrumRifle556x45Empty
   cost:
     FrontierUplinkCoin: 1
   categories:

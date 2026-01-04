@@ -7,25 +7,26 @@
 - type: vessel
   id: Sakuratsu
   parent: BaseVessel
-  name: SKR Sakuratsu
+  name: Sakuratsu
   description: A xenoarcheology ship with a dedicated, reinforced chamber. Contains mining equipment too.
   price: 61030 #58250
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_Mono/Shuttles/sakuratsu.yml
   guidebookPage: null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Science
   - Salvage
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Sakuratsu
-  mapName: 'SKR Sakuratsu'
+  mapName: 'Sakuratsu'
   mapPath: /Maps/_Mono/Shuttles/sakuratsu.yml
   minPlayers: 0
   stations:
@@ -33,7 +34,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Sakuratsu CIV{1}'
+          mapNameTemplate: 'Sakuratsu {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

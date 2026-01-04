@@ -7445,7 +7445,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFAmmunitionBoxPistol35
+- proto: AmmoBox9x19mmFMJ
   entities:
   - uid: 863
     components:
@@ -7468,7 +7468,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFAmmunitionBoxPistol45Overpressure
+- proto: AmmoBox45_magnumFMJ
   entities:
   - uid: 866
     components:
@@ -7491,7 +7491,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFAmmunitionBoxShellShotgunBuckshot
+- proto: AmmoBox23x75mmBuckshot
   entities:
   - uid: 869
     components:
@@ -7521,7 +7521,7 @@ entities:
     - type: Transform
       pos: 1.5,5.5
       parent: 1
-- proto: NFMagazineSubMachineGun35Overpressure
+- proto: Magazine9x19mmSubMachineGunFMJ
   entities:
   - uid: 281
     components:

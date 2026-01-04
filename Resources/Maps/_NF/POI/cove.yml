@@ -106,9 +106,6 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
-    - type: IFF
-      color: '#FFC000FF'
-      flags: HideLabel
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
@@ -7870,28 +7867,28 @@ entities:
     - type: Transform
       pos: -14.384927,25.942558
       parent: 1
-- proto: NFAmmunitionBoxPistol45
+- proto: AmmoBox45_ACPFMJ
   entities:
   - uid: 651
     components:
     - type: Transform
       pos: -14.336183,24.599264
       parent: 1
-- proto: NFAmmunitionBoxPistol45Rubber
+- proto: AmmoBox45_ACPRubber
   entities:
   - uid: 2076
     components:
     - type: Transform
       pos: -14.669516,24.640959
       parent: 1
-- proto: NFAmmunitionBoxBigRifle20
+- proto: AmmoBox556x45mmFMJ
   entities:
   - uid: 1193
     components:
     - type: Transform
       pos: -14.395344,25.44221
       parent: 1
-- proto: NFAmmunitionBoxBigRifle20Rubber
+- proto: AmmoBox556x45mmRubber
   entities:
   - uid: 2077
     components:

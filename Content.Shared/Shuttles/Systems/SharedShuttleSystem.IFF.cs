@@ -38,7 +38,7 @@ public abstract partial class SharedShuttleSystem
             return entName;
         }
 
-        if (Resolve(gridUid, ref component, false) && (component.Flags & (IFFFlags.HideLabel | IFFFlags.Hide)) != 0x0)
+        if (Resolve(gridUid, ref component, false) && (component.Flags & (IFFFlags.HideLabel | IFFFlags.HideLabelShuttle | IFFFlags.Hide)) != 0x0) // Lua Decrypt mod
         {
             return null;
         }

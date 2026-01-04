@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponRevolverInspector
-  parent: [ BaseC1Contraband, NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverNanotrasen ]
+  parent: [ BaseC1Contraband, NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverNanotrasen ] #Lua 45 -> magnum
   name: inspector
   description: |-
     A detective's best friend. On the handle is a label that says 'for authorized use only.'
@@ -13,7 +13,7 @@
 
 - type: entity
   id: NFWeaponRevolverWard45
-  parent: [ BaseC1Contraband, NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverNanotrasen ]
+  parent: [ BaseC1Contraband, NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverNanotrasen ] #Lua 45 -> magnum
   name: ward-45
   description: |-
     The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
@@ -28,7 +28,7 @@
 
 - type: entity
   id: NFWeaponRevolverDeckard
-  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: deckard
   description: |-
     A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test.
@@ -54,7 +54,7 @@
 
 - type: entity
   id: NFWeaponRevolverRitland45
-  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverGorlex ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverGorlex ] #Lua 45 -> magnum
   name: ritland-45
   description: |-
     An illegal revolver favoured by Syndicate agents.
@@ -66,7 +66,7 @@
 
 - type: entity
   id: NFWeaponRevolverPirate
-  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverSteelbolt ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverSteelbolt ] #Lua 45 -> magnum
   name: pirate revolver
   description: |-
     An odd, illegal, old-looking revolver, favoured by pirate crews.
@@ -100,7 +100,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponRevolverFitz
-  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: fitz special
   description: |-
     A compact and concealable self defence snub revolver.
@@ -112,7 +112,7 @@
 
 - type: entity
   id: NFWeaponRevolverFaith
-  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: faith
   description: |-
     Delivers blessings in bullet form.
@@ -128,7 +128,7 @@
 
 - type: entity
   id: NFWeaponRevolverLucky
-  parent: [ NFBaseWeaponRevolverChamber45, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: lucky
   description: |-
     Luck always beats skill, ya weasel.
@@ -157,10 +157,10 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - NFCartridgeRifle20
-        - SpeedLoaderRifleHeavy
+        - Cartridge9x19mmFMJ #Lua 35 -> 9x19
+        - SpeedLoader9x19mmFMJ #Lua 35 -> 9x19
     capacity: 8
-    proto: NFCartridgeRifle20
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
@@ -173,4 +173,4 @@
   suffix: Frontier, Less-lethal
   components:
   - type: RevolverAmmoProvider
-    proto: NFCartridgePistol35Rubber
+    proto: Cartridge9x19mmRubber #Lua 35 -> 9x19

@@ -1,7 +1,7 @@
 - type: vessel
   id: Vulture
   parent: BaseVesselAntag
-  name: RSIC Vulture
+  name: Vulture
   description: Огромный артиллерийский флагман с радаром. Неповоротлив, но при метком попадании способен нанести огромный урон.
   limit: 1
   price: 460000
@@ -9,14 +9,15 @@
   group: BlackMarket
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/vulture.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Pirate
   - Capital
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Vulture
   mapName: 'Vulture'
@@ -27,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Vulture RSIC{1}'
+          mapNameTemplate: 'Vulture {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

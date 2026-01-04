@@ -1,7 +1,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponSubMachineGunAtreides
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunGorlex ]
+  parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunGorlex ] #Lua 35 -> 9x19 base
   name: Atreides
   description: |-
     Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
@@ -17,7 +17,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunC20r
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunCybersun ]
+  parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunCybersun ] #Lua 35 -> 9x19 base
   name: C-20r
   description: |-
     An illegal firearm that is often used by the infamous nuclear operatives.
@@ -39,7 +39,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunNanotrasen ] #Lua 35 -> 9x19 base
   name: Drozd
   description: A fully automatic SMG.
   components: &drozdComponents
@@ -54,7 +54,7 @@
 
 - type: entity
   id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
-  parent: [ NFBaseWeaponSubMachineGunChamber35Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ]
+  parent: [ NFBaseWeaponSubMachineGunChamber9x19Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ] #Lua 35 -> 9x19 base
   name: Drozd
   description: A fully automatic SMG.
   suffix: Frontier, Less-Lethal
@@ -96,7 +96,7 @@
 #region DeltaV
 - type: entity
   id: NFWeaponSubMachineGunTypewriter
-  parent: [ NFBaseWeaponSubMachineGunChamber35, NFBaseWeaponFrameSubMachineGunFrontierGunsmith ]
+  parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunFrontierGunsmith ] #Lua 35 -> 9x19 base
   name: Typewriter
   description: |-
     A modern take on the classic design used by mobsters throughout space and time.

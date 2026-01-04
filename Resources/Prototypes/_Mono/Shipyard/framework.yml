@@ -11,24 +11,25 @@
 - type: vessel
   id: Framework
   parent: BaseVessel
-  name: UNJ Framework
+  name: Framework
   description: The cheapest hunk of junk this side of the Rogue. Not meant to last, but has the potential to be anything.
   price: 9000
   category: Small
   group: Shipyard
   shuttlePath: /Maps/_Mono/Shuttles/framework.yml
   guidebookPage: null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Cargo
   engine:
   - Plasma
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Framework
-  mapName: 'UNJ Framework'
+  mapName: 'Framework'
   mapPath: /Maps/_Mono/Shuttles/framework.yml
   minPlayers: 0
   stations:
@@ -36,7 +37,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Framework CIV{1}'
+          mapNameTemplate: 'Framework {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -74,8 +74,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRevolverRitland45Expedition
-      - id: NFSpeedLoaderPistol45Uranium
-      - id: NFSpeedLoaderPistol45Uranium
+      - id: SpeedLoader45_magnumUranium #Lua 45 -> Magnum
+      - id: SpeedLoader45_magnumUranium #Lua 45 -> Magnum
       - id: SpaceCash5000
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -104,8 +104,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRevolverRitland45Expedition
-      - id: NFSpeedLoaderPistol45Incendiary
-      - id: NFSpeedLoaderPistol45Incendiary
+      - id: SpeedLoader45_magnumIncendiary #Lua 45 -> Magnum
+      - id: SpeedLoader45_magnumIncendiary #Lua 45 -> Magnum
       - id: SpaceCash2500
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -133,8 +133,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFSpeedLoaderPistol45
-      - id: NFSpeedLoaderPistol45Overpressure
+      - id: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
+      - id: SpeedLoader45_magnumHP #Lua 45 -> Magnum
       - id: SpaceCash2500
       # Bonus Loot T3
       - id: SpaceCash1000
@@ -304,8 +304,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRifleAssaultSmExpedition
-      - id: NFMagazineRifle30Uranium
-      - id: NFMagazineRifle30Uranium
+      - id: Magazine762x39mmUranium #Lua 30 -> 762x39
+      - id: Magazine762x39mmUranium #Lua 30 -> 762x39
         prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -334,8 +334,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRifleAssaultM90GrenadeLauncherExpedition
-      - id: NFMagazineRifle20Incendiary
-      - id: NFMagazineRifle20Incendiary
+      - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
+      - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
         prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -363,8 +363,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFMagazineRifle30Overpressure
-      - id: NFMagazineRifle30Overpressure
+      - id: Magazine762x39mmHP #Lua 30 -> 762x39
+      - id: Magazine762x39mmHP #Lua 30 -> 762x39
         prob: 0.2
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -419,8 +419,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponSubMachineGunC20rExpedition
-      - id: NFMagazineSubMachineGun35Uranium
-      - id: NFMagazineSubMachineGun35Uranium
+      - id: Magazine9x19mmSubMachineGunUranium #Lua 35 -> 9x19
+      - id: Magazine9x19mmSubMachineGunUranium #Lua 35 -> 9x19
         prob: 0.2
       - id: SpaceCash1000
       - id: SpaceCash1000
@@ -451,7 +451,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponSubMachineGunWt550Expedition
-      - id: NFMagazineSubMachineGunTopMounted35Uranium
+      - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
       - id: SpaceCash1000
       - id: SpaceCash500
       # Bonus Loot T3
@@ -480,8 +480,8 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFAmmunitionBoxPistol35Overpressure
-      - id: NFAmmunitionBoxPistol35Uranium
+      - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19mm base
+      - id: AmmoBox9x19mmUranium #Lua 35 -> 9x19 base
         prob: 0.2
       - id: SpaceCash1000
       - id: SpaceCash500
@@ -541,8 +541,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponPistolViperExpedition
-      - id: NFMagazineHighCapacityPistol35Uranium
-      - id: NFMagazineHighCapacityPistol35Uranium
+      - id: Magazine9x19mmPistolUranium #Lua 35 -> 9x19
+      - id: Magazine9x19mmPistolUranium #Lua 35 -> 9x19
         prob: 0.2
       - id: SpaceCash1000
       # Bonus Loot T1
@@ -563,8 +563,8 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponPistolMk58Expedition
-      - id: NFMagazineHighCapacityPistol35Incendiary
-      - id: NFMagazineHighCapacityPistol35Incendiary
+      - id: Magazine9x19mmPistolIncendiary #Lua 35 -> 9x19
+      - id: Magazine9x19mmPistolIncendiary #Lua 35 -> 9x19
         prob: 0.2
       - id: SpaceCash1000
       # Bonus Loot T1
@@ -584,8 +584,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFMagazineHighCapacityPistol35Overpressure
-      - id: NFMagazineHighCapacityPistol35Overpressure
+      - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
+      - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
+        prob: 0.2
       - id: SpaceCash1000
       # Bonus Loot T1
       - id: SpaceCash500
@@ -739,7 +740,7 @@
     items:
       - id: NFWeaponShotgunKammererExpedition
       - id: SyndicateJawsOfLife
-      - id: NFAmmunitionBoxShellShotgunUranium
+      - id: AmmoBox23x75mmUranium #Lua 4 gauge
       - id: SpaceCash1000
       - id: SpaceCash1000
       # Bonus Loot T2
@@ -766,7 +767,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFAmmunitionBoxShellShotgunIncendiary
+      - id: AmmoBox23x75mmIncendiary #Lua 4 gauges
       - id: JawsOfLife
       - id: SpaceCash1000
       # Bonus Loot T2

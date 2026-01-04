@@ -33,6 +33,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+    projectileSpeed: 40 # Mono
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
@@ -203,6 +204,7 @@
     boltClosed: null
   - type: Gun
     fireRate: 4
+    projectileSpeed: 30 # Mono
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:

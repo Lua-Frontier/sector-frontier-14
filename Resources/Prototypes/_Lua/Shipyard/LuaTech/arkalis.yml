@@ -11,15 +11,16 @@
   category: Large
   marker: LuaTech
   group: LuaTech
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Expedition
   engine:
   - AME
   shuttlePath: /Maps/_Lua/Shuttles/LuaTech/arkalis_civ.yml
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Arkalis
   mapName: 'Аркалис'

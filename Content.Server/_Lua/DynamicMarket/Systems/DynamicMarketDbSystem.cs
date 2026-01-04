@@ -11,13 +11,13 @@ public sealed class DynamicMarketDbSystem : EntitySystem
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly ILogManager _log = default!;
     private ISawmill _sawmill = default!;
-    public const double DownDeltaPerUnit = 0.0020;
+    public const double DownDeltaPerUnit = 0.0040;
     public const double UpDeltaPerUnit = 0.0012;
-    private const double DriftHighTarget = 1.99;
-    private const double DriftHoursToHigh = 24.0;
-    private const double DriftRatePerHour = (DriftHighTarget - 1.0) / DriftHoursToHigh;
     public const double MinModPrice = 0.01;
     public const double MaxModPrice = 1.99;
+    private const double DriftHighTarget = 1.99;
+    private const double DriftHoursToHigh = 672.0;
+    private const double DriftRatePerHour = (DriftHighTarget - MinModPrice) / DriftHoursToHigh;
     private sealed class CacheEntry
     {
         public double ModPrice = 1.0;

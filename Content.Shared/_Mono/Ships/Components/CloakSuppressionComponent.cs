@@ -1,13 +1,10 @@
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Mono.Ships.Components;
 
 /// <summary>
-/// Component that tracks ships whose IFF Hide flag has been suppressed by nearby CloakHunter ships.
+/// Component that tracks ships whose IFF hiding flags (Hide, HideLabel, HideLabelShuttle) have been suppressed by nearby CloakHunter ships.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 
@@ -30,4 +27,7 @@ public sealed partial class CloakSuppressionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool OriginalReadOnlyState;
+
+    [DataField, AutoNetworkedField]
+    public IFFFlags OriginalIFFFlags;
 }

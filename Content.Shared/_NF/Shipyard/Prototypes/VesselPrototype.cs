@@ -1,12 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Checkraze
-// SPDX-FileCopyrightText: 2024 TsjipTsjip
-// SPDX-FileCopyrightText: 2024 Whatstone
-// SPDX-FileCopyrightText: 2024 neuPanda
-// SPDX-FileCopyrightText: 2025 Dvir
-// SPDX-FileCopyrightText: 2025 sleepyyapril
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Guidebook;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -118,6 +109,9 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField("marker")]
     public string? Marker;
 
+    [DataField]
+    public HashSet<VesselServerId> Whitelist = new();
+
     /// <summary>
     /// Components to be added to any spawned grids.
     /// </summary>
@@ -125,9 +119,6 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     [AlwaysPushInheritance]
     public ComponentRegistry AddComponents { get; set; } = new();
 
-    /// <summary>
-    /// ��������� ������� ������� � �������������� �������.
-    /// </summary>
     [DataField]
     public bool NoVoucher { get; private set; } = false;
 
@@ -142,6 +133,19 @@ public sealed class VesselPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public List<string> Company = new();
+
+    public bool IsAvailableOnServer(bool isErp)
+    {
+        if (Whitelist.Count == 0) return true;
+        var server = isErp ? VesselServerId.Luna : VesselServerId.Frontier;
+        return Whitelist.Contains(server);
+    }
+}
+
+public enum VesselServerId : byte
+{
+    Frontier,
+    Luna
 }
 
 public enum VesselSize : byte

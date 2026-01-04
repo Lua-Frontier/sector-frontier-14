@@ -71,6 +71,11 @@
             orGroup: rock
     - type: GCAbleObject
       queue: SpaceDebris
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/asteroid.png
+      scale: 1.2
+      maxDistance: 600
+      allowWhenHidden: true
           # Lua end
     - type: IFF
       flags: HideLabel

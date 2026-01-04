@@ -13,14 +13,15 @@
   group: LuaTech
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/kairiis.yml
   #guidebookPage: ShipyardKairiis # Maybe later
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Expedition
   - Civilian
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Kairiis
   mapName: 'Кайриис'

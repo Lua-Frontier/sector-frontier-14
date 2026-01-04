@@ -18,6 +18,12 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 30
+      Steel: 25
+  # Lua end
 
 - type: entity
   name: explosive payload

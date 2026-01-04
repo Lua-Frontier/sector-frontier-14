@@ -70,18 +70,18 @@ public sealed partial class ShuttleSystem
     private void OnIFFShow(EntityUid uid, IFFConsoleComponent component, IFFShowIFFMessage args)
     {
         if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null ||
-            (component.AllowedFlags & IFFFlags.HideLabel) == 0x0)
+            (component.AllowedFlags & IFFFlags.HideLabelShuttle) == 0x0) // Lua Decrypt mod
         {
             return;
         }
 
         if (!args.Show)
         {
-            AddIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
+            AddIFFFlag(xform.GridUid.Value, IFFFlags.HideLabelShuttle); // Lua Decrypt mod
         }
         else
         {
-            RemoveIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
+            RemoveIFFFlag(xform.GridUid.Value, IFFFlags.HideLabelShuttle); // Lua Decrypt mod
         }
     }
 

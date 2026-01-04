@@ -34,10 +34,13 @@
     - UplinkSecurityUtility
     - UplinkSecurityExplosives
     - UplinkSecurityBundles
+    - UplinkSecurityMedicine #Lua add
     currencyWhitelist:
     - FrontierUplinkCoin
+    - Speso #Lua add
     balance:
       FrontierUplinkCoin: 0
+      Speso: 0 #Lua add
 
 - type: entity
   id: StorePresetPirateUplink

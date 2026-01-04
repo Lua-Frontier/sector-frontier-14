@@ -1,9 +1,4 @@
-# SPDX-FileCopyrightText: 2025 core-mene
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 #Pistol Magazines
-
 - type: latheRecipe
   parent: BaseAmmoFMJPistolCaliberPistolMagazineRecipe
   id: Magazine45_ACPPistolFMJ
@@ -85,16 +80,6 @@
   parent: BaseAmmoUraniumPistolCaliberSubMachineGunMagazineRecipe
   id: Magazine45_ACPSubMachineGunUranium
   result: Magazine45_ACPSubMachineGunUranium
-
-- type: latheRecipe
-  parent: BaseAmmoFMJPistolCaliberSubMachineGunMagazineRecipe
-  id: Magazine45_ACPSubMachineGunTopMountedFMJ
-  result: Magazine45_ACPSubMachineGunTopMountedFMJ
-
-- type: latheRecipe
-  parent: BaseAmmoEmptyPistolCaliberSubMachineGunMagazineRecipe
-  id: Magazine45_ACPSubMachineGunTopMountedEmpty
-  result: Magazine45_ACPSubMachineGunTopMountedEmpty
 
 - type: latheRecipe
   parent: BaseAmmoHPPistolCaliberSubMachineGunMagazineRecipe

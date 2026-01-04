@@ -97642,14 +97642,14 @@ entities:
     - type: Transform
       pos: -37.952946,-47.370316
       parent: 1
-- proto: NFAmmunitionBoxPistol45Incendiary
+- proto: AmmoBox45_magnumIncendiary
   entities:
   - uid: 14403
     components:
     - type: Transform
       pos: -11.506481,19.62458
       parent: 1
-- proto: NFAmmunitionBoxPistol45Overpressure
+- proto: AmmoBox45_magnumHP
   entities:
   - uid: 48
     components:
@@ -97658,7 +97658,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFAmmunitionBoxRifle20Incendiary
+- proto: AmmoBox556x45mmIncendiary
   entities:
   - uid: 14404
     components:
@@ -97673,7 +97673,7 @@ entities:
       rot: 12.566370614359172 rad
       pos: -11.3759575,22.334444
       parent: 1
-- proto: NFAmmunitionBoxShellShotgunBuckshot
+- proto: AmmoBox23x75mmBuckshot
   entities:
   - uid: 14406
     components:
@@ -97695,7 +97695,7 @@ entities:
     - type: Transform
       pos: -12.5,-0.5
       parent: 1
-- proto: NFAmmunitionBoxShellShotgunIncendiary
+- proto: AmmoBox23x75mmIncendiary
   entities:
   - uid: 14410
     components:
@@ -97930,7 +97930,7 @@ entities:
     - type: Transform
       pos: -41.5,-16.5
       parent: 1
-- proto: NFMagazineRifle30
+- proto: Magazine762x39mmFMJ
   entities:
   - uid: 14431
     components:

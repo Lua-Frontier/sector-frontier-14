@@ -1,7 +1,7 @@
 - type: vessel
   id: DaggerSD
   parent: BaseVesselAntag
-  name: TSF-SKR Dagger
+  name: Dagger
   description: Straight from the shipyards of Sol, this ship is equipped with a mass driver as its main armament for long-range fire support.
   limit: 2
   price: 116768 # 2000 above min
@@ -10,15 +10,16 @@
   access: Security
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/dagger.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Patrol
   - Pursuit
   - Nfsd
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: DaggerSD
   mapName: 'Dagger'
@@ -29,7 +30,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Dagger TSF{1}'
+        mapNameTemplate: 'Dagger {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

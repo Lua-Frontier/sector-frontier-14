@@ -5,7 +5,7 @@
 - type: vessel
   id: Tarantula
   parent: BaseVesselAntag
-  name: TSF-SVE Tarantula
+  name: Tarantula
   description: Хорошо бронированный шаттл с парой легких пулеметов. Предназначен для защиты более легких шаттлов второй линии
   limit: 2
   price: 147142
@@ -14,15 +14,16 @@
   access: Security
   shuttlePath: /Maps/_Mono/Shuttles/Nfsd/tarantula.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Patrol
   - Pursuit
   - Nfsd
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#96B089"
+
 - type: gameMap
   id: Tarantula
   mapName: 'Tarantula'
@@ -33,7 +34,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
       - type: StationNameSetup
-        mapNameTemplate: 'Tarantula TSF{1}'
+        mapNameTemplate: 'Tarantula {1}'
         nameGenerator:
           !type:NanotrasenNameGenerator
           prefixCreator: '14'

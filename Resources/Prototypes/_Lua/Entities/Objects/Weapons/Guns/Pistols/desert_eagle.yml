@@ -14,7 +14,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - NFCartridgePistol45
+        - Cartridge45_ACPFMJ #Lua 45 -> ACP
     capacity: 8
   - type: Item
     size: Small
@@ -40,7 +40,7 @@
   name: пистолетный магазин пустынного орла (.44 магнум)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45
+    proto: Cartridge45_ACPFMJ #Lua 45 -> ACP
   - type: Sprite
     layers:
     - state: base
@@ -54,7 +54,7 @@
   name: пистолетный магазин пустынного орла (.44 магнум бронебойные)
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45
+    proto: Cartridge45_ACPFMJ #Lua 45 -> ACP
   - type: Sprite
     layers:
     - state: red
@@ -106,11 +106,11 @@
             - MagazineEagleAP
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol45
+        startingItem: Cartridge45_ACPFMJ #Lua 45 -> ACP
         priority: 1
         whitelist:
           tags:
-            - NFCartridgePistol45
+            - Cartridge45_ACPFMJ #Lua 45 -> ACP
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

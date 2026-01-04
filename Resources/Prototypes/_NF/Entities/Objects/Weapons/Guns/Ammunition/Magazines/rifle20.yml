@@ -36,20 +36,20 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: NFBaseMagazineDrumRifle20
-  name: drum magazine (.20 rifle)
+  id: NFBaseMagazineDrumRifle556x45 #Lua 20 -> 556x45
+  name: drum magazine (5.56x45mm rifle) #Lua 20 -> 556x45
   parent: [ BaseC1Contraband, RecyclableItemSteelTiny, BaseMagazineRifle ]
   abstract: true
   components:
   - type: Tag
     tags:
-      - NFMagazineDrumRifle20
+      - NFMagazineDrumRifle556x45 #Lua 20 -> 556x45
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - NFCartridgeRifle20
-    proto: NFCartridgeRifle20
+        - Cartridge556x45mmFMJ #Lua 20 -> 556x45
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
     capacity: 60
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_drum.rsi
@@ -73,16 +73,16 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: NFBaseMagazineBoxRifle20
-  name: box magazine (.20 rifle)
+  id: NFBaseMagazineBoxRifle556x45 #Lua 20 -> 556x45
+  name: box magazine (556x45 rifle) #Lua 20 -> 556x45
   parent: NFBaseMagazineRifle20
   abstract: true
   components:
   - type: Tag
     tags:
-      - NFMagazineBoxRifle20
+      - NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
     capacity: 100
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
@@ -248,36 +248,36 @@
 
 #region .20 drum mags
 - type: entity
-  id: NFMagazineDrumRifle20Empty
-  name: drum magazine (.20 rifle, any)
-  parent: NFBaseMagazineDrumRifle20
+  id: NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
+  name: drum magazine (5.56x45mm rifle, any) #Lua 20 -> 556x45
+  parent: NFBaseMagazineDrumRifle556x45 #Lua 20 -> 556x45
   suffix: empty
   components:
   - type: BallisticAmmoProvider
     proto: null
 
 - type: entity
-  id: NFMagazineDrumRifle20
-  name: drum magazine (.20 rifle)
-  parent: NFBaseMagazineDrumRifle20
+  id: NFMagazineDrumRifle556x45 #Lua 20 -> 556x45
+  name: drum magazine (5.56x45mm rifle) #Lua 20 -> 556x45
+  parent: NFBaseMagazineDrumRifle556x45 #Lua 20 -> 556x45
 
 #region .20 box mags
 - type: entity
-  id: NFMagazineBoxRifle20
-  name: box magazine (.20 rifle)
-  parent: NFBaseMagazineBoxRifle20
+  id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
+  name: box magazine (5.56x45mm rifle) #Lua 20 -> 556x45
+  parent: NFBaseMagazineBoxRifle556x45 #Lua 20 -> 556x45
 
 # Frontier
 #region .20 Novalite
 - type: entity
   parent: BaseMagazineRifle
-  id: NFMagazineClipRifle20Empty
+  id: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
   name: clip (.20 rifle, any)
   suffix: empty
   components:
   - type: Tag
     tags:
-      - NFMagazineClipRifle20
+      - NFMagazineClipRifle556x45 #Lua 20 -> 556x45
   - type: Item
     size: Small
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle20_novalite_clip.rsi
@@ -309,13 +309,13 @@
   - type: Appearance
 
 - type: entity
-  parent: NFMagazineClipRifle20Empty
-  id: NFMagazineClipRifle20
+  parent: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
+  id: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
   name: clip (.20 rifle)
   suffix: full
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
   - type: Sprite
     layers:
     - state: base
@@ -324,13 +324,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  parent: NFMagazineClipRifle20Empty
-  id: NFMagazineClipRifle20Rubber
+  parent: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
+  id: NFMagazineClipRifle556x45Rubber #Lua 20 -> 556x45
   name: clip (.20 rifle, rubber)
   suffix: full
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Rubber
+    proto: Cartridge556x45mmRubber #Lua 20 -> 556x45
   - type: Sprite
     layers:
     - state: base

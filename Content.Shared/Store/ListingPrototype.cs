@@ -275,6 +275,9 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
     [DataField]
     public Dictionary<string, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>> CostModifiersBySourceId = new();
 
+    [DataField]
+    public int? Stock;
+
     /// <inheritdoc />
     public ListingDataWithCostModifiers(ListingData listingData)
         : base(

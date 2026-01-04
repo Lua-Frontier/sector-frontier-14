@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 core-mene
-# SPDX-FileCopyrightText: 2025 significant harassment
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 #All the ammo recipes
 # MARK: Debug
 - type: latheRecipePack
@@ -19,11 +12,11 @@
   - AmmoBox23x75mmSlug
   - AmmoBox23x75mmDozd
   - AmmoBox23x75mmSlugRIP
- #- AmmoBox23x75mmSlugAP
+  #- AmmoBox23x75mmSlugAP Lua ignore
   - AmmoBox23x75mmOOBuckshot
-  #- AmmoBox23x75mmFlechette
+  #- AmmoBox23x75mmFlechette Lua ignore
   - Magazine762x51mmFMJ
-  #- Magazine762x51mmPlasteelAP
+  #- Magazine762x51mmPlasteelAP Lua ignore
   - Magazine762x51mmRubber
   - Magazine762x51mmIncendiary
   - Magazine762x51mmPractice
@@ -32,7 +25,7 @@
   - Magazine762x51mmHP
   - Magazine762x51mmRIP
   - AmmoBox762x51mmFMJ
-  #- AmmoBox762x51mmPlasteelAP
+  #- AmmoBox762x51mmPlasteelAP Lua ignore
   - AmmoBox762x51mmRubber
   - AmmoBox762x51mmIncendiary
   - AmmoBox762x51mmPractice
@@ -40,7 +33,7 @@
   - AmmoBox762x51mmHP
   - AmmoBox762x51mmRIP
   - Magazine762x54mmRFMJ
-  #- Magazine762x54mmRPlasteelAP
+  #- Magazine762x54mmRPlasteelAP Lua ignore
   - Magazine762x54mmRRubber
   - Magazine762x54mmRIncendiary
   - Magazine762x54mmRPractice
@@ -50,7 +43,7 @@
   - Magazine762x54mmRRIP
   - SpeedLoader762x54mmRFMJ
   - AmmoBox762x54mmRFMJ
-  #- AmmoBox762x54mmRPlasteelAP
+  #- AmmoBox762x54mmRPlasteelAP Lua ignore
   - AmmoBox762x54mmRRubber
   - AmmoBox762x54mmRIncendiary
   - AmmoBox762x54mmRPractice
@@ -64,7 +57,7 @@
   - AmmoBox8x65mmSKRIncendiary
   - AmmoBox8x65mmSKRPractice
   - Magazine556x45mmFMJ
-  #- Magazine556x45mmPlasteelAP
+  #- Magazine556x45mmPlasteelAP Lua ignore
   - Magazine556x45mmRubber
   - Magazine556x45mmIncendiary
   - Magazine556x45mmPractice
@@ -79,7 +72,7 @@
   - SpeedLoader556x45mmEmpty
   - SpeedLoader556x45mmUranium
   - AmmoBox556x45mmFMJ
-  #- AmmoBox556x45mmPlasteelAP
+  #- AmmoBox556x45mmPlasteelAP Lua ignore
   - AmmoBox556x45mmRubber
   - AmmoBox556x45mmIncendiary
   - AmmoBox556x45mmPractice
@@ -87,7 +80,7 @@
   - AmmoBox556x45mmHP
   - AmmoBox556x45mmRIP
   - Magazine762x39mmFMJ
-  #- Magazine762x39mmPlasteelAP
+  #- Magazine762x39mmPlasteelAP Lua ignore
   - Magazine762x39mmRubber
   - Magazine762x39mmIncendiary
   - Magazine762x39mmPractice
@@ -99,7 +92,7 @@
   - Magazine762x39mmRIP
   - SpeedLoader762x39mmFMJ
   - AmmoBox762x39mmFMJ
-  #- AmmoBox762x39mmPlasteelAP
+  #- AmmoBox762x39mmPlasteelAP Lua ignore
   - AmmoBox762x39mmRubber
   - AmmoBox762x39mmIncendiary
   - AmmoBox762x39mmPractice
@@ -108,7 +101,7 @@
   - AmmoBox762x39mmHP
   - AmmoBox762x39mmRIP
   - Magazine45_magnumPistolFMJ
-  #- Magazine45_magnumPistolPlasteelAP
+  #- Magazine45_magnumPistolPlasteelAP Lua ignore
   - Magazine45_magnumPistolRubber
   - Magazine45_magnumPistolIncendiary
   - Magazine45_magnumPistolPractice
@@ -116,12 +109,21 @@
   - Magazine45_magnumPistolUranium
   - Magazine45_magnumPistolHP
   - Magazine45_magnumPistolRIP
-  #- AmmoBox45_magnumPlasteelAP
+  - SpeedLoader45_magnumFMJ
+  #- SpeedLoader45_magnumPlasteelAP Lua ignore
+  - SpeedLoader45_magnumRubber
+  - SpeedLoader45_magnumIncendiary
+  - SpeedLoader45_magnumPractice
+  - SpeedLoader45_magnumEmpty
+  - SpeedLoader45_magnumUranium
+  - SpeedLoader45_magnumHP
+  - SpeedLoader45_magnumRIP
+  #- AmmoBox45_magnumPlasteelAP Lua ignore
   - AmmoBox45_magnumRubber
   - AmmoBox45_magnumIncendiary
   - AmmoBox45_magnumPractice
   - AmmoBox45_magnumUranium
-  #- AmmoBox45_magnumAP
+  #- AmmoBox45_magnumAP Lua ignore
   - AmmoBox45_magnumHP
   - AmmoBox45_magnumRIP
   - Magazine68x52mmRubber
@@ -131,7 +133,7 @@
   - Magazine635x40mmCaseless
   - AmmoBox635x40mmCaseless
   - Magazine9x19mmPistolFMJ
-  #- Magazine9x19mmPistolPlasteelAP
+  #- Magazine9x19mmPistolPlasteelAP Lua ignore
   - Magazine9x19mmPistolRubber
   - Magazine9x19mmPistolIncendiary
   - Magazine9x19mmPistolPractice
@@ -140,7 +142,7 @@
   - Magazine9x19mmPistolHP
   - Magazine9x19mmPistolRIP
   - Magazine9x19mmSubMachineGunFMJ
-  #- Magazine9x19mmSubMachineGunPlasteelAP
+  #- Magazine9x19mmSubMachineGunPlasteelAP Lua ignore
   - Magazine9x19mmSubMachineGunRubber
   - Magazine9x19mmSubMachineGunIncendiary
   - Magazine9x19mmSubMachineGunPractice
@@ -157,7 +159,7 @@
   - SpeedLoader9x19mmEmpty
   - SpeedLoader9x19mmUranium
   - AmmoBox9x19mmFMJ
-  #- AmmoBox9x19mmPlasteelAP
+  #- AmmoBox9x19mmPlasteelAP Lua ignore
   - AmmoBox9x19mmRubber
   - AmmoBox9x19mmIncendiary
   - AmmoBox9x19mmPractice
@@ -165,7 +167,7 @@
   - AmmoBox9x19mmHP
   - AmmoBox9x19mmRIP
   - Magazine45_ACPPistolFMJ
-  #- Magazine45_ACPPistolPlasteelAP
+  #- Magazine45_ACPPistolPlasteelAP Lua ignore
   - Magazine45_ACPPistolRubber
   - Magazine45_ACPPistolIncendiary
   - Magazine45_ACPPistolPractice
@@ -174,18 +176,16 @@
   - Magazine45_ACPPistolHP
   - Magazine45_ACPPistolRIP
   - Magazine45_ACPSubMachineGunFMJ
-  #- Magazine45_ACPSubMachineGunPlasteelAP
+  #- Magazine45_ACPSubMachineGunPlasteelAP Lua ignore
   - Magazine45_ACPSubMachineGunRubber
   - Magazine45_ACPSubMachineGunIncendiary
   - Magazine45_ACPSubMachineGunPractice
   - Magazine45_ACPSubMachineGunEmpty
   - Magazine45_ACPSubMachineGunUranium
-  - Magazine45_ACPSubMachineGunTopMountedFMJ
-  - Magazine45_ACPSubMachineGunTopMountedEmpty
   - Magazine45_ACPSubMachineGunHP
   - Magazine45_ACPSubMachineGunRIP
   - AmmoBox45_ACPFMJ
-  #- AmmoBox45_ACPPlasteelAP
+  #- AmmoBox45_ACPPlasteelAP Lua ignore
   - AmmoBox45_ACPRubber
   - AmmoBox45_ACPIncendiary
   - AmmoBox45_ACPPractice
@@ -206,6 +206,7 @@
   - Magazine762x39mmUranium
   - AmmoBox762x39mmUranium
   - Magazine45_magnumPistolUranium
+  - SpeedLoader45_magnumUranium
   - AmmoBox45_magnumUranium
   - Magazine9x19mmPistolUranium
   - Magazine9x19mmSubMachineGunUranium
@@ -224,6 +225,7 @@
   - SpeedLoader556x45mmEmpty
   - Magazine762x39mmEmpty
   - Magazine45_magnumPistolEmpty
+  - SpeedLoader45_magnumEmpty
   - Magazine68x52mmEmpty
   - Magazine9x19mmPistolEmpty
   - Magazine9x19mmSubMachineGunEmpty
@@ -231,7 +233,6 @@
   - SpeedLoader9x19mmEmpty
   - Magazine45_ACPPistolEmpty
   - Magazine45_ACPSubMachineGunEmpty
-  - Magazine45_ACPSubMachineGunTopMountedEmpty
 
 #Practice recipes
 
@@ -248,6 +249,7 @@
   - Magazine762x39mmPractice
   - AmmoBox762x39mmPractice
   - Magazine45_magnumPistolPractice
+  - SpeedLoader45_magnumPractice
   - AmmoBox45_magnumPractice
   - Magazine68x52mmPractice
   - AmmoBox68x52mmPractice
@@ -274,6 +276,7 @@
   - Magazine762x39mmIncendiary
   - AmmoBox762x39mmIncendiary
   - Magazine45_magnumPistolIncendiary
+  - SpeedLoader45_magnumIncendiary
   - AmmoBox45_magnumIncendiary
   - Magazine9x19mmPistolIncendiary
   - Magazine9x19mmSubMachineGunIncendiary
@@ -296,6 +299,7 @@
   - Magazine762x39mmRubber
   - AmmoBox762x39mmRubber
   - Magazine45_magnumPistolRubber
+  - SpeedLoader45_magnumRubber
   - AmmoBox45_magnumRubber
   - Magazine68x52mmRubber
   - AmmoBox68x52mmRubber
@@ -323,6 +327,7 @@
   - SpeedLoader762x39mmFMJ
   - AmmoBox762x39mmFMJ
   - Magazine45_magnumPistolFMJ
+  - SpeedLoader45_magnumFMJ
   - AmmoBox45_magnumFMJ
   - Magazine68x52mmFMJ
   - AmmoBox68x52mmFMJ
@@ -333,13 +338,12 @@
   - AmmoBox9x19mmFMJ
   - Magazine45_ACPPistolFMJ
   - Magazine45_ACPSubMachineGunFMJ
-  - Magazine45_ACPSubMachineGunTopMountedFMJ
   - AmmoBox45_ACPFMJ
   - AmmoBox23x75mmOOBuckshot
   - AmmoBox23x75mmSlug
 
 #Plasteel AP recipes
-
+  #Lua ignore start
   #- Magazine762x51mmPlasteelAP
   #- AmmoBox762x51mmPlasteelAP
   #- Magazine762x54mmRPlasteelAP
@@ -358,6 +362,7 @@
   #- AmmoBox45_ACPPlasteelAP
   #- AmmoBox23x75mmSlugAP
   #- AmmoBox23x75mmFlechette
+  # Lua ignore end
 
 #HP recipes
 
@@ -370,6 +375,7 @@
   - Magazine762x39mmHP
   - AmmoBox762x39mmHP
   - Magazine45_magnumPistolHP
+  - SpeedLoader45_magnumHP
   - AmmoBox45_magnumHP
   - Magazine9x19mmPistolHP
   - Magazine9x19mmSubMachineGunHP
@@ -390,6 +396,7 @@
   - Magazine762x39mmRIP
   - AmmoBox762x39mmRIP
   - Magazine45_magnumPistolRIP
+  - SpeedLoader45_magnumRIP
   - AmmoBox45_magnumRIP
   - Magazine9x19mmPistolRIP
   - Magazine9x19mmSubMachineGunRIP
@@ -418,6 +425,7 @@
   - SpeedLoader762x39mmFMJ
   - AmmoBox762x39mmFMJ
   - Magazine45_magnumPistolFMJ
+  - SpeedLoader45_magnumFMJ
   - AmmoBox45_magnumFMJ
   - Magazine68x52mmFMJ
   - AmmoBox68x52mmFMJ
@@ -428,7 +436,6 @@
   - AmmoBox9x19mmFMJ
   - Magazine45_ACPPistolFMJ
   - Magazine45_ACPSubMachineGunFMJ
-  - Magazine45_ACPSubMachineGunTopMountedFMJ
   - AmmoBox45_ACPFMJ
   - AmmoBox23x75mmOOBuckshot
   - AmmoBox23x75mmSlug
@@ -452,6 +459,7 @@
   - Magazine762x39mmPractice
   - AmmoBox762x39mmPractice
   - Magazine45_magnumPistolPractice
+  - SpeedLoader45_magnumPractice
   - AmmoBox45_magnumPractice
   - Magazine68x52mmPractice
   - AmmoBox68x52mmPractice
@@ -472,6 +480,7 @@
   - SpeedLoader556x45mmEmpty
   - Magazine762x39mmEmpty
   - Magazine45_magnumPistolEmpty
+  - SpeedLoader45_magnumEmpty
   - Magazine68x52mmEmpty
   - Magazine9x19mmPistolEmpty
   - Magazine9x19mmSubMachineGunEmpty
@@ -479,7 +488,6 @@
   - SpeedLoader9x19mmEmpty
   - Magazine45_ACPPistolEmpty
   - Magazine45_ACPSubMachineGunEmpty
-  - Magazine45_ACPSubMachineGunTopMountedEmpty
 
 #Rubber recipes
 
@@ -493,6 +501,7 @@
   - Magazine762x39mmRubber
   - AmmoBox762x39mmRubber
   - Magazine45_magnumPistolRubber
+  - SpeedLoader45_magnumRubber
   - AmmoBox45_magnumRubber
   - Magazine68x52mmRubber
   - AmmoBox68x52mmRubber
@@ -516,6 +525,7 @@
   - Magazine762x39mmHP
   - AmmoBox762x39mmHP
   - Magazine45_magnumPistolHP
+  - SpeedLoader45_magnumHP
   - AmmoBox45_magnumHP
   - Magazine9x19mmPistolHP
   - Magazine9x19mmSubMachineGunHP
@@ -542,6 +552,7 @@
   - Magazine762x39mmUranium
   - AmmoBox762x39mmUranium
   - Magazine45_magnumPistolUranium
+  - SpeedLoader45_magnumUranium
   - AmmoBox45_magnumUranium
   - Magazine9x19mmPistolUranium
   - Magazine9x19mmSubMachineGunUranium
@@ -566,6 +577,7 @@
   - Magazine762x39mmIncendiary
   - AmmoBox762x39mmIncendiary
   - Magazine45_magnumPistolIncendiary
+  - SpeedLoader45_magnumIncendiary
   - AmmoBox45_magnumIncendiary
   - Magazine9x19mmPistolIncendiary
   - Magazine9x19mmSubMachineGunIncendiary
@@ -578,6 +590,7 @@
 
 #Plasteel AP recipes
 
+  #Lua ignore start
   #- Magazine762x51mmPlasteelAP
   #- AmmoBox762x51mmPlasteelAP
   #- Magazine762x54mmRPlasteelAP
@@ -596,6 +609,7 @@
   #- AmmoBox45_ACPPlasteelAP
   #- AmmoBox23x75mmSlugAP
   #- AmmoBox23x75mmFlechette
+  # Lua ignore end
 
 #RIP recipes
 
@@ -609,6 +623,7 @@
   - Magazine762x39mmRIP
   - AmmoBox762x39mmRIP
   - Magazine45_magnumPistolRIP
+  - SpeedLoader45_magnumRIP
   - AmmoBox45_magnumRIP
   - Magazine9x19mmPistolRIP
   - Magazine9x19mmSubMachineGunRIP

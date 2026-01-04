@@ -12,14 +12,15 @@
   marker: LuaTech
   group: LuaTech
   access: LuaTechOps
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - LuaTech
   engine:
   - AME
   shuttlePath: /Maps/_Lua/Shuttles/LuaTech/arkalis_b.yml
-  addComponents:
-    - type: IFF
-      color: "#407dc4"
+
 - type: gameMap
   id: Khasarah
   mapName: 'Кхасарах'

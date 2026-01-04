@@ -51,6 +51,8 @@ public enum IFFFlags : byte
     /// </summary>
     HideLabel = 1,
 
+    HideLabelShuttle = 8, // Lua Decrypt mod
+
     /// <summary>
     /// Should the grid hide entirely (AKA full stealth).
     /// Will also hide the label if that is not set.

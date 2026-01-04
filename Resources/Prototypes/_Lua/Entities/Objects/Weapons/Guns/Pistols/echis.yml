@@ -2,7 +2,7 @@
   name: mercenary echis
   parent: [ BaseItem, BaseC1Contraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: LuaWeaponPistolMercenaryEchis
-  description: A viper for use by cyborgs, redesigned for mercenary use. Creates .35 ammo on the fly from an internal ammo fabricator, which slowly self-charges.
+  description: A viper for use by cyborgs, redesigned for mercenary use. Creates 9x19mm on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
   - type: Gun
     fireRate: 5
@@ -23,7 +23,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletPistol35
+    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     fireCost: 100
   - type: Battery
     maxCharge: 1000

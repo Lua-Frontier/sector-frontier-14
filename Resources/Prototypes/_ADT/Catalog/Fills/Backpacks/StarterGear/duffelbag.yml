@@ -7,7 +7,7 @@
   - type: StorageFill
     contents:
       - id: NFWeaponRifleAssaultSm
-      - id: NFMagazineRifle30
+      - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
         amount: 4
 
 - type: entity
@@ -18,7 +18,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineSubMachineGun35
+      - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
         amount: 4
 
 - type: entity

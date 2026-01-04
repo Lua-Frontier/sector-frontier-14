@@ -1,3 +1,7 @@
+# Lua fully ignored
+# All content moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# useless content ingored
+
 #region hardsuits
 # - type: listing
 #   id: UplinkSecurityHardsuit
@@ -144,216 +148,230 @@
 #         - Sheriff
 
 #region weapons
-- type: listing
-  id: UplinkSecurityMk58
-  name:  uplink-security-mk58-name
-  description: uplink-security-mk58-desc
-  productEntity: NFWeaponPistolMk58
-  icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityMk58
+#   name:  uplink-security-mk58-name
+#   description: uplink-security-mk58-desc
+#   productEntity: NFWeaponPistolMk58
+#   icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 2
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecuritySectorBanner
-  name: uplink-security-sector-banner-name
-  description: uplink-security-sector-banner-desc
-  productEntity: BannerSectorSecurity
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityDisabler
+#   name:  uplink-security-disabler-name
+#   description: uplink-security-disabler-desc
+#   productEntity: NFWeaponEnergyPistolDisabler
+#   icon: { sprite: Objects/Weapons/Guns/Battery/disabler.rsi, state: base }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#Lua ignore
 
-- type: listing
-  id: UplinkSecurityDisabler
-  name:  uplink-security-disabler-name
-  description: uplink-security-disabler-desc
-  productEntity: NFWeaponEnergyPistolDisabler
-  icon: { sprite: Objects/Weapons/Guns/Battery/disabler.rsi, state: base }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+#Lua ignore
+# - type: listing
+#   id: UplinkSecurityStunbaton
+#   name:  uplink-security-stunbaton-name
+#   description: uplink-security-stunbaton-desc
+#   productEntity: Stunbaton
+#   icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#Lua ignore
 
-- type: listing
-  id: UplinkSecurityStunbaton
-  name:  uplink-security-stunbaton-name
-  description: uplink-security-stunbaton-desc
-  productEntity: Stunbaton
-  icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+#Lua ignore
+# - type: listing
+#   id: UplinkSecurityEmitter
+#   name:  uplink-security-emitter-name
+#   description: uplink-security-emitter-desc
+#   productEntity: WeaponEmpEmitter
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#Lua ignore
 
-- type: listing
-  id: UplinkSecurityEmitter
-  name:  uplink-security-emitter-name
-  description: uplink-security-emitter-desc
-  productEntity: WeaponEmpEmitter
-  icon: { sprite: _NF/Objects/Weapons/Guns/Battery/emp.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityEnforcer
+#   name:  uplink-security-enforcer-name
+#   description: uplink-security-enforcer-desc
+#   productEntity: NFWeaponShotgunEnforcer
+#   icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 3
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityEnforcer
-  name:  uplink-security-enforcer-name
-  description: uplink-security-enforcer-desc
-  productEntity: NFWeaponShotgunEnforcer
-  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityLecter
+#   name:  uplink-security-lecter-name
+#   description: uplink-security-lecter-desc
+#   productEntity: NFWeaponRifleAssaultLecter
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 3
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityLecter
-  name:  uplink-security-lecter-name
-  description: uplink-security-lecter-desc
-  productEntity: NFWeaponRifleAssaultLecter
-  icon: { sprite: _NF/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityVulcan
+#   name:  uplink-security-vulcan-name
+#   description: uplink-security-vulcan-desc
+#   productEntity: NFWeaponRifleAssaultVulcan
+#   icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 4
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityVulcan
-  name:  uplink-security-vulcan-name
-  description: uplink-security-vulcan-desc
-  productEntity: NFWeaponRifleAssaultVulcan
-  icon: { sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityLaserCarbine
+#   name:  uplink-security-lasercarbine-name
+#   description: uplink-security-lasercarbine-desc
+#   productEntity: NFWeaponEnergyRifleCarbine
+#   icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 5
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityLaserCarbine
-  name:  uplink-security-lasercarbine-name
-  description: uplink-security-lasercarbine-desc
-  productEntity: NFWeaponEnergyRifleCarbine
-  icon: { sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityLaserCannon
+#   name:  uplink-security-lasercanon-name
+#   description: uplink-security-lasercanon-desc
+#   productEntity: NFWeaponEnergyRifleSniperCannon
+#   icon: { sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 10
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityLaserCannon
-  name:  uplink-security-lasercanon-name
-  description: uplink-security-lasercanon-desc
-  productEntity: NFWeaponEnergyRifleSniperCannon
-  icon: { sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityDisablerSMG
+#   name:  uplink-security-disablersmg-name
+#   description: uplink-security-disablersmg-desc
+#   productEntity: NFWeaponEnergySubMachineGunDisabler
+#   icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
+#   cost:
+#     FrontierUplinkCoin: 4
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityDisablerSMG
-  name:  uplink-security-disablersmg-name
-  description: uplink-security-disablersmg-desc
-  productEntity: NFWeaponEnergySubMachineGunDisabler
-  icon: { sprite: Objects/Weapons/Guns/Battery/disabler_smg.rsi, state: base }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityWT550
+#   name:  uplink-security-wt550-name
+#   description: uplink-security-wt550-desc
+#   productEntity: NFWeaponSubMachineGunWt550
+#   icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 10
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityWT550
-  name:  uplink-security-wt550-name
-  description: uplink-security-wt550-desc
-  productEntity: NFWeaponSubMachineGunWt550
-  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityEnergyGun
-  name:  uplink-security-energygun-name
-  description: uplink-security-energygun-desc
-  productEntity: NFWeaponEnergySubMachineGunDeltaV
-  icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - Sheriff
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityEnergyGun
+#   name:  uplink-security-energygun-name
+#   description: uplink-security-energygun-desc
+#   productEntity: NFWeaponEnergySubMachineGunDeltaV
+#   icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 5
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - Sheriff
+# Lua ignore
 
 # - type: listing
 #   id: UplinkSecurityEmpRpg
@@ -391,470 +409,400 @@
 #         - Sheriff
 
 #region utililty
-- type: listing
-  id: UplinkSecurityHolo
-  name:  uplink-security-holo-name
-  description: uplink-security-holo-desc
-  productEntity: HoloprojectorNfsd
-  icon: { sprite: _NF/Objects/Devices/Holoprojectors/nfsd.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityJetpack
-  name:  uplink-security-jetpack-name
-  description: uplink-security-jetpack-desc
-  productEntity: JetpackNfsdFilled
-  icon: { sprite: _NF/Objects/Tanks/Jetpacks/nfsd.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityHolo
+#   name:  uplink-security-holo-name
+#   description: uplink-security-holo-desc
+#   productEntity: HoloprojectorNfsd
+#   icon: { sprite: _NF/Objects/Devices/Holoprojectors/nfsd.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityMagboots
-  name:  uplink-security-magboots-name
-  description: uplink-security-magboots-desc
-  productEntity: ClothingShoesBootsMagNfsdFilled
-  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityJetpack
+#   name:  uplink-security-jetpack-name
+#   description: uplink-security-jetpack-desc
+#   productEntity: JetpackNfsdFilled
+#   icon: { sprite: _NF/Objects/Tanks/Jetpacks/nfsd.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkNfsdTechfab
-  name:  uplink-security-techfab-name
-  description: uplink-security-techfab-desc
-  productEntity: NfsdTechFabCircuitboard
-  icon: { sprite: _NF/Objects/Misc/module.rsi, state: nfsd }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityMagboots
+#   name:  uplink-security-magboots-name
+#   description: uplink-security-magboots-desc
+#   productEntity: ClothingShoesBootsMagNfsdFilled
+#   icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityKey
-  name:  uplink-security-key-name
-  description: uplink-security-key-desc
-  productEntity: BoxEncryptionKeyNfsd
-  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkNfsdTechfab
+#   name:  uplink-security-techfab-name
+#   description: uplink-security-techfab-desc
+#   productEntity: NfsdTechFabCircuitboard
+#   icon: { sprite: _NF/Objects/Misc/module.rsi, state: nfsd }
+#   cost:
+#     FrontierUplinkCoin: 5
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Sheriff
 
-#Mono start
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityKey
+#   name:  uplink-security-key-name
+#   description: uplink-security-key-desc
+#   productEntity: BoxEncryptionKeyNfsd
+#   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityRadPen
-  name:  uplink-pirate-rad-pen-name
-  description: uplink-pirate-rad-pen-desc
-  productEntity: RadAutoInjector
-  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: arithpen }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-        - Brigmedic
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityEmpRocket
+#   name:  uplink-security-emprocket-name
+#   description: uplink-security-emprocket-desc
+#   productEntity: NFCartridgeRocketEmp
+#   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: rpg-emp }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityPyrazinePen
-  name:  uplink-pirate-pyrazine-pen-name
-  description: uplink-pirate-pyrazine-pen-desc
-  productEntity: PyraAutoInjector
-  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: pyrapen }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-        - Brigmedic
-
-- type: listing
-  id: UplinkSecurityPuncturasePen
-  name:  uplink-pirate-puncturase-pen-name
-  description: uplink-pirate-puncturase-pen-desc
-  productEntity: PunctAutoInjector
-  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: punctpen }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-        - Brigmedic
-
-- type: listing
-  id: UplinkSecurityAntiPoisonPen
-  name:  uplink-pirate-anti-poison-pen-name
-  description: uplink-pirate-anti-poison-pen-desc
-  productEntity: AntiPoisonMedipen
-  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: penacid }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-        - Brigmedic
-
-- type: listing
-  id: UplinkSecurityCombatPen
-  name:  uplink-security-combat-pen-name
-  description: uplink-security-combat-pen-desc
-  productEntity: CombatMedipen
-  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: morphen }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityCyborgModule
-  name:  uplink-security-cyborg-module-name
-  description: uplink-security-cyborg-module-desc
-  productEntity: BorgModuleSecurity
-  icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-#Mono end
-
-- type: listing
-  id: UplinkSecurityEmpRocket
-  name:  uplink-security-emprocket-name
-  description: uplink-security-emprocket-desc
-  productEntity: NFCartridgeRocketEmp
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: rpg-emp }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityThrusterKit
-  name:  uplink-pirate-thruster-kit-name
-  description: uplink-pirate-thruster-kit-desc
-  productEntity: BoxT3SuperCapacitor
-  icon: { sprite: Objects/Storage/boxes.rsi, state: box}
-  cost:
-    FrontierUplinkCoin: 8 # 4<8
-  categories:
-    - UplinkSecurityBundles
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityThrusterKit
+#   name:  uplink-pirate-thruster-kit-name
+#   description: uplink-pirate-thruster-kit-desc
+#   productEntity: BoxT3SuperCapacitor
+#   icon: { sprite: Objects/Storage/boxes.rsi, state: box}
+#   cost:
+#     FrontierUplinkCoin: 8 # 4<8
+#   categories:
+#     - UplinkSecurityBundles
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
 #region magazines
-- type: listing
-  id: UplinkSecurityMagazineHighCapacityPistol35Overpressure
-  name:  uplink-security-magazinepistol-name
-  description: uplink-security-magazinepistol-desc
-  productEntity: NFBoxMagazineHighCapacityPistol35Overpressure
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityMagazineHighCapacityPistol9x19 #Lua 35 -> 9x19 base
+#   name:  uplink-security-magazinepistol-name
+#   description: uplink-security-magazinepistol-desc
+#   productEntity: NFBoxMagazineHighCapacityPistol9x19 #Lua 35 -> 9x19 base
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignored
 
-- type: listing
-  id: UplinkSecurityMagazineRifle20Overpressure
-  name:  uplink-security-20riflemagazine-name
-  description: uplink-security-20riflemagazine-desc
-  productEntity: NFBoxMagazineRifle20Overpressure
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityMagazineRifle556x45 #Lua 20 -> 556x45 base
+#   name:  uplink-security-20riflemagazine-name
+#   description: uplink-security-20riflemagazine-desc
+#   productEntity: NFBoxMagazineRifle556x45 #Lua 20 -> 556x45 base
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignored
 
-- type: listing
-  id: UplinkSecurityMagazineRifle30Overpressure
-  name:  uplink-security-30riflemagazine-name
-  description: uplink-security-30riflemagazine-desc
-  productEntity: NFBoxMagazineRifle30Overpressure
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityMagazineRifle762x39 #Lua 30 -> 762x39
+#   name:  uplink-security-30riflemagazine-name
+#   description: uplink-security-30riflemagazine-desc
+#   productEntity: NFBoxMagazineRifle762x39 #Lua 30 -> 762x39
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignored
 
-- type: listing
-  id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
-  name:  uplink-security-wt550magazine-name
-  description: uplink-security-wt550magazine-desc
-  productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# - type: listing
+#   id: UplinkSecurityMagazineSubMachineGunTopMounted35Overpressure
+#   name:  uplink-security-wt550magazine-name
+#   description: uplink-security-wt550magazine-desc
+#   productEntity: NFMagazineSubMachineGunTopMounted35Overpressure
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityPistolMagazineRubber
-  name:  uplink-security-magazinepistol-rubber-name
-  description: uplink-security-magazinepistol-rubber-desc
-  productEntity: NFBoxMagazinePistol35Rubber
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityPistolMagazineRubber9x19 #Lua 35 -> 9x19 base
+#   name:  uplink-security-magazinepistol-rubber-name
+#   description: uplink-security-magazinepistol-rubber-desc
+#   productEntity: NFBoxMagazinePistol9x19Rubber #Lua 35 -> 9x19 base
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignored
 
-- type: listing
-  id: UplinkSecurity20RifleMagazineRubber
-  name: uplink-security-20riflemagazine-rubber-name
-  description: uplink-security-20riflemagazine-rubber-desc
-  productEntity: NFBoxMagazineRifle20Rubber
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignored
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurity556x45RifleMagazineRubber #Lua 20 -> 556x45 base
+#   name: uplink-security-20riflemagazine-rubber-name
+#   description: uplink-security-20riflemagazine-rubber-desc
+#   productEntity: NFBoxMagazineRifle556x45Rubber #Lua 20 -> 556x45 base
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignored
 
-- type: listing
-  id: UplinkSecurity30RifleMagazineRubber
-  name: uplink-security-30riflemagazine-rubber-name
-  description: uplink-security-30riflemagazine-rubber-desc
-  productEntity: NFBoxMagazineRifle30Rubber
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-        - SecurityUplink
+# Lua ignored
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurity762x39RifleMagazineRubber #Lua 30 -> 762x39
+#   name: uplink-security-30riflemagazine-rubber-name
+#   description: uplink-security-30riflemagazine-rubber-desc
+#   productEntity: NFBoxMagazineRifle762x39mmRubber #Lua 30 -> 762x39
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#         - SecurityUplink
+# Lua ignored
 
-- type: listing
-  id: UplinkSecurityHypo
-  name:  uplink-security-hypo-name
-  description: uplink-security-hypo-desc
-  productEntity: HypoBrigmedic
-  icon: { sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi, state: hypo }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityHypo
+#   name:  uplink-security-hypo-name
+#   description: uplink-security-hypo-desc
+#   productEntity: HypoBrigmedic
+#   icon: { sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi, state: hypo }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Brigmedic
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityAmbuzol
-  name:  uplink-security-ambuzol-name
-  description: uplink-security-ambuzol-desc
-  productEntity: SyringeAmbuzol
-  icon: { sprite: Objects/Specific/Chemistry/syringe.rsi, state: syringe_base0 }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityAmbuzol
+#   name:  uplink-security-ambuzol-name
+#   description: uplink-security-ambuzol-desc
+#   productEntity: SyringeAmbuzol
+#   icon: { sprite: Objects/Specific/Chemistry/syringe.rsi, state: syringe_base0 }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Brigmedic
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityMedkit
-  name:  uplink-security-medkit-name
-  description: uplink-security-medkit-desc
-  productEntity: MedkitCombatFilled
-  icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit } # Frontier: _NF prefix
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Brigmedic
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityMedkit
+#   name:  uplink-security-medkit-name
+#   description: uplink-security-medkit-desc
+#   productEntity: MedkitCombatFilled
+#   icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit } # Frontier: _NF prefix
+#   cost:
+#     FrontierUplinkCoin: 2
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Brigmedic
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityInspector
-  name:  uplink-security-inspector-name
-  description: uplink-security-inspector-desc
-  productEntity: NFWeaponRevolverInspector
-  icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore (why is it here...?)
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityInspector
+#   name:  uplink-security-inspector-name
+#   description: uplink-security-inspector-desc
+#   productEntity: NFWeaponRevolverInspector
+#   icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityTruncheon
-  name:  uplink-security-truncheon-name
-  description: uplink-security-truncheon-desc
-  productEntity: Truncheon
-  icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore (why is it here...?)
+# - type: listing
+#   id: UplinkSecurityTruncheon
+#   name:  uplink-security-truncheon-name
+#   description: uplink-security-truncheon-desc
+#   productEntity: Truncheon
+#   icon: { sprite: Objects/Weapons/Melee/truncheon.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
-- type: listing
-  id: UplinkSecurityArmingSword
-  name:  uplink-security-armingsword-name
-  description: uplink-security-armingsword-desc
-  productEntity: PlasteelArmingSword
-  icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore (useless)
+# - type: listing
+#   id: UplinkSecurityArmingSword
+#   name:  uplink-security-armingsword-name
+#   description: uplink-security-armingsword-desc
+#   productEntity: PlasteelArmingSword
+#   icon: { sprite: _NF/Objects/Weapons/Melee/armingsword.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 2
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+# Lua ignore
 
 # Lua: This is pretty useless too when you have a captain's sabre
 # - type: listing
@@ -878,307 +826,319 @@
 #         - SeniorOfficer
 #         - Sheriff
 
-- type: listing
-  id: UplinkSecurityHammer
-  name:  uplink-security-hammer-name
-  description: uplink-security-hammer-desc
-  productEntity: SecBreachingHammer
-  icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityHammer
+#   name:  uplink-security-hammer-name
+#   description: uplink-security-hammer-desc
+#   productEntity: SecBreachingHammer
+#   icon: { sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 4
+#   categories:
+#     - UplinkSecurityWeapons
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityTeleShield
-  name:  uplink-security-teleshield-name
-  description: uplink-security-teleshield-desc
-  productEntity: TelescopicShield
-  icon: { sprite: Objects/Weapons/Melee/teleriot_shield.rsi, state: teleriot-on }
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityTeleShield
+#   name:  uplink-security-teleshield-name
+#   description: uplink-security-teleshield-desc
+#   productEntity: TelescopicShield
+#   icon: { sprite: Objects/Weapons/Melee/teleriot_shield.rsi, state: teleriot-on }
+#   cost:
+#     FrontierUplinkCoin: 2
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityEnergyShield
-  name:  uplink-security-energyshield-name
-  description: uplink-security-energyshield-desc
-  productEntity: EnergyShieldNfsd
-  icon: { sprite: _NF/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
-  cost:
-    FrontierUplinkCoin: 6
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityEnergyShield
+#   name:  uplink-security-energyshield-name
+#   description: uplink-security-energyshield-desc
+#   productEntity: EnergyShieldNfsd
+#   icon: { sprite: _NF/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+#   cost:
+#     FrontierUplinkCoin: 6
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecuritySwat
-  name:  uplink-security-swat-name
-  description: uplink-security-swat-desc
-  productEntity: ClothingMaskGasSheriff
-  icon: { sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecuritySwat
+#   name:  uplink-security-swat-name
+#   description: uplink-security-swat-desc
+#   productEntity: ClothingMaskGasSheriff
+#   icon: { sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi, state: icon}
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecuritySpeedloader
-  name:  uplink-security-speedloader-name
-  description: uplink-security-speedloader-desc
-  productEntity: NFSpeedLoaderPistol45Overpressure
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-overpressure }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecuritySpeedloader
+#   name:  uplink-security-speedloader-name
+#   description: uplink-security-speedloader-desc
+#   productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
+#   #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-overpressure } Lua ignore
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecuritySpeedloaderRubber
-  name:  uplink-security-speedloaderrubber-name
-  description: uplink-security-speedloaderrubber-desc
-  productEntity: NFSpeedLoaderPistol45Rubber
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityShotLethal
+#   name:  uplink-security-shotlethal-name
+#   description: uplink-security-shotlethal-desc
+#   productEntity: AmmoBox23x75mmBuckshot #Lua 4 gauge
+#   #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot } Lua ignored
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityShotLethal
-  name:  uplink-security-shotlethal-name
-  description: uplink-security-shotlethal-desc
-  productEntity: NFAmmunitionBoxShellShotgunBuckshot
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-buckshot }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityShotBeanbag
+#   name:  uplink-security-shotbeanbag-name
+#   description: uplink-security-shotbeanbag-desc
+#   productEntity: AmmoBox23x75mmBeanbag #Lua 4 gauge
+#   #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-beanbag } Lua ignored
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityShotBeanbag
-  name:  uplink-security-shotbeanbag-name
-  description: uplink-security-shotbeanbag-desc
-  productEntity: NFAmmunitionBoxShellShotgunBeanbag
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-beanbag }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityShotSlug
+#   name:  uplink-security-shotslug-name
+#   description: uplink-security-shotslug-desc
+#   productEntity: AmmoBox23x75mmSlug #Lua 4 gauge
+#   #icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-slug } Lua ignored
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityShotSlug
-  name:  uplink-security-shotslug-name
-  description: uplink-security-shotslug-desc
-  productEntity: NFAmmunitionBoxShellShotgunSlug
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-slug }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityCash2500
+#   name:  uplink-security-cash2500-name
+#   description: uplink-security-cash2500-desc
+#   productEntity: SpaceCash2500
+#   icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000 }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityCash2500
-  name:  uplink-security-cash2500-name
-  description: uplink-security-cash2500-desc
-  productEntity: SpaceCash2500
-  icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000 }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityEmpGrenadeBox
+#   name:  uplink-security-empgrenade-box-name
+#   description: uplink-security-empgrenade-box-desc
+#   productEntity: BoxEMPGrenadesNfsd
+#   icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+#   cost:
+#     FrontierUplinkCoin: 2
+#   categories:
+#     - UplinkSecurityExplosives
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityEmpGrenadeBox
-  name:  uplink-security-empgrenade-box-name
-  description: uplink-security-empgrenade-box-desc
-  productEntity: BoxEMPGrenadesNfsd
-  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityExplosives
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecuritySmokeGrenadeBox
+#   name:  uplink-security-smokegrenade-box-name
+#   description: uplink-security-smokegrenade-box-desc
+#   productEntity: BoxSmokeGrenades
+#   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon}
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecuritySmokeGrenadeBox
-  name:  uplink-security-smokegrenade-box-name
-  description: uplink-security-smokegrenade-box-desc
-  productEntity: BoxSmokeGrenades
-  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityTeargasGrenadeBox
+#   name:  uplink-security-teargasgrenade-box-name
+#   description: uplink-security-teargasgrenade-box-desc
+#   productEntity: BoxTeargasGrenades
+#   icon: { sprite: Objects/Weapons/Grenades/tear_gas.rsi, state: icon}
+#   cost:
+#     FrontierUplinkCoin: 2
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityTeargasGrenadeBox
-  name:  uplink-security-teargasgrenade-box-name
-  description: uplink-security-teargasgrenade-box-desc
-  productEntity: BoxTeargasGrenades
-  icon: { sprite: Objects/Weapons/Grenades/tear_gas.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityFlashbangGrenadeBox
+#   name:  uplink-security-flashbanggrenade-box-name
+#   description: uplink-security-flashbanggrenade-box-desc
+#   productEntity: BoxFlashBangGrenades
+#   icon: { sprite: Objects/Weapons/Grenades/flashbang.rsi, state: icon}
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityFlashbangGrenadeBox
-  name:  uplink-security-flashbanggrenade-box-name
-  description: uplink-security-flashbanggrenade-box-desc
-  productEntity: BoxFlashBangGrenades
-  icon: { sprite: Objects/Weapons/Grenades/flashbang.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityBreachingChargesBox
+#   name:  uplink-security-breachingcharge-box-name
+#   description: uplink-security-breachingcharge-box-desc
+#   productEntity: BoxBreachingCharges
+#   icon: { sprite: _DV/Objects/Weapons/Bombs/breaching.rsi, state: icon}
+#   cost:
+#     FrontierUplinkCoin: 3
+#   categories:
+#     - UplinkSecurityExplosives
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityBreachingChargesBox
-  name:  uplink-security-breachingcharge-box-name
-  description: uplink-security-breachingcharge-box-desc
-  productEntity: BoxBreachingCharges
-  icon: { sprite: _DV/Objects/Weapons/Bombs/breaching.rsi, state: icon}
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityExplosives
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityHoverbikeNfsdFlatpack
+#   name:  uplink-security-hoverbike-name
+#   description: uplink-security-hoverbike-desc
+#   productEntity: HoverbikeNfsdFlatpack
+#   icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: vehicle }
+#   cost:
+#     FrontierUplinkCoin: 10
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityHoverbikeNfsdFlatpack
-  name:  uplink-security-hoverbike-name
-  description: uplink-security-hoverbike-desc
-  productEntity: HoverbikeNfsdFlatpack
-  icon: { sprite: _NF/Objects/Vehicles/hoverbike.rsi, state: vehicle }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
-
-- type: listing
-  id: UplinkSecurityLethalArmory
-  name:  uplink-security-lethalarmory-name
-  description: uplink-security-lethalarmory-desc
-  productEntity: CrateArmoryLethalNfsd
-  icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 15
-  categories:
-    - UplinkSecurityBundles
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityLethalArmory
+#   name:  uplink-security-lethalarmory-name
+#   description: uplink-security-lethalarmory-desc
+#   productEntity: CrateArmoryLethalNfsd
+#   icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure2.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 15
+#   categories:
+#     - UplinkSecurityBundles
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
 # - type: listing
 #   id: UplinkSecurityTrackingBundle
@@ -1212,109 +1172,101 @@
 #         tags:
 #           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityNonLethalArmory
-  name:  uplink-security-nonlethalarmory-name
-  description: uplink-security-nonlethalarmory-desc
-  productEntity: CrateArmoryNonLethalNfsd
-  icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityBundles
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityNonLethalArmory
+#   name:  uplink-security-nonlethalarmory-name
+#   description: uplink-security-nonlethalarmory-desc
+#   productEntity: CrateArmoryNonLethalNfsd
+#   icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 10
+#   categories:
+#     - UplinkSecurityBundles
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Bailiff
+#         - SeniorOfficer
+#         - Sheriff
 
-- type: listing
-  id: UplinkSecurityEmpGrenadeAmmo
-  name:  uplink-security-emp-ammo-name
-  description: uplink-security-emp-ammo-desc
-  productEntity: BoxEmpGrenadesAmmo
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecurityEmpGrenadeAmmo
+#   name:  uplink-security-emp-ammo-name
+#   description: uplink-security-emp-ammo-desc
+#   productEntity: BoxEmpGrenadesAmmo
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityTrackingDartsAmmo
-  name:  uplink-security-trackingdart-ammo-name
-  description: uplink-security-trackingdart-ammo-desc
-  productEntity: NFBoxDartsTracking
-  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-dart }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityTrackingDartsAmmo
+#   name:  uplink-security-trackingdart-ammo-name
+#   description: uplink-security-trackingdart-ammo-desc
+#   productEntity: NFBoxDartsTracking
+#   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-dart }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityAmmo
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecuritySpaceBladeSec
-  name:  uplink-security-spaceblade-sec-name
-  description: uplink-security-spaceblade-sec-desc
-  productEntity: SpaceBladeSec
-  icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: secblade }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# - type: listing
+#   id: UplinkSecuritySpaceBladeSec
+#   name:  uplink-security-spaceblade-sec-name
+#   description: uplink-security-spaceblade-sec-desc
+#   productEntity: SpaceBladeSec
+#   icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: secblade }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityContrabandForensicsModule
-  name:  uplink-security-contraband-forensics-module-name
-  description: uplink-security-contraband-forensics-module-desc
-  productEntity: ContrabandForensicsModule
-  icon: { sprite: _NF/Objects/Devices/cartridge.rsi, state: contraband_forensics }
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-        - Bailiff
-        - SeniorOfficer
-        - NFDetective
-
-- type: listing
-  id: UplinkSecurityCoordinatesDiskFrontier
-  name: uplink-security-coordinates-disk-frontier-name
-  description: uplink-security-coordinates-disk-frontier-desc
-  productEntity: CoordinatesDiskFrontier
-  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# Lua ignore
+# moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
+# - type: listing
+#   id: UplinkSecurityContrabandForensicsModule
+#   name:  uplink-security-contraband-forensics-module-name
+#   description: uplink-security-contraband-forensics-module-desc
+#   productEntity: ContrabandForensicsModule
+#   icon: { sprite: _NF/Objects/Devices/cartridge.rsi, state: contraband_forensics }
+#   cost:
+#     FrontierUplinkCoin: 4
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Sheriff
+#         - Bailiff
+#         - SeniorOfficer
+#         - NFDetective

@@ -9,7 +9,7 @@
     contents:
       - id: NFWeaponRifleAssaultGestio
         amount: 2
-      - id: NFMagazineLowCapacityRifle30
+      - id: Magazine762x39mmLowCapacityFMJ #Lua 30 -> 762x39
         amount: 6
 
 # Contraband (unregistered) weaponry crates for expeditions
@@ -26,7 +26,7 @@
     contents:
       - id: NFWeaponSubMachineGunWt550Expedition
         amount: 2
-      - id: NFMagazineSubMachineGunTopMounted35
+      - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
         amount: 4
 
 - type: entity
@@ -42,7 +42,7 @@
     contents:
       - id: NFWeaponShotgunEnforcerExpedition
         amount: 2
-      - id: NFAmmunitionBoxShellShotgunBuckshot
+      - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
         amount: 3
 
 - type: entity
@@ -86,7 +86,7 @@
     contents:
     - id: NFWeaponPistolMk58Expedition
       amount: 2
-    - id: NFMagazinePistol35
+    - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
       amount: 4
 
 - type: entity
@@ -102,7 +102,7 @@
     contents:
       - id: NFWeaponRifleAssaultGestioExpedition
         amount: 2
-      - id: NFMagazineLowCapacityRifle30
+      - id: Magazine762x39mmLowCapacityFMJ #Lua 30 -> 762x39
         amount: 6
 
 - type: entity
@@ -118,7 +118,7 @@
     contents:
       - id: NFWeaponRifleAssaultNovaliteC1Expedition
         amount: 2
-      - id: NFMagazineClipRifle20
+      - id: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
         amount: 6
 
 # Ammo crates

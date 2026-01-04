@@ -230,14 +230,6 @@ public sealed class SuitSensorSystem : EntitySystem
         component.StationId ??= _stationSystem.GetOwningStation(uid);
         */
 
-        //Lua: if an item with built-in sensors spawns during the round - force Coordinates mode
-        if (_ticker.RunLevel == GameRunLevel.InRound)
-        {
-            SetSensor((uid, component), SuitSensorMode.SensorCords); //Lua: default to coordinates so medics can find players
-            return;
-        }
-
-        // ����� (�� ������ ������) ��������� ����������� ��������� (������).
         if (component.RandomMode)
         {
             var modesDist = new[]
@@ -248,6 +240,13 @@ public sealed class SuitSensorSystem : EntitySystem
                 SuitSensorMode.SensorCords, SuitSensorMode.SensorCords
             };
             component.Mode = _random.Pick(modesDist);
+        }
+
+        //Lua: if an item with built-in sensors spawns during the round and sensors are not forced off in component - force Coordinates mode
+        if (_ticker.RunLevel == GameRunLevel.InRound && component.RandomMode)
+        {
+            SetSensor((uid, component), SuitSensorMode.SensorCords); //Lua: default to coordinates so medics can find players
+            return;
         }
     }
 

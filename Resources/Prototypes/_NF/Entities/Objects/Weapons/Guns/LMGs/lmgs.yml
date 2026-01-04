@@ -2,7 +2,7 @@
 #region WizDen
 - type: entity
   id: NFWeaponLightMachineGunL6
-  parent: [ NFBaseWeaponLightMachineGunChamber20, NFBaseWeaponFrameLightMachineGunGorlex ]
+  parent: [ NFBaseWeaponLightMachineGunChamber556x45, NFBaseWeaponFrameLightMachineGunGorlex ] #Lua 20 -> 556x45
   name: GSW LMG-6
   description: |-
     A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. An illegal firearm often used by Syndicate agents.
@@ -34,7 +34,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/LMGs/l6.rsi
   - type: ProjectileBatteryAmmoProvider
-    proto: NFCartridgeRifle20
+    proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
     fireCost: 100
   - type: Battery
     maxCharge: 10000

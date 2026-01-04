@@ -1,21 +1,22 @@
 - type: vessel
   id: Spyglass
   parent: BaseVesselAntag
-  name: RSIC Spyglass
+  name: Spyglass
   description: Полевая научная лаборатория. Непригодна для боев, но отлично справляется с изучением полезных для грабежа технологий
   price: 41559
   category: Medium
   group: BlackMarket
   shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/spyglass.yml
   guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Pirate
   - Science
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#948471"
+
 - type: gameMap
   id: Spyglass
   mapName: 'Spyglass'
@@ -26,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Spyglass RG{1}'
+          mapNameTemplate: 'Spyglass {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

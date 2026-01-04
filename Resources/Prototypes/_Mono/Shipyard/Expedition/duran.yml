@@ -7,21 +7,22 @@
 - type: vessel
   id: Duran
   parent: BaseVessel
-  name: SKR Duran
+  name: Duran
   description: A general-purpose expeditionary vessel with a complementary kitchen.
   price: 60000 #Lua (test)
   category: Small
   group: Expedition
   shuttlePath: /Maps/_Mono/Shuttles/Expedition/duran.yml
   guidebookPage: null
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Civilian
   - Expedition
   engine:
   - Uranium
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: Duran
   mapName: 'Duran'
@@ -32,7 +33,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Duran EXP{1}'
+          mapNameTemplate: 'Duran {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

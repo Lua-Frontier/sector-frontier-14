@@ -6,23 +6,24 @@
 - type: vessel
   parent: BaseVessel
   id: GFIlmus
-  name: GF-Ilmus
+  name: Ilmus
   description: Средний шаттл для утилизации и экспедиций. Дополнительно оснащен кухней и медицинским отсеком
   price: 65000
   category: Medium
   group: Expedition
   shuttlePath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Expedition
   - Civilian
   engine:
   - AME
-  addComponents:
-    - type: IFF
-      color: "#ffffff"
+
 - type: gameMap
   id: GFIlmus
-  mapName: 'GF-Ilmus'
+  mapName: 'Ilmus'
   mapPath: /Maps/_Lua/Shuttles/Expedition/ilmus.yml
   minPlayers: 0
   stations:
@@ -30,7 +31,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'GF Ilmus {1}'
+          mapNameTemplate: 'Ilmus {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
