@@ -8,7 +8,7 @@
     damage:
       types:
         Piercing: 19 #Lua -7
-        Blunt: 17 #Lua add
+        Blunt: 14 #Lua add
   - type: StaminaDamageOnCollide #Lua add
     damage: 7
 
@@ -92,7 +92,7 @@
     damage:
       types:
         Slash: 10 #Lua +6
-        Piercing: 28 #Lua -4
+        Piercing: 26 #Lua -6
   - type: StaminaDamageOnCollide #Lua add
     damage: 7
 
@@ -106,7 +106,7 @@
     damage:
       types:
         Slash: 10 #Lua +3
-        Piercing: 20 #Lua -22
+        Piercing: 15 #Lua -27
         Blunt: 10 #Lua add
   - type: StaminaDamageOnCollide #Lua add
     damage: 6

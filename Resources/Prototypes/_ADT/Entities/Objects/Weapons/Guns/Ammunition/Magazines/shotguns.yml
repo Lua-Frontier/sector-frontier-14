@@ -1,6 +1,6 @@
 - type: entity
   id: ADTBaseMagazineShotgunXL
-  name: ammo drum XL (.50 shells)
+  name: ammo drum XL (4 gauge) #Lua 4 gauge
   parent: BaseItem
   abstract: true
   components:
@@ -11,7 +11,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - ShellShotgun
+        - ShellShotgun23x75mmBuckshot #Lua 4 gauge
     capacity: 16
     soundRack:
       path: /Audio/_Corvax/Weapons/Guns/Cock/shotgun_cock.ogg # Corvax-Guns
@@ -35,11 +35,11 @@
 
 - type: entity
   id: ADTMagazineShotgunSlugXL
-  name: ammo drum XL (.50 slug)
+  name: ammo drum XL (4 gauge) #Lua 4 gauge
   parent: ADTBaseMagazineShotgunXL
   components:
   - type: BallisticAmmoProvider
-    proto: NFShellShotgunSlug
+    proto: ShellShotgun23x75mmSlug #Lua 4 gauge
   - type: Sprite
     layers:
     - state: slug
@@ -49,7 +49,7 @@
 
 - type: entity
   id: ADTMagazineShotgunXL
-  name: ammo drum XL (.50 pellet)
+  name: ammo drum XL (4 gauge) #Lua 4 gauge
   parent: ADTBaseMagazineShotgunXL
   components:
   - type: BallisticAmmoProvider
