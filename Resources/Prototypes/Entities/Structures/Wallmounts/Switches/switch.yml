@@ -14,7 +14,7 @@
   - type: SignalSwitch
   - type: UseDelay
     delay: 0.5 # prevent light-toggling auto-clickers.
-  - type: Rotatable
+  #- type: Rotatable # Lua
   - type: Construction
     graph: SignalSwitchGraph
     node: SignalSwitchNode
@@ -70,7 +70,7 @@
     onPort: Pressed
     offPort: Pressed
     statusPort: Pressed
-  - type: Rotatable
+  #- type: Rotatable # Lua
   - type: Construction
     graph: SignalButtonGraph
     node: SignalButtonNode
