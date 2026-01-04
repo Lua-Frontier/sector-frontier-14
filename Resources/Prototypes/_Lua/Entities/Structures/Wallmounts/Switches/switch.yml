@@ -1,0 +1,27 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: SignalButton
+  id: SignalButtonAltLeft
+  name: left signal button
+  suffix: Alt, Left
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Wallmounts/switch.rsi
+    state: deadAltLeft
+  - type: Construction
+    node: SignalButtonAltLeftNode
+
+- type: entity
+  parent: SignalButton
+  id: SignalButtonAltRight
+  name: right signal button
+  suffix: Alt, Right
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Wallmounts/switch.rsi
+    state: deadAltRight
+  - type: Construction
+    node: SignalButtonAltRightNode
