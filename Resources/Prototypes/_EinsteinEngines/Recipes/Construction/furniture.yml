@@ -1,16 +1,13 @@
 #bathroom
 - type: construction
-  name: shower
+  name: recipe-construction-shower-name
   id: Shower
   graph: Shower
   startNode: start
   targetNode: shower
   category: construction-category-furniture
-  description: A shower, complete with bluespace water.
-  icon:
-    sprite: _EinsteinEngines/Structures/Furniture/shower.rsi
-    state: shower
-    objectType: Structure
+  description: recipe-construction-shower-desc
+  objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true
   canBuildInImpassable: false
