@@ -11,7 +11,6 @@
   shuttlePath: /Maps/_Mono/Shuttles/Syndicate/SYN-Kinetic-lancer.yml
   guidebookPage: Null
   whitelist:
-  - Luna
   - Frontier
   class:
   - Capital
@@ -26,6 +25,43 @@
   minPlayers: 0
   stations:
     SYNKineticLancer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Kinetic-Lancer {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
+
+- type: vessel
+  id: SYNKineticLancerLuna
+  parent: BaseVesselAntag
+  name: Kinetic-Lancer
+  description: A light syndicate frigate meant for raiding enemy stations. Armed to the teeth in missiles and CYREXAs.
+  limit: 1
+  price: 325000 # 2000 below max
+  category: Large
+  group: Typan
+  access: SyndicateAgent
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Typan/SYN-Kinetic-lancer.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Capital
+  - Syndicate
+  engine:
+  - AME
+
+- type: gameMap
+  id: SYNKineticLancerLuna
+  mapName: 'Kinetic-Lancer'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Typan/SYN-Kinetic-lancer.yml
+  minPlayers: 0
+  stations:
+    SYNKineticLancerLuna:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

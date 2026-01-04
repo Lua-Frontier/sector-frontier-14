@@ -36,3 +36,38 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
+
+- type: vessel
+  id: Lancelot
+  parent: BaseVesselAntag
+  name: Lancelot
+  description: Высокомобильный, но малобронированный эсминец, предназначенный для ближнего манёвренного боя и отлично показывающий себя в дуэли.
+  limit: 1
+  price: 305000
+  category: Large
+  group: Typan
+  access: SyndicateAgent
+  shuttlePath: /Maps/_Lua/Luna/Shuttles/Typan/Lancelot.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  class:
+  - Capital
+  - Syndicate
+  engine:
+  - AME
+
+- type: gameMap
+  id: Lancelot
+  mapName: 'Lancelot'
+  mapPath: /Maps/_Lua/Luna/Shuttles/Typan/Lancelot.yml
+  minPlayers: 0
+  stations:
+    Lancelot:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lancelot {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
