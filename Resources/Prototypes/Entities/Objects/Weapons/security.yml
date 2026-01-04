@@ -276,6 +276,14 @@
       guides:
       - Security
     # - Antagonists # Frontier: guidebook entry removed
+    # Lua start
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 25
+        Plastic: 50
+        RawScrap: 10
+        Glass: 5
+    # Lua end
 
 - type: entity
   name: flash

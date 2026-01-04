@@ -42,6 +42,14 @@
       params:
         volume: -2
   # Goobstation edit end
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 20
+      Plastic: 30
+      Glass: 10
+      RawScrap: 40
+  # Lua end
 
 - type: entity
   parent: RemoteSignaller
@@ -61,3 +69,10 @@
     range: 50
   - type: StaticPrice
     price: 30
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 20
+      Plastic: 30
+      RawScrap: 50
+  # Lua end
