@@ -38,7 +38,7 @@
             prefixCreator: '14'
 
 - type: vessel
-  id: Lancelot
+  id: LancelotLuna
   parent: BaseVesselAntag
   name: Lancelot
   description: Высокомобильный, но малобронированный эсминец, предназначенный для ближнего манёвренного боя и отлично показывающий себя в дуэли.
@@ -58,12 +58,12 @@
   - AME
 
 - type: gameMap
-  id: Lancelot
+  id: LancelotLuna
   mapName: 'Lancelot'
   mapPath: /Maps/_Lua/Luna/Shuttles/Typan/Lancelot.yml
   minPlayers: 0
   stations:
-    Lancelot:
+    LancelotLuna:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
