@@ -82,6 +82,9 @@
     tags:
       - NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
   - type: BallisticAmmoProvider
+    whitelist: #Lua add start
+        tags:
+          - Cartridge556x45mmFMJ #Lua add end
     proto: Cartridge556x45mmFMJ #Lua 20 -> 556x45
     capacity: 100
   - type: Sprite
