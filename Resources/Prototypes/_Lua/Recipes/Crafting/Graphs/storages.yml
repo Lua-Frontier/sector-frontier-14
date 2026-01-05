@@ -1,0 +1,44 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: constructionGraph
+  id: SuitStorage
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: done
+      steps:
+      - material: Steel
+        amount: 10
+      - material: Cable
+        amount: 5
+        doAfter: 5
+      - material: Plasteel
+        amount: 5
+        doAfter: 10
+  - node: done
+    entity: SuitStorageBase
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      - tool: Welding
+        doAfter: 10
+      conditions:
+      - !type:Locked
+        locked: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 10
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 5
+      - !type:SpawnPrototype
+        prototype: SheetPlasteel1
+        amount: 5
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity

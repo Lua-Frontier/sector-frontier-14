@@ -12,6 +12,8 @@
   - type: Sprite
     sprite: Objects/Misc/bedsheets.rsi
     noRot: true
+    drawdepth: OverMobs # Lua
+  - type: SpriteFade # Lua
   - type: Item
     size: Small
   - type: Clothing

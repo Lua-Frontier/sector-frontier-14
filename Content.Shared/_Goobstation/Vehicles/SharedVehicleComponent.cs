@@ -27,7 +27,7 @@ public sealed partial class VehicleComponent : Component
     /// unbuckles them if they dont have enough
     /// </summary>
     [DataField]
-    public int RequiredHands = 1;
+    public int RequiredHands = 2; // Lua: 1 < 2
 
     /// <summary>
     /// Will the vehicle move when a driver buckles

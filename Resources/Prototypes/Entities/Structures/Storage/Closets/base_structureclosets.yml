@@ -241,7 +241,7 @@
   - type: Anchorable
     delay: 2
   - type: StaticPrice
-    price: 80
+    price: 200 # Lua: 80 < 200
   - type: ResistLocker
   - type: Transform
     noRot: true
@@ -268,6 +268,13 @@
       collection: MetalThud
   - type: InteractionOutline
   - type: Physics
+  # Lua start
+  - type: Construction
+    graph: SuitStorage
+    node: done
+    containers:
+    - entity_storage
+  # Lua end
   - type: Fixtures
     fixtures:
       fix1:

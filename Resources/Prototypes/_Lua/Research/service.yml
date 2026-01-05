@@ -1,0 +1,18 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: technology
+  id: LuaBluespaceArt
+  name: lua-research-technology-bluespace-art
+  entityIcon: SprayPainterMagic
+  discipline: NFService
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - SprayPainterMagic
+  - CrayonMagic
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
+  position: 2, 18

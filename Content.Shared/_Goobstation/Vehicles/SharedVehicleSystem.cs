@@ -11,7 +11,6 @@ using Content.Shared.Hands.EntitySystems; // Lua
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared._NF.Vehicle.Components; // Frontier
@@ -29,7 +28,6 @@ using Content.Shared.Weapons.Melee.Events; // Frontier
 using Content.Shared.Emag.Systems; // Frontier
 using Robust.Shared.Map; // Lua
 using System.Numerics; // Lua
-using Robust.Shared.GameObjects; // Lua
 
 namespace Content.Shared._Goobstation.Vehicles; // Frontier: migrate under _Goobstation
 
@@ -56,10 +54,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
 
-    // Lua antispam popup
-    private readonly Dictionary<EntityUid, TimeSpan> _lastNoHandsPopup = new();
-    private static readonly TimeSpan NoHandsPopupCooldown = TimeSpan.FromSeconds(2);
-    // Lua antispam popup
+    // Lua start
+    private readonly Dictionary<EntityUid, TimeSpan> _lastNoHandsPopup = new(); // Antispam popup
+    private static readonly TimeSpan NoHandsPopupCooldown = TimeSpan.FromSeconds(2); // Antispam popup
+    private static int ClampRequiredHands(int requiredHands)
+    { return requiredHands < 0 ? 0 : requiredHands; }
+    // Lua end
 
     public override void Initialize()
     {
@@ -195,55 +195,69 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         args.Handled = true;
     }
 
-    // Lua start (fuck driver cowboy)
-    private bool TryOccupyHands(EntityUid rider, EntityUid vehicle)
+    // Lua start (hands occupancy)
+    private bool TryOccupyHands(EntityUid rider, EntityUid vehicle, int requiredHands)
     {
+        requiredHands = ClampRequiredHands(requiredHands);
+        if (requiredHands == 0) return true;
         if (!TryComp<HandsComponent>(rider, out var hands))
             return false;
-
-        var emptyHands = hands.Hands.Keys.Where(handId => _hands.HandIsEmpty((rider, hands), handId)).ToList();
-        if (emptyHands.Count < 2)
-            return false;
-
-        foreach (var _ in emptyHands.Take(2))
-            _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
-
+        var alreadyOccupied = 0;
+        var emptyHands = new List<string>();
+        foreach (var handId in hands.Hands.Keys)
+        {
+            if (_hands.HandIsEmpty((rider, hands), handId))
+            { emptyHands.Add(handId); continue; }
+            if (_hands.TryGetHeldItem((rider, hands), handId, out var heldEntity) && TryComp<VirtualItemComponent>(heldEntity.Value, out var virt) && virt.BlockingEntity == vehicle)
+            { alreadyOccupied++; }
+        }
+        var needed = requiredHands - alreadyOccupied;
+        if (needed <= 0) return true;
+        if (emptyHands.Count < needed) return false;
+        foreach (var handId in emptyHands.Take(needed))
+        { if (!_virtualItem.TrySpawnVirtualItemInHand(vehicle, rider, out _, dropOthers: false, empty: handId)) return false; }
         return true;
     }
 
-    private void EnsureHandsAreCorrect(EntityUid rider, EntityUid vehicle)
+    private bool EnsureHandsAreCorrect(EntityUid rider, EntityUid vehicle, int requiredHands)
     {
-        if (!TryComp<HandsComponent>(rider, out var hands))
-            return;
-
+        requiredHands = ClampRequiredHands(requiredHands);
+        if (!TryComp<HandsComponent>(rider, out var hands)) return requiredHands == 0;
+        var matchingVirtualItems = new List<EntityUid>();
+        var emptyHands = new List<string>();
         foreach (var handId in hands.Hands.Keys)
         {
-            if (!_hands.TryGetHeldItem((rider, hands), handId, out var heldEntity))
-            {
-                _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
-                continue;
-            }
-            
-            if (!TryComp<VirtualItemComponent>(heldEntity.Value, out var virt)
-                || virt.BlockingEntity != vehicle)
-            {
-                _virtualItem.TrySpawnVirtualItemInHand(vehicle, rider);
-            }
+            if (_hands.HandIsEmpty((rider, hands), handId))
+            { emptyHands.Add(handId); continue; }
+            if (_hands.TryGetHeldItem((rider, hands), handId, out var heldEntity) && TryComp<VirtualItemComponent>(heldEntity.Value, out var virt) && virt.BlockingEntity == vehicle)
+            { matchingVirtualItems.Add(heldEntity.Value); }
         }
+        if (matchingVirtualItems.Count > requiredHands)
+        {
+            foreach (var extra in matchingVirtualItems.Skip(requiredHands))
+            { if (TryComp<VirtualItemComponent>(extra, out var virt)) _virtualItem.DeleteVirtualItem((extra, virt), rider); }
+        }
+        var current = Math.Min(matchingVirtualItems.Count, requiredHands);
+        var needed = requiredHands - current;
+        if (needed > 0)
+        {
+            if (emptyHands.Count < needed) return false;
+            foreach (var handId in emptyHands.Take(needed))
+            { if (!_virtualItem.TrySpawnVirtualItemInHand(vehicle, rider, out _, dropOthers: false, empty: handId)) return false; }
+        }
+        if (requiredHands == 0 && matchingVirtualItems.Count > 0) _virtualItem.DeleteInHandsMatching(rider, vehicle);
+        return true;
     }
-// Lua start
+    // Lua start
     private bool ShouldShowNoHandsPopup(EntityUid user)
     {
-        if (!_net.IsClient)
-            return true;
-
+        if (!_net.IsClient) return true;
         var now = _timing.CurTime;
-        if (_lastNoHandsPopup.TryGetValue(user, out var last) && now - last < NoHandsPopupCooldown)
-            return false;
+        if (_lastNoHandsPopup.TryGetValue(user, out var last) && now - last < NoHandsPopupCooldown) return false;
         _lastNoHandsPopup[user] = now;
         return true;
     }
-// Lua end
+    // Lua end
 
     public override void Update(float frameTime)
     {
@@ -255,7 +269,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             if (Transform(rider).ParentUid is { } vehicle &&
                 HasComp<VehicleComponent>(vehicle))
             {
-                EnsureHandsAreCorrect(rider, vehicle);
+                var vehicleComp = Comp<VehicleComponent>(vehicle);
+                if (!EnsureHandsAreCorrect(rider, vehicle, vehicleComp.RequiredHands))
+                {
+                    _buckle.TryUnbuckle(rider, vehicle);
+                    if (ShouldShowNoHandsPopup(rider)) _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), vehicle, rider);
+                }
             }
 
             // Lua start
@@ -295,18 +314,38 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
         // End Frontier
 
-        if (ent.Comp.RequiredHands != 2)
+        // Lua start
+
+        //if (ent.Comp.RequiredHands != 2)
+        //{
+        //    for (int hands = 2; hands < ent.Comp.RequiredHands; hands++)
+        //    {
+        //        if (!_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, driver, false))
+        //        {
+        //            args.Cancelled = true;
+        //            _virtualItem.DeleteInHandsMatching(driver, ent.Owner);
+        //            return;
+        //        }
+        //    }
+
+        var requiredHands = ClampRequiredHands(ent.Comp.RequiredHands);
+        if (requiredHands > 0)
         {
-            for (int hands = 2; hands < ent.Comp.RequiredHands; hands++)
+            if (!TryComp<HandsComponent>(driver, out var hands))
             {
-                if (!_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, driver, false))
-                {
-                    args.Cancelled = true;
-                    _virtualItem.DeleteInHandsMatching(driver, ent.Owner);
-                    return;
-                }
+                args.Cancelled = true;
+                return;
+            }
+
+            var emptyHands = hands.Hands.Keys.Count(handId => _hands.HandIsEmpty((driver, hands), handId));
+            if (emptyHands < requiredHands)
+            {
+                if (ShouldShowNoHandsPopup(driver)) _popup.PopupPredicted(Loc.GetString("vehicle-no-free-hands"), ent, driver);
+                args.Cancelled = true;
+                return;
             }
         }
+        // Lua end
 
         // AddHorns(driver, ent); // Frontier: delay until mounted
     }
@@ -315,7 +354,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         var driver = args.Buckle.Owner;
         // Lua start (fuck driver cowboy)
-        if (!TryOccupyHands(driver, ent.Owner))
+        if (!TryOccupyHands(driver, ent.Owner, ent.Comp.RequiredHands))
         {
             _buckle.TryUnbuckle(driver, ent.Owner);
             // Lua start: покажем сообщение не чаще раза в NoHandsPopupCooldown и только предсказуемо

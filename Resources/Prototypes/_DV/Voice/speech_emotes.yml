@@ -114,7 +114,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [barks.]
+  chatMessages: ["chat-emote-msg-vulpkanin-barks-1", "chat-emote-msg-vulpkanin-barks-2", "chat-emote-msg-vulpkanin-barks-3"] # Lua: [barks.] < ["chat-emote-msg-vulpkanin-barks-1", "chat-emote-msg-vulpkanin-barks-2", "chat-emote-msg-vulpkanin-barks-3"]
   chatTriggers:
     - bark
     - barks
@@ -138,7 +138,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [snarls.]
+  chatMessages: ["chat-emote-msg-vulpkanin-snarls"] # Lua: [snarls.] < ["chat-emote-msg-vulpkanin-snarls"]
   chatTriggers:
     - snarl
     - snarls
@@ -148,6 +148,7 @@
     - рык
     - рррр
     - оскалился
+    - рявкает # Lua
 
 - type: emote
   id: Whine
@@ -160,7 +161,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [whines.]
+  chatMessages: ["chat-emote-msg-vulpkanin-whines"] # Lua: [whines.] < ["chat-emote-msg-vulpkanin-whines"]
   chatTriggers:
     - whine
     - whines
@@ -182,7 +183,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [howls.]
+  chatMessages: ["chat-emote-msg-vulpkanin-howls-1", "chat-emote-msg-vulpkanin-howls-2"] # Lua: [howls.] < ["chat-emote-msg-vulpkanin-howls-1", "chat-emote-msg-vulpkanin-howls-2"]
   chatTriggers:
     - howl
     - howls
@@ -204,11 +205,13 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: [awoos.]
+  chatMessages: ["chat-emote-msg-vulpkanin-awoos-1", "chat-emote-msg-vulpkanin-awoos-2"] # Lua: [awoos.] < ["chat-emote-msg-vulpkanin-awoos-1", "chat-emote-msg-vulpkanin-awoos-2"]
   chatTriggers:
     - awoo
     - awoos
     - awooing
     - awooed
-    - аву
-    - ауу
+    - авуу # Lua: аву < авуу
+    - аууу # Lua: ауу < аууу
+    - издаёт аууу # Lua
+    - издаёт авуу # Lua

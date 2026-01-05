@@ -117,6 +117,50 @@
               prototype: CableApcStack1
               amount: 1
             - !type:DeleteEntity {}
+    # Lua start
+        - to: SignalButtonAltRightNode
+          steps:
+            - tool: Anchoring
+              doAfter: 2
+    - node: SignalButtonAltRightNode
+      entity: SignalButtonAltRight
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:GivePrototype
+              prototype: CableApcStack1
+              amount: 1
+            - !type:DeleteEntity {}
+        - to: SignalButtonAltLeftNode
+          steps:
+            - tool: Anchoring
+              doAfter: 2
+    - node: SignalButtonAltLeftNode
+      entity: SignalButtonAltLeft
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:GivePrototype
+              prototype: CableApcStack1
+              amount: 1
+            - !type:DeleteEntity {}
+        - to: SignalButtonNode
+          steps:
+            - tool: Anchoring
+              doAfter: 2
+    # Lua end
 
 - type: constructionGraph
   id: LightSwitchDirectionalGraph

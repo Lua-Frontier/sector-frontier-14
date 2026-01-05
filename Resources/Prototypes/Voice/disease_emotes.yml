@@ -3,6 +3,14 @@
   name: chat-emote-name-sneeze
   category: Vocal
   chatMessages: ["chat-emote-msg-sneeze"]
+  # Lua start
+  chatTriggers:
+    - чихает
+    - чихает.
+    - чихнула
+    - чихнул
+    - чихнуло
+  # Lua end
 
 - type: emote
   id: Cough
@@ -26,6 +34,13 @@
     - cough!
     - coughs!
     - coughed!
+    # Lua start
+    - кашляет
+    - кашляет.
+    - кашлянул
+    - кашлянула
+    - кашлянуло
+    # Lua end
 
 - type: emote
   id: CatMeow
