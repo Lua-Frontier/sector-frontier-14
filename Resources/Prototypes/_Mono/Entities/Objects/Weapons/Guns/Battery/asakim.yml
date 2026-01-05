@@ -16,7 +16,7 @@
   - type: Item
     sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
   - type: GunWieldBonus
-    minAngle: -18
+    minAngle: -16 #Lua -18 -> -16
     maxAngle: -14
   - type: Gun
     minAngle: 18
@@ -44,3 +44,4 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 15
+  - type: GunRequiresWield #Lua
