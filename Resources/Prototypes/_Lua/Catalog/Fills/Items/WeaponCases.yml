@@ -119,7 +119,7 @@
         amount: 3
 
 - type: entity
-  id: WeaponCaseLongInspectorBundle
+  id: WeaponCaseShortInspectorBundle
   parent: WeaponCaseShort
   suffix: Inspector .45 Magnum
   components:
@@ -130,7 +130,7 @@
         amount: 2
 
 - type: entity
-  id: WeaponCaseLongN1984Bundle
+  id: WeaponCaseShortN1984Bundle
   parent: WeaponCaseShort
   suffix: N1984 .45 ACP
   components:
@@ -139,3 +139,108 @@
       - id: NFWeaponPistolN1984
       - id: Magazine45_ACPPistolHighCapacityFMJ
         amount: 2
+
+- type: entity
+  id: WeaponCaseLongAK220Bundle
+  parent: WeaponCaseLong
+  suffix: NCI AK-220 9x19mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunAK220
+      - id: Magazine9x19mmSubMachineGunFMJ
+        amount: 3
+      - id: AmmoBox9x19mmFMJ
+
+- type: entity
+  id: WeaponCaseLongAssaultSmBundle
+  parent: WeaponCaseLong
+  suffix: AK-74M 7.62x39mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponRifleAssaultSm
+      - id: Magazine762x39mmFMJ
+        amount: 3
+      - id: AmmoBox762x39mmFMJ
+
+- type: entity
+  id: WeaponCaseLongBulldogBundle
+  parent: WeaponCaseLong
+  suffix: Bulldog 4 gauge
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponShotgunBulldog
+      - id: NFMagazineShotgunDrum
+        amount: 3
+      - id: AmmoBox23x75mmBuckshot
+
+- type: entity
+  id: WeaponCaseLongHammerBundle
+  parent: WeaponCaseLong
+  suffix: NCI AK-150 HAMMER 7.62x39mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLMGHammer
+      - id: Magazine762x39mmBox
+        amount: 2
+
+- type: entity
+  id: WeaponCaseLongWSPRBundle
+  parent: WeaponCaseLong
+  suffix: CS KMP-WSPR 7.62x39mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleWSPR
+      - id: Magazine762x39mmSubsonic
+        amount: 3
+      - id: AmmoBox762x39mmSubsonic
+
+- type: entity
+  id: WeaponCaseShortRitlandBundle
+  parent: WeaponCaseShort
+  suffix: Ritland .45 Magnum
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponRevolverRitland45
+      - id: SpeedLoader45_magnumFMJ
+        amount: 2
+
+- type: entity
+  id: WeaponCaseShortViperBundle
+  parent: WeaponCaseShort
+  suffix: Viper 9x19mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponPistolViper
+      - id: Magazine9x19mmPistolHighCapacityFMJ
+        amount: 2
+
+- type: entity
+  id: WeaponCaseLongAK410Bundle
+  parent: WeaponCaseLong
+  suffix: NCI AK-410 7.62x54mmR
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleAK410
+      - id: Magazine762x54mmRFMJ
+        amount: 3
+      - id: AmmoBox762x54mmRFMJ
+
+- type: entity
+  id: WeaponCaseLongAK502Bundle
+  parent: WeaponCaseLong
+  suffix: NCI AK-502 7.62x39mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleAK502
+      - id: Magazine762x39mmFMJ
+        amount: 3
+      - id: AmmoBox762x39mmFMJ

@@ -12,6 +12,17 @@
         amount: 4
 
 - type: entity
+  id: LuaBoxMagazine762x39mmSubsonic # Subsonic
+  parent: BoxMagazine
+  name: box of 7.62x39mm subsonic magazines
+  description: A box full of 7.62x39mm subsonic magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine762x39mmSubsonic
+        amount: 4
+
+- type: entity
   id: LuaBoxMagazineRifle762x39mmRubber # Rubber
   parent: BoxMagazine
   name: box of 7.62x39mm Rubber magazines
@@ -220,4 +231,17 @@
   - type: StorageFill
     contents:
       - id: Magazine8x65mmSKR
+        amount: 4
+
+#region 7.62x54mmR
+
+- type: entity
+  id: LuaBoxMagazine762x54mmRFMJ # FMJ
+  parent: BoxMagazine
+  name: box of 7.62x54mmR FMJ magazines
+  description: A box full of 7.62x54mmR FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine762x54mmRFMJ
         amount: 4

@@ -424,7 +424,7 @@
   id: UplinkSecurityN1984 # N1984 (.45_ACP)
   name:  uplink-security-N1984Bundle-name
   description: uplink-security-N1984Bundle-desc
-  productEntity: WeaponCaseLongN1984Bundle
+  productEntity: WeaponCaseShortN1984Bundle
   icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 2
@@ -440,7 +440,7 @@
   id: UplinkSecurityInspectorBundle # Inspector (.45 Magnum)
   name:  uplink-security-InspectorBundle-name
   description: uplink-security-InspectorBundle-desc
-  productEntity: WeaponCaseLongInspectorBundle
+  productEntity: WeaponCaseShortInspectorBundle
   icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 1
@@ -849,7 +849,7 @@
       tags:
       - SecurityUplink
 
-#region grenade
+#region explosive
 
 - type: listing
   id: UplinkSecurityEmpGrenadeBox
