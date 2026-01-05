@@ -54,12 +54,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     public static readonly EntProtoId HornActionId = "ActionHorn";
     public static readonly EntProtoId SirenActionId = "ActionSiren";
 
-    // Lua antispam popup
-    private readonly Dictionary<EntityUid, TimeSpan> _lastNoHandsPopup = new();
-    private static readonly TimeSpan NoHandsPopupCooldown = TimeSpan.FromSeconds(2);
-    // Lua antispam popup
+    // Lua start
+    private readonly Dictionary<EntityUid, TimeSpan> _lastNoHandsPopup = new(); // Antispam popup
+    private static readonly TimeSpan NoHandsPopupCooldown = TimeSpan.FromSeconds(2); // Antispam popup
     private static int ClampRequiredHands(int requiredHands)
     { return requiredHands < 0 ? 0 : requiredHands; }
+    // Lua end
+
     public override void Initialize()
     {
         base.Initialize();
@@ -312,6 +313,21 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             return;
         }
         // End Frontier
+
+        // Lua start
+
+        //if (ent.Comp.RequiredHands != 2)
+        //{
+        //    for (int hands = 2; hands < ent.Comp.RequiredHands; hands++)
+        //    {
+        //        if (!_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, driver, false))
+        //        {
+        //            args.Cancelled = true;
+        //            _virtualItem.DeleteInHandsMatching(driver, ent.Owner);
+        //            return;
+        //        }
+        //    }
+
         var requiredHands = ClampRequiredHands(ent.Comp.RequiredHands);
         if (requiredHands > 0)
         {
@@ -329,6 +345,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
                 return;
             }
         }
+        // Lua end
 
         // AddHorns(driver, ent); // Frontier: delay until mounted
     }
