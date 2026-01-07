@@ -81,6 +81,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         SubscribeLocalEvent<ShipyardConsoleComponent, EntRemovedFromContainerMessage>(OnItemSlotChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<StationDeedSpawnerComponent, MapInitEvent>(OnInitDeedSpawner);
+        InitializeDockSelect(); // Lua
     }
     public override void Shutdown()
     {

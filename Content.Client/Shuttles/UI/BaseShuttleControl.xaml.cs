@@ -27,6 +27,8 @@ public partial class BaseShuttleControl : MapGridControl
     protected readonly SharedMapSystem Maps;
 
     protected readonly Font Font;
+    protected virtual Color RadarEquatorialLineColor => Color.LightGray; // Lua
+    protected virtual Color RadarRadialLineColor => Color.MediumSpringGreen; // Lua
 
     private GridDrawJob _drawJob;
 
@@ -83,7 +85,7 @@ public partial class BaseShuttleControl : MapGridControl
     protected void DrawCircles(DrawingHandleScreen handle)
     {
         // Equatorial lines
-        var gridLines = Color.LightGray.WithAlpha(0.01f);
+        var gridLines = RadarEquatorialLineColor.WithAlpha(0.01f); // Lua
 
         // Each circle is this x distance of the last one.
         const float EquatorialMultiplier = 2f;
@@ -115,7 +117,7 @@ public partial class BaseShuttleControl : MapGridControl
             Angle angle = (Math.PI / gridLinesRadial) * i;
             // TODO: Handle distance properly.
             var aExtent = angle.ToVec() * ScaledMinimapRadius * 1.42f;
-            var lineColor = Color.MediumSpringGreen.WithAlpha(0.02f);
+            var lineColor = RadarRadialLineColor.WithAlpha(0.02f); // Lua
             handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
         }
     }
@@ -131,6 +133,8 @@ public partial class BaseShuttleControl : MapGridControl
     // End Frontier Corvax
 
     protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color color, float alpha = 0.01f)
+    { DrawGrid(handle, gridToView, grid, color, color, alpha); } // Lua
+    protected void DrawGrid(DrawingHandleScreen handle, Matrix3x2 gridToView, Entity<MapGridComponent> grid, Color fillColor, Color edgeColor, float fillAlpha = 0.01f)
     {
         var rator = Maps.GetAllTilesEnumerator(grid.Owner, grid.Comp);
         var tileSize = grid.Comp.TileSize;
@@ -307,10 +311,9 @@ public partial class BaseShuttleControl : MapGridControl
             var start = (int) (i * BatchSize);
             var end = (int) Math.Min(triCount, start + BatchSize);
             var count = end - start;
-            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), color.WithAlpha(alpha));
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, new Span<Vector2>(_allVertices, start, count), fillColor.WithAlpha(fillAlpha)); // Lua
         }
-
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), color);
+        handle.DrawPrimitives(DrawPrimitiveTopology.LineList, new Span<Vector2>(_allVertices, gridData.EdgeIndex, edgeCount), edgeColor); // Lua
     }
 
     private record struct GridDrawJob : IParallelRobustJob

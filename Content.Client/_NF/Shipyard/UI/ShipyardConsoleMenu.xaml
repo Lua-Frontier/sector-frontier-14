@@ -1,8 +1,10 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                           SetSize="640 500"
-                           MinSize="640 300">
+                           xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
+                           xmlns:luaShipyard="clr-namespace:Content.Client._Lua.Shipyard.UI"
+                           SetSize="1110 600"
+                           MinSize="1110 500">
     <BoxContainer Orientation="Vertical" Margin="5 0 5 0">
         <BoxContainer Orientation="Vertical">
             <BoxContainer Orientation="Horizontal">
@@ -36,35 +38,44 @@
                           Prefix="{Loc 'shipyard-console-menu-engine-label'}"
                           HorizontalExpand="True" />
         </BoxContainer>
-        <ScrollContainer HorizontalExpand="True"
-                         VerticalExpand="True"
-                         SizeFlagsStretchRatio="6">
-            <BoxContainer Name="Vessels"
-                          Orientation="Vertical"
-                          HorizontalExpand="True"
-                          VerticalExpand="True">
-                <!-- Vessels get added here by code -->
+
+        <!-- Lua -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" Margin="0 5 0 0">
+            <luaShipyard:ShipyardDockRadarControl Name="DockRadar" HorizontalExpand="True" VerticalExpand="True" MinSize="340 360" />
+
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="8 0 0 0">
+                <ScrollContainer HorizontalExpand="True"
+                                 VerticalExpand="True"
+                                 SizeFlagsStretchRatio="6">
+                    <BoxContainer Name="Vessels"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True">
+                        <!-- Vessels get added here by code -->
+                    </BoxContainer>
+                </ScrollContainer>
+
+                <GridContainer Columns="4" HorizontalExpand="True" Margin="0 8 0 2">
+                    <Button Name="TargetIdButton" Access="Public"/>
+                    <controls:ConfirmButton Name="SellShipButton"
+                        Text="{Loc 'cargo-pallet-sell-button'}"
+                        ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
+                        Disabled="True" />
+                    <controls:ConfirmButton Name="UnassignDeedButton"
+                        Text="{Loc 'shipyard-console-unassign-deed'}"
+                        ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
+                        Disabled="True" />
+                    <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True">
+                        <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}"/>
+                        <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" Name="DeedContainer" Visible="False">
+                        <Label Text="{Loc 'shipyard-console-deed-label'}"/>
+                        <Label Name="DeedTitle" Text=""/>
+                    </BoxContainer>
+                </GridContainer>
             </BoxContainer>
-        </ScrollContainer>
-        <GridContainer Columns="4" HorizontalExpand="True" Margin="0 8 0 2">
-            <Button Name="TargetIdButton" Access="Public"/>
-            <controls:ConfirmButton Name="SellShipButton"
-                Text="{Loc 'cargo-pallet-sell-button'}"
-                ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
-                Disabled="True" />
-            <controls:ConfirmButton Name="UnassignDeedButton"
-                Text="{Loc 'shipyard-console-unassign-deed'}"
-                ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
-                Disabled="True" />
-            <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True">
-                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}"/>
-                <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}"/>
-            </BoxContainer>
-            <BoxContainer Orientation="Vertical" Name="DeedContainer" Visible="False">
-                <Label Text="{Loc 'shipyard-console-deed-label'}"/>
-                <Label Name="DeedTitle" Text=""/>
-            </BoxContainer>
-        </GridContainer>
+        </BoxContainer>
         <BoxContainer Orientation="Horizontal" Margin="0 2 0 2" Name="RenameContainer" Visible="False">
             <LineEdit Name="RenameLineEdit"
                       PlaceHolder="Name"

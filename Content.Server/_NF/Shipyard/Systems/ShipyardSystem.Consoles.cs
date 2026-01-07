@@ -1,5 +1,6 @@
-using Content.Server._Mono.Shipyard;
+using Content.Server._Lua.ShipProtection;
 using Content.Server._Mono.Ships.Systems;
+using Content.Server._Mono.Shipyard;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Components;
 using Content.Server._NF.ShuttleRecords;
@@ -7,6 +8,7 @@ using Content.Server._NF.Station.Components;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
+using Content.Server.Construction.Components;
 using Content.Server.Maps;
 using Content.Server.Mind;
 using Content.Server.Popups;
@@ -19,9 +21,6 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._Lua.Chat.Systems; // Lua
 using Content.Shared._Lua.LuaTech; // Lua
-using Content.Server._Lua.ShipProtection; // Lua
-using Content.Server.Construction.Components; // Lua
-using Content.Shared.Construction.Components; // Lua
 using Content.Shared._Mono.Company;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared._Mono.Shipyard;
@@ -36,9 +35,11 @@ using Content.Shared._NF.ShuttleRecords;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Ghost;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Radio;
@@ -55,7 +56,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Content.Shared.Lua.CLVar;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -231,7 +231,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         bool purchased;
         EntityUid? shuttleUidOut;
         if (isLuaTech) purchased = TryPurchaseShuttleToGrid(targetGridForLuaTech, vessel.ShuttlePath, out shuttleUidOut);
-        else purchased = TryPurchaseShuttle(station, vessel.ShuttlePath, out shuttleUidOut);
+        else purchased = TryPurchaseShuttleToDock(shipyardConsoleUid, station, vessel.ShuttlePath, out shuttleUidOut); // Lua
         if (!purchased || shuttleUidOut is null)
         {
             PlayDenySound(player, shipyardConsoleUid, component);
@@ -999,8 +999,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             freeListings,
             CalculateSellRate(uid));
 
-        _ui.SetUiState(uid, uiKey, newState);
+        BoundUserInterfaceState state = newState; // Lua
+        ExtendUiStateLua(uid, ref state); // Lua
+        _ui.SetUiState(uid, uiKey, state);
     }
+
+    // Lua: allow extensions to shipyard UI state without modifying NF state type.
+    partial void ExtendUiStateLua(EntityUid uid, ref BoundUserInterfaceState state); // Lua
 
     #region Deed Assignment
     void AssignShuttleDeedProperties(Entity<ShuttleDeedComponent> deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool purchasedWithVoucher, string? purchaseVoucherUid = null)

@@ -105,6 +105,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     }
 
     private double _pruneAccumSeconds;
+    protected virtual void ModifyGridPalette(ref Color fillColor, ref Color edgeColor, ref float fillAlpha, EntityUid gridUid, bool self) { } // Lua
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
     {
         _coordinates = coordinates;
@@ -244,7 +245,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
                 var ourGridToView = ourGridToShuttle * shuttleToView;
                 var color = _shuttles.GetIFFColor(ourGridId, self: true);
-                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), color);
+                var fill = color; // Lua
+                var edge = color; // Lua
+                var alpha = 0.01f; // Lua
+                ModifyGridPalette(ref fill, ref edge, ref alpha, ourGridId, self: true); // Lua
+                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), fill, edge, alpha); // Lua
                 DrawDocks(handle, ourGridId, ourGridToView);
             }
         }
@@ -589,7 +594,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Mono
             if (!blipOnly)
             {
-                DrawGrid(handle, curGridToView, grid, labelColor);
+                var fill = labelColor; // Lua
+                var edge = labelColor; // Lua
+                var alpha = 0.01f; // Lua
+                ModifyGridPalette(ref fill, ref edge, ref alpha, gUid, self: false); // Lua
+                DrawGrid(handle, curGridToView, grid, fill, edge, alpha); // Lua
                 DrawDocks(handle, gUid, curGridToView);
             }
         }
@@ -795,6 +804,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
                 //var color = Color.ToSrgb(Color.Magenta); // Frontier
                 var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
+                GetDockColorOverride(ref color, state); // Lua
 
                 var verts = new[]
                 {
@@ -828,6 +838,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // End Frontier
         }
     }
+    partial void GetDockColorOverride(ref Color color, DockingPortState state); // Lua
 
     protected Vector2 InverseScalePosition(Vector2 value)
     {
