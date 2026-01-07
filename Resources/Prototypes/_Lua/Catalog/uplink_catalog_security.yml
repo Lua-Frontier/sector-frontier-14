@@ -110,24 +110,24 @@
         - Bailiff
         - Sheriff
 
-- type: listing
-  id: UplinkSecurityHardsuitJuggernaut
-  name:  uplink-security-hardsuit-experimental-name
-  description: uplink-security-hardsuit-experimental-desc
-  productEntity: ClothingOuterHardsuitTSFMCM92-X
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 40
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
+# - type: listing
+#   id: UplinkSecurityHardsuitJuggernaut
+#   name:  uplink-security-hardsuit-experimental-name
+#   description: uplink-security-hardsuit-experimental-desc
+#   productEntity: ClothingOuterHardsuitTSFMCM92-X
+#   icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi, state: icon }
+#   cost:
+#     FrontierUplinkCoin: 40
+#   categories:
+#     - UplinkSecurityHardsuits
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Sheriff
 
 - type: listing
   id: UplinkSecurityHardsuitM92
