@@ -10,6 +10,7 @@
     Frontier:
       stationProto: MarketFrontierOutpost #Lua StandardFrontierStation<MarketFrontierOutpost
       components:
+        - type: FrontierParking # Lua
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/space-station.png
           scale: 1.2

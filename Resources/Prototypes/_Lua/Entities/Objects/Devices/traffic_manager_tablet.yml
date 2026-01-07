@@ -1,0 +1,27 @@
+- type: entity
+  id: TrafficManagerTablet
+  name: tm tablet
+  description: traffic control tablet
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Mono/Objects/Devices/pda.rsi
+    state: pda
+  - type: Icon
+    sprite: _Mono/Objects/Devices/pda.rsi
+    state: pda
+  - type: ActivatableUI
+    key: enum.TrafficManagerTabletUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.TrafficManagerTabletUiKey.Key:
+        type: TrafficManagerTabletBoundUserInterface
+  - type: TrafficManagerTablet
+  - type: AccessReader
+    access: [["Command"], ["StationTrafficController"]]
+  - type: StaticPrice
+    price: 2000
+
+

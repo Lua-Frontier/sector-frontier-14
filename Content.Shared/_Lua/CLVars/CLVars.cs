@@ -104,6 +104,12 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("shuttle.grid_cleanup_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
         /// <summary>
+        /// Штрафы.
+        /// </summary>
+        public static readonly CVarDef<bool> FrontierParkingEnabled =
+            CVarDef.Create("frontier.parking_fines_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        /// <summary>
         /// Таймер ожидания возможности проснутся с криосна.
         /// </summary
         public static readonly CVarDef<int> CryoSleepTimerSet =
