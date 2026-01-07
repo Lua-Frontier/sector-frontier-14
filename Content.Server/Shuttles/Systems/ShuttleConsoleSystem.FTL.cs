@@ -182,13 +182,15 @@ public sealed partial class ShuttleConsoleSystem
         var xform = Transform(shuttleUid.Value);
         var bounds = xform.WorldMatrix.TransformBox(Comp<MapGridComponent>(shuttleUid.Value).LocalAABB).Enlarged(ShuttleFTLRange);
 
+        var dockedShuttles = new HashSet<EntityUid>(); // Lua
+        _shuttle.GetAllDockedShuttlesIgnoringFTLLock(shuttleUid.Value, dockedShuttles); // Lua
         foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
         {
             if (other.Owner == shuttleUid.Value)
                 continue;
 
-            if (IsGcAbleGrid(other.Owner)) // Lua
-                continue;
+            if (dockedShuttles.Contains(other.Owner)) continue; // Lua
+            if (IsGcAbleGrid(other.Owner)) continue;
 
             PlayDenySound(ent);
             _popup.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent.Owner, PopupType.Medium);

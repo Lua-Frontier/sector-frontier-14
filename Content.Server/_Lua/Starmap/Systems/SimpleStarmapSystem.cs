@@ -261,9 +261,12 @@ namespace Content.Server._Lua.Starmap.Systems
             {
                 var xform = Transform(shuttleUid.Value);
                 var bounds = xform.WorldMatrix.TransformBox(grid.LocalAABB).Enlarged(ShuttleConsoleSystem.ShuttleFTLRange);
+                var dockedShuttles = new HashSet<EntityUid>();
+                _shuttleSystem.GetAllDockedShuttlesIgnoringFTLLock(shuttleUid.Value, dockedShuttles);
                 foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
                 {
                     if (other.Owner == shuttleUid.Value) continue;
+                    if (dockedShuttles.Contains(other.Owner)) continue;
                     if (IsGcAbleGrid(other.Owner)) continue;
                     PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), consoleUid); return;
                 }
