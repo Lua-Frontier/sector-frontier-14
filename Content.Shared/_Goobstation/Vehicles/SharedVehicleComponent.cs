@@ -11,6 +11,9 @@ public sealed partial class VehicleComponent : Component
     [DataField, AutoNetworkedField] // Frontier: ViewVariables to DataField & AutoNetworked
     public EntityUid? Driver;
 
+    [DataField, AutoNetworkedField]
+    public EntityUid? Passenger;
+
     [DataField, AutoNetworkedField] // Frontier: VV<DataField, AutoNetwork
     public EntityUid? HornAction;
 
@@ -65,6 +68,18 @@ public sealed partial class VehicleComponent : Component
 
     [DataField]
     public Vector2 WestOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 PassengerSouthOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 PassengerNorthOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 PassengerEastOffset = Vector2.Zero;
+
+    [DataField]
+    public Vector2 PassengerWestOffset = Vector2.Zero;
 
     [DataField, AutoNetworkedField]
     public bool RadarBlip = true;
