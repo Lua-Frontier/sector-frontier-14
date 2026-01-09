@@ -1,0 +1,50 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+               Title="{Loc 'company-factions-window-title'}"
+               SetSize="820 460"
+               MinSize="820 360">
+    <BoxContainer Orientation="Horizontal" Margin="8" SeparationOverride="8" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" MinWidth="320" MaxWidth="320" VerticalExpand="True" SeparationOverride="4">
+            <PanelContainer StyleClasses="PdaBorderRect">
+                <Label Text="{Loc 'company-factions-companies-title'}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            </PanelContainer>
+
+            <ui:HLine/>
+
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" VScrollEnabled="True" MinHeight="50">
+                <BoxContainer Name="CompanyOptionsList"
+                              Access="Public"
+                              Orientation="Vertical"
+                              HorizontalExpand="True"
+                              SeparationOverride="2"/>
+            </ScrollContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+            <ui:StripeBack MinSize="32 32">
+                <Label Name="MembersTitle"
+                       Text="{Loc 'company-factions-members-title'}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+            </ui:StripeBack>
+            <ItemList Name="MembersList" VerticalExpand="True" />
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 4 0 0">
+                <Button Name="JoinButton"
+                        Text="{Loc 'company-factions-join'}"
+                        MinWidth="110"
+                        Visible="False"/>
+                <Button Name="LeaveButton"
+                        Text="{Loc 'company-factions-leave'}"
+                        MinWidth="110"
+                        Visible="False"/>
+                <Button Name="KickButton"
+                        Text="{Loc 'company-factions-kick'}"
+                        MinWidth="110"
+                        Visible="False"
+                        Disabled="True"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
+

@@ -1,4 +1,4 @@
-﻿version: 1 # Not used right now, whatever.
+version: 1 # Not used right now, whatever.
 binds:
 - function: UIClick
   type: State
@@ -246,7 +246,10 @@ binds:
   key: NumpadNum0
 - function: OpenLanguageMenu # Lua start
   type: State
-  key: F # Lua end
+  key: F
+- function: OpenCompanyFactionsMenu
+  type: State
+  key: L # Lua end
 - function: OpenAHelp
   type: State
   key: F1
