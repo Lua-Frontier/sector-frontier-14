@@ -6,8 +6,8 @@
 
 ```csharp
 /*
- * LuaWorld - This file is licensed under AGPLv3
- * Copyright (c) [Year] LuaWorld Contributors
+ * LuaCorp - This file is licensed under AGPLv3
+ * Copyright (c) [Year] LuaCorp Contributors
  * See AGPLv3.txt for details.
  */
 ```
@@ -15,7 +15,7 @@
 Для любых изменений в файлах, лицензированных под MIT (из основного репозитория), в начале модификации необходимо использовать следующую маркировку:
 
 ```csharp
-/* LuaWorld - [Title of changes] - [Description of changes]
+/* LuaCorp - [Title of changes] - [Description of changes]
 This code is licensed under AGPLv3. See AGPLv3.txt */
 yourCodeHere();
 // Конец изменённого кода
@@ -26,15 +26,15 @@ yourCodeHere();
 Все Yaml-файлы, добавленные после 1 июля 2024 года, 23:00:00 UTC, должны содержать следующий заголовок:
 
 ```yaml
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) [Year] LuaWorld Contributors
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) [Year] LuaCorp Contributors
 # See AGPLv3.txt for details.
 ```
 
 Для любых изменений в файлах, лицензированных под MIT (из основного репозитория), в начале модификации необходимо использовать следующую маркировку:
 
 ```yaml
-# LuaWorld - [Title of changes] - [Description of changes]
+# LuaCorp - [Title of changes] - [Description of changes]
 # This code is licensed under AGPLv3. See LICENSE
 modifiedYaml: "Goes Here"
 # Конец изменённого кода
