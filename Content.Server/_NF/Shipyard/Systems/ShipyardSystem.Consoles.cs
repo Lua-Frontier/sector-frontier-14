@@ -43,6 +43,7 @@ using Content.Shared.Lua.CLVar;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Radio;
+using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.Tag;
@@ -1129,9 +1130,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         // Preserve the original sell value from the current UI state
         int originalSellValue = 0;
-        if (_ui.TryGetUiState<ShipyardConsoleInterfaceState>(uid, (ShipyardConsoleUiKey)args.UiKey, out var currentState))
+        if (_ui.TryGetUiState<BoundUserInterfaceState>(uid, (ShipyardConsoleUiKey) args.UiKey, out var anyState))
         {
-            originalSellValue = currentState.ShipSellValue;
+            var baseState = anyState switch
+            { ShipyardConsoleLuaDockSelectState lua => lua.BaseState, ShipyardConsoleInterfaceState plain => plain, _ => null };
+            if (baseState != null) originalSellValue = baseState.ShipSellValue;
         }
 
         string? preservedSuffix = deed.ShuttleNameSuffix;

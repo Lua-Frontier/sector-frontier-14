@@ -434,6 +434,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         //TODO: move this to an event that others hook into.
         if (TryGetNetEntity(shuttleDeed.ShuttleUid, out var shuttleNetEntity) &&
+            shuttleNetEntity != null && shuttleNetEntity.Value != NetEntity.Invalid &&
             _shuttleRecordsSystem.TryGetRecord(shuttleNetEntity.Value, out var record))
         {
             record.Name = newName ?? "";
