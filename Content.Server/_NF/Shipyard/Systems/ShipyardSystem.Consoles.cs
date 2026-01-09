@@ -1113,14 +1113,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var newName = args.NewName.Trim();
         if (string.IsNullOrEmpty(newName))
         {
-            ConsolePopup(player, "Ship name cannot be empty.");
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-empty"));
             PlayDenySound(player, uid, component);
             return;
         }
 
         if (newName.Length > ShuttleDeedComponent.MaxNameLength)
         {
-            ConsolePopup(player, $"Ship name cannot exceed {ShuttleDeedComponent.MaxNameLength} characters.");
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-too-long", ("max", ShuttleDeedComponent.MaxNameLength)));
             PlayDenySound(player, uid, component);
             return;
         }
@@ -1163,7 +1163,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (TryRenameShuttle(targetId, deed, newName, preservedSuffix))
         {
-            ConsolePopup(player, $"Ship renamed to '{GetFullName(deed)}'");
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-success", ("name", GetFullName(deed))));
             PlayConfirmSound(player, uid, component);
 
             // Get the player's balance or use 0 if they don't have a bank account
@@ -1180,7 +1180,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
         else
         {
-            ConsolePopup(player, "Failed to rename ship.");
+            ConsolePopup(player, Loc.GetString("shipyard-console-rename-failed"));
             PlayDenySound(player, uid, component);
         }
     }

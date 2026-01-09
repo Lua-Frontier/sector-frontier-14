@@ -78,11 +78,11 @@
         </BoxContainer>
         <BoxContainer Orientation="Horizontal" Margin="0 2 0 2" Name="RenameContainer" Visible="False">
             <LineEdit Name="RenameLineEdit"
-                      PlaceHolder="Name"
+                      PlaceHolder="{Loc 'shipyard-console-rename-placeholder'}"
                       MinWidth="140"
                       Editable="False" />
             <Button Name="RenameButton"
-                    Text="Rename"
+                    Text="{Loc 'shipyard-console-rename-button'}"
                     Disabled="True" />
         </BoxContainer>
     </BoxContainer>
