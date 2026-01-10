@@ -4,9 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.PDA
 {
     [Serializable, NetSerializable]
-    public sealed class PdaUpdateState : CartridgeLoaderUiState // WTF is this. what. I ... fuck me I just want net entities to work
-        // TODO purge this shit
-        //AAAAAAAAAAAAAAAA
+    public sealed class PdaUpdateState : CartridgeLoaderUiState
     {
         public bool FlashlightEnabled;
         public bool HasPen;
@@ -19,6 +17,8 @@ namespace Content.Shared.PDA
         public string? Address;
         public int Balance; // Frontier
         public string? OwnedShipName; // Frontier
+        public string? AssignedShipName; // Lua
+        public string? AssignedShipRoleLocKey; // Lua
 
         public PdaUpdateState(
             List<NetEntity> programs,
@@ -30,6 +30,8 @@ namespace Content.Shared.PDA
             PdaIdInfoText pdaOwnerInfo,
             int balance, // Frontier
             string? ownedShipName, // Frontier
+            string? assignedShipName, // Lua
+            string? assignedShipRoleLocKey, // Lua
             string? stationName,
             bool hasUplink = false,
             bool canPlayMusic = false,
@@ -47,6 +49,8 @@ namespace Content.Shared.PDA
             Address = address;
             Balance = balance; // Frontier
             OwnedShipName = ownedShipName; // Frontier
+            AssignedShipName = assignedShipName; // Lua
+            AssignedShipRoleLocKey = assignedShipRoleLocKey; // Lua
         }
     }
 

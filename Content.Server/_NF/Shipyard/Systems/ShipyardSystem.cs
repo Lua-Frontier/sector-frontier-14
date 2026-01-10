@@ -19,6 +19,7 @@ using Robust.Shared.Containers;
 using Content.Server._NF.Station.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
+using Content.Server._Lua.StationRecords.Systems;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -34,6 +35,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShipOwnershipSystem _shipOwnership = default!;
+    [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!; // Lua
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;
@@ -258,6 +260,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             _station.DeleteStation(shuttleStationUid);
         }
+        _shipCrew.ClearAllForShuttle(shuttleUid);
 
         if (TryComp<ShipyardConsoleComponent>(consoleUid, out var comp))
         {
@@ -309,6 +312,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
         if (_station.GetOwningStation(shuttleUid) is { Valid: true } shuttleStationUid)
         { _station.DeleteStation(shuttleStationUid); }
+        _shipCrew.ClearAllForShuttle(shuttleUid);
         if (TryComp<ShipyardConsoleComponent>(consoleUid, out var comp))
         { CleanGrid(shuttleUid, consoleUid); }
 
