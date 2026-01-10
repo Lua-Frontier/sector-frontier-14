@@ -212,7 +212,7 @@
   productEntity: WeaponCaseLongAnnieBundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 20
+    FrontierUplinkCoin: 18
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -225,6 +225,7 @@
           - Bailiff
           - SeniorOfficer
           - Sheriff
+          - Deputy
 
 - type: listing
   id: UplinkSecurityVector45ACPBundle # LWC Vector SBR (.45 ACP)
@@ -264,7 +265,7 @@
   productEntity: WeaponCaseLongMR8CBundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 25
+    FrontierUplinkCoin: 20
   categories:
   - UplinkSecurityWeapons
   conditions:
@@ -277,6 +278,7 @@
       - Bailiff
       - SeniorOfficer
       - Sheriff
+      - Deputy
 
 - type: listing
   id: UplinkSecurityMR8BBundle # VFD MR-8B LWMMG (7.62x51mm)
@@ -335,6 +337,7 @@
       whitelist:
           - Bailiff
           - Sheriff
+          - SeniorOfficer
 
 - type: listing
   id: UplinkSecurityNtsfLtrBundle # NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)
@@ -343,7 +346,7 @@
   productEntity: WeaponCaseLongNtsfLtrBundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/NTSF-LTR-556.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 7
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -391,7 +394,7 @@
   productEntity: WeaponCaseHeavyLRC21PPLBundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/lrc21.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 33
+    FrontierUplinkCoin: 27
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -1211,7 +1214,7 @@
   productEntity: TelescopicShield
   icon: { sprite: Objects/Weapons/Melee/teleriot_shield.rsi, state: teleriot-on }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityUtility
   conditions:
