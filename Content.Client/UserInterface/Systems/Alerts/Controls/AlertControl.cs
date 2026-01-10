@@ -16,6 +16,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
         public static readonly Vector2 AlertIconMaxSize = new(48, 48);
 
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
 
         private readonly SpriteSystem _sprite;
 
@@ -45,6 +46,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
         private readonly CooldownGraphic _cooldownGraphic;
 
         private EntityUid _spriteViewEntity;
+        private bool _iconSetupPending;
 
         /// <summary>
         /// Creates an alert control reflecting the indicated alert + state
@@ -105,6 +107,13 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
+
+            if (_iconSetupPending && !_timing.ApplyingState) //costyl
+            {
+                _iconSetupPending = false;
+                SetupIconImmediate();
+            }
+
             UserInterfaceManager.GetUIController<AlertsUIController>().UpdateAlertSpriteEntity(_spriteViewEntity, Alert);
 
             if (!Cooldown.HasValue)
@@ -117,10 +126,20 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             _cooldownGraphic.FromTime(Cooldown.Value.Start, Cooldown.Value.End);
         }
 
-        private void SetupIcon()
+        private void SetupIcon() //costyl
         {
-            if (!_entityManager.Deleted(_spriteViewEntity))
-                _entityManager.QueueDeleteEntity(_spriteViewEntity);
+            if (_timing.ApplyingState)
+            {
+                _iconSetupPending = true;
+                return;
+            }
+            _iconSetupPending = false;
+            SetupIconImmediate();
+        }
+
+        private void SetupIconImmediate()
+        {
+            if (!_entityManager.Deleted(_spriteViewEntity)) _entityManager.QueueDeleteEntity(_spriteViewEntity);
 
             _spriteViewEntity = _entityManager.Spawn(Alert.AlertViewEntity);
             if (_entityManager.TryGetComponent<SpriteComponent>(_spriteViewEntity, out var sprite))

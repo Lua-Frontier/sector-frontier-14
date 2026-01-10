@@ -214,6 +214,7 @@ namespace Content.Client.Options.UI.Tabs
 
             AddHeader("ui-options-header-ui");
             AddButton(ContentKeyFunctions.OpenLanguageMenu); // Lua
+            AddButton(ContentKeyFunctions.OpenCompanyFactionsMenu); // Lua
             AddButton(ContentKeyFunctions.FocusChat);
             AddButton(ContentKeyFunctions.FocusLocalChat);
             AddButton(ContentKeyFunctions.FocusEmote);

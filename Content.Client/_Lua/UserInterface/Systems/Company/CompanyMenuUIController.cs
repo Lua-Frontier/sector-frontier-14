@@ -45,8 +45,7 @@ public sealed class CompanyMenuUIController : UIController, IOnStateEntered<Game
     public void OnStateExited(GameplayState state)
     {
         if (_window == null) return;
-        var sys = _systems.GetEntitySystem<CompanyClientSystem>();
-        sys.SetWindow(null);
+        if (_systems.TryGetEntitySystem<CompanyClientSystem>(out var sys)) sys.SetWindow(null);
         _window.Dispose();
         _window = null;
         CommandBinds.Unregister<CompanyMenuUIController>();
