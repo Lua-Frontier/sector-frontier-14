@@ -244,3 +244,72 @@
       - id: Magazine762x39mmFMJ
         amount: 3
       - id: AmmoBox762x39mmFMJ
+
+- type: entity
+  id: WeaponCaseShortCobraBundle
+  parent: WeaponCaseShort
+  suffix: Cobra .45 ACP
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponPistolCobra
+      - id: Magazine45_ACPPistolFMJ
+        amount: 2
+
+- type: entity
+  id: WeaponCaseLongXC67Bundle
+  parent: WeaponCaseLong
+  suffix: XC67 5.56x45mm FMJ
+  components:
+  - type: StorageFill
+    contents:
+      - id: ADTWeaponRifleXC67
+      - id: ADTExtMagazineRifle
+        amount: 3
+      - id: AmmoBox556x45mmFMJ
+
+- type: entity
+  id: WeaponCaseLongC20rBundle
+  parent: WeaponCaseLong
+  suffix: C20r 9x19mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponSubMachineGunC20r
+      - id: Magazine9x19mmSubMachineGunFMJ
+        amount: 3
+      - id: AmmoBox9x19mmFMJ
+
+- type: entity
+  id: WeaponCaseLongL6Bundle
+  parent: WeaponCaseLong
+  suffix: L6 5.56x45mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponLightMachineGunL6
+      - id: NFMagazineBoxRifle556x45
+        amount: 2
+
+- type: entity
+  id: WeaponCaseLongMla73Bundle
+  parent: WeaponCaseLong
+  suffix: SKR-WS MLA-73 6.35x40mm caseless
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunMla73
+      - id: Magazine635x40mmCaseless
+        amount: 3
+      - id: AmmoBox635x40mmCaseless
+
+- type: entity
+  id: WeaponCaseHeavyRatelBundle
+  parent: WeaponCaseHeavy
+  suffix: VFD PSW "Ratel" 7.62x51mm
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLMGRatel
+      - id: AmmoBox762x51mmFMJ
+        amount: 2

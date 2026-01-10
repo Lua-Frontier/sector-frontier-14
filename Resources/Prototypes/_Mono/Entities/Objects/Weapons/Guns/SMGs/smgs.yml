@@ -18,7 +18,7 @@
   - type: Gun
     angleIncrease: 1.1 #Lua 5 -> 1.1
     angleDecay: 7.7 #Lua 20 -> 7.7
-    fireRate: 9.5 #Lua 635x40 balance DPS: 180.5
+    fireRate: 8.5 #Lua 9.5 -> 8.5
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/mla_fire.ogg
   - type: ChamberMagazineAmmoProvider
@@ -209,7 +209,7 @@
     zeroVisible: true
   - type: Appearance
 
-#Pre-corpowar 45 magnum rare vector 
+#Pre-corpowar 45 magnum rare vector
 - type: entity
   name: NTSF-HCLM-45 (.45 magnum)
   parent: [BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable] #Lua: deleted BaseGunWieldable

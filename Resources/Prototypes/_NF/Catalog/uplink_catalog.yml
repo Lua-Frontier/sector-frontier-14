@@ -1,125 +1,126 @@
 # region Upstream
-# Guns
-- type: listing
-  id: UplinkNFPistolViper
-  name: uplink-pistol-viper-name
-  description: uplink-pistol-viper-desc
-  productEntity: NFWeaponPistolViper
-  discountCategory: rareDiscounts
-  cost:
-    Telecrystal: 3
-  categories:
-  - UplinkWeaponry
+# Guns (Lua fully ignored)
 
-- type: listing
-  id: UplinkNFRevolverRitland
-  name: uplink-revolver-ritland-name
-  description: uplink-revolver-ritland-desc
-  productEntity: NFWeaponRevolverRitland45
-  discountCategory: rareDiscounts
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkWeaponry
+# - type: listing
+#   id: UplinkNFPistolViper
+#   name: uplink-pistol-viper-name
+#   description: uplink-pistol-viper-desc
+#   productEntity: NFWeaponPistolViper
+#   discountCategory: rareDiscounts
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - UplinkWeaponry
 
-- type: listing
-  id: UplinkNFPistolCobra
-  name: uplink-pistol-cobra-name
-  description: uplink-pistol-cobra45-desc
-  productEntity: NFWeaponPistolCobra
-  discountCategory: rareDiscounts
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkWeaponry
+# - type: listing
+#   id: UplinkNFRevolverRitland
+#   name: uplink-revolver-ritland-name
+#   description: uplink-revolver-ritland-desc
+#   productEntity: NFWeaponRevolverRitland45
+#   discountCategory: rareDiscounts
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - UplinkWeaponry
 
-- type: listing
-  id: UplinkNFRifleBarlows
-  name: uplink-rifle-mosin-name
-  description: uplink-rifle-mosin-desc
-  productEntity: NFWeaponRifleBarlowsBolt
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkWeaponry
+# - type: listing
+#   id: UplinkNFPistolCobra
+#   name: uplink-pistol-cobra-name
+#   description: uplink-pistol-cobra45-desc
+#   productEntity: NFWeaponPistolCobra
+#   discountCategory: rareDiscounts
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - UplinkWeaponry
 
-# Ammo
-- type: listing
-  id: UplinkNFPistol9x19Magazine #Lua 35 -> 9x19
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
-  #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon } Lua ignored
-  productEntity: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+# - type: listing
+#   id: UplinkNFRifleBarlows
+#   name: uplink-rifle-mosin-name
+#   description: uplink-rifle-mosin-desc
+#   productEntity: NFWeaponRifleBarlowsBolt
+#   cost:
+#     Telecrystal: 1
+#   categories:
+#   - UplinkWeaponry
 
-- type: listing
-  id: UplinkNFMagazinePistolSubMachineGun
-  name: uplink-pistol-magazine-c20r-name
-  description: uplink-pistol-magazine-c20r-desc
-  #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon } Lua ignored
-  productEntity: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
+# Ammo (Lua fully ignored)
+# - type: listing
+#   id: UplinkNFPistol9x19Magazine #Lua 35 -> 9x19
+#   name: uplink-pistol-magazine-name
+#   description: uplink-pistol-magazine-desc
+#   #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon } Lua ignored
+#   productEntity: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+#   cost:
+#     Telecrystal: 1
+#   categories:
+#   - UplinkAmmo
 
-- type: listing
-  id: UplinkNFMagazineShotgunPellet
-  name: uplink-magazine-bulldog-pellet-name
-  description: uplink-magazine-bulldog-pellet-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
-  productEntity: NFMagazineShotgunDrum
-  cost:
-    Telecrystal: 2
-  categories:
-    - UplinkAmmo
+# - type: listing
+#   id: UplinkNFMagazinePistolSubMachineGun
+#   name: uplink-pistol-magazine-c20r-name
+#   description: uplink-pistol-magazine-c20r-desc
+#   #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon } Lua ignored
+#   productEntity: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - UplinkAmmo
 
-- type: listing
-  id: UplinkNFMagazineShotgunSlug
-  name: uplink-magazine-bulldog-slug-name
-  description: uplink-magazine-bulldog-slug-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
-  productEntity: NFMagazineShotgunDrumSlug
-  cost:
-    Telecrystal: 3
-  categories:
-    - UplinkAmmo
+# - type: listing
+#   id: UplinkNFMagazineShotgunPellet
+#   name: uplink-magazine-bulldog-pellet-name
+#   description: uplink-magazine-bulldog-pellet-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
+#   productEntity: NFMagazineShotgunDrum
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#     - UplinkAmmo
 
-- type: listing
-  id: UplinkNFMagazinePistolCaselessRifle
-  name: uplink-pistol-magazine-cobra-name
-  description: uplink-pistol-magazine-cobra-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
-  productEntity: Magazine45_ACPPistolFMJ #Lua 45 -> ACP
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+# - type: listing
+#   id: UplinkNFMagazineShotgunSlug
+#   name: uplink-magazine-bulldog-slug-name
+#   description: uplink-magazine-bulldog-slug-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+#   productEntity: NFMagazineShotgunDrumSlug
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#     - UplinkAmmo
 
-- type: listing
-  id: UplinkNFSpeedLoaderMagnum
-  name: uplink-speedloader-magnum-non-ap-name
-  description: uplink-speedloader-magnum-non-ap-desc # Frontier: uplink-speedloader-magnu-desc<uplink-speedloader-magnum-non-ap-desc
-  #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon } Lua ignore
-  productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
-  cost:
-    Telecrystal: 3
-  categories:
-  - UplinkAmmo
+# - type: listing
+#   id: UplinkNFMagazinePistolCaselessRifle
+#   name: uplink-pistol-magazine-cobra-name
+#   description: uplink-pistol-magazine-cobra-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
+#   productEntity: Magazine45_ACPPistolFMJ #Lua 45 -> ACP
+#   cost:
+#     Telecrystal: 1
+#   categories:
+#   - UplinkAmmo
 
-- type: listing
-  id: UplinkNFMosinAmmo
-  name: uplink-mosin-ammo-name
-  description: uplink-mosin-ammo-desc
-  #icon: { sprite: /Textures/_NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-30 } Lua ignore
-  productEntity: AmmoBox762x39mmFMJ #Lua 30 -> 762x39
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+# - type: listing
+#   id: UplinkNFSpeedLoaderMagnum
+#   name: uplink-speedloader-magnum-non-ap-name
+#   description: uplink-speedloader-magnum-non-ap-desc # Frontier: uplink-speedloader-magnu-desc<uplink-speedloader-magnum-non-ap-desc
+#   #icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon } Lua ignore
+#   productEntity: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
+#   cost:
+#     Telecrystal: 3
+#   categories:
+#   - UplinkAmmo
+
+# - type: listing
+#   id: UplinkNFMosinAmmo
+#   name: uplink-mosin-ammo-name
+#   description: uplink-mosin-ammo-desc
+#   #icon: { sprite: /Textures/_NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi, state: icon-30 } Lua ignore
+#   productEntity: AmmoBox762x39mmFMJ #Lua 30 -> 762x39
+#   cost:
+#     Telecrystal: 1
+#   categories:
+#   - UplinkAmmo
 
 - type: listing
   id: UplinkNFHristovAmmo
@@ -144,16 +145,17 @@
 #   categories:
 #   - UplinkWeaponry
 
-- type: listing
-  id: UplinkSecuritySpaceBladeSyndicate
-  name: uplink-spaceblade-syndicate-name
-  description: uplink-spaceblade-syndicate-desc
-  productEntity: SpaceBladeContra
-  icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: contraband }
-  cost:
-    Telecrystal: 1
-  categories:
-    - UplinkPointless
+# Lua ignored
+# - type: listing
+#   id: UplinkSecuritySpaceBladeSyndicate
+#   name: uplink-spaceblade-syndicate-name
+#   description: uplink-spaceblade-syndicate-desc
+#   productEntity: SpaceBladeContra
+#   icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: contraband }
+#   cost:
+#     Telecrystal: 1
+#   categories:
+#     - UplinkPointless
 
 - type: listing
   id: UplinkEmagPass
@@ -188,13 +190,3 @@
     Telecrystal: 6
   categories:
   - UplinkWearables
-
-- type: listing
-  id: UplinkSyndicateSectorBanner
-  name: uplink-syndicate-sector-banner-name
-  description: uplink-syndicate-sector-banner-desc
-  productEntity: BannerSectorSyndicate
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkDisruption

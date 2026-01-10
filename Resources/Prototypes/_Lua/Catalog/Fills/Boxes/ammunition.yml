@@ -245,3 +245,16 @@
     contents:
       - id: Magazine762x54mmRFMJ
         amount: 4
+
+#region 6.35x40mm
+
+- type: entity
+  id: LuaBoxMagazine635x40mmCaseless # Caseless
+  parent: BoxMagazine
+  name: box of 6.35x40mm FMJ magazines
+  description: A box full of 6.35x40mm FMJ magazines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Magazine635x40mmCaseless
+        amount: 4
