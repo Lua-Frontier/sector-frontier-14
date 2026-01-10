@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client.UserInterface.Systems.Alerts.Widgets;
 
@@ -47,6 +48,8 @@ public sealed partial class AlertsUI : UIWidget
         }
 
         _alertControls.Clear();
+        LeftAlertContainer.Children.Clear();
+        RightAlertContainer.Children.Clear();
     }
 
     public event EventHandler<ProtoId<AlertPrototype>>? AlertPressed;
@@ -65,7 +68,8 @@ public sealed partial class AlertsUI : UIWidget
             _alertControls.Remove(alertKeyToRemove, out var control);
             if (control == null)
                 return true;
-            AlertContainer.Children.Remove(control);
+            LeftAlertContainer.Children.Remove(control);
+            RightAlertContainer.Children.Remove(control);
         }
 
         return false;
@@ -97,42 +101,41 @@ public sealed partial class AlertsUI : UIWidget
                 existingAlertControl.SetSeverity(alertState.Severity);
                 if (alertState.ShowCooldown)
                     existingAlertControl.Cooldown = alertState.Cooldown;
+                else existingAlertControl.Cooldown = null;
             }
             else
             {
                 if (existingAlertControl != null)
-                    AlertContainer.Children.Remove(existingAlertControl);
+                {
+                    LeftAlertContainer.Children.Remove(existingAlertControl);
+                    RightAlertContainer.Children.Remove(existingAlertControl);
+                }
 
                 // this is a new alert + alert key or just a different alert with the same
                 // key, create the control and add it in the appropriate order
                 var newAlertControl = CreateAlertControl(newAlert, alertState);
 
-                //TODO: Can the presenter sort the states before giving it to us?
-                if (alertOrderPrototype != null)
-                {
-                    var added = false;
-                    foreach (var alertControl in AlertContainer.Children)
-                    {
-                        if (alertOrderPrototype.Compare(newAlert, ((AlertControl) alertControl).Alert) >= 0)
-                            continue;
-
-                        var idx = alertControl.GetPositionInParent();
-                        AlertContainer.Children.Add(newAlertControl);
-                        newAlertControl.SetPositionInParent(idx);
-                        added = true;
-                        break;
-                    }
-
-                    if (!added)
-                        AlertContainer.Children.Add(newAlertControl);
-                }
-                else
-                {
-                    AlertContainer.Children.Add(newAlertControl);
-                }
-
                 _alertControls[newAlert.AlertKey] = newAlertControl;
             }
+        }
+        RebuildLayout(alertOrderPrototype);
+    }
+
+    private void RebuildLayout(AlertOrderPrototype? alertOrderPrototype)
+    {
+        LeftAlertContainer.Children.Clear();
+        RightAlertContainer.Children.Clear();
+        var controls = _alertControls.Values.ToList();
+        controls.Sort((a, b) =>
+        {
+            if (alertOrderPrototype != null) return alertOrderPrototype.Compare(a.Alert, b.Alert);
+            return string.Compare(a.Alert.ID, b.Alert.ID, StringComparison.OrdinalIgnoreCase);
+        });
+        for (var i = 0; i < controls.Count; i++)
+        {
+            var control = controls[i];
+            if ((i & 1) == 0) RightAlertContainer.Children.Add(control);
+            else LeftAlertContainer.Children.Add(control);
         }
     }
 

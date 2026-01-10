@@ -12,6 +12,9 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 {
     public sealed class AlertControl : BaseButton
     {
+        public const float AlertIconScale = 1.0f;
+        public static readonly Vector2 AlertIconMaxSize = new(48, 48);
+
         [Dependency] private readonly IEntityManager _entityManager = default!;
 
         private readonly SpriteSystem _sprite;
@@ -62,8 +65,8 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             _severity = severity;
             _icon = new SpriteView
             {
-                Scale = new Vector2(2, 2),
-                MaxSize = new Vector2(64, 64),
+                Scale = new Vector2(AlertIconScale, AlertIconScale),
+                MaxSize = AlertIconMaxSize,
                 Stretch = SpriteView.StretchMode.None,
                 HorizontalAlignment = HAlignment.Left
             };
@@ -72,9 +75,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 
             Children.Add(_icon);
             _cooldownGraphic = new CooldownGraphic
-            {
-                MaxSize = new Vector2(64, 64)
-            };
+            { MaxSize = AlertIconMaxSize };
             Children.Add(_cooldownGraphic);
         }
 

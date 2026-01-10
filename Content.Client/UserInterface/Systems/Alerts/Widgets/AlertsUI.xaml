@@ -1,7 +1,16 @@
-﻿<widgets:AlertsUI xmlns="https://spacestation14.io"
+<widgets:AlertsUI xmlns="https://spacestation14.io"
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
-                  MinSize="64 64">
-    <PanelContainer HorizontalAlignment="Right" VerticalAlignment="Top">
-        <BoxContainer Name="AlertContainer" Access="Public" Orientation="Vertical" />
-    </PanelContainer>
+                  MinSize="0 0">
+    <GridContainer Columns="2" HorizontalAlignment="Center">
+        <BoxContainer Name="LeftAlertContainer"
+                      Access="Public"
+                      Orientation="Horizontal"
+                      HorizontalAlignment="Right"
+                      Margin="0 0 6 0" />
+        <BoxContainer Name="RightAlertContainer"
+                      Access="Public"
+                      Orientation="Horizontal"
+                      HorizontalAlignment="Left"
+                      Margin="6 0 0 0" />
+    </GridContainer>
 </widgets:AlertsUI>
