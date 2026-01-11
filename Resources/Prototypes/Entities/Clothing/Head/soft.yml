@@ -124,9 +124,9 @@
   description: A baseball cap in corporation colors.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Soft/corpsoft.rsi
+    sprite: _Deadspace/Clothing/Head/Soft/corpsoft.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Head/Soft/corpsoft.rsi
+    sprite: _Deadspace/Clothing/Head/Soft/corpsoft.rsi #Lua
 
 - type: entity
   parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCorpsoft]
@@ -313,9 +313,9 @@
   description: A blue baseball cap with a cross on the front.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Soft/paramedicsoft.rsi
+    sprite: _Deadspace/Clothing/Head/Soft/paramedicsoft.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Head/Soft/paramedicsoft.rsi
+    sprite: _Deadspace/Clothing/Head/Soft/paramedicsoft.rsi #Lua
   - type: Tag
     tags:
     - ClothMade

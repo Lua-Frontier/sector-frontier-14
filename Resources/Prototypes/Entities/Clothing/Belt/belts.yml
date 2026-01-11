@@ -267,9 +267,9 @@
   description: Can hold various medical equipment.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/medical.rsi
+    sprite: _Deadspace/Clothing/Belt/medical.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Belt/medical.rsi
+    sprite: _Deadspace/Clothing/Belt/medical.rsi #Lua
   # - type: Storage # Frontier: commented out whitelist
   #   whitelist:
   #     tags:
@@ -333,9 +333,9 @@
   description: Perfect for holding various equipment for medical emergencies.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/emt.rsi
+    sprite: _Deadspace/Clothing/Belt/emt.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Belt/emt.rsi
+    sprite: _Deadspace/Clothing/Belt/emt.rsi #Lua
 
 - type: entity
   parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase

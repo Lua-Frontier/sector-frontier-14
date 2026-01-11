@@ -138,9 +138,9 @@
   description: Thin sterile latex gloves. Basic PPE for any doctor.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/latex.rsi
+    sprite: _Deadspace/Clothing/Hands/Gloves/latex.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/latex.rsi
+    sprite: _Deadspace/Clothing/Hands/Gloves/latex.rsi #Lua
   - type: Fiber
     fiberMaterial: fibers-latex
   - type: FingerprintMask
@@ -152,9 +152,9 @@
   description: High-quality nitrile gloves. Expensive medical PPE.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/nitrile.rsi
+    sprite: _Deadspace/Clothing/Hands/Gloves/nitrile.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/nitrile.rsi
+    sprite: _Deadspace/Clothing/Hands/Gloves/nitrile.rsi #Lua
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
@@ -202,9 +202,9 @@
   description: Beep boop borp!
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/robohands.rsi
+    sprite: _Deadspace/Clothing/Hands/Gloves/robohands.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/robohands.rsi
+    sprite: _Deadspace/Clothing/Hands/Gloves/robohands.rsi #Lua
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-black

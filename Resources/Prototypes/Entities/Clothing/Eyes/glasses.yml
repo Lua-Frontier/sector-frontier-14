@@ -259,9 +259,9 @@
   description: Goggles that can scan the chemical composition of a solution.
   components:
     - type: Sprite
-      sprite: Clothing/Eyes/Glasses/science.rsi
+      sprite: _Deadspace/Clothing/Eyes/Glasses/science.rsi #Lua
     - type: Clothing
-      sprite: Clothing/Eyes/Glasses/science.rsi
+      sprite: _Deadspace/Clothing/Eyes/Glasses/science.rsi #Lua
     - type: SolutionScanner
     - type: IdentityBlocker
       coverage: EYES

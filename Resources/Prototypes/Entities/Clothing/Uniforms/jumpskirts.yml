@@ -82,9 +82,9 @@
   description: There's some odd stains on this jumpskirt. Hm.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/chemistry.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/chemistry.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/chemistry.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/chemistry.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -93,9 +93,9 @@
   description: It's made of a special fiber that gives special protection against biohazards. It has a virologist rank stripe on it.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/virology.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/virology.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/virology.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/virology.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -104,9 +104,9 @@
   description: It's made of a special fiber that gives special protection against biohazards. It has a geneticist rank stripe on it.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/genetics.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/genetics.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/genetics.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/genetics.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase # Frontier: remove BaseCommandContraband
@@ -115,9 +115,9 @@
   description: It's a jumpskirt worn by those with the experience to be Chief Medical Officer. It provides minor biological protection.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/cmo.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/cmo.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/cmo.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/cmo.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase # Frontier: remove BaseCommandContraband
@@ -126,9 +126,9 @@
   description: It's a turtleneck worn by those with the experience to be Chief Medical Officer. It provides minor biological protection.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/cmo_turtle.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/cmo_turtle.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/cmo_turtle.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/cmo_turtle.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -261,9 +261,9 @@
   description: It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/medical.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/medical.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/medical.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/medical.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -283,9 +283,9 @@
   description: It's got a plus on it, that's a good thing right?
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/paramedic.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/paramedic.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/paramedic.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/paramedic.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -367,9 +367,9 @@
   description: It's a turtleneck worn by those with the know-how to achieve the position of Research Director. Its fabric provides minor protection from biological contaminants.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/rnd.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/rnd.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/rnd.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/rnd.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -378,9 +378,9 @@
   description: It's made of a special fiber that increases perceived intelligence and decreases personal ethics. It has markings that denote the wearer as a scientist.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/scientist.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/scientist.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/scientist.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/scientist.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -389,9 +389,9 @@
   description: It's a slimming black with reinforced seams; great for industrial work.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/roboticist.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/roboticist.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/roboticist.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/roboticist.rsi #Lua
 
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingUniformSkirtBase] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -678,9 +678,9 @@
   description: A sign of skill and prestige within the science department.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/senior_researcher.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/senior_researcher.rsi #Lua
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/senior_researcher.rsi
+    sprite: _Deadspace/Clothing/Uniforms/Jumpskirt/senior_researcher.rsi #Lua
 
 - type: entity
   parent: ClothingUniformSkirtBase
