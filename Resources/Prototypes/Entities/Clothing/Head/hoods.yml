@@ -6,9 +6,9 @@
   description: A hood that protects the head and face from biological contaminants.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/general.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/general.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/general.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/general.rsi #Lua
   - type: BreathMask
   - type: IngestionBlocker
   - type: GroupExamine
@@ -37,9 +37,9 @@
   components:
   - type: IdentityBlocker
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/cmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/cmo.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/cmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/cmo.rsi #Lua
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8
 
@@ -65,9 +65,9 @@
   components:
   - type: IdentityBlocker
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/scientist.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/scientist.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/scientist.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/scientist.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -91,9 +91,9 @@
   components:
   - type: IdentityBlocker
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/virology.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/virology.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Bio/virology.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Bio/virology.rsi #Lua
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8
 
@@ -342,9 +342,9 @@
   name: chemist winter coat hood
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodchemist.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodchemist.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodchemist.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodchemist.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
@@ -353,9 +353,9 @@
   name: chief medical officer's winter coat hood
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodcmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodcmo.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodcmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodcmo.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
@@ -419,9 +419,9 @@
   name: medic coat hood
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodmed.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodmed.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodmed.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodmed.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase
@@ -452,9 +452,9 @@
   name: paramedic coat hood
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodpara.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodpara.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/Head/Hoods/Coat/hoodpara.rsi #Lua
+    sprite: _DeadSpace/Clothing/Head/Hoods/Coat/hoodpara.rsi #Lua
 
 - type: entity
   parent: ClothingHeadHatHoodWinterBase

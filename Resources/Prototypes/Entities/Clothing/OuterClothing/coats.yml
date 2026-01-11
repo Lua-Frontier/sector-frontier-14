@@ -148,9 +148,9 @@
   description: A suit that protects against minor chemical spills.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -168,9 +168,9 @@
   description: A suit that protects against minor chemical spills. Has an orange stripe on the shoulder.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_chem.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_chem.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_chem.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_chem.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -188,9 +188,9 @@
   description: A suit that protects against bacteria and viruses. Has an green stripe on the shoulder.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_viro.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_viro.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_viro.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_viro.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -208,9 +208,9 @@
   description: A suit that protects against minor chemical spills. Has an blue stripe on the shoulder.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_gene.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_gene.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_gene.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_gene.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -228,9 +228,9 @@
   description: Custom made blue lab coat for the Chief Medical Officer, offers improved protection against chemical spills and minor cuts.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_cmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_cmo.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_cmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_cmo.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -250,9 +250,9 @@
   description: A suit that protects against minor chemical spills. Has a purple stripe on the shoulder.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_sci.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_sci.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_sci.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_sci.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -270,9 +270,9 @@
   description: More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_robo.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_robo.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_robo.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_robo.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -290,9 +290,9 @@
   description: Woven with top of the line technology, this labcoat helps protect against radiation in similar way to the experimental hardsuit.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_rd.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_rd.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_rd.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_rd.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -372,9 +372,9 @@
   description: A paramedic's trusty windbreaker, for all the space wind.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi #Lua
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, add ContrabandClothing as parent
@@ -424,9 +424,9 @@
   description: A suit that protects against minor chemical spills. Has a purple collar and wrist trims.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_senior_researcher.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -444,9 +444,9 @@
   description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Coats/labcoat_senior_physician.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:

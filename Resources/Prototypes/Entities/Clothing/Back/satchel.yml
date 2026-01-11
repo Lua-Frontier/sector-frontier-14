@@ -67,7 +67,7 @@
   description: A sterile satchel used in medical departments.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Back/Satchels/medical.rsi #Lua
+    sprite: _DeadSpace/Clothing/Back/Satchels/medical.rsi #Lua
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -76,7 +76,7 @@
   description: A sterile satchel with chemist colours.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Back/Satchels/chemistry.rsi #Lua
+    sprite: _DeadSpace/Clothing/Back/Satchels/chemistry.rsi #Lua
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -85,7 +85,7 @@
   description: A satchel made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Back/Satchels/virology.rsi #Lua
+    sprite: _DeadSpace/Clothing/Back/Satchels/virology.rsi #Lua
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -94,7 +94,7 @@
   description: A sterile satchel with geneticist colours.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Back/Satchels/genetics.rsi #Lua
+    sprite: _DeadSpace/Clothing/Back/Satchels/genetics.rsi #Lua
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -103,7 +103,7 @@
   description: Useful for holding research materials.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/Back/Satchels/science.rsi #Lua
+    sprite: _DeadSpace/Clothing/Back/Satchels/science.rsi #Lua
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC1Contraband

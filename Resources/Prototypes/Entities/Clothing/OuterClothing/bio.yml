@@ -6,9 +6,9 @@
   description: A suit that protects against biological contamination.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/general.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/general.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/general.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/general.rsi #Lua
   - type: Armor
     modifiers:
       coefficients:
@@ -32,9 +32,9 @@
   description: An advanced suit that protects against biological contamination, in CMO colors.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/cmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/cmo.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/cmo.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/cmo.rsi #Lua
 
 - type: entity
   parent: ClothingOuterBioGeneral
@@ -60,9 +60,9 @@
   description: A suit that protects against biological contamination, in Scientist colors.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/scientist.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/scientist.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/scientist.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/scientist.rsi #Lua
 
 - type: entity
   parent: [ClothingOuterBioGeneral, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
@@ -92,8 +92,8 @@
   description: A suit that strongly protects against biological contamination.
   components:
   - type: Sprite
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/virology.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/virology.rsi #Lua
   - type: Clothing
-    sprite: _Deadspace/Clothing/OuterClothing/Bio/virology.rsi #Lua
+    sprite: _DeadSpace/Clothing/OuterClothing/Bio/virology.rsi #Lua
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.25
