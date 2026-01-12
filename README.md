@@ -1,4 +1,4 @@
-<p align="center"> <img alt="Sector Frontier 14" height="300" src="https://github.com/Lua-Frontier/sector-frontier-14/blob/master/Resources/Textures/_Lua/Logo/logogit.png?raw=true" /></p>
+<p align="center"> <img width="4736" height="3456" alt="image" src="https://github.com/user-attachments/assets/f8cf5242-83d1-4c78-a54c-20cbd6759bf8" /> </p>
 
 ![Alt](https://repobeats.axiom.co/api/embed/c952b4552bf0f50fd5cc7f247c6636779fa87f4a.svg "Repobeats analytics image")
 
