@@ -40,7 +40,43 @@
             "cwd": "${workspaceFolder}/Content.YAMLLinter",
             "console": "internalConsole",
             "stopAtEntry": false
-        }
+        },
+        //DH-change start
+        {
+            "name": "ServerCursor",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Content.Server/Content.Server.dll",
+            "args": [],
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "cmd",
+                "pipeArgs": ["/c"],
+                "debuggerPath": "C:/netcoredbg-win64/netcoredbg/netcoredbg.exe",
+                "debuggerArgs": ["--interpreter=vscode"],
+                "quoteArgs": false
+            },
+        },
+        {
+            "name": "ClientCursor",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/bin/Content.Client/Content.Client.dll",
+            "args": [],
+            "console": "integratedTerminal",
+            "stopAtEntry": false,
+            "pipeTransport": {
+                "pipeCwd": "${workspaceFolder}",
+                "pipeProgram": "cmd",
+                "pipeArgs": ["/c"],
+                "debuggerPath": "C:/netcoredbg-win64/netcoredbg/netcoredbg.exe",
+                "debuggerArgs": ["--interpreter=vscode"],
+                "quoteArgs": false
+            },
+        },
+        //DH-change end
     ],
     "compounds": [
         {
@@ -66,7 +102,16 @@
                 "Server",
                 "Client"
             ]
+        },
+        //DH-change start
+        {
+            "name": "Server/Client - Cursor",
+            "configurations": [
+                "ServerCursor",
+                "ClientCursor"
+            ],
         }
+        //DH-change end
         // Frontier end
     ]
 }
