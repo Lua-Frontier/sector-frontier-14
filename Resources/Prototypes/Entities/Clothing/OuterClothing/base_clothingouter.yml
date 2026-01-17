@@ -25,6 +25,7 @@
     equipSound:
       collection: GenericEquip
   # Goobstation edit end
+  - type: HideInnerClothing # сокрытие шмоток под скафом
   - type: Sprite
     state: icon
   - type: StaticPrice # Frontier: setting base price to make material arbitrage happier
@@ -44,6 +45,7 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: HideInnerClothing # сокрытие шмоток под скафом
 
 - type: entity
   abstract: true
@@ -204,6 +206,7 @@
         whitelist: # lua - imperial hardsuit injection
           tags: # lua - imperial hardsuit injection
           - FitsHardsuit # Lua - imperial hardsuit injection
+  - type: HideInnerClothing # сокрытие шмоток под скафом
 
 - type: entity
   abstract: true
@@ -239,6 +242,7 @@
 #    materialComposition: # Frontier
 #      Durathread: 100 # Frontier
 #      Cloth: 50 # Frontier
+  - type: HideInnerClothing # сокрытие шмоток под скафом
 
 - type: entity
   parent: ClothingOuterBase
