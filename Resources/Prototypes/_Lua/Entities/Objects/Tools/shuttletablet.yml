@@ -1,0 +1,88 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: shuttle control tablet
+  parent: BaseHandheldComputer
+  id: ShuttleControlTablet
+  description: A portable tablet for shuttle control. Has a slot for ID card. To function at least one powered console must be present at the shuttle.
+  components:
+  - type: Item
+    sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
+    state: default
+  - type: Sprite
+    sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
+    state: default
+  - type: ShuttleTablet
+  - type: ShuttleConsoleLock
+    locked: false
+  - type: ActivatableUI
+    key: enum.ShuttleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
+  - type: RadarConsole
+    maxRange: 512
+    maxIffRange: 512
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 2
+    visualMultiplier: 16
+    infraredOutlinePortion: 1.0
+  - type: Appearance
+  - type: PowerCellDraw
+    drawRate: 1.5
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  id: ShuttleControlTabletMicroreactor
+  parent: ShuttleControlTablet
+  suffix: Microreactor
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+- type: entity
+  id: ShuttleControlTabletEmpty
+  parent: ShuttleControlTablet
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: ShuttleControlTablet
+  id: ShuttleControlTabletSalvage
+  suffix: Salvage
+  components:
+  - type: Item
+    state: salvage
+  - type: Sprite
+    state: salvage
+
+- type: entity
+  parent: ShuttleControlTablet
+  id: ShuttleControlTabletSecurity
+  suffix: Security
+  components:
+  - type: Item
+    state: security
+  - type: Sprite
+    state: security
+
+- type: entity
+  parent: ShuttleControlTablet
+  id: ShuttleControlTabletSyndicate
+  suffix: Syndicate
+  components:
+  - type: Item
+    state: syndicate
+  - type: Sprite
+    state: syndicate

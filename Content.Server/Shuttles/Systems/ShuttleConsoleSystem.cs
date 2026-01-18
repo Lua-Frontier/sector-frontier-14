@@ -4,6 +4,10 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Server.PowerCell; // Lua
+using Content.Server.Power.Components; // Lua
+using Content.Shared.Containers.ItemSlots; // Lua
+using Content.Shared._Lua.Tools.Components; // Lua
 using Content.Shared._Lua.Starmap;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shuttles.Events; // Frontier
@@ -55,6 +59,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
+    [Dependency] private readonly PowerCellSystem _cell = default!; // Lua
+    [Dependency] private readonly ItemSlotsSystem _slots = default!; // Lua
+
+    private const string StructureTag = "Structure"; // Lua
 
     private ISawmill _sawmill = default!;
 
@@ -136,6 +144,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private void OnConsoleGetVerbs(EntityUid uid, ShuttleConsoleComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
+        // Lua start
+        if (HasComp<ShuttleTabletComponent>(uid))
+        {
+            return;
+        }
+        // Lua end
+
         AddPanicButtonVerb(uid, comp, args);
         AddPreventRemoverVerb(uid, comp, args);
     }
@@ -255,11 +270,43 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!_tags.HasTag(user, CanPilotTag) ||
             !TryComp<ShuttleConsoleComponent>(uid, out var component) ||
             !this.IsPowered(uid, EntityManager) ||
-            !Transform(uid).Anchored ||
+            //!Transform(uid).Anchored || // Lua
             !_blocker.CanInteract(user, uid))
         {
             return false;
         }
+
+        // Lua start
+        if (_tags.HasTag(uid, StructureTag)
+            && !Transform(uid).Anchored)
+        {
+            return false;
+        }
+
+        if (!_cell.TryUseActivatableCharge(uid))
+        {
+            return false;
+        }
+
+        if (TryComp<ShuttleTabletComponent>(uid, out var shuttleTabletComp))
+        {
+            var card = _slots.GetItemOrNull(uid, "IDContainer");
+
+            if (card == null)
+            {
+                _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-id"), uid);
+                return false;
+            }
+
+            if (!TryComp<ShuttleDeedComponent>(card, out var deedComp)
+                || deedComp == null)
+            {
+                _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-deed"), uid);
+                return false;
+            }
+        }
+        // Lua end
+
 
         if (!_access.IsAllowed(user, uid)) // Frontier: check access
             return false; // Frontier
@@ -436,6 +483,33 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         EntityUid? entity = consoleUid;
 
+        // Lua start
+        if (_cell.HasActivatableCharge(consoleUid)
+            && !_cell.HasDrawCharge(consoleUid))
+        {
+            _ui.CloseUi(consoleUid, ShuttleConsoleUiKey.Key);
+            return;
+        }
+
+        if (TryComp<ShuttleTabletComponent>(consoleUid, out var shuttleTabletComp))
+        {
+            var card = _slots.GetItemOrNull(consoleUid, "IDContainer");
+
+            if (card == null)
+            {
+                _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-id"), consoleUid);
+                return;
+            }
+
+            if (!TryComp<ShuttleDeedComponent>(card, out var deedComp)
+                || deedComp == null)
+            {
+                _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-deed"), consoleUid);
+                return;
+            }
+        }
+        // Lua end
+
         var getShuttleEv = new ConsoleShuttleEvent
         {
             Console = entity,
@@ -470,7 +544,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             var currentMap = consoleXform?.MapID ?? MapId.Nullspace;
             var starMapState = GetStarMapState(currentMap, shuttleGridUid, consoleUid);
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, starMapState));
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, starMapState, GetNetEntity(shuttleGridUid))); // Lua
         }
     }
 
@@ -527,6 +601,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         ActionBlockerSystem.UpdateCanMove(entity);
         pilotComponent.Position = Comp<TransformComponent>(entity).Coordinates;
         Dirty(entity, pilotComponent);
+        DockingInterfaceState? dockState = null; // Lua
+        UpdateState(uid, ref dockState); // Lua
     }
 
     public void RemovePilot(EntityUid pilotUid, PilotComponent pilotComponent)
@@ -584,10 +660,39 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             portNames = consoleComp.PortNames;
         }
 
+        // Lua start
+        var coordinates = entity.Comp2.Coordinates;
+        var gridUid = entity.Comp2.GridUid;
+        var actualGridUid = _transform.GetGrid(coordinates);
+
+        // If console's actual grid is different from one in component
+        // Like console on Frontier, shuttle in deep space.
+        if (actualGridUid != gridUid)
+        {
+            var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent, ApcPowerReceiverComponent>();
+            var consoleFound = false;
+
+            while (consoleQuery.MoveNext(out _, out var consoleTransform, out var receiverComp))
+            {
+                if (consoleTransform.GridUid == gridUid && receiverComp.Powered)
+                {
+                    coordinates = consoleTransform.Coordinates;
+                    consoleFound = true;
+                    break;
+                }
+            }
+
+            if (!consoleFound)
+            {
+                _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-remote-console"), entity);
+            }
+        }
+        // Lua end
+
         return GetNavState(
             entity,
             docks,
-            entity.Comp2.Coordinates,
+            coordinates, // Lua
             entity.Comp2.LocalRotation,
             portNames);
     }

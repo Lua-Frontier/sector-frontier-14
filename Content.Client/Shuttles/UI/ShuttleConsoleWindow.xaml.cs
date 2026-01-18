@@ -182,17 +182,18 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
 
     public void UpdateState(EntityUid owner, ShuttleBoundUserInterfaceState cState)
     {
-        var coordinates = _entManager.GetCoordinates(cState.NavState.Coordinates);
-        NavContainer.SetShuttle(coordinates?.EntityId);
+        //var coordinates = _entManager.GetCoordinates(cState.NavState.Coordinates); // Lua
+        var shuttle = _entManager.GetEntity(cState.Shuttle); // Lua
+        NavContainer.SetShuttle(shuttle); // Lua
         NavContainer.SetConsole(owner);
-        MapContainer.SetShuttle(coordinates?.EntityId);
+        MapContainer.SetShuttle(shuttle); // Lua
         MapContainer.SetConsole(owner);
-        StarMapContainer.SetShuttle(coordinates?.EntityId);
+        StarMapContainer.SetShuttle(shuttle); // Lua
         StarMapContainer.SetConsole(owner);
 
         NavContainer.UpdateState(cState.NavState);
         MapContainer.UpdateState(cState.MapState);
         StarMapContainer.UpdateState(cState.StarMapState);
-        DockContainer.UpdateState(coordinates?.EntityId, cState.DockState);
+        DockContainer.UpdateState(shuttle, cState.DockState);
     }
 }
