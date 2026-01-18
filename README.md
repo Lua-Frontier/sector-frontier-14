@@ -1,4 +1,4 @@
-<p align="center"> <img alt="Sector Frontier 14" height="300" src="https://github.com/HacksLua/sector-frontier-14/blob/master/Resources/Textures/_Lua/Logo/logogit.png?raw=true" /></p>
+<p align="center"> <img alt="Sector Frontier 14" height="300" src="https://github.com/Lua-Frontier/sector-frontier-14/blob/master/Resources/Textures/_Lua/Logo/logogit.png?raw=true" /></p>
 
 ![Alt](https://repobeats.axiom.co/api/embed/c952b4552bf0f50fd5cc7f247c6636779fa87f4a.svg "Repobeats analytics image")
 
@@ -8,19 +8,19 @@ Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/
 
 ## Ссылки
 
-[Discord](https://discord.gg/luaworld) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/)
+[Discord](https://discord.gg/3Uak8dpDpJ) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/)
 
 ## Документация / Вики
 
 На [вики](https://frontierstation.wiki.gg/) есть документация по контенту Frontier.
 
-Так же есть [вики](https://wiki.luaworld.ru) LuaWorld по Sector Frontier.
+Так же есть [вики](https://wiki.deadspace14.net/%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B8%D1%80:%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0) Sector Frontier.
 
 ## Участие в разработке
 
 Мы рады принимать вклад от всех желающих. Заходите в Discord, если хотите помочь. У нас есть [список идей](https://discord.com/channels/1030160796401016883/1278737130411261982), которые можно реализовать, и любой может взять их в работу. Не стесняйтесь просить о помощи!
 
-Если вы вносите изменения, пожалуйста, ознакомьтесь с разделом маркеров в [MARKERS.md](https://github.com/HacksLua/sector-frontier-14/blob/master/MARKERS.md)
+Если вы вносите изменения, пожалуйста, ознакомьтесь с разделом маркеров в [MARKERS.md](https://github.com/Lua-Frontier/sector-frontier-14/blob/master/MARKERS.md)
 Любые изменения в файлах, принадлежащих нашему основному источнику, должны быть должным образом помечены в соответствии с указанными там правилами.
 
 ## Сборка
@@ -41,6 +41,12 @@ Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/
 Большинство ассетов лицензированы по [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), если не указано иное. Лицензия и авторские права указаны в метаданных файлов. [Пример](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
 
 Обратите внимание, что некоторые ассеты лицензированы по некоммерческой лицензии [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) или аналогичным некоммерческим лицензиям и должны быть удалены, если вы планируете использовать этот проект в коммерческих целях.
+## Ребрендинг
+
+Проект **Sector Frontier 14** является результатом ребрендинга и дальнейшего развития проекта,
+ранее известного как **LuaWorld**.
+С **01.01.2026** название **LuaWorld** более не используется но всё еще действительно.
+Все права, авторство и дальнейшая разработка продолжаются под именем **LuaCorp** без смены правообладателя.
 
 ## Атрибуция
 
@@ -63,11 +69,11 @@ Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/
 | `_NC14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
 | `Nyanotrasen` | Nyanotrasen | https://github.com/Nyanotrasen/Nyanotrasen | MIT |
 
-### Добавления LuaWorld
+### Добавления LuaCorp
 
 | Подкаталог | Название форка | Репозиторий форка | Лицензия |
 |--------------|-----------|-----------------|---------|
-| `_Lua` | LuaWorld | https://github.com/HacksLua/sector-frontier-14 | AGPL 3.0 |
+| `_Lua` | LuaCorp | https://github.com/Lua-Frontier/sector-frontier-14 | AGPL 3.0 |
 | `_ADT` | AdventureTimeSS14 | https://github.com/AdventureTimeSS14/space_station_ADT | AGPL 3.0 |
 | `_Nuclear14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
 | `_RMC14` | RMC-14 | https://github.com/RMC-14/RMC-14 | MIT |

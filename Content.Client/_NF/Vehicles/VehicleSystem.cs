@@ -1,8 +1,11 @@
-using System.Numerics;
 using Content.Shared._Goobstation.Vehicles;
+using Content.Shared._NF.Vehicle.Components;
+using Content.Shared.Buckle.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Graphics.RSI;
+using System.Numerics;
+using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client._NF.Vehicles;
 
@@ -12,11 +15,13 @@ public sealed class VehicleSystem : SharedVehicleSystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VehicleComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<VehicleRiderComponent, ComponentStartup>(OnRiderStartup);
     }
 
     private void OnAppearanceChange(EntityUid uid, VehicleComponent comp, ref AppearanceChangeEvent args)
@@ -77,7 +82,33 @@ public sealed class VehicleSystem : SharedVehicleSystem
             if (sprite.Offset != offset)
                 sprite.Offset = offset;
         }
+        var riderQuery = EntityQueryEnumerator<VehicleRiderComponent, SpriteComponent, BuckleComponent>();
+        while (riderQuery.MoveNext(out var riderUid, out var riderComp, out var riderSprite, out var buckle))
+        {
+            if (buckle.BuckledTo is not { } vehicleUid) continue;
+            if (!TryComp<VehicleComponent>(vehicleUid, out var vehicle)) continue;
+            if (vehicle.Passenger != riderUid) continue;
+            var vehicleAngle = _transform.GetWorldRotation(vehicleUid) + eye.Rotation;
+            if (vehicleAngle < 0) vehicleAngle += 2 * Math.PI;
+            RsiDirection vehicleDir = SpriteComponent.Layer.GetDirection(RsiDirectionType.Dir4, vehicleAngle);
+            if (vehicleDir == RsiDirection.North)
+            {
+                if (riderSprite.DrawDepth > (int)DrawDepth.Mobs)
+                {
+                    riderComp.OriginalDrawDepth ??= riderSprite.DrawDepth;
+                    _sprite.SetDrawDepth((riderUid, riderSprite), (int)DrawDepth.Mobs);
+                }
+            }
+            else if (riderComp.OriginalDrawDepth.HasValue)
+            {
+                _sprite.SetDrawDepth((riderUid, riderSprite), riderComp.OriginalDrawDepth.Value);
+                riderComp.OriginalDrawDepth = null;
+            }
+        }
     }
+
+    private void OnRiderStartup(Entity<VehicleRiderComponent> ent, ref ComponentStartup args)
+    { }
 
     // NOOPs
     protected override void HandleEmag(Entity<VehicleComponent> ent)

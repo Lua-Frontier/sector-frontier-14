@@ -293,6 +293,43 @@ public sealed partial class ShuttleSystem
         return true;
     }
 
+    private bool CanFTLAsDockedCargo(EntityUid shuttleUid, [NotNullWhen(false)] out string? reason) // Lua
+    {
+        if (HasComp<NoShuttleFTLComponent>(shuttleUid))
+        {
+            reason = Loc.GetString("shuttle-console-noftl");
+            return false;
+        }
+        if (HasComp<FTLComponent>(shuttleUid))
+        {
+            reason = Loc.GetString("shuttle-console-in-ftl");
+            return false;
+        }
+        if (HasComp<PreventPilotComponent>(shuttleUid) || HasComp<PreventFTLComponent>(shuttleUid))
+        {
+            reason = Loc.GetString("shuttle-console-prevent");
+            return false;
+        }
+        if (_xformQuery.TryGetComponent(shuttleUid, out var xform))
+        {
+            var worldPos = _transform.GetWorldPosition(xform);
+            if (worldPos.Length() > 30000f)
+            {
+                reason = Loc.GetString("shuttle-console-noftl");
+                return false;
+            }
+        }
+        var ev = new ConsoleFTLAttemptEvent(shuttleUid, false, string.Empty);
+        RaiseLocalEvent(shuttleUid, ref ev, true);
+        if (ev.Cancelled)
+        {
+            reason = ev.Reason;
+            return false;
+        }
+        reason = null;
+        return true;
+    }
+
     /// <summary>
     /// Moves a shuttle from its current position to the target one without any checks. Goes through the hyperspace map while the timer is running.
     /// </summary>
@@ -387,6 +424,30 @@ public sealed partial class ShuttleSystem
         }
     }
 
+    // FTL Mono Carrier start
+    /// <summary>
+    /// Recursively gets all docked shuttles to the target shuttle, ignoring <see cref="FTLLockComponent"/>.
+    /// </summary>
+    public void GetAllDockedShuttlesIgnoringFTLLock(EntityUid shuttleUid, HashSet<EntityUid> dockedShuttles)
+    {
+        if (!dockedShuttles.Add(shuttleUid))
+            return; // Already processed
+
+        var docks = _dockSystem.GetDocks(shuttleUid);
+        foreach (var dock in docks)
+        {
+            if (!TryComp<DockingComponent>(dock, out var dockComp) || dockComp.Docked == false)
+                continue;
+            if (dockComp.DockedWith == null)
+                continue;
+            var dockedGridUid = _transform.GetParentUid(dockComp.DockedWith.Value);
+            if (dockedGridUid == EntityUid.Invalid || !HasComp<ShuttleComponent>(dockedGridUid))
+                continue;
+            GetAllDockedShuttlesIgnoringFTLLock(dockedGridUid, dockedShuttles);
+        }
+    }
+    // FTL Mono Carrier end
+
     private bool TrySetupFTL(EntityUid uid, ShuttleComponent shuttle, [NotNullWhen(true)] out FTLComponent? component)
     {
         component = null;
@@ -406,7 +467,59 @@ public sealed partial class ShuttleSystem
         _thruster.DisableLinearThrusters(shuttle);
         _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.North);
         _thruster.SetAngularThrust(shuttle, false);
-        _dockSystem.UndockDocks(uid);
+
+        // FTL Mono Carrier start
+        // Determine docked shuttles that should travel together (respecting FTLLock).
+        var dockedShuttles = new HashSet<EntityUid>();
+        GetAllDockedShuttles(uid, dockedShuttles);
+        // Force undock emergency and arrivals shuttles.
+        if (HasComp<EmergencyShuttleComponent>(uid) || HasComp<ArrivalsShuttleComponent>(uid))
+        {
+            _dockSystem.UndockDocks(uid);
+        }
+        else
+        {
+            foreach (var dockedUid in dockedShuttles)
+            {
+                if (dockedUid == uid)
+                    continue;
+
+                if (!CanFTLAsDockedCargo(dockedUid, out _)) // Lua
+                    return false;
+            }
+            foreach (var dock in _dockSystem.GetDocks(uid))
+            {
+                if (!TryComp<DockingComponent>(dock, out var dockComp) || !dockComp.Docked || dockComp.DockedWith == null)
+                    continue;
+
+                var connectedEntityUid = _transform.GetParentUid(dockComp.DockedWith.Value);
+                if (connectedEntityUid == EntityUid.Invalid ||
+                    !HasComp<ShuttleComponent>(connectedEntityUid) ||
+                    !dockedShuttles.Contains(connectedEntityUid))
+                {
+                    _dockSystem.Undock((dock, dockComp));
+                }
+            }
+            foreach (var dockedUid in dockedShuttles)
+            {
+                if (dockedUid == uid)
+                    continue;
+
+                foreach (var dock in _dockSystem.GetDocks(dockedUid))
+                {
+                    if (!TryComp<DockingComponent>(dock, out var dockComp) || !dockComp.Docked || dockComp.DockedWith == null)
+                        continue;
+
+                    var connectedEntityUid = _transform.GetParentUid(dockComp.DockedWith.Value);
+                    if (connectedEntityUid == EntityUid.Invalid ||
+                        !dockedShuttles.Contains(connectedEntityUid))
+                    {
+                        _dockSystem.Undock((dock, dockComp));
+                    }
+                }
+            }
+        }
+        // FTL Mono Carrier end
 
         component = AddComp<FTLComponent>(uid);
         component.State = FTLState.Starting;
@@ -503,6 +616,29 @@ public sealed partial class ShuttleSystem
         var body = _physicsQuery.GetComponent(entity);
         var shuttleCenter = grid.LocalAABB.Center;
 
+        // FTL Mono Carrier start
+        // Move docked shuttles into hyperspace while keeping their relative transforms to the main shuttle.
+        var dockedShuttles = new HashSet<EntityUid>();
+        GetAllDockedShuttles(uid, dockedShuttles);
+
+        var relativeTransforms = new Dictionary<EntityUid, (Vector2 Position, Angle Rotation)>();
+        var mainPos = _transform.GetWorldPosition(uid);
+        var mainRot = _transform.GetWorldRotation(uid);
+        foreach (var dockedUid in dockedShuttles)
+        {
+            if (dockedUid == uid)
+                continue;
+
+            var dockedPos = _transform.GetWorldPosition(dockedUid);
+            var dockedRot = _transform.GetWorldRotation(dockedUid);
+
+            var relativePos = dockedPos - mainPos;
+            relativePos = (-mainRot).RotateVec(relativePos);
+            var relativeRot = dockedRot - mainRot;
+            relativeTransforms[dockedUid] = (relativePos, relativeRot);
+        }
+        // FTL Mono Carrier end
+
         // Leave audio at the old spot
         // Just so we don't clip
         if (fromMapUid != null && TryComp(comp.StartupStream, out AudioComponent? startupAudio))
@@ -523,6 +659,7 @@ public sealed partial class ShuttleSystem
         var oldMapUid = xform.MapUid;
         var oldGridMatrix = _transform.GetWorldMatrix(xform);
         _transform.SetCoordinates(entity.Owner, ftlStart);
+        _transform.SetWorldRotation(entity.Owner, Angle.Zero); // FTL Mono Carrier
         LeaveNoFTLBehind((entity.Owner, xform), oldGridMatrix, oldMapUid);
 
         // Reset rotation so they always face the same direction.
@@ -534,6 +671,49 @@ public sealed partial class ShuttleSystem
         if (_index > MaxCoord)
             _index -= CoordRollover;
         // End Frontier
+
+        // FTL Mono Carrier start
+        // Apply the same relative transforms for all docked shuttles in hyperspace.
+        var mainNewPos = _transform.GetWorldPosition(uid);
+        var mainNewRot = _transform.GetWorldRotation(uid);
+
+        foreach (var dockedUid in dockedShuttles)
+        {
+            if (dockedUid == uid)
+                continue;
+
+            var dockedXform = _xformQuery.GetComponent(dockedUid);
+            var dockedOldMapUid = dockedXform.MapUid;
+            var dockedOldGridMatrix = _transform.GetWorldMatrix(dockedXform);
+            var (relativePos, relativeRot) = relativeTransforms[dockedUid];
+
+            var rotatedRelativePos = mainNewRot.RotateVec(relativePos);
+            var newPos = mainNewPos + rotatedRelativePos;
+            var newRot = mainNewRot + relativeRot;
+
+            _transform.SetParent(dockedUid, dockedXform, ftlMap);
+            _transform.SetWorldRotationNoLerp(dockedUid, newRot);
+            _transform.SetWorldPosition(dockedUid, newPos);
+            LeaveNoFTLBehind((dockedUid, dockedXform), dockedOldGridMatrix, dockedOldMapUid);
+
+            // Mark as linked so only the main shuttle drives FTL state machine.
+            var dockedComp = EnsureComp<FTLComponent>(dockedUid);
+            dockedComp.LinkedShuttle = uid;
+            dockedComp.State = FTLState.Travelling;
+            dockedComp.StateTime = comp.StateTime;
+            dockedComp.TargetAngle = comp.TargetAngle + relativeRot;
+
+            // Keep docked shuttles from drifting apart in hyperspace: match physics state with the carrier. // FTL Mono Carrier
+            if (_physicsQuery.TryGetComponent(dockedUid, out var dockedBody))
+            {
+                Enable(dockedUid, component: dockedBody);
+                _physics.SetLinearVelocity(dockedUid, new Vector2(0f, 20f), body: dockedBody);
+                _physics.SetAngularVelocity(dockedUid, 0f, body: dockedBody);
+            }
+
+            _console.RefreshShuttleConsoles(dockedUid);
+        }
+        // FTL Mono Carrier end
 
         Enable(uid, component: body);
         _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);
@@ -556,6 +736,12 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private void UpdateFTLTravelling(Entity<FTLComponent, ShuttleComponent> entity)
     {
+        // FTL Mono Carrier start
+        // Linked shuttles are moved/handled by the main shuttle.
+        if (entity.Comp1.LinkedShuttle.HasValue)
+            return;
+        // FTL Mono Carrier end
+
         var shuttle = entity.Comp2;
         var comp = entity.Comp1;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, DefaultArrivalTime);
@@ -587,11 +773,60 @@ public sealed partial class ShuttleSystem
         var xform = _xformQuery.GetComponent(uid);
         var body = _physicsQuery.GetComponent(uid);
         var comp = entity.Comp1;
+
+        // FTL Mono Carrier start
+        // Linked shuttles are handled by their main shuttle.
+        if (comp.LinkedShuttle.HasValue)
+            return;
+        // FTL Mono Carrier end
+
         DoTheDinosaur(xform);
         _dockSystem.SetDockBolts(entity, false);
 
         _physics.SetLinearVelocity(uid, Vector2.Zero, body: body);
         _physics.SetAngularVelocity(uid, 0f, body: body);
+
+        // FTL Mono Carrier start
+        // Capture relative transforms + docking connections for all docked shuttles before moving the main shuttle.
+        var dockedShuttles = new HashSet<EntityUid>();
+        GetAllDockedShuttles(uid, dockedShuttles);
+
+        var relativeTransforms = new Dictionary<EntityUid, (Vector2 Position, Angle Rotation, List<(EntityUid DockA, EntityUid DockB)> Docks)>();
+        var preMoveMainPos = _transform.GetWorldPosition(uid);
+        var preMoveMainRot = _transform.GetWorldRotation(uid);
+
+        foreach (var dockedUid in dockedShuttles)
+        {
+            if (dockedUid == uid)
+                continue;
+
+            var dockedPos = _transform.GetWorldPosition(dockedUid);
+            var dockedRot = _transform.GetWorldRotation(dockedUid);
+
+            var relativePos = dockedPos - preMoveMainPos;
+            relativePos = (-preMoveMainRot).RotateVec(relativePos);
+            var relativeRot = dockedRot - preMoveMainRot;
+
+            // Record docking connections from this shuttle and undock them so we can safely reposition.
+            var dockConnections = new List<(EntityUid DockA, EntityUid DockB)>();
+            foreach (var dock in _dockSystem.GetDocks(dockedUid))
+            {
+                if (!TryComp<DockingComponent>(dock, out var dockComp) || !dockComp.Docked || dockComp.DockedWith == null)
+                    continue;
+
+                dockConnections.Add((dock, dockComp.DockedWith.Value));
+                _dockSystem.Undock((dock, dockComp));
+            }
+
+            relativeTransforms[dockedUid] = (relativePos, relativeRot, dockConnections);
+
+            if (_physicsQuery.TryGetComponent(dockedUid, out var dockedBody))
+            {
+                _physics.SetLinearVelocity(dockedUid, Vector2.Zero, body: dockedBody);
+                _physics.SetAngularVelocity(dockedUid, 0f, body: dockedBody);
+            }
+        }
+        // FTL Mono Carrier end
 
         var target = entity.Comp1.TargetCoordinates;
 
@@ -639,6 +874,62 @@ public sealed partial class ShuttleSystem
             _transform.SetCoordinates(uid, xform, target, rotation: entity.Comp1.TargetAngle);
         }
 
+        // FTL Mono Carrier start
+        // Move all docked shuttles to maintain relative transforms, then re-establish their docking connections.
+        var postMoveMainPos = _transform.GetWorldPosition(uid);
+        var postMoveMainRot = _transform.GetWorldRotation(uid);
+
+        foreach (var dockedUid in dockedShuttles)
+        {
+            if (dockedUid == uid)
+                continue;
+
+            var dockedXform = _xformQuery.GetComponent(dockedUid);
+            var (relativePos, relativeRot, dockConnections) = relativeTransforms[dockedUid];
+
+            var newPos = postMoveMainPos + postMoveMainRot.RotateVec(relativePos);
+            var newRot = postMoveMainRot + relativeRot;
+
+            if (xform.MapUid != null)
+            {
+                _transform.SetParent(dockedUid, dockedXform, xform.MapUid.Value);
+                _transform.SetWorldRotationNoLerp(dockedUid, newRot);
+                _transform.SetWorldPosition(dockedUid, newPos);
+            }
+
+            if (_physicsQuery.TryGetComponent(dockedUid, out var dockedBody))
+            {
+                _physics.SetLinearVelocity(dockedUid, Vector2.Zero, body: dockedBody);
+                _physics.SetAngularVelocity(dockedUid, 0f, body: dockedBody);
+
+                var dockedShuttle = Comp<ShuttleComponent>(dockedUid);
+                if (HasComp<MapGridComponent>(xform.MapUid))
+                    Disable(dockedUid, component: dockedBody);
+                else
+                    Enable(dockedUid, component: dockedBody, shuttle: dockedShuttle);
+            }
+
+            foreach (var (dockA, dockB) in dockConnections)
+            {
+                if (!TryComp<DockingComponent>(dockA, out var dockCompA) ||
+                    !TryComp<DockingComponent>(dockB, out var dockCompB))
+                    continue;
+
+                _dockSystem.Dock((dockA, dockCompA), (dockB, dockCompB));
+            }
+
+            // Put linked shuttles into cooldown too; the main shuttle will clear them.
+            if (TryComp<FTLComponent>(dockedUid, out var dockedFtl))
+            {
+                dockedFtl.LinkedShuttle = uid;
+                dockedFtl.State = FTLState.Cooldown;
+                dockedFtl.StateTime = StartEndTime.FromCurTime(_gameTiming, FTLCooldown);
+            }
+
+            _console.RefreshShuttleConsoles(dockedUid);
+        }
+        // FTL Mono Carrier end
+
         if (_physicsQuery.TryGetComponent(uid, out body))
         {
             _physics.SetLinearVelocity(uid, Vector2.Zero, body: body);
@@ -678,8 +969,24 @@ public sealed partial class ShuttleSystem
 
     private void UpdateFTLCooldown(Entity<FTLComponent, ShuttleComponent> entity)
     {
+        // FTL Mono Carrier start
+        // Remove the main shuttle's FTL component.
+        var uid = entity.Owner;
         RemCompDeferred<FTLComponent>(entity);
-        _console.RefreshShuttleConsoles(entity);
+
+        // Force linked shuttles (from the same trip) to also end cooldown now.
+        var linkedQuery = EntityQueryEnumerator<FTLComponent>();
+        while (linkedQuery.MoveNext(out var linkedUid, out var linkedComp))
+        {
+            if (linkedComp.LinkedShuttle == uid && linkedComp.State == FTLState.Cooldown)
+            {
+                RemCompDeferred<FTLComponent>(linkedUid);
+                _console.RefreshShuttleConsoles(linkedUid);
+            }
+        }
+
+        _console.RefreshShuttleConsoles(uid);
+        // FTL Mono Carrier end
     }
 
     private void UpdateHyperspace()
@@ -689,6 +996,12 @@ public sealed partial class ShuttleSystem
 
         while (query.MoveNext(out var uid, out var comp, out var shuttle))
         {
+            // FTL Mono Carrier start
+            // Linked shuttles are driven by the main shuttle; skip their state machine.
+            if (comp.LinkedShuttle.HasValue)
+                continue;
+            // FTL Mono Carrier end
+
             if (curTime < comp.StateTime.End)
                 continue;
 

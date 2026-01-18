@@ -7,7 +7,7 @@ shield-generator-examine-power-level = В настоящее время созд
 shield-generator-turned-off-first = Нельзя отсоединить генератор щита, пока он включён!
 shield-generator-connection-established = Генератор щита активируется, создавая поля защиты!
 
-tiles-lattice-shield = прозрачный тайл
+tiles-lattice-shield = прозрачный тайл (НЕ маппить!)
 
 shipevent-shieldconsole-windowtitle = Управление щитом
 shipevent-shieldconsole-enablebutton = Включить щит

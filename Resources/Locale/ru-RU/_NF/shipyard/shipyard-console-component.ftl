@@ -47,6 +47,14 @@ shipyard-console-confirm-unassign = Вы уверены?
 shipyard-console-unassign-cooldown = Подождите {$minutes} минут(ы) перед отвязкой шаттла.
 shipyard-console-deed-label-none = Нет
 
+# Rename
+shipyard-console-rename-button = Переименовать
+shipyard-console-rename-placeholder = Название
+shipyard-console-rename-empty = Название шаттла не может быть пустым.
+shipyard-console-rename-too-long = Название шаттла не может превышать { $max } символов.
+shipyard-console-rename-success = Шаттл переименован в "{ $name }".
+shipyard-console-rename-failed = Не удалось переименовать шаттл.
+
 shipyard-console-engine-All = Все
 shipyard-console-engine-AME = ДАМ
 shipyard-console-engine-TEG = ТЭГ

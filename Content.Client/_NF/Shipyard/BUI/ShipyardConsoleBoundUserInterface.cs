@@ -1,9 +1,11 @@
 using Content.Client._NF.Shipyard.UI;
-using Content.Shared.Containers.ItemSlots;
+using Content.Shared._Lua.Shipyard.Events;
+using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Events;
-using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Shared.Containers.ItemSlots;
 using Robust.Client.UserInterface;
+using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client._NF.Shipyard.BUI;
 
@@ -29,6 +31,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             _menu.OnSellShip += SellShip;
             _menu.OnUnassignDeed += UnassignDeed;
             _menu.OnRenameShip += RenameShip;
+            _menu.OnDockPortSelected += SelectDockPort; // Lua
             _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
 
             // Disable the NFSD popup for now.
@@ -60,14 +63,23 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        if (state is not ShipyardConsoleInterfaceState cState)
-            return;
+        ShipyardConsoleInterfaceState? baseState = null;
+        ShipyardConsoleLuaDockSelectState? dockState = null;
 
-        Balance = cState.Balance;
-        ShipSellValue = cState.ShipSellValue;
-        var castState = (ShipyardConsoleInterfaceState) state;
-        Populate(castState.ShipyardPrototypes.available, castState.ShipyardPrototypes.unavailable, castState.FreeListings, castState.IsTargetIdPresent);
-        _menu?.UpdateState(castState);
+        if (state is ShipyardConsoleLuaDockSelectState lua)
+        {
+            baseState = lua.BaseState;
+            dockState = lua;
+        }
+        else if (state is ShipyardConsoleInterfaceState plain) { baseState = plain; }
+        else { return; }
+
+        Balance = baseState.Balance;
+        ShipSellValue = baseState.ShipSellValue;
+        Populate(baseState.ShipyardPrototypes.available, baseState.ShipyardPrototypes.unavailable, baseState.FreeListings, baseState.IsTargetIdPresent);
+        _menu?.UpdateState(baseState);
+        if (dockState != null) _menu?.UpdateDockSelect(dockState.DockNavState, dockState.SelectedDockPort);
+        else _menu?.UpdateDockSelect(null, null);
     }
 
     private void ApproveOrder(ButtonEventArgs args)
@@ -80,13 +92,13 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         var vesselId = row.Vessel.ID;
         SendMessage(new ShipyardConsolePurchaseMessage(vesselId));
     }
-    
+
     private void SellShip(ButtonEventArgs args)
     {
         //reserved for a sanity check, but im not sure what since we check all the important stuffs on server already
         SendMessage(new ShipyardConsoleSellMessage());
     }
-    
+
     private void UnassignDeed(ButtonEventArgs args)
     {
         SendMessage(new ShipyardConsoleUnassignDeedMessage());
@@ -96,4 +108,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     {
         SendMessage(new ShipyardConsoleRenameMessage(newName));
     }
+
+    private void SelectDockPort(NetEntity? port) // Lua
+    { SendMessage(new SelectDockPortMessage(port)); }
 }

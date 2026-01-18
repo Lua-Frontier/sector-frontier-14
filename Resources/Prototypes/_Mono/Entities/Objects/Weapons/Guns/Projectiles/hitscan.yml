@@ -6,9 +6,9 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 95
-        Blunt: 10
-        Radiation: 65
+        Heat: 72 #Lua 95 -> 72
+        # Blunt: 10 Lua ignored
+        Radiation: 47 # Lua 65 -> 47
         Structural: 600
   - type: HitscanBasicRaycast
     maxDistance: 120.0

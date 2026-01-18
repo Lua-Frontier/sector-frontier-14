@@ -1,3 +1,4 @@
+using System.Numerics; // Lua
 using Content.Server.Doors.Systems;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.Shuttles.Components;
@@ -28,6 +29,7 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedJointSystem _jointSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Lua
 
         private const string DockingJoint = "docking";
 
@@ -256,13 +258,12 @@ namespace Content.Server.Shuttles.Systems
                 var gridAXform = Comp<TransformComponent>(gridA);
                 var gridBXform = Comp<TransformComponent>(gridB);
 
-                var anchorA = dockAXform.LocalPosition + dockAXform.LocalRotation.ToWorldVec() / 2f;
-                var anchorB = dockBXform.LocalPosition + dockBXform.LocalRotation.ToWorldVec() / 2f;
-
+                var anchorA = dockAXform.LocalPosition + dockAXform.LocalRotation.RotateVec(new Vector2(0f, -0.5f)); // Lua
+                var anchorB = dockBXform.LocalPosition + dockBXform.LocalRotation.RotateVec(new Vector2(0f, -0.5f)); // Lua
                 joint.LocalAnchorA = anchorA;
                 joint.LocalAnchorB = anchorB;
                 joint.ReferenceAngle = (float)(_transform.GetWorldRotation(gridBXform) - _transform.GetWorldRotation(gridAXform));
-                joint.CollideConnected = true;
+                joint.CollideConnected = false; // Lua
                 joint.Stiffness = stiffness;
                 joint.Damping = damping;
 
@@ -275,6 +276,16 @@ namespace Content.Server.Shuttles.Systems
 
             dockA.Comp.DockedWith = dockBUid;
             dockB.Comp.DockedWith = dockAUid;
+
+            if (_physicsQuery.TryGetComponent(gridA, out var physA) && _physicsQuery.TryGetComponent(gridB, out var physB))
+            {
+                var linear = (physA.LinearVelocity + physB.LinearVelocity) / 2f; // Lua
+                var angular = 0f; // Lua
+                _physics.SetLinearVelocity(gridA, linear, body: physA); // Lua
+                _physics.SetLinearVelocity(gridB, linear, body: physB); // Lua
+                _physics.SetAngularVelocity(gridA, angular, body: physA); // Lua
+                _physics.SetAngularVelocity(gridB, angular, body: physB); // Lua
+            }
 
             if (TryComp(dockAUid, out DoorComponent? doorA))
             {

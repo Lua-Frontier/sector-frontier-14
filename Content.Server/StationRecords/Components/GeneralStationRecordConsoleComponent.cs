@@ -1,5 +1,6 @@
 using Content.Server.StationRecords.Systems;
 using Content.Shared.StationRecords;
+using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Server.StationRecords.Components;
 
@@ -24,4 +25,10 @@ public sealed partial class GeneralStationRecordConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool CanDeleteEntries;
+
+    [DataField]
+    public ItemSlot CaptainIdSlot = new();
+
+    [DataField]
+    public ItemSlot TargetIdSlot = new();
 }

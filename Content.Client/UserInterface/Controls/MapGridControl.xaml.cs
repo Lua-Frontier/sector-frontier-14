@@ -30,6 +30,9 @@ public partial class MapGridControl : LayoutContainer
     /* Dragging */
     protected virtual bool Draggable { get; } = false;
 
+    protected virtual bool ScaleWithControlSize => false; // Lua
+    protected virtual bool AllowResize => false; // Lua
+
     /// <summary>
     /// Control offset from whatever is being tracked.
     /// </summary>
@@ -75,9 +78,29 @@ public partial class MapGridControl : LayoutContainer
 
     protected Vector2 MidPointVector => new Vector2(MidPoint, MidPoint);
 
+    protected int SizeFull
+    {
+        get
+        {
+            if (ScaleWithControlSize) // Lua
+            {
+                var px = Math.Min(PixelWidth, PixelHeight);
+                if (px > 0) return px;
+            }
+            return (int)((UIDisplayRadius + MinimapMargin) * 2 * UIScale);
+        }
+    }
+
     protected int MidPoint => SizeFull / 2;
-    protected int SizeFull => (int) ((UIDisplayRadius + MinimapMargin) * 2 * UIScale);
-    protected int ScaledMinimapRadius => (int) (UIDisplayRadius * UIScale);
+
+    protected int ScaledMinimapRadius
+    {
+        get
+        {
+            if (!ScaleWithControlSize) return (int) (UIDisplayRadius * UIScale);
+            return Math.Max(0, MidPoint - (int) (MinimapMargin * UIScale));
+        }
+    }
     protected float MinimapScale => WorldRange != 0 ? ScaledMinimapRadius / WorldRange : 0f;
 
     public event Action<float>? WorldRangeChanged;
@@ -90,7 +113,8 @@ public partial class MapGridControl : LayoutContainer
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        SetSize = new Vector2(SizeFull, SizeFull);
+        if (AllowResize) MinSize = new Vector2((UIDisplayRadius + MinimapMargin) * 2, (UIDisplayRadius + MinimapMargin) * 2); // Lua
+        else SetSize = new Vector2(SizeFull, SizeFull);
         RectClipContent = true;
         MouseFilter = MouseFilterMode.Stop;
         ActualRadarRange = WorldRange;

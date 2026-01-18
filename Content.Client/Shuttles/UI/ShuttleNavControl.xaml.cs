@@ -105,6 +105,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     }
 
     private double _pruneAccumSeconds;
+    protected virtual void ModifyGridPalette(ref Color fillColor, ref Color edgeColor, ref float fillAlpha, EntityUid gridUid, bool self) { } // Lua
+    protected virtual bool ShowRadarPositionMarker => true; // Lua
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
     {
         _coordinates = coordinates;
@@ -244,23 +246,28 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var ourGridToShuttle = Matrix3x2.Multiply(ourGridToWorld, worldToShuttle);
                 var ourGridToView = ourGridToShuttle * shuttleToView;
                 var color = _shuttles.GetIFFColor(ourGridId, self: true);
-                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), color);
+                var fill = color; // Lua
+                var edge = color; // Lua
+                var alpha = 0.01f; // Lua
+                ModifyGridPalette(ref fill, ref edge, ref alpha, ourGridId, self: true); // Lua
+                DrawGrid(handle, ourGridToView, (ourGridId, ourGrid), fill, edge, alpha); // Lua
                 DrawDocks(handle, ourGridId, ourGridToView);
             }
         }
         // Lua mod end
-
-        // Draw radar position on the station
-        const float radarVertRadius = 2f;
-        var radarPosVerts = new Vector2[]
+        if (ShowRadarPositionMarker) // Lua
         {
-            ScalePosition(new Vector2(0f, -radarVertRadius)),
-            ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
-            ScalePosition(new Vector2(0f, radarVertRadius)),
-            ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
-        };
+            const float radarVertRadius = 2f;
+            var radarPosVerts = new Vector2[]
+            {
+                ScalePosition(new Vector2(0f, -radarVertRadius)),
+                ScalePosition(new Vector2(radarVertRadius / 2f, 0f)),
+                ScalePosition(new Vector2(0f, radarVertRadius)),
+                ScalePosition(new Vector2(radarVertRadius / -2f, 0f)),
+            };
 
-        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, radarPosVerts, Color.Lime);
+        }
 
         var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
         var viewAABB = viewBounds.CalcBoundingBox();
@@ -589,7 +596,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Mono
             if (!blipOnly)
             {
-                DrawGrid(handle, curGridToView, grid, labelColor);
+                var fill = labelColor; // Lua
+                var edge = labelColor; // Lua
+                var alpha = 0.01f; // Lua
+                ModifyGridPalette(ref fill, ref edge, ref alpha, gUid, self: false); // Lua
+                DrawGrid(handle, curGridToView, grid, fill, edge, alpha); // Lua
                 DrawDocks(handle, gUid, curGridToView);
             }
         }
@@ -770,10 +781,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             return;
 
         const float DockScale = 0.6f;
+        const float HighlightDockScale = 1.0f; // Lua
         var nent = EntManager.GetNetEntity(uid);
 
         const float sqrt2 = 1.41421356f;
-        const float dockRadius = DockScale * sqrt2;
+        const float dockRadius = HighlightDockScale * sqrt2;
         // Worst-case bounds used to cull a dock:
         Box2 viewBounds = new Box2(
             -dockRadius * UIScale,
@@ -795,13 +807,16 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
                 //var color = Color.ToSrgb(Color.Magenta); // Frontier
                 var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
+                GetDockColorOverride(ref color, state); // Lua
 
+                var scale = DockScale; // Lua
+                if (HighlightDockPort.HasValue && state.Entity == HighlightDockPort.Value) scale = HighlightDockScale;
                 var verts = new[]
                 {
-                    Vector2.Transform(position + new Vector2(-DockScale, -DockScale), gridToView),
-                    Vector2.Transform(position + new Vector2(DockScale, -DockScale), gridToView),
-                    Vector2.Transform(position + new Vector2(DockScale, DockScale), gridToView),
-                    Vector2.Transform(position + new Vector2(-DockScale, DockScale), gridToView),
+                    Vector2.Transform(position + new Vector2(-scale, -scale), gridToView),
+                    Vector2.Transform(position + new Vector2(scale, -scale), gridToView),
+                    Vector2.Transform(position + new Vector2(scale, scale), gridToView),
+                    Vector2.Transform(position + new Vector2(-scale, scale), gridToView),
                 };
 
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));
@@ -828,6 +843,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // End Frontier
         }
     }
+    partial void GetDockColorOverride(ref Color color, DockingPortState state); // Lua
 
     protected Vector2 InverseScalePosition(Vector2 value)
     {

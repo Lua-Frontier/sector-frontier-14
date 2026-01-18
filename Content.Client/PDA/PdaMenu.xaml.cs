@@ -36,6 +36,7 @@ namespace Content.Client.PDA
 
         private string _balance = Loc.GetString("comp-pda-ui-unknown"); // Frontier
         private string _shuttleDeed = Loc.GetString("comp-pda-ui-unknown"); // Frontier
+        private string _assignedShip = "";
 
         private int _currentView;
 
@@ -127,6 +128,10 @@ namespace Content.Client.PDA
             {
                 _clipboard.SetText(_shuttleDeed);
             };
+            AssignedShipButton.OnPressed += _ =>
+            {
+                _clipboard.SetText(_assignedShip);
+            };
             // End Frontier
 
             StationTimeButton.OnPressed += _ =>
@@ -187,6 +192,21 @@ namespace Content.Client.PDA
             _shuttleDeed = state.OwnedShipName ?? ""; // Frontier
             ShuttleDeedLabel.SetMarkup(Loc.GetString("comp-pda-ui-shuttle-deed", ("shipname", _shuttleDeed))); // Frontier
             ShuttleDeedLabel.Visible = !string.IsNullOrEmpty(state.OwnedShipName); // Frontier
+
+            if (!string.IsNullOrEmpty(state.AssignedShipName) && !string.IsNullOrEmpty(state.AssignedShipRoleLocKey))
+            {
+                _assignedShip = $"{state.AssignedShipName}, {Loc.GetString(state.AssignedShipRoleLocKey)}";
+                AssignedShipLabel.SetMarkup(Loc.GetString("comp-pda-ui-assigned-ship", ("shipname", state.AssignedShipName), ("role", Loc.GetString(state.AssignedShipRoleLocKey))));
+                AssignedShipLabel.Visible = true;
+                AssignedShipButton.Visible = true;
+            }
+            else
+            {
+                _assignedShip = "";
+                AssignedShipLabel.Visible = false;
+                AssignedShipLabel.Text = string.Empty;
+                AssignedShipButton.Visible = false;
+            }
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 

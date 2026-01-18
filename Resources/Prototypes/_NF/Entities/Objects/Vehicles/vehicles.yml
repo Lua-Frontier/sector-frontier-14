@@ -209,6 +209,9 @@
   name: hoverbike
   description: A turbine with bike handles. Very safe.
   components:
+  - type: Strap
+    size: 200
+    unbuckleDistanceSquared: 0.15
   - type: MovementIgnoreGravity
   - type: MovementAlwaysTouching
   - type: CanMoveInAir
@@ -271,6 +274,11 @@
   - type: PointLight
     radius: 7
     energy: 3
+  - type: Vehicle
+    passengerSouthOffset: 0, 0.18
+    passengerNorthOffset: 0, 0.18
+    passengerEastOffset: 0, 0.18
+    passengerWestOffset: 0, 0.18
 
 - type: entity
   parent: NFVehicleHoverbike
@@ -471,6 +479,9 @@
   name: mail carrier hoverbike
   description: You better run, better run, faster than my mail.
   components:
+  - type: Strap
+    size: 200
+    unbuckleDistanceSquared: 0.15
   - type: MovementIgnoreGravity
   - type: MovementAlwaysTouching
   - type: CanMoveInAir
@@ -527,6 +538,10 @@
       collection: NFVehicleHorn # resetting from the motorbike
       params:
         variation: 0.125
+    passengerSouthOffset: 0, 0.3
+    passengerNorthOffset: 0, 0.3
+    passengerEastOffset: 0, 0.3
+    passengerWestOffset: 0, 0.3
 
 - type: entity
   parent: VehicleHoverbikeMailcarrier
@@ -564,11 +579,18 @@
   name: NFSD hoverbike
   description: An NFSD issued turbine with bike handles. Very safe.
   components:
+  - type: Strap
+    size: 200
+    unbuckleDistanceSquared: 0.15
   - type: Vehicle
     sirenSound:
       collection: PoliceSiren
       params:
         variation: 0.125
+    passengerSouthOffset: 0, 0.18
+    passengerNorthOffset: 0, 0.18
+    passengerEastOffset: 0, 0.18
+    passengerWestOffset: 0, 0.18
   - type: MovementSpeedModifier # Very petty on my end
     baseAcceleration: 1.6
     baseFriction: 0.6
@@ -662,6 +684,9 @@
   name: pirate hoverbike
   description: Yarr! Dis be me sovereign space shuttle. Now, whaur me rum?
   components:
+  - type: Strap
+    size: 200
+    unbuckleDistanceSquared: 0.15
   - type: Storage
     grid:
     - 0,0,5,3
@@ -711,6 +736,10 @@
     - DemagImmune
   - type: Vehicle
     radarBlip: false
+    passengerSouthOffset: 0, 0.3
+    passengerNorthOffset: 0, 0.3
+    passengerEastOffset: 0, 0.3
+    passengerWestOffset: 0, 0.3
 
 - type: entity
   parent: VehicleHoverbikePirate
@@ -748,6 +777,9 @@
   name: syndicate hoverbike
   description: This thing screams style. And war crimes.
   components:
+  - type: Strap
+    size: 200
+    unbuckleDistanceSquared: 0.15
   - type: Storage
     grid:
     - 0,0,8,4
@@ -801,6 +833,10 @@
     - DemagImmune
   - type: Vehicle
     radarBlip: false
+    passengerSouthOffset: 0, 0.18
+    passengerNorthOffset: 0, 0.18
+    passengerEastOffset: 0, 0.18
+    passengerWestOffset: 0, 0.18
 
 - type: entity
   parent: VehicleHoverbikeSyndicate

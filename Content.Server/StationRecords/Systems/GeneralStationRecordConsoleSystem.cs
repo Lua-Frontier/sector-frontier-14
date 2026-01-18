@@ -1,16 +1,21 @@
-using System.Linq;
+using Content.Server._Lua.StationRecords.Systems;
+using Content.Server._NF.Station.Components;
+using Content.Server.Administration.Logs;
+using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Components;
+using Content.Server.Popups;
+using Content.Shared._Lua.StationRecords;
+using Content.Shared._NF.Shipyard.Components;
+using Content.Shared._NF.StationRecords;
+using Content.Shared.Access.Components;
+using Content.Shared.Database;
+using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
-using Content.Shared.Roles; // Frontier
-using Robust.Shared.Prototypes; // Frontier
-using Content.Shared.Access.Systems; // Frontier
-using Content.Server.Station.Components; // Frontier
-using Content.Server._NF.Station.Components; // Frontier
-using Content.Server.Administration.Logs; // Frontier
-using Content.Shared.Database; // Frontier
-using Content.Shared._NF.StationRecords; // Frontier
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -20,16 +25,17 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!; // Frontier
-    [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier
-    [Dependency] private readonly IPrototypeManager _proto = default!; // Frontier
     [Dependency] private readonly IAdminLogManager _adminLog = default!; // Frontier
+    [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!;// Lua
+    [Dependency] private readonly PopupSystem _popup = default!; // Lua
 
     public override void Initialize()
     {
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<GeneralStationRecordConsoleComponent, RecordRemovedEvent>(UpdateUserInterface);
-
+        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, EntInsertedIntoContainerMessage>(UpdateUserInterface);
+        SubscribeLocalEvent<GeneralStationRecordConsoleComponent, EntRemovedFromContainerMessage>(UpdateUserInterface);
         Subs.BuiEvents<GeneralStationRecordConsoleComponent>(GeneralStationRecordConsoleKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
@@ -38,6 +44,10 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
             subs.Event<DeleteStationRecord>(OnRecordDelete);
             subs.Event<AdjustStationJobMsg>(OnAdjustJob); // Frontier
             subs.Event<SetStationAdvertisementMsg>(OnAdvertisementChanged); // Frontier
+            subs.Event<AssignShipCrewRoleMsg>(OnAssignShipCrewRole); // Lua
+            subs.Event<FireShipCrewByRecordMsg>(OnFireShipCrewByRecord); // Lua
+            subs.Event<SetShipCrewRoleByNameMsg>(OnSetShipCrewRoleByName); // Lua
+            subs.Event<FireShipCrewByNameMsg>(OnFireShipCrewByName); // Lua
         });
     }
 
@@ -70,41 +80,24 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     // Frontier: job counts, advertisements
     private void OnAdjustJob(Entity<GeneralStationRecordConsoleComponent> ent, ref AdjustStationJobMsg msg)
     {
+        if (!IsAdminObserver(msg.Actor))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+
         var stationUid = _station.GetOwningStation(ent);
         if (stationUid is EntityUid station)
         {
-            // Frontier: check access - hack because we don't have an AccessReaderComponent, it's the station
-            if (TryComp(stationUid, out StationJobsComponent? stationJobs) &&
-                (stationJobs.Groups.Count > 0 || stationJobs.Tags.Count > 0))
-            {
-                var accessSources = _access.FindPotentialAccessItems(msg.Actor);
-                var access = _access.FindAccessTags(msg.Actor, accessSources);
-
-                // Check access groups and tags
-                bool hasAccess = stationJobs.Tags.Any(access.Contains);
-                if (!hasAccess)
-                {
-                    foreach (var group in stationJobs.Groups)
-                    {
-                        if (!_proto.TryIndex(group, out var accessGroup))
-                            continue;
-
-                        hasAccess = accessGroup.Tags.Any(access.Contains);
-                        if (hasAccess)
-                            break;
-                    }
-                }
-
-                if (!hasAccess)
-                {
-                    UpdateUserInterface(ent);
-                    return;
-                }
-            }
-            // End Frontier
             _stationJobsSystem.TryAdjustJobSlot(station, msg.JobProto, msg.Amount, false, true);
             UpdateUserInterface(ent);
         }
+    }
+
+    private bool IsAdminObserver(EntityUid uid)
+    {
+        var proto = MetaData(uid).EntityPrototype;
+        return proto != null && proto.ID == GameTicker.AdminObserverPrototypeName;
     }
     private void OnFiltersChanged(Entity<GeneralStationRecordConsoleComponent> ent, ref SetStationRecordFilter msg)
     {
@@ -145,9 +138,41 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
                 advertisement = extraVessel.Advertisement;
         }
 
+        var isCaptainIdPresent = console.CaptainIdSlot.Item is { Valid: true };
+        var isTargetIdPresent = console.TargetIdSlot.Item is { Valid: true };
+        string? captainIdName = null;
+        if (console.CaptainIdSlot.Item is { Valid: true } captainId)
+        {
+            if (TryComp<IdCardComponent>(captainId, out var card))
+            {
+                var job = string.IsNullOrWhiteSpace(card.LocalizedJobTitle) ? Loc.GetString("generic-not-available-shorthand") : card.LocalizedJobTitle;
+                captainIdName = $"{card.FullName}, ({job})";
+            }
+            else { captainIdName = MetaData(captainId).EntityName; }
+        }
+        var captainShipName = GetCaptainShipNameIfAuthorized(uid, console, owningStation);
+        string? targetIdName = null;
+        string? targetAssignedShipName = null;
+        string? targetAssignedRoleLocKey = null;
+        if (console.TargetIdSlot.Item is { Valid: true } targetId)
+        {
+            if (TryComp<IdCardComponent>(targetId, out var card))
+            {
+                var job = string.IsNullOrWhiteSpace(card.LocalizedJobTitle) ? Loc.GetString("generic-not-available-shorthand") : card.LocalizedJobTitle;
+                targetIdName = $"{card.FullName}, ({job})";
+            }
+            else { targetIdName = MetaData(targetId).EntityName; }
+            if (_shipCrew.TryGetAssignment(targetId, out var info))
+            {
+                targetAssignedShipName = info.shipName;
+                targetAssignedRoleLocKey = info.roleLocKey;
+            }
+        }
+        List<ShipCrewRosterEntry>? shipRoster = null;
+        if (TryGetAuthorizedCaptainShip(uid, console, out var shuttleUid, out _)) shipRoster = _shipCrew.GetRosterForShuttle(shuttleUid);
         if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
         {
-            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState(null, null, null, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement)); // Frontier: add as many args as we can
+            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState(null, null, null, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement, isCaptainIdPresent, captainIdName, captainShipName, isTargetIdPresent, targetIdName, targetAssignedShipName, targetAssignedRoleLocKey, shipRoster));
             return;
         }
 
@@ -156,7 +181,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         switch (listing.Count)
         {
             case 0:
-                var consoleState = new GeneralStationRecordConsoleState(null, null, null, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement); // Frontier: add as many args as we can
+                var consoleState = new GeneralStationRecordConsoleState(null, null, null, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement, isCaptainIdPresent, captainIdName, captainShipName, isTargetIdPresent, targetIdName, targetAssignedShipName, targetAssignedRoleLocKey, shipRoster);
                 _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, consoleState);
                 return;
             default:
@@ -167,14 +192,120 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 
         if (console.ActiveKey is not { } id)
         {
-            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState(null, null, listing, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement)); // Frontier: add as many args as we can
+            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState(null, null, listing, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement, isCaptainIdPresent, captainIdName, captainShipName, isTargetIdPresent, targetIdName, targetAssignedShipName, targetAssignedRoleLocKey, shipRoster));
             return;
         }
 
         var key = new StationRecordKey(id, owningStation.Value);
         _stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords);
 
-        GeneralStationRecordConsoleState newState = new(id, record, listing, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement);
+        GeneralStationRecordConsoleState newState = new(id, record, listing, jobList, console.Filter, ent.Comp.CanDeleteEntries, advertisement, isCaptainIdPresent, captainIdName, captainShipName, isTargetIdPresent, targetIdName, targetAssignedShipName, targetAssignedRoleLocKey, shipRoster);
         _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, newState);
+    }
+
+    private void OnAssignShipCrewRole(Entity<GeneralStationRecordConsoleComponent> ent, ref AssignShipCrewRoleMsg msg)
+    {
+        if (msg.Actor is not { Valid: true }) return;
+        if (!TryGetAuthorizedCaptainShip(ent.Owner, ent.Comp, out var shuttleUid, out var shipName))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        if (ent.Comp.TargetIdSlot.Item is not { Valid: true } targetId)
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        if (!_shipCrew.TryAssign(targetId, shuttleUid, shipName, msg.Role, out var existingShipName))
+        {
+            _popup.PopupEntity(Loc.GetString("ship-crew-console-already-assigned", ("ship", existingShipName ?? Loc.GetString("generic-not-available-shorthand"))), msg.Actor);
+            UpdateUserInterface(ent);
+            return;
+        }
+        UpdateUserInterface(ent);
+    }
+
+    private void OnFireShipCrewByRecord(Entity<GeneralStationRecordConsoleComponent> ent, ref FireShipCrewByRecordMsg msg)
+    {
+        if (msg.Actor is not { Valid: true }) return;
+        if (!TryGetAuthorizedCaptainShip(ent.Owner, ent.Comp, out var shuttleUid, out _))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        var owningStation = _station.GetOwningStation(ent.Owner);
+        if (owningStation is not { Valid: true } stationUid)
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        if (!TryComp<StationRecordsComponent>(stationUid, out var stationRecords))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        var key = new StationRecordKey(msg.RecordId, stationUid);
+        if (!_stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        _shipCrew.ClearForShuttleAndName(shuttleUid, record.Name);
+        UpdateUserInterface(ent);
+    }
+
+    private void OnSetShipCrewRoleByName(Entity<GeneralStationRecordConsoleComponent> ent, ref SetShipCrewRoleByNameMsg msg)
+    {
+        if (msg.Actor is not { Valid: true }) return;
+        if (!TryGetAuthorizedCaptainShip(ent.Owner, ent.Comp, out var shuttleUid, out _))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        _shipCrew.TrySetRoleForShuttleAndName(shuttleUid, msg.Name, msg.Role);
+        UpdateUserInterface(ent);
+    }
+
+    private void OnFireShipCrewByName(Entity<GeneralStationRecordConsoleComponent> ent, ref FireShipCrewByNameMsg msg)
+    {
+        if (msg.Actor is not { Valid: true }) return;
+        if (!TryGetAuthorizedCaptainShip(ent.Owner, ent.Comp, out var shuttleUid, out _))
+        {
+            UpdateUserInterface(ent);
+            return;
+        }
+        _shipCrew.ClearForShuttleAndName(shuttleUid, msg.Name);
+        UpdateUserInterface(ent);
+    }
+
+    private bool TryGetAuthorizedCaptainShip(EntityUid consoleUid, GeneralStationRecordConsoleComponent console, out EntityUid shuttleUid, out string shipName)
+    {
+        shuttleUid = default;
+        shipName = string.Empty;
+        if (console.CaptainIdSlot.Item is not { Valid: true } captainId) return false;
+        if (!TryComp<ShuttleDeedComponent>(captainId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttle) return false;
+        var consoleStation = _station.GetOwningStation(consoleUid);
+        if (consoleStation is not { Valid: true }) return false;
+        var shuttleStation = _station.GetOwningStation(shuttle);
+        if (shuttleStation is not { Valid: true } || shuttleStation.Value != consoleStation.Value) return false;
+        shuttleUid = shuttle;
+        shipName = GetFullName(deed);
+        return true;
+    }
+
+    private string? GetCaptainShipNameIfAuthorized(EntityUid consoleUid, GeneralStationRecordConsoleComponent console, EntityUid? owningStation)
+    {
+        if (owningStation is not { Valid: true }) return null;
+        if (console.CaptainIdSlot.Item is not { Valid: true } captainId) return null;
+        if (!TryComp<ShuttleDeedComponent>(captainId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttle) return null;
+        var shuttleStation = _station.GetOwningStation(shuttle);
+        if (shuttleStation is not { Valid: true } || shuttleStation.Value != owningStation.Value) return null;
+        return GetFullName(deed);
+    }
+
+    private static string GetFullName(ShuttleDeedComponent comp)
+    {
+        string?[] parts = { comp.ShuttleName, comp.ShuttleNameSuffix };
+        return string.Join(' ', parts.Where(it => !string.IsNullOrWhiteSpace(it)));
     }
 }

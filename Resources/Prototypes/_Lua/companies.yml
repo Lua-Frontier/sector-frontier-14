@@ -55,6 +55,8 @@
     - HacksLua
     - localhost@HacksLua
     - hqdishka
+  hiddenFromNonMembers: true
+  leaderJobs: [ OpsLuaTech ]
 
 - type: company
   id: CentComm
@@ -64,6 +66,8 @@
   form: Протогонисты
   disabled: true
   showCompanyRadar: true
+  hiddenFromNonMembers: true
+  leaderJobs: [ CentralCommandSpecialOperationsOfficer ]
 
 - type: company
   id: Nanotrasen
@@ -73,6 +77,8 @@
   form: Протогонисты
   disabled: true
   showCompanyRadar: true
+  hiddenFromNonMembers: true
+  leaderJobs: [ StationRepresentative ]
 
 - type: company
   id: Security
@@ -82,15 +88,8 @@
   form: Протогонисты
   disabled: true
   showCompanyRadar: true
-
-- type: company
-  id: CentralCommandCargo
-  name: Отдел Снабжения Nanotrasen
-  color: "#a46106"
-  form: Протогонисты
-  description: Отдел Снабжения корпорации Nanotrasen.
-  disabled: true
-  showCompanyRadar: true
+  hiddenFromNonMembers: true
+  leaderJobs: [ Sheriff ]
 
 - type: company
   id: Syndicate
@@ -99,5 +98,7 @@
   color: "#990816"
   form: Антаганисты
   disabled: true
+  hiddenFromNonMembers: true
   aliesOnRadar: true
+  leaderJobs: [ OutpostSyndicateTelecommunicationsOfficer ]
 # НЕ ТРОГАТЬ
