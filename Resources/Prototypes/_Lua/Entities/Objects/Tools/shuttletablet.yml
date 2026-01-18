@@ -10,7 +10,6 @@
   components:
   - type: Item
     sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
-    state: default
   - type: Sprite
     sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
     state: default
@@ -62,8 +61,6 @@
   id: ShuttleControlTabletSalvage
   suffix: Salvage
   components:
-  - type: Item
-    state: salvage
   - type: Sprite
     state: salvage
 
@@ -72,8 +69,6 @@
   id: ShuttleControlTabletSecurity
   suffix: Security
   components:
-  - type: Item
-    state: security
   - type: Sprite
     state: security
 
@@ -82,7 +77,5 @@
   id: ShuttleControlTabletSyndicate
   suffix: Syndicate
   components:
-  - type: Item
-    state: syndicate
   - type: Sprite
     state: syndicate
