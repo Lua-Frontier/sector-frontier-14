@@ -125,6 +125,20 @@ public sealed partial class DockingSystem
         return GetDockingConfigPrivate(shuttleUid, targetGrid, shuttleDocks, gridDocks, priorityTag, dockType); // Frontier: add dockType
     }
 
+    public DockingConfig? GetDockingConfigForGridDock(EntityUid shuttleUid, EntityUid targetGrid, EntityUid gridDockUid, string? priorityTag = null, DockType dockType = DockType.Airlock) // Lua method
+    {
+        var gridDocks = GetDocks(targetGrid);
+        var shuttleDocks = GetDocks(shuttleUid);
+        var configs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks, dockType);
+        if (configs.Count <= 0) return null;
+        var targetGridAngle = _transform.GetWorldRotation(targetGrid).Reduced();
+        configs = configs.Where(c => c.Docks.Any(d => d.DockBUid == gridDockUid)).OrderByDescending(x => IsConfigPriority(x, priorityTag)).ThenByDescending(x => x.Docks.Count).ThenBy(x => Math.Abs(Angle.ShortestDistance(x.Angle.Reduced(), targetGridAngle).Theta)).ToList();
+        if (configs.Count == 0) return null;
+        var location = configs.First();
+        location.TargetGrid = targetGrid;
+        return location;
+    }
+
     /// <summary>
     /// Tries to get a docking config at the specified coordinates and angle.
     /// </summary>

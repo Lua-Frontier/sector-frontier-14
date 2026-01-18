@@ -21,7 +21,183 @@
   categories:
   - UplinkWeaponry
 
+- type: listing
+  id: UplinkRitlandBundle # Ritland
+  name: uplink-pirate-RitlandBundle-name
+  description: uplink-pirate-RitlandBundle-desc
+  productEntity: WeaponCaseShortRitlandBundle
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkViperBundle # Viper
+  name: uplink-pirate-ViperBundle-name
+  description: uplink-pirate-ViperBundle-desc
+  productEntity: WeaponCaseShortViperBundle
+  icon: { sprite: Objects/Weapons/Guns/Pistols/viper.rsi, state: icon }
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkCobraBundle # Cobra
+  name: uplink-typan-CobraBundle-name
+  description: uplink-typan-CobraBundle-desc
+  productEntity: WeaponCaseShortCobraBundle
+  icon: { sprite: Objects/Weapons/Guns/Pistols/cobra.rsi, state: icon }
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkAssaultSmBundle # AK-74M
+  name: uplink-pirate-AssaultSmBundle-name
+  description: uplink-pirate-AssaultSmBundle-desc
+  productEntity: WeaponCaseLongAssaultSmBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/akm.rsi, state: icon }
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkXC67Bundle # XC67
+  name: uplink-typan-XC67Bundle-name
+  description: uplink-typan-XC67Bundle-desc
+  productEntity: WeaponCaseLongXC67Bundle
+  icon: { sprite: /Textures/ADT/Objects/Weapons/Guns/Rifels/xc67.rsi, state: icon }
+  cost:
+    Telecrystal: 14
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkC20rBundle # C20r
+  name: uplink-typan-C20rBundle-name
+  description: uplink-typan-C20rBundle-desc
+  productEntity: WeaponCaseLongC20rBundle
+  icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
+  cost:
+    Telecrystal: 17
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkBulldogBundle # Bulldog
+  name: uplink-pirate-BulldogBundle-name
+  description: uplink-pirate-BulldogBundle-desc
+  productEntity: WeaponCaseLongBulldogBundle
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkL6Bundle # L6
+  name: uplink-typan-L6Bundle-name
+  description: uplink-typan-L6Bundle-desc
+  productEntity: WeaponCaseLongL6Bundle
+  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkMla73Bundle # SKR-WS MLA-73
+  name: uplink-typan-Mla73Bundle-name
+  description: uplink-typan-Mla73Bundle-desc
+  productEntity: WeaponCaseLongMla73Bundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/mla73.rsi, state: icon }
+  cost:
+    Telecrystal: 19
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkRatelBundle # VFD PSW "Ratel"
+  name: uplink-typan-RatelBundle-name
+  description: uplink-typan-RatelBundle-desc
+  productEntity: WeaponCaseHeavyRatelBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/LMGs/ratel/Ratel-icon.rsi, state: icon }
+  cost:
+    Telecrystal: 28
+  categories:
+    - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
 #region ammo
+
+#.45_ACP
+
+# SubMachineGun
+
+# FMJ
 
 - type: listing
   id: UplinkMagazine45_ACPSubMachineGunFMJ
@@ -30,6 +206,287 @@
   productEntity: LuaBoxMagazine45_ACPSubMachineGunFMJ
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+# Pistol
+
+# FMJ
+
+- type: listing
+  id: UplinkMagazine45_ACPPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#9x19mm
+
+# SubMachineGun
+
+# FMJ
+
+- type: listing
+  id: UplinkMagazine9x19mmSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunFMJ-name
+  description: uplink-security-Magazine9x19mmSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+# Pistol
+
+# FMJ
+
+- type: listing
+  id: UplinkMagazine9x19mmPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#.45 Magnum
+
+# FMJ
+
+- type: listing
+  id: UplinkSpeedLoader45_magnumFMJ # speedloader
+  name: uplink-security-SpeedLoader45_magnumFMJ-name
+  description: uplink-security-SpeedLoader45_magnumFMJ-desc
+  productEntity: LuaBoxSpeedLoader45_magnumFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#4 gauge (23x75mm)
+
+# buckshot
+
+- type: listing
+  id: UplinkShotgunDrum # mag
+  name: uplink-pirate-bulldog-ammo-name
+  description: uplink-pirate-bulldog-ammo-desc
+  productEntity: NFMagazineShotgunDrum
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+# slug
+
+- type: listing
+  id: UplinkShotgunDrumSlug # mag
+  name: uplink-pirate-bulldog-slug-ammo-name
+  description: uplink-pirate-bulldog-slug-ammo-desc
+  productEntity: NFMagazineShotgunDrumSlug
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#7.62x39mm
+
+# FMJ
+
+- type: listing
+  id: UplinkMagazine762x39mmFMJ # Mag
+  name: uplink-security-Magazine762x39mmFMJ-name
+  description: uplink-security-Magazine762x39mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle762x39mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#5.56x45mm
+
+# FMJ
+
+- type: listing
+  id: UplinkMagazine556x45mmFMJ # Mag
+  name: uplink-security-Magazine556x45mmFMJ-name
+  description: uplink-security-Magazine556x45mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle556x45mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkMagazineRifleWeaponXC67
+  name: uplink-rifle-magazine-XC67-name
+  description: uplink-rifle-magazine-XC67-desc
+  icon: { sprite: /Textures/ADT/Objects/Weapons/Guns/Ammunition/Magazine/ext_rifle_mag.rsi, state: base }
+  productEntity: ADTExtMagazineRifle
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#7.62x51mm
+
+# FMJ
+
+- type: listing
+  id: UplinkAmmoBox762x51mmFMJ # Mag (For VFD PSW "Ratel" (7.62x51mm))
+  name: uplink-security-AmmoBox762x51mmFMJ-name
+  description: uplink-security-AmmoBox762x51mmFMJ-desc
+  productEntity: AmmoBox762x51mmFMJ
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+# 6.35x40mm
+
+# Caseless
+
+- type: listing
+  id: UplinkMagazine635x40mmCaseless # Mag
+  name: uplink-typan-Magazine635x40mmCaseless-name
+  description: uplink-typan-Magazine635x40mmCaseless-desc
+  productEntity: LuaBoxMagazine635x40mmCaseless
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkMagazine635x40mmCaselessBig # Mag extended
+  name: uplink-typan-Magazine635x40mmCaselessBig-name
+  description: uplink-typan-Magazine635x40mmCaselessBig-desc
+  productEntity: Magazine635x40mmCaselessBig
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+#region starmap
+
+- type: listing
+  id: UplinkSyndicateSectorBanner
+  name: uplink-syndicate-sector-banner-name
+  description: uplink-syndicate-sector-banner-desc
+  productEntity: BannerSectorSyndicate
+  cost:
     Telecrystal: 1
   categories:
-  - UplinkAmmo
+    - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink
+
+- type: listing
+  id: UplinkCoordinatesDiskNordfall
+  name: uplink-coordinates-disk-nordfall-name
+  description: uplink-coordinates-disk-nordfall-desc
+  productEntity: CoordinatesDiskNordfall
+  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - TypanUplink

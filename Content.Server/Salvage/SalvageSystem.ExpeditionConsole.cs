@@ -91,6 +91,10 @@ public sealed partial class SalvageSystem
             var bodyQuery = GetEntityQuery<PhysicsComponent>();
             var otherGrids = new List<Entity<MapGridComponent>>();
             _mapManager.FindGridsIntersecting(xform.MapID, bounds, ref otherGrids);
+
+            var dockedShuttles = new HashSet<EntityUid>(); // Lua
+            _shuttle.GetAllDockedShuttlesIgnoringFTLLock(ourGrid, dockedShuttles); // Lua
+
             foreach (var otherGrid in otherGrids)
             {
                 if (ourGrid == otherGrid.Owner ||
@@ -99,7 +103,7 @@ public sealed partial class SalvageSystem
                 {
                     continue;
                 }
-
+                if (dockedShuttles.Contains(otherGrid.Owner)) continue; // Lua
                 PlayDenySound((uid, component));
                 _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
                 UpdateConsoles((station.Value, data));

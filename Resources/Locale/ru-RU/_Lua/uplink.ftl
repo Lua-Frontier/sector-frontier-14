@@ -33,7 +33,7 @@ uplink-pirate-glassshots-desc = Набор подпольного печёног
 uplink-XC67-name = XC-67
 uplink-XC67-desc = Старая винтовка синдиката, специально для вашей самозащиты и нападения, она зарекомендовла себя временем!
 uplink-rifle-magazine-XC67-name = Магазин для винтовки XC-67
-uplink-rifle-magazine-XC67-desc = Расширенный магазин для винтовки XC-67 под винтовочные патроны .20 калибра
+uplink-rifle-magazine-XC67-desc = Расширенный магазин для винтовки XC-67 под винтовочные патроны калибра 5.56x45mm
 
 uplink-bravo-fsf = Аплинк рейнджеров "Браво"
 uplink-charlie-fsf = Аплинк рейнджеров "Чарли"

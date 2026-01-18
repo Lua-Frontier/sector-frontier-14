@@ -1,7 +1,7 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                Title="{Loc 'general-station-record-console-window-title'}"
-               MinSize="800 500"> <!-- Frontier: width 750<800, add graphics namespace -->
+               MinSize="900 700">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Margin="5 5 5 10" HorizontalExpand="True">
             <OptionButton Name="StationRecordsFilterType" MinWidth="200" Margin="0 0 10 0"/>
@@ -30,30 +30,47 @@
                     <Label Name="RecordContainerStatus" Visible="False" Text="{Loc 'general-station-record-console-select-record-info'}"/>
                     <Control Name="RecordContainer" Visible="False"/>
                 </ScrollContainer> <!-- Frontier: put record info in a scroll box -->
-                <!-- Frontier: ship bio -->
-                <BoxContainer Name="AdContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Visible="False">
-                    <Label Name="AdTitle" Text="{Loc 'general-station-record-console-ad-label'}" StyleClasses="LabelKeyText"/>
-                    <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                <BoxContainer Name="ShipCrewContainer" Orientation="Vertical" HorizontalExpand="True" Margin="0 5 0 0">
+                    <Label Text="{Loc 'ship-crew-console-title'}" StyleClasses="LabelKeyText"/>
+                    <PanelContainer HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777"/>
                         </PanelContainer.PanelOverride>
-                        <TextEdit Name="AdTextBox" MinHeight="100" VerticalExpand="True" HorizontalExpand="True"/>
+                        <BoxContainer Orientation="Vertical" Margin="6">
+                            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                    <Label Text="{Loc 'ship-crew-console-captain-id'}" MinWidth="120"/>
+                                    <Button Name="CaptainIdButton" Access="Public" MinWidth="90" Margin="6 0 0 0"/>
+                                    <Label Name="CaptainIdLabel" HorizontalExpand="True" Margin="6 0 0 0"/>
+                                </BoxContainer>
+
+                                <RichTextLabel Name="CaptainShipLabel" />
+
+                                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 4 0 0">
+                                    <Label Text="{Loc 'ship-crew-console-target-id'}" MinWidth="120"/>
+                                    <Button Name="TargetIdButton" Access="Public" MinWidth="90" Margin="6 0 0 0"/>
+                                    <Label Name="TargetIdLabel" HorizontalExpand="True" Margin="6 0 0 0"/>
+                                </BoxContainer>
+                            </BoxContainer>
+                            <RichTextLabel Name="TargetAssignmentLabel" />
+
+                            <GridContainer Columns="2" HorizontalExpand="True" HSeparationOverride="4" Margin="0 4 0 0">
+                                <Label Text="{Loc 'ship-crew-console-role'}" />
+                                <OptionButton Name="ShipRoleOption" />
+                            </GridContainer>
+
+                            <ScrollContainer VerticalExpand="True" MinHeight="96" Margin="0 4 0 0">
+                                <ItemList Name="ShipCrewRosterList" />
+                            </ScrollContainer>
+
+                            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 4 0 0">
+                                <Button Name="AssignRoleButton" Text="{Loc 'ship-crew-console-assign'}" />
+                                <Control MinSize="8 0"/>
+                                <Button Name="FireSelectedButton" Text="{Loc 'ship-crew-console-fire-selected'}" />
+                            </BoxContainer>
+                        </BoxContainer>
                     </PanelContainer>
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
-                        <Label Name="AdUnsavedChanges"
-                               Text="{Loc 'general-station-record-console-ad-unsaved-changes'}"
-                               Visible="False"
-                               HorizontalAlignment="Right"
-                               FontColorOverride="yellow"
-                               Margin="0 0 5 0"/>
-                        <Button Name="AdSubmitButton"
-                                Text="{Loc 'general-station-record-console-ad-submit'}"
-                                Disabled="True"
-                                SetSize="100 30"
-                                HorizontalAlignment="Right"/>
-                    </BoxContainer>
                 </BoxContainer>
-                <!-- Frontier: end ship bio -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

@@ -17,7 +17,8 @@ public sealed class VehicleSystem : SharedVehicleSystem
 
     protected override void OnUnstrapped(Entity<VehicleComponent> ent, ref UnstrappedEvent args)
     {
-        RemComp<RadarBlipComponent>(ent);
+        if (ent.Comp.Driver == args.Buckle.Owner)
+        { RemComp<RadarBlipComponent>(ent); }
         base.OnUnstrapped(ent, ref args);
     }
 

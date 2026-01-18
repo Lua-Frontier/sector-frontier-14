@@ -9,6 +9,11 @@ namespace Content.Shared.Lua.CLVar
     [CVarDefs]
     public sealed partial class CLVars
     {
+        public static readonly CVarDef<float> AlertsIconScale =
+            CVarDef.Create("ui.alerts_icon_scale", 2.0f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<string> AlertsPosition =
+            CVarDef.Create("ui.alerts_position", "right", CVar.CLIENTONLY | CVar.ARCHIVE);
+
         public static readonly CVarDef<bool> BankFlushCacheEnabled = CVarDef.Create("bank.flushcache.enabled", false, CVar.SERVER | CVar.REPLICATED);
         public static readonly CVarDef<int> BankFlushCacheInterval = CVarDef.Create("bank.flushcache.interval", 300, CVar.SERVER | CVar.REPLICATED);
 
@@ -102,6 +107,12 @@ namespace Content.Shared.Lua.CLVar
         /// </summary>
         public static readonly CVarDef<bool> AutoGridCleanupEnabled =
             CVarDef.Create("shuttle.grid_cleanup_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        /// <summary>
+        /// Штрафы.
+        /// </summary>
+        public static readonly CVarDef<bool> FrontierParkingEnabled =
+            CVarDef.Create("frontier.parking_fines_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
         /// <summary>
         /// Таймер ожидания возможности проснутся с криосна.

@@ -26,6 +26,7 @@ using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Server._NF.Shipyard.Systems; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Server._Lua.StationRecords.Systems; // Lua
 
 namespace Content.Server.PDA
 {
@@ -42,6 +43,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+        [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!; // Lua
 
         public override void Initialize()
         {
@@ -214,6 +216,13 @@ namespace Content.Server.PDA
             if (TryComp<ShuttleDeedComponent>(pda.ContainedId, out var shuttleDeedComp))
                 ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp);
             // End Frontier: balance & ship deeds
+            string? assignedShipName = null;
+            string? assignedShipRoleLocKey = null;
+            if (pda.ContainedId != null && _shipCrew.TryGetAssignment(pda.ContainedId.Value, out var assignment))
+            {
+                assignedShipName = assignment.shipName;
+                assignedShipRoleLocKey = assignment.roleLocKey;
+            }
 
             var state = new PdaUpdateState(
                 programs,
@@ -232,6 +241,8 @@ namespace Content.Server.PDA
                 },
                 balance, // Frontier
                 ownedShipName, // Frontier
+                assignedShipName, // Lua
+                assignedShipRoleLocKey, // Lua
                 pda.StationName,
                 showUplink,
                 hasInstrument,

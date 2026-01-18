@@ -7,57 +7,56 @@
 
 - type: tile
   id: LatticeCornerNE
-  parent: TrainLattice #Lua edit: Lattice -> TrainLattice, this parent better
+  parent: TrainLattice #Lua
   name: tiles-latticecornerNE
-  sprite: /Textures/_Lua/Tiles/lattice/ne.png
+  sprite: /Textures/_Lua/Tiles/lattice/ne.png #Lua
   vertices: ["1, 0", "1, 1", "0, 1"]
 
 - type: tile
   id: LatticeCornerNW
-  parent: TrainLattice #Lua edit: Lattice -> TrainLattice, this parent better
+  parent: TrainLattice #Lua
   name: tiles-latticecornerNW
-  sprite: /Textures/_Lua/Tiles/lattice/nw.png
+  sprite: /Textures/_Lua/Tiles/lattice/nw.png #Lua
   vertices: ["0, 0", "1, 1", "0, 1"]
 
 - type: tile
   id: LatticeCornerSE
-  parent: TrainLattice #Lua edit: Lattice -> TrainLattice, this parent better
+  parent: TrainLattice #Lua
   name: tiles-latticecornerSE
-  sprite: /Textures/_Lua/Tiles/lattice/se.png
+  sprite: /Textures/_Lua/Tiles/lattice/se.png #Lua
   vertices: ["0, 0", "1, 0", "1, 1"]
 
 - type: tile
   id: LatticeCornerSW
-  parent: TrainLattice #Lua edit: Lattice -> TrainLattice, this parent better
+  parent: TrainLattice #Lua
   name: tiles-latticecornerSW
-  sprite: /Textures/_Lua/Tiles/lattice/sw.png
+  sprite: /Textures/_Lua/Tiles/lattice/sw.png #Lua
   vertices: ["0, 0", "1, 0", "0, 1"]
 
 - type: tile
   id: PlatingCornerNE
-  parent: TrainLattice #Lua edit: Plating -> TrainLattice, more realistic
+  parent: TrainLattice #Lua
   name: tiles-platingcornerNE
   sprite: /Textures/_Mono/Tiles/plating/ne.png
   vertices: ["1, 0", "1, 1", "0, 1"]
 
 - type: tile
   id: PlatingCornerNW
-  parent: TrainLattice #Lua edit: Plating -> TrainLattice, more realistic
+  parent: TrainLattice #Lua
   name: tiles-platingcornerNW
   sprite: /Textures/_Mono/Tiles/plating/nw.png
   vertices: ["0, 0", "1, 1", "0, 1"]
 
 - type: tile
   id: PlatingCornerSW
-  parent: TrainLattice #Lua edit: Plating -> TrainLattice, more realistic
+  parent: TrainLattice #Lua
   name: tiles-platingcornerSW
   sprite: /Textures/_Mono/Tiles/plating/sw.png
   vertices: ["0, 0", "1, 0", "0, 1"]
 
-
 - type: tile
   id: PlatingCornerSE
-  parent: TrainLattice #Lua edit: Plating -> TrainLattice, more realistic
+  parent: TrainLattice #Lua
   name: tiles-platingcornerSE
   sprite: /Textures/_Mono/Tiles/plating/se.png
   vertices: ["0, 0", "1, 0", "1, 1"]

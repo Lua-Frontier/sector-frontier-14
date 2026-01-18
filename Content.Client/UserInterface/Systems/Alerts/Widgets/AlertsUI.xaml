@@ -1,7 +1,28 @@
-﻿<widgets:AlertsUI xmlns="https://spacestation14.io"
+<widgets:AlertsUI xmlns="https://spacestation14.io"
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
-                  MinSize="64 64">
-    <PanelContainer HorizontalAlignment="Right" VerticalAlignment="Top">
-        <BoxContainer Name="AlertContainer" Access="Public" Orientation="Vertical" />
-    </PanelContainer>
+                  MinSize="0 0">
+    <BoxContainer Orientation="Vertical">
+        <!-- Right side layout (classic): 3 columns, filled top-to-bottom -->
+        <PanelContainer Name="RightModeRoot" Visible="False" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalAlignment="Right">
+                <BoxContainer Name="RightColumn1" Access="Public" Orientation="Vertical" SeparationOverride="2" />
+                <BoxContainer Name="RightColumn2" Access="Public" Orientation="Vertical" SeparationOverride="2" />
+                <BoxContainer Name="RightColumn3" Access="Public" Orientation="Vertical" SeparationOverride="2" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Bottom layout: center-outwards above hotbar -->
+        <GridContainer Name="BottomModeRoot" Columns="2" HorizontalAlignment="Center">
+            <BoxContainer Name="LeftAlertContainer"
+                          Access="Public"
+                          Orientation="Horizontal"
+                          HorizontalAlignment="Right"
+                          Margin="0 0 6 0" />
+            <BoxContainer Name="RightAlertContainer"
+                          Access="Public"
+                          Orientation="Horizontal"
+                          HorizontalAlignment="Left"
+                          Margin="6 0 0 0" />
+        </GridContainer>
+    </BoxContainer>
 </widgets:AlertsUI>

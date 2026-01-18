@@ -8,3 +8,17 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: Pirate
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconTeam
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: team
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconTeamCaptain
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: teamcaptain

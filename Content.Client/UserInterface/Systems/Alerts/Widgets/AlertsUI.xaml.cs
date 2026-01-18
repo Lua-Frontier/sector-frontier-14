@@ -5,8 +5,15 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client.UserInterface.Systems.Alerts.Widgets;
+
+public enum AlertsLayoutMode // Lua
+{
+    Bottom,
+    Right
+}
 
 /// <summary>
 ///     The status effects display on the right side of the screen.
@@ -17,10 +24,23 @@ public sealed partial class AlertsUI : UIWidget
     // also known as Control.Children?
     private readonly Dictionary<AlertKey, AlertControl> _alertControls = new();
 
+    public AlertsLayoutMode LayoutMode { get; private set; } = AlertsLayoutMode.Bottom; // Lua
+
     public AlertsUI()
     {
         RobustXamlLoader.Load(this);
     }
+
+    public void SetLayoutMode(AlertsLayoutMode mode) // Lua
+    {
+        LayoutMode = mode;
+        RightModeRoot.Visible = mode == AlertsLayoutMode.Right;
+        BottomModeRoot.Visible = mode == AlertsLayoutMode.Bottom;
+        RebuildLayout(null);
+    }
+
+    public void SetIconScale(float scale)
+    { foreach (var control in _alertControls.Values) { control.SetIconScale(scale); } }
 
     public void SyncControls(AlertsSystem alertsSystem,
         AlertOrderPrototype? alertOrderPrototype,
@@ -47,6 +67,11 @@ public sealed partial class AlertsUI : UIWidget
         }
 
         _alertControls.Clear();
+        LeftAlertContainer.Children.Clear();
+        RightAlertContainer.Children.Clear();
+        RightColumn1.Children.Clear(); // Lua
+        RightColumn2.Children.Clear(); // Lua
+        RightColumn3.Children.Clear(); // Lua
     }
 
     public event EventHandler<ProtoId<AlertPrototype>>? AlertPressed;
@@ -65,7 +90,7 @@ public sealed partial class AlertsUI : UIWidget
             _alertControls.Remove(alertKeyToRemove, out var control);
             if (control == null)
                 return true;
-            AlertContainer.Children.Remove(control);
+            RemoveFromAllLayouts(control); // Lua
         }
 
         return false;
@@ -97,42 +122,79 @@ public sealed partial class AlertsUI : UIWidget
                 existingAlertControl.SetSeverity(alertState.Severity);
                 if (alertState.ShowCooldown)
                     existingAlertControl.Cooldown = alertState.Cooldown;
+                else existingAlertControl.Cooldown = null;
             }
             else
             {
                 if (existingAlertControl != null)
-                    AlertContainer.Children.Remove(existingAlertControl);
+                {
+                    RemoveFromAllLayouts(existingAlertControl); // Lua
+                }
 
                 // this is a new alert + alert key or just a different alert with the same
                 // key, create the control and add it in the appropriate order
                 var newAlertControl = CreateAlertControl(newAlert, alertState);
 
-                //TODO: Can the presenter sort the states before giving it to us?
-                if (alertOrderPrototype != null)
-                {
-                    var added = false;
-                    foreach (var alertControl in AlertContainer.Children)
-                    {
-                        if (alertOrderPrototype.Compare(newAlert, ((AlertControl) alertControl).Alert) >= 0)
-                            continue;
-
-                        var idx = alertControl.GetPositionInParent();
-                        AlertContainer.Children.Add(newAlertControl);
-                        newAlertControl.SetPositionInParent(idx);
-                        added = true;
-                        break;
-                    }
-
-                    if (!added)
-                        AlertContainer.Children.Add(newAlertControl);
-                }
-                else
-                {
-                    AlertContainer.Children.Add(newAlertControl);
-                }
-
                 _alertControls[newAlert.AlertKey] = newAlertControl;
             }
+        }
+        RebuildLayout(alertOrderPrototype);
+    }
+
+    private void RemoveFromAllLayouts(AlertControl control) // Lua
+    {
+        LeftAlertContainer.Children.Remove(control);
+        RightAlertContainer.Children.Remove(control);
+        RightColumn1.Children.Remove(control);
+        RightColumn2.Children.Remove(control);
+        RightColumn3.Children.Remove(control);
+    }
+
+    private void RebuildLayout(AlertOrderPrototype? alertOrderPrototype)
+    {
+        LeftAlertContainer.Children.Clear();
+        RightAlertContainer.Children.Clear();
+        RightColumn1.Children.Clear(); // Lua
+        RightColumn2.Children.Clear(); // Lua
+        RightColumn3.Children.Clear(); // Lua
+        var controls = _alertControls.Values.ToList();
+        controls.Sort((a, b) =>
+        {
+            if (alertOrderPrototype != null) return alertOrderPrototype.Compare(a.Alert, b.Alert);
+            return string.Compare(a.Alert.ID, b.Alert.ID, StringComparison.OrdinalIgnoreCase);
+        });
+        switch (LayoutMode) // Lua
+        {
+            case AlertsLayoutMode.Bottom:
+                for (var i = 0; i < controls.Count; i++)
+                {
+                    var control = controls[i];
+                    if ((i & 1) == 0) RightAlertContainer.Children.Add(control);
+                    else LeftAlertContainer.Children.Add(control);
+                }
+                break;
+            case AlertsLayoutMode.Right: // Lua
+                for (var i = 0; i < controls.Count; i++)
+                {
+                    // 1 2 3
+                    // 4 5 6
+                    // 7 8 9 shit
+                    var column = i % 3;
+                    var control = controls[i];
+                    switch (column)
+                    {
+                        case 0:
+                            RightColumn1.Children.Add(control);
+                            break;
+                        case 1:
+                            RightColumn2.Children.Add(control);
+                            break;
+                        default:
+                            RightColumn3.Children.Add(control);
+                            break;
+                    }
+                }
+                break;
         }
     }
 

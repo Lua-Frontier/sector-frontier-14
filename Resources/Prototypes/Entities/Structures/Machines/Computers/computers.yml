@@ -451,6 +451,24 @@
   description: This can be used to check station records.
   components:
   - type: GeneralStationRecordConsole
+    captainIdSlot:
+      name: ship-crew-console-captain-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+    targetIdSlot:
+      name: ship-crew-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
   - type: UserInterface
     interfaces:
         enum.GeneralStationRecordConsoleKey.Key:
@@ -458,8 +476,15 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: ActivatableUI
-    adminOnly: true
+    singleUser: true
     key: enum.GeneralStationRecordConsoleKey.Key
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      GeneralStationRecordConsole-captainId: !type:ContainerSlot
+      GeneralStationRecordConsole-targetId: !type:ContainerSlot
   - type: PointLight
     radius: 1.5
     energy: 4.0

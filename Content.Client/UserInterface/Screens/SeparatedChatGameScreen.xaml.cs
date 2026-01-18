@@ -22,7 +22,11 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
         SetAnchorAndMarginPreset(TopLeftContainer, LayoutPreset.TopLeft, margin: 10);
         SetAnchorAndMarginPreset(Ghost, LayoutPreset.BottomWide, margin: 80);
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
-        SetAnchorAndMarginPreset(Alerts, LayoutPreset.CenterRight, margin: 10);
+        SetAnchorPreset(AlertsContainer, LayoutPreset.Wide); // Lua
+        SetMarginLeft(AlertsContainer, 0); // Lua
+        SetMarginTop(AlertsContainer, 0); // Lua
+        SetMarginRight(AlertsContainer, 0); // Lua
+        SetMarginBottom(AlertsContainer, 0); // Lua
 
         ScreenContainer.OnSplitResizeFinished += () =>
             OnChatResized?.Invoke(new Vector2(ScreenContainer.SplitFraction, 0));
