@@ -115,6 +115,12 @@
     requirePower: true
     highVoltageNode: input
     mediumVoltageNode: ame
+  # Mono
+  - type: RadarBlip
+    visibleFromOtherGrids: true
+    radarColor: "#fcba03"
+    scale: 2
+    shape: diamond
 
 - type: entity
   categories: [ HideSpawnMenu ]

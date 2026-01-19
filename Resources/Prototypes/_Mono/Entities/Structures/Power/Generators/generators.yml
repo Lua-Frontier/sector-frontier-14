@@ -198,6 +198,11 @@
     - input: Bluespace # Lua plasma -> bluespace
       output: FuelGradeBluespace
       rate: 5 # Lua 1 -> 5 Because now uses bluespace
+  - type: RadarBlip
+    visibleFromOtherGrids: true
+    radarColor: "#fcba03"
+    scale: 2
+    shape: square
 
 - type: entity
   parent:

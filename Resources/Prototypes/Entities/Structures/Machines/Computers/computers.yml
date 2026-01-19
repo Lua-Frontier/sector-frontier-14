@@ -179,6 +179,12 @@
     - ShuttleCraft
   - type: NoSignalOnLink
   - type: NoDeconstruct
+  # Mono
+  - type: RadarBlip
+    visibleFromOtherGrids: true
+    radarColor: "#03f8fc"
+    scale: 1.5
+    shape: diamond
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom

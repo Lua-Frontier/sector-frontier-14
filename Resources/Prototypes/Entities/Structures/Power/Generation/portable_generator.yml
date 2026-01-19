@@ -34,6 +34,11 @@
             - MachineMask
           layer:
             - MachineLayer
+    - type: RadarBlip
+      visibleFromOtherGrids: true
+      radarColor: "#fcba03"
+      scale: 1
+      shape: square
 
     # Visuals
     - type: Appearance
@@ -207,6 +212,7 @@
         output: FuelGradePlasma
         rate: 1
     # End Frontier: magnet pickup, fuel adapter
+
 
 - type: entity
   name: S.U.P.E.R.P.A.C.M.A.N. portable generator # Frontier: no -type

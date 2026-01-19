@@ -462,3 +462,16 @@
   - type: DeviceLinkSink
     ports:
     - Trigger
+    # Mono Start
+  - type: FireControllable
+  - type: ShipGunClass
+    shipClass: Superlight
+  - type: RadarBlip
+    visibleFromOtherGrids: true
+    radarColor: "#FF0040"
+    scale: 1.25
+  - type: ShipGunType
+    shipType: Ballistic
+  - type: StaticPrice
+    price: 400
+    # Mono End
