@@ -290,7 +290,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         if (TryComp<ShuttleTabletComponent>(uid, out var shuttleTabletComp))
         {
-            var card = _slots.GetItemOrNull(uid, "IDContainer");
+            var card = _slots.GetItemOrNull(uid, "id_container");
 
             if (card == null)
             {
@@ -306,7 +306,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             }
         }
         // Lua end
-
 
         if (!_access.IsAllowed(user, uid)) // Frontier: check access
             return false; // Frontier
@@ -493,7 +492,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         if (TryComp<ShuttleTabletComponent>(consoleUid, out var shuttleTabletComp))
         {
-            var card = _slots.GetItemOrNull(consoleUid, "IDContainer");
+            var card = _slots.GetItemOrNull(consoleUid, "id_container");
 
             if (card == null)
             {
@@ -662,28 +661,41 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         // Lua start
         var coordinates = entity.Comp2.Coordinates;
-        var gridUid = entity.Comp2.GridUid;
-        var actualGridUid = _transform.GetGrid(coordinates);
 
-        // If console's actual grid is different from one in component
-        // Like console on Frontier, shuttle in deep space.
-        if (actualGridUid != gridUid)
+        if (TryComp<ShuttleTabletComponent>(entity.Owner, out _))
         {
             var consoleQuery = EntityQueryEnumerator<ShuttleConsoleComponent, TransformComponent, ApcPowerReceiverComponent>();
             var consoleFound = false;
 
-            while (consoleQuery.MoveNext(out _, out var consoleTransform, out var receiverComp))
+            while (consoleQuery.MoveNext(out var consoleUid, out _, out var consoleTransform, out var receiverComp))
             {
-                if (consoleTransform.GridUid == gridUid && receiverComp.Powered)
+                if (consoleTransform.GridUid == entity.Comp2.GridUid && receiverComp.Powered)
                 {
-                    coordinates = consoleTransform.Coordinates;
                     consoleFound = true;
-                    break;
+
+                    if (!TryComp<ShuttleConsoleLockComponent>(consoleUid, out var lockComp)
+                        || !lockComp.EmergencyLocked)
+                    {
+                        coordinates = consoleTransform.Coordinates;
+                        break;
+                    }
+
+                    if (consoleComp != null)
+                    {
+                        ClearPilots(consoleComp);
+                    }
+
+                    _popup.PopupEntity(Loc.GetString("shuttle-tablet-emergency-locked"), entity);
                 }
             }
 
             if (!consoleFound)
             {
+                if (consoleComp != null)
+                {
+                    ClearPilots(consoleComp);
+                }
+
                 _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-remote-console"), entity);
             }
         }

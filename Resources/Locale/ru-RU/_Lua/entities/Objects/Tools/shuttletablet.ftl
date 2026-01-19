@@ -1,5 +1,5 @@
-ent-ShuttleControlTablet = планшет управления шаттла
-    .desc = Портативный планшет для удалённого управления шаттла. Имеет слот под ID карту. Для функционирования на шаттле должна находится хотя бы одна запитанная консоль.
+ent-ShuttleControlTablet = планшет управления шаттлом
+    .desc = Портативный планшет для удалённого управления шаттлом. Имеет слот под ID карту. Для функционирования на шаттле должна находится хотя бы одна запитанная консоль.
 
 ent-ShuttleControlTabletEmpty = {ent-ShuttleControlTablet}
     .desc = {ent-ShuttleControlTablet.desc}
@@ -21,7 +21,10 @@ ent-ShuttleControlTabletSyndicate = {ent-ShuttleControlTablet}
     .desc = {ent-ShuttleControlTablet.desc}
     .suffix = Синдикат
 
+shuttle-tablet-id-slot = Слот ID карты
+
 shuttle-tablet-no-remote-console = На шаттле не найдена запитанная консоль.
 shuttle-tablet-no-id = Вставьте ID карту.
 shuttle-tablet-no-deed = На карте должен быть судовой акт на шаттл.
 shuttle-tablet-no-power = Недостаточно питания.
+shuttle-tablet-emergency-locked = Консоль аварийно заблокирована.
