@@ -29,6 +29,7 @@ namespace Content.Client.Administration.UI.Bwoink
         public AdminAHelpUIHandler AHelpHelper = default!;
 
         private PlayerInfo? _currentPlayer;
+        private bool _updatingAHelpSoundEnabled; // Lua deadmin mod
 
         public BwoinkControl()
         {
@@ -37,6 +38,12 @@ namespace Content.Client.Administration.UI.Bwoink
 
             var newPlayerThreshold = 0;
             _cfg.OnValueChanged(CCVars.NewPlayerThreshold, (val) => { newPlayerThreshold = val; }, true);
+            _cfg.OnValueChanged(CCVars.BwoinkSoundEnabled, val => // Lua deadmin mod
+            {
+                _updatingAHelpSoundEnabled = true;
+                AHelpSoundEnabled.Pressed = val;
+                _updatingAHelpSoundEnabled = false;
+            }, true);
 
             var uiController = _ui.GetUIController<AHelpUIController>();
             if (uiController.UIHelper is not AdminAHelpUIHandler helper)
@@ -48,6 +55,12 @@ namespace Content.Client.Administration.UI.Bwoink
             UpdateButtons();
 
             AdminOnly.OnToggled += args => PlaySound.Disabled = args.Pressed;
+            AHelpSoundEnabled.OnToggled += args => // Lua deadmin mod
+            {
+                if (_updatingAHelpSoundEnabled) return;
+                _cfg.SetCVar(CCVars.BwoinkSoundEnabled, args.Pressed);
+                _cfg.SaveToFile();
+            };
 
             ChannelSelector.OnSelectionChanged += sel =>
             {

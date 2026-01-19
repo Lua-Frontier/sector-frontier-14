@@ -18,6 +18,7 @@ admin-ahelp-admin-only-tooltip =
     If checked, then the message won't be visible for the player,
     but will be visible for other admins and still will be Discord relayed.
 admin-bwoink-play-sound = Звук?
+admin-bwoink-ahelp-sound = Звук ахелпов
 bwoink-title-none-selected = Ничего не выбрано
 bwoink-system-rate-limited = Система: вы отправляете сообщения слишком быстро.
 bwoink-system-player-disconnecting = отключился.
