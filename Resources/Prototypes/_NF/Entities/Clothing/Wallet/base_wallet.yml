@@ -27,14 +27,15 @@
     - 0,0,3,1
     quickInsert: true
     areaInsert: true
-    whitelist:
-      components:
-      - Cash
-      - Paper
-      - NFCoin
-      - NFShipyardVoucher
-      - Card # single cards
-      - NFEmagPass
+    # Luna: Деактивировано для большей реалистичности кошельков. В реальном кошельке может лежать что угодно.
+    # whitelist:
+    #   components:
+    #   - Cash
+    #   - Paper
+    #   - NFCoin
+    #   - NFShipyardVoucher
+    #   - Card # single cards
+    #   - NFEmagPass
     blacklist:
       tags:
       - Book
