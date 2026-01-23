@@ -2,7 +2,7 @@
 # For produce that can't be immediately eaten
 
 - type: entity
-  parent: [BaseItem, RecyclableItemOrganicTiny] # Frontier: added RecyclableItemOrganicTiny
+  parent: [BaseItem, RecyclableItemOrganicTiny, FoodRotting] # Frontier: added RecyclableItemOrganicTiny
   id: ProduceBase
   abstract: true
   components:
@@ -23,7 +23,7 @@
 # For produce that can be immediately eaten
 
 - type: entity
-  parent: [FoodInjectableBase, RecyclableItemOrganicTiny] # Frontier: added RecyclableItemOrganicTiny
+  parent: [FoodInjectableBase, RecyclableItemOrganicTiny, FoodRotting] # Frontier: added RecyclableItemOrganicTiny
   id: FoodProduceBase
   abstract: true
   components:

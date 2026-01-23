@@ -19,7 +19,7 @@
 # that should be cleaned up in space
 #
 - type: entity
-  parent: EdibleBase
+  parent: [EdibleBase, FoodRotting]
   id: FoodBase
   abstract: true
   components:
