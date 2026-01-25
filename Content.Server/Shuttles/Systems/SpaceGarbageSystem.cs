@@ -24,8 +24,9 @@ public sealed class SpaceGarbageSystem : EntitySystem
         if (args.OtherBody.BodyType != BodyType.Static)
             return;
 
-        var ourXform = _xformQuery.GetComponent(uid);
-        var otherXform = _xformQuery.GetComponent(args.OtherEntity);
+        if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity)) return; // Lua anti exception
+        if (!_xformQuery.TryGetComponent(uid, out var ourXform) || !_xformQuery.TryGetComponent(args.OtherEntity, out var otherXform))
+        { return; }
 
         if (ourXform.GridUid == otherXform.GridUid)
             return;

@@ -121,7 +121,7 @@ public sealed class AdminSystem : EntitySystem
 
         var updateEv = new FullPlayerListEvent() { PlayersInfo = _playerList.Values.ToList() };
 
-        foreach (var admin in _adminManager.ActiveAdmins)
+        foreach (var admin in GetPlayerListRecipients()) // Lua deadmin mod
         {
             RaiseNetworkEvent(updateEv, admin.Channel);
         }
@@ -141,7 +141,7 @@ public sealed class AdminSystem : EntitySystem
             PlayerInfo = _playerList[player.UserId]
         };
 
-        foreach (var admin in _adminManager.ActiveAdmins)
+        foreach (var admin in GetPlayerListRecipients()) // Lua deadmin mod
         {
             RaiseNetworkEvent(playerInfoChangedEvent, admin.Channel);
         }
@@ -173,7 +173,7 @@ public sealed class AdminSystem : EntitySystem
     {
         UpdatePanicBunker();
 
-        if (!obj.IsAdmin)
+        if (!ShouldReceivePlayerList(obj.Player)) // Lua deadmin mod
         {
             RaiseNetworkEvent(new FullPlayerListEvent(), obj.Player.Channel);
             return;
@@ -181,6 +181,11 @@ public sealed class AdminSystem : EntitySystem
 
         SendFullPlayerList(obj.Player);
     }
+
+    private IEnumerable<ICommonSession> GetPlayerListRecipients() // Lua deadmin mod
+    { return _adminManager.AllAdmins.Where(ShouldReceivePlayerList); }
+    private bool ShouldReceivePlayerList(ICommonSession session) // Lua deadmin mod
+    { return _adminManager.GetAdminData(session, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true; }
 
     private void OnPlayerDetached(PlayerDetachedEvent ev)
     {

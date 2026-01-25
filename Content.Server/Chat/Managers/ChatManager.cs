@@ -207,7 +207,7 @@ internal sealed partial class ChatManager : IChatManager
 
     public void SendHookAdmin(string sender, string message)
     {
-        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+        var clients = _adminManager.AllAdmins.Where(p => _adminManager.GetAdminData(p, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminchat, includeDeAdmin: true) ?? false).Select(p => p.Channel); // Lua deadmin mod
         var wrappedMessage = Loc.GetString("chat-manager-send-hook-admin-wrap-message", ("senderName", sender), ("message", FormattedMessage.EscapeText(message)));
 
         ChatMessageToMany(ChatChannel.AdminChat, message, wrappedMessage, source: EntityUid.Invalid, hideChat: false, recordReplay: false, clients);
@@ -344,13 +344,18 @@ internal sealed partial class ChatManager : IChatManager
 
     private void SendAdminChat(ICommonSession player, string message)
     {
-        if (!_adminManager.IsAdmin(player))
+        if (!_adminManager.IsAdmin(player, includeDeAdmin: true)) // Lua deadmin mod
         {
             _adminLogger.Add(LogType.Chat, LogImpact.Extreme, $"{player:Player} attempted to send admin message but was not admin");
             return;
         }
 
-        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+        if (!(_adminManager.GetAdminData(player, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminchat, includeDeAdmin: true) ?? false)) // Lua deadmin mod
+        {
+            _adminLogger.Add(LogType.Chat, LogImpact.Extreme, $"{player:Player} attempted to send admin message but lacked {nameof(AdminFlags.Adminchat)}");
+            return;
+        }
+        var clients = _adminManager.AllAdmins.Where(p => _adminManager.GetAdminData(p, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminchat, includeDeAdmin: true) ?? false).Select(p => p.Channel); // Lua deadmin mod
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
                                         ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
                                         ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));

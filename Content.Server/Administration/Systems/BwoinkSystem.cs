@@ -337,7 +337,7 @@ namespace Content.Server.Administration.Systems
             _typingUpdateTimestamps[args.SenderSession.UserId] = (_timing.RealTime, msg.Typing);
 
             // Non-admins can only ever type on their own ahelp, guard against fake messages
-            var isAdmin = _adminManager.GetAdminData(args.SenderSession)?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            var isAdmin = _adminManager.GetAdminData(args.SenderSession, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false; // Lua deadmin mod
             var channel = isAdmin ? msg.Channel : args.SenderSession.UserId;
             var update = new BwoinkPlayerTypingUpdated(channel, args.SenderSession.Name, msg.Typing);
 
@@ -716,8 +716,8 @@ namespace Content.Server.Administration.Systems
 
             // Confirm that this person is actually allowed to send a message here.
             var personalChannel = senderSession.UserId == message.UserId;
-            var senderAdmin = _adminManager.GetAdminData(senderSession);
-            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            var senderAdmin = _adminManager.GetAdminData(senderSession, includeDeAdmin: true); // Lua deadmin mod
+            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false; // Lua deadmin mod
             var authorized = personalChannel && !message.AdminOnly || senderAHelpAdmin;
             if (!authorized)
             {
@@ -762,7 +762,7 @@ namespace Content.Server.Administration.Systems
             {
                 bwoinkText = $"[color=purple]{adminPrefix}{senderName}[/color]";
             }
-            else if (fromWebhook || senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp)) // Frontier: anything sent via webhooks are from an admin.
+            else if (fromWebhook || senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true)) // Lua deadmin mod
             {
                 // For Discord messages, use the senderName as-is since it already contains formatting
                 if (fromWebhook)
@@ -791,7 +791,7 @@ namespace Content.Server.Administration.Systems
 
             bwoinkText = $"{(message.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : !message.PlaySound ? Loc.GetString("bwoink-message-silent") : "")}{(fromWebhook ? Loc.GetString("bwoink-message-discord") : "")} {bwoinkText}: {escapedText}";
 
-            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
+            var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false; // Lua deadmin mod
             // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
             var playSound = (!senderAHelpAdmin || message.PlaySound) && !message.AdminOnly;
             var msg = new BwoinkTextMessage(message.UserId, senderId, bwoinkText, playSound: playSound, adminOnly: message.AdminOnly);
@@ -915,17 +915,14 @@ namespace Content.Server.Administration.Systems
 
         private IList<INetChannel> GetNonAfkAdmins()
         {
-            return _adminManager.ActiveAdmins
-                .Where(p => (_adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false) &&
-                            !_afkManager.IsAfk(p))
+            return _adminManager.AllAdmins.Where(p => (_adminManager.GetAdminData(p, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false) && !_afkManager.IsAfk(p)) // Lua deadmin mod
                 .Select(p => p.Channel)
                 .ToList();
         }
 
         private IList<INetChannel> GetTargetAdmins()
         {
-            return _adminManager.ActiveAdmins
-                .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)
+            return _adminManager.AllAdmins.Where(p => _adminManager.GetAdminData(p, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false) // Lua deadmin mod
                 .Select(p => p.Channel)
                 .ToList();
         }
