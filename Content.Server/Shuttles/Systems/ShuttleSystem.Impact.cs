@@ -1,6 +1,7 @@
 using Content.Server._NF.Shuttles.Components;
 using Content.Server._Lua.Shuttles.Components;
 using Content.Server.Shuttles.Components;
+using Content.Shared._Crescent.ShipShields;
 using Content.Shared._Mono;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Audio;
@@ -106,6 +107,7 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private void OnShuttleCollide(EntityUid uid, ShuttleComponent component, ref StartCollideEvent args)
     {
+
         if (TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid)
             || TerminatingOrDeleted(args.OtherEntity) || EntityManager.IsQueuedForDeletion(args.OtherEntity)
         )
@@ -210,9 +212,23 @@ public sealed partial class ShuttleSystem
             var totalInertia = ourVelocity * ourMass + otherVelocity * otherMass;
             var inelasticVel = totalInertia / (ourMass + otherMass);
 
+            // Mono Edit - partial credit to https://github.com/Sector-Crescent/Hullrot/pull/692
+            //ShipShieldedComp is removed when shields are broken, only reduces energy delivered when shields are active. ShipShieldsSystem ln 256.
+            if (TryComp<ShipShieldedComponent>(args.OurEntity, out var ShipShieldedComponent) //Our ship collision resistance
+                && TryComp<ShipShieldEmitterComponent>(ShipShieldedComponent.Source, out var ShipShieldEmitterComponent)
+            )
+                toUsEnergy *= ShipShieldEmitterComponent.CollisionResistanceMultiplier;
+
+            if (TryComp<ShipShieldedComponent>(args.OtherEntity, out var OtherShipShieldedComponent) //Other ship collision resistance
+                && TryComp<ShipShieldEmitterComponent>(OtherShipShieldedComponent.Source, out var OtherShipShieldEmitterComponent)
+            )
+                toOtherEnergy *= OtherShipShieldEmitterComponent.CollisionResistanceMultiplier;
+            // Mono Edit end
+
             DoGridImpact((args.OurEntity, ourGrid, ourXform, ourBody), args.OurFixture, inelasticVel, ourVelocity, ourTile, ourTiles, toUsEnergy);
             DoGridImpact((args.OtherEntity, otherGrid, otherXform, otherBody), args.OtherFixture, inelasticVel, otherVelocity, otherTile, otherTiles, toOtherEnergy);
         }
+
     }
 
     partial void SuppressImpactDamage(ref bool suppress, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args);
