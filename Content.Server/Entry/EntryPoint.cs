@@ -38,6 +38,7 @@ using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -56,6 +57,18 @@ namespace Content.Server.Entry
         private IServerDbManager? _dbManager;
         private IWatchlistWebhookManager _watchlistWebhookManager = default!;
         private IConnectionManager? _connectionManager;
+
+        public override void PreInit()
+        {
+            ServerContentIoC.Register(Dependencies);
+            foreach (var callback in TestingCallbacks)
+            {
+                var cast = (ServerModuleTestingCallbacks)callback;
+                cast.ServerBeforeIoC?.Invoke();
+            }
+
+            Dependencies.Resolve<IRobustSerializer>().FloatFlags = SerializerFloatFlags.RemoveReadNan;
+        }
 
         /// <inheritdoc />
         public override void Init()
