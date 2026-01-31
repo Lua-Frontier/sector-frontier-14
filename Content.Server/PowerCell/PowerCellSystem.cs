@@ -252,8 +252,8 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
 
     private void OnCellSlotExamined(EntityUid uid, PowerCellSlotComponent component, ExaminedEvent args)
     {
-        TryGetBatteryFromSlot(uid, out var battery);
-        OnBatteryExamined(uid, battery, args);
+        if (TryGetBatteryFromSlot(uid, out var batteryEnt, out var battery) && batteryEnt != null && battery != null) OnBatteryExamined(batteryEnt.Value, battery, args);
+        else OnBatteryExamined(uid, null, args);
     }
 
     public void OnBatteryExamined(EntityUid uid, BatteryComponent? component, ExaminedEvent args) // WD EDIT
