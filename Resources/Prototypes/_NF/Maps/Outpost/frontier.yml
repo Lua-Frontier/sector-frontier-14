@@ -1,14 +1,14 @@
 - type: gameMap
   id: Frontier
   mapName: 'Сектор Фронтир'
-  mapPath: /Maps/_Lua/Outpost/rust-frontier.yml
+  mapPath: /Maps/_Lua/Outpost/frontier.yml
   minPlayers: 0
   maxPlayers: 100
   randomRotation: false
   maxRandomOffset: 0
   stations:
     Frontier:
-      stationProto: MarketFrontierOutpost #Lua StandardFrontierStation<MarketFrontierOutpost
+      stationProto: StandardFrontierStation
       components:
         - type: FrontierParking # Lua
         - type: RadarBlipIcon
