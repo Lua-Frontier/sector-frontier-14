@@ -4,7 +4,7 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/01/2026 09:17:33
+  time: 02/01/2026 09:58:28
   entityCount: 1826
 maps: []
 grids:
@@ -6804,6 +6804,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-6.5
       parent: 1
+- proto: MachineFrame
+  entities:
+  - uid: 1351
+    components:
+    - type: Transform
+      pos: 8.5,-9.5
+      parent: 1
 - proto: MachineFTLDrive600
   entities:
   - uid: 919
@@ -9344,11 +9351,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,8.5
-      parent: 1
-  - uid: 1351
-    components:
-    - type: Transform
-      pos: 8.5,-9.5
       parent: 1
   - uid: 1352
     components:
