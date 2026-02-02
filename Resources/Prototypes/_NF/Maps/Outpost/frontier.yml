@@ -9,6 +9,13 @@
   stations:
     Frontier:
       stationProto: MarketFrontierOutpost #Lua StandardFrontierStation<MarketFrontierOutpost
+      # Lua add start
+      gridComponents:
+      - type: VesselMusic
+        ambientMusicPrototype: ColossusCentralMusic
+      - type: VesselInfo
+        description: "Хотя бы здесь вы можете почувствовать себя в безопасности."
+      # Lua add end
       components:
         - type: FrontierParking # Lua
         - type: RadarBlipIcon
