@@ -162,7 +162,7 @@ public sealed class SpaceBiomeTextOverlay : Overlay
             }
         }
 
-        Vector2 pos = new Vector2((viewport.X - strSize.X) / 2, strSize.Y + 110 + 70); //70 should be enough to give the title font space
+        Vector2 pos = new Vector2((viewport.X - strSize.X) / 2, strSize.Y + 110 + 140); //140 should be enough to give the title font space
         return pos;
     }
 }
