@@ -103,7 +103,6 @@ public sealed partial class ShuttleSystem
     private EntityQuery<StatusEffectsComponent> _statusQuery;
 
     [Dependency] private readonly IEntityManager _entManager = default!; // Mono
-    [Dependency] private readonly IPrototypeManager _protManager = default!; // Mono
 
     private void InitializeFTL()
     {
