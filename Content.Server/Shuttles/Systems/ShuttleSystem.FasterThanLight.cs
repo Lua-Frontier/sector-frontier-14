@@ -32,6 +32,10 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
+using Content.Server.Salvage.Expeditions;
+using Content.Shared._Mono.Ships;
+using Content.Shared._Crescent.SpaceBiomes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -97,6 +101,9 @@ public sealed partial class ShuttleSystem
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<FTLSmashImmuneComponent> _immuneQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
+
+    [Dependency] private readonly IEntityManager _entManager = default!; // Mono
+    [Dependency] private readonly IPrototypeManager _protManager = default!; // Mono
 
     private void InitializeFTL()
     {
