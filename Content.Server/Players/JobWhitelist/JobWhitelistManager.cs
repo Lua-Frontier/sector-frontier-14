@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost.Roles; // Frontier: Ghost Role handling
@@ -10,9 +7,13 @@ using Content.Shared.Players.PlayTimeTracking; // Frontier: Global whitelist han
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Localization;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Content.Server.Players.JobWhitelist;
 
@@ -154,7 +155,7 @@ public sealed class JobWhitelistManager : IPostInjectInit
         if (!_whitelists.TryGetValue(player, out var whitelists) ||
         !_globalWhitelists.TryGetValue(player, out var globalWhitelist))
         {
-            Log.Error("Unable to check if player {Player} is whitelisted for {GhostRole}. Stack trace:\\n{StackTrace}",
+            _sawmill.Error("Unable to check if player {Player} is whitelisted for {GhostRole}. Stack trace:\\n{StackTrace}",
                 player,
                 ghostRole,
                 Environment.StackTrace);
@@ -191,7 +192,7 @@ public sealed class JobWhitelistManager : IPostInjectInit
 
         if (!_globalWhitelists.TryGetValue(player, out var whitelist))
         {
-            Log.Error("Unable to check if player {Player} is globally whitelisted. Stack trace:\\n{StackTrace}",
+            _sawmill.Error("Unable to check if player {Player} is globally whitelisted. Stack trace:\\n{StackTrace}",
                 player,
                 Environment.StackTrace);
             return false;

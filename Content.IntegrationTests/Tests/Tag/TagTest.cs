@@ -1,10 +1,11 @@
 #nullable enable
-using System.Collections.Generic;
 using Content.Shared.Tag;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.UnitTesting.Pool;
+using System.Collections.Generic;
 
 namespace Content.IntegrationTests.Tests.Tag
 {

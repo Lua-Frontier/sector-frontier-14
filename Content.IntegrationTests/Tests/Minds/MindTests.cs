@@ -1,5 +1,4 @@
-﻿#nullable enable
-using System.Linq;
+#nullable enable
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
@@ -18,6 +17,8 @@ using Robust.Server.Player;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Minds;
 

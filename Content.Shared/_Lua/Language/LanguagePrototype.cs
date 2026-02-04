@@ -4,10 +4,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Lua.Language;
 
 [Prototype("language")]
-public sealed class LanguagePrototype : IPrototype
+public sealed partial class LanguagePrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; private set;  } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField("obfuscation")]
     public ObfuscationMethod Obfuscation = ObfuscationMethod.Default;

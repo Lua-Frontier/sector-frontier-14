@@ -1,6 +1,4 @@
 #nullable enable
-using System.Collections.Generic;
-using System.Linq;
 using Content.IntegrationTests.Pair;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
@@ -12,6 +10,9 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Round;
 
