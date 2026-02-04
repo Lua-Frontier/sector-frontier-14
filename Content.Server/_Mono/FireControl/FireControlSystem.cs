@@ -370,36 +370,30 @@ public sealed partial class FireControlSystem : EntitySystem
         }
     }
 
+    public bool CanFireWeapons(EntityUid grid)
+    {
+        if (TerminatingOrDeleted(grid)
+            || HasComp<FTLComponent>(grid)
+            || HasComp<SpaceArtilleryDisabledGridComponent>(grid)
+        )
+            return false;
+
+        var gridXform = Transform(grid);
+        // Check if the weapon is an expedition
+        if (gridXform.MapUid != null && HasComp<SalvageExpeditionComponent>(gridXform.MapUid.Value))
+            return false;
+
+        return true;
+    }
+
     public void FireWeapons(EntityUid server, List<NetEntity> weapons, NetCoordinates coordinates, FireControlServerComponent? component = null)
     {
         if (!Resolve(server, ref component))
             return;
 
-        // Check if the weapon's grid is in FTL
+        // Check if the weapon's grid can fire
         var grid = component.ConnectedGrid;
-        if (grid != null && TryComp<FTLComponent>((EntityUid)grid, out var ftlComp))
-        {
-            if ((ftlComp.State & (Content.Shared.Shuttles.Systems.FTLState.Starting | Content.Shared.Shuttles.Systems.FTLState.Travelling | Content.Shared.Shuttles.Systems.FTLState.Arriving)) != 0x0)
-                return;
-        }
-
-        if (grid != null)
-        {
-            var gridXform2 = Transform((EntityUid)grid);
-            var gridPos2 = _xform.GetWorldPosition(gridXform2);
-            if (IsInsideAnyFtlExclusion(gridXform2.MapID, gridPos2))
-                return;
-        }
-
-        // Check if the weapon's grid is pacified
-        if (grid != null && TryComp<SpaceArtilleryDisabledGridComponent>((EntityUid)grid, out var pacifiedComp))
-            return;
-
-        // Check if the weapon is an expedition
-        if (grid != null &&
-            TryComp<TransformComponent>((EntityUid)grid, out var gridXform) &&
-            gridXform.MapUid != null &&
-            HasComp<SalvageExpeditionComponent>(gridXform.MapUid.Value))
+        if (grid != null && !CanFireWeapons(grid.Value))
             return;
 
         var targetCoords = GetCoordinates(coordinates);
@@ -520,13 +514,13 @@ public sealed partial class FireControlSystem : EntitySystem
     /// <summary>
     /// Attempts to fire a weapon, handling aiming and firing logic.
     /// </summary>
-    public bool AttemptFire(EntityUid weapon, EntityUid user, EntityCoordinates coords, FireControllableComponent? comp = null)
+    public bool AttemptFire(EntityUid weapon, EntityUid user, EntityCoordinates coords, FireControllableComponent? comp = null, bool noServer = false)
     {
         if (!Resolve(weapon, ref comp))
             return false;
 
         // Check if the weapon is ready to fire
-        if (!CanFire(weapon, comp))
+        if (!CanFire(weapon, comp, noServer))
             return false;
 
         // Get weapon and target positions
@@ -564,14 +558,14 @@ public sealed partial class FireControlSystem : EntitySystem
     /// <summary>
     /// Checks if a weapon is ready to fire.
     /// </summary>
-    private bool CanFire(EntityUid weapon, FireControllableComponent comp)
+    private bool CanFire(EntityUid weapon, FireControllableComponent comp, bool noServer = false)
     {
         // Check if weapon is powered
         if (!_power.IsPowered(weapon))
             return false;
 
         // Check if weapon is connected to a server
-        if (comp.ControllingServer == null)
+        if (comp.ControllingServer == null && !noServer)
             return false;
 
         // Check for other conditions like cooldowns if needed

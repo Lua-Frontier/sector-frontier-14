@@ -80,6 +80,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     public Action<EntityCoordinates>? OnRadarClick;
 
     private List<Entity<MapGridComponent>> _grids = new();
+    public List<EntityUid>? Detectors = null;
     private List<Content.Shared.Shuttles.UI.MapObjects.ShuttleExclusionObject>? _radarExclusions; // Lua
     public ShuttleNavControl() : this(64f, 256f, 256f) { } // Mono
 
@@ -311,7 +312,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var flags = iff?.Flags ?? IFFFlags.None; // Lua mod
             var hideLabel = (flags & IFFFlags.HideLabel) != 0x0; // Lua mod
             var hideLabelShuttle = (flags & IFFFlags.HideLabelShuttle) != 0x0; // Lua Decrypt mod
-            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : _detection.IsGridDetected(grid.Owner, _consoleEntity.Value);
+            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : GetGridDetected(grid.Owner);
             var blipOnly = detectionLevel != DetectionLevel.Detected; // don't show outline outside of detection radius even if IFF on
 
             // Lua company radar rules
@@ -775,6 +776,14 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         #endregion
     }
 
+    protected DetectionLevel GetGridDetected(EntityUid grid)
+    {
+        if (Detectors != null)
+            return _detection.IsGridDetected(grid, Detectors);
+
+        return _consoleEntity == null ? DetectionLevel.Undetected : _detection.IsGridDetected(grid, _consoleEntity.Value);
+    }
+
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
     {
         if (!ShowDocks)
@@ -880,7 +889,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             if (EntManager.HasComponent<FTLComponent>(parentXform.Owner)) continue;
             var shieldWorldPos = _transform.GetWorldPosition(parentXform);
             if (Vector2.Distance(shieldWorldPos, consoleWorldPos) > CornerRadarRange) continue;
-            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : _detection.IsGridDetected(parentXform.Owner, _consoleEntity.Value);
+            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : GetGridDetected(parentXform.Owner);
             if (detectionLevel != DetectionLevel.Detected)
                 continue;
 

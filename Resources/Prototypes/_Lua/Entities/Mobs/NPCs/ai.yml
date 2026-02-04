@@ -1,0 +1,84 @@
+# base Resources\Prototypes\_Mono\Entities\Mobs\NPCs\ai.yml
+
+- type: entity
+  name: attacker core spawner
+  id: SpawnMobLTAttackerCore
+  parent: SpawnMobRammerCore
+  suffix: LuaTech
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Mono/Mobs/Core/drone.rsi
+      state: base
+    - sprite: _Mono/Mobs/Core/drone.rsi
+      state: green_t1
+      shader: unshaded
+    - state: green
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - NpcStationAiAttackerLuaTech
+
+- type: entity
+  id: NpcStationAiAttackerLuaTech
+  name: attacker core
+  parent: NpcStationAiRammer
+  description: Shoots at you.
+  suffix: LuaTech
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_t1
+      shader: unshaded
+  - type: HTN
+    rootTask:
+      task: AttackerShuttleCompoundLuaTech
+  - type: ShipNpcTarget # Mono
+    needPower: true
+
+- type: entity
+  name: attacker core spawner
+  id: SpawnMobLTDroneAiMedusa
+  parent: SpawnMobAttackerCore
+  suffix: Short-Range, Drone-Medusa
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NpcDroneLTAiMedusa
+
+- type: entity
+  id: NpcDroneLTAiMedusa
+  name: attacker core
+  parent: [NpcStationAiAttacker, BaseFactionGearOtherFactionT2]
+  description: Shoots at you.
+  suffix: AI, Drone-Medusa
+  components:
+  - type: ShipNpcTarget # Mono
+    needPower: true
+  - type: HTN
+    rootTask:
+      task: DroneCompoundMedusaLuaTech
+
+- type: entity
+  name: attacker core spawner
+  id: SpawnMobLTDroneAiMPulsar
+  parent: SpawnMobAttackerCore
+  suffix: Short-Range, Drone-MPulsar
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - NpcDroneLTAiMPulsar
+
+- type: entity
+  id: NpcDroneLTAiMPulsar
+  name: attacker core
+  parent: [NpcStationAiAttacker, BaseFactionGearOtherFactionT2]
+  description: Shoots at you, up-close.
+  suffix: AI, Drone-MPulsar
+  components:
+  - type: HTN
+    rootTask:
+      task: DroneCompoundMPulsarLuaTech
+  - type: ShipNpcTarget # Mono
+    needPower: true

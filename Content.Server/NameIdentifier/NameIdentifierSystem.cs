@@ -1,4 +1,4 @@
-﻿using Content.Shared.GameTicking;
+using Content.Shared.GameTicking;
 using Content.Shared.NameIdentifier;
 using Content.Shared.NameModifier.EntitySystems;
 using Robust.Shared.Collections;
@@ -44,10 +44,17 @@ public sealed class NameIdentifierSystem : EntitySystem
         {
             // Avoid inserting the value right back at the end or shuffling in place:
             // just pick a random spot to put it and then move that one to the end.
-            var randomIndex = _robustRandom.Next(ids.Count);
-            var random = ids[randomIndex];
-            ids[randomIndex] = ent.Comp.Identifier;
-            ids.Add(random);
+            if (ids.Count == 1)
+            {
+                ids.Insert(0, ent.Comp.Identifier);
+            }
+            else
+            {
+                var randomIndex = _robustRandom.Next(ids.Count - 1);
+                var random = ids[randomIndex];
+                ids[randomIndex] = ent.Comp.Identifier;
+                ids.Add(random);
+            }
         }
 
         _nameModifier.RefreshNameModifiers(ent.Owner);

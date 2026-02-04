@@ -38,6 +38,9 @@ namespace Content.Server.Shuttles.Systems;
 [UsedImplicitly]
 public sealed partial class ShuttleSystem : SharedShuttleSystem
 {
+    // Mono
+    public const float TileMassMultiplier = 0.5f;
+
     [Dependency] private readonly IAdminLogManager _logger = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using Content.Server.Administration.Managers;
@@ -13,10 +14,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Worldgen; // Frontier
-using Content.Server.Worldgen.Components; // Frontier
-using Content.Server.Worldgen.Systems; // Frontier
-using Robust.Server.GameObjects; // Frontier
+using Robust.Shared.Map;
 
 namespace Content.Server.NPC.HTN;
 
@@ -26,12 +24,6 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
-    // Frontier
-    [Dependency] private readonly WorldControllerSystem _world = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    private EntityQuery<WorldControllerComponent> _mapQuery;
-    private EntityQuery<LoadedChunkComponent> _loadedQuery;
-    // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -41,8 +33,6 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _mapQuery = GetEntityQuery<WorldControllerComponent>(); // Frontier
-        _loadedQuery = GetEntityQuery<LoadedChunkComponent>(); // Frontier
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -214,9 +204,6 @@ public sealed class HTNSystem : EntitySystem
             if (!comp.Enabled)
                 continue;
 
-            if (!IsNPCActive(uid))  // Frontier
-                continue; // Frontier
-
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
@@ -310,20 +297,6 @@ public sealed class HTNSystem : EntitySystem
         count = 0;
     }
 
-    // Frontier: skip handling entities on unloaded chunks
-    private bool IsNPCActive(EntityUid entity)
-    {
-        var transform = Transform(entity);
-
-        if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
-            return true;
-
-        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
-
-        return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
-    }
-    // End Frontier: skip handling entities on unloaded chunks
-
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
     {
         // If it's the selected BTR then highlight.
@@ -401,7 +374,10 @@ public sealed class HTNSystem : EntitySystem
                 foreach (var service in currentTask.Services)
                 {
                     var serviceResult = _utility.GetEntities(blackboard, service.Prototype);
-                    blackboard.SetValue(service.Key, serviceResult.GetHighest());
+                    var res = serviceResult.GetHighest();
+                    blackboard.SetValue(service.Key, res);
+                    if (service.CoordinatesKey != null)
+                        blackboard.SetValue(service.CoordinatesKey, new EntityCoordinates(res, Vector2.Zero));
                 }
 
                 component.CheckServices = false;
@@ -451,7 +427,9 @@ public sealed class HTNSystem : EntitySystem
 
     public void ShutdownPlan(HTNComponent component)
     {
-        DebugTools.Assert(component.Plan != null);
+        if (component.Plan == null)
+            return;
+
         var blackboard = component.Blackboard;
 
         foreach (var task in component.Plan.Tasks)

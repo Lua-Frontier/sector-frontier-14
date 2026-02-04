@@ -51,6 +51,9 @@ public sealed partial class HTNComponent : NPCComponent
     /// </summary>
     [ViewVariables] public bool Planning => PlanningJob != null;
 
+    [DataField]
+    public float? SleepPlayerCheckRangeOverride = null;
+
     /// <summary>
     /// Determines whether plans should be made / updated for this entity
     /// </summary>

@@ -2,14 +2,17 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
+using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Systems;
 using Prometheus;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
@@ -27,6 +30,8 @@ namespace Content.Server.NPC.Systems
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly HTNSystem _htn = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         /// <summary>
         /// Whether any NPCs are allowed to run at all.
@@ -37,6 +42,11 @@ namespace Content.Server.NPC.Systems
 
         private int _count;
 
+        private bool _pauseWhenNoPlayersInRange;
+        private float _playerPauseDistance;
+        private float _playerDistanceCheckTimer;
+        private const float PlayerDistanceCheckInterval = 2.0f;
+
         /// <inheritdoc />
         public override void Initialize()
         {
@@ -44,6 +54,8 @@ namespace Content.Server.NPC.Systems
 
             Subs.CVar(_configurationManager, CCVars.NPCEnabled, value => Enabled = value, true);
             Subs.CVar(_configurationManager, CCVars.NPCMaxUpdates, obj => _maxUpdates = obj, true);
+            Subs.CVar(_configurationManager, CCVars.NPCPauseWhenNoPlayersInRange, value => _pauseWhenNoPlayersInRange = value, true);
+            Subs.CVar(_configurationManager, CCVars.NPCPlayerPauseDistance, value => _playerPauseDistance = value, true);
         }
 
         public void OnPlayerNPCAttach(EntityUid uid, HTNComponent component, PlayerAttachedEvent args)
@@ -141,10 +153,77 @@ namespace Content.Server.NPC.Systems
             if (!Enabled)
                 return;
 
+            if (_pauseWhenNoPlayersInRange)
+            {
+                _playerDistanceCheckTimer += frameTime;
+                if (_playerDistanceCheckTimer >= PlayerDistanceCheckInterval)
+                {
+                    _playerDistanceCheckTimer = 0f;
+                    CheckPlayerDistancesAndPauseNPCs();
+                }
+            }
+
             // Add your system here.
             _htn.UpdateNPC(ref _count, _maxUpdates, frameTime);
 
             ActiveGauge.Set(Count<ActiveNPCComponent>());
+        }
+
+        private void CheckPlayerDistancesAndPauseNPCs()
+        {
+            var npcQuery = EntityQueryEnumerator<HTNComponent, TransformComponent>();
+
+            while (npcQuery.MoveNext(out var npcUid, out var htn, out var npcTransform))
+            {
+                if (HasComp<ActorComponent>(npcUid) ||
+                    (TryComp<MindContainerComponent>(npcUid, out var mindContainer) && mindContainer.HasMind))
+                    continue;
+                if (_mobState.IsIncapacitated(npcUid))
+                    continue;
+
+                var minDistance = htn.SleepPlayerCheckRangeOverride ?? _playerPauseDistance;
+
+                var npcCoords = npcTransform.Coordinates;
+                var hasNearbyPlayer = false;
+
+                foreach (var playerData in _playerManager.GetAllPlayerData())
+                {
+                    var exists = _playerManager.TryGetSessionById(playerData.UserId, out var session);
+                    if (!exists || session == null)
+                        continue;
+
+                    if (session.AttachedEntity is not { Valid: true } playerEnt)
+                        continue;
+
+                    if (HasComp<GhostComponent>(playerEnt))
+                        continue;
+
+                    if (TryComp<MobStateComponent>(playerEnt, out var state) && state.CurrentState != MobState.Alive)
+                        continue;
+
+                    var playerCoords = Transform(playerEnt).Coordinates;
+
+                    if (npcCoords.TryDistance(EntityManager, playerCoords, out var distance) &&
+                        distance <= minDistance)
+                    {
+                        hasNearbyPlayer = true;
+                        break;
+                    }
+                }
+
+                var isAwake = IsAwake(npcUid, htn);
+
+                if (!hasNearbyPlayer)
+                {
+                    if (isAwake)
+                        SleepNPC(npcUid, htn);
+                }
+                else
+                {
+                    if (!isAwake)
+                        WakeNPC(npcUid, htn);
+                }
+            }
         }
 
         public void OnMobStateChange(EntityUid uid, HTNComponent component, MobStateChangedEvent args)

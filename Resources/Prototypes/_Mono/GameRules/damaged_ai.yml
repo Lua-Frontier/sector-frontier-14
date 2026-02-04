@@ -3,11 +3,581 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
       - id: UnknownShuttleZenith
-      # - id: UnknownShuttleRazor
+      #- id: UnknownShuttleRazor # ремапните меня пж
       - id: UnknownShuttleNebula
       - id: UnknownShuttlePerunAI
       - id: UnknownShuttlePozvizdAI
       - id: UnknownShuttleStribogAI
+      - id: UnknownShuttleGust
+      - id: UnknownShuttleRamDroneSmall
+      - id: UnknownShuttleBasicMedium
+      - id: UnknownShuttleMPulsar
+      - id: UnknownShuttleLance
+      - id: UnknownShuttleWasp
+      - id: UnknownShuttleCrown
+      - id: UnknownShuttlePiercer
+      - id: UnknownShuttleMedusa
+      - id: UnknownShuttleAssembly
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleAssembly
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/assembly.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleMedusa
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/medusa.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+  
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttlePiercer
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/piercer.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleCrown
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/crown.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleWasp
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/wasp.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleLance
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/lance.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleMPulsar
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/mpulsar.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleBasicMedium
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/ramdronemedium.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleRamDroneSmall
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150 # 2.5 hours
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/ramdronesmall.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
+
+- type: entity
+  parent: BaseGameRule
+  id: UnknownShuttleGust
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-ai-shuttle-detected
+    startAudio:
+      path: /Audio/_Lua/Announcements/airogue.ogg
+    weight: 2
+    maxOccurrences: 6
+    minimumPlayers: 40
+    requiredJobs:
+      Sheriff: 1
+    reoccurrenceDelay: 150 # 2.5 hours
+    duration: -1
+  - type: AiShuttleSpawnRule
+    deleteGridsOnEnd: false
+    asteroid: false
+    groups:
+      grid: !type:AiShuttleGridSpawnGroup
+        minimumDistance: 1600
+        maximumDistance: 3000
+        addComponents:
+        - type: Company
+          companyName: BrokenAi
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/ai.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+        - type: LinkedLifecycleGridParent
+        paths:
+        - /Maps/_Mono/Shuttles/World/gust.yml
+    rewardAccounts:
+      Nfsd: 0.25
+      Frontier: 0.25
+      Medical: 0.25
+      Edison: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -29,18 +599,34 @@
     asteroid: false
     groups:
       grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
+        minimumDistance: 1600
+        maximumDistance: 3000
         addComponents:
+        - type: Company
+          companyName: BrokenAi
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/ai.png
           scale: 1.2
           allowWhenHidden: true
         - type: IFF
-          color: "#FF0000"
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
         - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Zenith
         paths:
         - /Maps/_Mono/ShuttleEvent/zenith.yml
     rewardAccounts:
@@ -69,18 +655,34 @@
     asteroid: false
     groups:
       grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
+        minimumDistance: 1600
+        maximumDistance: 3000
         addComponents:
+        - type: Company
+          companyName: BrokenAi
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/ai.png
           scale: 1.2
           allowWhenHidden: true
         - type: IFF
-          color: "#FF0000"
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
         - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Nebula
         paths:
         - /Maps/_Mono/ShuttleEvent/nebula.yml
     rewardAccounts:
@@ -89,7 +691,7 @@
       Medical: 0.25
       Edison: 0.25
 
-# - type: entity # Из-за бага требуется создать прям новую карту razor, я не могу найти причину почему этот Razor не стреляет
+# - type: entity
 #   parent: BaseGameRule
 #   id: UnknownShuttleRazor
 #   components:
@@ -109,18 +711,34 @@
 #     asteroid: false
 #     groups:
 #       grid: !type:AiShuttleGridSpawnGroup
-#         minimumDistance: 4000
-#         maximumDistance: 6000
+#         minimumDistance: 1600
+#         maximumDistance: 3000
 #         addComponents:
-        # - type: RadarBlipIcon
-        #   icon: /Textures/_Lua/Interface/Radar/ai.png
-        #   scale: 1.2
-        #   allowWhenHidden: true
+#         - type: Company
+#           companyName: BrokenAi
+#         - type: RadarBlipIcon
+#           icon: /Textures/_Lua/Interface/Radar/ai.png
+#           scale: 1.2
+#           allowWhenHidden: true
 #         - type: IFF
-#           color: "#FF0000"
+#           color: "#9a2020"
+#         - type: GridCleanupGrid
+#           cleanupAcceleration: 3
+#           ignorePowered: true
+#           ignoreIFF: true
+#           ignorePrice: true
+#         - type: RandomMetadata
+#           nameSeparator: ""
+#           nameSegments:
+#           - DroneTitle
+#           - " 0x"
+#           - DroneHex
+#           - DroneHex
+#           - DroneHex
+#           - DroneHex
+#           - DroneHex
+#           - DroneHex
 #         - type: LinkedLifecycleGridParent
-#         - type: AiShuttleBrain
-#           preset: Razor
 #         paths:
 #         - /Maps/_Mono/ShuttleEvent/razor.yml
 #     rewardAccounts:
@@ -149,18 +767,34 @@
     asteroid: false
     groups:
       grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
+        minimumDistance: 1600
+        maximumDistance: 3000
         addComponents:
+        - type: Company
+          companyName: BrokenAi
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/ai.png
           scale: 1.2
           allowWhenHidden: true
         - type: IFF
-          color: "#FF0000"
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
         - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Perun
         paths:
         - /Maps/_Lua/ShuttleEvent/AI_shuttle/PerunAI.yml
     rewardAccounts:
@@ -189,18 +823,34 @@
     asteroid: false
     groups:
       grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
+        minimumDistance: 1600
+        maximumDistance: 3000
         addComponents:
+        - type: Company
+          companyName: BrokenAi
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/ai.png
           scale: 1.2
           allowWhenHidden: true
         - type: IFF
-          color: "#FF0000"
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
         - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Pozvizd
         paths:
         - /Maps/_Lua/ShuttleEvent/AI_shuttle/PozvizdAI.yml
     rewardAccounts:
@@ -229,18 +879,34 @@
     asteroid: false
     groups:
       grid: !type:AiShuttleGridSpawnGroup
-        minimumDistance: 4000
-        maximumDistance: 6000
+        minimumDistance: 1600
+        maximumDistance: 3000
         addComponents:
+        - type: Company
+          companyName: BrokenAi
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/ai.png
           scale: 1.2
           allowWhenHidden: true
         - type: IFF
-          color: "#FF0000"
+          color: "#9a2020"
+        - type: GridCleanupGrid
+          cleanupAcceleration: 3
+          ignorePowered: true
+          ignoreIFF: true
+          ignorePrice: true
+        - type: RandomMetadata
+          nameSeparator: ""
+          nameSegments:
+          - DroneTitle
+          - " 0x"
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
+          - DroneHex
         - type: LinkedLifecycleGridParent
-        - type: AiShuttleBrain
-          preset: Stribog
         paths:
         - /Maps/_Lua/ShuttleEvent/AI_shuttle/StribogAI.yml
     rewardAccounts:

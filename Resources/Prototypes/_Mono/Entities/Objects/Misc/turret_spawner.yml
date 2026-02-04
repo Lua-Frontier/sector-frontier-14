@@ -1,0 +1,15 @@
+- type: entity
+  id: SpawnMobWeaponTurretUSSP
+  parent: MarkerBase
+  name: USSP ballistic turret spawner
+  suffix: USSP
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretUSSP
+

@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/17/2025 12:18:29
-  entityCount: 627
+  time: 02/02/2026 11:57:36
+  entityCount: 623
 maps: []
 grids:
 - 1
@@ -35,7 +35,6 @@ tilemap:
   22: PlatingCornerNW
   19: PlatingCornerSE
   15: PlatingCornerSW
-  11: ShieldLattice
   12: TrainLattice
 entities:
 - proto: ""
@@ -85,7 +84,6 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.45
-    - type: AiShuttleBrain
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -1936,41 +1934,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,-0.5
       parent: 1
-- proto: ComputerGunneryConsole
+- proto: ClothingBackpackDroneLootT22
   entities:
-  - uid: 329
-    components:
-    - type: Transform
-      pos: -0.5,2.5
-      parent: 1
-- proto: ComputerIFF
-  entities:
-  - uid: 330
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 1
-- proto: ComputerShuttle
-  entities:
-  - uid: 331
-    components:
-    - type: Transform
-      pos: 0.5,2.5
-      parent: 1
   - uid: 332
     components:
     - type: Transform
-      pos: 0.5,1.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 333
-    components:
-    - type: Transform
-      pos: 0.5,0.5
+      pos: 0.48874497,2.3300467
       parent: 1
 - proto: GeneratorBasic15kW
   entities:
@@ -2085,6 +2054,24 @@ entities:
       parent: 1
 - proto: GunneryServerHigh
   entities:
+  - uid: 329
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 1
+    - type: Battery
+      startingCharge: 0
+    - type: ApcPowerReceiver
+      powerLoad: 20
+  - uid: 330
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
+    - type: Battery
+      startingCharge: 0
+    - type: ApcPowerReceiver
+      powerLoad: 20
   - uid: 353
     components:
     - type: Transform
@@ -2099,25 +2086,6 @@ entities:
       shape: Ring
       scale: 0
       radarColor: '#00DEFEFF'
-  - uid: 354
-    components:
-    - type: Transform
-      pos: 1.5,0.5
-      parent: 1
-    - type: Battery
-      startingCharge: 0
-    - type: ApcPowerReceiver
-      powerLoad: 20
-  - uid: 355
-    components:
-    - type: Transform
-      pos: 1.5,1.5
-      parent: 1
-    - type: Battery
-      startingCharge: 0
-    - type: ApcPowerReceiver
-      powerLoad: 20
-    - type: PreventDelete
 - proto: GyroscopeNfsd
   entities:
   - uid: 356
@@ -2176,13 +2144,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-0.5
-      parent: 1
-- proto: NFHolopadShip
-  entities:
-  - uid: 365
-    components:
-    - type: Transform
-      pos: 0.5,1.5
       parent: 1
 - proto: PoweredlightBlue
   entities:
@@ -2394,6 +2355,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,4.5
+      parent: 1
+- proto: SpawnMobDroneAiLance
+  entities:
+  - uid: 331
+    components:
+    - type: Transform
+      pos: 0.5,0.5
       parent: 1
 - proto: SubstationBasic
   entities:

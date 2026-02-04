@@ -12,7 +12,7 @@
   - type: ProtectedGrid
     preventArtifactTriggers: true
   - type: IFF
-    flags: HideLabel
+    flags: HideLabel, HideLabelAlways
   - type: ClaimableGrid # Mono
   - type: DetectedAtRangeMultiplier # Mono
     visualBias: 1024

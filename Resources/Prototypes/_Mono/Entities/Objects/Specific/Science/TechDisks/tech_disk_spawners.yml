@@ -1,0 +1,55 @@
+#T1 TECH DISKS
+- type: entity
+  name: T1 random tech disks
+  id: SpawnLootTechDisksT1
+  parent: MarkerBasePlaceFree
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: SpawnLootTechDisksT1Trunk
+      prob: 1.0
+
+- type: entityTable
+  id: SpawnLootTechDisksT1Trunk
+  table: !type:GroupSelector
+    children:
+    - id: TechDiskCivShipComps
+    - id: TechDiskCivCTLA50
+    - id: TechDiskCivMS250
+    - id: TechDiskRCD
+
+#T2 TECH DISKS (trimmed for drones)
+- type: entity
+  name: T2 random tech disks
+  id: SpawnLootTechDisksT2Mech
+  parent: MarkerBasePlaceFree
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: SpawnLootTechDisksT2MechTrunk
+      prob: 1.0
+
+- type: entityTable
+  id: SpawnLootTechDisksT2MechTrunk
+  table: !type:GroupSelector
+    children:
+    - id: TechDiskCivShipComps
+    - id: TechDiskCivCTLA50
+    - id: TechDiskCivMS250
+    - id: TechDiskRCD

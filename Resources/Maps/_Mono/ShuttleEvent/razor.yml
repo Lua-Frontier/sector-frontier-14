@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/17/2025 12:25:22
-  entityCount: 290
+  time: 02/02/2026 12:42:31
+  entityCount: 274
 maps: []
 grids:
 - 1
@@ -53,7 +53,7 @@ entities:
           version: 7
         0,-1:
           ind: 0,-1
-          tiles: AwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAAMAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAgAAAAAAAAwAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAACgAAAAAAAAAAAAAAAAACAAAAAAAADwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAIAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAADAAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAAGAAAAAAAABAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAJAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAACAAAAAAAAAcAAAAAAAABAAAAAAAAAQAAAAAAAAkAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAQAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAAEAAAAAAAAAQAAAAAAAAEAAAAAAAAQAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAA==
+          tiles: AwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAAMAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAgAAAAAAAAwAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAACgAAAAAAAAAAAAAAAAACAAAAAAAADwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAQAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAIAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAADAAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAAGAAAAAAAABAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAJAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAACAAAAAAAAAcAAAAAAAABAAAAAAAAAQAAAAAAAAkAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAQAAAAAAAAEAAAAAAAAAQAAAAAAAAAAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAAEAAAAAAAAAQAAAAAAAAEAAAAAAAAQAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAA==
           version: 7
         -1,0:
           ind: -1,0
@@ -199,47 +199,6 @@ entities:
     - type: ContainedSolution
       containerName: glass
       container: 5
-  - uid: 13
-    mapInit: true
-    paused: true
-    components:
-    - type: MetaData
-      name: solution - lvcable
-    - type: Transform
-      parent: 12
-    - type: Solution
-      solution:
-        maxVol: 5
-        name: lvcable
-        reagents:
-        - data: []
-          ReagentId: Iron
-          Quantity: 3
-        - data: []
-          ReagentId: Copper
-          Quantity: 2
-    - type: ContainedSolution
-      containerName: lvcable
-      container: 12
-  - uid: 15
-    mapInit: true
-    paused: true
-    components:
-    - type: MetaData
-      name: solution - glass
-    - type: Transform
-      parent: 14
-    - type: Solution
-      solution:
-        maxVol: 10
-        name: glass
-        reagents:
-        - data: []
-          ReagentId: Silicon
-          Quantity: 10
-    - type: ContainedSolution
-      containerName: glass
-      container: 14
   - uid: 23
     mapInit: true
     paused: true
@@ -943,28 +902,6 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
-- proto: CableApcStack1
-  entities:
-  - uid: 12
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
-    - type: Stack
-      count: 4
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - lvcable
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@lvcable: !type:ContainerSlot
-          ent: 13
 - proto: CableHV
   entities:
   - uid: 161
@@ -1103,46 +1040,6 @@ entities:
     components:
     - type: Transform
       parent: 4
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-  - uid: 16
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-  - uid: 17
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-  - uid: 18
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-  - uid: 19
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
     - type: EmitSoundOnCollide
       nextSound: -1590.2857734
     - type: Physics
@@ -1548,111 +1445,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
       parent: 1
-- proto: ComputerGunneryConsole
+- proto: ClothingBackpackDroneLootT1
   entities:
-  - uid: 193
+  - uid: 12
     components:
     - type: Transform
-      pos: 1.5,-2.5
-      parent: 1
-- proto: ComputerIFF
-  entities:
-  - uid: 194
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      pos: -0.5,-2.5
-      parent: 1
-    - type: PointLight
-      enabled: True
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 195
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-- proto: ComputerIFFCircuitboard
-  entities:
-  - uid: 195
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 194
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-- proto: ComputerShuttle
-  entities:
-  - uid: 196
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      pos: 0.5,-2.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 198
-        disk_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        key_slots: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 197
-    - type: ShuttleConsole
-      timeoutFromEmp: -1590.2857734
-    - type: PointLight
-      enabled: True
-    - type: RadioMicrophone
-      frequency: 1022
-      broadcastChannel: Traffic
-    - type: RadioSpeaker
-      enabled: True
-      channels:
-      - Traffic
-    - type: Intercom
-      supportedChannels:
-      - Traffic
-      currentChannel: Traffic
-      speakerEnabled: True
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-    - type: ActiveRadio
-      channels:
-      - Traffic
-- proto: EncryptionKeyTraffic
-  entities:
-  - uid: 197
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 196
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 199
-    components:
-    - type: Transform
-      pos: 0.5,-4.5
+      pos: 0.5238693,-3.4455523
       parent: 1
 - proto: GeneratorWallmountAPU
   entities:
@@ -1891,44 +1689,6 @@ entities:
       nextSound: -1590.2857734
     - type: Physics
       canCollide: False
-- proto: NFHolopadShipAntag
-  entities:
-  - uid: 11
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 20
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 12
-          - 14
-          - 16
-          - 17
-          - 18
-          - 19
-- proto: NFHolopadShipMachineCircuitboard
-  entities:
-  - uid: 20
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
 - proto: PlasmaReinforcedWindowDirectional
   entities:
   - uid: 216
@@ -2106,26 +1866,6 @@ entities:
       containers:
         solution@glass: !type:ContainerSlot
           ent: 6
-  - uid: 14
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 11
-    - type: Stack
-      count: 2
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - glass
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@glass: !type:ContainerSlot
-          ent: 15
 - proto: SheetSteel1
   entities:
   - uid: 27
@@ -2328,26 +2068,12 @@ entities:
       containers:
         solution@steel: !type:ContainerSlot
           ent: 91
-- proto: ShuttleConsoleCircuitboard
+- proto: SpawnMobDroneAiLance
   entities:
-  - uid: 198
-    mapInit: true
-    paused: true
+  - uid: 11
     components:
     - type: Transform
-      parent: 196
-    - type: EmitSoundOnCollide
-      nextSound: -1590.2857734
-    - type: Physics
-      canCollide: False
-- proto: SpawnRedactedBorg
-  entities:
-  - uid: 232
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      pos: 1.5,-3.5
+      pos: 0.5,-4.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
