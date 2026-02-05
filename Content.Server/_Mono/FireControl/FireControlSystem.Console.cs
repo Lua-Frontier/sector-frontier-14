@@ -263,7 +263,7 @@ public sealed partial class FireControlSystem : EntitySystem
 
         if (TryComp<MagazineAmmoProviderComponent>(weaponEntity, out var magazineAmmo))
         {
-            var magazineEntity = GetMagazineEntity(weaponEntity);
+            var magazineEntity =    (weaponEntity);
             if (magazineEntity != null)
             {
                 if (TryComp<BallisticAmmoProviderComponent>(magazineEntity, out var magazineBallisticAmmo))
