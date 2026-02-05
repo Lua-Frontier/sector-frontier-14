@@ -284,24 +284,6 @@ public sealed partial class FireControlSystem : EntitySystem
             }
         }
 
-        if (TryComp<MagazineAmmoProviderComponent>(weaponEntity, out var magazineAmmo))
-        {
-            var magazineEntity = GetMagazineEntity(weaponEntity);
-            if (magazineEntity != null)
-            {
-                if (TryComp<BallisticAmmoProviderComponent>(magazineEntity, out var magazineBallisticAmmo))
-                {
-                    return (magazineBallisticAmmo.Count, magazineBallisticAmmo.Cycleable);
-                }
-
-                if (TryComp<BasicEntityAmmoProviderComponent>(magazineEntity, out var magazineBasicAmmo))
-                {
-                    var hasRecharge = HasComp<RechargeBasicEntityAmmoComponent>(magazineEntity);
-                    return (magazineBasicAmmo.Count, !hasRecharge);
-                }
-            }
-        }
-
         return (null, false);
     }
 
