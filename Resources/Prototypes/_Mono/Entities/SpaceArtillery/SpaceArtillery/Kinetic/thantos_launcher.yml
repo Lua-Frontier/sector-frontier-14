@@ -1,4 +1,5 @@
 # Station one w/ infinite ammo
+
 - type: entity
   id: WeaponTurretThanatos
   name: THANATOS twin mass driver
@@ -23,12 +24,15 @@
     range: 500
   - type: Gun
     fireRate: 0.1
+    recoil: 2500 # 100x
+    minAngle: 0
+    maxAngle: 0
     burstCooldown: 20
     burstFireRate: 2
     shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
-    projectileSpeed: 900
+    projectileSpeed: 1100
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
     soundEmpty:
@@ -69,10 +73,20 @@
   - type: RadarBlip
     radarColor: "#CF0E0E"
     scale: 3
+    visibleFromOtherGrids: true
+    gridConfig:
+      color: "#CF0E0E"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-3,-3,3,3"
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Superheavy
+  - type: ShipRepairable
+    repairTime: 60
+    repairCost: 300
 
 
 # If someone wants to make a ship version go nuts, but be SURE it uses ammo

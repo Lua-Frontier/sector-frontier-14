@@ -1,4 +1,5 @@
 # inf ammo for ads/station
+
 - type: entity
   id: WeaponTurretTarnyx
   name: ADBX-31 TARNYX 150mm EMP Cannon
@@ -23,7 +24,7 @@
     range: 500
   - type: Gun
     fireRate: 0.1
-    projectileSpeed: 200
+    projectileSpeed: 400
     shootThermalSignature: 8000000 # ~2.8km after firing - relatively low
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
@@ -43,10 +44,14 @@
   - type: RadarBlip
     radarColor: "#035EFC"
     scale: 2.5
+    visibleFromOtherGrids: true
   - type: ShipGunType
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
+  - type: ShipRepairable
+    repairTime: 30
+    repairCost: 100
 
 # limited ammo for ships
 
@@ -71,7 +76,7 @@
     range: 500
   - type: Gun
     fireRate: 0.1
-    projectileSpeed: 200
+    projectileSpeed: 400
     shootThermalSignature: 8000000 # ~2.8km after firing - relatively low
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
@@ -85,6 +90,7 @@
   - type: RadarBlip
     radarColor: "#035EFC"
     scale: 2.5
+    visibleFromOtherGrids: true
   - type: ShipGunType
     shipType: Energy
   - type: ShipGunClass
@@ -94,5 +100,9 @@
       tags:
       - 150mmShell
     capacity: 3
+    proto: 150mmEmpShell
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: ShipRepairable
+    repairTime: 30
+    repairCost: 100

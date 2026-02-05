@@ -1,13 +1,11 @@
 # Base
+
 - type: entity
   id: BallisticArtilleryBase
   abstract: true
   placement:
     mode: SnapgridCenter
   components:
-  - type: ExtensionCableReceiver
-  - type: ApcPowerReceiver
-    powerLoad: 250
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -15,13 +13,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 20000
+        damage: 7000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 10000
+        damage: 6000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -52,6 +50,7 @@
   - type: DeviceLinkSink
     ports:
     - SpaceArtilleryFire
+    - SpaceArtilleryLoad
   - type: SpaceArtillery
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -64,9 +63,15 @@
       ballistic-ammo: !type:Container
   - type: FireControllable
   - type: RadarBlip
-    visibleFromOtherGrids: false
+    visibleFromOtherGrids: true
     radarColor: "#9999FF"
     scale: 1
+    gridConfig:
+      color: "#9999FF"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-1,-1,1,1"
   - type: ShipGunType
     shipType: Kinetic
   - type: ShipGunClass
@@ -74,6 +79,10 @@
   - type: LightningTarget
     priority: 1
   - type: ThermalSignature # at least most have a thermal signature when firing
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
 
 - type: entity
   id: BallisticArtilleryUnanchorable
@@ -106,13 +115,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 20000
+        damage: 9000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 10000
+        damage: 8000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -139,6 +148,7 @@
   - type: DeviceLinkSink
     ports:
     - SpaceArtilleryFire
+    - SpaceArtilleryLoad
   - type: SpaceArtillery
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -151,8 +161,17 @@
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
     scale: 1
+    gridConfig:
+      color: "#9999FF"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-1,-1,1,1"
   - type: Gun
     fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
@@ -200,13 +219,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 20000
+        damage: 7000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 10000
+        damage: 6000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -233,6 +252,7 @@
   - type: DeviceLinkSink
     ports:
     - SpaceArtilleryFire
+    - SpaceArtilleryLoad
   - type: SpaceArtillery
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -245,8 +265,17 @@
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
     scale: 1
+    gridConfig:
+      color: "#9999FF"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-1,-1,1,1"
   - type: Gun
     fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
