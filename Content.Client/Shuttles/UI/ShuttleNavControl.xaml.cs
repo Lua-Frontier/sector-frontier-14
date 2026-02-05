@@ -368,7 +368,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 { labelName = decrypt.Revealed; }
                 else if (decrypt.Phase == IFFDecryptPhase.Decrypting)
                 {
-                    labelName = string.Concat(decrypt.Revealed, CipherStart, decrypt.Cipher, CipherEnd);
+                    labelName = string.Concat(
+                        decrypt.Revealed,
+                        CipherStart.ToString(),
+                        decrypt.Cipher,
+                        CipherEnd.ToString());
                     cipherName = true;
                     unknownShuttle = true;
                 }
