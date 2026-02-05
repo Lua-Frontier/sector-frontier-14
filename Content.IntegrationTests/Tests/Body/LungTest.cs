@@ -48,7 +48,6 @@ namespace Content.IntegrationTests.Tests.Body
         Asphyxiation: -1.5
 ";
 
-        [Test, Ignore("Help me pls ;-;")]
         public async Task AirConsistencyTest()
         {
             // --- Setup
