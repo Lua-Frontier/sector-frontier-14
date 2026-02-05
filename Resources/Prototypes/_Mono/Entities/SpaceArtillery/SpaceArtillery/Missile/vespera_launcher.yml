@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Ilya246
-# SPDX-FileCopyrightText: 2025 kasature90
-#
-# SPDX-License-Identifier: MPL-2.0
-
 - type: entity
   id: WeaponTurretVespera
   name: ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
@@ -40,15 +35,19 @@
     powerUsePassive: 750
     powerUseActive: 0
   - type: Actions
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    whitelist:
-      tags:
-      - VesperaCartridge
-    capacity: 26
-    proto: VesperaCartridgeWeak
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: VesperaMagazine
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - VesperaMagazine
+        whitelistFailPopup: gun-magazine-whitelist-fail
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 2

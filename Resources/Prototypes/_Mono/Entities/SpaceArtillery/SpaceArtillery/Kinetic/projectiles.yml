@@ -107,24 +107,6 @@
     maxIntensity: 1
     maxTileBreak: 1
 
-- type: entity
-  id: ShipDravonProjectileWeak
-  name: stock DRAVON 57mm projectile
-  parent: ShipDravonProjectile
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Structural: 656
-        Blunt: 96
-        Piercing: 168
-  - type: Explosive
-    explosionType: DefaultShipGun
-    totalIntensity: 32
-    intensitySlope: 4
-    maxIntensity: 20
-
 # 90mm
 
 - type: entity
@@ -206,22 +188,6 @@
   - type: GatheringProjectile
   - type: MiningGatheringSoft
   - type: MiningGatheringHard
-
-- type: entity
-  id: ShipCyrexaProjectileWeak
-  name: stock CYREXA 220mm projectile
-  parent: ShipCyrexaProjectile
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Structural: 5200
-        Blunt: 8000
-  - type: Explosive
-    totalIntensity: 1040
-    intensitySlope: 15
-    maxIntensity: 1520
 
 # 255mm Bofors
 

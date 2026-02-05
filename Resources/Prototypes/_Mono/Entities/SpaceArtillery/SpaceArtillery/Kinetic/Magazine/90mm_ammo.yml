@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Ark
-# SPDX-FileCopyrightText: 2025 Ilya246
-# SPDX-FileCopyrightText: 2025 kasature90
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: MPL-2.0
-
 - type: entity
   id: Magazine90mm
   name: "90mm ammo loader"
@@ -70,20 +63,3 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
-
-- type: entity
-  id: Magazine90mmWeak
-  name: "90x427mm ammo drum"
-  parent: Magazine90mm
-  components:
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    proto: 90mmCartridgeWeak
-
-- type: entity
-  id: 90mmCartridgeWeak
-  name: "cartridge (90x427mm)"
-  parent: 90mmCartridge
-  components:
-  - type: CartridgeAmmo
-    proto: 90mmBulletWeak
