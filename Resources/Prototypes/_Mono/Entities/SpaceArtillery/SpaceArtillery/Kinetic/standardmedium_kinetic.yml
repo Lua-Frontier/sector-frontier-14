@@ -3,7 +3,7 @@
 - type: entity
   id: WeaponTurretAK570
   name: AK570 57mm autocannon
-  parent: BallisticArtilleryMagazine
+  parent: BallisticArtilleryUnanchorableMagazine #Lua BallisticArtilleryMagazine<BallisticArtilleryUnanchorableMagazine
   description: A dual-barrel, heavy 57mm autocannon firing general-purpose APHE rounds, effective for sustained fire against medium targets. Can be remotely activated or linked up to a GCS.
   components:
   - type: StaticPrice
@@ -72,16 +72,13 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 15
-    repairCost: 60
 
 # Dravon
 
 - type: entity
   id: WeaponTurretDravon
   name: ADBP-7 DRAVON 90mm Autocannon
-  parent: BallisticArtilleryMagazine
+  parent: BallisticArtilleryUnanchorableMagazine #Lua BallisticArtilleryMagazine<BallisticArtilleryUnanchorableMagazine
   description: A single-barrel autocannon made by Aetherion Dynamics. Medium artillery piece with high fire rate but relatively low impact, firing HEAT shells to damage ship armor and systems. Can be remotely activated or linked up to a GCS.
   components:
   - type: StaticPrice
@@ -142,6 +139,3 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 15
-    repairCost: 60

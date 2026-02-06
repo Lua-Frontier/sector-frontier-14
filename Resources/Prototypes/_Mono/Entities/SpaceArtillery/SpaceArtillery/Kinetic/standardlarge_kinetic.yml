@@ -85,9 +85,6 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 150
 
 # Bofors 255mm
 
@@ -170,9 +167,6 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 150
 
 # HADES 255mm
 
@@ -261,16 +255,13 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Superheavy
-  - type: ShipRepairable
-    repairTime: 45
-    repairCost: 300
 
 # Longbow
 
 - type: entity
   id: WeaponTurretLongbow
   name: L65-"Longbow" 90mm autocannon
-  parent: BallisticArtilleryMagazine
+  parent: BallisticArtilleryUnanchorableMagazine #Lua BallisticArtilleryMagazine<BallisticArtilleryUnanchorableMagazine
   description: Fires 90mm shells in a 20 round burst from an internal autoloader.
   components:
   - type: StaticPrice
@@ -354,6 +345,3 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 150

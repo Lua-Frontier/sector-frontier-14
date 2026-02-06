@@ -3,7 +3,7 @@
 - type: entity
   id: WeaponTurretSerpentMissile
   name: Serpent torpedo launcher
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A light torpedo launcher developed by the Syndicate during the corporate war, uses similar systems to the anaconda for self loading munitons.
   components:
   - type: StaticPrice
@@ -47,9 +47,6 @@
     shipType: Missile
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 120
 
 # Pre-Fracture
 
@@ -57,7 +54,7 @@
   id: WeaponTurretTorpedoEntropy
   name: Curio-1602 electron torpedo launcher "Entropy"
   suffix: ADS ONLY
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: An odd weapon of the pre-fracture era, it projects a mass of electrons that seek out the positive charge of nearby targets, overloading systems and shattering sections of hull.
   components:
   - type: StaticPrice
@@ -99,6 +96,3 @@
     shipType: Missile
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 120

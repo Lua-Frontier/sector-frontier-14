@@ -49,9 +49,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 100
 
 # limited ammo for ships
 
@@ -103,6 +100,3 @@
     proto: 150mmEmpShell
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 100

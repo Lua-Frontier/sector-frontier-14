@@ -3,7 +3,7 @@
 - type: entity
   id: WeaponTurretType35
   name: Type-35 MARAUDER-type plasma cannon
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
   - type: StaticPrice
@@ -68,16 +68,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 15
-    repairCost: 60
 
 # Cerbrus
 
 - type: entity
   id: WeaponTurretCerberus
   name: TPC Cerberus Plasma scattercannon
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Borrowing from the design of the Marauder, the Cerberus fires very similar shots, but in a tight spread of 3 blasts
   components:
   - type: StaticPrice
@@ -141,16 +138,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 50
-    repairCost: 120
 
 # Type 54 autopulser
 
 - type: entity
   id: WeaponTurretType54
   name: Type-54C plasma autopulser
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   suffix: TSF ONLY, ADS ONLY
   description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
   components:
@@ -216,9 +210,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 25
-    repairCost: 100
 
 
  # M25
@@ -226,7 +217,7 @@
 - type: entity
   id: WeaponTurretM25
   name: M25 mining pulser
-  parent: [BallisticArtillery, ConstructibleMachine] #Could possibly create a ConstructibleTurret proto if more are added; comps currently do nothing upgrade wise
+  parent: [BallisticArtilleryUnanchorable, ConstructibleMachine] #Could possibly create a ConstructibleTurret proto if more are added; comps currently do nothing upgrade wise; Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Uses mechanisms to launch... something. Destroys rock easily. Limited range.
   components:
   - type: StaticPrice
@@ -303,16 +294,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Superlight
-  - type: ShipRepairable
-    repairTime: 10
-    repairCost: 20
 
 # RUBICON
 
 - type: entity
   id: WeaponTurretM220
   name: M220 RUBICON EMP launcher
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches EMP projectiles at ships, disabling systems with powerful electromagnetic pulses. Ideal for non-lethal engagements and can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
@@ -368,9 +356,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 60
 
 # Scylla
 
@@ -453,9 +438,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 70
-    repairCost: 150
 
 # DYMERE
 
@@ -536,9 +518,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Superheavy
-  - type: ShipRepairable
-    repairTime: 45
-    repairCost: 250
 
 # Laser Hitscan
 
@@ -547,7 +526,7 @@
 - type: entity
   id: WeaponLaserTurretL1Phalanx
   name: L-1 Phalanx
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A light laser emplacement designed by the Pantheon Collective, used to shred threats of all types.
   components:
   - type: StaticPrice
@@ -607,16 +586,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Light
-  - type: ShipRepairable
-    repairTime: 15
-    repairCost: 40
 
 # Prometheus
 
 - type: entity
   id: WeaponLaserTurretPrometheus
   name: TPC Prometheus Laser Cannon
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A heavier laser cannon mount, after the relative failure of the Apollo and its subsequent conversion into a mining laser, the Prometheus comes to the field as the new heavy laser cannon, perfect for melting through hostile hulls.
   components:
   - type: StaticPrice
@@ -676,9 +652,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 100
 
 # Apollo
 
@@ -753,9 +726,6 @@
         density: 1500
   - type: ShipGunType
     shipType: Energy
-  - type: ShipRepairable
-    repairTime: 25
-    repairCost: 100
 
 # PRE- FRACTURE
 
@@ -846,13 +816,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Superheavy
-  - type: ShipRepairable
-    repairTime: 60
-    repairCost: 300
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 
 # Tachyon Lance "Reaper"
@@ -936,13 +899,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Superheavy
-  - type: ShipRepairable
-    repairTime: 60
-    repairCost: 300
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 # Ion Cannnon "Harbringer"
 
@@ -1026,13 +982,6 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Superheavy
-  - type: ShipRepairable
-    repairTime: 60
-    repairCost: 300
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 # Anti-Matter Particle Cannon "Tartarus"
 
@@ -1103,20 +1052,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 60
-    repairCost: 200
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 # Proton Cannon "Sunder"
 
 - type: entity
   id: WeaponTurretSunder
   name: Curio-1007 proton cannon "Sunder"
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   suffix: ADS ONLY
   description: A potent proton cannon from before the Fracture, known for melting holes through both inorganic and organic matter with ease.
   components:
@@ -1181,20 +1123,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 20
-    repairCost: 100
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 # Neutron Repeater "Scythe"
 
 - type: entity
   id: WeaponTurretScythe
   name: Curio-1008 neutron repeater "Scythe"
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   suffix: ADS ONLY
   description: A steadily firing neutron repeater, firing high-damage but slow balls of hell. A marvel of rapture weapons technology.
   components:
@@ -1260,20 +1195,13 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Heavy
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 120
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 # Auto-Coil "Flayer"
 
 - type: entity
   id: WeaponLaserTurretFlayer
   name: Curio-183 auto-coil "Flayer"
-  parent: BallisticArtillery
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   suffix: ADS ONLY
   description: A unique pre-fracture weapon, the Flayer fires a storm of tungsten alloy darts at near the speed of light, barraging targets to pieces.
   components:
@@ -1334,10 +1262,3 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Light
-  - type: ShipRepairable
-    repairTime: 15
-    repairCost: 80
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool

@@ -73,9 +73,6 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Light
-  - type: ShipRepairable
-    repairTime: 10
-    repairCost: 30
 
 - type: entity
   id: WeaponTurretFang
@@ -150,9 +147,6 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: Medium
-  - type: ShipRepairable
-    repairTime: 20
-    repairCost: 80
 
 - type: entity
   id: WeaponTurretHydra
@@ -238,6 +232,3 @@
     shipType: Ballistic
   - type: ShipGunClass
     shipClass: SuperHeavy
-  - type: ShipRepairable
-    repairTime: 40
-    repairCost: 250
