@@ -8,12 +8,14 @@
     <GuideEntityEmbed Entity="GunneryServerLow"/>
   </Box>
 
-  Доступны 3 типа корабельного оружия:
-  - [color=gold]Баллистика[/color]: автопушки, рейлган и прочие неуправляемые химические системы.
-  - [color=MediumVioletRed]Энергетическое[/color]: плазменное, лазерное и прочие нехимические системы.
-  - [color=GreenYellow]Ракеты[/color]: все управляемые боеприпасы.
+There are 3 types of ship weaponry available:
+ - [color=gold]Ballistics[/color], which are weapons like autocannons, railguns, and all other unguided chemical-propellant weapons.
+ - [color=MediumVioletRed]Energy[/color], which are weapons like plasma weaponry, lasers, and other similar non-chemical based weapons. These have infinite ammo usually.
+ - [color=GreenYellow]Missiles[/color], which are all guided munitions. It explains itself.
 
-  Всем системам нужна [color=orange]консоль управления артиллерией[/color] и [color=slateblue]сервер управления артиллерией[/color]. Чаще всего сокращаются до [color=orange]GCC[/color] и [color=slateblue]GCS[/color].
+Ship weapons all need a [color=orange]gunnery control console[/color] and a [color=slateblue]gunnery control server[/color] to function. They will be abbreviated to [color=orange]GCC[/color] and [color=slateblue]GCS[/color] in most instances.
+ - [color=gold]Ballistics[/color] and [color=GreenYellow]Missiles[/color] also require ammunition.
+ - Ammunition can be [color=red]very volatile[/color] if damaged.
 
   Орудия стреляют только если они выбраны и если ваш курсор на [color=orange]GCC[/color] находится в секторе обстрела башни.
 
@@ -25,26 +27,5 @@
   Ракеты наводятся только на гриды с корабельной консолью и после пуска сразу разворачиваются на цель. Учитывайте угол захвата ваших ракет — можно стрелять дальше, чем позволяет сектор обстрела турелей.
 
   ## Генераторы щитов
-
-  Некоторые корабли оснащаются [color=cyan]генераторами щита[/color]. Они поглощают все попадания и добавляют потребление энергии за каждый принятый снаряд. [color=yellow]Щиты реагируют только на корабельную артиллерию, а не на ручное оружие и инструменты.[/color] Щиты НЕ блокируют лучевые и хитскан-орудия, например [color=red][bold]лазеры[/bold][/color], а также эффекты [color=teal][bold]ЭМИ[/bold][/color] проходят.
-
-  <Box>
-    <GuideEntityEmbed Entity="ShieldGeneratorSmall"/>
-  </Box>
-
-  Из-за редкости их нельзя просто купить — придётся утилизировать. Самая популярная система, [bold][color=cyan]MS-225[/color][/bold], добавляет потребление примерно [bold][color=coral]50w за очко урона[/color][/bold] поглощённого снаряда.
-  Через [bold]10 секунд[/bold] всплеск начинает спадать. Есть и базовое потребление, вычисляется по формуле:
-
-  Radius^2 * Shield Width * 0.5 * Power/m^2.
-
-  ## Движки блюспейса
-
-  Многие крупные, экспедиционные и боевые корабли оснащаются [color=dodgerblue]Bluespace Drive[/color].
-
-  <Box>
-    <GuideEntityEmbed Entity="MachineFTLDrive"/>
-  </Box>
-
-  Включённые, они увеличивают дальность FTL. Для [color=dodgerblue][bold]CTLA-25[/bold][/color] прирост составляет [bold]2500m[/bold].
 
 </Document>
