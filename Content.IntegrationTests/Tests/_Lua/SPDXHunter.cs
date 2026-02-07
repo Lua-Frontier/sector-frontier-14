@@ -54,8 +54,12 @@ public sealed class SPDXHunter
         var dir = new DirectoryInfo(currentDir);
         while (dir != null)
         {
-            if (dir.GetFiles("*.sln").Any() || dir.GetFiles("Content.Shared.csproj", SearchOption.TopDirectoryOnly).Any())
-            { return dir.FullName; }
+            if (dir.GetFiles("*.sln").Any() || dir.GetFiles("*.slnx").Any())
+                return dir.FullName;
+
+            var sharedProj = Path.Combine(dir.FullName, "Content.Shared", "Content.Shared.csproj");
+            if (File.Exists(sharedProj))
+                return dir.FullName;
             dir = dir.Parent;
         }
         return null;

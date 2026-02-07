@@ -2,6 +2,7 @@ using Content.Server.Maps;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Commands;
 

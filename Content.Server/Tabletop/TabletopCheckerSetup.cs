@@ -23,19 +23,13 @@ namespace Content.Server.Tabletop
 
         public override void SetupTabletop(TabletopSession session, IEntityManager entityManager)
         {
-            session.Entities.Add(
-                entityManager.SpawnEntity(BoardPrototype, session.Position.Offset(-1, 0))
-            );
-
+            SpawnPiece(entityManager, session, BoardPrototype, session.Position.Offset(-1, 0));
             SpawnPieces(session, entityManager, session.Position.Offset(-4.5f, 3.5f));
         }
 
         private void SpawnPieces(TabletopSession session, IEntityManager entityManager, MapCoordinates left)
         {
             static float GetOffset(float offset) => offset * 1f /* separation */;
-
-            Span<EntityUid> pieces = stackalloc EntityUid[42];
-            var pieceIndex = 0;
 
             // Pieces
             for (var offsetY = 0; offsetY < 3; offsetY++)
@@ -47,15 +41,14 @@ namespace Content.Server.Tabletop
                     // Prevents an extra piece on the middle row
                     if (checker + offsetX > 8) continue;
 
-                    pieces[pieceIndex] = entityManager.SpawnEntity(
+                    SpawnPiece(entityManager, session,
                         PrototypePieceBlack,
                         left.Offset(GetOffset(offsetX + (1 - checker)), GetOffset(offsetY * -1))
                     );
-                    pieces[pieceIndex] = entityManager.SpawnEntity(
+                    SpawnPiece(entityManager, session,
                         PrototypePieceWhite,
                         left.Offset(GetOffset(offsetX + checker), GetOffset(offsetY - 7))
                     );
-                    pieceIndex += 2;
                 }
             }
 
@@ -69,36 +62,37 @@ namespace Content.Server.Tabletop
             for (var i = 0; i < NumCrowns; i++)
             {
                 var step = -(Overlap * i);
-                pieces[pieceIndex] = entityManager.SpawnEntity(
+                SpawnPiece(entityManager, session,
                     PrototypeCrownBlack,
                     left.Offset(GetOffset(xOffsetBlack), GetOffset(step))
                 );
-                pieces[pieceIndex + 1] = entityManager.SpawnEntity(
+                SpawnPiece(entityManager, session,
                     PrototypeCrownWhite,
                     left.Offset(GetOffset(xOffsetWhite), GetOffset(step))
                 );
-                pieceIndex += 2;
             }
 
             // Spares
             for (var i = 0; i < 6; i++)
             {
                 var step = -((Overlap * (NumCrowns + 2)) + (Overlap * i));
-                pieces[pieceIndex] = entityManager.SpawnEntity(
+                SpawnPiece(entityManager, session,
                     PrototypePieceBlack,
                     left.Offset(GetOffset(xOffsetBlack), GetOffset(step))
                 );
-                pieces[pieceIndex] = entityManager.SpawnEntity(
+                SpawnPiece(entityManager, session,
                     PrototypePieceWhite,
                     left.Offset(GetOffset(xOffsetWhite), GetOffset(step))
                 );
-                pieceIndex += 2;
             }
+        }
 
-            for (var i = 0; i < pieces.Length; i++)
-            {
-                session.Entities.Add(pieces[i]);
-            }
+        private EntityUid SpawnPiece(IEntityManager entityManager, TabletopSession session, string proto, MapCoordinates coords)
+        {
+            var uid = entityManager.SpawnEntity(proto, coords);
+            entityManager.GetComponent<TransformComponent>(uid).LocalRotation = Angle.Zero;
+            session.Entities.Add(uid);
+            return uid;
         }
     }
 }

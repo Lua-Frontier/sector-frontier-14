@@ -9,26 +9,26 @@ namespace Content.Shared._Lua.SponsorLoadout;
 public sealed partial class SponsorLoadoutPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField("entity", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string EntityId { get; } = default!;
+    public string EntityId { get; private set; } = default!;
 
     [DataField("sponsorOnly")]
     public bool SponsorOnly = false;
 
     [DataField("whitelistJobs", customTypeSerializer: typeof(PrototypeIdListSerializer<JobPrototype>))]
-    public List<string>? WhitelistJobs { get; }
+    public List<string>? WhitelistJobs { get; private set; }
 
     [DataField("blacklistJobs", customTypeSerializer: typeof(PrototypeIdListSerializer<JobPrototype>))]
-    public List<string>? BlacklistJobs { get; }
+    public List<string>? BlacklistJobs { get; private set; }
 
     [DataField("speciesRestriction")]
-    public List<string>? SpeciesRestrictions { get; }
+    public List<string>? SpeciesRestrictions { get; private set; }
 
     [DataField]
-    public string? Login { get; }
+    public string? Login { get; private set; }
 
     [DataField("sponsorRole")]
-    public string? SponsorRole { get; }
+    public string? SponsorRole { get; private set; }
 }

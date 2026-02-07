@@ -4,6 +4,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Damageable
 {

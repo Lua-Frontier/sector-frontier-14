@@ -13,10 +13,7 @@ namespace Content.Server.Tabletop
 
         public override void SetupTabletop(TabletopSession session, IEntityManager entityManager)
         {
-            var chessboard = entityManager.SpawnEntity(BoardPrototype, session.Position.Offset(-1, 0));
-
-            session.Entities.Add(chessboard);
-
+            SpawnPiece(entityManager, session, BoardPrototype, session.Position.Offset(-1, 0));
             SpawnPieces(session, entityManager, session.Position.Offset(-4.5f, 3.5f));
         }
 
@@ -33,10 +30,8 @@ namespace Content.Server.Tabletop
             SpawnPiecesRow(session, entityManager, "White", new MapCoordinates(x, y - 7 * separation, mapId), separation);
 
             // Extra queens
-            EntityUid tempQualifier = entityManager.SpawnEntity("BlackQueen", new MapCoordinates(x + 9 * separation + 9f / 32, y - 3 * separation, mapId));
-            session.Entities.Add(tempQualifier);
-            EntityUid tempQualifier1 = entityManager.SpawnEntity("WhiteQueen", new MapCoordinates(x + 9 * separation + 9f / 32, y - 4 * separation, mapId));
-            session.Entities.Add(tempQualifier1);
+            SpawnPiece(entityManager, session, "BlackQueen", new MapCoordinates(x + 9 * separation + 9f / 32, y - 3 * separation, mapId));
+            SpawnPiece(entityManager, session, "WhiteQueen", new MapCoordinates(x + 9 * separation + 9f / 32, y - 4 * separation, mapId));
         }
 
         // TODO: refactor to load FEN instead
@@ -51,24 +46,19 @@ namespace Content.Server.Tabletop
                 switch (piecesRow[i])
                 {
                     case 'r':
-                        EntityUid tempQualifier = entityManager.SpawnEntity(color + "Rook", new MapCoordinates(x + i * separation, y, mapId));
-                        session.Entities.Add(tempQualifier);
+                        SpawnPiece(entityManager, session, color + "Rook", new MapCoordinates(x + i * separation, y, mapId));
                         break;
                     case 'n':
-                        EntityUid tempQualifier1 = entityManager.SpawnEntity(color + "Knight", new MapCoordinates(x + i * separation, y, mapId));
-                        session.Entities.Add(tempQualifier1);
+                        SpawnPiece(entityManager, session, color + "Knight", new MapCoordinates(x + i * separation, y, mapId));
                         break;
                     case 'b':
-                        EntityUid tempQualifier2 = entityManager.SpawnEntity(color + "Bishop", new MapCoordinates(x + i * separation, y, mapId));
-                        session.Entities.Add(tempQualifier2);
+                        SpawnPiece(entityManager, session, color + "Bishop", new MapCoordinates(x + i * separation, y, mapId));
                         break;
                     case 'q':
-                        EntityUid tempQualifier3 = entityManager.SpawnEntity(color + "Queen", new MapCoordinates(x + i * separation, y, mapId));
-                        session.Entities.Add(tempQualifier3);
+                        SpawnPiece(entityManager, session, color + "Queen", new MapCoordinates(x + i * separation, y, mapId));
                         break;
                     case 'k':
-                        EntityUid tempQualifier4 = entityManager.SpawnEntity(color + "King", new MapCoordinates(x + i * separation, y, mapId));
-                        session.Entities.Add(tempQualifier4);
+                        SpawnPiece(entityManager, session, color + "King", new MapCoordinates(x + i * separation, y, mapId));
                         break;
                 }
             }
@@ -81,9 +71,16 @@ namespace Content.Server.Tabletop
 
             for (int i = 0; i < 8; i++)
             {
-                EntityUid tempQualifier = entityManager.SpawnEntity(color + "Pawn", new MapCoordinates(x + i * separation, y, mapId));
-                session.Entities.Add(tempQualifier);
+                SpawnPiece(entityManager, session, color + "Pawn", new MapCoordinates(x + i * separation, y, mapId));
             }
+        }
+
+        private EntityUid SpawnPiece(IEntityManager entityManager, TabletopSession session, string proto, MapCoordinates coords)
+        {
+            var uid = entityManager.SpawnEntity(proto, coords);
+            entityManager.GetComponent<TransformComponent>(uid).LocalRotation = Angle.Zero;
+            session.Entities.Add(uid);
+            return uid;
         }
     }
 }

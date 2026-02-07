@@ -2,6 +2,7 @@ using Content.Server.Gravity;
 using Content.Shared.Alert;
 using Content.Shared.Gravity;
 using Robust.Shared.GameObjects;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Gravity
 {

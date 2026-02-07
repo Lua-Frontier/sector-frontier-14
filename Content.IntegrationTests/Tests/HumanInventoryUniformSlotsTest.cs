@@ -1,5 +1,6 @@
 using Content.Shared.Inventory;
 using Robust.Shared.GameObjects;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests
 {

@@ -130,13 +130,19 @@ public sealed class DepartmentBanCommand : IConsoleCommand
         var targetUid = located.UserId;
         var targetHWid = located.LastHWId;
 
-        // If you are trying to remove the following variable, please don't. It's there because the note system groups role bans by time, reason and banning admin.
-        // Without it the note list will get needlessly cluttered.
-        var now = DateTimeOffset.UtcNow;
+        var banInfo = new CreateRoleBanInfo(reason);
+        if (minutes > 0)
+            banInfo.WithMinutes(minutes);
+        banInfo.AddUser(targetUid, located.Username);
+        banInfo.WithBanningAdmin(shell.Player?.UserId);
+        banInfo.AddHWId(targetHWid);
+        banInfo.WithSeverity(severity);
+
         foreach (var job in departmentProto.Roles)
         {
-            _banManager.CreateRoleBan(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, job, minutes, severity, reason, now);
+            banInfo.AddJob(job);
         }
+
         // Discord Ban Webhook DeadSpace
         DateTimeOffset? expires = null;
         if (minutes > 0)
@@ -168,74 +174,8 @@ public sealed class DepartmentBanCommand : IConsoleCommand
             await _httpClient.PostAsync($"{webhookUrl}?wait=true",
                 new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
         }
-    }
 
-    private string GenerateBanDescription(string target, ICommonSession? player, uint minutes, string reason, DateTimeOffset? expires, string department)
-    {
-        var builder = new StringBuilder();
-
-        builder.AppendLine($"### **����������-��� **");
-        builder.AppendLine($"**����������:** *{target}*");
-        builder.AppendLine($"**�������:** {reason}");
-
-        var banDuration = TimeSpan.FromMinutes(minutes);
-
-        builder.Append($"**������������:** ");
-
-        if (expires != null)
-        {
-            builder.Append($"{banDuration.Days} {NumWord(banDuration.Days, "����", "���", "����")}, ");
-            builder.Append($"{banDuration.Hours} {NumWord(banDuration.Hours, "���", "����", "�����")}, ");
-            builder.AppendLine($"{banDuration.Minutes} {NumWord(banDuration.Minutes, "������", "������", "�����")}");
-
-        }
-        else
-        {
-            builder.AppendLine($"***��������***");
-        }
-
-        builder.AppendLine($"**�����:** {department}");
-
-        if (expires != null)
-        {
-            builder.AppendLine($"**���� ������ ���������:** {expires}");
-        }
-
-        builder.Append($"**��������� �����(-�):** ");
-
-        if (player != null)
-        {
-            builder.AppendLine($"*{player.Name}*");
-        }
-        else
-        {
-            builder.AppendLine($"***�������***");
-        }
-
-        return builder.ToString();
-    }
-
-    private string NumWord(int value, params string[] words)
-    {
-        value = Math.Abs(value) % 100;
-        var num = value % 10;
-
-        if (value > 10 && value < 20)
-        {
-            return words[2];
-        }
-
-        if (value > 1 && value < 5)
-        {
-            return words[1];
-        }
-
-        if (num == 1)
-        {
-            return words[0];
-        }
-
-        return words[2];
+        _banManager.CreateRoleBan(banInfo);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -269,6 +209,74 @@ public sealed class DepartmentBanCommand : IConsoleCommand
             5 => CompletionResult.FromHintOptions(severities, Loc.GetString("cmd-roleban-hint-5")),
             _ => CompletionResult.Empty
         };
+    }
+
+    private string GenerateBanDescription(string target, ICommonSession? player, uint minutes, string reason, DateTimeOffset? expires, string department)
+    {
+        var builder = new StringBuilder();
+
+        builder.AppendLine($"### **Департамент-бан**");
+        builder.AppendLine($"**Нарушитель:** *{target}*");
+        builder.AppendLine($"**Причина:** {reason}");
+
+        var banDuration = TimeSpan.FromMinutes(minutes);
+
+        builder.Append($"**Длительность:** ");
+
+        if (expires != null)
+        {
+            builder.Append($"{banDuration.Days} {NumWord(banDuration.Days, "день", "дня", "дней")}, ");
+            builder.Append($"{banDuration.Hours} {NumWord(banDuration.Hours, "час", "часа", "часов")}, ");
+            builder.AppendLine($"{banDuration.Minutes} {NumWord(banDuration.Minutes, "минута", "минуты", "минут")}");
+
+        }
+        else
+        {
+            builder.AppendLine($"***Навсегда***");
+        }
+
+        builder.AppendLine($"**Отдел:** {department}");
+
+        if (expires != null)
+        {
+            builder.AppendLine($"**Дата снятия наказания:** {expires}");
+        }
+
+        builder.Append($"**Наказание выдал(-а):** ");
+
+        if (player != null)
+        {
+            builder.AppendLine($"*{player.Name}*");
+        }
+        else
+        {
+            builder.AppendLine($"***СИСТЕМА***");
+        }
+
+        return builder.ToString();
+    }
+
+    private string NumWord(int value, params string[] words)
+    {
+        value = Math.Abs(value) % 100;
+        var num = value % 10;
+
+        if (value > 10 && value < 20)
+        {
+            return words[2];
+        }
+
+        if (value > 1 && value < 5)
+        {
+            return words[1];
+        }
+
+        if (num == 1)
+        {
+            return words[0];
+        }
+
+        return words[2];
     }
 
 }

@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameObjects;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Chemistry;
 

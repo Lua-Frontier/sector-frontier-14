@@ -1,9 +1,10 @@
 #nullable enable
-using System.Linq;
 using Content.Server.Objectives;
 using Content.Shared.Mind;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
+using Robust.UnitTesting.Pool;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Commands;
 
@@ -54,7 +55,7 @@ public sealed class ObjectiveCommandsTest
         });
 
         Assert.That(mindEnt, Is.Not.Null);
-        var mindComp = mindEnt.Value.Comp;
+        var mindComp = mindEnt!.Value.Comp;
         Assert.That(mindComp.Objectives, Is.Empty, "Dummy player started with objectives.");
 
         await pair.WaitCommand($"addobjective {playerSession.Name} {ObjectiveProtoId}");

@@ -29,8 +29,8 @@ public sealed class BanPanelEui : BaseEui
     private string PlayerName { get; set; } = string.Empty;
     private IPAddress? LastAddress { get; set; }
     private ImmutableTypedHwid? LastHwid { get; set; }
-    private const int Ipv4_CIDR = 32;
-    private const int Ipv6_CIDR = 64;
+    private const int Ipv4_CIDR = CreateBanInfo.DefaultMaskIpv4;
+    private const int Ipv6_CIDR = CreateBanInfo.DefaultMaskIpv6;
 
     public BanPanelEui()
     {
@@ -72,6 +72,15 @@ public sealed class BanPanelEui : BaseEui
             _chat.DispatchServerMessage(Player, Loc.GetString("ban-panel-no-data"));
             return;
         }
+
+        var isRoleBan = roles?.Count > 0;
+
+        CreateBanInfo banInfo = isRoleBan ? new CreateRoleBanInfo(reason) : new CreateServerBanInfo(reason);
+
+        banInfo.WithBanningAdmin(Player.UserId);
+        banInfo.WithSeverity(severity);
+        if (minutes > 0)
+            banInfo.WithMinutes(minutes);
 
         (IPAddress, int)? addressRange = null;
         if (ipAddressString is not null)
@@ -119,14 +128,26 @@ public sealed class BanPanelEui : BaseEui
             targetHWid = useLastHwid ? located.LastHWId : hwid;
         }
 
-        if (roles?.Count > 0)
+        if (addressRange != null)
+            banInfo.AddAddressRange(addressRange.Value);
+
+        if (targetUid != null)
+            banInfo.AddUser(targetUid.Value, target!);
+
+        banInfo.AddHWId(targetHWid);
+
+        if (isRoleBan)
         {
-            var now = DateTimeOffset.UtcNow;
-            foreach (var role in roles)
+            var roleBanInfo = (CreateRoleBanInfo)banInfo;
+            foreach (var role in roles ?? [])
             {
                 if (_prototypeManager.HasIndex<JobPrototype>(role))
                 {
-                    _banManager.CreateRoleBan(targetUid, target, Player.UserId, addressRange, targetHWid, role, minutes, severity, reason, now);
+                    roleBanInfo.AddJob(new ProtoId<JobPrototype>(role));
+                }
+                else if (_prototypeManager.HasIndex<AntagPrototype>(role))
+                {
+                    roleBanInfo.AddAntag(new ProtoId<AntagPrototype>(role));
                 }
                 else
                 {
@@ -134,25 +155,25 @@ public sealed class BanPanelEui : BaseEui
                 }
             }
 
-            Close();
-            return;
+            _banManager.CreateRoleBan(roleBanInfo);
         }
-
-        if (erase &&
-            targetUid != null)
+        else
         {
-            try
+            if (erase && targetUid is not null)
             {
-                if (_entities.TrySystem(out AdminSystem? adminSystem))
-                    adminSystem.Erase(targetUid.Value);
+                try
+                {
+                    if (_entities.TrySystem(out AdminSystem? adminSystem))
+                        adminSystem.Erase(targetUid.Value);
+                }
+                catch (Exception e)
+                {
+                    _sawmill.Error($"Error while erasing banned player:\n{e}");
+                }
             }
-            catch (Exception e)
-            {
-                _sawmill.Error($"Error while erasing banned player:\n{e}");
-            }
-        }
 
-        _banManager.CreateServerBan(targetUid, target, Player.UserId, addressRange, targetHWid, minutes, severity, reason);
+            _banManager.CreateServerBan((CreateServerBanInfo)banInfo);
+        }
 
         Close();
     }
