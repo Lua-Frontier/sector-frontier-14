@@ -41,8 +41,7 @@ public sealed class FoodRottingSystem : EntitySystem
                 continue;
             }
             comp.Accumulator += comp.UpdateRate;
-            var durations = GetStageDurations(comp);
-            var total = SumDurations(durations);
+            var total = SumDurations(comp);
             if (total > TimeSpan.Zero && comp.Accumulator >= total)
             {
                 var sol = new Solution();
@@ -74,38 +73,38 @@ public sealed class FoodRottingSystem : EntitySystem
 
     private static int CalculateStage(FoodRottingComponent comp)
     {
-        var durations = GetStageDurations(comp);
-        var total = SumDurations(durations);
-        if (total <= TimeSpan.Zero || comp.Accumulator <= TimeSpan.Zero) return 0;
+        var total = SumDurations(comp);
+        if (total <= TimeSpan.Zero || comp.Accumulator <= TimeSpan.Zero)
+            return 0;
+
         var t = comp.Accumulator;
-        if (t < durations[0]) return 0;
-        var elapsed = t - durations[0];
+        var stage0 = GetStageDuration(comp, 0);
+        if (t < stage0)
+            return 0;
+
+        var elapsed = t - stage0;
         var boundary = TimeSpan.Zero;
         for (var i = 1; i <= FoodRottingComponent.MaxStages; i++)
         {
-            boundary += durations[i];
-            if (elapsed < boundary) return i;
+            boundary += GetStageDuration(comp, i);
+            if (elapsed < boundary)
+                return i;
         }
         return FoodRottingComponent.MaxStages;
     }
 
-    private static List<TimeSpan> GetStageDurations(FoodRottingComponent comp)
+    private static TimeSpan GetStageDuration(FoodRottingComponent comp, int index)
     {
-        if (comp.StageDurations.Count >= FoodRottingComponent.StageCount)
-        {
-            var list = new List<TimeSpan>(FoodRottingComponent.StageCount);
-            for (var i = 0; i < FoodRottingComponent.StageCount; i++) list.Add(comp.StageDurations[i]);
-            return list;
-        }
-        var durations = new List<TimeSpan>(comp.StageDurations);
-        while (durations.Count < FoodRottingComponent.StageCount) durations.Add(TimeSpan.Zero);
-        return durations;
+        return index >= 0 && index < comp.StageDurations.Count
+            ? comp.StageDurations[index]
+            : TimeSpan.Zero;
     }
 
-    private static TimeSpan SumDurations(List<TimeSpan> durations)
+    private static TimeSpan SumDurations(FoodRottingComponent comp)
     {
         long ticks = 0;
-        for (var i = 0; i < durations.Count; i++) ticks += durations[i].Ticks;
+        for (var i = 0; i < FoodRottingComponent.StageCount; i++)
+            ticks += GetStageDuration(comp, i).Ticks;
         return TimeSpan.FromTicks(ticks);
     }
 

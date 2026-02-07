@@ -29,6 +29,7 @@ public sealed class HardsuitSpeedBuffSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
     private readonly Dictionary<EntityUid, SpeedBuffData> _activeBuffs = new();
+    private readonly List<EntityUid> _buffsToRemove = new();
 
     private struct SpeedBuffData
     {
@@ -61,17 +62,17 @@ public sealed class HardsuitSpeedBuffSystem : EntitySystem
     private void ProcessActiveBuffs(float frameTime)
     {
         var currentTime = _timing.CurTime;
-        var toRemove = new List<EntityUid>();
+        _buffsToRemove.Clear();
         foreach (var (hardsuit, data) in _activeBuffs)
         {
             if (!EntityManager.EntityExists(hardsuit) || !EntityManager.EntityExists(data.Wearer))
             {
-                toRemove.Add(hardsuit);
+                _buffsToRemove.Add(hardsuit);
                 continue;
             }
             if (!TryComp<HardsuitSpeedBuffComponent>(hardsuit, out var comp))
             {
-                toRemove.Add(hardsuit);
+                _buffsToRemove.Add(hardsuit);
                 continue;
             }
             if (currentTime - data.LastPowerCheck >= TimeSpan.FromMilliseconds(500))
@@ -79,19 +80,19 @@ public sealed class HardsuitSpeedBuffSystem : EntitySystem
                 if (!_cell.HasCharge(hardsuit, comp.PowerConsumption))
                 {
                     DeactivateSpeedBuff(hardsuit, data.Wearer, Loc.GetString("hardsuit-speedbuff-power-low"));
-                    toRemove.Add(hardsuit);
+                    _buffsToRemove.Add(hardsuit);
                     continue;
                 }
                 if (!_cell.TryUseCharge(hardsuit, comp.PowerConsumption))
                 {
                     DeactivateSpeedBuff(hardsuit, data.Wearer, Loc.GetString("hardsuit-speedbuff-power-low"));
-                    toRemove.Add(hardsuit);
+                    _buffsToRemove.Add(hardsuit);
                     continue;
                 }
                 _activeBuffs[hardsuit] = data with { LastPowerCheck = currentTime };
             }
         }
-        foreach (var hardsuit in toRemove)
+        foreach (var hardsuit in _buffsToRemove)
         {
             _activeBuffs.Remove(hardsuit);
         }

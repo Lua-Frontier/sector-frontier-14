@@ -43,6 +43,7 @@ public sealed partial class BankSystem : SharedBankSystem
     {
         base.Update(frameTime);
         UpdateSectorBanks(frameTime);
+        HousekeepYupiTransferHistory();
     }
 
     public void OnCleanup(RoundRestartCleanupEvent _)

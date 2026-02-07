@@ -40,6 +40,7 @@ namespace Content.Server.Decals
 
         private readonly Dictionary<NetEntity, HashSet<Vector2i>> _dirtyChunks = new();
         private readonly Dictionary<ICommonSession, Dictionary<NetEntity, HashSet<Vector2i>>> _previousSentChunks = new();
+        private readonly List<NetEntity> _previouslySentRemoveBuffer = new();
         private static readonly Vector2 _boundsMinExpansion = new(0.01f, 0.01f);
         private static readonly Vector2 _boundsMaxExpansion = new(1.01f, 1.01f);
 
@@ -468,6 +469,7 @@ namespace Content.Server.Decals
             var chunksInRange = _chunking.GetChunksForSession(player, ChunkSize, _chunkIndexPool, _chunkViewerPool);
             var staleChunks = _chunkViewerPool.Get();
             var previouslySent = _previousSentChunks[player];
+            _previouslySentRemoveBuffer.Clear();
 
             // Get any chunks not in range anymore
             // Then, remove them from previousSentChunks (for stuff like grids out of range)
@@ -478,20 +480,7 @@ namespace Content.Server.Decals
                 // Mark the whole grid as stale and flag for removal.
                 if (!chunksInRange.TryGetValue(netGrid, out var chunks))
                 {
-                    previouslySent.Remove(netGrid);
-
-                    // Was the grid deleted?
-                    if (TryGetEntity(netGrid, out var gridId) && HasComp<MapGridComponent>(gridId.Value))
-                    {
-                        // no -> add it to the list of stale chunks
-                        staleChunks[netGrid] = oldIndices;
-                    }
-                    else
-                    {
-                        // If the grid was deleted then don't worry about telling the client to delete the chunk.
-                        oldIndices.Clear();
-                        _chunkIndexPool.Return(oldIndices);
-                    }
+                    _previouslySentRemoveBuffer.Add(netGrid);
 
                     continue;
                 }
@@ -514,6 +503,25 @@ namespace Content.Server.Decals
                 }
 
                 staleChunks.Add(netGrid, elmo);
+            }
+
+            foreach (var netGrid in _previouslySentRemoveBuffer)
+            {
+                if (!previouslySent.Remove(netGrid, out var oldIndices))
+                    continue;
+
+                // Was the grid deleted?
+                if (TryGetEntity(netGrid, out var gridId) && HasComp<MapGridComponent>(gridId.Value))
+                {
+                    // no -> add it to the list of stale chunks
+                    staleChunks[netGrid] = oldIndices;
+                }
+                else
+                {
+                    // If the grid was deleted then don't worry about telling the client to delete the chunk.
+                    oldIndices.Clear();
+                    _chunkIndexPool.Return(oldIndices);
+                }
             }
 
             var updatedChunks = _chunkViewerPool.Get();

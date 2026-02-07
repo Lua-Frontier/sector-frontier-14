@@ -4,15 +4,19 @@ using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking; // Frontier
 using Content.Server.NodeContainer.EntitySystems;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
 using JetBrains.Annotations;
+using Prometheus;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using System.Linq;
@@ -25,6 +29,41 @@ namespace Content.Server.Atmos.EntitySystems;
 [UsedImplicitly]
 public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 {
+    private static readonly Gauge AtmosGridsGauge = Metrics.CreateGauge(
+        "atmos_grids",
+        "Number of grids with GridAtmosphereComponent.");
+
+    private static readonly Gauge AtmosTilesGauge = Metrics.CreateGauge(
+        "atmos_tiles_total",
+        "Total number of atmos tiles across all grids.");
+
+    private static readonly Gauge AtmosActiveTilesGauge = Metrics.CreateGauge(
+        "atmos_tiles_active",
+        "Total number of active atmos tiles across all grids.");
+
+    private static readonly Gauge AtmosInvalidatedCoordsGauge = Metrics.CreateGauge(
+        "atmos_invalidated_coords",
+        "Total number of invalidated coords across all grids.");
+
+    private static readonly Gauge AtmosExcitedGroupsGauge = Metrics.CreateGauge(
+        "atmos_excited_groups",
+        "Total number of excited groups across all grids.");
+
+    private static readonly Gauge AtmosHotspotTilesGauge = Metrics.CreateGauge(
+        "atmos_hotspot_tiles",
+        "Total number of hotspot tiles across all grids.");
+
+    private static readonly Gauge AtmosSuperconductivityTilesGauge = Metrics.CreateGauge(
+        "atmos_superconductivity_tiles",
+        "Total number of superconductivity tiles across all grids.");
+
+    private static readonly Gauge AtmosHighPressureDeltaGauge = Metrics.CreateGauge(
+        "atmos_high_pressure_delta_tiles",
+        "Total number of tiles in high-pressure-delta set across all grids.");
+
+    private float _metricsTimer;
+    private const float MetricsInterval = 30f;
+
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
@@ -47,6 +86,10 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     private EntityQuery<MapAtmosphereComponent> _mapAtmosQuery;
     private EntityQuery<AirtightComponent> _airtightQuery;
     private EntityQuery<FirelockComponent> _firelockQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<MetaDataComponent> _metaQuery;
+    private EntityQuery<MovedByPressureComponent> _movedByPressureQuery;
     private HashSet<EntityUid> _entSet = new();
 
     private string[] _burntDecals = [];
@@ -67,9 +110,14 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         _atmosQuery = GetEntityQuery<GridAtmosphereComponent>();
         _airtightQuery = GetEntityQuery<AirtightComponent>();
         _firelockQuery = GetEntityQuery<FirelockComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _metaQuery = GetEntityQuery<MetaDataComponent>();
+        _movedByPressureQuery = GetEntityQuery<MovedByPressureComponent>();
 
         SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<GridAtmosphereComponent, ComponentShutdown>(OnGridAtmosphereShutdown);
 
         CacheDecals();
     }
@@ -102,6 +150,13 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         UpdateProcessing(frameTime);
         UpdateHighPressure(frameTime);
 
+        _metricsTimer += frameTime;
+        if (_metricsTimer >= MetricsInterval)
+        {
+            _metricsTimer -= MetricsInterval;
+            UpdateAtmosMetrics();
+        }
+
         _exposedTimer += frameTime;
 
         if (_exposedTimer < ExposedUpdateDelay)
@@ -125,5 +180,82 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     private void CacheDecals()
     {
         _burntDecals = _protoMan.EnumeratePrototypes<DecalPrototype>().Where(x => x.Tags.Contains("burnt")).Select(x => x.ID).ToArray();
+    }
+
+    private void UpdateAtmosMetrics()
+    {
+        var grids = 0;
+        var tiles = 0;
+        var activeTiles = 0;
+        var invalid = 0;
+        var excitedGroups = 0;
+        var hotspots = 0;
+        var superconduction = 0;
+        var highPressure = 0;
+
+        var query = EntityQueryEnumerator<GridAtmosphereComponent>();
+        while (query.MoveNext(out _, out var atmos))
+        {
+            grids++;
+            tiles += atmos.Tiles.Count;
+            activeTiles += atmos.ActiveTiles.Count;
+            invalid += atmos.InvalidatedCoords.Count;
+            excitedGroups += atmos.ExcitedGroups.Count;
+            hotspots += atmos.HotspotTiles.Count;
+            superconduction += atmos.SuperconductivityTiles.Count;
+            highPressure += atmos.HighPressureDelta.Count;
+        }
+
+        AtmosGridsGauge.Set(grids);
+        AtmosTilesGauge.Set(tiles);
+        AtmosActiveTilesGauge.Set(activeTiles);
+        AtmosInvalidatedCoordsGauge.Set(invalid);
+        AtmosExcitedGroupsGauge.Set(excitedGroups);
+        AtmosHotspotTilesGauge.Set(hotspots);
+        AtmosSuperconductivityTilesGauge.Set(superconduction);
+        AtmosHighPressureDeltaGauge.Set(highPressure);
+    }
+
+    private void OnGridAtmosphereShutdown(EntityUid uid, GridAtmosphereComponent component, ComponentShutdown args)
+    {
+        foreach (var group in component.ExcitedGroups)
+        {
+            group.Tiles.Clear();
+            group.Disposed = true;
+        }
+
+        foreach (var tile in component.Tiles.Values)
+        {
+            tile.ExcitedGroup = null;
+            tile.Excited = false;
+            tile.PressureSpecificTarget = null;
+            tile.Air = null;
+            tile.AirArchived = null;
+
+            for (var i = 0; i < tile.AdjacentTiles.Length; i++)
+            {
+                tile.AdjacentTiles[i] = null;
+            }
+
+            tile.AdjacentBits = AtmosDirection.Invalid;
+        }
+
+        component.CurrentRunTiles.Clear();
+        component.CurrentRunExcitedGroups.Clear();
+        component.CurrentRunPipeNet.Clear();
+        component.CurrentRunAtmosDevices.Clear();
+        component.CurrentRunInvalidatedTiles.Clear();
+
+        component.InvalidatedCoords.Clear();
+        component.PossiblyDisconnectedTiles.Clear();
+        component.ActiveTiles.Clear();
+        component.ExcitedGroups.Clear();
+        component.HotspotTiles.Clear();
+        component.SuperconductivityTiles.Clear();
+        component.HighPressureDelta.Clear();
+        component.PipeNets.Clear();
+        component.AtmosDevices.Clear();
+        component.MapTiles.Clear();
+        component.Tiles.Clear();
     }
 }

@@ -39,6 +39,7 @@ public sealed class HardsuitReanimationSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private readonly Dictionary<EntityUid, ReanimationData> _activeReanimations = new();
+    private readonly List<EntityUid> _reanimationsToRemove = new();
 
     private struct ReanimationData
     {
@@ -65,17 +66,17 @@ public sealed class HardsuitReanimationSystem : EntitySystem
     private void ProcessActiveReanimations(float frameTime)
     {
         var currentTime = _timing.CurTime;
-        var toRemove = new List<EntityUid>();
+        _reanimationsToRemove.Clear();
         foreach (var (hardsuit, data) in _activeReanimations)
         {
             if (!EntityManager.EntityExists(hardsuit) || !EntityManager.EntityExists(data.Wearer))
             {
-                toRemove.Add(hardsuit);
+                _reanimationsToRemove.Add(hardsuit);
                 continue;
             }
             if (!TryComp<HardsuitReanimationComponent>(hardsuit, out var comp))
             {
-                toRemove.Add(hardsuit);
+                _reanimationsToRemove.Add(hardsuit);
                 continue;
             }
             var elapsed = currentTime - data.StartTime;
@@ -88,10 +89,10 @@ public sealed class HardsuitReanimationSystem : EntitySystem
             if (elapsed.TotalSeconds >= 36)
             {
                 CompleteReanimation(hardsuit, data.Wearer, comp);
-                toRemove.Add(hardsuit);
+                _reanimationsToRemove.Add(hardsuit);
             }
         }
-        foreach (var hardsuit in toRemove)
+        foreach (var hardsuit in _reanimationsToRemove)
         {
             _activeReanimations.Remove(hardsuit);
         }

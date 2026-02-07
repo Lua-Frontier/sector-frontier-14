@@ -123,14 +123,47 @@ public sealed partial class BankSystem : SharedBankSystem
     }
 
     private readonly Dictionary<NetUserId, Queue<(DateTime Time, int Amount)>> _yupiHistoryByUser = new();
+    private readonly List<NetUserId> _yupiHistoryToRemove = new();
+    private DateTime _lastYupiHistoryHousekeepUtc = DateTime.MinValue;
+    private static readonly TimeSpan YupiHistoryHousekeepInterval = TimeSpan.FromMinutes(5);
 
     private int GetWindowSum(NetUserId userId, DateTime now)
     {
         if (!_yupiHistoryByUser.TryGetValue(userId, out var queue)) return 0;
-        while (queue.Count > 0 && (now - queue.Peek().Time) >= TimeSpan.FromMinutes(30)) queue.Dequeue();
+        while (queue.Count > 0 && (now - queue.Peek().Time) >= TimeSpan.FromMinutes(30))
+            queue.Dequeue();
+
+        if (queue.Count == 0)
+            _yupiHistoryByUser.Remove(userId);
+
         var sum = 0;
         foreach (var e in queue) sum += e.Amount;
         return sum;
+    }
+
+    private void HousekeepYupiTransferHistory()
+    {
+        var now = DateTime.UtcNow;
+        if (now - _lastYupiHistoryHousekeepUtc < YupiHistoryHousekeepInterval)
+            return;
+
+        _lastYupiHistoryHousekeepUtc = now;
+
+        _yupiHistoryToRemove.Clear();
+        foreach (var kv in _yupiHistoryByUser)
+        {
+            var queue = kv.Value;
+            while (queue.Count > 0 && (now - queue.Peek().Time) >= TimeSpan.FromMinutes(30))
+                queue.Dequeue();
+
+            if (queue.Count == 0)
+                _yupiHistoryToRemove.Add(kv.Key);
+        }
+
+        foreach (var userId in _yupiHistoryToRemove)
+        {
+            _yupiHistoryByUser.Remove(userId);
+        }
     }
 
     public enum YupiTransferError
