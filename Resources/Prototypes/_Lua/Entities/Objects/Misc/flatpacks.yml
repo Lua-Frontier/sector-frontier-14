@@ -247,20 +247,21 @@
     layers:
     - state: ship_weapon
 
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretCharonetteFlatPack
-  name: M194 CHARONETTE mass driver
-  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretCharonette
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
+# Mono deleted
+# - type: entity
+#   parent: BaseNFFlatpack
+#   id: WeaponTurretCharonetteFlatPack
+#   name: M194 CHARONETTE mass driver
+#   description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
+#   components:
+#   - type: Flatpack
+#     entity: WeaponTurretCharonette
+#   - type: StaticPrice
+#     price: 5000
+#   - type: Sprite
+#     sprite: _Lua/Flatpack/flatpack.rsi
+#     layers:
+#     - state: ship_weapon
 
 - type: entity
   parent: BaseNFFlatpack
@@ -277,20 +278,21 @@
     layers:
     - state: ship_weapon
 
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretKargilFlatPack
-  name: Kargil 203mm cannon
-  description: A single barrelled, medium-heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretKargil
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
+# Mono deleted
+# - type: entity
+#   parent: BaseNFFlatpack
+#   id: WeaponTurretKargilFlatPack
+#   name: Kargil 203mm cannon
+#   description: A single barrelled, medium-heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
+#   components:
+#   - type: Flatpack
+#     entity: WeaponTurretKargil
+#   - type: StaticPrice
+#     price: 5000
+#   - type: Sprite
+#     sprite: _Lua/Flatpack/flatpack.rsi
+#     layers:
+#     - state: ship_weapon
 
 #MARK:Mono - missle turrets
 

@@ -255,17 +255,18 @@
       - id: WeaponTurretBoforsFlatPack
         amount: 1
 
-- type: entity
-  id: CrateWeaponTurretKargilFlatPack
-  parent: CrateShipWeaponBase
-  name: ящик с упакованным Kargil 203mm cannon
-  description: содержит 1 упакованный Kargil 203mm cannon
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponTurretKargilFlatPack
-        amount: 1
+# Mono deleted
+# - type: entity
+#   id: CrateWeaponTurretKargilFlatPack
+#   parent: CrateShipWeaponBase
+#   name: ящик с упакованным Kargil 203mm cannon
+#   description: содержит 1 упакованный Kargil 203mm cannon
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: StorageFill
+#     contents:
+#       - id: WeaponTurretKargilFlatPack
+#         amount: 1
 
 # Monolith - Energy
 #added to cargo
@@ -556,14 +557,15 @@
 
 #MARK: MONO turrets
 
-- type: entity
-  id: CrateWeaponTurretCharonetteFlatPack
-  parent: CrateShipWeaponBase
-  name: M194 CHARONETTE mass driver
-  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponTurretCharonetteFlatPack
-        amount: 1
+# Mono deleted
+# - type: entity
+#   id: CrateWeaponTurretCharonetteFlatPack
+#   parent: CrateShipWeaponBase
+#   name: M194 CHARONETTE mass driver
+#   description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: StorageFill
+#     contents:
+#       - id: WeaponTurretCharonetteFlatPack
+#         amount: 1
