@@ -30,6 +30,7 @@ using Content.Shared.Database;
 using Content.Shared.Labels.Components;
 using Content.Shared._NF.BindToStation; // Frontier
 using Content.Server.Station.Systems; // Frontier
+using Content.Server._Lua.Botany;
 
 namespace Content.Server.Botany.Systems;
 
@@ -270,8 +271,18 @@ public sealed class PlantHolderSystem : EntitySystem
             }
             else
             {
-                _popup.PopupCursor(Loc.GetString("plant-holder-component-no-plant-message",
-                    ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User);
+                if (TryComp<SoilFlatpackComponent>(uid, out var soilFlatpack) && IsFullShovel(args.Used))
+                {
+                    var spawnCoords = Transform(uid).Coordinates;
+                    var flatpack = Spawn(soilFlatpack.FlatpackPrototype, spawnCoords);
+                    _hands.TryPickupAnyHand(args.User, flatpack);
+                    QueueDel(uid);
+                }
+                else
+                {
+                    _popup.PopupCursor(Loc.GetString("plant-holder-component-no-plant-message",
+                        ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User);
+                }
             }
 
             return;
@@ -1008,5 +1019,12 @@ public sealed class PlantHolderSystem : EntitySystem
         component.SkipAging++; // We're forcing an update cycle, so one age hasn't passed.
         component.ForceUpdate = true;
         Update(uid, component);
+    }
+
+    private bool IsFullShovel(EntityUid used)
+    {
+        if (!TryComp<MetaDataComponent>(used, out var meta)) return false;
+        var protoId = meta.EntityPrototype?.ID;
+        return protoId == "Shovel" || protoId == "NFShovel";
     }
 }
