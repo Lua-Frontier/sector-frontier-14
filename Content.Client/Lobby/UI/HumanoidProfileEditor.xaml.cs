@@ -481,7 +481,7 @@ namespace Content.Client.Lobby.UI
                     var companyId = company.ID;
                     var descKey = company.Description;
                     CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(descKey)
-                    ? Loc.GetString(descKey)
+                    ? (Loc.TryGetString(descKey, out var desc) ? desc : descKey)
                     : "N/A"); // Only if there's a description. If not, then set to N/A.
 
                     // Get the current profile for comparison
@@ -2038,7 +2038,7 @@ namespace Content.Client.Lobby.UI
                 // Description of Company (pointed-to in prototype, defined in Locale)
                 var descKey = companies[i].Description;
                 CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(descKey)
-                ? Loc.GetString(descKey)
+                ? (Loc.TryGetString(descKey, out var desc) ? desc : descKey)
                 : "N/A"); // Only if there's a description. If not, then set to N/A.
 
                 found = true;

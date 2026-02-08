@@ -64,9 +64,12 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnMapInit(Entity<PaperComponent> entity, ref MapInitEvent args)
     {
-        if (!string.IsNullOrEmpty(entity.Comp.Content))
+        if (!string.IsNullOrWhiteSpace(entity.Comp.Content))
         {
-            SetContent(entity, Loc.GetString(entity.Comp.Content));
+            var contentKeyOrText = entity.Comp.Content;
+            SetContent(entity, Loc.TryGetString(contentKeyOrText, out var localized)
+                ? localized
+                : contentKeyOrText);
         }
     }
 
@@ -290,11 +293,13 @@ public sealed class PaperSystem : EntitySystem
         var pick = _random.Pick(dataset.Values);
 
         // Name
-        _metaSystem.SetEntityName(ent, Loc.GetString(pick));
+        _metaSystem.SetEntityName(ent, Loc.TryGetString(pick, out var name) ? name : pick);
         // Description
-        _metaSystem.SetEntityDescription(ent, Loc.GetString($"{pick}.desc"));
+        var descKey = $"{pick}.desc";
+        _metaSystem.SetEntityDescription(ent, Loc.TryGetString(descKey, out var desc) ? desc : descKey);
         // Content
-        SetContent((ent, paperComp), Loc.GetString($"{pick}.content"));
+        var contentKey = $"{pick}.content";
+        SetContent((ent, paperComp), Loc.TryGetString(contentKey, out var content) ? content : contentKey);
 
         // Our work here is done
         RemCompDeferred(ent, ent.Comp);

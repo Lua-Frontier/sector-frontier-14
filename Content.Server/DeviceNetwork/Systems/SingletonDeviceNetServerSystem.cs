@@ -52,6 +52,7 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
         >();
 
         (EntityUid id, SingletonDeviceNetServerComponent server, DeviceNetworkComponent device)? last = default;
+        (EntityUid id, SingletonDeviceNetServerComponent server, DeviceNetworkComponent device)? active = default;
 
         while (servers.MoveNext(out var uid, out var server, out var device, out _, out var xform))
         {
@@ -68,11 +69,21 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
 
             last = (uid, server, device);
 
-            if (!server.Active || string.IsNullOrEmpty(device.Address))
+            if (!server.Active)
                 continue;
 
+            if (!active.HasValue)
+                active = (uid, server, device);
+        }
+
+        if (active.HasValue)
+        {
+            var (id, server, device) = active.Value;
+            if (string.IsNullOrEmpty(device.Address))
+                ConnectServer(id, server, device);
+
             address = device.Address;
-            return true;
+            return !string.IsNullOrEmpty(address);
         }
 
         //If there was no active server for the station make the last available inactive one active
@@ -80,11 +91,11 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
         {
             ConnectServer(last.Value.id, last.Value.server, last.Value.device);
             address = last.Value.device.Address;
-            return true;
+            return !string.IsNullOrEmpty(address);
         }
 
         address = null;
-        return address != null;
+        return false;
     }
     // End Frontier
 
@@ -99,6 +110,7 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
         >();
 
         (EntityUid id, SingletonDeviceNetServerComponent server, DeviceNetworkComponent device)? lastAvailable = null;
+        (EntityUid id, SingletonDeviceNetServerComponent server, DeviceNetworkComponent device)? active = null;
 
         while (servers.MoveNext(out var uid, out var server, out var device, out _))
         {
@@ -110,11 +122,26 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
 
             lastAvailable = (uid, server, device);
 
-            if (server.Active)
+            if (!server.Active)
+                continue;
+
+            if (active.HasValue)
             {
-                address = device.Address;
-                return true;
+                DisconnectServer(uid, server, device);
+                continue;
             }
+
+            active = (uid, server, device);
+        }
+
+        if (active.HasValue)
+        {
+            var (id, server, device) = active.Value;
+            if (string.IsNullOrEmpty(device.Address))
+                ConnectServer(id, server, device);
+
+            address = device.Address;
+            return !string.IsNullOrEmpty(address);
         }
 
         if (lastAvailable.HasValue)
@@ -122,7 +149,7 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
             var (id, serv, dev) = lastAvailable.Value;
             ConnectServer(id, serv, dev);
             address = dev.Address;
-            return true;
+            return !string.IsNullOrEmpty(address);
         }
         address = null;
         return false;
