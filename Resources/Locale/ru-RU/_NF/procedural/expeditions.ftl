@@ -1,4 +1,10 @@
 salvage-expedition-window-finish = Завершить экспедицию
+salvage-expedition-window-confirm = Подтвердить
+salvage-expedition-window-cancel = Отменить
+salvage-expedition-window-active-count = Активных экспедиций:
+salvage-expedition-window-queue-count = Ваша очередь:
+salvage-expedition-window-confirm-timer = Подтверждение
+salvage-expedition-queue-ready = Доступен запуск экспедиции, подтвердите или отмените.
 salvage-expedition-announcement-early-finish = Экспедиция была окончена. Шаттл покинет планету через {$departTime} секунд.
 salvage-expedition-shuttle-not-found = Не обнаружен шаттл.
 salvage-expedition-not-everyone-aboard = Не вся команда на шаттле! {$target} всё еще отсутствует!
