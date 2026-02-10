@@ -19,11 +19,13 @@ public sealed class WorldControllerSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     private const int PlayerLoadRadius = 2;
+    private static readonly TimeSpan ChunkEvictionDelay = TimeSpan.FromMinutes(5);
 
     private ISawmill _sawmill = default!;
     private EntityQuery<GhostComponent> _ghostQuery;
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
     private EntityQuery<WorldControllerComponent> _controllerQuery;
+    private EntityQuery<ChunkEvictionComponent> _evictQuery;
 
     private readonly HashSet<EntityUid> _controllerMaps = new();
     private readonly List<EntityUid> _loadedChunksBuffer = new();
@@ -35,6 +37,7 @@ public sealed class WorldControllerSystem : EntitySystem
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         _controllerQuery = GetEntityQuery<WorldControllerComponent>();
+        _evictQuery = GetEntityQuery<ChunkEvictionComponent>();
         SubscribeLocalEvent<LoadedChunkComponent, ComponentStartup>(OnChunkLoadedCore);
         SubscribeLocalEvent<LoadedChunkComponent, ComponentShutdown>(OnChunkUnloadedCore);
         SubscribeLocalEvent<WorldChunkComponent, ComponentShutdown>(OnChunkShutdown);
@@ -63,6 +66,9 @@ public sealed class WorldControllerSystem : EntitySystem
     /// </summary>
     private void OnChunkLoadedCore(EntityUid uid, LoadedChunkComponent component, ComponentStartup args)
     {
+        if (_evictQuery.HasComponent(uid))
+            RemCompDeferred<ChunkEvictionComponent>(uid);
+
         if (!TryComp<WorldChunkComponent>(uid, out var chunk))
             return;
 
@@ -87,6 +93,9 @@ public sealed class WorldControllerSystem : EntitySystem
         RaiseLocalEvent(chunk.Map, ref ev);
         RaiseLocalEvent(uid, ref ev);
         //_sawmill.Debug($"Unloaded chunk {ToPrettyString(uid)} at {coords}");
+
+        var evict = EnsureComp<ChunkEvictionComponent>(uid);
+        evict.EvictAt = _gameTiming.RealTime + ChunkEvictionDelay;
     }
 
     /// <inheritdoc />
@@ -210,12 +219,36 @@ public sealed class WorldControllerSystem : EntitySystem
             _sawmill.Debug($"Queued {chunksUnloaded} chunks for unload.");
 
         if (!anyChunksRequested)
+        {
+            ProcessChunkEvictions();
             return;
+        }
 
         if (loadedCount > 0)
         {
             var timeSpan = _gameTiming.RealTime - startTime;
             _sawmill.Debug($"Loaded {loadedCount} chunks in {timeSpan.TotalMilliseconds:N2}ms.");
+        }
+
+        ProcessChunkEvictions();
+    }
+
+    private void ProcessChunkEvictions()
+    {
+        var now = _gameTiming.RealTime;
+        var q = EntityQueryEnumerator<ChunkEvictionComponent, WorldChunkComponent>();
+        while (q.MoveNext(out var uid, out var evict, out _))
+        {
+            if (now < evict.EvictAt)
+                continue;
+
+            if (_loadedQuery.HasComponent(uid))
+            {
+                RemCompDeferred<ChunkEvictionComponent>(uid);
+                continue;
+            }
+
+            QueueDel(uid);
         }
     }
 

@@ -8,7 +8,7 @@ namespace Content.Server.Worldgen.Components;
 ///     This is used for controlling overall world loading, containing an index of all chunks in the map.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(WorldControllerSystem))]
+[Access(typeof(WorldControllerSystem), typeof(LocalityLoaderSystem))]
 public sealed partial class WorldControllerComponent : Component
 {
     /// <summary>
