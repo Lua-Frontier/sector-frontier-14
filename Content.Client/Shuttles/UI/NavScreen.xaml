@@ -190,7 +190,7 @@
                     </controls:BoxContainer>
                     <!-- End Frontier - Service Flags -->
                     <!-- Network Port Buttons -->
-                    <controls:PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4 4 4">
+                    <controls:PanelContainer Name="NetworkPortsPanel" VerticalExpand="True" HorizontalExpand="True" Margin="4 4 4 4"> <!-- Lua: Added Name="NetworkPortsPanel" -->
                         <controls:PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#333333" BackgroundColor="#181818"/>
                         </controls:PanelContainer.PanelOverride>

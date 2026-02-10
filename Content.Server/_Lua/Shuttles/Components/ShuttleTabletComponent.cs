@@ -1,0 +1,25 @@
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
+// See AGPLv3.txt for details.
+
+using Robust.Shared.Audio;
+
+namespace Content.Server._Lua.Shuttles.Components;
+
+[RegisterComponent]
+public sealed partial class ShuttleTabletComponent : Component
+{
+    public bool GridChangeRequired = false;
+
+    [ViewVariables]
+    public EntityUid? LinkedConsole;
+
+    [DataField]
+    public float LinkRange = 300f; // Meters
+
+    [DataField]
+    public bool IgnoreSector = false;
+
+    [DataField]
+    public SoundSpecifier LinkSound = new SoundPathSpecifier("/Audio/Machines/id_insert.ogg");
+}

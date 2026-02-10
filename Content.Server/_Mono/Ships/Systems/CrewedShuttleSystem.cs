@@ -3,6 +3,8 @@ using Content.Shared._Mono.FireControl;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Silicons.StationAi; // Lua
+using Content.Shared._Lua.Shuttles.UI; // Lua
+using Content.Server._Lua.Shuttles.Components; // Lua
 
 namespace Content.Server._Mono.Ships.Systems;
 
@@ -48,6 +50,7 @@ public sealed class CrewedShuttleSystem : EntitySystem
 
     public bool AnyShuttleConsoleActiveOnGridByPlayer(EntityUid grid, EntityUid actor)
     {
-        return AnyConsoleActiveOnGridByPlayer<ShuttleConsoleComponent>(grid, ShuttleConsoleUiKey.Key, actor);
+        return AnyConsoleActiveOnGridByPlayer<ShuttleConsoleComponent>(grid, ShuttleConsoleUiKey.Key, actor)
+            || AnyConsoleActiveOnGridByPlayer<ShuttleTabletComponent>(grid, ShuttleTabletWindowUiKey.Key, actor); // Lua
     }
 }

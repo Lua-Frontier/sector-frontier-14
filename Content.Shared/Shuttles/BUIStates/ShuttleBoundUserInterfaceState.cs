@@ -11,20 +11,12 @@ public sealed class ShuttleBoundUserInterfaceState : BoundUserInterfaceState
     public ShuttleMapInterfaceState MapState;
     public DockingInterfaceState DockState;
     public StarmapConsoleBoundUserInterfaceState StarMapState;
-    public NetEntity? Shuttle; // Lua
 
-    public ShuttleBoundUserInterfaceState(
-        NavInterfaceState navState,
-        ShuttleMapInterfaceState mapState,
-        DockingInterfaceState dockState,
-        StarmapConsoleBoundUserInterfaceState starMapState,
-        NetEntity? shuttle // Lua
-        )
+    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, StarmapConsoleBoundUserInterfaceState starMapState)
     {
         NavState = navState;
         MapState = mapState;
         DockState = dockState;
         StarMapState = starMapState;
-        Shuttle = shuttle; // Lua
     }
 }

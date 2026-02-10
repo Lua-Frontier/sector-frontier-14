@@ -1,12 +1,12 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2026 LuaWorld Contributors
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
 # See AGPLv3.txt for details.
 
 - type: entity
   name: shuttle control tablet
   parent: BaseHandheldComputer
   id: ShuttleControlTablet
-  description: A portable tablet for shuttle control. Has a slot for ID card. To function at least one powered console must be present at the shuttle.
+  description: A portable tablet for shuttle control. Has a slot for ID card. To function must be linked to ordinary console.
   components:
   - type: Item
     sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
@@ -19,11 +19,11 @@
   - type: ShuttleConsoleLock
     locked: false
   - type: ActivatableUI
-    key: enum.ShuttleConsoleUiKey.Key
+    key: enum.ShuttleTabletWindowUiKey.Key
   - type: UserInterface
     interfaces:
-        enum.ShuttleConsoleUiKey.Key:
-          type: ShuttleConsoleBoundUserInterface
+        enum.ShuttleTabletWindowUiKey.Key:
+          type: ShuttleTabletWindowBoundUserInterface
   - type: RadarConsole
     maxRange: 512
     maxIffRange: 512
@@ -59,15 +59,18 @@
     - device-button-8
     range: 3
   - type: PowerCellDraw
-    drawRate: 1.5
+    drawRate: 2
   - type: StaticPrice
     price: 250
 
 - type: entity
-  id: ShuttleControlTabletMicroreactor
+  id: ShuttleControlTabletAdmin
   parent: ShuttleControlTablet
-  suffix: Microreactor
+  suffix: Microreactor, 10000m, IgnoreSector
   components:
+  - type: ShuttleTablet
+    linkRange: 10000
+    ignoreSector: true
   - type: ItemSlots
     slots:
       id_container:
