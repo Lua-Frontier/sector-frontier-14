@@ -34,7 +34,7 @@ public sealed partial class ShuttleSystem
                 if (targetXform.MapID == MapId.Nullspace || targetXform.MapID != gridXform.MapID) continue;
                 if (!_physicsQuery.TryGetComponent(gridUid, out var ourPhys) || !_physicsQuery.TryGetComponent(targetGrid, out var otherPhys))
                 { continue; }
-                SharedJointSystem.LinearStiffness(8f, 1.0f, ourPhys.Mass, otherPhys.Mass, out var stiffness, out var damping);
+                SharedJointSystem.LinearStiffness(MagneticLatchFrequencyHz, MagneticLatchDampingRatio, ourPhys.Mass, otherPhys.Mass, out var stiffness, out var damping);
                 var ownerRot = _transform.GetWorldRotation(gridXform);
                 var ownerPos = _transform.GetWorldPosition(gridXform);
                 var desiredTargetRot = ownerRot + new Angle(latch.ReferenceAngle ?? 0f);
