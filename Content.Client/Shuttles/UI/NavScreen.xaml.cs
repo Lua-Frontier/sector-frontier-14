@@ -52,11 +52,10 @@ public sealed partial class NavScreen : BoxContainer
 
         NavRadar.IFFFilter = text.Length == 0
             ? null // If empty, do not filter
-            : (entity, grid, iff) => // Otherwise use simple search criteria
+            : (entity, grid, iff, labelName) =>
             {
-                // Check entity name
-                if (_entManager.TryGetComponent<MetaDataComponent>(entity, out var metadata) &&
-                    metadata.EntityName.Contains(text, StringComparison.OrdinalIgnoreCase))
+                if (!string.IsNullOrEmpty(labelName) &&
+                    labelName.Contains(text, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }

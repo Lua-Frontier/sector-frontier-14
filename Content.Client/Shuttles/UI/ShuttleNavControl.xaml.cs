@@ -72,7 +72,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
-    public Func<EntityUid, MapGridComponent, IFFComponent?, bool>? IFFFilter { get; set; } = null;
+    public Func<EntityUid, MapGridComponent, IFFComponent?, string?, bool>? IFFFilter { get; set; } = null;
 
     /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
@@ -405,7 +405,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var shouldDrawIFF = ShowIFF && labelName != null;
             if (IFFFilter != null)
             {
-                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff);
+                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff, labelName);
             }
             if (isPlayerShuttle)
             {
