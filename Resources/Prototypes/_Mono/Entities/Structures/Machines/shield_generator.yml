@@ -184,9 +184,6 @@
     energy: 1.5
     color: "#FF9933"
   # can repair it if you really want to
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 300
 
 # TSF capital shield - inbetween POI and MS-500, meant for flyssa
 - type: entity
@@ -257,9 +254,6 @@
     radius: 2
     energy: 1.5
     color: "#FF0A70"
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 300
 
 # High-End
 - type: entity
@@ -278,13 +272,6 @@
     unpoweredBonus: 7 # Base is 6
     shieldColor: "#FF3333"
     collisionResistanceMultiplier: 0.05
-  - type: ShipRepairable
-    repairTime: 30
-    repairCost: 300
-  - type: ShipRepairableRestrict
-    toolWhitelist:
-      tags:
-      - ADSRepairTool
 
 # Medium-End
 - type: entity
@@ -369,9 +356,6 @@
       machine_parts: !type:Container
   - type: PirateBountyItem
     id: ShipShield
-  - type: ShipRepairable
-    repairTime: 25
-    repairCost: 200
 
 # Low-End
 - type: entity
@@ -455,6 +439,3 @@
       machine_parts: !type:Container
   - type: PirateBountyItem
     id: ShipShield
-  - type: ShipRepairable
-    repairTime: 20
-    repairCost: 125
