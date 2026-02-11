@@ -337,6 +337,19 @@ namespace Content.Server.Database
         [Column("char_name")] public string CharacterName { get; set; } = null!;
         public string FlavorText { get; set; } = null!;
         public int ERPStatus { get; set; }
+        // Erida-Start
+        public string OOCFlavorText { get; set; } = null!;
+        public string CharacterFlavorText { get; set; } = null!;
+        public string GreenFlavorText { get; set; } = null!;
+        public string YellowFlavorText { get; set; } = null!;
+        public string RedFlavorText { get; set; } = null!;
+        public string TagsFlavorText { get; set; } = null!;
+        public string LinksFlavorText { get; set; } = null!;
+        public string NSFWFlavorText { get; set; } = null!;
+        public string NSFWOOCFlavorText { get; set; } = null!;
+        public string NSFWLinksFlavorText { get; set; } = null!;
+        public string NSFWTagsFlavorText { get; set; } = null!;
+        // Erida-End
         public int Age { get; set; }
         public int BankBalance { get; set; }
         public string Sex { get; set; } = null!;

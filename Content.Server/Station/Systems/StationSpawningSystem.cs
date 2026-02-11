@@ -168,6 +168,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
+            /* // Erida-Replace
+            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
             {
                 var showFlavor = _configurationManager.GetCVar(CCVars.FlavorText) && !string.IsNullOrWhiteSpace(profile.FlavorText);
                 var showErp = _configurationManager.GetCVar(CLVars.IsERP);
@@ -182,6 +184,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     detailExamineComp.ERPStatus = profile.ERPStatus;
                 }
             }
+*/
+
+            // Erida-Start
+            if (_configurationManager.GetCVar(CCVars.FlavorText))
+                AddComp<DetailExaminableComponent>(entity.Value).SetProfile(profile);
+            // Erida-End
         }
 
         if (loadout != null)
