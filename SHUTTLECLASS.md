@@ -43,13 +43,11 @@ Structural добавит ещё 1–2.
 | ID | Тип | Класс |
 |----|-----|-------|
 | WeaponTurretL85Autocannon | Ballistic | Light |
-| WeaponTurretDravon | Ballistic | Heavy |
-| WeaponTurretAK570 | Ballistic | Light |
-| WeaponTurretCyrexa | Ballistic | Heavy |
+| WeaponTurretDravon | Ballistic | Medium |
+| WeaponTurretAK570 | Ballistic | Medium |
+| WeaponTurretCyrexa | Ballistic | Medium |
 | WeaponTurretHades | Ballistic | Superheavy |
-| WeaponTurretCharonette | Ballistic | Superheavy |
-| WeaponTurretBofors | Ballistic | Heavy |
-| WeaponTurretKargil | Ballistic | Heavy |
+| WeaponTurretBofors | Ballistic | Medium |
 | WeaponTurretTarnyx | Ballistic | Heavy |
 | WeaponTurretTarnyxReload | Ballistic | Heavy |
 | WeaponTurretCharon | Ballistic | Superheavy |
@@ -57,17 +55,17 @@ Structural добавит ещё 1–2.
 | WeaponTurretType35 | Energy | Medium |
 | WeaponTurretM25 | Energy | Superlight |
 | WeaponTurretM220 | Energy | Medium |
-| WeaponTurretDymere | Energy | Heavy |
-| WeaponTurretVespera | Missile | Light |
-| WeaponTurretVanyk | Missile | Light |
+| WeaponTurretDymere | Energy | Superheavy |
+| WeaponTurretVespera | Missile | Medium |
+| WeaponTurretVanyk | Missile | Medium |
 | WeaponTurretASM501 | Missile | Heavy |
-| WeaponTurretTovek | Missile | Heavy |
+| WeaponTurretTovek | Missile | Medium |
 | WeaponTurretASM220 | Missile | Heavy |
-| WeaponTurretLightMunitionsBay | Missile | Heavy |
+| WeaponTurretLightMunitionsBay | Missile | Medium |
 | WeaponLaserTurretL1Phalanx | Energy | Light |
-| WeaponLaserTurretApollo | Energy | Superheavy |
-| WeaponTurretType54 | Energy | Light |
-| WeaponTurretType241 | Energy | Medium |
+| WeaponLaserTurretApollo | Energy | Heavy |
+| WeaponTurretType54 | Energy | Heavy |
+| WeaponTurretType241 | Energy | Superheavy |
 | WeaponTurretThanatos | Ballistic | Superheavy |
 | ShuttleGunSvalinnMachineGun | Energy | Superlight |
 | ShuttleGunPerforator | Energy | Superlight |
@@ -89,6 +87,25 @@ Structural добавит ещё 1–2.
 | WeaponMissileLauncherNightHunter | Missile | Medium |
 | WeaponMissileLauncherLancer | Missile | Superheavy |
 | WeaponMissileLauncherCerber | Missile | Superheavy |
+| WeaponTurretLongbow | Ballistic | Heavy |
+| WeaponTurretRAC30 | Ballistic | Medium |
+| WeaponTurretHydra | Ballistic | SuperHeavy |
+| WeaponTurretFang | Ballistic | Medium |
+| WeaponTurretAdderScattercannon | Ballistic | Light |
+| WeaponTurretPinhole | Ballistic | Medium |
+| WeaponTurretShard | Ballistic | Light |
+| WeaponTurretCerberus | Energy | Heavy |
+| WeaponTurretScylla | Energy | Heavy |
+| WeaponLaserTurretPrometheus | Energy | Heavy |
+| WeaponTurretReaper | Energy | Superheavy |
+| WeaponTurretHarbringer | Energy | Superheavy |
+| WeaponTurretTartarus | Energy | Heavy |
+| WeaponTurretSunder | Energy | Medium |
+| WeaponTurretScythe | Energy | Heavy |
+| WeaponLaserTurretFlayer | Energy | Light |
+| WeaponTurretSerpentMissile | Missile | Heavy |
+| WeaponTurretTorpedoEntropy | Missile | Heavy |
+| WeaponTurretASM220 | Missile | Medium |
 
 
 ### Схема конверсии классов
