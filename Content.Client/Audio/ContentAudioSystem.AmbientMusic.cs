@@ -10,6 +10,7 @@ using Robust.Client.State;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -109,6 +110,11 @@ public sealed partial class ContentAudioSystem
     private ISawmill _sawmill = default!; //lobbymusic.cs has a sawmill call so i can't remove this????
 
     private ProtoId<SpaceBiomePrototype> _defaultBiomeProto = "BiomeDefault"; //which biome proto is the fallback for null?
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
+    private const float WhaleDangerRadius = 25000f;
+    private const float WhaleAmbientDuck = -100f;
+    private bool _isWhaleDangerDucked;
 
     public void UpdateAmbientMusic(float frameTime)
     {
@@ -116,6 +122,8 @@ public sealed partial class ContentAudioSystem
 
         if (!_timing.IsFirstTimePredicted) //otherwise this will tick like 5x faster on client. thanks prediction
             return;
+
+        UpdateWhaleDangerDucking();
 
         if (_initialStationMusicBool)
         {
@@ -431,6 +439,7 @@ public sealed partial class ContentAudioSystem
         else
         {
             volume += _volumeSliderAmbient;
+            if (_isWhaleDangerDucked) volume += WhaleAmbientDuck;
             _replayAmbientMusicBool = true;
         }
 
@@ -479,7 +488,7 @@ public sealed partial class ContentAudioSystem
 
         if (_ambientMusicStream != null && _musicProto != null && !_isCombatMusicPlaying)
         {
-            _audio.SetVolume(_ambientMusicStream, _musicProto.Sound.Params.Volume + _volumeSliderAmbient);
+            _audio.SetVolume(_ambientMusicStream, GetCurrentAmbientMusicVolume());
         }
     }
 
@@ -493,6 +502,29 @@ public sealed partial class ContentAudioSystem
         {
             _audio.SetVolume(_ambientMusicStream, _musicProto.Sound.Params.Volume + _volumeSliderCombat);
         }
+    }
+
+    private float GetCurrentAmbientMusicVolume()
+    {
+        var volume = _musicProto?.Sound.Params.Volume ?? 0f;
+        volume += _volumeSliderAmbient;
+        if (_isWhaleDangerDucked) volume += WhaleAmbientDuck;
+        return volume;
+    }
+
+    private void UpdateWhaleDangerDucking()
+    {
+        var shouldDuck = false;
+        var local = _player.LocalEntity;
+        if (local != null && TryComp<TransformComponent>(local.Value, out var xform))
+        {
+            var worldPos = _transform.GetWorldPosition(xform);
+            shouldDuck = worldPos.LengthSquared() > WhaleDangerRadius * WhaleDangerRadius;
+        }
+        if (shouldDuck == _isWhaleDangerDucked) return;
+        _isWhaleDangerDucked = shouldDuck;
+        if (_ambientMusicStream != null && _musicProto != null && !_isCombatMusicPlaying)
+            _audio.SetVolume(_ambientMusicStream, GetCurrentAmbientMusicVolume());
     }
     private void CombatWindUpChanged(int obj)
     {

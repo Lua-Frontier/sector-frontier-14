@@ -741,7 +741,10 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Check if this blip is within view bounds before drawing
             if (monoViewBounds.Contains(blipPosInView))
             {
-                DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
+                var handledByLuaStyle = false;
+                DrawLuaRadarBlip(handle, blip.NetUid, blip.SonarEcho, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape, ref handledByLuaStyle);
+                if (!handledByLuaStyle)
+                    DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
             }
         }
 
@@ -857,7 +860,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         }
     }
     partial void GetDockColorOverride(ref Color color, DockingPortState state); // Lua
-
     protected Vector2 InverseScalePosition(Vector2 value)
     {
         // Account for UI scaling: value is unscaled, so adjust by UIScale
