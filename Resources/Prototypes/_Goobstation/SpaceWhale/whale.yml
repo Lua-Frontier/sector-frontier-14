@@ -25,7 +25,7 @@
     maxDistance: 4096
   - type: RadarSonarEcho
   - type: MovementIgnoreGravity
-    gravityState: true
+    weightless: true
   - type: WarpPoint
     follow: true
     location: Левиафан
@@ -180,6 +180,7 @@
     - SpaceLeviathan
   - type: Physics
     bodyType: KinematicController
+    canCollide: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -190,10 +191,6 @@
         - MobMask
         layer:
         - MobLayer
-    canCollide: false
-    ignoreWhitelist:
-      tags:
-      - SpaceLeviathan
 
 - type: entity
   parent: RogueSiliconGiftBox # Нужно дополнить
