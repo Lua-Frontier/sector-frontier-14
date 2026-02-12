@@ -248,6 +248,7 @@ namespace Content.IntegrationTests.Tests
                 "TransferMindOnDespawn", // Frontier
                 "BluespaceErrorRule", // Frontier
                 "GridSpawner", // Mono: spawns grids/maps
+                "TailedEntity", // Lua: spawns segment
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",

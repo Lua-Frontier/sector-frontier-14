@@ -29,7 +29,14 @@ public sealed class TailedEntitySystem : EntitySystem
 
     private void OnComponentShutdown(EntityUid uid, TailedEntityComponent component, ComponentShutdown args)
     {
-        foreach (var segment in component.TailSegments) QueueDel(segment);
+        foreach (var segment in component.TailSegments)
+        {
+            if (Exists(segment) && !EntityManager.IsQueuedForDeletion(segment))
+            {
+                _joint.ClearJoints(segment);
+                Del(segment);
+            }
+        }
         component.TailSegments.Clear();
     }
 
@@ -48,7 +55,13 @@ public sealed class TailedEntitySystem : EntitySystem
                 continue;
             }
             foreach (var segment in comp.TailSegments)
-            { if (Exists(segment) && !EntityManager.IsQueuedForDeletion(segment)) QueueDel(segment); }
+            {
+                if (Exists(segment) && !EntityManager.IsQueuedForDeletion(segment))
+                {
+                    _joint.ClearJoints(segment);
+                    QueueDel(segment);
+                }
+            }
             comp.TailSegments.Clear();
             InitializeTailSegments((uid, comp, xform));
         }
@@ -135,10 +148,15 @@ public sealed class TailedEntitySystem : EntitySystem
         {
             if (!Exists(seg.HeadEntity) || EntityManager.IsQueuedForDeletion(seg.HeadEntity))
             {
+                _joint.ClearJoints(uid);
                 QueueDel(uid);
                 continue;
             }
-            if (!HasComp<TailedEntityComponent>(seg.HeadEntity)) QueueDel(uid);
+            if (!HasComp<TailedEntityComponent>(seg.HeadEntity))
+            {
+                _joint.ClearJoints(uid);
+                QueueDel(uid);
+            }
         }
     }
 }
