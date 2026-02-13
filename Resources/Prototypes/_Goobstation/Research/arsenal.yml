@@ -1,5 +1,3 @@
-# Tier 1
-
 - type: technology
   id: Gygax
   name: research-technology-gygax
@@ -21,10 +19,7 @@
   - WeaponMechCombatUltraRifle
   technologyPrerequisites:
   - Ripley2
-  position: 3, 17 # Lua: 4, 16 < 3, 17
-
-# Tier 2
-
+  position: 9.376, 6.996
 - type: technology
   id: ExplosiveMechAmmunition
   name: research-technology-explosive-mech-ammunition
@@ -36,8 +31,7 @@
   - WeaponMechCombatMissileRack8
   technologyPrerequisites:
   - NFExplosiveTechnology
-  position: 4, 41 # Lua: 4, 15 < 4, 41
-
+  position: 5.941, 13.183
 - type: technology
   id: Durand
   name: research-technology-durand
@@ -60,4 +54,5 @@
   - WeaponMechCombatShotgunIncendiary
   technologyPrerequisites:
   - Gygax
-  position: 4, 17 # Lua: 5, 16 < 4, 17
+  position: 11.466, 8.3
+...

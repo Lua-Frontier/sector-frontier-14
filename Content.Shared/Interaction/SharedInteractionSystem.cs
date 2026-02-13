@@ -615,12 +615,13 @@ namespace Content.Shared.Interaction
 
             predicate ??= _ => false;
             var ray = new CollisionRay(origin.Position, dir.Normalized(), collisionMask);
-            var rayResults = _broadphase.IntersectRayWithPredicate(origin.MapId, ray, dir.Length(), predicate.Invoke, false).ToList();
+            var rayResults = _broadphase.IntersectRayWithPredicate(origin.MapId, ray, dir.Length(), predicate.Invoke, true);
 
-            if (rayResults.Count == 0)
+            using var enumerator = rayResults.GetEnumerator();
+            if (!enumerator.MoveNext())
                 return dir.Length();
 
-            return (rayResults[0].HitPos - origin.Position).Length();
+            return (enumerator.Current.HitPos - origin.Position).Length();
         }
 
         /// <summary>
@@ -678,9 +679,9 @@ namespace Content.Shared.Interaction
             }
 
             var ray = new CollisionRay(origin.Position, dir.Normalized(), (int) collisionMask);
-            var rayResults = _broadphase.IntersectRayWithPredicate(origin.MapId, ray, length, predicate.Invoke, false).ToList();
-
-            return rayResults.Count == 0;
+            var rayResults = _broadphase.IntersectRayWithPredicate(origin.MapId, ray, length, predicate.Invoke, true);
+            using var enumerator = rayResults.GetEnumerator();
+            return !enumerator.MoveNext();
         }
 
         public bool InRangeUnobstructed(

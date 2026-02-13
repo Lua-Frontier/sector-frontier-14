@@ -181,7 +181,11 @@ public sealed partial class MarkingPicker : Control
         }
     }
 
-    private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
+    private string GetMarkingName(MarkingPrototype marking)
+    {
+        var key = $"marking-{marking.ID}";
+        return Loc.TryGetString(key, out var name) ? name : marking.ID;
+    }
 
     private List<string> GetMarkingStateNames(MarkingPrototype marking)
     {
@@ -191,10 +195,12 @@ public sealed partial class MarkingPicker : Control
             switch (markingState)
             {
                 case SpriteSpecifier.Rsi rsi:
-                    result.Add(Loc.GetString($"marking-{marking.ID}-{rsi.RsiState}"));
+                    var key = $"marking-{marking.ID}-{rsi.RsiState}";
+                    result.Add(Loc.TryGetString(key, out var name) ? name : $"{marking.ID}-{rsi.RsiState}");
                     break;
                 case SpriteSpecifier.Texture texture:
-                    result.Add(Loc.GetString($"marking-{marking.ID}-{texture.TexturePath.Filename}"));
+                    var texKey = $"marking-{marking.ID}-{texture.TexturePath.Filename}";
+                    result.Add(Loc.TryGetString(texKey, out var texName) ? texName : $"{marking.ID}-{texture.TexturePath.Filename}");
                     break;
             }
         }
@@ -219,7 +225,7 @@ public sealed partial class MarkingPicker : Control
         var sortedMarkings = GetMarkings(_selectedMarkingCategory).Values.Where(m =>
             m.ID.ToLower().Contains(filter.ToLower()) ||
             GetMarkingName(m).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => Loc.GetString(GetMarkingName(p)));
+        ).OrderBy(p => GetMarkingName(p));
 
         foreach (var marking in sortedMarkings)
         {

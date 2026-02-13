@@ -31,5 +31,6 @@ public enum ReturnToBodyStatus : byte
     BodyMissing,
     NoCryopodAvailable,
     NotAGhost,
-    Disabled
+    Disabled,
+    Expedition
 }

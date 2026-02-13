@@ -35,7 +35,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         var research = _ent.System<ResearchSystem>();
         Prototype = proto;
 
-        TechnologyNameLabel.Text = Loc.GetString(proto.Name);
+        TechnologyNameLabel.SetMessage(Loc.GetString(proto.Name));
         DisciplineTexture.Texture = sprite.Frame0(_proto.Index(proto.Discipline).Icon);
 
         // Handle technology icon - use EntityIcon if available, otherwise fall back to Icon

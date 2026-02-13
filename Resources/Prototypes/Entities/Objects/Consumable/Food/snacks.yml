@@ -25,6 +25,31 @@
     size: Tiny
   - type: StaticPrice
     price: 1
+
+- type: entity
+  parent: [VendPriceFoodBase200, FoodBaseNorot]
+  id: FoodSnackBaseNorot
+  abstract: true
+  components:
+  - type: Food
+  - type: Tag
+    tags:
+      - FoodSnack
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: Item
+    sprite: Objects/Consumable/Food/snacks.rsi
+    heldPrefix: packet
+    size: Tiny
+  - type: StaticPrice
+    price: 1
 # Snacks
 
 # "Snacks" means food in a packet. Down the line this stuff can have multiple
@@ -32,7 +57,7 @@
 
 - type: entity
   name: boritos
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackBoritos
   description: Crunchy, salty tortilla chips. You could probably make nachos with these.
   components:
@@ -49,7 +74,7 @@
 
 - type: entity
   name: C&Ds
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackCnDs
   description: Legally, we cannot say that these won't melt in your hands.
   components:
@@ -66,7 +91,7 @@
 
 - type: entity
   name: cheesie honkers
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackCheesie
   description: Bite sized cheesie snacks that will honk all over your mouth.
   components:
@@ -84,7 +109,7 @@
 
 - type: entity
   name: chips
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackChips
   description: Commander Riker's What-The-Crisps.
   components:
@@ -127,7 +152,7 @@
 
 - type: entity
   name: chocolate bar
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackChocolateBar
   description: Tastes like cardboard.
   components:
@@ -156,7 +181,7 @@
 
 - type: entity
   name: energy bar
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackEnergy
   description: An energy bar with a lot of punch.
   components:
@@ -173,7 +198,7 @@
 
 - type: entity
   name: energy bar
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackEnergyBar
   description: An energy bar with a lot of punch.
   components:
@@ -190,7 +215,7 @@
 
 - type: entity
   name: Sweetie's pistachios
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackPistachios
   description: Sweeties' name-brand pistachios. Probably won't give you diseases. Probably. # Frontier: no s post-apostrophe
   components:
@@ -212,7 +237,7 @@
 
 - type: entity
   name: popcorn
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackPopcorn
   description: Grown on an unknown planet, by an unknown farmer, popped by some jerk on a space station.
   components:
@@ -231,7 +256,7 @@
 
 - type: entity
   name: 4no raisins
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackRaisins
   description: Best raisins in the universe. Not sure why.
   components:
@@ -251,7 +276,7 @@
 
 - type: entity
   name: bob's semki sunflower seeds
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackSemki
   description: Proudly produced by the Bob Bobson nutritional corporation. Perfect for spitting at people.
   components:
@@ -268,7 +293,7 @@
 
 - type: entity
   name: sus jerky
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackSus
   description: Something about this packet makes you feel incredibly uneasy. Jerky's good though.
   components:
@@ -288,7 +313,7 @@
 
 - type: entity
   name: syndi-cakes
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackSyndi
   description: An extremely moist snack cake that tastes just as good after being nuked.
   components:
@@ -304,7 +329,7 @@
     - FoodPacketSyndiTrash
 
 - type: entity
-  parent: [VendPriceFoodBase200, FoodSnackBase] # Frontier - VendPriceFoodBase200
+  parent: [VendPriceFoodBase200, FoodSnackBaseNorot] # Frontier - VendPriceFoodBase200
   id: DrinkRamen
   name: cup ramen
   description: A cheap food with a taste that reminds you of your school years.
@@ -348,7 +373,7 @@
 
 - type: entity
   name: chow mein
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackChowMein
   description: A salty fried noodle snack. Looks like they forgot the vegetables.
   components:
@@ -376,7 +401,7 @@
 
 - type: entity
   name: dan dan noodles
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackDanDanNoodles
   description: A spicy Sichuan noodle snack. The chili oil slick pools on top.
   components:
@@ -456,7 +481,7 @@
 
 - type: entity
   id: FoodSnackNutribrickOpen
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   name: nutribrick
   description: A carefully synthesized brick designed to contain the highest ratio of nutriment to volume. Tastes like shit.
   components:
@@ -506,7 +531,7 @@
 
 - type: entity
   id: FoodSnackMREBrownieOpen
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   name: brownie
   suffix: MRE
   description: A precisely mixed brownie, made to withstand blunt trauma and harsh conditions. Tastes like shit.
@@ -531,7 +556,7 @@
 
 - type: entity
   name: swirl lollipop
-  parent: FoodSnackBase
+  parent: FoodSnackBaseNorot
   id: FoodSnackSwirlLollipop
   description: A swirly circle of pure concentrated sugar. Who's the biggest kid on the playground now?
   components:

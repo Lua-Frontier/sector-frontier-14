@@ -4,7 +4,7 @@
                  xmlns:nf="clr-namespace:Content.Client._NF.Research.UI"
                  Margin="4"
                  HorizontalExpand="False">
-    <BoxContainer Orientation="Vertical" SetSize="64 64">
+    <BoxContainer Name="RootContainer" Orientation="Vertical" SetSize="64 64">
         <PanelContainer VerticalExpand="True"
                         HorizontalExpand="True"
                         Name="Panel">

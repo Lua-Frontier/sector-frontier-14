@@ -45,6 +45,7 @@ namespace Content.IntegrationTests.Tests
                     .Where(p => !p.Components.ContainsKey("RoomFill")) // This comp can delete all entities, and spawn others
                     .Where(p => p.ID != "RockWallTimedSpawner") // Lua just debug entity
                     .Where(p => !p.Components.ContainsKey("GridSpawner")) // Mono - We shouldn't spawn grids.
+                    .Where(p => !p.Components.ContainsKey("SpaceWhale")) // Lua: spawns segment
                     .Select(p => p.ID)
                     .ToList();
 
@@ -108,6 +109,7 @@ namespace Content.IntegrationTests.Tests
                     .Where(p => !pair.IsTestPrototype(p))
                     .Where(p => !p.Components.ContainsKey("MapGrid")) // This will smash stuff otherwise.
                     .Where(p => !p.Components.ContainsKey("RoomFill")) // This comp can delete all entities, and spawn others
+                    .Where(p => !p.Components.ContainsKey("SpaceWhale")) // Lua: spawns segment
                     .Select(p => p.ID)
                     .ToList();
                 foreach (var protoId in protoIds)
@@ -248,6 +250,8 @@ namespace Content.IntegrationTests.Tests
                 "TransferMindOnDespawn", // Frontier
                 "BluespaceErrorRule", // Frontier
                 "GridSpawner", // Mono: spawns grids/maps
+                "TailedEntity", // Lua: spawns segment
+                "SpaceWhale", // Lua: spawns segment
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",

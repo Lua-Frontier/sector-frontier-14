@@ -15,7 +15,7 @@ public sealed partial class HumanoidProfileEditor
         _voiceList = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()
             .Where(o => o.RoundStart)
-            .OrderBy(o => Loc.GetString(o.Name))
+            .OrderBy(o => Loc.TryGetString(o.Name, out var name) ? name : o.Name)
             .ToList();
 
         VoiceButton.OnItemSelected += args =>
@@ -41,7 +41,7 @@ public sealed partial class HumanoidProfileEditor
             if (!HumanoidCharacterProfile.CanHaveVoice(voice, Profile.Sex))
                 continue;
 
-            var name = Loc.GetString(voice.Name);
+            var name = Loc.TryGetString(voice.Name, out var localized) ? localized : voice.Name;
             VoiceButton.AddItem(name, i);
 
             if (firstVoiceChoiceId == 1)

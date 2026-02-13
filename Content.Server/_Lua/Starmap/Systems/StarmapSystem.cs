@@ -270,26 +270,29 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
         }
         try
         {
-            if (_sectors.TryGetMapId("AsteroidSectorDefault", out var asteroidMap))
+            foreach (var sector in _prototypes.EnumeratePrototypes<Content.Shared._Lua.Sectors.SectorSystemPrototype>())
             {
-                var asteroidIdx = stars.FindIndex(s => s.Map == asteroidMap);
-                if (asteroidIdx >= 0)
-                {
-                    var mainSectors = new[] { "TypanSector", "PirateSector", "MercenarySector", "LuaTechSector" };
-                    foreach (var sectorId in mainSectors)
-                    {
-                        if (_sectors.TryGetMapId(sectorId, out var sectorMap))
-                        {
-                            var sectorIdx = stars.FindIndex(s => s.Map == sectorMap);
-                            if (sectorIdx >= 0 && sectorIdx != asteroidIdx)
-                            {
-                                var a = Math.Min(asteroidIdx, sectorIdx);
-                                var b = Math.Max(asteroidIdx, sectorIdx);
-                                if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
-                            }
-                        }
-                    }
-                }
+                if (string.IsNullOrWhiteSpace(sector.Starlink))
+                    continue;
+
+                if (!_sectors.TryGetMapId(sector.ID, out var sectorMap))
+                    continue;
+
+                if (!_sectors.TryGetMapId(sector.Starlink, out var starlinkMap))
+                    continue;
+
+                if (!mapIndex.TryGetValue(sectorMap, out var sectorIdx))
+                    continue;
+
+                if (!mapIndex.TryGetValue(starlinkMap, out var starlinkIdx))
+                    continue;
+
+                if (sectorIdx == starlinkIdx)
+                    continue;
+
+                var a = Math.Min(sectorIdx, starlinkIdx);
+                var b = Math.Max(sectorIdx, starlinkIdx);
+                if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
             }
         }
         catch { }

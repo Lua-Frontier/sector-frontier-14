@@ -72,7 +72,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
-    public Func<EntityUid, MapGridComponent, IFFComponent?, bool>? IFFFilter { get; set; } = null;
+    public Func<EntityUid, MapGridComponent, IFFComponent?, string?, bool>? IFFFilter { get; set; } = null;
 
     /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
@@ -405,7 +405,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var shouldDrawIFF = ShowIFF && labelName != null;
             if (IFFFilter != null)
             {
-                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff);
+                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff, labelName);
             }
             if (isPlayerShuttle)
             {
@@ -741,7 +741,10 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Check if this blip is within view bounds before drawing
             if (monoViewBounds.Contains(blipPosInView))
             {
-                DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
+                var handledByLuaStyle = false;
+                DrawLuaRadarBlip(handle, blip.NetUid, blip.SonarEcho, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape, ref handledByLuaStyle);
+                if (!handledByLuaStyle)
+                    DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
             }
         }
 
@@ -857,7 +860,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         }
     }
     partial void GetDockColorOverride(ref Color color, DockingPortState state); // Lua
-
     protected Vector2 InverseScalePosition(Vector2 value)
     {
         // Account for UI scaling: value is unscaled, so adjust by UIScale

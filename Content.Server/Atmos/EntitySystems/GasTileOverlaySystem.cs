@@ -159,7 +159,7 @@ namespace Content.Server.Atmos.EntitySystems
                 }
             }
 
-            if (!_lastSentChunks.ContainsKey(e.Session))
+            if (e.NewStatus != SessionStatus.Disconnected && !_lastSentChunks.ContainsKey(e.Session))
             {
                 _lastSentChunks[e.Session] = new();
             }
@@ -389,23 +389,14 @@ namespace Content.Server.Atmos.EntitySystems
                 var previouslySent = LastSentChunks[playerSession];
 
                 var ev = new GasOverlayUpdateEvent();
+                var toRemove = new Robust.Shared.Collections.ValueList<NetEntity>();
 
                 foreach (var (netGrid, oldIndices) in previouslySent)
                 {
                     // Mark the whole grid as stale and flag for removal.
                     if (!chunksInRange.TryGetValue(netGrid, out var chunks))
                     {
-                        previouslySent.Remove(netGrid);
-
-                        // If grid was deleted then don't worry about sending it to the client.
-                        if (!EntManager.TryGetEntity(netGrid, out var gridId) || GridQuery.HasComp(gridId.Value))
-                            ev.RemovedChunks[netGrid] = oldIndices;
-                        else
-                        {
-                            oldIndices.Clear();
-                            ChunkIndexPool.Return(oldIndices);
-                        }
-
+                        toRemove.Add(netGrid);
                         continue;
                     }
 
@@ -421,6 +412,21 @@ namespace Content.Server.Atmos.EntitySystems
                         ChunkIndexPool.Return(old);
                     else
                         ev.RemovedChunks.Add(netGrid, old);
+                }
+
+                foreach (var netGrid in toRemove)
+                {
+                    if (!previouslySent.Remove(netGrid, out var oldIndices))
+                        continue;
+
+                    // If grid was deleted then don't worry about sending it to the client.
+                    if (!EntManager.TryGetEntity(netGrid, out var gridId) || GridQuery.HasComp(gridId.Value))
+                        ev.RemovedChunks[netGrid] = oldIndices;
+                    else
+                    {
+                        oldIndices.Clear();
+                        ChunkIndexPool.Return(oldIndices);
+                    }
                 }
 
                 foreach (var (netGrid, gridChunks) in chunksInRange)

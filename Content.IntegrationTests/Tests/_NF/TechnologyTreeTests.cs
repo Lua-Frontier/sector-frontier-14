@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using System.Numerics;
 using Content.Shared.Research.Prototypes;
-using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests._NF;
@@ -16,7 +16,7 @@ public sealed class TechnologyTreeTests
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
 
-        Dictionary<Vector2i, string> techNamesByPosition = new();
+        Dictionary<Vector2, string> techNamesByPosition = new();
 
         await server.WaitPost(() =>
         {

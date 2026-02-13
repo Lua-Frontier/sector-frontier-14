@@ -39,6 +39,12 @@ public sealed partial class SalvageSystem
     private readonly List<(SpawnSalvageMissionJob Job, CancellationTokenSource CancelToken)> _salvageJobs = new();
     private const double SalvageJobTime = 0.002;
     private readonly List<(ProtoId<SalvageDifficultyPrototype> id, int value)> _missionDifficulties = [("NFModerate", 0), ("NFHazardous", 1), ("NFExtreme", 2)]; // Frontier: mission difficulties with order
+    private readonly Queue<QueuedExpeditionRequest> _expeditionQueue = new(); // Lua
+    private readonly HashSet<EntityUid> _queuedStations = new(); // Lua
+    private PendingExpeditionRequest? _pendingExpedition; // Lua
+    private static readonly TimeSpan ExpeditionConfirmTimeout = TimeSpan.FromMinutes(3); // Lua
+    private static readonly SoundSpecifier ConfirmBeepSound = new SoundPathSpecifier("/Audio/Machines/beep.ogg"); // Lua
+    private TimeSpan _confirmBeepNext = TimeSpan.Zero; // Lua
 
     [Dependency] private readonly IConfigurationManager _cfgManager = default!; // Frontier
 
@@ -52,6 +58,8 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ComponentInit>(OnSalvageConsoleInit);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, EntParentChangedMessage>(OnSalvageConsoleParent);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ClaimSalvageMessage>(OnSalvageClaimMessage);
+        SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ExpeditionConfirmMessage>(OnExpeditionConfirmMessage); // Lua: queue confirm
+        SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ExpeditionCancelMessage>(OnExpeditionCancelMessage); // Lua: queue cancel
         SubscribeLocalEvent<SalvageExpeditionDataComponent, ExpeditionSpawnCompleteEvent>(OnExpeditionSpawnComplete); // Frontier: more gracefully handle expedition generation failures
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, FinishSalvageMessage>(OnSalvageFinishMessage); // Frontier: For early finish
 
@@ -170,7 +178,7 @@ public sealed partial class SalvageSystem
         while (query.MoveNext(out var uid, out var comp))
         {
             // Update offers
-            if (comp.NextOffer > currentTime || comp.Claimed)
+            if (comp.NextOffer > currentTime || comp.Claimed || IsStationQueuedOrPending(uid))
                 continue;
 
             // Frontier: disable cooldown when still in FTL
@@ -185,6 +193,33 @@ public sealed partial class SalvageSystem
             comp.CooldownTime = TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
             UpdateConsoles((uid, comp));
+        }
+
+        // Lua: beeper
+        if (_pendingExpedition != null && Deleted(_pendingExpedition.Station))
+        {
+            _pendingExpedition = null;
+            UpdateAllConsoles();
+            TryStartPendingConfirm();
+        }
+        else if (_pendingExpedition != null && currentTime >= _pendingExpedition.Deadline)
+        {
+            _pendingExpedition = null;
+            UpdateAllConsoles();
+            TryStartPendingConfirm();
+        }
+
+        if (_pendingExpedition != null)
+        {
+            if (_confirmBeepNext <= currentTime)
+            {
+                PlayConfirmBeep(_pendingExpedition.Station);
+                _confirmBeepNext = currentTime + TimeSpan.FromSeconds(1);
+            }
+        }
+        else
+        {
+            _confirmBeepNext = TimeSpan.Zero;
         }
     }
 
@@ -210,6 +245,8 @@ public sealed partial class SalvageSystem
         component.ReturnMapUid = null;
         component.ReturnWorldPosition = Vector2.Zero;
         UpdateConsoles(expedition);
+        UpdateAllConsoles();
+        TryStartPendingConfirm();
     }
 
     private void GenerateMissions(SalvageExpeditionDataComponent component)
@@ -252,7 +289,7 @@ public sealed partial class SalvageSystem
         // End Frontier: generate missions from an arbitrary set of difficulties
     }
 
-    private SalvageExpeditionConsoleState GetState(SalvageExpeditionDataComponent component)
+    private SalvageExpeditionConsoleState GetState(EntityUid station, SalvageExpeditionDataComponent component)
     {
         var missions = new List<SalvageMissionListing>(component.Missions.Count);
 
@@ -263,7 +300,15 @@ public sealed partial class SalvageSystem
             missions.Add(new SalvageMissionListing(missionParams, mission));
         }
 
-        return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions, component.CanFinish, component.CooldownTime); // Frontier: add CanFinish, CooldownTime
+        var isOurTurn = _pendingExpedition != null && _pendingExpedition.Station == station;
+        var hasDeadline = isOurTurn;
+        var isQueued = IsStationQueuedOrPending(station);
+        var (queuePosition, queueTotal) = GetQueuePosition(station);
+        var deadline = hasDeadline ? (_pendingExpedition!.Deadline - _timing.CurTime) : TimeSpan.Zero;
+        if (deadline < TimeSpan.Zero)
+            deadline = TimeSpan.Zero;
+
+        return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed || isQueued, component.Cooldown, component.ActiveMission, missions, component.CanFinish, component.CooldownTime, GetActiveExpeditionCount(), isOurTurn, hasDeadline, deadline, isQueued, queuePosition, queueTotal); // Frontier: add CanFinish, CooldownTime, Lua queue info
     }
 
     private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk)
@@ -326,3 +371,8 @@ public sealed partial class SalvageSystem
     }
     // End Frontier
 }
+
+// Lua: expedition queue
+internal sealed record QueuedExpeditionRequest(EntityUid Station, SalvageMissionParams MissionParams);
+internal sealed record PendingExpeditionRequest(EntityUid Station, SalvageMissionParams MissionParams, TimeSpan Deadline);
+// Lua: expedition queue

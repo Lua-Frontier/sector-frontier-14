@@ -131,5 +131,22 @@ namespace Content.Shared.Lua.CLVar
         /// </summary>
         public static readonly CVarDef<bool> ShipLimitCheckExistence =
             CVarDef.Create("ship.limit_check_existence", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> SpaceWhaleEnabled =
+            CVarDef.Create("spacewhale.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleOuterLimitRadius =
+            CVarDef.Create("spacewhale.outer_limit_radius", 25000f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleCheckIntervalMinutes =
+            CVarDef.Create("spacewhale.check_interval_minutes", 5f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleSpawnChance =
+            CVarDef.Create("spacewhale.spawn_chance", 0.1f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhalePlayerClusterRadius =
+            CVarDef.Create("spacewhale.player_cluster_radius", 300f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleSafeZoneRadius =
+            CVarDef.Create("spacewhale.safe_zone_radius", 20000f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleTargetDetectionRange =
+            CVarDef.Create("spacewhale.target_detection_range", 2000f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleDespawnLifetimeMinutes =
+            CVarDef.Create("spacewhale.despawn_lifetime_minutes", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }
