@@ -10,8 +10,12 @@
     amount: 55
     speed: 56
     spacing: 1
-    wiggleAmplitude: 0.6
-    wiggleFrequency: 0.14
+    wiggleAmplitude: 0.02
+    wiggleFrequency: 0.02
+    stiffness: 90
+    damping: 5
+    minLengthMultiplier: 0.99
+    maxLengthMultiplier: 1.01
     prototype: MobSpaceWhaleSegment
   - type: MovementSpeedModifier
     baseSprintSpeed: 50
