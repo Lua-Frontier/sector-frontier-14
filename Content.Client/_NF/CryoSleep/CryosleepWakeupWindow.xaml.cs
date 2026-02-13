@@ -55,5 +55,7 @@ public sealed partial class CryosleepWakeupWindow : DefaultWindow, IEntityEventS
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-body"));
         else if (response.Status == ReturnToBodyStatus.Disabled)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-disabled"));
+        else if (response.Status == ReturnToBodyStatus.Expedition)
+            Label.SetMessage(Loc.GetString("cryo-wakeup-result-expedition"));
     }
 }

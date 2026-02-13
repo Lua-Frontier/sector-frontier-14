@@ -132,6 +132,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenTileSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenDecalSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenAdminMenu);
+            common.AddFunction(ContentKeyFunctions.OpenChunkMonitor);
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
         }
     }

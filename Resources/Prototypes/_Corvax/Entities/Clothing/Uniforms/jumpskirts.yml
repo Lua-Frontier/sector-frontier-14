@@ -42,3 +42,25 @@
     sprite: Corvax/Clothing/Uniforms/Jumpskirt/schoolskirt.rsi
   - type: Clothing
     sprite: Corvax/Clothing/Uniforms/Jumpskirt/schoolskirt.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtElegantMaid
+  name: elegant maid dress
+  description: Elegant dress for reaaalllyy professional maids.
+  components:
+  - type: Sprite
+    sprite: _Corvax/Clothing/Uniforms/Jumpskirt/elegantmaid.rsi
+  - type: Clothing
+    sprite: _Corvax/Clothing/Uniforms/Jumpskirt/elegantmaid.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtPilotSD
+  name: security pilot jumpskirt
+  description: Black dress for security shuttle pilot.
+  components:
+    - type: Sprite
+      sprite: _Corvax/Clothing/Uniforms/Jumpskirt/pilot.rsi
+    - type: Clothing
+      sprite: _Corvax/Clothing/Uniforms/Jumpskirt/pilot.rsi

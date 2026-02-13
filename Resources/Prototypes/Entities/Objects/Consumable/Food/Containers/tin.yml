@@ -53,6 +53,54 @@
 
 - type: entity
   abstract: true
+  parent: [FoodBaseNorot, FoodOpenableBase]
+  id: FoodTinBaseNorot
+  name: tin
+  description: A tin of something, sealed tight.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+  - type: Openable
+    openableByHand: false
+    sound:
+      path: /Audio/Items/can_open3.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 6
+      behaviors:
+      - !type:OpenBehavior
+  - type: Item
+    sprite: Objects/Consumable/Food/snacks.rsi
+    heldPrefix: packet
+    size: Tiny
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 3
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 3
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  abstract: true
   parent: BaseItem
   id: FoodTinBaseTrash
   name: empty tin
@@ -82,7 +130,7 @@
 # Need something that you can open these tins with. I suggest a prying or cutting tool.
 
 - type: entity
-  parent: FoodTinBase
+  parent: FoodTinBaseNorot
   id: FoodTinPeaches
   name: tinned peaches
   description: Just a nice can of ripe peaches swimming in their own juices.
@@ -94,7 +142,7 @@
     - sweet
     - funny
   - type: Food
-    trash: 
+    trash:
     - FoodTinPeachesTrash
   - type: Tag
     tags:
@@ -117,7 +165,7 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/Tins/maint_peaches.rsi
   - type: Food
-    trash: 
+    trash:
     - FoodTinPeachesMaintTrash
 
 # only exists for backwards compatibility with a few maps, nothing else uses it
@@ -142,7 +190,7 @@
     sprite: Objects/Consumable/Food/Tins/maint_peaches.rsi
 
 - type: entity
-  parent: FoodTinBase
+  parent: FoodTinBaseNorot
   id: FoodTinBeans
   name: tin of beans
   description: Musical fruit in a slightly less musical container.
@@ -155,7 +203,7 @@
     - salty
     - cheap
   - type: Food
-    trash: 
+    trash:
     - FoodTinBeansTrash
 
 - type: entity
@@ -169,7 +217,7 @@
 # MRE can
 
 - type: entity
-  parent: FoodTinBase
+  parent: FoodTinBaseNorot
   id: FoodTinMRE
   name: tinned meat
   description: A standard issue tin of meat with a convenient pull tab.
@@ -185,7 +233,7 @@
     - salty
     - cheap
   - type: Food
-    trash: 
+    trash:
     - FoodTinMRETrash
   - type: Tag
     tags:

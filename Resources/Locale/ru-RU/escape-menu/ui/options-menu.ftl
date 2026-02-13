@@ -176,6 +176,7 @@ ui-options-function-open-sandbox-window = Открыть меню песочни
 ui-options-function-open-tile-spawn-window = Открыть меню спавна тайлов
 ui-options-function-open-decal-spawn-window = Открыть меню спавна декалей
 ui-options-function-open-admin-menu = Открыть админ меню
+ui-options-function-open-chunk-monitor = Открыть монитор чанков
 ui-options-function-open-guidebook = Открыть руководство
 ui-options-function-window-close-all = Закрыть все окна
 ui-options-function-window-close-recent = Закрыть текущее окно

@@ -24,6 +24,8 @@ namespace Content.Server._Mono.FireControl;
 
 public sealed partial class FireControlSystem : EntitySystem
 {
+    private readonly List<EntityUid> _controlledBuffer = new();
+    private readonly List<EntityUid> _consolesBuffer = new();
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly GunSystem _gun = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -153,16 +155,28 @@ public sealed partial class FireControlSystem : EntitySystem
         }
 
         // Unregister all controlled entities
-        var controlledCopy = component.Controlled.ToList(); // Create copy to avoid modification during iteration
-        foreach (var controllable in controlledCopy)
+        _controlledBuffer.Clear();
+        _controlledBuffer.EnsureCapacity(component.Controlled.Count);
+        foreach (var controllable in component.Controlled)
+        {
+            _controlledBuffer.Add(controllable);
+        }
+
+        foreach (var controllable in _controlledBuffer)
         {
             if (Exists(controllable))
                 Unregister(controllable);
         }
 
         // Unregister all consoles
-        var consolesCopy = component.Consoles.ToList(); // Create copy to avoid modification during iteration
-        foreach (var console in consolesCopy)
+        _consolesBuffer.Clear();
+        _consolesBuffer.EnsureCapacity(component.Consoles.Count);
+        foreach (var console in component.Consoles)
+        {
+            _consolesBuffer.Add(console);
+        }
+
+        foreach (var console in _consolesBuffer)
         {
             if (Exists(console))
                 UnregisterConsole(console);
@@ -472,9 +486,14 @@ public sealed partial class FireControlSystem : EntitySystem
             return;
 
         // Get a copy of the controlled entities list to avoid modification during iteration
-        var controlled = component.Controlled.ToList();
+        _controlledBuffer.Clear();
+        _controlledBuffer.EnsureCapacity(component.Controlled.Count);
+        foreach (var controllable in component.Controlled)
+        {
+            _controlledBuffer.Add(controllable);
+        }
 
-        foreach (var controllable in controlled)
+        foreach (var controllable in _controlledBuffer)
         {
             if (TryComp<FireControllableComponent>(controllable, out var controlComp))
             {

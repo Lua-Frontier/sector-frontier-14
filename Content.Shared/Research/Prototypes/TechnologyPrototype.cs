@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Shared.Research.Prototypes;
 
@@ -83,7 +84,7 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// Position of this tech in console menu
     /// </summary>
     [DataField(required: true)]
-    public Vector2i Position { get; private set; }
+    public Vector2 Position { get; private set; }
 
     /// <summary>
     /// Defines the visual style of prerequisite connection lines leading TO this technology.

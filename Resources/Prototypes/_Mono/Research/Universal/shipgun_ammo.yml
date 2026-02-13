@@ -9,8 +9,7 @@
   - CharonSlugUniversal
   technologyPrerequisites:
   - ShuttleGrenade
-  position: 2, 49 # Lua: 2, 48 < 2, 49
-
+  position: 8.543, 9.442
 - type: technology
   id: UniversalTorpedoAmmo
   name: research-technology-universal-asm220-ammo
@@ -23,8 +22,7 @@
   - ASM220TorpedoECMUniversal
   technologyPrerequisites:
   - UniversalRailgunAmmo
-  position: 3, 49 # Lua: 3, 48 < 3, 49
-
+  position: 9.578, 10.468
 - type: technology
   id: Universal150mmAmmo
   name: research-technology-universal-150mm-ammo
@@ -37,8 +35,7 @@
   - 150mmEmpShellUniversal
   technologyPrerequisites:
   - UniversalTorpedoAmmo
-  position: 3, 48 # Lua: 4, 48 < 3, 48
-
+  position: 10.963, 11.659
 - type: technology
   id: UniversalLightFighterOrdinance
   name: research-technology-universal-light-fighter-ordinance
@@ -51,8 +48,7 @@
   - ZenithRocketUniversal
   technologyPrerequisites:
   - Universal150mmAmmo
-  position: 3, 47 # Lua: 5, 48 < 3, 47
-
+  position: 11.902, 12.998
 - type: technology
   id: UniversalAdvancedLightFighterOrdinance
   name: research-technology-universal-advanced-light-fighter-ordinance
@@ -64,4 +60,5 @@
   - QuasarAcceleratorUniversal
   technologyPrerequisites:
   - UniversalLightFighterOrdinance
-  position: 3, 46 # Lua: 6, 48 < 3, 46
+  position: 12.964, 14.125
+...

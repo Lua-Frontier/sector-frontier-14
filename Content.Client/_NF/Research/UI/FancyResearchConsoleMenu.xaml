@@ -1,23 +1,11 @@
-<!-- Lua start -->
-<!--
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
                       xmlns:nf="clr-namespace:Content.Client._NF.Research.UI"
                       Title="{Loc 'research-console-menu-title'}"
-                      SetSize="1000 600"
-                      MinSize="800 400">
--->
-<controls:FancyWindow xmlns="https://spacestation14.io"
-                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
-                      xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
-                      xmlns:nf="clr-namespace:Content.Client._NF.Research.UI"
-                      Title="{Loc 'research-console-menu-title'}"
-                      SetSize="825 600"
-                      MinSize="800 400">
-<!-- Lua end -->
+                      SetSize="1255 745"
+                      MinSize="1255 745">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
@@ -38,40 +26,50 @@
         </BoxContainer>
         <BoxContainer Orientation="Horizontal"
                       HorizontalExpand="True"
-                      VerticalExpand="True">
+                      VerticalExpand="False"
+                      MinHeight="650"
+                      MaxHeight="650">
             <BoxContainer Orientation="Vertical"
-                          VerticalExpand="True"
-                          HorizontalExpand="True"
-                          SizeFlagsStretchRatio="3"
+                          VerticalExpand="False"
+                          HorizontalExpand="False"
                           Margin="0 0 0 10">
-                <PanelContainer Name="ResearchesContainer" VerticalExpand="True" HorizontalExpand="True">
+                <PanelContainer Name="ResearchesContainer"
+                                MinWidth="945"
+                                MaxWidth="945"
+                                MinHeight="650"
+                                MaxHeight="650"
+                                VerticalExpand="False"
+                                HorizontalExpand="False">
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#0F1419" />
                     </PanelContainer.PanelOverride>
-                    <!-- Add ScrollContainer - vertical only -->
-                    <ScrollContainer
-                        Name="TechScrollContainer"
-                        Access="Public"
-                        HorizontalExpand="True"
-                        VerticalExpand="True"
-                        HScrollEnabled="False"
-                        VScrollEnabled="True"
-                        ReserveScrollbarSpace="True"
-                        StyleClasses="PdaScrollContainer">
+                    <PanelContainer
+                        Name="TechViewport"
+                        MinWidth="945"
+                        MaxWidth="945"
+                        MinHeight="650"
+                        MaxHeight="650"
+                        HorizontalExpand="False"
+                        VerticalExpand="False"
+                        RectClipContent="True">
                         <nf:ResearchesContainerPanel
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Name="DragContainer"
                             MouseFilter="Pass"
-                            RectClipContent="True"
                             HorizontalAlignment="Left">
                             <!-- There lives all of technologies -->
                         </nf:ResearchesContainerPanel>
-                    </ScrollContainer>
+                    </PanelContainer>
                     <Button Name="RecenterButton" Text="{Loc 'research-console-menu-recenter-button'}" MinHeight="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5 -5"/>
                 </PanelContainer>
             </BoxContainer>
-            <PanelContainer SizeFlagsStretchRatio="2">
+            <PanelContainer MinWidth="310"
+                            MaxWidth="310"
+                            MinHeight="650"
+                            MaxHeight="650"
+                            VerticalExpand="False"
+                            HorizontalExpand="False">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                 </PanelContainer.PanelOverride>
@@ -79,11 +77,10 @@
                     Orientation="Vertical"
                     VerticalExpand="True"
                     HorizontalExpand="True"
-                    SizeFlagsStretchRatio="1"
                     Margin="0">
                     <Control
                         Margin="5"
-                        MinWidth="350"
+                        MinWidth="300"
                         VerticalExpand="True"
                         HorizontalExpand="True"/>
                 </BoxContainer>

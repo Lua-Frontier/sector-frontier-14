@@ -25,11 +25,18 @@
     equipSound:
       collection: GenericEquip
   # Goobstation edit end
-  - type: HideInnerClothing # сокрытие шмоток под скафом
   - type: Sprite
     state: icon
   - type: StaticPrice # Frontier: setting base price to make material arbitrage happier
     price: 30 # Frontier
+
+# База только для космических скафандров (EVA, хардсьют, софтсьют)
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: SpaceOuterClothingBase
+  components:
+  - type: HideInnerClothing
 
 - type: entity
   abstract: true
@@ -45,7 +52,6 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: HideInnerClothing # сокрытие шмоток под скафом
 
 - type: entity
   abstract: true
@@ -124,7 +130,7 @@
 
 - type: entity
   abstract: true
-  parent: [RecyclableItemClothHardsuit, ClothingOuterBase, GeigerCounterClothing, AllowSuitStorageClothing] # Frontier: added RecyclableItemClothHardsuit
+  parent: [RecyclableItemClothHardsuit, SpaceOuterClothingBase, GeigerCounterClothing, AllowSuitStorageClothing] # Frontier: added RecyclableItemClothHardsuit
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
@@ -206,11 +212,10 @@
         whitelist: # lua - imperial hardsuit injection
           tags: # lua - imperial hardsuit injection
           - FitsHardsuit # Lua - imperial hardsuit injection
-  - type: HideInnerClothing # сокрытие шмоток под скафом
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterBase, AllowSuitStorageClothing]
+  parent: [SpaceOuterClothingBase, AllowSuitStorageClothing]
   id: ClothingOuterEVASuitBase
   name: base EVA Suit
   components:
@@ -242,7 +247,6 @@
 #    materialComposition: # Frontier
 #      Durathread: 100 # Frontier
 #      Cloth: 50 # Frontier
-  - type: HideInnerClothing # сокрытие шмоток под скафом
 
 - type: entity
   parent: ClothingOuterBase

@@ -1,7 +1,3 @@
-# This is in one giant hellfile to better enable adjusting position.
-
-# region Engineering
-
 - type: technology
   id: NFAdvancedParts
   name: nf-research-technology-advanced-parts
@@ -13,8 +9,7 @@
   - AdvancedCapacitorStockPart
   - AdvancedMatterBinStockPart
   - NanoManipulatorStockPart
-  position: 0, 2
-
+  position: 0, 0
 - type: technology
   id: NFIndustrialCutter
   name: nf-research-technology-industrial-cutter
@@ -26,8 +21,7 @@
   - CutterMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedParts
-  position: 1, 0
-
+  position: -0.659, -1.816
 - type: technology
   id: NFIndustrialSilo
   name: nf-research-technology-industrial-silo
@@ -40,8 +34,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedParts
-  position: 1, 1
-
+  position: 1.152, -1.646
 - type: technology
   id: NFIndustrialEngineering
   name: nf-research-technology-industrial-engineering
@@ -55,8 +48,7 @@
   - CircuitImprinterHyperConvectionMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedParts
-  position: 1, 2
-
+  position: 0.774, -3.079
 - type: technology
   id: NFAdvancedBeltTechnology
   name: nf-research-technology-advanced-belt
@@ -69,8 +61,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedParts
-  position: 1, 3
-
+  position: 2.415, -1.076
 - type: technology
   id: NFAdvancedWelderTechnology
   name: nf-research-technology-advanced-welder
@@ -83,8 +74,7 @@
   - ClothingMaskWeldingGas
   technologyPrerequisites:
   - NFAdvancedParts
-  position: 1, 4
-
+  position: -2.021, 1.789
 - type: technology
   id: NFFauxAstroTiles
   name: nf-research-technology-faux-astro-tiles
@@ -102,8 +92,7 @@
   - FauxTileAstroAsteroidSand
   technologyPrerequisites:
   - NFIndustrialCutter
-  position: 2, 0
-
+  position: -1.332, -5.466
 - type: technology
   id: NFMechanicalCompression
   name: nf-research-technology-mechanical-compression
@@ -115,8 +104,7 @@
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
   - NFIndustrialSilo
-  position: 2, 1
-
+  position: 1.951, -3.327
 - type: technology
   id: NFRapidPartExchange
   name: nf-research-technology-rped
@@ -128,8 +116,7 @@
   - RPED
   technologyPrerequisites:
   - NFIndustrialEngineering
-  position: 2, 2
-
+  position: 1.301, -6.042
 - type: technology
   id: NFMiscellaneousItemsOrganization
   name: nf-research-technology-personal-storage-solutions
@@ -160,8 +147,7 @@
   - MedicalPouch
   technologyPrerequisites:
   - NFAdvancedBeltTechnology
-  position: 2, 3
-
+  position: 3.086, -2.572
 - type: technology
   id: NFAdvancedToolsTechnology
   name: nf-research-technology-advanced-tools
@@ -175,8 +161,7 @@
   - SignallerAdvanced
   technologyPrerequisites:
   - NFAdvancedWelderTechnology
-  position: 2, 4
-
+  position: -4.164, 1.669
 - type: technology
   id: NFRapidConstruction
   name: nf-research-technology-rapid-construction
@@ -189,8 +174,7 @@
   - ShipyardRCDAmmo
   technologyPrerequisites:
   - NFMechanicalCompression
-  position: 3, 1
-
+  position: 3.043, -5.248
 - type: technology
   id: NFBluespaceStorage
   name: nf-research-technology-bluespace-storage
@@ -206,8 +190,7 @@
   - ConstructionBagOfHolding
   technologyPrerequisites:
   - NFMiscellaneousItemsOrganization
-  position: 3, 3
-
+  position: 4.001, -4.604
 - type: technology
   id: NFAdvancedCyborgToolsTechnology
   name: nf-research-technology-advanced-cyborg-tools
@@ -219,8 +202,7 @@
   - BorgModuleAdvancedTool
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
-  position: 3, 4
-
+  position: -6.495, 1.692
 - type: technology
   id: NFMatterEnergyConversion
   name: nf-research-technology-matter-energy-conversion
@@ -234,10 +216,7 @@
   technologyPrerequisites:
   - NFRapidConstruction
   - NFBluespaceStorage
-  position: 4, 2
-
-# region Xenoarch
-
+  position: 4.37, -6.638
 - type: technology
   id: NFAbnormalArtifactManipulation
   name: nf-research-technology-abnormal-artifact-manipulation
@@ -249,8 +228,7 @@
   - ArtifactCrusherMachineCircuitboard
   technologyPrerequisites:
   - NFBasicXenoArcheology
-  position: 0, 5
-
+  position: -4.894, 4.131
 - type: technology
   id: NFBasicXenoArcheology
   name: nf-research-technology-basic-xenoarcheology
@@ -263,8 +241,9 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ResearchComputerCircuitboard
-  position: 0, 6
-
+  position: -3.523, 3.539
+  technologyPrerequisites:
+  - NFSuperParts
 - type: technology
   id: NFAnomalyCoreHarnessing
   name: nf-research-technology-anomaly-harnessing
@@ -276,8 +255,7 @@
   - WeaponGauntletGorilla
   technologyPrerequisites:
   - NFBasicAnomalousResearch
-  position: 1, 5
-
+  position: -7.731, 5.09
 - type: technology
   id: NFBasicAnomalousResearch
   name: nf-research-technology-basic-anomalous-research
@@ -292,9 +270,8 @@
   - APECircuitboard
   - AnomalyVesselCircuitboard
   technologyPrerequisites:
-  - NFBasicXenoArcheology
-  position: 1, 6
-
+  - NFAbnormalArtifactManipulation
+  position: -6.142, 4.869
 - type: technology
   id: NFAdvancedAnomalyResearch
   name: nf-research-technology-advanced-anomaly-research
@@ -306,9 +283,8 @@
   - NFWeaponPistolCHIMP
   - AnomalyVesselExperimentalCircuitboard
   technologyPrerequisites:
-  - NFBasicAnomalousResearch
-  position: 2, 6
-
+  - NFAnomalyCoreHarnessing
+  position: -9.767, 4.886
 - type: technology
   id: NFBluespaceTimeManipulation
   name: nf-research-technology-bluespace-time-manipulation
@@ -321,9 +297,8 @@
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFAdvancedToolsTechnology
-  - NFAdvancedAnomalyResearch
-  position: 3, 5
-
+  - NFAbnormalArtifactManipulation
+  position: -6.535, 3.259
 - type: technology
   id: NFSuperParts
   name: nf-research-technology-super-parts
@@ -337,11 +312,8 @@
   - SuperMatterBinStockPart
   - PicoManipulatorStockPart
   technologyPrerequisites:
-  - NFAdvancedAnomalyResearch
-  position: 3, 6
-
-# region Hardsuits
-
+  - NFAdvancedParts
+  position: -1.002, 3.17
 - type: technology
   id: NFHardsuitsEntertainment
   name: nf-research-technology-hardsuits-entertainment
@@ -354,8 +326,7 @@
   - ClothingOuterHardsuitMime
   technologyPrerequisites:
   - NFHardsuitsBasic
-  position: 0, 7
-
+  position: -1.648, 12.018
 - type: technology
   id: NFHardsuitsBasic
   name: nf-research-technology-hardsuits-basic
@@ -366,8 +337,9 @@
   recipeUnlocks:
   - ClothingOuterHardsuitSpatio
   - ClothingOuterHardsuitPilot
-  position: 0, 8
-
+  position: -1.149, 8.556
+  technologyPrerequisites:
+  - NFHardsuitsEngineering
 - type: technology
   id: NFHardsuitsField
   name: nf-research-technology-hardsuits-field
@@ -379,8 +351,7 @@
   - ClothingOuterHardsuitSalvage
   technologyPrerequisites:
   - NFHardsuitsBasic
-  position: 1, 8
-
+  position: -1.977, 10.783
 - type: technology
   id: NFHardsuitsMedical
   name: nf-research-technology-hardsuits-medical
@@ -393,9 +364,7 @@
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFHardsuitsBasic
-  - NFBiochemicalStasis
-  position: 1, 9
-
+  position: -0.71, 11.979
 - type: technology
   id: NFHardsuitsEngineering
   name: nf-research-technology-hardsuits-engineering
@@ -407,9 +376,8 @@
   - ClothingOuterHardsuitAtmos
   - ClothingOuterHardsuitEngineering
   technologyPrerequisites:
-  - NFHardsuitsField
-  position: 1, 7 # Lua: 2, 8 < 1, 7
-
+  - NFHardsuitsExperimentalProtection
+  position: -1.12, 6.213
 - type: technology
   id: NFHardsuitsAdvanced
   name: nf-research-technology-hardsuits-advanced
@@ -419,13 +387,11 @@
   cost: 5000
   recipeUnlocks:
   - ClothingOuterHardsuitCap
-  - ClothingOuterHardsuitEngineeringWhite # CE
+  - ClothingOuterHardsuitEngineeringWhite
   - ClothingOuterHardsuitLuxury
-
   technologyPrerequisites:
   - NFHardsuitsEngineering
-  position: 2, 7 # Lua: 3, 8 < 2, 7
-
+  position: -2.237, 6.906
 - type: technology
   id: NFHardsuitsExperimentalProtection
   name: nf-research-technology-hardsuits-experimental-protection
@@ -436,12 +402,9 @@
   recipeUnlocks:
   - ClothingOuterHardsuitRd
   - ClothingOuterHardsuitHostileEnvironment
-  #prerequisiteLineType: Tree # Lua
   technologyPrerequisites:
   - NFSuperParts
-  - NFHardsuitsAdvanced
-  position: 3, 7 # Lua: 4, 7 < 3, 7
-
+  position: -0.315, 5.013
 - type: technology
   id: NFHardsuitsArmored
   name: nf-research-technology-hardsuits-armored
@@ -455,8 +418,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFHardsuitsAdvanced
-  position: 2, 8 # Lua: 4, 9 < 2, 8
-
+  position: -3.617, 8.178
 - type: technology
   id: NFHardsuitsOldWar
   name: nf-research-technology-hardsuits-old-war
@@ -468,9 +430,8 @@
   - ClothingOuterHardsuitSurplus
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
-    - NFHardsuitsArmored
-  position: 2, 9 # Lua: 5, 10 < 2, 9
-
+  - NFHardsuitsArmored
+  position: -4.889, 7.599
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
   name: nf-research-technology-hardsuits-experimental-industrial
@@ -481,12 +442,10 @@
   cost: 15000
   recipeUnlocks:
   - ClothingOuterHardsuitMaximPrototype
-  #prerequisiteLineType: Tree # Lua
   technologyPrerequisites:
   - NFHardsuitsExperimentalProtection
   - NFHardsuitsArmored
-  position: 3, 8 # Lua: 5, 8 < 3, 8
-
+  position: -3.341, 6.582
 - type: technology
   id: NFHardsuitsArmoredAdvanced
   name: nf-research-technology-hardsuits-armored-advanced
@@ -494,16 +453,13 @@
   discipline: NFArsenalMercenary
   tier: 1
   cost: 20000
-  prerequisiteLineType: Diagonal # Lua
+  prerequisiteLineType: Diagonal
   recipeUnlocks:
   - ClothingOuterHardsuitScaf
   - ClothingOuterHardsuitNoble
   technologyPrerequisites:
   - NFHardsuitsArmored
-  position: 3, 9 # Lua: 5, 9 < 3, 9
-
-# region Medical
-
+  position: -5.088, 8.718
 - type: technology
   id: NFBiochemicalStasis
   name: nf-research-technology-biochemical-stasis
@@ -515,9 +471,8 @@
   - CryostasisBeaker
   - SyringeCryostasis
   technologyPrerequisites:
-  - NFReinforcedJug
-  position: 0, 10
-
+  - NFHardsuitsMedical
+  position: 0.586, 14.484
 - type: technology
   id: NFReinforcedJug
   name: nf-research-technology-reinforced-jug
@@ -527,8 +482,9 @@
   cost: 2500
   recipeUnlocks:
   - ReinforcedJug
-  position: 0, 11
-
+  position: 1.46, 15.891
+  technologyPrerequisites:
+  - NFBiochemicalStasis
 - type: technology
   id: NFBluespaceChemistry
   name: nf-research-technology-bluespace-chemistry
@@ -544,8 +500,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFReinforcedJug
-  position: 1, 10
-
+  position: 3.653, 16.479
 - type: technology
   id: NFBasicMedicine
   name: nf-research-technology-basic-medicine
@@ -558,8 +513,7 @@
   - ChemDispenserMachineCircuitboard
   technologyPrerequisites:
   - NFReinforcedJug
-  position: 1, 11
-
+  position: 2.792, 17.759
 - type: technology
   id: NFMechanizedTreatment
   name: nf-research-technology-mechanized-treatment
@@ -572,8 +526,7 @@
   - BorgModuleAdvancedChemical
   technologyPrerequisites:
   - NFBluespaceChemistry
-  position: 2, 10
-
+  position: 5.731, 17.646
 - type: technology
   id: NFEngineeringMedicine
   name: nf-research-technology-industrial-medicine
@@ -587,8 +540,7 @@
   - DefibrillatorCompact
   technologyPrerequisites:
   - NFBasicMedicine
-  position: 2, 11
-
+  position: 4.428, 18.811
 - type: technology
   id: NFSyringeGun
   name: nf-research-technology-syringe-gun
@@ -602,8 +554,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicMedicine
-  position: 2, 12
-
+  position: 3.498, 19.993
 - type: technology
   id: NFAppliedBiochemicalStasis
   name: nf-research-technology-applied-biochemical-stasis
@@ -616,10 +567,7 @@
   - CryoPodMachineCircuitboard
   technologyPrerequisites:
   - NFEngineeringMedicine
-  position: 3, 11
-
-# region Magboots
-
+  position: 6.245, 19.63
 - type: technology
   id: NFBasicMagnetsTech
   name: nf-research-technology-basic-magnets-tech
@@ -629,8 +577,9 @@
   cost: 1000
   recipeUnlocks:
   - ClothingShoesBootsMagSci
-  position: 0, 13
-
+  position: -3.104, 10.486
+  technologyPrerequisites:
+  - NFMagnetsTech
 - type: technology
   id: NFGravityResistantTech
   name: nf-research-technology-anti-gravitational-fields
@@ -642,8 +591,7 @@
   - NFClothingShoesBootsMoon
   technologyPrerequisites:
   - NFBasicMagnetsTech
-  position: 0, 14
-
+  position: -2.831, 12.154
 - type: technology
   id: NFMagnetsTech
   name: nf-research-technology-magnets-tech
@@ -654,9 +602,8 @@
   recipeUnlocks:
   - ClothingShoesBootsMag
   technologyPrerequisites:
-  - NFBasicMagnetsTech
-  position: 1, 13
-
+  - NFHardsuitsBasic
+  position: -2.729, 9.2
 - type: technology
   id: NFQuantumFiberWeaving
   name: nf-research-technology-quantum-fiber-weaving
@@ -670,8 +617,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicMagnetsTech
-  position: 1, 14
-
+  position: -3.997, 11.889
 - type: technology
   id: NFMagnetsTechCombat
   name: nf-research-technology-magnets-tech-combat
@@ -679,14 +625,14 @@
   discipline: NFArsenalMercenary
   tier: 1
   cost: 5000
-  prerequisiteLineType: Diagonal # Lua
+  prerequisiteLineType: Diagonal
   recipeUnlocks:
   - ClothingShoesBootsMagSecurity
   - ClothingShoesBootsMagMercenary
   technologyPrerequisites:
   - NFMagnetsTech
-  position: 2, 14 # Lua: 2, 13 < 2, 14
-
+  - NFHardsuitsArmored
+  position: -4.181, 9.646
 - type: technology
   id: NFMagnetsTechAdvanced
   name: nf-research-technology-magnets-tech-advanced
@@ -699,11 +645,8 @@
   - ClothingShoesBootsMagAdv
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFMagnetsTech
-  position: 2, 13 # Lua: 2, 14 < 2, 13
-
-# region Robotics & Mechs
-
+  - NFHardsuitsAdvanced
+  position: -2.394, 8.257
 - type: technology
   id: NFBasicRoboticsEquipment
   name: nf-research-technology-basic-robotics-equipment
@@ -715,8 +658,7 @@
   - MechEquipmentFork
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 0, 15
-
+  position: 6.154, 2.677
 - type: technology
   id: NFBasicRobotics
   name: nf-research-technology-basic-robotics
@@ -726,8 +668,9 @@
   cost: 1000
   recipeUnlocks:
   - ProximitySensor
-  position: 0, 16
-
+  position: 2.868, 2.014
+  technologyPrerequisites:
+  - NFAdvancedParts
 - type: technology
   id: NFVim
   name: nf-research-technology-vim
@@ -739,8 +682,7 @@
   - VimHarness
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 0, 17
-
+  position: 8.062, 4.226
 - type: technology
   id: NFRoboticsEquipment
   name: nf-research-technology-robotics-equipment
@@ -753,8 +695,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 1, 15
-
+  position: 6.069, 1.735
 - type: technology
   id: NFRipleyAPLU
   name: nf-research-technology-ripley-aplu
@@ -772,8 +713,7 @@
   - RipleyPeripheralsElectronics
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 1, 16
-
+  position: 5.83, 4.109
 - type: technology
   id: NFCritterMechs
   name: nf-research-technology-critter-mechs
@@ -792,8 +732,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 1, 17
-
+  position: 4.323, 1.327
 - type: technology
   id: NFAdvancedRoboticsEquipment
   name: nf-research-technology-advanced-robotics-equipment
@@ -805,8 +744,7 @@
   - MechEquipmentGrabber
   technologyPrerequisites:
   - NFRoboticsEquipment
-  position: 2, 15
-
+  position: 8.183, 1.752
 - type: technology
   id: NFHONKMech
   name: nf-research-technology-honk-mech
@@ -825,8 +763,7 @@
   - HonkerTargetingElectronics
   technologyPrerequisites:
   - NFRipleyAPLU
-  position: 2, 16
-
+  position: 7.999, 5.335
 - type: technology
   id: NFHornRoboticsEquipment
   name: nf-research-technology-horn-robotics-equipment
@@ -838,10 +775,7 @@
   - MechEquipmentHorn
   technologyPrerequisites:
   - NFHONKMech
-  position: 3, 16 # Lua: 2, 17 < 3, 16
-
-# region Entertainment & Comms
-
+  position: 9.386, 4.939
 - type: technology
   id: NFWirelessAudioVisualCommunication
   name: nf-research-technology-wireless-audio-visual-communication
@@ -853,8 +787,7 @@
   - TelecomServerCircuitboard
   technologyPrerequisites:
   - NFAudioVisualCommunication
-  position: 0, 18
-
+  position: -10.97, -1.959
 - type: technology
   id: NFAudioVisualCommunication
   name: nf-research-technology-audio-visual-communication
@@ -865,8 +798,9 @@
   recipeUnlocks:
   - SurveillanceCameraRouterCircuitboard
   - SurveillanceCameraMonitorCircuitboard
-  position: 0, 19
-
+  position: -9.179, -0.045
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
 - type: technology
   id: NFHologramCommunication
   name: nf-research-technology-hologram-communication
@@ -878,8 +812,7 @@
   - NFHolopadShipMachineCircuitboard
   technologyPrerequisites:
   - NFAudioVisualCommunication
-  position: 0, 20
-
+  position: -11.562, -0.269
 - type: technology
   id: NFAdvancedInstruments
   name: nf-research-technology-advanced-instruments
@@ -893,8 +826,7 @@
   - JukeboxCircuitBoard
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 1, 18
-
+  position: -8.379, -2.207
 - type: technology
   id: NFAdvancedEntertainment
   name: nf-research-technology-advanced-entertainment
@@ -907,9 +839,8 @@
   - SurveillanceWirelessCameraMovableCircuitboard
   - SurveillanceWirelessCameraAnchoredCircuitboard
   technologyPrerequisites:
-  - NFAudioVisualCommunication
-  position: 1, 19
-
+  - NFAdvancedParts
+  position: -5.029, 0.271
 - type: technology
   id: NFJournalism
   name: nf-research-technology-journalism
@@ -921,8 +852,7 @@
   - MassMediaCircuitboard
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 1, 20
-
+  position: -8.773, -1.182
 - type: technology
   id: NFPushHorn
   name: nf-research-technology-clowning-utilities
@@ -934,10 +864,7 @@
   - PushHorn
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 2, 19
-
-# region Janitorial
-
+  position: -6.593, -4.585
 - type: technology
   id: NFBasicSpray
   name: nf-research-technology-basic-spray
@@ -947,8 +874,10 @@
   cost: 1000
   recipeUnlocks:
   - MegaSprayBottle
-  position: 0, 21
-
+  position: 1.308, 19.021
+  technologyPrerequisites:
+  - NFBasicMedicine
+  - NFReinforcedJug
 - type: technology
   id: NFJanicart
   name: nf-research-technology-janicart
@@ -960,8 +889,7 @@
   - JanicartFlatpack
   technologyPrerequisites:
   - NFBasicSpray
-  position: 0, 22
-
+  position: -0.345, 21.732
 - type: technology
   id: NFAdvancedSpray
   name: nf-research-technology-advanced-spray
@@ -974,8 +902,7 @@
   - ClothingBackpackWaterTank
   technologyPrerequisites:
   - NFBasicSpray
-  position: 1, 21
-
+  position: 2.078, 21.018
 - type: technology
   id: NFPortablePump
   name: nf-research-technology-portable-cleaning
@@ -988,8 +915,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicSpray
-  position: 1, 22
-
+  position: 0.833, 21.279
 - type: technology
   id: NFAdvancedCleaning
   name: nf-research-technology-advanced-cleaning
@@ -1001,8 +927,7 @@
   - AdvMopItem
   technologyPrerequisites:
   - NFAdvancedSpray
-  position: 2, 21
-
+  position: 3.125, 22.118
 - type: technology
   id: NFAdvancedCleaningCyborg
   name: nf-research-technology-advanced-cleaning-cyborg
@@ -1014,10 +939,7 @@
   - BorgModuleAdvancedCleaning
   technologyPrerequisites:
   - NFAdvancedCleaning
-  position: 3, 21
-
-# region Kitchen
-
+  position: 4.458, 23.813
 - type: technology
   id: NFSelectiveDropper
   name: nf-research-technology-food-filtration
@@ -1029,8 +951,7 @@
   - ServiceSelectiveDropper
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 0, 23
-
+  position: -8.961, 9.491
 - type: technology
   id: NFAdvancedHydroponicsEquipment
   name: nf-research-technology-advanced-botanical-equipment
@@ -1040,8 +961,9 @@
   cost: 2500
   recipeUnlocks:
   - PlantAnalyzer
-  position: 0, 24
-
+  position: -6.002, 7.116
+  technologyPrerequisites:
+  - NFSuperParts
 - type: technology
   id: NFHydroponics
   name: nf-research-technology-basic-hydroponics
@@ -1053,8 +975,7 @@
   - HydroponicsTrayMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 0, 25
-
+  position: -10.764, 6.402
 - type: technology
   id: NFAdvancedHydroponicsStorge
   name: nf-research-technology-advanced-botanical-storage
@@ -1067,8 +988,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 1, 23
-
+  position: -7.719, 9.231
 - type: technology
   id: NFFoodService
   name: nf-research-technology-food-service
@@ -1085,8 +1005,7 @@
   - ImpCoffeeMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 1, 24
-
+  position: -10.306, 8.98
 - type: technology
   id: NFSeedExtractor
   name: nf-research-technology-seed-extractor
@@ -1099,8 +1018,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
-  position: 1, 25
-
+  position: -10.856, 7.511
 - type: technology
   id: NFDeepFryer
   name: nf-research-technology-deep-fryer
@@ -1113,8 +1031,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFFoodService
-  position: 2, 23
-
+  position: -12.01, 8.432
 - type: technology
   id: NFAdvancedFoodService
   name: nf-research-technology-advanced-food-service
@@ -1128,8 +1045,7 @@
   - ReagentGrinderIndustrialMachineCircuitboard
   technologyPrerequisites:
   - NFFoodService
-  position: 2, 24
-
+  position: -13.411, 11.053
 - type: technology
   id: NFBiogenerator
   name: nf-research-technology-biogenerator
@@ -1142,8 +1058,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFFoodService
-  position: 2, 25
-
+  position: -11.005, 11.699
 - type: technology
   id: NFMeatManipulation
   name: nf-research-technology-meat-manipulation
@@ -1155,8 +1070,7 @@
   - FatExtractorMachineCircuitboard
   technologyPrerequisites:
   - NFDeepFryer
-  position: 3, 23
-
+  position: -14.172, 7.81
 - type: technology
   id: NFBiomass
   name: nf-research-technology-biomass
@@ -1168,10 +1082,7 @@
   - BiomassReclaimerMachineCircuitboard
   technologyPrerequisites:
   - NFBiogenerator
-  position: 3, 25
-
-# region Power
-
+  position: -12.424, 13.232
 - type: technology
   id: NFAdvancedPowercells
   name: nf-research-technology-advanced-powercells
@@ -1181,8 +1092,9 @@
   cost: 2500
   recipeUnlocks:
   - PowerCellHigh
-  position: 0, 28
-
+  position: 2.947, 0.625
+  technologyPrerequisites:
+  - NFAdvancedParts
 - type: technology
   id: NFAdvancedSMES
   name: nf-research-technology-advanced-smes
@@ -1194,8 +1106,7 @@
   - SMESAdvancedMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 1, 26
-
+  position: 4.435, -1.481
 - type: technology
   id: NFAdvancedCharging
   name: nf-research-technology-advanced-charging
@@ -1208,8 +1119,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 1, 27
-
+  position: 6.621, -2.009
 - type: technology
   id: NFTrashPowerGeneration
   name: nf-research-technology-trash-power-generators
@@ -1221,8 +1131,7 @@
   - PortableGeneratorJrPacmanMachineCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 1, 28
-
+  position: 6.181, -0.457
 - type: technology
   id: NFPowerSolar
   name: nf-research-technology-power-solar
@@ -1233,12 +1142,11 @@
   recipeUnlocks:
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
-  - SolarAssemblyFlatpack # Lua
+  - SolarAssemblyFlatpack
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 1, 29
-
+  position: 8.218, 0.602
 - type: technology
   id: NFEmitter
   name: nf-research-technology-particle-emission
@@ -1250,8 +1158,7 @@
   - EmitterCircuitboard
   technologyPrerequisites:
   - NFAdvancedPowercells
-  position: 1, 30
-
+  position: 9.887, -0.444
 - type: technology
   id: NFFission
   name: nf-research-technology-fission-powercells
@@ -1263,8 +1170,7 @@
   - PowerCellMicroreactor
   technologyPrerequisites:
   - NFAdvancedSMES
-  position: 2, 26
-
+  position: 6.283, -4.455
 - type: technology
   id: NFPortableFission
   name: nf-research-technology-portable-fission
@@ -1276,8 +1182,7 @@
   - NFPortableRecharger
   technologyPrerequisites:
   - NFAdvancedCharging
-  position: 2, 27
-
+  position: 9.497, -5.39
 - type: technology
   id: NFBasicPowerGeneration
   name: nf-research-technology-basic-power-generators
@@ -1289,8 +1194,7 @@
   - PortableGeneratorPacmanMachineCircuitboard
   technologyPrerequisites:
   - NFTrashPowerGeneration
-  position: 2, 28
-
+  position: 7.738, -0.953
 - type: technology
   id: NFParticleDecelerator
   name: nf-research-technology-portable-particle-emission
@@ -1302,8 +1206,7 @@
   - NFWeaponParticleDecelerator
   technologyPrerequisites:
   - NFEmitter
-  position: 2, 30
-
+  position: 12.421, -1.711
 - type: technology
   id: NFPowerGeneration
   name: nf-research-technology-power-generators
@@ -1315,8 +1218,7 @@
   - PortableGeneratorSuperPacmanMachineCircuitboard
   technologyPrerequisites:
   - NFBasicPowerGeneration
-  position: 3, 28
-
+  position: 9.103, -1.775
 - type: technology
   id: NFAdvancedPowerGeneration
   name: nf-research-technology-fission-generators
@@ -1328,10 +1230,7 @@
   - PortableGeneratorDKJrMachineCircuitboard
   technologyPrerequisites:
   - NFPowerGeneration
-  position: 4, 28
-
-# region Space
-
+  position: 10.691, -3.364
 - type: technology
   id: NFSpaceScanning
   name: nf-research-technology-space-scanning
@@ -1341,8 +1240,9 @@
   cost: 2500
   recipeUnlocks:
   - RadarConsoleCircuitboard
-  position: 0, 31
-
+  position: -9.286, 1.075
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
 - type: technology
   id: NFSpaceHandHeldScanning
   name: nf-research-technology-space-handheld-scanning
@@ -1354,8 +1254,7 @@
   - HandHeldMassScanner
   technologyPrerequisites:
   - NFSpaceScanning
-  position: 0, 32
-
+  position: -12.229, 1.888
 - type: technology
   id: NFShuttlecraft
   name: nf-research-technology-shuttlecraft
@@ -1369,8 +1268,7 @@
   - MiniStationAnchorCircuitboard
   technologyPrerequisites:
   - NFSpaceScanning
-  position: 1, 31
-
+  position: -12.672, 0.999
 - type: technology
   id: NFShuttlecraftThrust
   name: nf-research-technology-shuttlecraft-thrust
@@ -1384,8 +1282,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFSpaceScanning
-  position: 1, 32
-
+  position: -11.147, 2.545
 - type: technology
   id: NFShuttlecraftThrustSmall
   name: nf-research-technology-shuttlecraft-thrust-small
@@ -1398,10 +1295,7 @@
   - SmallGyroscopeMachineCircuitboard
   technologyPrerequisites:
   - NFShuttlecraftThrust
-  position: 2, 32
-
-# region Atmospherics
-
+  position: -13.517, 3.603
 - type: technology
   id: NFAdvancedAtmosphericsTools
   name: nf-research-technology-advanced-atmospherics-tools
@@ -1411,11 +1305,9 @@
   cost: 7500
   recipeUnlocks:
   - HolofanProjector
-#  - FireExtinguisherBluespace # DeltaV
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 0, 33
-
+  position: 1.588, 12.732
 - type: technology
   id: NFAtmosphericTech
   name: nf-research-technology-atmospheric-tech
@@ -1426,8 +1318,9 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
-  position: 0, 34
-
+  position: -0.111, 8.389
+  technologyPrerequisites:
+  - NFHardsuitsEngineering
 - type: technology
   id: NFAtmosphericDrilling
   name: nf-research-technology-atmospheric-drilling
@@ -1441,8 +1334,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 1, 35
-
+  position: 0.6, 11.944
 - type: technology
   id: NFAdvancedAtmosphericsPortable
   name: nf-research-technology-advanced-atmospherics-portable
@@ -1455,8 +1347,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 1, 33
-
+  position: 1.84, 11.546
 - type: technology
   id: NFAdvancedAtmospherics
   name: nf-research-technology-advanced-atmospherics
@@ -1468,10 +1359,7 @@
   - HellfireFreezerMachineCircuitBoard
   technologyPrerequisites:
   - NFAtmosphericTech
-  position: 1, 34
-
-# region Jetpack
-
+  position: -0.262, 10.643
 - type: technology
   id: NFBasicPersonalPropulsion
   name: nf-research-technology-basic-personal-propulsion
@@ -1482,8 +1370,9 @@
   cost: 2500
   recipeUnlocks:
   - JetpackBlue
-  position: 0, 36
-
+  position: -0.026, 6.441
+  technologyPrerequisites:
+  - NFHardsuitsExperimentalProtection
 - type: technology
   id: NFArsenalMercenaryPropulsion
   name: nf-research-technology-combat-propulsion
@@ -1495,8 +1384,7 @@
   - JetpackSecurity
   technologyPrerequisites:
   - NFBasicPersonalPropulsion
-  position: 0, 37
-
+  position: 1.006, 8.368
 - type: technology
   id: NFPersonalPropulsion
   name: nf-research-technology-personal-propulsion
@@ -1509,8 +1397,7 @@
   - JetpackCaptain
   technologyPrerequisites:
   - NFBasicPersonalPropulsion
-  position: 1, 36
-
+  position: 1.004, 7.173
 - type: technology
   id: NFArsenalNfsdPropulsion
   name: nf-research-technology-security-personal-propulsion
@@ -1522,8 +1409,7 @@
   - JetpackNfsd
   technologyPrerequisites:
   - NFArsenalMercenaryPropulsion
-  position: 1, 37
-
+  position: 2.162, 10.042
 - type: technology
   id: NFAdvancedPersonalPropulsion
   name: nf-research-technology-advanced-personal-propulsion
@@ -1536,10 +1422,7 @@
   - JetpackVoid
   technologyPrerequisites:
   - NFPersonalPropulsion
-  position: 2, 36
-
-# region Salvage
-
+  position: 2.131, 8.815
 - type: technology
   id: NFSalvageGrapplingEquipment
   name: nf-research-technology-salvage-grappling-equipment
@@ -1549,8 +1432,9 @@
   cost: 1000
   recipeUnlocks:
   - WeaponGrapplingGun
-  position: 0, 38
-
+  position: 1.352, 4.712
+  technologyPrerequisites:
+  - NFSuperParts
 - type: technology
   id: NFExcavation
   name: nf-research-technology-excavation
@@ -1563,8 +1447,7 @@
   - MineralScannerEmpty
   technologyPrerequisites:
   - NFSalvageGrapplingEquipment
-  position: 1, 38
-
+  position: 3.025, 5.262
 - type: technology
   id: NFOreProcessor
   name: nf-research-technology-ore-processing
@@ -1577,8 +1460,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFExcavation
-  position: 2, 37
-
+  position: 4.689, 6.404
 - type: technology
   id: NFIndustrialOreProcessor
   name: nf-research-technology-industrial-ore-processing
@@ -1590,8 +1472,7 @@
   - OreProcessorIndustrialMachineCircuitboard
   technologyPrerequisites:
   - NFOreProcessor
-  position: 3, 37
-
+  position: 5.896, 7.385
 - type: technology
   id: NFSalvageWeapons
   name: nf-research-technology-salvage-weapons
@@ -1606,8 +1487,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFSalvageGrapplingEquipment
-  position: 1, 39
-
+  position: 2.178, 6.495
 - type: technology
   id: NFMassExcavation
   name: nf-research-technology-mass-excavation
@@ -1620,8 +1500,7 @@
   - AdvancedMineralScannerEmpty
   technologyPrerequisites:
   - NFExcavation
-  position: 2, 38
-
+  position: 3.689, 6.547
 - type: technology
   id: NFAdvancedSalvageWeapons
   name: nf-research-technology-advanced-salvage-weapons
@@ -1633,8 +1512,7 @@
   - WeaponCrusherGlaive
   technologyPrerequisites:
   - NFSalvageWeapons
-  position: 2, 39
-
+  position: 3.464, 8.112
 - type: technology
   id: NFBluespaceOreStorage
   name: nf-research-technology-excavation-storage
@@ -1646,8 +1524,7 @@
   - OreBagOfHolding
   technologyPrerequisites:
   - NFMassExcavation
-  position: 3, 38
-
+  position: 4.805, 7.614
 - type: technology
   id: NFImprovedSalvageWeapons
   name: nf-research-technology-salvage-weapons-improved
@@ -1659,8 +1536,7 @@
   - NFWeaponPkaCannon
   technologyPrerequisites:
   - NFAdvancedSalvageWeapons
-  position: 3, 39
-
+  position: 4.485, 9.365
 - type: technology
   id: NFAdvancedSalvageCyborg
   name: nf-research-technology-advanced-salvage-cyborg
@@ -1672,8 +1548,7 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - NFBluespaceOreStorage
-  position: 4, 38
-
+  position: 6.636, 8.809
 - type: technology
   id: NFBluespaceGasTanks
   name: nf-research-technology-bluespace-gas-tanks
@@ -1686,9 +1561,7 @@
   - SmallBluespaceAirTank
   technologyPrerequisites:
   - NFAdvancedPersonalPropulsion
-  position: 3, 36
-# region Munitions
-
+  position: 3.176, 10.355
 - type: technology
   id: NFBasicAmmunitionProduction
   name: nf-research-technology-basic-ammunition
@@ -1705,11 +1578,12 @@
   - NFAmmunitionBoxPistol45
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
-  - NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45 base
+  - NFMagazineClipRifle556x45Empty
   - MagazineLightRifleLowCapacityEmpty
   - NFMagazinePistol35Empty
-  position: 0, 43
-
+  position: 8.063, 17.966
+  technologyPrerequisites:
+  - NFBountyHunting
 - type: technology
   id: NFBountyHunting
   name: nf-research-technology-bounty-hunting
@@ -1727,9 +1601,8 @@
   - NFForensicPad
   - FlashlightSecliteNF
   technologyPrerequisites:
-  - NFBasicAmmunitionProduction
-  position: 1, 42
-
+  - NFAdvancedRiotControl
+  position: 6.924, 16.494
 - type: technology
   id: NFImprovedPistolAmmo
   name: nf-research-technology-pistol-ammo-improved
@@ -1747,8 +1620,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicAmmunitionProduction
-  position: 1, 44
-
+  position: 9.717, 18.574
 - type: technology
   id: NFNonlethalAmmunition
   name: nf-research-technology-nonlethal-ammunition
@@ -1765,8 +1637,7 @@
   - NFAmmunitionBoxShellShotgunTranquilizer
   technologyPrerequisites:
   - NFBasicAmmunitionProduction
-  position: 1, 45
-
+  position: 8.644, 21.578
 - type: technology
   id: NFAdvancedRiotControl
   name: nf-research-technology-advanced-riot-control
@@ -1777,9 +1648,8 @@
   recipeUnlocks:
   - NFTelescopicShield
   technologyPrerequisites:
-  - NFBountyHunting
-  position: 2, 42
-
+  - NFExplosiveTechnology
+  position: 4.381, 13.807
 - type: technology
   id: NFArsenalStyle
   name: nf-research-technology-arsenal-style
@@ -1808,8 +1678,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBountyHunting
-  position: 2, 43
-
+  position: 10.042, 17.272
 - type: technology
   id: NFImprovedRifleAmmo
   name: nf-research-technology-rifle-ammo-improved
@@ -1823,12 +1692,11 @@
   - NFAmmunitionBoxShellShotgunOverpressure
   - NFMagazineRifle20Empty
   - NFMagazineRifle30Empty
-  - NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
+  - NFMagazineDrumRifle556x45Empty
   - MagazineAsmgtUniversalEmpty
   technologyPrerequisites:
   - NFImprovedPistolAmmo
-  position: 2, 44
-
+  position: 10.884, 19.681
 - type: technology
   id: NFExplosiveTechnology
   name: nf-research-technology-explosive-technology
@@ -1844,9 +1712,8 @@
   - ChemicalPayload
   - ExplosivePayload
   technologyPrerequisites:
-  - NFAdvancedRiotControl
-  position: 3, 41
-
+  - NFBasicShuttleArmament
+  position: 4.394, 12.453
 - type: technology
   id: NFDeterrenceTechnologies
   name: nf-research-technology-deterrence
@@ -1858,8 +1725,7 @@
   - HoloprojectorField
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 3, 42
-
+  position: 6.939, 14.742
 - type: technology
   id: NFSpecialMeans
   name: nf-research-technology-special-means
@@ -1872,8 +1738,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 3, 43
-
+  position: 5.095, 15.707
 - type: technology
   id: NFBulkRifleAmmo
   name: nf-research-technology-rifle-ammo-bulk
@@ -1888,8 +1753,7 @@
   - NFAmmunitionBoxBigRifle30Overpressure
   technologyPrerequisites:
   - NFImprovedRifleAmmo
-  position: 3, 44
-
+  position: 12.117, 20.648
 - type: technology
   id: NFBasicShuttleArmament
   name: nf-research-technology-basic-shuttle-armament
@@ -1908,5 +1772,188 @@
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFImprovedSalvageWeapons
-  - NFExplosiveTechnology
-  position: 4, 40
+  position: 4.372, 11.334
+- type: technology
+  id: ShiparmoryBallisticBases
+  name: research-technology-shiparmory-ballistic-bases
+  entityIcon: Weapon20mm
+  discipline: Shiparmory
+  tier: 2
+  cost: 25000
+  recipeUnlocks:
+  - Weapon20mmBaseFlatpack
+  - Weapon53mmBaseFlatpack
+  - Weapon80mmBaseFlatpack
+  technologyPrerequisites:
+  - ShuttleGunDuster
+  position: 14.443, 12.213
+- type: technology
+  id: ShiparmoryHeavyBallisticBases
+  name: research-technology-shiparmory-heavy-ballistic-bases
+  entityIcon: Weapon140mm
+  discipline: Shiparmory
+  tier: 2
+  cost: 35000
+  recipeUnlocks:
+  - Weapon105mmBaseFlatpack
+  - Weapon120mmBaseFlatpack
+  - Weapon140mmBaseFlatpack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 17.01, 16.147
+- type: technology
+  id: ShiparmoryTeslaTurretBase
+  name: research-technology-shiparmory-tesla-base
+  entityIcon: TeslaTurretBase
+  discipline: Shiparmory
+  tier: 2
+  cost: 45000
+  recipeUnlocks:
+  - TeslaTurretBaseFlatpack
+  technologyPrerequisites:
+  - ShiparmoryHeavyBallisticBases
+  position: 20.047, 18.451
+- type: technology
+  id: ShiparmoryShieldSystems
+  name: research-technology-shiparmory-shield-systems
+  entityIcon: ShieldGeneratorMedium
+  discipline: Shiparmory
+  tier: 2
+  cost: 60000
+  recipeUnlocks:
+  - ShieldGeneratorMediumFlatPack
+  - ShieldGeneratorFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 17.034, 14.429
+- type: technology
+  id: ShiparmoryCapitalShields
+  name: research-technology-shiparmory-capital-shields
+  entityIcon: ShieldGeneratorTSFCapital
+  discipline: Shiparmory
+  tier: 3
+  cost: 100000
+  recipeUnlocks:
+  - ShieldGeneratorTSFCapitalFlatPack
+  technologyPrerequisites:
+  - ShiparmoryShieldSystems
+  position: 20.096, 16.637
+- type: technology
+  id: ShiparmoryKineticTurrets
+  name: research-technology-shiparmory-kinetic-turrets
+  entityIcon: WeaponTurretAK570
+  discipline: Shiparmory
+  tier: 2
+  cost: 40000
+  recipeUnlocks:
+  - WeaponTurretL85AutocannonFlatPack
+  - WeaponTurretDravonFlatPack
+  - WeaponTurretAK570FlatPack
+  - WeaponTurretRAC30FlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 14.552, 18.07
+- type: technology
+  id: ShiparmoryAdvancedKineticTurrets
+  name: research-technology-shiparmory-advanced-kinetic-turrets
+  entityIcon: WeaponTurretCharonReload
+  discipline: Shiparmory
+  tier: 3
+  cost: 90000
+  recipeUnlocks:
+  - WeaponTurretCharonetteFlatPack
+  - WeaponTurretCharonReloadFlatPack
+  technologyPrerequisites:
+  - ShiparmoryKineticTurrets
+  position: 17.413, 21.909
+- type: technology
+  id: ShiparmoryEnergyTurrets
+  name: research-technology-shiparmory-energy-turrets
+  entityIcon: WeaponTurretType35
+  discipline: Shiparmory
+  tier: 2
+  cost: 45000
+  recipeUnlocks:
+  - WeaponTurretType35FlatPack
+  - WeaponLaserTurretL1PhalanxFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 17.594, 12.771
+- type: technology
+  id: ShiparmoryAdvancedEnergyTurrets
+  name: research-technology-shiparmory-advanced-energy-turrets
+  entityIcon: WeaponLaserTurretApollo
+  discipline: Shiparmory
+  tier: 3
+  cost: 85000
+  recipeUnlocks:
+  - WeaponTurretType54FlatPack
+  - WeaponLaserTurretApolloFlatPack
+  technologyPrerequisites:
+  - ShiparmoryEnergyTurrets
+  position: 20.139, 13.966
+- type: technology
+  id: ShiparmoryCapitalEnergyTurrets
+  name: research-technology-shiparmory-capital-energy-turrets
+  entityIcon: WeaponTurretType241
+  discipline: Shiparmory
+  tier: 3
+  cost: 200000
+  recipeUnlocks:
+  - WeaponTurretType241FlatPack
+  technologyPrerequisites:
+  - ShiparmoryAdvancedEnergyTurrets
+  position: 22.398, 15.798
+- type: technology
+  id: ShiparmoryMissileTurrets
+  name: research-technology-shiparmory-missile-turrets
+  entityIcon: WeaponTurretVanyk
+  discipline: Shiparmory
+  tier: 2
+  cost: 50000
+  recipeUnlocks:
+  - WeaponTurretVanykFlatPack
+  - WeaponTurretVesperaFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 12.912, 16.825
+- type: technology
+  id: ShiparmoryAdvancedMissileTurrets
+  name: research-technology-shiparmory-advanced-missile-turrets
+  entityIcon: WeaponTurretASM220
+  discipline: Shiparmory
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - WeaponTurretLightMunitionsBayFlatPack
+  - WeaponTurretASM220FlatPack
+  technologyPrerequisites:
+  - ShiparmoryMissileTurrets
+  position: 13.851, 21.061
+- type: technology
+  id: ShiparmoryPlastitaniumStructures
+  name: research-technology-shiparmory-plastitanium-structures
+  entityIcon: WallPlastitanium
+  discipline: Shiparmory
+  tier: 2
+  cost: 30000
+  recipeUnlocks:
+  - WallPlastitaniumFlatPack
+  - PlastitaniumWindowFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 16.762, 18.572
+- type: technology
+  id: ShiparmoryStationPlastitanium
+  name: research-technology-shiparmory-station-plastitanium
+  entityIcon: WallPlastitaniumStation
+  discipline: Shiparmory
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - WallPlastitaniumStationFlatPack
+  - PlastitaniumWindowStationFlatPack
+  technologyPrerequisites:
+  - ShiparmoryPlastitaniumStructures
+  position: 19.995, 20.872
+...

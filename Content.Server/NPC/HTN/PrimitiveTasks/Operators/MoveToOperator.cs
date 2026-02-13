@@ -88,7 +88,8 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         if (!_entManager.TryGetComponent<MapGridComponent>(xform.GridUid, out var ownerGrid) ||
             !_entManager.TryGetComponent<MapGridComponent>(_transform.GetGrid(targetCoordinates), out var targetGrid))
         {
-            return (false, null);
+            return (true, new Dictionary<string, object>()
+            { {NPCBlackboard.OwnerCoordinates, targetCoordinates} });
         }
 
         var range = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);

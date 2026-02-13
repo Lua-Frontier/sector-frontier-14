@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
+using Content.Server._Lua.Sectors;
 using Content.Server.PowerCell;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
@@ -8,6 +9,7 @@ using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -15,6 +17,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 {
     [Dependency] private readonly PowerCellSystem _cell = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!; // Lua
 
     public override void Initialize()
     {
@@ -33,6 +36,15 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     {
         var payload = args.Data;
 
+        var receiverMapId = Transform(uid).MapID;
+        var senderMapId = Transform(args.Sender).MapID;
+        if (senderMapId != receiverMapId &&
+            _sectors.TryGetSectorConfig(senderMapId, out var senderSector) &&
+            senderSector.CrewMonitoringIsolated)
+        {
+            return;
+        }
+
         // Check command
         if (!payload.TryGetValue(DeviceNetworkConstants.Command, out string? command))
             return;
@@ -42,6 +54,25 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         if (!payload.TryGetValue(SuitSensorConstants.NET_STATUS_COLLECTION, out Dictionary<string, SuitSensorStatus>? sensorStatus))
             return;
+
+        if (_sectors.TryGetSectorConfig(Transform(uid).MapID, out var sectorCfg) && sectorCfg.CrewMonitoringIsolated)
+        {
+            int? mapHash = null;
+            var mapUid = Transform(uid).MapUid;
+            if (mapUid != null && TryComp<MapComponent>(mapUid.Value, out var mapComp))
+                mapHash = mapComp.MapId.GetHashCode();
+
+            if (mapHash != null)
+            {
+                sensorStatus = sensorStatus
+                    .Where(pair => pair.Value.MapHash == mapHash)
+                    .ToDictionary(pair => pair.Key, pair => pair.Value);
+            }
+            else
+            {
+                sensorStatus = new Dictionary<string, SuitSensorStatus>();
+            }
+        }
 
         component.ConnectedSensors = sensorStatus;
         UpdateUserInterface(uid, component);

@@ -44,6 +44,10 @@ using Robust.Shared.Configuration;//Lua
 using Content.Shared._Lua.CryoTimer;//Lua
 using Content.Shared.Lua.CLVar;//Lua
 using Robust.Shared.Player; //Lua
+using Content.Server.Salvage.Expeditions;
+using Content.Shared.Salvage.Expeditions;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.Shuttles.Systems;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -277,6 +281,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
         if (IsOccupied(cryopod.Comp) && !force)
             return false;
 
+        if (IsCryoBlocked(cryopod.Owner))
+        {
+            _popup.PopupEntity(Loc.GetString("cryopod-refuse-expedition", ("cryopod", cryopod)), cryopod, PopupType.SmallCaution);
+            return false;
+        }
+
         var mobQuery = GetEntityQuery<MobStateComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         // Refuse to accept "passengers" (e.g. pet felinids in bags)
@@ -480,7 +490,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
                 if (deleteEntity)
                     _storedBodies.Remove(id.Value);
                 else
-                    _storedBodies[id.Value] = new StoredBody() { Body = body, Cryopod = cryopod };
+                    _storedBodies[id.Value] = new StoredBody()
+                    {
+                        Body = body,
+                        Cryopod = cryopod,
+                        CryopodMapId = Transform(cryopod).MapID
+                    };
 
                 //Lua start
                 if (!_cryoTimers.ContainsKey(id.Value))
@@ -594,5 +609,26 @@ public sealed partial class CryoSleepSystem : EntitySystem
     {
         public EntityUid Body;
         public EntityUid Cryopod;
+        public MapId CryopodMapId;
+    }
+
+    private bool IsCryoBlocked(EntityUid cryopod)
+    {
+        var xform = Transform(cryopod);
+        if (xform.MapUid is { } mapUid &&
+            TryComp<SalvageExpeditionComponent>(mapUid, out var expedition) &&
+            expedition.Stage != ExpeditionStage.Added)
+        {
+            return true;
+        }
+
+        if (xform.GridUid is { } gridUid &&
+            TryComp<FTLComponent>(gridUid, out var ftl) &&
+            ftl.State != FTLState.Available)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

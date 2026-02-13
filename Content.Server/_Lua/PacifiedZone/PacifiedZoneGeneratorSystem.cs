@@ -19,6 +19,8 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
     [Dependency] private readonly AdminSystem _admin = default!;
 
     private static readonly ProtoId<AlertPrototype> AlertProto = "PacifiedZone";
+    private readonly HashSet<EntityUid> _trackedNewBuffer = new();
+    private readonly List<EntityUid> _trackedRemoveBuffer = new();
 
     public override void Initialize()
     {
@@ -59,7 +61,7 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
 
     private void UpdatePacifiedState(EntityUid genUid, PacifiedZoneGeneratorComponent component)
     {
-        List<EntityUid> newEntities = new List<EntityUid>();
+        _trackedNewBuffer.Clear();
         var query = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(genUid).Coordinates, component.Radius);
         foreach (var humanoidUid in query)
         {
@@ -82,14 +84,7 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
                 }
             }
 
-            // Existing entity, note it still exists.
-            if (component.TrackedEntities.Contains(humanoidUid))
-            {
-                // Entity still in zone.
-                newEntities.Add(humanoidUid);
-                component.TrackedEntities.Remove(humanoidUid);
-            }
-            else
+            if (!component.TrackedEntities.Contains(humanoidUid))
             {
                 // Player is pacified (either naturally or by another zone), skip them.
                 if (HasComp<PacifiedComponent>(humanoidUid))
@@ -99,19 +94,28 @@ public sealed class PacifiedZoneGeneratorSystem : EntitySystem
                 var pacifiedComponent = AddComp<PacifiedComponent>(humanoidUid);
                 EnableAlert(humanoidUid, pacifiedComponent);
                 AddComp<PacifiedByZoneComponent>(humanoidUid);
-                newEntities.Add(humanoidUid);
             }
+
+            _trackedNewBuffer.Add(humanoidUid);
         }
 
-        // Anything left in our old set has left the zone, remove their pacified status.
-        foreach (var humanoid_net_uid in component.TrackedEntities)
+        _trackedRemoveBuffer.Clear();
+        foreach (var humanoidUid in component.TrackedEntities)
         {
-            RemComp<PacifiedComponent>(humanoid_net_uid);
-            RemComp<PacifiedByZoneComponent>(humanoid_net_uid);
-            DisableAlert(humanoid_net_uid);
+            if (!_trackedNewBuffer.Contains(humanoidUid))
+                _trackedRemoveBuffer.Add(humanoidUid);
         }
+
+        foreach (var humanoidUid in _trackedRemoveBuffer)
+        {
+            RemComp<PacifiedComponent>(humanoidUid);
+            RemComp<PacifiedByZoneComponent>(humanoidUid);
+            DisableAlert(humanoidUid);
+        }
+
         // Update state for next run.
-        component.TrackedEntities = newEntities;
+        component.TrackedEntities.Clear();
+        component.TrackedEntities.UnionWith(_trackedNewBuffer);
         component.NextUpdate = _gameTiming.CurTime + component.UpdateInterval;
     }
 
