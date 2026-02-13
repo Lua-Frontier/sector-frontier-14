@@ -1,0 +1,56 @@
+- type: entity
+  name: electric laser bolt
+  id: ADTBulletYellowLaser
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Opaque
+  - type: Sprite
+    sprite: _ADT/Objects/Weapon/Guns/Projectiles/projectiles_ss.rsi
+    layers:
+    - state: omnilaser_yellow
+      shader: unshaded
+  - type: Physics
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectLaser
+    damage:
+      types:
+        Heat: 11
+        Shock: 4
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  name: stanner bolt
+  id: ADTBulletDisabler
+  parent: BulletDisabler
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 25
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 5
+    soundHit:
+      collection: WeakHit
+    forceSound: true

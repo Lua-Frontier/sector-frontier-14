@@ -30,15 +30,17 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server._NF.Shuttles.Components; // Frontier
-using Content.Server.GameTicking; // Frontier
 using Content.Shared.Maps;
+using Content.Shared.Tag;
 
 namespace Content.Server.Shuttles.Systems;
 
 [UsedImplicitly]
 public sealed partial class ShuttleSystem : SharedShuttleSystem
 {
+    // Mono
+    public const float TileMassMultiplier = 0.5f;
+
     [Dependency] private readonly IAdminLogManager _logger = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -58,7 +60,10 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly PvsOverrideSystem _pvs = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedJointSystem _joints = default!; // Lua magnet
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TagSystem _tags = default!; // Lua magnet
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!; // Lua magnet
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -201,5 +206,8 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     private void OnFTLCompleted(Entity<ShuttleComponent> ent, ref FTLCompletedEvent args)
     {
         ent.Comp.DampingModifier = ent.Comp.BodyModifier;
+        HandleMagneticLatchFtlCompleted(ent, ref args); // Lua
     }
+
+    partial void HandleMagneticLatchFtlCompleted(Entity<ShuttleComponent> ent, ref FTLCompletedEvent args);
 }

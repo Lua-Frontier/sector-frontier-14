@@ -1,3 +1,5 @@
+using Robust.UnitTesting.Pool;
+
 namespace Content.IntegrationTests.Tests.Destructible
 {
     public static class DestructibleTestPrototypes

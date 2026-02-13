@@ -18,7 +18,8 @@ public sealed class SpawnOnDespawnSystem : EntitySystem
         if (!TryComp(uid, out TransformComponent? xform))
             return;
 
-        Spawn(comp.Prototype, xform.Coordinates);
+        var mapCoords = EntityManager.System<SharedTransformSystem>().GetMapCoordinates(xform);
+        Spawn(comp.Prototype, mapCoords);
     }
 
     public void SetPrototype(Entity<SpawnOnDespawnComponent> entity, EntProtoId prototype)

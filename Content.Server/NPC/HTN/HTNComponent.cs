@@ -19,6 +19,9 @@ public sealed partial class HTNComponent : NPCComponent
     [DataField("checkServices")]
     public bool CheckServices = true;
 
+    [ViewVariables]
+    public readonly Dictionary<string, float> ServiceCooldowns = new();
+
     /// <summary>
     /// The NPC's current plan.
     /// </summary>
@@ -50,6 +53,9 @@ public sealed partial class HTNComponent : NPCComponent
     /// Is this NPC currently planning?
     /// </summary>
     [ViewVariables] public bool Planning => PlanningJob != null;
+
+    [DataField]
+    public float? SleepPlayerCheckRangeOverride = null;
 
     /// <summary>
     /// Determines whether plans should be made / updated for this entity

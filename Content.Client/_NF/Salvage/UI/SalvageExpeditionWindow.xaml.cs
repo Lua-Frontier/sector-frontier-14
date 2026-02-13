@@ -20,10 +20,16 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
     [Dependency] private readonly IGameTiming _timing = default!;
 
     public Action? OnFinishPressed;
+    public Action? OnConfirmPressed;
+    public Action? OnCancelPressed;
 
     public bool Claimed;
+    public bool Queued;
     public TimeSpan NextOffer;
     private TimeSpan? _progression;
+    private TimeSpan? _confirmDeadline;
+    private bool _cancelArmed;
+    private static readonly TimeSpan ConfirmTotalTime = TimeSpan.FromMinutes(3);
 
     /// <summary>
     /// Time between NextOffers
@@ -66,6 +72,21 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
 
         ProgressionBar.ForegroundStyleBoxOverride = new StyleBoxFlat(Color.FromHex("#C74EBD"));
         Finish.OnPressed += _ => OnFinishPressed?.Invoke();
+        Confirm.OnPressed += _ => OnConfirmPressed?.Invoke();
+        Cancel.OnPressed += _ =>
+        {
+            if (!_cancelArmed)
+            {
+                _cancelArmed = true;
+                if (!Cancel.StyleClasses.Contains("Danger"))
+                    Cancel.StyleClasses.Add("Danger");
+                return;
+            }
+
+            _cancelArmed = false;
+            Cancel.StyleClasses.Remove("Danger");
+            OnCancelPressed?.Invoke();
+        };
     }
 
     public void AddOption(OfferingWindowOption option)
@@ -81,6 +102,40 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
     public void SetFinishDisabled(bool disabled)
     {
         Finish.Disabled = disabled;
+    }
+
+    public void SetConfirmDisabled(bool disabled)
+    {
+        Confirm.Disabled = disabled;
+    }
+
+    public void SetCancelDisabled(bool disabled)
+    {
+        Cancel.Disabled = disabled;
+        if (disabled)
+        {
+            _cancelArmed = false;
+            Cancel.StyleClasses.Remove("Danger");
+        }
+    }
+
+    public void SetQueueStatus(int activeCount, int queuePosition, int queueTotal, bool isQueued)
+    {
+        ActiveCountValue.Text = activeCount.ToString();
+        QueueCountValue.Text = isQueued ? $"{queuePosition}/{queueTotal}" : "-";
+    }
+
+    public void SetConfirmDeadline(TimeSpan? remaining)
+    {
+        if (remaining == null)
+        {
+            _confirmDeadline = null;
+            ConfirmBox.Visible = false;
+            return;
+        }
+
+        _confirmDeadline = _timing.CurTime + remaining.Value;
+        ConfirmBox.Visible = true;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -103,7 +158,23 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
             }
         }
 
-        if (Claimed)
+        if (_confirmDeadline != null)
+        {
+            var remaining = _confirmDeadline.Value - _timing.CurTime;
+            if (remaining < TimeSpan.Zero)
+            {
+                ConfirmBar.Value = 1f;
+                ConfirmText.Text = "00:00";
+            }
+            else
+            {
+                var ratio = (float)(remaining / ConfirmTotalTime);
+                ConfirmBar.Value = 1f - Math.Clamp(ratio, 0f, 1f);
+                ConfirmText.Text = $"{remaining.Minutes:00}:{remaining.Seconds:00}";
+            }
+        }
+
+        if (Claimed || Queued)
         {
             NextOfferBar.Value = 1f;
             NextOfferText.Text = "00:00";

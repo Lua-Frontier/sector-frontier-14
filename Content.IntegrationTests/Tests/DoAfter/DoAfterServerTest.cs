@@ -5,6 +5,7 @@ using Robust.Shared.Reflection;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.DoAfter
 {

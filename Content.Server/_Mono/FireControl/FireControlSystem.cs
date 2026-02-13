@@ -10,7 +10,6 @@ using Robust.Shared.Physics.Systems;
 using System.Linq;
 using Content.Shared.Physics;
 using System.Numerics;
-using Content.Server._Mono.CombatMusic;
 using Content.Server._Mono.SpaceArtillery;
 using Content.Server._Mono.SpaceArtillery.Components;
 using Content.Server.Power.EntitySystems;
@@ -25,14 +24,14 @@ namespace Content.Server._Mono.FireControl;
 
 public sealed partial class FireControlSystem : EntitySystem
 {
+    private readonly List<EntityUid> _controlledBuffer = new();
+    private readonly List<EntityUid> _consolesBuffer = new();
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly GunSystem _gun = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PowerReceiverSystem _power = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
-    [Dependency] private readonly CombatMusicSystem _combatMusic = default!;
-
     /// <summary>
     /// Dictionary of entities that have visualization enabled
     /// </summary>
@@ -156,16 +155,28 @@ public sealed partial class FireControlSystem : EntitySystem
         }
 
         // Unregister all controlled entities
-        var controlledCopy = component.Controlled.ToList(); // Create copy to avoid modification during iteration
-        foreach (var controllable in controlledCopy)
+        _controlledBuffer.Clear();
+        _controlledBuffer.EnsureCapacity(component.Controlled.Count);
+        foreach (var controllable in component.Controlled)
+        {
+            _controlledBuffer.Add(controllable);
+        }
+
+        foreach (var controllable in _controlledBuffer)
         {
             if (Exists(controllable))
                 Unregister(controllable);
         }
 
         // Unregister all consoles
-        var consolesCopy = component.Consoles.ToList(); // Create copy to avoid modification during iteration
-        foreach (var console in consolesCopy)
+        _consolesBuffer.Clear();
+        _consolesBuffer.EnsureCapacity(component.Consoles.Count);
+        foreach (var console in component.Consoles)
+        {
+            _consolesBuffer.Add(console);
+        }
+
+        foreach (var console in _consolesBuffer)
         {
             if (Exists(console))
                 UnregisterConsole(console);
@@ -373,36 +384,30 @@ public sealed partial class FireControlSystem : EntitySystem
         }
     }
 
+    public bool CanFireWeapons(EntityUid grid)
+    {
+        if (TerminatingOrDeleted(grid)
+            || HasComp<FTLComponent>(grid)
+            || HasComp<SpaceArtilleryDisabledGridComponent>(grid)
+        )
+            return false;
+
+        var gridXform = Transform(grid);
+        // Check if the weapon is an expedition
+        if (gridXform.MapUid != null && HasComp<SalvageExpeditionComponent>(gridXform.MapUid.Value))
+            return false;
+
+        return true;
+    }
+
     public void FireWeapons(EntityUid server, List<NetEntity> weapons, NetCoordinates coordinates, FireControlServerComponent? component = null)
     {
         if (!Resolve(server, ref component))
             return;
 
-        // Check if the weapon's grid is in FTL
+        // Check if the weapon's grid can fire
         var grid = component.ConnectedGrid;
-        if (grid != null && TryComp<FTLComponent>((EntityUid)grid, out var ftlComp))
-        {
-            if ((ftlComp.State & (Content.Shared.Shuttles.Systems.FTLState.Starting | Content.Shared.Shuttles.Systems.FTLState.Travelling | Content.Shared.Shuttles.Systems.FTLState.Arriving)) != 0x0)
-                return;
-        }
-
-        if (grid != null)
-        {
-            var gridXform2 = Transform((EntityUid)grid);
-            var gridPos2 = _xform.GetWorldPosition(gridXform2);
-            if (IsInsideAnyFtlExclusion(gridXform2.MapID, gridPos2))
-                return;
-        }
-
-        // Check if the weapon's grid is pacified
-        if (grid != null && TryComp<SpaceArtilleryDisabledGridComponent>((EntityUid)grid, out var pacifiedComp))
-            return;
-
-        // Check if the weapon is an expedition
-        if (grid != null &&
-            TryComp<TransformComponent>((EntityUid)grid, out var gridXform) &&
-            gridXform.MapUid != null &&
-            HasComp<SalvageExpeditionComponent>(gridXform.MapUid.Value))
+        if (grid != null && !CanFireWeapons(grid.Value))
             return;
 
         var targetCoords = GetCoordinates(coordinates);
@@ -468,11 +473,6 @@ public sealed partial class FireControlSystem : EntitySystem
                 artilleryFired = true;
             }
         }
-
-        if (artilleryFired)
-        {
-            TriggerCombatMusic(server);
-        }
     }
 
     /// <summary>
@@ -486,9 +486,14 @@ public sealed partial class FireControlSystem : EntitySystem
             return;
 
         // Get a copy of the controlled entities list to avoid modification during iteration
-        var controlled = component.Controlled.ToList();
+        _controlledBuffer.Clear();
+        _controlledBuffer.EnsureCapacity(component.Controlled.Count);
+        foreach (var controllable in component.Controlled)
+        {
+            _controlledBuffer.Add(controllable);
+        }
 
-        foreach (var controllable in controlled)
+        foreach (var controllable in _controlledBuffer)
         {
             if (TryComp<FireControllableComponent>(controllable, out var controlComp))
             {
@@ -528,13 +533,13 @@ public sealed partial class FireControlSystem : EntitySystem
     /// <summary>
     /// Attempts to fire a weapon, handling aiming and firing logic.
     /// </summary>
-    public bool AttemptFire(EntityUid weapon, EntityUid user, EntityCoordinates coords, FireControllableComponent? comp = null)
+    public bool AttemptFire(EntityUid weapon, EntityUid user, EntityCoordinates coords, FireControllableComponent? comp = null, bool noServer = false)
     {
         if (!Resolve(weapon, ref comp))
             return false;
 
         // Check if the weapon is ready to fire
-        if (!CanFire(weapon, comp))
+        if (!CanFire(weapon, comp, noServer))
             return false;
 
         // Get weapon and target positions
@@ -572,14 +577,14 @@ public sealed partial class FireControlSystem : EntitySystem
     /// <summary>
     /// Checks if a weapon is ready to fire.
     /// </summary>
-    private bool CanFire(EntityUid weapon, FireControllableComponent comp)
+    private bool CanFire(EntityUid weapon, FireControllableComponent comp, bool noServer = false)
     {
         // Check if weapon is powered
         if (!_power.IsPowered(weapon))
             return false;
 
         // Check if weapon is connected to a server
-        if (comp.ControllingServer == null)
+        if (comp.ControllingServer == null && !noServer)
             return false;
 
         // Check for other conditions like cooldowns if needed
@@ -771,18 +776,6 @@ public sealed partial class FireControlSystem : EntitySystem
         var directions = CheckAllDirections(entityUid);
         RaiseNetworkEvent(new FireControlVisualizationEvent(netEntity, directions));
         return true;
-    }
-
-    /// <summary>
-    /// Triggers combat music for the grid that the console is on.
-    /// </summary>
-    private void TriggerCombatMusic(EntityUid consoleUid)
-    {
-        var gridUid = _xform.GetGrid(consoleUid);
-        if (gridUid == null)
-            return;
-
-        _combatMusic.TriggerCombatMusic(gridUid.Value);
     }
 }
 

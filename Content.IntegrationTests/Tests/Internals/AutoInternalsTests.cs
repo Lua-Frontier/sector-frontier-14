@@ -2,6 +2,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Preferences;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Internals;
 

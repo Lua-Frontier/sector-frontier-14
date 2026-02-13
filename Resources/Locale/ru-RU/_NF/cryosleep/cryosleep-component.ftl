@@ -19,7 +19,9 @@ cryo-wakeup-result-occupied = Капсула занята! Подождите н
 cryo-wakeup-result-no-cryopod = Капсула пропала! Ох, как-же так...
 cryo-wakeup-result-no-body = У вас нет тела в капсуле!
 cryo-wakeup-result-disabled = На этом сервере отключена возможность проснуться!
+cryo-wakeup-result-expedition = Нельзя вернуться из криосна, пока корабль находится на экспедиции.
 # Cryopod
 cryopod-refuse-dead = { $cryopod } не принимает мёртвые тела.
 cryopod-refuse-organic = { $cryopod } не принимает более одного разумного существа одновременно!
+cryopod-refuse-expedition = { $cryopod } недоступна, пока корабль находится на экспедиции.
 cryopod-wake-up = { $entity } возвращается из криосна!

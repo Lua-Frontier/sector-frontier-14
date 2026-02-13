@@ -26,7 +26,8 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
-    private readonly List<string> _roleBans = new();
+    private readonly List<ProtoId<JobPrototype>> _jobBans = new();
+    private readonly List<ProtoId<AntagPrototype>> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
@@ -53,16 +54,19 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
             // Reset on disconnect, just in case.
             _roles.Clear();
             _jobWhitelists.Clear();
-            _roleBans.Clear();
+            _jobBans.Clear();
+            _antagBans.Clear();
         }
     }
 
     private void RxRoleBans(MsgRoleBans message)
     {
-        _sawmill.Debug($"Received roleban info containing {message.Bans.Count} entries.");
+        _sawmill.Debug($"Received roleban info containing {message.JobBans.Count} job bans and {message.AntagBans.Count} antag bans.");
 
-        _roleBans.Clear();
-        _roleBans.AddRange(message.Bans);
+        _jobBans.Clear();
+        _jobBans.AddRange(message.JobBans);
+        _antagBans.Clear();
+        _antagBans.AddRange(message.AntagBans);
         Updated?.Invoke();
     }
 
@@ -95,7 +99,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     {
         reason = null;
 
-        if (_roleBans.Contains($"Job:{job.ID}"))
+        if (_jobBans.Contains(job.ID))
         {
             reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
             return false;

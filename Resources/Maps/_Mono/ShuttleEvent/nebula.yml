@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/17/2025 12:23:56
-  entityCount: 484
+  time: 02/02/2026 12:38:28
+  entityCount: 482
 maps: []
 grids:
 - 1
@@ -560,30 +560,15 @@ entities:
     - type: Transform
       pos: -1.5,-19.5
       parent: 1
-  - uid: 70
-    components:
-    - type: Transform
-      pos: 0.5,-7.5
-      parent: 1
   - uid: 71
     components:
     - type: Transform
       pos: 0.5,-8.5
       parent: 1
-  - uid: 72
-    components:
-    - type: Transform
-      pos: -0.5,-7.5
-      parent: 1
   - uid: 73
     components:
     - type: Transform
       pos: -0.5,-8.5
-      parent: 1
-  - uid: 74
-    components:
-    - type: Transform
-      pos: -1.5,-7.5
       parent: 1
   - uid: 75
     components:
@@ -1332,42 +1317,12 @@ entities:
     - type: Transform
       pos: -2.5,-0.5
       parent: 1
-- proto: ComputerGunneryConsole
+- proto: ClothingBackpackDroneLootT21
   entities:
   - uid: 222
     components:
     - type: Transform
-      pos: 0.5,-7.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-- proto: ComputerIFF
-  entities:
-  - uid: 223
-    components:
-    - type: Transform
-      pos: -1.5,-7.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-- proto: ComputerShuttle
-  entities:
-  - uid: 224
-    components:
-    - type: Transform
-      pos: -0.5,-7.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerLoad: 5
-    - type: Battery
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: -0.5,-13.5
+      pos: -0.5043025,-10.51163
       parent: 1
 - proto: GeneratorRTG
   entities:
@@ -1757,6 +1712,13 @@ entities:
     - type: Transform
       pos: -1.5,-10.5
       parent: 1
+- proto: SpawnMobDroneAiLance
+  entities:
+  - uid: 223
+    components:
+    - type: Transform
+      pos: -0.5,-13.5
+      parent: 1
 - proto: SubstationWallBasic
   entities:
   - uid: 290
@@ -2045,6 +2007,21 @@ entities:
       parent: 1
 - proto: WallPlastitanium
   entities:
+  - uid: 70
+    components:
+    - type: Transform
+      pos: -1.5,-7.5
+      parent: 1
+  - uid: 72
+    components:
+    - type: Transform
+      pos: -0.5,-7.5
+      parent: 1
+  - uid: 74
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
+      parent: 1
   - uid: 328
     components:
     - type: Transform

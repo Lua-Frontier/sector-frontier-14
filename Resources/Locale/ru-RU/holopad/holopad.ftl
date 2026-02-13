@@ -71,6 +71,7 @@ holopad-science-front = Научный - Приёмная
 holopad-science-breakroom = Научный - Комната отдыха
 # Medical
 holopad-medical-medbay = Медицинский - Медбей
+holopad-medical = Медицинский
 holopad-medical-chemistry = Медицинский - Химия
 holopad-medical-cryopods = Медицинский - Криоподы
 holopad-medical-morgue = Медицинский - Морг
@@ -88,6 +89,13 @@ holopad-cargo-breakroom = Снабжение - Комната отдыха
 holopad-cargo-ats = Снабжение - АТС
 holopad-cargo-shuttle = Снабжение - Шаттл
 holopad-cargo-mailroom = Снабжение - Почта
+
+holopad-traffic = Трафик
+holopad-sheriff = Шериф
+holopad-bailiff = Маршал
+holopad-station-representative = Представитель станции
+holopad-hub = Хаб
+
 # Engineering
 holopad-engineering-atmos-front = Атмос - Приёмная
 holopad-engineering-atmos-main = Атмос - Главный

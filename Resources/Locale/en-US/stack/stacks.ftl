@@ -2,6 +2,7 @@ stack-steel = steel
 stack-bananium = bananium
 stack-glass = glass
 stack-plasteel = plasteel
+stack-plastitanium = plastitanium
 stack-brass = brass
 stack-plastic = plastic
 stack-silver = silver

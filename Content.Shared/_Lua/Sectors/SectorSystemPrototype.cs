@@ -50,7 +50,16 @@ public sealed partial class SectorSystemPrototype : IPrototype
     public bool DeadDropEnabled = true;
 
     [DataField]
+    public bool BluespaceEventsEnabled = true;
+
+    [DataField]
     public int DeadDropCount = 2;
+
+    [DataField]
+    public bool CrewMonitoringIsolated = false;
+
+    [DataField]
+    public string? Starlink;
 
     [DataField]
     public Vector2? StarmapPosition;

@@ -427,4 +427,20 @@ public abstract partial class SharedGunSystem
             args.Ammo.Add((chamberEnt.Value, EnsureShootable(chamberEnt.Value)));
         }
     }
+
+    // Mono
+    private void OnChamberMagazineCheckProto(Entity<ChamberMagazineAmmoProviderComponent> ent, ref CheckShootPrototypeEvent args)
+    {
+        if (Containers.TryGetContainer(ent, ChamberSlot, out var container)
+            && container is ContainerSlot slot
+            && slot.ContainedEntity != null)
+        {
+            args.ShootPrototype = MetaData(slot.ContainedEntity.Value).EntityPrototype;
+            return;
+        }
+
+        var mag = GetMagazineEntity(ent);
+        if (mag != null)
+            RaiseLocalEvent(mag.Value, ref args);
+    }
 }

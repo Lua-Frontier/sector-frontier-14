@@ -1,0 +1,55 @@
+- type: entity
+  id: AirlockDockingMagnet
+  parent: BaseStructure
+  name: Magnet
+  description: A magnetic grabber.
+  components:
+  - type: Docking
+    dockType: Magnet
+    receiveOnly: true
+    radarColor: "#001ec5"
+    highlightedRadarColor: "#4073ff"
+  - type: MagneticGrabber
+  - type: DeviceLinkSink
+    ports:
+    - ShutdownMagnet
+  - type: Rotatable
+    rotateWhileAnchored: false
+  - type: Anchorable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+      magnetGrab:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+          position: "0,-0.85"
+        density: 20
+        hard: true
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/magnet.rsi
+    layers:
+    - state: closed
+      map: ["enum.MagneticLatchVisualLayers.Base"]
+    snapCardinals: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MagneticLatchVisuals.State:
+        enum.MagneticLatchVisualLayers.Base:
+          Idle: { state: closed }
+          Latched: { state: magnet }

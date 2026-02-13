@@ -31,4 +31,7 @@ public sealed partial class UtilityService
     /// </summary>
     [DataField("key", required: true)]
     public string Key = string.Empty;
+
+    [DataField]
+    public string? CoordinatesKey = null;
 }

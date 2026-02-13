@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseFlatpack
+  id: DockingMagnetFlatpack
+  name: magnet flatpack
+  description: A flatpack magnet.
+  components:
+  - type: Flatpack
+    entity: AirlockDockingMagnet
+  - type: StaticPrice
+    price: 300

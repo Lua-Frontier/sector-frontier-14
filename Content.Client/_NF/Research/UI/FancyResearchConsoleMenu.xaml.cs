@@ -77,6 +77,17 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// Is tech currently being dragged
     /// </summary>
     private bool _draggin;
+    private const float MinZoom = 0.25f;
+    private const float MaxZoom = 2.0f;
+    private const float ZoomStep = 1.1f;
+    private const int TreePadding = 20;
+    private Vector2 _offset = Vector2.Zero;
+    private float _zoom = 1f;
+    private bool _centeredOnce;
+    private float _baseWidth;
+    private float _baseHeight;
+    private readonly Dictionary<string, FancyResearchConsoleItem> _techItems = new();
+    private readonly Dictionary<string, Vector2> _basePositions = new();
 
     /// <summary>
     /// the distance between elements on the grid.
@@ -88,12 +99,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// </summary>
     private const int CardSize = 64;
 
-    /// <summary>
-    /// the origin point of the grid.
-    /// </summary>
-    private static readonly Vector2i DefaultPosition = Vector2i.Zero;
-
-    private Box2i _bounds = new(DefaultPosition, DefaultPosition);
+    private static readonly Vector2 DefaultCenterPosition = Vector2.Zero;
+    private bool _pendingCenter;
+    private Vector2 _pendingCenterWorldPos;
+    private bool _pendingCenterResetZoom;
+    private Vector2 _boundsMin = Vector2.Zero;
+    private Vector2 _boundsMax = Vector2.Zero;
 
     public FancyResearchConsoleMenu()
     {
@@ -102,12 +113,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         _research = _entity.System<ResearchSystem>();
         _sprite = _entity.System<SpriteSystem>();
         _accessReader = _entity.System<AccessReaderSystem>();
-
-        // Set up scroll container properties
-        TechScrollContainer.ScrollSpeedX = 100;
-        TechScrollContainer.ScrollSpeedY = 100;
-        TechScrollContainer.HScrollEnabled = false;
-        TechScrollContainer.VScrollEnabled = true;
 
         // Frontier: Initialize parallax background
         _parallaxControl = new ParallaxControl
@@ -125,30 +130,19 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         // Make sure the parallax is at the bottom of the z-order (drawn first)
         _parallaxControl.SetPositionInParent(0);
 
-        // The drag container should be in the middle
-        TechScrollContainer.SetPositionInParent(1);
-
-        // Apply scrollbar styling
-        ApplyScrollbarStyling();
+        TechViewport.SetPositionInParent(1);
+        RecenterButton.SetPositionInParent(2);
 
         // Set up event handlers
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         DragContainer.OnKeyBindDown += OnKeybindDown;
         DragContainer.OnKeyBindUp += OnKeybindUp;
         RecenterButton.OnPressed += _ => Recenter();
+        TechViewport.OnResized += TryApplyPendingCenter;
+        OnResized += TryApplyPendingCenter;
 
         // Empty initialization
         UpdatePanels(List);
-    }
-
-    /// <summary>
-    /// Apply scrollbar styling using centralized colors and utilities
-    /// </summary>
-    private void ApplyScrollbarStyling()
-    {
-        var scrollBarNormal = ResearchUIHelpers.CreateScrollbarStyleBox("normal");
-        var scrollBarHovered = ResearchUIHelpers.CreateScrollbarStyleBox("hovered");
-        var scrollBarGrabbed = ResearchUIHelpers.CreateScrollbarStyleBox("grabbed");
     }
 
     public void SetEntity(EntityUid entity)
@@ -158,43 +152,42 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     {
         // Clear existing items
         DragContainer.RemoveAllChildren();
+        _techItems.Clear();
+        _basePositions.Clear();
 
         List = dict;
-        var bounds = new Box2i();
+        var boundsMin = Vector2.Zero;
+        var boundsMax = Vector2.Zero;
         var boundsSet = false;
 
         // Calculate bounds
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            var position = DefaultPosition + (GridSize * proto.Position.X, GridSize * proto.Position.Y);
+            var position = new Vector2(GridSize * proto.Position.X, GridSize * proto.Position.Y);
 
             if (!boundsSet)
             {
-                bounds.BottomLeft = position;
-                bounds.TopRight = position;
+                boundsMin = position;
+                boundsMax = position;
                 boundsSet = true;
             }
             else
             {
-                bounds.Left = int.Min(position.X, bounds.Left);
-                bounds.Bottom = int.Min(position.Y, bounds.Bottom);
-                bounds.Right = int.Max(position.X, bounds.Right);
-                bounds.Top = int.Max(position.Y, bounds.Top);
+                boundsMin = Vector2.Min(boundsMin, position);
+                boundsMax = Vector2.Max(boundsMax, position);
             }
         }
 
         if (boundsSet)
         {
-            _bounds = bounds;
+            _boundsMin = boundsMin;
+            _boundsMax = boundsMax;
 
-            // Set container size with padding
-            var padding = 200;
-            var totalWidth = _bounds.Width + CardSize + padding;
-            var totalHeight = _bounds.Height + CardSize + padding;
-
-            DragContainer.SetWidth = Math.Max(totalWidth, 1000);
-            DragContainer.SetHeight = Math.Max(totalHeight, 1000);
+            var padding = 200f;
+            var size = _boundsMax - _boundsMin;
+            _baseWidth = size.X + CardSize + padding;
+            _baseHeight = size.Y + CardSize + padding;
         }
 
         // Add tech items
@@ -206,16 +199,21 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             DragContainer.AddChild(control);
 
             // Position the tech item
-            var leftPadding = 20;
-            var topPadding = 20;
-            var uiPosition = new Vector2(
-                proto.Position.X * GridSize - _bounds.Left + leftPadding,
-                proto.Position.Y * GridSize - _bounds.Bottom + topPadding
-            );
+            var uiPosition = GetTechPosition(proto);
+            _techItems[tech.Key] = control;
+            _basePositions[tech.Key] = uiPosition;
 
             LayoutContainer.SetPosition(control, uiPosition);
             control.SelectAction += SelectTech;
             control.IsSelected = tech.Key == CurrentTech;
+        }
+
+        ApplyCamera();
+        if (!_centeredOnce)
+        {
+            QueueCenterOnWorld(DefaultCenterPosition, resetZoom: true);
+            TryApplyPendingCenter();
+            _centeredOnce = true;
         }
     }
 
@@ -270,9 +268,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (!_draggin)
             return;
 
-        // Adjust scroll position with drag
-        var scrollSpeed = 2.0f;
-        TechScrollContainer.VScrollTarget -= args.Relative.Y * scrollSpeed;
+        _offset += args.Relative;
+        ApplyCamera();
     }
 
     /// <summary>
@@ -328,8 +325,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     public void Recenter()
     {
-        // Reset scroll position
-        TechScrollContainer.VScrollTarget = 0;
+        QueueCenterOnWorld(DefaultCenterPosition, resetZoom: true);
+        TryApplyPendingCenter();
     }
 
     public override void Close()
@@ -347,5 +344,73 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     protected override void MouseWheel(GUIMouseWheelEventArgs args)
     {
         base.MouseWheel(args);
+        if (args.Delta.Y == 0) return;
+        var mouseScreen = UserInterfaceManager.MousePositionScaled.Position * UIScale;
+        var viewportLocal = mouseScreen - TechViewport.GlobalPixelPosition;
+        if (viewportLocal.X < 0 || viewportLocal.Y < 0 ||
+            viewportLocal.X > TechViewport.PixelWidth || viewportLocal.Y > TechViewport.PixelHeight)
+            return;
+        var oldZoom = _zoom;
+        var zoomMultiplier = MathF.Pow(ZoomStep, args.Delta.Y);
+        _zoom = Math.Clamp(_zoom * zoomMultiplier, MinZoom, MaxZoom);
+        if (Math.Abs(_zoom - oldZoom) < 0.0001f)
+            return;
+        var worldBefore = (viewportLocal - _offset) / oldZoom;
+        _offset = viewportLocal - worldBefore * _zoom;
+        ApplyCamera();
+        args.Handle();
+    }
+
+    private Vector2 GetTechPosition(TechnologyPrototype proto)
+    {
+        return new Vector2(
+            proto.Position.X * GridSize - _boundsMin.X + TreePadding,
+            proto.Position.Y * GridSize - _boundsMin.Y + TreePadding
+        );
+    }
+
+    private void QueueCenterOnWorld(Vector2 worldPosition, bool resetZoom)
+    {
+        _pendingCenter = true;
+        _pendingCenterWorldPos = worldPosition;
+        _pendingCenterResetZoom = resetZoom;
+    }
+
+    private void TryApplyPendingCenter()
+    {
+        if (!_pendingCenter)
+            return;
+        if (TechViewport.PixelWidth <= 0 || TechViewport.PixelHeight <= 0)
+            return;
+        _pendingCenter = false;
+        var uiPosition = new Vector2(
+            _pendingCenterWorldPos.X * GridSize - _boundsMin.X + TreePadding,
+            _pendingCenterWorldPos.Y * GridSize - _boundsMin.Y + TreePadding
+        ) + new Vector2(CardSize / 2f, CardSize / 2f);
+        CenterOnPosition(uiPosition, _pendingCenterResetZoom);
+    }
+
+    private bool CenterOnPosition(Vector2 position, bool resetZoom)
+    {
+        if (resetZoom)
+            _zoom = 1f;
+        var viewportCenter = new Vector2(TechViewport.PixelWidth, TechViewport.PixelHeight) / 2f;
+        _offset = viewportCenter - position * _zoom;
+        ApplyCamera();
+        return true;
+    }
+
+    private void ApplyCamera()
+    {
+        foreach (var (id, item) in _techItems)
+        {
+            if (!_basePositions.TryGetValue(id, out var basePos))
+                continue;
+            var scaledPosition = basePos * _zoom + _offset;
+            LayoutContainer.SetPosition(item, scaledPosition);
+            item.SetScale(_zoom);
+        }
+        DragContainer.SetWidth = Math.Max(_baseWidth * _zoom, TechViewport.PixelWidth);
+        DragContainer.SetHeight = Math.Max(_baseHeight * _zoom, TechViewport.PixelHeight);
     }
 }

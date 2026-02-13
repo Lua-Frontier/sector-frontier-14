@@ -3,6 +3,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Chemistry;
 

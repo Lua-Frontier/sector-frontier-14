@@ -6,6 +6,7 @@ using Content.Shared.Hands.Components;
 using Robust.Server.Console;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.GameObjects.Components.ActionBlocking
 {

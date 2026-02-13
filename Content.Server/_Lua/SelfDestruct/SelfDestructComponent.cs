@@ -62,7 +62,7 @@ public sealed partial class SelfDestructComponent : Component
     public SoundSpecifier ArmSound = new SoundPathSpecifier("/Audio/Misc/notice1.ogg");
 
     [DataField]
-    public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/Nuke/nuke_alarm.ogg");
+    public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/_Lua/Effects/Shuttle/nuke_luatech.ogg");
 
     [DataField]
     public SoundSpecifier LocalLoopAlarm = new SoundPathSpecifier("/Audio/_Lua/Alarm/sirenlua.ogg");

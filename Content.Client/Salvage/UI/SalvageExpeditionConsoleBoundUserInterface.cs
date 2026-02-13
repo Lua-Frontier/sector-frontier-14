@@ -38,6 +38,8 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
         _window = this.CreateWindowCenteredLeft<SalvageExpeditionWindow>(); // Frontier: OfferingWindow<SalvageExpeditionWindow
         _window.Title = Loc.GetString("salvage-expedition-window-title");
         _window.OnFinishPressed += () => SendMessage(new FinishSalvageMessage()); // Frontier
+        _window.OnConfirmPressed += () => SendMessage(new ExpeditionConfirmMessage()); // Lua
+        _window.OnCancelPressed += () => SendMessage(new ExpeditionCancelMessage()); // Lua
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -51,7 +53,12 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
         _window.Cooldown = current.CooldownTime;
         _window.NextOffer = current.NextOffer;
         _window.Claimed = current.Claimed;
+        _window.Queued = current.IsQueued;
         _window.SetFinishDisabled(!current.CanFinish); // Frontier
+        _window.SetConfirmDisabled(!current.IsOurTurnToConfirm);
+        _window.SetCancelDisabled(!(current.IsQueued || current.IsOurTurnToConfirm));
+        _window.SetQueueStatus(current.ActiveExpeditionCount, current.QueuePosition, current.QueueTotal, current.IsQueued);
+        _window.SetConfirmDeadline(current.HasConfirmDeadline ? current.ConfirmDeadline : null);
         _window.ClearOptions();
 
         for (var i = 0; i < current.Missions.Count; i++)
@@ -185,7 +192,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             };
 
             offering.Claimed = current.ActiveMission == missionParams.Index;
-            offering.Disabled = current.Claimed || current.Cooldown;
+            offering.Disabled = current.Claimed || current.Cooldown || current.IsQueued;
 
             _window.AddOption(offering);
         }

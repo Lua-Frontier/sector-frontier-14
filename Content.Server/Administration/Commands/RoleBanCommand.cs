@@ -56,7 +56,7 @@ public sealed class RoleBanCommand : IConsoleCommand
         };
 
         string target;
-        string job;
+        string role;
         string reason;
         uint minutes;
         if (!Enum.TryParse(_cfg.GetCVar(CCVars.RoleBanDefaultSeverity), out NoteSeverity severity))
@@ -70,13 +70,13 @@ public sealed class RoleBanCommand : IConsoleCommand
         {
             case 3:
                 target = args[0];
-                job = args[1];
+                role = args[1];
                 reason = args[2];
                 minutes = 0;
                 break;
             case 4:
                 target = args[0];
-                job = args[1];
+                role = args[1];
                 reason = args[2];
 
                 if (!uint.TryParse(args[3], out minutes))
@@ -88,7 +88,7 @@ public sealed class RoleBanCommand : IConsoleCommand
                 break;
             case 5:
                 target = args[0];
-                job = args[1];
+                role = args[1];
                 reason = args[2];
 
                 if (!uint.TryParse(args[3], out minutes))
@@ -110,12 +110,6 @@ public sealed class RoleBanCommand : IConsoleCommand
                 return;
         }
 
-        if (!_proto.HasIndex<JobPrototype>(job))
-        {
-            shell.WriteError(Loc.GetString("cmd-roleban-job-parse", ("job", job)));
-            return;
-        }
-
         var located = await _locator.LookupIdByNameOrIdAsync(target);
         if (located == null)
         {
@@ -126,7 +120,29 @@ public sealed class RoleBanCommand : IConsoleCommand
         var targetUid = located.UserId;
         var targetHWid = located.LastHWId;
 
-        _bans.CreateRoleBan(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, job, minutes, severity, reason, DateTimeOffset.UtcNow);
+        var banInfo = new CreateRoleBanInfo(reason);
+        if (minutes > 0)
+            banInfo.WithMinutes(minutes);
+        banInfo.AddUser(targetUid, located.Username);
+        banInfo.WithBanningAdmin(shell.Player?.UserId);
+        banInfo.AddHWId(targetHWid);
+        banInfo.WithSeverity(severity);
+
+        if (_proto.HasIndex<JobPrototype>(role))
+        {
+            banInfo.AddJob(new ProtoId<JobPrototype>(role));
+        }
+        else if (_proto.HasIndex<AntagPrototype>(role))
+        {
+            banInfo.AddAntag(new ProtoId<AntagPrototype>(role));
+        }
+        else
+        {
+            shell.WriteError(Loc.GetString("cmd-roleban-job-parse", ("job", role)));
+            return;
+        }
+
+        _bans.CreateRoleBan(banInfo);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

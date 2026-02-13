@@ -46,6 +46,8 @@ namespace Content.Client.Popups
         // WD EDIT START
         private static readonly Dictionary<PopupType, string> FontSizeDict = new()
         {
+            { PopupType.Small, "10" },
+            { PopupType.SmallCaution, "10" },
             { PopupType.Medium, "12" },
             { PopupType.MediumCaution, "12" },
             { PopupType.Large, "15" },
@@ -125,7 +127,7 @@ namespace Content.Client.Popups
                     ? "#C62828"
                     : "#AEABC4";
 
-                var wrappedMessage = $"[font size={fontsize}][color={fontcolor}]{message}[/color][/font]";
+                var wrappedMessage = $"[font size={fontsize}][color={fontcolor}][italic]{message}[/italic][/color][/font]";
                 var chatMsg = new ChatMessage(ChatChannel.Emotes, message, wrappedMessage, GetNetEntity(EntityUid.Invalid), null);
                 _uiManager.GetUIController<ChatUIController>().ProcessChatMessage(chatMsg);
             }

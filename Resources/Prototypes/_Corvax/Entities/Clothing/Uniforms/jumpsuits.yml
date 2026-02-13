@@ -41,3 +41,14 @@
       sprite: Corvax/Clothing/Uniforms/Jumpsuit/centcom_admiral.rsi
     - type: Clothing
       sprite: Corvax/Clothing/Uniforms/Jumpsuit/centcom_admiral.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPilotSD
+  name: security pilot jumpsuit
+  description: Black uniform for security shuttle pilot.
+  components:
+    - type: Sprite
+      sprite: _Corvax/Clothing/Uniforms/Jumpsuit/pilot.rsi
+    - type: Clothing
+      sprite: _Corvax/Clothing/Uniforms/Jumpsuit/pilot.rsi

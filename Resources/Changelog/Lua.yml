@@ -3335,3 +3335,102 @@ Entries:
   id: 232
   time: '2026-01-10T18:36:14.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/445
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Еда портится со временем, в конце остаётся лужа плесени. В холодильниках
+        не портится.
+    - type: Add
+      message: >-
+        Магнитный захват для шаттлов: магнит ставится на шаттл пригодно для
+        абордажей. Магнит можно отключить через пкм или с пульта.
+    - type: Add
+      message: >-
+        Турель-гарпун - стреляет крюком, можно зацепиться за другой шаттл. Крюк
+        виден на радаре.
+    - type: Add
+      message: Добавлен магнит и гарпун в Упак-О-Мат
+  id: 233
+  time: '2026-01-29T15:42:32.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/460
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        serpent: Полный ремап корабля. Вооружение изменено на 6 CYREXA и 1
+        ADEX-9.
+  id: 234
+  time: '2026-02-04T03:23:45.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/464
+- author: fox76055
+  changes:
+    - type: Tweak
+      message: >-
+        Legionnaire: Удалена версия с дравонами. Версия с ЭМП вооружением
+        получила ремап.
+  id: 235
+  time: '2026-02-04T03:31:17.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/465
+- author: LeptonComm
+  changes:
+    - type: Tweak
+      message: Новогодний ремап Станции Фронтир был заменен на стандартную станцию
+  id: 236
+  time: '2026-02-04T03:31:48.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/466
+- author: fox76055
+  changes:
+    - type: Add
+      message: >-
+        поддержка музыки во время боя + музыка во время боя для конкретных
+        фракций.
+    - type: Add
+      message: поддержка отдельной музыки для различных гридов.
+    - type: Add
+      message: поддержка биомов в космосе, в FTL пространстве, и на экспедициях.
+    - type: Add
+      message: поддержка описаний и названий для гридов.
+    - type: Add
+      message: настройка громкости музыки во время боя.
+    - type: Add
+      message: >-
+        настройка для изменения количества секунд до активации/деактивации
+        музыки во время боя.
+    - type: Add
+      message: внутренние/средние/внешние кольцевые биомы + музыка.
+    - type: Add
+      message: Отдельный эмбиент на станций фронтир.
+    - type: Add
+      message: 'FTL music '
+    - type: Add
+      message: expedition music
+    - type: Remove
+      message: музыка во время корабельного боя
+    - type: Remove
+      message: CombatMusicSystem.cs + friends (see above)
+    - type: Remove
+      message: GridNameSystem.cs (superceded by SpaceBiomeTextOverlay.cs)
+  id: 237
+  time: '2026-02-04T03:54:01.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/468
+- author: KiraFaust
+  changes:
+    - type: Add
+      message: >-
+        Униформа КЦК, добавление плащей для капитана, добавление платья в
+        ПарралельОВенд, парочки вещей СБ в СБДроб
+    - type: Tweak
+      message: Респрайт одежды Капитана.
+    - type: Fix
+      message: Перевод укреплённого плазменного стола с клингонского на русский
+  id: 238
+  time: '2026-02-13T15:43:29.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/467
+- author: KiraFaust
+  changes:
+    - type: Fix
+      message: Исправлено отображение одежды под куртками/жилетами и т.д.
+  id: 239
+  time: '2026-02-13T16:53:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/475

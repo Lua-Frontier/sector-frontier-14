@@ -55,7 +55,7 @@ public enum AiShuttleDatasetNameType
 }
 
 [DataRecord]
-public sealed class AiShuttleDungeonSpawnGroup : IAiShuttleSpawnGroup
+public sealed partial class AiShuttleDungeonSpawnGroup : IAiShuttleSpawnGroup
 {
     public List<ProtoId<DungeonConfigPrototype>> Protos = new();
     public float MinimumDistance { get; }
@@ -74,7 +74,7 @@ public sealed class AiShuttleDungeonSpawnGroup : IAiShuttleSpawnGroup
 }
 
 [DataRecord]
-public sealed class AiShuttleGridSpawnGroup : IAiShuttleSpawnGroup
+public sealed partial class AiShuttleGridSpawnGroup : IAiShuttleSpawnGroup
 {
     public List<ResPath> Paths = new();
     public float MinimumDistance { get; }

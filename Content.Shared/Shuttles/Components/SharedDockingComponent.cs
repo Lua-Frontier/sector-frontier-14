@@ -27,6 +27,7 @@ namespace Content.Shared.Shuttles.Components
         None = 0,
         Airlock = 1 << 0,
         Gas = 1 << 1,
+        Magnet = 1 << 2,
     }
     // End Frontier
 }
