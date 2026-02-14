@@ -69,6 +69,25 @@
     - HeadTop
     - HeadSide
 
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurity
+  id: ClothingHeadHelmetHardsuitNanotrasenStandart
+  categories: [ HideSpawnMenu ]
+  name: шлем стандартного скафандра Nanotrasen
+  description: Самый бюрократический шлем корпорации Nanotrasen.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/ntstandardhelm.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/ntstandardhelm.rsi
+  - type: PointLight
+    color: "#faf19c"
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
 
 #region FSF
 - type: entity

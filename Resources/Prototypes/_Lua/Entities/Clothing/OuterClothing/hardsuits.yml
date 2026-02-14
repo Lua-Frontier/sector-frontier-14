@@ -95,6 +95,41 @@
   - type: ThermalCloak
     enabled: false
 
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitNanotrasenStandart
+  name: стандартный скафандр Nanotrasen
+  description: Самый бюрократический скафандр корпорации Nanotrasen. Выглядит нарисованным.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/ntstandardsuit.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/ntstandardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNanotrasenStandart
+  - type: Item
+    size: Huge
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
+        Radiation: 0.8
+        Heat: 0.6
+        Cold: 0.8
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: ThermalCloak
+    enabled: false
+
 #region FSF
 - type: entity
   parent: ClothingOuterHardsuitSyndieCommander
