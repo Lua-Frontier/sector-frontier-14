@@ -1,6 +1,5 @@
 - type: vessel
   parent: BaseVessel
-  categories: [ Erp ]
   id: Transporter # By Keli
   name: SMTP Transporter
   description: Спроектированный по заказу лидера важной семьи шаттл, ныне производимый кустарно. Предназначен для перевозки ВИПов.
@@ -9,6 +8,9 @@
   group: Mercenary
   shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Transporter.yml
   guidebookPage: null # Надо будет сделать
+  whitelist:
+  - Luna
+  - Frontier
   class:
   - Mercenary
   - Kitchen
