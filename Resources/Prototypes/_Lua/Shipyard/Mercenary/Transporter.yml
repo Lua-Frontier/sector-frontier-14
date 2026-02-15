@@ -11,14 +11,14 @@
   guidebookPage: null # Надо будет сделать
   class:
   - Mercenary
-  - Civilian
+  - Kitchen
   engine:
   - Bananium
 
 
 - type: gameMap
   id: Transporter
-  mapName: SMTP Transporter
+  mapName: Transporter
   mapPath: Maps/_Lua/Shuttles/Mercenary/Transporter.yml
   minPlayers: 0
   stations:
@@ -33,4 +33,4 @@
         - type: StationJobs
           availableJobs:
             MercenaryBase: [ 0, 0 ]
-#            SecurityOfficer: [ 0, 0 ]
+            SecurityOfficer: [ 0, 0 ]
