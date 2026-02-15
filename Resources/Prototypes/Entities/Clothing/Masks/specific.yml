@@ -29,6 +29,10 @@
   id: ClothingMaskGasVoiceChameleon
   suffix: Voice Mask, Chameleon
   components:
+    - type: Sprite
+      sprite: _ADT/Clothing/Mask/gas_voice.rsi # Lua
+    - type: Clothing
+      sprite: _ADT/Clothing/Mask/gas_voice.rsi # Lua
     - type: VoiceMask
     - type: HideLayerClothing
       slots:

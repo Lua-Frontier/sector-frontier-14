@@ -28,4 +28,10 @@ public sealed partial class AutoShootGunComponent : Component
     /// Frontier - Amount of power this gun needs from an APC in Watts to function.
     /// </summary>
     public float OriginalLoad { get; set; } = 0;
+
+    /// <summary>
+    /// Mono - For how much more time to keep shooting, ignores whether this component is enabled.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan RemainingTime = TimeSpan.FromSeconds(0);
 }

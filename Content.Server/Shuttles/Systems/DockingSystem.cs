@@ -3,6 +3,8 @@ using Content.Server.Doors.Systems;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
+using Content.Server._Lua.Shuttles.Systems;
+using Content.Shared._Lua.Shuttles.Components;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Popups;
@@ -30,6 +32,7 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Lua
+        [Dependency] private readonly MagneticLatchSystem _magLatch = default!; // Lua
 
         private const string DockingJoint = "docking";
 
@@ -429,6 +432,12 @@ namespace Content.Server.Shuttles.Systems
 
             var dock = (dockEnt.Value, dockComp);
 
+            if (TryComp(dockEnt.Value, out MagneticLatchComponent? latch) && latch.JointId != null)
+            {
+                _magLatch.ShutdownLatch(dockEnt.Value);
+                return;
+            }
+
             if (!CanUndock(dock))
             {
                 _popup.PopupCursor(Loc.GetString("shuttle-console-undock-fail"));
@@ -460,6 +469,12 @@ namespace Content.Server.Shuttles.Systems
                 !TryGetEntity(args.TargetDockEntity, out var targetDock) ||
                 !TryComp(ourDock, out DockingComponent? ourDockComp) ||
                 !TryComp(targetDock, out DockingComponent? targetDockComp))
+            {
+                _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
+                return;
+            }
+
+            if (HasComp<MagneticGrabberComponent>(ourDock.Value) || HasComp<MagneticGrabberComponent>(targetDock.Value))
             {
                 _popup.PopupCursor(Loc.GetString("shuttle-console-dock-fail"));
                 return;
@@ -544,6 +559,13 @@ namespace Content.Server.Shuttles.Systems
                 if (!TryGetEntity(dockEntity, out var dockEnt) ||
                     !TryComp(dockEnt, out DockingComponent? dockComp))
                 {
+                    continue;
+                }
+
+                if (TryComp(dockEnt.Value, out MagneticLatchComponent? latch2) && latch2.JointId != null)
+                {
+                    _magLatch.ShutdownLatch(dockEnt.Value);
+                    undockedAny = true;
                     continue;
                 }
 

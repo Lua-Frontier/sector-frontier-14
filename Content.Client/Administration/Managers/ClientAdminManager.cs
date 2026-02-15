@@ -32,9 +32,12 @@ namespace Content.Client.Administration.Managers
             return _adminData?.Active ?? false;
         }
 
-        public bool HasFlag(AdminFlags flag)
+        public bool HasFlag(AdminFlags flag) // Lua deadmin mod
         {
-            return _adminData?.HasFlag(flag) ?? false;
+            if (_adminData == null) return false;
+            var allowedWhileDeadmin = AdminFlags.Adminhelp | AdminFlags.Adminchat | AdminFlags.Ban | AdminFlags.ViewNotes | AdminFlags.Moderator;
+            var includeDeAdmin = !_adminData.Active && (flag & ~allowedWhileDeadmin) == 0;
+            return _adminData.HasFlag(flag, includeDeAdmin: includeDeAdmin);
         }
 
         public bool CanCommand(string cmdName)

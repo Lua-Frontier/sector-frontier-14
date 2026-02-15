@@ -10,7 +10,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
 {
     private const double BlipStaleSeconds = 3.0;
     private static readonly List<(Vector2, float, Color, RadarBlipShape)> EmptyBlipList = new();
-    private static readonly List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> EmptyRawBlipList = new();
+    private static readonly List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> EmptyRawBlipList = new();
     private static readonly List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> EmptyHitscanList = new();
     private TimeSpan _lastRequestTime = TimeSpan.Zero;
     private static readonly TimeSpan RequestThrottle = TimeSpan.FromMilliseconds(250);
@@ -22,7 +22,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     private TimeSpan _lastUpdatedTime;
-    private List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> _blips = new();
+    private List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> _blips = new();
     private List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> _hitscans = new();
     private Vector2 _radarWorldPosition;
 
@@ -88,14 +88,14 @@ public sealed partial class RadarBlipsSystem : EntitySystem
     /// <summary>
     /// Gets the current blips as world positions with their scale, color and shape.
     /// </summary>
-    public List<(NetEntity NetUid, EntityCoordinates Position, float Scale, Color Color, RadarBlipShape Shape)> GetCurrentBlips()
+    public List<(NetEntity NetUid, EntityCoordinates Position, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> GetCurrentBlips()
     {
         // If it's been more than the stale threshold since our last update,
         // the data is considered stale - return an empty list
         if (_timing.CurTime.TotalSeconds - _lastUpdatedTime.TotalSeconds > BlipStaleSeconds)
             return new();
 
-        var result = new List<(NetEntity, EntityCoordinates, float, Color, RadarBlipShape)>(_blips.Count);
+        var result = new List<(NetEntity, EntityCoordinates, float, Color, RadarBlipShape, bool)>(_blips.Count);
 
         foreach (var blip in _blips)
         {
@@ -110,7 +110,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
             if (Vector2.DistanceSquared(_xform.ToMapCoordinates(predictedPos).Position, _radarWorldPosition) > MaxBlipRenderDistance * MaxBlipRenderDistance)
                 continue;
 
-            result.Add((blip.netUid, predictedPos, blip.Scale, blip.Color, blip.Shape));
+            result.Add((blip.netUid, predictedPos, blip.Scale, blip.Color, blip.Shape, blip.SonarEcho));
         }
 
         return result;

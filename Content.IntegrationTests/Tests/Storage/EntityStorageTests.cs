@@ -2,6 +2,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Shared.Damage;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Storage;
 

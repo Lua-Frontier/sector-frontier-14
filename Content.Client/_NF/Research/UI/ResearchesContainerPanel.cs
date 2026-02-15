@@ -4,6 +4,7 @@ using Content.Shared._NF.Research;
 using Content.Shared.Research.Prototypes;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace Content.Client._NF.Research.UI;
 
@@ -12,6 +13,10 @@ namespace Content.Client._NF.Research.UI;
 /// </summary>
 public sealed partial class ResearchesContainerPanel : LayoutContainer
 {
+    private readonly Dictionary<string, FancyResearchConsoleItem> _itemsById = new();
+    private readonly List<(FancyResearchConsoleItem Prereq, FancyResearchConsoleItem Dependent)> _edges = new();
+    private int _cachedChildrenHash;
+
     public ResearchesContainerPanel()
     {
 
@@ -19,65 +24,52 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
     protected override void Draw(DrawingHandleScreen handle)
     {
-        // First draw all children (tech items)
-        base.Draw(handle);
-
-        // Then draw prerequisite lines
         DrawPrerequisiteLines(handle);
+        base.Draw(handle);
     }
 
     private void DrawPrerequisiteLines(DrawingHandleScreen handle)
     {
+        EnsureCache();
+        foreach (var (prereq, dependent) in _edges)
+        {
+            var startCoords = GetTechCenter(prereq);
+            var endCoords = GetTechCenter(dependent);
+
+            var lineColor = GetRefinedConnectionColor(prereq, dependent);
+            DrawCleanLine(handle, startCoords, endCoords, lineColor);
+        }
+    }
+
+    private void EnsureCache()
+    {
+        var hash = 17;
+        foreach (var child in Children)
+            hash = unchecked(hash * 31 + RuntimeHelpers.GetHashCode(child));
+
+        if (hash == _cachedChildrenHash && _itemsById.Count > 0)
+            return;
+
+        _cachedChildrenHash = hash;
+        _itemsById.Clear();
+        _edges.Clear();
+
         foreach (var child in Children)
         {
-            if (child is not FancyResearchConsoleItem dependentItem)
+            if (child is FancyResearchConsoleItem item)
+                _itemsById[item.Prototype.ID] = item;
+        }
+
+        foreach (var dependent in _itemsById.Values)
+        {
+            var prereqs = dependent.Prototype.TechnologyPrerequisites;
+            if (prereqs.Count == 0)
                 continue;
 
-            if (dependentItem.Prototype.TechnologyPrerequisites.Count <= 0)
-                continue;
-
-            var prerequisiteItems = Children.Where(x => x is FancyResearchConsoleItem second &&
-                dependentItem.Prototype.TechnologyPrerequisites.Contains(second.Prototype.ID))
-                .Cast<FancyResearchConsoleItem>().ToList();
-
-            // Special handling for Tree line type - draw all prerequisites as a unified tree
-            if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Tree && prerequisiteItems.Count > 1)
+            foreach (var prereqId in prereqs)
             {
-                var lineColor = GetRefinedConnectionColor(prerequisiteItems.First(), dependentItem);
-                DrawTreeConnections(handle, prerequisiteItems, dependentItem, lineColor);
-            }
-            // Special handling for Spread line type - draw with anti-overlap logic
-            else if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Spread && prerequisiteItems.Count > 1)
-            {
-                var lineColor = GetRefinedConnectionColor(prerequisiteItems.First(), dependentItem);
-                DrawSpreadConnections(handle, prerequisiteItems, dependentItem, lineColor);
-            }
-            else
-            {
-                // Regular individual connections for all other line types
-                foreach (var prerequisiteItem in prerequisiteItems)
-                {
-                    // Calculate connection points - use side connections for Spread type, center for others
-                    Vector2 startCoords, endCoords;
-
-                    if (dependentItem.Prototype.PrerequisiteLineType == PrerequisiteLineType.Spread)
-                    {
-                        // For now, let's try using the same direction for both to see if that fixes the visual issue
-                        startCoords = GetTechSideConnection(prerequisiteItem, dependentItem);  // Exit point from prerequisite
-                        endCoords = GetTechSideConnection(dependentItem, prerequisiteItem);    // Entry point to dependent
-                    }
-                    else
-                    {
-                        startCoords = GetTechCenter(prerequisiteItem);
-                        endCoords = GetTechCenter(dependentItem);
-                    }
-
-                    // Determine line color based on dependent tech's availability
-                    var lineColor = GetRefinedConnectionColor(prerequisiteItem, dependentItem);
-
-                    // Draw connection based on the dependent tech's line type configuration
-                    DrawConfigurableConnection(handle, startCoords, endCoords, lineColor, dependentItem.Prototype.PrerequisiteLineType);
-                }
+                if (_itemsById.TryGetValue(prereqId, out var prereq))
+                    _edges.Add((prereq, dependent));
             }
         }
     }

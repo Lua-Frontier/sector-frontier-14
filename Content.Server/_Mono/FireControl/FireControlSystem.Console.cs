@@ -17,7 +17,6 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoleSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly CrewedShuttleSystem _crewedShuttle = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private bool _completedCheck = false;
@@ -135,14 +134,7 @@ public sealed partial class FireControlSystem : EntitySystem
         FireControlConsoleComponent component,
         ActivatableUIOpenAttemptEvent args)
     {
-        var grid = Transform(uid).GridUid;
-        var uiOpen = grid != null && _crewedShuttle.AnyShuttleConsoleActiveOnGridByPlayer(grid.Value, args.User);
 
-        if (uiOpen)
-        {
-            args.Cancel();
-            _popup.PopupEntity(Loc.GetString("shuttle-console-crewed"), uid, args.User);
-        }
     }
 
     private void UnregisterConsole(EntityUid console, FireControlConsoleComponent? component = null)

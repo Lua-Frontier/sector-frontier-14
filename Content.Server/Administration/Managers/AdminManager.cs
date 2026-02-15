@@ -37,6 +37,13 @@ namespace Content.Server.Administration.Managers
 
         private readonly Dictionary<ICommonSession, AdminReg> _admins = new();
         private readonly HashSet<NetUserId> _promotedPlayers = new();
+        private const AdminFlags DeadminAllowedFlags = AdminFlags.Adminhelp | AdminFlags.Adminchat | AdminFlags.Ban | AdminFlags.ViewNotes | AdminFlags.Moderator; // Lua deadmin mod
+
+        private static bool HasFlagDeadminAware(AdminData data, AdminFlags flag) // Lua deadmin mod
+        {
+            var includeDeAdmin = !data.Active && (flag & ~DeadminAllowedFlags) == 0;
+            return data.HasFlag(flag, includeDeAdmin: includeDeAdmin);
+        }
 
         public event Action<AdminPermsChangedEventArgs>? OnPermsChanged;
 
@@ -333,7 +340,7 @@ namespace Content.Server.Administration.Managers
                 msg.Admin = adminData.Data;
 
                 commands.AddRange(_commandPermissions.AdminCommands
-                    .Where(p => p.Value.Any(f => adminData.Data.HasFlag(f)))
+                    .Where(p => p.Value.Any(f => HasFlagDeadminAware(adminData.Data, f))) // Lua deadmin mod
                     .Select(p => p.Key));
             }
 
@@ -546,7 +553,7 @@ namespace Content.Server.Administration.Managers
                 return false;
             }
 
-            var data = GetAdminData(session);
+            var data = GetAdminData(session, includeDeAdmin: true); // Lua deadmin mod
             if (data == null)
             {
                 // Player isn't an admin.
@@ -555,7 +562,7 @@ namespace Content.Server.Administration.Managers
 
             foreach (var flagReq in flagsReq)
             {
-                if (data.HasFlag(flagReq))
+                if (HasFlagDeadminAware(data, flagReq)) // Lua deadmin mod
                 {
                     return true;
                 }
@@ -587,7 +594,7 @@ namespace Content.Server.Administration.Managers
                 return true;
             }
 
-            var data = GetAdminData(user);
+            var data = GetAdminData(user, includeDeAdmin: true); // Lua deadmin mod
             if (data == null)
             {
                 // Player isn't an admin.
@@ -597,7 +604,7 @@ namespace Content.Server.Administration.Managers
 
             foreach (var flag in flags)
             {
-                if (data.HasFlag(flag))
+                if (HasFlagDeadminAware(data, flag)) // Lua deadmin mod
                 {
                     error = null;
                     return true;

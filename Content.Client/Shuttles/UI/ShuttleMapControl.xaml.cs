@@ -34,6 +34,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private readonly IFFDecryptionSystem _iffDecrypt; // Lua Decrypt mod
 
     protected override bool Draggable => true;
+    protected override bool AllowResize => true; // Lua
+    protected override bool ScaleWithControlSize => true; // Lua
 
     public bool ShowBeacons = true;
     public MapId ViewingMap = MapId.Nullspace;

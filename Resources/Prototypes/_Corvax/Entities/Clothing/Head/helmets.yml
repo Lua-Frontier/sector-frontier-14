@@ -8,3 +8,14 @@
       sprite: Corvax/Clothing/Head/Helmets/security_medic.rsi
     - type: Clothing
       sprite: Corvax/Clothing/Head/Helmets/security_medic.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetSecurityRed
+  name: security helmet
+  description: Standard combat helmet for security personnel. Provides adequate tear resistance. Keep your head down.
+  components:
+    - type: Sprite
+      sprite: _Corvax/Clothing/Head/Helmets/security.rsi
+    - type: Clothing
+      sprite: _Corvax/Clothing/Head/Helmets/security.rsi

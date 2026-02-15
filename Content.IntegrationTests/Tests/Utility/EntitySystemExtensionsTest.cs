@@ -1,8 +1,9 @@
-﻿#nullable enable
+#nullable enable
 using Content.Shared.Physics;
 using Content.Shared.Spawning;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Physics.Systems;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Utility
 {

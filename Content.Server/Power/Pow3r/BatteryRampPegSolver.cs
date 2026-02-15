@@ -13,6 +13,12 @@ namespace Content.Server.Power.Pow3r
         private UpdateNetworkJob _networkJob;
         private bool _disableParallel;
 
+        private readonly List<NodeId> _dirtyLoads = new();
+        private readonly List<NodeId> _dirtyBatteries = new();
+
+        public IReadOnlyList<NodeId> DirtyLoads => _dirtyLoads;
+        public IReadOnlyList<NodeId> DirtyBatteries => _dirtyBatteries;
+
         public BatteryRampPegSolver(bool disableParallel = false)
         {
             _disableParallel = disableParallel;
@@ -36,6 +42,9 @@ namespace Content.Server.Power.Pow3r
 
         public void Tick(float frameTime, PowerState state, IParallelManager parallel)
         {
+            _dirtyLoads.Clear();
+            _dirtyBatteries.Clear();
+
             ClearLoadsAndSupplies(state);
 
             state.GroupedNets ??= GroupByNetworkDepth(state);
@@ -79,6 +88,10 @@ namespace Content.Server.Power.Pow3r
             {
                 if (load.Paused)
                     continue;
+
+                load.LastReceivingPower = load.ReceivingPower;
+
+                if (load.LastReceivingPower != 0f) _dirtyLoads.Add(load.Id);
 
                 load.ReceivingPower = 0;
             }
@@ -209,7 +222,11 @@ namespace Content.Server.Power.Pow3r
                 if (!load.Enabled || load.DesiredPower == 0 || load.Paused)
                     continue;
 
-                load.ReceivingPower = load.DesiredPower * supplyRatio;
+                var newReceiving = load.DesiredPower * supplyRatio;
+                if (!MathHelper.CloseToPercent(load.LastReceivingPower, newReceiving))
+                    _dirtyLoads.Add(loadId);
+
+                load.ReceivingPower = newReceiving;
             }
 
             // Distribute supply to batteries
@@ -316,6 +333,11 @@ namespace Content.Server.Power.Pow3r
 
                 battery.SupplyingMarked = false;
                 battery.LoadingMarked = false;
+
+                if (!MathHelper.CloseToPercent(battery.LastCurrentSupply, battery.CurrentSupply))
+                    _dirtyBatteries.Add(battery.Id);
+
+                battery.LastCurrentSupply = battery.CurrentSupply;
             }
         }
 

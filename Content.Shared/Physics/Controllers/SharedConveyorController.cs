@@ -123,6 +123,8 @@ public abstract class SharedConveyorController : VirtualController
         if (!args.OtherFixture.Hard || args.OtherBody.BodyType == BodyType.Static)
             return;
 
+        if (!EntityManager.EntityExists(otherUid) || TerminatingOrDeleted(otherUid) || EntityManager.IsQueuedForDeletion(otherUid)) return; // Lua anti exception
+
         EnsureComp<ConveyedComponent>(otherUid);
     }
 

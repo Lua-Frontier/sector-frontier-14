@@ -22,6 +22,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Prometheus;
 
 namespace Content.Server.NPC.Pathfinding
 {
@@ -31,6 +32,18 @@ namespace Content.Server.NPC.Pathfinding
     /// </summary>
     public sealed partial class PathfindingSystem : SharedPathfindingSystem
     {
+        private static readonly Gauge PathRequestsPendingGauge = Metrics.CreateGauge(
+            "pathfinding_requests_pending",
+            "Number of pending pathfinding requests.");
+
+        private static readonly Gauge PathfindingPortalsGauge = Metrics.CreateGauge(
+            "pathfinding_portals_count",
+            "Number of active pathfinding portals.");
+
+        private static readonly Gauge PathfindingDebugSubscribersGauge = Metrics.CreateGauge(
+            "pathfinding_debug_subscribers",
+            "Number of sessions subscribed to pathfinding debug.");
+
         /*
          * I have spent many hours looking at what pathfinding to use
          * Ideally we would be able to use something grid based with hierarchy, but the problem is
@@ -64,6 +77,8 @@ namespace Content.Server.NPC.Pathfinding
         /// How many paths we can process in a single tick.
         /// </summary>
         private const int PathTickLimit = 256;
+        private const int MaxPendingRequests = 8192;
+        private static readonly TimeSpan MaxRequestAge = TimeSpan.FromMinutes(5);
 
         private int _portalIndex;
         private readonly Dictionary<int, PathPortal> _portals = new();
@@ -104,6 +119,13 @@ namespace Content.Server.NPC.Pathfinding
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+            PathRequestsPendingGauge.Set(_pathRequests.Count);
+            PathfindingPortalsGauge.Set(_portals.Count);
+            PathfindingDebugSubscribersGauge.Set(_subscribedSessions.Count);
+
+            PruneStaleRequests();
+
             var options = new ParallelOptions()
             {
                 MaxDegreeOfParallelism = _parallel.ParallelProcessCount,
@@ -181,6 +203,41 @@ namespace Content.Server.NPC.Pathfinding
             }
 
             ArrayPool<PathResult>.Shared.Return(results);
+        }
+
+        private void PruneStaleRequests()
+        {
+            if (_pathRequests.Count == 0)
+                return;
+
+            var now = DateTime.UtcNow;
+
+            for (var i = _pathRequests.Count - 1; i >= 0; i--)
+            {
+                var req = _pathRequests[i];
+
+                if (req.Task.IsCanceled || req.Task.IsCompleted)
+                {
+                    _pathRequests.RemoveAt(i);
+                    req.ClearState();
+                    continue;
+                }
+
+                if (_pathRequests.Count > MaxPendingRequests && i >= MaxPendingRequests)
+                {
+                    _pathRequests.RemoveAt(i);
+                    req.Tcs.TrySetResult(PathResult.NoPath);
+                    req.ClearState();
+                    continue;
+                }
+
+                if (now - req.EnqueuedAtUtc > MaxRequestAge)
+                {
+                    _pathRequests.RemoveAt(i);
+                    req.Tcs.TrySetResult(PathResult.NoPath);
+                    req.ClearState();
+                }
+            }
         }
 
         /// <summary>
@@ -485,11 +542,21 @@ namespace Content.Server.NPC.Pathfinding
             {
                 lock (_pathRequests)
                 {
+                    if (_pathRequests.Count >= MaxPendingRequests)
+                    {
+                        request.Tcs.TrySetResult(PathResult.NoPath);
+                        return new PathResultEvent(PathResult.NoPath, new List<PathPoly>());
+                    }
                     _pathRequests.Add(request);
                 }
             }
             else
             {
+                if (_pathRequests.Count >= MaxPendingRequests)
+                {
+                    request.Tcs.TrySetResult(PathResult.NoPath);
+                    return new PathResultEvent(PathResult.NoPath, new List<PathPoly>());
+                }
                 _pathRequests.Add(request);
             }
 

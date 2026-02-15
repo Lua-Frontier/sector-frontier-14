@@ -210,6 +210,7 @@
     shipType: Energy
   - type: ShipGunClass
     shipClass: Medium
+    processingPowerCost: 45
 
  # M25
 
@@ -499,6 +500,7 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: ShipGunClass
     shipClass: Heavy
+    processingPowerCost: 42
   - type: HitscanBatteryAmmoProvider
     proto: ApolloLaser
     fireCost: 500

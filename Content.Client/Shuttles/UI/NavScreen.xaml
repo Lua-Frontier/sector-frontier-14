@@ -1,10 +1,99 @@
 <controls:BoxContainer Visible="False"
               HorizontalExpand="True"
+              VerticalExpand="True"
               xmlns:controls="https://spacestation14.io"
               xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
               xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+
+                <controls:BoxContainer Name="WeaponsPanel"
+                                       Visible="True"
+                                       Orientation="Vertical"
+                                       MinWidth="280"
+                                       MaxWidth="280"
+                                       Margin="5 0 5 5">
+                    <controls:PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                        <controls:PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="3" BorderColor="#35434d" BackgroundColor="#696969"/>
+                        </controls:PanelContainer.PanelOverride>
+                        <controls:BoxContainer Orientation="Vertical" MinWidth="270" MaxWidth="270" HorizontalExpand="False" Margin="0 2.5 0 2.5">
+                            <controls:PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                                <controls:PanelContainer.PanelOverride>
+                                    <graphics:StyleBoxFlat BorderThickness="3" BorderColor="#1f1f1f" BackgroundColor="#1f1f1f"/>
+                                </controls:PanelContainer.PanelOverride>
+                                <controls:BoxContainer Orientation="Vertical" MinWidth="265" MaxWidth="265" HorizontalExpand="False">
+                                    <controls1:StripeBack MinSize="48 48">
+                                        <controls:Label Name="ServerStatus" Text="{controls:Loc 'gunnery-window-disconnected'}"
+                                                        StyleClasses="LabelKeyText" HorizontalAlignment="Center"/>
+                                    </controls1:StripeBack>
+                                    <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                        <controls:PanelContainer.PanelOverride>
+                                            <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
+                                        </controls:PanelContainer.PanelOverride>
+                                        <controls:Button Name="RefreshButton" Access="Public" Text="{controls:Loc admin-logs-refresh}"
+                                                         StyleClasses="ButtonSquare" Margin="2 2 2 2"/>
+                                    </controls:PanelContainer>
+                                    <controls1:StripeBack MinSize="48 48">
+                                        <controls:Label Name="WeaponsLabel" Text="{controls:Loc 'gunnery-guns'}" HorizontalAlignment="Center" StyleClasses="StatusFieldTitle"/>
+                                    </controls1:StripeBack>
+                                    <controls:BoxContainer Orientation="Horizontal" Margin="0 0">
+                                        <controls:Button Name="SelectAllButton" Access="Public" Text="{controls:Loc 'gunnery-select-all'}"
+                                                         StyleClasses="OpenRight" HorizontalExpand="True"/>
+                                        <controls:Button Name="UnselectAllButton" Access="Public" Text="{controls:Loc 'gunnery-unselect-all'}"
+                                                         StyleClasses="OpenLeft" HorizontalExpand="True"/>
+                                    </controls:BoxContainer>
+                                    <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                        <controls:PanelContainer.PanelOverride>
+                                            <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#262626" BackgroundColor="#111111"/>
+                                        </controls:PanelContainer.PanelOverride>
+                                        <controls:BoxContainer Orientation="Vertical" MinWidth="240" MaxWidth="240" HorizontalExpand="False" Margin="2 3 2 3">
+                                            <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                                <controls:PanelContainer.PanelOverride>
+                                                    <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
+                                                </controls:PanelContainer.PanelOverride>
+                                                <controls:Button Name="SelectBallisticButton" Access="Public" Text="Ballistics"
+                                                                 StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
+                                            </controls:PanelContainer>
+                                            <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                                <controls:PanelContainer.PanelOverride>
+                                                    <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
+                                                </controls:PanelContainer.PanelOverride>
+                                                <controls:Button Name="SelectEnergyButton" Access="Public" Text="Energy"
+                                                                 StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
+                                            </controls:PanelContainer>
+                                            <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                                <controls:PanelContainer.PanelOverride>
+                                                    <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
+                                                </controls:PanelContainer.PanelOverride>
+                                                <controls:Button Name="SelectMissileButton" Access="Public" Text="Missiles"
+                                                                 StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
+                                            </controls:PanelContainer>
+                                            <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                                                <controls:PanelContainer.PanelOverride>
+                                                    <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
+                                                </controls:PanelContainer.PanelOverride>
+                                                <controls:Button Name="SelectMiningButton" Access="Public" Text="Mining"
+                                                                 StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
+                                            </controls:PanelContainer>
+                                        </controls:BoxContainer>
+                                    </controls:PanelContainer>
+                                    <controls:PanelContainer VerticalExpand="True" Margin="0 3 0 3">
+                                        <controls:PanelContainer.PanelOverride>
+                                            <graphics:StyleBoxFlat BackgroundColor="#111111"/>
+                                        </controls:PanelContainer.PanelOverride>
+                                        <controls:ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                                            <controls:BoxContainer Name="ControllablesBox" Orientation="Vertical"
+                                                                   HorizontalExpand="True" StyleClasses="transparentItemList"/>
+                                        </controls:ScrollContainer>
+                                    </controls:PanelContainer>
+                                </controls:BoxContainer>
+                            </controls:PanelContainer>
+                        </controls:BoxContainer>
+                    </controls:PanelContainer>
+                </controls:BoxContainer>
+
                 <ui:ShuttleNavControl Name="NavRadar"
+                                 Access="Public"
                                  MouseFilter="Stop"
                                  VerticalAlignment="Stretch"
                                  VerticalExpand="True"

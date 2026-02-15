@@ -3,6 +3,7 @@ using Content.Shared.Inventory;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Map;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests
 {

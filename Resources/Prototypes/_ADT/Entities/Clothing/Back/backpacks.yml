@@ -47,3 +47,12 @@
   components:
   - type: Sprite
     sprite: ADT/Clothing/Back/heart_backpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ADTClothingBackpackCCC
+  name: centcom consultant backpack
+  description: Backpack for storage. Just looking at it makes you feel pain in the area of your wallet.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Back/Backpacks/centcom_backpack.rsi

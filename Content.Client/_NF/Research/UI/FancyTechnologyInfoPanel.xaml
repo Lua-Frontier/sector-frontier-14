@@ -2,7 +2,7 @@
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls;assembly=Content.Client"
          Margin="5"
-         MinWidth="350"
+         MinWidth="300"
          VerticalExpand="True"
          HorizontalExpand="True">
     <BoxContainer Orientation="Vertical"
@@ -31,9 +31,10 @@
                 <Control HorizontalExpand="True"
                          SizeFlagsStretchRatio="2"/>
             </BoxContainer>
-            <Label Name="TechnologyNameLabel"
-                    StyleClasses="LabelKeyText"
-                    HorizontalExpand="True"/>
+            <RichTextLabel Name="TechnologyNameLabel"
+                           StyleClasses="LabelKeyText"
+                           HorizontalExpand="True"
+                           MaxWidth="290"/>
             <RichTextLabel Name="TechnologyCostLabel"
                     HorizontalExpand="True"/>
             <Button Name="ResearchButton"

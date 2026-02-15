@@ -1,3 +1,17 @@
+# Frontier-specific contraband targets.
+# If you need multiple currency types, specify them in the actual object instead of inheriting multiple parents here.
+
+- type: entity # Mono
+  id: BaseFactionGearT0
+  abstract: true
+  components:
+  - type: Contraband
+    hideCarryStatus: true
+    severity: FactionGear0
+    turnInValues:
+      FrontierUplinkCoin: 0
+      Doubloon: 0
+
 - type: entity
   parent: BaseC2ContrabandUnredeemable
   id: BaseC2ContrabandMercenary
@@ -41,3 +55,37 @@
   id: BaseCargoContraband
   parent: BaseC1Contraband
   abstract: true
+
+#region non-faction
+
+- type: entity
+  parent: BaseFactionGearT0
+  id: BaseFactionGearOtherFactionT0
+  abstract: true
+  components:
+  - type: Contraband
+    severity: OtherFactionGear0
+
+- type: entity
+  parent: BaseFactionGearOtherFactionT0
+  id: BaseFactionGearOtherFactionT2
+  abstract: true
+  components:
+  - type: Contraband
+    severity: OtherFactionGear2
+    turnInValues:
+      FrontierUplinkCoin: 15
+      Doubloon: 15
+
+- type: entity
+  parent: BaseFactionGearOtherFactionT0
+  id: BaseFactionGearOtherFactionT3
+  abstract: true
+  components:
+  - type: Contraband
+    severity: OtherFactionGear3
+    turnInValues:
+      FrontierUplinkCoin: 45
+      Doubloon: 45
+
+#endregion

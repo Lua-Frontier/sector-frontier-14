@@ -52,3 +52,19 @@ job-description-zookeeper = Устройте весёлое шоу с милым
 # CentComm
 
 job-description-centcom-officer = Вам действительно нужно описание вашей работы?
+
+job-description-station-ai = Управляйте системами станции, следите за экипажем и соблюдайте законы ИИ.
+job-description-deathsquad = Элитный отряд ЦК. Устраняйте угрозы без промедления и по приказу командования.
+job-description-cburn = Специалист CBURN по биоугрозам. Локализуйте и устраняйте заражения.
+job-description-iaa = Агент внутренних дел. Следите за соблюдением процедур и оформляйте отчеты.
+job-description-centcom-administrator = Администратор ЦК. Координируйте работу и соблюдение процедур.
+job-description-senior-administrator = Руководите административным персоналом, помогайте гостям и следите за порядком.
+job-description-senior-salvagespec = Обучайте новых утилизаторов и координируйте рейды на обломки.
+job-description-surgeon = Проводите операции и лечите тяжелые травмы.
+job-description-cburnleader = Командуйте отрядом CBURN и руководите зачисткой биоугроз.
+job-description-pathologist = Исследуйте причины смерти и анализируйте образцы.
+job-description-borg-security = Киборг безопасности. Помогайте офицерам и защищайте станцию.
+job-description-magistrat = Ведите судебные процессы и контролируйте законность решений.
+job-description-cburnagent = Боец CBURN, устраняйте биоугрозы и заражённые объекты.
+job-description-security-pilot = Пилотируйте корабль службы безопасности, обеспечивайте поддержку операций и быструю эвакуацию.
+job-description-clown-sponsor = Спонсируйте клоуна, устраивайте шоу и поддерживайте боевой дух.

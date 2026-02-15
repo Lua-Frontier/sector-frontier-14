@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/17/2025 12:22:03
-  entityCount: 414
+  time: 02/02/2026 12:10:15
+  entityCount: 411
 maps: []
 grids:
 - 1
@@ -19,6 +19,7 @@ tilemap:
   5: FloorReinforced
   8: HullReinforcedCornerSE
   9: HullReinforcedCornerSW
+  2: Lattice
   10: LatticeCornerNE
   11: LatticeCornerNW
   15: LatticeCornerSE
@@ -28,7 +29,6 @@ tilemap:
   13: PlatingCornerNW
   12: PlatingCornerSE
   7: PlatingCornerSW
-  2: ShieldLattice
   3: TrainLattice
 entities:
 - proto: ""
@@ -76,7 +76,6 @@ entities:
     - type: SpreaderGrid
     - type: Shuttle
       dampingModifier: 0.45
-    - type: AiShuttleBrain
     - type: ImplicitRoof
     - type: GridPathfinding
     - type: Gravity
@@ -1214,33 +1213,12 @@ entities:
     - type: Transform
       pos: 5.5,-8.5
       parent: 1
-- proto: ComputerGunneryConsole
+- proto: ClothingBackpackDroneLootT21
   entities:
   - uid: 200
     components:
     - type: Transform
-      pos: 5.5,-7.5
-      parent: 1
-- proto: ComputerIFF
-  entities:
-  - uid: 201
-    components:
-    - type: Transform
-      pos: 3.5,-7.5
-      parent: 1
-- proto: ComputerShuttle
-  entities:
-  - uid: 202
-    components:
-    - type: Transform
-      pos: 4.5,-7.5
-      parent: 1
-- proto: FakeAiPlayerStation
-  entities:
-  - uid: 203
-    components:
-    - type: Transform
-      pos: 4.5,-9.5
+      pos: 4.5042677,-8.526006
       parent: 1
 - proto: GeneratorBasic15kW
   entities:
@@ -1412,13 +1390,6 @@ entities:
     - type: Transform
       pos: 4.5,-12.5
       parent: 1
-- proto: NFHolopadShip
-  entities:
-  - uid: 231
-    components:
-    - type: Transform
-      pos: 4.5,-8.5
-      parent: 1
 - proto: PoweredlightBlue
   entities:
   - uid: 232
@@ -1526,6 +1497,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,-3.5
+      parent: 1
+- proto: SpawnMobDroneAiLance
+  entities:
+  - uid: 201
+    components:
+    - type: Transform
+      pos: 4.5,-9.5
       parent: 1
 - proto: SubstationBasic
   entities:

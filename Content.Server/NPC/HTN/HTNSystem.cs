@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using Content.Server.Administration.Managers;
@@ -12,11 +13,9 @@ using Content.Shared.NPC;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.Worldgen; // Frontier
-using Content.Server.Worldgen.Components; // Frontier
-using Content.Server.Worldgen.Systems; // Frontier
-using Robust.Server.GameObjects; // Frontier
+using Robust.Shared.Map;
 
 namespace Content.Server.NPC.HTN;
 
@@ -26,12 +25,7 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
-    // Frontier
-    [Dependency] private readonly WorldControllerSystem _world = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    private EntityQuery<WorldControllerComponent> _mapQuery;
-    private EntityQuery<LoadedChunkComponent> _loadedQuery;
-    // Frontier
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -41,8 +35,6 @@ public sealed class HTNSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _mapQuery = GetEntityQuery<WorldControllerComponent>(); // Frontier
-        _loadedQuery = GetEntityQuery<LoadedChunkComponent>(); // Frontier
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
@@ -214,9 +206,6 @@ public sealed class HTNSystem : EntitySystem
             if (!comp.Enabled)
                 continue;
 
-            if (!IsNPCActive(uid))  // Frontier
-                continue; // Frontier
-
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
@@ -252,7 +241,7 @@ public sealed class HTNSystem : EntitySystem
 
                 if (comp.Plan == null || newPlanBetter)
                 {
-                    comp.CheckServices = false;
+                    comp.ServiceCooldowns.Clear();
 
                     if (comp.Plan != null)
                     {
@@ -293,7 +282,6 @@ public sealed class HTNSystem : EntitySystem
                 // Keeping old plan
                 else
                 {
-                    comp.CheckServices = true;
                 }
 
                 comp.PlanningJob = null;
@@ -309,20 +297,6 @@ public sealed class HTNSystem : EntitySystem
         // otherwise it lets us know where we left off.
         count = 0;
     }
-
-    // Frontier: skip handling entities on unloaded chunks
-    private bool IsNPCActive(EntityUid entity)
-    {
-        var transform = Transform(entity);
-
-        if (!_mapQuery.TryGetComponent(transform.MapUid, out var worldComponent))
-            return true;
-
-        var chunk = _world.GetOrCreateChunk(WorldGen.WorldToChunkCoords(_transform.GetWorldPosition(transform)).Floored(), transform.MapUid.Value, worldComponent);
-
-        return _loadedQuery.TryGetComponent(chunk, out var loaded) && loaded.Loaders is not null;
-    }
-    // End Frontier: skip handling entities on unloaded chunks
 
     private void AppendDebugText(HTNTask task, StringBuilder text, List<int> planBtr, List<int> btr, ref int level)
     {
@@ -386,6 +360,7 @@ public sealed class HTNSystem : EntitySystem
 
         // Run the existing plan still
         var status = HTNOperatorStatus.Finished;
+        var servicesTicked = false;
 
         // Continuously run operators until we can't anymore.
         while (status != HTNOperatorStatus.Continuing && component.Plan != null)
@@ -395,16 +370,44 @@ public sealed class HTNSystem : EntitySystem
             var currentTask = component.Plan.CurrentTask;
             var blackboard = component.Blackboard;
 
-            // Service still on cooldown.
-            if (component.CheckServices)
+            if (!servicesTicked && component.CheckServices && currentTask.Services.Count > 0)
             {
                 foreach (var service in currentTask.Services)
                 {
-                    var serviceResult = _utility.GetEntities(blackboard, service.Prototype);
-                    blackboard.SetValue(service.Key, serviceResult.GetHighest());
-                }
+                    if (string.IsNullOrEmpty(service.ID))
+                        continue;
 
-                component.CheckServices = false;
+                    component.ServiceCooldowns.TryGetValue(service.ID, out var remaining);
+                    remaining -= frameTime;
+
+                    if (remaining > 0f)
+                    {
+                        component.ServiceCooldowns[service.ID] = remaining;
+                        continue;
+                    }
+
+                    var serviceResult = _utility.GetEntities(blackboard, service.Prototype);
+                    var res = serviceResult.GetHighest();
+
+                    if (res.IsValid())
+                    {
+                        blackboard.SetValue(service.Key, res);
+                        if (service.CoordinatesKey != null)
+                            blackboard.SetValue(service.CoordinatesKey, new EntityCoordinates(res, Vector2.Zero));
+                    }
+                    else
+                    {
+                        blackboard.Remove<EntityUid>(service.Key);
+                        if (service.CoordinatesKey != null)
+                            blackboard.Remove<EntityCoordinates>(service.CoordinatesKey);
+                    }
+
+                    var next = service.MinCooldown >= service.MaxCooldown
+                        ? service.MinCooldown
+                        : _random.NextFloat(service.MinCooldown, service.MaxCooldown);
+                    component.ServiceCooldowns[service.ID] = MathF.Max(0f, next);
+                }
+                servicesTicked = true;
             }
 
             status = currentOperator.Update(blackboard, frameTime);
@@ -451,7 +454,9 @@ public sealed class HTNSystem : EntitySystem
 
     public void ShutdownPlan(HTNComponent component)
     {
-        DebugTools.Assert(component.Plan != null);
+        if (component.Plan == null)
+            return;
+
         var blackboard = component.Blackboard;
 
         foreach (var task in component.Plan.Tasks)

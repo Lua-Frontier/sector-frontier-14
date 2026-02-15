@@ -6,6 +6,7 @@ namespace Content.Server._Lua.ShipProtection;
 public sealed class ShipProtectionSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    private readonly List<EntityUid> _toRemove = new();
 
     public override void Initialize()
     { base.Initialize(); }
@@ -15,10 +16,10 @@ public sealed class ShipProtectionSystem : EntitySystem
         base.Update(frameTime);
         var query = EntityQueryEnumerator<ShipProtectionComponent>();
         var currentTime = _timing.CurTime;
-        var toRemove = new List<EntityUid>();
+        _toRemove.Clear();
         while (query.MoveNext(out var uid, out var component))
-        { if (currentTime >= component.ProtectionExpiresAt) { toRemove.Add(uid); } }
-        foreach (var uid in toRemove)
+        { if (currentTime >= component.ProtectionExpiresAt) { _toRemove.Add(uid); } }
+        foreach (var uid in _toRemove)
         { RemComp<ShipProtectionComponent>(uid); }
     }
 

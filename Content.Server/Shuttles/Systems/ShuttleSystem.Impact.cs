@@ -115,6 +115,12 @@ public sealed partial class ShuttleSystem
             !_gridQuery.TryComp(args.OtherEntity, out var otherGrid)
         )
             return;
+        var handledCollision = false;
+        HandleShuttleCollision(ref handledCollision, uid, component, ref args, ourGrid, otherGrid);
+        if (handledCollision) return;
+        var suppressImpact = false;
+        SuppressImpactDamage(ref suppressImpact, uid, component, ref args);
+        if (suppressImpact) return;
 
         var ourBody = args.OurBody;
         var otherBody = args.OtherBody;
@@ -208,6 +214,9 @@ public sealed partial class ShuttleSystem
             DoGridImpact((args.OtherEntity, otherGrid, otherXform, otherBody), args.OtherFixture, inelasticVel, otherVelocity, otherTile, otherTiles, toOtherEnergy);
         }
     }
+
+    partial void SuppressImpactDamage(ref bool suppress, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args);
+    partial void HandleShuttleCollision(ref bool handled, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args, MapGridComponent ourGrid, MapGridComponent otherGrid);
 
     private void DoGridImpact(Entity<MapGridComponent, TransformComponent, PhysicsComponent> ent,
                               Fixture fix,

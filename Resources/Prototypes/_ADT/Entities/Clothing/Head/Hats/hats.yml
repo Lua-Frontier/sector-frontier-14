@@ -49,9 +49,33 @@
   parent: ClothingHeadBase
   id: ADTClothingHeadHatsInvestigatorCap
   name: investigator cap
-  description: Glory to NanoTrasen!
+  description: Glory to NanoTrasen! # GLORY TO THE GORK AND MORK!
   components:
   - type: Sprite
     sprite: ADT/Clothing/Head/Hats/investigator_cap.rsi
   - type: Clothing
     sprite: ADT/Clothing/Head/Hats/investigator_cap.rsi
+
+# Капитанская треуголка
+- type: entity
+  parent: ClothingHeadBase
+  id: ADTClothingHeadHatsCaptainCockedHat
+  name: captain's cocked hat
+  description: There once was a ship that put to sea...
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Head/Hats/captain_cocked_hat.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Head/Hats/captain_cocked_hat.rsi
+
+# Консультант Центрального Командования
+- type: entity
+  parent: ClothingHeadBase
+  id: ADTClothingHeadHatsCapCCC
+  name: centcom consultant cap
+  description: There is no such law as 'legal vulpkanin hunt'.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Head/Hats/ccc_cap.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Head/Hats/ccc_cap.rsi

@@ -200,3 +200,49 @@
     sprite: ADT/Clothing/Uniforms/Jumpskirt/yuna_black_dress.rsi
   - type: Clothing
     sprite: ADT/Clothing/Uniforms/Jumpskirt/yuna_black_dress.rsi
+
+# КЦК
+- type: entity
+  parent: ClothingUniformBase
+  id: ADTClothingUniformJumpskirtCCC
+  name: centcom consultant jumpskirt
+  description: I am the manifestation of word 'Significance'.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/ccc_suit.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/ccc_suit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ADTClothingUniformJumpskirtFormalCCC
+  name: centcom consultant formal jumpskirt
+  description: Sitting here, dreaming about personal Adjutant...
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/ccc_formal.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/ccc_formal.rsi
+
+# ГП
+- type: entity
+  parent: ClothingUniformBase
+  id: ADTClothingUniformJumpskirtHoPTurtlneck
+  name: head of personnel turtleneck skirt
+  description: There are mistakes in your document, sir.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/jumpskirt_hop.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/jumpskirt_hop.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ADTClothingUniformJumpskirtFormalHop
+  name: head of personnel formal jumpskirt
+  description: There are mistakes in your behaviour, peasant.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/jumpskirt_alt_hop.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Uniforms/Jumpskirt/jumpskirt_alt_hop.rsi

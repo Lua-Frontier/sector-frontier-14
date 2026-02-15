@@ -3,7 +3,7 @@
 
 - type: entity
   name: skewer
-  parent: BaseItem
+  parent: [BaseItem, FoodRotting]
   id: FoodKebabSkewer
   description: A thin rod of metal used to skewer just about anything and cook it.
   components:
