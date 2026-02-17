@@ -15,10 +15,11 @@ using Robust.Shared.Timing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Players.PlayTimeTracking;
+using Robust.Shared.Enums;
 
 namespace Content.Server._Lua.ChatFilter;
 
-public sealed class ChatFilterManager
+public sealed class ChatFilterManager : IPostInjectInit
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -35,6 +36,14 @@ public sealed class ChatFilterManager
     private static readonly TimeSpan ExperiencedThreshold = TimeSpan.FromHours(40);
     private static readonly Regex SingleWordRegex = new(@"^(\w+)$", RegexOptions.Compiled);
     private static readonly Regex WordBoundaryRegex = new(@"\b(\w+)\b", RegexOptions.Compiled);
+
+    void IPostInjectInit.PostInject()
+    { _playerManager.PlayerStatusChanged += OnPlayerStatusChanged; }
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    {
+        if (e.NewStatus != SessionStatus.Disconnected) return;
+        _messageHistory.Remove(e.Session.UserId);
+    }
 
     private static readonly Dictionary<string, string> WordReplacements = new()
     {
@@ -713,8 +722,14 @@ public sealed class ChatFilterManager
         history.Enqueue((normalized, currentTime));
         while (history.Count > MessageHistorySize) history.Dequeue();
         if (history.Count < MaxRepeatedMessages) return false;
-        var lastMessages = history.TakeLast(MaxRepeatedMessages).ToList();
-        return lastMessages.All(m => m.Message == normalized);
+        string? a = null, b = null, c = null;
+        foreach (var entry in history)
+        {
+            a = b;
+            b = c;
+            c = entry.Message;
+        }
+        return a == normalized && b == normalized && c == normalized;
     }
 
     private void LogAndNotify(EntityUid source, string message)

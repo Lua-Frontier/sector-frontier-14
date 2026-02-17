@@ -17,6 +17,8 @@ public sealed partial class ShuttleSystem
 {
     private const string MagneticLatchJointPrefix = "magnetic-latch-";
     private const int LatchSearchRadiusTiles = 1;
+    private const float MagneticLatchFrequencyHz = 12f;
+    private const float MagneticLatchDampingRatio = 1.0f;
 
     partial void HandleShuttleCollision(ref bool handled, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args, MapGridComponent ourGrid, MapGridComponent otherGrid)
     {
@@ -72,12 +74,29 @@ public sealed partial class ShuttleSystem
             if (magnetUid == null || magnetXform == null) continue;
             var jointId = MagneticLatchJointPrefix + magnetUid.Value;
             if (!_physicsQuery.TryGetComponent(args.OurEntity, out var ourPhys) || !_physicsQuery.TryGetComponent(args.OtherEntity, out var otherPhys)) { return; }
-            SharedJointSystem.LinearStiffness(8f, 1.0f, ourPhys.Mass, otherPhys.Mass, out var stiffness, out var damping);
+            var latch = EnsureComp<MagneticLatchComponent>(magnetUid.Value);
+            var magnetWorldPos = _transform.GetWorldPosition(magnetXform);
+            var otherAnchor = _transform.ToCoordinates((args.OtherEntity, otherXform), new MapCoordinates(magnetWorldPos, otherXform.MapID)).Position;
+            latch.JointId = jointId;
+            latch.OwnerGrid = args.OurEntity;
+            latch.TargetGrid = args.OtherEntity;
+            latch.LatchedToEntity = wallUid;
+            latch.LocalAnchorOwner = magnetXform.LocalPosition;
+            latch.LocalAnchorTarget = otherAnchor;
+            latch.ReferenceAngle = (float)(_transform.GetWorldRotation(otherXform) - _transform.GetWorldRotation(ourXform));
+            if (wallUid != null)
+            {
+                var target = EnsureComp<MagneticLatchTargetComponent>(wallUid.Value);
+                if (!target.Magnets.Contains(magnetUid.Value))
+                    target.Magnets.Add(magnetUid.Value);
+            }
+            PreAlignLatch(args.OurEntity, args.OtherEntity, latch);
             var joint = _joints.GetOrCreateWeldJoint(args.OurEntity, args.OtherEntity, jointId);
-            joint.LocalAnchorA = ourPoint.Position;
-            joint.LocalAnchorB = otherPoint.Position;
-            joint.ReferenceAngle = (float)(_transform.GetWorldRotation(otherXform) - _transform.GetWorldRotation(ourXform));
+            joint.LocalAnchorA = latch.LocalAnchorOwner.Value;
+            joint.LocalAnchorB = latch.LocalAnchorTarget.Value;
+            joint.ReferenceAngle = latch.ReferenceAngle.Value;
             joint.CollideConnected = false;
+            SharedJointSystem.LinearStiffness(MagneticLatchFrequencyHz, MagneticLatchDampingRatio, ourPhys.Mass, otherPhys.Mass, out var stiffness, out var damping);
             joint.Stiffness = stiffness;
             joint.Damping = damping;
             var linear = (ourPhys.LinearVelocity + otherPhys.LinearVelocity) / 2f;
@@ -85,19 +104,10 @@ public sealed partial class ShuttleSystem
             _physics.SetLinearVelocity(args.OtherEntity, linear, body: otherPhys);
             _physics.SetAngularVelocity(args.OurEntity, 0f, body: ourPhys);
             _physics.SetAngularVelocity(args.OtherEntity, 0f, body: otherPhys);
-            var latch = EnsureComp<MagneticLatchComponent>(magnetUid.Value);
-            latch.JointId = jointId;
-            latch.OwnerGrid = args.OurEntity;
-            latch.TargetGrid = args.OtherEntity;
-            latch.LatchedToEntity = wallUid;
-            latch.LocalAnchorOwner = ourPoint.Position;
-            latch.LocalAnchorTarget = otherPoint.Position;
-            latch.ReferenceAngle = joint.ReferenceAngle;
-            Dirty(magnetUid.Value, latch);
             if (TryComp(magnetUid.Value, out DockingComponent? dock))
             {
                 dock.DockedWith = wallUid;
-                Dirty(magnetUid.Value, dock);
+
             }
             _appearance.SetData(magnetUid.Value, MagneticLatchVisuals.State, MagneticLatchVisualState.Latched);
             handled = true;

@@ -20,6 +20,24 @@
   - type: TimedDespawn
     lifetime: 7200
 
+- type: entity
+  parent: [BaseItem, RecyclableItemOrganicTiny]
+  id: ProduceBaseNorot
+  abstract: true
+  components:
+  - type: SolutionContainerManager
+  - type: Sprite
+    state: produce
+  - type: Food
+    requiredStomachs: 2
+  - type: Produce
+  - type: PotencyVisuals
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: food
+  - type: TimedDespawn
+    lifetime: 7200
+
 # For produce that can be immediately eaten
 
 - type: entity
@@ -193,7 +211,7 @@
   name: tower-cap log
   description: It's better than bad, it's good!
   id: Log
-  parent: ProduceBase
+  parent: ProduceBaseNorot
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/towercap.rsi
@@ -215,7 +233,7 @@
   name: steel-cap log
   description: Steel doesn't grow on trees! It grows on mushrooms, of course.
   id: SteelLog
-  parent: ProduceBase
+  parent: ProduceBaseNorot
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/steelcap.rsi

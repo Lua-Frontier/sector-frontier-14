@@ -1,9 +1,14 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
+using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Physics; // Lua
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics; // Lua
+using Robust.Shared.Physics.Systems; // Lua
+using System.Linq; // Lua
 using System.Numerics;
 using Content.Shared._Mono.Company;
 using Content.Shared.Shuttles.Components;
@@ -47,6 +52,51 @@ public partial class ShuttleNavControl // Mono
     protected Vector2 _lastMousePos;
     protected float _lastFireTime;
     protected const float FireRateLimit = 0.1f; // 100ms between shots
+
+    public bool IsMouseDown() => _isMouseDown;
+    protected override void MouseMove(GUIMouseMoveEventArgs args)
+    {
+        base.MouseMove(args);
+        _lastMousePos = args.RelativePosition;
+    }
+    private FireControllableEntry[]? _fcControllables;
+    private HashSet<NetEntity> _fcSelectedWeapons = new();
+    public void UpdateControllables(FireControllableEntry[] controllables)
+    { _fcControllables = controllables; }
+    public void UpdateSelectedWeapons(HashSet<NetEntity> selectedWeapons)
+    { _fcSelectedWeapons = selectedWeapons; }
+    protected void DrawWeaponLines(DrawingHandleScreen handle)
+    {
+        if (_fcControllables == null || _coordinates == null || _rotation == null) return;
+        var xformQuery = EntManager.GetEntityQuery<TransformComponent>();
+        if (!xformQuery.TryGetComponent(_coordinates.Value.EntityId, out var xform) || xform.MapID == Robust.Shared.Map.MapId.Nullspace) return;
+        var physics = EntManager.System<SharedPhysicsSystem>();
+        var posMatrix = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, _rotation.Value);
+        var ourEntRot = RotateWithEntity ? _transform.GetWorldRotation(xform) : _rotation.Value;
+        var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
+        var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
+        Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
+        var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
+        var worldToView = worldToShuttle * shuttleToView;
+        Matrix3x2.Invert(worldToView, out var viewToWorld);
+        var blipColors = new Dictionary<NetEntity, Color>();
+        var blips = _blips.GetCurrentBlips();
+        foreach (var blip in blips) blipColors[blip.NetUid] = blip.Color;
+        foreach (var controllable in _fcControllables)
+        {
+            if (!_fcSelectedWeapons.Contains(controllable.NetEntity)) continue;
+            var coords = EntManager.GetCoordinates(controllable.Coordinates);
+            var worldPos = _transform.ToMapCoordinates(coords).Position;
+            var cursorViewPos = InverseScalePosition(_lastMousePos);
+            cursorViewPos = ScalePosition(cursorViewPos);
+            var cursorWorldPos = Vector2.Transform(cursorViewPos, viewToWorld);
+            var direction = cursorWorldPos - worldPos;
+            var ray = new CollisionRay(worldPos, direction.Normalized(), (int)CollisionGroup.Impassable);
+            var results = physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates?.EntityId);
+            if (!results.Any() && blipColors.TryGetValue(controllable.NetEntity, out var color)) handle.DrawLine(Vector2.Transform(worldPos, worldToView), cursorViewPos, color.WithAlpha(0.3f));
+        }
+    }
+    // End Lua
 
     // Constants for IFF system
     public float MaximumIFFDistance { get; set; } = -1f;

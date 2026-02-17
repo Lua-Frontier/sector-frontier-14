@@ -1,6 +1,9 @@
 - type: vendingMachineInventory
   id: CentDrobeInventory
   startingInventory:
+    ADTClothingBackpackSatchelCCC: 3 # Lua
+    ADTClothingBackpackCCC: 3 # Lua
+    ClothingBackpackDuffelCCC: 3 # Lua
     ClothingShoesBootsLaceup: 3
     ClothingShoesBootsJack: 3
     ClothingHandsGlovesCombat: 3
@@ -10,14 +13,20 @@
     ClothingUniformJumpsuitCentcomAgent: 3
     ClothingUniformJumpsuitCentcomFormal: 3
     ClothingUniformJumpskirtCentcomFormalDress: 3
+    ADTClothingUniformJumpsuitCCC: 3 # Lua
+    ADTClothingUniformJumpsuitFormalCCC: 3 # Lua
+    ADTClothingUniformJumpskirtCCC: 3 # Lua
+    ADTClothingUniformJumpskirtFormalCCC: 3 # Lua
     ClothingHeadHatCentcom: 3
     ClothingHeadHatCentcomcap: 3
+    ADTClothingHeadHatsCapCCC: 3 # Lua
     ClothingMaskGasCentcom: 3
     ClothingHeadsetCentCom: 3
     ClothingOuterWinterCentcom: 3
     ClothingOuterCoatExpensive: 1
     ClothingNeckScarfStripedCentcom: 3
     ClothingNeckCloakCentcom: 3
+    ADTClothingNeckPyotrCloak: 1 # Lua
   contrabandInventory:
     ToyFigurineCaptain: 1
     ToyFigurineHeadOfPersonnel: 1

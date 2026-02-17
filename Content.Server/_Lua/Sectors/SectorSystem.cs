@@ -125,6 +125,21 @@ public sealed class SectorSystem : EntitySystem
         return false;
     }
 
+    public bool TryGetSectorConfig(MapId mapId, out SectorSystemPrototype config)
+    {
+        foreach (var inst in _instances.Values)
+        {
+            if (inst.MapId == mapId)
+            {
+                config = inst.Config;
+                return true;
+            }
+        }
+
+        config = default!;
+        return false;
+    }
+
     public void EnsureSector(string configId)
     {
         if (_instances.ContainsKey(configId)) return;

@@ -28,10 +28,19 @@ public sealed class GridCleanupSystem : EntitySystem
 
     // Dictionary to track grids scheduled for deletion
     private readonly Dictionary<EntityUid, TimeSpan> _pendingCleanup = new();
+    private readonly List<EntityUid> _pendingCleanupRemoveBuffer = new();
+    private bool _cleanupEnabled;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        Subs.CVar(_cfg, CLVars.AutoGridCleanupEnabled, v =>
+        {
+            _cleanupEnabled = v;
+            if (!v)
+                _pendingCleanup.Clear();
+        }, true);
 
         // Subscribe to grid events
         SubscribeLocalEvent<GridStartupEvent>(OnGridStartup);
@@ -41,7 +50,7 @@ public sealed class GridCleanupSystem : EntitySystem
 
     private bool IsCleanupEnabled()
     {
-        return _cfg.GetCVar(CLVars.AutoGridCleanupEnabled);
+        return _cleanupEnabled;
     }
 
     private void OnGridStartup(GridStartupEvent ev)
@@ -138,14 +147,14 @@ public sealed class GridCleanupSystem : EntitySystem
 
         // Check if any grids need to be cleaned up
         var currentTime = _timing.CurTime;
-        var toRemove = new List<EntityUid>();
+        _pendingCleanupRemoveBuffer.Clear();
 
         foreach (var (gridUid, targetTime) in _pendingCleanup)
         {
 
             if (HasComp<GatewayGeneratorDestinationComponent>(gridUid) || HasComp<MapperGridComponent>(gridUid))
             {
-                toRemove.Add(gridUid);
+                _pendingCleanupRemoveBuffer.Add(gridUid);
                 continue;
             }
 
@@ -156,7 +165,7 @@ public sealed class GridCleanupSystem : EntitySystem
             // Check if the entity still exists
             if (!EntityManager.EntityExists(gridUid))
             {
-                toRemove.Add(gridUid);
+                _pendingCleanupRemoveBuffer.Add(gridUid);
                 continue;
             }
 
@@ -164,7 +173,7 @@ public sealed class GridCleanupSystem : EntitySystem
             if (HasComp<SalvageExpeditionComponent>(gridUid))
             {
                 Logger.DebugS("salvage", $"Update: Removing expedition grid {gridUid} from cleanup queue");
-                toRemove.Add(gridUid);
+                _pendingCleanupRemoveBuffer.Add(gridUid);
                 continue;
             }
 
@@ -176,14 +185,14 @@ public sealed class GridCleanupSystem : EntitySystem
             if (HasComp<SalvageExpeditionComponent>(mapUid))
             {
                 Logger.DebugS("salvage", $"Update: Removing grid {gridUid} on expedition map {mapUid} from cleanup queue");
-                toRemove.Add(gridUid);
+                _pendingCleanupRemoveBuffer.Add(gridUid);
                 continue;
             }
 
             // Verify it still has a grid component
             if (!TryComp<MapGridComponent>(gridUid, out var grid))
             {
-                toRemove.Add(gridUid);
+                _pendingCleanupRemoveBuffer.Add(gridUid);
                 continue;
             }
 
@@ -191,18 +200,18 @@ public sealed class GridCleanupSystem : EntitySystem
             var tileCount = CountTiles((gridUid, grid));
             if (tileCount >= MinimumTiles)
             {
-                toRemove.Add(gridUid);
+                _pendingCleanupRemoveBuffer.Add(gridUid);
                 continue;
             }
 
             // Queue the grid for deletion
             QueueDel(gridUid);
             Logger.DebugS("salvage", $"Update: Queuing grid {gridUid} for deletion with {CountTiles((gridUid, grid))} tiles");
-            toRemove.Add(gridUid);
+            _pendingCleanupRemoveBuffer.Add(gridUid);
         }
 
         // Remove processed grids from the pending list
-        foreach (var gridUid in toRemove)
+        foreach (var gridUid in _pendingCleanupRemoveBuffer)
         {
             _pendingCleanup.Remove(gridUid);
         }

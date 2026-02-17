@@ -296,14 +296,19 @@ public sealed class WiresSystem : SharedWiresSystem
     }
 
     private Dictionary<EntityUid, List<ActiveWireAction>> _activeWires = new();
+    private readonly List<EntityUid> _activeWiresRemoveBuffer = new();
     private List<(EntityUid, ActiveWireAction)> _finishedWires = new();
 
     public override void Update(float frameTime)
     {
+        _activeWiresRemoveBuffer.Clear();
         foreach (var (owner, activeWires) in _activeWires)
         {
             if (!HasComp<WiresComponent>(owner))
-                _activeWires.Remove(owner);
+            {
+                _activeWiresRemoveBuffer.Add(owner);
+                continue;
+            }
 
             foreach (var wire in activeWires)
             {
@@ -322,6 +327,11 @@ public sealed class WiresSystem : SharedWiresSystem
                     }
                 }
             }
+        }
+
+        foreach (var owner in _activeWiresRemoveBuffer)
+        {
+            _activeWires.Remove(owner);
         }
 
         if (_finishedWires.Count != 0)

@@ -97,7 +97,7 @@
 
 - type: entity
   id: GunneryServerHigh
-  parent: GunneryServerBase
+  parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: high-power gunnery control server
   suffix: 60
   components:
@@ -117,10 +117,12 @@
     idleLoad: 20
     batteryRechargeRate: 1200
     batteryRechargeEfficiency: 0.95
+  - type: Anchorable
+    flags: Anchorable
 
 - type: entity
   id: GunneryServerUltra
-  parent: [GunneryServerBase] # removed BaseStructureDisableToolUse
+  parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: ultra-high-power gunnery control server
   suffix: 90
   components:
@@ -140,8 +142,8 @@
     idleLoad: 50
     batteryRechargeRate: 2400
     batteryRechargeEfficiency: 0.95
-#  - type: Anchorable # Sorry Tunguska, but I am NOT risking this being used for a missile bus. - "what could go wrong" says redrover
-#    flags: Anchorable
+  - type: Anchorable
+    flags: Anchorable
 
 - type: entity
   id: GunneryServerOmega

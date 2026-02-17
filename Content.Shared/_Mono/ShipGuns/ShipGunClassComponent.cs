@@ -13,6 +13,9 @@ public sealed partial class ShipGunClassComponent : Component
     /// </summary>
     [DataField("shipClass")]
     public ShipGunClass Class = ShipGunClass.Medium;
+
+    [DataField("processingPowerCost")]
+    public int? ProcessingPowerCost;
 }
 
 /// <summary>

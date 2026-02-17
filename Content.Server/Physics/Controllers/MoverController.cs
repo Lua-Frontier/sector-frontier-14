@@ -28,6 +28,9 @@ public sealed class MoverController : SharedMoverController
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
+    private EntityQuery<ShuttleComponent> _shuttleQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
+
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
     private const float DistanceSlowdown = 30000f; // Lua
     private const float DistanceStop = 30100f; // Lua
@@ -35,6 +38,8 @@ public sealed class MoverController : SharedMoverController
     public override void Initialize()
     {
         base.Initialize();
+        _shuttleQuery = GetEntityQuery<ShuttleComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
         SubscribeLocalEvent<RelayInputMoverComponent, PlayerAttachedEvent>(OnRelayPlayerAttached);
         SubscribeLocalEvent<RelayInputMoverComponent, PlayerDetachedEvent>(OnRelayPlayerDetached);
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
@@ -328,7 +333,6 @@ public sealed class MoverController : SharedMoverController
 
         // We just mark off their movement and the shuttle itself does its own movement
         var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
-        var shuttleQuery = GetEntityQuery<ShuttleComponent>();
         while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
         {
             var consoleEnt = pilot.Console;
@@ -344,7 +348,7 @@ public sealed class MoverController : SharedMoverController
             var gridId = xform.GridUid;
             // This tries to see if the grid is a shuttle and if the console should work.
             if (!TryComp<MapGridComponent>(gridId, out var _) ||
-                !shuttleQuery.TryGetComponent(gridId, out var shuttleComponent) ||
+                !_shuttleQuery.TryGetComponent(gridId, out var shuttleComponent) ||
                 !shuttleComponent.Enabled)
                 continue;
 
@@ -370,14 +374,13 @@ public sealed class MoverController : SharedMoverController
 
         // Collate all of the linear / angular velocites for a shuttle
         // then do the movement input once for it.
-        var xformQuery = GetEntityQuery<TransformComponent>();
         foreach (var (shuttleUid, (shuttle, pilots)) in _shuttlePilots)
         {
             if (Paused(shuttleUid) || CanPilot(shuttleUid) || !TryComp<PhysicsComponent>(shuttleUid, out var body))
                 continue;
 
-            var shuttleNorthAngle = _xformSystem.GetWorldRotation(shuttleUid, xformQuery);
-            var worldPos = _xformSystem.GetWorldPosition(shuttleUid, xformQuery); // Lua
+            var shuttleNorthAngle = _xformSystem.GetWorldRotation(shuttleUid, _xformQuery);
+            var worldPos = _xformSystem.GetWorldPosition(shuttleUid, _xformQuery); // Lua
             var worldDist = worldPos.Length(); // Lua
 
             // Collate movement linear and angular inputs together

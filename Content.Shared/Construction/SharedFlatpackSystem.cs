@@ -6,6 +6,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
+using Content.Shared.Tools;
 using Content.Shared.Tools.Systems;
 using Content.Shared._Lua.LuaTech;
 using Robust.Shared.Audio.Systems;
@@ -116,6 +117,15 @@ public abstract class SharedFlatpackSystem : EntitySystem
     {
         if (!args.IsInDetailsRange)
             return;
+
+        if (PrototypeManager.TryIndex<ToolQualityPrototype>(ent.Comp.QualityNeeded, out var toolQuality) &&
+            !string.IsNullOrWhiteSpace(toolQuality.ToolName))
+        {
+            var toolName = Loc.GetString(toolQuality.ToolName);
+            args.PushMarkup(Loc.GetString("flatpack-examine-tool", ("tool", toolName)));
+            return;
+        }
+
         args.PushMarkup(Loc.GetString("flatpack-examine"));
     }
 

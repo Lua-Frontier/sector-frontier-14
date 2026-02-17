@@ -1,0 +1,231 @@
+- type: entity
+  id: MobSpaceWhale
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  name: Космический Кит
+  description: Любимый питомец богов
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpaceWhale
+  - type: TailedEntity
+    amount: 55
+    speed: 56
+    spacing: 1
+    wiggleAmplitude: 0.02
+    wiggleFrequency: 0.02
+    stiffness: 90
+    damping: 5
+    minLengthMultiplier: 0.99
+    maxLengthMultiplier: 1.01
+    prototype: MobSpaceWhaleSegment
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 50
+    baseWalkSpeed: 50
+  - type: RadarBlip
+    radarColor: "#FF4444"
+    scale: 3
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 4096
+  - type: RadarSonarEcho
+  - type: MovementIgnoreGravity
+    weightless: true
+  - type: WarpPoint
+    follow: true
+    location: Левиафан
+  - type: HTN
+    rootTask:
+      task: DragonCarpCompound
+    sleepPlayerCheckRangeOverride: 2500
+    blackboard:
+      NavSmash: !type:Bool
+        true
+      MeleeRange: !type:Single
+        4
+      VisionRadius: !type:Single
+        2000
+      AggroVisionRadius: !type:Single
+        2000
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: InputMover
+  - type: MobMover
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 2
+        density: 137992
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MeleeWeapon
+    altDisarm: false
+    attackRate: 0.3
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Blunt: 50
+        Slash: 45
+        Structural: 800
+  - type: Speech
+    speechVerb: LargeMob
+  - type: InteractionPopup
+    interactSuccessString: petting-success-leviathan
+    interactFailureString: petting-failure-leviathan
+    interactFailureSound:
+      path: /Audio/Effects/bite.ogg
+  - type: Sprite
+    sprite: _Goobstation/Mobs/SpaceWhale/leviathan.rsi
+    layers:
+    - state: head
+    - state: overlay
+      shader: unshaded
+    noRot: false
+  - type: NightVision
+    color: "#808080"
+    activateSound: null
+    deactivateSound: null
+  - type: AmbientSound
+    enabled: true
+    volume: 1
+    range: 700
+    sound:
+      path: /Audio/_Goobstation/Ambience/SpaceWhale/leviathan-ambient.ogg
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      16000: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 16000
+      behaviors:
+      - !type:GibBehavior { }
+  - type: DamageOnCollide
+    inverted: true
+    damage:
+      types:
+        Structural: 5000
+        Blunt: 10
+  - type: SpaceWhaleTileDevour
+    devourInterval: 0.5
+    tilesPerBite: 3
+    entitiesPerBite: 6
+    damage:
+      types:
+        Structural: 4000
+        Blunt: 10
+    ignoreWhitelist:
+      tags:
+      - SpaceLeviathan
+  - type: CombatMode
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Biological
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      2000: 0.7
+      3000: 0.5
+  - type: Stamina
+    critThreshold: 600
+  - type: Flammable
+    damage:
+      types: {}
+  - type: StatusEffects
+    allowed:
+    - Stutter
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - RadiationProtection
+    - Adrenaline
+  - type: Temperature
+    heatDamageThreshold: 800
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - StunImmune
+    - SpaceLeviathan
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatFish
+      amount: 8
+
+- type: entity
+  id: MobSpaceWhaleSegment
+  parent: FlyingMobBase
+  name: space whale segment
+  suffix: do not spawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    scale: 2
+    shape: Circle
+    visibleFromOtherGrids: true
+  - type: RadarSonarEcho
+  - type: Sprite
+    sprite: _Goobstation/Mobs/SpaceWhale/leviathan.rsi
+    state: segment
+    noRot: false
+  - type: Tag
+    tags:
+    - HideContextMenu
+    - SpaceLeviathan
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 2
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+- type: entity
+  parent: RogueSiliconGiftBox # Нужно дополнить
+  id: SpaceWhaleLootBox
+  name: space whale innards
+  description: The processed remains of a space whale. Contains valuable magmite ore and refined magmite sheets.
+  suffix: Space Whale Loot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/bundles.rsi
+    state: engi-base
+    scale: 0.8, 0.8
+  - type: RadarBlip
+    radarColor: "#44FF44"
+    scale: 1.5
+    requireNoGrid: true
+    shape: Square
+  - type: SpawnItemsOnUse
+    items:
+    - id: MagmiteOre1
+      amount: 15
+      prob: 1.0
+    - id: SheetMagmite1
+      amount: 10
+      prob: 1.0
+    - id: MagmiteOre1
+      amount: 10
+      prob: 0.5
+    - id: SheetMagmite1
+      amount: 5
+      prob: 0.3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg

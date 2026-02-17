@@ -49,7 +49,7 @@ public sealed partial class ShuttleSystem
                 Reschedule(gridUid, attempt);
                 continue;
             }
-            SharedJointSystem.LinearStiffness(8f, 1.0f, ourPhys.Mass, otherPhys.Mass, out var stiffness, out var damping);
+            SharedJointSystem.LinearStiffness(MagneticLatchFrequencyHz, MagneticLatchDampingRatio, ourPhys.Mass, otherPhys.Mass, out var stiffness, out var damping);
             PreAlignLatch(gridUid, targetGrid, latch);
             var joint = _joints.GetOrCreateWeldJoint(gridUid, targetGrid, latch.JointId);
             joint.LocalAnchorA = latch.LocalAnchorOwner.Value;
@@ -61,7 +61,7 @@ public sealed partial class ShuttleSystem
             if (TryComp(magnet.Owner, out DockingComponent? dock) && dock.DockedWith == null && latch.LatchedToEntity != null)
             {
                 dock.DockedWith = latch.LatchedToEntity;
-                Dirty(magnet.Owner, dock);
+
             }
         }
     }

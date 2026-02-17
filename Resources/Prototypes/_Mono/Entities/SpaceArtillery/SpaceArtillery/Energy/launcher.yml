@@ -211,7 +211,6 @@
   - type: ShipGunClass
     shipClass: Heavy
 
-
  # M25
 
 - type: entity
@@ -673,6 +672,7 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: ShipGunClass
     shipClass: Heavy
+    processingPowerCost: 42
   - type: HitscanBatteryAmmoProvider
     proto: ApolloLaser
     fireCost: 150

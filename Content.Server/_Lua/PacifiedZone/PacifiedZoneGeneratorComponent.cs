@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Robust.Shared.Prototypes;
 using Content.Shared.Roles;
 
@@ -7,7 +8,7 @@ namespace Content.Server._NF.PacifiedZone
     public sealed partial class PacifiedZoneGeneratorComponent : Component
     {
         [ViewVariables]
-        public List<EntityUid> TrackedEntities = new();
+        public HashSet<EntityUid> TrackedEntities = new();
 
         [ViewVariables]
         public TimeSpan NextUpdate;

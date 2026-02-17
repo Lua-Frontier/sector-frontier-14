@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.NPC.Components;
+using Content.Server.NPC.HTN;
 using Content.Shared.CombatMode;
 using Content.Shared.NPC;
 using Robust.Shared.Map;
@@ -79,7 +80,10 @@ public sealed partial class NPCCombatSystem
             return;
         }
 
-        if (distance > TargetMeleeLostRange)
+        var lostRange = TargetMeleeLostRange;
+        if (TryComp<HTNComponent>(uid, out var htn))
+        { lostRange = htn.Blackboard.GetValueOrDefault<float>(htn.Blackboard.GetVisionRadiusKey(EntityManager), EntityManager); }
+        if (distance > lostRange)
         {
             component.Status = CombatStatus.TargetUnreachable;
             return;

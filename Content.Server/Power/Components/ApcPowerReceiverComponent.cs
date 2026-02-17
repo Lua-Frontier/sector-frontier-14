@@ -1,4 +1,5 @@
 using Content.Server.Power.NodeGroups;
+using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Pow3r;
 using Content.Shared.Power.Components;
 
@@ -32,6 +33,7 @@ namespace Content.Server.Power.Components
                 _needsPower = value;
                 // Reset this so next tick will do a power update.
                 Recalculate = true;
+                EntitySystem.Get<PowerNetSystem>().QueueApcPowerReceiverUpdate(Owner);
             }
         }
 
@@ -45,11 +47,27 @@ namespace Content.Server.Power.Components
         public override bool PowerDisabled
         {
             get => !NetworkLoad.Enabled;
-            set => NetworkLoad.Enabled = !value;
+            set
+            {
+                NetworkLoad.Enabled = !value;
+                Recalculate = true;
+                EntitySystem.Get<PowerNetSystem>().QueueApcPowerReceiverUpdate(Owner);
+            }
         }
 
+        private bool _recalculate;
+
         // TODO Is this needed? It forces a PowerChangedEvent when NeedsPower is toggled even if it changes to the same state.
-        public bool Recalculate;
+        public bool Recalculate
+        {
+            get => _recalculate;
+            set
+            {
+                if (_recalculate == value) return;
+                _recalculate = value;
+                if (value) EntitySystem.Get<PowerNetSystem>().QueueApcPowerReceiverUpdate(Owner);
+            }
+        }
 
         [ViewVariables]
         public PowerState.Load NetworkLoad { get; } = new PowerState.Load

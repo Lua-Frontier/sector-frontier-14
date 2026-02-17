@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/13/2025 12:14:41
+  time: 02/15/2026 07:32:49
   entityCount: 1075
 maps: []
 grids:
@@ -37,7 +37,6 @@ tilemap:
   11: PlatingCornerNW
   14: PlatingCornerSE
   15: PlatingCornerSW
-  9: ShieldLattice
   10: TrainLattice
 entities:
 - proto: ""
@@ -587,7 +586,7 @@ entities:
       pos: 2.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9085.39
+      secondsUntilStateChange: -9125.744
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -717,6 +716,40 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-1.5
+      parent: 1
+- proto: AmmoBox45_magnumFMJ
+  entities:
+  - uid: 607
+    components:
+    - type: Transform
+      pos: 3.3173218,2.7824306
+      parent: 1
+  - uid: 608
+    components:
+    - type: Transform
+      pos: 3.7860718,2.8136806
+      parent: 1
+  - uid: 609
+    components:
+    - type: Transform
+      pos: 3.5048218,2.4386806
+      parent: 1
+- proto: AmmoBox9x19mmFMJ
+  entities:
+  - uid: 604
+    components:
+    - type: Transform
+      pos: 5.7133055,3.5154755
+      parent: 1
+  - uid: 605
+    components:
+    - type: Transform
+      pos: 5.3155003,3.4194536
+      parent: 1
+  - uid: 606
+    components:
+    - type: Transform
+      pos: 5.2469134,3.5840626
       parent: 1
 - proto: APCBasic
   entities:
@@ -4160,6 +4193,28 @@ entities:
     - type: Transform
       pos: -3.5,3.5
       parent: 1
+- proto: Magazine9x19mmSubMachineGunFMJ
+  entities:
+  - uid: 610
+    components:
+    - type: Transform
+      pos: 5.3014603,2.3247986
+      parent: 1
+  - uid: 611
+    components:
+    - type: Transform
+      pos: 5.4889603,2.4654236
+      parent: 1
+  - uid: 612
+    components:
+    - type: Transform
+      pos: 5.6295853,2.5591736
+      parent: 1
+  - uid: 613
+    components:
+    - type: Transform
+      pos: 5.589849,2.6101258
+      parent: 1
 - proto: MedkitAdvanced
   entities:
   - uid: 600
@@ -4185,62 +4240,6 @@ entities:
     components:
     - type: Transform
       pos: 6.373993,0.5521908
-      parent: 1
-- proto: AmmoBox9x19mmFMJ
-  entities:
-  - uid: 604
-    components:
-    - type: Transform
-      pos: 5.7133055,3.5154755
-      parent: 1
-  - uid: 605
-    components:
-    - type: Transform
-      pos: 5.3155003,3.4194536
-      parent: 1
-  - uid: 606
-    components:
-    - type: Transform
-      pos: 5.2469134,3.5840626
-      parent: 1
-- proto: AmmoBox45_magnumFMJ
-  entities:
-  - uid: 607
-    components:
-    - type: Transform
-      pos: 3.3173218,2.7824306
-      parent: 1
-  - uid: 608
-    components:
-    - type: Transform
-      pos: 3.7860718,2.8136806
-      parent: 1
-  - uid: 609
-    components:
-    - type: Transform
-      pos: 3.5048218,2.4386806
-      parent: 1
-- proto: Magazine9x19mmSubMachineGunFMJ
-  entities:
-  - uid: 610
-    components:
-    - type: Transform
-      pos: 5.3014603,2.3247986
-      parent: 1
-  - uid: 611
-    components:
-    - type: Transform
-      pos: 5.4889603,2.4654236
-      parent: 1
-  - uid: 612
-    components:
-    - type: Transform
-      pos: 5.6295853,2.5591736
-      parent: 1
-  - uid: 613
-    components:
-    - type: Transform
-      pos: 5.589849,2.6101258
       parent: 1
 - proto: NFPosterContrabandGoblinate
   entities:
@@ -6986,7 +6985,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
-- proto: WeaponLaserTurretApollo
+- proto: WeaponTurretHades
   entities:
   - uid: 1063
     components:

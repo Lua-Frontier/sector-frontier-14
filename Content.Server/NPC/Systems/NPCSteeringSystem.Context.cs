@@ -368,6 +368,21 @@ public sealed partial class NPCSteeringSystem
             return;
         }
 
+        if (needsPath)
+        {
+            var fromPoly = _pathfindingSystem.GetPoly(xform.Coordinates);
+            var toPoly = _pathfindingSystem.GetPoly(steering.Coordinates);
+
+            if (fromPoly == null || toPoly == null)
+            {
+                steering.CurrentPath.Clear();
+                steering.PathfindToken?.Cancel();
+                steering.PathfindToken = null;
+                steering.FailedPathCount = 0;
+                return;
+            }
+        }
+
         if (!needsPath && steering.CurrentPath.Count > 0)
         {
             needsPath = steering.CurrentPath.Count > 0 && (steering.CurrentPath.Peek().Data.Flags & PathfindingBreadcrumbFlag.Invalid) != 0x0;

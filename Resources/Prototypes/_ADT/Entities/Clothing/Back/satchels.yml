@@ -22,3 +22,14 @@
       - id: Wirecutter
       - id: Welder
       - id: Multitool
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ADTClothingBackpackSatchelCCC
+  name: centcom consultant satchel
+  description: No, sirr, I am not going to help you choose your new microwave.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Back/Satchels/centcom_satchel.rsi
+  - type: Storage
+    maxItemSize: Huge

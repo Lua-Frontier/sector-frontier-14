@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
@@ -14,7 +13,9 @@ using Prometheus;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.NPC.Systems
 {
@@ -46,6 +47,8 @@ namespace Content.Server.NPC.Systems
         private float _playerPauseDistance;
         private float _playerDistanceCheckTimer;
         private const float PlayerDistanceCheckInterval = 2.0f;
+
+        private readonly List<(EntityUid Entity, EntityCoordinates Coords)> _playerPauseCandidates = new();
 
         /// <inheritdoc />
         public override void Initialize()
@@ -171,6 +174,26 @@ namespace Content.Server.NPC.Systems
 
         private void CheckPlayerDistancesAndPauseNPCs()
         {
+            _playerPauseCandidates.Clear();
+            foreach (var playerData in _playerManager.GetAllPlayerData())
+            {
+                if (!_playerManager.TryGetSessionById(playerData.UserId, out var session) || session == null)
+                    continue;
+
+                if (session.AttachedEntity is not { Valid: true } playerEnt)
+                    continue;
+
+                if (HasComp<GhostComponent>(playerEnt))
+                    continue;
+
+                if (TryComp<MobStateComponent>(playerEnt, out var state) && state.CurrentState != MobState.Alive)
+                    continue;
+
+                _playerPauseCandidates.Add((playerEnt, Transform(playerEnt).Coordinates));
+            }
+
+            var anyPlayers = _playerPauseCandidates.Count > 0;
+
             var npcQuery = EntityQueryEnumerator<HTNComponent, TransformComponent>();
 
             while (npcQuery.MoveNext(out var npcUid, out var htn, out var npcTransform))
@@ -186,28 +209,16 @@ namespace Content.Server.NPC.Systems
                 var npcCoords = npcTransform.Coordinates;
                 var hasNearbyPlayer = false;
 
-                foreach (var playerData in _playerManager.GetAllPlayerData())
+                if (anyPlayers)
                 {
-                    var exists = _playerManager.TryGetSessionById(playerData.UserId, out var session);
-                    if (!exists || session == null)
-                        continue;
-
-                    if (session.AttachedEntity is not { Valid: true } playerEnt)
-                        continue;
-
-                    if (HasComp<GhostComponent>(playerEnt))
-                        continue;
-
-                    if (TryComp<MobStateComponent>(playerEnt, out var state) && state.CurrentState != MobState.Alive)
-                        continue;
-
-                    var playerCoords = Transform(playerEnt).Coordinates;
-
-                    if (npcCoords.TryDistance(EntityManager, playerCoords, out var distance) &&
-                        distance <= minDistance)
+                    foreach (var (_, playerCoords) in _playerPauseCandidates)
                     {
-                        hasNearbyPlayer = true;
-                        break;
+                        if (npcCoords.TryDistance(EntityManager, playerCoords, out var distance) &&
+                            distance <= minDistance)
+                        {
+                            hasNearbyPlayer = true;
+                            break;
+                        }
                     }
                 }
 

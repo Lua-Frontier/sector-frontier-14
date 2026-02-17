@@ -37,6 +37,7 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly Dictionary<EntityUid, SecurityData> _activeSecurity = new();
+    private readonly List<EntityUid> _securityToRemove = new();
 
     private struct SecurityData
     {
@@ -66,12 +67,12 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
     private void ProcessActiveSecurity(float frameTime)
     {
         var currentTime = _timing.CurTime;
-        var toRemove = new List<EntityUid>();
+        _securityToRemove.Clear();
         foreach (var (hardsuit, data) in _activeSecurity)
         {
             if (!EntityManager.EntityExists(hardsuit) || !EntityManager.EntityExists(data.Wearer))
             {
-                toRemove.Add(hardsuit);
+                _securityToRemove.Add(hardsuit);
                 continue;
             }
             var elapsed = currentTime - data.StartTime;
@@ -86,14 +87,14 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
             if (progress >= 1.0f)
             {
                 SecurityAction(hardsuit, data.Wearer, data.Mode);
-                toRemove.Add(hardsuit);
+                _securityToRemove.Add(hardsuit);
             }
             else
             {
                 _activeSecurity[hardsuit] = updatedData;
             }
         }
-        foreach (var hardsuit in toRemove)
+        foreach (var hardsuit in _securityToRemove)
         {
             _activeSecurity.Remove(hardsuit);
         }
