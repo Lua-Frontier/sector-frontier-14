@@ -49,9 +49,6 @@
     rotateWhilePulling: false
     rotateWhileAnchored: false
     increment: 45
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -136,9 +133,6 @@
         - MachineLayer
   - type: Transform
     anchored: true
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -230,9 +224,6 @@
         - MachineLayer
   - type: Transform
     anchored: true
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
   - type: DeviceNetwork
     deviceNetId: Wireless

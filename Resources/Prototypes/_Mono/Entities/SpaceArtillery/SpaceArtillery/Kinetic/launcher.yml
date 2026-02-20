@@ -21,9 +21,6 @@
   - type: GunSignalControl
   - type: WirelessNetworkConnection
     range: 700
-  - type: DeviceLinkSink
-    ports:
-    - Toggle
   - type: Gun
     fireRate: 12
     projectileSpeed: 90
@@ -90,9 +87,6 @@
   - type: GunSignalControl
   - type: WirelessNetworkConnection
     range: 700
-  - type: DeviceLinkSink
-    ports:
-    - Toggle
   - type: Gun
     fireRate: 50
     projectileSpeed: 120
