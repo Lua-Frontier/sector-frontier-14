@@ -148,5 +148,16 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("spacewhale.target_detection_range", 2000f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> SpaceWhaleDespawnLifetimeMinutes =
             CVarDef.Create("spacewhale.despawn_lifetime_minutes", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> ShuttleFreezeEnabled =
+            CVarDef.Create("shuttle.freeze.enabled", true, CVar.SERVERONLY);
+        public static readonly CVarDef<float> ShuttleFreezeDelay =
+            CVarDef.Create("shuttle.freeze.delay", 30f, CVar.SERVERONLY);
+        public static readonly CVarDef<float> ShuttleFreezeCheckInterval =
+            CVarDef.Create("shuttle.freeze.check_interval", 30f, CVar.SERVERONLY);
+        public static readonly CVarDef<float> ShuttleFreezeProximityTiles =
+            CVarDef.Create("shuttle.freeze.proximity_tiles", 3f, CVar.SERVERONLY);
+        public static readonly CVarDef<float> ShuttleFreezeUnfreezeInterval =
+            CVarDef.Create("shuttle.freeze.unfreeze_interval", 1f, CVar.SERVERONLY);
     }
 }
