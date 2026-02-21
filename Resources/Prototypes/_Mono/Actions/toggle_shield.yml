@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleShield
+  name: Toggle Shield
+  description: Activate or deactivate the energy shield.
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/action_hardsuit_shield.png
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ToggleShieldEvent

@@ -1,5 +1,5 @@
-using System.Linq;
 using Content.Shared.Actions;
+using Content.Shared.Blocking.Components;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
@@ -18,6 +18,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.Blocking;
 
@@ -85,6 +86,9 @@ public sealed partial class BlockingSystem : EntitySystem
 
     private void OnGetActions(EntityUid uid, BlockingComponent component, GetItemActionsEvent args)
     {
+        // Clothing shields use ShieldToggle + ActionToggleShield; only add "Block" action for handheld shields.
+        if (component.IsClothing)
+            return;
         args.AddAction(ref component.BlockingToggleActionEntity, component.BlockingToggleAction);
     }
 

@@ -2,6 +2,7 @@ using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared._Lua.ThermalCloack;
 using Content.Shared.Actions;
+using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Server.Popups;
 
@@ -66,7 +67,11 @@ public sealed class ThermalCloakSystem : EntitySystem
         args.Handled = true;
     }
     private void OnGetActions(Entity<ThermalCloakComponent> ent, ref GetItemActionsEvent args)
-    { args.AddAction(ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction); }
+    {
+        if (args.SlotFlags is not { } flags || (flags & SlotFlags.OUTERCLOTHING) == 0)
+            return;
+        args.AddAction(ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction);
+    }
 
     private void EnsureAction(Entity<ThermalCloakComponent> ent)
     {

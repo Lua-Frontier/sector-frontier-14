@@ -1,3 +1,4 @@
+using Content.Shared.Blocking.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
