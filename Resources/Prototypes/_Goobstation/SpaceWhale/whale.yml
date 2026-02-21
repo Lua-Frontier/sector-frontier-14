@@ -8,7 +8,7 @@
   - type: SpaceWhale
   - type: TailedEntity
     amount: 55
-    speed: 56
+    speed: 86
     spacing: 1
     wiggleAmplitude: 0.02
     wiggleFrequency: 0.02
@@ -18,8 +18,8 @@
     maxLengthMultiplier: 1.01
     prototype: MobSpaceWhaleSegment
   - type: MovementSpeedModifier
-    baseSprintSpeed: 50
-    baseWalkSpeed: 50
+    baseSprintSpeed: 80
+    baseWalkSpeed: 80
   - type: RadarBlip
     radarColor: "#FF4444"
     scale: 3
@@ -35,7 +35,7 @@
     location: Левиафан
   - type: HTN
     rootTask:
-      task: DragonCarpCompound
+      task: SpaceWhaleCompound
     sleepPlayerCheckRangeOverride: 2500
     blackboard:
       NavSmash: !type:Bool
@@ -103,12 +103,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      16000: Dead
+      36000: Dead
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 16000
+        damage: 36000
       behaviors:
       - !type:GibBehavior { }
   - type: DamageOnCollide
@@ -123,7 +123,7 @@
     entitiesPerBite: 6
     damage:
       types:
-        Structural: 4000
+        Structural: 6000
         Blunt: 10
     ignoreWhitelist:
       tags:
