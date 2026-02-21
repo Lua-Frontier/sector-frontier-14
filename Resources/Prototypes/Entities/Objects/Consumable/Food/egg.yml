@@ -21,10 +21,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 6
+        maxVol: 1 # Lua: 6<1
         reagents:
         - ReagentId: Egg
-          Quantity: 6
+          Quantity: 1 # Lua: 6<1
   - type: DrawableSolution
     solution: food
   - type: SolutionSpiker
@@ -108,7 +108,7 @@
     graph: Egg
     node: start
   - type: StaticPrice
-    price: 10
+    price: 2 # Lua: 10<2
 
 - type: entity
   parent: FoodEggBase
