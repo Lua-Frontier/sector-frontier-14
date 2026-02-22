@@ -97,11 +97,28 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
     private List<Star> GetAllStars()
     {
         var stars = new List<Star>();
+        var seenMaps = new HashSet<MapId>();
         var starMapQuery = AllEntityQuery<StarMapComponent>();
         while (starMapQuery.MoveNext(out var uid, out var starMap))
-        { foreach (var s in starMap.StarMap) { if (_mapManager.MapExists(s.Map)) stars.Add(s); } }
+        {
+            foreach (var s in starMap.StarMap)
+            {
+                if (_mapManager.MapExists(s.Map) && seenMaps.Add(s.Map))
+                    stars.Add(s);
+            }
+        }
         try
-        { if (_sectorStarMap != null) { var sectorStars = _sectorStarMap.GetSectorStars(); stars.AddRange(sectorStars); } }
+        {
+            if (_sectorStarMap != null)
+            {
+                var sectorStars = _sectorStarMap.GetSectorStars();
+                foreach (var s in sectorStars)
+                {
+                    if (seenMaps.Add(s.Map))
+                        stars.Add(s);
+                }
+            }
+        }
         catch { }
         return stars;
     }
@@ -177,125 +194,47 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
         var edgeSet = new HashSet<(int a, int b)>();
         int n = stars.Count;
         if (n <= 1) return edges;
+
         var mapIndex = new Dictionary<MapId, int>(n);
         for (var i = 0; i < n; i++)
         {
             var map = stars[i].Map;
             if (!mapIndex.ContainsKey(map)) mapIndex[map] = i;
         }
-        for (var i = 0; i < n; i++)
-        {
-            var dists = new List<(int j, float d)>(n - 1);
-            for (var j = 0; j < n; j++)
-            {
-                if (i == j) continue;
-                var d = Vector2.Distance(stars[i].Position, stars[j].Position);
-                if (d <= _hyperlaneMaxDistance) dists.Add((j, d));
-            }
-            dists.Sort((a, b) => a.d.CompareTo(b.d));
-            var take = Math.Min(_hyperlaneNeighbors, dists.Count);
-            for (var k = 0; k < take; k++)
-            {
-                var j = dists[k].j;
-                var a = Math.Min(i, j);
-                var b = Math.Max(i, j);
-                if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
-            }
-        }
-        var degree = new int[n];
-        foreach (var e in edges)
-        {
-            degree[e.A]++;
-            degree[e.B]++;
-        }
-        for (var i = 0; i < n; i++)
-        {
-            if (degree[i] > 0) continue;
-            var bestJ = -1; var bestD = float.MaxValue;
-            for (var j = 0; j < n; j++)
-            {
-                if (i == j) continue;
-                var d = Vector2.Distance(stars[i].Position, stars[j].Position);
-                if (d < bestD) { bestD = d; bestJ = j; }
-            }
-            if (bestJ != -1)
-            {
-                var a = Math.Min(i, bestJ);
-                var b = Math.Max(i, bestJ);
-                if (edgeSet.Add((a, b)))
-                {
-                    edges.Add(new HyperlaneEdge(a, b));
-                    degree[i]++; degree[bestJ]++;
-                }
-            }
-        }
-        var parent = new int[n];
-        for (var i = 0; i < n; i++) parent[i] = i;
-        int Find(int x)
-        {
-            while (parent[x] != x) x = parent[x] = parent[parent[x]];
-            return x;
-        }
-        void Union(int x, int y)
-        {
-            x = Find(x); y = Find(y);
-            if (x != y) parent[y] = x;
-        }
-        foreach (var e in edges) Union(e.A, e.B);
-        Func<int> CountComponents = () =>
-        {
-            var set = new HashSet<int>();
-            for (var i = 0; i < n; i++) set.Add(Find(i));
-            return set.Count;
-        };
-        while (CountComponents() > 1)
-        {
-            var best = (a: -1, b: -1, d: float.MaxValue);
-            for (var i = 0; i < n; i++)
-            {
-                for (var j = i + 1; j < n; j++)
-                {
-                    if (Find(i) == Find(j)) continue;
-                    var d = Vector2.Distance(stars[i].Position, stars[j].Position);
-                    if (d < best.d) best = (i, j, d);
-                }
-            }
-            if (best.a == -1 || best.b == -1) break;
-            var a2 = Math.Min(best.a, best.b);
-            var b2 = Math.Max(best.a, best.b);
-            if (edgeSet.Add((a2, b2)))
-            { edges.Add(new HyperlaneEdge(a2, b2)); Union(a2, b2); }
-            else
-            { Union(a2, b2); }
-        }
+
         try
         {
-            foreach (var sector in _prototypes.EnumeratePrototypes<Content.Shared._Lua.Sectors.SectorSystemPrototype>())
+            if (_prototypes.TryIndex<StarmapDataPrototype>("StarmapData", out var data))
             {
-                if (string.IsNullOrWhiteSpace(sector.Starlink))
-                    continue;
+                var idToStarIndex = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+                foreach (var def in data.Stars)
+                {
+                    for (var i = 0; i < n; i++)
+                    {
+                        if (Vector2.Distance(stars[i].Position, def.Position) < 0.1f)
+                        {
+                            idToStarIndex[def.Id] = i;
+                            break;
+                        }
+                    }
+                }
 
-                if (!_sectors.TryGetMapId(sector.ID, out var sectorMap))
-                    continue;
+                foreach (var pair in data.Hyperlanes)
+                {
+                    if (pair.Length < 2) continue;
+                    if (!idToStarIndex.TryGetValue(pair[0], out var idxA)) continue;
+                    if (!idToStarIndex.TryGetValue(pair[1], out var idxB)) continue;
+                    if (idxA == idxB) continue;
 
-                if (!_sectors.TryGetMapId(sector.Starlink, out var starlinkMap))
-                    continue;
-
-                if (!mapIndex.TryGetValue(sectorMap, out var sectorIdx))
-                    continue;
-
-                if (!mapIndex.TryGetValue(starlinkMap, out var starlinkIdx))
-                    continue;
-
-                if (sectorIdx == starlinkIdx)
-                    continue;
-
-                var a = Math.Min(sectorIdx, starlinkIdx);
-                var b = Math.Max(sectorIdx, starlinkIdx);
-                if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
+                    var a = Math.Min(idxA, idxB);
+                    var b = Math.Max(idxA, idxB);
+                    if (edgeSet.Add((a, b)))
+                        edges.Add(new HyperlaneEdge(a, b));
+                }
             }
         }
         catch { }
+
         if (_blockedHyperlanes.Count > 0)
         {
             for (var i = edges.Count - 1; i >= 0; i--)
@@ -316,16 +255,17 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
 
         if (_manualHyperlanes.Count > 0)
         {
-            foreach (var pair in _manualHyperlanes)
+            foreach (var manualPair in _manualHyperlanes)
             {
-                if (!mapIndex.TryGetValue(pair.a, out var idxA)) continue;
-                if (!mapIndex.TryGetValue(pair.b, out var idxB)) continue;
+                if (!mapIndex.TryGetValue(manualPair.a, out var idxA)) continue;
+                if (!mapIndex.TryGetValue(manualPair.b, out var idxB)) continue;
                 if (idxA == idxB) continue;
                 var a = Math.Min(idxA, idxB);
                 var b = Math.Max(idxA, idxB);
                 if (edgeSet.Add((a, b))) edges.Add(new HyperlaneEdge(a, b));
             }
         }
+
         return edges;
     }
 

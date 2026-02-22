@@ -3,7 +3,6 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.Starmap;
-using Content.Shared._Lua.Sectors;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.ResourceManagement;
@@ -152,34 +151,28 @@ public sealed class StarmapControl : Control
     {
         _sectorColorCache.Clear();
         if (_sectorIdByMap == null) return;
+
+        Dictionary<string, Color>? dataColors = null;
+        try
+        {
+            if (_proto.TryIndex<StarmapDataPrototype>("StarmapData", out var data))
+            {
+                dataColors = new Dictionary<string, Color>();
+                foreach (var def in data.Stars)
+                {
+                    if (def.Color != null)
+                        dataColors[def.Id] = def.Color.Value;
+                }
+            }
+        }
+        catch { }
+
         foreach (var (mapId, sid) in _sectorIdByMap)
         {
             if (_overrideColorCache.TryGetValue(mapId, out var over))
             { _sectorColorCache[mapId] = over; continue; }
-            var colorSet = false;
-            try
-            {
-                if (_config != null && (sid == "FrontierSector" || sid == "CentCom"))
-                {
-                    foreach (var sp in _config.SpecialSectors)
-                    {
-                        if (string.Equals(sp.Id, sid, StringComparison.Ordinal) && sp.Color != null)
-                        {
-                            _sectorColorCache[mapId] = sp.Color.Value;
-                            colorSet = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            catch { }
-            if (colorSet) continue;
-            try
-            {
-                if (_proto.TryIndex<SectorSystemPrototype>(sid, out var proto) && proto.StarmapColor != null)
-                { _sectorColorCache[mapId] = proto.StarmapColor.Value; continue; }
-            }
-            catch { }
+            if (dataColors != null && dataColors.TryGetValue(sid, out var dataColor))
+            { _sectorColorCache[mapId] = dataColor; continue; }
             _sectorColorCache[mapId] = Color.White;
         }
     }
@@ -311,7 +304,7 @@ public sealed class StarmapControl : Control
                     handle.DrawCircle(uiPosition, radius + 1f, ring, false);
                 }
                 handle.DrawCircle(uiPosition, radius, color);
-                handle.DrawCircle(uiPosition, radius - 2, Color.White with { A = 150 });
+                handle.DrawCircle(uiPosition, radius - 2, color with { A = 200 });
             }
             else
             {
@@ -462,32 +455,6 @@ public sealed class StarmapControl : Control
 
     private bool IsSectorStar(MapId mapId)
     { return _sectorIdByMap.ContainsKey(mapId); }
-
-    //private Color GetSectorColor(MapId mapId)
-    //{
-    //    if (_sectorColorOverrideHexByMap.TryGetValue(mapId, out var hex))
-    //    { try { return Color.FromHex(hex); } catch { } }
-    //    if (!_sectorIdByMap.TryGetValue(mapId, out var sid)) return Color.White;
-    //    if (sid == "FrontierSector" || sid == "CentCom")
-    //    {
-    //        try
-    //        {
-    //            if (_config != null)
-    //            {
-    //                foreach (var sp in _config.SpecialSectors)
-    //                { if (string.Equals(sp.Id, sid, StringComparison.Ordinal) && sp.Color != null) return sp.Color.Value; }
-    //            }
-    //        }
-    //        catch { }
-    //        return Color.White;
-    //    }
-    //    try
-    //    {
-    //        if (_proto.TryIndex<SectorSystemPrototype>(sid, out var proto) && proto.StarmapColor != null) return proto.StarmapColor.Value;
-    //    }
-    //    catch { }
-    //    return Color.White;
-    //}
 
     private float GetSectorSize(MapId mapId)
     { return _sectorIdByMap.ContainsKey(mapId) ? 7f : 7f; }

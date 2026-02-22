@@ -3,8 +3,10 @@
 // See AGPLv3.txt for details.
 
 using System;
+using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Components;
 using Content.Server.Backmen.Arrivals;
+using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -22,12 +24,14 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
@@ -47,7 +51,12 @@ namespace Content.Server._Lua.Starmap.Systems
         [Dependency] private readonly ISerializationManager _serializer = default!;
         [Dependency] private readonly CentcommSystem _centcomm = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        [Dependency] private readonly GameTicker _ticker = default!;
+        [Dependency] private readonly SectorSystem _sectors = default!;
+        [Dependency] private readonly SharedContainerSystem _containers = default!;
         private StarmapConfigPrototype? _cfg;
+
+        private readonly Dictionary<MapId, StarDefinition> _pendingLazyStars = new();
 
         public override void Initialize()
         {
@@ -60,119 +69,136 @@ namespace Content.Server._Lua.Starmap.Systems
         private void OnStarMapStartup(EntityUid uid, StarMapComponent component, ComponentStartup args)
         { }
 
-        public void GenerateInitialSector(EntityUid uid, StarMapComponent component)
+        public void LoadStarsFromData(EntityUid uid, StarMapComponent component)
         {
-#if DEBUG
-            return;
-#endif
-            if (_cfg == null) return;
-            var randomEnabled = _configurationManager.GetCVar(CLVars.StarmapRandomGenerationEnabled);
-            if (!randomEnabled)
+            var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
+            if (!_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data))
+                return;
+
+            var lazyLoading = _configurationManager.GetCVar(CLVars.StarmapLazyLoading);
+
+            foreach (var def in data.Stars)
             {
-                try { EntityManager.System<StarmapSystem>().InvalidateCache(); }
-                catch { } return;
+                if (def.StarType == "centcom" || def.StarType == "frontier" || def.StarType == "sector")
+                    continue;
+
+                var currentPreset = _ticker.CurrentPreset?.ID;
+                if (def.RequiredGamePresets != null && def.RequiredGamePresets.Length > 0)
+                {
+                    if (currentPreset == null || !def.RequiredGamePresets.Contains(currentPreset))
+                        continue;
+                }
+                else if (!string.IsNullOrWhiteSpace(def.RequiredGamePreset))
+                {
+                    if (currentPreset != def.RequiredGamePreset)
+                        continue;
+                }
+
+                if (def.AutoStart || !lazyLoading)
+                {
+                    if (TryLoadStarMap(def, out var mapId))
+                    {
+                        var star = new Star(def.Position, mapId, def.Name, def.Position);
+                        component.StarMap.Add(star);
+                    }
+                }
+                else
+                {
+                    _mapSystem.CreateMap(out var mapId);
+                    TrySetMapEntityName(mapId, def.Name);
+                    var star = new Star(def.Position, mapId, def.Name, def.Position);
+                    component.StarMap.Add(star);
+                    _pendingLazyStars[mapId] = def;
+                }
             }
-            var minStars = Math.Max(0, _configurationManager.GetCVar(CLVars.StarmapMinStars));
-            var maxStars = Math.Max(minStars, _configurationManager.GetCVar(CLVars.StarmapMaxStars));
-            if (minStars > maxStars)
-            {
-                var temp = minStars;
-                minStars = maxStars;
-                maxStars = temp;
-            }
-            var starCount = _random.Next(minStars, maxStars + 1);
-            var minSep = MathF.Max(0f, 800f / MathF.Max(1f, _cfg.BasePixelsPerDistance));
-            var existing = new List<Vector2>(component.StarMap.Count);
-            foreach (var s in component.StarMap) existing.Add(s.Position);
-            for (int i = 0; i < starCount; i++)
-            {
-                var starName = GenerateRandomStarName();
-                var starType = GetRandomStarType();
-                var coordinates = GenerateRandomCoordinatesSeparated(Transform(uid).MapID, existing, minSep, _cfg.StarDistanceMax);
-                var star = GenerateRandomStar(starName, starType, coordinates);
-                component.StarMap.Add(star);
-                existing.Add(star.Position);
-            }
+
             try { EntityManager.System<StarmapSystem>().InvalidateCache(); } catch { }
         }
 
-        private string GetRandomStarType()
+        private bool TryLoadStarMap(StarDefinition def, out MapId mapId)
         {
-            var starTypes = new[] { "StarPoint", "PlanetPoint", "AsteroidPoint", "RuinPoint", "WarpPoint" };
-            return starTypes[_random.Next(starTypes.Length)];
-        }
-
-        private MapCoordinates GenerateRandomCoordinates(MapId mapId)
-        {
-            var maxR = MathF.Max(0f, _cfg!.StarDistanceMax);
-            var r = (float)Math.Sqrt(_random.NextDouble()) * maxR;
-            var angle = _random.NextDouble() * 2 * Math.PI;
-            var x = (float)(r * Math.Cos(angle));
-            var y = (float)(r * Math.Sin(angle));
-            return new MapCoordinates(new Vector2(x, y), mapId);
-        }
-
-        private MapCoordinates GenerateRandomCoordinatesSeparated(MapId mapId, List<Vector2> existing, float minSeparation, float baseMaxRadius)
-        {
-            var maxRadius = MathF.Max(baseMaxRadius, minSeparation);
-            for (var expand = 0; expand < 8; expand++)
-            {
-                for (var attempt = 0; attempt < 64; attempt++)
-                {
-                    var r = (float)Math.Sqrt(_random.NextDouble()) * maxRadius;
-                    var angle = _random.NextDouble() * 2 * Math.PI;
-                    var x = (float)(r * Math.Cos(angle));
-                    var y = (float)(r * Math.Sin(angle));
-                    var pos = new Vector2(x, y);
-                    var ok = true;
-                    for (var i = 0; i < existing.Count; i++)
-                    {
-                        if (Vector2.Distance(existing[i], pos) < minSeparation)
-                        { ok = false; break; }
-                    }
-                    if (ok)
-                        return new MapCoordinates(pos, mapId);
-                }
-                maxRadius += minSeparation * 0.5f;
-            }
-            return GenerateRandomCoordinates(mapId);
-        }
-
-        public Star GenerateRandomStar(string starName, string starType, MapCoordinates coordinates)
-        {
-            _mapSystem.CreateMap(out var mapId);
-            var star = new Star(coordinates.Position, mapId, starName, coordinates.Position);
-            TrySetMapEntityName(mapId, starName);
-            ApplyStarEffects(mapId, starType);
-            TryRenameBeaconGrid(mapId, starName);
-            return star;
-        }
-
-        private void ApplyStarEffects(MapId mapId, string starType)
-        {
+            _mapSystem.CreateMap(out mapId);
             try
             {
                 var mapUid = _mapManager.GetMapEntityId(mapId);
-                string? worldgenId = null;
-                if (_prototypeManager.TryIndex<DatasetPrototype>("RandomWorldgenConfigs", out var worldgenPool) && worldgenPool.Values.Count > 0)
-                { worldgenId = _random.Pick(worldgenPool.Values); }
-                if (!string.IsNullOrWhiteSpace(worldgenId) && _prototypeManager.TryIndex<WorldgenConfigPrototype>(worldgenId, out var wg))
-                { wg.Apply(mapUid, _serializer, EntityManager); }
-                if (_prototypeManager.TryIndex<DatasetPrototype>("RandomParallaxPool", out var parallaxPool) && parallaxPool.Values.Count > 0)
+
+                if (!string.IsNullOrWhiteSpace(def.WorldgenConfig)
+                    && _prototypeManager.TryIndex<WorldgenConfigPrototype>(def.WorldgenConfig, out var wg))
                 {
-                    var parallaxId = _random.Pick(parallaxPool.Values);
+                    wg.Apply(mapUid, _serializer, EntityManager);
+                }
+
+                if (def.ParallaxPool.Length > 0)
+                {
+                    var parallaxId = _random.Pick(def.ParallaxPool);
                     var parallax = EnsureComp<ParallaxComponent>(mapUid);
                     parallax.Parallax = parallaxId;
                 }
-                try
+
+                if (!string.IsNullOrWhiteSpace(def.Station))
                 {
-                    var loader = EntityManager.System<Robust.Shared.EntitySerialization.Systems.MapLoaderSystem>();
-                    var beaconPath = new Robust.Shared.Utility.ResPath("/Maps/_Lua/Maps/beaconstar.yml");
-                    loader.TryLoadGrid(mapId, beaconPath, out _);
+                    try
+                    {
+                        var loader = EntityManager.System<Robust.Shared.EntitySerialization.Systems.MapLoaderSystem>();
+                        var mapPath = new Robust.Shared.Utility.ResPath($"/Maps/_Lua/Maps/{def.Station.ToLowerInvariant()}.yml");
+                        var beaconPath = new Robust.Shared.Utility.ResPath("/Maps/_Lua/Maps/beaconstar.yml");
+                        loader.TryLoadGrid(mapId, beaconPath, out _);
+                    }
+                    catch { }
                 }
-                catch { }
+
+                TrySetMapEntityName(mapId, def.Name);
+                TryRenameBeaconGrid(mapId, def.Name);
+                return true;
             }
-            catch { }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool TryLazyLoadStar(MapId mapId)
+        {
+            if (!_pendingLazyStars.TryGetValue(mapId, out var def))
+                return false;
+
+            _pendingLazyStars.Remove(mapId);
+
+            try
+            {
+                var mapUid = _mapManager.GetMapEntityId(mapId);
+
+                if (!string.IsNullOrWhiteSpace(def.WorldgenConfig)
+                    && _prototypeManager.TryIndex<WorldgenConfigPrototype>(def.WorldgenConfig, out var wg))
+                {
+                    wg.Apply(mapUid, _serializer, EntityManager);
+                }
+
+                if (def.ParallaxPool.Length > 0)
+                {
+                    var parallaxId = _random.Pick(def.ParallaxPool);
+                    var parallax = EnsureComp<ParallaxComponent>(mapUid);
+                    parallax.Parallax = parallaxId;
+                }
+
+                if (!string.IsNullOrWhiteSpace(def.Station))
+                {
+                    try
+                    {
+                        var loader = EntityManager.System<Robust.Shared.EntitySerialization.Systems.MapLoaderSystem>();
+                        var beaconPath = new Robust.Shared.Utility.ResPath("/Maps/_Lua/Maps/beaconstar.yml");
+                        loader.TryLoadGrid(mapId, beaconPath, out _);
+                    }
+                    catch { }
+                }
+
+                TryRenameBeaconGrid(mapId, def.Name);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private void TryRenameBeaconGrid(MapId mapId, string starName)
@@ -200,23 +226,13 @@ namespace Content.Server._Lua.Starmap.Systems
             catch { }
         }
 
-        private static readonly HashSet<string> MainSectorNames = new()
-        {
-            "Frontier Sector",
-            "Asteroid Field",
-            "Mercenary Sector",
-            "Pirate Sector",
-            "Nordfall Sector",
-            "LuaTech Sector"
-        };
-
         private void TrySetMapEntityName(MapId mapId, string name)
         {
             try
             {
                 var mapUid = _mapManager.GetMapEntityId(mapId);
                 var metaSys = EntityManager.System<MetaDataSystem>();
-                if (!MainSectorNames.Contains(name)) metaSys.SetEntityName(mapUid, $"[STAR] {name}");
+                metaSys.SetEntityName(mapUid, $"[STAR] {name}");
             }
             catch { }
         }
@@ -243,15 +259,27 @@ namespace Content.Server._Lua.Starmap.Systems
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("shuttle-console-in-ftl"), consoleUid); return; }
             if (!_mapManager.MapExists(star.Map))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
+            TryLazyLoadStar(star.Map);
             var mapUid = _mapManager.GetMapEntityId(star.Map);
             if (star.Position == Vector2.Zero)
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-already-here"), consoleUid); return; }
             var currentMap = consoleTransform.MapID;
             var stars = _starmap.CollectStars();
             var isCentComTarget = _centcomm != null && _centcomm.CentComMap != MapId.Nullspace && star.Map == _centcomm.CentComMap;
-            if (!isCentComTarget && !IsAdjacentByHyperlane(currentMap, star, stars))
-            { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
+            var isInCentCom = _centcomm != null && _centcomm.CentComMap != MapId.Nullspace && currentMap == _centcomm.CentComMap;
+            if (!isCentComTarget)
+            {
+                if (isInCentCom)
+                {
+                    if (star.Map != _ticker.DefaultMap)
+                    { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
+                }
+                else if (!IsAdjacentByHyperlane(currentMap, star, stars))
+                { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
+            }
             if (isCentComTarget && _centcomm != null && !_centcomm.CentComStarUnlocked && !HasComp<AllowFtlToCentComComponent>(shuttleUid.Value))
+            { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
+            if (!HasDiskForSector(consoleUid, star.Map))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
             if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason))
             { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
@@ -285,45 +313,42 @@ namespace Content.Server._Lua.Starmap.Systems
             _shuttleSystem.FTLToCoordinates(shuttleUid.Value, shuttleComponent, targetCoordinates, Angle.Zero);
             try { EntityManager.System<StarmapSystem>().RefreshConsoles(); } catch { }
         }
+        private bool HasDiskForSector(EntityUid consoleUid, MapId targetMap)
+        {
+            if (targetMap == _ticker.DefaultMap) return true;
+            if (_centcomm != null && _centcomm.CentComMap != MapId.Nullspace && targetMap == _centcomm.CentComMap) return true;
+            if (!_containers.TryGetContainer(consoleUid, "disk_slot", out var diskCont) || diskCont.ContainedEntities.Count == 0) return false;
+            var disk = diskCont.ContainedEntities[0];
+            if (!TryComp<StarMapCoordinatesDiskComponent>(disk, out var diskComp) || diskComp.AllowedSectorIds.Count == 0) return false;
+            var currentPreset = _ticker.CurrentPreset?.ID;
+            foreach (var sid in diskComp.AllowedSectorIds)
+            {
+                if (string.IsNullOrWhiteSpace(sid)) continue;
+                MapId mapId;
+                if (sid == "FrontierSector") mapId = _ticker.DefaultMap;
+                else if (_sectors.TryGetMapId(sid, out var resolved)) mapId = resolved;
+                else if (currentPreset == "LuaAdventure")
+                {
+                    var altId = sid switch { "TypanSector" => "TypanSectorLua", "PirateSector" => "PirateSectorLua", _ => null };
+                    if (altId == null || !_sectors.TryGetMapId(altId, out resolved)) continue;
+                    mapId = resolved;
+                }
+                else continue;
+                if (mapId == targetMap) return true;
+            }
+            return false;
+        }
+
         private bool IsAdjacentByHyperlane(MapId currentMap, Star target, List<Star> stars)
         {
             var edges = _starmap.GetHyperlanesCached();
             var centerIndex = stars.FindIndex(s => s.Map == currentMap);
             var targetIndex = stars.FindIndex(s => s.Map == target.Map);
-            if (centerIndex == -1) return true;
+            if (centerIndex == -1) return false;
             if (targetIndex == -1) return false;
             foreach (var e in edges)
             { if ((e.A == centerIndex && e.B == targetIndex) || (e.B == centerIndex && e.A == targetIndex)) return true; }
             return false;
-        }
-
-        public void GenerateNewSector(EntityUid uid, StarMapComponent component, Star star)
-        {
-#if DEBUG
-            return;
-#endif
-            if (!_configurationManager.GetCVar(CLVars.StarmapRandomGenerationEnabled))
-                return;
-            var newStarCount = _random.Next(2, 5);
-            var minSep = MathF.Max(0f, 800f / MathF.Max(1f, _cfg!.BasePixelsPerDistance));
-            var existing = new List<Vector2>(component.StarMap.Count);
-            foreach (var s in component.StarMap) existing.Add(s.Position);
-            for (int i = 0; i < newStarCount; i++)
-            {
-                var starName = GenerateRandomStarName();
-                var starType = GetRandomStarType();
-                var coordinates = GenerateRandomCoordinatesSeparated(Transform(uid).MapID, existing, minSep, _cfg.StarDistanceMax);
-                var newStar = GenerateRandomStar(starName, starType, coordinates);
-                component.StarMap.Add(newStar);
-                existing.Add(newStar.Position);
-            }
-        }
-
-        private string GenerateRandomStarName()
-        {
-            if (_prototypeManager.TryIndex<DatasetPrototype>("StarNames", out var starNames) && starNames.Values.Count > 0)
-            { return _random.Pick(starNames.Values); }
-            return "Star";
         }
 
         private void OnFtlCompleted(ref FTLCompletedEvent ev)

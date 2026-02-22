@@ -13,7 +13,7 @@ using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._Lua.Sectors;
+using Content.Shared._Lua.Starmap;
 using Content.Shared.GameTicking;
 using Content.Shared.Lua.CLVar;
 using Content.Shared.Parallax;
@@ -44,10 +44,9 @@ public sealed class SectorSystem : EntitySystem
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-
     private sealed class SectorInstance
     {
-        public SectorSystemPrototype Config = default!;
+        public StarDefinition Config = default!;
         public MapId MapId;
         public EntityUid MapUid;
         public EntityUid StationGrid;
@@ -55,7 +54,7 @@ public sealed class SectorSystem : EntitySystem
     }
 
     private readonly Dictionary<string, SectorInstance> _instances = new();
-
+    private Dictionary<string, StarDefinition>? _starIndex;
 
     public override void Initialize()
     {
@@ -63,6 +62,23 @@ public sealed class SectorSystem : EntitySystem
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
         SubscribeLocalEvent<SectorComponent, ComponentStartup>(OnGenericSectorStartup);
+    }
+
+    private void RebuildStarIndex()
+    {
+        _starIndex = new Dictionary<string, StarDefinition>();
+        if (!_protos.TryIndex<StarmapDataPrototype>("StarmapData", out var data))
+            return;
+
+        foreach (var star in data.Stars)
+            _starIndex[star.Id] = star;
+    }
+
+    private StarDefinition? FindStar(string id)
+    {
+        if (_starIndex == null)
+            RebuildStarIndex();
+        return _starIndex != null && _starIndex.TryGetValue(id, out var star) ? star : null;
     }
 
     private void OnGenericSectorStartup(Entity<SectorComponent> ent, ref ComponentStartup args)
@@ -80,30 +96,36 @@ public sealed class SectorSystem : EntitySystem
 
     private void OnRoundStart(RoundStartingEvent ev)
     {
-        foreach (var proto in _protos.EnumeratePrototypes<SectorSystemPrototype>())
+        RebuildStarIndex();
+
+        if (_starIndex == null)
+            return;
+
+        foreach (var star in _starIndex.Values)
         {
-            if (!proto.AutoStart) continue;
+            if (!star.AutoStart) continue;
+            if (string.IsNullOrEmpty(star.Station)) continue;
             if (!_cfg.GetCVar(CLVars.AsteroidSectorEnabled)) continue;
             var currentPreset = _ticker.CurrentPreset?.ID;
-            if (!string.IsNullOrEmpty(proto.RequiredGamePreset) || (proto.RequiredGamePresets != null && proto.RequiredGamePresets.Length > 0))
+            if (!string.IsNullOrEmpty(star.RequiredGamePreset) || (star.RequiredGamePresets != null && star.RequiredGamePresets.Length > 0))
             {
                 if (string.IsNullOrEmpty(currentPreset)) continue;
                 var allowed = false;
-                if (!string.IsNullOrEmpty(proto.RequiredGamePreset) && string.Equals(proto.RequiredGamePreset, currentPreset, StringComparison.Ordinal))
+                if (!string.IsNullOrEmpty(star.RequiredGamePreset) && string.Equals(star.RequiredGamePreset, currentPreset, StringComparison.Ordinal))
                 { allowed = true; }
-                if (!allowed && proto.RequiredGamePresets != null && proto.RequiredGamePresets.Contains(currentPreset))
+                if (!allowed && star.RequiredGamePresets != null && star.RequiredGamePresets.Contains(currentPreset))
                 { allowed = true; }
                 if (!allowed) continue;
             }
-            EnsureSector(proto.ID);
+            EnsureSector(star.Id);
         }
 
         foreach (var inst in _instances.Values)
         {
             if (inst.Config.WorldgenConfig == null) continue;
-            if (!_protos.TryIndex<Content.Server.Worldgen.Prototypes.WorldgenConfigPrototype>(inst.Config.WorldgenConfig, out var cfg)) continue;
+            if (!_protos.TryIndex<Content.Server.Worldgen.Prototypes.WorldgenConfigPrototype>(inst.Config.WorldgenConfig, out var wgCfg)) continue;
             var ser = IoCManager.Resolve<Robust.Shared.Serialization.Manager.ISerializationManager>();
-            cfg.Apply(inst.MapUid, ser, EntityManager);
+            wgCfg.Apply(inst.MapUid, ser, EntityManager);
         }
     }
 
@@ -115,6 +137,7 @@ public sealed class SectorSystem : EntitySystem
             if (_map.MapExists(kv.MapId)) _map.DeleteMap(kv.MapId);
         }
         _instances.Clear();
+        _starIndex = null;
     }
 
     public bool TryGetMapId(string configId, out MapId mapId)
@@ -125,7 +148,7 @@ public sealed class SectorSystem : EntitySystem
         return false;
     }
 
-    public bool TryGetSectorConfig(MapId mapId, out SectorSystemPrototype config)
+    public bool TryGetSectorConfig(MapId mapId, out StarDefinition config)
     {
         foreach (var inst in _instances.Values)
         {
@@ -143,7 +166,11 @@ public sealed class SectorSystem : EntitySystem
     public void EnsureSector(string configId)
     {
         if (_instances.ContainsKey(configId)) return;
-        if (!_protos.TryIndex<SectorSystemPrototype>(configId, out var cfg)) { Log.Error($"Sector config '{configId}' not ffund"); return; }
+
+        var cfg = FindStar(configId);
+        if (cfg == null) { Log.Error($"Star definition '{configId}' not found in StarmapData"); return; }
+        if (string.IsNullOrEmpty(cfg.Station)) { Log.Error($"Star '{configId}' has no station defined"); return; }
+
         Log.Info($"[SectorSystem] EnsureSector begin id='{configId}' name='{cfg.Name}' station='{cfg.Station}'");
         var preset = _ticker.CurrentPreset?.ID;
         if (!string.IsNullOrEmpty(cfg.RequiredGamePreset) || (cfg.RequiredGamePresets != null && cfg.RequiredGamePresets.Length > 0))
@@ -202,7 +229,7 @@ public sealed class SectorSystem : EntitySystem
         }; _shuttle.SetFTLWhitelist(ent, whitelist);
     }
 
-    private void GeneratePOIs(MapId mapId, EntityUid mapUid, SectorSystemPrototype cfg, out List<EntityUid> spawnedPOIs)
+    private void GeneratePOIs(MapId mapId, EntityUid mapUid, StarDefinition cfg, out List<EntityUid> spawnedPOIs)
     {
         spawnedPOIs = new List<EntityUid>();
         var preset = _ticker.CurrentPreset?.ID ?? string.Empty;
@@ -259,7 +286,7 @@ public sealed class SectorSystem : EntitySystem
                     if (spawned >= group.Count) break;
                     var offset = GetRandomCoord(inst, proto.MinimumDistance, proto.MaximumDistance);
                     if (TrySpawnPoiGrid(mapId, proto, offset, out var gridUid) && gridUid.HasValue)
-                    { spawnedPOIs.Add(gridUid.Value); Log.Info($"[SectorSystem] Cgfdy POI '{proto.ID}' at {offset}"); spawned++; }
+                    { spawnedPOIs.Add(gridUid.Value); Log.Info($"[SectorSystem] Spawned POI '{proto.ID}' at {offset}"); spawned++; }
                 }
             }
         }
@@ -308,5 +335,3 @@ public sealed class SectorSystem : EntitySystem
         return coords;
     }
 }
-
-

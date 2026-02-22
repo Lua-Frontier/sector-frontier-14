@@ -6,8 +6,6 @@
   gridLines: 10
   gridColor: "#2F4F4F"
   backgroundColor: "#05050AFF"
-  starDistanceMin: 5
-  starDistanceMax: 15
   hyperlaneMaxDistance: 1200
   hyperlaneNeighbors: 3
   parallaxLayers:
@@ -21,12 +19,3 @@
       starsPerTile: 4
       color: "#C8DCFF23"
       seed: 37
-  specialSectors:
-    - id: FrontierSector
-      position: 0, 0
-      color: "#2595db"
-    - id: CentCom
-      position: 25, -25
-      color: "#2595db"
-
-

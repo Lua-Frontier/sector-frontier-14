@@ -51,22 +51,14 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("zone.pvp_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE,
                 "Отключить или включить пвп зоны.");
 
-        public static readonly CVarDef<bool> GenerateStarmapRoundstart =
-            CVarDef.Create("starmap.generate_roundstart", true, CVar.ARCHIVE);
-        public static readonly CVarDef<bool> StarmapRandomGenerationEnabled =
-            CVarDef.Create("starmap.random_enabled", false, CVar.ARCHIVE);
-        public static readonly CVarDef<int> StarmapMinStars =
-            CVarDef.Create("starmap.min_stars", 1, CVar.ARCHIVE);
-        public static readonly CVarDef<int> StarmapMaxStars =
-            CVarDef.Create("starmap.max_stars", 1, CVar.ARCHIVE);
+        public static readonly CVarDef<bool> LoadStarmapRoundstart =
+            CVarDef.Create("starmap.load_roundstart", true, CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapIncludeSectors =
             CVarDef.Create("starmap.include_sectors", true, CVar.ARCHIVE);
-
-        /// <summary>
-        ///     What weighted random prototype is being used?
-        /// </summary>
-        public static readonly CVarDef<string> StarmapRandomPrototypeId =
-            CVarDef.Create("starmap.weighted_random_id", "DefaultStarmap", CVar.ARCHIVE);
+        public static readonly CVarDef<string> StarmapDataId =
+            CVarDef.Create("starmap.data_id", "StarmapData", CVar.ARCHIVE);
+        public static readonly CVarDef<bool> StarmapLazyLoading =
+            CVarDef.Create("starmap.lazy_loading", true, CVar.ARCHIVE);
 
         public static readonly CVarDef<string> RabbitMQConnectionString =
             CVarDef.Create("rabbitmq.connection_string", "", CVar.SERVERONLY);

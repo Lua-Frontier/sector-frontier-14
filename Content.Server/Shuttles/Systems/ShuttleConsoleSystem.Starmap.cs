@@ -89,14 +89,17 @@ public sealed partial class ShuttleConsoleSystem
             {
                 try
                 {
-                    if (_prototypes.TryIndex<StarmapConfigPrototype>("StarmapConfig", out var stCfg))
+                    var dataId = "StarmapData";
+                    try { dataId = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>().GetCVar(Content.Shared.Lua.CLVar.CLVars.StarmapDataId); } catch { }
+                    if (_prototypes.TryIndex<StarmapDataPrototype>(dataId, out var stData))
                     {
-                        foreach (var sp in stCfg.SpecialSectors)
+                        foreach (var def in stData.Stars)
                         {
-                            if (string.Equals(sp.Id, "CentCom", StringComparison.Ordinal))
+                            if (string.Equals(def.StarType, "centcom", StringComparison.OrdinalIgnoreCase))
                             {
-                                var ccPos = sp.Position;
-                                stars.Add(new Star(ccPos, ccMap, "Central Command", ccPos));
+                                var ccPos = def.Position;
+                                stars.Add(new Star(ccPos, ccMap, def.Name, ccPos));
+                                Log.Debug($"[Starmap] CentCom star added: allowCentComStar={allowCentComStar} ccMap={ccMap} pos={ccPos}");
                                 break;
                             }
                         }
@@ -104,6 +107,10 @@ public sealed partial class ShuttleConsoleSystem
                 }
                 catch { }
             }
+        }
+        else
+        {
+            Log.Debug($"[Starmap] CentCom star NOT added: allowCentComStar={allowCentComStar} CentComMap={_centcomm.CentComMap}");
         }
         if (currentMap != MapId.Nullspace)
         {
@@ -119,6 +126,8 @@ public sealed partial class ShuttleConsoleSystem
         }
         var visibleSectorMaps = new List<MapId>();
         var sectorIdByMap = new Dictionary<MapId, string>();
+        if (currentMap != MapId.Nullspace && !visibleSectorMaps.Contains(currentMap))
+            visibleSectorMaps.Add(currentMap);
         var currentPreset = _ticker.CurrentPreset?.ID;
         if (consoleUid != null)
         {
@@ -205,21 +214,21 @@ public sealed partial class ShuttleConsoleSystem
                 ftlTime = default;
             }
         }
-        foreach (var sid in new[] { "AsteroidSectorDefault", "MercenarySector", "PirateSector", "TypanSector", "LuaTechSector" })
+        try
         {
-            if (_sectors.TryGetMapId(sid, out var mid))
-            { if (!sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = sid; continue; }
-            if (currentPreset == "LuaAdventure")
+            var sDataId = "StarmapData";
+            try { sDataId = IoCManager.Resolve<Robust.Shared.Configuration.IConfigurationManager>().GetCVar(Content.Shared.Lua.CLVar.CLVars.StarmapDataId); } catch { }
+            if (_prototypes.TryIndex<StarmapDataPrototype>(sDataId, out var sData))
             {
-                string? altId = sid switch
+                foreach (var def in sData.Stars)
                 {
-                    "TypanSector" => "TypanSectorLua",
-                    "PirateSector" => "PirateSectorLua",
-                    _ => null
-                };
-                if (altId != null && _sectors.TryGetMapId(altId, out mid) && !sectorIdByMap.ContainsKey(mid)) sectorIdByMap[mid] = altId;
+                    if (def.StarType == "centcom" || def.StarType == "frontier") continue;
+                    if (_sectors.TryGetMapId(def.Id, out var mid) && !sectorIdByMap.ContainsKey(mid))
+                        sectorIdByMap[mid] = def.Id;
+                }
             }
         }
+        catch { }
         if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
         {
             var frontierIdx = stars.FindIndex(s => s.Map == _ticker.DefaultMap);

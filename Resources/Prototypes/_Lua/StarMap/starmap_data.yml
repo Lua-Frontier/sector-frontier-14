@@ -1,0 +1,136 @@
+- type: starmapData
+  id: StarmapData
+  stars:
+    - id: FrontierSector
+      name: Frontier Sector
+      position: "2.768243, 2.7743483"
+      starType: frontier
+      color: "#2595db"
+
+    - id: CentCom
+      name: Central Command
+      position: "22.957544, -22.474024"
+      starType: centcom
+      color: "#2595db"
+
+    - id: AsteroidSectorDefault
+      name: "Поле Астероидов"
+      position: "3, 4.8"
+      starType: sector
+      color: "#c3cf18"
+      station: Beacon
+      worldgenConfig: AsteroidSectorDefault
+      autoStart: true
+      defaultGamePreset: NFPirate
+      requiredGamePresets: [ NFPirate, LuaAdventure ]
+      parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default, Xmas ]
+      deadDropEnabled: true
+      deadDropCount: 8
+      poiGroups:
+        - group: AsteroidRequired
+          count: 0
+        - group: CargoDepot
+          count: 4
+          ring: true
+        - group: AsteroidMarketStation
+          count: 2
+
+    - id: TypanSector
+      name: "Сектор Нордфолл"
+      position: "6.849328, 6.1968246"
+      starType: sector
+      color: "#990816"
+      station: Typan
+      worldgenConfig: Default
+      autoStart: true
+      defaultGamePreset: NFPirate
+      requiredGamePresets: [ NFPirate ]
+      parallaxPool: [ OriginStation, NordFoll ]
+      bluespaceEventsEnabled: false
+      crewMonitoringIsolated: true
+      poiGroups:
+        - group: TypanCargoDepot
+          count: 1
+
+    - id: TypanSectorLua
+      name: "Сектор Нордфолл"
+      position: "6.9, 6"
+      starType: sector
+      color: "#990816"
+      station: TypanLua
+      worldgenConfig: Default
+      autoStart: true
+      defaultGamePreset: LuaAdventure
+      requiredGamePresets: [ LuaAdventure ]
+      parallaxPool: [ OriginStation, NordFoll ]
+      bluespaceEventsEnabled: false
+      crewMonitoringIsolated: true
+      poiGroups:
+        - group: TypanCargoDepot
+          count: 1
+
+    - id: LuaTechSector
+      name: "Сектор LuaTech"
+      position: "-47.868465, 23.180416"
+      starType: sector
+      color: "#2595db"
+      station: LuaTech
+      autoStart: true
+      defaultGamePreset: NFPirate
+      requiredGamePresets: [ NFPirate, LuaAdventure ]
+      parallaxPool: [ LuaDarkSpace ]
+      bluespaceEventsEnabled: false
+      crewMonitoringIsolated: true
+
+    - id: PirateSector
+      name: "Сектор Пиратов"
+      position: "-0.68800503, 3.7413952"
+      starType: sector
+      color: "#8A6642"
+      station: Cove
+      autoStart: true
+      defaultGamePreset: NFPirate
+      requiredGamePresets: [ NFPirate ]
+      parallaxPool: [ CoreStation, Tortuga ]
+      deadDropEnabled: true
+      bluespaceEventsEnabled: false
+      crewMonitoringIsolated: true
+
+    - id: PirateSectorLua
+      name: "Сектор Пиратов"
+      position: "-0.80699396, 4.2081265"
+      starType: sector
+      color: "#8A6642"
+      station: CoveLua
+      autoStart: true
+      defaultGamePreset: LuaAdventure
+      requiredGamePresets: [ LuaAdventure ]
+      parallaxPool: [ CoreStation, Tortuga ]
+      deadDropEnabled: true
+      bluespaceEventsEnabled: false
+      crewMonitoringIsolated: true
+
+    - id: MercenarySector
+      name: "Сектор Наёмников"
+      position: "22.862686, -20.10457"
+      starType: sector
+      color: "#182faf"
+      station: MercMap
+      autoStart: true
+      defaultGamePreset: NFPirate
+      requiredGamePresets: [ NFPirate, LuaAdventure ]
+      parallaxPool: [ MercenaryPlanet, Sky ]
+      deadDropEnabled: true
+      deadDropCount: 1
+      bluespaceEventsEnabled: false
+      crewMonitoringIsolated: true
+
+  hyperlanes:
+    - [ FrontierSector, AsteroidSectorDefault ]
+    - [ AsteroidSectorDefault, TypanSector ]
+    - [ AsteroidSectorDefault, TypanSectorLua ]
+    - [ AsteroidSectorDefault, LuaTechSector ]
+    - [ AsteroidSectorDefault, PirateSector ]
+    - [ AsteroidSectorDefault, PirateSectorLua ]
+    - [ AsteroidSectorDefault, MercenarySector ]
+    - [ CentCom, FrontierSector ]

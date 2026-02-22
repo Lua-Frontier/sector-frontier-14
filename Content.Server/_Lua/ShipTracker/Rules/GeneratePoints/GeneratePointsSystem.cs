@@ -26,10 +26,10 @@ public sealed class GeneratePointsSystem : EntitySystem
     private void OnRoundStartAttempt(RoundStartAttemptEvent args)
     {
         if (args.Forced || args.Cancelled) return;
-        if (!_configurationManager.GetCVar(CLVars.GenerateStarmapRoundstart)) return;
+        if (!_configurationManager.GetCVar(CLVars.LoadStarmapRoundstart)) return;
         var sectorMapId = _mapManager.CreateMap();
         var sectorUid = _mapManager.GetMapEntityId(sectorMapId);
         var starMapComponent = AddComp<StarMapComponent>(sectorUid);
-        _starmapSystem.GenerateInitialSector(sectorUid, starMapComponent);
+        _starmapSystem.LoadStarsFromData(sectorUid, starMapComponent);
     }
 }
