@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Robust.Shared.Log;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Localizations
@@ -8,6 +9,7 @@ namespace Content.Shared.Localizations
     public sealed class ContentLocalizationManager
     {
         [Dependency] private readonly ILocalizationManager _loc = default!;
+        [Dependency] private readonly ILogManager _logManager = default!;
 
         // If you want to change your codebase's language, do it here.
         private const string Culture = "ru-RU"; // Corvax-Localization
@@ -26,6 +28,7 @@ namespace Content.Shared.Localizations
 
         public void Initialize()
         {
+            _logManager.GetSawmill("loc").Level = LogLevel.Error;
             var culture = new CultureInfo(Culture);
             var fallbackCulture = new CultureInfo(FallbackCulture); // Corvax-Localization
 
