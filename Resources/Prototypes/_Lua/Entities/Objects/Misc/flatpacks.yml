@@ -341,20 +341,21 @@
     layers:
     - state: ship_weapon
 
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretASM501FlatPack
-  name: ASM-501 pod
-  description: ASM-501 Smerchs heavy torpedo launcher. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity:
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
+# Mono deleted
+# - type: entity
+#   parent: BaseNFFlatpack
+#   id: WeaponTurretASM501FlatPack
+#   name: ASM-501 pod
+#   description: ASM-501 Smerchs heavy torpedo launcher. Can be remotely activated, or linked up to a GCS.
+#   components:
+#   - type: Flatpack
+#     entity:
+#   - type: StaticPrice
+#     price: 250
+#   - type: Sprite
+#     sprite: _Lua/Flatpack/flatpack.rsi
+#     layers:
+#     - state: ship_weapon
 
 - type: entity
   parent: BaseNFFlatpack

@@ -320,17 +320,18 @@
       - id: WeaponTurretVesperaFlatPack
         amount: 1
 
-- type: entity
-  id: CrateWeaponTurretASM501FlatPack
-  parent: CrateShipWeaponBase
-  name: ящик с упакованным ASM-501 pod
-  description: содержит 1 упакованный ASM-501 pod
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-      - id: WeaponTurretASM501FlatPack
-        amount: 1
+# Mono deleted
+# - type: entity
+#   id: CrateWeaponTurretASM501FlatPack
+#   parent: CrateShipWeaponBase
+#   name: ящик с упакованным ASM-501 pod
+#   description: содержит 1 упакованный ASM-501 pod
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: StorageFill
+#     contents:
+#       - id: WeaponTurretASM501FlatPack
+#         amount: 1
 
 #added to cargo
 - type: entity
