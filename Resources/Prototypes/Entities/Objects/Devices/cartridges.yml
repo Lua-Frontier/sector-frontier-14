@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NotekeeperCartridge
   name: notekeeper cartridge
@@ -178,3 +178,21 @@
         sprite: Objects/Devices/gps.rsi
         state: icon
     - type: AstroNavCartridge
+
+- type: entity
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
+  id: NanoChatCartridge
+  name: nanochat cartridge
+  description: A messenger program for contacts and groups.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-y
+    - type: UIFragment
+      ui: !type:NanoChatUi
+    - type: Cartridge
+      programName: nanochat-program-name
+      icon:
+        sprite: Interface/Misc/program_icons.rsi
+        state: nano_chat
+    - type: NanoChatCartridge

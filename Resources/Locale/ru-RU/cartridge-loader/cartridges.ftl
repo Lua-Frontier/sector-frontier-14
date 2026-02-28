@@ -22,6 +22,7 @@ log-probe-printout-header = Latest logs:
 log-probe-printout-entry = #{ $number } / { $time } / { $accessor }
 astro-nav-program-name = АстроНав
 med-tek-program-name = МедТек
+nanochat-program-name = NanoChat
 # Wanted list cartridge
 wanted-list-program-name = Список разыскиваемых
 nano-task-ui-heading-high-priority-tasks =
