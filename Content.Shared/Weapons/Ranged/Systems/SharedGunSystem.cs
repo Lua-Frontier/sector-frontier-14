@@ -611,6 +611,11 @@ public abstract partial class SharedGunSystem : EntitySystem
     // Mono - rewritten
     public void CauseImpulse(EntityCoordinates toCoordinates, Entity<GunComponent> ent, float scale)
     {
+        var beforeEv = new BeforeCauseImpulseEvent();
+        RaiseLocalEvent(ent, ref beforeEv);
+        if (beforeEv.Cancelled)
+            return;
+
         var totalImpulse = ent.Comp.Recoil * scale;
         var selfXform = Transform(ent);
 
