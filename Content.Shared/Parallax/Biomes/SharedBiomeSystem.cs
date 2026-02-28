@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Maps;
@@ -20,6 +21,8 @@ public abstract class SharedBiomeSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
 
     protected const byte ChunkSize = 8;
+
+    private readonly ConcurrentDictionary<(int NoiseId, int Seed), FastNoiseLite> _noiseCache = new();
 
     private T Pick<T>(List<T> collection, float value)
     {
@@ -192,13 +195,20 @@ public abstract class SharedBiomeSystem : EntitySystem
     public bool TryGetEntity(Vector2i indices, BiomeComponent component, Entity<MapGridComponent>? grid,
         [NotNullWhen(true)] out string? entity)
     {
+        return TryGetEntity(indices, component, grid, out entity, out _);
+    }
+
+    public bool TryGetEntity(Vector2i indices, BiomeComponent component, Entity<MapGridComponent>? grid,
+        [NotNullWhen(true)] out string? entity, out int spacing)
+    {
+        spacing = 0;
         if (!TryGetBiomeTile(indices, component.Layers, component.Seed, grid, out var tile))
         {
             entity = null;
             return false;
         }
 
-        return TryGetEntity(indices, component.Layers, tile.Value, component.Seed, grid, out entity);
+        return TryGetEntity(indices, component.Layers, tile.Value, component.Seed, grid, out entity, out spacing);
     }
 
     /// <summary>
@@ -214,6 +224,13 @@ public abstract class SharedBiomeSystem : EntitySystem
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, Entity<MapGridComponent>? grid,
         [NotNullWhen(true)] out string? entity)
     {
+        return TryGetEntity(indices, layers, tileRef, seed, grid, out entity, out _);
+    }
+
+    public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, Entity<MapGridComponent>? grid,
+        [NotNullWhen(true)] out string? entity, out int spacing)
+    {
+        spacing = 0;
         var tileId = TileDefManager[tileRef.TypeId].ID;
 
         for (var i = layers.Count - 1; i >= 0; i--)
@@ -246,7 +263,7 @@ public abstract class SharedBiomeSystem : EntitySystem
 
             if (layer is BiomeMetaLayer meta)
             {
-                if (TryGetEntity(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, tileRef, seed, grid, out entity))
+                if (TryGetEntity(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, tileRef, seed, grid, out entity, out spacing))
                 {
                     return true;
                 }
@@ -261,6 +278,7 @@ public abstract class SharedBiomeSystem : EntitySystem
                 return false;
             }
 
+            spacing = biomeLayer.Spacing;
             var noiseValue = noiseCopy.GetNoise(indices.X, indices.Y, i);
             entity = Pick(biomeLayer.Entities, (noiseValue + 1f) / 2f);
             return true;
@@ -376,11 +394,19 @@ public abstract class SharedBiomeSystem : EntitySystem
 
     private FastNoiseLite GetNoise(FastNoiseLite seedNoise, int seed)
     {
+        var key = (System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(seedNoise), seed);
+
+        if (_noiseCache.TryGetValue(key, out var cached))
+            return cached;
         var noiseCopy = new FastNoiseLite();
         _serManager.CopyTo(seedNoise, ref noiseCopy, notNullableOverride: true);
         noiseCopy.SetSeed(noiseCopy.GetSeed() + seed);
-        // Ensure re-calculate is run.
         noiseCopy.SetFractalOctaves(noiseCopy.GetFractalOctaves());
+        _noiseCache.TryAdd(key, noiseCopy);
         return noiseCopy;
+    }
+    public void ClearNoiseCache()
+    {
+        _noiseCache.Clear();
     }
 }

@@ -1,0 +1,17 @@
+- type: entity
+  id: FloorWaterBiomeEntity
+  parent: FloorWaterEntity
+  name: water
+  description: A real thirst quencher.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pool:
+        maxVol: 100
+        reagents:
+        - ReagentId: Water
+          Quantity: 100
+  - type: DrainableSolution
+    solution: pool
+  - type: DeleteWhenDrained
+    threshold: 100

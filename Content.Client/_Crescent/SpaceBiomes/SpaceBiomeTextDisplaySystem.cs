@@ -32,7 +32,9 @@ public sealed class SpaceTextDisplaySystem : EntitySystem
         _overlay.ResetDescription();
         _overlay.Text = biome.Name;
         _overlay.TextDescription = biome.Description;
-        _overlay.CharInterval = TimeSpan.FromSeconds(2f / biome.Name.Length);
+        _overlay.CharInterval = string.IsNullOrEmpty(biome.Name)
+            ? TimeSpan.Zero
+            : TimeSpan.FromSeconds(2f / biome.Name.Length);
         if (_overlay.TextDescription == "")                   //if we have a biome with no description, it's default is "" and that has length 0.
             _overlay.CharIntervalDescription = TimeSpan.Zero;       //we need to calculate it here because otherwise...
         else
@@ -58,7 +60,11 @@ public sealed class SpaceTextDisplaySystem : EntitySystem
 
         _overlay.Text = name;
         _overlay.TextDescription = description; // fallback is "" if no description is found.
-        _overlay.CharInterval = TimeSpan.FromSeconds(2f / _overlay.Text.Length);
+
+        if (string.IsNullOrEmpty(_overlay.Text))
+            _overlay.CharInterval = TimeSpan.Zero;
+        else
+            _overlay.CharInterval = TimeSpan.FromSeconds(2f / _overlay.Text.Length);
 
         if (_overlay.TextDescription == "")
             _overlay.CharIntervalDescription = TimeSpan.Zero; //if this is not done it tries dividing by 0 in the "else" clause

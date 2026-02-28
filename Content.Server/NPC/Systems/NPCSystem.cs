@@ -14,6 +14,9 @@ using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
 
@@ -32,6 +35,7 @@ namespace Content.Server.NPC.Systems
         [Dependency] private readonly HTNSystem _htn = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         /// <summary>
@@ -121,6 +125,14 @@ namespace Content.Server.NPC.Systems
                 return;
             }
 
+            if (component.SleepBodyType is { } originalType)
+            {
+                if (TryComp<PhysicsComponent>(uid, out var body))
+                    _physics.SetBodyType(uid, originalType, body: body);
+
+                component.SleepBodyType = null;
+            }
+
             Log.Debug($"Waking {ToPrettyString(uid)}");
             EnsureComp<ActiveNPCComponent>(uid);
         }
@@ -142,6 +154,12 @@ namespace Content.Server.NPC.Systems
                     _htn.ShutdownPlan(htn);
                     htn.Plan = null;
                 }
+            }
+
+            if (TryComp<PhysicsComponent>(uid, out var body) && body.BodyType == BodyType.Dynamic)
+            {
+                component.SleepBodyType = body.BodyType;
+                _physics.SetBodyType(uid, BodyType.Static, body: body);
             }
 
             Log.Debug($"Sleeping {ToPrettyString(uid)}");

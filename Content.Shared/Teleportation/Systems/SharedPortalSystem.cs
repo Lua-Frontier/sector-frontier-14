@@ -209,11 +209,17 @@ public abstract class SharedPortalSystem : EntitySystem
 
         _transform.SetCoordinates(subject, target);
 
+        AfterEntityTeleported(portal, subject, target, targetEntity);
+
         if (!playSound)
             return;
 
         _audio.PlayPredicted(departureSound, portal, subject);
         _audio.PlayPredicted(arrivalSound, subject, subject);
+    }
+
+    protected virtual void AfterEntityTeleported(EntityUid portal, EntityUid subject, EntityCoordinates target, EntityUid? targetEntity)
+    {
     }
 
     private void TeleportRandomly(EntityUid portal, EntityUid subject, PortalComponent? component = null)

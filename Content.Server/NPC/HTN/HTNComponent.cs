@@ -1,5 +1,6 @@
 using System.Threading;
 using Content.Server.NPC.Components;
+using Robust.Shared.Physics;
 
 namespace Content.Server.NPC.HTN;
 
@@ -62,4 +63,6 @@ public sealed partial class HTNComponent : NPCComponent
     /// </summary>
     [DataField]
     public bool Enabled = true;
+
+    public BodyType? SleepBodyType;
 }

@@ -1,0 +1,96 @@
+- type: stargatePlanetPreset
+  id: SGPresetVolcanicDepths
+  biome:
+  - GateLavaCaves
+  - GateCavesLava
+  - GateLavaDesert
+  dungeonConfigs:
+  - NFCaveFactory
+  - GateCaveFactory
+  - GateMineshaft
+  - NFMineshaft
+  dungeonCountMin: 1
+  dungeonCountMax: 8
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  dungeonMobBudget: 12
+  worldRadiusMin: 212
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Hot
+  weight: 0.6
+
+- type: stargatePlanetPreset
+  id: SGPresetFireAndIce
+  biome:
+  - GateLavaSnow
+  - GateSnowLava
+  - GateLavaGrass
+  dungeonConfigs:
+  - GateSmallOutpost
+  - GateScatteredCaches
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 80
+  dungeonMobBudget: 12
+  worldRadiusMin: 198
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFFlesh
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  - Evening
+  weight: 0.5
+
+- type: stargatePlanetPreset
+  id: SGPresetInfernalCorruption
+  biome:
+  - GateLavaShadow
+  - GateShadowLava
+  - GateInferno
+  dungeonConfigs:
+  - NFHaunted
+  - NFLavaBrig
+  - GateHauntedOutpost
+  - GateLavaOutpost
+  - GateTinyOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 8
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 90
+  dungeonMobBudget: 12
+  worldRadiusMin: 198
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 2
+  mobLayers:
+  - NFCultists
+  - NFFlesh
+  - NFMercenaries
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  temperatureMods:
+  - Hot
+  - Burning
+  airMods:
+  - GateAirPlasmaTrace
+  weight: 0.4

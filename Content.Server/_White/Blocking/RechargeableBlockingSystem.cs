@@ -95,7 +95,8 @@ public sealed class RechargeableBlockingSystem : SharedBlockingSystem // Mono
                 recharger.AutoRechargeRate = component.DischargedRechargeRate;
 
             component.Discharged = true;
-            _shieldToggle.SetEnabled(uid, null, false);
+            if (TryComp<ShieldToggleComponent>(uid, out var shieldComp))
+                _shieldToggle.SetEnabled(uid, shieldComp, false);
             return;
         }
 

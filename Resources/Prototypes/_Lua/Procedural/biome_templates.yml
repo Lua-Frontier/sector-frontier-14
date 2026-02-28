@@ -1,0 +1,172 @@
+- type: biomeTemplate
+  id: GateDesertCaves
+  layers:
+    - !type:BiomeMetaLayer
+      template: LowDesert
+    - !type:BiomeMetaLayer
+      template: Caves
+      threshold: 0.2
+      noise:
+        frequency: 0.003
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateSnowLava
+  layers:
+    - !type:BiomeMetaLayer
+      template: Snow
+    - !type:BiomeMetaLayer
+      template: Lava
+      threshold: 0.4
+      noise:
+        frequency: 0.004
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateGrassSnow
+  layers:
+    - !type:BiomeMetaLayer
+      template: Grasslands
+    - !type:BiomeMetaLayer
+      template: Snow
+      threshold: 0.0
+      noise:
+        frequency: 0.002
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateGrassDesert
+  layers:
+    - !type:BiomeMetaLayer
+      template: Grasslands
+    - !type:BiomeMetaLayer
+      template: LowDesert
+      threshold: 0.1
+      noise:
+        frequency: 0.002
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateCavesShadow
+  layers:
+    - !type:BiomeMetaLayer
+      template: Caves
+    - !type:BiomeMetaLayer
+      template: Shadow
+      threshold: 0.3
+      noise:
+        frequency: 0.003
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateLavaDesert
+  layers:
+    - !type:BiomeMetaLayer
+      template: Lava
+    - !type:BiomeMetaLayer
+      template: LowDesert
+      threshold: -0.1
+      noise:
+        frequency: 0.003
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateDesertShadow
+  layers:
+    - !type:BiomeMetaLayer
+      template: LowDesert
+    - !type:BiomeMetaLayer
+      template: Shadow
+      threshold: 0.3
+      noise:
+        frequency: 0.004
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateSnowCaves
+  layers:
+    - !type:BiomeMetaLayer
+      template: Snow
+    - !type:BiomeMetaLayer
+      template: Caves
+      threshold: 0.15
+      noise:
+        frequency: 0.003
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateTripleMix
+  layers:
+    - !type:BiomeMetaLayer
+      template: Grasslands
+    - !type:BiomeMetaLayer
+      template: Caves
+      threshold: -0.3
+      noise:
+        frequency: 0.002
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+    - !type:BiomeMetaLayer
+      template: Snow
+      threshold: 0.4
+      noise:
+        frequency: 0.002
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateShadowLava
+  layers:
+    - !type:BiomeMetaLayer
+      template: Shadow
+    - !type:BiomeMetaLayer
+      template: Lava
+      threshold: 0.2
+      noise:
+        frequency: 0.005
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2
+- type: biomeTemplate
+  id: GateGrassLava
+  layers:
+    - !type:BiomeMetaLayer
+      template: Grasslands
+    - !type:BiomeMetaLayer
+      template: Lava
+      threshold: 0.5
+      noise:
+        frequency: 0.004
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 3
+        lacunarity: 2
+    - !type:BiomeMetaLayer
+      template: Shadow
+      threshold: 0.35
+      noise:
+        frequency: 0.003
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 2
+        lacunarity: 2

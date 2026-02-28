@@ -1,0 +1,122 @@
+- type: dungeonPreset
+  id: GateTiny
+  roomPacks:
+    - 0,0,17,17
+
+- type: dungeonPreset
+  id: GateTinySmall
+  roomPacks:
+    - 0,0,11,11
+
+- type: dungeonPreset
+  id: GateSmall
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+
+- type: dungeonPreset
+  id: GateSmallCompact
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,31,11
+
+- type: dungeonPreset
+  id: GatePair
+  roomPacks:
+    - 0,0,17,17
+    - 20,20,37,37
+
+- type: dungeonPreset
+  id: GateTriplet
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+    - 0,20,17,37
+
+- type: dungeonPreset
+  id: GateQuad
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+    - 0,20,17,37
+    - 20,20,37,37
+
+- type: dungeonPreset
+  id: GateLine
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+    - 40,0,57,17
+
+- type: dungeonPreset
+  id: GateCross
+  roomPacks:
+    - 20,20,37,37
+    - 20,0,37,17
+    - 20,40,37,57
+    - 0,20,17,37
+    - 40,20,57,37
+
+- type: dungeonPreset
+  id: GateCompact
+  roomPacks:
+    - 0,0,11,11
+
+- type: dungeonPreset
+  id: GateLong
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+
+- type: dungeonPreset
+  id: GateHook
+  roomPacks:
+    - 0,0,17,17
+    - 20,0,37,17
+    - 40,0,57,17
+    - 40,20,57,37
+
+- type: dungeonPreset
+  id: GateTee
+  roomPacks:
+    - 20,20,37,37
+    - 20,0,37,17
+    - 0,20,17,37
+    - 40,20,57,37
+
+- type: dungeonPreset
+  id: GateFive
+  roomPacks:
+    - 20,20,37,37
+    - 0,0,17,17
+    - 20,0,37,17
+    - 0,20,17,37
+    - 20,40,37,57
+
+- type: dungeonPreset
+  id: GateWide
+  roomPacks:
+    - 0,0,17,11
+
+- type: dungeonPreset
+  id: GateDouble
+  roomPacks:
+    - 0,0,17,17
+    - 0,20,17,37
+
+- type: dungeonPreset
+  id: GateStair
+  roomPacks:
+    - 0,0,17,17
+    - 20,20,37,37
+    - 40,40,57,57
+
+- type: dungeonPreset
+  id: GateHex
+  roomPacks:
+    - 20,0,37,17
+    - 40,20,57,37
+    - 20,40,37,57
+    - 0,40,17,57
+    - -20,20,-3,37
+    - 0,0,17,17

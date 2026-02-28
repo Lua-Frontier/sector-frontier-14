@@ -1,0 +1,200 @@
+# Stargate-specific air mixtures
+# Gas indices: 0=O2, 1=N2, 2=CO2, 3=plasma, 4=tritium,
+# 5=water vapor, 6=miasma, 7=N2O, 8=frezon
+
+# Normal breathable
+- type: salvageAirMod
+  id: GateAirBreathable
+  cost: 0
+  desc: salvage-air-mod-1
+  gases:
+    - 21.824779 # oxygen
+    - 82.10312 # nitrogen
+
+# Sleepy — nitrous oxide causes drowsiness
+- type: salvageAirMod
+  id: GateAirSleepy
+  cost: 1
+  desc: salvage-air-mod-2
+  gases:
+    - 21.824779 # oxygen
+    - 72.10312 # nitrogen
+    - 0 # carbon dioxide
+    - 0 # plasma
+    - 0 # tritium
+    - 0 # water vapor
+    - 0 # miasma
+    - 10 # nitrous oxide
+
+# Humid — heavy water vapor, steam world
+- type: salvageAirMod
+  id: GateAirHumid
+  cost: 1
+  desc: salvage-air-mod-3
+  gases:
+    - 21.824779 # oxygen
+    - 72.10312 # nitrogen
+    - 0 # carbon dioxide
+    - 0 # plasma
+    - 0 # tritium
+    - 10 # water vapor
+
+# Poisoned — CO2 rich, causes suffocation damage
+- type: salvageAirMod
+  id: GateAirPoisoned
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 77.10312 # nitrogen
+    - 10 # carbon dioxide
+
+# Toxic — miasma and N2O combo
+- type: salvageAirMod
+  id: GateAirToxic
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 57.10312 # nitrogen
+    - 0 # carbon dioxide
+    - 5 # plasma
+    - 0 # tritium
+    - 0 # water vapor
+    - 15 # miasma
+    - 5 # nitrous oxide
+
+# Swamp — water vapor, miasma, N2O
+- type: salvageAirMod
+  id: GateAirSwamp
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 57.10312 # nitrogen
+    - 0 # carbon dioxide
+    - 0 # plasma
+    - 0 # tritium
+    - 15 # water vapor
+    - 5 # miasma
+    - 5 # nitrous oxide
+
+# Light plasma traces
+- type: salvageAirMod
+  id: GateAirPlasmaTrace
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 79.10312 # nitrogen
+    - 0 # carbon dioxide
+    - 5 # plasma
+
+# Heavy toxic — CO2, plasma, N2O
+- type: salvageAirMod
+  id: GateAirHeavyToxic
+  cost: 3
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 57.10312 # nitrogen
+    - 15 # carbon dioxide
+    - 5 # plasma
+    - 0 # tritium
+    - 0 # water vapor
+    - 0 # miasma
+    - 5 # nitrous oxide
+
+# Pure plasma — extremely dangerous, flammable
+- type: salvageAirMod
+  id: GateAirPlasma
+  cost: 4
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 0 # oxygen
+    - 0 # nitrogen
+    - 0 # carbon dioxide
+    - 103.927899 # plasma
+
+# Volatile — oxygen + plasma, will ignite
+- type: salvageAirMod
+  id: GateAirVolatile
+  cost: 5
+  desc: salvage-air-mod-volatile-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 0 # nitrogen
+    - 0 # carbon dioxide
+    - 82.10312 # plasma
+
+# Pure N2O — instant unconsciousness
+- type: salvageAirMod
+  id: GateAirN2O
+  cost: 3
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 0 # oxygen
+    - 0 # nitrogen
+    - 0 # carbon dioxide
+    - 0 # plasma
+    - 0 # tritium
+    - 0 # water vapor
+    - 0 # miasma
+    - 103.927899 # nitrous oxide
+
+# Frezon atmosphere — freezing gas
+- type: salvageAirMod
+  id: GateAirFrezon
+  cost: 4
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 0 # oxygen
+    - 0 # nitrogen
+    - 0 # carbon dioxide
+    - 0 # plasma
+    - 0 # tritium
+    - 0 # water vapor
+    - 0 # miasma
+    - 0 # nitrous oxide
+    - 103.927899 # frezon
+
+# Oxygen rich — high O2, low N2
+- type: salvageAirMod
+  id: GateAirOxygenRich
+  cost: 1
+  desc: salvage-air-mod-1
+  gases:
+    - 40 # oxygen
+    - 63.927899 # nitrogen
+
+# Thin atmosphere — low pressure, breathable but harsh
+- type: salvageAirMod
+  id: GateAirThin
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 10.9123895 # oxygen
+    - 41.05156 # nitrogen
+
+# Dusty — low O2, high N2, particulate
+- type: salvageAirMod
+  id: GateAirDusty
+  cost: 2
+  desc: salvage-air-mod-dangerous-atmosphere
+  gases:
+    - 16 # oxygen
+    - 87.927899 # nitrogen
+
+# Ammonia trace — irritating
+- type: salvageAirMod
+  id: GateAirAmmonia
+  cost: 3
+  desc: salvage-air-mod-toxic-atmosphere
+  gases:
+    - 21.824779 # oxygen
+    - 70 # nitrogen
+    - 0 # carbon dioxide
+    - 0 # plasma
+    - 0 # tritium
+    - 0 # water vapor
+    - 12 # miasma

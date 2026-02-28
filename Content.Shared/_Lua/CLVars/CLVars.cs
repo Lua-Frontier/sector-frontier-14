@@ -59,6 +59,8 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("starmap.data_id", "StarmapData", CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapLazyLoading =
             CVarDef.Create("starmap.lazy_loading", true, CVar.ARCHIVE);
+        public static readonly CVarDef<bool> StargateGuideShown =
+            CVarDef.Create("stargate.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<string> RabbitMQConnectionString =
             CVarDef.Create("rabbitmq.connection_string", "", CVar.SERVERONLY);
@@ -151,5 +153,11 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("shuttle.freeze.proximity_tiles", 3f, CVar.SERVERONLY);
         public static readonly CVarDef<float> ShuttleFreezeUnfreezeInterval =
             CVarDef.Create("shuttle.freeze.unfreeze_interval", 1f, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> StargateEnabled =
+            CVarDef.Create("stargate.enabled", true, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> SalvageExpeditionEnabled =
+            CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);
     }
 }

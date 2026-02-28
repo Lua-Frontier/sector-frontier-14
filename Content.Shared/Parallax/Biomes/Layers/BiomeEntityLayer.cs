@@ -21,6 +21,9 @@ public sealed partial class BiomeEntityLayer : IBiomeWorldLayer
     /// <inheritdoc/>
     [DataField("invert")] public bool Invert { get; private set; } = false;
 
+    [DataField("spacing")]
+    public int Spacing { get; private set; } = 0;
+
     [DataField(required: true)]
     public List<EntProtoId> Entities = new();
 }

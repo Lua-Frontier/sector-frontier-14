@@ -1,0 +1,288 @@
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: BaseStargate
+  name: stargate
+  description: An ancient ring-shaped device capable of creating stable wormholes to distant worlds.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/gateway.rsi
+    noRot: true
+    layers:
+    - state: frame
+    - state: starting
+      shader: unshaded
+      visible: false
+      map: ["enum.StargateVisualLayers.Portal"]
+    - state: iris_closing
+      shader: unshaded
+      visible: false
+      map: ["enum.StargateVisualLayers.Iris"]
+  - type: GenericVisualizer
+    visuals:
+      enum.StargateVisuals.State:
+        enum.StargateVisualLayers.Portal:
+          Off: { visible: false }
+          Starting: { state: starting, visible: true }
+          Opening: { state: opening, visible: true }
+          Idle: { state: idle, visible: true }
+          Closing: { state: closing, visible: true }
+      enum.StargateVisuals.IrisState:
+        enum.StargateVisualLayers.Iris:
+          Open: { state: iris_open, visible: true }
+          Opening: { state: iris_opening, visible: true }
+          Closing: { state: iris_closing, visible: true }
+          Closed: { state: iris_closed, visible: true }
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.99
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: Appearance
+  - type: PointLight
+    radius: 4
+    energy: 0.6
+    castShadows: false
+    color: "#88aaff"
+    enabled: false
+  - type: Portal
+    canTeleportToOtherMaps: true
+    randomTeleport: false
+    departureSound:
+      path: /Audio/_Lua/Effects/Stargate/wormhole_enter.ogg
+      params:
+        volume: -8
+    arrivalSound:
+      path: /Audio/_Lua/Effects/Stargate/wormhole_enter.ogg
+      params:
+        volume: -8
+  - type: Stargate
+    symbolCount: 40
+    openSound:
+      path: /Audio/_Lua/Effects/Stargate/pegasus_wormhole_open.ogg
+    closeSound:
+      path: /Audio/_Lua/Effects/Stargate/wormhole_close.ogg
+    chevronSound:
+      collection: StargateChevronEngage
+    dialFailSound:
+      collection: StargateDialFail
+    idleSound:
+      path: /Audio/_Lua/Effects/Stargate/wormhole_idle.ogg
+    chevronDelay: 0.6
+    kawooshDelay: 2.0
+
+- type: entity
+  parent: BaseStargate
+  id: Stargate
+  suffix: Active
+
+- type: entity
+  parent: BaseStructure
+  id: StargateConsole
+  name: DHD console
+  description: A control panel used to dial Stargate addresses and establish wormhole connections.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/dhdconsole.rsi
+    noRot: true
+    layers:
+    - state: base
+    - state: base-unshaded
+      shader: unshaded
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Appearance
+  - type: ActivatableUI
+    key: enum.StargateConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StargateConsoleUiKey.Key:
+        type: StargateConsoleBoundUserInterface
+  - type: StargateConsole
+    autoLinkRadius: 10
+    dhdPressSound:
+      collection: StargateDhdPress
+    dhdDialSound:
+      path: /Audio/_Lua/Effects/Stargate/pegasus_dhd_enter.ogg
+  - type: ItemSlots
+    slots:
+      disk_slot:
+        name: Disk
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - StargateAddressDisk
+  - type: ContainerContainer
+    containers:
+      disk_slot: !type:ContainerSlot {}
+
+- type: entity
+  parent: BaseStructure
+  id: StargateAddressEditorConsole
+  name: address editor console
+  description: A workstation for managing Stargate address disks. Copy, move, and edit coordinates between two disks. Does not dial gates.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+      shader: unshaded
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+      shader: unshaded
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Appearance
+  - type: ActivatableUI
+    key: enum.StargateAddressEditorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StargateAddressEditorUiKey.Key:
+        type: StargateAddressEditorBoundUserInterface
+  - type: StargateAddressEditorConsole
+  - type: ItemSlots
+    slots:
+      left_disk_slot:
+        name: Left disk
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - StargateAddressDisk
+      right_disk_slot:
+        name: Right disk
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - StargateAddressDisk
+  - type: ContainerContainer
+    containers:
+      left_disk_slot: !type:ContainerSlot {}
+      right_disk_slot: !type:ContainerSlot {}
+
+- type: entity
+  parent: BaseStargate
+  id: StargateControllableLuaTech
+  name: controllable stargate
+  suffix: LuaTech
+  description: A Stargate that can be manually activated or deactivated.
+  components:
+  - type: StargateControllable
+    enabled: false
+  - type: Stargate
+    addressLength: 7
+    addressPreset: ALUaTeh
+
+- type: entity
+  parent: BaseStargate
+  id: StargateControllableSyndicate
+  name: controllable stargate
+  suffix: Syndicate
+  description: A Stargate that can be manually activated or deactivated.
+  components:
+  - type: StargateControllable
+    enabled: false
+  - type: Stargate
+    addressLength: 6
+
+- type: entity
+  parent: Paper
+  id: StargateAddressPaper
+  name: stargate coordinates
+  description: A scrap of paper with a Stargate address scrawled on it.
+  components:
+  - type: StargateAddressPaper
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnStargateAddressPaper
+  name: stargate address paper spawner
+  description: Spawns a paper with a random Stargate address. For map editing; purple marker + paper sprite for positioning.
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    drawdepth: Overdoors
+    layers:
+    - state: pink
+    - sprite: Objects/Misc/bureaucracy.rsi
+      state: paper
+      scale: 0.7, 0.7
+  - type: ConditionalSpawner
+    prototypes:
+    - StargateAddressPaper
+
+- type: entity
+  parent: Paper
+  id: StargateDebugPaper
+  name: random stargate addresses
+  suffix: Debug
+  description: Document with random addresses. DO NOT MAP.
+  components:
+  - type: StargateDebugPaper
+
+- type: entity
+  parent: BaseItem
+  id: StargateAddressDisk
+  name: stargate address disk
+  description: An encrypted data disk containing Stargate coordinates. Can be inserted into a DHD console.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_base
+      color: "#4488cc"
+    - state: datadisk_label
+    - state: datadisk_stargate
+  - type: StargateAddressDisk

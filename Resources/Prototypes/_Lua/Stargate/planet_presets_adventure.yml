@@ -1,0 +1,181 @@
+- type: stargatePlanetPreset
+  id: SGPresetCavesMultiDungeon
+  biome:
+  - Caves
+  - GateCavesLava
+  - GateCavesShadow
+  - GateCavesGrass
+  dungeonConfigs:
+  - GateMediumOutpost
+  - NFCaveFactory
+  - NFMineshaft
+  - GateMineshaft
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 130
+  dungeonMobBudget: 12
+  worldRadiusMin: 217
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFArgocytes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.5
+
+- type: stargatePlanetPreset
+  id: SGPresetDesertMega
+  biome:
+  - LowDesert
+  - GateDesertCaves
+  - GateDesertShadow
+  - GateGrassDesert
+  dungeonConfigs:
+  - GateMineshaft
+  - GateSmallOutpost
+  - NFSalvageOutpost
+  - NFMineshaft
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 160
+  dungeonMobBudget: 15
+  worldRadiusMin: 196
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFXenos
+  - NFFlesh
+  - NFMercenaries
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.35
+
+- type: stargatePlanetPreset
+  id: SGPresetLavaFortress
+  biome:
+  - Lava
+  - GateLavaCaves
+  - GateLavaDesert
+  - GateLavaShadow
+  - GateInferno
+  dungeonConfigs:
+  - NFLavaBrig
+  - NFLavaMercenary
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  dungeonMobBudget: 12
+  worldRadiusMin: 223
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFMercenaries
+  - NFSyndicate
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Hot
+  - Burning
+  weight: 0.35
+
+- type: stargatePlanetPreset
+  id: SGPresetShadowDomain
+  biome:
+  - Shadow
+  - GateShadowLava
+  - GateShadowSnow
+  - GateShadowDesert
+  - GateCavesShadow
+  dungeonConfigs:
+  - NFHaunted
+  - GateScatteredCaches
+  - NFVirologyLab
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  dungeonMobBudget: 12
+  worldRadiusMin: 209
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.3125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFCultists
+  - NFZombies
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  temperatureMods:
+  - Tundra
+  weight: 0.4
+
+- type: stargatePlanetPreset
+  id: SGPresetContinental
+  biome:
+  - Continental
+  - GateTripleMix
+  - GateVolcanicSavanna
+  dungeonConfigs:
+  - GateMediumOutpost
+  - GateQuadBunker
+  - GateCrossBunker
+  - GateMineshaft
+  - NFExperiment
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 150
+  dungeonMobBudget: 12
+  worldRadiusMin: 201
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.375
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+
+- type: stargatePlanetPreset
+  id: SGPresetContinentalRich
+  biome:
+  - Continental
+  - GateTripleMix
+  - GateInferno
+  - GateVolcanicSavanna
+  dungeonConfigs:
+  - NFMineshaft
+  - NFSalvageOutpost
+  - NFMedSci
+  - GateScatteredOutposts
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 80
+  dungeonDistanceMax: 200
+  dungeonMobBudget: 20
+  worldRadiusMin: 228
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFXenos
+  - NFDinosaurs
+  - NFMercenaries
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.3

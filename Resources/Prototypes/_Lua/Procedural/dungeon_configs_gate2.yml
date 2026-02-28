@@ -1,0 +1,492 @@
+- type: dungeonConfig
+  id: GateQuadBunker
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateQuad
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateLineOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateLine
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 3
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateCompactCache
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateCompact
+    - GateTiny
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 3
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateScatteredLabs
+  minCount: 2
+  maxCount: 4
+  minOffset: 30
+  maxOffset: 60
+  layers:
+  - !type:PrefabDunGen
+    presets:
+    - GateCompact
+    - GateTiny
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 3
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateCrossBunker
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateCross
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateHookOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateHook
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateTeeLab
+  layers:
+  - !type:PrefabDunGen
+    presets:
+    - GateTee
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateWideShelter
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateWide
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateDoubleStack
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateDouble
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateScatteredMixed
+  minCount: 2
+  maxCount: 4
+  minOffset: 35
+  maxOffset: 70
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateTiny
+    - GateSmall
+    - GateLine
+    - GateQuad
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateHauntedOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFHaunted
+    presets:
+    - GateTiny
+    - GateTinySmall
+    - GateCompact
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 3
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateLabRuins
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
+    presets:
+    - GateTiny
+    - GateCompact
+    - GateSmall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateLavaOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFLavaBrig
+    presets:
+    - GateTiny
+    - GateCompact
+    - GateSmall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateCaveFactory
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFCaveFactory
+    presets:
+    - GateTiny
+    - GateCompact
+    - GateWide
+    - GateSmall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateMixed
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+      - NFHaunted
+      - NFCaveFactory
+    presets:
+    - GateTiny
+    - GateTinySmall
+    - GateCompact
+    - GateSmall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable
+
+- type: dungeonConfig
+  id: GateScatteredHooks
+  minCount: 2
+  maxCount: 3
+  minOffset: 40
+  maxOffset: 80
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateHook
+    - GateLine
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 4
+    contents: LuaGateDungeonMobTable

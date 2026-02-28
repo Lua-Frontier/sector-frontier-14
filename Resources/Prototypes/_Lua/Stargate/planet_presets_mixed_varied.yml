@@ -1,0 +1,137 @@
+- type: stargatePlanetPreset
+  id: SGPresetRandomEden
+  biome:
+  - GateJungle
+  - GateBioluminescent
+  - GateGrassCaves
+  - GateLavaGrass
+  - GateDesertGrass
+  dungeonConfigs:
+  - GateTinyOutpost
+  - GateCompactCache
+  - GateScatteredCaches
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  dungeonMobBudget: 12
+  worldRadiusMin: 191
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.1875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.5
+
+- type: stargatePlanetPreset
+  id: SGPresetChaosWorld
+  biome:
+  - GateTripleMix
+  - GateInferno
+  - GateJungle
+  - GateBioluminescent
+  - GateWasteland
+  dungeonConfigs:
+  - GateQuadBunker
+  - GateCrossBunker
+  - GateScatteredMixed
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 70
+  dungeonDistanceMax: 160
+  dungeonMobBudget: 15
+  worldRadiusMin: 226
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFXenos
+  - NFCarps
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  - Evening
+  weight: 0.4
+
+- type: stargatePlanetPreset
+  id: SGPresetExplorerDream
+  biome:
+  - GateJungle
+  - GateBioluminescent
+  - GateGrassSnow
+  - GateSnowDesert
+  dungeonConfigs:
+  - GateMediumOutpost
+  - GateLineOutpost
+  - GateScatteredLabs
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  dungeonMobBudget: 12
+  worldRadiusMin: 208
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.15
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Daylight
+  - Evening
+  temperatureMods:
+  - Cold
+  weight: 0.45
+
+- type: stargatePlanetPreset
+  id: SGPresetAlienGarden
+  biome:
+  - GateBioluminescent
+  - GateJungle
+  - GateGrassLava
+  - GateShadowDesert
+  dungeonConfigs:
+  - GateScatteredCaches
+  - GateCompactCache
+  - GateHookOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  dungeonMobBudget: 12
+  worldRadiusMin: 218
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.1875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Evening
+  - Daylight
+  weight: 0.55

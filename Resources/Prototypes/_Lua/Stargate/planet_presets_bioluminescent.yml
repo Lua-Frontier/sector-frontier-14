@@ -1,0 +1,166 @@
+- type: stargatePlanetPreset
+  id: SGPresetBioluminescent
+  biome:
+  - GateBioluminescent
+  dungeonConfigs:
+  - GateTinyOutpost
+  - GateSmallOutpost
+  - GateLineOutpost
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  dungeonMobBudget: 12
+  worldRadiusMin: 203
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Evening
+  - Daylight
+  weight: 0.6
+
+- type: stargatePlanetPreset
+  id: SGPresetBioluminescentPeaceful
+  biome:
+  - GateBioluminescent
+  dungeonCountMin: 0
+  dungeonCountMax: 0
+  worldRadiusMin: 226
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Evening
+  weight: 0.5
+
+- type: stargatePlanetPreset
+  id: SGPresetBioluminescentRuins
+  biome:
+  - GateBioluminescent
+  dungeonConfigs:
+  - GateScatteredCaches
+  - GateScatteredLabs
+  - GateCompactCache
+  dungeonCountMin: 1
+  dungeonCountMax: 8
+  dungeonDistanceMin: 70
+  dungeonDistanceMax: 150
+  dungeonMobBudget: 12
+  worldRadiusMin: 198
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Evening
+  - Daylight
+  weight: 0.5
+
+- type: stargatePlanetPreset
+  id: SGPresetBioluminescentHostile
+  biome:
+  - GateBioluminescent
+  dungeonConfigs:
+  - GateSmallOutpost
+  - GateLineOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 8
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  dungeonMobBudget: 12
+  worldRadiusMin: 222
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFXenos
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirHumid
+  - GateAirSwamp
+  lightMods:
+  - Evening
+  weight: 0.35
+
+- type: stargatePlanetPreset
+  id: SGPresetBioluminescentExpedition
+  biome:
+  - GateBioluminescent
+  dungeonConfigs:
+  - GateMediumOutpost
+  - GateQuadBunker
+  - GateScatteredMixed
+  dungeonCountMin: 2
+  dungeonCountMax: 8
+  dungeonDistanceMin: 80
+  dungeonDistanceMax: 180
+  dungeonMobBudget: 15
+  worldRadiusMin: 191
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFXenos
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Evening
+  weight: 0.4
+
+- type: stargatePlanetPreset
+  id: SGPresetBioluminescentCrystals
+  biome:
+  - GateBioluminescent
+  dungeonConfigs:
+  - GateScatteredCaches
+  - GateTinyOutpost
+  dungeonCountMin: 0
+  dungeonCountMax: 8
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  dungeonMobBudget: 12
+  worldRadiusMin: 214
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Evening
+  weight: 0.3

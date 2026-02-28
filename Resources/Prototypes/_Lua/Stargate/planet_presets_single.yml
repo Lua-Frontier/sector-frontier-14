@@ -1,0 +1,229 @@
+- type: stargatePlanetPreset
+  id: SGPresetSingleSnow
+  biome:
+  - Snow
+  dungeonConfigs:
+  - NFSnowyLabs
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 110
+  dungeonMobBudget: 12
+  worldRadiusMin: 220
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFCarps
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  temperatureMods:
+  - Cold
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleLava
+  biome:
+  - Lava
+  dungeonConfigs:
+  - NFLavaBrig
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  dungeonMobBudget: 12
+  worldRadiusMin: 206
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFMercenaries
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Hot
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleShadow
+  biome:
+  - Shadow
+  dungeonConfigs:
+  - NFHaunted
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 90
+  dungeonMobBudget: 12
+  worldRadiusMin: 206
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFZombies
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleGrassland
+  biome:
+  - Grasslands
+  dungeonConfigs:
+  - GateSmallOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  dungeonMobBudget: 12
+  worldRadiusMin: 213
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleCaves
+  biome:
+  - Caves
+  dungeonConfigs:
+  - NFCaveFactory
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  dungeonMobBudget: 12
+  worldRadiusMin: 220
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleDesert
+  biome:
+  - LowDesert
+  dungeonConfigs:
+  - GateMineshaft
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  dungeonMobBudget: 12
+  worldRadiusMin: 220
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFFlesh
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleJungle
+  biome:
+  - GateJungle
+  dungeonConfigs:
+  - GateTinyOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 90
+  dungeonMobBudget: 12
+  worldRadiusMin: 206
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirHumid
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleBiolum
+  biome:
+  - GateBioluminescent
+  dungeonConfigs:
+  - GateCompactCache
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 90
+  dungeonMobBudget: 12
+  worldRadiusMin: 206
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleContinental
+  biome:
+  - Continental
+  dungeonConfigs:
+  - GateMediumOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  dungeonMobBudget: 12
+  worldRadiusMin: 213
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFPunks
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.8
+
+- type: stargatePlanetPreset
+  id: SGPresetSingleAsteroid
+  biome:
+  - Asteroid
+  dungeonConfigs:
+  - GateTinyOutpost
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 25
+  dungeonDistanceMax: 60
+  dungeonMobBudget: 10
+  worldRadiusMin: 130
+  worldRadiusMax: 220
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFSilicons
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - Space
+  lightMods:
+  - Night
+  weight: 0.7

@@ -219,6 +219,29 @@
       rareChance: 0.05
 
 - type: entity
+  name: Случайный спавн Зомби
+  id: SpawnMobZombieGate
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - state: ai
+    - type: RandomSpawner
+      prototypes:
+        - NFMobZombieSuit
+        - NFMobZombieJumpsuit
+        - NFMobZombieSuitRadiation
+        - NFMobZombieClown
+        - NFMobZombieExploding
+        - NFMobZombieSuitFire
+        - NFMobZombieSuitAtmos
+        - NFMobZombieFast
+      rarePrototypes:
+        - NFMobZombieOdysseus
+      rareChance: 0.08
+
+- type: entity
   name: Случайный спавн Культистов
   id: SpawnMobCultistsGate
   parent: MarkerBase

@@ -17,6 +17,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Layers;
 using Content.Shared.Parallax.Biomes.Markers;
+using Content.Shared.CCVar;
 using Content.Shared.Salvage; // Lua
 using Content.Shared.Tag;
 using Microsoft.Extensions.ObjectPool;
@@ -61,11 +62,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly HashSet<EntityUid> _handledEntities = new();
-    private const float DefaultLoadRange = 16f;
+    private const float DefaultLoadRange = 11f;
     private float _loadRange = DefaultLoadRange;
+    private int _chunkBudget = 3;
     private static readonly ProtoId<TagPrototype> AllowBiomeLoadingTag = "AllowBiomeLoading";
-
-    private List<(Vector2i, Tile)> _tiles = new();
 
     private ObjectPool<HashSet<Vector2i>> _tilePool =
         new DefaultObjectPool<HashSet<Vector2i>>(new SetPolicy<Vector2i>(), 256);
@@ -74,6 +74,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// Load area for chunks containing tiles, decals etc.
     /// </summary>
     private Box2 _loadArea = new(-DefaultLoadRange, -DefaultLoadRange, DefaultLoadRange, DefaultLoadRange);
+
+    private EntityQuery<RestrictedRangeComponent> _restrictedQuery;
 
     /// <summary>
     /// Stores the chunks active for this tick temporarily.
@@ -86,24 +88,50 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     private readonly List<Vector2i> _unloadChunksBuffer = new();
     private readonly List<(Vector2i, Tile)> _unloadTilesBuffer = new();
 
+    /// <summary>
+    /// Components that change at spawn or during simulation but do not indicate player interaction.
+    /// Ignored when checking if a biome-spawned entity can be safely deleted on chunk unload.
+    /// </summary>
+    private static readonly HashSet<string> BiomeUnloadIgnoredComponents = new()
+    {
+        "Physics",
+        "Fixtures",
+        "Sprite",
+        "RandomSprite",
+        // Floor water/lava/plasma: solution structure changes at MapInit, emission/tile state
+        "SolutionContainerManager",
+        "DrainableSolution",
+        "TileEmission",
+        // Floor water: contacts, triggers, occlusion, footstep, fishing
+        "SpeedModifierContacts",
+        "StepTrigger",
+        "FloorOccluder",
+        "FootstepModifier",
+        "TileEntityEffect",
+        "FishingSpot"
+    };
+
     public override void Initialize()
     {
         base.Initialize();
-        Log.Level = LogLevel.Debug;
         _biomeQuery = GetEntityQuery<BiomeComponent>();
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _restrictedQuery = GetEntityQuery<RestrictedRangeComponent>();
         SubscribeLocalEvent<BiomeComponent, MapInitEvent>(OnBiomeMapInit);
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<ShuttleFlattenEvent>(OnShuttleFlatten);
-        Subs.CVar(_configManager, CVars.NetMaxUpdateRange, SetLoadRange, true);
+        Subs.CVar(_configManager, CCVars.BiomeLoadRange, SetLoadRange, true);
+        Subs.CVar(_configManager, CCVars.BiomeChunkBudget, v => _chunkBudget = v, true);
         InitializeCommands();
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(ProtoReload);
     }
 
     private void ProtoReload(PrototypesReloadedEventArgs obj)
     {
+        ClearNoiseCache();
+
         if (!obj.ByType.TryGetValue(typeof(BiomeTemplatePrototype), out var reloads))
             return;
 
@@ -120,8 +148,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private void SetLoadRange(float obj)
     {
-        // Round it up
-        _loadRange = MathF.Ceiling(obj / ChunkSize) * ChunkSize;
+        _loadRange = obj;
         _loadArea = new Box2(-_loadRange, -_loadRange, _loadRange, _loadRange);
     }
 
@@ -442,6 +469,14 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     #region Load
 
+    private sealed class PreparedChunkData
+    {
+        public Vector2i Chunk;
+        public readonly List<(Vector2i Index, Tile Tile)> Tiles = new();
+        public readonly List<(Vector2i Index, string Prototype)> Entities = new();
+        public readonly List<(Vector2i Index, string DecalId, Vector2 Position)> Decals = new();
+    }
+
     /// <summary>
     /// Loads all of the chunks for a particular biome, as well as handle any marker chunks.
     /// </summary>
@@ -453,17 +488,39 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         BuildMarkerChunks(component, gridUid, grid, seed);
 
+        _restrictedQuery.TryGetComponent(gridUid, out var restricted);
+
         var active = _activeChunks[component];
 
         foreach (var chunk in active)
         {
-            LoadChunkMarkers(component, gridUid, grid, chunk, seed);
+            LoadChunkMarkers(component, gridUid, grid, chunk, seed, restricted);
+        }
 
-            if (!component.LoadedChunks.Add(chunk))
+        var chunksToLoad = new List<Vector2i>(_chunkBudget);
+        foreach (var chunk in active)
+        {
+            if (component.LoadedChunks.Contains(chunk))
                 continue;
 
-            // Load NOW!
-            LoadChunk(component, gridUid, grid, chunk, seed);
+            chunksToLoad.Add(chunk);
+            if (chunksToLoad.Count >= _chunkBudget)
+                break;
+        }
+
+        if (chunksToLoad.Count == 0)
+            return;
+        var prepared = new PreparedChunkData[chunksToLoad.Count];
+        Parallel.For(0, chunksToLoad.Count,
+            new ParallelOptions { MaxDegreeOfParallelism = _parallel.ParallelProcessCount },
+            i =>
+            {
+                prepared[i] = PrepareChunkData(component, gridUid, grid, chunksToLoad[i], seed, restricted);
+            });
+        for (var i = 0; i < prepared.Length; i++)
+        {
+            component.LoadedChunks.Add(chunksToLoad[i]);
+            ApplyPreparedChunk(component, gridUid, grid, prepared[i]);
         }
     }
 
@@ -653,6 +710,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         }
 
         var frontier = new ValueList<Vector2i>(32);
+        var frontierSet = new HashSet<Vector2i>(32);
         // TODO: Need poisson but crashes whenever I use moony's due to inputs or smth idk
         // Get the total amount of groups to spawn across the entire chunk.
         // We treat a null entity mask as requiring nothing else on the tile
@@ -670,7 +728,9 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 var startNode = rand.PickAndTake(remainingTiles);
                 frontier.Clear();
+                frontierSet.Clear();
                 frontier.Add(startNode);
+                frontierSet.Add(startNode);
 
                 // This essentially may lead to a vein being split in multiple areas but the count matters more than position.
                 while (frontier.Count > 0 && groupSize > 0)
@@ -679,6 +739,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                     var frontierIndex = rand.Next(frontier.Count);
                     var node = frontier[frontierIndex];
                     frontier.RemoveSwap(frontierIndex);
+                    frontierSet.Remove(node);
                     remainingTiles.Remove(node);
 
                     // Add neighbors if they're valid, worst case we add no more and pick another random seed tile.
@@ -688,10 +749,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                         {
                             var neighbor = new Vector2i(node.X + x, node.Y + y);
 
-                            if (frontier.Contains(neighbor) || !remainingTiles.Contains(neighbor))
+                            if (frontierSet.Contains(neighbor) || !remainingTiles.Contains(neighbor))
                                 continue;
 
                             frontier.Add(neighbor);
+                            frontierSet.Add(neighbor);
                         }
                     }
 
@@ -728,7 +790,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i chunk,
-        int seed)
+        int seed,
+        RestrictedRangeComponent? restricted = null)
     {
         // Load any pending marker tiles first.
         if (!component.PendingMarkers.TryGetValue(chunk, out var layers))
@@ -743,15 +806,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         {
             var layerProto = ProtoManager.Index<BiomeMarkerLayerPrototype>(layer);
 
-            var hasRestriction = false; // Lua start
-            var origin = Vector2.Zero;
-            var range2 = 0f;
-            if (TryComp<RestrictedRangeComponent>(gridUid, out var restricted))
-            {
-                hasRestriction = true;
-                origin = restricted.Origin;
-                range2 = restricted.Range * restricted.Range;
-            } // Lua end
+            var hasRestriction = restricted != null; // Lua
+            var origin = restricted?.Origin ?? Vector2.Zero;
+            var range2 = restricted != null ? restricted.Range * restricted.Range : 0f;
+
             foreach (var node in nodes)
             {
                 if (hasRestriction) // Lua start
@@ -804,60 +862,45 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// <summary>
     /// Loads a particular queued chunk for a biome.
     /// </summary>
-    private void LoadChunk(
+    private PreparedChunkData PrepareChunkData(
         BiomeComponent component,
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i chunk,
-        int seed)
+        int seed,
+        RestrictedRangeComponent? restricted)
     {
+        var data = new PreparedChunkData { Chunk = chunk };
         component.ModifiedTiles.TryGetValue(chunk, out var modified);
-        modified ??= _tilePool.Get();
-        _tiles.Clear();
 
-        var hasRestriction = false; // Lua start
-        var origin = Vector2.Zero;
-        var range2 = 0f;
-        if (TryComp<RestrictedRangeComponent>(gridUid, out var restricted))
-        {
-            hasRestriction = true;
-            origin = restricted.Origin;
-            range2 = restricted.Range * restricted.Range;
-        } // Lua end
-        // Set tiles first
+        var hasRestriction = restricted != null; // Lua
+        var origin = restricted?.Origin ?? Vector2.Zero;
+        var range2 = restricted != null ? restricted.Range * restricted.Range : 0f;
         for (var x = 0; x < ChunkSize; x++)
         {
             for (var y = 0; y < ChunkSize; y++)
             {
                 var indices = new Vector2i(x + chunk.X, y + chunk.Y);
 
-                if (hasRestriction) // Lua start
+                if (hasRestriction) // Lua
                 {
                     var dx = indices.X - origin.X;
                     var dy = indices.Y - origin.Y;
                     if ((dx * dx + dy * dy) > range2) continue;
-                } // Lua end
-                // Pass in null so we don't try to get the tileref.
-                if (modified.Contains(indices))
+                }
+
+                if (modified != null && modified.Contains(indices))
                     continue;
 
-                // If there's existing data then don't overwrite it.
                 if (_mapSystem.TryGetTileRef(gridUid, grid, indices, out var tileRef) && !tileRef.Tile.IsEmpty)
                     continue;
 
-                if (!TryGetBiomeTile(indices, component.Layers, seed, (gridUid, grid), out var biomeTile))
+                if (!TryGetTile(indices, component.Layers, seed, (gridUid, grid), out var biomeTile))
                     continue;
 
-                _tiles.Add((indices, biomeTile.Value));
+                data.Tiles.Add((indices, biomeTile.Value));
             }
         }
-
-        _mapSystem.SetTiles(gridUid, grid, _tiles);
-        _tiles.Clear();
-
-        // Now do entities
-        var loadedEntities = new Dictionary<EntityUid, Vector2i>();
-        component.LoadedEntities.Add(chunk, loadedEntities);
 
         for (var x = 0; x < ChunkSize; x++)
         {
@@ -865,79 +908,109 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             {
                 var indices = new Vector2i(x + chunk.X, y + chunk.Y);
 
-                if (modified.Contains(indices))
+                if (modified != null && modified.Contains(indices))
                     continue;
 
-                if (hasRestriction) // Lua start
+                if (hasRestriction) // Lua
                 {
                     var dx = indices.X - origin.X;
                     var dy = indices.Y - origin.Y;
                     if ((dx * dx + dy * dy) > range2) continue;
-                } // Lua end
-                // Don't mess with anything that's potentially anchored.
-                var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, indices);
-
-                if (anchored.MoveNext(out _) || !TryGetEntity(indices, component, (gridUid, grid), out var entPrototype))
-                    continue;
-
-                // TODO: Fix non-anchored ents spawning.
-                // Just track loaded chunks for now.
-                var ent = Spawn(entPrototype, _mapSystem.GridTileToLocal(gridUid, grid, indices));
-
-                // At least for now unless we do lookups or smth, only work with anchoring.
-                if (_xformQuery.TryGetComponent(ent, out var xform) && !xform.Anchored)
-                {
-                    _transform.AnchorEntity((ent, xform), (gridUid, grid), indices);
                 }
 
-                loadedEntities.Add(ent, indices);
+                var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, indices);
+                if (anchored.MoveNext(out _) || !TryGetEntity(indices, component, (gridUid, grid), out var entPrototype, out var spacing))
+                    continue;
+
+                if (spacing > 0 && HasNearbyAnchoredEntity(gridUid, grid, indices, spacing))
+                    continue;
+
+                data.Entities.Add((indices, entPrototype));
             }
         }
 
         // Decals
-        var loadedDecals = new Dictionary<uint, Vector2i>();
-        component.LoadedDecals.Add(chunk, loadedDecals);
-
         for (var x = 0; x < ChunkSize; x++)
         {
             for (var y = 0; y < ChunkSize; y++)
             {
                 var indices = new Vector2i(x + chunk.X, y + chunk.Y);
 
-                if (modified.Contains(indices))
+                if (modified != null && modified.Contains(indices))
                     continue;
 
-                if (hasRestriction) // Lua start
+                if (hasRestriction) // Lua
                 {
                     var dx = indices.X - origin.X;
                     var dy = indices.Y - origin.Y;
                     if ((dx * dx + dy * dy) > range2) continue;
-                } // Lua end
-                // Don't mess with anything that's potentially anchored.
-                var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, indices);
+                }
 
+                var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, indices);
                 if (anchored.MoveNext(out _) || !TryGetDecals(indices, component.Layers, seed, (gridUid, grid), out var decals))
                     continue;
 
                 foreach (var decal in decals)
                 {
-                    if (!_decals.TryAddDecal(decal.ID, new EntityCoordinates(gridUid, decal.Position), out var dec))
-                        continue;
-
-                    loadedDecals.Add(dec, indices);
+                    data.Decals.Add((indices, decal.ID, decal.Position));
                 }
             }
         }
 
-        if (modified.Count == 0)
+        return data;
+    }
+
+    private void ApplyPreparedChunk(
+        BiomeComponent component,
+        EntityUid gridUid,
+        MapGridComponent grid,
+        PreparedChunkData data)
+    {
+        _mapSystem.SetTiles(gridUid, grid, data.Tiles);
+        var loadedEntities = new Dictionary<EntityUid, Vector2i>();
+        component.LoadedEntities.Add(data.Chunk, loadedEntities);
+
+        foreach (var (indices, prototype) in data.Entities)
         {
-            _tilePool.Return(modified);
-            component.ModifiedTiles.Remove(chunk);
+            var ent = Spawn(prototype, _mapSystem.GridTileToLocal(gridUid, grid, indices));
+
+            if (_xformQuery.TryGetComponent(ent, out var xform) && !xform.Anchored)
+            {
+                _transform.AnchorEntity((ent, xform), (gridUid, grid), indices);
+            }
+
+            loadedEntities.Add(ent, indices);
         }
-        else
+        var loadedDecals = new Dictionary<uint, Vector2i>();
+        component.LoadedDecals.Add(data.Chunk, loadedDecals);
+
+        foreach (var (indices, decalId, position) in data.Decals)
         {
-            component.ModifiedTiles[chunk] = modified;
+            if (!_decals.TryAddDecal(decalId, new EntityCoordinates(gridUid, position), out var dec))
+                continue;
+
+            loadedDecals.Add(dec, indices);
         }
+    }
+
+    private bool HasNearbyAnchoredEntity(EntityUid gridUid, MapGridComponent grid, Vector2i indices, int spacing)
+    {
+        for (var dx = -spacing; dx <= spacing; dx++)
+        {
+            for (var dy = -spacing; dy <= spacing; dy++)
+            {
+                if (dx == 0 && dy == 0)
+                    continue;
+
+                var neighbor = new Vector2i(indices.X + dx, indices.Y + dy);
+                var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, neighbor);
+
+                if (enumerator.MoveNext(out _))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     #endregion
@@ -961,10 +1034,14 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         if (_unloadChunksBuffer.Count == 0)
             return;
 
-        // Unload NOW!
+        var unloaded = 0;
         foreach (var chunk in _unloadChunksBuffer)
         {
             UnloadChunk(component, gridUid, grid, chunk, seed, _unloadTilesBuffer);
+            unloaded++;
+
+            if (unloaded >= _chunkBudget)
+                break;
         }
     }
 
@@ -1012,7 +1089,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 continue;
             }
 
-            if (!EntityManager.IsDefault(ent))
+            if (!EntityManager.IsDefault(ent, BiomeUnloadIgnoredComponents))
             {
                 modified.Add(tile);
                 continue;
