@@ -2,6 +2,7 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
+using Content.Server._Mono.FireControl;
 using Content.Server.Administration.Components;
 using Content.Server.Atmos.Monitor.Components;
 using Content.Server.Power.Components;
@@ -25,15 +26,6 @@ namespace Content.IntegrationTests.Tests._Lua;
 [TestFixture]
 public sealed class ShipyardLuaRulesTests
 {
-    private static readonly Dictionary<ShipGunClass, string> WeaponClassRu = new()
-    {
-        { ShipGunClass.Superlight, "суперлёгкий(Superlight)" },
-        { ShipGunClass.Light, "лёгкий(Light)" },
-        { ShipGunClass.Medium, "средний(Medium)" },
-        { ShipGunClass.Heavy, "тяжёлый(Heavy)" },
-        { ShipGunClass.Superheavy, "сверхтяжёлый(Superheavy)" },
-    };
-
     private static readonly Dictionary<VesselSize, string> VesselSizeRu = new()
     {
         { VesselSize.Micro, "микро(Micro)" },
@@ -42,65 +34,35 @@ public sealed class ShipyardLuaRulesTests
         { VesselSize.Large, "большой(Large)" },
     };
 
-    private static readonly Dictionary<ShipGunClass, int> ClassPoints = new()
+    private static int GetProcessingPowerCost(ShipGunClassComponent classComp)
     {
-        { ShipGunClass.Superlight, 1 },
-        { ShipGunClass.Light, 2 },
-        { ShipGunClass.Medium, 4 },
-        { ShipGunClass.Heavy, 8 },
-        { ShipGunClass.Superheavy, 16 },
+        if (classComp.ProcessingPowerCost is { } custom)
+            return custom;
+
+        return classComp.Class switch
+        {
+            ShipGunClass.Superlight => 1,
+            ShipGunClass.Light => 3,
+            ShipGunClass.Medium => 6,
+            ShipGunClass.Heavy => 9,
+            ShipGunClass.Superheavy => 12,
+            _ => 0,
+        };
+    }
+
+    private static readonly string[] WarnGunneryServerPrototypes =
+    {
+        "GunneryServerOmega",
+        "GunneryServerStation",
+        "GunneryServerStationConsolesEnforced",
     };
 
-    private static readonly Dictionary<VesselSize, int> PointsCap = new()
+    private static readonly Dictionary<VesselSize, string[]> AllowedGunneryServersBySize = new()
     {
-        { VesselSize.Micro, 4 },
-        { VesselSize.Small, 8 },
-        { VesselSize.Medium, 24 },
-        { VesselSize.Large, 56 },
-    };
-
-    private static readonly Dictionary<VesselSize, Dictionary<ShipGunClass, int>> ClassMax = new()
-    {
-        {
-            VesselSize.Micro, new Dictionary<ShipGunClass, int>
-            {
-                { ShipGunClass.Superlight, 4 },
-                { ShipGunClass.Light, 1 },
-                { ShipGunClass.Medium, 0 },
-                { ShipGunClass.Heavy, 0 },
-                { ShipGunClass.Superheavy, 0 },
-            }
-        },
-        {
-            VesselSize.Small, new Dictionary<ShipGunClass, int>
-            {
-                { ShipGunClass.Superlight, 6 },
-                { ShipGunClass.Light, 2 },
-                { ShipGunClass.Medium, 1 },
-                { ShipGunClass.Heavy, 0 },
-                { ShipGunClass.Superheavy, 0 },
-            }
-        },
-        {
-            VesselSize.Medium, new Dictionary<ShipGunClass, int>
-            {
-                { ShipGunClass.Superlight, 24 },
-                { ShipGunClass.Light, 12 },
-                { ShipGunClass.Medium, 6 },
-                { ShipGunClass.Heavy, 3 },
-                { ShipGunClass.Superheavy, 0 },
-            }
-        },
-        {
-            VesselSize.Large, new Dictionary<ShipGunClass, int>
-            {
-                { ShipGunClass.Superlight, 56 },
-                { ShipGunClass.Light, 28 },
-                { ShipGunClass.Medium, 14 },
-                { ShipGunClass.Heavy, 7 },
-                { ShipGunClass.Superheavy, 3 },
-            }
-        },
+        { VesselSize.Micro, new[] { "GunneryServerLow" } },
+        { VesselSize.Small, new[] { "GunneryServerLow", "GunneryServerMedium" } },
+        { VesselSize.Medium, new[] { "GunneryServerLow", "GunneryServerMedium", "GunneryServerHigh" } },
+        { VesselSize.Large, new[] { "GunneryServerLow", "GunneryServerMedium", "GunneryServerHigh", "GunneryServerUltra" } },
     };
 
     private static readonly string[] ForbiddenPowerAllSizes =
@@ -266,43 +228,45 @@ public sealed class ShipyardLuaRulesTests
                     { map.DeleteMap(mapId); continue; }
                     var gridUid = shuttle.Value.Owner;
                     var sb = new StringBuilder();
-                    var classCounts = new Dictionary<ShipGunClass, int>
-                    {
-                        { ShipGunClass.Superlight, 0 },
-                        { ShipGunClass.Light, 0 },
-                        { ShipGunClass.Medium, 0 },
-                        { ShipGunClass.Heavy, 0 },
-                        { ShipGunClass.Superheavy, 0 },
-                    };
+                    int totalGunCost = 0;
+                    int gunCount = 0;
                     var gunsQuery = entManager.EntityQueryEnumerator<ShipGunClassComponent, TransformComponent>();
-                    int points = 0;
-                    while (gunsQuery.MoveNext(out var uid, out var gunClass, out var xform))
+                    while (gunsQuery.MoveNext(out _, out var gunClass, out var xform))
                     {
                         if (xform.GridUid != gridUid) continue;
-                        classCounts[gunClass.Class]++;
-                        points += ClassPoints[gunClass.Class];
+                        totalGunCost += GetProcessingPowerCost(gunClass);
+                        gunCount++;
+                    }
+                    int totalServerCapacity = 0;
+                    var serverQuery = entManager.EntityQueryEnumerator<FireControlServerComponent, TransformComponent>();
+                    while (serverQuery.MoveNext(out _, out var serverComp, out var sXform))
+                    {
+                        if (sXform.GridUid != gridUid) continue;
+                        totalServerCapacity += serverComp.ProcessingPower;
+                    }
+                    if (gunCount > 0 && totalGunCost > totalServerCapacity)
+                    {
+                        sb.AppendLine($"[Оружие] {vessel.ID}: вычислительная мощность орудий ({totalGunCost}) превышает ёмкость серверов вооружения ({totalServerCapacity}).");
                     }
                     var size = vessel.Category;
-                    if (vessel.Classes == null || !vessel.Classes.Any()) { sb.AppendLine($"[Класс] {vessel.ID}: поле 'class' обязательно и должно содержать хотя бы одно значение."); }
-                    if (vessel.Engines == null || !vessel.Engines.Any()) { sb.AppendLine($"[Двигатель] {vessel.ID}: поле 'engine' обязательно и должно содержать хотя бы одно значение."); }
-                    if (!PointsCap.TryGetValue(size, out var cap)) cap = 0;
-                    if (points > cap)
+                    var allowedGunneryServers = AllowedGunneryServersBySize.TryGetValue(size, out var allowedServers) ? allowedServers : Array.Empty<string>();
+                    var gunneryMetaQuery = entManager.EntityQueryEnumerator<FireControlServerComponent, MetaDataComponent, TransformComponent>();
+                    while (gunneryMetaQuery.MoveNext(out _, out _, out var gMeta, out var gXform))
                     {
-                        var sizeRu = VesselSizeRu.TryGetValue(size, out var s) ? s : size.ToString();
-                        sb.AppendLine($"[Оружие] {vessel.ID}: очки вооружения {points} превышают лимит {cap} для размера корабля '{sizeRu}'.");
-                    }
-                    if (ClassMax.TryGetValue(size, out var perClass))
-                    {
-                        foreach (var (cls, cnt) in classCounts)
+                        if (gXform.GridUid != gridUid) continue;
+                        var gPid = gMeta.EntityPrototype?.ID;
+                        if (gPid == null) continue;
+                        if (gPid.StartsWith("GunneryServer", StringComparison.Ordinal) && !allowedGunneryServers.Contains(gPid))
                         {
-                            if (perClass.TryGetValue(cls, out var max) && cnt > max)
-                            {
-                                var sizeRu = VesselSizeRu.TryGetValue(size, out var s) ? s : size.ToString();
-                                var clsRu = WeaponClassRu.TryGetValue(cls, out var c) ? c : cls.ToString();
-                                sb.AppendLine($"[Оружие] {vessel.ID}: класс орудий '{clsRu}': количество {cnt} превышает максимум {max} для размера корабля '{sizeRu}'.");
-                            }
+                            sb.AppendLine($"[Оружие] {vessel.ID}: сервер вооружения '{gPid}' запрещён для размера {size}. Допустимы: {string.Join(", ", allowedGunneryServers)}.");
+                        }
+                        else if (WarnGunneryServerPrototypes.Contains(gPid))
+                        {
+                            Console.WriteLine($"::warning ::[Оружие] {vessel.ID}: обнаружен '{gPid}' — проверьте, что этот сервер вооружения допустим на данном шаттле ({vessel.ShuttlePath}).");
                         }
                     }
+                    if (vessel.Classes == null || !vessel.Classes.Any()) { sb.AppendLine($"[Класс] {vessel.ID}: поле 'class' обязательно и должно содержать хотя бы одно значение."); }
+                    if (vessel.Engines == null || !vessel.Engines.Any()) { sb.AppendLine($"[Двигатель] {vessel.ID}: поле 'engine' обязательно и должно содержать хотя бы одно значение."); }
                     int airAlarms = 0;
                     var aaQuery = entManager.EntityQueryEnumerator<AirAlarmComponent, TransformComponent>();
                     while (aaQuery.MoveNext(out _, out var aXform))

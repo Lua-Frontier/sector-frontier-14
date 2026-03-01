@@ -35,6 +35,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    protected override bool AllowResize => true; // Lua
+    protected override bool ScaleWithControlSize => true; // Lua
     private readonly DetectionSystem _detection; // Mono
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
@@ -778,6 +780,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
             }
         }
+
+        DrawWeaponLines(handle); // Lua
 
         ClearShader(handle);
         #endregion

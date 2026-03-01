@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/20/2025 11:27:28
+  time: 02/15/2026 07:31:13
   entityCount: 1107
 maps: []
 grids:
@@ -44,7 +44,6 @@ tilemap:
   24: PlatingCornerNW
   18: PlatingCornerSE
   17: PlatingCornerSW
-  2: ShieldLattice
   15: TrainLattice
 entities:
 - proto: ""
@@ -5208,6 +5207,30 @@ entities:
     - type: Transform
       pos: -0.5,-30.5
       parent: 1
+- proto: Magazine9x19mmSubMachineGunFMJ
+  entities:
+  - uid: 699
+    components:
+    - type: Transform
+      pos: 6.63505,-30.5
+      parent: 1
+  - uid: 700
+    components:
+    - type: Transform
+      pos: 6.429289,-30.5
+      parent: 1
+  - uid: 701
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.552746,-30.5
+      parent: 1
+  - uid: 702
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.3949947,-30.5
+      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 694
@@ -5241,30 +5264,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,-24.5
-      parent: 1
-- proto: NFMagazineSubMachineGun35
-  entities:
-  - uid: 699
-    components:
-    - type: Transform
-      pos: 6.63505,-30.5
-      parent: 1
-  - uid: 700
-    components:
-    - type: Transform
-      pos: 6.429289,-30.5
-      parent: 1
-  - uid: 701
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.552746,-30.5
-      parent: 1
-  - uid: 702
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.3949947,-30.5
       parent: 1
 - proto: NFPrisonerClosetWallOrangeFilled
   entities:
@@ -7627,20 +7626,6 @@ entities:
     - type: Transform
       pos: 1.5,-31.5
       parent: 1
-- proto: WeaponLaserTurretApollo
-  entities:
-  - uid: 1100
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,-24.5
-      parent: 1
-  - uid: 1101
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,-24.5
-      parent: 1
 - proto: WeaponTurretDymere
   entities:
   - uid: 1102
@@ -7648,6 +7633,20 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-21.5
+      parent: 1
+- proto: WeaponTurretHades
+  entities:
+  - uid: 1100
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,-24.5
+      parent: 1
+  - uid: 1101
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-24.5
       parent: 1
 - proto: WeaponTurretType35
   entities:

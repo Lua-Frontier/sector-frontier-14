@@ -1,4 +1,28 @@
 - type: technology
+  id: MachineGCSMediumCircuitboardTech
+  name: research-technology-machine-gcs-medium
+  entityIcon: GunneryServerMedium
+  discipline: Shiparmory
+  tier: 1
+  cost: 3500
+  recipeUnlocks:
+  - MachineGCSMediumCircuitboard
+  position: 14.241, 12.074
+  technologyPrerequisites:
+  - ShuttleGunDuster
+- type: technology
+  id: MachineGCSHighCircuitboardTech
+  name: research-technology-machine-gcs-high
+  entityIcon: GunneryServerHigh
+  discipline: Shiparmory
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MachineGCSHighCircuitboard
+  position: 19.636, 18.985
+  technologyPrerequisites:
+  - ShiparmoryEnergyTurrets
+- type: technology
   id: BasicShuttleWeaponPad
   name: research-technology-basic-weaponpad
   entityIcon: ComputerGunneryConsole
@@ -8,8 +32,6 @@
   recipeUnlocks:
   - GunneryControlComputerCircuitboard
   - MachineGCSLowCircuitboard
-  - MachineGCSMediumCircuitboard
-  - MachineGCSHighCircuitboard
   position: 2.288, 3.312
   technologyPrerequisites:
   - NFSuperParts

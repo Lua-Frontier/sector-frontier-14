@@ -1487,7 +1487,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFSalvageGrapplingEquipment
-  position: 2.178, 6.495
+  position: 2.029, 6.548
 - type: technology
   id: NFMassExcavation
   name: nf-research-technology-mass-excavation
@@ -1500,7 +1500,7 @@
   - AdvancedMineralScannerEmpty
   technologyPrerequisites:
   - NFExcavation
-  position: 3.689, 6.547
+  position: 3.998, 7.122
 - type: technology
   id: NFAdvancedSalvageWeapons
   name: nf-research-technology-advanced-salvage-weapons
@@ -1512,7 +1512,7 @@
   - WeaponCrusherGlaive
   technologyPrerequisites:
   - NFSalvageWeapons
-  position: 3.464, 8.112
+  position: 3.294, 7.857
 - type: technology
   id: NFBluespaceOreStorage
   name: nf-research-technology-excavation-storage
@@ -1524,7 +1524,7 @@
   - OreBagOfHolding
   technologyPrerequisites:
   - NFMassExcavation
-  position: 4.805, 7.614
+  position: 5.231, 8.103
 - type: technology
   id: NFImprovedSalvageWeapons
   name: nf-research-technology-salvage-weapons-improved
@@ -1536,7 +1536,7 @@
   - NFWeaponPkaCannon
   technologyPrerequisites:
   - NFAdvancedSalvageWeapons
-  position: 4.485, 9.365
+  position: 4.528, 8.822
 - type: technology
   id: NFAdvancedSalvageCyborg
   name: nf-research-technology-advanced-salvage-cyborg
@@ -1548,7 +1548,7 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - NFBluespaceOreStorage
-  position: 6.636, 8.809
+  position: 6.519, 9.16
 - type: technology
   id: NFBluespaceGasTanks
   name: nf-research-technology-bluespace-gas-tanks
@@ -1602,7 +1602,7 @@
   - FlashlightSecliteNF
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 6.924, 16.494
+  position: 6.911, 15.915
 - type: technology
   id: NFImprovedPistolAmmo
   name: nf-research-technology-pistol-ammo-improved
@@ -1620,7 +1620,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBasicAmmunitionProduction
-  position: 9.717, 18.574
+  position: 9.359, 19.154
 - type: technology
   id: NFNonlethalAmmunition
   name: nf-research-technology-nonlethal-ammunition
@@ -1637,7 +1637,7 @@
   - NFAmmunitionBoxShellShotgunTranquilizer
   technologyPrerequisites:
   - NFBasicAmmunitionProduction
-  position: 8.644, 21.578
+  position: 8.644, 19.943
 - type: technology
   id: NFAdvancedRiotControl
   name: nf-research-technology-advanced-riot-control
@@ -1649,7 +1649,7 @@
   - NFTelescopicShield
   technologyPrerequisites:
   - NFExplosiveTechnology
-  position: 4.381, 13.807
+  position: 5.5, 13.085
 - type: technology
   id: NFArsenalStyle
   name: nf-research-technology-arsenal-style
@@ -1678,7 +1678,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFBountyHunting
-  position: 10.042, 17.272
+  position: 8.833, 17.249
 - type: technology
   id: NFImprovedRifleAmmo
   name: nf-research-technology-rifle-ammo-improved
@@ -1696,7 +1696,7 @@
   - MagazineAsmgtUniversalEmpty
   technologyPrerequisites:
   - NFImprovedPistolAmmo
-  position: 10.884, 19.681
+  position: 10.623, 20.377
 - type: technology
   id: NFExplosiveTechnology
   name: nf-research-technology-explosive-technology
@@ -1713,7 +1713,7 @@
   - ExplosivePayload
   technologyPrerequisites:
   - NFBasicShuttleArmament
-  position: 4.394, 12.453
+  position: 6.49, 11.996
 - type: technology
   id: NFDeterrenceTechnologies
   name: nf-research-technology-deterrence
@@ -1725,7 +1725,7 @@
   - HoloprojectorField
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 6.939, 14.742
+  position: 6.783, 14.246
 - type: technology
   id: NFSpecialMeans
   name: nf-research-technology-special-means
@@ -1738,7 +1738,7 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedRiotControl
-  position: 5.095, 15.707
+  position: 5.688, 15.164
 - type: technology
   id: NFBulkRifleAmmo
   name: nf-research-technology-rifle-ammo-bulk
@@ -1753,7 +1753,7 @@
   - NFAmmunitionBoxBigRifle30Overpressure
   technologyPrerequisites:
   - NFImprovedRifleAmmo
-  position: 12.117, 20.648
+  position: 11.856, 21.596
 - type: technology
   id: NFBasicShuttleArmament
   name: nf-research-technology-basic-shuttle-armament
@@ -1772,7 +1772,7 @@
   prerequisiteLineType: Tree
   technologyPrerequisites:
   - NFImprovedSalvageWeapons
-  position: 4.372, 11.334
+  position: 5.149, 10.589
 - type: technology
   id: ShiparmoryBallisticBases
   name: research-technology-shiparmory-ballistic-bases
@@ -1785,8 +1785,8 @@
   - Weapon53mmBaseFlatpack
   - Weapon80mmBaseFlatpack
   technologyPrerequisites:
-  - ShuttleGunDuster
-  position: 14.443, 12.213
+  - MachineGCSMediumCircuitboardTech
+  position: 15.533, 13.034
 - type: technology
   id: ShiparmoryHeavyBallisticBases
   name: research-technology-shiparmory-heavy-ballistic-bases
@@ -1800,7 +1800,7 @@
   - Weapon140mmBaseFlatpack
   technologyPrerequisites:
   - ShiparmoryBallisticBases
-  position: 17.01, 16.147
+  position: 18.001, 16.232
 - type: technology
   id: ShiparmoryTeslaTurretBase
   name: research-technology-shiparmory-tesla-base
@@ -1812,7 +1812,7 @@
   - TeslaTurretBaseFlatpack
   technologyPrerequisites:
   - ShiparmoryHeavyBallisticBases
-  position: 20.047, 18.451
+  position: 18.829, 18.975
 - type: technology
   id: ShiparmoryShieldSystems
   name: research-technology-shiparmory-shield-systems
@@ -1825,7 +1825,7 @@
   - ShieldGeneratorFlatPack
   technologyPrerequisites:
   - ShiparmoryBallisticBases
-  position: 17.034, 14.429
+  position: 17.204, 16.227
 - type: technology
   id: ShiparmoryCapitalShields
   name: research-technology-shiparmory-capital-shields
@@ -1837,7 +1837,7 @@
   - ShieldGeneratorTSFCapitalFlatPack
   technologyPrerequisites:
   - ShiparmoryShieldSystems
-  position: 20.096, 16.637
+  position: 18.028, 18.974
 - type: technology
   id: ShiparmoryKineticTurrets
   name: research-technology-shiparmory-kinetic-turrets
@@ -1852,7 +1852,7 @@
   - WeaponTurretRAC30FlatPack
   technologyPrerequisites:
   - ShiparmoryBallisticBases
-  position: 14.552, 18.07
+  position: 15.557, 16.243
 - type: technology
   id: ShiparmoryAdvancedKineticTurrets
   name: research-technology-shiparmory-advanced-kinetic-turrets
@@ -1865,7 +1865,7 @@
   - WeaponTurretCharonReloadFlatPack
   technologyPrerequisites:
   - ShiparmoryKineticTurrets
-  position: 17.413, 21.909
+  position: 16.365, 19.006
 - type: technology
   id: ShiparmoryEnergyTurrets
   name: research-technology-shiparmory-energy-turrets
@@ -1878,7 +1878,7 @@
   - WeaponLaserTurretL1PhalanxFlatPack
   technologyPrerequisites:
   - ShiparmoryBallisticBases
-  position: 17.594, 12.771
+  position: 18.854, 16.226
 - type: technology
   id: ShiparmoryAdvancedEnergyTurrets
   name: research-technology-shiparmory-advanced-energy-turrets
@@ -1890,8 +1890,8 @@
   - WeaponTurretType54FlatPack
   - WeaponLaserTurretApolloFlatPack
   technologyPrerequisites:
-  - ShiparmoryEnergyTurrets
-  position: 20.139, 13.966
+  - MachineGCSHighCircuitboardTech
+  position: 19.629, 20.848
 - type: technology
   id: ShiparmoryCapitalEnergyTurrets
   name: research-technology-shiparmory-capital-energy-turrets
@@ -1903,7 +1903,7 @@
   - WeaponTurretType241FlatPack
   technologyPrerequisites:
   - ShiparmoryAdvancedEnergyTurrets
-  position: 22.398, 15.798
+  position: 19.637, 22.794
 - type: technology
   id: ShiparmoryMissileTurrets
   name: research-technology-shiparmory-missile-turrets
@@ -1916,7 +1916,7 @@
   - WeaponTurretVesperaFlatPack
   technologyPrerequisites:
   - ShiparmoryBallisticBases
-  position: 12.912, 16.825
+  position: 14.739, 16.244
 - type: technology
   id: ShiparmoryAdvancedMissileTurrets
   name: research-technology-shiparmory-advanced-missile-turrets
@@ -1929,7 +1929,7 @@
   - WeaponTurretASM220FlatPack
   technologyPrerequisites:
   - ShiparmoryMissileTurrets
-  position: 13.851, 21.061
+  position: 15.55, 19.022
 - type: technology
   id: ShiparmoryPlastitaniumStructures
   name: research-technology-shiparmory-plastitanium-structures
@@ -1942,7 +1942,7 @@
   - PlastitaniumWindowFlatPack
   technologyPrerequisites:
   - ShiparmoryBallisticBases
-  position: 16.762, 18.572
+  position: 16.394, 16.221
 - type: technology
   id: ShiparmoryStationPlastitanium
   name: research-technology-shiparmory-station-plastitanium
@@ -1955,5 +1955,5 @@
   - PlastitaniumWindowStationFlatPack
   technologyPrerequisites:
   - ShiparmoryPlastitaniumStructures
-  position: 19.995, 20.872
+  position: 17.205, 18.974
 ...

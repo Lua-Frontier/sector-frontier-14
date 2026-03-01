@@ -311,6 +311,7 @@ public sealed partial class FireControlSystem : EntitySystem
         if (!TryComp<ShipGunClassComponent>(controllable, out var classComponent))
             return 0;
 
+        if (classComponent.ProcessingPowerCost is { } custom) return custom;
         return classComponent.Class switch
         {
             ShipGunClass.Superlight => 1,
