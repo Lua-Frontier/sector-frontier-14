@@ -4,6 +4,7 @@
 
 using System.Numerics;
 using Robust.Client.UserInterface;
+using Robust.Shared.Map;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
@@ -29,7 +30,10 @@ public sealed partial class ShuttleTabletWindowBoundUserInterface(EntityUid owne
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
         _window.UndockAllRequest += OnUndockAllRequest;
-        _window.ToggleFTLLockRequest += OnToggleFTLLockRequest;
+
+        _window.NavContainer.NavRadar.OnRadarClick += OnRadarClick;
+        _window.OnWeaponSelectionChanged += OnWeaponSelection;
+        _window.OnFireControlRefresh += OnFireControlRefresh;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -42,9 +46,43 @@ public sealed partial class ShuttleTabletWindowBoundUserInterface(EntityUid owne
         _window.UpdateState(Owner, cState);
     }
 
-    private void OnToggleFTLLockRequest(List<NetEntity> dockEntities, bool enabled)
+    private void OnRadarClick(EntityCoordinates coords)
     {
-        SendMessage(new ToggleFTLLockRequestMessage(dockEntities, enabled));
+        if (_window?.NavContainer == null)
+        {
+            return;
+        }
+
+        var netCoords = EntMan.GetNetCoordinates(coords);
+
+        if (_window.NavContainer.NavRadar.IsMouseDown())
+        {
+            var selected = _window.NavContainer.GetSelectedWeapons();
+            if (selected.Count > 0)
+            {
+                SendMessage(new ShuttleConsoleFireMessage(selected, netCoords));
+            }
+        }
+        else
+        {
+            SendMessage(new ShuttleConsoleFireMessage([], netCoords));
+        }
+    }
+
+    private void OnWeaponSelection()
+    {
+        if (_window?.NavContainer == null)
+        {
+            return;
+        }
+
+        var hasSelected = _window.NavContainer.GetSelectedWeapons().Count > 0;
+        _window.NavContainer.NavRadar.DefaultCursorShape = hasSelected ? Control.CursorShape.Crosshair : Control.CursorShape.Arrow;
+    }
+
+    private void OnFireControlRefresh()
+    {
+        SendMessage(new ShuttleConsoleRefreshFireControlMessage());
     }
 
     private void OnUndockAllRequest(List<NetEntity> dockEntities)

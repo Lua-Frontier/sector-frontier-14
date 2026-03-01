@@ -26,10 +26,14 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
     public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
     public event Action<NetEntity?, bool>? OnSetHideTarget;
 
+    public event Action? OnWeaponSelectionChanged;
+    public event Action? OnFireControlRefresh;
+
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
     public event Action<List<NetEntity>>? UndockAllRequest;
     public event Action<List<NetEntity>, bool>? ToggleFTLLockRequest;
+
 
     private enum ShuttleTabletMode : byte
     {
@@ -56,6 +60,11 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
         var networkPortsPanel = rightDisplayNav.FindControl<PanelContainer>("NetworkPortsPanel");
         networkPortsPanel.Visible = false;
 
+        var ftlLockStripe = DockContainer.FindControl<StripeBack>("FTLLockStripe");
+        var ftlLockButtonContainer = DockContainer.FindControl<BoxContainer>("FTLLockButtonContainer");
+        ftlLockStripe.Visible = false;
+        ftlLockButtonContainer.Visible = false;
+
         NavContainer.Visible = _mode == ShuttleTabletMode.Nav;
         DockContainer.Visible = _mode == ShuttleTabletMode.Dock;
 
@@ -64,16 +73,20 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
         NavContainer.OnSetTargetCoordinates += (entity, position) => OnSetTargetCoordinates?.Invoke(entity, position);
         NavContainer.OnSetHideTarget += (entity, hide) => OnSetHideTarget?.Invoke(entity, hide);
 
+        NavContainer.OnWeaponSelectionChanged += () => OnWeaponSelectionChanged?.Invoke();
+        NavContainer.OnFireControlRefresh += () => OnFireControlRefresh?.Invoke();
+
         DockContainer.DockRequest += (entity, netEntity) => DockRequest?.Invoke(entity, netEntity);
         DockContainer.UndockRequest += entity => UndockRequest?.Invoke(entity);
         DockContainer.UndockAllRequest += dockEntities => UndockAllRequest?.Invoke(dockEntities);
         DockContainer.ToggleFTLLockRequest += (dockEntities, enabled) => ToggleFTLLockRequest?.Invoke(dockEntities, enabled);
+
     }
 
     public void UpdateState(EntityUid owner, ShuttleTabletWindowInterfaceState cState)
     {
         var shuttle = _entity.GetEntity(cState.Shuttle);
-        var linkPower = cState.LinkPower;
+        var linkPower = (int)(cState.LinkPower * 100f);
 
         LinkPower.Text = Loc.GetString("shuttle-tablet-link-power", ("linkPower", linkPower));
         LinkPower.FontColorOverride = linkPower switch
@@ -87,6 +100,7 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
         NavContainer.SetShuttle(shuttle);
         NavContainer.SetConsole(owner);
         NavContainer.UpdateState(cState.NavState);
+        NavContainer.UpdateWeapons(cState.FireControlConnected, cState.FireControllables);
 
         DockContainer.UpdateState(shuttle, cState.DockState);
     }

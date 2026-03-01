@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Server.Shuttles.Components;
+using Content.Shared._Lua.Shuttles.Components; // Lua
 using Content.Shared.Shuttles.BUIStates;
 
 namespace Content.Server.Shuttles.Systems;
@@ -21,6 +22,13 @@ public sealed partial class ShuttleConsoleSystem
         // We'll handle updating the state and ensuring device link components
         DockingInterfaceState? dockState = null;
         UpdateState(uid, ref dockState);
+
+        // Lua start
+        if (HasComp<ShuttleTabletComponent>(uid))
+        {
+            return;
+        }
+        // Lua end
 
         // Also ensure device link components are added for our port buttons
         EnsureDeviceLinkComponents(uid, component);

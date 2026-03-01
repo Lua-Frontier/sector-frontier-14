@@ -1,15 +1,12 @@
- using Content.Server._Mono.FireControl; // Lua
+using Content.Server._Mono.FireControl; // Lua
 using Content.Server._Mono.Ships.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
-using Content.Server.PowerCell; // Lua
-using Content.Server.Power.Components; // Lua
-using Content.Server._Lua.Shuttles.Components; // Lua
-using Content.Shared._Lua.Shuttles.UI; // Lua
-using Content.Shared.Containers.ItemSlots; // Lua
+using Content.Server._Lua.Shuttles.Systems; // Lua
+using Content.Shared._Lua.Shuttles.Components; // Lua
 using Content.Shared._Lua.Starmap;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shuttles.Events; // Frontier
@@ -62,6 +59,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly FireControlSystem _fireControl = default!; // Lua
+    [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
 
     private ISawmill _sawmill = default!;
 
@@ -70,13 +68,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private const int PanicConfirmTimeout = 10000;// Lua add timer panic button
     private readonly HashSet<EntityUid> _pendingPanicConfirm = new();// Lua add timer panic button
 
-    private const float TabletUpdateTime = 2.0f; // Lua
-    private float _tabletUpdateTimer = 0f; // Lua
-
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
     private readonly HashSet<EntityUid> _starMapVisibleConsoles = new();
 
     private static readonly ProtoId<TagPrototype> CanPilotTag = "CanPilot";
+    private static readonly ProtoId<TagPrototype> StructureTag = "Structure"; // Lua
 
     public override void Initialize()
     {
@@ -124,14 +120,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         SubscribeLocalEvent<FTLDestinationComponent, ComponentStartup>(OnFtlDestStartup);
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
-
-        // Lua start
-        Subs.BuiEvents<ShuttleTabletComponent>(ShuttleTabletWindowUiKey.Key, subs =>
-        {
-            subs.Event<ToggleFTLLockRequestMessage>(OnToggleFTLLock);
-            subs.Event<BoundUIClosedEvent>(OnTabletUIClose);
-        });
-        // Lua end
 
         InitializeFTL();
 
@@ -286,7 +274,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
 
         if (TryComp<ShuttleTabletComponent>(uid, out var tabletComp)
-            && !IsValidTablet(uid, tabletComp, out _))
+            && !_tablet.IsValidTablet(uid, tabletComp, out _))
         {
             return false;
         }
@@ -336,7 +324,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// <summary>
     /// Handles FTL lock toggling for docked shuttles
     /// </summary>
-    private void OnToggleFTLLock(EntityUid uid, Component component, ToggleFTLLockRequestMessage args) // Lua: ShuttleConsoleComponent < Component
+    private void OnToggleFTLLock(EntityUid uid, ShuttleConsoleComponent component, ToggleFTLLockRequestMessage args)
     {
         // Get the console's grid (shuttle)
         var consoleXform = Transform(uid);
@@ -465,18 +453,15 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState)
     {
-        EntityUid? entity = consoleUid;
-
         // Lua start
-        var tabletLinkPower = 0;
-
-        if (TryComp<ShuttleTabletComponent>(consoleUid, out var tabletComp)
-            && !IsValidTablet(consoleUid, tabletComp, out tabletLinkPower))
+        if (TryComp<ShuttleTabletComponent>(consoleUid, out var tabletComp))
         {
-            _ui.CloseUi(consoleUid, ShuttleTabletWindowUiKey.Key);
+            _tablet.UpdateTabletState(consoleUid, tabletComp, dockState);
             return;
         }
         // Lua end
+
+        EntityUid? entity = consoleUid;
 
         var getShuttleEv = new ConsoleShuttleEvent
         {
@@ -507,14 +492,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 new List<ShuttleBeaconObject>(),
                 new List<ShuttleExclusionObject>());
         }
-
-        // Lua start
-        if (_ui.HasUi(consoleUid, ShuttleTabletWindowUiKey.Key))
-        {
-            _ui.SetUiState(consoleUid, ShuttleTabletWindowUiKey.Key, new ShuttleTabletWindowInterfaceState(navState, dockState, GetNetEntity(shuttleGridUid), tabletLinkPower));
-            return;
-        }
-        // Lua end
 
         if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
         {
@@ -582,8 +559,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             RemovePilot(uid, comp);
         }
-
-        RefreshTablet(frameTime); // Lua
     }
 
     protected override void HandlePilotShutdown(EntityUid uid, PilotComponent component, ComponentShutdown args)
@@ -674,10 +649,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             portNames = consoleComp.PortNames;
         }
 
+        var coordinates = _tablet.GetTabletCoordinates(entity.Owner) ?? entity.Comp2.Coordinates; // Lua
+
         return GetNavState(
             entity,
             docks,
-            GetTabletCoordinates(entity.Owner) ?? entity.Comp2.Coordinates, // Lua
+            coordinates, // Lua
             entity.Comp2.LocalRotation,
             portNames);
     }
@@ -901,135 +878,5 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             : Loc.GetString("shuttle-console-towing-now-allowed");
 
         _popup.PopupEntity(popup, console, user);
-    }
-
-    // Lua start
-
-    private void RefreshTablet(float frameTime)
-    {
-        _tabletUpdateTimer -= frameTime;
-
-        if (_tabletUpdateTimer > 0f)
-        {
-            return;
-        }
-
-        var tabletQuery = EntityQueryEnumerator<ShuttleTabletComponent>();
-
-        while (tabletQuery.MoveNext(out var tablet, out var tabletComp))
-        {
-            if (!_ui.IsUiOpen(tablet, ShuttleTabletWindowUiKey.Key))
-            {
-                continue;
-            }
-
-            DockingInterfaceState? dockState = null;
-            UpdateState(tablet, ref dockState);
-        }
-
-        _tabletUpdateTimer = TabletUpdateTime;
-    }
-
-    private void OnTabletUIClose(EntityUid uid, ShuttleTabletComponent component, BoundUIClosedEvent args)
-    {
-        if ((ShuttleTabletWindowUiKey)args.UiKey != ShuttleTabletWindowUiKey.Key)
-        {
-            return;
-        }
-
-        RemovePilot(args.Actor);
-    }
-
-    private EntityCoordinates? GetTabletCoordinates(EntityUid tablet)
-    {
-        if (!TryComp<ShuttleTabletComponent>(tablet, out var tabletComp))
-        {
-            return null;
-        }
-
-        var console = tabletComp.LinkedConsole;
-
-        if (console == null)
-        {
-            return null;
-        }
-
-        return Transform(console.Value).Coordinates;
-    }
-
-    private bool IsValidTablet(EntityUid tablet, ShuttleTabletComponent tabletComp, out int linkPower)
-    {
-        linkPower = 0;
-
-        if (!_cell.HasActivatableCharge(tablet)
-            || !_cell.HasDrawCharge(tablet))
-        {
-            return false;
-        }
-
-        var card = _slots.GetItemOrNull(tablet, "id_container");
-
-        if (card == null)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-id"), tablet);
-            return false;
-        }
-
-        if (!TryComp<ShuttleDeedComponent>(card, out var deedComp)
-            || deedComp == null)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-deed"), tablet);
-            return false;
-        }
-
-        var linkedConsole = tabletComp.LinkedConsole;
-
-        if (linkedConsole == null || linkedConsole == EntityUid.Invalid)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-no-linked-console"), tablet);
-            return false;
-        }
-
-        if (TryComp<ApcPowerReceiverComponent>(linkedConsole, out var consolePower)
-            && !consolePower.Powered)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-console-not-powered"), tablet);
-            return false;
-        }
-
-        if (TryComp<ShuttleConsoleLockComponent>(linkedConsole, out var consoleLock)
-            && consoleLock.EmergencyLocked)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-console-emergency-locked"), tablet);
-            return false;
-        }
-
-        var tabletTransform = Transform(tablet);
-        var consoleTransform = Transform(linkedConsole.Value);
-
-        if (consoleTransform.GridUid != tabletTransform.GridUid)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-wrong-console"), tablet);
-            return false;
-        }
-
-        if (!tabletComp.IgnoreSector
-            && consoleTransform.MapID != tabletTransform.MapID)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-different-sectors"), tablet);
-            return false;
-        }
-
-        var distance = (_transform.GetWorldPosition(consoleTransform) - _transform.GetWorldPosition(tabletTransform)).Length();
-        var linkRange = tabletComp.LinkRange;
-
-        if (distance > linkRange)
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-tablet-out-of-range"), tablet);
-            return false;
-        }
-
-        linkPower = (int)((linkRange - distance) / linkRange * 100f);
-        return true;
     }
 }

@@ -4,6 +4,7 @@
 
 using Robust.Shared.Serialization;
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared._Mono.FireControl;
 
 namespace Content.Shared._Lua.Shuttles.UI;
 
@@ -12,11 +13,15 @@ public sealed class ShuttleTabletWindowInterfaceState(
     NavInterfaceState navState,
     DockingInterfaceState dockState,
     NetEntity? shuttle,
-    int linkPower
+    float linkPower,
+    bool fireControlConnected = false,
+    FireControllableEntry[]? fireControllables = null
     ) : BoundUserInterfaceState
 {
     public NavInterfaceState NavState = navState;
     public DockingInterfaceState DockState = dockState;
     public NetEntity? Shuttle = shuttle;
-    public int LinkPower = linkPower;
+    public float LinkPower = linkPower;
+    public bool FireControlConnected = fireControlConnected;
+    public FireControllableEntry[]? FireControllables = fireControllables;
 }

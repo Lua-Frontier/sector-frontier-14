@@ -4,13 +4,11 @@
 
 using Robust.Shared.Audio;
 
-namespace Content.Server._Lua.Shuttles.Components;
+namespace Content.Shared._Lua.Shuttles.Components;
 
 [RegisterComponent]
 public sealed partial class ShuttleTabletComponent : Component
 {
-    public bool GridChangeRequired = false;
-
     [ViewVariables]
     public EntityUid? LinkedConsole;
 
@@ -21,5 +19,5 @@ public sealed partial class ShuttleTabletComponent : Component
     public bool IgnoreSector = false;
 
     [DataField]
-    public SoundSpecifier LinkSound = new SoundPathSpecifier("/Audio/Machines/id_insert.ogg");
+    public SoundSpecifier LinkSound = new SoundPathSpecifier("/Audio/Machines/quickbeep.ogg");
 }

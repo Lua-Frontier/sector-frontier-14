@@ -16,8 +16,6 @@
   - type: ShuttleTablet
   - type: ShuttleConsole
     zoom: 1.0, 1.0
-  - type: ShuttleConsoleLock
-    locked: false
   - type: ActivatableUI
     key: enum.ShuttleTabletWindowUiKey.Key
   - type: UserInterface
@@ -47,17 +45,6 @@
     containers:
       id_container: !type:ContainerSlot
       cell_slot: !type:ContainerSlot
-  - type: DeviceLinkSource
-    ports:
-    - device-button-1
-    - device-button-2
-    - device-button-3
-    - device-button-4
-    - device-button-5
-    - device-button-6
-    - device-button-7
-    - device-button-8
-    range: 3
   - type: PowerCellDraw
     drawRate: 2
   - type: StaticPrice

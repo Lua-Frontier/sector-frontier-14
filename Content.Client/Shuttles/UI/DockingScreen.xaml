@@ -19,10 +19,10 @@
                            Margin="5 0 5 5"
                            Orientation="Vertical">
         <!-- FTL Lock Section -->
-        <controls1:StripeBack MinSize="48 48">
+        <controls1:StripeBack Name="FTLLockStripe" MinSize="48 48"> <!-- Lua: Added Name="FTLLockStripe" -->
             <controls:Label Text="{controls:Loc 'shuttle-console-ftl-lock'}" HorizontalAlignment="Center"/>
         </controls1:StripeBack>
-        <controls:BoxContainer Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5 5 5 5">
+        <controls:BoxContainer Name="FTLLockButtonContainer" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5 5 5 5"> <!-- Lua: Added Name="FTLLockButtonContainer" -->
             <controls:Button Name="FTLLockEnabledButton"
                              Text="{controls:Loc 'shuttle-console-ftl-lock-enabled'}"
                              ToggleMode="True"

@@ -1,8 +1,8 @@
 shuttle-tablet-window-title = Планшет удалённого управления шаттлом
 
-shuttle-tablet-no-id = Вставьте ID карту.
-shuttle-tablet-no-deed = На карте должен быть судовой акт на шаттл.
-shuttle-tablet-no-linked-console = Консоль не привязана. Проведите планшетом по консоли.
+shuttle-tablet-no-id = Вставьте ID карту с судовым актом.
+shuttle-tablet-no-deed = Карта не содержит судовой акт.
+shuttle-tablet-no-linked-console = Планшет не привязан к консоли. Проведите по ней.
 shuttle-tablet-console-not-powered = Ошибка получения ответа от консоли...
 shuttle-tablet-console-emergency-locked = Консоль аварийно заблокирована.
 shuttle-tablet-wrong-console = Ошибка авторизации консоли на шаттле.
@@ -12,7 +12,8 @@ shuttle-tablet-out-of-range = Ошибка установления стабил
 shuttle-tablet-console-linked = Консоль успешно привязана.
 shuttle-tablet-console-unlinked = Привязка к консоли убрана.
 
-shuttle-tablet-link-power = Сила связи: {$linkPower}%
-shuttle-tablet-footer-right = v0.11
+shuttle-tablet-link-power-default = Стабильность соединения: Не соединено
+shuttle-tablet-link-power = Стабильность соединения: {$linkPower}%
+shuttle-tablet-footer-right = v0.11a
 
 shuttle-tablet-id-slot = Слот ID карты
