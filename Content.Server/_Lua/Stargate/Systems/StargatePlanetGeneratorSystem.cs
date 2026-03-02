@@ -88,7 +88,7 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
 
         if (!TryComp<MapGridComponent>(mapUid, out var gridAfter))
             return;
-        SpawnBudgetMobs(mapUid, gridAfter, preset, dungeons, random);
+        SpawnBudgetMobs(mapUid, gridAfter, preset, dungeons, origin, random);
 
         if (!TryComp<BiomeComponent>(mapUid, out var biomeComp))
             return;
@@ -146,11 +146,14 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         return result;
     }
 
+    private const int StargateSafeRadiusTiles = 18;
+
     private void SpawnBudgetMobs(
         EntityUid gridUid,
         MapGridComponent grid,
         StargatePlanetPresetPrototype preset,
         List<Dungeon> dungeons,
+        Vector2i gateOrigin,
         Random random)
     {
         if (preset.DungeonMobBudget <= 0 || dungeons.Count == 0)
@@ -162,6 +165,7 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         var npcs = EntityManager.System<NPCSystem>();
         var mobBudget = preset.DungeonMobBudget;
         const float CostPerMob = 1f;
+        var safeRadiusSq = StargateSafeRadiusTiles * StargateSafeRadiusTiles;
 
         var allRooms = new List<DungeonRoom>();
         foreach (var dungeon in dungeons)
@@ -183,6 +187,9 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
             for (var attempt = 0; attempt < tiles.Count && tile == null; attempt++)
             {
                 var t = tiles[random.Next(tiles.Count)];
+                var dt = t - gateOrigin;
+                if (dt.X * dt.X + dt.Y * dt.Y <= safeRadiusSq)
+                    continue;
                 if (_anchorable.TileFree((gridUid, grid), t, (int)CollisionGroup.MachineLayer,
                         (int)CollisionGroup.MachineLayer))
                     tile = t;
@@ -285,6 +292,8 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         }
     }
 
+    private const double SurfaceMobGlobalChance = 0.5;
+
     private void AddMobLayers(
         EntityUid uid,
         BiomeComponent biome,
@@ -295,11 +304,13 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         {
             case MobSpawnMode.Surface:
             case MobSpawnMode.Both:
+                if (random.NextDouble() >= SurfaceMobGlobalChance)
+                    return;
                 AddSurfaceMobs(uid, biome, preset, random);
                 break;
 
             case MobSpawnMode.DungeonOnly:
-                if (preset.RareSurfaceMobChance > 0 && random.NextDouble() < preset.RareSurfaceMobChance)
+                if (preset.RareSurfaceMobChance > 0 && random.NextDouble() < SurfaceMobGlobalChance && random.NextDouble() < preset.RareSurfaceMobChance)
                     AddRareSurfaceMobs(uid, biome, preset, random);
                 break;
 

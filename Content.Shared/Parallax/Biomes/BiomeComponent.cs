@@ -74,6 +74,12 @@ public sealed partial class BiomeComponent : Component
     [DataField("loadedMarkers", customTypeSerializer:typeof(PrototypeIdDictionarySerializer<HashSet<Vector2i>, BiomeMarkerLayerPrototype>))]
     public Dictionary<string, HashSet<Vector2i>> LoadedMarkers = new();
 
+    [ViewVariables]
+    public Dictionary<string, Dictionary<Vector2i, List<EntityUid>>> LoadedMarkerEntities = new();
+
+    [ViewVariables]
+    public Dictionary<string, HashSet<Vector2i>> RespawnEligibleMarkers = new();
+
     [DataField]
     public HashSet<ProtoId<BiomeMarkerLayerPrototype>> MarkerLayers = new();
 

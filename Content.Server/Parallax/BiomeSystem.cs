@@ -9,6 +9,7 @@ using Content.Server.Ghost.Roles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server._Lua.MapperGrid; // Lua
+using Content.Server._Lua.Stargate.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Decals;
 using Content.Shared.Ghost;
@@ -429,6 +430,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             LoadChunks(biome, gridUid, grid, biome.Seed);
             // Unload old chunks
             UnloadChunks(biome, gridUid, grid, biome.Seed);
+            ProcessMarkerChunkUnloads(biome);
         }
 
         _handledEntities.Clear();
@@ -540,10 +542,35 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             idx++;
             var localIdx = idx;
 
+            const double MarkerRespawnChance = 0.35;
+            var respawnEligible = component.RespawnEligibleMarkers;
+
             Parallel.ForEach(chunks, new ParallelOptions() { MaxDegreeOfParallelism = _parallel.ParallelProcessCount }, chunk =>
             {
                 if (loadedMarkers.TryGetValue(layer, out var mobChunks) && mobChunks.Contains(chunk))
                     return;
+
+                bool isRespawnEligible;
+                lock (loadedMarkers)
+                {
+                    isRespawnEligible = respawnEligible.TryGetValue(layer, out var eligible) && eligible.Remove(chunk);
+                }
+                if (isRespawnEligible)
+                {
+                    if (_random.NextDouble() >= MarkerRespawnChance)
+                    {
+                        lock (loadedMarkers)
+                        {
+                            if (!loadedMarkers.TryGetValue(layer, out var lockMobChunks))
+                            {
+                                lockMobChunks = new HashSet<Vector2i>();
+                                loadedMarkers[layer] = lockMobChunks;
+                            }
+                            lockMobChunks.Add(chunk);
+                        }
+                        return;
+                    }
+                }
 
                 var forced = component.ForcedMarkerLayers.Contains(layer);
 
@@ -555,6 +582,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 var layerProto = ProtoManager.Index<BiomeMarkerLayerPrototype>(layer);
                 var markerSeed = seed + chunk.X * ChunkSize + chunk.Y + localIdx;
                 var rand = new Random(markerSeed);
+                if (rand.NextDouble() > layerProto.SpawnChance)
+                    return;
                 var buffer = (int)(layerProto.Radius / 2f);
                 var bounds = new Box2i(chunk + buffer, chunk + layerProto.Size - buffer);
                 var count = (int)(bounds.Area / (layerProto.Radius * layerProto.Radius));
@@ -657,6 +686,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             range2 = restricted.Range * restricted.Range;
         } // Lua end
 
+        const int StargateSafeRadiusTiles = 18;
+        const int StargateSafeRadiusSq = StargateSafeRadiusTiles * StargateSafeRadiusTiles;
+        var inStargateSafeZone = TryComp<StargateDestinationComponent>(gridUid, out var stargateDest);
+
         // Okay so originally we picked a random tile and BFS outwards
         // the problem is if you somehow get a cooked frontier then it might drop entire veins
         // hence we'll grab all valid tiles up front and use that as possible seeds.
@@ -673,6 +706,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                     var dy = node.Y - origin.Y;
                     if ((dx * dx + dy * dy) > range2) continue;
                 } // Lua end
+                if (inStargateSafeZone && stargateDest != null)
+                {
+                    var sx = node.X - stargateDest.Origin.X;
+                    var sy = node.Y - stargateDest.Origin.Y;
+                    if (sx * sx + sy * sy <= StargateSafeRadiusSq)
+                        continue;
+                }
 
                 // Empty tile, skip if relevant.
                 if (!emptyTiles && (!_mapSystem.TryGetTile(grid, node, out var tile) || tile.IsEmpty))
@@ -809,6 +849,9 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             var hasRestriction = restricted != null; // Lua
             var origin = restricted?.Origin ?? Vector2.Zero;
             var range2 = restricted != null ? restricted.Range * restricted.Range : 0f;
+            const int StargateSafeRadiusTiles = 18;
+            const int StargateSafeRadiusSq = StargateSafeRadiusTiles * StargateSafeRadiusTiles;
+            var inStargateSafeZone = TryComp<StargateDestinationComponent>(gridUid, out var stargateDest);
 
             foreach (var node in nodes)
             {
@@ -818,6 +861,13 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                     var dy = node.Y - origin.Y;
                     if ((dx * dx + dy * dy) > range2) continue;
                 } // Lua end
+                if (inStargateSafeZone && stargateDest != null)
+                {
+                    var sx = node.X - stargateDest.Origin.X;
+                    var sy = node.Y - stargateDest.Origin.Y;
+                    if (sx * sx + sy * sy <= StargateSafeRadiusSq)
+                        continue;
+                }
                 if (modified.Contains(node))
                     continue;
 
@@ -847,6 +897,20 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 RemComp<GhostRoleComponent>(uid);
                 EntityManager.InitializeAndStartEntity(uid);
                 modified.Add(node);
+
+                var layerSize = layerProto.Size;
+                var markerChunkOrigin = new Vector2i(chunk.X / layerSize * layerSize, chunk.Y / layerSize * layerSize);
+                if (!component.LoadedMarkerEntities.TryGetValue(layer, out var perChunk))
+                {
+                    perChunk = new Dictionary<Vector2i, List<EntityUid>>();
+                    component.LoadedMarkerEntities[layer] = perChunk;
+                }
+                if (!perChunk.TryGetValue(markerChunkOrigin, out var list))
+                {
+                    list = new List<EntityUid>();
+                    perChunk[markerChunkOrigin] = list;
+                }
+                list.Add(uid);
             }
         }
 
@@ -1011,6 +1075,56 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         }
 
         return false;
+    }
+
+    private void ProcessMarkerChunkUnloads(BiomeComponent component)
+    {
+        if (!_markerChunks.TryGetValue(component, out var markers))
+            return;
+
+        foreach (var (layer, loadedChunks) in component.LoadedMarkers)
+        {
+            if (!markers.TryGetValue(layer, out var inRangeChunks))
+                inRangeChunks = new HashSet<Vector2i>();
+
+            foreach (var chunk in loadedChunks.ToList())
+            {
+                if (inRangeChunks.Contains(chunk))
+                    continue;
+
+                if (!component.LoadedMarkerEntities.TryGetValue(layer, out var perChunk) ||
+                    !perChunk.TryGetValue(chunk, out var entities))
+                {
+                    loadedChunks.Remove(chunk);
+                    continue;
+                }
+
+                var allGone = true;
+                foreach (var uid in entities)
+                {
+                    if (!Deleted(uid))
+                    {
+                        allGone = false;
+                        break;
+                    }
+                }
+
+                if (!allGone)
+                    continue;
+
+                loadedChunks.Remove(chunk);
+                perChunk.Remove(chunk);
+                if (perChunk.Count == 0)
+                    component.LoadedMarkerEntities.Remove(layer);
+
+                if (!component.RespawnEligibleMarkers.TryGetValue(layer, out var eligible))
+                {
+                    eligible = new HashSet<Vector2i>();
+                    component.RespawnEligibleMarkers[layer] = eligible;
+                }
+                eligible.Add(chunk);
+            }
+        }
     }
 
     #endregion
