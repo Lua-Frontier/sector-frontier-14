@@ -2,7 +2,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Alert;
 using Content.Shared.Gravity;
 using Content.Shared.Input;
-using Content.Shared.Item;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
@@ -30,7 +29,6 @@ public abstract class SharedLayingDownSystem : EntitySystem
         SubscribeNetworkEvent<ChangeLayingDownEvent>(OnChangeState);
 
         SubscribeLocalEvent<StandingStateComponent, StandingUpDoAfterEvent>(OnStandingUpDoAfter);
-        SubscribeLocalEvent<StandingStateComponent, PickupAttemptEvent>(OnLayingDownPickupAttempt);
         SubscribeLocalEvent<LayingDownComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<LayingDownComponent, EntParentChangedMessage>(OnParentChanged);
         SubscribeLocalEvent<LayingDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
@@ -84,15 +82,9 @@ public abstract class SharedLayingDownSystem : EntitySystem
         }
         else
         {
-            if (TryLieDown(uid, layingDown, standing, DropHeldItemsBehavior.AlwaysDrop))
+            if (TryLieDown(uid, layingDown, standing))
             { if (!HasComp<KnockedDownComponent>(uid)) _alerts.ShowAlert(uid, SharedStunSystem.KnockdownAlert); }
         }
-    }
-
-    private void OnLayingDownPickupAttempt(Entity<StandingStateComponent> entity, ref PickupAttemptEvent args)
-    {
-        if (_standing.IsDown((entity.Owner, entity.Comp)))
-            args.Cancel();
     }
 
     private void OnStandingUpDoAfter(EntityUid uid, StandingStateComponent component, StandingUpDoAfterEvent args)
