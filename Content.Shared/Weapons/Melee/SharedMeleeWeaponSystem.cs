@@ -565,10 +565,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     private bool DoHeavyAttack(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
     {
         // TODO: This is copy-paste as fuck with DoPreciseAttack
+        if (!Exists(user) || !Exists(meleeUid))
+            return false;
         if (!TryComp(user, out TransformComponent? userXform))
             return false;
 
-        var targetMap = TransformSystem.ToMapCoordinates(GetCoordinates(ev.Coordinates));
+        var coords = GetCoordinates(ev.Coordinates);
+        if (!Exists(coords.EntityId))
+            return false;
+        var targetMap = TransformSystem.ToMapCoordinates(coords);
 
         if (targetMap.MapId != userXform.MapID)
             return false;
