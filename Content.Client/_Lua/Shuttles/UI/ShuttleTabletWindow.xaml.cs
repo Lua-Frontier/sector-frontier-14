@@ -32,8 +32,6 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
     public event Action<List<NetEntity>>? UndockAllRequest;
-    public event Action<List<NetEntity>, bool>? ToggleFTLLockRequest;
-
 
     private enum ShuttleTabletMode : byte
     {
@@ -79,8 +77,6 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
         DockContainer.DockRequest += (entity, netEntity) => DockRequest?.Invoke(entity, netEntity);
         DockContainer.UndockRequest += entity => UndockRequest?.Invoke(entity);
         DockContainer.UndockAllRequest += dockEntities => UndockAllRequest?.Invoke(dockEntities);
-        DockContainer.ToggleFTLLockRequest += (dockEntities, enabled) => ToggleFTLLockRequest?.Invoke(dockEntities, enabled);
-
     }
 
     public void UpdateState(EntityUid owner, ShuttleTabletWindowInterfaceState cState)

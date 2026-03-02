@@ -153,6 +153,11 @@ public sealed class ShuttleTabletSystem : EntitySystem
 
     public void UpdateTabletState(EntityUid tablet, ShuttleTabletComponent tabletComp, DockingInterfaceState? dockState = null)
     {
+        if (!_ui.HasUi(tablet, ShuttleTabletWindowUiKey.Key))
+        {
+            return;
+        }
+
         if (!IsValidTablet(tablet, tabletComp, out var tabletLinkPower))
         {
             _ui.CloseUi(tablet, ShuttleTabletWindowUiKey.Key);
@@ -175,12 +180,7 @@ public sealed class ShuttleTabletSystem : EntitySystem
         ? _shuttle.GetNavState(proxyTablet.Value, dockState.Docks)
         : new NavInterfaceState(0f, null, null, [], InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true);
 
-        if (!_ui.HasUi(tablet, ShuttleTabletWindowUiKey.Key))
-        {
-            return;
-        }
-
-        List<FireControllableEntry> fcControllables = new();
+        FireControllableEntry[]? fcControllables = null;
 
         var fcConnected = false;
 
@@ -190,15 +190,18 @@ public sealed class ShuttleTabletSystem : EntitySystem
             && TryComp<FireControlServerComponent>(fcGrid.ControllingServer, out var fcServer))
         {
             fcConnected = true;
+            List<FireControllableEntry> fcControllablesList = new();
 
             foreach (var c in fcServer.Controlled)
             {
                 var controllableEntry = new FireControllableEntry(GetNetEntity(c), GetNetCoordinates(Transform(c).Coordinates), MetaData(c).EntityName);
-                fcControllables.Add(controllableEntry);
+                fcControllablesList.Add(controllableEntry);
             }
+
+            fcControllables = [.. fcControllablesList];
         }
 
-        var tabletState = new ShuttleTabletWindowInterfaceState(navState, dockState, GetNetEntity(shuttle), tabletLinkPower, fcConnected, [.. fcControllables]);
+        var tabletState = new ShuttleTabletWindowInterfaceState(navState, dockState, GetNetEntity(shuttle), tabletLinkPower, fcConnected, fcControllables);
         _ui.SetUiState(tablet, ShuttleTabletWindowUiKey.Key, tabletState);
     }
 
