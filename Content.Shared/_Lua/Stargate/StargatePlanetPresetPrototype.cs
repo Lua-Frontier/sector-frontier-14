@@ -94,6 +94,7 @@ public sealed partial class StargatePlanetPresetPrototype : IPrototype
         "OreSilver",
         "OrePlasma",
         "OreUranium",
+        "GateGasDeposits",
         "OreDiamond",
         "OreArtifactFragment",
         "OreMagmite",
