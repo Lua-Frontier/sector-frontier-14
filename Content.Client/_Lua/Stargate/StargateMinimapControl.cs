@@ -18,6 +18,7 @@ public sealed class StargateMinimapControl : Control
     [Dependency] private readonly IResourceCache _cache = default!;
     private Dictionary<Vector2i, uint[]> _chunks = new();
     private List<StargateMinimapMarker> _markers = new();
+    private List<Vector2> _questZones = new();
     private Vector2? _gatePosition;
     private Vector2? _playerPosition;
     private bool _isStargateWorld;
@@ -42,6 +43,7 @@ public sealed class StargateMinimapControl : Control
         _markers = state.Markers;
         _gatePosition = state.GatePosition;
         _playerPosition = state.PlayerPosition;
+        _questZones = state.QuestTargetZones;
     }
     protected override void Draw(DrawingHandleScreen handle)
     {
@@ -58,6 +60,7 @@ public sealed class StargateMinimapControl : Control
         var halfViewY = PixelSize.Y / (2f * scale);
         var pp = _playerPosition.Value;
         DrawTiles(handle, center, scale, pp, halfViewX, halfViewY);
+        DrawQuestZones(handle, center, scale, pp);
         DrawGateIndicator(handle, center, scale, pp);
         DrawMarkers(handle, center, scale, pp);
         DrawPlayer(handle, center);
@@ -83,6 +86,33 @@ public sealed class StargateMinimapControl : Control
             }
         }
     }
+    private void DrawQuestZones(DrawingHandleScreen handle, Vector2 center, float scale, Vector2 pp)
+    {
+        if (_questZones.Count == 0)
+            return;
+
+        var zoneRadius = 21f * scale;
+        var font = GetFont();
+        var zoneColor = Color.FromHex("#ff444430");
+        var ringColor = Color.FromHex("#ff444488");
+
+        for (var i = 0; i < _questZones.Count; i++)
+        {
+            var rel = _questZones[i] - pp;
+            var sp = center + new Vector2(rel.X * scale, -rel.Y * scale);
+
+            if (sp.X + zoneRadius < 0 || sp.Y + zoneRadius < 0 ||
+                sp.X - zoneRadius > PixelSize.X || sp.Y - zoneRadius > PixelSize.Y)
+                continue;
+
+            handle.DrawCircle(sp, zoneRadius, zoneColor, true);
+            handle.DrawCircle(sp, zoneRadius, ringColor, false);
+
+            var label = $"?";
+            handle.DrawString(font, sp + new Vector2(-3f, -5f), label, Color.FromHex("#ff6666"));
+        }
+    }
+
     private void DrawGateIndicator(DrawingHandleScreen handle, Vector2 center, float scale, Vector2 pp)
     {
         if (_gatePosition == null) return;

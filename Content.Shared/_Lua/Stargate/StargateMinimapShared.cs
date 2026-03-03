@@ -47,7 +47,8 @@ public sealed class StargateMinimapUiState : BoundUserInterfaceState
     public readonly List<StargateMinimapMarker> Markers;
     public readonly Vector2? GatePosition;
     public readonly Vector2? PlayerPosition;
-    public StargateMinimapUiState(bool isStargateWorld, bool hasDisk1, bool hasDisk2, Dictionary<Vector2i, uint[]> exploredChunks, List<StargateMinimapMarker> markers, Vector2? gatePosition, Vector2? playerPosition) { IsStargateWorld = isStargateWorld; HasDisk1 = hasDisk1; HasDisk2 = hasDisk2; ExploredChunks = exploredChunks; Markers = markers; GatePosition = gatePosition; PlayerPosition = playerPosition; }
+    public readonly List<Vector2> QuestTargetZones;
+    public StargateMinimapUiState(bool isStargateWorld, bool hasDisk1, bool hasDisk2, Dictionary<Vector2i, uint[]> exploredChunks, List<StargateMinimapMarker> markers, Vector2? gatePosition, Vector2? playerPosition, List<Vector2>? questTargetZones = null) { IsStargateWorld = isStargateWorld; HasDisk1 = hasDisk1; HasDisk2 = hasDisk2; ExploredChunks = exploredChunks; Markers = markers; GatePosition = gatePosition; PlayerPosition = playerPosition; QuestTargetZones = questTargetZones ?? new(); }
 }
 [Serializable, NetSerializable]
 public sealed class StargateMinimapPlaceMarkerMessage : BoundUserInterfaceMessage

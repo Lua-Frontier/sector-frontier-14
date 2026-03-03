@@ -14,6 +14,7 @@ using Content.Shared.Atmos;
 using Content.Shared.EntityTable;
 using Content.Shared.Physics;
 using Content.Shared.Maps;
+using Content.Shared._Lua.Stargate.PlanetQuest;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
@@ -47,6 +48,7 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly SharedWeatherSystem _weather = default!;
     [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private readonly PlanetQuest.PlanetQuestSystem _planetQuest = default!;
 
     public override void Initialize()
     {
@@ -93,6 +95,7 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
             return;
         AddLootLayers(mapUid, biomeComp, preset, random);
         AddMobLayers(mapUid, biomeComp, preset, random, dungeonFaction);
+        SpawnQuestTargets(mapUid, gridAfter, preset, origin, random);
     }
 
     private static readonly int[] DungeonCountWeights = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
@@ -267,27 +270,183 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         return factionProto;
     }
 
+    private void SpawnQuestTargets(
+        EntityUid mapUid,
+        MapGridComponent grid,
+        StargatePlanetPresetPrototype preset,
+        Vector2i origin,
+        Random random)
+    {
+        var questPool = preset.QuestPrototypes.Count > 0
+            ? preset.QuestPrototypes.Select(id => _protoManager.Index<PlanetQuestPrototype>(id)).ToList()
+            : _protoManager.EnumeratePrototypes<PlanetQuestPrototype>().ToList();
+
+        if (questPool.Count == 0)
+            return;
+
+        var questProto = questPool[random.Next(questPool.Count)];
+
+        var structureCount = 0;
+        if (questProto.StructureCountMax > 0)
+        {
+            var min = Math.Max(0, questProto.StructureCountMin);
+            var max = Math.Max(min, questProto.StructureCountMax);
+            structureCount = random.Next(min, max + 1);
+        }
+
+        var bossCount = Math.Max(0, questProto.BossCount);
+        var safeRadiusSq = StargateSafeRadiusTiles * StargateSafeRadiusTiles;
+
+        _planetQuest.SetupQuest(
+            mapUid,
+            structureCount,
+            bossCount,
+            questProto.RewardMin,
+            questProto.RewardMax,
+            questProto.RewardMultiplier,
+            questProto.Name,
+            questProto.Description,
+            random);
+
+        if (structureCount > 0 && questProto.StructurePrototypes.Count > 0)
+        {
+            for (var i = 0; i < structureCount; i++)
+            {
+                var protoId = questProto.StructurePrototypes[random.Next(questProto.StructurePrototypes.Count)];
+                var tile = FindQuestSpawnTile(grid, mapUid, origin, safeRadiusSq, 40, 120, random);
+                EnsureQuestSpawnPlatform(mapUid, grid, tile, 1, random);
+                ClearQuestSpawnArea(mapUid, grid, tile, 1);
+                var uid = SpawnAtPosition(protoId, _maps.GridTileToLocal(mapUid, grid, tile));
+                _planetQuest.RegisterTarget(uid, mapUid, PlanetObjectiveType.DestroyStructures);
+            }
+        }
+
+        if (bossCount > 0 && questProto.BossPrototypes.Count > 0)
+        {
+            for (var i = 0; i < bossCount; i++)
+            {
+                var bossProtoId = questProto.BossPrototypes[random.Next(questProto.BossPrototypes.Count)];
+                var tile = FindQuestSpawnTile(grid, mapUid, origin, safeRadiusSq, 60, 150, random);
+                EnsureQuestSpawnPlatform(mapUid, grid, tile, 2, random);
+                ClearQuestSpawnArea(mapUid, grid, tile, 2);
+                var uid = SpawnAtPosition(bossProtoId, _maps.GridTileToLocal(mapUid, grid, tile));
+                _planetQuest.RegisterTarget(uid, mapUid, PlanetObjectiveType.KillBoss);
+            }
+        }
+    }
+
+    private void EnsureQuestSpawnPlatform(
+        EntityUid mapUid,
+        MapGridComponent grid,
+        Vector2i centerTile,
+        int radius,
+        Random random)
+    {
+        var tileDef = _tileDefManager["FloorSteel"];
+        var tiles = new List<(Vector2i Index, Tile Tile)>();
+
+        for (var dx = -radius; dx <= radius; dx++)
+        {
+            for (var dy = -radius; dy <= radius; dy++)
+            {
+                if (dx * dx + dy * dy > radius * radius)
+                    continue;
+
+                var tile = centerTile + new Vector2i(dx, dy);
+                tiles.Add((tile, new Tile(tileDef.TileId,
+                    variant: _tile.PickVariant((ContentTileDefinition)tileDef, random))));
+            }
+        }
+
+        _maps.SetTiles(mapUid, grid, tiles);
+    }
+
+    private void ClearQuestSpawnArea(EntityUid mapUid, MapGridComponent grid, Vector2i centerTile, int radius)
+    {
+        for (var dx = -radius; dx <= radius; dx++)
+        {
+            for (var dy = -radius; dy <= radius; dy++)
+            {
+                var tile = centerTile + new Vector2i(dx, dy);
+                var anchored = _maps.GetAnchoredEntitiesEnumerator(mapUid, grid, tile);
+                while (anchored.MoveNext(out var ent))
+                {
+                    QueueDel(ent.Value);
+                }
+            }
+        }
+    }
+
+    private Vector2i FindQuestSpawnTile(
+        MapGridComponent grid,
+        EntityUid gridUid,
+        Vector2i origin,
+        int safeRadiusSq,
+        int minDist,
+        int maxDist,
+        Random random)
+    {
+        for (var attempt = 0; attempt < 30; attempt++)
+        {
+            var angle = random.NextDouble() * Math.PI * 2;
+            var dist = random.Next(minDist, maxDist + 1);
+            var tile = origin + new Vector2i((int)(Math.Cos(angle) * dist), (int)(Math.Sin(angle) * dist));
+
+            var dt = tile - origin;
+            if (dt.X * dt.X + dt.Y * dt.Y <= safeRadiusSq)
+                continue;
+
+            if (_anchorable.TileFree((gridUid, grid), tile, (int)CollisionGroup.MachineLayer, (int)CollisionGroup.MachineLayer))
+                return tile;
+        }
+
+        for (var attempt = 0; attempt < 30; attempt++)
+        {
+            var angle = random.NextDouble() * Math.PI * 2;
+            var dist = random.Next(minDist, maxDist + 1);
+            var tile = origin + new Vector2i((int)(Math.Cos(angle) * dist), (int)(Math.Sin(angle) * dist));
+
+            var dt = tile - origin;
+            if (dt.X * dt.X + dt.Y * dt.Y <= safeRadiusSq)
+                continue;
+
+            if (_maps.TryGetTileRef(gridUid, grid, tile, out var tileRef) && !tileRef.Tile.IsEmpty)
+                return tile;
+        }
+
+        var allTiles = _maps.GetAllTilesEnumerator(gridUid, grid);
+        while (allTiles.MoveNext(out var tileRef))
+        {
+            var tile = tileRef.Value.GridIndices;
+            if (tileRef.Value.Tile.IsEmpty)
+                continue;
+
+            var dt = tile - origin;
+            if (dt.X * dt.X + dt.Y * dt.Y <= safeRadiusSq)
+                continue;
+
+            return tile;
+        }
+
+        return origin + new Vector2i(Math.Max(minDist, StargateSafeRadiusTiles + 2), 0);
+    }
+
     private static int PickWeightedDungeonCount(Random random, StargatePlanetPresetPrototype preset)
     {
         var min = Math.Clamp(preset.DungeonCountMin, 0, 8);
         var max = Math.Clamp(preset.DungeonCountMax, 0, 8);
         var totalWeight = 0;
-        for (var i = min; i <= max; i++)
-            totalWeight += DungeonCountWeights[i];
+        for (var i = min; i <= max; i++) totalWeight += DungeonCountWeights[i];
         if (totalWeight <= 0) return 0;
         var roll = random.Next(totalWeight);
         var acc = 0;
         for (var i = min; i <= max; i++)
-        {
-            acc += DungeonCountWeights[i];
-            if (roll < acc) return i;
-        }
+        { acc += DungeonCountWeights[i]; if (roll < acc) return i; }
         return max;
     }
 
     private List<ProtoId<DungeonConfigPrototype>> BuildConfigPool(
-        StargatePlanetPresetPrototype preset,
-        Random random)
+        StargatePlanetPresetPrototype preset, Random random)
     {
         var pool = new List<ProtoId<DungeonConfigPrototype>>();
 

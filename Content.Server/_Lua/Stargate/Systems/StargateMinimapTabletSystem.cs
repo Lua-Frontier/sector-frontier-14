@@ -4,8 +4,11 @@
 using Content.Server._Lua.Stargate.Components;
 using Content.Shared._Lua.Stargate;
 using Content.Shared._Lua.Stargate.Components;
+using Content.Shared._Lua.Stargate.PlanetQuest;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Maps;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -244,7 +247,8 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
                 markers.AddRange(pd.Markers);
             }
         }
-        _ui.SetUiState(uid, StargateMinimapTabletUiKey.Key, new StargateMinimapUiState(isSg, d1 != null, d2 != null, chunks, markers, gatePos, playerPos));
+        var questZones = CollectQuestTargetZones(player, isSg);
+        _ui.SetUiState(uid, StargateMinimapTabletUiKey.Key, new StargateMinimapUiState(isSg, d1 != null, d2 != null, chunks, markers, gatePos, playerPos, questZones));
         UpdateTabletAppearance(uid);
     }
     private void UpdateTabletAppearance(EntityUid uid)
@@ -263,6 +267,47 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
             return null;
         dc.Planets.TryGetValue(AddressKey(dc.CurrentPlanetAddress), out var pd);
         return pd;
+    }
+
+    private const float QuestZoneRadius = 21f;
+    private const float QuestZoneMaxOffset = 14f;
+
+    private List<Vector2>? CollectQuestTargetZones(EntityUid? player, bool isSg)
+    {
+        if (!isSg || player == null)
+            return null;
+
+        var xform = Transform(player.Value);
+        if (xform.MapUid == null)
+            return null;
+
+        var mapUid = xform.MapUid.Value;
+        if (!TryComp<PlanetQuestComponent>(mapUid, out var quest) || quest.Completed)
+            return null;
+
+        var zones = new List<Vector2>();
+        var targetQuery = EntityQueryEnumerator<PlanetQuestTargetComponent, TransformComponent>();
+        while (targetQuery.MoveNext(out var uid, out var target, out var targetXform))
+        {
+            if (target.QuestMap != mapUid)
+                continue;
+            if (TryComp<MobStateComponent>(uid, out var mobState) &&
+                mobState.CurrentState != MobState.Alive)
+            {
+                continue;
+            }
+
+            var realPos = _xform.GetWorldPosition(targetXform);
+
+            var rng = new Random(uid.Id);
+            var angle = rng.NextDouble() * Math.PI * 2;
+            var dist = rng.NextDouble() * QuestZoneMaxOffset;
+            var offset = new Vector2((float)(Math.Cos(angle) * dist), (float)(Math.Sin(angle) * dist));
+
+            zones.Add(realPos + offset);
+        }
+
+        return zones.Count > 0 ? zones : null;
     }
 
     private EntityUid? GetDisk(EntityUid uid, int slot)

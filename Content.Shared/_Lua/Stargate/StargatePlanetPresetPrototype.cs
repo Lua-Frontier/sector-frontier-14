@@ -129,4 +129,7 @@ public sealed partial class StargatePlanetPresetPrototype : IPrototype
 
     [DataField]
     public List<ProtoId<SalvageWeatherMod>>? WeatherMods;
+
+    [DataField]
+    public List<ProtoId<PlanetQuest.PlanetQuestPrototype>> QuestPrototypes = new();
 }
