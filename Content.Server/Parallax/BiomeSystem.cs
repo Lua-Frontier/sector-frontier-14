@@ -71,6 +71,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     private int _decalBudget = 21;
     private int _entityBudget = 21;
     private static readonly ProtoId<TagPrototype> AllowBiomeLoadingTag = "AllowBiomeLoading";
+    private readonly Dictionary<EntityUid, float> _stargateMapMotion = new();
+    private readonly Dictionary<EntityUid, (EntityUid mapUid, Vector2 worldPos)> _observerLastPosition = new();
+    private readonly HashSet<EntityUid> _observersSeenThisTick = new();
+    private readonly HashSet<EntityUid> _stargateHardPauseMaps = new();
+    private long _nextOreVeinWarningTickMs;
+    private const long OreVeinWarningIntervalMs = 5000;
 
     private ObjectPool<HashSet<Vector2i>> _tilePool =
         new DefaultObjectPool<HashSet<Vector2i>>(new SetPolicy<Vector2i>(), 256);
@@ -368,9 +374,163 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         return !_ghostQuery.HasComp(uid) || _tags.HasTag(uid, AllowBiomeLoadingTag);
     }
 
+    private bool IsStargateBiomeMap(EntityUid mapUid, out StargateDestinationComponent? destination)
+    {
+        if (TryComp<StargateDestinationComponent>(mapUid, out var dest))
+        {
+            destination = dest;
+            return true;
+        }
+
+        destination = null;
+        return false;
+    }
+
+    private void TrackObserverMotion(EntityUid observer, EntityUid mapUid, Vector2 worldPos)
+    {
+        _observersSeenThisTick.Add(observer);
+
+        if (!IsStargateBiomeMap(mapUid, out _))
+        {
+            _observerLastPosition[observer] = (mapUid, worldPos);
+            return;
+        }
+
+        if (_observerLastPosition.TryGetValue(observer, out var last) && last.mapUid == mapUid)
+        {
+            var delta = Vector2.Distance(last.worldPos, worldPos);
+            if (delta > 0f)
+                _stargateMapMotion[mapUid] = _stargateMapMotion.GetValueOrDefault(mapUid) + delta;
+        }
+
+        _observerLastPosition[observer] = (mapUid, worldPos);
+    }
+
+    private static int CountPendingMarkers(BiomeComponent component)
+    {
+        var total = 0;
+        foreach (var (_, layers) in component.PendingMarkers)
+        {
+            foreach (var (_, nodes) in layers)
+            {
+                total += nodes.Count;
+            }
+        }
+
+        return total;
+    }
+
+    private static int CountPendingDynamicSpawns(BiomeComponent component)
+    {
+        return component.PendingEntities.Sum(x => x.Value.Count) + component.PendingDecals.Sum(x => x.Value.Count);
+    }
+
+    private (int Chunk, int Marker, int Entity, int Decal) GetDynamicBudgets(EntityUid mapUid, BiomeComponent component)
+    {
+        var chunkBudget = _chunkBudget;
+        var markerBudget = _markerBudget;
+        var entityBudget = _entityBudget;
+        var decalBudget = _decalBudget;
+
+        if (!IsStargateBiomeMap(mapUid, out var destination))
+            return (chunkBudget, markerBudget, entityBudget, decalBudget);
+
+        var motion = _stargateMapMotion.GetValueOrDefault(mapUid);
+        var pendingCount = component.PendingEntities.Sum(x => x.Value.Count) + component.PendingDecals.Sum(x => x.Value.Count);
+        var pendingMarkers = CountPendingMarkers(component);
+
+        var motionFactor = 1f;
+        if (motion >= 20f)
+            motionFactor = 0.25f;
+        else if (motion >= 10f)
+            motionFactor = 0.40f;
+        else if (motion >= 4f)
+            motionFactor = 0.60f;
+        else if (motion >= 1f)
+            motionFactor = 0.65f;
+        else
+            motionFactor = 1.15f;
+
+        if (destination != null && destination.ProgressiveLoadingActive)
+            motionFactor *= 0.85f;
+
+        var pendingFactor = 1f;
+        if (pendingCount >= 500)
+            pendingFactor = 0.70f;
+        else if (pendingCount >= 250)
+            pendingFactor = 0.82f;
+        else if (pendingCount <= 60)
+            pendingFactor = 1.10f;
+
+        if (pendingMarkers >= 2600)
+            pendingFactor *= 0.45f;
+        else if (pendingMarkers >= 1800)
+            pendingFactor *= 0.60f;
+        else if (pendingMarkers >= 1000)
+            pendingFactor *= 0.78f;
+        else if (pendingMarkers >= 700)
+            pendingFactor *= 0.90f;
+
+        var factor = Math.Clamp(motionFactor * pendingFactor, 0.2f, 1.35f);
+
+        if (chunkBudget > 0)
+            chunkBudget = Math.Max(1, (int)MathF.Round(chunkBudget * factor));
+        if (markerBudget > 0)
+            markerBudget = Math.Max(1, (int)MathF.Round(markerBudget * factor));
+        if (entityBudget > 0)
+            entityBudget = Math.Max(1, (int)MathF.Round(entityBudget * factor));
+        if (decalBudget > 0)
+            decalBudget = Math.Max(1, (int)MathF.Round(decalBudget * factor));
+
+        // Extra clamp for heavy rock/ore regions while observer is moving fast.
+        if (motion >= 10f)
+        {
+            chunkBudget = Math.Min(chunkBudget, 1);
+            markerBudget = Math.Min(markerBudget, 2);
+            entityBudget = Math.Min(entityBudget, 4);
+            decalBudget = Math.Min(decalBudget, 4);
+        }
+        else if (motion >= 4f)
+        {
+            chunkBudget = Math.Min(chunkBudget, 2);
+            markerBudget = Math.Min(markerBudget, 4);
+            entityBudget = Math.Min(entityBudget, 8);
+            decalBudget = Math.Min(decalBudget, 8);
+        }
+
+        if (motion >= 1f)
+        {
+            markerBudget = Math.Min(markerBudget, 2);
+            entityBudget = Math.Min(entityBudget, 6);
+            decalBudget = Math.Min(decalBudget, 6);
+        }
+
+        if (pendingMarkers >= 2200)
+        {
+            chunkBudget = Math.Min(chunkBudget, 1);
+            markerBudget = Math.Min(markerBudget, 1);
+            entityBudget = Math.Min(entityBudget, 6);
+            decalBudget = Math.Min(decalBudget, 6);
+        }
+        else if (pendingMarkers >= 1400)
+        {
+            markerBudget = Math.Min(markerBudget, 1);
+            entityBudget = Math.Min(entityBudget, 5);
+            decalBudget = Math.Min(decalBudget, 5);
+        }
+        else if (pendingMarkers >= 900)
+        {
+            markerBudget = Math.Min(markerBudget, 2);
+        }
+
+        return (chunkBudget, markerBudget, entityBudget, decalBudget);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        _stargateMapMotion.Clear();
+        _observersSeenThisTick.Clear();
         var biomes = AllEntityQuery<BiomeComponent>();
 
         while (biomes.MoveNext(out var biome))
@@ -392,6 +552,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 CanLoad(pSession.AttachedEntity.Value))
             {
                 var worldPos = _transform.GetWorldPosition(xform);
+                if (xform.MapUid is { } mapUid)
+                    TrackObserverMotion(pSession.AttachedEntity.Value, mapUid, worldPos);
                 AddChunksInRange(biome, worldPos);
 
                 foreach (var layer in biome.MarkerLayers)
@@ -413,6 +575,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 }
 
                 var worldPos = _transform.GetWorldPosition(xform);
+                if (xform.MapUid is { } mapUid)
+                    TrackObserverMotion(viewer, mapUid, worldPos);
                 AddChunksInRange(biome, worldPos);
 
                 foreach (var layer in biome.MarkerLayers)
@@ -434,14 +598,21 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             if (!biome.Enabled)
                 continue;
 
+            var budgets = GetDynamicBudgets(gridUid, biome);
+
             // Load new chunks
-            LoadChunks(biome, gridUid, grid, biome.Seed);
+            LoadChunks(biome, gridUid, grid, biome.Seed, budgets.Chunk, budgets.Marker, budgets.Entity, budgets.Decal);
             // Unload old chunks
-            UnloadChunks(biome, gridUid, grid, biome.Seed);
+            UnloadChunks(biome, gridUid, grid, biome.Seed, budgets.Chunk);
             ProcessMarkerChunkUnloads(biome);
         }
 
         _handledEntities.Clear();
+        foreach (var observer in _observerLastPosition.Keys.ToList())
+        {
+            if (!_observersSeenThisTick.Contains(observer))
+                _observerLastPosition.Remove(observer);
+        }
 
         foreach (var tiles in _activeChunks.Values)
         {
@@ -494,7 +665,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         BiomeComponent component,
         EntityUid gridUid,
         MapGridComponent grid,
-        int seed)
+        int seed,
+        int chunkBudget,
+        int markerBudget,
+        int entityBudget,
+        int decalBudget)
     {
         BuildMarkerChunks(component, gridUid, grid, seed);
 
@@ -502,27 +677,39 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         var active = _activeChunks[component];
 
-        var markerBudgetLeft = _markerBudget;
-        foreach (var chunk in active)
+        var disableMarkerLoading = false;
+        if (IsStargateBiomeMap(gridUid, out _))
         {
-            if (_markerBudget > 0 && markerBudgetLeft <= 0)
-                break;
-            markerBudgetLeft = LoadChunkMarkers(component, gridUid, grid, chunk, seed, restricted, markerBudgetLeft);
+            var motion = _stargateMapMotion.GetValueOrDefault(gridUid);
+            var pendingMarkers = CountPendingMarkers(component);
+            var pendingDynamic = CountPendingDynamicSpawns(component);
+            disableMarkerLoading = pendingDynamic >= 900 || (motion >= 0.90f && pendingDynamic >= 600);
         }
 
-        var chunksToLoad = new List<Vector2i>(_chunkBudget);
+        if (!disableMarkerLoading)
+        {
+            var markerBudgetLeft = markerBudget;
+            foreach (var chunk in active)
+            {
+                if (markerBudget > 0 && markerBudgetLeft <= 0)
+                    break;
+                markerBudgetLeft = LoadChunkMarkers(component, gridUid, grid, chunk, seed, restricted, markerBudgetLeft);
+            }
+        }
+
+        var chunksToLoad = new List<Vector2i>(chunkBudget);
         foreach (var chunk in active)
         {
             if (component.LoadedChunks.Contains(chunk))
                 continue;
 
             chunksToLoad.Add(chunk);
-            if (chunksToLoad.Count >= _chunkBudget)
+            if (chunksToLoad.Count >= chunkBudget)
                 break;
         }
 
-        var entityBudgetLeft = _entityBudget;
-        if (_entityBudget > 0 && component.PendingEntities.Count > 0)
+        var entityBudgetLeft = entityBudget;
+        if (entityBudget > 0 && component.PendingEntities.Count > 0)
         {
             foreach (var (chunk, list) in component.PendingEntities.ToList())
             {
@@ -545,8 +732,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             }
         }
 
-        var decalBudgetLeft = _decalBudget;
-        if (_decalBudget > 0 && component.PendingDecals.Count > 0)
+        var decalBudgetLeft = decalBudget;
+        if (decalBudget > 0 && component.PendingDecals.Count > 0)
         {
             foreach (var (chunk, list) in component.PendingDecals.ToList())
             {
@@ -571,16 +758,27 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         if (chunksToLoad.Count == 0)
             return;
         var prepared = new PreparedChunkData[chunksToLoad.Count];
-        Parallel.For(0, chunksToLoad.Count,
-            new ParallelOptions { MaxDegreeOfParallelism = _parallel.ParallelProcessCount },
-            i =>
+        var useSequentialPrepare = IsStargateBiomeMap(gridUid, out _) && _stargateMapMotion.GetValueOrDefault(gridUid) >= 4f;
+        if (useSequentialPrepare)
+        {
+            for (var i = 0; i < chunksToLoad.Count; i++)
             {
                 prepared[i] = PrepareChunkData(component, gridUid, grid, chunksToLoad[i], seed, restricted);
-            });
+            }
+        }
+        else
+        {
+            Parallel.For(0, chunksToLoad.Count,
+                new ParallelOptions { MaxDegreeOfParallelism = _parallel.ParallelProcessCount },
+                i =>
+                {
+                    prepared[i] = PrepareChunkData(component, gridUid, grid, chunksToLoad[i], seed, restricted);
+                });
+        }
         for (var i = 0; i < prepared.Length; i++)
         {
             component.LoadedChunks.Add(chunksToLoad[i]);
-            ApplyPreparedChunk(component, gridUid, grid, prepared[i], ref entityBudgetLeft, ref decalBudgetLeft);
+            ApplyPreparedChunk(component, gridUid, grid, prepared[i], entityBudget, decalBudget, ref entityBudgetLeft, ref decalBudgetLeft);
         }
     }
 
@@ -592,8 +790,56 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     {
         var markers = _markerChunks[component];
         var loadedMarkers = component.LoadedMarkers;
+        var isStargate = IsStargateBiomeMap(gridUid, out var destination);
+        var motion = isStargate ? _stargateMapMotion.GetValueOrDefault(gridUid) : 0f;
+        var pendingMarkersTotal = isStargate ? CountPendingMarkers(component) : 0;
+        var pendingDynamicSpawns = isStargate ? CountPendingDynamicSpawns(component) : 0;
+        var markerChunkBudget = _markerChunkBudget;
+        var hardPause = false;
+
+        if (!isStargate)
+            _stargateHardPauseMaps.Remove(gridUid);
+
+        if (isStargate)
+        {
+            var hardPauseLatched = _stargateHardPauseMaps.Contains(gridUid);
+            var shouldEnterHardPause = pendingMarkersTotal >= 1750 ||
+                                       pendingDynamicSpawns >= 700 ||
+                                       (motion >= 0.90f && pendingMarkersTotal >= 800);
+            var canExitHardPause = pendingMarkersTotal <= 1300 &&
+                                   pendingDynamicSpawns <= 250 &&
+                                   motion <= 0.30f;
+
+            if (!hardPauseLatched && shouldEnterHardPause)
+                _stargateHardPauseMaps.Add(gridUid);
+            else if (hardPauseLatched && canExitHardPause)
+                _stargateHardPauseMaps.Remove(gridUid);
+
+            hardPause = _stargateHardPauseMaps.Contains(gridUid);
+            if (hardPause)
+            {
+                markerChunkBudget = 0;
+            }
+
+            if (pendingMarkersTotal >= 2400)
+                markerChunkBudget = 0;
+            else if (pendingMarkersTotal >= 1600)
+                markerChunkBudget = Math.Min(markerChunkBudget, 1);
+            else if (pendingMarkersTotal >= 900)
+                markerChunkBudget = Math.Min(markerChunkBudget, Math.Max(1, markerChunkBudget / 2));
+
+            if (motion >= 1f)
+                markerChunkBudget = Math.Min(markerChunkBudget, 1);
+
+            if (destination?.ProgressiveLoadingActive == true)
+                markerChunkBudget = Math.Min(markerChunkBudget, 1);
+        }
+
+        if (hardPause)
+            return;
+
         var idx = 0;
-        var newChunksLeft = _markerChunkBudget;
+        var newChunksLeft = markerChunkBudget;
 
         foreach (var (layer, chunks) in markers)
         {
@@ -608,7 +854,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 if (loadedMarkers.TryGetValue(layer, out var alreadyLoaded) && alreadyLoaded.Contains(chunk))
                     continue;
 
-                if (_markerChunkBudget > 0 && newChunksLeft <= 0)
+                if (markerChunkBudget > 0 && newChunksLeft <= 0)
                     continue;
 
                 toProcess.Add(chunk);
@@ -618,7 +864,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             if (toProcess.Count == 0)
                 continue;
 
-            Parallel.ForEach(toProcess, new ParallelOptions() { MaxDegreeOfParallelism = _parallel.ParallelProcessCount }, chunk =>
+            var useParallel = !(isStargate && (pendingMarkersTotal >= 600 || motion >= 0.75f || destination?.ProgressiveLoadingActive == true));
+            void ProcessChunk(Vector2i chunk)
             {
                 bool isRespawnEligible;
                 lock (loadedMarkers)
@@ -713,7 +960,19 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                         }
                     }
                 }
-            });
+            }
+
+            if (useParallel)
+            {
+                Parallel.ForEach(toProcess, new ParallelOptions() { MaxDegreeOfParallelism = _parallel.ParallelProcessCount }, ProcessChunk);
+            }
+            else
+            {
+                foreach (var chunk in toProcess)
+                {
+                    ProcessChunk(chunk);
+                }
+            }
         }
 
         component.ForcedMarkerLayers.Clear();
@@ -876,7 +1135,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
             if (groupSize > 0)
             {
-                Log.Warning($"Found remaining group size for ore veins!");
+                var now = Environment.TickCount64;
+                if (now >= _nextOreVeinWarningTickMs)
+                {
+                    Log.Warning($"Found remaining group size for ore veins!");
+                    _nextOreVeinWarningTickMs = now + OreVeinWarningIntervalMs;
+                }
             }
         }
 
@@ -1119,6 +1383,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         EntityUid gridUid,
         MapGridComponent grid,
         PreparedChunkData data,
+        int entityBudget,
+        int decalBudget,
         ref int entityBudgetLeft,
         ref int decalBudgetLeft)
     {
@@ -1129,7 +1395,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         var pendingEnts = new List<(Vector2i indices, string prototype)>();
         foreach (var (indices, prototype) in data.Entities)
         {
-            if (_entityBudget > 0 && entityBudgetLeft <= 0)
+            if (entityBudget > 0 && entityBudgetLeft <= 0)
             {
                 pendingEnts.Add((indices, prototype));
                 continue;
@@ -1152,7 +1418,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         var pendingForChunk = new List<(Vector2i indices, string decalId, Vector2 position)>();
         foreach (var (indices, decalId, position) in data.Decals)
         {
-            if (_decalBudget > 0 && decalBudgetLeft <= 0)
+            if (decalBudget > 0 && decalBudgetLeft <= 0)
             {
                 pendingForChunk.Add((indices, decalId, position));
                 continue;
@@ -1244,7 +1510,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     /// <summary>
     /// Handles all of the queued chunk unloads for a particular biome.
     /// </summary>
-    private void UnloadChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed)
+    private void UnloadChunks(BiomeComponent component, EntityUid gridUid, MapGridComponent grid, int seed, int chunkBudget)
     {
         var active = _activeChunks[component];
         _unloadChunksBuffer.Clear();
@@ -1264,7 +1530,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             UnloadChunk(component, gridUid, grid, chunk, seed, _unloadTilesBuffer);
             unloaded++;
 
-            if (unloaded >= _chunkBudget)
+            if (unloaded >= chunkBudget)
                 break;
         }
     }

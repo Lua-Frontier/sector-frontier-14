@@ -62,6 +62,7 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
             return;
 
         ent.Comp.Loaded = true;
+        ent.Comp.ProgressiveLoadingActive = true;
 
         if (!TryComp<MapGridComponent>(ent.Owner, out var grid))
             return;
@@ -85,17 +86,25 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         Vector2i origin,
         Random random)
     {
-        var dungeons = await GenerateDungeonsAsync(mapUid, grid, preset, origin, seed, random);
+        try
+        {
+            var dungeons = await GenerateDungeonsAsync(mapUid, grid, preset, origin, seed, random);
 
-        if (!TryComp<MapGridComponent>(mapUid, out var gridAfter))
-            return;
-        var dungeonFaction = SpawnBudgetMobs(mapUid, gridAfter, preset, dungeons, origin, random);
+            if (!TryComp<MapGridComponent>(mapUid, out var gridAfter))
+                return;
+            var dungeonFaction = SpawnBudgetMobs(mapUid, gridAfter, preset, dungeons, origin, random);
 
-        if (!TryComp<BiomeComponent>(mapUid, out var biomeComp))
-            return;
-        AddLootLayers(mapUid, biomeComp, preset, random);
-        AddMobLayers(mapUid, biomeComp, preset, random, dungeonFaction);
-        SpawnQuestTargets(mapUid, gridAfter, preset, origin, random);
+            if (!TryComp<BiomeComponent>(mapUid, out var biomeComp))
+                return;
+            AddLootLayers(mapUid, biomeComp, preset, random);
+            AddMobLayers(mapUid, biomeComp, preset, random, dungeonFaction);
+            SpawnQuestTargets(mapUid, gridAfter, preset, origin, random);
+        }
+        finally
+        {
+            if (TryComp<StargateDestinationComponent>(mapUid, out var destination))
+                destination.ProgressiveLoadingActive = false;
+        }
     }
 
     private static readonly int[] DungeonCountWeights = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };

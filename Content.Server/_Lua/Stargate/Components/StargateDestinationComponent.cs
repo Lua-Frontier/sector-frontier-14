@@ -26,6 +26,9 @@ public sealed partial class StargateDestinationComponent : Component
     public bool Loaded;
 
     [ViewVariables]
+    public bool ProgressiveLoadingActive;
+
+    [ViewVariables]
     public TimeSpan? EmptySince;
 
     [ViewVariables]
