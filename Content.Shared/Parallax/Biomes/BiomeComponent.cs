@@ -6,6 +6,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using System.Numerics;
 
 namespace Content.Shared.Parallax.Biomes;
 
@@ -51,8 +52,17 @@ public sealed partial class BiomeComponent : Component
     [DataField("decals")]
     public Dictionary<Vector2i, Dictionary<uint, Vector2i>> LoadedDecals = new();
 
+    [ViewVariables]
+    public Dictionary<Vector2i, List<(Vector2i indices, string decalId, Vector2 position)>> PendingDecals = new();
+
     [DataField("entities")]
     public Dictionary<Vector2i, Dictionary<EntityUid, Vector2i>> LoadedEntities = new();
+
+    /// <summary>
+    /// Entities deferred due to entity_budget; spawned over subsequent ticks. Server-only, not serialized.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<Vector2i, List<(Vector2i indices, string prototype)>> PendingEntities = new();
 
     /// <summary>
     /// Currently active chunks
