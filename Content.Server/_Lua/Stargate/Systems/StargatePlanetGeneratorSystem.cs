@@ -5,8 +5,6 @@
 using Content.Server._Lua.Stargate.Components;
 using Content.Server._Lua.Stargate.Events;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Ghost.Roles.Components;
-using Content.Server.NPC.Systems;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
 using Content.Shared.Construction.EntitySystems;
@@ -17,6 +15,7 @@ using Content.Shared.EntityTable;
 using Content.Shared.Physics;
 using Content.Shared.Maps;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions.Modifiers;
@@ -88,12 +87,12 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
 
         if (!TryComp<MapGridComponent>(mapUid, out var gridAfter))
             return;
-        SpawnBudgetMobs(mapUid, gridAfter, preset, dungeons, origin, random);
+        var dungeonFaction = SpawnBudgetMobs(mapUid, gridAfter, preset, dungeons, origin, random);
 
         if (!TryComp<BiomeComponent>(mapUid, out var biomeComp))
             return;
         AddLootLayers(mapUid, biomeComp, preset, random);
-        AddMobLayers(mapUid, biomeComp, preset, random);
+        AddMobLayers(mapUid, biomeComp, preset, random, dungeonFaction);
     }
 
     private static readonly int[] DungeonCountWeights = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
@@ -104,6 +103,9 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         "GateCompactCache", "GateWideShelter", "GateLineOutpost", "GateScatteredCaches",
         "GateHauntedOutpost", "GateLabRuins", "GateLavaOutpost", "GateCaveFactory", "GateMixed"
     };
+
+    private const int DungeonOverlapPadding = 8;
+    private const int DungeonPlacementRetries = 5;
 
     private async Task<List<Dungeon>> GenerateDungeonsAsync(
         EntityUid gridUid,
@@ -125,6 +127,8 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         var baseAngle = random.NextDouble() * 2 * Math.PI;
         var angleStep = dungeonCount > 1 ? 2 * Math.PI / dungeonCount : 0;
 
+        var placedBounds = new List<(int MinX, int MinY, int MaxX, int MaxY)>();
+
         for (var d = 0; d < dungeonCount; d++)
         {
             var configId = configPool[d % configPool.Count];
@@ -132,23 +136,74 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
             if (!_protoManager.TryIndex<DungeonConfigPrototype>(configId, out var dungeonConfig))
                 continue;
 
-            var distance = random.Next(preset.DungeonDistanceMin, preset.DungeonDistanceMax + 1);
-            var angle = baseAngle + d * angleStep + (random.NextDouble() - 0.5) * 0.5;
-            var offset = new Vector2i(
-                (int)(Math.Cos(angle) * distance),
-                (int)(Math.Sin(angle) * distance));
-            var dungeonPosition = origin + offset;
+            Vector2i dungeonPosition = default;
+            var placed = false;
+
+            for (var attempt = 0; attempt < DungeonPlacementRetries; attempt++)
+            {
+                var distance = random.Next(preset.DungeonDistanceMin, preset.DungeonDistanceMax + 1);
+                var angle = baseAngle + d * angleStep + (random.NextDouble() - 0.5) * 0.5;
+                if (attempt > 0)
+                {
+                    angle += (random.NextDouble() - 0.5) * 1.2;
+                    distance += random.Next(10, 30);
+                }
+
+                var offset = new Vector2i(
+                    (int)(Math.Cos(angle) * distance),
+                    (int)(Math.Sin(angle) * distance));
+                dungeonPosition = origin + offset;
+
+                if (!OverlapsExisting(dungeonPosition, placedBounds))
+                {
+                    placed = true;
+                    break;
+                }
+            }
+
+            if (!placed)
+                continue;
 
             var dungeons = await _dungeon.GenerateDungeonAsync(dungeonConfig, dungeonConfig.ID, gridUid, grid, dungeonPosition, seed + d + 1);
+
+            foreach (var dun in dungeons)
+            {
+                if (dun.AllTiles.Count == 0)
+                    continue;
+                var minX = int.MaxValue;
+                var minY = int.MaxValue;
+                var maxX = int.MinValue;
+                var maxY = int.MinValue;
+                foreach (var tile in dun.AllTiles)
+                {
+                    if (tile.X < minX) minX = tile.X;
+                    if (tile.Y < minY) minY = tile.Y;
+                    if (tile.X > maxX) maxX = tile.X;
+                    if (tile.Y > maxY) maxY = tile.Y;
+                }
+                placedBounds.Add((minX - DungeonOverlapPadding, minY - DungeonOverlapPadding,
+                    maxX + DungeonOverlapPadding, maxY + DungeonOverlapPadding));
+            }
+
             result.AddRange(dungeons);
         }
 
         return result;
     }
 
+    private static bool OverlapsExisting(Vector2i position, List<(int MinX, int MinY, int MaxX, int MaxY)> bounds)
+    {
+        foreach (var (minX, minY, maxX, maxY) in bounds)
+        {
+            if (position.X >= minX && position.X <= maxX && position.Y >= minY && position.Y <= maxY)
+                return true;
+        }
+        return false;
+    }
+
     private const int StargateSafeRadiusTiles = 18;
 
-    private void SpawnBudgetMobs(
+    private string? SpawnBudgetMobs(
         EntityUid gridUid,
         MapGridComponent grid,
         StargatePlanetPresetPrototype preset,
@@ -156,57 +211,60 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         Vector2i gateOrigin,
         Random random)
     {
-        if (preset.DungeonMobBudget <= 0 || dungeons.Count == 0)
-            return;
+        if (preset.DungeonMobCap <= 0 || preset.DungeonMobDensity <= 0 || dungeons.Count == 0)
+            return null;
 
         if (!_protoManager.TryIndex(preset.DungeonMobTable, out var mobTable))
-            return;
+            return null;
 
-        var npcs = EntityManager.System<NPCSystem>();
-        var mobBudget = preset.DungeonMobBudget;
-        const float CostPerMob = 1f;
+        var factionEntities = _entTable.GetSpawns(mobTable, random).ToList();
+        if (factionEntities.Count == 0)
+            return null;
+        var factionProto = factionEntities[0];
+
+        var capLeft = preset.DungeonMobCap;
         var safeRadiusSq = StargateSafeRadiusTiles * StargateSafeRadiusTiles;
 
-        var allRooms = new List<DungeonRoom>();
         foreach (var dungeon in dungeons)
-            allRooms.AddRange(dungeon.Rooms);
-
-        if (allRooms.Count == 0)
-            return;
-
-        while (mobBudget >= CostPerMob)
         {
-            mobBudget -= CostPerMob;
-
-            var room = allRooms[random.Next(allRooms.Count)];
-            var tiles = room.Tiles.ToList();
-            if (tiles.Count == 0)
-                continue;
-
-            Vector2i? tile = null;
-            for (var attempt = 0; attempt < tiles.Count && tile == null; attempt++)
+            foreach (var room in dungeon.Rooms)
             {
-                var t = tiles[random.Next(tiles.Count)];
-                var dt = t - gateOrigin;
-                if (dt.X * dt.X + dt.Y * dt.Y <= safeRadiusSq)
+                if (capLeft <= 0)
+                    return factionProto;
+
+                var tiles = room.Tiles.ToList();
+                if (tiles.Count == 0)
                     continue;
-                if (_anchorable.TileFree((gridUid, grid), t, (int)CollisionGroup.MachineLayer,
-                        (int)CollisionGroup.MachineLayer))
-                    tile = t;
+
+                var desiredCount = Math.Clamp(
+                    tiles.Count / preset.DungeonMobDensity,
+                    preset.DungeonMobsPerRoomMin,
+                    preset.DungeonMobsPerRoomMax);
+
+                for (var m = 0; m < desiredCount && capLeft > 0; m++)
+                {
+                    Vector2i? tile = null;
+                    for (var attempt = 0; attempt < Math.Min(tiles.Count, 20) && tile == null; attempt++)
+                    {
+                        var t = tiles[random.Next(tiles.Count)];
+                        var dt = t - gateOrigin;
+                        if (dt.X * dt.X + dt.Y * dt.Y <= safeRadiusSq)
+                            continue;
+                        if (_anchorable.TileFree((gridUid, grid), t, (int)CollisionGroup.MachineLayer,
+                                (int)CollisionGroup.MachineLayer))
+                            tile = t;
+                    }
+
+                    if (tile == null)
+                        continue;
+
+                    SpawnAtPosition(factionProto, _maps.GridTileToLocal(gridUid, grid, tile.Value));
+                    capLeft--;
+                }
             }
-
-            if (tile == null)
-                continue;
-
-            var entities = _entTable.GetSpawns(mobTable, random).ToList();
-            if (entities.Count == 0)
-                continue;
-
-            var uid = SpawnAtPosition(entities[0], _maps.GridTileToLocal(gridUid, grid, tile.Value));
-            RemComp<GhostRoleComponent>(uid);
-            RemComp<GhostTakeoverAvailableComponent>(uid);
-            npcs.SleepNPC(uid);
         }
+
+        return factionProto;
     }
 
     private static int PickWeightedDungeonCount(Random random, StargatePlanetPresetPrototype preset)
@@ -292,26 +350,23 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         }
     }
 
-    private const double SurfaceMobGlobalChance = 0.5;
-
     private void AddMobLayers(
         EntityUid uid,
         BiomeComponent biome,
         StargatePlanetPresetPrototype preset,
-        Random random)
+        Random random,
+        string? dungeonFaction)
     {
         switch (preset.MobSpawnMode)
         {
             case MobSpawnMode.Surface:
             case MobSpawnMode.Both:
-                if (random.NextDouble() >= SurfaceMobGlobalChance)
-                    return;
-                AddSurfaceMobs(uid, biome, preset, random);
+                AddSurfaceMobs(uid, biome, preset, random, dungeonFaction);
                 break;
 
             case MobSpawnMode.DungeonOnly:
-                if (preset.RareSurfaceMobChance > 0 && random.NextDouble() < SurfaceMobGlobalChance && random.NextDouble() < preset.RareSurfaceMobChance)
-                    AddRareSurfaceMobs(uid, biome, preset, random);
+                if (preset.RareSurfaceMobChance > 0 && random.NextDouble() < preset.RareSurfaceMobChance)
+                    AddSurfaceMobs(uid, biome, preset, random, dungeonFaction, preset.RareSurfaceMobLayers, preset.RareSurfaceMobLayerCount);
                 break;
 
             case MobSpawnMode.None:
@@ -323,30 +378,36 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         EntityUid uid,
         BiomeComponent biome,
         StargatePlanetPresetPrototype preset,
-        Random random)
+        Random random,
+        string? dungeonFaction,
+        List<ProtoId<BiomeMarkerLayerPrototype>>? overrideLayers = null,
+        int? overrideCount = null)
     {
-        var mobLayers = preset.MobLayers.ToList();
-        for (var i = 0; i < preset.MobLayerCount && mobLayers.Count > 0; i++)
-        {
-            var layerIdx = random.Next(mobLayers.Count);
-            var layer = mobLayers[layerIdx];
-            mobLayers.RemoveAt(layerIdx);
-            _biome.AddMarkerLayer(uid, biome, layer.Id);
-        }
-    }
+        var sourceLayers = overrideLayers ?? preset.MobLayers;
+        var count = overrideCount ?? preset.MobLayerCount;
+        if (sourceLayers.Count == 0 || count <= 0)
+            return;
+        var candidates = sourceLayers.ToList();
 
-    private void AddRareSurfaceMobs(
-        EntityUid uid,
-        BiomeComponent biome,
-        StargatePlanetPresetPrototype preset,
-        Random random)
-    {
-        var rareLayers = preset.RareSurfaceMobLayers.ToList();
-        for (var i = 0; i < preset.RareSurfaceMobLayerCount && rareLayers.Count > 0; i++)
+        if (dungeonFaction != null && candidates.Count > 1)
         {
-            var layerIdx = random.Next(rareLayers.Count);
-            var layer = rareLayers[layerIdx];
-            rareLayers.RemoveAt(layerIdx);
+            var nonDungeon = candidates
+                .Where(id =>
+                {
+                    var proto = _protoManager.Index<BiomeMarkerLayerPrototype>(id);
+                    return proto.Prototype != dungeonFaction;
+                })
+                .ToList();
+
+            if (nonDungeon.Count > 0)
+                candidates = nonDungeon;
+        }
+
+        for (var i = 0; i < count && candidates.Count > 0; i++)
+        {
+            var layerIdx = random.Next(candidates.Count);
+            var layer = candidates[layerIdx];
+            candidates.RemoveAt(layerIdx);
             _biome.AddMarkerLayer(uid, biome, layer.Id);
         }
     }

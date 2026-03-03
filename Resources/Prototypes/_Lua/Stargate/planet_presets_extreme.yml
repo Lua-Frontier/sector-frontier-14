@@ -12,7 +12,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
-  dungeonMobBudget: 12
   worldRadiusMin: 203
   worldRadiusMax: 256
   mobSpawnMode: None
@@ -39,7 +38,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 40
   dungeonDistanceMax: 90
-  dungeonMobBudget: 12
   worldRadiusMin: 220
   worldRadiusMax: 256
   mobSpawnMode: DungeonOnly
@@ -72,7 +70,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
-  dungeonMobBudget: 12
   worldRadiusMin: 203
   worldRadiusMax: 256
   mobSpawnMode: None
@@ -108,7 +105,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 30
   dungeonDistanceMax: 70
-  dungeonMobBudget: 12
   worldRadiusMin: 210
   worldRadiusMax: 256
   mobSpawnMode: Surface
@@ -142,7 +138,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 35
   dungeonDistanceMax: 80
-  dungeonMobBudget: 12
   worldRadiusMin: 227
   worldRadiusMax: 256
   mobSpawnMode: Surface
@@ -175,7 +170,8 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 30
   dungeonDistanceMax: 60
-  dungeonMobBudget: 10
+  dungeonMobDensity: 12
+  dungeonMobCap: 40
   worldRadiusMin: 150
   worldRadiusMax: 250
   mobSpawnMode: None
@@ -205,7 +201,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
-  dungeonMobBudget: 12
   worldRadiusMin: 203
   worldRadiusMax: 256
   mobSpawnMode: Surface
@@ -233,7 +228,8 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 30
   dungeonDistanceMax: 70
-  dungeonMobBudget: 10
+  dungeonMobDensity: 12
+  dungeonMobCap: 40
   worldRadiusMin: 192
   worldRadiusMax: 256
   mobSpawnMode: None
@@ -263,7 +259,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 40
   dungeonDistanceMax: 90
-  dungeonMobBudget: 12
   worldRadiusMin: 220
   worldRadiusMax: 256
   mobSpawnMode: DungeonOnly
@@ -293,7 +288,6 @@
   dungeonCountMax: 1
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
-  dungeonMobBudget: 12
   worldRadiusMin: 221
   worldRadiusMax: 256
   mobSpawnMode: None
@@ -318,7 +312,6 @@
   dungeonCountMax: 8
   dungeonDistanceMin: 30
   dungeonDistanceMax: 80
-  dungeonMobBudget: 12
   worldRadiusMin: 202
   worldRadiusMax: 256
   mobSpawnMode: Surface
@@ -357,7 +350,6 @@
   dungeonCountMax: 8
   dungeonDistanceMin: 80
   dungeonDistanceMax: 250
-  dungeonMobBudget: 20
   worldRadiusMin: 228
   worldRadiusMax: 256
   gateSafeRadius: 12

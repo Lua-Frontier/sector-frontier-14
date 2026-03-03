@@ -26,7 +26,7 @@
   id: NFFlesh
   prototype: SpawnMobFleshGate
   radius: 24
-  spawnChance: 0.5
+  spawnChance: 0.7
   minGroupSize: 1
   maxGroupSize: 2
 
@@ -42,7 +42,7 @@
   id: NFPunks
   prototype: SpawnMobPunksGate
   radius: 24
-  spawnChance: 0.5
+  spawnChance: 0.7
   minGroupSize: 1
   maxGroupSize: 2
 
@@ -96,7 +96,7 @@
 
 - type: biomeMarkerLayer
   id: NFZombies
-  prototype: SpawnMobZombieGate
+  prototype: SpawnMobZombieStargate
   radius: 24
   spawnChance: 0.7
   minGroupSize: 1

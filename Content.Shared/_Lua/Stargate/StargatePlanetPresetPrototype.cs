@@ -57,7 +57,16 @@ public sealed partial class StargatePlanetPresetPrototype : IPrototype
     public float GateSafeRadius = 8f;
 
     [DataField]
-    public float DungeonMobBudget = 12f;
+    public int DungeonMobCap = 128;
+
+    [DataField]
+    public int DungeonMobDensity = 8;
+
+    [DataField]
+    public int DungeonMobsPerRoomMin = 1;
+
+    [DataField]
+    public int DungeonMobsPerRoomMax = 6;
 
     [DataField]
     public ProtoId<EntityTablePrototype> DungeonMobTable = "LuaGateDungeonMobTable";

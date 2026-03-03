@@ -57,11 +57,6 @@
   - !type:CornerClutterDunGen
     contents: NFMineshaftClutter
 
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 4
-    contents: LuaGateDungeonMobTable
-
   - !type:CorridorDecalSkirtingDunGen
     cardinalDecals:
       South: BrickTileWhiteLineS
@@ -99,11 +94,6 @@
   - !type:CornerClutterDunGen
     contents: NFMineshaftClutter
 
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 3
-    contents: LuaGateDungeonMobTable
-
 - type: dungeonConfig
   id: GateSmallOutpost
   layers:
@@ -131,11 +121,6 @@
 
   - !type:CornerClutterDunGen
     contents: NFMineshaftClutter
-
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 4
-    contents: LuaGateDungeonMobTable
 
 - type: dungeonConfig
   id: GateMediumOutpost
@@ -171,11 +156,6 @@
   - !type:CornerClutterDunGen
     contents: NFMineshaftClutter
 
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 4
-    contents: LuaGateDungeonMobTable
-
 - type: dungeonConfig
   id: GateScatteredCaches
   minCount: 3
@@ -199,11 +179,6 @@
 
   - !type:CornerClutterDunGen
     contents: NFMineshaftClutter
-
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 3
-    contents: LuaGateDungeonMobTable
 
 - type: dungeonConfig
   id: GateScatteredOutposts
@@ -237,11 +212,6 @@
   - !type:CornerClutterDunGen
     contents: NFMineshaftClutter
 
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 3
-    contents: LuaGateDungeonMobTable
-
 - type: dungeonConfig
   id: GateTinyLab
   layers:
@@ -258,11 +228,6 @@
 
   - !type:CornerClutterDunGen
     contents: NFBaseClutter
-
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 3
-    contents: LuaGateDungeonMobTable
 
 - type: dungeonConfig
   id: GateSmallLab
@@ -290,8 +255,3 @@
 
   - !type:CornerClutterDunGen
     contents: NFBaseClutter
-
-  - !type:MobsDunGen
-    minCount: 1
-    maxCount: 4
-    contents: LuaGateDungeonMobTable
