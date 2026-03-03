@@ -184,7 +184,6 @@ public sealed partial class NavScreen : BoxContainer
     // Lua
     public void UpdateWeapons(bool connected, FireControllableEntry[]? controllables)
     {
-        WeaponsPanel.Visible = true;
         if (connected)
         {
             ServerStatus.Text = Loc.GetString("gunnery-window-connected");

@@ -96,7 +96,7 @@ public sealed class ShuttleTabletSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<ShuttleConsoleComponent>(console, out _))
+        if (!HasComp<ShuttleConsoleComponent>(console))
         {
             return;
         }
@@ -124,10 +124,16 @@ public sealed class ShuttleTabletSystem : EntitySystem
 
     private void OnShuttleConsoleFire(EntityUid tablet, ShuttleTabletComponent tabletComp, ShuttleConsoleFireMessage args)
     {
+        if (!tabletComp.CombatTablet)
+        {
+            return;
+        }
+
         var grid = GetTabletGrid(tablet);
 
         if (grid == null
             || !TryComp<FireControlGridComponent>(grid, out var fcGrid)
+            || !Exists(fcGrid.ControllingServer)
             || !TryComp<FireControlServerComponent>(fcGrid.ControllingServer, out var server))
         {
             return;
@@ -140,6 +146,11 @@ public sealed class ShuttleTabletSystem : EntitySystem
 
     private void OnShuttleConsoleRefreshFireControl(EntityUid tablet, ShuttleTabletComponent tabletComp, ShuttleConsoleRefreshFireControlMessage args)
     {
+        if (!tabletComp.CombatTablet)
+        {
+            return;
+        }
+
         var grid = GetTabletGrid(tablet);
 
         if (grid != null
@@ -180,11 +191,12 @@ public sealed class ShuttleTabletSystem : EntitySystem
         ? _shuttle.GetNavState(proxyTablet.Value, dockState.Docks)
         : new NavInterfaceState(0f, null, null, [], InertiaDampeningMode.Dampen, ServiceFlags.None, null, NetEntity.Invalid, true);
 
+        var combatTablet = tabletComp.CombatTablet;
+        var fcConnected = false;
         FireControllableEntry[]? fcControllables = null;
 
-        var fcConnected = false;
-
-        if (shuttleExists
+        if (combatTablet
+            && shuttleExists
             && TryComp<FireControlGridComponent>(shuttle, out var fcGrid)
             && Exists(fcGrid.ControllingServer)
             && TryComp<FireControlServerComponent>(fcGrid.ControllingServer, out var fcServer))
@@ -201,7 +213,7 @@ public sealed class ShuttleTabletSystem : EntitySystem
             fcControllables = [.. fcControllablesList];
         }
 
-        var tabletState = new ShuttleTabletWindowInterfaceState(navState, dockState, GetNetEntity(shuttle), tabletLinkPower, fcConnected, fcControllables);
+        var tabletState = new ShuttleTabletWindowInterfaceState(navState, dockState, GetNetEntity(shuttle), tabletLinkPower, combatTablet, fcConnected, fcControllables);
         _ui.SetUiState(tablet, ShuttleTabletWindowUiKey.Key, tabletState);
     }
 

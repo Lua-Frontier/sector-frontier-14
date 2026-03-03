@@ -27,13 +27,13 @@ public sealed partial class ShuttleTabletWindowBoundUserInterface(EntityUid owne
         _window.OnSetTargetCoordinates += OnSetTargetCoordinates;
         _window.OnSetHideTarget += OnSetHideTarget;
 
-        _window.DockRequest += OnDockRequest;
-        _window.UndockRequest += OnUndockRequest;
-        _window.UndockAllRequest += OnUndockAllRequest;
-
         _window.NavContainer.NavRadar.OnRadarClick += OnRadarClick;
         _window.OnWeaponSelectionChanged += OnWeaponSelection;
         _window.OnFireControlRefresh += OnFireControlRefresh;
+
+        _window.DockRequest += OnDockRequest;
+        _window.UndockRequest += OnUndockRequest;
+        _window.UndockAllRequest += OnUndockAllRequest;
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -55,17 +55,17 @@ public sealed partial class ShuttleTabletWindowBoundUserInterface(EntityUid owne
 
         var netCoords = EntMan.GetNetCoordinates(coords);
 
-        if (_window.NavContainer.NavRadar.IsMouseDown())
-        {
-            var selected = _window.NavContainer.GetSelectedWeapons();
-            if (selected.Count > 0)
-            {
-                SendMessage(new ShuttleConsoleFireMessage(selected, netCoords));
-            }
-        }
-        else
+        if (!_window.NavContainer.NavRadar.IsMouseDown())
         {
             SendMessage(new ShuttleConsoleFireMessage([], netCoords));
+            return;
+        }
+
+        var selected = _window.NavContainer.GetSelectedWeapons();
+
+        if (selected.Count > 0)
+        {
+            SendMessage(new ShuttleConsoleFireMessage(selected, netCoords));
         }
     }
 

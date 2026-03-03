@@ -20,6 +20,10 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
     [Dependency] private readonly IEntityManager _entity = default!;
 
     private ShuttleTabletMode _mode = ShuttleTabletMode.Nav;
+    private BoxContainer _weaponsPanel;
+
+    private const int CombatTabletWidth = DefaultTabletWidth + 300;
+    private const int DefaultTabletWidth = 960;
 
     public event Action<NetEntity?, InertiaDampeningMode>? OnInertiaDampeningModeChanged;
     public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
@@ -63,6 +67,9 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
         ftlLockStripe.Visible = false;
         ftlLockButtonContainer.Visible = false;
 
+        _weaponsPanel = NavContainer.FindControl<BoxContainer>("WeaponsPanel");
+        _weaponsPanel.Visible = false;
+
         NavContainer.Visible = _mode == ShuttleTabletMode.Nav;
         DockContainer.Visible = _mode == ShuttleTabletMode.Dock;
 
@@ -83,6 +90,9 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
     {
         var shuttle = _entity.GetEntity(cState.Shuttle);
         var linkPower = (int)(cState.LinkPower * 100f);
+
+        _weaponsPanel.Visible = cState.CombatTablet;
+        SetWidth = cState.CombatTablet ? CombatTabletWidth : DefaultTabletWidth;
 
         LinkPower.Text = Loc.GetString("shuttle-tablet-link-power", ("linkPower", linkPower));
         LinkPower.FontColorOverride = linkPower switch

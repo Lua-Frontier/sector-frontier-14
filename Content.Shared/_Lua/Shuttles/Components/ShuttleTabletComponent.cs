@@ -19,5 +19,8 @@ public sealed partial class ShuttleTabletComponent : Component
     public bool IgnoreSector = false;
 
     [DataField]
+    public bool CombatTablet = false;
+
+    [DataField]
     public SoundSpecifier LinkSound = new SoundPathSpecifier("/Audio/Machines/quickbeep.ogg");
 }

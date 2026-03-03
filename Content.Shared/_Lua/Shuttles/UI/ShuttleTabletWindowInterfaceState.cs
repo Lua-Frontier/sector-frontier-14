@@ -14,6 +14,7 @@ public sealed class ShuttleTabletWindowInterfaceState(
     DockingInterfaceState dockState,
     NetEntity? shuttle,
     float linkPower,
+    bool combatTablet,
     bool fireControlConnected = false,
     FireControllableEntry[]? fireControllables = null
     ) : BoundUserInterfaceState
@@ -22,6 +23,7 @@ public sealed class ShuttleTabletWindowInterfaceState(
     public DockingInterfaceState DockState = dockState;
     public NetEntity? Shuttle = shuttle;
     public float LinkPower = linkPower;
+    public bool CombatTablet = combatTablet;
     public bool FireControlConnected = fireControlConnected;
     public FireControllableEntry[]? FireControllables = fireControllables;
 }

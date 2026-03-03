@@ -14,6 +14,6 @@ shuttle-tablet-console-unlinked = Привязка к консоли убран�
 
 shuttle-tablet-link-power-default = Стабильность соединения: Не соединено
 shuttle-tablet-link-power = Стабильность соединения: {$linkPower}%
-shuttle-tablet-footer-right = v0.11a
+shuttle-tablet-footer-right = v0.11d
 
 shuttle-tablet-id-slot = Слот ID карты

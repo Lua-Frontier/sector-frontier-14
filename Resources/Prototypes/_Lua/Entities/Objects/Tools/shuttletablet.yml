@@ -49,15 +49,17 @@
     drawRate: 2
   - type: StaticPrice
     price: 250
+    vendPrice: 2500
 
 - type: entity
   id: ShuttleControlTabletAdmin
   parent: ShuttleControlTablet
-  suffix: Microreactor, 10000m, IgnoreSector
+  suffix: 10000m, IgnoreSector, CombatTablet, Microreactor
   components:
   - type: ShuttleTablet
     linkRange: 10000
     ignoreSector: true
+    combatTablet: true
   - type: ItemSlots
     slots:
       id_container:

@@ -7,7 +7,7 @@ ent-ShuttleControlTabletEmpty = {ent-ShuttleControlTablet}
 
 ent-ShuttleControlTabletAdmin = {ent-ShuttleControlTablet}
     .desc = {ent-ShuttleControlTablet.desc}
-    .suffix = Микрореакторная, 10000m, Межсекторный
+    .suffix = 10000m, Межсекторный, Панель Вооружений, Микрореакторная
 
 ent-ShuttleControlTabletSalvage = {ent-ShuttleControlTablet}
     .desc = {ent-ShuttleControlTablet.desc}
