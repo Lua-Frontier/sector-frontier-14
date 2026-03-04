@@ -68,18 +68,26 @@ public abstract class SharedWeatherSystem : EntitySystem
     public float GetPercent(WeatherData component, EntityUid mapUid)
     {
         var pauseTime = _metadata.GetPauseTime(mapUid);
-        var elapsed = Timing.CurTime - (component.StartTime + pauseTime);
-        var duration = component.Duration;
-        var remaining = duration - elapsed;
-        float alpha;
+        var start = component.StartTime + pauseTime;
+        var cur = Timing.CurTime;
+        // Use double to avoid TimeSpan overflow when duration or elapsed are extreme (e.g. paused maps, sync).
+        var elapsedSec = cur.TotalSeconds - start.TotalSeconds;
+        var durationSec = component.Duration.TotalSeconds;
+        elapsedSec = Math.Max(0, elapsedSec);
+        if (durationSec <= 0 || double.IsInfinity(durationSec))
+            return 1f;
+        var remainingSec = Math.Clamp(durationSec - elapsedSec, 0, durationSec);
+        var shutdownSec = WeatherComponent.ShutdownTime.TotalSeconds;
+        var startupSec = WeatherComponent.StartupTime.TotalSeconds;
 
-        if (remaining < WeatherComponent.ShutdownTime)
+        float alpha;
+        if (remainingSec < shutdownSec && shutdownSec > 0)
         {
-            alpha = (float) (remaining / WeatherComponent.ShutdownTime);
+            alpha = (float) (remainingSec / shutdownSec);
         }
-        else if (elapsed < WeatherComponent.StartupTime)
+        else if (elapsedSec < startupSec && startupSec > 0)
         {
-            alpha = (float) (elapsed / WeatherComponent.StartupTime);
+            alpha = (float) (elapsedSec / startupSec);
         }
         else
         {
