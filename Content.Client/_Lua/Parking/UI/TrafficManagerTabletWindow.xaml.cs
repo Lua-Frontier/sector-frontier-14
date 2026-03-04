@@ -72,6 +72,9 @@ public sealed partial class TrafficManagerTabletWindow : FancyWindow
         var add = new Button { Text = Loc.GetString("traffic-manager-tablet-button-add-ten") };
         add.Disabled = entry.ExtraMinutes >= 50;
         add.OnPressed += _ => OnAction?.Invoke(TrafficManagerTabletAction.AddTenMinutes, entry.Shuttle);
+        var fine = new Button { Text = Loc.GetString("traffic-manager-tablet-button-fine") };
+        fine.Disabled = !entry.FinePending || entry.NeedsDisposal;
+        fine.OnPressed += _ => OnAction?.Invoke(TrafficManagerTabletAction.Fine, entry.Shuttle);
         var sell = new Button { Text = Loc.GetString("traffic-manager-tablet-button-sell") };
         sell.Disabled = !entry.SellEnabled;
         sell.OnPressed += _ => OnAction?.Invoke(TrafficManagerTabletAction.Sell, entry.Shuttle);
@@ -83,6 +86,7 @@ public sealed partial class TrafficManagerTabletWindow : FancyWindow
         };
         buttons.AddChild(reset);
         buttons.AddChild(add);
+        buttons.AddChild(fine);
         buttons.AddChild(sell);
         var left = new BoxContainer
         {
@@ -95,6 +99,14 @@ public sealed partial class TrafficManagerTabletWindow : FancyWindow
         top.AddChild(new Label { Text = Loc.GetString("traffic-manager-tablet-time-remaining", ("time", time.Text)), HorizontalAlignment = HAlignment.Right });
         top.AddChild(buttons);
         root.AddChild(top);
+        if (entry.FinePending)
+        {
+            root.AddChild(new Label
+            {
+                Text = Loc.GetString("traffic-manager-tablet-needs-fine"),
+                FontColorOverride = Color.FromHex("#ffcc66")
+            });
+        }
         if (entry.NeedsDisposal)
         {
             root.AddChild(new Label

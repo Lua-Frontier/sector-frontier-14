@@ -36,6 +36,25 @@ using static Content.Server._NF.Shipyard.Systems.ShipyardSystem;
 namespace Content.Server._Lua.Frontier.Parking;
 public sealed class FrontierParkingSystem : EntitySystem
 {
+    public enum ManualFineResult : byte
+    {
+        Success,
+        Queued,
+        InsufficientFunds,
+        NoOwner,
+        NotPending,
+        NotTracked,
+        NoFrontierStation
+    }
+
+    private enum ApplyFineResult : byte
+    {
+        Applied,
+        Queued,
+        InsufficientFunds,
+        NoOwner
+    }
+
     private const PopupType PopupInfoType = PopupType.SmallCaution;
     private const PopupType PopupWarningType = PopupType.SmallCaution;
     private const PopupType PopupFineType = PopupType.SmallCaution;
@@ -106,6 +125,44 @@ public sealed class FrontierParkingSystem : EntitySystem
 
         s.ExtraMinutes = Math.Min(50, s.ExtraMinutes + 10);
         return true;
+    }
+
+    public ManualFineResult TryApplyManualFine(EntityUid shuttleUid)
+    {
+        if (!_tracked.TryGetValue(shuttleUid, out var state))
+            return ManualFineResult.NotTracked;
+
+        if (!state.FinePending)
+            return ManualFineResult.NotPending;
+
+        if (!TryComp<ShuttleDeedComponent>(shuttleUid, out var deed))
+            return ManualFineResult.NoOwner;
+
+        var frontierStation = GetFrontierStation();
+        if (frontierStation == null)
+            return ManualFineResult.NoFrontierStation;
+
+        var fineResult = TryApplyFine(frontierStation.Value, shuttleUid, deed, state);
+        switch (fineResult)
+        {
+            case ApplyFineResult.Applied:
+                if (IsOwnerOnline(shuttleUid))
+                    SendOwnerNotice(shuttleUid, deed, Loc.GetString("frontier-parking-popup-fined-extended"), PopupFineType);
+                state.FinePending = false;
+                state.Reset(_timing.CurTime);
+                return ManualFineResult.Success;
+            case ApplyFineResult.Queued:
+                state.FinePending = false;
+                state.Reset(_timing.CurTime);
+                return ManualFineResult.Queued;
+            case ApplyFineResult.InsufficientFunds:
+                state.FinePending = false;
+                return ManualFineResult.InsufficientFunds;
+            case ApplyFineResult.NoOwner:
+                return ManualFineResult.NoOwner;
+            default:
+                return ManualFineResult.NoOwner;
+        }
     }
 
     private TimeSpan GetAllowedInterval(ParkingState state)
@@ -209,25 +266,28 @@ public sealed class FrontierParkingSystem : EntitySystem
             state.SentFortyFiveSeconds = true;
             SendOwnerNotice(shuttleUid, deed, Loc.GetString("frontier-parking-popup-remaining-45s"), PopupWarningType);
         }
-        if (elapsed < allowed) return;
-        var appliedOrQueued = TryApplyFine(frontierStation, shuttleUid, deed, state);
-        if (appliedOrQueued && IsOwnerOnline(shuttleUid))
-        {
-            SendOwnerNotice(shuttleUid, deed, Loc.GetString("frontier-parking-popup-fined-extended"), PopupFineType);
-        }
-        state.Reset(_timing.CurTime);
+        if (elapsed < allowed)
+            return;
+
+        if (state.FinePending || state.NeedsDisposal)
+            return;
+
+        state.FinePending = true;
+        state.HasViolation = true;
+        SendOwnerNotice(shuttleUid, deed, Loc.GetString("frontier-parking-popup-manual-fine-pending"), PopupFineType);
     }
 
-    private bool TryApplyFine(EntityUid frontierStation, EntityUid shuttleUid, ShuttleDeedComponent deed, ParkingState state)
+    private ApplyFineResult TryApplyFine(EntityUid frontierStation, EntityUid shuttleUid, ShuttleDeedComponent deed, ParkingState state)
     {
-        if (!TryGetOwnerUserId(shuttleUid, deed, out var ownerUserId, out var session)) return false;
+        if (!TryGetOwnerUserId(shuttleUid, deed, out var ownerUserId, out var session))
+            return ApplyFineResult.NoOwner;
         if (session != null && session.AttachedEntity is { } ent)
         {
             if (!_bank.TryBankWithdraw(ent, FineAmount))
             {
                 state.NeedsDisposal = true;
                 state.HasViolation = true;
-                return false;
+                return ApplyFineResult.InsufficientFunds;
             }
             _bank.TrySectorDeposit(SectorBankAccount.Frontier, FineAmount, LedgerEntryType.StationDepositFines);
             var notifyText = Loc.GetString("frontier-parking-notification-fined", ("amount", FineAmount));
@@ -235,11 +295,12 @@ public sealed class FrontierParkingSystem : EntitySystem
             TrySendFaxNotice(frontierStation, shuttleUid, deed);
             state.NeedsDisposal = false;
             state.HasViolation = true;
-            return true;
+            return ApplyFineResult.Applied;
         }
-        if (_pendingOfflineFines.TryGetValue(shuttleUid, out var existing) && !existing.IsCompleted) return true;
+        if (_pendingOfflineFines.TryGetValue(shuttleUid, out var existing) && !existing.IsCompleted)
+            return ApplyFineResult.Queued;
         _pendingOfflineFines[shuttleUid] = ApplyOfflineFine(frontierStation, shuttleUid, deed, ownerUserId);
-        return true;
+        return ApplyFineResult.Queued;
     }
 
     private bool TryGetOwnerUserId(EntityUid shuttleUid, ShuttleDeedComponent deed, out NetUserId userId, out ICommonSession? session)
@@ -383,6 +444,7 @@ public sealed class FrontierParkingSystem : EntitySystem
         public bool SentFiveMinutes;
         public bool SentFortyFiveSeconds;
         public int ExtraMinutes;
+        public bool FinePending;
         public bool HasViolation;
         public bool NeedsDisposal;
         public ParkingState(TimeSpan start)
@@ -393,6 +455,7 @@ public sealed class FrontierParkingSystem : EntitySystem
             SentFiveMinutes = false;
             SentFortyFiveSeconds = false;
             ExtraMinutes = 0;
+            FinePending = false;
         }
 
         public ParkingPublicState ToPublicState()
@@ -400,6 +463,7 @@ public sealed class FrontierParkingSystem : EntitySystem
             return new ParkingPublicState(
                 CycleStart,
                 ExtraMinutes,
+                FinePending,
                 HasViolation,
                 NeedsDisposal);
         }
@@ -409,6 +473,7 @@ public sealed class FrontierParkingSystem : EntitySystem
 public readonly record struct ParkingPublicState(
     TimeSpan CycleStart,
     int ExtraMinutes,
+    bool FinePending,
     bool HasViolation,
     bool NeedsDisposal);
 
