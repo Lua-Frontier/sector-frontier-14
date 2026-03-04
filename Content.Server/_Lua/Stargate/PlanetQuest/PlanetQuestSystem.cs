@@ -48,8 +48,6 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
             _nextPlayerScan = _timing.CurTime + PlayerScanInterval;
             ScanPlayers();
         }
-
-        PauseDespawnsOnActivePlanets(frameTime);
     }
 
     private void ScanPlayers()
@@ -98,19 +96,6 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
 
             quest.ActivePlayerCount = count;
             Dirty(uid, quest);
-        }
-    }
-
-    private void PauseDespawnsOnActivePlanets(float frameTime)
-    {
-        if (_activePlanetMaps.Count == 0)
-            return;
-
-        var despawnQuery = EntityQueryEnumerator<TimedDespawnComponent, TransformComponent>();
-        while (despawnQuery.MoveNext(out _, out var despawn, out var xform))
-        {
-            if (_activePlanetMaps.Contains(xform.MapID))
-                despawn.Lifetime += frameTime;
         }
     }
 

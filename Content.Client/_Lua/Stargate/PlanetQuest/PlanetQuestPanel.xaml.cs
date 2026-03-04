@@ -26,12 +26,15 @@ public sealed partial class PlanetQuestPanel : PanelContainer
     public bool Dragging;
     public Vector2 DragOffset;
 
+    private string? _lastQuestName;
+    private string? _lastQuestDescription;
     private int _lastStructTotal;
     private int _lastStructDone;
     private int _lastBossTotal;
     private int _lastBossDone;
     private int _lastReward;
     private int _lastPlayers;
+    private bool _lastCompleted;
 
     public PlanetQuestPanel()
     {
@@ -70,6 +73,27 @@ public sealed partial class PlanetQuestPanel : PanelContainer
 
     public void UpdateQuest(PlanetQuestComponent quest)
     {
+        if (quest.QuestName == _lastQuestName
+            && quest.QuestDescription == _lastQuestDescription
+            && quest.StructureTotalCount == _lastStructTotal
+            && quest.StructureCompletedCount == _lastStructDone
+            && quest.BossTotalCount == _lastBossTotal
+            && quest.BossCompletedCount == _lastBossDone
+            && quest.TotalReward == _lastReward
+            && quest.ActivePlayerCount == _lastPlayers
+            && quest.Completed == _lastCompleted)
+            return;
+
+        _lastQuestName = quest.QuestName;
+        _lastQuestDescription = quest.QuestDescription;
+        _lastStructTotal = quest.StructureTotalCount;
+        _lastStructDone = quest.StructureCompletedCount;
+        _lastBossTotal = quest.BossTotalCount;
+        _lastBossDone = quest.BossCompletedCount;
+        _lastReward = quest.TotalReward;
+        _lastPlayers = quest.ActivePlayerCount;
+        _lastCompleted = quest.Completed;
+
         if (!string.IsNullOrEmpty(quest.QuestName))
         {
             QuestNameLabel.Visible = true;
@@ -97,21 +121,6 @@ public sealed partial class PlanetQuestPanel : PanelContainer
         {
             DescriptionBox.Visible = false;
         }
-
-        if (quest.StructureTotalCount == _lastStructTotal
-            && quest.StructureCompletedCount == _lastStructDone
-            && quest.BossTotalCount == _lastBossTotal
-            && quest.BossCompletedCount == _lastBossDone
-            && quest.TotalReward == _lastReward
-            && quest.ActivePlayerCount == _lastPlayers)
-            return;
-
-        _lastStructTotal = quest.StructureTotalCount;
-        _lastStructDone = quest.StructureCompletedCount;
-        _lastBossTotal = quest.BossTotalCount;
-        _lastBossDone = quest.BossCompletedCount;
-        _lastReward = quest.TotalReward;
-        _lastPlayers = quest.ActivePlayerCount;
 
         if (quest.StructureTotalCount > 0)
         {
