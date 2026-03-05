@@ -4,6 +4,7 @@
 
 using Content.Server._Lua.Stargate.Components;
 using Content.Server._Lua.Stargate.Events;
+using Content.Shared._Lua.Stargate.Components;
 using Content.Shared.Ghost;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -40,8 +41,12 @@ public sealed class StargateMapFreezeSystem : EntitySystem
         _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<StargateDestinationComponent, ComponentStartup>(OnStargateDestStartup);
         SubscribeLocalEvent<StargateDestinationComponent, AttemptStargateOpenEvent>(OnAttemptStargateOpen);
     }
+
+    private void OnStargateDestStartup(Entity<StargateDestinationComponent> ent, ref ComponentStartup args)
+    { EnsureComp<StargateMapTagComponent>(ent); }
 
     private void OnAttemptStargateOpen(Entity<StargateDestinationComponent> ent, ref AttemptStargateOpenEvent args)
     { if (ent.Comp.Frozen) Unfreeze(ent, ent.Comp); }
