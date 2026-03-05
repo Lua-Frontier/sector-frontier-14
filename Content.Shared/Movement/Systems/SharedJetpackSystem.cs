@@ -3,6 +3,7 @@ using Content.Shared._EE.CCVar; // EE
 using Content.Shared._Mono.Radar;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
@@ -35,6 +36,8 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
         SubscribeLocalEvent<JetpackUserComponent, CanWeightlessMoveEvent>(OnJetpackUserCanWeightless);
         SubscribeLocalEvent<JetpackUserComponent, EntParentChangedMessage>(OnJetpackUserEntParentChanged);
         SubscribeLocalEvent<JetpackComponent, EntGotInsertedIntoContainerMessage>(OnJetpackMoved);
+
+        SubscribeLocalEvent<JetpackUserComponent, MobStateChangedEvent>(OnJetpackUserMobStateChanged); // Lua
 
         SubscribeLocalEvent<GravityChangedEvent>(OnJetpackUserGravityChanged);
         SubscribeLocalEvent<JetpackComponent, MapInitEvent>(OnMapInit);
@@ -126,6 +129,15 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
             _popup.PopupClient(Loc.GetString("jetpack-to-grid"), uid, uid);
+        }
+    }
+
+    private void OnJetpackUserMobStateChanged(EntityUid uid, JetpackUserComponent component, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Dead
+            && TryComp<JetpackComponent>(component.Jetpack, out var jetpack))
+        {
+            SetEnabled(component.Jetpack, jetpack, false, uid);
         }
     }
 
