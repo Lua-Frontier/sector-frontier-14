@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Server._Lua.Stargate.Components;
+using Content.Server._Lua.Stargate.Events;
 using Content.Shared.Ghost;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -26,6 +27,7 @@ public sealed class StargateMapFreezeSystem : EntitySystem
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<GhostComponent> _ghostQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
+    private EntityQuery<StargatePortalTimerComponent> _portalTimerQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
     public override void Initialize()
@@ -34,10 +36,15 @@ public sealed class StargateMapFreezeSystem : EntitySystem
         _actorQuery = GetEntityQuery<ActorComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _portalTimerQuery = GetEntityQuery<StargatePortalTimerComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<StargateDestinationComponent, AttemptStargateOpenEvent>(OnAttemptStargateOpen);
     }
+
+    private void OnAttemptStargateOpen(Entity<StargateDestinationComponent> ent, ref AttemptStargateOpenEvent args)
+    { if (ent.Comp.Frozen) Unfreeze(ent, ent.Comp); }
 
     private void OnPlayerAttached(PlayerAttachedEvent ev)
     {
@@ -72,9 +79,9 @@ public sealed class StargateMapFreezeSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var dest, out _))
         {
-            var hasPlayers = MapHasPlayers(uid);
+            var isActive = MapHasPlayers(uid) || HasOpenPortal(dest);
 
-            if (hasPlayers)
+            if (isActive)
             {
                 dest.EmptySince = null;
 
@@ -90,6 +97,9 @@ public sealed class StargateMapFreezeSystem : EntitySystem
             }
         }
     }
+
+    private bool HasOpenPortal(StargateDestinationComponent dest)
+    { return dest.GateUid is { } gateUid && _portalTimerQuery.HasComp(gateUid); }
 
     private bool MapHasPlayers(EntityUid mapUid)
     {
