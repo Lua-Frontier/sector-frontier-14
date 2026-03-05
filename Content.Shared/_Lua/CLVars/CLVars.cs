@@ -159,5 +159,14 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<bool> SalvageExpeditionEnabled =
             CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> NpcSmartDespawnEnabled =
+            CVarDef.Create("npc.smart_despawn_enabled", true, CVar.SERVERONLY);
+        public static readonly CVarDef<float> NpcSmartDespawnSleepTimeout =
+            CVarDef.Create("npc.smart_despawn_sleep_timeout", 1200f, CVar.SERVERONLY);
+        public static readonly CVarDef<float> NpcSmartDespawnDeadTimeout =
+            CVarDef.Create("npc.smart_despawn_dead_timeout", 600f, CVar.SERVERONLY);
+        public static readonly CVarDef<float> NpcSmartDespawnCheckInterval =
+            CVarDef.Create("npc.smart_despawn_check_interval", 10f, CVar.SERVERONLY);
     }
 }

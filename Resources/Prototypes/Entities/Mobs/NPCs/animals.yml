@@ -194,8 +194,6 @@
   - type: Bloodstream
     bloodMaxVolume: 0.1
   - type: ZombieImmune
-  - type: TimedDespawn
-    lifetime: 2400
 
 
 - type: entity
@@ -487,8 +485,6 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: mothroach
@@ -1350,8 +1346,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: genetic ancestor
@@ -3072,8 +3066,6 @@
     heatDamage:
       types:
         Heat : 1 #per second, scales with temperature & other constants
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: corgi puppy

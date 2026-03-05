@@ -14,8 +14,6 @@
       100: Dead
   - type: Stamina
     critThreshold: 120
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   parent: NFMobOreCrab
@@ -266,8 +264,6 @@
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   parent: NFMobOreGolem

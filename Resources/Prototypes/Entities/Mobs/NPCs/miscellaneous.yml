@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: laser raptor
   id: MobLaserRaptor
   parent: SimpleMobBase
@@ -70,8 +70,6 @@
       interactFailureString: petting-failure-generic
       interactSuccessSound:
         path: /Audio/Animals/lizard_happy.ogg
-    - type: TimedDespawn
-      lifetime: 2400
 
 - type: entity
   id: MobTomatoKiller
@@ -235,5 +233,3 @@
         Blunt: 0.11
   - type: StaticPrice
     price: 400
-  - type: TimedDespawn
-    lifetime: 2400

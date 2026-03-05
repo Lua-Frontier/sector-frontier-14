@@ -168,8 +168,6 @@
     removeComponentsOnRevival:
     - type: Strippable
     - type: UserInterface
-    - type: TimedDespawn
-      lifetime: 2400
 #endregion
 
 #region Despawn timers
@@ -350,8 +348,6 @@
     - DoorBumpOpener
     - CannotSuicide
   - type: FTLKnockdownImmune
-  - type: TimedDespawn
-    lifetime: 2400
 #endregion
 
 #region Inventories
@@ -484,8 +480,6 @@
       types: {}
   - type: TTS
     enabled: false
-  - type: TimedDespawn
-    lifetime: 2400
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -560,8 +554,6 @@
   - type: FTLKnockdownImmune
   - type: TTS
     enabled: false
-  - type: TimedDespawn
-    lifetime: 2400
 
 # A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
@@ -605,8 +597,6 @@
   - type: FTLKnockdownImmune
   - type: TTS
     enabled: false
-  - type: TimedDespawn
-    lifetime: 2400
 #endregion
 
 #region Roadkill

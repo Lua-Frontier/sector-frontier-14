@@ -71,8 +71,6 @@
   - type: MobMover
   - type: ZombieImmune
   - type: MovementIgnoreGravity
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   abstract: true
@@ -106,8 +104,6 @@
       true
     useSound:
       path: /Audio/Items/crowbar.ogg
-  - type: TimedDespawn
-    lifetime: 1200
   - type: MeleeWeapon
     hidden: true
     soundHit:
