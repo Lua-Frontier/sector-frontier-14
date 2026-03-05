@@ -599,6 +599,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             _cryoTimers.Remove(userId.Value);
         }
+
+        _tag.RemoveTag(toEject.Value, _dontReopenRoleTag);
         //Lua end
 
         return true;
