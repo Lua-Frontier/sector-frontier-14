@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/26/2026 06:09:00
-  entityCount: 2646
+  time: 03/06/2026 13:03:12
+  entityCount: 2717
 maps: []
 grids:
 - 1
@@ -158,6 +158,12 @@ entities:
             679: 14,10
             680: 15,10
             1684: 0,2
+        - node:
+            color: '#FFFFFFFF'
+            id: Bot
+          decals:
+            2376: -16,20
+            2377: -16,19
         - node:
             color: '#52B4E996'
             id: BotGreyscale
@@ -553,6 +559,11 @@ entities:
           decals:
             707: -30,0
             714: -32,-1
+        - node:
+            color: '#FFFFFFFF'
+            id: Delivery
+          decals:
+            2375: -16,19
         - node:
             color: '#9C2020FF'
             id: DeliveryGreyscale
@@ -1016,7 +1027,6 @@ entities:
             2217: -16,23
             2218: -14,24
             2219: -17,24
-            2220: -15,20
             2221: -13,21
             2222: -14,20
             2223: -17,21
@@ -2020,6 +2030,7 @@ entities:
             675: 15,6
             676: 16,6
             677: 17,6
+            2374: -16,20
         - node:
             color: '#B8B873FF'
             id: LoadingAreaGreyscale
@@ -2702,6 +2713,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: NavMap
 - proto: AirCanister
   entities:
   - uid: 594
@@ -2745,6 +2757,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,18.5
+      parent: 1
+- proto: AirlockCargoGlass
+  entities:
+  - uid: 954
+    components:
+    - type: Transform
+      pos: -5.5,24.5
+      parent: 1
+  - uid: 1148
+    components:
+    - type: Transform
+      pos: -5.5,25.5
       parent: 1
 - proto: AirlockExternalGlass
   entities:
@@ -4669,6 +4693,13 @@ entities:
     components:
     - type: Transform
       pos: -16.5,11.5
+      parent: 1
+- proto: BannerCargo
+  entities:
+  - uid: 2715
+    components:
+    - type: Transform
+      pos: -11.5,23.5
       parent: 1
 - proto: BarSign
   entities:
@@ -7247,6 +7278,70 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,13.5
       parent: 1
+- proto: CargoPalletSell
+  entities:
+  - uid: 2688
+    components:
+    - type: Transform
+      pos: -17.5,25.5
+      parent: 1
+  - uid: 2689
+    components:
+    - type: Transform
+      pos: -16.5,25.5
+      parent: 1
+  - uid: 2690
+    components:
+    - type: Transform
+      pos: -16.5,24.5
+      parent: 1
+  - uid: 2691
+    components:
+    - type: Transform
+      pos: -17.5,24.5
+      parent: 1
+  - uid: 2692
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -17.5,23.5
+      parent: 1
+  - uid: 2693
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -16.5,23.5
+      parent: 1
+  - uid: 2694
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -15.5,23.5
+      parent: 1
+  - uid: 2695
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -15.5,24.5
+      parent: 1
+  - uid: 2696
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -15.5,25.5
+      parent: 1
+- proto: CargoTelepad
+  entities:
+  - uid: 2697
+    components:
+    - type: Transform
+      pos: -13.5,21.5
+      parent: 1
+  - uid: 2698
+    components:
+    - type: Transform
+      pos: -13.5,19.5
+      parent: 1
 - proto: CarpetBlack
   entities:
   - uid: 2241
@@ -7432,6 +7527,16 @@ entities:
     - type: Transform
       pos: 1.5,26.5
       parent: 1
+  - uid: 2702
+    components:
+    - type: Transform
+      pos: -13.5,21.5
+      parent: 1
+  - uid: 2703
+    components:
+    - type: Transform
+      pos: -13.5,19.5
+      parent: 1
 - proto: ChairOfficeDark
   entities:
   - uid: 1038
@@ -7451,6 +7556,50 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.48195803,21.741755
+      parent: 1
+- proto: ChairOfficeLight
+  entities:
+  - uid: 2663
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,20.5
+      parent: 1
+  - uid: 2664
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,19.5
+      parent: 1
+  - uid: 2665
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 17.5,20.5
+      parent: 1
+  - uid: 2666
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 17.5,19.5
+      parent: 1
+  - uid: 2667
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 17.5,23.5
+      parent: 1
+  - uid: 2668
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,24.5
+      parent: 1
+  - uid: 2669
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 14.5,23.5
       parent: 1
 - proto: ChairWood
   entities:
@@ -7504,6 +7653,20 @@ entities:
     - type: Transform
       pos: 8.510446,7.5159187
       parent: 1
+- proto: CheapLighter
+  entities:
+  - uid: 2682
+    components:
+    - type: Transform
+      pos: 15.833097,20.402905
+      parent: 1
+- proto: ChessBoard
+  entities:
+  - uid: 2687
+    components:
+    - type: Transform
+      pos: 15.489895,19.71858
+      parent: 1
 - proto: ClothingUniformRandomPunkTanktop
   entities:
   - uid: 1851
@@ -7527,6 +7690,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 15.5,4.5
       parent: 1
+- proto: ComputerPalletConsoleNFVeryLowMarket
+  entities:
+  - uid: 2700
+    components:
+    - type: Transform
+      pos: -14.5,25.5
+      parent: 1
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 263
@@ -7534,6 +7704,89 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,15.5
+      parent: 1
+- proto: ComputerShipyardParking
+  entities:
+  - uid: 2647
+    components:
+    - type: Transform
+      pos: 24.5,1.5
+      parent: 1
+  - uid: 2648
+    components:
+    - type: Transform
+      pos: -23.5,1.5
+      parent: 1
+  - uid: 2649
+    components:
+    - type: Transform
+      pos: -6.5,22.5
+      parent: 1
+  - uid: 2650
+    components:
+    - type: Transform
+      pos: 8.5,22.5
+      parent: 1
+- proto: ComputerStarmapDiskMerger
+  entities:
+  - uid: 1155
+    components:
+    - type: Transform
+      pos: 15.5,25.5
+      parent: 1
+- proto: ComputerTabletop
+  entities:
+  - uid: 2144
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,23.5
+      parent: 1
+- proto: ComputerTabletopCargoOrders
+  entities:
+  - uid: 2699
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -11.5,20.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        2698:
+        - - OrderSender
+          - OrderReceiver
+        2697:
+        - - OrderSender
+          - OrderReceiver
+- proto: ComputerTabletopCriminalRecords
+  entities:
+  - uid: 2673
+    components:
+    - type: Transform
+      pos: 16.5,25.5
+      parent: 1
+- proto: ComputerTabletopMarketConsoleNFHigh
+  entities:
+  - uid: 2709
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -11.5,21.5
+      parent: 1
+- proto: ComputerTabletopMedicalRecords
+  entities:
+  - uid: 2674
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,24.5
+      parent: 1
+- proto: ComputerTabletopPowerMonitoring
+  entities:
+  - uid: 2672
+    components:
+    - type: Transform
+      pos: 17.5,25.5
       parent: 1
 - proto: ComputerTabletopRadar
   entities:
@@ -7557,13 +7810,15 @@ entities:
     - type: Transform
       pos: 14.5,11.5
       parent: 1
-- proto: ComputerTabletopShipyardExpedition
+- proto: ComputerTabletopShipyard
   entities:
-  - uid: 2144
+  - uid: 953
     components:
     - type: Transform
       pos: 15.5,11.5
       parent: 1
+- proto: ComputerTabletopShipyardExpedition
+  entities:
   - uid: 2164
     components:
     - type: Transform
@@ -7602,6 +7857,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -24.5,-1.5
+      parent: 1
+  - uid: 2701
+    components:
+    - type: Transform
+      pos: -7.5,26.5
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -7666,6 +7926,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -7.5,15.5
+      parent: 1
+- proto: CrateMachine
+  entities:
+  - uid: 2706
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -15.5,21.5
       parent: 1
 - proto: CutterMachine
   entities:
@@ -7793,6 +8061,11 @@ entities:
     components:
     - type: Transform
       pos: 14.5,7.5
+      parent: 1
+  - uid: 2717
+    components:
+    - type: Transform
+      pos: -13.5,22.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -8987,6 +9260,25 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,13.5
       parent: 1
+- proto: DrinkCoconutWaterGlass
+  entities:
+  - uid: 2685
+    components:
+    - type: Transform
+      pos: 15.754972,19.996655
+      parent: 1
+- proto: DrinkWhiskeyGlass
+  entities:
+  - uid: 2683
+    components:
+    - type: Transform
+      pos: 15.504972,20.48103
+      parent: 1
+  - uid: 2684
+    components:
+    - type: Transform
+      pos: 16.489895,19.71858
+      parent: 1
 - proto: EmergencyLight
   entities:
   - uid: 204
@@ -9099,6 +9391,13 @@ entities:
     components:
     - type: Transform
       pos: -11.5,9.5
+      parent: 1
+- proto: FaxMachineShip
+  entities:
+  - uid: 2670
+    components:
+    - type: Transform
+      pos: 13.5,23.5
       parent: 1
 - proto: filingCabinet
   entities:
@@ -14017,16 +14316,6 @@ entities:
       parent: 1
 - proto: HighSecFrontierCommandLocked
   entities:
-  - uid: 953
-    components:
-    - type: Transform
-      pos: -5.5,24.5
-      parent: 1
-  - uid: 954
-    components:
-    - type: Transform
-      pos: -5.5,25.5
-      parent: 1
   - uid: 957
     components:
     - type: Transform
@@ -14160,6 +14449,16 @@ entities:
     - type: Transform
       pos: 6.535731,10.07715
       parent: 1
+  - uid: 2680
+    components:
+    - type: Transform
+      pos: 18.379972,22.60603
+      parent: 1
+  - uid: 2681
+    components:
+    - type: Transform
+      pos: 16.083645,19.921705
+      parent: 1
 - proto: NFHolopadExpeditionLodge
   entities:
   - uid: 991
@@ -14258,6 +14557,28 @@ entities:
     - type: Transform
       pos: 7.5,17.5
       parent: 1
+- proto: Paper
+  entities:
+  - uid: 2675
+    components:
+    - type: Transform
+      pos: 18.270597,25.41853
+      parent: 1
+  - uid: 2676
+    components:
+    - type: Transform
+      pos: 18.567472,25.434155
+      parent: 1
+  - uid: 2677
+    components:
+    - type: Transform
+      pos: 18.426847,25.215405
+      parent: 1
+  - uid: 2678
+    components:
+    - type: Transform
+      pos: 18.442472,22.88728
+      parent: 1
 - proto: PaperBin20
   entities:
   - uid: 1044
@@ -14270,6 +14591,19 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,21.5
+      parent: 1
+  - uid: 2671
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 13.5,22.5
+      parent: 1
+- proto: Pen
+  entities:
+  - uid: 2679
+    components:
+    - type: Transform
+      pos: 18.317472,23.04353
       parent: 1
 - proto: PlasmaReinforcedWindowDirectional
   entities:
@@ -14298,6 +14632,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,23.5
+      parent: 1
+- proto: PosterMapDelta
+  entities:
+  - uid: 2686
+    components:
+    - type: Transform
+      pos: 16.5,20.5
       parent: 1
 - proto: PottedPlantRandom
   entities:
@@ -14681,6 +15022,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 11.5,16.5
       parent: 1
+  - uid: 2704
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -16.5,22.5
+      parent: 1
+  - uid: 2705
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,22.5
+      parent: 1
+  - uid: 2710
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -15.5,22.5
+      parent: 1
 - proto: RandomPosterAny
   entities:
   - uid: 520
@@ -14843,6 +15202,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -15.5,16.5
+      parent: 1
+- proto: RandomVending
+  entities:
+  - uid: 2712
+    components:
+    - type: Transform
+      pos: -17.5,19.5
+      parent: 1
+  - uid: 2713
+    components:
+    - type: Transform
+      pos: -17.5,21.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
@@ -15302,6 +15673,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -10.5,5.5
       parent: 1
+- proto: SignCargo
+  entities:
+  - uid: 2714
+    components:
+    - type: Transform
+      pos: -5.5,23.5
+      parent: 1
 - proto: SignDirectionalJanitor
   entities:
   - uid: 250
@@ -15750,62 +16128,10 @@ entities:
     - type: Godmode
 - proto: StargateAddressPaper
   entities:
-  - uid: 1148
-    components:
-    - type: Transform
-      pos: 1.2636979,22.504255
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - reapply: False
-        stampType: RubberStamp
-        stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      editingDisabled: True
-    - type: Tag
-      tags:
-      - Document
-      - Paper
-      - NFPaperStampProtected
-    missingComponents:
-    - Flammable
-    - Damageable
-    - Destructible
-    - Food
-    - BadFood
-    - Item
-    - Pullable
   - uid: 1149
     components:
     - type: Transform
       pos: 1.6317533,22.504255
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-centcom
-      stampedBy:
-      - reapply: False
-        stampType: RubberStamp
-        stampedColor: '#006600FF'
-        stampedName: stamp-component-stamped-name-centcom
-      editingDisabled: True
-    - type: Tag
-      tags:
-      - Document
-      - Paper
-      - NFPaperStampProtected
-    missingComponents:
-    - Flammable
-    - Damageable
-    - Destructible
-    - Food
-    - BadFood
-    - Item
-    - Pullable
-  - uid: 1155
-    components:
-    - type: Transform
-      pos: -1.2779688,21.983421
       parent: 1
     - type: Paper
       stampState: paper_stamp-centcom
@@ -16124,6 +16450,78 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
+  - uid: 2651
+    components:
+    - type: Transform
+      pos: 16.5,25.5
+      parent: 1
+  - uid: 2652
+    components:
+    - type: Transform
+      pos: 17.5,25.5
+      parent: 1
+  - uid: 2653
+    components:
+    - type: Transform
+      pos: 18.5,25.5
+      parent: 1
+  - uid: 2654
+    components:
+    - type: Transform
+      pos: 18.5,24.5
+      parent: 1
+  - uid: 2655
+    components:
+    - type: Transform
+      pos: 18.5,23.5
+      parent: 1
+  - uid: 2656
+    components:
+    - type: Transform
+      pos: 18.5,22.5
+      parent: 1
+  - uid: 2657
+    components:
+    - type: Transform
+      pos: 13.5,22.5
+      parent: 1
+  - uid: 2658
+    components:
+    - type: Transform
+      pos: 13.5,23.5
+      parent: 1
+  - uid: 2659
+    components:
+    - type: Transform
+      pos: 15.5,20.5
+      parent: 1
+  - uid: 2660
+    components:
+    - type: Transform
+      pos: 15.5,19.5
+      parent: 1
+  - uid: 2661
+    components:
+    - type: Transform
+      pos: 16.5,20.5
+      parent: 1
+  - uid: 2662
+    components:
+    - type: Transform
+      pos: 16.5,19.5
+      parent: 1
+  - uid: 2707
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -11.5,21.5
+      parent: 1
+  - uid: 2708
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -11.5,20.5
+      parent: 1
 - proto: TableReinforcedGlass
   entities:
   - uid: 270
@@ -16414,6 +16812,13 @@ entities:
     components:
     - type: Transform
       pos: -12.5,4.5
+      parent: 1
+- proto: VendingMachineFuelVend
+  entities:
+  - uid: 2711
+    components:
+    - type: Transform
+      pos: -17.5,20.5
       parent: 1
 - proto: VendingMachinePickNPackPOI
   entities:
@@ -18342,6 +18747,13 @@ entities:
     components:
     - type: Transform
       pos: -8.5,14.5
+      parent: 1
+- proto: WardrobeCargo
+  entities:
+  - uid: 2716
+    components:
+    - type: Transform
+      pos: -12.5,25.5
       parent: 1
 - proto: WarpPoint
   entities:

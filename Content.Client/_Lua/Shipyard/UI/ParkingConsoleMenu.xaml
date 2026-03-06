@@ -1,0 +1,39 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:luaShipyard="clr-namespace:Content.Client._Lua.Shipyard.UI"
+                      SetSize="860 520"
+                      MinSize="760 420">
+    <BoxContainer Orientation="Vertical" Margin="6">
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 6">
+            <Button Name="TargetIdButton" Access="Public" />
+            <controls:ConfirmButton Name="ParkButton"
+                                    Access="Public"
+                                    Text="{Loc 'shipyard-console-park'}"
+                                    ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
+                                    Margin="6 0 0 0"
+                                    Disabled="True" />
+            <controls:ConfirmButton Name="RecallButton"
+                                    Access="Public"
+                                    Text="{Loc 'shipyard-console-recall'}"
+                                    ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
+                                    Margin="6 0 0 0"
+                                    Disabled="True" />
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer" Visible="True" Margin="0 0 0 6">
+            <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}" />
+            <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}" />
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical" Name="DeedContainer" Visible="False" Margin="0 0 0 6">
+            <Label Text="{Loc 'shipyard-console-deed-label'}" />
+            <Label Name="DeedTitle" Text="" />
+            <Label Name="ParkingStatus" Text="" Margin="0 4 0 0" />
+        </BoxContainer>
+
+        <luaShipyard:ShipyardDockRadarControl Name="DockRadar"
+                                              HorizontalExpand="True"
+                                              VerticalExpand="True"
+                                              MinSize="340 360" />
+    </BoxContainer>
+</controls:FancyWindow>

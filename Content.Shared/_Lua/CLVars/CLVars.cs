@@ -31,13 +31,6 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("shuttle.grid_fill_centcom", true, CVar.SERVERONLY);
 
         /// <summary>
-        /// Включение/отключение Автоудаления Шаттлов..
-        /// </summary>
-        public static readonly CVarDef<bool> AutoDelteEnabled =
-            CVarDef.Create("shuttle.autodelete_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE,
-                "Отключить или включить автоудаление шаттлов.");
-
-        /// <summary>
         /// Включение/отключение PVE-зон..
         /// </summary>
         public static readonly CVarDef<bool> PveEnabled =

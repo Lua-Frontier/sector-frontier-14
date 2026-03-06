@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 267.3.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/06/2025 09:41:29
-  entityCount: 7370
+  time: 03/06/2026 13:07:44
+  entityCount: 7371
 maps: []
 grids:
 - 1
@@ -26,9 +26,9 @@ tilemap:
   11: FloorReinforced
   12: FloorShuttleBlack
   9: FloorWoodLarge
+  1: Lattice
   0: Plating
   13: PlatingDamaged
-  1: ShieldLattice
   3: TrainLattice
 entities:
 - proto: ""
@@ -11630,8 +11630,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 160
     components:
     - type: Transform
@@ -11640,8 +11638,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 161
     components:
     - type: Transform
@@ -11650,8 +11646,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 162
     components:
     - type: Transform
@@ -11660,8 +11654,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 163
     components:
     - type: Transform
@@ -11670,8 +11662,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 164
     components:
     - type: Transform
@@ -11680,8 +11670,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 165
     components:
     - type: Transform
@@ -11690,8 +11678,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 166
     components:
     - type: Transform
@@ -11700,8 +11686,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 167
     components:
     - type: Transform
@@ -11710,8 +11694,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 168
     components:
     - type: Transform
@@ -11720,8 +11702,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 169
     components:
     - type: Transform
@@ -11730,8 +11710,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 170
     components:
     - type: Transform
@@ -11740,8 +11718,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 171
     components:
     - type: Transform
@@ -11750,8 +11726,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 172
     components:
     - type: Transform
@@ -11760,8 +11734,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 173
     components:
     - type: Transform
@@ -11770,8 +11742,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 174
     components:
     - type: Transform
@@ -11780,8 +11750,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 175
     components:
     - type: Transform
@@ -11790,8 +11758,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: Barricade
   entities:
   - uid: 153
@@ -22042,8 +22008,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3756
     components:
     - type: Transform
@@ -22052,8 +22016,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3759
     components:
     - type: Transform
@@ -22062,8 +22024,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: ClosetEmergencyN2FilledRandom
   entities:
   - uid: 3754
@@ -22074,8 +22034,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3757
     components:
     - type: Transform
@@ -22084,8 +22042,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3760
     components:
     - type: Transform
@@ -22094,8 +22050,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: ClosetFireFilled
   entities:
   - uid: 3447
@@ -22106,8 +22060,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3448
     components:
     - type: Transform
@@ -22116,8 +22068,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3753
     components:
     - type: Transform
@@ -22126,8 +22076,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3758
     components:
     - type: Transform
@@ -22136,8 +22084,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: ClosetJanitorFilled
   entities:
   - uid: 3601
@@ -22155,8 +22101,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 726
     components:
     - type: Transform
@@ -22165,8 +22109,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 727
     components:
     - type: Transform
@@ -22175,8 +22117,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 728
     components:
     - type: Transform
@@ -22195,8 +22135,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: ClosetMaintenanceFilledRandom
   entities:
   - uid: 1976
@@ -22207,8 +22145,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3767
     components:
     - type: Transform
@@ -22217,8 +22153,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3768
     components:
     - type: Transform
@@ -22227,8 +22161,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: ClothingBackpackDuffelSurgeryAdvancedFilled
   entities:
   - uid: 310
@@ -22713,6 +22645,39 @@ entities:
     - type: Transform
       pos: 13.5,1.5
       parent: 1
+- proto: ComputerShipyardParking
+  entities:
+  - uid: 839
+    components:
+    - type: Transform
+      pos: 10.5,0.5
+      parent: 1
+  - uid: 840
+    components:
+    - type: Transform
+      pos: 36.5,0.5
+      parent: 1
+  - uid: 841
+    components:
+    - type: Transform
+      pos: 44.5,0.5
+      parent: 1
+  - uid: 842
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 70.5,-3.5
+      parent: 1
+  - uid: 843
+    components:
+    - type: Transform
+      pos: 37.5,14.5
+      parent: 1
+  - uid: 7371
+    components:
+    - type: Transform
+      pos: 44.5,14.5
+      parent: 1
 - proto: ComputerTabletopComms
   entities:
   - uid: 3931
@@ -22794,8 +22759,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CrateEngineering
   entities:
   - uid: 783
@@ -22806,8 +22769,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -22829,8 +22790,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -22854,8 +22813,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 792
     components:
     - type: Transform
@@ -22864,8 +22821,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 793
     components:
     - type: Transform
@@ -22881,8 +22836,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CrateTrashCartFilled
   entities:
   - uid: 7023
@@ -22900,8 +22853,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CrateVendingMachineRestockChefvendFilled
   entities:
   - uid: 3441
@@ -22912,8 +22863,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CrateVendingMachineRestockChemVendFilled
   entities:
   - uid: 3648
@@ -22924,8 +22873,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3649
     components:
     - type: Transform
@@ -22934,8 +22881,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CrateVendingMachineRestockMedicalFilled
   entities:
   - uid: 3650
@@ -22946,8 +22891,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3651
     components:
     - type: Transform
@@ -22956,8 +22899,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CrateVirologyBiosuit
   entities:
   - uid: 795
@@ -22968,8 +22909,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 796
     components:
     - type: Transform
@@ -22978,8 +22917,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: CryogenicSleepUnit
   entities:
   - uid: 275
@@ -24989,39 +24926,12 @@ entities:
   - uid: 837
     components:
     - type: Transform
-      pos: 7.5,37.5
+      pos: 9.5,37.5
       parent: 1
   - uid: 838
     components:
     - type: Transform
-      pos: 7.5,37.5
-      parent: 1
-  - uid: 839
-    components:
-    - type: Transform
-      pos: 7.5,37.5
-      parent: 1
-  - uid: 840
-    components:
-    - type: Transform
-      pos: 73.5,37.5
-      parent: 1
-  - uid: 841
-    components:
-    - type: Transform
-      pos: 73.5,37.5
-      parent: 1
-  - uid: 842
-    components:
-    - type: Transform
-      pos: 73.5,37.5
-      parent: 1
-- proto: EngineeringTechFab
-  entities:
-  - uid: 843
-    components:
-    - type: Transform
-      pos: 48.5,52.5
+      pos: 9.5,39.5
       parent: 1
 - proto: FaxMachineBase
   entities:
@@ -25042,8 +24952,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 845
     components:
     - type: Transform
@@ -25057,8 +24965,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: FireAxeCabinetFilledCommand
   entities:
   - uid: 847
@@ -34062,8 +33968,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: LockerBoozeFilled
   entities:
   - uid: 1190
@@ -34093,8 +33997,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: LockerChiefMedicalOfficerFilledHardsuit
   entities:
   - uid: 1194
@@ -34112,8 +34014,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 1196
     components:
     - type: Transform
@@ -34122,8 +34022,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: LockerFreezerBase
   entities:
   - uid: 1197
@@ -34144,8 +34042,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -34176,8 +34072,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 1199
     components:
     - type: Transform
@@ -48282,8 +48176,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3255
     components:
     - type: Transform
@@ -48292,8 +48184,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: WardrobeMedicalDoctorFilled
   entities:
   - uid: 3256
@@ -48311,8 +48201,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3258
     components:
     - type: Transform
@@ -48321,8 +48209,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: WardrobeWhite
   entities:
   - uid: 737
@@ -48333,8 +48219,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -48359,8 +48243,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -48385,8 +48267,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -48413,8 +48293,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3267
     components:
     - type: Transform
@@ -48423,8 +48301,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3268
     components:
     - type: Transform
@@ -48433,8 +48309,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: WarpPoint
   entities:
   - uid: 3968
@@ -48452,8 +48326,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3270
     components:
     - type: Transform
@@ -48462,8 +48334,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3271
     components:
     - type: Transform
@@ -48472,8 +48342,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3272
     components:
     - type: Transform
@@ -48482,8 +48350,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3273
     components:
     - type: Transform
@@ -48492,8 +48358,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3275
     components:
     - type: Transform
@@ -48512,8 +48376,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3277
     components:
     - type: Transform
@@ -48522,8 +48384,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: WeaponCapacitorRecharger
   entities:
   - uid: 3278
@@ -48644,8 +48504,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
   - uid: 3294
     components:
     - type: Transform
@@ -48654,8 +48512,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: GravityAffected
-      weightless: False
 - proto: WindoorSecure
   entities:
   - uid: 3295
