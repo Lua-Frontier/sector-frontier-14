@@ -1,3 +1,4 @@
+using Content.Server._Lua.Shipyard.Components;
 using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Mono.Ships.Components;
@@ -95,19 +96,10 @@ public sealed class LimitedShuttleSystem : EntitySystem
         var query = EntityQueryEnumerator<VesselComponent>();
         var shuttleCount = 0;
 
-        while (query.MoveNext(out var uid, out var targetVessel))
+        while (query.MoveNext(out _, out var targetVessel))
         {
-            if (targetVessel.VesselId != vessel.ID)
-                continue;
-            if (_useExistenceCheck)
-            { shuttleCount++; }
-            else
-            {
-                if (!TryComp<ShipActivityComponent>(uid, out var inactivity) || !inactivity.InactivePastThreshold)
-                {
-                    shuttleCount++;
-                }
-            }
+            if (targetVessel.VesselId == vessel.ID)
+                shuttleCount++;
         }
 
         return shuttleCount < vessel.LimitActive;

@@ -1,0 +1,94 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp vec2 positionInput;
+uniform highp vec2 renderScale;
+uniform highp float life;
+uniform highp float range;
+
+highp vec2 random(highp vec2 uv) {
+    uv = vec2(dot(uv, vec2(127.1, 311.7)),
+              dot(uv, vec2(269.5, 183.3)));
+    return -1.0 + 2.0 * fract(sin(uv) * 43758.5453123);
+}
+
+highp float noise(highp vec2 uv) {
+    highp vec2 uv_index = floor(uv);
+    highp vec2 uv_fract = fract(uv);
+    highp vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+    return mix(
+        mix(dot(random(uv_index + vec2(0.0, 0.0)), uv_fract - vec2(0.0, 0.0)),
+            dot(random(uv_index + vec2(1.0, 0.0)), uv_fract - vec2(1.0, 0.0)), blur.x),
+        mix(dot(random(uv_index + vec2(0.0, 1.0)), uv_fract - vec2(0.0, 1.0)),
+            dot(random(uv_index + vec2(1.0, 1.0)), uv_fract - vec2(1.0, 1.0)), blur.x), blur.y) * 0.5 + 0.5;
+}
+
+highp float fbm(highp vec2 uv) {
+    const int octaves = 6;
+    highp float amplitude = 0.5;
+    highp float frequency = 3.0;
+    highp float value = 0.0;
+    for (int i = 0; i < octaves; i++) {
+        value += amplitude * noise(frequency * uv);
+        amplitude *= 0.5;
+        frequency *= 2.0;
+    }
+    return value;
+}
+
+void fragment() {
+    highp vec2 finalCoords = (FRAGCOORD.xy - positionInput) / (renderScale * 32.0);
+    highp float distanceToCenter = length(finalCoords);
+    // Sharper flash: power 0.3 for faster peak
+    highp float nlife = pow(sin(clamp(life, 0.0, 1.0) * 3.141592), 0.3);
+    highp float on = ((range - distanceToCenter) / range);
+    highp float n = on;
+    highp vec2 fcOffset = vec2(fbm(finalCoords.xy + life / 2.0), fbm(finalCoords.yx + life / 2.0));
+    n *= fbm((finalCoords + fcOffset) / (nlife / (n * 1.5))) * 1.1;
+    n *= clamp(nlife, 0.0, 1.0);
+
+    highp float a = 0.0;
+    highp float p = 0.0;
+    lowp vec3 lCol = vec3(0.0);
+    lowp vec3 rCol = vec3(0.0);
+
+    if (n <= 0.05) {
+        p = 0.0;
+        a = 0.0;
+        lCol = vec3(0.0);
+        rCol = vec3(0.0);
+    } else if (n < 0.12) {
+        p = (n - 0.05) / (0.12 - 0.05);
+        a = p;
+        lCol = vec3(0.0);
+        rCol = vec3(0.25, 0.05, 0.45);
+    } else if (n < 0.2) {
+        p = (n - 0.12) / (0.2 - 0.12);
+        a = 1.0;
+        lCol = vec3(0.25, 0.05, 0.45);
+        rCol = vec3(0.55, 0.15, 0.95);
+    } else if (n < 0.45) {
+        p = (n - 0.2) / (0.45 - 0.2);
+        a = 1.0;
+        lCol = vec3(0.55, 0.15, 0.95);
+        rCol = vec3(0.85, 0.65, 1.0);
+    } else {
+        p = (n - 0.45) / 0.5;
+        a = 1.0;
+        lCol = vec3(0.85, 0.65, 1.0);
+        rCol = vec3(1.0, 0.95, 1.0);
+    }
+
+    p = clamp(p, 0.0, 1.0);
+
+    highp vec4 warped = zTextureSpec(SCREEN_TEXTURE, (FRAGCOORD.xy * SCREEN_PIXEL_SIZE) + clamp(on * nlife * (fcOffset / 8.0), 0.0, 1.0));
+
+    highp float osum = warped.r + warped.g + warped.b;
+    highp float osr = osum > 0.1 ? 1.0 : 10.0 * osum;
+
+    warped += mix(
+        vec4(0.0),
+        vec4(mix(rCol, lCol, vec3(p)), a),
+        osr
+    );
+
+    COLOR = warped;
+}

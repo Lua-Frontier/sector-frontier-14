@@ -28,4 +28,10 @@ public sealed partial class EmpGeneratorComponent : Component
 
     [DataField(serverOnly: true)]
     public float LightRadiusMax { get; set; }
+
+    [DataField]
+    public string EmpBlastEffect = "EffectEmpBlast";
+
+    [DataField]
+    public bool BypassEmpImmunity = false;
 }

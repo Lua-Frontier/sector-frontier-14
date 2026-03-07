@@ -12,6 +12,9 @@
   placement:
     mode: SnapgridCenter
   components:
+    - type: Gun
+      recoil: 0
+      recoilRotation: 0
     - type: Rotatable
     - type: Anchorable
       delay: 480

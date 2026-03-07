@@ -50,6 +50,6 @@ public sealed class EmpGeneratorSystem : EntitySystem
         if (xform.GridUid != null)
             immuneGridList = [xform.GridUid.Value];
 
-        _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, immuneGrids: immuneGridList);
+        _emp.EmpPulse(_transform.ToMapCoordinates(xform.Coordinates), ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, immuneGrids: immuneGridList, effectPrototype: ent.Comp.EmpBlastEffect, bypassEmpImmunity: ent.Comp.BypassEmpImmunity);
     }
 }
