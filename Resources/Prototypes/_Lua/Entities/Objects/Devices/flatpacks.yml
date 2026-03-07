@@ -57,3 +57,18 @@
     entity: WeaponShuttleGrapplingTurret
   - type: StaticPrice
     price: 150
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretM25FlatPack
+  name: упакованный M25 горный импульсер
+  description: Использует механизмы для запуска... чего-то. Легко разрушает породу.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretM25
+  - type: StaticPrice
+    price: 640
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
