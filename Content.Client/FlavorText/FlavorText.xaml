@@ -17,9 +17,9 @@
                         <PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat BackgroundColor="#80808008" />
                         </PanelContainer.PanelOverride>
-                        <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="110 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
-                        <OptionButton Name="CERPStatusOption" Access="Public" MinSize="220 0" HorizontalExpand="True" />
-                        <RichTextLabel Name="CERPLabelInfo" HorizontalExpand="False" VerticalExpand="True" MaxWidth="850" HorizontalAlignment="Left"/>
+                        <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="110 100" Margin="10 10 10 80" HorizontalExpand="True" VerticalExpand="True" />
+                        <OptionButton Name="CERPStatusOption" Access="Public" MaxHeight="30" Margin="0 40" HorizontalExpand="True" VerticalAlignment="Bottom" />
+                        <RichTextLabel Name="CERPLabelInfo" HorizontalExpand="False" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                     </PanelContainer>
                 </BoxContainer>
             </BoxContainer>
