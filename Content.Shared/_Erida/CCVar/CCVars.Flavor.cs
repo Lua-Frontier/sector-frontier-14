@@ -13,7 +13,7 @@ public sealed partial class CCVars
      */
 
     public static readonly CVarDef<bool> FlavorTraitsEnabled =
-        CVarDef.Create("ic.flavor_traits_enabled", true, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("ic.flavor_traits_enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<bool> FlavorNsfwEnabled =
         CVarDef.Create("ic.flavor_nsfw_enabled", true, CVar.SERVER | CVar.REPLICATED);
