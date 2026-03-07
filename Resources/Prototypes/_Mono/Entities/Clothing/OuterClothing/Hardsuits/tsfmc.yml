@@ -99,7 +99,7 @@
     enabled: false
 
 - type: entity
-  parent: ClothingOuterHardsuitBaseNFNfsd
+  parent: [ EnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd ] #Lua
   id: ClothingOuterHardsuitTSFMCM92
   name: TSFMC M92 tacsuit
   description: A heavy tacsuit, capable of taking a lot of physical damage.
@@ -164,7 +164,7 @@
     enabled: false
 
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
+  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut, EnergyShieldClothing ]  # Lua
   id: ClothingOuterHardsuitTSFMCM92-X
   name: TSFMC M92-X tacsuit
   description: A experimental modification of the M92 tacsuit for spec-ops units of the TSFMC. Externally the same, internally its higher-quality alloys and fabric.
@@ -205,7 +205,7 @@
 
 #Security Combat Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBaseNFNfsd
+  parent: [ EnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd ] # Lua
   id: ClothingOuterHardsuitTSFMCM93
   name: TSFMC M93 tacsuit
   description: A heavily armored TSFMC suit. Space proof, with thick armor plating at the expense of mobility.
@@ -239,7 +239,7 @@
 
 #Security Command Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBaseNFNfsd
+  parent: [ EnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd ] # Lua
   id: ClothingOuterHardsuitTSFMCM93-C
   name: TSFMC M93-C tacsuit
   description: A variant of the M93 tacsuit with slightly better plating. It isn't much extra.
