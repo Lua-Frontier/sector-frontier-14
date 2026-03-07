@@ -1019,6 +1019,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("bank_balance");
 
+                    b.Property<string>("CharacterFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("character_flavor_text");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -1082,6 +1087,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
+                    b.Property<string>("NSFWFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nsfwflavor_text");
+
+                    b.Property<string>("NSFWLinksFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nsfwlinks_flavor_text");
+
+                    b.Property<string>("NSFWOOCFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nsfwoocflavor_text");
+
+                    b.Property<string>("NSFWTagsFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nsfwtags_flavor_text");
+
+                    b.Property<string>("OOCFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("oocflavor_text");
+
                     b.Property<int>("PreferenceId")
                         .HasColumnType("INTEGER")
                         .HasColumnName("preference_id");
@@ -1118,10 +1148,20 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
 
+                    b.Property<string>("TagsFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("tags_flavor_text");
+
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("voice");
+
+                    b.Property<string>("YellowFlavorText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("yellow_flavor_text");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");

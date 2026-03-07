@@ -5,7 +5,7 @@
 namespace Content.Server.Database.Migrations.Sqlite
 {
     /// <inheritdoc />
-    public partial class ExtendedExamine : Migration
+    public partial class ExtendedFlavor : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
