@@ -54,7 +54,7 @@ public sealed class DetailExaminableSystem : EntitySystem
     private void OpenEui(EntityUid user, EntityUid target)
     {
         if (!TryComp<DetailExaminableComponent>(target, out var detail)
-            || !TryComp<HumanoidProfileComponent>(target, out var humanoid))
+            || !TryComp<HumanoidAppearanceComponent>(target, out var humanoid))
             return;
 
         if (!_mind.TryGetMind(user, out _, out var mind)
