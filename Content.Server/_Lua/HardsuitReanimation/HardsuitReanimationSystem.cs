@@ -7,7 +7,6 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared._Lua.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
@@ -17,6 +16,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
@@ -26,6 +26,7 @@ namespace Content.Server._Lua.HardsuitReanimation;
 public sealed class HardsuitReanimationSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -36,8 +37,6 @@ public sealed class HardsuitReanimationSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-
     private readonly Dictionary<EntityUid, ReanimationData> _activeReanimations = new();
     private readonly List<EntityUid> _reanimationsToRemove = new();
 
@@ -55,6 +54,7 @@ public sealed class HardsuitReanimationSystem : EntitySystem
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<HardsuitReanimationComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<HardsuitReanimationComponent, GotUnequippedEvent>(OnUnequipped);
+        SubscribeLocalEvent<HardsuitReanimationComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
     }
 
     public override void Update(float frameTime)
@@ -108,12 +108,17 @@ public sealed class HardsuitReanimationSystem : EntitySystem
 
     private void TeleportToOrigin(EntityUid wearer, HardsuitReanimationComponent comp)
     {
+        if (comp.SavedTeleportCoordinates is not { } savedCoordinates)
+        {
+            var noCoordsMsg = Loc.GetString("hardsuit-reanimation-no-saved-coordinates");
+            _popup.PopupEntity(noCoordsMsg, wearer, wearer);
+            return;
+        }
+
         var transform = Transform(wearer);
-        var defaultMapId = _gameTicker.DefaultMap;
-        var originCoords = new MapCoordinates(0, 0, defaultMapId);
         Spawn(comp.EmpPulseEffect, transform.Coordinates);
-        transform.Coordinates = EntityCoordinates.FromMap(_mapManager, originCoords);
-        Spawn(comp.EmpPulseEffect, originCoords);
+        transform.Coordinates = EntityCoordinates.FromMap(_mapManager, savedCoordinates);
+        Spawn(comp.EmpPulseEffect, savedCoordinates);
     }
 
     private void PerformDefibrillation(EntityUid wearer)
@@ -253,5 +258,50 @@ public sealed class HardsuitReanimationSystem : EntitySystem
             comp.IsReanimating = false;
             Dirty(uid, comp);
         }
+    }
+
+    private void OnGetAltVerbs(EntityUid uid, HardsuitReanimationComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess || args.Hands == null)
+            return;
+
+        if (!IsWearingHardsuit(args.User, uid))
+            return;
+
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Text = Loc.GetString("hardsuit-reanimation-verb-save-coordinates"),
+            Priority = 2,
+            Act = () => SaveTeleportCoordinates(uid, args.User, comp)
+        });
+    }
+
+    private void SaveTeleportCoordinates(EntityUid hardsuit, EntityUid user, HardsuitReanimationComponent comp)
+    {
+        if (!IsWearingHardsuit(user, hardsuit))
+            return;
+
+        var coords = Transform(user).MapPosition;
+        comp.SavedTeleportCoordinates = coords;
+        Dirty(hardsuit, comp);
+
+        var mapName = coords.MapId.ToString();
+        var mapEntity = _mapManager.GetMapEntityId(coords.MapId);
+        if (TryComp<MetaDataComponent>(mapEntity, out var mapMeta) &&
+            !string.IsNullOrWhiteSpace(mapMeta.EntityName))
+        {
+            mapName = mapMeta.EntityName;
+        }
+
+        var message = Loc.GetString("hardsuit-reanimation-coordinates-saved",
+            ("x", Math.Round(coords.X, 1)),
+            ("y", Math.Round(coords.Y, 1)),
+            ("map", mapName));
+        _popup.PopupEntity(message, user, user);
+    }
+
+    private bool IsWearingHardsuit(EntityUid user, EntityUid hardsuit)
+    {
+        return _inventory.TryGetSlotEntity(user, "outerClothing", out var wornHardsuit) && wornHardsuit == hardsuit;
     }
 }

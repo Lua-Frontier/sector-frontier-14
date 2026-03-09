@@ -20,6 +20,7 @@ using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Dataset;
 using Content.Shared.Lua.CLVar;
 using Content.Shared.Parallax;
+using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -301,16 +302,18 @@ namespace Content.Server._Lua.Starmap.Systems
             }
             void PlayDenySound(EntityUid uid)
             { _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg"), uid); }
-            var transit = EnsureComp<WarpTransitComponent>(shuttleUid.Value);
-            transit.TargetMap = star.Map;
             var angle = (float)(_random.NextDouble() * 2 * Math.PI);
             var radius = _random.Next(1000, 5001);
             var offset = new Vector2((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius);
             var targetPos = star.Position + offset;
-            transit.TargetPosition = targetPos;
-            Dirty(shuttleUid.Value, transit);
             var targetCoordinates = new EntityCoordinates(mapUid, targetPos);
             _shuttleSystem.FTLToCoordinates(shuttleUid.Value, shuttleComponent, targetCoordinates, Angle.Zero);
+            if (!HasComp<FTLComponent>(shuttleUid.Value))
+            { PlayDenySound(consoleUid); return; }
+            var transit = EnsureComp<WarpTransitComponent>(shuttleUid.Value);
+            transit.TargetMap = star.Map;
+            transit.TargetPosition = targetPos;
+            Dirty(shuttleUid.Value, transit);
             try { EntityManager.System<StarmapSystem>().RefreshConsoles(); } catch { }
         }
         private bool HasDiskForSector(EntityUid consoleUid, MapId targetMap)
