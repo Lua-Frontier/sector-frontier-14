@@ -1,13 +1,13 @@
 - type: vessel
-  id: Vega
+  id: Gungnir
   parent: BaseVesselAntag
-  name: Vega
-  description: A frame manufactured from the remains of mothballed TSFMC ships. Carries a single CYREXA as its main armament.
+  name: Gungnir
+  description: Малый пиратский шаттл, снабженный артиллерийским вооружением и базовыми вещами для грабежа.
   limit: 4
-  price: 98626 # 2000 above min
+  price: 130000 # 2000 above min
   category: Medium
   group: BlackMarket
-  shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/vega.yml
+  shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/gungnir.yml
   guidebookPage: Null
   whitelist:
   - Luna
@@ -18,16 +18,16 @@
   - AME
 
 - type: gameMap
-  id: Vega
-  mapName: 'Vega'
-  mapPath: /Maps/_Mono/Shuttles/BlackMarket/vega.yml
+  id: Gungnir
+  mapName: 'Gungnir'
+  mapPath: /Maps/_Mono/Shuttles/BlackMarket/gungnir.yml
   minPlayers: 0
   stations:
-    Vega:
+    Gungnir:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Vega RG{1}'
+          mapNameTemplate: 'Gungnir RG{1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
