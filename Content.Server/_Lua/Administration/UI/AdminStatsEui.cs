@@ -1,7 +1,7 @@
 // LuaCorp - This file is licensed under AGPLv3
 // Copyright (c) 2025 LuaCorp
 // See AGPLv3.txt for details.
-using Content.Server._Lua.Shuttles.Components;
+using Content.Server._Lua.Shipyard.Components;
 using Content.Server._Lua.Stargate.Components;
 using Content.Server._NF.CryoSleep;
 using Content.Server.Administration.Managers;
@@ -131,7 +131,7 @@ public sealed class AdminStatsEui : BaseEui
         while (query.MoveNext(out var uid, out _, out _, out _))
         {
             _cachedState.ShuttlesTotal++;
-            if (_entMan.TryGetComponent<ShuttleFreezeStateComponent>(uid, out var freeze) && freeze.Frozen) _cachedState.ShuttlesPaused++;
+            if (_entMan.HasComponent<ParkedShuttleComponent>(uid)) _cachedState.ShuttlesPaused++;
             else _cachedState.ShuttlesActive++;
         }
     }

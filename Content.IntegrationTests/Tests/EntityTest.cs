@@ -252,6 +252,7 @@ namespace Content.IntegrationTests.Tests
                 "GridSpawner", // Mono: spawns grids/maps
                 "TailedEntity", // Lua: spawns segment
                 "SpaceWhale", // Lua: spawns segment
+                "CartridgeAmmo",
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",

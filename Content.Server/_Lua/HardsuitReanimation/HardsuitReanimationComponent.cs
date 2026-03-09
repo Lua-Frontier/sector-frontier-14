@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Robust.Shared.Prototypes;
+using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._Lua.HardsuitReanimation;
@@ -36,4 +37,7 @@ public sealed partial class HardsuitReanimationComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan LastReanimationTime = TimeSpan.Zero;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public MapCoordinates? SavedTeleportCoordinates;
 }
