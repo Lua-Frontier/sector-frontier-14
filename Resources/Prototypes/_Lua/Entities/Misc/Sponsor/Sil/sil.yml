@@ -33,13 +33,8 @@
         occludes: true
         ent: null
       cell_slot: !type:ContainerSlot
-      beakerSlot: !type:ContainerSlot # imperial hardsuit injection
   - type: ItemSlots
     slots:
-      beakerSlot:
-        whitelist:
-          tags:
-          - FitsHardsuit
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
