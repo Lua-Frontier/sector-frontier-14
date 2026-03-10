@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: dsfrontier
   forkVersion: 06032026014936
-  time: 03/09/2026 16:39:08
-  entityCount: 964
+  time: 03/10/2026 11:25:53
+  entityCount: 961
 maps: []
 grids:
 - 1
@@ -601,7 +601,7 @@ entities:
       pos: 1.5,8.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5906.463
+      secondsUntilStateChange: -5981.067
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -637,7 +637,7 @@ entities:
       pos: 0.5,-0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1564.1664
+      secondsUntilStateChange: -1638.7701
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1585,21 +1585,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,10.5
-      parent: 1
-- proto: BlastDoor
-  entities:
-  - uid: 797
-    components:
-    - type: Transform
-      pos: 5.5,7.5
-      parent: 1
-- proto: ButtonFrameCaution
-  entities:
-  - uid: 798
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,5.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -3962,7 +3947,7 @@ entities:
       pos: 3.5,-0.5
       parent: 1
     - type: Battery
-      startingCharge: 490.6666
+      startingCharge: 489.33325
     - type: ApcPowerReceiver
       powerLoad: 20
     - type: ApcPowerReceiverBattery
@@ -5147,19 +5132,6 @@ entities:
     - type: Transform
       pos: 7.3342338,-2.521592
       parent: 1
-- proto: SignalButton
-  entities:
-  - uid: 169
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,5.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        797:
-        - - Pressed
-          - Toggle
 - proto: SignArmory
   entities:
   - uid: 557
