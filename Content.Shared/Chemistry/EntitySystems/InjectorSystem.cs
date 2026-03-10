@@ -10,6 +10,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
@@ -37,6 +38,7 @@ public sealed partial class InjectorSystem : EntitySystem
     [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
@@ -193,13 +195,13 @@ public sealed partial class InjectorSystem : EntitySystem
     private bool TryMobsDoAfter(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
     {
         if (_useDelay.IsDelayed(injector.Owner) // Check for Delay.
-            || !GetMobsDoAfterTime(injector, user, target, out var doAfterTime, out var amount)) // Get the DoAfter time.
+            || !GetMobsDoAfterTime(injector, user, target, out var doAfterTime, out var amount, out var breakOnWeightlessMove)) // Get the DoAfter time.
             return false;
 
         if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {
             BreakOnMove = true,
-            BreakOnWeightlessMove = false,
+            BreakOnWeightlessMove = breakOnWeightlessMove,
             BreakOnDamage = true,
             NeedHand = injector.Comp.NeedHand,
             BreakOnHandChange = injector.Comp.BreakOnHandChange,
@@ -262,10 +264,11 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <param name="doAfterTime">The duration of the resulting doAfter.</param>
     /// <param name="amount">The amount of the reagents transferred.</param>
     /// <returns>True if calculating the time was successful, false if not.</returns>
-    private bool GetMobsDoAfterTime(Entity<InjectorComponent> injector, EntityUid user, EntityUid target, out TimeSpan doAfterTime, out FixedPoint2 amount)
+    private bool GetMobsDoAfterTime(Entity<InjectorComponent> injector, EntityUid user, EntityUid target, out TimeSpan doAfterTime, out FixedPoint2 amount, out bool breakOnWeightlessMove)
     {
         doAfterTime = TimeSpan.Zero;
         amount = FixedPoint2.Zero;
+        breakOnWeightlessMove = false;
 
         if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var injectorSolution)
             || !_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var activeMode))
@@ -304,7 +307,28 @@ public sealed partial class InjectorSystem : EntitySystem
         else if (_standingState.IsDown(target))
             doAfterTime *= activeMode.DownedModifier;
 
+        if (ShouldApplyHardsuitHyposprayDelay(injector, target, activeMode, doAfterTime))
+        {
+            doAfterTime = TimeSpan.FromSeconds(2);
+            breakOnWeightlessMove = true;
+        }
+
         return true;
+    }
+
+    private bool ShouldApplyHardsuitHyposprayDelay(Entity<InjectorComponent> injector, EntityUid target, InjectorModePrototype activeMode, TimeSpan doAfterTime)
+    {
+        if (doAfterTime != TimeSpan.Zero)
+            return false;
+        if (!injector.Comp.SolutionName.Equals("hypospray", StringComparison.Ordinal))
+            return false;
+        if (activeMode.Behavior.HasFlag(InjectorBehavior.Draw))
+            return false;
+
+        if (!_inventory.TryGetSlotEntity(target, "outerClothing", out var outerClothing))
+            return false;
+
+        return HasComp<RequiresHyposprayDelayComponent>(outerClothing.Value);
     }
     #endregion Mob Interaction
 
