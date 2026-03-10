@@ -30,7 +30,7 @@ public sealed class InjectorStatusControl : Control
 
         _parent = parent;
         _solutionContainers = solutionContainers;
-        _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
+        _label = new RichTextLabel { StyleClasses = { StyleNano.StyleClassItemStatus } };
         AddChild(_label);
     }
 
@@ -39,7 +39,7 @@ public sealed class InjectorStatusControl : Control
         base.FrameUpdate(args);
 
         if (!_solutionContainers.TryGetSolution(_parent.Owner, _parent.Comp.SolutionName, out _, out var solution)
-            || !_prototypeManager.Resolve(_parent.Comp.ActiveModeProtoId, out var activeMode))
+            || !_prototypeManager.Resolve<InjectorModePrototype>(_parent.Comp.ActiveModeProtoId, out var activeMode))
             return;
 
         // only updates the UI if any of the details are different than they previously were

@@ -17,7 +17,7 @@ namespace Content.Shared.Chemistry.Components;
 /// containers, and can directly inject into a mob's bloodstream.
 /// </remarks>
 /// <seealso cref="InjectorModePrototype"/>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(InjectorSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(InjectorSystem), Other = AccessPermissions.ReadWriteExecute)]
 public sealed partial class InjectorComponent : Component
 {
     /// <summary>

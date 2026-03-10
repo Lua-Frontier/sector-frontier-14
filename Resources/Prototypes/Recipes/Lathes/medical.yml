@@ -189,7 +189,7 @@
   result: Jug
   completetime: 4
   materials:
-    Plastic: 200 # Frontier: 400<200
+    Plastic: 400
 
 - type: latheRecipe
   id: RollerBedSpawnFolded
@@ -236,3 +236,27 @@
     Glass: 100
     Plastic: 100
 
+- type: latheRecipe
+  id: JetInjector
+  result: JetInjector
+  categories:
+  - Tools
+  completetime: 5
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Silver: 250
+
+- type: latheRecipe
+  id: AdvancedJetInjector
+  result: AdvancedJetInjector
+  categories:
+  - Tools
+  completetime: 5
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Silver: 400
+    Gold: 50 # A bit of gold for the gold ornaments on it!

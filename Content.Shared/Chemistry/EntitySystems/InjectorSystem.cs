@@ -7,7 +7,6 @@ using Content.Shared.Chemistry.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
-using Content.Shared.Forensics.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -34,7 +33,6 @@ public sealed partial class InjectorSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -65,6 +63,7 @@ public sealed partial class InjectorSystem : EntitySystem
             ToggleMode(injector, args.User);
 
         args.Handled = true;
+        args.ApplyDelay = false;
     }
 
     private void OnInjectorAfterInteract(Entity<InjectorComponent> injector, ref AfterInteractEvent args)
@@ -82,12 +81,12 @@ public sealed partial class InjectorSystem : EntitySystem
                 return;
             }
 
-            args.Handled = TryMobsDoAfter(injector, args.User, target);
+            args.Handled |= TryMobsDoAfter(injector, args.User, target);
             return;
         }
 
         // Draw from or inject into jugs, bottles, etc.
-        args.Handled = ContainerDoAfter(injector, args.User, target);
+        args.Handled |= TryContainerDoAfter(injector, args.User, target);
     }
 
     private void OnInjectDoAfter(Entity<InjectorComponent> injector, ref InjectorDoAfterEvent args)
@@ -95,7 +94,7 @@ public sealed partial class InjectorSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        args.Handled = TryUseInjector(injector, args.Args.User, args.Args.Target.Value);
+        args.Handled |= TryUseInjector(injector, args.Args.User, args.Args.Target.Value);
     }
 
     private void OnAttack(Entity<InjectorComponent> injector, ref MeleeHitEvent args)
@@ -197,7 +196,7 @@ public sealed partial class InjectorSystem : EntitySystem
             || !GetMobsDoAfterTime(injector, user, target, out var doAfterTime, out var amount)) // Get the DoAfter time.
             return false;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = false,
@@ -205,7 +204,8 @@ public sealed partial class InjectorSystem : EntitySystem
             NeedHand = injector.Comp.NeedHand,
             BreakOnHandChange = injector.Comp.BreakOnHandChange,
             MovementThreshold = injector.Comp.MovementThreshold,
-        });
+        }))
+            return false;
 
         // If the DoAfter was instant, don't send popups and logs indicating an attempt.
         if (doAfterTime == TimeSpan.Zero)
@@ -281,6 +281,13 @@ public sealed partial class InjectorSystem : EntitySystem
         }
         else
         {
+            // Check if we have anything to inject.
+            if (injectorSolution.Volume == 0)
+            {
+                _popup.PopupClient(Loc.GetString("injector-component-empty-message", ("injector", injector)), target, user);
+                return false;
+            }
+
             // additional delay is based on actual volume left to inject in syringe when smaller than transfer amount
             // If CurrentTransferAmount is null, it'll want to inject its entire contents, e.g., epipens.
             amount = injector.Comp.CurrentTransferAmount ?? injectorSolution.Volume;
@@ -302,12 +309,12 @@ public sealed partial class InjectorSystem : EntitySystem
     #endregion Mob Interaction
 
     #region Container Interaction
-    private bool ContainerDoAfter(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
+    private bool TryContainerDoAfter(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
     {
         if (!GetContainerDoAfterTime(injector, user, target, out var doAfterTime))
             return false;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
+        return _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = false,
@@ -316,8 +323,6 @@ public sealed partial class InjectorSystem : EntitySystem
             BreakOnHandChange = injector.Comp.BreakOnHandChange,
             MovementThreshold = injector.Comp.MovementThreshold,
         });
-
-        return true;
     }
 
     /// <summary>
@@ -348,7 +353,7 @@ public sealed partial class InjectorSystem : EntitySystem
 
         if (!_solutionContainer.TryGetDrawableSolution(target, out _, out var drawableSol))
         {
-            _popup.PopupClient(Loc.GetString("injector-component-cannot-transfer-message", ("target", Identity.Entity(target, EntityManager))), injector, user);
+            _popup.PopupClient(Loc.GetString("injector-component-cannot-draw-message", ("target", Identity.Entity(target, EntityManager))), injector, user);
             return false;
         }
 
@@ -510,7 +515,7 @@ public sealed partial class InjectorSystem : EntitySystem
         else
             _solutionContainer.Refill(target, targetSolution, removedSolution);
 
-        LocId msgSuccess = target == user ? "injector-component-transfer-success-message-self" : "injector-component-transfer-success-message";
+        LocId msgSuccess = target == user ? "injector-component-inject-success-message-self" : "injector-component-inject-success-message";
 
         if (selfEv.OverrideMessage != null)
             msgSuccess = selfEv.OverrideMessage;
@@ -638,8 +643,6 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <param name="target">The entity targeted by the user.</param>
     private void AfterInject(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
     {
-        // Leave some DNA from the injectee on it
-        _forensics.TransferDna(injector, target);
         // Reset the delay, if present.
 
         _useDelay.TryResetDelay(injector);
@@ -672,9 +675,6 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <param name="target">The entity targeted by the user.</param>
     private void AfterDraw(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
     {
-        // Leave some DNA from the drawee on it
-        _forensics.TransferDna(injector, target);
-
         // Automatically set the syringe to inject after completely filling it.
         if (!_solutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution)
             || solution.AvailableVolume != 0)

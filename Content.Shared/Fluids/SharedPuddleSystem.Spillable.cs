@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Prototypes;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -24,6 +25,10 @@ public abstract partial class SharedPuddleSystem
 {
     private static readonly FixedPoint2 MeleeHitTransferProportion = 0.25;
     [Dependency] private readonly InjectorSystem _injectorSystem = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly OpenableSystem _openable = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
 
     protected virtual void InitializeSpillable()
     {
@@ -55,7 +60,7 @@ public abstract partial class SharedPuddleSystem
                 out var solution))
             return;
 
-        if (Openable.IsClosed(args.Target))
+        if (_openable.IsClosed(args.Target))
             return;
 
         if (solution.Volume == FixedPoint2.Zero)
@@ -149,34 +154,37 @@ public abstract partial class SharedPuddleSystem
         // Optionally allow further melee handling occur
         args.Handled = entity.Comp.PreventMelee;
 
-        // First update the hit count so anything that is not reactive wont count towards the total!
+        // First update the hit count so non-reactive targets won't count towards the total.
         foreach (var hit in args.HitEntities)
         {
-            if (!_reactiveQuery.HasComp(hit))
+            if (!_solutionContainerSystem.TryGetInjectableSolution(hit, out _, out _))
                 hitCount -= 1;
         }
 
+        if (hitCount <= 0)
+            return;
+
         foreach (var hit in args.HitEntities)
         {
-            if (!_reactiveQuery.HasComp(hit))
+            if (!_solutionContainerSystem.TryGetInjectableSolution(hit, out _, out _))
                 continue;
 
             var splitSolution = _solutionContainerSystem.SplitSolution(soln.Value, totalSplit / hitCount);
 
-            AdminLogger.Add(LogType.MeleeHit,
+            _adminLogger.Add(LogType.MeleeHit,
                 $"{ToPrettyString(args.User):actor} "
                 + $"splashed {SharedSolutionContainerSystem.ToPrettyString(splitSolution):solution} "
                 + $"from {ToPrettyString(entity.Owner):entity} onto {ToPrettyString(hit):target}");
 
-            Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
+            _reactiveSystem.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
 
-            Popups.PopupClient(Loc.GetString("spill-melee-hit-attacker",
+            _popup.PopupClient(Loc.GetString("spill-melee-hit-attacker",
                     ("amount", totalSplit / hitCount),
                     ("spillable", entity.Owner),
                     ("target", Identity.Entity(hit, EntityManager, args.User))),
                 hit,
                 args.User);
-            Popups.PopupEntity(
+            _popup.PopupEntity(
                 Loc.GetString("spill-melee-hit-others",
                     ("attacker", Identity.Entity(args.User, EntityManager)),
                     ("spillable", entity.Owner),
@@ -194,7 +202,7 @@ public abstract partial class SharedPuddleSystem
     private void OnAttemptPacifiedThrow(Entity<SpillableComponent> ent, ref AttemptPacifiedThrowEvent args)
     {
         // Don’t care about closed containers.
-        if (Openable.IsClosed(ent))
+        if (_openable.IsClosed(ent))
             return;
 
         // Don’t care about empty containers.
