@@ -198,11 +198,15 @@ public sealed partial class InjectorSystem : EntitySystem
             || !GetMobsDoAfterTime(injector, user, target, out var doAfterTime, out var amount, out var breakOnWeightlessMove)) // Get the DoAfter time.
             return false;
 
+        var isHypospray = injector.Comp.SolutionName.Equals("hypospray", StringComparison.Ordinal);
+        var breakOnMove = !isHypospray;
+        var breakOnDamage = !isHypospray;
+
         if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, doAfterTime, new InjectorDoAfterEvent(), injector.Owner, target: target, used: injector.Owner)
         {
-            BreakOnMove = true,
+            BreakOnMove = breakOnMove,
             BreakOnWeightlessMove = breakOnWeightlessMove,
-            BreakOnDamage = true,
+            BreakOnDamage = breakOnDamage,
             NeedHand = injector.Comp.NeedHand,
             BreakOnHandChange = injector.Comp.BreakOnHandChange,
             MovementThreshold = injector.Comp.MovementThreshold,
@@ -310,9 +314,9 @@ public sealed partial class InjectorSystem : EntitySystem
         if (ShouldApplyHardsuitHyposprayDelay(injector, target, activeMode, doAfterTime))
         {
             doAfterTime = TimeSpan.FromSeconds(2);
-            breakOnWeightlessMove = true;
         }
 
+        breakOnWeightlessMove = !injector.Comp.SolutionName.Equals("hypospray", StringComparison.Ordinal);
         return true;
     }
 
