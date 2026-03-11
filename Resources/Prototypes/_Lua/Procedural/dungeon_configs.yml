@@ -134,27 +134,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
 
   - !type:DungeonEntranceDunGen
-    count: 1
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:AutoCablingDunGen
-    entity: Catwalk
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
 
 - type: dungeonConfig
   id: GateScatteredCaches
@@ -216,6 +256,9 @@
   id: GateTinyLab
   layers:
   - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
     presets:
     - GateTiny
     - GateTinySmall
@@ -233,6 +276,9 @@
   id: GateSmallLab
   layers:
   - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
     presets:
     - GateSmall
     - GatePair
