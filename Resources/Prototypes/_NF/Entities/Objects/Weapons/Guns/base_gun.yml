@@ -14,7 +14,10 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-#Lua added durability
+#Lua added durability and repairing
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
   - type: Damageable
   - type: Destructible
     thresholds:

@@ -63,13 +63,16 @@
     sound:
       collection: RiflesDrop
   # Goobstation edit end
-  #Lua: added durability
+#Lua added durability and repairing
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
   - type: Damageable
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 3000
+        damage: 5000
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -83,7 +86,7 @@
         acts: [ "Destruction" ]
   - type: ExaminableDamage
     messages: WindowMessages
-  #Lua end
+#Lua end
 
 
 - type: entity

@@ -69,7 +69,10 @@
     sound:
       collection: SMGDrop
   # Goobstation edit end
-  #Lua: added durability
+#Lua added durability and repairing
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
   - type: Damageable
   - type: Destructible
     thresholds:
@@ -89,8 +92,7 @@
         acts: [ "Destruction" ]
   - type: ExaminableDamage
     messages: WindowMessages
-    #Lua end
-
+#Lua end
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
