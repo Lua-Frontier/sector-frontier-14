@@ -63,6 +63,28 @@
     sound:
       collection: RiflesDrop
   # Goobstation edit end
+  #Lua: added durability
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExaminableDamage
+    messages: WindowMessages
+  #Lua end
+
 
 - type: entity
   categories: [ HideSpawnMenu ] # Frontier
