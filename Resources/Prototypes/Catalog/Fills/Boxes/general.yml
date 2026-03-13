@@ -209,6 +209,11 @@
       - state: box
       - state: writing
   - type: NFIngredient # Frontier: I suppose
+#Lua: added price
+  - type: StaticPrice
+    price: 250
+#end Lua
+
 
 - type: entity
   parent: BoxHug
