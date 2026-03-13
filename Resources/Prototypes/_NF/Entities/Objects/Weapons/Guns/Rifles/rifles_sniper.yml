@@ -9,3 +9,14 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+#Lua added toggling scope
+  - type: ItemToggle
+    onUse: false
+    onActivate: true
+  - type: ComponentToggler
+    components:
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 0.7
+#end Lua

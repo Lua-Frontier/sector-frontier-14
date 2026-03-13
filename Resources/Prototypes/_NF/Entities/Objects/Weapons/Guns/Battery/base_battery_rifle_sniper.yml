@@ -39,9 +39,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.1
-    sprintModifier: 0.1
+    # _Lua deleted SpeedModifiedOnWield
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 10
