@@ -12,12 +12,12 @@
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapOrion-P
+  id: ShuttleMapOrionP
   name: "Grand Orion-P"
   description: "Детальная карта корабля."
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Lua/Guidebook/shuttle_maps/Orion-P.rsi
-    state: orion-p
+    sprite: _Lua/Guidebook/shuttle_maps/OrionP.rsi
+    state: orionp
     scale: 2.1 , 2.1
