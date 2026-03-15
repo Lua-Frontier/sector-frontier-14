@@ -457,4 +457,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         string?[] parts = { comp.ShuttleName, comp.ShuttleNameSuffix };
         return string.Join(' ', parts.Where(it => it != null));
     }
+
+    public void ClearShuttleDeedReferencesOnMap(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<ShuttleDeedComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var deed, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            deed.ShuttleUid = null;
+            deed.DeedHolder = null;
+        }
+    }
 }

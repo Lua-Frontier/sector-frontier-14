@@ -146,6 +146,7 @@ public sealed partial class GunSystem
 
         if (CanEnable(uid, component))
             EnableGun(uid, component);
+        else if (!Transform(uid).Anchored && !HasComp<ApcPowerReceiverComponent>(uid)) component.CanFire = true;
     }
 
     private void OnGunShutdown(EntityUid uid, AutoShootGunComponent component, ComponentShutdown args)

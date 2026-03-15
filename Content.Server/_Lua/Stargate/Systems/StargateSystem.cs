@@ -20,6 +20,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
@@ -43,6 +44,8 @@ public sealed class StargateSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private readonly StargateWorldPersistenceSystem _persistence = default!;
 
     private const float GateLightFlickerRadius = 8f;
     private static readonly Color GatePortalLightColor = Color.FromHex("#88aaff");
@@ -191,11 +194,7 @@ public sealed class StargateSystem : EntitySystem
             var seed = _registry.ComputeSeed(symbols);
 
             if (!_registry.TryGetDestination(symbols, out var destMapUid, out _))
-            {
-                var result = _generator.CreateDestinationMap(symbols, seed);
-                destMapUid = result.MapUid;
-                _registry.RegisterDestination(symbols, destMapUid, seed);
-            }
+                EnsureDestinationCreated(symbols, seed, ref destMapUid);
 
             if (!TryComp<StargateDestinationComponent>(destMapUid, out var destComp) || destComp.GateUid == null)
             {
@@ -604,11 +603,7 @@ public sealed class StargateSystem : EntitySystem
         var seed = _registry.ComputeSeed(symbols);
 
         if (!_registry.TryGetDestination(symbols, out var destMapUid, out _))
-        {
-            var result = _generator.CreateDestinationMap(symbols, seed);
-            destMapUid = result.MapUid;
-            _registry.RegisterDestination(symbols, destMapUid, seed);
-        }
+            EnsureDestinationCreated(symbols, seed, ref destMapUid);
 
         if (!TryComp<StargateDestinationComponent>(destMapUid, out var destComp) || destComp.GateUid == null)
         {
@@ -695,6 +690,13 @@ public sealed class StargateSystem : EntitySystem
 
     private void OpenPortal(EntityUid sourceGate, StargateComponent sourceComp, EntityUid destGate, EntityUid destMapUid)
     {
+        if (!destGate.IsValid() || !Exists(destGate) || !destMapUid.IsValid() || !Exists(destMapUid))
+        {
+            Log.Warning("OpenPortal skipped: destination gate or map no longer valid (e.g. map was unloaded). Source: {Source}, destGate: {DestGate}, destMap: {DestMap}",
+                ToPrettyString(sourceGate), destGate, destMapUid);
+            return;
+        }
+
         var ev = new AttemptStargateOpenEvent(destMapUid, destGate);
         RaiseLocalEvent(destMapUid, ref ev);
 
@@ -873,5 +875,74 @@ public sealed class StargateSystem : EntitySystem
         );
 
         _ui.SetUiState(consoleUid, StargateConsoleUiKey.Key, state);
+    }
+
+    public void EnsureDestinationCreated(byte[] symbols, int seed, ref EntityUid destMapUid)
+    {
+        var loadedFromSave = false;
+        if (_cfg.GetCVar(CLVars.StargateWorldSavesEnabled))
+        {
+            var key = StargateAddressRegistrySystem.AddressToKey(symbols);
+            var path = StargateWorldPersistenceSystem.GetSavePath(key);
+            if (_persistence.SaveExists(key))
+            {
+                Log.Info("Loading StarGate world from save: key={Key}, path={Path}", key, path);
+                if (_persistence.TryLoadStargateWorld(path, out var loadResult))
+                {
+                    if (loadResult.Maps.Count == 1)
+                    {
+                        var mapEntity = loadResult.Maps.First();
+                        destMapUid = mapEntity.Owner;
+                        if (TryComp<StargateDestinationComponent>(destMapUid, out var destCompLoaded))
+                        {
+                            var gateOnMap = FindGateOnMap(destMapUid);
+                            if (gateOnMap != null)
+                            {
+                                destCompLoaded.GateUid = gateOnMap;
+                                destCompLoaded.Loaded = true;
+                                var consoleOnMap = FindConsoleLinkedToGate(gateOnMap.Value);
+                                if (consoleOnMap != null && TryComp<StargateConsoleComponent>(consoleOnMap, out var consoleComp)) consoleComp.LinkedStargate = gateOnMap;
+                                _registry.RegisterDestination(symbols, destMapUid, destCompLoaded.Seed);
+                                loadedFromSave = true;
+                                Log.Info("StarGate world loaded successfully from save: key={Key}, map={Map}", key, ToPrettyString(destMapUid));
+                            }
+                        }
+                    }
+                    if (!loadedFromSave)
+                    {
+                        Log.Error("Failed to restore StarGate world from save (missing gate or dest comp): key={Key}", key);
+                        _mapLoader.Delete(loadResult);
+                    }
+                }
+                else
+                {
+                    Log.Error("Failed to load StarGate world from save file: key={Key}, path={Path}", key, path);
+                }
+            }
+        }
+        if (!loadedFromSave)
+        {
+            var result = _generator.CreateDestinationMap(symbols, seed);
+            destMapUid = result.MapUid;
+            _registry.RegisterDestination(symbols, destMapUid, seed);
+        }
+    }
+
+    private EntityUid? FindGateOnMap(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<StargateComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
+        { if (xform.MapUid == mapUid) return uid; }
+        return null;
+    }
+
+    private EntityUid? FindConsoleLinkedToGate(EntityUid gateUid)
+    {
+        var mapUid = Transform(gateUid).MapUid;
+        if (mapUid == null) return null;
+        var query = AllEntityQuery<StargateConsoleComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
+        { if (xform.MapUid == mapUid) return uid; }
+        return null;
     }
 }

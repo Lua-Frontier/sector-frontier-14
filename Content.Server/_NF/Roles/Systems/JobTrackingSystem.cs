@@ -115,6 +115,17 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
         }
     }
 
+    public void ClearStationReferencesOnMap(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<JobTrackingComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var job, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            job.SpawnStation = EntityUid.Invalid;
+            job.Active = false;
+        }
+    }
+
     /// <summary>
     /// Returns the number of active players who match the requested Job Prototype Id.
     /// </summary>
