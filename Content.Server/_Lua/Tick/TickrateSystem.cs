@@ -4,6 +4,7 @@
 
 using JetBrains.Annotations;
 using Content.Shared.Lua.CLVar;
+using Prometheus;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
@@ -15,6 +16,14 @@ namespace Content.Server._Lua.Tick
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IGameTiming _time = default!;
+
+        private static readonly Gauge ServerFps = Metrics.CreateGauge(
+            "robust_server_fps",
+            "Server frames per second (FramesPerSecondAvg).");
+
+        private static readonly Gauge ServerTickrate = Metrics.CreateGauge(
+            "robust_server_tickrate",
+            "Current server tickrate (net.tickrate).");
 
         private TimeSpan? _lowFpsSince;
         private TimeSpan _lastLowFps;
@@ -50,17 +59,19 @@ namespace Content.Server._Lua.Tick
         {
             base.Update(frameTime);
             var now = _time.RealTime;
-            if (!_dynamicEnabled) return;
             var checkInterval = TimeSpan.FromSeconds(Math.Max(0.1f, _checkIntervalSeconds));
             if (now - _lastCheck < checkInterval) return;
             _lastCheck = now;
+            var srvfps = _time.FramesPerSecondAvg;
+            ServerFps.Set(srvfps);
+            ServerTickrate.Set(_cfg.GetCVar(CVars.NetTickrate));
+            if (!_dynamicEnabled) return;
             var minTickrate = Math.Min(_minTickrate, _maxTickrate);
             var maxTickrate = Math.Max(_minTickrate, _maxTickrate);
             var lowFpsMin = Math.Min(_lowFpsMin, _lowFpsMax);
             var lowFpsMax = Math.Max(_lowFpsMin, _lowFpsMax);
             var decreaseDelay = TimeSpan.FromSeconds(Math.Max(0.1f, _decreaseDelaySeconds));
             var increaseDelay = TimeSpan.FromSeconds(Math.Max(0.1f, _increaseDelaySeconds));
-            var srvfps = _time.FramesPerSecondAvg;
             if (srvfps >= lowFpsMin && srvfps <= lowFpsMax)
             {
                 if (_lowFpsSince == null) _lowFpsSince = now;
