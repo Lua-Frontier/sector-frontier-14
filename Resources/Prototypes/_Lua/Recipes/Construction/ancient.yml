@@ -1,0 +1,92 @@
+- type: construction
+  id: ScrewdriverOre
+  name: construction-ScrewdriverOre
+  description: construction-ScrewdriverOre-desc
+  graph: ScrewdriverOre
+  startNode: start
+  targetNode: done
+  category: construction-category-materials
+  objectType: Item
+  icon:
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: construction
+  id: WrenchOre
+  name: construction-WrenchOre
+  description: construction-WrenchOre-desc
+  graph: WrenchOre
+  startNode: start
+  targetNode: done
+  category: construction-category-materials
+  objectType: Item
+  icon:
+    sprite: _NF/Objects/Tools/wrench.rsi
+    state: icon
+
+- type: construction
+  id: PrimitiveCableApc
+  name: construction-PrimitiveCableApc
+  description: construction-PrimitiveCableApc-desc
+  graph: PrimitiveCableApc
+  startNode: start
+  targetNode: done
+  category: construction-category-materials
+  objectType: Item
+  icon:
+    sprite: Structures/Power/Cables/lv.rsi
+    state: coil
+
+- type: construction
+  id: AncientGeneratorBoardConstruct
+  name: construction-AncientGeneratorBoardConstruct
+  description: construction-AncientGeneratorBoardConstruct-desc
+  graph: AncientGeneratorBoard
+  startNode: start
+  targetNode: done
+  category: construction-category-machines
+  objectType: Item
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+
+- type: construction
+  id: AncientSmelterBoardConstruct
+  name: construction-AncientSmelterBoardConstruct
+  description: construction-AncientSmelterBoardConstruct-desc
+  graph: AncientSmelterBoard
+  startNode: start
+  targetNode: done
+  category: construction-category-machines
+  objectType: Item
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+
+- type: construction
+  id: AncientAutolatheBoardConstruct
+  name: construction-AncientAutolatheBoardConstruct
+  description: construction-AncientAutolatheBoardConstruct-desc
+  graph: AncientAutolatheBoard
+  startNode: start
+  targetNode: done
+  category: construction-category-machines
+  objectType: Item
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+
+- type: construction
+  id: AncientMachineFrameConstruct
+  name: construction-AncientMachineFrameConstruct
+  description: construction-AncientMachineFrameConstruct-desc
+  graph: AncientMachineFrame
+  startNode: start
+  targetNode: machine
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: Structures/Machines/parts.rsi
+    state: box_0

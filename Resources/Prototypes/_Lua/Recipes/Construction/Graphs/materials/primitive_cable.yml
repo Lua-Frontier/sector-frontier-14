@@ -1,0 +1,20 @@
+- type: constructionGraph
+  id: PrimitiveCableApc
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: SteelOre
+              amount: 1
+              doAfter: 1
+            - material: Coal
+              amount: 1
+              doAfter: 1
+            - material: SilverOre
+              amount: 1
+              doAfter: 1
+
+    - node: done
+      entity: CableApcStack1

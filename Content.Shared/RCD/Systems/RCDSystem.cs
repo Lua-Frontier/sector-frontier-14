@@ -12,6 +12,7 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
+using Content.Shared._Lua.Stargate;
 using Content.Shared._NF.GridAccess; // Frontier
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
@@ -171,6 +172,17 @@ public sealed class RCDSystem : EntitySystem
             }
         }
         // End Frontier: grid-access restrictions
+
+        if (component.OnlyWorksInStargateWorld && _net.IsServer)
+        {
+            var planetaryEv = new AttemptPlanetaryRCDUseEvent(gridUid.Value);
+            RaiseLocalEvent(planetaryEv);
+            if (!planetaryEv.Allowed)
+            {
+                _popup.PopupClient(Loc.GetString("planetary-rcd-only-stargate"), used, user);
+                return;
+            }
+        }
 
         if (!_net.IsServer)
             return;

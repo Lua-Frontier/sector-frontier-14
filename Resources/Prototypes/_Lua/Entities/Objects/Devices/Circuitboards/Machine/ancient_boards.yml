@@ -1,0 +1,84 @@
+- type: entity
+  id: AncientGeneratorCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата древнего генератора
+  description: Самодельная машинная плата из обожжённых руд. Позволяет собрать древний генератор.
+  components:
+    - type: Sprite
+      state: std_mod
+    - type: MachineBoard
+      prototype: AncientGenerator
+      stackRequirements:
+        SteelOre: 5
+        Coal: 3
+    - type: Construction
+      graph: AncientGeneratorBoard
+      node: done
+
+- type: entity
+  id: AncientSmelterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата древней плавильни
+  description: Самодельная машинная плата. Позволяет собрать древнюю плавильню.
+  components:
+    - type: Sprite
+      state: std_mod
+    - type: MachineBoard
+      prototype: AncientSmelter
+      stackRequirements:
+        SteelOre: 5
+        Coal: 5
+    - type: Construction
+      graph: AncientSmelterBoard
+      node: done
+
+- type: entity
+  id: AncientAutolatheCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата древнего автолата
+  description: Самодельная машинная плата. Позволяет собрать древний автолат.
+  components:
+    - type: Sprite
+      state: std_mod
+    - type: MachineBoard
+      prototype: AncientAutolathe
+      stackRequirements:
+        SteelOre: 8
+        SilverOre: 3
+    - type: Construction
+      graph: AncientAutolatheBoard
+      node: done
+
+- type: entity
+  id: AncientCircuitImprinterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата древнего принтера схем
+  description: Плата для древнего принтера схем. Позволяет печатать платы машин.
+  components:
+    - type: Sprite
+      state: std_mod
+    - type: MachineBoard
+      prototype: AncientCircuitImprinter
+      requirements:
+        MatterBin: 1
+        Manipulator: 1
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 100
+
+- type: entity
+  id: AncientResearchServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата древнего принтера чертежей
+  description: Плата для древнего принтера чертежей. Печатает чертежи для вставки в древний принтер схем.
+  components:
+    - type: Sprite
+      state: std_mod
+    - type: MachineBoard
+      prototype: AncientResearchServer
+      requirements:
+        MatterBin: 1
+        Manipulator: 1
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 100

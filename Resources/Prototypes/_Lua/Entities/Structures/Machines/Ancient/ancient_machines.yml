@@ -1,0 +1,122 @@
+- type: entity
+  id: AncientSmelter
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: древняя плавильня
+  description: Примитивная плавильня, переплавляет руды в листы. Работает только с базовыми материалами.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/ancient_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: perservedproto
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: perservedproto
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Machine
+    board: AncientSmelterCircuitboard
+  - type: MaterialStorage
+    ignoreColor: true
+    whitelist:
+      tags:
+        - Ore
+  - type: Lathe
+    idleState: perservedproto
+    runningState: perservedproto
+    staticPacks:
+    - AncientSmelterStatic
+  - type: ActivatableUI
+    key: enum.LatheUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machine
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: AncientAutolathe
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: древний автолат
+  description: Примитивный автолат из подручных материалов. Производит базовые предметы для выживания.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/ancient_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: perservedlathe
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: perservedlathe
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Machine
+    board: AncientAutolatheCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: Lathe
+    idleState: perservedlathe
+    runningState: perservedlathe
+    staticPacks:
+    - AncientAutolatheStatic
+  - type: ActivatableUI
+    key: enum.LatheUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machine
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 150
