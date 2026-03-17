@@ -1,3 +1,4 @@
+using Content.Server._Lua.Shipyard.Components;
 using Content.Server._Lua.Shipyard.Systems;
 using Content.Server._Lua.StationRecords.Components;
 using Content.Server._Lua.StationRecords.Systems;
@@ -42,6 +43,8 @@ public sealed class ShipOwnershipSystem : EntitySystem
         // Initialize tracking for ships
         SubscribeLocalEvent<ShipOwnershipComponent, ComponentStartup>(OnShipOwnershipStartup);
         SubscribeLocalEvent<ShipOwnershipComponent, ComponentShutdown>(OnShipOwnershipShutdown);
+
+        SubscribeLocalEvent<ParkedShuttleComponent, ComponentRemove>(OnShuttleUnparked);
 
         // Initialize the deletion check timer
         _nextDeletionCheckTime = _gameTiming.CurTime;
@@ -90,7 +93,7 @@ public sealed class ShipOwnershipSystem : EntitySystem
         // Log that we're checking for ships to delete
         Logger.DebugS("shipOwnership", $"Checking for abandoned ships to delete");
 
-        var onlineCrewMinds = GetOnlineCrewMinds();
+        var onlineCrewUserIds = GetOnlineCrewUserIds();
 
         // Check for ships that need to be deleted due to owner absence
         var query = EntityQueryEnumerator<ShipOwnershipComponent>();
@@ -111,7 +114,7 @@ public sealed class ShipOwnershipSystem : EntitySystem
                 continue;
             }
 
-            var onlineAssignedCrew = GetOnlineAssignedCrewNames(uid, onlineCrewMinds);
+            var onlineAssignedCrew = GetOnlineAssignedCrewNames(uid, onlineCrewUserIds);
             if (onlineAssignedCrew.Count > 0)
             {
                 StopDeletionTimer(uid, ownership, $"assigned crew online: {string.Join(", ", onlineAssignedCrew)}");
@@ -157,23 +160,22 @@ public sealed class ShipOwnershipSystem : EntitySystem
         _pendingDeletionShips.Clear();
     }
 
-    private HashSet<(NetUserId UserId, EntityUid MindUid)> GetOnlineCrewMinds()
+    private HashSet<NetUserId> GetOnlineCrewUserIds()
     {
-        var onlineMinds = new HashSet<(NetUserId UserId, EntityUid MindUid)>();
+        var onlineUsers = new HashSet<NetUserId>();
         foreach (var session in _playerManager.Sessions)
         {
             if (session.Status is not (SessionStatus.Connected or SessionStatus.InGame))
                 continue;
 
-            if (!_mind.TryGetMind(session.UserId, out var mindUid, out var mind) ||
-                !IsCrewMemberPresentInOwnBody(session, mind))
+            if (!_mind.TryGetMind(session.UserId, out _, out var mind) || mind.UserId != session.UserId)
             {
                 continue;
             }
 
-            onlineMinds.Add((session.UserId, mindUid.Value));
+            onlineUsers.Add(session.UserId);
         }
-        return onlineMinds;
+        return onlineUsers;
     }
 
     private void OnShipOwnershipStartup(EntityUid uid, ShipOwnershipComponent component, ComponentStartup args)
@@ -192,6 +194,15 @@ public sealed class ShipOwnershipSystem : EntitySystem
     private void OnShipOwnershipShutdown(EntityUid uid, ShipOwnershipComponent component, ComponentShutdown args)
     {
         // Nothing to do here for now
+    }
+
+    private void OnShuttleUnparked(EntityUid uid, ParkedShuttleComponent component, ref ComponentRemove args)
+    {
+        if (!TryComp<ShipOwnershipComponent>(uid, out var ownership)) return;
+        ownership.IsDeletionTimerRunning = false;
+        ownership.DeletionTimerStartTime = TimeSpan.Zero;
+        Dirty(uid, ownership);
+        Logger.DebugS("shipOwnership", $"Shuttle {ToPrettyString(uid)} was unparked; abandonment timer reset");
     }
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
@@ -234,24 +245,10 @@ public sealed class ShipOwnershipSystem : EntitySystem
         }
     }
 
-    private bool IsCrewMemberPresentInOwnBody(ICommonSession session, MindComponent mind)
-    {
-        if (mind.UserId != session.UserId)
-            return false;
-
-        if (mind.VisitingEntity != null)
-            return false;
-
-        if (mind.OwnedEntity is not { Valid: true } ownedEntity)
-            return false;
-
-        return session.AttachedEntity == ownedEntity;
-    }
-
-    private List<string> GetOnlineAssignedCrewNames(EntityUid shuttleUid, HashSet<(NetUserId UserId, EntityUid MindUid)> onlineCrewMinds)
+    private List<string> GetOnlineAssignedCrewNames(EntityUid shuttleUid, HashSet<NetUserId> onlineCrewUserIds)
     {
         var matches = new List<string>();
-        if (onlineCrewMinds.Count == 0)
+        if (onlineCrewUserIds.Count == 0)
             return matches;
 
         var query = EntityQueryEnumerator<IdCardComponent, ShipCrewAssignmentComponent>();
@@ -260,19 +257,16 @@ public sealed class ShipOwnershipSystem : EntitySystem
             if (assignment.ShuttleUid != shuttleUid)
                 continue;
 
-            _shipCrew.TryRefreshAssignmentIdentity(uid, assignment);
+            _shipCrew.ForceRefreshAssignmentIdentity(uid, assignment);
 
-            if (assignment.AssignedUserId is not { } assignedUserId ||
-                assignment.AssignedMindUid is not { Valid: true } assignedMindUid)
-            {
+            if (assignment.AssignedUserId is not { } assignedUserId)
                 continue;
-            }
 
             var assignedName = id.FullName ?? MetaData(uid).EntityName ?? string.Empty;
             if (string.IsNullOrWhiteSpace(assignedName))
                 continue;
 
-            if (onlineCrewMinds.Contains((assignedUserId, assignedMindUid)))
+            if (onlineCrewUserIds.Contains(assignedUserId))
                 matches.Add(assignedName);
         }
 
