@@ -30,7 +30,7 @@
       weight: 0.002
     - id: NFWallRockBluespace
       weight: 0.003
-    - id: NFRockElementalSpawner
+    - id: SalvageRockElementalSpawner
       weight: 0.06
     - id: WallRockChromiteMagmite #Lua
       weight: 0.001
@@ -53,87 +53,6 @@
     table: !type:NestedSelector
       tableId: NFRockMineralSoft
 
-- type: entityTable
-  id: NFRockMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallCobblebrick
-      weight: 0.06
-    - id: NFWallCobblebrickCoal
-      weight: 0.01
-    - id: NFWallCobblebrickTin
-      weight: 0.016
-    - id: NFWallCobblebrickQuartz
-      weight: 0.006
-    - id: NFWallCobblebrickSalt
-      weight: 0.006
-    - id: NFWallCobblebrickGold
-      weight: 0.001
-    - id: NFWallCobblebrickSilver
-      weight: 0.004
-    - id: NFWallCobblebrickPlasma
-      weight: 0.007
-    - id: NFWallCobblebrickUranium
-      weight: 0.004
-    - id: NFWallCobblebrickBananium
-      weight: 0.001
-    - id: NFWallCobblebrickArtifactFragment
-      weight: 0.001
-    - id: NFWallCobblebrickBluespace
-      weight: 0.0003
-    - id: NFCobblebrickElementalSpawner
-      weight: 0.006
-    - id: SalvageSpawnerMobMiningAsteroid #Lua
-      weight: 0.2
-
-- type: entity
-  id: NFRockMineralHard
-  parent: NFRockMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFRockMineralHard
-
-- type: entityTable
-  id: NFRockMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallCobblebrick
-      weight: 0.3
-    - id: NFWallCobblebrickArtifactFragment
-      weight: 0.1
-    - id: NFWallCobblebrickBluespace
-      weight: 0.3
-    - id: NFWallCobblebrickDiamond
-      weight: 0.3
-
-- type: entity
-  id: NFRockMineralHardRich
-  parent: NFRockMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFRockMineralHardRich
 # endregion Rock Spawners
 
 # region Ice Spawners
@@ -167,7 +86,7 @@
       weight: 0.002
     - id: NFWallRockSnowBluespace
       weight: 0.01
-    - id: NFSnowElementalSpawner
+    - id: SalvageSnowElementalSpawner
       weight: 0.07
 
 - type: entity
@@ -188,87 +107,6 @@
     table: !type:NestedSelector
       tableId: NFIceMineralSoft
 
-- type: entityTable
-  id: NFIceMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallIce
-      weight: 0.1
-    - id: NFWallIceCoal
-      weight: 0.002
-    - id: NFWallIceTin
-      weight: 0.004
-    - id: NFWallIceQuartz
-      weight: 0.001
-    - id: NFWallIceSalt
-      weight: 0.001
-    - id: NFWallIceGold
-      weight: 0.002
-    - id: NFWallIceSilver
-      weight: 0.002
-    - id: NFWallIcePlasma
-      weight: 0.005
-    - id: NFWallIceUranium
-      weight: 0.001
-    - id: NFWallIceBananium
-      weight: 0.0005
-    - id: NFWallIceArtifactFragment
-      weight: 0.004
-    # - id: NFWallIceDiamond
-    #   weight: 0.0002
-    - id: NFWallIceBluespace
-      weight: 0.001
-    - id: NFIceElementalSpawner
-      weight: 0.007
-
-- type: entity
-  id: NFIceMineralHard
-  parent: NFIceMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/ice.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFIceMineralHard
-
-- type: entityTable
-  id: NFIceMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallIce
-      weight: 0.3
-    - id: NFWallIceArtifactFragment
-      weight: 0.5
-    - id: NFWallIceBluespace
-      weight: 0.1
-    - id: NFWallIceDiamond
-      weight: 0.1
-
-- type: entity
-  id: NFIceMineralHardRich
-  parent: NFIceMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/ice.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFIceMineralHardRich
 # endregion Ice Spawners
 
 # region Andesite Spawners
@@ -302,7 +140,7 @@
       weight: 0.008
     - id: NFWallRockAndesiteBluespace
       weight: 0.002
-    - id: NFAndesiteElementalSpawner
+    - id: SalvageAndesiteElementalSpawner
       weight: 0.08
 
 - type: entity
@@ -323,87 +161,7 @@
     table: !type:NestedSelector
       tableId: NFAndesiteMineralSoft
 
-- type: entityTable
-  id: NFAndesiteMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallAndesiteCobblebrick
-      weight: 0.1
-    - id: NFWallAndesiteCobblebrickCoal
-      weight: 0.004
-    - id: NFWallAndesiteCobblebrickTin
-      weight: 0.008
-    - id: NFWallAndesiteCobblebrickQuartz
-      weight: 0.005
-    - id: NFWallAndesiteCobblebrickSalt
-      weight: 0.001
-    - id: NFWallAndesiteCobblebrickGold
-      weight: 0.001
-    - id: NFWallAndesiteCobblebrickSilver
-      weight: 0.001
-    - id: NFWallAndesiteCobblebrickPlasma
-      weight: 0.001
-    - id: NFWallAndesiteCobblebrickUranium
-      weight: 0.001
-    - id: NFWallAndesiteCobblebrickBananium
-      weight: 0.0005
-    - id: NFWallAndesiteCobblebrickArtifactFragment
-      weight: 0.001
-    # - id: NFWallAndesiteCobblebrickDiamond
-    #   weight: 0.0012
-    - id: NFWallAndesiteCobblebrickBluespace
-      weight: 0.0002
-    - id: NFAndesiteNFCobblebrickElementalSpawner
-      weight: 0.008
 
-- type: entity
-  id: NFAndesiteMineralHard
-  parent: NFAndesiteMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick_andesite.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFAndesiteMineralHard
-
-- type: entityTable
-  id: NFAndesiteMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallAndesiteCobblebrick
-      weight: 0.3
-    - id: NFWallAndesiteCobblebrickArtifactFragment
-      weight: 0.1
-    - id: NFWallAndesiteCobblebrickBluespace
-      weight: 0.1
-    - id: NFWallAndesiteCobblebrickDiamond
-      weight: 0.5
-
-- type: entity
-  id: NFAndesiteMineralHardRich
-  parent: NFAndesiteMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick_andesite.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFAndesiteMineralHardRich
 # endregion Andesite Spawners
 
 # region Basalt Spawners
@@ -437,7 +195,7 @@
       weight: 0.005
     - id: NFWallRockBasaltBluespace
       weight: 0.005
-    - id: NFBasaltElementalSpawner
+    - id: SalvageBasaltElementalSpawner
       weight: 0.05
 
 - type: entity
@@ -458,87 +216,6 @@
     table: !type:NestedSelector
       tableId: NFBasaltMineralSoft
 
-- type: entityTable
-  id: NFBasaltMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallBasaltCobblebrick
-      weight: 0.08
-    - id: NFWallBasaltCobblebrickCoal
-      weight: 0.002
-    - id: NFWallBasaltCobblebrickTin
-      weight: 0.005
-    - id: NFWallBasaltCobblebrickQuartz
-      weight: 0.001
-    - id: NFWallBasaltCobblebrickSalt
-      weight: 0.001
-    - id: NFWallBasaltCobblebrickGold
-      weight: 0.001
-    - id: NFWallBasaltCobblebrickSilver
-      weight: 0.003
-    - id: NFWallBasaltCobblebrickPlasma
-      weight: 0.01
-    - id: NFWallBasaltCobblebrickUranium
-      weight: 0.005
-    - id: NFWallBasaltCobblebrickBananium
-      weight: 0.0005
-    - id: NFWallBasaltCobblebrickArtifactFragment
-      weight: 0.001
-    # - id: NFWallBasaltCobblebrickDiamond
-    #   weight: 0.0005
-    - id: NFWallBasaltCobblebrickBluespace
-      weight: 0.0005
-    - id: NFBasaltNFCobblebrickElementalSpawner
-      weight: 0.005
-
-- type: entity
-  id: NFBasaltMineralHard
-  parent: NFBasaltMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick_basalt.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFBasaltMineralHard
-
-- type: entityTable
-  id: NFBasaltMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallBasaltCobblebrick
-      weight: 0.3
-    - id: NFWallBasaltCobblebrickArtifactFragment
-      weight: 0.25
-    - id: NFWallBasaltCobblebrickBluespace
-      weight: 0.25
-    - id: NFWallBasaltCobblebrickDiamond
-      weight: 0.2
-
-- type: entity
-  id: NFBasaltMineralHardRich
-  parent: NFBasaltMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick_basalt.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFBasaltMineralHardRich
 # endregion Basalt Spawners
 
 # region Sand Spawners
@@ -572,7 +249,7 @@
       weight: 0.002
     - id: NFWallRockSandBluespace
       weight: 0.002
-    - id: NFSandElementalSpawner
+    - id: SalvageSandElementalSpawner
       weight: 0.05
 
 - type: entity
@@ -593,87 +270,6 @@
     table: !type:NestedSelector
       tableId: NFSandMineralSoft
 
-- type: entityTable
-  id: NFSandMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallSandstone
-      weight: 0.08
-    - id: NFWallSandstoneCoal
-      weight: 0.001
-    - id: NFWallSandstoneTin
-      weight: 0.0015
-    - id: NFWallSandstoneQuartz
-      weight: 0.012
-    - id: NFWallSandstoneSalt
-      weight: 0.001
-    - id: NFWallSandstoneSilver
-      weight: 0.008
-    - id: NFWallSandstoneGold
-      weight: 0.007
-    - id: NFWallSandstonePlasma
-      weight: 0.001
-    - id: NFWallSandstoneUranium
-      weight: 0.001
-    - id: NFWallSandstoneBananium
-      weight: 0.001
-    - id: NFWallSandstoneArtifactFragment
-      weight: 0.001
-    # - id: NFWallSandstoneDiamond
-    #   weight: 0.0002
-    - id: NFWallSandstoneBluespace
-      weight: 0.0002
-    - id: NFSandstoneNFCobblebrickElementalSpawner
-      weight: 0.008
-
-- type: entity
-  id: NFSandMineralHard
-  parent: NFSandMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/sandstone.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFSandMineralHard
-
-- type: entityTable
-  id: NFSandMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallBasaltCobblebrick
-      weight: 0.3
-    - id: NFWallBasaltCobblebrickArtifactFragment
-      weight: 0.3
-    - id: NFWallBasaltCobblebrickBluespace
-      weight: 0.1
-    - id: NFWallBasaltCobblebrickDiamond
-      weight: 0.3
-
-- type: entity
-  id: NFSandMineralHardRich
-  parent: NFSandMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/sandstone.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFSandMineralHardRich
 # endregion Sand Spawners
 
 # region Chromite Spawners
@@ -707,7 +303,7 @@
       weight: 0.005
     - id: NFWallRockChromiteBluespace
       weight: 0.0025
-    - id: NFChromiteElementalSpawner
+    - id: SalvageChromiteElementalSpawner
       weight: 0.05
 
 - type: entity
@@ -728,87 +324,6 @@
     table: !type:NestedSelector
       tableId: NFChromiteMineralSoft
 
-- type: entityTable
-  id: NFChromiteMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallChromiteCobblebrick
-      weight: 0.08
-    - id: NFWallChromiteCobblebrickCoal
-      weight: 0.001
-    - id: NFWallChromiteCobblebrickTin
-      weight: 0.003
-    - id: NFWallChromiteCobblebrickQuartz
-      weight: 0.001
-    - id: NFWallChromiteCobblebrickSalt
-      weight: 0.004
-    - id: NFWallChromiteCobblebrickGold
-      weight: 0.001
-    - id: NFWallChromiteCobblebrickSilver
-      weight: 0.001
-    - id: NFWallChromiteCobblebrickPlasma
-      weight: 0.004
-    - id: NFWallChromiteCobblebrickUranium
-      weight: 0.009
-    - id: NFWallChromiteCobblebrickBananium
-      weight: 0.0015
-    - id: NFWallChromiteCobblebrickArtifactFragment
-      weight: 0.001
-    # - id: NFWallChromiteCobblebrickDiamond
-    #   weight: 0.0005
-    - id: NFWallChromiteCobblebrickBluespace
-      weight: 0.00025
-    - id: NFChromiteNFCobblebrickElementalSpawner
-      weight: 0.005
-
-- type: entity
-  id: NFChromiteMineralHard
-  parent: NFChromiteMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick_chromite.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFChromiteMineralHard
-
-- type: entityTable
-  id: NFChromiteMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallBasaltCobblebrick
-      weight: 0.3
-    - id: NFWallBasaltCobblebrickArtifactFragment
-      weight: 0.25
-    - id: NFWallBasaltCobblebrickBluespace
-      weight: 0.25
-    - id: NFWallBasaltCobblebrickDiamond
-      weight: 0.2
-
-- type: entity
-  id: NFChromiteMineralHardRich
-  parent: NFChromiteMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/cobblebrick_chromite.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFChromiteMineralHardRich
 # endregion Chromite Spawners
 
 # region AsteroidRock Spawners
@@ -863,87 +378,6 @@
     table: !type:NestedSelector
       tableId: NFAsteroidMineralSoft
 
-- type: entityTable
-  id: NFAsteroidMineralHard
-  table: !type:GroupSelector
-    children:
-    - id: NFWallNecropolis
-      weight: 0.1
-    - id: NFWallNecropolisCoal
-      weight: 0.004
-    - id: NFWallNecropolisTin
-      weight: 0.006
-    - id: NFWallNecropolisQuartz
-      weight: 0.01
-    - id: NFWallNecropolisSalt
-      weight: 0.015
-    - id: NFWallNecropolisGold
-      weight: 0.006
-    - id: NFWallNecropolisSilver
-      weight: 0.003
-    - id: NFWallNecropolisPlasma
-      weight: 0.007
-    - id: NFWallNecropolisUranium
-      weight: 0.004
-    - id: NFWallNecropolisBananium
-      weight: 0.004
-    - id: NFWallNecropolisArtifactFragment
-      weight: 0.001
-    - id: NFWallNecropolisBluespace
-      weight: 0.0002
-    # - id: NFWallNecropolisDiamond
-    #   weight: 0.001
-    - id: NFNecropolisElementalSpawner
-      weight: 0.008
-
-- type: entity
-  id: NFAsteroidMineralHard
-  parent: NFAsteroidMineralSoft
-  suffix: Hard
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/necropolis.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFAsteroidMineralHard
-
-- type: entityTable
-  id: NFAsteroidMineralHardRich
-  table: !type:GroupSelector
-    children:
-    - id: NFWallNecropolis
-      weight: 0.3
-    - id: NFWallNecropolisArtifactFragment
-      weight: 0.2
-    - id: NFWallNecropolisBluespace
-      weight: 0.25
-    - id: NFWallNecropolisDiamond
-      weight: 0.25
-
-- type: entity
-  id: NFAsteroidMineralHardRich
-  parent: NFAsteroidMineralSoft
-  suffix: Hard, Rich
-  components:
-  - type: Sprite
-    layers:
-    - sprite: Structures/Walls/necropolis.rsi
-      state: full
-    - state: green
-    - sprite: Objects/Materials/materials.rsi
-      state: diamond
-    - sprite: Objects/Tools/handdrilldiamond.rsi
-      state: handdrill
-  - type: EntityTableSpawner
-    offset: 0
-    table: !type:NestedSelector
-      tableId: NFAsteroidMineralHardRich
 # endregion AsteroidRock Spawners
 
 # region Scrap Spawners
@@ -977,7 +411,7 @@
       weight: 0.002
     - id: NFWallRockScrapPileBluespace
       weight: 0.003
-    - id: NFAsteroidScrapBotWallSpawner
+    - id: NFAsteroidScrapBotSpawner
       weight: 0.05
 
 - type: entity
