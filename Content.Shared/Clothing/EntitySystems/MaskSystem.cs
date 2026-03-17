@@ -162,4 +162,10 @@ public sealed class MaskSystem : EntitySystem
         mask.Comp.IsToggleable = toggleable;
         Dirty(mask);
     }
+
+    public void ClearActionEntity(EntityUid uid, MaskComponent comp)
+    {
+        comp.ToggleActionEntity = null;
+        Dirty(uid, comp);
+    }
 }

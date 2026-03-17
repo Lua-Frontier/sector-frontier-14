@@ -3625,3 +3625,55 @@ Entries:
   id: 254
   time: '2026-03-11T13:36:17.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/503
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен планетарный RCD
+    - type: Add
+      message: Добавлен экстренный резак скал для разработки горных пород
+    - type: Add
+      message: >-
+        Добавлен крафт древнего автолата, переработчика руд(плавильня), принтера
+        схем, принтера чертежей, генератор на угле (отвёртка и гаечный ключ а
+        так же 3 схемы собираются через меню строительства)
+    - type: Add
+      message: Добавлен плазменный и экстренный резак в утильмаг
+    - type: Tweak
+      message: Улучшена генерация комплексов
+    - type: Tweak
+      message: >-
+        Миры звёздных врат теперь сохраняются в раунде, это тест сохранений (не
+        между раундами)
+  id: 255
+  time: '2026-03-16T16:38:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/510
+- author: k1bitka
+  changes:
+    - type: Add
+      message: Протокинетический дробовик
+    - type: Add
+      message: Врат-О-Мат, ценники у некоторых предметов для Врат-О-Мата
+    - type: Add
+      message: Прочность огнестрельных оружий, возможность отремонтировать их сваркой
+    - type: Tweak
+      message: Лодауты, пул рас для спавна КСО, автоинъекторы в аплинках
+    - type: Fix
+      message: неподходящие магазины в аплинке КСО
+    - type: Remove
+      message: >-
+        ящики патронов, резиновый тип магазинов и спидлоадеров, импланты
+        раствора, микро и макро бомбы в аплинках КСО 
+  id: 256
+  time: '2026-03-17T09:43:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/508
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Gungnir, с 2 220мм-Сайбрексами и 4 Дравонами-57мм, а так
+        же с высокомощным сервером вооружения на борту.
+    - type: Remove
+      message: Удалён шаттл Vega.
+  id: 257
+  time: '2026-03-17T09:47:08.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/499

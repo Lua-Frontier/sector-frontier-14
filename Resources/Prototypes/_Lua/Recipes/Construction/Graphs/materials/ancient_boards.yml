@@ -1,0 +1,84 @@
+- type: constructionGraph
+  id: AncientGeneratorBoard
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: SteelOre
+              amount: 100
+              doAfter: 2
+            - material: SilverOre
+              amount: 100
+              doAfter: 2
+            - material: Coal
+              amount: 100
+              doAfter: 1
+    - node: done
+      entity: AncientGeneratorCircuitboard
+
+- type: constructionGraph
+  id: AncientSmelterBoard
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: SteelOre
+              amount: 100
+              doAfter: 2
+            - material: Coal
+              amount: 200
+              doAfter: 2
+    - node: done
+      entity: AncientSmelterCircuitboard
+
+- type: constructionGraph
+  id: ScrewdriverOre
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: SteelOre
+              amount: 3
+              doAfter: 3
+    - node: done
+      entity: Screwdriver
+
+- type: constructionGraph
+  id: WrenchOre
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: SteelOre
+              amount: 3
+              doAfter: 3
+    - node: done
+      entity: Wrench
+
+- type: constructionGraph
+  id: AncientAutolatheBoard
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: done
+          steps:
+            - material: SteelOre
+              amount: 200
+              doAfter: 2
+            - material: SilverOre
+              amount: 100
+              doAfter: 2
+            - material: Coal
+              amount: 100
+              doAfter: 1
+    - node: done
+      entity: AncientAutolatheCircuitboard

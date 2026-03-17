@@ -196,6 +196,7 @@ public sealed class HTNSystem : EntitySystem
         var updates = 0;
         while (query.MoveNext(out var uid, out _, out var comp))
         {
+            if (!comp.Blackboard.ContainsKey(NPCBlackboard.Owner)) comp.Blackboard.SetValue(NPCBlackboard.Owner, uid);
             // If we're over our max count or it's not MapInit then ignore the NPC.
             if (updates >= maxUpdates)
             {

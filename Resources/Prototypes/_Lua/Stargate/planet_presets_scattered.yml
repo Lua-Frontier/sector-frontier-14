@@ -5,13 +5,9 @@
   - GateGrassSnow
   - GateGrassDesert
   - GateGrassCaves
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateScatteredLabs
-  - GateScatteredMixed
-  - GateScatteredHooks
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
   worldRadiusMin: 214
@@ -33,11 +29,9 @@
   - Caves
   - GateCavesLava
   - GateCavesGrass
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateScatteredOutposts
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 100
   worldRadiusMin: 199
@@ -58,10 +52,9 @@
   - Snow
   - GateSnowCaves
   - GateSnowLava
-  dungeonConfigs:
-  - GateScatteredCaches
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 90
   worldRadiusMin: 199
@@ -83,10 +76,9 @@
   - LowDesert
   - GateDesertCaves
   - GateDesertShadow
-  dungeonConfigs:
-  - GateScatteredOutposts
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
   worldRadiusMin: 214
@@ -106,10 +98,9 @@
   - Snow
   - GateSnowCaves
   - GateSnowLava
-  dungeonConfigs:
-  - NFSnowyLabs
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 120
   worldRadiusMin: 203
@@ -132,11 +123,9 @@
   - GateShadowLava
   - GateShadowSnow
   - GateCavesShadow
-  dungeonConfigs:
-  - NFHaunted
-  - NFVirologyLab
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 100
   worldRadiusMin: 217
@@ -162,12 +151,9 @@
   - GateGrassSnow
   - GateGrassDesert
   - GateCavesGrass
-  dungeonConfigs:
-  - NFExperiment
-  - NFFactoryDorms
-  - NFMedSci
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 140
   worldRadiusMin: 199

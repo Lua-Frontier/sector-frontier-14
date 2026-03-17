@@ -125,6 +125,7 @@ namespace Content.Server.NPC.Systems
                 return;
             }
 
+            if (!component.Blackboard.ContainsKey(NPCBlackboard.Owner)) component.Blackboard.SetValue(NPCBlackboard.Owner, uid);
             if (component.SleepBodyType is { } originalType)
             {
                 if (TryComp<PhysicsComponent>(uid, out var body))

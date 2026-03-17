@@ -4,12 +4,9 @@
   - Snow
   - GateSnowCaves
   - GateSnowLava
-  dungeonConfigs:
-  - GateTinyOutpost
-  - GateWideShelter
-  - GateDoubleStack
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 30
   dungeonDistanceMax: 70
   worldRadiusMin: 190
@@ -28,12 +25,11 @@
   - Shadow
   - GateShadowLava
   - GateCavesShadow
-  dungeonConfigs:
-  - GateTinyOutpost
+  dungeonPool: true
   dungeonMobDensity: 12
   dungeonMobCap: 40
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 25
   dungeonDistanceMax: 60
   worldRadiusMin: 160
@@ -52,12 +48,9 @@
   - Caves
   - GateCavesLava
   - GateCavesGrass
-  dungeonConfigs:
-  - GateTinyOutpost
-  - GateSmallOutpost
-  - GateCompactCache
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 30
   dungeonDistanceMax: 70
   worldRadiusMin: 190
@@ -75,13 +68,9 @@
   - GateGrassSnow
   - GateGrassDesert
   - GateGrassLava
-  dungeonConfigs:
-  - GateSmallOutpost
-  - GateSmallLab
-  - GateTeeLab
-  - GateHookOutpost
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 100
   worldRadiusMin: 194
@@ -103,11 +92,9 @@
   - GateLavaCaves
   - GateLavaShadow
   - GateLavaGrass
-  dungeonConfigs:
-  - GateSmallOutpost
-  - GateMediumOutpost
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 35
   dungeonDistanceMax: 80
   worldRadiusMin: 201
@@ -132,11 +119,9 @@
   - LowDesert
   - GateDesertCaves
   - GateDesertShadow
-  dungeonConfigs:
-  - GateTinyLab
-  - GateSmallLab
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 90
   worldRadiusMin: 229

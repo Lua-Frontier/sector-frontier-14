@@ -6,6 +6,10 @@ using Content.Server._Lua.Stargate.Components;
 using Content.Server._Lua.Stargate.Events;
 using Content.Shared._Lua.Stargate.Components;
 using Content.Shared.Ghost;
+using Content.Shared.Lua.CLVar;
+using Content.Shared.Mind.Components;
+using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -16,26 +20,40 @@ namespace Content.Server._Lua.Stargate.Systems;
 
 public sealed class StargateMapFreezeSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly StargateAddressRegistrySystem _registry = default!;
+    [Dependency] private readonly StargateWorldPersistenceSystem _persistence = default!;
 
-    private static readonly TimeSpan FreezeDelay = TimeSpan.FromSeconds(30);
     private float _checkAccumulator;
-    private const float CheckInterval = 10f;
 
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<GhostComponent> _ghostQuery;
+    private EntityQuery<MindContainerComponent> _mindContainerQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<StargatePortalTimerComponent> _portalTimerQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+
+    private static readonly HashSet<string> CryoPodPrototypeIds = new(StringComparer.Ordinal)
+    {
+        "MachineCryoSleepPod",
+        "MachineCryoSleepPodPlayer",
+        "MachineCryoSleepPodFallback",
+        "CryogenicSleepUnit",
+        "CryogenicSleepUnitSpawner",
+        "CryogenicSleepUnitSpawnerLateJoin",
+    };
 
     public override void Initialize()
     {
         base.Initialize();
         _actorQuery = GetEntityQuery<ActorComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
+        _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _portalTimerQuery = GetEntityQuery<StargatePortalTimerComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
@@ -74,12 +92,15 @@ public sealed class StargateMapFreezeSystem : EntitySystem
         base.Update(frameTime);
 
         _checkAccumulator += frameTime;
-        if (_checkAccumulator < CheckInterval)
+        var checkIntervalSeconds = _cfg.GetCVar(CLVars.StargateWorldFreezeCheckIntervalSeconds);
+        if (_checkAccumulator < checkIntervalSeconds)
             return;
 
-        _checkAccumulator -= CheckInterval;
+        _checkAccumulator -= checkIntervalSeconds;
 
         var curTime = _timing.CurTime;
+        var freezeDelaySeconds = _cfg.GetCVar(CLVars.StargateWorldFreezeDelaySeconds);
+        var freezeDelay = TimeSpan.FromSeconds(freezeDelaySeconds);
         var query = AllEntityQuery<StargateDestinationComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var dest, out _))
@@ -97,8 +118,14 @@ public sealed class StargateMapFreezeSystem : EntitySystem
             {
                 dest.EmptySince ??= curTime;
 
-                if (!dest.Frozen && curTime - dest.EmptySince.Value >= FreezeDelay)
+                if (!dest.Frozen && curTime - dest.EmptySince.Value >= freezeDelay)
                     Freeze(uid, dest);
+                else if (dest.Frozen && _cfg.GetCVar(CLVars.StargateWorldSavesEnabled))
+                {
+                    var saveAfterSeconds = _cfg.GetCVar(CLVars.StargateWorldSaveAfterFrozenMinutes) * 60;
+                    var totalEmptySeconds = (curTime - dest.EmptySince.Value).TotalSeconds;
+                    if (totalEmptySeconds >= freezeDelay.TotalSeconds + saveAfterSeconds) TrySaveAndUnloadWorld(uid, dest);
+                }
             }
         }
     }
@@ -129,7 +156,29 @@ public sealed class StargateMapFreezeSystem : EntitySystem
         return false;
     }
 
-    private void Freeze(EntityUid mapUid, StargateDestinationComponent dest)
+    private bool MapHasUnsettledMind(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<MindContainerComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var mindContainer, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            if (mindContainer.HasMind) return true;
+        }
+        return false;
+    }
+
+    private bool MapHasCryoPod(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<MetaDataComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var meta, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            if (meta.EntityPrototype?.ID is { } id && CryoPodPrototypeIds.Contains(id)) return true;
+        }
+        return false;
+    }
+
+    public void Freeze(EntityUid mapUid, StargateDestinationComponent dest)
     {
         _meta.SetEntityPaused(mapUid, true);
 
@@ -142,21 +191,32 @@ public sealed class StargateMapFreezeSystem : EntitySystem
         dest.Frozen = true;
     }
 
-    private void Unfreeze(EntityUid mapUid, StargateDestinationComponent dest)
+    public void Unfreeze(EntityUid mapUid, StargateDestinationComponent dest)
     {
         _meta.SetEntityPaused(mapUid, false);
 
         if (_xformQuery.TryGetComponent(mapUid, out var xform))
             RecursiveSetPaused(xform, false, null);
 
+        var hadFrozenCollidables = dest.FrozenCollidables.Count > 0;
         foreach (var uid in dest.FrozenCollidables)
         {
-            _physics.SetCanCollide(uid, true);
+            if (_physicsQuery.TryGetComponent(uid, out var body)) _physics.SetCanCollide(uid, true, body: body);
         }
-
         dest.FrozenCollidables.Clear();
+        if (!hadFrozenCollidables && _xformQuery.TryGetComponent(mapUid, out var mapXform)) RecursiveRestoreCollision(mapXform);
         dest.Frozen = false;
         dest.EmptySince = null;
+    }
+
+    private void RecursiveRestoreCollision(TransformComponent xform)
+    {
+        var enumerator = xform.ChildEnumerator;
+        while (enumerator.MoveNext(out var child))
+        {
+            if (_physicsQuery.TryGetComponent(child, out var body) && !body.CanCollide) _physics.SetCanCollide(child, true, body: body);
+            if (_xformQuery.TryGetComponent(child, out var childXform)) RecursiveRestoreCollision(childXform);
+        }
     }
 
     private void RecursiveSetPaused(TransformComponent xform, bool paused, HashSet<EntityUid>? frozenCollidables)
@@ -178,5 +238,19 @@ public sealed class StargateMapFreezeSystem : EntitySystem
             if (_xformQuery.TryGetComponent(child, out var childXform))
                 RecursiveSetPaused(childXform, paused, frozenCollidables);
         }
+    }
+
+    public void TrySaveAndUnloadWorld(EntityUid mapUid, StargateDestinationComponent dest)
+    {
+        var address = dest.Address;
+        if (address == null || address.Length == 0) return;
+        if (MapHasUnsettledMind(mapUid)) return;
+        if (MapHasCryoPod(mapUid)) return;
+        var key = StargateAddressRegistrySystem.AddressToKey(address);
+        var path = StargateWorldPersistenceSystem.GetSavePath(key);
+        if (!_persistence.TrySaveStargateWorld(mapUid, path)) return;
+        _registry.UnregisterDestination(address);
+        var mapId = Transform(mapUid).MapID;
+        _mapSystem.DeleteMap(mapId);
     }
 }
