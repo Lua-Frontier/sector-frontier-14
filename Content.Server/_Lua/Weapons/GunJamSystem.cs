@@ -65,7 +65,9 @@ public sealed class GunJamSystem : SharedGunJamSystem
         if (destroyThreshold <= FixedPoint2.Zero || destroyThreshold == FixedPoint2.MaxValue)
             return;
         var damageRatio = (damageable.TotalDamage / destroyThreshold).Float();
-        var jamChance = damageRatio * damageRatio * ent.Comp.MaxJamChance;
+        if (damageRatio < ent.Comp.JamThreshold) return;
+        var scaled = (damageRatio - ent.Comp.JamThreshold) / (1f - ent.Comp.JamThreshold);
+        var jamChance = scaled * scaled * ent.Comp.MaxJamChance;
 
         if (!_random.Prob(jamChance))
             return;

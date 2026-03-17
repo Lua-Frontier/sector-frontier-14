@@ -10,7 +10,10 @@ namespace Content.Shared._Lua.Weapons;
 public sealed partial class GunJamComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float MaxJamChance = 0.5f;
+    public float MaxJamChance = 0.05f;
+
+    [DataField, AutoNetworkedField]
+    public float JamThreshold = 0.1f;
 
     [DataField, AutoNetworkedField]
     public float DamagePerShot = 5f;
