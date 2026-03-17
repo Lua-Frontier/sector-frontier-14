@@ -7,13 +7,13 @@
         - to: done
           steps:
             - material: SteelOre
-              amount: 100
+              amount: 30
               doAfter: 2
             - material: SilverOre
-              amount: 100
+              amount: 28
               doAfter: 2
             - material: Coal
-              amount: 100
+              amount: 21
               doAfter: 1
     - node: done
       entity: AncientGeneratorCircuitboard
@@ -27,10 +27,10 @@
         - to: done
           steps:
             - material: SteelOre
-              amount: 100
+              amount: 30
               doAfter: 2
             - material: Coal
-              amount: 200
+              amount: 30
               doAfter: 2
     - node: done
       entity: AncientSmelterCircuitboard
@@ -72,13 +72,13 @@
         - to: done
           steps:
             - material: SteelOre
-              amount: 200
+              amount: 28
               doAfter: 2
             - material: SilverOre
-              amount: 100
+              amount: 24
               doAfter: 2
             - material: Coal
-              amount: 100
+              amount: 20
               doAfter: 1
     - node: done
       entity: AncientAutolatheCircuitboard
