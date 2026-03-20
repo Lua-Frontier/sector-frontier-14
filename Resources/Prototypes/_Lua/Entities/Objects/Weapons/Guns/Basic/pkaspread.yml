@@ -1,7 +1,7 @@
 # region PKA Shotgun
 - type: entity
   id: PkaShotgun
-  parent: [ WeaponProtoKineticAcceleratorBase, BaseGunWieldable ] 
+  parent: WeaponProtoKineticAcceleratorBase
   name: протокинетический дробовик
   description: Стреляет шквалом сильных протокинетических снарядов, способных ломать породу, на короткое расстояние
   components:
@@ -22,29 +22,14 @@
     proto: BulletKineticSpread
     capacity: 3
     count: 3
-  - type: GunRequiresWield
   - type: StaticPrice 
     price: 460
-
-# region Projectile
-- type: entity
-  id: ProtoShotgunProjectile
-  parent: BulletKinetic
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    impactEffect: BulletImpactEffectKinetic
-    damage:
-      types:
-        Blunt: 15
-        Structural: 150
-
 # region Spreading
 - type: entity
   id: BulletKineticSpread
   categories: [ HideSpawnMenu ]
   components:
   - type: ProjectileSpread
-    proto: ProtoShotgunProjectile
+    proto: NFBulletKineticHighPower
     count: 6
-    spread: 40
+    spread: 20

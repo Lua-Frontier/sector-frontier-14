@@ -1,13 +1,12 @@
 - type: entity
   abstract: true
   id: NFBaseSoftOreVein
-# _Lua Deleted Gathering
-  # components:
-  # - type: OreVein
-    # gatherDestructionWhitelist:
-      # components:
-      # - MiningGatheringHard
-# end _Lua
+  components:
+  - type: OreVein
+    gatherDestructionWhitelist:
+      components:
+      - MiningGatheringHard
+
 - type: entity
   parent: [NFBaseSoftOreVein, AsteroidRock]
   id: NFAsteroidRockOre

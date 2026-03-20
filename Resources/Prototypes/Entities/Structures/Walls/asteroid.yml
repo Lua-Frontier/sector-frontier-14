@@ -33,13 +33,13 @@
       state: rock_asteroid_west
   - type: MiningScannerViewable
   - type: Damageable
-    damageContainer: StructuralInorganic # _Lua: StructuralInorganic>Inorganic
-    damageModifierSet: Rock # _Lua: Rock>Metallic
+    damageContainer: Inorganic # Frontier: StructuralInorganic<Inorganic
+    damageModifierSet: Metallic # Frontier: Rock<Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120 # _Lua: 120>150
+        damage: 150 # Frontier: 120<150
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -59,16 +59,14 @@
         layer:
         - WallLayer
         density: 2000
-  # _Lua: deleted Gathering
-  # - type: SoundOnGather # Frontier
-  # - type: Gatherable # Frontier
-    # toolWhitelist: # Frontier
-      # tags: # Frontier
-      # - Pickaxe # Frontier
-      # components: # Frontier
-      # - MiningGatheringHard # Frontier
-      # - MiningGatheringSoft # Frontier
-  # end _Lua
+  - type: SoundOnGather # Frontier
+  - type: Gatherable # Frontier
+    toolWhitelist: # Frontier
+      tags: # Frontier
+      - Pickaxe # Frontier
+      components: # Frontier
+      - MiningGatheringHard # Frontier
+      - MiningGatheringSoft # Frontier
 
 - type: entity
   abstract: true
