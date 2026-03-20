@@ -20,7 +20,21 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<string> TransferApiSecret = CVarDef.Create("transfer.api.secret", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
         public static readonly CVarDef<bool> NetDynamicTick =
-            CVarDef.Create("net.dynamictick", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("net.dynamictick.enabled", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+        public static readonly CVarDef<int> NetDynamicTickMinTickrate =
+            CVarDef.Create("net.dynamictick.min_tickrate", 10, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<int> NetDynamicTickMaxTickrate =
+            CVarDef.Create("net.dynamictick.max_tickrate", 30, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickCheckInterval =
+            CVarDef.Create("net.dynamictick.check_interval", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickLowFpsMin =
+            CVarDef.Create("net.dynamictick.low_fps_min", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickLowFpsMax =
+            CVarDef.Create("net.dynamictick.low_fps_max", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickDecreaseDelay =
+            CVarDef.Create("net.dynamictick.decrease_delay", 15f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickIncreaseDelay =
+            CVarDef.Create("net.dynamictick.increase_delay", 1200f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> TransferMaxAmountPerOperation =
             CVarDef.Create("yupi.transfer.max_amount_per_operation", 50_000, CVar.SERVER | CVar.ARCHIVE);
@@ -29,13 +43,6 @@ namespace Content.Shared.Lua.CLVar
         /// </summary>
         public static readonly CVarDef<bool> GridFillCentcomm =
             CVarDef.Create("shuttle.grid_fill_centcom", true, CVar.SERVERONLY);
-
-        /// <summary>
-        /// Включение/отключение Автоудаления Шаттлов..
-        /// </summary>
-        public static readonly CVarDef<bool> AutoDelteEnabled =
-            CVarDef.Create("shuttle.autodelete_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE,
-                "Отключить или включить автоудаление шаттлов.");
 
         /// <summary>
         /// Включение/отключение PVE-зон..
@@ -143,19 +150,26 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<float> SpaceWhaleDespawnLifetimeMinutes =
             CVarDef.Create("spacewhale.despawn_lifetime_minutes", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
 
-        public static readonly CVarDef<bool> ShuttleFreezeEnabled =
-            CVarDef.Create("shuttle.freeze.enabled", true, CVar.SERVERONLY);
-        public static readonly CVarDef<float> ShuttleFreezeDelay =
-            CVarDef.Create("shuttle.freeze.delay", 30f, CVar.SERVERONLY);
-        public static readonly CVarDef<float> ShuttleFreezeCheckInterval =
-            CVarDef.Create("shuttle.freeze.check_interval", 30f, CVar.SERVERONLY);
-        public static readonly CVarDef<float> ShuttleFreezeProximityTiles =
-            CVarDef.Create("shuttle.freeze.proximity_tiles", 3f, CVar.SERVERONLY);
-        public static readonly CVarDef<float> ShuttleFreezeUnfreezeInterval =
-            CVarDef.Create("shuttle.freeze.unfreeze_interval", 1f, CVar.SERVERONLY);
-
         public static readonly CVarDef<bool> StargateEnabled =
             CVarDef.Create("stargate.enabled", true, CVar.SERVERONLY);
+
+        public static readonly CVarDef<bool> StargateWorldSavesEnabled =
+            CVarDef.Create("stargate.world_saves_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> StargateWorldSaveAfterFrozenMinutes =
+            CVarDef.Create("stargate.world_save_after_frozen_minutes", 120, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> StargateWorldFreezeDelaySeconds =
+            CVarDef.Create("stargate.world_freeze_delay_seconds", 30, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<float> StargateWorldFreezeCheckIntervalSeconds =
+            CVarDef.Create("stargate.world_freeze_check_interval_seconds", 10f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> StargateWorldSaveCompressLevel =
+            CVarDef.Create("stargate.world_save_compress_level", 3, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> StargateWorldClearSavesOnRoundEnd =
+            CVarDef.Create("stargate.world_clear_saves_on_round_end", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> SalvageExpeditionEnabled =
             CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);

@@ -1,9 +1,15 @@
 using System.Linq;
+using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Server._NF.Solar.Components;
+using Content.Server._Lua.Stargate.Components;
+using Content.Shared;
 using Content.Shared.GameTicking;
+using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.Physics;
 using JetBrains.Annotations;
+using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
@@ -19,6 +25,9 @@ namespace Content.Server._NF.Solar.EntitySystems;
 [UsedImplicitly]
 internal sealed class NFPowerSolarSystem : EntitySystem
 {
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
@@ -81,8 +90,9 @@ internal sealed class NFPowerSolarSystem : EntitySystem
     {
         if (component.TrackOnInit)
         {
-            component.TargetPanelRotation = TowardsSun;
-            component.TargetPanelVelocity = SunAngularVelocity;
+            var xform = Transform(uid);
+            component.TargetPanelRotation = GetSunAngle(xform.MapID);
+            component.TargetPanelVelocity = GetSunAngularVelocity(xform.MapID);
         }
     }
 
@@ -147,6 +157,8 @@ internal sealed class NFPowerSolarSystem : EntitySystem
     {
         var entity = panel.Owner;
         var xform = EntityManager.GetComponent<TransformComponent>(entity);
+        var towardsSun = GetSunAngle(xform.MapID);
+        var sunlightLevel = GetSunlightLevel(xform.MapID);
 
         // So apparently, and yes, I *did* only find this out later,
         // this is just a really fancy way of saying "Lambert's law of cosines".
@@ -160,7 +172,7 @@ internal sealed class NFPowerSolarSystem : EntitySystem
         // directly downwards (abs(theta) = pi) = coverage -1
         // as TowardsSun + = CCW,
         // panelRelativeToSun should - = CW
-        var panelRelativeToSun = _transformSystem.GetWorldRotation(xform) - TowardsSun;
+        var panelRelativeToSun = _transformSystem.GetWorldRotation(xform) - towardsSun;
         // essentially, given cos = X & sin = Y & Y is 'downwards',
         // then for the first 90 degrees of rotation in either direction,
         // this plots the lower-right quadrant of a circle.
@@ -174,11 +186,12 @@ internal sealed class NFPowerSolarSystem : EntitySystem
         // as for when it goes negative, it only does that when (abs(theta) > pi)
         // and that's expected behavior.
         float coverage = (float)Math.Max(0, Math.Cos(panelRelativeToSun));
+        coverage *= sunlightLevel;
 
-        if (coverage > 0)
+        if (coverage > 0 && ShouldCheckOcclusion(xform.MapID))
         {
             // Determine if the solar panel is occluded, and zero out coverage if so.
-            var ray = new CollisionRay(_transformSystem.GetWorldPosition(xform), TowardsSun.ToWorldVec(), (int)CollisionGroup.Opaque);
+            var ray = new CollisionRay(_transformSystem.GetWorldPosition(xform), towardsSun.ToWorldVec(), (int)CollisionGroup.Opaque);
             var rayCastResults = _physicsSystem.IntersectRayWithPredicate(
                 xform.MapID,
                 ray,
@@ -202,5 +215,63 @@ internal sealed class NFPowerSolarSystem : EntitySystem
             return;
 
         supplier.MaxSupply = (int)(solar.MaxSupply * solar.Coverage);
+    }
+
+    private bool ShouldCheckOcclusion(MapId mapId)
+    {
+        var mapUid = _mapManager.GetMapEntityId(mapId);
+        if (mapUid == EntityUid.Invalid)
+            return true;
+        return !HasComp<StargateDestinationComponent>(mapUid);
+    }
+
+    public Angle GetSunAngle(MapId mapId)
+    {
+        if (!TryGetPlanetarySolarState(mapId, out var angle, out _, out _))
+            return TowardsSun;
+
+        return angle;
+    }
+
+    public Angle GetSunAngularVelocity(MapId mapId)
+    {
+        if (!TryGetPlanetarySolarState(mapId, out _, out var velocity, out _))
+            return SunAngularVelocity;
+
+        return velocity;
+    }
+
+    public float GetSunlightLevel(MapId mapId)
+    {
+        if (!TryGetPlanetarySolarState(mapId, out _, out _, out var lightLevel))
+            return 1f;
+
+        return lightLevel;
+    }
+
+    private bool TryGetPlanetarySolarState(MapId mapId, out Angle towardsSun, out Angle angularVelocity, out float sunlightLevel)
+    {
+        towardsSun = TowardsSun;
+        angularVelocity = SunAngularVelocity;
+        sunlightLevel = 1f;
+
+        var mapUid = _mapManager.GetMapEntityId(mapId);
+        if (mapUid == EntityUid.Invalid ||
+            !TryComp<LightCycleComponent>(mapUid, out var cycle))
+        { return false; }
+        var duration = MathF.Max(1f, (float)cycle.Duration.TotalSeconds);
+        var elapsed = (float)(_gameTiming.CurTime
+            .Add(cycle.Offset)
+            .Subtract(_gameTicker.RoundStartTimeSpan)
+            .Subtract(_metaData.GetPauseTime(mapUid))
+            .TotalSeconds);
+        var wrappedTime = elapsed % duration;
+        if (wrappedTime < 0) wrappedTime += duration;
+        towardsSun = Angle.FromDegrees(360f * (wrappedTime / duration)).Reduced();
+        angularVelocity = Angle.FromDegrees(360f / duration);
+        sunlightLevel = cycle.Enabled
+            ? Math.Clamp((float)SharedLightCycleSystem.CalculateLightLevel(cycle, elapsed), 0f, 1f)
+            : 1f;
+        return true;
     }
 }

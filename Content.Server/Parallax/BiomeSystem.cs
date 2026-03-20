@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -1125,11 +1126,6 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                     var mask = nodeMask[node];
                     spawnSet.Add(node, mask);
                     groupSize--;
-
-                    if (nodeEntities.TryGetValue(node, out var existing))
-                    {
-                        Del(existing);
-                    }
                 }
             }
 
@@ -1217,16 +1213,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                     _mapSystem.SetTile(gridUid, grid, node, tile.Value);
                 }
 
-                string? prototype;
+                if (!TryResolveMarkerSpawn(node, component, (gridUid, grid), layerProto, out var prototype, out var replacements))
+                    continue;
 
-                if (TryGetEntity(node, component, (gridUid, grid), out var proto) &&
-                    layerProto.EntityMask.TryGetValue(proto, out var maskedProto))
+                foreach (var replacement in replacements)
                 {
-                    prototype = maskedProto;
-                }
-                else
-                {
-                    prototype = layerProto.Prototype;
+                    Del(replacement);
                 }
 
                 var uid = EntityManager.CreateEntityUninitialized(prototype, _mapSystem.GridTileToLocal(gridUid, grid, node));
@@ -1275,6 +1267,36 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         }
 
         return budgetLeft;
+    }
+
+    private bool TryResolveMarkerSpawn(Vector2i node, BiomeComponent component, Entity<MapGridComponent> grid, BiomeMarkerLayerPrototype layerProto, [NotNullWhen(true)] out string? prototype, out List<EntityUid> replacements)
+    {
+        replacements = new List<EntityUid>();
+        if (layerProto.EntityMask.Count == 0)
+        {
+            prototype = layerProto.Prototype;
+            return prototype != null;
+        }
+        string? maskedPrototype = null;
+        var matchedBiomeMask = false;
+        if (TryGetEntity(node, component, grid, out var biomePrototype) && layerProto.EntityMask.TryGetValue(biomePrototype, out var biomeMaskedPrototype))
+        {
+            maskedPrototype = biomeMaskedPrototype;
+            matchedBiomeMask = true;
+        }
+
+        var anchored = _mapSystem.GetAnchoredEntitiesEnumerator(grid.Owner, grid.Comp, node);
+        while (anchored.MoveNext(out var ent))
+        {
+            if (!TryComp<MetaDataComponent>(ent.Value, out var meta) || meta.EntityPrototype?.ID is not { } existingProto || !layerProto.EntityMask.TryGetValue(existingProto, out var nextPrototype))
+            { continue; }
+            maskedPrototype ??= nextPrototype;
+            if (maskedPrototype != nextPrototype) continue;
+            replacements.Add(ent.Value);
+        }
+        prototype = maskedPrototype;
+        if (prototype == null) return false;
+        return matchedBiomeMask || replacements.Count > 0;
     }
 
     /// <summary>

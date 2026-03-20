@@ -52,7 +52,7 @@ public sealed class EmpSystem : SharedEmpSystem
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
     /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the pulse.</param>
-    public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null)
+    public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null, string? effectPrototype = null, bool bypassEmpImmunity = false)
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
@@ -64,10 +64,13 @@ public sealed class EmpSystem : SharedEmpSystem
                 continue;
             // End Frontier: block EMP on grid
 
-            TryEmpEffects(uid, energyConsumption, duration);
+            if (bypassEmpImmunity)
+                DoEmpEffects(uid, energyConsumption, duration);
+            else
+                TryEmpEffects(uid, energyConsumption, duration);
         }
 
-        var empBlast = Spawn(EmpPulseEffectPrototype, coordinates); // Frontier: Added visual effect
+        var empBlast = Spawn(effectPrototype ?? EmpPulseEffectPrototype, coordinates); // Frontier: Added visual effect
         EnsureComp<EmpBlastComponent>(empBlast, out var empBlastComp); // Frontier
         empBlastComp.VisualRange = range; // Frontier
 

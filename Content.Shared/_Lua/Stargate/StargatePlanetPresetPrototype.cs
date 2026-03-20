@@ -30,10 +30,7 @@ public sealed partial class StargatePlanetPresetPrototype : IPrototype
     public List<ProtoId<BiomeTemplatePrototype>> Biome = new() { "Grasslands" };
 
     [DataField]
-    public ProtoId<DungeonConfigPrototype>? DungeonConfig;
-
-    [DataField]
-    public List<ProtoId<DungeonConfigPrototype>>? DungeonConfigs;
+    public bool DungeonPool = true;
 
     [DataField]
     public int DungeonCountMin = 1;

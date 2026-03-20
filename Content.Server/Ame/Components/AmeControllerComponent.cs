@@ -81,6 +81,10 @@ public sealed partial class AmeControllerComponent : SharedAmeControllerComponen
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan UpdatePeriod = TimeSpan.FromSeconds(10.0);
 
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float PowerMultiplier = 1.0f;
+
     /// <summary>
     /// The maximum amount of time that passes between UI updates.
     /// </summary>

@@ -556,8 +556,6 @@
   name: blood-red hardsuit
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
-  - type: Inject
-    openCloseDelay: 1.5
   - type: ThermalCloak
     enabled: false
   - type: Sprite
@@ -671,9 +669,6 @@
   name: syndicate commander hardsuit
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
-  - type: Inject # _Lua
-    openCloseDelay: 0.5 # _Lua
-    autoClose: false # _Lua
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
@@ -750,10 +745,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3
 
 #Wizard Hardsuit
 - type: entity
@@ -1026,9 +1017,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 1
-  - type: Inject
-    openCloseDelay: 0.1
-    autoClose: false
 
 #CBURN Hardsuit
 - type: entity

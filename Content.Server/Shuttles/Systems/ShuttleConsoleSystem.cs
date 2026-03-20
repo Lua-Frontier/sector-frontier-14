@@ -14,7 +14,6 @@ using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Construction.Components; // Frontier
-using Content.Shared.Lua.CLVar; // Lua
 using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
@@ -30,7 +29,6 @@ using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
-using Robust.Shared.Configuration; // Lua
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -56,7 +54,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly FireControlSystem _fireControl = default!; // Lua
     [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
@@ -125,7 +122,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         InitializeNFDrone(); // Frontier: add our drone subscriptions
 
-        Subs.CVar(_cfg, CLVars.AutoDelteEnabled, value => _autoDeleteEnabled = value, true); // Lua
     }
 
     private void OnStarMapVisibilityMessage(EntityUid uid, ShuttleConsoleComponent component, ShuttleConsoleStarMapVisibilityMessage args)
@@ -140,8 +136,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         { _starMapVisibleConsoles.Remove(uid); }
     }
 
-    private bool _autoDeleteEnabled = true; // Lua
-
     private void OnConsoleGetVerbs(EntityUid uid, ShuttleConsoleComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
         // Lua start
@@ -152,7 +146,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         // Lua end
 
         AddPanicButtonVerb(uid, comp, args);
-        AddPreventRemoverVerb(uid, comp, args);
     }
 
     private void OnFtlDestStartup(EntityUid uid, FTLDestinationComponent component, ComponentStartup args)
@@ -837,46 +830,4 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         _popup.PopupEntity(Loc.GetString("shuttle-console-panic-sent"), uid, user);
     }
 
-    private void AddPreventRemoverVerb(EntityUid console, ShuttleConsoleComponent comp, GetVerbsEvent<AlternativeVerb> args)
-    {
-        if (!args.CanAccess || !args.CanInteract)
-            return;
-
-        if (!_autoDeleteEnabled)
-            return; // Lua
-
-        if (!TryComp<TransformComponent>(console, out var xform) || xform.GridUid == null)
-            return;
-
-        var grid = xform.GridUid.Value;
-        var towComp = EnsureComp<PreventDeleteComponent>(grid);
-
-        var verb = new AlternativeVerb()
-        {
-            Text = towComp.Remover
-                ? Loc.GetString("shuttle-console-towing-allowed")
-                : Loc.GetString("shuttle-console-towing-prohibited"),
-            Act = () => TogglePreventRemover(console, args.User),
-            Priority = 5
-        };
-        args.Verbs.Add(verb);
-    }
-
-    private void TogglePreventRemover(EntityUid console, EntityUid user)
-    {
-        if (!TryComp<TransformComponent>(console, out var xform) || xform.GridUid == null)
-            return;
-
-        var grid = xform.GridUid.Value;
-        var comp = EnsureComp<PreventDeleteComponent>(grid);
-
-        comp.Remover = !comp.Remover;
-        Dirty(grid, comp);
-
-        var popup = comp.Remover
-            ? Loc.GetString("shuttle-console-towing-now-prohibited")
-            : Loc.GetString("shuttle-console-towing-now-allowed");
-
-        _popup.PopupEntity(popup, console, user);
-    }
 }

@@ -108,12 +108,19 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
     }
 
     private static readonly int[] DungeonCountWeights = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-    private static readonly ProtoId<DungeonConfigPrototype>[] DefaultDungeonConfigPool =
+    private static readonly ProtoId<DungeonConfigPrototype>[] StargateDungeonPool =
     {
+        // _Lua/Procedural/dungeon_configs.yml
         "GateMineshaft", "GateTinyOutpost", "GateSmallOutpost", "GateMediumOutpost",
-        "GateTinyLab", "GateSmallLab", "GateQuadBunker", "GateCrossBunker",
-        "GateCompactCache", "GateWideShelter", "GateLineOutpost", "GateScatteredCaches",
-        "GateHauntedOutpost", "GateLabRuins", "GateLavaOutpost", "GateCaveFactory", "GateMixed"
+        "GateScatteredCaches", "GateScatteredOutposts", "GateTinyLab", "GateSmallLab",
+        // _Lua/Procedural/dungeon_configs_gate2.yml
+        "GateQuadBunker", "GateLineOutpost", "GateCompactCache", "GateScatteredLabs",
+        "GateCrossBunker", "GateHookOutpost", "GateTeeLab", "GateWideShelter", "GateDoubleStack",
+        "GateScatteredMixed", "GateHauntedOutpost", "GateLabRuins", "GateLavaOutpost",
+        "GateCaveFactory", "GateMixed", "GateScatteredHooks",
+        // _NF/Procedural/dungeon_configs.yml
+        "NFExperiment", "NFHaunted", "NFLavaBrig", "NFMineshaft", "NFSnowyLabs",
+        "NFCaveFactory", "NFMedSci", "NFFactoryDorms", "NFLavaMercenary", "NFVirologyLab", "NFSalvageOutpost",
     };
 
     private const int DungeonOverlapPadding = 8;
@@ -128,12 +135,19 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         Random random)
     {
         var result = new List<Dungeon>();
+        if (!preset.DungeonPool)
+            return result;
+
         var dungeonCount = PickWeightedDungeonCount(random, preset);
         if (dungeonCount <= 0)
             return result;
 
-        var configPool = BuildConfigPool(preset, random);
+        var configPool = BuildConfigPool(random);
         if (configPool.Count == 0)
+            return result;
+
+        var configId = configPool[random.Next(configPool.Count)];
+        if (!_protoManager.TryIndex<DungeonConfigPrototype>(configId, out var dungeonConfig))
             return result;
 
         var baseAngle = random.NextDouble() * 2 * Math.PI;
@@ -143,11 +157,6 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
 
         for (var d = 0; d < dungeonCount; d++)
         {
-            var configId = configPool[d % configPool.Count];
-
-            if (!_protoManager.TryIndex<DungeonConfigPrototype>(configId, out var dungeonConfig))
-                continue;
-
             Vector2i dungeonPosition = default;
             var placed = false;
 
@@ -442,8 +451,8 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
 
     private static int PickWeightedDungeonCount(Random random, StargatePlanetPresetPrototype preset)
     {
-        var min = Math.Clamp(preset.DungeonCountMin, 0, 8);
-        var max = Math.Clamp(preset.DungeonCountMax, 0, 8);
+        var min = Math.Clamp(preset.DungeonCountMin, 0, 3);
+        var max = Math.Clamp(preset.DungeonCountMax, 0, 3);
         var totalWeight = 0;
         for (var i = min; i <= max; i++) totalWeight += DungeonCountWeights[i];
         if (totalWeight <= 0) return 0;
@@ -454,31 +463,13 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         return max;
     }
 
-    private List<ProtoId<DungeonConfigPrototype>> BuildConfigPool(
-        StargatePlanetPresetPrototype preset, Random random)
+    private List<ProtoId<DungeonConfigPrototype>> BuildConfigPool(Random random)
     {
         var pool = new List<ProtoId<DungeonConfigPrototype>>();
-
-        if (preset.DungeonConfigs is { Count: > 0 })
+        foreach (var id in StargateDungeonPool)
         {
-            foreach (var id in preset.DungeonConfigs)
-            {
-                if (_protoManager.HasIndex<DungeonConfigPrototype>(id))
-                    pool.Add(id);
-            }
-        }
-        else if (preset.DungeonConfig != null && _protoManager.HasIndex<DungeonConfigPrototype>(preset.DungeonConfig.Value))
-        {
-            pool.Add(preset.DungeonConfig.Value);
-        }
-
-        if (pool.Count == 0)
-        {
-            foreach (var id in DefaultDungeonConfigPool)
-            {
-                if (_protoManager.HasIndex<DungeonConfigPrototype>(id))
-                    pool.Add(id);
-            }
+            if (_protoManager.HasIndex<DungeonConfigPrototype>(id))
+                pool.Add(id);
         }
 
         for (var i = pool.Count - 1; i > 0; i--)

@@ -18,7 +18,7 @@ public sealed partial class XenoArtifactSystem : SharedXenoArtifactSystem
 
     private void OnArtifactMapInit(Entity<XenoArtifactComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.IsGenerationRequired)
+        if (ent.Comp.IsGenerationRequired && ent.Comp.NodeVertices.Length == 0)
             GenerateArtifactStructure(ent);
     }
 

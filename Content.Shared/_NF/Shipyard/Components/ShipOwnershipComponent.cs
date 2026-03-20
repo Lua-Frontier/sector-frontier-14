@@ -27,6 +27,11 @@ public sealed partial class ShipOwnershipComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsOwnerOnline;
 
+    [DataField, AutoNetworkedField]
+    public bool IsDeletionTimerRunning;
+    [DataField, AutoNetworkedField]
+    public TimeSpan DeletionTimerStartTime;
+
     /// <summary>
     /// How long to wait after the owner disconnects before deleting their ship (in seconds)
     /// </summary>

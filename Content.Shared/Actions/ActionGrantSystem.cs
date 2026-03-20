@@ -51,4 +51,10 @@ public sealed class ActionGrantSystem : EntitySystem
             _actions.RemoveAction(ent.Owner, actionEnt);
         }
     }
+
+    public void ClearActionEntities(EntityUid uid, ActionGrantComponent comp)
+    {
+        comp.ActionEntities.Clear();
+        Dirty(uid, comp);
+    }
 }

@@ -169,13 +169,13 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 continue;
 
             var currentVelocity = physicsComp.LinearVelocity;
-            if (currentVelocity.Length() < MinRaycastVelocity)
+            var velocityLength = currentVelocity.Length();
+            if (!float.IsFinite(velocityLength) || velocityLength < MinRaycastVelocity)
                 continue;
 
             var lastPosition = _transformSystem.GetWorldPosition(xform, GetEntityQuery<TransformComponent>());
-            var rayDirection = currentVelocity.Normalized();
-            // Ensure rayDistance is not zero to prevent issues with IntersectRay if frametime or velocity is zero.
-            var rayDistance = currentVelocity.Length() * frameTime;
+            var rayDirection = currentVelocity / velocityLength;
+            var rayDistance = velocityLength * frameTime;
             if (rayDistance <= 0f)
                 continue;
 

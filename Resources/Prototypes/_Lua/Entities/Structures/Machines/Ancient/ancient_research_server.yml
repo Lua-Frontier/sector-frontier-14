@@ -1,0 +1,80 @@
+- type: entity
+  id: AncientResearchServer
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: древний принтер чертежей
+  description: Печатает особые чертежи для древнего принтера схем. Чертежи вставляют в принтер схем.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/ancient_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: perservedserver
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: perservedserver
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Machine
+    board: AncientResearchServerCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: perservedserver
+    runningState: perservedserver
+    staticPacks:
+    - AncientResearchServerStatic
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ActivatableUI
+    key: enum.LatheUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: StaticPrice
+    price: 250

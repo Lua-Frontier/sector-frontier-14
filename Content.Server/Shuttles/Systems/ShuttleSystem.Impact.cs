@@ -2,7 +2,6 @@ using Content.Server._NF.Shuttles.Components;
 using Content.Server._Lua.Shuttles.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Mono;
-using Content.Shared.Atmos.Components;
 using Content.Shared.Audio;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -40,7 +39,6 @@ public sealed partial class ShuttleSystem
     private float _sparkEnergy;
     private float _impactRadius;
     private float _impactSlowdown;
-    private float _minThrowVelocity;
     private float _massBias;
     private float _inertiaScaling;
     // this doesn't update if plating mass is changed but edgecase
@@ -49,8 +47,6 @@ public sealed partial class ShuttleSystem
     private const float _sparkChance = 0.2f;
     // shuttle mass to consider the neutral point for inertia scaling
     private const float _baseShuttleMass = 50f;
-    // exists primarily for optimisation so not a cvar
-    private const float _minImpulseVelocity = 0.07f;
     // high-speed collisions tend to be a series of increasingly smaller collisions so don't spam admin logs
     private readonly TimeSpan _adminLogSpacing = TimeSpan.FromSeconds(3);
 
@@ -83,7 +79,6 @@ public sealed partial class ShuttleSystem
         Subs.CVar(_cfg, CCVars.SparkEnergy, value => _sparkEnergy = value, true);
         Subs.CVar(_cfg, CCVars.ImpactRadius, value => _impactRadius = value, true);
         Subs.CVar(_cfg, CCVars.ImpactSlowdown, value => _impactSlowdown = value, true);
-        Subs.CVar(_cfg, CCVars.ImpactMinThrowVelocity, value => _minThrowVelocity = value, true);
         Subs.CVar(_cfg, CCVars.ImpactMassBias, value => _massBias = value, true);
         Subs.CVar(_cfg, CCVars.ImpactInertiaScaling, value => _inertiaScaling = value, true);
 
@@ -241,47 +236,6 @@ public sealed partial class ShuttleSystem
         // process tile and entity damage
         ProcessImpactZone(ent, grid, tile, energy, deltaV.Normalized(), radius);
 
-        // throw every entity on grid if the impulse is not negligible
-        if (deltaV.Length() > _minImpulseVelocity)
-            ThrowEntitiesOnGrid(ent, xform, -deltaV);
-    }
-
-    /// <summary>
-    /// Knocks and throws all unbuckled entities on the specified grid.
-    /// </summary>
-    private void ThrowEntitiesOnGrid(EntityUid gridUid, TransformComponent xform, Vector2 direction)
-    {
-        var movedByPressureQuery = GetEntityQuery<MovedByPressureComponent>();
-        var knockdownTime = TimeSpan.FromSeconds(5);
-
-        var minsq = _minThrowVelocity * _minThrowVelocity;
-        // iterate all entities on the grid
-        // TODO: only iterate non-static entities
-        var childEnumerator = xform.ChildEnumerator;
-        while (childEnumerator.MoveNext(out var uid))
-        {
-            // don't throw static bodies
-            if (!_physicsQuery.TryGetComponent(uid, out var physics) || (physics.BodyType & BodyType.Static) != 0)
-                continue;
-
-            // don't throw if buckled
-            if (_buckle.IsBuckled(uid, _buckleQuery.CompOrNull(uid)))
-                continue;
-
-            // don't throw them if they have magboots
-            if (movedByPressureQuery.TryComp(uid, out var moved) && !moved.Enabled)
-                continue;
-
-            if (direction.LengthSquared() > minsq)
-            {
-                _stuns.TryCrawling(uid, knockdownTime);
-                _throwing.TryThrow(uid, direction, physics, Transform(uid), _projQuery, direction.Length(), playSound: false);
-            }
-            else
-            {
-                _physics.ApplyLinearImpulse(uid, direction * physics.Mass, body: physics);
-            }
-        }
     }
 
     /// <summary>
@@ -411,11 +365,6 @@ public sealed partial class ShuttleSystem
                     && (physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
                 {
                     canBreakTile = false;
-                }
-                else
-                {
-                    var direction = throwDirection * tileData.DistanceFactor;
-                    _throwing.TryThrow(localEnt, direction, physics, localEnt.Comp, _projQuery, direction.Length(), playSound: false);
                 }
             }
 

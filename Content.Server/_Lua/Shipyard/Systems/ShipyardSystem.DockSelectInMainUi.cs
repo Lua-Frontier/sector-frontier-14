@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Lua.Shipyard.BUI;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._NF.Shipyard;
@@ -28,18 +29,29 @@ public sealed partial class ShipyardSystem
     {
         component.SelectedDockPort = args.SelectedDockPort;
         Dirty(uid, component);
-        if (_ui.TryGetUiState<BoundUserInterfaceState>(uid, ShipyardConsoleUiKey.Shipyard, out var currentState))
+        var uiKey = component.ParkingConsole ? ShipyardConsoleUiKey.Parking : ShipyardConsoleUiKey.Shipyard;
+        if (_ui.TryGetUiState<BoundUserInterfaceState>(uid, uiKey, out var currentState))
         {
-            var current = currentState switch
-            { ShipyardConsoleLuaDockSelectState lua => lua.BaseState, ShipyardConsoleInterfaceState baseOnly => baseOnly, _ => null };
-            if (current == null) return;
-            RefreshState(uid, current.Balance, current.AccessGranted, current.ShipDeedTitle, current.ShipSellValue, component.TargetIdSlot.ContainerSlot?.ContainedEntity, ShipyardConsoleUiKey.Shipyard, current.FreeListings);
+            switch (currentState)
+            {
+                case ShipyardConsoleLuaDockSelectState lua:
+                    RefreshState(uid, lua.BaseState.Balance, lua.BaseState.AccessGranted, lua.BaseState.ShipDeedTitle, lua.BaseState.ShipSellValue, component.TargetIdSlot.ContainerSlot?.ContainedEntity, uiKey, lua.BaseState.FreeListings);
+                    break;
+                case ShipyardConsoleInterfaceState baseOnly:
+                    RefreshState(uid, baseOnly.Balance, baseOnly.AccessGranted, baseOnly.ShipDeedTitle, baseOnly.ShipSellValue, component.TargetIdSlot.ContainerSlot?.ContainedEntity, uiKey, baseOnly.FreeListings);
+                    break;
+                case ParkingConsoleLuaDockSelectState parkingLua:
+                    RefreshParkingState(uid, parkingLua.BaseState.ShipDeedTitle, component.TargetIdSlot.ContainerSlot?.ContainedEntity);
+                    break;
+                case ParkingConsoleInterfaceState parkingBase:
+                    RefreshParkingState(uid, parkingBase.ShipDeedTitle, component.TargetIdSlot.ContainerSlot?.ContainedEntity);
+                    break;
+            }
         }
     }
 
     partial void ExtendUiStateLua(EntityUid uid, ref BoundUserInterfaceState state)
     {
-        if (state is not ShipyardConsoleInterfaceState baseState) return;
         if (!TryComp<ShipyardConsoleComponent>(uid, out var console)) return;
         var xform = Transform(uid);
         if (xform.GridUid is not { Valid: true } gridUid) return;
@@ -55,7 +67,12 @@ public sealed partial class ShipyardSystem
         var h = gridComp.LocalAABB.Height;
         var radius = MathF.Sqrt(w * w + h * h) * 0.5f + 5f;
         var nav = new NavInterfaceState(radius, netCoords, angle, dockDict, InertiaDampeningMode.Dampen, ServiceFlags.None, null, null, true);
-        state = new ShipyardConsoleLuaDockSelectState(baseState, nav, console.SelectedDockPort);
+        state = state switch
+        {
+            ShipyardConsoleInterfaceState baseState => new ShipyardConsoleLuaDockSelectState(baseState, nav, console.SelectedDockPort),
+            ParkingConsoleInterfaceState parkingState => new ParkingConsoleLuaDockSelectState(parkingState, nav, console.SelectedDockPort),
+            _ => state
+        };
     }
 }
 

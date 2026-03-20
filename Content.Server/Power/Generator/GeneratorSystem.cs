@@ -13,6 +13,7 @@ using Content.Shared.Radiation.Components; // Frontier
 using Content.Shared.Audio; // Frontier
 using Content.Shared.Materials; // Frontier
 using Content.Server._NF.Power.Components; // Frontier
+using Content.Server._NF.Power.Generator; // Lua
 
 namespace Content.Server.Power.Generator;
 
@@ -46,6 +47,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         SubscribeLocalEvent<SolidFuelGeneratorAdapterComponent, GeneratorGetFuelEvent>(SolidGetFuel);
         SubscribeLocalEvent<SolidFuelGeneratorAdapterComponent, GeneratorUseFuel>(SolidUseFuel);
         SubscribeLocalEvent<SolidFuelGeneratorAdapterComponent, GeneratorEmpty>(SolidEmpty);
+        SubscribeLocalEvent<SolidFuelGeneratorAdapterComponent, GetMaterialWhitelistEvent>(OnSolidFuelGetWhitelist);
         SubscribeLocalEvent<ChemicalFuelGeneratorAdapterComponent, GeneratorGetFuelEvent>(ChemicalGetFuel);
         SubscribeLocalEvent<ChemicalFuelGeneratorAdapterComponent, GeneratorUseFuel>(ChemicalUseFuel);
         SubscribeLocalEvent<ChemicalFuelGeneratorAdapterComponent, GeneratorGetCloggedEvent>(ChemicalGetClogged);
@@ -70,6 +72,16 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     private void SolidEmpty(EntityUid uid, SolidFuelGeneratorAdapterComponent component, GeneratorEmpty args)
     {
         _materialStorage.EjectAllMaterial(uid);
+    }
+
+    private void OnSolidFuelGetWhitelist(EntityUid uid, SolidFuelGeneratorAdapterComponent component, ref GetMaterialWhitelistEvent args)
+    {
+        args.Whitelist.Add(component.FuelMaterial);
+        if (TryComp<FuelGradeAdapterComponent>(uid, out var adapter))
+        {
+            foreach (var conversion in adapter.Conversions)
+                args.Whitelist.Add(conversion.Input);
+        }
     }
 
     private void ChemicalEmpty(Entity<ChemicalFuelGeneratorAdapterComponent> entity, ref GeneratorEmpty args)

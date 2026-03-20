@@ -1,0 +1,16 @@
+- type: entity
+  name: emp blast (Lua)
+  id: EffectEmpBlastLua
+  description: Purple lightning EMP blast visual.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmpBlast
+    shaderId: EmpLua
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg

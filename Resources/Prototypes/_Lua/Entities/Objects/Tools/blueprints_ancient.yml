@@ -1,0 +1,142 @@
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintProtolathe
+  name: чертёж платы протолата
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ProtolatheMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintAutolathe
+  name: чертёж платы автолата
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - AutolatheMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintCircuitImprinter
+  name: чертёж платы принтера схем
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - CircuitImprinterMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintExosuitFabricator
+  name: чертёж платы фабрикатора экзокостюмов
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ExosuitFabricatorMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintAnomalyVessel
+  name: чертёж платы сосуда аномалий
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - AnomalyVesselCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintLithograph
+  name: чертёж платы литографа чертежей
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - BlueprintLithographMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintRndServer
+  name: чертёж платы РНД-сервера
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ResearchAndDevelopmentServerMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintResearchComputer
+  name: чертёж платы РНД-компьютера
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ResearchComputerCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintArtifactAnalyzer
+  name: чертёж платы анализатора артефактов
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ArtifactAnalyzerMachineCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintAnalysisComputer
+  name: чертёж платы компьютера анализа
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - AnalysisComputerCircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter
+
+- type: entity
+  parent: BaseBlueprint
+  id: AncientBlueprintApe
+  name: чертёж платы АРЕ
+  description: Древний чертёж. Вставляется в древний принтер схем.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - APECircuitboard
+  - type: Tag
+    tags:
+    - BlueprintAncientCircuitImprinter

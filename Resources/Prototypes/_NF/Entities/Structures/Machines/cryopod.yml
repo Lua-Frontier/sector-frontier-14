@@ -64,6 +64,7 @@
   - type: Appearance
   - type: Climbable
   - type: CryoSleep
+    shouldReopenRole: false # Lua
   - type: Construction
     graph: MachineCryoSleepPod
     node: MachineCryoSleepPod

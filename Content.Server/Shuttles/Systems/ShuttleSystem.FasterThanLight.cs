@@ -296,6 +296,20 @@ public sealed partial class ShuttleSystem
             return false;
         }
 
+        var dockedShuttles = new HashSet<EntityUid>();
+        GetAllDockedShuttles(shuttleUid, dockedShuttles);
+        if (!GetAllMagnetLatchedShuttles(shuttleUid, dockedShuttles, out reason))
+            return false;
+
+        foreach (var dockedUid in dockedShuttles)
+        {
+            if (dockedUid == shuttleUid)
+                continue;
+
+            if (!CanFTLAsDockedCargo(dockedUid, out reason))
+                return false;
+        }
+
         reason = null;
         return true;
     }
@@ -457,6 +471,12 @@ public sealed partial class ShuttleSystem
 
     private bool GetAllMagnetLatchedShuttles(EntityUid shuttleUid, HashSet<EntityUid> dockedShuttles)
     {
+        return GetAllMagnetLatchedShuttles(shuttleUid, dockedShuttles, out _);
+    }
+
+    private bool GetAllMagnetLatchedShuttles(EntityUid shuttleUid, HashSet<EntityUid> dockedShuttles, [NotNullWhen(false)] out string? reason)
+    {
+        reason = null;
         var latchSet = new HashSet<Entity<MagneticLatchComponent, TransformComponent>>();
         _lookup.GetChildEntities(shuttleUid, latchSet);
         foreach (var ent in latchSet)
@@ -466,9 +486,13 @@ public sealed partial class ShuttleSystem
             if (xform.GridUid != shuttleUid || latch.JointId == null) continue;
             if (latch.TargetGrid == null) continue;
             var target = latch.TargetGrid.Value;
-            if (!HasComp<ShuttleComponent>(target)) return false;
+            if (!HasComp<ShuttleComponent>(target))
+            {
+                reason = Loc.GetString("shuttle-console-ftl-magnet-target");
+                return false;
+            }
             if (!dockedShuttles.Add(target)) continue;
-            if (!GetAllMagnetLatchedShuttles(target, dockedShuttles)) return false;
+            if (!GetAllMagnetLatchedShuttles(target, dockedShuttles, out reason)) return false;
         }
         return true;
     }
@@ -497,7 +521,11 @@ public sealed partial class ShuttleSystem
         // Determine docked shuttles that should travel together (respecting FTLLock).
         var dockedShuttles = new HashSet<EntityUid>();
         GetAllDockedShuttles(uid, dockedShuttles);
-        if (!GetAllMagnetLatchedShuttles(uid, dockedShuttles)) return false;
+        if (!GetAllMagnetLatchedShuttles(uid, dockedShuttles, out var latchReason))
+        {
+            Log.Warning($"Failed to start FTL for {ToPrettyString(uid)}: {latchReason}");
+            return false;
+        }
         // Force undock emergency and arrivals shuttles.
         if (HasComp<EmergencyShuttleComponent>(uid) || HasComp<ArrivalsShuttleComponent>(uid))
         {
@@ -510,8 +538,11 @@ public sealed partial class ShuttleSystem
                 if (dockedUid == uid)
                     continue;
 
-                if (!CanFTLAsDockedCargo(dockedUid, out _)) // Lua
+                if (!CanFTLAsDockedCargo(dockedUid, out var cargoReason)) // Lua
+                {
+                    Log.Warning($"Failed to start FTL for {ToPrettyString(uid)} because docked cargo {ToPrettyString(dockedUid)} cannot FTL: {cargoReason}");
                     return false;
+                }
             }
             foreach (var dock in _dockSystem.GetDocks(uid))
             {
