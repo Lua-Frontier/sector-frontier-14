@@ -99,9 +99,10 @@ public sealed class ShipStatCommand : IConsoleCommand
 
         sb.AppendLine($"[Размер] {width}×{height}, тайлов: {tileCount}, макс сторона: {maxSide}");
         var size =
-            maxSide <= 9 && tileCount <= 81 ? VesselSize.Micro :
-            maxSide <= 21 && tileCount <= 441 ? VesselSize.Small :
-            maxSide <= 31 && tileCount <= 961 ? VesselSize.Medium : VesselSize.Large;
+            tileCount > 961 ? VesselSize.Large :
+            tileCount > 441 ? VesselSize.Medium :
+            tileCount > 81 ? VesselSize.Small :
+            VesselSize.Micro;
         sb.AppendLine($"[Категория по размеру] {size}  (Micro ≤9×9/81т, Small ≤21×21/441т, Medium ≤31×31/961т, Large ≤1412т)");
         var pricing = _systems.GetEntitySystem<PricingSystem>();
         double appraisePrice = 0;

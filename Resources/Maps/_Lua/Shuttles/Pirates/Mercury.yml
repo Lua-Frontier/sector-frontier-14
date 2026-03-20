@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/15/2026 07:32:49
-  entityCount: 1075
+  time: 03/20/2026 02:54:49
+  entityCount: 1077
 maps: []
 grids:
 - 1
@@ -586,7 +586,7 @@ entities:
       pos: 2.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9125.744
+      secondsUntilStateChange: -9349.191
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2375,6 +2375,11 @@ entities:
     - type: Transform
       pos: -3.5,-1.5
       parent: 1
+  - uid: 355
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 347
@@ -2416,11 +2421,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-0.5
-      parent: 1
-  - uid: 355
-    components:
-    - type: Transform
-      pos: -3.5,-1.5
       parent: 1
   - uid: 356
     components:
@@ -2521,6 +2521,11 @@ entities:
     components:
     - type: Transform
       pos: 2.5,0.5
+      parent: 1
+  - uid: 704
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -3775,10 +3780,15 @@ entities:
       color: '#FF0000FF'
 - proto: GravityGeneratorMini
   entities:
-  - uid: 544
+  - uid: 1076
     components:
     - type: Transform
-      pos: -3.5,-0.5
+      pos: -3.5,-1.5
+      parent: 1
+  - uid: 1077
+    components:
+    - type: Transform
+      pos: -2.5,-0.5
       parent: 1
 - proto: Grille
   entities:
@@ -4010,7 +4020,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-9.5
       parent: 1
-- proto: GunneryServerUltra
+- proto: GunneryServerHigh
   entities:
   - uid: 583
     components:
@@ -4020,7 +4030,7 @@ entities:
     - type: Battery
       startingCharge: 0
     - type: ApcPowerReceiver
-      powerLoad: 50
+      powerLoad: 20
 - proto: Gyroscope
   entities:
   - uid: 584
@@ -4887,9 +4897,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,-0.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
-  - uid: 701
+  - uid: 544
     components:
     - type: Transform
       pos: -4.5,-1.5
@@ -4908,12 +4918,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.468892,-1.8490741
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
-  - uid: 704
+  - uid: 701
     components:
     - type: Transform
-      pos: -3.5,-1.5
+      rot: 3.141592653589793 rad
+      pos: -3.5,-2.5
       parent: 1
 - proto: SuitStorageBase
   entities:

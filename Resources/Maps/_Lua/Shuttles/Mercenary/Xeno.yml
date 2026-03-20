@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/15/2025 12:05:03
-  entityCount: 1079
+  time: 03/20/2026 03:00:16
+  entityCount: 1081
 maps: []
 grids:
 - 1
@@ -41,7 +41,6 @@ tilemap:
   22: PlatingCornerNW
   21: PlatingCornerSE
   24: PlatingCornerSW
-  11: ShieldLattice
 entities:
 - proto: ""
   entities:
@@ -1340,7 +1339,7 @@ entities:
       pos: -6.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11428.863
+      secondsUntilStateChange: -11468.71
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1370,7 +1369,7 @@ entities:
       pos: 3.5,10.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11933.463
+      secondsUntilStateChange: -11973.31
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1393,7 +1392,7 @@ entities:
       pos: -6.5,12.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -14090.261
+      secondsUntilStateChange: -14130.107
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1411,7 +1410,7 @@ entities:
       pos: -1.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11919.33
+      secondsUntilStateChange: -11959.177
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3279,6 +3278,11 @@ entities:
     - type: Transform
       pos: -5.5,3.5
       parent: 1
+  - uid: 1080
+    components:
+    - type: Transform
+      pos: -1.5,0.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 357
@@ -3565,6 +3569,11 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-0.5
+      parent: 1
+  - uid: 1081
+    components:
+    - type: Transform
+      pos: -1.5,0.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -5796,17 +5805,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,13.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBasic
   entities:
   - uid: 745
     components:
     - type: Transform
-      pos: -4.5,0.5
+      pos: -5.5,0.5
       parent: 1
   - uid: 746
     components:
     - type: Transform
-      pos: -5.5,0.5
+      pos: -4.5,0.5
       parent: 1
 - proto: StairStageWood
   entities:
@@ -5816,12 +5825,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,8.5
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
   - uid: 748
     components:
     - type: Transform
-      pos: -2.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: -1.5,0.5
       parent: 1
 - proto: SuitStorageAtmos
   entities:

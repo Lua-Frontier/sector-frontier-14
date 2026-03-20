@@ -15,14 +15,14 @@ namespace Content.IntegrationTests.Tests._Lua;
 
 /// <summary>
 /// Максимумы категорий (из drawline):
-///   Micro  - макс сторона 9,  макс тайлов 81
+///   Micro  - макс сторона 13, макс тайлов 100
 ///   Small  - макс сторона 21, макс тайлов 441
 ///   Medium - макс сторона 31, макс тайлов 961
 ///   Large  - макс сторона 48, макс тайлов 1412
 ///
 /// Минимумы:
-///   Small  - мин сторона 10, мин тайлов 220
-///   Medium - мин сторона 22, мин тайлов 480
+///   Small  - мин сторона 14, мин тайлов 108
+///   Medium - мин сторона 22, мин тайлов 300
 ///   Large  - мин сторона 32, мин тайлов зависит от длины:
 ///   макс сторона 40 мин 400 (длинный узкий шаттл)
 ///   макс сторона 32 мин 600
@@ -30,12 +30,12 @@ namespace Content.IntegrationTests.Tests._Lua;
 [TestFixture]
 public sealed class ShipyardLuaTileSizeTests
 {
-    private const int MicroMaxSide = 9;
-    private const int MicroMaxTiles = 81;
+    private const int MicroMaxSide = 13;
+    private const int MicroMaxTiles = 100;
 
     private const int SmallMaxSide = 21;
     private const int SmallMaxTiles = 441;
-    private const int SmallMinSide = MicroMaxSide + 1;   // 10
+    private const int SmallMinSide = MicroMaxSide + 1;   // 14
     private const int SmallMinTiles = 108;               // мин для Small
 
     private const int MediumMaxSide = 31;
