@@ -27,18 +27,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95 #Lua 0.9<0.95
     sprintModifier: 0.95 #Lua 0.9<0.95
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3
   - type: ThermalCloak
     enabled: false
-  - type: ItemSlots # _Lua
-    slots: # _Lua
-      beakerSlot: # _Lua
-        whitelist: # _Lua
-          tags: # _Lua
-          - FitsHardsuit # _Lua
 
 - type: entity
   parent: ClothingOuterHardsuitTSFMCM73
@@ -126,10 +116,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3
   - type: ThermalCloak
     enabled: false
 
@@ -156,10 +142,6 @@
         Caustic: 0.35
   - type: StaminaDamageResistance #Lua
     coefficient: 0.4
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3
   - type: ThermalCloak
     enabled: false
 
@@ -196,10 +178,6 @@
     sprintModifier: 0.75
   - type: FactionClothing
     faction: NanoTrasen
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3
   - type: ThermalCloak
     enabled: false
 
@@ -232,10 +210,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.825
     sprintModifier: 0.825
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3
 
 #Security Command Hardsuit
 - type: entity
@@ -266,7 +240,3 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
-  - type: Inject
-    openCloseDelay: 1
-    autoClose: true
-    autoCloseDelay: 3

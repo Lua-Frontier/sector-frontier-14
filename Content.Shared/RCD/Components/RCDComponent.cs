@@ -66,4 +66,7 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsShipyardRCD;
     // End Frontier: ship-based RCDs
+
+    [DataField, AutoNetworkedField]
+    public bool OnlyWorksInStargateWorld;
 }

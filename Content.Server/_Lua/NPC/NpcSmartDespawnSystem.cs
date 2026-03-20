@@ -32,6 +32,8 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<GhostComponent> _ghostQuery;
     private readonly HashSet<MapId> _protectedPlanetMaps = new();
+    private readonly HashSet<MapId> _planetMapIdsBuffer = new();
+    private readonly List<EntityUid> _toRemoveBuffer = new();
 
     public override void Initialize()
     {
@@ -54,7 +56,8 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
         var elapsed = _timer;
         _timer = 0f;
         RebuildProtectedPlanetMaps();
-        var toRemove = new List<EntityUid>();
+        var toRemove = _toRemoveBuffer;
+        toRemove.Clear();
         foreach (var (uid, deadTime) in _deadTimers)
         {
             if (TerminatingOrDeleted(uid))
@@ -130,7 +133,8 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
     private void RebuildProtectedPlanetMaps()
     {
         _protectedPlanetMaps.Clear();
-        var planetMapIds = new HashSet<MapId>();
+        var planetMapIds = _planetMapIdsBuffer;
+        planetMapIds.Clear();
         var destQuery = EntityQueryEnumerator<StargateDestinationComponent, TransformComponent>();
         while (destQuery.MoveNext(out _, out _, out var destXform))
         { if (destXform.MapID != MapId.Nullspace) planetMapIds.Add(destXform.MapID); }

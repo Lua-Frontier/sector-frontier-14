@@ -4,13 +4,9 @@
   - GateLavaCaves
   - GateCavesLava
   - GateLavaDesert
-  dungeonConfigs:
-  - NFCaveFactory
-  - GateCaveFactory
-  - GateMineshaft
-  - NFMineshaft
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 100
   worldRadiusMin: 212
@@ -35,11 +31,9 @@
   - GateLavaSnow
   - GateSnowLava
   - GateLavaGrass
-  dungeonConfigs:
-  - GateSmallOutpost
-  - GateScatteredCaches
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 35
   dungeonDistanceMax: 80
   worldRadiusMin: 198
@@ -62,14 +56,9 @@
   - GateLavaShadow
   - GateShadowLava
   - GateInferno
-  dungeonConfigs:
-  - NFHaunted
-  - NFLavaBrig
-  - GateHauntedOutpost
-  - GateLavaOutpost
-  - GateTinyOutpost
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 35
   dungeonDistanceMax: 90
   worldRadiusMin: 198

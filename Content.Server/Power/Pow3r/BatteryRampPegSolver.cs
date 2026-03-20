@@ -15,6 +15,7 @@ namespace Content.Server.Power.Pow3r
 
         private readonly List<NodeId> _dirtyLoads = new();
         private readonly List<NodeId> _dirtyBatteries = new();
+        private readonly object _dirtyLock = new();
 
         public IReadOnlyList<NodeId> DirtyLoads => _dirtyLoads;
         public IReadOnlyList<NodeId> DirtyBatteries => _dirtyBatteries;
@@ -91,7 +92,7 @@ namespace Content.Server.Power.Pow3r
 
                 load.LastReceivingPower = load.ReceivingPower;
 
-                if (load.LastReceivingPower != 0f) _dirtyLoads.Add(load.Id);
+                if (load.LastReceivingPower != 0f) lock (_dirtyLock) { _dirtyLoads.Add(load.Id); }
 
                 load.ReceivingPower = 0;
             }
@@ -224,7 +225,7 @@ namespace Content.Server.Power.Pow3r
 
                 var newReceiving = load.DesiredPower * supplyRatio;
                 if (!MathHelper.CloseToPercent(load.LastReceivingPower, newReceiving))
-                    _dirtyLoads.Add(loadId);
+                    lock (_dirtyLock) { _dirtyLoads.Add(loadId); }
 
                 load.ReceivingPower = newReceiving;
             }
@@ -335,7 +336,7 @@ namespace Content.Server.Power.Pow3r
                 battery.LoadingMarked = false;
 
                 if (!MathHelper.CloseToPercent(battery.LastCurrentSupply, battery.CurrentSupply))
-                    _dirtyBatteries.Add(battery.Id);
+                    lock (_dirtyLock) { _dirtyBatteries.Add(battery.Id); }
 
                 battery.LastCurrentSupply = battery.CurrentSupply;
             }

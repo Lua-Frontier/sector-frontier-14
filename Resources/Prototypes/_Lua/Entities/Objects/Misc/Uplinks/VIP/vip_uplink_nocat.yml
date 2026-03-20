@@ -353,12 +353,12 @@
 
 - type: listing
   id: UplinkVipNocatHypospray
-  name:  uplink-vip-Hypospray-name
-  description: uplink-vip-Hypospray-desc
-  productEntity: Hypospray
-  icon: { sprite: Objects/Specific/Medical/hypospray.rsi, state: hypo }
+  name: uplink-vip-VipJetInjector-name
+  description: uplink-vip-VipJetInjector-desc
+  productEntity: VipJetInjector
+  icon: { sprite: Objects/Specific/Medical/advanced_jetinjector.rsi, state: jetinjector_base }
   cost:
-    Speso: 21000
+    Speso: 17000
   categories:
     - UplinkVipNocat
   conditions:

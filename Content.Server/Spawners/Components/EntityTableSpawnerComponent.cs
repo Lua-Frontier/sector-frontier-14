@@ -26,5 +26,8 @@ public sealed partial class EntityTableSpawnerComponent : Component
     /// </summary>
     [DataField]
     public bool DeleteSpawnerAfterSpawn = true;
+
+    [DataField]
+    public bool HasSpawned;
 }
 

@@ -30,3 +30,16 @@ weapon-details-class-shotgun = Дробовик
 weapon-details-class-sniper = Снайперская винтовка
 weapon-details-class-submachine-gun = ПП
 weapon-details-class-tool = Инструмент
+
+gun-jam-occurred = Оружие заклинило! Передёрните затвор, чтобы продолжить стрельбу.
+gun-jam-blocked = Оружие заклинило! Передёрните затвор.
+gun-jam-cleared = Затвор передёрнут, клин устранён.
+
+gun-jam-energy-occurred = Перегрузка цепи питания! Оружие охлаждается...
+gun-jam-energy-blocked = Охлаждение цепи питания. Подождите.
+
+gun-durability-status = Прочность: [color={$color}]{$percent}%[/color]
+gun-durability-status-jammed = Прочность: [color=red]{$percent}% КЛИН[/color]
+gun-durability-status-energy-jam = Прочность: [color=orange]{$percent}%[/color] [color=red]перегрузка {$seconds}с[/color]
+
+weapon-examine-durability = Прочность: [color={$color}]{$bar}[/color] {$percent}%

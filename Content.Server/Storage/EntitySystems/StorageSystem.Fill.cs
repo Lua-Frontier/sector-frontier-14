@@ -21,10 +21,12 @@ public sealed partial class StorageSystem
 
         if (TryComp<StorageComponent>(uid, out var storageComp))
         {
+            if (storageComp.Container.ContainedEntities.Count > 0) return;
             FillStorage((uid, component, storageComp));
         }
         else if (TryComp<EntityStorageComponent>(uid, out var entityStorageComp))
         {
+            if (entityStorageComp.Contents.ContainedEntities.Count > 0) return;
             FillEntityStorage((uid, component, entityStorageComp));
         }
         else

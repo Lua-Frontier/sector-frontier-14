@@ -15,7 +15,7 @@ public sealed class MobStateActionsSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MobStateActionsComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<MobStateComponent, ComponentInit>(OnMobStateComponentInit);
+        SubscribeLocalEvent<MobStateActionsComponent, MapInitEvent>(OnMobStateActionsMapInit);
     }
 
     private void OnMobStateChanged(EntityUid uid, MobStateActionsComponent component, MobStateChangedEvent args)
@@ -23,12 +23,12 @@ public sealed class MobStateActionsSystem : EntitySystem
         ComposeActions(uid, component, args.NewMobState);
     }
 
-    private void OnMobStateComponentInit(EntityUid uid, MobStateComponent component, ComponentInit args)
+    private void OnMobStateActionsMapInit(EntityUid uid, MobStateActionsComponent component, ref MapInitEvent args)
     {
-        if (!TryComp<MobStateActionsComponent>(uid, out var mobStateActionsComp))
+        if (!TryComp<MobStateComponent>(uid, out var mobState))
             return;
 
-        ComposeActions(uid, mobStateActionsComp, component.CurrentState);
+        ComposeActions(uid, component, mobState.CurrentState);
     }
 
     /// <summary>

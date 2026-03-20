@@ -52,6 +52,7 @@ public sealed class TranslatorImplantSystem : EntitySystem
 
     private void OnDetermineLanguages(EntityUid uid, ImplantedComponent component, ref DetermineEntityLanguagesEvent args)
     {
+        if (component.ImplantContainer == null) return;
         foreach (var implant in component.ImplantContainer.ContainedEntities)
         {
             if (!TryComp<TranslatorImplantComponent>(implant, out var translator) || !translator.Enabled)

@@ -1,0 +1,38 @@
+- type: vessel
+  parent: BaseVessel
+  id: Transporter # By Keli
+  name: SMTP Transporter
+  description: Спроектированный по заказу лидера важной семьи шаттл, ныне производимый кустарно. Предназначен для перевозки ВИПов.
+  price: 105000
+  category: Medium
+  group: Mercenary
+  shuttlePath: /Maps/_Lua/Shuttles/Mercenary/Transporter.yml
+  guidebookPage: null # Надо будет сделать
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Mercenary
+  - Kitchen
+  engine:
+  - Bananium
+
+
+- type: gameMap
+  id: Transporter
+  mapName: Transporter
+  mapPath: /Maps/_Lua/Shuttles/Mercenary/Transporter.yml
+  minPlayers: 0
+  stations:
+    Transporter:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Transporter {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            MercenaryBase: [ 0, 0 ]
+            SecurityOfficer: [ 0, 0 ]

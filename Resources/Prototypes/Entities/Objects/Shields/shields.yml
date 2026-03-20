@@ -419,6 +419,7 @@
     - type: ItemTogglePointLight
     - type: Reflect
       reflectProb: 0.95
+      damageOnReflectModifier: 0.25
       reflects:
         - Energy
     - type: Blocking
@@ -569,11 +570,11 @@
       price: 350
       # WD EDIT START
     - type: Battery
-      maxCharge: 60
-      startingCharge: 60
+      maxCharge: 360
+      startingCharge: 360
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 5
+      autoRechargeRate: 20
     - type: RechargeableBlocking
       # WD EDIT END
 #Lua edit end: Add a self-recharging shield

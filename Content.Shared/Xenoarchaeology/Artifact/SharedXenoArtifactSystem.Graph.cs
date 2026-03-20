@@ -53,8 +53,7 @@ public abstract partial class SharedXenoArtifactSystem
     /// <exception cref="ArgumentException">Throws if requested index doesn't exist on artifact. </exception>
     public Entity<XenoArtifactNodeComponent> GetNode(Entity<XenoArtifactComponent> ent, int index)
     {
-        if (ent.Comp.NodeVertices[index] is { } netUid && GetEntity(netUid) is var uid)
-            return (uid, XenoArtifactNode(uid));
+        if (TryGetNode((ent, ent.Comp), index, out var node)) return node.Value;
 
         throw new ArgumentException($"index {index} does not correspond to an existing node in {ToPrettyString(ent)}");
     }
@@ -71,10 +70,11 @@ public abstract partial class SharedXenoArtifactSystem
         if (index < 0 || index >= ent.Comp.NodeVertices.Length)
             return false;
 
-        if (ent.Comp.NodeVertices[index] is { } netUid && GetEntity(netUid) is var uid)
-            node = (uid, XenoArtifactNode(uid));
-
-        return node != null;
+        if (ent.Comp.NodeVertices[index] is not { } netUid) return false;
+        var uid = GetEntity(netUid);
+        if (!uid.IsValid() || !TryComp<XenoArtifactNodeComponent>(uid, out var comp)) return false;
+        node = (uid, comp);
+        return true;
     }
 
     /// <summary>
@@ -466,7 +466,8 @@ public abstract partial class SharedXenoArtifactSystem
         if (!Resolve(ent, ref ent.Comp))
             return new();
 
-        var predecessors = GetPredecessorNodes(ent, GetIndex((ent, ent.Comp), node));
+        if (!TryGetIndex((ent, ent.Comp), node.Owner, out var nodeIdx)) return new();
+        var predecessors = GetPredecessorNodes(ent, nodeIdx.Value);
         var output = new HashSet<Entity<XenoArtifactNodeComponent>>();
         foreach (var p in predecessors)
         {
@@ -518,11 +519,12 @@ public abstract partial class SharedXenoArtifactSystem
         if (!Resolve(ent, ref ent.Comp))
             return new();
 
-        var successors = GetSuccessorNodes(ent, GetIndex((ent, ent.Comp), node));
+        if (!TryGetIndex((ent, ent.Comp), node.Owner, out var nodeIdx)) return new();
+        var successors = GetSuccessorNodes(ent, nodeIdx.Value);
         var output = new HashSet<Entity<XenoArtifactNodeComponent>>();
         foreach (var s in successors)
         {
-            output.Add(GetNode((ent, ent.Comp), s));
+            if (TryGetNode((ent, ent.Comp), s, out var n)) output.Add(n.Value);
         }
 
         return output;

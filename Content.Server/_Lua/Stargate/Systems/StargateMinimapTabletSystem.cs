@@ -33,6 +33,11 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     private EntityQuery<OccluderComponent> _occluderQuery;
     private TimeSpan _nextUpdate;
     private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(0.5);
+
+    // Reusable buffers to avoid per-frame allocations
+    private readonly Dictionary<Vector2i, uint[]> _chunksBuffer = new();
+    private readonly List<StargateMinimapMarker> _markersBuffer = new();
+    private readonly List<Vector2> _questZonesBuffer = new();
     public override void Initialize()
     {
         base.Initialize();
@@ -236,19 +241,21 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
         }
         var d1 = GetDisk(uid, 1);
         var d2 = GetDisk(uid, 2);
-        var chunks = new Dictionary<Vector2i, uint[]>();
-        var markers = new List<StargateMinimapMarker>();
+        // Reuse buffers instead of allocating new collections each call
+        _chunksBuffer.Clear();
+        _markersBuffer.Clear();
         if (d1 != null && TryComp<StargateMinimapDiskComponent>(d1, out var dc))
         {
             var pd = GetCurrentPlanetData(dc);
             if (pd != null)
             {
-                foreach (var (k, v) in pd.Chunks) chunks[k] = (uint[])v.Clone();
-                markers.AddRange(pd.Markers);
+                // No Clone() needed: SetUiState serializes immediately, so server data won't be mutated by client
+                foreach (var (k, v) in pd.Chunks) _chunksBuffer[k] = v;
+                _markersBuffer.AddRange(pd.Markers);
             }
         }
-        var questZones = CollectQuestTargetZones(player, isSg);
-        _ui.SetUiState(uid, StargateMinimapTabletUiKey.Key, new StargateMinimapUiState(isSg, d1 != null, d2 != null, chunks, markers, gatePos, playerPos, questZones));
+        CollectQuestTargetZones(player, isSg, _questZonesBuffer);
+        _ui.SetUiState(uid, StargateMinimapTabletUiKey.Key, new StargateMinimapUiState(isSg, d1 != null, d2 != null, _chunksBuffer, _markersBuffer, gatePos, playerPos, _questZonesBuffer.Count > 0 ? _questZonesBuffer : null));
         UpdateTabletAppearance(uid);
     }
     private void UpdateTabletAppearance(EntityUid uid)
@@ -272,20 +279,20 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     private const float QuestZoneRadius = 21f;
     private const float QuestZoneMaxOffset = 14f;
 
-    private List<Vector2>? CollectQuestTargetZones(EntityUid? player, bool isSg)
+    private void CollectQuestTargetZones(EntityUid? player, bool isSg, List<Vector2> zones)
     {
+        zones.Clear();
         if (!isSg || player == null)
-            return null;
+            return;
 
         var xform = Transform(player.Value);
         if (xform.MapUid == null)
-            return null;
+            return;
 
         var mapUid = xform.MapUid.Value;
         if (!TryComp<PlanetQuestComponent>(mapUid, out var quest) || quest.Completed)
-            return null;
+            return;
 
-        var zones = new List<Vector2>();
         var targetQuery = EntityQueryEnumerator<PlanetQuestTargetComponent, TransformComponent>();
         while (targetQuery.MoveNext(out var uid, out var target, out var targetXform))
         {
@@ -299,6 +306,7 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
 
             var realPos = _xform.GetWorldPosition(targetXform);
 
+            // Reuse seeded Random by value — no allocation needed
             var rng = new Random(uid.Id);
             var angle = rng.NextDouble() * Math.PI * 2;
             var dist = rng.NextDouble() * QuestZoneMaxOffset;
@@ -306,8 +314,6 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
 
             zones.Add(realPos + offset);
         }
-
-        return zones.Count > 0 ? zones : null;
     }
 
     private EntityUid? GetDisk(EntityUid uid, int slot)

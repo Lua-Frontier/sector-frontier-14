@@ -6,12 +6,9 @@
   - GateGrassCaves
   - GateLavaGrass
   - GateDesertGrass
-  dungeonConfigs:
-  - GateTinyOutpost
-  - GateCompactCache
-  - GateScatteredCaches
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 140
   worldRadiusMin: 191
@@ -41,12 +38,9 @@
   - GateJungle
   - GateBioluminescent
   - GateWasteland
-  dungeonConfigs:
-  - GateQuadBunker
-  - GateCrossBunker
-  - GateScatteredMixed
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 70
   dungeonDistanceMax: 160
   worldRadiusMin: 226
@@ -72,12 +66,9 @@
   - GateBioluminescent
   - GateGrassSnow
   - GateSnowDesert
-  dungeonConfigs:
-  - GateMediumOutpost
-  - GateLineOutpost
-  - GateScatteredLabs
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 140
   worldRadiusMin: 208
@@ -106,10 +97,7 @@
   - GateJungle
   - GateGrassLava
   - GateShadowDesert
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateCompactCache
-  - GateHookOutpost
+  dungeonPool: true
   dungeonCountMin: 1
   dungeonCountMax: 1
   dungeonDistanceMin: 60

@@ -103,6 +103,9 @@
       Steel: 100
   - type: StaticPrice
     price: 15 # Frontier 30<15
+  - type: Construction # _Lua: ore crafting
+    graph: ScrewdriverOre
+    node: done
 
 - type: entity
   name: wrench
@@ -157,6 +160,9 @@
   - type: GuideHelp
     guides:
     - Construction
+  - type: Construction # _Lua: ore crafting
+    graph: WrenchOre
+    node: done
 
 - type: entity
   name: multitool

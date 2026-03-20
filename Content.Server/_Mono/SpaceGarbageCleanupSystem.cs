@@ -74,8 +74,8 @@ public sealed class SpaceGarbageCleanupSystem : EntitySystem
             if (HasComp<UtensilComponent>(uid))
                 continue;
 
-            // Skip deletion if the entity has a Hypospray component. Protect my medipens!
-            if (HasComp<HyposprayComponent>(uid))
+            // Skip deletion if the entity has an Injector component. Protect medipens/hypos.
+            if (HasComp<InjectorComponent>(uid))
                 continue;
 
             // Skip deletion if the entity has an ExpendableLightComponent.

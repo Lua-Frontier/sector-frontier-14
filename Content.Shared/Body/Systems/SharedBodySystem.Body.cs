@@ -9,6 +9,7 @@ using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Gibbing.Systems;
 using Content.Shared.Inventory;
+using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -40,7 +41,7 @@ public partial class SharedBodySystem
         SubscribeLocalEvent<BodyComponent, EntRemovedFromContainerMessage>(OnBodyRemoved);
 
         SubscribeLocalEvent<BodyComponent, ComponentInit>(OnBodyInit);
-        SubscribeLocalEvent<BodyComponent, MapInitEvent>(OnBodyMapInit);
+        SubscribeLocalEvent<BodyComponent, MapInitEvent>(OnBodyMapInit, after: [typeof(MovementSpeedModifierSystem)]);
         SubscribeLocalEvent<BodyComponent, CanDragEvent>(OnBodyCanDrag);
     }
 
@@ -98,6 +99,12 @@ public partial class SharedBodySystem
     {
         if (ent.Comp.Prototype is null)
             return;
+
+        if (ent.Comp.RootContainer.ContainedEntity is { })
+        {
+            UpdateMovementSpeed(ent);
+            return;
+        }
 
         // One-time setup
         // Obviously can't run in Init to avoid double-spawns on save / load.

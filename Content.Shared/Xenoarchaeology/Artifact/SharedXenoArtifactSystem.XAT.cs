@@ -83,9 +83,8 @@ public abstract partial class SharedXenoArtifactSystem
                 _popup.PopupEntity(Loc.GetString("artifact-unlock-state-begin"), ent);
             Dirty(ent);
         }
-        else if (node != null)
+        else if (node != null && TryGetIndex(ent.AsNullable(), node.Value.Owner, out var index))
         {
-            var index = GetIndex(ent, node.Value);
             // Frontier: lenience with node unlocking
 
             // var predecessorNodeIndices = GetPredecessorNodes((ent, ent), index);
@@ -98,12 +97,12 @@ public abstract partial class SharedXenoArtifactSystem
             //     // we add time on each new trigger, if it is not going to fail us
             //     unlockingComp.EndTime += ent.Comp.UnlockStateIncrementPerNode;
 
-            if (!unlockingComp.TriggeredNodeIndexes.Contains(index))
+            if (!unlockingComp.TriggeredNodeIndexes.Contains(index.Value))
                 unlockingComp.EndTime += ent.Comp.UnlockStateIncrementPerNode;
             // End Frontier: lenience with node unlocking
         }
 
-        if (node != null && unlockingComp.TriggeredNodeIndexes.Add(GetIndex(ent, node.Value)))
+        if (node != null && TryGetIndex(ent.AsNullable(), node.Value.Owner, out var triggerIdx) && unlockingComp.TriggeredNodeIndexes.Add(triggerIdx.Value))
         {
             Dirty(ent, unlockingComp);
         }
