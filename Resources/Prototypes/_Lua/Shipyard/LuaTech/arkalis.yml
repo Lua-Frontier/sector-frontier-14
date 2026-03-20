@@ -7,7 +7,7 @@
   parent: BaseVessel
   name: Аркалис
   description: Списанный крупный военный корабль переоборудованный под гражданские нужды.
-  price: 291000
+  price: 393000
   category: Large
   marker: LuaTech
   group: LuaTech
@@ -19,19 +19,19 @@
   - Expedition
   engine:
   - AME
-  shuttlePath: /Maps/_Lua/Shuttles/LuaTech/arkalis_civ.yml
+  shuttlePath: /Maps/_Lua/Shuttles/LuaTech/arkalis_civ_large.yml
 
 - type: gameMap
   id: Arkalis
   mapName: 'Аркалис'
-  mapPath: /Maps/_Lua/Shuttles/LuaTech/arkalis_civ.yml
+  mapPath: /Maps/_Lua/Shuttles/LuaTech/arkalis_civ_large.yml
   minPlayers: 0
   stations:
     Arkalis:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Аркалис MkII {1}'
+          mapNameTemplate: 'Аркалис MkIII {1}'
           nameGenerator:
             !type:LuaTechNameGenerator
             prefixCreator: '14'

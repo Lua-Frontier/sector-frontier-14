@@ -73,11 +73,7 @@ public sealed class ShipStatCommand : IConsoleCommand
             return;
         }
         var mapUid = _entities.GetComponent<TransformComponent>(gridUid).MapUid;
-        if (mapUid != null && _entities.TryGetComponent<MapComponent>(mapUid.Value, out var mapComp) && mapComp.MapPaused)
-        {
-            shell.WriteLine("Карта заморожена. Разморозьте карту перед запуском shipstat.");
-            return;
-        }
+        bool mapPaused = mapUid != null && _entities.TryGetComponent<MapComponent>(mapUid.Value, out var mapComp) && mapComp.MapPaused;
 
         var sb = new StringBuilder();
         sb.AppendLine("=== SHIPSTAT ===");
@@ -98,12 +94,24 @@ public sealed class ShipStatCommand : IConsoleCommand
         }
 
         sb.AppendLine($"[Размер] {width}×{height}, тайлов: {tileCount}, макс сторона: {maxSide}");
+        if (tileCount > 1412)
+            sb.AppendLine($"  [!] Тайлов {tileCount} > макс Large (1412) — шаттл слишком большой");
+
+        if (mapPaused)
+        {
+            sb.AppendLine("[Оценка] Карта заморожена — разморозьте карту для оценки стоимости.");
+            sb.AppendLine("[Правила] Карта заморожена — разморозьте карту для проверки правил.");
+            sb.AppendLine("=== END SHIPSTAT ===");
+            shell.WriteLine(sb.ToString());
+            return;
+        }
+
         var size =
             tileCount > 961 ? VesselSize.Large :
             tileCount > 441 ? VesselSize.Medium :
             tileCount > 81 ? VesselSize.Small :
             VesselSize.Micro;
-        sb.AppendLine($"[Категория по размеру] {size}  (Micro ≤9×9/81т, Small ≤21×21/441т, Medium ≤31×31/961т, Large ≤1412т)");
+        sb.AppendLine($"[Категория по размеру] {size}  (Micro ≤13×13/100т, Small ≤21×21/441т, Medium ≤31×31/961т, Large ≤1412т)");
         var pricing = _systems.GetEntitySystem<PricingSystem>();
         double appraisePrice = 0;
         pricing.AppraiseGrid(gridUid, null, (_, price) => { appraisePrice += price; });
