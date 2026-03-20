@@ -1,0 +1,107 @@
+- type: entity
+  name: древний генератор
+  description: Примитивный генератор, собранный из подручных материалов. Работает на угле. Мощность 1кВт.
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: AncientGenerator
+  components:
+    - type: Transform
+      anchored: false
+    - type: Physics
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.40,-0.40,0.40,0.40"
+          density: 155
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Sprite
+      sprite: _Lua/Structures/Machines/ancient_machines.rsi
+      state: perservedgenerator
+      noRot: true
+    - type: Appearance
+    - type: Machine
+      board: AncientGeneratorCircuitboard
+    - type: WiresPanel
+    - type: Anchorable
+    - type: Pullable
+    - type: AmbientSound
+      range: 5
+      volume: -5
+      sound:
+        path: /Audio/Ambience/Objects/engine_hum.ogg
+      enabled: false
+    - type: PortableGenerator
+      startSoundEmpty: { collection: GeneratorTugEmpty }
+      startSound: { collection: GeneratorTug }
+    - type: FuelGenerator
+      minTargetPower: 1000
+      maxTargetPower: 1000
+      targetPower: 1000
+      optimalPower: 1000
+      optimalBurnRate: 0.027778
+      fuelEfficiencyConstant: 0.8
+    - type: SolidFuelGeneratorAdapter
+      fuelMaterial: Coal
+      multiplier: 0.01
+    - type: ApcPowerReceiver
+      needsPower: false
+      powerLoad: 0
+    - type: MaterialStorage
+      storageLimit: 10000
+      insertOnInteract: true
+      ignoreColor: true
+      materialWhiteList:
+        - Coal
+    - type: MaterialStorageMagnetPickup
+      range: 0.30
+      magnetEnabled: false
+    - type: NodeContainer
+      examinable: true
+      nodes:
+        output:
+          !type:CableDeviceNode
+          nodeGroupID: Apc
+    - type: PowerSupplier
+      voltage: Apc
+      supplyRate: 1000
+      supplyRampRate: 1000
+      supplyRampTolerance: 1000
+      enabled: false
+    - type: UserInterface
+      interfaces:
+        enum.GeneratorComponentUiKey.Key:
+          type: PortableGeneratorBoundUserInterface
+    - type: ActivatableUI
+      key: enum.GeneratorComponentUiKey.Key
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: machine
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNodes:
+        - output
+      sprite: _Lua/Structures/Machines/ancient_machines.rsi
+      state: perservedgenerator
+    - type: StaticPrice
+      price: 50

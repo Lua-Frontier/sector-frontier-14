@@ -760,7 +760,10 @@
   name: loadout-group-contractor-backpack-items
   minLimit: 0
   maxLimit: 6 # Caveat emptor - enjoy picking stuff up off the ground
+  fallbacks:
+  - ContractorEmergencyRockCutter
   loadouts:
+  - ContractorEmergencyRockCutter
   - ContractorMonkeyCubeWrapped
   - ContractorKoboldCubeWrapped
   - ContractorCigPackBlue

@@ -6,14 +6,9 @@
   - GateGrassLava
   - GateGrassCaves
   - GateCavesGrass
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateMediumOutpost
-  - GateLineOutpost
-  - GateHookOutpost
-  - NFExperiment
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 130
   worldRadiusMin: 212
@@ -37,12 +32,9 @@
   - GateSnowDesert
   - GateSnowCaves
   - GateDesertShadow
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateScatteredLabs
-  - NFMineshaft
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 130
   worldRadiusMin: 212
@@ -64,11 +56,9 @@
   - GateSnowCaves
   - GateGrassSnow
   - GateShadowSnow
-  dungeonConfigs:
-  - GateSmallOutpost
-  - NFSnowyLabs
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 100
   worldRadiusMin: 200
@@ -96,10 +86,7 @@
   - GateCavesGrass
   - GateDesertCaves
   - GateSnowCaves
-  dungeonConfigs:
-  - GateMineshaft
-  - GateMediumOutpost
-  - NFCaveFactory
+  dungeonPool: true
   dungeonCountMin: 1
   dungeonCountMax: 1
   dungeonDistanceMin: 40
@@ -124,14 +111,9 @@
   - GateInferno
   - GateVolcanicSavanna
   - GateWasteland
-  dungeonConfigs:
-  - GateMineshaft
-  - GateQuadBunker
-  - GateScatteredOutposts
-  - NFCaveFactory
-  - NFSnowyLabs
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 150
   worldRadiusMin: 216

@@ -5,13 +5,9 @@
   - GateShadowSnow
   - GateShadowDesert
   - GateCavesShadow
-  dungeonConfigs:
-  - NFHaunted
-  - GateHauntedOutpost
-  - GateSmallOutpost
-  - GateScatteredCaches
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 35
   dungeonDistanceMax: 90
   worldRadiusMin: 215
@@ -39,14 +35,9 @@
   - GateShadowLava
   - GateLavaShadow
   - GateInferno
-  dungeonConfigs:
-  - NFHaunted
-  - NFLavaBrig
-  - GateHauntedOutpost
-  - GateLavaOutpost
-  - GateScatteredCaches
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 35
   dungeonDistanceMax: 80
   worldRadiusMin: 215
@@ -76,11 +67,9 @@
   - GateShadowDesert
   - GateDesertCaves
   - GateWasteland
-  dungeonConfigs:
-  - GateScatteredCaches
-  - NFVirologyLab
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 45
   dungeonDistanceMax: 100
   worldRadiusMin: 202

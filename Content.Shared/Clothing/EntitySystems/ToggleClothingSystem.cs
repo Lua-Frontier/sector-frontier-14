@@ -59,4 +59,10 @@ public sealed class ToggleClothingSystem : EntitySystem
         if (ent.Comp.DisableOnUnequip)
             _toggle.TryDeactivate(ent.Owner, args.Wearer);
     }
+
+    public void ClearActionEntity(EntityUid uid, ToggleClothingComponent comp)
+    {
+        comp.ActionEntity = null;
+        Dirty(uid, comp);
+    }
 }

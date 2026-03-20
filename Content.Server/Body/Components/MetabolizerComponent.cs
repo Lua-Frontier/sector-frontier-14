@@ -80,6 +80,9 @@ namespace Content.Server.Body.Components
         /// </summary>
         [DataField("groups")]
         public List<MetabolismGroupEntry>? MetabolismGroups;
+
+        [DataField]
+        public bool CryogenicExemption = true;
     }
 
     /// <summary>

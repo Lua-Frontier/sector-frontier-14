@@ -24,6 +24,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
 
         SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<SalvageMobRestrictionsGridComponent, ComponentInit>(OnGridInit);
         SubscribeLocalEvent<SalvageMobRestrictionsGridComponent, ComponentRemove>(OnRemoveGrid);
         SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, MobStateChangedEvent>(OnMobState);
         SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, EntParentChangedMessage>(OnParentChanged);
@@ -54,6 +55,9 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
             rg.MobsToKill.Remove(uid);
         }
     }
+
+    private void OnGridInit(EntityUid uid, SalvageMobRestrictionsGridComponent component, ComponentInit args)
+    { component.MobsToKill.RemoveAll(mob => !Exists(mob) || !mob.IsValid()); }
 
     private void OnRemoveGrid(EntityUid uid, SalvageMobRestrictionsGridComponent component, ComponentRemove args)
     {

@@ -14,6 +14,19 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
 
+#Lua: Changed firerate, added scope
+  - type: Gun
+    fireRate: 1.5
+  - type: ItemToggle
+    onUse: false
+    onActivate: true
+  - type: ComponentToggler
+    components:
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 0.7
+#end Lua
 - type: entity
   id: NFWeaponEnergyRifleSniperXrayCannon
   parent: [ BaseC3Contraband, NFBaseWeaponEnergyRifleSniperHitScanXray, NFBaseWeaponFrameEnergyRifleSniperNanotrasen ]
@@ -26,3 +39,18 @@
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
+#Lua: Changed sound of gunshot, added scope
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+    fireRate: 2
+  - type: ItemToggle
+    onUse: false
+    onActivate: true
+  - type: ComponentToggler
+    components:
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 0.7
+#end Lua

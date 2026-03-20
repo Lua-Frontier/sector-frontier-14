@@ -78,6 +78,8 @@ public sealed class FrontierParkingSystem : EntitySystem
     private const int FineAmount = 10_000;
     private readonly Dictionary<EntityUid, ParkingState> _tracked = new();
     private readonly Dictionary<EntityUid, Task> _pendingOfflineFines = new();
+    private readonly HashSet<EntityUid> _inZoneBuffer = new();
+    private readonly List<(EntityUid Uid, TransformComponent Xform, float Range)> _exclusionsBuffer = new();
 
     public EntityUid? FrontierStation => GetFrontierStation();
 
@@ -186,15 +188,15 @@ public sealed class FrontierParkingSystem : EntitySystem
         _nextScan = _timing.CurTime + ScanInterval;
         var frontierStation = GetFrontierStation();
         if (frontierStation == null) return;
-        var exclusions = GetFrontierExclusions(frontierStation.Value);
-        if (exclusions.Count == 0) return;
-        var inZone = new HashSet<EntityUid>();
+        GetFrontierExclusions(frontierStation.Value, _exclusionsBuffer);
+        if (_exclusionsBuffer.Count == 0) return;
+        _inZoneBuffer.Clear();
         var shuttleQuery = EntityQueryEnumerator<ShuttleDeedComponent, ShuttleComponent, TransformComponent>();
         while (shuttleQuery.MoveNext(out var shuttleUid, out var deed, out _, out var shuttleXform))
         {
             if (shuttleXform.MapID == MapId.Nullspace) continue;
-            if (!IsInsideAnyExclusion(shuttleXform, exclusions)) continue;
-            inZone.Add(shuttleUid);
+            if (!IsInsideAnyExclusion(shuttleXform, _exclusionsBuffer)) continue;
+            _inZoneBuffer.Add(shuttleUid);
             if (!_tracked.TryGetValue(shuttleUid, out var state))
             {
                 state = new ParkingState(_timing.CurTime);
@@ -204,7 +206,7 @@ public sealed class FrontierParkingSystem : EntitySystem
             ProcessTimers(frontierStation.Value, shuttleUid, deed, state);
         }
         foreach (var (uid, _) in _tracked)
-        { if (!inZone.Contains(uid)) _toRemove.Add(uid); }
+        { if (!_inZoneBuffer.Contains(uid)) _toRemove.Add(uid); }
         foreach (var uid in _toRemove)
         {
             if (TryComp<ShuttleDeedComponent>(uid, out var deed)) SendOwnerNotice(uid, deed, Loc.GetString("frontier-parking-popup-leave"), PopupInfoType);
@@ -222,9 +224,9 @@ public sealed class FrontierParkingSystem : EntitySystem
         return null;
     }
 
-    private List<(EntityUid Uid, TransformComponent Xform, float Range)> GetFrontierExclusions(EntityUid frontierStation)
+    private void GetFrontierExclusions(EntityUid frontierStation, List<(EntityUid Uid, TransformComponent Xform, float Range)> list)
     {
-        var list = new List<(EntityUid, TransformComponent, float)>();
+        list.Clear();
         var query = EntityQueryEnumerator<FTLExclusionComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var excl, out var xform))
         {
@@ -233,7 +235,6 @@ public sealed class FrontierParkingSystem : EntitySystem
             if (ownerStation != frontierStation) continue;
             list.Add((uid, xform, excl.Range));
         }
-        return list;
     }
 
     private bool IsInsideAnyExclusion(TransformComponent shuttleXform, List<(EntityUid Uid, TransformComponent Xform, float Range)> exclusions)

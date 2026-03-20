@@ -1,0 +1,294 @@
+- type: latheRecipe
+  id: AncientSheetSteel
+  result: SheetSteel1
+  completetime: 3
+  materials:
+    RawIron: 100
+    Coal: 30
+
+- type: latheRecipe
+  id: AncientSheetGlass
+  result: SheetGlass1
+  completetime: 3
+  materials:
+    RawQuartz: 100
+
+- type: latheRecipe
+  id: AncientSheetSilver
+  result: IngotSilver1
+  completetime: 3
+  materials:
+    RawSilver: 100
+    Coal: 20
+
+- type: latheRecipe
+  id: AncientSheetGold
+  result: IngotGold1
+  completetime: 3
+  materials:
+    RawGold: 100
+    Coal: 20
+
+- type: latheRecipe
+  id: AncientSheetPlastic
+  result: SheetPlastic1
+  completetime: 3
+  materials:
+    Coal: 30
+
+- type: latheRecipe
+  id: AncientSheetPaperFromPlastic
+  result: SheetPaper1
+  completetime: 2
+  materials:
+    Plastic: 10
+
+- type: latheRecipe
+  id: AncientCableApc
+  result: CableApcStack1
+  completetime: 3
+  materials:
+    Steel: 250
+    Silver: 50
+
+- type: latheRecipe
+  id: AncientScrewdriver
+  result: Screwdriver
+  completetime: 4
+  materials:
+    Steel: 150
+    Plastic: 50
+
+- type: latheRecipe
+  id: AncientWrench
+  result: Wrench
+  completetime: 4
+  materials:
+    Steel: 200
+
+- type: latheRecipe
+  id: AncientCrowbar
+  result: CrowbarGreen
+  completetime: 4
+  materials:
+    Steel: 200
+    Plastic: 30
+
+- type: latheRecipe
+  id: AncientWirecutter
+  result: Wirecutter
+  completetime: 4
+  materials:
+    Steel: 150
+    Silver: 50
+
+- type: latheRecipe
+  id: AncientPickaxe
+  result: Pickaxe
+  completetime: 4
+  materials:
+    Steel: 300
+    Plastic: 50
+
+- type: latheRecipe
+  id: AncientFlashlight
+  result: FlashlightLantern
+  completetime: 4
+  materials:
+    Steel: 100
+    Glass: 50
+    Silver: 50
+
+- type: latheRecipe
+  id: AncientGeneratorBoardLathe
+  result: AncientGeneratorCircuitboard
+  completetime: 10
+  materials:
+    Steel: 200
+    Glass: 100
+    Silver: 50
+
+- type: latheRecipe
+  id: AncientAutolatheBoardLathe
+  result: AncientAutolatheCircuitboard
+  completetime: 10
+  materials:
+    Steel: 300
+    Glass: 150
+    Silver: 100
+
+- type: latheRecipe
+  id: AncientCircuitImprinterBoardLathe
+  result: AncientCircuitImprinterCircuitboard
+  completetime: 12
+  materials:
+    Steel: 250
+    Glass: 200
+    Silver: 100
+
+- type: latheRecipe
+  id: AncientResearchServerBoardLathe
+  result: AncientResearchServerCircuitboard
+  completetime: 12
+  materials:
+    Steel: 250
+    Glass: 200
+    Silver: 100
+
+- type: latheRecipe
+  id: AncientBlueprintProtolathePrint
+  result: AncientBlueprintProtolathe
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintAutolathePrint
+  result: AncientBlueprintAutolathe
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintCircuitImprinterPrint
+  result: AncientBlueprintCircuitImprinter
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintExosuitFabricatorPrint
+  result: AncientBlueprintExosuitFabricator
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintAnomalyVesselPrint
+  result: AncientBlueprintAnomalyVessel
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintLithographPrint
+  result: AncientBlueprintLithograph
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintRndServerPrint
+  result: AncientBlueprintRndServer
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintResearchComputerPrint
+  result: AncientBlueprintResearchComputer
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintArtifactAnalyzerPrint
+  result: AncientBlueprintArtifactAnalyzer
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintAnalysisComputerPrint
+  result: AncientBlueprintAnalysisComputer
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipe
+  id: AncientBlueprintApePrint
+  result: AncientBlueprintApe
+  completetime: 10
+  materials:
+    Steel: 80
+    Glass: 100
+    Paper: 200
+
+- type: latheRecipePack
+  id: AncientSmelterStatic
+  recipes:
+  - AncientSheetSteel
+  - AncientSheetGlass
+  - AncientSheetSilver
+  - AncientSheetGold
+  - AncientSheetPlastic
+
+- type: latheRecipePack
+  id: AncientAutolatheStatic
+  recipes:
+  - AncientSheetPaperFromPlastic
+  - AncientCableApc
+  - AncientScrewdriver
+  - AncientWrench
+  - AncientCrowbar
+  - AncientWirecutter
+  - AncientPickaxe
+  - AncientFlashlight
+  - AnomalyScanner
+  - NodeScanner
+  - Multitool
+  - AncientCircuitImprinterBoardLathe
+  - AncientResearchServerBoardLathe
+  - MicroManipulatorStockPart
+  - CapacitorStockPart
+  - MatterBinStockPart
+
+- type: latheRecipePack
+  id: AncientResearchServerStatic
+  recipes:
+  - AncientBlueprintProtolathePrint
+  - AncientBlueprintAutolathePrint
+  - AncientBlueprintCircuitImprinterPrint
+  - AncientBlueprintExosuitFabricatorPrint
+  - AncientBlueprintAnomalyVesselPrint
+  - AncientBlueprintLithographPrint
+  - AncientBlueprintRndServerPrint
+  - AncientBlueprintResearchComputerPrint
+  - AncientBlueprintArtifactAnalyzerPrint
+  - AncientBlueprintAnalysisComputerPrint
+  - AncientBlueprintApePrint
+
+- type: latheRecipePack
+  id: AncientCircuitImprinterScienceLab
+  recipes:
+  - ProtolatheMachineCircuitboard
+  - AutolatheMachineCircuitboard
+  - CircuitImprinterMachineCircuitboard
+  - ExosuitFabricatorMachineCircuitboard
+  - AnomalyVesselCircuitboard
+  - ArtifactAnalyzerMachineCircuitboard
+  - APECircuitboard
+  - ResearchAndDevelopmentServerMachineCircuitboard
+  - ResearchComputerCircuitboard
+  - AnalysisComputerCircuitboard
+  - BlueprintLithographMachineCircuitboard

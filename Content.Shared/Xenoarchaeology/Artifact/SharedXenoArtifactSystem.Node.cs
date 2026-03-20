@@ -34,6 +34,11 @@ public abstract partial class SharedXenoArtifactSystem
     private void OnNodeMapInit(Entity<XenoArtifactNodeComponent> ent, ref MapInitEvent args)
     {
         XenoArtifactNodeComponent nodeComponent = ent;
+        if (nodeComponent.ResearchValue != 0)
+        {
+            UpdateNodeResearchValue((ent, ent.Comp));
+            return;
+        }
         // Frontier: max durability
         if (_singleUseNodes)
             nodeComponent.MaxDurability = 1;

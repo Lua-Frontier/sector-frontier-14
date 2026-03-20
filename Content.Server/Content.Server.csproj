@@ -14,6 +14,8 @@
     <PackageReference Include="Discord.Net" />
     <PackageReference Include="prometheus-net" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" />
+    <PackageReference Include="SharpZstd.Interop" PrivateAssets="compile" ExcludeAssets="native" />
+    <PackageReference Include="Robust.Natives.Zstd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Content.Packaging\Content.Packaging.csproj" />

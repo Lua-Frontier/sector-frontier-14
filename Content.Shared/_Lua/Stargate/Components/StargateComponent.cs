@@ -40,7 +40,7 @@ public sealed partial class StargateComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string? AddressPreset;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public byte[]? Address;
 
     [DataField]

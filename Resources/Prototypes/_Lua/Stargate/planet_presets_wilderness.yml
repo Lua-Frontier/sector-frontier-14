@@ -3,7 +3,7 @@
   biome:
   - LowDesert
   - GateDesertCaves
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 205
   worldRadiusMax: 256
@@ -18,7 +18,7 @@
   biome:
   - Snow
   - GateSnowCaves
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 205
   worldRadiusMax: 256
@@ -36,7 +36,7 @@
   - Lava
   - GateLavaCaves
   - GateLavaDesert
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 195
   worldRadiusMax: 256
@@ -54,7 +54,7 @@
   id: SGPresetVoidAsteroid
   biome:
   - Asteroid
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 120
   worldRadiusMax: 200
@@ -74,7 +74,7 @@
   - Shadow
   - GateShadowSnow
   - GateShadowDesert
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 150
   worldRadiusMax: 250
@@ -93,7 +93,7 @@
   - GateGrassSnow
   - GateGrassDesert
   - GateGrassCaves
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 208
   worldRadiusMax: 256
@@ -109,7 +109,7 @@
   - Caves
   - GateCavesGrass
   - GateCavesLava
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 208
   worldRadiusMax: 256
@@ -125,9 +125,8 @@
   - Grasslands
   - GateGrassDesert
   - GateCavesGrass
-  dungeonConfigs:
-  - GateTinyOutpost
-  dungeonCountMin: 0
+  dungeonPool: true
+  dungeonCountMin: 1
   dungeonCountMax: 1
   dungeonDistanceMin: 60
   dungeonDistanceMax: 130
@@ -144,9 +143,8 @@
   biome:
   - LowDesert
   - GateDesertCaves
-  dungeonConfigs:
-  - GateTinyOutpost
-  dungeonCountMin: 0
+  dungeonPool: true
+  dungeonCountMin: 1
   dungeonCountMax: 1
   dungeonDistanceMin: 40
   dungeonDistanceMax: 80
@@ -164,7 +162,7 @@
   - Snow
   - GateSnowCaves
   - GateSnowLava
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 219
   worldRadiusMax: 256

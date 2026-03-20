@@ -2,12 +2,9 @@
   id: SGPresetJungle
   biome:
   - GateJungle
-  dungeonConfigs:
-  - GateTinyOutpost
-  - GateSmallOutpost
-  - GateLineOutpost
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 140
   worldRadiusMin: 207
@@ -32,7 +29,7 @@
   id: SGPresetJunglePeaceful
   biome:
   - GateJungle
-  dungeonCountMin: 0
+  dungeonCountMin: 1
   dungeonCountMax: 0
   worldRadiusMin: 218
   worldRadiusMax: 256
@@ -51,12 +48,9 @@
   id: SGPresetJungleRuins
   biome:
   - GateJungle
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateScatteredLabs
-  - GateCompactCache
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 70
   dungeonDistanceMax: 150
   worldRadiusMin: 195
@@ -80,11 +74,9 @@
   id: SGPresetJungleHostile
   biome:
   - GateJungle
-  dungeonConfigs:
-  - GateSmallOutpost
-  - GateLineOutpost
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
   worldRadiusMin: 222
@@ -108,12 +100,9 @@
   id: SGPresetJungleExpedition
   biome:
   - GateJungle
-  dungeonConfigs:
-  - GateMediumOutpost
-  - GateQuadBunker
-  - GateScatteredMixed
+  dungeonPool: true
   dungeonCountMin: 2
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 80
   dungeonDistanceMax: 180
   worldRadiusMin: 191
@@ -137,11 +126,9 @@
   id: SGPresetJungleTreasure
   biome:
   - GateJungle
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateTinyOutpost
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 130
   worldRadiusMin: 214

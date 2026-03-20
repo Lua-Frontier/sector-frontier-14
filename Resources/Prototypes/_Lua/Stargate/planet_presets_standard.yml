@@ -5,13 +5,9 @@
   - GateDesertCaves
   - GateDesertShadow
   - GateDesertGrass
-  dungeonConfigs:
-  - GateMineshaft
-  - NFMineshaft
-  - GateQuadBunker
-  - GateCrossBunker
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
   worldRadiusMin: 220
@@ -31,14 +27,9 @@
   - LowDesert
   - GateDesertCaves
   - GateDesertGrass
-  dungeonConfigs:
-  - GateTinyOutpost
-  - GateSmallOutpost
-  - GateCompactCache
-  - GateWideShelter
-  - GateMixed
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 90
   worldRadiusMin: 197
@@ -60,15 +51,9 @@
   - GateGrassDesert
   - GateGrassLava
   - GateGrassCaves
-  dungeonConfigs:
-  - GateMineshaft
-  - NFExperiment
-  - GateQuadBunker
-  - GateLineOutpost
-  - GateLabRuins
-  - GateMixed
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 130
   worldRadiusMin: 206
@@ -91,12 +76,9 @@
   - GateSnowLava
   - GateSnowCaves
   - GateSnowDesert
-  dungeonConfigs:
-  - GateMineshaft
-  - NFSnowyLabs
-  - GateLineOutpost
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 110
   worldRadiusMin: 215
@@ -120,12 +102,9 @@
   - GateLavaDesert
   - GateLavaShadow
   - GateLavaSnow
-  dungeonConfigs:
-  - GateMineshaft
-  - NFLavaBrig
-  - NFLavaMercenary
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 100
   worldRadiusMin: 208
@@ -151,11 +130,9 @@
   - GateShadowSnow
   - GateShadowDesert
   - GateCavesShadow
-  dungeonConfigs:
-  - GateMineshaft
-  - NFHaunted
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 90
   worldRadiusMin: 198
@@ -179,12 +156,9 @@
   - GateCavesLava
   - GateCavesShadow
   - GateCavesGrass
-  dungeonConfigs:
-  - GateMineshaft
-  - GateMediumOutpost
-  - NFCaveFactory
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
   worldRadiusMin: 230
@@ -202,11 +176,9 @@
   id: SGPresetAsteroid
   biome:
   - Asteroid
-  dungeonConfigs:
-  - GateTinyOutpost
-  - GateSmallOutpost
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 25
   dungeonDistanceMax: 60
   dungeonMobDensity: 12

@@ -153,6 +153,24 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<bool> StargateEnabled =
             CVarDef.Create("stargate.enabled", true, CVar.SERVERONLY);
 
+        public static readonly CVarDef<bool> StargateWorldSavesEnabled =
+            CVarDef.Create("stargate.world_saves_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> StargateWorldSaveAfterFrozenMinutes =
+            CVarDef.Create("stargate.world_save_after_frozen_minutes", 120, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> StargateWorldFreezeDelaySeconds =
+            CVarDef.Create("stargate.world_freeze_delay_seconds", 30, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<float> StargateWorldFreezeCheckIntervalSeconds =
+            CVarDef.Create("stargate.world_freeze_check_interval_seconds", 10f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> StargateWorldSaveCompressLevel =
+            CVarDef.Create("stargate.world_save_compress_level", 3, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> StargateWorldClearSavesOnRoundEnd =
+            CVarDef.Create("stargate.world_clear_saves_on_round_end", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
         public static readonly CVarDef<bool> SalvageExpeditionEnabled =
             CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);
 

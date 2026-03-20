@@ -204,226 +204,227 @@ public sealed class ShipyardLuaRulesTests
         var map = entManager.System<MapSystem>();
         await server.WaitPost(() =>
         {
-            Assert.Multiple(() =>
+            var globalSb = new StringBuilder();
+            foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
             {
-                foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
-                {
-                    if (WhitelistedVessels.Contains(vessel.ID))
-                        continue;
+                if (WhitelistedVessels.Contains(vessel.ID))
+                    continue;
 
-                    map.CreateMap(out var mapId);
-                    bool mapLoaded = false;
-                    Entity<MapGridComponent>? shuttle = null;
-                    try
-                    { mapLoaded = mapLoader.TryLoadGrid(mapId, vessel.ShuttlePath, out shuttle); }
-                    catch (Exception ex)
-                    {
-                        Assert.Fail($"Не удалось загрузить шаттл {vessel} ({vessel.ShuttlePath}): TryLoadGrid выбросил исключение {ex}");
-                        map.DeleteMap(mapId); continue;
-                    }
-                    Assert.That(mapLoaded, Is.True, $"Не удалось загрузить шаттл {vessel} ({vessel.ShuttlePath}): TryLoadGrid вернул false.");
-                    Assert.That(shuttle.HasValue, Is.True);
-                    Assert.That(entManager.HasComponent<MapGridComponent>(shuttle.Value), Is.True);
-                    if (!mapLoaded || shuttle == null)
-                    { map.DeleteMap(mapId); continue; }
-                    var gridUid = shuttle.Value.Owner;
-                    var sb = new StringBuilder();
-                    int totalGunCost = 0;
-                    int gunCount = 0;
-                    var gunsQuery = entManager.EntityQueryEnumerator<ShipGunClassComponent, TransformComponent>();
-                    while (gunsQuery.MoveNext(out _, out var gunClass, out var xform))
-                    {
-                        if (xform.GridUid != gridUid) continue;
-                        totalGunCost += GetProcessingPowerCost(gunClass);
-                        gunCount++;
-                    }
-                    int totalServerCapacity = 0;
-                    var serverQuery = entManager.EntityQueryEnumerator<FireControlServerComponent, TransformComponent>();
-                    while (serverQuery.MoveNext(out _, out var serverComp, out var sXform))
-                    {
-                        if (sXform.GridUid != gridUid) continue;
-                        totalServerCapacity += serverComp.ProcessingPower;
-                    }
-                    if (gunCount > 0 && totalGunCost > totalServerCapacity)
-                    {
-                        sb.AppendLine($"[Оружие] {vessel.ID}: вычислительная мощность орудий ({totalGunCost}) превышает ёмкость серверов вооружения ({totalServerCapacity}).");
-                    }
-                    var size = vessel.Category;
-                    var allowedGunneryServers = AllowedGunneryServersBySize.TryGetValue(size, out var allowedServers) ? allowedServers : Array.Empty<string>();
-                    var gunneryMetaQuery = entManager.EntityQueryEnumerator<FireControlServerComponent, MetaDataComponent, TransformComponent>();
-                    while (gunneryMetaQuery.MoveNext(out _, out _, out var gMeta, out var gXform))
-                    {
-                        if (gXform.GridUid != gridUid) continue;
-                        var gPid = gMeta.EntityPrototype?.ID;
-                        if (gPid == null) continue;
-                        if (gPid.StartsWith("GunneryServer", StringComparison.Ordinal) && !allowedGunneryServers.Contains(gPid))
-                        {
-                            sb.AppendLine($"[Оружие] {vessel.ID}: сервер вооружения '{gPid}' запрещён для размера {size}. Допустимы: {string.Join(", ", allowedGunneryServers)}.");
-                        }
-                        else if (WarnGunneryServerPrototypes.Contains(gPid))
-                        {
-                            Console.WriteLine($"::warning ::[Оружие] {vessel.ID}: обнаружен '{gPid}' — проверьте, что этот сервер вооружения допустим на данном шаттле ({vessel.ShuttlePath}).");
-                        }
-                    }
-                    if (vessel.Classes == null || !vessel.Classes.Any()) { sb.AppendLine($"[Класс] {vessel.ID}: поле 'class' обязательно и должно содержать хотя бы одно значение."); }
-                    if (vessel.Engines == null || !vessel.Engines.Any()) { sb.AppendLine($"[Двигатель] {vessel.ID}: поле 'engine' обязательно и должно содержать хотя бы одно значение."); }
-                    int airAlarms = 0;
-                    var aaQuery = entManager.EntityQueryEnumerator<AirAlarmComponent, TransformComponent>();
-                    while (aaQuery.MoveNext(out _, out var aXform))
-                    { if (aXform.GridUid == gridUid) airAlarms++; }
-                    if (airAlarms > 2) sb.AppendLine($"[Атмос] {vessel.ID}: AirAlarm {airAlarms} максимум может быть 2.");
-                    var metaQuery = entManager.EntityQueryEnumerator<MetaDataComponent, TransformComponent>();
-                    var debugFound = new List<string>();
-                    int substationWallBasic = 0;
-                    int substationBasicTotal = 0;
-                    int smesBasicTotal = 0;
-                    int smesAdvancedTotal = 0;
-                    while (metaQuery.MoveNext(out _, out var meta, out var mXform))
-                    {
-                        if (mXform.GridUid != gridUid) continue;
-                        var pid = meta.EntityPrototype?.ID;
-                        if (pid == null) continue;
-                        var isLuaTech = (vessel.Marker == "LuaTech") || vessel.Name.Contains("LuaTech", StringComparison.OrdinalIgnoreCase);
-                        if (pid == "SubstationWallBasic") substationWallBasic++;
-                        if (pid == "SubstationBasic" || pid == "SubstationBasicEmpty") substationBasicTotal++;
-                        if (pid == "SMESBasic" || pid == "SMESBasicEmpty") smesBasicTotal++;
-                        if (pid == "SMESAdvanced" || pid == "SMESAdvancedEmpty") smesAdvancedTotal++;
-                        if (pid.Contains("GasMiner", StringComparison.Ordinal)) sb.AppendLine($"[Атмос] {vessel.ID}: GasMiner '{pid}' запрещён.");
-                        if (ForbiddenPowerAllSizes.Contains(pid)) sb.AppendLine($"[Энергия] {vessel.ID}: запрещённый прототип питания '{pid}'.");
-                        if (ForbiddenGeneratorsAllSizes.Contains(pid)) sb.AppendLine($"[Генераторы] {vessel.ID}: запрещённый генератор '{pid}'.");
-                        if (ConditionallyAllowedPowerLargeOnly.Contains(pid) && size != VesselSize.Large) sb.AppendLine($"[Энергия] {vessel.ID}: '{pid}' разрешён только на Large, текущий размер: {size}.");
-                        if (SubstationsBannedAlways.Contains(pid))  sb.AppendLine($"[Энергия] {vessel.ID}: запрещённая подстанция '{pid}'.");
-                        if (size != VesselSize.Large && SubstationsBannedExceptLarge.Contains(pid)) sb.AppendLine($"[Энергия] {vessel.ID}: подстанция '{pid}' запрещена для размера {size}.");
-                        if (IndestructibleBannedAll.Contains(pid)) sb.AppendLine($"[Структуры] {vessel.ID}: запрещён неразрушимый объект '{pid}'.");
-                        if (pid == "MachineAnomalyGenerator" && size != VesselSize.Large) sb.AppendLine($"[Аномалии] {vessel.ID}: 'MachineAnomalyGenerator' разрешён только на Large, текущий размер: {size}.");
-                        if (pid == "CircularShieldBase" && size == VesselSize.Large) sb.AppendLine($"[Shield] {vessel.ID}: '{pid}' запрещён на Large.");
-                        if (pid == "ShieldGeneratorPOI") { sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGeneratorPOI' запрещён на всех шаттлах."); }
-                        if (pid == "ShieldGeneratorTSFCapital")
-                        {
-                            var allowed = size == VesselSize.Large && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Nfsd);
-                            if (!allowed) sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGeneratorTSFCapital' разрешён только для класса Nfsd и размера Large.");
-                        }
-                        if (pid == "ShieldGenerator")
-                        {
-                            var isLarge = size == VesselSize.Large;
-                            var hasAllowedClass = vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Nfsd) || vessel.Classes.Contains(VesselClass.Pirate) || vessel.Classes.Contains(VesselClass.Syndicate));
-                            var isCivilianLarge = isLarge && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Civilian);
-                            if (isCivilianLarge) sb.AppendLine($"[Shield] {vessel.ID}: щиты запрещены на гражданских Large.");
-                            else if (!hasAllowedClass) sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGenerator' на Large разрешён только для классов Nfsd/Pirate/Syndicate.");
-                        }
-                        if (pid == "ShieldGeneratorMedium")
-                        {
-                            var isCivilianLarge = size == VesselSize.Large && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Civilian);
-                            if (isCivilianLarge) sb.AppendLine($"[Shield] {vessel.ID}: щиты запрещены на гражданских Large.");
-                            if (size == VesselSize.Small || size == VesselSize.Micro) sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGeneratorMedium' запрещён для размеров Small/Micro.");
-                        }
-                        if (pid == "ShieldGeneratorSmall")
-                        {
-                            var isCivilianLarge = size == VesselSize.Large && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Civilian);
-                            if (isCivilianLarge) sb.AppendLine($"[Shield] {vessel.ID}: щиты запрещены на гражданских Large.");
-                        }
-                        if ((pid == "CircularShieldLuaBuild" || pid == "CircularShieldLua") && !isLuaTech) sb.AppendLine($"[Щиты] {vessel.ID}: '{pid}' разрешён только для LuaTech шаттлов.");
-                        if (LuaTechThrusters.Contains(pid) && !isLuaTech) sb.AppendLine($"[Двигатели] {vessel.ID}: '{pid}' разрешён только для LuaTech шаттлов.");
-                        if (IffBannedAll.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён на всех шаттлах.");
-                        if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && IffBannedCivilianExpedition.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition.");
-                        if (pid.Contains("Debug", StringComparison.Ordinal) || DebugPrototypeIds.Contains(pid)) debugFound.Add(pid);
-                        if (FtlBannedAll.Contains(pid)) { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён на всех шаттлах."); }
-                        if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && FtlBannedCivilianExpedition.Contains(pid))
-                        { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition."); }
-                        var allFactionConsoles = FactionShuttleConsoles.SelectMany(kvp => kvp.Value).ToArray();
-                        if (allFactionConsoles.Contains(pid) && !UniversalShuttleConsoles.Contains(pid))
-                        {
-                            bool consoleAllowed = false;
-                            if (vessel.Classes != null)
-                            {
-                                foreach (var vesselClass in vessel.Classes)
-                                { if (FactionShuttleConsoles.TryGetValue(vesselClass, out var allowedConsoles) && allowedConsoles.Contains(pid)) { consoleAllowed = true; break; } }
-                            }
-                            if (!consoleAllowed)
-                            {
-                                var factionName = FactionShuttleConsoles.FirstOrDefault(kvp => kvp.Value.Contains(pid)).Key.ToString();
-                                var vesselClassesStr = vessel.Classes != null ? string.Join(", ", vessel.Classes) : "нет";
-                                sb.AppendLine($"[Консоли] {vessel.ID}: консоль '{pid}' (фракция {factionName}) запрещена для классов шаттла [{vesselClassesStr}].");
-                            }
-                        }
-                        var allFactionDisks = FactionDisks.SelectMany(kvp => kvp.Value).ToArray();
-                        if (allFactionDisks.Contains(pid))
-                        {
-                            bool diskAllowed = false;
-                            if (vessel.Classes != null)
-                            {
-                                foreach (var vesselClass in vessel.Classes)
-                                { if (FactionDisks.TryGetValue(vesselClass, out var allowedDisks) && allowedDisks.Contains(pid)) { diskAllowed = true; break; } }
-                            }
-                            if (!diskAllowed)
-                            {
-                                var factionName = FactionDisks.FirstOrDefault(kvp => kvp.Value.Contains(pid)).Key.ToString();
-                                var vesselClassesStr = vessel.Classes != null ? string.Join(", ", vessel.Classes) : "нет";
-                                sb.AppendLine($"[Диски] {vessel.ID}: диск '{pid}' (фракция {factionName}) запрещён для классов шаттла [{vesselClassesStr}].");
-                            }
-                        }
-                        if (ForbiddenDisksAll.Contains(pid))
-                        { sb.AppendLine($"[Диски] {vessel.ID}: диск '{pid}' запрещён на всех шаттлах."); }
-                    }
-                    int godmodeCount = 0;
-                    var godQuery = entManager.EntityQueryEnumerator<GodmodeComponent, TransformComponent>();
-                    while (godQuery.MoveNext(out _, out var gXform)) { if (gXform.GridUid == gridUid) godmodeCount++; }
-                    if (godmodeCount > 0) sb.AppendLine($"[Админ] {vessel.ID}: обнаружен компонент 'GodmodeComponent' на {godmodeCount} сущностях.");
-                    int minigunCount = 0;
-                    var minigunQuery = entManager.EntityQueryEnumerator<AdminMinigunComponent, TransformComponent>();
-                    while (minigunQuery.MoveNext(out _, out var mXform)) { if (mXform.GridUid == gridUid) minigunCount++; }
-                    if (minigunCount > 0) sb.AppendLine($"[Админ] {vessel.ID}: обнаружен 'AdminMinigunComponent' на {minigunCount} сущностях.");
-                    int cashCount = 0;
-                    var cashQuery = entManager.EntityQueryEnumerator<CashComponent, TransformComponent>();
-                    while (cashQuery.MoveNext(out _, out var cXform)) { if (cXform.GridUid == gridUid) cashCount++; }
-                    if (cashCount > 0) sb.AppendLine($"[Экономика] {vessel.ID}: обнаружены кредиты (CashComponent) на {cashCount} сущностях — запрещено на шаттлах.");
-                    var sizeRuName = VesselSizeRu.TryGetValue(size, out var sr) ? sr : size.ToString();
-                    switch (size)
-                    {
-                        case VesselSize.Micro:
-                            if (substationWallBasic > 1) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SubstationWallBasic' - 1, обнаружено {substationWallBasic}.");
-                            if (smesBasicTotal > 1) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 1, обнаружено {smesBasicTotal}."); break;
-                        case VesselSize.Small:
-                            if (substationWallBasic > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SubstationWallBasic' - 2, обнаружено {substationWallBasic}.");
-                            if (smesBasicTotal > 1) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 1, обнаружено {smesBasicTotal}."); break;
-                        case VesselSize.Medium:
-                            if (substationWallBasic > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SubstationWallBasic' - 2, обнаружено {substationWallBasic}.");
-                            if (smesBasicTotal > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 2, обнаружено {smesBasicTotal}."); break;
-                        case VesselSize.Large:
-                            if (substationWallBasic > 0 && substationBasicTotal > 0)
-                            {
-                                if (substationWallBasic > 1) sb.AppendLine($"[Энергия] {vessel.ID}: при смешивании подстанций на {sizeRuName} допустимо не более 1 'SubstationWallBasic'; обнаружено {substationWallBasic}.");
-                                if (substationBasicTotal > 2) sb.AppendLine($"[Энергия] {vessel.ID}: при смешивании подстанций на {sizeRuName} допустимо не более 2 'SubstationBasic/SubstationBasicEmpty'; обнаружено {substationBasicTotal}.");
-                            }
-                            else if (substationWallBasic > 0)
-                            { if (substationWallBasic > 3) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} допустимо не более 3 'SubstationWallBasic' без смешивания; обнаружено {substationWallBasic}."); }
-                            else if (substationBasicTotal > 0)
-                            { if (substationBasicTotal > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} допустимо не более 2 'SubstationBasic/SubstationBasicEmpty' без смешивания; обнаружено {substationBasicTotal}."); }
-                            if (smesBasicTotal > 0 && smesAdvancedTotal > 0)
-                            { sb.AppendLine($"[Энергия] {vessel.ID}: на {sizeRuName} запрещено смешивать 'SMESBasic/SMESBasicEmpty' и 'SMESAdvanced/SMESAdvancedEmpty'."); }
-                            else if (smesBasicTotal > 0)
-                            { if (smesBasicTotal > 4) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 4, обнаружено {smesBasicTotal}."); }
-                            else if (smesAdvancedTotal > 0)
-                            { if (smesAdvancedTotal > 4) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESAdvanced/SMESAdvancedEmpty' - 4, обнаружено {smesAdvancedTotal}."); }
-                            break;
-                    }
-                    if (debugFound.Count > 0) sb.AppendLine($"[Дебаг] {vessel.ID}: найдены debug-прототипы: {string.Join(", ", debugFound.Distinct())}.");
-                    bool hasWarp = false;
-                    var warpQuery = entManager.EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
-                    while (warpQuery.MoveNext(out _, out var wXform))
-                    { if (wXform.GridUid == gridUid) { hasWarp = true; break; } }
-                    if (!hasWarp) sb.AppendLine($"[Варп] {vessel.ID}: на сетке шаттла отсутствует WarpPoint.");
-                    if (sb.Length > 0)
-                    {
-                        sb.AppendLine($"[Карта] {vessel.ID}: {vessel.ShuttlePath}");
-                        Assert.Fail(sb.ToString());
-                    }
-                    try
-                    { map.DeleteMap(mapId); }
-                    catch (Exception ex)
-                    { Assert.Fail($"Не удалось удалить карту для {vessel} ({vessel.ShuttlePath}): {ex}"); }
+                map.CreateMap(out var mapId);
+                bool mapLoaded = false;
+                Entity<MapGridComponent>? shuttle = null;
+                try
+                { mapLoaded = mapLoader.TryLoadGrid(mapId, vessel.ShuttlePath, out shuttle); }
+                catch (Exception ex)
+                {
+                    globalSb.AppendLine($"Не удалось загрузить шаттл {vessel} ({vessel.ShuttlePath}): TryLoadGrid выбросил исключение {ex}");
+                    map.DeleteMap(mapId); continue;
                 }
-            });
+                if (!mapLoaded || shuttle == null)
+                {
+                    globalSb.AppendLine($"Не удалось загрузить шаттл {vessel} ({vessel.ShuttlePath}): TryLoadGrid вернул false.");
+                    map.DeleteMap(mapId); continue;
+                }
+                var gridUid = shuttle.Value.Owner;
+                var sb = new StringBuilder();
+                int totalGunCost = 0;
+                int gunCount = 0;
+                var gunsQuery = entManager.EntityQueryEnumerator<ShipGunClassComponent, TransformComponent>();
+                while (gunsQuery.MoveNext(out _, out var gunClass, out var xform))
+                {
+                    if (xform.GridUid != gridUid) continue;
+                    totalGunCost += GetProcessingPowerCost(gunClass);
+                    gunCount++;
+                }
+                int totalServerCapacity = 0;
+                var serverQuery = entManager.EntityQueryEnumerator<FireControlServerComponent, TransformComponent>();
+                while (serverQuery.MoveNext(out _, out var serverComp, out var sXform))
+                {
+                    if (sXform.GridUid != gridUid) continue;
+                    totalServerCapacity += serverComp.ProcessingPower;
+                }
+                if (gunCount > 0 && totalGunCost > totalServerCapacity)
+                {
+                    sb.AppendLine($"[Оружие] {vessel.ID}: вычислительная мощность орудий ({totalGunCost}) превышает ёмкость серверов вооружения ({totalServerCapacity}).");
+                }
+                var size = vessel.Category;
+                var allowedGunneryServers = AllowedGunneryServersBySize.TryGetValue(size, out var allowedServers) ? allowedServers : Array.Empty<string>();
+                var gunneryMetaQuery = entManager.EntityQueryEnumerator<FireControlServerComponent, MetaDataComponent, TransformComponent>();
+                while (gunneryMetaQuery.MoveNext(out _, out _, out var gMeta, out var gXform))
+                {
+                    if (gXform.GridUid != gridUid) continue;
+                    var gPid = gMeta.EntityPrototype?.ID;
+                    if (gPid == null) continue;
+                    if (gPid.StartsWith("GunneryServer", StringComparison.Ordinal) && !allowedGunneryServers.Contains(gPid))
+                    {
+                        sb.AppendLine($"[Оружие] {vessel.ID}: сервер вооружения '{gPid}' запрещён для размера {size}. Допустимы: {string.Join(", ", allowedGunneryServers)}.");
+                    }
+                    else if (WarnGunneryServerPrototypes.Contains(gPid))
+                    {
+                        Console.WriteLine($"::warning ::[Оружие] {vessel.ID}: обнаружен '{gPid}' — проверьте, что этот сервер вооружения допустим на данном шаттле ({vessel.ShuttlePath}).");
+                    }
+                }
+                if (vessel.Classes == null || !vessel.Classes.Any()) { sb.AppendLine($"[Класс] {vessel.ID}: поле 'class' обязательно и должно содержать хотя бы одно значение."); }
+                if (vessel.Engines == null || !vessel.Engines.Any()) { sb.AppendLine($"[Двигатель] {vessel.ID}: поле 'engine' обязательно и должно содержать хотя бы одно значение."); }
+                int airAlarms = 0;
+                var aaQuery = entManager.EntityQueryEnumerator<AirAlarmComponent, TransformComponent>();
+                while (aaQuery.MoveNext(out _, out var aXform))
+                { if (aXform.GridUid == gridUid) airAlarms++; }
+                if (airAlarms > 2) sb.AppendLine($"[Атмос] {vessel.ID}: AirAlarm {airAlarms} максимум может быть 2.");
+                var metaQuery = entManager.EntityQueryEnumerator<MetaDataComponent, TransformComponent>();
+                var debugFound = new List<string>();
+                int substationWallBasic = 0;
+                int substationBasicTotal = 0;
+                int smesBasicTotal = 0;
+                int smesAdvancedTotal = 0;
+                while (metaQuery.MoveNext(out _, out var meta, out var mXform))
+                {
+                    if (mXform.GridUid != gridUid) continue;
+                    var pid = meta.EntityPrototype?.ID;
+                    if (pid == null) continue;
+                    var isLuaTech = (vessel.Marker == "LuaTech") || vessel.Name.Contains("LuaTech", StringComparison.OrdinalIgnoreCase);
+                    if (pid == "SubstationWallBasic") substationWallBasic++;
+                    if (pid == "SubstationBasic" || pid == "SubstationBasicEmpty") substationBasicTotal++;
+                    if (pid == "SMESBasic" || pid == "SMESBasicEmpty") smesBasicTotal++;
+                    if (pid == "SMESAdvanced" || pid == "SMESAdvancedEmpty") smesAdvancedTotal++;
+                    if (pid.Contains("GasMiner", StringComparison.Ordinal)) sb.AppendLine($"[Атмос] {vessel.ID}: GasMiner '{pid}' запрещён.");
+                    if (ForbiddenPowerAllSizes.Contains(pid)) sb.AppendLine($"[Энергия] {vessel.ID}: запрещённый прототип питания '{pid}'.");
+                    if (ForbiddenGeneratorsAllSizes.Contains(pid)) sb.AppendLine($"[Генераторы] {vessel.ID}: запрещённый генератор '{pid}'.");
+                    if (ConditionallyAllowedPowerLargeOnly.Contains(pid) && size != VesselSize.Large) sb.AppendLine($"[Энергия] {vessel.ID}: '{pid}' разрешён только на Large, текущий размер: {size}.");
+                    if (SubstationsBannedAlways.Contains(pid))  sb.AppendLine($"[Энергия] {vessel.ID}: запрещённая подстанция '{pid}'.");
+                    if (size != VesselSize.Large && SubstationsBannedExceptLarge.Contains(pid)) sb.AppendLine($"[Энергия] {vessel.ID}: подстанция '{pid}' запрещена для размера {size}.");
+                    if (IndestructibleBannedAll.Contains(pid)) sb.AppendLine($"[Структуры] {vessel.ID}: запрещён неразрушимый объект '{pid}'.");
+                    if (pid == "MachineAnomalyGenerator" && size != VesselSize.Large) sb.AppendLine($"[Аномалии] {vessel.ID}: 'MachineAnomalyGenerator' разрешён только на Large, текущий размер: {size}.");
+                    if (pid == "CircularShieldBase" && size == VesselSize.Large) sb.AppendLine($"[Shield] {vessel.ID}: '{pid}' запрещён на Large.");
+                    if (pid == "ShieldGeneratorPOI") { sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGeneratorPOI' запрещён на всех шаттлах."); }
+                    if (pid == "ShieldGeneratorTSFCapital")
+                    {
+                        var allowed = size == VesselSize.Large && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Nfsd);
+                        if (!allowed) sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGeneratorTSFCapital' разрешён только для класса Nfsd и размера Large.");
+                    }
+                    if (pid == "ShieldGenerator")
+                    {
+                        var isLarge = size == VesselSize.Large;
+                        var hasAllowedClass = vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Nfsd) || vessel.Classes.Contains(VesselClass.Pirate) || vessel.Classes.Contains(VesselClass.Syndicate));
+                        var isCivilianLarge = isLarge && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Civilian);
+                        if (isCivilianLarge) sb.AppendLine($"[Shield] {vessel.ID}: щиты запрещены на гражданских Large.");
+                        else if (!hasAllowedClass) sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGenerator' на Large разрешён только для классов Nfsd/Pirate/Syndicate.");
+                    }
+                    if (pid == "ShieldGeneratorMedium")
+                    {
+                        var isCivilianLarge = size == VesselSize.Large && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Civilian);
+                        if (isCivilianLarge) sb.AppendLine($"[Shield] {vessel.ID}: щиты запрещены на гражданских Large.");
+                        if (size == VesselSize.Small || size == VesselSize.Micro) sb.AppendLine($"[Shield] {vessel.ID}: 'ShieldGeneratorMedium' запрещён для размеров Small/Micro.");
+                    }
+                    if (pid == "ShieldGeneratorSmall")
+                    {
+                        var isCivilianLarge = size == VesselSize.Large && vessel.Classes != null && vessel.Classes.Contains(VesselClass.Civilian);
+                        if (isCivilianLarge) sb.AppendLine($"[Shield] {vessel.ID}: щиты запрещены на гражданских Large.");
+                    }
+                    if ((pid == "CircularShieldLuaBuild" || pid == "CircularShieldLua") && !isLuaTech) sb.AppendLine($"[Щиты] {vessel.ID}: '{pid}' разрешён только для LuaTech шаттлов.");
+                    if (LuaTechThrusters.Contains(pid) && !isLuaTech) sb.AppendLine($"[Двигатели] {vessel.ID}: '{pid}' разрешён только для LuaTech шаттлов.");
+                    if (IffBannedAll.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён на всех шаттлах.");
+                    if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && IffBannedCivilianExpedition.Contains(pid)) sb.AppendLine($"[IFF] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition.");
+                    if (pid.Contains("Debug", StringComparison.Ordinal) || DebugPrototypeIds.Contains(pid)) debugFound.Add(pid);
+                    if (FtlBannedAll.Contains(pid)) { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён на всех шаттлах."); }
+                    if ((vessel.Classes != null && (vessel.Classes.Contains(VesselClass.Civilian) || vessel.Classes.Contains(VesselClass.Expedition))) && FtlBannedCivilianExpedition.Contains(pid))
+                    { sb.AppendLine($"[FTL] {vessel.ID}: '{pid}' запрещён для Civilian/Expedition."); }
+                    var allFactionConsoles = FactionShuttleConsoles.SelectMany(kvp => kvp.Value).ToArray();
+                    if (allFactionConsoles.Contains(pid) && !UniversalShuttleConsoles.Contains(pid))
+                    {
+                        bool consoleAllowed = false;
+                        if (vessel.Classes != null)
+                        {
+                            foreach (var vesselClass in vessel.Classes)
+                            { if (FactionShuttleConsoles.TryGetValue(vesselClass, out var allowedConsoles) && allowedConsoles.Contains(pid)) { consoleAllowed = true; break; } }
+                        }
+                        if (!consoleAllowed)
+                        {
+                            var factionName = FactionShuttleConsoles.FirstOrDefault(kvp => kvp.Value.Contains(pid)).Key.ToString();
+                            var vesselClassesStr = vessel.Classes != null ? string.Join(", ", vessel.Classes) : "нет";
+                            sb.AppendLine($"[Консоли] {vessel.ID}: консоль '{pid}' (фракция {factionName}) запрещена для классов шаттла [{vesselClassesStr}].");
+                        }
+                    }
+                    var allFactionDisks = FactionDisks.SelectMany(kvp => kvp.Value).ToArray();
+                    if (allFactionDisks.Contains(pid))
+                    {
+                        bool diskAllowed = false;
+                        if (vessel.Classes != null)
+                        {
+                            foreach (var vesselClass in vessel.Classes)
+                            { if (FactionDisks.TryGetValue(vesselClass, out var allowedDisks) && allowedDisks.Contains(pid)) { diskAllowed = true; break; } }
+                        }
+                        if (!diskAllowed)
+                        {
+                            var factionName = FactionDisks.FirstOrDefault(kvp => kvp.Value.Contains(pid)).Key.ToString();
+                            var vesselClassesStr = vessel.Classes != null ? string.Join(", ", vessel.Classes) : "нет";
+                            sb.AppendLine($"[Диски] {vessel.ID}: диск '{pid}' (фракция {factionName}) запрещён для классов шаттла [{vesselClassesStr}].");
+                        }
+                    }
+                    if (ForbiddenDisksAll.Contains(pid))
+                    { sb.AppendLine($"[Диски] {vessel.ID}: диск '{pid}' запрещён на всех шаттлах."); }
+                }
+                int godmodeCount = 0;
+                var godQuery = entManager.EntityQueryEnumerator<GodmodeComponent, TransformComponent>();
+                while (godQuery.MoveNext(out _, out var gXform)) { if (gXform.GridUid == gridUid) godmodeCount++; }
+                if (godmodeCount > 0) sb.AppendLine($"[Админ] {vessel.ID}: обнаружен компонент 'GodmodeComponent' на {godmodeCount} сущностях.");
+                int minigunCount = 0;
+                var minigunQuery = entManager.EntityQueryEnumerator<AdminMinigunComponent, TransformComponent>();
+                while (minigunQuery.MoveNext(out _, out var mXform)) { if (mXform.GridUid == gridUid) minigunCount++; }
+                if (minigunCount > 0) sb.AppendLine($"[Админ] {vessel.ID}: обнаружен 'AdminMinigunComponent' на {minigunCount} сущностях.");
+                int cashCount = 0;
+                var cashQuery = entManager.EntityQueryEnumerator<CashComponent, TransformComponent>();
+                while (cashQuery.MoveNext(out _, out var cXform)) { if (cXform.GridUid == gridUid) cashCount++; }
+                if (cashCount > 0) sb.AppendLine($"[Экономика] {vessel.ID}: обнаружены кредиты (CashComponent) на {cashCount} сущностях — запрещено на шаттлах.");
+                var sizeRuName = VesselSizeRu.TryGetValue(size, out var sr) ? sr : size.ToString();
+                switch (size)
+                {
+                    case VesselSize.Micro:
+                        if (substationWallBasic > 1) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SubstationWallBasic' - 1, обнаружено {substationWallBasic}.");
+                        if (smesBasicTotal > 1) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 1, обнаружено {smesBasicTotal}."); break;
+                    case VesselSize.Small:
+                        if (substationWallBasic > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SubstationWallBasic' - 2, обнаружено {substationWallBasic}.");
+                        if (smesBasicTotal > 1) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 1, обнаружено {smesBasicTotal}."); break;
+                    case VesselSize.Medium:
+                        if (substationWallBasic > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SubstationWallBasic' - 2, обнаружено {substationWallBasic}.");
+                        if (smesBasicTotal > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 2, обнаружено {smesBasicTotal}."); break;
+                    case VesselSize.Large:
+                        if (substationWallBasic > 0 && substationBasicTotal > 0)
+                        {
+                            if (substationWallBasic > 1) sb.AppendLine($"[Энергия] {vessel.ID}: при смешивании подстанций на {sizeRuName} допустимо не более 1 'SubstationWallBasic'; обнаружено {substationWallBasic}.");
+                            if (substationBasicTotal > 2) sb.AppendLine($"[Энергия] {vessel.ID}: при смешивании подстанций на {sizeRuName} допустимо не более 2 'SubstationBasic/SubstationBasicEmpty'; обнаружено {substationBasicTotal}.");
+                        }
+                        else if (substationWallBasic > 0)
+                        { if (substationWallBasic > 3) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} допустимо не более 3 'SubstationWallBasic' без смешивания; обнаружено {substationWallBasic}."); }
+                        else if (substationBasicTotal > 0)
+                        { if (substationBasicTotal > 2) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} допустимо не более 2 'SubstationBasic/SubstationBasicEmpty' без смешивания; обнаружено {substationBasicTotal}."); }
+                        if (smesBasicTotal > 0 && smesAdvancedTotal > 0)
+                        { sb.AppendLine($"[Энергия] {vessel.ID}: на {sizeRuName} запрещено смешивать 'SMESBasic/SMESBasicEmpty' и 'SMESAdvanced/SMESAdvancedEmpty'."); }
+                        else if (smesBasicTotal > 0)
+                        { if (smesBasicTotal > 4) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESBasic/SMESBasicEmpty' - 4, обнаружено {smesBasicTotal}."); }
+                        else if (smesAdvancedTotal > 0)
+                        { if (smesAdvancedTotal > 4) sb.AppendLine($"[Энергия] {vessel.ID}: для {sizeRuName} лимит 'SMESAdvanced/SMESAdvancedEmpty' - 4, обнаружено {smesAdvancedTotal}."); }
+                        break;
+                }
+                if (debugFound.Count > 0) sb.AppendLine($"[Дебаг] {vessel.ID}: найдены debug-прототипы: {string.Join(", ", debugFound.Distinct())}.");
+                bool hasWarp = false;
+                var warpQuery = entManager.EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+                while (warpQuery.MoveNext(out _, out var wXform))
+                { if (wXform.GridUid == gridUid) { hasWarp = true; break; } }
+                if (!hasWarp) sb.AppendLine($"[Варп] {vessel.ID}: на сетке шаттла отсутствует WarpPoint.");
+                if (sb.Length > 0)
+                {
+                    sb.AppendLine($"[Карта] {vessel.ID}: {vessel.ShuttlePath}");
+                    sb.AppendLine();
+                    globalSb.Append(sb);
+                }
+                try
+                { map.DeleteMap(mapId); }
+                catch (Exception ex)
+                { globalSb.AppendLine($"Не удалось удалить карту для {vessel} ({vessel.ShuttlePath}): {ex}"); }
+            }
+            if (globalSb.Length > 0)
+                Assert.Fail(globalSb.ToString());
         });
         await server.WaitRunTicks(1);
         await pair.CleanReturnAsync();
