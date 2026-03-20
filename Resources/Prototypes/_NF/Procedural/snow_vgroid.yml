@@ -39,13 +39,6 @@
       minGroupSize: 1
       maxGroupSize: 1
     # "Ores"
-    - !type:OreDunGen
-      entityMask:
-      - WallRockSnow
-      entity: NFSnowElementalSpawner
-      count: 100
-      minGroupSize: 1
-      maxGroupSize: 1
     # Ores
     - !type:OreDunGen
       entityMask:
@@ -103,13 +96,15 @@
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
-    - !type:OreDunGen
-      entityMask:
-      - WallRockSnow
-      entity: NFWallSnowCobblebrick
-      count: 100
-      minGroupSize: 6
-      maxGroupSize: 16
+    # _Lua Deleted NFWallCobblebrick
+    #- !type:OreDunGen
+    # entityMask:
+    # - WallRockSnow
+    # entity: NFWallSnowCobblebrick
+    # count: 100
+    # minGroupSize: 6
+    # maxGroupSize: 16
+    # end _Lua
     - !type:OreDunGen
       entityMask:
       - WallRockSnow
