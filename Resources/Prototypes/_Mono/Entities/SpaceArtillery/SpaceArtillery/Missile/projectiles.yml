@@ -36,6 +36,8 @@
     intensitySlope: 8
     maxIntensity: 25
   - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 300
     detectionRange: 500
@@ -83,6 +85,8 @@
     intensitySlope: 10
     maxIntensity: 55
   - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 200
     detectionRange: 600
@@ -130,6 +134,8 @@
     intensitySlope: 30
     totalIntensity: 6000
   - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 50
     detectionRange: 600
@@ -182,6 +188,8 @@
     maxIntensity: 50
     maxTileBreak: 1
   - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 200
     detectionRange: 600

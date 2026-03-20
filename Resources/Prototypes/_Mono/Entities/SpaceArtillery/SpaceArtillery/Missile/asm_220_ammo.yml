@@ -71,6 +71,8 @@
     maxIntensity: 2000
     intensitySlope: 30
     totalIntensity: 7000
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 20
     detectionRange: 750
@@ -155,6 +157,8 @@
     radius: 5
     color: orange
     energy: 2
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 70
     detectionRange: 750
@@ -264,6 +268,8 @@
     maxIntensity: 300
     intensitySlope: 4
     totalIntensity: 1000
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 20
     detectionRange: 750

@@ -3,6 +3,9 @@
   id: NFBaseSoftOreVein
   components:
   - type: OreVein
+    gatherDestructionWhitelist:
+      components:
+      - MiningGatheringHard
 
 - type: entity
   parent: [NFBaseSoftOreVein, AsteroidRock]

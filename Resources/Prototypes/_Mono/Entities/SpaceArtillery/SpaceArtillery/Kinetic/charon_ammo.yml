@@ -33,6 +33,8 @@
     intensitySlope: 100
     maxIntensity: 6000
   - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
 
 - type: entity
   id: CharonSlugAmmo
@@ -92,6 +94,8 @@
     intensitySlope: 100
     maxIntensity: 11000
   - type: GatheringProjectile
+  - type: MiningGatheringSoft
+  - type: MiningGatheringHard
 
 - type: entity
   id: CharonSubnuclearSlugAmmo
