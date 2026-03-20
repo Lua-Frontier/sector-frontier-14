@@ -39,6 +39,13 @@
       minGroupSize: 1
       maxGroupSize: 1
     # "Ores"
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: NFBasaltElementalSpawner
+      count: 100
+      minGroupSize: 1
+      maxGroupSize: 1
     # Ores
     - !type:OreDunGen
       entityMask:
