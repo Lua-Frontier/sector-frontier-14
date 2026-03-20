@@ -4,11 +4,9 @@
   - GateLavaShadow
   - GateShadowLava
   - GateInferno
-  dungeonConfigs:
-  - GateQuadBunker
-  - GateMineshaft
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 140
   worldRadiusMin: 212
@@ -34,11 +32,9 @@
   - GateLavaGrass
   - GateVolcanicSavanna
   - GateJungle
-  dungeonConfigs:
-  - GateScatteredCaches
-  - GateMediumOutpost
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 130
   worldRadiusMin: 190
@@ -64,11 +60,9 @@
   - GateSnowDesert
   - GateShadowSnow
   - GateBioluminescent
-  dungeonConfigs:
-  - GateSmallOutpost
-  - GateCompactCache
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 120
   worldRadiusMin: 216
@@ -94,11 +88,9 @@
   - GateWasteland
   - GateInferno
   - GateJungle
-  dungeonConfigs:
-  - GateMineshaft
-  - GateScatteredOutposts
+  dungeonPool: true
   dungeonCountMin: 2
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 70
   dungeonDistanceMax: 160
   worldRadiusMin: 199
@@ -123,11 +115,9 @@
   - GateCavesGrass
   - GateJungle
   - GateBioluminescent
-  dungeonConfigs:
-  - GateMineshaft
-  - GateScatteredLabs
+  dungeonPool: true
   dungeonCountMin: 1
-  dungeonCountMax: 8
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 140
   worldRadiusMin: 224

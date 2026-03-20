@@ -29,6 +29,13 @@ public partial class MobStateSystem : EntitySystem
         _mobStateQuery = GetEntityQuery<MobStateComponent>();
         base.Initialize();
         SubscribeEvents();
+        SubscribeLocalEvent<MobStateComponent, MapInitEvent>(OnMobStateMapInit);
+    }
+
+    private void OnMobStateMapInit(Entity<MobStateComponent> ent, ref MapInitEvent args)
+    {
+        if (ent.Comp.CurrentState == MobState.Alive) return;
+        OnEnterState(ent, ent.Comp, ent.Comp.CurrentState);
     }
 
     #region Public API

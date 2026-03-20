@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/15/2025 11:34:12
-  entityCount: 923
+  time: 03/20/2026 03:02:24
+  entityCount: 925
 maps: []
 grids:
 - 1
@@ -34,7 +34,6 @@ tilemap:
   7: PlatingCornerNW
   4: PlatingCornerSE
   5: PlatingCornerSW
-  2: ShieldLattice
 entities:
 - proto: ""
   entities:
@@ -541,7 +540,7 @@ entities:
       pos: 0.5,-0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7765.254
+      secondsUntilStateChange: -7815.9478
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -2056,6 +2055,11 @@ entities:
     - type: Transform
       pos: 12.5,-10.5
       parent: 1
+  - uid: 924
+    components:
+    - type: Transform
+      pos: 11.5,-11.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 293
@@ -2192,6 +2196,11 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-9.5
+      parent: 1
+  - uid: 925
+    components:
+    - type: Transform
+      pos: 11.5,-11.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -2453,7 +2462,7 @@ entities:
       pos: 0.5,-9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28957.25
+      secondsUntilStateChange: -29007.943
       state: Opening
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -3743,7 +3752,7 @@ entities:
       pos: 14.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -27735.586
+      secondsUntilStateChange: -27786.28
       state: Opening
 - proto: ImpulseLaserUnanchor
   entities:
@@ -4300,12 +4309,13 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationWallBasic
   entities:
   - uid: 606
     components:
     - type: Transform
-      pos: 11.5,-10.5
+      rot: 3.141592653589793 rad
+      pos: 11.5,-11.5
       parent: 1
 - proto: SuitStorageCadet
   entities:

@@ -169,6 +169,8 @@ public abstract partial class SharedGunSystem
             }
 
             Audio.PlayPredicted(component.BoltClosedSound, uid, user);
+            var ev = new BoltClosedEvent(user);
+            RaiseLocalEvent(uid, ref ev);
         }
         else
         {

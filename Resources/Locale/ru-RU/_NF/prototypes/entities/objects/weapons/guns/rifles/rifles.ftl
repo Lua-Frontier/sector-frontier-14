@@ -7,7 +7,7 @@ ent-NFWeaponRifleBarlowsBoltLessLethal = Винтовка Барлоу (7.62x39m
 ent-NFWeaponRifleMusket = Мушкет
    .desc = Ему место было в музее задолго до твоего рождения.
 
-ent-NFWeaponRifleRepeater = Ричард N2524 (5.56x45mm)
+ent-NFWeaponRifleRepeater = Ричард N2524 (.45 magnum)
    .desc = Гражданский рычажный карабин, любимый космическими ковбоями за надежность.
 
 ent-NFWeaponRifleSVS = SVS-42 (7.62x39mm)

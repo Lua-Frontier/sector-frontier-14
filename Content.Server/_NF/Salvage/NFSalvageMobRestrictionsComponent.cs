@@ -12,7 +12,7 @@ namespace Content.Server._NF.Salvage;
 [RegisterComponent]
 public sealed partial class NFSalvageMobRestrictionsComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid LinkedGridEntity = EntityUid.Invalid;
 
     /// <summary>
