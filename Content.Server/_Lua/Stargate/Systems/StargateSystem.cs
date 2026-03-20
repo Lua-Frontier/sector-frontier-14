@@ -72,12 +72,14 @@ public sealed class StargateSystem : EntitySystem
     }
 
     private const float AutoDialInterval = 0.5f;
+    private readonly List<EntityUid> _autoDialBuffer = new();
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var toProcess = new List<EntityUid>();
+        var toProcess = _autoDialBuffer;
+        toProcess.Clear();
         var query = AllEntityQuery<StargateConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {

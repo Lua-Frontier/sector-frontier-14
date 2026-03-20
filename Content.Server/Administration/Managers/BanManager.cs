@@ -98,6 +98,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private void ClearPlayerData(ICommonSession player)
     {
         _cachedBanExemptions.Remove(player);
+        _cachedRoleBans.Remove(player);
     }
 
     private async Task AddRoleBan(BanDef banDef)

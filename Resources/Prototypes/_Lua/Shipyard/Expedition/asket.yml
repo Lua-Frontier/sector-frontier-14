@@ -1,37 +1,37 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2025 LuaWorld Contributors
-# See AGPLv3.txt for details.
-# Author discord - germanreutt
+# # LuaWorld - This file is licensed under AGPLv3
+# # Copyright (c) 2025 LuaWorld Contributors
+# # See AGPLv3.txt for details.
+# # Author discord - germanreutt
 
-- type: vessel
-  parent: BaseVessel
-  id: GFAsket
-  name: Asket
-  description: Большой корабль для исследования глубокого космоса и экспедиций.
-  price: 150000
-  category: Large
-  group: Expedition
-  shuttlePath: /Maps/_Lua/Shuttles/Expedition/asket.yml
-  whitelist:
-  - Luna
-  - Frontier
-  class:
-  - Expedition
-  - Civilian
-  engine:
-  - AME
+# - type: vessel
+#   parent: BaseVessel
+#   id: GFAsket
+#   name: Asket
+#   description: Большой корабль для исследования глубокого космоса и экспедиций.
+#   price: 150000
+#   category: Large
+#   group: Expedition
+#   shuttlePath: /Maps/_Lua/Shuttles/Expedition/asket.yml
+#   whitelist:
+#   - Luna
+#   - Frontier
+#   class:
+#   - Expedition
+#   - Civilian
+#   engine:
+#   - AME
 
-- type: gameMap
-  id: GFAsket
-  mapName: 'Asket'
-  mapPath: /Maps/_Lua/Shuttles/Expedition/asket.yml
-  minPlayers: 0
-  stations:
-    GFAsket:
-      stationProto: StandardFrontierExpeditionVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Asket {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+# - type: gameMap
+#   id: GFAsket
+#   mapName: 'Asket'
+#   mapPath: /Maps/_Lua/Shuttles/Expedition/asket.yml
+#   minPlayers: 0
+#   stations:
+#     GFAsket:
+#       stationProto: StandardFrontierExpeditionVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Asket {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'

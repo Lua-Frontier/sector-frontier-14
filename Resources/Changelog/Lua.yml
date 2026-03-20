@@ -3677,3 +3677,41 @@ Entries:
   id: 257
   time: '2026-03-17T09:47:08.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/499
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена полноценная система прочности вооружения
+  id: 258
+  time: '2026-03-17T11:57:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/511
+- author: HacksLua
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка из-за которой шаттл удалялся даже если владелец был
+        онлайн
+  id: 259
+  time: '2026-03-17T12:17:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/512
+- author: KiraFaust
+  changes:
+    - type: Add
+      message: Шаттл наёмников т. Transporter
+  id: 260
+  time: '2026-03-17T14:58:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/444
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена новая команда shipstat для мапперов
+    - type: Add
+      message: Добавлен новый потайловый тест размеров
+    - type: Add
+      message: Добавлены полутайлы
+    - type: Remove
+      message: Временно отключены Vulture, Wyvern, Khasarah, GFAsket
+    - type: Tweak
+      message: Ремап Arkalis
+  id: 261
+  time: '2026-03-20T17:54:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/517

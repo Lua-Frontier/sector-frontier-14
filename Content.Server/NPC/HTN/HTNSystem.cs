@@ -11,6 +11,8 @@ using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
+using Robust.Server.Player;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -26,6 +28,7 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -42,7 +45,21 @@ public sealed class HTNSystem : EntitySystem
         SubscribeLocalEvent<HTNComponent, ComponentShutdown>(OnHTNShutdown);
         SubscribeNetworkEvent<RequestHTNMessage>(OnHTNMessage);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeLoad);
+        _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         OnLoad();
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
+        _subscribers.Clear();
+    }
+
+    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    {
+        if (e.NewStatus == SessionStatus.Disconnected)
+            _subscribers.Remove(e.Session);
     }
 
     private void OnHTNMessage(RequestHTNMessage msg, EntitySessionEventArgs args)

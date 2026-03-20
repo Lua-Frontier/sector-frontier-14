@@ -1,0 +1,141 @@
+- type: entity
+  abstract: true
+  parent: [BaseItem, RecyclableItemCardboard]
+  id: BaseMagazineBoxMagnum
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    capacity: 12
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  abstract: true
+  parent: [BaseItem, RecyclableItemCardboard]
+  id: BoxDonkSoftBase
+  name: foamdart box
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 30
+  - type: Sprite
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  abstract: true
+  parent: [BaseItem, RecyclableItemCardboard]
+  id: BaseMagazineBoxLightRifle
+  name: ammunition box (.30 rifle)
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeLightRifle
+    capacity: 60
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  abstract: true
+  parent: BaseMagazineBoxLightRifle
+  id: MagazineBoxLightRifle
+  name: ammunition box (.30 rifle)
+  description: A cardboard box of .30 rifle rounds. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BoxDonkSoftBase
+  id: BoxDonkSoftBox
+  name: box of foam darts
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - BulletFoam
+    capacity: 40
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    layers:
+      - state: boxwidetoy
+      - state: shelltoy
+
+- type: entity
+  parent: BaseMagazineBoxMagnum
+  id: BoxCartridgeCap
+  name: cap gun cartridge box
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+  - type: MagazineVisuals
+    magState: mag-cap
+    steps: 4
+    zeroVisible: false
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
+    layers:
+      - state: capbase
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-cap-1
+        map: ["enum.GunVisualLayers.Mag"]

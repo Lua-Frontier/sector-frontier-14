@@ -139,6 +139,15 @@ public sealed class ShipCrewAssignmentSystem : EntitySystem
         return true;
     }
 
+    public bool ForceRefreshAssignmentIdentity(EntityUid idCard, ShipCrewAssignmentComponent? assignment = null)
+    {
+        if (!Resolve(idCard, ref assignment, false)) return false;
+        if (!TryResolveAssignedMind(idCard, out var mindUid, out var userId)) return false;
+        assignment.AssignedMindUid = mindUid;
+        assignment.AssignedUserId = userId;
+        return true;
+    }
+
     private bool TryResolveAssignedMind(EntityUid targetIdCard, out EntityUid? mindUid, out NetUserId? userId)
     {
         mindUid = null;

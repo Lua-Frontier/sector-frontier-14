@@ -13,6 +13,34 @@
   vertices: ['0, 0.25', '0, 0.75', '1, 0.75', '1, 0.25']
 
 - type: tile
+  id: LatticeHalfUp
+  parent: TrainLattice #Lua
+  name: up-half-lattice #Lua
+  sprite: /Textures/_Mono/Tiles/lattice/script/lattice_up.png
+  vertices: ['0, 0.5', '0, 1', '1, 1', '1, 0.5']
+
+- type: tile
+  id: LatticeHalfDown
+  parent: TrainLattice #Lua
+  name: down-half-lattice #Lua
+  sprite: /Textures/_Mono/Tiles/lattice/script/lattice_down.png
+  vertices: ['0, 0', '0, 0.5', '1, 0.5', '1, 0']
+
+- type: tile
+  id: LatticeHalfLeft
+  parent: TrainLattice #Lua
+  name: left-half-lattice #Lua
+  sprite: /Textures/_Mono/Tiles/lattice/script/lattice_left.png
+  vertices: ['0, 0', '0, 1', '0.5, 1', '0.5, 0']
+
+- type: tile
+  id: LatticeHalfRight
+  parent: TrainLattice #Lua
+  name: right-half-lattice #Lua
+  sprite: /Textures/_Mono/Tiles/lattice/script/lattice_right.png
+  vertices: ['0.5, 0', '0.5, 1', '1, 1', '1, 0']
+
+- type: tile
   id: LatticeWedgeN
   parent: TrainLattice #Lua
   name: north-wedge-lattice #Lua
@@ -151,6 +179,34 @@
   name: NW-S-upper-half-tilt-lattice #Lua
   sprite: /Textures/_Mono/Tiles/lattice/script/halftilt_nw_s_u.png
   vertices: ['0, 0', '0, 1', '0.5, 1']
+
+- type: tile
+  id: PlatingHalfUp
+  parent: Plating
+  name: up-half-plating #Lua
+  sprite: /Textures/_Mono/Tiles/plating/script/half_up.png
+  vertices: ['0, 0.5', '0, 1', '1, 1', '1, 0.5']
+
+- type: tile
+  id: PlatingHalfDown
+  parent: Plating
+  name: down-half-plating #Lua
+  sprite: /Textures/_Mono/Tiles/plating/script/half_down.png
+  vertices: ['0, 0', '0, 0.5', '1, 0.5', '1, 0']
+
+- type: tile
+  id: PlatingHalfLeft
+  parent: Plating
+  name: left-half-plating #Lua
+  sprite: /Textures/_Mono/Tiles/plating/script/half_left.png
+  vertices: ['0, 0', '0, 1', '0.5, 1', '0.5, 0']
+
+- type: tile
+  id: PlatingHalfRight
+  parent: Plating
+  name: right-half-plating #Lua
+  sprite: /Textures/_Mono/Tiles/plating/script/half_right.png
+  vertices: ['0.5, 0', '0.5, 1', '1, 1', '1, 0']
 
 - type: tile
   id: PlatingHalfV
