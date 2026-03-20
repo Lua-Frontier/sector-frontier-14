@@ -63,6 +63,9 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField]
     public ProtoId<HumanoidProfilePrototype>? Initial { get; private set; }
 
+    [DataField]
+    public bool ProfileLoaded;
+
     /// <summary>
     ///     Skin color of this humanoid.
     /// </summary>

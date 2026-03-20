@@ -50,9 +50,6 @@
     rotateWhileAnchored: false
     increment: 45
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
@@ -134,9 +131,6 @@
   - type: Transform
     anchored: true
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -225,9 +219,6 @@
   - type: Transform
     anchored: true
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

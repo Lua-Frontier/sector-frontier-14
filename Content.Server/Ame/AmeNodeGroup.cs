@@ -119,7 +119,7 @@ public sealed class AmeNodeGroup : BaseNodeGroup
         }
     }
 
-    public float InjectFuel(int fuel, out bool overloading)
+    public float InjectFuel(int fuel, out bool overloading, EntityUid? controllerUid = null)
     {
         overloading = false;
 
@@ -129,7 +129,11 @@ public sealed class AmeNodeGroup : BaseNodeGroup
 
         var safeFuelLimit = CoreCount * 2;
 
-        var powerOutput = CalculatePower(fuel, CoreCount);
+        var sourceUid = controllerUid ?? _masterController;
+        var multiplier = sourceUid.HasValue && _entMan.TryGetComponent<AmeControllerComponent>(sourceUid.Value, out var ctrl)
+            ? ctrl.PowerMultiplier
+            : 1.0f;
+        var powerOutput = CalculatePower(fuel, CoreCount) * multiplier;
         if (fuel <= safeFuelLimit)
             return powerOutput;
 

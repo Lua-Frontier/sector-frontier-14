@@ -33,13 +33,8 @@
         occludes: true
         ent: null
       cell_slot: !type:ContainerSlot
-      beakerSlot: !type:ContainerSlot # imperial hardsuit injection
   - type: ItemSlots
     slots:
-      beakerSlot:
-        whitelist:
-          tags:
-          - FitsHardsuit
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
@@ -246,7 +241,7 @@
       hypo:
         whitelist:
           components:
-          - Hypospray
+          - Injector
     sprite: _Lua/Sponsor/Sil/belt_overlay.rsi
   - type: Appearance
 
@@ -577,8 +572,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayDynamicMode
+    allowedModes:
+    - HyposprayDynamicMode
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
 

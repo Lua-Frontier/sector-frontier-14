@@ -14,8 +14,7 @@
   - type: Item
     sprite: _NF/Objects/Specific/Chemistry/dropper.rsi
   - type: Injector
-    transferAmount: 5
-    toggleState: Draw
+    currentTransferAmount: 5
   - type: Tag
     tags:
     - Syringe
@@ -92,7 +91,7 @@
       - CentrifugeCompatible # Frontier: Vial > CentrifugeCompatible
       - Syringe
       components:
-      - Hypospray
+      - Injector
 
 - type: entity
   name: corpsman's medical pouch

@@ -24,13 +24,8 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
-      beakerSlot: !type:ContainerSlot
   - type: ItemSlots
     slots:
-      beakerSlot:
-        whitelist:
-          tags:
-          - FitsHardsuit
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor

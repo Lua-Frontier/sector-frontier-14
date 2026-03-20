@@ -99,6 +99,12 @@ public abstract class SharedCombatModeSystem : EntitySystem
 
     // todo: When we stop making fucking garbage abstract shared components, remove this shit too.
     protected abstract bool IsNpc(EntityUid uid);
+
+    public void ClearActionEntity(EntityUid uid, CombatModeComponent comp)
+    {
+        comp.CombatToggleActionEntity = null;
+        Dirty(uid, comp);
+    }
 }
 
 public sealed partial class ToggleCombatActionEvent : InstantActionEvent

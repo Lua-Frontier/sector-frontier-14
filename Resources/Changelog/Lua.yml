@@ -3581,3 +3581,137 @@ Entries:
   id: 250
   time: '2026-03-09T14:30:16.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/497
+- author: HacksLua
+  changes:
+    - type: Remove
+      message: >-
+        Удален механизм из-за которого разлетались вещи по шаттлу от
+        столкновений
+    - type: Remove
+      message: Удален отсек ЭП
+    - type: Tweak
+      message: Джетпаки ускорены
+  id: 251
+  time: '2026-03-10T11:38:33.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/501
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Гипо не сбрасывается от получения урона
+    - type: Tweak
+      message: Гипо не сбрасывается при движении
+    - type: Tweak
+      message: У акционеров убран гипоспрей гв и добавлен премиум джет-инъектор
+    - type: Add
+      message: ММО добавлен джет-иньектор
+  id: 252
+  time: '2026-03-10T15:31:13.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/502
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Ёрмунганд для пиратской верфи с ультра сервером
+        вооружения и двумя 203мм Каргилами, АК502 и Дравонами-57мм и 1 Хароном.
+  id: 253
+  time: '2026-03-11T02:08:02.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/498
+- author: Vecortys
+  changes:
+    - type: Fix
+      message: >-
+        Исправлено отображение крыльев у аркан. Теперь их видно поверх рук и
+        ног.
+  id: 254
+  time: '2026-03-11T13:36:17.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/503
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен планетарный RCD
+    - type: Add
+      message: Добавлен экстренный резак скал для разработки горных пород
+    - type: Add
+      message: >-
+        Добавлен крафт древнего автолата, переработчика руд(плавильня), принтера
+        схем, принтера чертежей, генератор на угле (отвёртка и гаечный ключ а
+        так же 3 схемы собираются через меню строительства)
+    - type: Add
+      message: Добавлен плазменный и экстренный резак в утильмаг
+    - type: Tweak
+      message: Улучшена генерация комплексов
+    - type: Tweak
+      message: >-
+        Миры звёздных врат теперь сохраняются в раунде, это тест сохранений (не
+        между раундами)
+  id: 255
+  time: '2026-03-16T16:38:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/510
+- author: k1bitka
+  changes:
+    - type: Add
+      message: Протокинетический дробовик
+    - type: Add
+      message: Врат-О-Мат, ценники у некоторых предметов для Врат-О-Мата
+    - type: Add
+      message: Прочность огнестрельных оружий, возможность отремонтировать их сваркой
+    - type: Tweak
+      message: Лодауты, пул рас для спавна КСО, автоинъекторы в аплинках
+    - type: Fix
+      message: неподходящие магазины в аплинке КСО
+    - type: Remove
+      message: >-
+        ящики патронов, резиновый тип магазинов и спидлоадеров, импланты
+        раствора, микро и макро бомбы в аплинках КСО 
+  id: 256
+  time: '2026-03-17T09:43:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/508
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Gungnir, с 2 220мм-Сайбрексами и 4 Дравонами-57мм, а так
+        же с высокомощным сервером вооружения на борту.
+    - type: Remove
+      message: Удалён шаттл Vega.
+  id: 257
+  time: '2026-03-17T09:47:08.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/499
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена полноценная система прочности вооружения
+  id: 258
+  time: '2026-03-17T11:57:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/511
+- author: HacksLua
+  changes:
+    - type: Fix
+      message: >-
+        Исправлена ошибка из-за которой шаттл удалялся даже если владелец был
+        онлайн
+  id: 259
+  time: '2026-03-17T12:17:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/512
+- author: KiraFaust
+  changes:
+    - type: Add
+      message: Шаттл наёмников т. Transporter
+  id: 260
+  time: '2026-03-17T14:58:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/444
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена новая команда shipstat для мапперов
+    - type: Add
+      message: Добавлен новый потайловый тест размеров
+    - type: Add
+      message: Добавлены полутайлы
+    - type: Remove
+      message: Временно отключены Vulture, Wyvern, Khasarah, GFAsket
+    - type: Tweak
+      message: Ремап Arkalis
+  id: 261
+  time: '2026-03-20T17:54:20.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/517

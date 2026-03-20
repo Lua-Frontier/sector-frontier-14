@@ -5,13 +5,9 @@
   - GateCavesLava
   - GateCavesShadow
   - GateCavesGrass
-  dungeonConfigs:
-  - GateMediumOutpost
-  - NFCaveFactory
-  - NFMineshaft
-  - GateMineshaft
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 50
   dungeonDistanceMax: 130
   worldRadiusMin: 217
@@ -33,13 +29,9 @@
   - GateDesertCaves
   - GateDesertShadow
   - GateGrassDesert
-  dungeonConfigs:
-  - GateMineshaft
-  - GateSmallOutpost
-  - NFSalvageOutpost
-  - NFMineshaft
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 160
   worldRadiusMin: 196
@@ -62,11 +54,9 @@
   - GateLavaDesert
   - GateLavaShadow
   - GateInferno
-  dungeonConfigs:
-  - NFLavaBrig
-  - NFLavaMercenary
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 100
   worldRadiusMin: 223
@@ -93,12 +83,9 @@
   - GateShadowSnow
   - GateShadowDesert
   - GateCavesShadow
-  dungeonConfigs:
-  - NFHaunted
-  - GateScatteredCaches
-  - NFVirologyLab
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 40
   dungeonDistanceMax: 100
   worldRadiusMin: 209
@@ -124,14 +111,9 @@
   - Continental
   - GateTripleMix
   - GateVolcanicSavanna
-  dungeonConfigs:
-  - GateMediumOutpost
-  - GateQuadBunker
-  - GateCrossBunker
-  - GateMineshaft
-  - NFExperiment
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 60
   dungeonDistanceMax: 150
   worldRadiusMin: 201
@@ -153,13 +135,9 @@
   - GateTripleMix
   - GateInferno
   - GateVolcanicSavanna
-  dungeonConfigs:
-  - NFMineshaft
-  - NFSalvageOutpost
-  - NFMedSci
-  - GateScatteredOutposts
-  dungeonCountMin: 0
-  dungeonCountMax: 8
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
   dungeonDistanceMin: 80
   dungeonDistanceMax: 200
   worldRadiusMin: 228

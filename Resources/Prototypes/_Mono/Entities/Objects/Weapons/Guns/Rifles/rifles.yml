@@ -65,10 +65,17 @@
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c_inhands_32x.rsi
   - type: StaticPrice
     price: 2400
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset #Lua add
-    maxOffset: 10
-    pvsIncrease: 0.7
+#Lua: added toggling scope
+  - type: ItemToggle
+    onUse: false
+    onActivate: true
+  - type: ComponentToggler
+    components:
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 0.7
+#End Lua
 
 - type: entity
   name: NCI AK-502 (7.62x39mm)

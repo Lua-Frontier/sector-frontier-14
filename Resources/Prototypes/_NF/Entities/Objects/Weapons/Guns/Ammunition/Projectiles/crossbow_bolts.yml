@@ -1,4 +1,4 @@
-﻿# Base
+# Base
 - type: entity
   id: BaseBoltLiquidInjector
   abstract: true
@@ -17,12 +17,12 @@
   - type: SolutionTransfer
     maxTransferAmount: 2
   - type: Injector
-    injectOnly: false
     ignoreMobs: true
-    minTransferAmount: 2
-    maxTransferAmount: 2
-    transferAmount: 2
-    toggleState: Draw
+    currentTransferAmount: 2
+    activeModeProtoId: DropperDrawMode
+    allowedModes:
+    - DropperDrawMode
+    - DropperInjectMode
   - type: ExaminableSolution
     solution: injector
   - type: MeleeChemicalInjector
@@ -205,12 +205,12 @@
   - type: SolutionTransfer
     maxTransferAmount: 5
   - type: Injector
-    injectOnly: false
     ignoreMobs: true
-    minTransferAmount: 5
-    maxTransferAmount: 5
-    transferAmount: 5
-    toggleState: Draw
+    currentTransferAmount: 5
+    activeModeProtoId: DropperDrawMode
+    allowedModes:
+    - DropperDrawMode
+    - DropperInjectMode
 
 # Craftable variations
 - type: Tag

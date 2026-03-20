@@ -1,0 +1,35 @@
+# region PKA Shotgun
+- type: entity
+  id: PkaShotgun
+  parent: WeaponProtoKineticAcceleratorBase
+  name: протокинетический дробовик
+  description: Стреляет шквалом сильных протокинетических снарядов, способных ломать породу, на короткое расстояние
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Basic/pkashotgun.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Lua/Objects/Weapons/Guns/Basic/pkashotgun.rsi
+    size: Normal
+  - type: Clothing
+    sprite: _Lua/Objects/Weapons/Guns/Basic/pkashotgun.rsi
+  - type: Gun
+    fireRate: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticSpread
+    capacity: 3
+    count: 3
+  - type: StaticPrice 
+    price: 460
+# region Spreading
+- type: entity
+  id: BulletKineticSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: NFBulletKineticHighPower
+    count: 6
+    spread: 20

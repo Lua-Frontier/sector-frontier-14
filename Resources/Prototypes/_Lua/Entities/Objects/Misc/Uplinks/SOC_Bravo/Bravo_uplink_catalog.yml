@@ -146,12 +146,12 @@
 
 - type: listing
   id: BravoUplinkMedicalHypospray
-  name: Гипоспрей
-  description: Гипоспрей, позволяющий вводить препараты буквально мгновенно!
-  icon: { sprite: Objects/Specific/Medical/hypospray.rsi , state: hypo }
+  name: Продвинутый Джет-инъектор
+  description: Джет-инъектор, позволяющий вводить препараты много и сразу!
+  icon: { sprite: Objects/Specific/Medical/advanced_jetinjector.rsi , state: jetinjector_base }
   cost:
     FrontierUplinkCoin: 5
-  productEntity: Hypospray
+  productEntity: AdvancedJetInjector
   categories:
     - BravoUplinkMedical
 
@@ -181,10 +181,10 @@
 #Боеприпасы
 - type: listing
   id: BravoUplinkAmmoNFMagazineRifle30Overpressure
-  name: magazine (.30 rifle, overpressure)
+  name: magazine (7.62x39 rifle, RIP)
   description: магазин заполненный летальными боеприпасами для автомата Энни
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Overpressure
+  productEntity: Magazine762x39mmRIP
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -192,21 +192,10 @@
 
 - type: listing
   id: BravoUplinkAmmoNFMagazineRifle30Incendiary
-  name: magazine (.30 rifle, incendiary)
+  name: magazine (7.62x39 rifle, incendiary)
   description: магазин заполненный летальными боеприпасами с зажигательным покрытием для автомата Энни
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Incendiary
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkAmmo
-
-- type: listing
-  id: BravoUplinkNFMagazineRifle30Rubber
-  name: magazine (.30 rifle, rubber)
-  description: магазин заполненный нелетальными боеприпасами для автомата Энни
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Rubber
+  productEntity: Magazine762x39mmIncendiary
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -214,81 +203,15 @@
 
 - type: listing
   id: BravoUplinkAmmoNFMagazineRifle30Uranium
-  name: magazine (.30 rifle, uranium)
+  name: magazine (7.62x39 rifle, uranium)
   description: магазин заполненный летальными боеприпасами с урановым покрытием для автомата Энни
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Uranium
+  productEntity: Magazine762x39mmUranium
   cost:
     FrontierUplinkCoin: 1
   categories:
     - BravoUplinkAmmo
  
-- type: listing
-  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
-  name: Ящик патронов (.20 винтовочные, урановые)
-  description: ящик урановых боеприпасов калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Uranium
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - BravoUplinkAmmo
-
-- type: listing
-  id: BravoUplinkNFAmmunitionBoxBigRifle20Overpressure
-  name: Ящик патронов (.20 винтовочные, усиленные)
-  description: ящик летальных боеприпасов калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Overpressure
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - BravoUplinkAmmo
-
-- type: listing
-  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle20Incendiary
-  name: Ящик патронов (.20 винтовочные, зажигательные)
-  description: Ящик заполненный зажигательными боеприпасами калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Incendiary
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - BravoUplinkAmmo
-    
-- type: listing
-  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
-  name: Ящик патронов (.30 винтовочные, урановые)
-  description: ящик урановых боеприпасов калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Uranium
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - BravoUplinkAmmo
-
-- type: listing
-  id: BravoUplinkNFAmmunitionBoxBigRifle30Overpressure
-  name: Ящик патронов (.30 винтовочные, усиленные)
-  description: ящик летальных боеприпасов калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Overpressure
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - BravoUplinkAmmo
-
-- type: listing
-  id: BravoUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
-  name: Ящик патронов (.30 винтовочные, зажигательные)
-  description: Ящик заполненный зажигательными боеприпасами калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Incendiary
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - BravoUplinkAmmo
-
 # Lua ignore
 # - type: listing
 #   id: BravoUplinkAmmoMagazineSubMachineGun35Overpressure
@@ -301,20 +224,10 @@
 #   categories:
 #     - BravoUplinkAmmo
 
-- type: listing
-  id: BravoUplinkAmmoMagazineSubMachineGun35Rubber
-  name: smg magazine (.35 pistol, rubber)
-  description: магазин заполненный нелетальными боеприпасами для WT-550
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Rubber
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkAmmo
 
 - type: listing
   id: BravoUplinkAmmoNFMagazineShotgunDrum
-  name: ammo drum (.50 shells, buckshot)
+  name: ammo drum (.4 gauge shells, buckshot)
   description: барабан заполненный летальными боеприпасами для автоматического дробовика "Бульдог"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi, state: base }
   productEntity: NFMagazineShotgunDrum
@@ -323,23 +236,13 @@
   categories:
     - BravoUplinkAmmo
 
-- type: listing
-  id: BravoUplinkAmmoNFSpeedLoaderPistol45Rubber
-  name: speed loader (.45 pistol, Rubber)
-  description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
-  productEntity: NFSpeedLoaderPistol45Rubber
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkAmmo
 
 - type: listing
   id: BravoUplinkAmmoSpeedLoaderPistol45
-  name: speed loader (.45 pistol)
+  name: speed loader (.45 magnum)
   description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45
+  productEntity: SpeedLoader45_magnumFMJ
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -364,28 +267,6 @@
   description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
   icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
   productEntity: MindShieldImplanter
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkMisc
-
-- type: listing
-  id: BravoUplinkMiscMicroBombImplanter
-  name: имплантер микробомбы
-  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
-  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
-  productEntity: MicroBombImplanter
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - BravoUplinkMisc
-
-- type: listing
-  id: BravoUplinkMiscDeathAcidifierImplanter
-  name: имплантер посмертного растворителя
-  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
-  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
-  productEntity: DeathAcidifierImplanter
   cost:
     FrontierUplinkCoin: 1
   categories:

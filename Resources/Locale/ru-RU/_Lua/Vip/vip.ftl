@@ -81,6 +81,8 @@ uplink-vip-medkit-desc = Продвинутый набор для оказани
 
 uplink-vip-Hypospray-name = гипоспрей
 uplink-vip-Hypospray-desc = Стерильный инъектор для быстрого введения лекарств пациентам.
+uplink-vip-VipJetInjector-name = премиум джет-инъектор
+uplink-vip-VipJetInjector-desc = Премиальный продвинутый джет-инъектор с емкостью 10u.
 
 uplink-vip-Demag-name = криптографический ресеквенсор
 uplink-vip-Demag-desc = Универсальное решение после взлома. Восстанавливает шлюзы. Культовое средство для устранения неполадок после взломов.

@@ -261,13 +261,6 @@ public sealed partial class CCVars
         CVarDef.Create("shuttle.impact.slowdown", 10f, CVar.SERVERONLY); // Frontier 8f<10f
 
     /// <summary>
-    /// Minimum velocity change from impact for special throw effects (e.g. stuns, beakers breaking) to occur
-    /// </summary>
-    [CVarControl(AdminFlags.VarEdit)]
-    public static readonly CVarDef<float> ImpactMinThrowVelocity =
-        CVarDef.Create("shuttle.impact.min_throw_velocity", 50f, CVar.SERVERONLY); // due to how it works this is about 16 m/s for cargo shuttle // Frontier 1f<50f
-
-    /// <summary>
     /// Affects how much damage reduction to give to grids with higher mass
     /// </summary>
     [CVarControl(AdminFlags.VarEdit)]

@@ -118,6 +118,13 @@ public sealed class KillTrackingSystem : EntitySystem
 
         return maxSource;
     }
+
+    public void ClearAllLifetimeDamage()
+    {
+        var query = AllEntityQuery<KillTrackerComponent>();
+        while (query.MoveNext(out _, out var tracker))
+        { tracker.LifetimeDamage.Clear(); }
+    }
 }
 
 /// <summary>

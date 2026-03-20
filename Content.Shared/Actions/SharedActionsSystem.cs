@@ -1039,4 +1039,10 @@ public abstract class SharedActionsSystem : EntitySystem
         ent.Comp.Temporary = temporary;
         Dirty(ent);
     }
+
+    public void ClearGrantedActions(EntityUid performer, ActionsComponent comp)
+    {
+        comp.Actions.Clear();
+        Dirty(performer, comp);
+    }
 }

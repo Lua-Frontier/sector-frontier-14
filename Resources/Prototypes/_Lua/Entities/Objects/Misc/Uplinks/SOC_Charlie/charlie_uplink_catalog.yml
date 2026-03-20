@@ -191,12 +191,12 @@
 
 - type: listing
   id: CharlieUplinkMedicalHypospray
-  name: Гипоспрей
-  description: Гипоспрей, позволяющий вводить препараты буквально мгновенно!
-  icon: { sprite: Objects/Specific/Medical/hypospray.rsi , state: hypo }
+  name: Продвинутый Джет-инъектор
+  description: Джет-инъектор, позволяющий вводить препараты много и сразу!
+  icon: { sprite: Objects/Specific/Medical/advanced_jetinjector.rsi , state: jetinjector_base }
   cost:
     FrontierUplinkCoin: 5
-  productEntity: Hypospray
+  productEntity: AdvancedJetInjector
   categories:
     - CharlieUplinkMedical
 
@@ -225,88 +225,11 @@
 
 # Боеприпасы
 - type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Uranium
-  name: Ящик патронов (.20 винтовочные, урановые)
-  description: ящик урановых боеприпасов калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Uranium
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Overpressure
-  name: Ящик патронов (.20 винтовочные, усиленные)
-  description: ящик летальных боеприпасов калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Overpressure
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle20Incendiary
-  name: Ящик патронов (.20 винтовочные, зажигательные)
-  description: Ящик заполненный зажигательными боеприпасами калибра .20
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle20Incendiary
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-    
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Uranium
-  name: Ящик патронов (.30 винтовочные, урановые)
-  description: ящик урановых боеприпасов калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Uranium
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Overpressure
-  name: Ящик патронов (.30 винтовочные, усиленные)
-  description: ящик летальных боеприпасов калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Overpressure
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoNFAmmunitionBoxBigRifle30Incendiary
-  name: Ящик патронов (.30 винтовочные, зажигательные)
-  description: Ящик заполненный зажигательными боеприпасами калибра .30
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Boxes/rifle_big.rsi, state: icon-20 }
-  productEntity: NFAmmunitionBoxBigRifle30Incendiary
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
   id: CharlieUplinkAmmoMagazineSubMachineGun35Overpressure
-  name: smg magazine (.35 pistol, overpressure)
+  name: smg magazine (9x19mm, RIP)
   description: магазин заполненный летальными боеприпасами для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Overpressure
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoMagazineSubMachineGun35Rubber
-  name: smg magazine (.35 pistol, rubber)
-  description: магазин заполненный не летальными боеприпасами для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Rubber
+  productEntity: Magazine9x19mmSubMachineGunRIP
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -314,21 +237,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFMagazineSubMachineGun35Uranium
-  name: smg magazine (.35 pistol, uranium)
+  name: smg magazine (9x19mm, uranium)
   description: магазин заполненный летальными боеприпасами с урановым покрытием для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Uranium
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoNFMagazineSubMachineGun35Emp
-  name: smg magazine (.35 pistol, EMP)
-  description: магазин заполненный летальными боеприпасами с наэлектризованным покрытием для ПП "Вектор"
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Emp
+  productEntity: Magazine9x19mmSubMachineGunUranium
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -336,10 +248,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFMagazineSubMachineGun35Incendiary
-  name: smg magazine (.35 pistol, incendiary)
+  name: smg magazine (9x19mm, incendiary)
   description: магазин заполненный летальными боеприпасами с зажигательными наконечниками для ПП "Вектор"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/smg_mag.rsi, state: base }
-  productEntity: NFMagazineSubMachineGun35Incendiary
+  productEntity: Magazine9x19mmSubMachineGunIncendiary
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -347,7 +259,7 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFMagazineShotgunDrum
-  name: ammo drum (.50 shells, buckshot)
+  name: ammo drum (.4 gauge shells, buckshot)
   description: барабан заполненный летальными боеприпасами для автоматического дробовика "Бульдог"
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/drum.rsi, state: base }
   productEntity: NFMagazineShotgunDrum
@@ -358,7 +270,7 @@
 
 - type: listing
   id: CharlieUplinkAmmoADTMagazineShotgunXL
-  name: ammo drum XL (.50 pellet)
+  name: ammo drum XL (.4 gauge pellet)
   description: Расширенный барабан на 16 патрон заполненный летальными боеприпасами для автоматического дробовика "Бульдог"
   icon: { sprite: ADT/Objects/Weapons/Guns/Ammunition/Magazine/xl.rsi, state: pellets }
   productEntity: ADTMagazineShotgunXL
@@ -368,44 +280,11 @@
     - CharlieUplinkAmmo
 
 - type: listing
-  id: CharlieUplinkAmmoMagazine127x99mmExplosive
-  name: magazine (.50 high-explosive)
-  description: Магазин для крупнокалиберной винтовки "Burner" заполненный фугасным боеприпасом
-  icon: { sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/heavy_rifle_mags.rsi, state: red }
-  productEntity: Magazine127x99mmExplosive
-  cost:
-    FrontierUplinkCoin: 4
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoMagazine127x99mm
-  name: magazine (.50 anti-materiel)
-  description: Магазин для крупнокалиберной винтовки "Burner" заполненный обычным боеприпасом
-  icon: { sprite: _Goobstation/Objects/Weapons/Guns/Ammunition/Magazine/heavy_rifle_mags.rsi, state: base }
-  productEntity: Magazine127x99mm
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkAmmoNFSpeedLoaderPistol45Rubber
-  name: speed loader (.45 pistol, Rubber)
-  description: спидлодер заполненный нелетальными боеприпасами для револьвера Ward-45
-  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: icon-rubber }
-  productEntity: NFSpeedLoaderPistol45Rubber
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
   id: CharlieUplinkAmmoSpeedLoaderPistol45
-  name: speed loader (.45 pistol)
+  name: speed loader (.45 magnum, FMJ)
   description: спидлодер заполненный летальными боеприпасами для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45
+  productEntity: SpeedLoader45_magnumFMJ
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -413,10 +292,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoSpeedLoaderPistol45Uranium
-  name: speed loader (.45 pistol, uranium)
+  name: speed loader (.45 magnum, uranium)
   description: спидлодер заполненный летальными боеприпасами с урановым покрытием для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45Uranium
+  productEntity: SpeedLoader45_magnumUranium
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -424,10 +303,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFSpeedLoaderPistol45Incendiary
-  name: speed loader (.45 pistol, incendiary)
+  name: speed loader (.45 magnum, incendiary)
   description: спидлодер заполненный летальными боеприпасами с зажигательным покрытием для револьвера Ward-45
   icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol45/speed_loader.rsi, state: base }
-  productEntity: NFSpeedLoaderPistol45Incendiary
+  productEntity: SpeedLoader45_magnumIncendiary
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -435,10 +314,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFMagazineRifle30Overpressure
-  name: magazine (.30 rifle, overpressure)
+  name: magazine (7.62x39 rifle, RIP)
   description: магазин заполненный летальными боеприпасами для автомата AEK
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Overpressure
+  productEntity: Magazine762x39mmRIP
   cost:
     FrontierUplinkCoin: 2
   categories:
@@ -446,21 +325,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFMagazineRifle30Incendiary
-  name: magazine (.30 rifle, incendiary)
+  name: magazine (7.62x39 rifle, incendiary)
   description: магазин заполненный летальными боеприпасами с зажигательным покрытием для автомата AEK
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Incendiary
-  cost:
-    FrontierUplinkCoin: 2
-  categories:
-    - CharlieUplinkAmmo
-
-- type: listing
-  id: CharlieUplinkNFMagazineRifle30Rubber
-  name: magazine (.30 rifle, rubber)
-  description: магазин заполненный нелетальными боеприпасами для автомата AEK
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Rubber
+  productEntity: Magazine762x39mmIncendiary
   cost:
     FrontierUplinkCoin: 2
   categories:
@@ -468,10 +336,10 @@
 
 - type: listing
   id: CharlieUplinkAmmoNFMagazineRifle30Uranium
-  name: magazine (.30 rifle, uranium)
+  name: magazine (7.62x39 rifle, uranium)
   description: магазин заполненный летальными боеприпасами с урановым покрытием для автомата AEK
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi, state: base }
-  productEntity: NFMagazineRifle30Uranium
+  productEntity: Magazine762x39mmUranium
   cost:
     FrontierUplinkCoin: 2
   categories:
@@ -496,28 +364,6 @@
   description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
   icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
   productEntity: MindShieldImplanter
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - CharlieUplinkMisc
-    
-- type: listing
-  id: CharlieUplinkMiscMicroBombImplanter
-  name: имплантер микробомбы
-  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
-  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
-  productEntity: MicroBombImplanter
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - CharlieUplinkMisc
-
-- type: listing
-  id: CharlieUplinkMiscMacroBombImplanter
-  name: имплантер макробомбы
-  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
-  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
-  productEntity: MacroBombImplanter
   cost:
     FrontierUplinkCoin: 1
   categories:

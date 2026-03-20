@@ -10,19 +10,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorDark
+    contents: NFLavaBrigEntrance
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFNanoTrasenFacilityWallmounts
+    tile: FloorDark
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorDark
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#DE3A3A96"
 
 - type: dungeonConfig
   id: GateLineOutpost
@@ -36,19 +84,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFSnowyLabsEntrance
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFSnowyLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSilver
+    cornerWall: WallSilver
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#4cc7aa96"
 
 - type: dungeonConfig
   id: GateCompactCache
@@ -61,13 +157,69 @@
     - GateCompact
     - GateTiny
 
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
+
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
 
 - type: dungeonConfig
   id: GateScatteredLabs
@@ -77,6 +229,9 @@
   maxOffset: 60
   layers:
   - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
     presets:
     - GateCompact
     - GateTiny
@@ -101,19 +256,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
 
 - type: dungeonConfig
   id: GateHookOutpost
@@ -127,24 +330,75 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFCaveFactoryWallMounts
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#ab803bff"
 
 - type: dungeonConfig
   id: GateTeeLab
   layers:
   - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
     presets:
     - GateTee
 
@@ -230,19 +484,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
 
 - type: dungeonConfig
   id: GateHauntedOutpost
@@ -256,13 +558,16 @@
     - GateTinySmall
     - GateCompact
 
-  - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
+  - !type:WormCorridorDunGen
+    width: 3
     tile: FloorCaveDrought
 
-  - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+  - !type:CorridorClutterDunGen
+    contents: HauntedClutter
+
+  - !type:BoundaryWallDunGen
+    tile: FloorCaveDrought
+    wall: WallRock
 
 - type: dungeonConfig
   id: GateLabRuins
@@ -306,19 +611,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorDark
+    contents: NFLavaBrigEntrance
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFNanoTrasenFacilityWallmounts
+    tile: FloorDark
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorDark
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#DE3A3A96"
 
 - type: dungeonConfig
   id: GateCaveFactory
@@ -335,19 +688,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFCaveFactoryWallMounts
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#ab803bff"
 
 - type: dungeonConfig
   id: GateMixed
@@ -366,19 +767,67 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
 
 - type: dungeonConfig
   id: GateScatteredHooks
@@ -397,16 +846,64 @@
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
