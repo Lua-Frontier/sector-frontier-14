@@ -164,7 +164,7 @@
 
 - type: entity
   id: VestineChemistryVial
-  parent: BaseChemistryEmptyVial
+  parent: [BaseChemistryEmptyVial, BaseC2SyndicateContrabandNoValue] # Lua-changes: added BaseC2SyndicateContrabandNoValue
   suffix: vestine
   components:
   - type: Label

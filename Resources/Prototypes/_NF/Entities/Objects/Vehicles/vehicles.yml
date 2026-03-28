@@ -569,7 +569,7 @@
 - type: entity
   parent:
   - VehicleHoverbikeMailcarrier
-  #- BaseC2ContrabandUnredeemable
+  - BaseC2ContrabandUnredeemable # Lua-changes: remove Frontier comment
   id: NFVehicleHoverbikeNfsd
   name: NFSD hoverbike
   description: An NFSD issued turbine with bike handles. Very safe.
@@ -675,6 +675,7 @@
   parent:
   - VehicleHoverbikeMailcarrier
   #- BaseC3PirateContraband
+  - BaseC1PirateContraband # Lua
   id: VehicleHoverbikePirate
   name: pirate hoverbike
   description: Yarr! Dis be me sovereign space shuttle. Now, whaur me rum?
@@ -768,6 +769,7 @@
   parent:
   - VehicleHoverbikeMailcarrier
   #- BaseC3SyndicateContraband
+  - BaseC1SyndicateContraband # Lua
   id: VehicleHoverbikeSyndicate
   name: syndicate hoverbike
   description: This thing screams style. And war crimes.

@@ -48,7 +48,7 @@
 
 # Not a PDA cartridge (then why is this here)
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Lua-changes: added BaseC2ContrabandUnredeemable
   id: ContrabandForensicsModule
   name: contraband forensics module
   description: A program for scanning and reporting contraband dead drops and pods for bounties.

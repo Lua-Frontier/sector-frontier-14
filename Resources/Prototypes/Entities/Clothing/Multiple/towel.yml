@@ -737,7 +737,7 @@
 - type: entity
   id: TowelColorSyndicate
   name: syndicate towel
-  parent: [ BaseTowel, BaseC3ContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3ContrabandNoValue
+  parent: [BaseTowel, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3ContrabandNoValue # Lua-changes: BaseC3ContrabandNoValue > BaseC1SyndicateContrabandNoValue
   components:
   - type: Sprite
     layers:
@@ -766,4 +766,3 @@
         color: "#535353"
   - type: Fiber
     fiberColor: fibers-black
-    

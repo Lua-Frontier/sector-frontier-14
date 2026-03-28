@@ -125,7 +125,7 @@
 #region Pulse
 - type: entity
   id: NFWeaponEnergyPistolPulse
-  parent: [ BaseC2Contraband, NFBaseWeaponEnergyPistolHitScanPulse, NFBaseWeaponFrameEnergyPistolNanotrasen ]
+  parent: [BaseC3CentCommContraband, NFBaseWeaponEnergyPistolHitScanPulse, NFBaseWeaponFrameEnergyPistolNanotrasen] # Lua-changes: BaseC2Contraband > BaseC3CentCommContraband
   name: pulse pistol
   description: |-
     A state of the art energy pistol favoured as a sidearm by the NT operatives. On the handle is a label that says 'for authorized use only.'

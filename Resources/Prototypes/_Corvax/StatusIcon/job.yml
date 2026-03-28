@@ -41,7 +41,7 @@
     state: SecurityPilot
 
 - type: entity
-  parent: [ BasePDA, BaseItem, StorePresetUplink ]
+  parent: [BasePDA, BaseItem, StorePresetUplink, BaseC2SyndicateContrabandNoValue] # Lua-changes: added BaseC2SyndicateContrabandNoValue
   id: BaseTypanPDA
   abstract: true
   components:

@@ -320,7 +320,7 @@
     node: ImprovisedCrossbow
 
 - type: entity
-  parent: [ BaseCrossbowWieldable, BaseC3CultContraband ]
+  parent: [BaseCrossbowWieldable, BaseC1CultContraband] # Lua-changes: BaseC3CultContrabandUnredeemable > BaseC1CultContraband
   id: CrossbowBloodCult
   name: blood cult crossbow
   components:
@@ -361,7 +361,7 @@
     node: ImprovisedCrossbowHand
 
 - type: entity
-  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC3CultContraband ]
+  parent: [NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC1CultContraband] # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   id: CrossbowBloodCultHand
   name: blood cult hand crossbow
   components:

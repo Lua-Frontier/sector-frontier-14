@@ -581,7 +581,7 @@
 
 - type: entity
   name: telescopic shield
-  parent: [BaseShield, BaseC2ContrabandUnredeemable] # Frontier: BaseC2ContrabandUnredeemable
+  parent: [BaseShield, BaseC1Contraband] # Frontier: BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:

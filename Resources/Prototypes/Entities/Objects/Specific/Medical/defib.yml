@@ -99,7 +99,7 @@
 
 - type: entity
   id: DefibrillatorSyndicate
-  parent: [ DefibrillatorCompact, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
+  parent: [DefibrillatorCompact, BaseC2SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # LuaChanges: BaseC3SyndicateContrabandNoValue > BaseC2SyndicateContraband
   name: interdyne defibrillator
   description: Doubles as a self-defense weapon against war-crime inclined tiders.
   components:

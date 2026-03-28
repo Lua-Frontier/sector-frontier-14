@@ -15,7 +15,7 @@
     stealGroup: DoorRemote
 
 - type: entity
-  parent: [DoorRemoteDefault, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [DoorRemoteDefault, BaseC3CentCommContraband] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: DoorRemoteCommand
   name: command door remote
   components:
@@ -161,7 +161,7 @@
     - Engineering
 
 - type: entity
-  parent: [DoorRemoteDefault, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [DoorRemoteDefault, BaseC3CentCommContraband] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: DoorRemoteAll
   name: super door remote
   suffix: Admeme

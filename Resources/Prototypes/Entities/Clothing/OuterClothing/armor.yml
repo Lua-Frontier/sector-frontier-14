@@ -151,7 +151,7 @@
 
 #Web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, add ContrabandClothing
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseC1Contraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, add ContrabandClothing # Lua-changes: BaseC3SyndicateContraband > BaseC1Contraband, removed ContrabandClothing
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -174,7 +174,7 @@
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, add ContrabandClothing
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseC1Contraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, add ContrabandClothing # Lua-changes: BaseC3SyndicateContraband > BaseC1Contraband, removed ContrabandClothing
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
@@ -204,7 +204,7 @@
 
 #Mercenary web vest
 - type: entity
-  parent: [ BaseC1Contraband, ClothingOuterStorageBase, AllowSuitStorageClothing] #web vest so it should have some pockets for ammo # Frontier: ClothingOuterVestWeb < "ClothingOuterStorageBase, AllowSuitStorageClothing"
+  parent: [ BaseC1Contraband, ClothingOuterStorageBase, AllowSuitStorageClothing] #web vest so it should have some pockets for ammo # Frontier: ClothingOuterVestWeb < "ClothingOuterStorageBase, AllowSuitStorageClothing" 
   id: ClothingOuterVestWebMercenary # Frontier: Merc<Mercenary
   name: mercenary web vest
   description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
@@ -329,7 +329,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseC3CultContraband, AllowSuitStorageClothing, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3CultContraband, added ContrabandClothing as parent
+  parent: [ ClothingOuterBaseLarge, BaseC1CultContraband, AllowSuitStorageClothing, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3CultContraband, added ContrabandClothing as parent # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   id: ClothingOuterArmorCult
   name: acolyte armor
   description: An evil-looking piece of cult armor, made of bones.

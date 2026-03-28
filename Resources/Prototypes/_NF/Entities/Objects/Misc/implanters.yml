@@ -12,7 +12,7 @@
 - type: entity
   id: FreelanceTrackingImplanter
   name: freelance tracking implanter
-  parent: BaseImplantOnlyImplanterSyndi
+  parent: [BaseImplantOnlyImplanterSyndi, BaseC3PirateContraband] # Lua-changes: added BaseC3PirateContraband
   components:
   - type: Implanter
     implant: FreelanceTrackingImplant
@@ -54,7 +54,7 @@
 - type: entity
   id: RadioImplanterFreelance
   name: freelance radio implanter
-  parent: BaseImplantOnlyImplanter
+  parent: [BaseImplantOnlyImplanter, BaseC3PirateContraband] # Lua-changes: added BaseC3PirateContraband
   components:
   - type: Implanter
     implant: RadioImplantFreelance

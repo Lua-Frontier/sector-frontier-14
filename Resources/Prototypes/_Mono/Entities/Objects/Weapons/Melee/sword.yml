@@ -1,6 +1,6 @@
 - type: entity
   name: high-frequency blade
-  parent: [BaseC2ContrabandUnredeemable, Katana]
+  parent: [BaseC1Contraband, Katana] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: WeaponHFKatana
   description: A high-frequency blade. It's incredibly powerful. # Why the glorp would a katana be modified to have a HF blade :nerd::point_up:
   components:

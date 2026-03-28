@@ -160,7 +160,7 @@
       sprite: Clothing/Back/Duffels/salvage.rsi
 
 - type: entity
-  parent: [NFClothingDuffel, BaseC3Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3Contraband, added ContrabandClothing as parent
+  parent: [NFClothingDuffel, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3Contraband, added ContrabandClothing as parent # Lua-changes: BaseC3Contraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingBackpackDuffelSyndicate
   name: syndicate duffel bag
   description: A large duffel bag for holding various traitor goods.
@@ -174,7 +174,7 @@
     - 0,0,8,4
 
 - type: entity
-  parent: [ NFClothingDuffel, BaseC3Contraband ] # Frontier: ClothingBackpackDuffelSyndicate>NFClothingDuffel, BaseSyndicateContraband>BaseC3Contraband
+  parent: [NFClothingDuffel, BaseClearContraband] # Frontier: ClothingBackpackDuffelSyndicate>NFClothingDuffel, BaseSyndicateContraband>BaseC3Contraband # Lua-changes: BaseC3Contraband > BaseClearContraband
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:

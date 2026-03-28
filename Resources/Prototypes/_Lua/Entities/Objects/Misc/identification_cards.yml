@@ -314,7 +314,7 @@
     job: FSFSpecialistCharlie
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardCargo
   name: ID карта
   description: Карта, необходимая для доступа в различные отделы станции
@@ -332,7 +332,7 @@
 
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardCom
   name: ID карта
   description: Карта, необходимая для доступа в различные отделы станции
@@ -357,7 +357,7 @@
     - NuclearOperative
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardEng
   name: ID карта
   description: Карта, необходимая для доступа в различные отделы станции
@@ -377,7 +377,7 @@
     - AllAccess
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardMed
   name: ID карта
   description: Карта, необходимая для доступа в различные отделы станции
@@ -396,7 +396,7 @@
     - AllAccess
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardRd
   name: ID карта
   description: Карта, необходимая для доступа в различные отделы станции
@@ -415,7 +415,7 @@
     - AllAccess
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardScience
   name: ID карта
   description: Карта, необходимая для доступа в различные отделы станции
@@ -434,7 +434,7 @@
     - AllAccess
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardBotanist
   name: ID карта
   components:
@@ -452,7 +452,7 @@
     - AllAccess
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDCardChef
   name: ID карта
   components:
@@ -470,7 +470,7 @@
     - AllAccess
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: OutpostSyndicateIDResearcher
   name: ID карта
   components:
@@ -517,7 +517,7 @@
     sprite: _NF/Objects/Misc/id_cards.rsi
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: SynShareholderIDCard
   name: shareholder ID card
   components:

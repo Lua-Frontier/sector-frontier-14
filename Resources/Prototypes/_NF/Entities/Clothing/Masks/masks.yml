@@ -1,7 +1,7 @@
 - type: entity
   id: ClothingMaskArcadia
   name: arcadia battle mask
-  parent: [ ClothingMaskGasExplorer, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: [ClothingMaskGasExplorer, BaseC1Contraband] # Lua-changes: BaseC3ContrabandNoValue > BaseC1Contraband, deleted ContrabandClothing
   description: A close-fitting high tech mask designed by Arcadia Industries for spacefaring operators.
   components:
   - type: Sprite
@@ -43,7 +43,7 @@
     coverage: MOUTH
 
 - type: entity
-  parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSecurity ]
+  parent: [BaseC2ContrabandUnredeemable, ClothingMaskGasSecurity]
   id: ClothingMaskGasNfsd
   name: NFSD gas mask
   description: A standard issue NFSD gas mask.
@@ -55,7 +55,7 @@
   - type: CatWearable
 
 - type: entity
-  parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSwat ]
+  parent: [BaseC1Contraband, ClothingMaskGasSwat] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: ClothingMaskGasSheriff
   name: NFSD sheriff gas mask
   description: A gas mask worthy of a sheriff.
@@ -66,7 +66,7 @@
     sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi
 
 - type: entity
-  parent: [ BaseC3CultContrabandUnredeemable, ContrabandClothing, ClothingMaskGasExplorer ]
+  parent: [BaseC1CultContrabandNoValue, ClothingMaskGasExplorer] # Lua-changes: BaseC3CultContrabandUnredeemable > BaseC1CultContrabandNoValue, removed ContrabandClothing
   id: ClothingMaskCultJanitor
   name: cult janitor mask
   description: A close-fitting, imposing breath mask designed for accursed custodians who value style.
@@ -81,7 +81,7 @@
 
 - type: entity
   id: ClothingMaskPunkHalf
-  parent: [ ClothingMaskGasExplorer, RecyclableItemClothDevice ]
+  parent: [ClothingMaskGasExplorer, RecyclableItemClothDevice]
   name: punk halfmask
   description: A close-fitting breath mask with gamer lights!
   suffix: Random visuals

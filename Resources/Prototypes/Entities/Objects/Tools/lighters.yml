@@ -242,7 +242,7 @@
 
 - type: entity
   name: flippo engraved lighter
-  parent: FlippoLighter
+  parent: [FlippoLighter, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   id: FlippoSyndicateLighter
   description: "A rugged golden lighter, lasts quite a while. Engravings serve no tactical advantage whatsoever."
   components:
@@ -413,7 +413,7 @@
         maxVol: 3
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBrandedLighter, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue
   id: CybersunFlippo
   name: CyberSun Flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
@@ -433,7 +433,7 @@
     color: magenta
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBrandedLighter, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue
   id: InterdyneFlippo
   name: Interdyne Flippo
   description: "A deep blue flippo lighter, decorated with the logo of Interdyne Pharmaceuticals' 'Gene Clean' clinics. Become the master of your own cigarette."
@@ -487,7 +487,7 @@
         maxVol: 10
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseCentcommContraband]
+  parent: [BaseBrandedLighter, BaseC3CentCommContrabandNoValue] # Lua-changes: BaseCentcommContraband >  BaseC3CentCommContrabandNoValue
   id: CentCommFlippo
   name: Gilded CentComm Flippo
   description: "An Ornate, jade embossed and gilded flippo frame containing a bluespace powered jet. The latch is secured by a miniature access reader that only responds to CentComm officials. The nicest lighter known to man."
@@ -533,7 +533,7 @@
     access: [["CentralCommand"]]
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3Contraband] # Frontier BaseMajorContraband<BaseC3Contraband
+  parent: BaseBrandedLighter # Frontier BaseMajorContraband<BaseC3Contraband # Lua-changes: deleted BaseC3Contraband
   id: SpiderclanFlippo
   name: Spider-Clan lighter
   description: "A high tech jet lighter, engineered to function even in deep space. Runs on a tiny microfusion cell."
@@ -553,7 +553,7 @@
     color: green
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: BaseBrandedLighter # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: deleted BaseC3Contraband
   id: WaffleCoFlippo
   name: Waffle Co. flippo
   description: "A robust mass produced lighter. The Waffle Co. logo turns the spark wheel when pushed up, minimising risk of lighter burns for even the most inept user."

@@ -37,7 +37,7 @@
   id: PaperWrittenCombatBakeryKit
   name: "combat bakery kit instructions"
   description: "Eat note after reading."
-  parent: Paper
+  parent: [Paper, BaseC1SyndicateContraband] # Lua-changes: added BaseC1SyndicateContraband
   components:
   - type: Paper
     content: book-text-combat-bakery-kit
