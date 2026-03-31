@@ -1,4 +1,5 @@
 using Content.Server._NF.Shuttles.Components; // Frontier
+using Content.Shared._Lua.ShipCpu.Components; // Lua
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Buckle.Systems;
@@ -116,6 +117,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
         EnsureComp<ShuttleComponent>(ev.EntityUid);
         EnsureComp<ImplicitRoofComponent>(ev.EntityUid);
+        EnsureComp<ShipCpuLimitComponent>(ev.EntityUid); // Lua: лимит тайлов CPU
     }
 
     private void OnShuttleStartup(EntityUid uid, ShuttleComponent component, ComponentStartup args)

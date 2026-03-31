@@ -13,7 +13,7 @@ public sealed partial class GunJamComponent : Component
     public float MaxJamChance = 0.05f;
 
     [DataField, AutoNetworkedField]
-    public float JamThreshold = 0.1f;
+    public float JamThreshold = 0.5f;
 
     [DataField, AutoNetworkedField]
     public float DamagePerShot = 5f;

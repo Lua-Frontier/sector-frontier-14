@@ -1,0 +1,27 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp
+# See AGPLv3.txt for details.
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ShipCpuSmallMachineCircuitboard
+  result: ShipCpuSmallMachineCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ShipCpuMediumMachineCircuitboard
+  result: ShipCpuMediumMachineCircuitboard
+  materials:
+    Steel: 200
+    Glass: 1000
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ShipCpuLargeMachineCircuitboard
+  result: ShipCpuLargeMachineCircuitboard
+  materials:
+    Steel: 400
+    Glass: 2000

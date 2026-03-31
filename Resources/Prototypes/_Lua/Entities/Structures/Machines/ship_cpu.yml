@@ -1,0 +1,140 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: BaseShipCpu
+  abstract: true
+  parent: [BaseMachinePowered, ConstructibleMachine]
+  name: корабельный CPU
+  description: Вычислительный блок управления шаттлом. Определяет максимально допустимый размер корабля.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 300
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        hard: false
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _Lua/Structures/Machines/ship_cpu.rsi
+    layers:
+    - map: ["base"]
+      state: ship_cpu_small
+  - type: Appearance
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#b0b0b0"
+    enabled: false
+  - type: ShipCpu
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  id: ShipCpuSmall
+  parent: BaseShipCpu
+  name: корабельный CPU
+  description: Обеспечивает вычислительную мощность для шаттла класса Small. Максимум 441 тайл, сторона до 21.
+  components:
+  - type: ShipCpu
+    maxTiles: 441
+    maxSide: 21
+  - type: Machine
+    board: ShipCpuSmallMachineCircuitboard
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _Lua/Structures/Machines/ship_cpu.rsi
+    layers:
+    - map: ["base"]
+      state: ship_cpu_small
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#38e551"
+    enabled: false
+
+- type: entity
+  id: ShipCpuMedium
+  parent: BaseShipCpu
+  name: корабельный CPU
+  description: Обеспечивает вычислительную мощность для шаттла класса Medium. Максимум 961 тайл, сторона до 31.
+  components:
+  - type: ShipCpu
+    maxTiles: 961
+    maxSide: 31
+  - type: Machine
+    board: ShipCpuMediumMachineCircuitboard
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _Lua/Structures/Machines/ship_cpu.rsi
+    layers:
+    - map: ["base"]
+      state: ship_cpu_medium
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#3865e5"
+    enabled: false
+
+- type: entity
+  id: ShipCpuLarge
+  parent: BaseShipCpu
+  name: корабельный CPU
+  description: Тяжёлый вычислительный блок для крупных кораблей. Максимум 1681 тайл, сторона до 41.
+  components:
+  - type: ShipCpu
+    maxTiles: 1681
+    maxSide: 41
+  - type: Machine
+    board: ShipCpuLargeMachineCircuitboard
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _Lua/Structures/Machines/ship_cpu.rsi
+    layers:
+    - map: ["base"]
+      state: ship_cpu_large
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#e53838"
+    enabled: false
+
+- type: entity
+  id: ShipCpuStation
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseShipCpu]
+  name: станционный CPU
+  description: Главный вычислительный блок станции. Снимает все ограничения на расширение сетки. Намертво прикреплён к станции.
+  suffix: AdminOnly
+  components:
+  - type: ShipCpu
+    unlimited: true
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _Lua/Structures/Machines/ship_cpu.rsi
+    layers:
+    - map: ["base"]
+      state: ship_cpu_station
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#e5c838"
+    enabled: false
+  - type: StaticPrice
+    price: 0

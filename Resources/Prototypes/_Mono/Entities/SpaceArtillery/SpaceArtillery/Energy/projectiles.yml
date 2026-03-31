@@ -147,9 +147,6 @@
   - type: PointLight
     color: "#C92BCC"
   - type: GatheringProjectile
-    soft: true # Lua
-  - type: MiningGatheringSoft
-  - type: MiningGatheringHard
 
 # RUBICON
 
@@ -224,8 +221,6 @@
     maxIntensity: 55
     maxTileBreak: 5
   - type: GatheringProjectile
-  - type: MiningGatheringSoft
-  - type: MiningGatheringHard
 
 # region Laser Hitscans
 

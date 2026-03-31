@@ -5,6 +5,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Client.ADT.UI.AnimatedBackground;
@@ -14,6 +15,7 @@ public sealed class AnimatedBackgroundControl : TextureRect
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private string _rsiPath = "/Textures/_Lua/LobbyScreens/backgrounds/cube.rsi";
     public RSI? _RSI;
@@ -148,8 +150,7 @@ public sealed class AnimatedBackgroundControl : TextureRect
     public void RandomizeBackground()
     {
         var backgroundsProto = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>().ToList();
-        var random = new Random();
-        var index = random.Next(backgroundsProto.Count);
+        var index = _random.Next(backgroundsProto.Count);
         _rsiPath = NormalizeTexturePath(backgroundsProto[index].Path);
         InitializeStates();
     }

@@ -450,6 +450,16 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Lua decrypt mod start
             var allowBlip = !hideLabel;
             if (effectiveHideLabelShuttle) allowBlip = true;
+
+            const float FullScaleDistance = 512f;
+            const float MinDistanceScale = 0.35f;
+            var maxScaleRange = MathF.Max(WorldMaxRange, FullScaleDistance + 1f);
+            var scaledMousePos = GetMouseCoordinatesFromCenter().Position * UIScale;
+            var isHovered = Vector2.Distance(scaledMousePos, uiPosition * UIScale) < 30f;
+            var distanceScale = isHovered || worldDist <= FullScaleDistance
+                ? 1f
+                : MathF.Max(MinDistanceScale, 1f - (worldDist - FullScaleDistance) / (maxScaleRange - FullScaleDistance) * (1f - MinDistanceScale));
+
             Texture? vesselIcon = null;
             var blipScale = 1f;
             if (EntManager.TryGetComponent<VesselComponent>(gUid, out var vesselComp))
@@ -488,7 +498,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         if (cache.TryGetResource<TextureResource>(blipComp.Icon, out var texRes))
                         {
                             var tex = texRes.Texture;
-                            var s = (RadarBlipSize * UIScale) * blipComp.Scale;
+                            var s = (RadarBlipSize * UIScale) * blipComp.Scale * distanceScale;
                             var half = new Vector2(s / 2f, s / 2f);
                             var box = new UIBox2(uiPosition * UIScale - half, uiPosition * UIScale + half);
                             handle.DrawTextureRect(tex, box, labelColor);
@@ -500,7 +510,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
                 else if (allowBlip && vesselIcon != null)
                 {
-                    var s = (RadarBlipSize * UIScale) * blipScale;
+                    var s = (RadarBlipSize * UIScale) * blipScale * distanceScale;
                     var half = new Vector2(s / 2f, s / 2f);
                     var box = new UIBox2(uiPosition * UIScale - half, uiPosition * UIScale + half);
                     handle.DrawTextureRect(vesselIcon, box, labelColor);
@@ -528,15 +538,16 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     // Calculate unscaled offsets. + Lua decrypt md start
                     var lines = labelText.Split('\n');
                     var mainLabel = lines[0];
-                    var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, 1f) : handle.GetDimensions(Font, mainLabel, 1f);
+                    var dimScale = 0.9f * distanceScale;
+                    var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, dimScale) : handle.GetDimensions(Font, mainLabel, dimScale);
                     var labelDimensions = mainDim;
                     if (lines.Length > 1)
                     {
-                        var otherDim = handle.GetDimensions(Font, lines[1], 1f);
+                        var otherDim = handle.GetDimensions(Font, lines[1], dimScale);
                         labelDimensions = new Vector2(Math.Max(labelDimensions.X, otherDim.X), labelDimensions.Y + otherDim.Y);
                     }
                     // Lua decrypt mod end
-                    var blipSize = RadarBlipSize * 0.7f;
+                    var blipSize = RadarBlipSize * 0.7f * distanceScale;
                     var labelOffset = new Vector2()
                     {
                         X = uiPosition.X > Width / 2f
@@ -560,8 +571,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             displayColor = compColor;
                     }
 
-                    if (cipherName) DrawCipherString(handle, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, displayColor); //Lua decrypt mod
-                    else handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, displayColor); //Lua decrypt mod
+                    var textScale = UIScale * 0.9f * distanceScale;
+                    if (cipherName) DrawCipherString(handle, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
+                    else handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
 
                     // Draw company label if present
                     if (lines.Length > 1)
@@ -569,10 +581,10 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         var companyLabel = lines[1];
                         var companyLabelOffset = new Vector2(
                             labelOffset.X,
-                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, 0.9f).Y
+                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, textScale).Y
                         );
 
-                        handle.DrawString(Font, (uiPosition + companyLabelOffset) * UIScale, companyLabel, UIScale * 0.9f, displayColor);
+                        handle.DrawString(Font, (uiPosition + companyLabelOffset) * UIScale, companyLabel, textScale, displayColor);
                     }
 
                     if (isMouseOver && !HideCoords)
@@ -746,7 +758,23 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var handledByLuaStyle = false;
                 DrawLuaRadarBlip(handle, blip.NetUid, blip.SonarEcho, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape, ref handledByLuaStyle);
                 if (!handledByLuaStyle)
-                    DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
+                {
+                    var blipEnt = EntManager.GetEntity(blip.NetUid);
+                    if (blipEnt != EntityUid.Invalid && EntManager.TryGetComponent<RadarBlipIconComponent>(blipEnt, out var blipIcon) && blipIcon.Icon != default)
+                    {
+                        var cache = IoCManager.Resolve<IResourceCache>();
+                        if (cache.TryGetResource<TextureResource>(blipIcon.Icon, out var texRes))
+                        {
+                            var s = blip.Scale * 3.5f * blipIcon.Scale;
+                            var half = new Vector2(s / 2f, s / 2f);
+                            var box = new UIBox2(blipPosInView - half, blipPosInView + half);
+                            handle.DrawTextureRect(texRes.Texture, box);
+                            handledByLuaStyle = true;
+                        }
+                    }
+                    if (!handledByLuaStyle)
+                        DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
+                }
             }
         }
 

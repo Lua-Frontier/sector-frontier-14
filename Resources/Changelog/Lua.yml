@@ -3715,3 +3715,73 @@ Entries:
   id: 261
   time: '2026-03-20T17:54:20.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/517
+- author: 25Hydra08
+  changes:
+    - type: Tweak
+      message: Ремап МЦ by 25Hydra08 and HolyPain
+  id: 262
+  time: '2026-03-20T20:26:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/520
+- author: k1bitka
+  changes:
+    - type: Tweak
+      message: Теперь Hard руда добывается обычными инструментами
+    - type: Remove
+      message: компонент MiningGathering у пород и инструментов
+    - type: Tweak
+      message: Прототип проджектайла Протокинетического дробовика
+    - type: Tweak
+      message: Протокинетическая пушка -> протокинетический повторитель
+    - type: Remove
+      message: текстуры протокинетической пушки
+    - type: Add
+      message: Новые текстуры
+  id: 263
+  time: '2026-03-20T21:46:24.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/518
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Квельдрёв - оснащенный 1 Чароном, и 2 торпедными
+        аппаратами. Имеет на борту средний сервер вооружения.
+    - type: Remove
+      message: Удалён шаттл Перл.
+  id: 264
+  time: '2026-03-21T07:17:43.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/509
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены телепорты между станциями
+  id: 265
+  time: '2026-03-22T08:31:05.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/529
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен корабельный процессор, доступен для изучения в РНД.
+    - type: Remove
+      message: >-
+        Удалены метки у джетпаков, огнетушителей, всего вида транспорта,
+        тепловая сигнатура, 
+    - type: Remove
+      message: Удалена термальная маскировка
+    - type: Add
+      message: Добавлена сигнатура мёртвых
+    - type: Tweak
+      message: >-
+        Теперь чем дальше шаттл тем меньше его текст, при наведении скейлится в
+        полный размер.
+    - type: Tweak
+      message: Добавлен чекбокс отключения меток в консоли управления вооружением
+  id: 266
+  time: '2026-03-22T17:57:44.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/530
+- author: TheZuTi
+  changes:
+    - type: Fix
+      message: Платы КПУ Шаттлов можно крафтить в принтере схем
+  id: 267
+  time: '2026-03-25T14:51:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/534

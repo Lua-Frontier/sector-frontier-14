@@ -27,8 +27,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95 #Lua 0.9<0.95
     sprintModifier: 0.95 #Lua 0.9<0.95
-  - type: ThermalCloak
-    enabled: false
+
 
 - type: entity
   parent: ClothingOuterHardsuitTSFMCM73
@@ -56,8 +55,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
-  - type: ThermalCloak
-    enabled: false
+
 
 - type: entity
   parent: ClothingOuterHardsuitTSFMCM73
@@ -85,8 +83,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.85
-  - type: ThermalCloak
-    enabled: false
+
 
 - type: entity
   parent: [ EnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd ] #Lua
@@ -116,8 +113,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
-  - type: ThermalCloak
-    enabled: false
+
 
 - type: entity
   parent: ClothingOuterHardsuitNfsdBronze
@@ -142,8 +138,7 @@
         Caustic: 0.35
   - type: StaminaDamageResistance #Lua
     coefficient: 0.4
-  - type: ThermalCloak
-    enabled: false
+
 
 - type: entity
   parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut, EnergyShieldClothing ]  # Lua
@@ -178,8 +173,7 @@
     sprintModifier: 0.75
   - type: FactionClothing
     faction: NanoTrasen
-  - type: ThermalCloak
-    enabled: false
+
 
 #Security Combat Hardsuit
 - type: entity

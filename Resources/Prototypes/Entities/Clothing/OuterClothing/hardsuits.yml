@@ -556,8 +556,6 @@
   name: blood-red hardsuit
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
-  - type: ThermalCloak
-    enabled: false
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Item
@@ -625,8 +623,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
-  - type: ThermalCloak #Lua
-    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -673,8 +669,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
-  - type: ThermalCloak #Lua
-    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -715,8 +709,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
-  - type: ThermalCloak #Lua
-    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -757,8 +749,6 @@
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/wizard.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/wizard.rsi #Lua
-  - type: ThermalCloak #Lua
-    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -986,8 +976,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
-  - type: ThermalCloak #Lua
-    enabled: false
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000

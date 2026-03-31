@@ -659,7 +659,7 @@
   - MechEquipmentFork
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 6.154, 2.677
+  position: 5.757, 1.42
 - type: technology
   id: NFBasicRobotics
   name: nf-research-technology-basic-robotics
@@ -669,7 +669,7 @@
   cost: 1000
   recipeUnlocks:
   - ProximitySensor
-  position: 2.868, 2.014
+  position: 2.868, 0.69
   technologyPrerequisites:
   - NFAdvancedParts
 - type: technology
@@ -683,7 +683,7 @@
   - VimHarness
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 8.062, 4.226
+  position: 5.752, 2.164
 - type: technology
   id: NFRoboticsEquipment
   name: nf-research-technology-robotics-equipment
@@ -695,8 +695,8 @@
   - MechEquipmentGrabberSmall
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFBasicRobotics
-  position: 6.069, 1.735
+  - NFBasicRoboticsEquipment
+  position: 6.862, 1.439
 - type: technology
   id: NFRipleyAPLU
   name: nf-research-technology-ripley-aplu
@@ -714,7 +714,7 @@
   - RipleyPeripheralsElectronics
   technologyPrerequisites:
   - NFBasicRobotics
-  position: 5.83, 4.109
+  position: 5.74, 2.909
 - type: technology
   id: NFCritterMechs
   name: nf-research-technology-critter-mechs
@@ -732,8 +732,8 @@
   - HamtrPeripheralsElectronics
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
-  - NFBasicRobotics
-  position: 4.323, 1.327
+  - NFVim
+  position: 6.873, 2.181
 - type: technology
   id: NFAdvancedRoboticsEquipment
   name: nf-research-technology-advanced-robotics-equipment
@@ -745,7 +745,7 @@
   - MechEquipmentGrabber
   technologyPrerequisites:
   - NFRoboticsEquipment
-  position: 8.183, 1.752
+  position: 7.936, 1.45
 - type: technology
   id: NFHONKMech
   name: nf-research-technology-honk-mech
@@ -764,7 +764,7 @@
   - HonkerTargetingElectronics
   technologyPrerequisites:
   - NFRipleyAPLU
-  position: 7.999, 5.335
+  position: 6.868, 2.927
 - type: technology
   id: NFHornRoboticsEquipment
   name: nf-research-technology-horn-robotics-equipment
@@ -776,7 +776,7 @@
   - MechEquipmentHorn
   technologyPrerequisites:
   - NFHONKMech
-  position: 9.386, 4.939
+  position: 7.93, 2.945
 - type: technology
   id: NFWirelessAudioVisualCommunication
   name: nf-research-technology-wireless-audio-visual-communication
@@ -1093,7 +1093,7 @@
   cost: 2500
   recipeUnlocks:
   - PowerCellHigh
-  position: 2.947, 0.625
+  position: 2.875, -0.127
   technologyPrerequisites:
   - NFAdvancedParts
 - type: technology
@@ -1787,7 +1787,8 @@
   - Weapon80mmBaseFlatpack
   technologyPrerequisites:
   - MachineGCSMediumCircuitboardTech
-  position: 15.533, 13.034
+  - ShipCpuLargeTechnology
+  position: 15.548, 13.433
 - type: technology
   id: ShiparmoryHeavyBallisticBases
   name: research-technology-shiparmory-heavy-ballistic-bases
@@ -1957,4 +1958,42 @@
   technologyPrerequisites:
   - ShiparmoryPlastitaniumStructures
   position: 17.205, 18.974
+- type: technology
+  id: ShipCpuSmallTechnology
+  name: lua-research-technology-ship-cpu-small
+  entityIcon: ShipCpuSmall
+  discipline: NFEngineering
+  tier: 1
+  cost: 7000
+  recipeUnlocks:
+  - ShipCpuSmallMachineCircuitboard
+  position: 5.906, 5.108
+  technologyPrerequisites:
+  - BasicShuttleWeapon
+- type: technology
+  id: ShipCpuMediumTechnology
+  name: lua-research-technology-ship-cpu-medium
+  entityIcon: ShipCpuMedium
+  discipline: NFEngineering
+  tier: 2
+  cost: 14000
+  recipeUnlocks:
+  - ShipCpuMediumMachineCircuitboard
+  technologyPrerequisites:
+  - ShipCpuSmallTechnology
+  - ShuttleGrenade
+  position: 10.999, 8.868
+- type: technology
+  id: ShipCpuLargeTechnology
+  name: lua-research-technology-ship-cpu-large
+  entityIcon: ShipCpuLarge
+  discipline: NFEngineering
+  tier: 3
+  cost: 22000
+  recipeUnlocks:
+  - ShipCpuLargeMachineCircuitboard
+  technologyPrerequisites:
+  - ShipCpuMediumTechnology
+  - MachineGCSMediumCircuitboardTech
+  position: 15.515, 12.199
 ...

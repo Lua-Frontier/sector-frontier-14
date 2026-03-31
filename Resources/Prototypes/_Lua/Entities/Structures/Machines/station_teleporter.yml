@@ -1,0 +1,92 @@
+# Стационарные телепорты
+
+- type: entity
+  abstract: true
+  parent: [BaseStructure, BaseStructureIndestructible]
+  id: StationTeleporterBase
+  components:
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: _Lua/Structures/Machines/station_teleporter.rsi
+    layers:
+    - state: base
+    - state: powered
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      visible: false
+    - sprite: Effects/portal.rsi
+      state: portal-gray
+      shader: unshaded
+      map: ["Portal"]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.LinkedEntityVisuals.HasAnyLinks:
+        Portal:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: StationTeleporter
+  - type: Portal
+    randomTeleport: false
+    canTeleportToOtherMaps: true
+  - type: LinkedEntity
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: ApcPowerReceiver
+    powerLoad: 2500
+  - type: ExtensionCableReceiver
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/_Lua/Effects/StationTeleporter/ambi_gateway.ogg
+    enabled: false
+  - type: PointLight
+    color: "#81ddeb"
+    radius: 3
+    energy: 1.5
+    enabled: false
+    netsync: false
+  - type: InteractionOutline
+  - type: ActivatableUI
+    key: enum.StationTeleporterUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StationTeleporterUIKey.Key:
+        type: StationTeleporterBoundUserInterface
+
+# Станционный телепорт — работает только внутри одной станции (Local)
+- type: entity
+  parent: StationTeleporterBase
+  id: StationTeleporterLocal
+  components:
+  - type: StationTeleporter
+    teleporterType: Local
+
+# Секторный телепорт — работает внутри всего сектора (той же карты)
+- type: entity
+  parent: StationTeleporterBase
+  id: StationTeleporterSector
+  components:
+  - type: StationTeleporter
+    teleporterType: Sector
+

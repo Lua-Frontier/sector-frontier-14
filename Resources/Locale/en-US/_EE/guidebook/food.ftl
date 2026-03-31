@@ -26,7 +26,7 @@ guidebook-food-output = [bold]{$name}[/bold] \[{$number}\]
 guidebook-food-processing-type-microwave = microwave
 guidebook-food-processing-type-oven = bake
 guidebook-food-processing-type-assembler = assemble
-guidebook-food-processing-type-medical-assembler = assemble
+guidebook-food-processing-type-medical-assembler = assemble in Med-O-Mat
 guidebook-food-processing-type-medical-generic = cook
 guidebook-food-processing-type-deepfryer = deep fry
 # End Frontier: processing types

@@ -1,0 +1,35 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: Kveldulf
+  name: Kveldulf
+  description: Квельдрёв - прирожденный охотник, способный поразить врага в самое сердце
+  price: 128000
+  category: medium
+  group: BlackMarket
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Pirate
+  engine:
+  - Singularity
+  shuttlePath: /Maps/_Lua/Shuttles/Pirates/Kveldulf.yml
+
+- type: gameMap
+  id: Kveldulf
+  mapName: 'Kveldulf'
+  mapPath: /Maps/_Lua/Shuttles/Pirates/Kveldulf.yml
+  minPlayers: 0
+  stations:
+    Kveldulf:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Kveldulf {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

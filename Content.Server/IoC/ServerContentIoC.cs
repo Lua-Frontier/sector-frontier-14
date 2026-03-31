@@ -1,4 +1,5 @@
 using Content.Server._Lua.ChatFilter; // Lua
+using Content.Server._Lua.Networking; // Lua
 using Content.Server._NF.Auth;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -48,6 +49,7 @@ internal static class ServerContentIoC
         deps.Register<ISharedChatManager, ChatManager>();
         deps.Register<IChatSanitizationManager, ChatSanitizationManager>();
         deps.Register<ChatFilterManager>(); // Lua
+        deps.Register<DecryptFailLogger>(); // Lua
         deps.Register<IServerPreferencesManager, ServerPreferencesManager>();
         deps.Register<IServerDbManager, ServerDbManager>();
         deps.Register<RecipeManager, RecipeManager>();

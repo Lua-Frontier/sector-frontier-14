@@ -1,0 +1,53 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: ShipCpuSmallMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата корабельного CPU
+  description: Машинная плата для сборки корабельного CPU класса Small.
+  components:
+  - type: Sprite
+    state: std_mod
+  - type: MachineBoard
+    prototype: ShipCpuSmall
+    requirements:
+      Manipulator: 1
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+
+- type: entity
+  id: ShipCpuMediumMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата корабельного CPU
+  description: Машинная плата для сборки корабельного CPU класса Medium.
+  components:
+  - type: Sprite
+    state: std_mod
+  - type: MachineBoard
+    prototype: ShipCpuMedium
+    requirements:
+      Manipulator: 2
+      MatterBin: 1
+    stackRequirements:
+      Steel: 8
+      Glass: 3
+
+- type: entity
+  id: ShipCpuLargeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: плата корабельного CPU
+  description: Машинная плата для сборки корабельного CPU класса Large.
+  components:
+  - type: Sprite
+    state: std_mod
+  - type: MachineBoard
+    prototype: ShipCpuLarge
+    requirements:
+      Manipulator: 3
+      MatterBin: 2
+    stackRequirements:
+      Steel: 12
+      Glass: 5

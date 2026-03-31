@@ -20,9 +20,6 @@ public sealed partial class ShipCrewAssignmentComponent : Component
     public ShipCrewRole Role;
 
     [DataField]
-    public EntityUid? AssignedMindUid;
-
-    [DataField]
     public NetUserId? AssignedUserId;
 }
 

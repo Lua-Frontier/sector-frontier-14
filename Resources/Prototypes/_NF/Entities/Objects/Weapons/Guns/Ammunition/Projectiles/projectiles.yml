@@ -184,8 +184,6 @@
   parent: BulletKinetic
   id: NFBulletKinetic
   categories: [ HideSpawnMenu ]
-  components:
-  - type: MiningGatheringSoft # Frontier
 
 - type: entity
   parent: BulletKineticShuttle
@@ -203,14 +201,11 @@
     lifetime: 1
   - type: PointLight
     color: "#FF8888"
-  - type: MiningGatheringHard # Frontier
 
 - type: entity
   parent: BulletCharge
   id: NFBulletCharge
   categories: [ HideSpawnMenu ]
-  components:
-  - type: MiningGatheringSoft # Frontier
 
 - type: entity
   parent: AnomalousParticleDelta

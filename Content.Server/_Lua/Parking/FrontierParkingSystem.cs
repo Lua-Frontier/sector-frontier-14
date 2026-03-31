@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaWorld/LuaCorp
 // See AGPLv3.txt for details.
 
+using Content.Shared._NF.Bank;
 using Content.Server._NF.Bank;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;

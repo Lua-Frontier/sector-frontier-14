@@ -3,11 +3,6 @@
   parent: VehicleATV
   id: NFVehicleATV
   components:
-  - type: RadarBlip
-    radarColor: "#8A2BE2"
-    scale: 0.6
-    visibleFromOtherGrids: true
-    requireNoGrid: false
   - type: Sprite
     sprite: _NF/Objects/Vehicles/atv.rsi
     layers:
@@ -872,7 +867,6 @@
   name: dumpster
   description: It only has one wheel!
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - SpawnGoblinMadeToolMalfunction

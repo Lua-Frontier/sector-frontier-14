@@ -83,19 +83,11 @@ public sealed class GunJamSystem : SharedGunJamSystem
             if (userOrNull != null)
                 _popup.PopupEntity(Loc.GetString("gun-jam-energy-occurred"), ent.Owner, userOrNull.Value, PopupType.MediumCaution);
         }
-        else
+        else if (TryComp<ChamberMagazineAmmoProviderComponent>(ent, out var chamber) && chamber.BoltClosed != null)
         {
             ent.Comp.IsJammed = true;
             Dirty(ent);
-
-            if (TryComp<ChamberMagazineAmmoProviderComponent>(ent, out var chamber) && chamber.BoltClosed != null)
-            {
-                _gun.SetBoltClosed(ent.Owner, chamber, false, userOrNull);
-            }
-            else if (userOrNull != null)
-            {
-                _popup.PopupEntity(Loc.GetString("gun-jam-occurred"), ent.Owner, userOrNull.Value, PopupType.MediumCaution);
-            }
+            _gun.SetBoltClosed(ent.Owner, chamber, false, userOrNull);
         }
     }
 }

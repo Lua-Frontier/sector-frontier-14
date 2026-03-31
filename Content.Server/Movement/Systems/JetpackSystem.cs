@@ -1,6 +1,5 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared._Mono.Radar;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -19,9 +18,6 @@ public sealed class JetpackSystem : SharedJetpackSystem
     {
         base.Initialize();
 
-        // Subscribe to ActiveJetpackComponent events
-        SubscribeLocalEvent<ActiveJetpackComponent, ComponentStartup>(OnJetpackActivated);
-        SubscribeLocalEvent<ActiveJetpackComponent, ComponentShutdown>(OnJetpackDeactivated);
     }
 
     protected override bool CanEnable(EntityUid uid, JetpackComponent component)
@@ -29,21 +25,6 @@ public sealed class JetpackSystem : SharedJetpackSystem
         return base.CanEnable(uid, component) &&
                TryComp<GasTankComponent>(uid, out var gasTank) &&
                !(gasTank.Air.TotalMoles < component.MoleUsage);
-    }
-
-    /// <summary>
-    /// Adds radar blip to jetpacks when they are activated
-    /// </summary>
-    private void OnJetpackActivated(EntityUid uid, ActiveJetpackComponent component, ComponentStartup args)
-    {
-        if (TryComp<RadarBlipComponent>(uid, out var blip))
-            blip.Enabled = true;
-    }
-
-    private void OnJetpackDeactivated(EntityUid uid, ActiveJetpackComponent component, ComponentShutdown args)
-    {
-        if (TryComp<RadarBlipComponent>(uid, out var blip))
-            blip.Enabled = false;
     }
 
     public override void Update(float frameTime)

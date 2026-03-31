@@ -32,6 +32,13 @@
             <Button Name="RefreshButton" Access="Public" Text="{Loc admin-logs-refresh}"
                     StyleClasses="ButtonSquare" Margin="2 2 2 2"/>
             </PanelContainer>
+            <PanelContainer VerticalExpand="False" HorizontalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
+                </PanelContainer.PanelOverride>
+            <CheckBox Name="ShowIFFCheckbox" Access="Public" Text="{Loc 'gunnery-show-iff'}"
+                      Margin="4 2 2 2" Pressed="True"/>
+            </PanelContainer>
 
             <!-- Weapons Control Section -->
             <controls:StripeBack MinSize="48 48" Margin="0 0 0 0">
