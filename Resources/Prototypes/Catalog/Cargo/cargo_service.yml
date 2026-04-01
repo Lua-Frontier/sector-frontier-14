@@ -144,7 +144,7 @@
   group: market
 
 - type: cargoProduct
-  id: ServiceSodaDispenser  
+  id: ServiceSodaDispenser
   icon:
     sprite: Objects/Consumable/Drinks/generic_jug.rsi
     state: icon
@@ -154,7 +154,7 @@
   group: market
 
 - type: cargoProduct
-  id: ServiceBoozeDispenser  
+  id: ServiceBoozeDispenser
   icon:
     sprite: Objects/Consumable/Drinks/generic_jug.rsi
     state: icon
@@ -244,3 +244,25 @@
   cost: 500
   category: cargoproduct-category-name-service
   group: market
+
+  # Frontier start
+- type: cargoProduct
+  id: ServicePhotocopierToners
+  icon:
+    sprite: _Lua/Objects/Misc/tonercartridge.rsi
+    state: icon
+  product: CrateServicePhotocopierToners
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: service
+
+- type: cargoProduct
+  id: ServicePolaroidCartridges
+  icon:
+    sprite: _Lua/Objects/Misc/tonercartridge.rsi
+    state: icon
+  product: CrateServicePolaroidCartridges
+  cost: 1200
+  category: cargoproduct-category-name-service
+  group: service
+  # Frontier end

@@ -389,3 +389,23 @@
     contents:
     - id: BoxLightbulbColorfulMixed
     - id: BoxLighttubeColorfulMixed
+
+# Frontier
+- type: entity
+  id: CrateServicePhotocopierToners
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxPhotocopierToners
+        amount: 2
+
+- type: entity
+  id: CrateServicePolaroidCartridges
+  parent: CrateGenericSteel
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxPolaroidCartridges
+        amount: 2
+# Frontier end

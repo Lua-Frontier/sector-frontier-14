@@ -1,0 +1,124 @@
+- type: entity
+  id: PolaroidPreviewCamera
+  categories: [ HideSpawnMenu ]
+  name: polaroid preview camera
+  description: Hidden preview camera for polaroid UI.
+  components:
+  - type: Visibility
+    layer: 8
+  - type: Eye
+    drawFov: false
+    pvsScale: 0.8
+
+- type: entity
+  parent: BaseItem
+  id: PolaroidCamera
+  name: полароид
+  description: Мгновенная камера с квадратным видоискателем и собственным картриджем моментальной печати.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/travel_camera.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Devices/travel_camera.rsi
+    size: Normal
+  - type: ActivatableUI
+    key: enum.PolaroidCameraUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.PolaroidCameraUiKey.Key:
+        type: PolaroidCameraBoundUserInterface
+  - type: PolaroidCamera
+    cartridgeSlot:
+      name: polaroid-camera-slot-name
+      startingItem: PolaroidCartridge
+      whitelist:
+        tags:
+        - PolaroidCartridge
+      insertSuccessPopup: polaroid-camera-popup-cartridge-inserted
+      whitelistFailPopup: polaroid-camera-popup-invalid-cartridge
+      ejectSound: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      cartridge: !type:ContainerSlot
+  - type: StaticPrice
+    price: 180
+
+- type: entity
+  parent: BaseItem
+  id: PolaroidCartridge
+  name: картридж для полароида
+  description: Компактный картридж моментальной плёнки для печати полароидных снимков.
+  components:
+  - type: Item
+    sprite: _Lua/Objects/Misc/tonercartridge.rsi
+    size: Small
+  - type: Sprite
+    sprite: _Lua/Objects/Misc/tonercartridge.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - PolaroidCartridge
+  - type: StaticPrice
+    price: 60
+  - type: PolaroidCartridge
+    maxAmount: 8
+    currentAmount: 8
+
+- type: entity
+  parent: BaseItem
+  id: PolaroidPhoto
+  name: фотоснимок
+  description: Квадратный полароидный снимок в плотной белой рамке.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/photograph.rsi
+    layers:
+    - state: yellow
+      map: [ "base" ]
+  - type: Item
+    sprite: Objects/Misc/photograph.rsi
+    size: Tiny
+  - type: RandomSprite
+    available:
+    - base:
+        black: ""
+        blue: ""
+        green: ""
+        purple: ""
+        rainbow: ""
+        red: ""
+        yellow: ""
+  - type: Tag
+    tags:
+    - Document
+  - type: ActivatableUI
+    key: enum.PolaroidPhotoUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PolaroidPhotoUiKey.Key:
+        type: PolaroidPhotoBoundUserInterface
+  - type: PolaroidPhoto
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxPolaroidCartridges
+  name: коробка картриджей для полароида
+  description: Запасные картриджи моментальной плёнки, упакованные для доставки карго.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PolaroidCartridge
+      amount: 2
+  - type: Sprite
+    layers:
+    - state: box
+  - type: Storage
+    grid:
+    - 0,0,3,1

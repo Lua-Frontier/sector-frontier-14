@@ -1,0 +1,14 @@
+- type: loadoutGroup
+  id: PolaroidKit
+  name: loadout-group-polaroid-kit
+  minLimit: 0
+  loadouts:
+  - PolaroidLoadoutKit
+
+- type: loadout
+  id: PolaroidLoadoutKit
+  dummyEntity: PolaroidCamera
+  storage:
+    back:
+    - PolaroidCamera
+    - PolaroidCartridge
