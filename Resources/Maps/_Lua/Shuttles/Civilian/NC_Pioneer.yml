@@ -4,7 +4,7 @@ meta:
   engineVersion: 275.1.0
   forkId: ""
   forkVersion: ""
-  time: 04/04/2026 20:47:17
+  time: 04/04/2026 21:01:56
   entityCount: 148
 maps: []
 grids:
@@ -682,6 +682,8 @@ entities:
     - type: Transform
       pos: 3.5,8.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#FF0000FF'
 - proto: GasPipeStraight
   entities:
   - uid: 47
@@ -689,11 +691,15 @@ entities:
     - type: Transform
       pos: 3.5,5.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#FF0000FF'
   - uid: 48
     components:
     - type: Transform
       pos: 3.5,7.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#FF0000FF'
 - proto: GasPort
   entities:
   - uid: 49
@@ -702,6 +708,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
 - proto: GasPressurePump
   entities:
   - uid: 43
@@ -710,6 +718,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,6.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#FF0000FF'
 - proto: GasVentPump
   entities:
   - uid: 50
@@ -718,6 +728,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0000FFFF'
     - type: DeviceNetwork
       configurators:
       - invalid
@@ -731,6 +743,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,4.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#FF0000FF'
     - type: DeviceNetwork
       configurators:
       - invalid
@@ -777,7 +791,7 @@ entities:
       pos: 1.5,3.5
       parent: 1
     - type: Battery
-      startingCharge: 123.33336
+      startingCharge: 123.166695
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: ApcPowerReceiverBattery
