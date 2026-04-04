@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 275.1.0
   forkId: ""
   forkVersion: ""
-  time: 04/04/2026 09:41:37
+  time: 04/04/2026 20:47:17
   entityCount: 148
 maps: []
 grids:
@@ -61,7 +61,6 @@ entities:
     - type: Shuttle
       dampingModifier: 0.45
     - type: ImplicitRoof
-    - type: ShipCpuLimit
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -646,7 +645,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 5.5,6.5
+      pos: 5.5,4.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -722,7 +721,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 80
 - proto: GasVentScrubber
@@ -735,7 +733,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 80
@@ -780,7 +777,7 @@ entities:
       pos: 1.5,3.5
       parent: 1
     - type: Battery
-      startingCharge: 123.83335
+      startingCharge: 123.33336
     - type: ApcPowerReceiver
       powerLoad: 5
     - type: ApcPowerReceiverBattery
@@ -797,8 +794,8 @@ entities:
   - uid: 39
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,1.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,0.5
       parent: 1
 - proto: NFMagnetBoxOre
   entities:
@@ -928,14 +925,14 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 1.5,0.5
+      pos: 4.5,0.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        45:
+        44:
         - - Pressed
           - Toggle
-        44:
+        45:
         - - Pressed
           - Toggle
   - uid: 89
@@ -993,8 +990,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,8.5
       parent: 1
-    - type: Thruster
-      enabled: False
     - type: ApcPowerReceiver
       powerLoad: 1
   - uid: 37
