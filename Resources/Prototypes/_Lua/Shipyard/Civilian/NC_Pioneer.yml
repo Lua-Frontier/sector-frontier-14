@@ -1,0 +1,42 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  parent: BaseVessel
+  id: NCPioneer
+  name: NC_Pioneer
+  description: Шахтёрское судно для начинающих утилизаторов. Можно почувствовать привкус пыли когда заходишь на этот шаттл.
+  price: 14650
+  category: Micro
+  group: Shipyard
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Civilian
+  - Salvage
+  engine:
+  - Plasma
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/NC_Pioneer.yml
+  guidebookPage: ShipyardNCPioneer
+
+- type: gameMap
+  id: NCPioneer
+  mapName: 'NC_Pioneer'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/NC_Pioneer.yml
+  minPlayers: 0
+  stations:
+    NCPioneer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'NCPioneer {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
