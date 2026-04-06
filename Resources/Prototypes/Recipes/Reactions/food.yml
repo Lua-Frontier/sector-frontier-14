@@ -53,7 +53,7 @@
     Milk: #replace with yoghurt when added
       amount: 10
     Egg:
-      amount: 6
+      amount: 1 #Lua 6 to 1
   effects:
     - !type:CreateEntityReactionEffect
       entity: FoodDoughCornmeal
@@ -97,7 +97,7 @@
     Flour:
       amount: 15
     Egg:
-      amount: 12
+      amount: 2 #Lua 12 to 2
     Sugar:
       amount: 5
     Milk:
@@ -130,7 +130,7 @@
     Flour:
       amount: 15
     Egg:
-      amount: 12
+      amount: 2 #Lua 12 to 2
     TableSalt:
       amount: 5
   effects:
@@ -182,7 +182,7 @@
     Flour:
       amount: 5
     Egg:
-      amount: 6
+      amount: 1 #Lua 6 to 1
   effects:
     - !type:CreateEntityReactionEffect
       entity: FoodMeatMeatball
@@ -223,7 +223,7 @@
     Cornoil: # Frontier: oil<corn
       amount: 5
     Egg:
-      amount: 6
+      amount: 1 #Lua 6 to 1
   products:
     Mayo: 15
 
@@ -235,7 +235,7 @@
     Cornoil: # Frontier: oil<corn
       amount: 5
     Egg:
-      amount: 6
+      amount: 1 #Lua 6 to 1
   products:
     Mayo: 15
 
