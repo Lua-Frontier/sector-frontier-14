@@ -21,8 +21,12 @@
     sprite: _NF/Objects/Misc/books.rsi
     layers:
     - state: law_space
-  - type: HyperlinkBook
-    url: https://frontierstation.wiki.gg/wiki/Space_Law
+  - type: GuideHelp #Lua
+    openOnActivation: true
+    guides:
+    - DSRulesIC
+  # - type: HyperlinkBook # comment from _Lua
+  #   url: https://frontierstation.wiki.gg/wiki/Space_Law
   - type: Tag
     tags:
     - Book
@@ -38,8 +42,12 @@
     sprite: _NF/Objects/Misc/books.rsi
     layers:
     - state: nfsd_sop
-  - type: HyperlinkBook
-    url: https://frontierstation.wiki.gg/wiki/NFSDSOP
+  - type: GuideHelp #Lua
+    openOnActivation: true
+    guides:
+    - DSRulesIC
+  # - type: HyperlinkBook # comment from _Lua
+  #   url: https://frontierstation.wiki.gg/wiki/NFSDSOP
   - type: Tag
     tags:
     - Book

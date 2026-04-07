@@ -79,21 +79,91 @@
   - type: StorageFill
     contents:
       - id: WeaponRifleMR8C
-      - id: Magazine8x65mmSKR
+      - id: Magazine762x54mmRFMJ
         amount: 3
-      - id: AmmoBox8x65mmSKR
+
+- type: entity
+  id: WeaponCaseLongGrizzlyBundle
+  parent: WeaponCaseHeavy
+  suffix: TCA MMG-68 "Grizzly"
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLMGGrizzly
+        amount: 1
+      - id: Magazine68x52mmCaselessBig
+        amount: 2
+      - id: AmmoBox68x52mmCaseless
+
+- type: entity
+  id: WeaponCaseLongXLR556Bundle
+  parent: WeaponCaseLong
+  suffix: VFD XLR-556 ICWS
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleXlr556
+      - id: Magazine762x51mmFMJ
+        amount: 2
+      - id: AmmoBox762x51mmFMJ
+
+- type: entity
+  id: WeaponCaseLongM90Bundle
+  parent: WeaponCaseLong
+  suffix: M90 76251
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleM90
+      - id: Magazine762x51mmFMJ
+        amount: 2
+      - id: AmmoBox762x51mmFMJ
+
+- type: entity
+  id: WeaponCaseLongFirestarterBundle
+  parent: WeaponCaseLong
+  suffix: HWM Firestarter (.45 ACP)
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunFirestarter
+      - id: Magazine45_ACPSubMachineGunFMJ
+        amount: 2
+      - id: AmmoBox45_ACPFMJ
+
+- type: entity
+  id: WeaponCaseLongBigBuddyBundle
+  parent: WeaponCaseLong
+  suffix: Big Buddy (4 gauge)
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunBigBuddy
+      - id: AmmoBox23x75mmBuckshot
+        amount: 2
+
+- type: entity
+  id: WeaponCaseLongBigJohnnyBundle
+  parent: WeaponCaseLong
+  suffix: Big Johnny (4 gauge)
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunBigJohnny
+      - id: AmmoBox23x75mmBuckshot
+        amount: 2
 
 - type: entity
   id: WeaponCaseLongLMGMR8BBundle
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   suffix: VFD MR-8B LWMMG 7.62x51mm
   components:
   - type: StorageFill
     contents:
       - id: WeaponLMGMR8B
-      - id: AmmoBox762x51mmFMJ
+      - id: Magazine8x65mmSKRBox
         amount: 2
-      - id: AmmoBox762x51mmBigFMJ
+      - id: Magazine8x65mmSKRBox
 
 - type: entity
   id: WeaponCaseLongWt550Bundle
@@ -119,6 +189,32 @@
         amount: 3
 
 - type: entity
+  parent: [WeaponCaseLong] #Lua
+  id: WeaponCaseLongHristovExpedition
+  suffix: Dungeon, Hristov
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponRifleSniperHristov
+      amount: 1
+    - id: Magazine127x99mm
+      amount: 2
+
+- type: entity
+  parent: [WeaponCaseShort] #Lua
+  id: WeaponCaseShortUniversalExpedition
+  suffix: Dungeon, Universal
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: NFWeaponPistolUniversal
+      amount: 1
+    - id: Magazine9x19mmPistolFMJ
+      amount: 2
+
+- type: entity
   id: WeaponCaseShortInspectorBundle
   parent: WeaponCaseShort
   suffix: Inspector .45 Magnum
@@ -137,8 +233,41 @@
   - type: StorageFill
     contents:
       - id: NFWeaponPistolN1984
-      - id: Magazine45_ACPPistolHighCapacityFMJ
+      - id: Magazine45_ACPPistolFMJ
         amount: 2
+
+- type: entity
+  id: WeaponCaseLongPrometheusBundle
+  parent: WeaponCaseLong
+  suffix: HWM FCL "Prometheus" (5.56x45mm)
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRiflePrometheus
+      - id: Magazine556x45mmFMJ
+        amount: 3
+      - id: AmmoBox556x45mmFMJ
+
+- type: entity
+  id: WeaponCaseLongKnallstockBundle
+  parent: WeaponCaseLong
+  suffix: LWC Knallstock (.45 ACP)
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunKnallstock
+      - id: Magazine45_ACPSubMachineGunFMJ
+        amount: 3
+      - id: AmmoBox45_ACPFMJ
+
+- type: entity
+  id: WeaponCaseLongEGFrostBundle
+  parent: WeaponCaseLong
+  suffix: VFD EN-5 FROST
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponEnergyGunFrost
 
 - type: entity
   id: WeaponCaseLongAK220Bundle
@@ -178,13 +307,13 @@
 
 - type: entity
   id: WeaponCaseLongHammerBundle
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   suffix: NCI AK-150 HAMMER 7.62x39mm
   components:
   - type: StorageFill
     contents:
       - id: WeaponLMGHammer
-      - id: Magazine762x39mmBox
+      - id: Magazine68x52mmCaselessBig
         amount: 2
 
 - type: entity
@@ -195,9 +324,9 @@
   - type: StorageFill
     contents:
       - id: WeaponRifleWSPR
-      - id: Magazine762x39mmSubsonic
+      - id: Magazine762x39mmFMJ
         amount: 3
-      - id: AmmoBox762x39mmSubsonic
+      - id: AmmoBox762x39mmFMJ
 
 - type: entity
   id: WeaponCaseShortRitlandBundle
@@ -218,7 +347,7 @@
   - type: StorageFill
     contents:
       - id: NFWeaponPistolViper
-      - id: Magazine9x19mmPistolHighCapacityFMJ
+      - id: Magazine9x19mmPistolFMJ
         amount: 2
 
 - type: entity
@@ -229,6 +358,18 @@
   - type: StorageFill
     contents:
       - id: WeaponRifleAK410
+      - id: Magazine762x54mmRFMJ
+        amount: 3
+      - id: AmmoBox762x54mmRFMJ
+
+- type: entity
+  id: WeaponCaseLongBurnerBundle
+  parent: WeaponCaseLong
+  suffix: Burner 7.62x54mmR
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleBurner
       - id: Magazine762x54mmRFMJ
         amount: 3
       - id: AmmoBox762x54mmRFMJ
@@ -282,13 +423,13 @@
 
 - type: entity
   id: WeaponCaseLongL6Bundle
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   suffix: L6 5.56x45mm
   components:
   - type: StorageFill
     contents:
       - id: NFWeaponLightMachineGunL6
-      - id: NFMagazineBoxRifle556x45
+      - id: Magazine556x45mmFMJ
         amount: 2
 
 - type: entity
@@ -304,6 +445,17 @@
       - id: AmmoBox635x40mmCaseless
 
 - type: entity
+  id: WeaponCaseLongBigLeadyBundle
+  parent: WeaponCaseLong
+  suffix: Big Leady (4 gauge)
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponShotgunBigLeady
+      - id: AmmoBox23x75mmBuckshot
+        amount: 2
+
+- type: entity
   id: WeaponCaseHeavyRatelBundle
   parent: WeaponCaseHeavy
   suffix: VFD PSW "Ratel" 7.62x51mm
@@ -311,5 +463,5 @@
   - type: StorageFill
     contents:
       - id: WeaponLMGRatel
-      - id: AmmoBox762x51mmFMJ
+      - id: Magazine8x65mmSKRBox
         amount: 2

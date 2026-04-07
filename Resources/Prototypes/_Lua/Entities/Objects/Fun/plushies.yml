@@ -105,3 +105,83 @@
   - type: Sprite
     sprite: _Lua/Plushie/toys.rsi
     state: mariya_rogozina
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAki
+  name: Плюшевая Аки Сайра
+  description: Смотря на эту игрушку у вас просыпается желание взорваться, а после промолчать...
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Aki
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDar
+  name: Плюшевый Дар
+  description: Он где-то помер...
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Dar
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSteffie
+  name: Плюшевая Стеффи
+  description: Конвертирует вино в очки РНД, а непоглаженных карпоакул - в поглаженных.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Steffie
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVito
+  name: Плюшевый Вито
+  description: Потрепанная игрушка быдловатого вида. Внутри булькает бутылка текилы.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Vito
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieYalsa
+  name: Плюшевая Ялса Абь
+  description: главный слайм меда
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Yalsa
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieLyap
+  name: Плюшевый Ляп Монархус
+  description: Это привлекательная игрушка, почему вы её хотите обнять? откуда такое желание гладить? почему вы её хотите? Стоп, что?
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Lyap
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieRafic
+  name: Плюшевый Рафик Абдурахманов
+  description: Плюшевая версия главного стража медицинского отсека. Почему у вас ощущение, будто он хочет себе противоударную броню?...
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Rafic
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAgonia
+  name: Плюшевая Агония Вежливости
+  description: Плюшевая версия лучшего главного врача всего Фронтира.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Agonia

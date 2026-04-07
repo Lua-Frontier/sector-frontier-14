@@ -132,6 +132,15 @@
     state: nfsdbrigmed
   jobName: job-name-brigmedic
 
+#From _Lua
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSDEngineerNF
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: sdengineer
+  jobName: job-name-nfsd-engineer
+
 - type: jobIcon
   parent: JobIcon
   id: JobIconSergeant

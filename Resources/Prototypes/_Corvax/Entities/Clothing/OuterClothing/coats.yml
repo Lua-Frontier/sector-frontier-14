@@ -98,14 +98,20 @@
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
-  - type: Armor
+  - type: Armor #Lua; # 30/30/45//45/45//30/30//70
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.6
-        Heat: 0.5
-        Caustic: 0.9
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.55
+        Heat: 0.55
+        Radiation: 0.55
+        Shock: 0.7
+        Caustic: 0.7
+  - type: StaminaResistance #Lua
+    damageCoefficient: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.3 #Lua
 
 - type: entity
   parent: ClothingOuterStorageBase

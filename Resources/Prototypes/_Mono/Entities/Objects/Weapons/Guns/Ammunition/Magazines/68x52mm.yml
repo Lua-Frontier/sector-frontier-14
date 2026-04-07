@@ -1,6 +1,8 @@
+# Base
 - type: entity
   id: BaseMagazine68x52mmCaseless
   name: "magazine (6.8x52mm STANAG Caseless)"
+  suffix: Need balance test #Lua
   parent: [ BaseCartridge, RecyclableItemSteelTiny ]
   abstract: true
   components:
@@ -51,6 +53,7 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
+# Standart
 - type: entity
   id: Magazine68x52mmCaselessBig
   name: "box magazine (6.8x52mm STANAG Caseless)"
@@ -58,7 +61,7 @@
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge68x52mmCaseless
-    capacity: 99
+    capacity: 100
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi
   - type: MagazineVisuals
@@ -66,6 +69,100 @@
     steps: 8
     zeroVisible: false
 
+# Mechanical
+- type: entity
+  id: Magazine68x52mmCaselessBigHP
+  name: "magazine (6.8x52mm STANAG HP)"
+  parent: Magazine68x52mmCaselessBig
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge68x52mmCaselessHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: hollowpoint
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
+# Physical
+- type: entity
+  id: Magazine68x52mmCaselessBigIncendiary
+  name: "magazine (6.8x52mm STANAG Incendiary)"
+  parent: Magazine68x52mmCaselessBig
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge68x52mmCaselessIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
+- type: entity
+  id: Magazine68x52mmCaselessBigUranium
+  name: "magazine (6.8x52mm STANAG Uranium)"
+  parent: Magazine68x52mmCaselessBig
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge68x52mmCaselessUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: uranium
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
+# Special
+- type: entity
+  id: Magazine68x52mmCaselessBigEMP
+  name: "magazine (6.8x52mm STANAG EMP)"
+  parent: Magazine68x52mmCaselessBig
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge68x52mmCaselessEMP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: emp
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
+- type: entity
+  id: Magazine68x52mmCaselessBigCaustic
+  name: "magazine (6.8x52mm STANAG Caustic)"
+  parent: Magazine68x52mmCaselessBig
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge68x52mmCaselessCaustic
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: caustic
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
+# Out of balance
 - type: entity
   id: Magazine68x52mmCaseless
   name: "magazine (6.8x52mm STANAG Caseless)"

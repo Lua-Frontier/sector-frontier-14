@@ -150,7 +150,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: NFRedLightLaser
+    proto: NFRedMediumLaser #Lua NFRedLightLaser<NFRedMediumLaser
     fireCost: 60
 
 - type: entity
@@ -162,5 +162,26 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: NFPulse
-    fireCost: 60
+    proto: LuaPulsePistol #Lua NFPulse<LuaPulsePistol
+    fireCost: 25
+
+- type: entity
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  id: LuaPulsePistol
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 15
+        Radiation: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue

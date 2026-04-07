@@ -195,7 +195,7 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
-      #- EncryptionKeyOutpostSyndicate # Typan
+      #- EncryptionKeyOutpostTypan # Typan
       - EncryptionKeyFreelance #Pirates
       - EncryptionKeyCargo
       - EncryptionKeyEngineering
@@ -213,7 +213,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerTypan
-  suffix: Нордфолл
+  suffix: Тайпан
   components:
   - type: ContainerFill
     containers:
@@ -223,7 +223,7 @@
       - EncryptionKeyTrade
       - EncryptionKeyMercenary
       - EncryptionKeyVip
-      - EncryptionKeyOutpostSyndicate
+      - EncryptionKeyOutpostTypan
 
 - type: entity
   parent: TelecomServer

@@ -14,5 +14,3 @@ ent-NFWeaponPistolUniversal = МК-32 "Универсал" (9x19mm)
    .desc = Боевой пистолет Mark 32.
 ent-NFWeaponPistolUniversalNfsd = МК-32 "Универсал" сервисный (9x19mm)
    .desc = Сервисный вариант Mark 32. На рукояти табличка: "только для уполномоченного использования".
-ent-NFWeaponPistolUniversalNfsdLessLethal = МК-32 "Универсал" сервисный (нелетальный) (9x19mm)
-   .desc = Вариант под резиновые патроны.

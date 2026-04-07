@@ -115,9 +115,9 @@
       prob: 0.001
       orGroup: Canister
     #weapons
-    - id: NFWeaponEnergyRifleAssaultPulseCarbine # Frontier: WeaponPulseCarbine<NFWeaponEnergyRifleAssaultPulseCarbine
-      prob: 0.0001
-      orGroup: Weapons
+    # - id: NFWeaponEnergyRifleAssaultPulseCarbine # Frontier: WeaponPulseCarbine<NFWeaponEnergyRifleAssaultPulseCarbine
+    #   prob: 0.0001
+    #   orGroup: Weapons
     - id: NFWeaponRifleAssaultSm # Frontier: WeaponRifleAk<NFWeaponRifleAssaultSm
       prob: 0.0001
       orGroup: Weapons
@@ -182,9 +182,9 @@
     - id: ClothingOuterHardsuitSanta
       prob: 0.001
       orGroup: Clothes
-    - id: ClothingBackpackERTClown
-      prob: 0.001
-      orGroup: Clothes
+    # - id: ClothingBackpackERTClown # comment from _Lua
+    #   prob: 0.001
+    #   orGroup: Clothes
     - id: ClothingNeckCloakAdmin
       prob: 0.01
       orGroup: Clothes

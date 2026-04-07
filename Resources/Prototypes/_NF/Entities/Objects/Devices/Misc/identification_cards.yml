@@ -155,6 +155,19 @@
     - state: nfsd
     - state: idnfsddetective
 
+- type: entity #from _Lua
+  parent: CadetIDCard
+  id: SDEngineerIDCard
+  name: ID-карта Инженера СРБС
+  components:
+  - type: PresetIdCard
+    job: SDEngineer
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idnfsdengineer
+
 - type: entity
   parent: SecurityIDCard
   id: SecurityGuardIDCard

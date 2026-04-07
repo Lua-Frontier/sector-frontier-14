@@ -1,13 +1,38 @@
+
+- type: listing
+  id: UplinkConvertTK
+  name: uplink-convert-sdtk-name
+  description: uplink-convert-sdtk-desc
+  productEntity: FrontierUplinkCoin1
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkSecurityUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
 #region hardsuits
 
 - type: listing
   id: UplinkSecurityHardsuitM73
-  name:  uplink-security-hardsuit-name
-  description: uplink-security-hardsuit-desc
+  name:  uplink-security-hardsuitM73-name
+  description: uplink-security-hardsuitM73-desc
   productEntity: ClothingOuterHardsuitTSFMCM73
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73-outer.rsi, state: icon }
+  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M73-helmet.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 6
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -15,31 +40,24 @@
       whitelist:
         tags:
           - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityHardsuitM74
-  name:  uplink-security-hardsuit-patrol-name
-  description: uplink-security-hardsuit-patrol-desc
-  productEntity: ClothingOuterHardsuitTSFMCM74
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M74-outer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 6
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerJobCondition
       whitelist:
-        tags:
-          - SecurityUplink
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
-  id: UplinkSecurityHardsuitM73-C
-  name:  uplink-security-hardsuit-brigmedic-name
-  description: uplink-security-hardsuit-brigmedic-desc
+  id: UplinkSecurityHardsuitM73C
+  name:  uplink-security-hardsuitM73C-name
+  description: uplink-security-hardsuitM73C-desc
   productEntity: ClothingOuterHardsuitTSFMCM73-C
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73c-outer.rsi, state: icon }
+  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M73c-helmet.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 6
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -49,55 +67,22 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff
-        - Sheriff
-        - Brigmedic
-
-- type: listing
-  id: UplinkSecurityHardsuitM75
-  name:  uplink-security-hardsuit-warden-name
-  description: uplink-security-hardsuit-warden-desc
-  productEntity: ClothingOuterHardsuitTSFMCM75
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M75-outer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 6
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityHardsuitM93
-  name:  uplink-security-hardsuit-combat-name
-  description: uplink-security-hardsuit-combat-desc
+  name:  uplink-security-hardsuitM93-name
+  description: uplink-security-hardsuitM93-desc
   productEntity: ClothingOuterHardsuitTSFMCM93
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93-outer.rsi, state: icon }
+  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M93-helmet.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 15
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityCommandM93-C
-  name: uplink-security-hardsuit-command-name
-  description: uplink-security-hardsuit-command-desc
-  productEntity: ClothingOuterHardsuitTSFMCM93-C
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93c-outer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 15
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityHardsuits
   conditions:
@@ -107,48 +92,105 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff
-        - Sheriff
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityCommandM93-C
+  name: uplink-security-hardsuitM93C-name
+  description: uplink-security-hardsuitM93C-desc
+  productEntity: ClothingOuterHardsuitTSFMCM93-C
+  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M93c-helmet.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityHardsuitJuggernaut
+  name:  uplink-security-hardsuitM92X-name
+  description: uplink-security-hardsuitM92X-desc
+  productEntity: ClothingOuterHardsuitTSFMCM92-X
+  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M92x-helmet.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityHardsuitM92
+  name:  uplink-security-hardsuitM92-name
+  description: uplink-security-hardsuitM92-desc
+  productEntity: ClothingOuterHardsuitTSFMCM92
+  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M92-helmet.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+#region clothing
 
 # - type: listing
-#   id: UplinkSecurityHardsuitJuggernaut
-#   name:  uplink-security-hardsuit-experimental-name
-#   description: uplink-security-hardsuit-experimental-desc
-#   productEntity: ClothingOuterHardsuitTSFMCM92-X
-#   icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi, state: icon }
+#   id: UplinkSecurityStelsJetpack
+#   name:  uplink-pirate-stealth-jetpack-name
+#   description: uplink-pirate-stealth-jetpack-desc
+#   productEntity: JetpackStealthFilled
 #   cost:
-#     FrontierUplinkCoin: 40
+#     Speso: 2
 #   categories:
-#     - UplinkSecurityHardsuits
+#     - UplinkSecurityUtility
 #   conditions:
 #     - !type:StoreWhitelistCondition
 #       whitelist:
 #         tags:
 #           - SecurityUplink
-#     - !type:BuyerJobCondition
-#       whitelist:
-#         - Sheriff
-
-- type: listing
-  id: UplinkSecurityHardsuitM92
-  name:  uplink-security-hardsuit-sheriff-name
-  description: uplink-security-hardsuit-sheriff-desc
-  productEntity: ClothingOuterHardsuitTSFMCM92
-  icon: { sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92-outer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 8
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
-
-#region clothing
 
 - type: listing
   id: UplinkSecurityJetpack
@@ -157,7 +199,7 @@
   productEntity: JetpackNfsdFilled
   icon: { sprite: _NF/Objects/Tanks/Jetpacks/nfsd.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -165,6 +207,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityMagboots
@@ -181,6 +232,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecuritySwat
@@ -199,55 +259,54 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 #region weapons
 
-- type: listing
-  id: UplinkSecurityAnnieBundle # TCA M27 Annie (7.62x39mm)
-  name:  uplink-security-AnnieBundle-name
-  description: uplink-security-AnnieBundle-desc
-  productEntity: WeaponCaseLongAnnieBundle
-  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 18
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-          - Bailiff
-          - SeniorOfficer
-          - Sheriff
-          - Deputy
+#- type: listing
+#  id: UplinkSecurityAnnieBundle # TCA M27 Annie (7.62x39mm)
+#  name:  uplink-security-AnnieBundle-name
+#  description: uplink-security-AnnieBundle-desc
+#  productEntity: WeaponCaseLongAnnieBundle
+#  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 18
+#  categories:
+#    - UplinkSecurityWeapons
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+
+#- type: listing
+#  id: UplinkSecurityVector45ACPBundle # LWC Vector SBR (.45 ACP)
+#  name: uplink-security-vector45acp-name
+#  description: uplink-security-vector45acp-desc
+#  productEntity: WeaponCaseLongVector45ACPBundle
+#  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 12
+#  categories:
+#  - UplinkSecurityWeapons
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityVector45ACPBundle # LWC Vector SBR (.45 ACP)
-  name: uplink-security-vector45acp-name
-  description: uplink-security-vector45acp-desc
-  productEntity: WeaponCaseLongVector45ACPBundle
-  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 12
-  categories:
-  - UplinkSecurityWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityEg4 # Energy revolver EG-4
-  name:  uplink-security-eg4-name
-  description: uplink-security-eg4-desc
-  productEntity: WeaponEnergyRevolver
+  id: UplinkSecurityMR8CBundle # VFD MR-8C DMR (7.62x54mm)
+  name:  uplink-security-MR8CBundle-name
+  description: uplink-security-MR8CBundle-desc
+  productEntity: WeaponCaseLongMR8CBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 7
   categories:
@@ -257,15 +316,24 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 - type: listing
-  id: UplinkSecurityMR8CBundle # VFD MR-8C DMR (8x65mm SKR)
-  name:  uplink-security-MR8CBundle-name
-  description: uplink-security-MR8CBundle-desc
-  productEntity: WeaponCaseLongMR8CBundle
-  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi, state: icon }
+  id: UplinkSecurityGrizzlyBundle # Grizzly
+  name:  uplink-security-grizzly-name
+  description: uplink-security-grizzly-desc
+  productEntity: WeaponCaseLongGrizzlyBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/LMGs/grizzly/Grizzly-icon.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 20
+    FrontierUplinkCoin: 7
   categories:
   - UplinkSecurityWeapons
   conditions:
@@ -275,19 +343,222 @@
       - SecurityUplink
   - !type:BuyerJobCondition
     whitelist:
-      - Bailiff
-      - SeniorOfficer
-      - Sheriff
-      - Deputy
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 - type: listing
-  id: UplinkSecurityMR8BBundle # VFD MR-8B LWMMG (7.62x51mm)
+  id: UplinkSecurityHristovBundle # hristov
+  name:  uplink-security-hristov-name
+  description: uplink-security-hristov-desc
+  productEntity: WeaponCaseLongHristovExpedition
+  icon: { sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityXLR556Bundle # xlr556
+  name:  uplink-security-xlr556-name
+  description: uplink-security-xlr556-desc
+  productEntity: WeaponCaseLongXLR556Bundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityFirestarterBundle # firestarter
+  name:  uplink-security-firestarter-name
+  description: uplink-security-firestarter-desc
+  productEntity: WeaponCaseLongFirestarterBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityM54CE2Bundle # m54ce2
+  name:  uplink-security-m54ce2-name
+  description: uplink-security-m54ce2-desc
+  productEntity: WeaponCaseLongWeaponRifleM54CE2
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityUniversalBundle # Universal
+  name:  uplink-security-universal-name
+  description: uplink-security-universal-desc
+  productEntity: WeaponCaseShortUniversalExpedition
+  icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityMP5Bundle # MP5
+  name:  uplink-security-mp5-name
+  description: uplink-security-mp5-desc
+  productEntity: WeaponCaseLongWeaponSMGMP5
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/SMGs/mp5.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityD18Bundle # D18
+  name:  uplink-security-d18-name
+  description: uplink-security-d18-desc
+  productEntity: WeaponCaseShortRMCWeaponPistolD18
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/m43.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityBigBuddyBundle # bigbuddy
+  name:  uplink-security-bb-name
+  description: uplink-security-bb-desc
+  productEntity: WeaponCaseLongBigBuddyBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigBuddy.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityMR8BBundle # VFD MR-8B LWMMG (8x65 SKR)
   name:  uplink-security-MR8BBundle-name
   description: uplink-security-MR8BBundle-desc
   productEntity: WeaponCaseLongLMGMR8BBundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/LMGs/mr8b.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 35
+    FrontierUplinkCoin: 7
   categories:
   - UplinkSecurityWeapons
   conditions:
@@ -297,26 +568,13 @@
       - SecurityUplink
   - !type:BuyerJobCondition
     whitelist:
-      - Sheriff
-
-- type: listing
-  id: UplinkSecurityAshstorm # EM72 Ashstorm
-  name:  uplink-security-ashstorm-name
-  description: uplink-security-ashstorm-desc
-  productEntity: ClothingBackpackDuffelAshstormBundle
-  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/cell_mg.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 40
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - Sheriff
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 - type: listing
   id: UplinkSecurityNavyOfficerSword # Navy Officer Sabre
@@ -325,7 +583,7 @@
   productEntity: ClothingBeltSheathFilledNavyOfficer
   icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 8 #From 10 to 8
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -335,12 +593,16 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-          - Bailiff
-          - Sheriff
-          - SeniorOfficer
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
-  id: UplinkSecurityNtsfLtrBundle # NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)
+  id: UplinkSecurityNtsfLtrBundle # NTSF-LTR-556 (5.56x45mm)
   name:  uplink-security-NtsfLtrBundle-name
   description: uplink-security-NtsfLtrBundle-desc
   productEntity: WeaponCaseLongNtsfLtrBundle
@@ -354,47 +616,40 @@
       whitelist:
         tags:
           - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityEnforcerBundle # Enforcer (4 gauge)
-  name:  uplink-security-enforcerBundle-name
-  description: uplink-security-enforcerBundle-desc
-  productEntity: WeaponCaseLongEnforcerBundle
-  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerJobCondition
       whitelist:
-        tags:
-          - SecurityUplink
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+#- type: listing
+#  id: UplinkSecurityEnforcerBundle # Enforcer (4 gauge)
+#  name:  uplink-security-enforcerBundle-name
+#  description: uplink-security-enforcerBundle-desc
+#  productEntity: WeaponCaseLongEnforcerBundle
+#  icon: { sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 3
+#  categories:
+#    - UplinkSecurityWeapons
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
 
 - type: listing
-  id: UplinkSecurityLecterBundle # Lecter (5.56x45mm)
+  id: UplinkSecurityLecterBundle # Lecter (7.62x39mm)
   name:  uplink-security-LecterBundle-name
   description: uplink-security-LecterBundle-desc
   productEntity: WeaponCaseLongLecterBundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 3
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityLRC21PPLBundle # NT-WS LRC-21 PPL
-  name: uplink-security-LRC21PPLBundle-name
-  description: uplink-security-LRC21PPLBundle-desc
-  productEntity: WeaponCaseHeavyLRC21PPLBundle
-  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/lrc21.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 27
+    FrontierUplinkCoin: 5
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -404,24 +659,29 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Sheriff
-        - Bailiff
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
-- type: listing
-  id: UplinkSecurityWT550 # WT-550 (9x19mm)
-  name:  uplink-security-Wt550Bundle-name
-  description: uplink-security-Wt550Bundle-desc
-  productEntity: WeaponCaseLongWt550Bundle
-  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+#- type: listing
+#  id: UplinkSecurityWT550 # WT-550 (9x19mm)
+#  name:  uplink-security-Wt550Bundle-name
+#  description: uplink-security-Wt550Bundle-desc
+#  productEntity: WeaponCaseLongWt550Bundle
+#  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 10
+#  categories:
+#    - UplinkSecurityWeapons
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
 
 - type: listing
   id: UplinkSecurityN1984 # N1984 (.45_ACP)
@@ -430,7 +690,7 @@
   productEntity: WeaponCaseShortN1984Bundle
   icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 2
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -438,6 +698,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityInspectorBundle # Inspector (.45 Magnum)
@@ -446,7 +715,7 @@
   productEntity: WeaponCaseShortInspectorBundle
   icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityWeapons
   conditions:
@@ -454,6 +723,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityNonLethalArmory
@@ -472,11 +750,273 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+
+#region energy weapons
+- type: listing
+  id: UplinkSecurityLRC21PPLBundle # NT-WS LRC-21 PPL
+  name: uplink-security-LRC21PPLBundle-name
+  description: uplink-security-LRC21PPLBundle-desc
+  productEntity: WeaponCaseHeavyLRC21PPLBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/lrc21.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityAshstorm # EM72 Ashstorm
+  name:  uplink-security-ashstorm-name
+  description: uplink-security-ashstorm-desc
+  productEntity: ClothingBackpackDuffelAshstormBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/cell_mg.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityEg4 # Energy revolver EG-4
+  name:  uplink-security-eg4-name
+  description: uplink-security-eg4-desc
+  productEntity: WeaponEnergyRevolver
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+  - UplinkSecurityWeapons
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+- type: listing
+  id: UplinkSecurityLaserRifle # LaserRifle
+  name:  uplink-security-laserrifle-name
+  description: uplink-security-laserrifle-desc
+  productEntity: WeaponCaseShortN14WeaponLaserRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityUrbanPlasma # UrbanPlasma
+  name:  uplink-security-urbanplasma-name
+  description: uplink-security-urbanplasma-desc
+  productEntity: WeaponCaseShortN14WeaponUrbanPlasmaRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityRechargerRifle # RechargerRifle
+  name:  uplink-security-rechargerrifle-name
+  description: uplink-security-rechargerrifle-desc
+  productEntity: WeaponCaseLongN14WeaponRechargerRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityRechargerPistol # RechargerPistol
+  name:  uplink-security-rechargerpistol-name
+  description: uplink-security-rechargerpistol-desc
+  productEntity: WeaponCaseShortN14WeaponRechargerPistol
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityRifleTemperature # RifleTemperature
+  name:  uplink-security-rifletemperature-name
+  description: uplink-security-rifletemperature-desc
+  productEntity: WeaponCaseLongTemperatureGunExpedition
+  icon: { sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 7
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 #region ammo
+
+# 6.8x52mm
+
+# FMJ
+
+- type: listing
+  id: SecurityUplinkMagazine68x52mmCaselessBig # Mag
+  name: box magazine (6.8x52mm STANAG Caseless)
+  description:
+  productEntity: Magazine68x52mmCaselessBig
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi, state: base }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
+
+# 12.7x99mm
+
+# FMJ
+
+- type: listing
+  id: UplinkSecMagazine127x99mmFMJ # Mag
+  name: uplink-security-Magazine127x99mmFMJ-name
+  description: uplink-security-Magazine127x99FMJ-desc
+  productEntity: Magazine127x99mm
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkSecurityAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #7.62x39mm
 
@@ -497,6 +1037,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -515,6 +1064,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #5.56x45mm
 
@@ -535,21 +1093,15 @@
     whitelist:
       tags:
       - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityNFMagazineDrumRifle556x45 # Mag extended
-  name: uplink-security-NFMagazineDrumRifle556x45-name
-  description: uplink-security-NFMagazineDrumRifle556x45-desc
-  productEntity: NFMagazineDrumRifle556x45
-  cost:
-    Speso: 6000
-  categories:
-  - UplinkSecurityAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerJobCondition
     whitelist:
-      tags:
-      - SecurityUplink
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -568,6 +1120,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #9x19mm
 
@@ -590,6 +1151,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 - type: listing
   id: UplinkSecurityMagazine9x19mmSubMachineGunTopMountedFMJ # Mag topmount
@@ -606,6 +1176,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -624,6 +1203,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Pistol
 
@@ -644,6 +1232,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -662,6 +1259,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #.45_ACP
 
@@ -684,6 +1290,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -702,6 +1317,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Pistol
 
@@ -722,6 +1346,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -740,6 +1373,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #.45 Magnum
 
@@ -760,6 +1402,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -778,6 +1429,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #7.62x51mm
 
@@ -798,6 +1458,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 - type: listing
   id: UplinkSecurityAmmoBox762x51mmFMJ # Mag (For VFD MR-8B LWMMG (7.62x51mm))
@@ -813,6 +1482,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 # Rubber
 
@@ -831,6 +1509,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #8x65 STANAG
 
@@ -851,6 +1538,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 #region explosive
 
@@ -871,9 +1567,14 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Bailiff
-        - SeniorOfficer
-        - Sheriff
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
 
 - type: listing
   id: UplinkSecuritySmokeGrenadeBox
@@ -890,6 +1591,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityTeargasGrenadeBox
@@ -906,6 +1616,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityFlashbangGrenadeBox
@@ -922,6 +1641,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityBreachingChargesBox
@@ -943,6 +1671,15 @@
         - Bailiff
         - SeniorOfficer
         - Sheriff
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 #region medicine
 
@@ -960,15 +1697,21 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityHypo
-  name:  uplink-security-hypo-name
-  description: uplink-security-hypo-desc
-  productEntity: HypoBrigmedic
-  icon: { sprite: _NF/Objects/Specific/Medical/hypobrigmedic.rsi, state: hypo }
+  productEntity: AdvancedJetInjectorNfsd
   cost:
-    FrontierUplinkCoin: 1
+    FrontierUplinkCoin: 2
   categories:
     - UplinkSecurityMedicine
   conditions:
@@ -976,10 +1719,16 @@
       whitelist:
         tags:
           - SecurityUplink
-    # - !type:BuyerJobCondition
-    #   whitelist:
-    #     - Brigmedic
-    #     - Sheriff
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
 
 - type: listing
   id: UplinkSecurityRadPen
@@ -996,6 +1745,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityPyrazinePen
@@ -1012,6 +1770,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityPuncturasePen
@@ -1028,6 +1795,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityAntiPoisonPen
@@ -1044,22 +1820,31 @@
       whitelist:
         tags:
           - SecurityUplink
-
-- type: listing
-  id: UplinkSecurityCombatPen
-  name:  uplink-security-combat-pen-name
-  description: uplink-security-combat-pen-desc
-  productEntity: CombatMedipen
-  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: morphen }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityMedicine
-  conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerJobCondition
       whitelist:
-        tags:
-          - SecurityUplink
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+# - type: listing
+#   id: UplinkSecurityCombatPen
+#   name:  uplink-security-combat-pen-name
+#   description: uplink-security-combat-pen-desc
+#   productEntity: CombatMedipen
+#   icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: morphen }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityMedicine
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
 - type: listing
   id: UplinkSecurityAmbuzol
@@ -1076,10 +1861,16 @@
       whitelist:
         tags:
           - SecurityUplink
-    # - !type:BuyerJobCondition
-    #   whitelist:
-    #     - Brigmedic
-    #     - Sheriff
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
 
 - type: listing
   id: UplinkSecurityMedkit
@@ -1096,6 +1887,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 #region starmap
 
@@ -1113,6 +1913,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityCoordinatesDiskFrontier
@@ -1129,8 +1938,66 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 #region utility
+
+- type: listing
+  id: UplinkSecurityEShieldGen
+  name:  uplink-security-eshieldgen-name
+  description: uplink-security-eshieldgen-desc
+  productEntity: ClothingBackpackEnergyShield
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
+
+- type: listing
+  id: UplinkSecurityArmySatchel
+  name:  uplink-security-armysatchel-name
+  description: uplink-security-armysatchel-desc
+  productEntity: ClothingBackpackMilitarySatchel
+  icon: { sprite: Corvax/Back/Satchels/military.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityHolo
@@ -1147,6 +2014,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkNfsdTechfab
@@ -1201,11 +2077,15 @@
       whitelist:
         tags:
           - SecurityUplink
-    # - !type:BuyerJobCondition
-    #   whitelist:
-    #     - Bailiff
-    #     - SeniorOfficer
-    #     - Sheriff
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityTeleShield
@@ -1222,6 +2102,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityEnergyShield
@@ -1230,7 +2119,7 @@
   productEntity: EnergyShieldNfsd
   icon: { sprite: _NF/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
   cost:
-    FrontierUplinkCoin: 6
+    FrontierUplinkCoin: 3
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -1238,43 +2127,48 @@
       whitelist:
         tags:
           - SecurityUplink
-    # - !type:BuyerJobCondition
-    #   whitelist:
-    #     - Bailiff
-    #     - SeniorOfficer
-    #     - Sheriff
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
-- type: listing
-  id: UplinkSecurityCash2500
-  name:  uplink-security-cash2500-name
-  description: uplink-security-cash2500-desc
-  productEntity: SpaceCash2500
-  icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000 }
-  cost:
-    FrontierUplinkCoin: 1
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
 
-- type: listing
-  id: UplinkSecurityCash25000
-  name: uplink-security-cash25000-name
-  description: uplink-security-cash25000-desc
-  productEntity: SpaceCash25000
-  icon: { sprite: Objects/Economy/cash.rsi, state: cash_25000 }
-  cost:
-    FrontierUplinkCoin: 10
-  categories:
-    - UplinkSecurityUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
+# - type: listing
+#   id: UplinkSecurityCash2500
+#   name:  uplink-security-cash2500-name
+#   description: uplink-security-cash2500-desc
+#   productEntity: SpaceCash2500
+#   icon: { sprite: Objects/Economy/cash.rsi, state: cash_1000 }
+#   cost:
+#     FrontierUplinkCoin: 1
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
+
+# - type: listing
+#   id: UplinkSecurityCash25000
+#   name: uplink-security-cash25000-name
+#   description: uplink-security-cash25000-desc
+#   productEntity: SpaceCash25000
+#   icon: { sprite: Objects/Economy/cash.rsi, state: cash_25000 }
+#   cost:
+#     FrontierUplinkCoin: 10
+#   categories:
+#     - UplinkSecurityUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - SecurityUplink
 
 - type: listing
   id: UplinkSecurityPortableRecharger
@@ -1290,6 +2184,15 @@
     whitelist:
       tags:
       - SecurityUplink
+  - !type:BuyerJobCondition
+    whitelist:
+    - Sheriff
+    - Bailiff
+    - SeniorOfficer
+    - Brigmedic
+    - SDEngineer
+    - Deputy
+    - Cadet
 
 - type: listing
   id: UplinkSecurityContrabandForensicsModule
@@ -1328,6 +2231,15 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityHoverbikeNfsdFlatpack
@@ -1344,11 +2256,15 @@
       whitelist:
         tags:
           - SecurityUplink
-    # - !type:BuyerJobCondition
-    #   whitelist:
-    #     - Bailiff
-    #     - SeniorOfficer
-    #     - Sheriff
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet
 
 - type: listing
   id: UplinkSecurityCyborgModule
@@ -1365,3 +2281,12 @@
       whitelist:
         tags:
           - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+      - Sheriff
+      - Bailiff
+      - SeniorOfficer
+      - Brigmedic
+      - SDEngineer
+      - Deputy
+      - Cadet

@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: germanreutt (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: BMAdder
+  name: BM-Adder
+  description: "Маленький, дешевый шахтерский шаттл. Когда-то был любимцем всех первопроходцев."
+  price: 36000
+  category: Small
+  group: ASBlackMarket
+  whitelist:
+  - Frontier
+  - Luna
+  class:
+  - Salvage
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/adder.yml
+
+- type: gameMap
+  id: BMAdder
+  mapName: 'BM-Adder'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/adder.yml
+  minPlayers: 0
+  stations:
+    BMAdder:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'BM-Adder {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

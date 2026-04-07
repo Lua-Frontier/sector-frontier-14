@@ -176,7 +176,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateResearcher
+  id: JobOutpostTypanResearcher
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -185,7 +185,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateAtmosTech
+  id: JobOutpostTypanAtmosTech
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -194,7 +194,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateBotanist
+  id: JobOutpostTypanBotanist
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -203,7 +203,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateCargotech
+  id: JobOutpostTypanCargotech
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -212,7 +212,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateChef
+  id: JobOutpostTypanChef
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -221,7 +221,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateMedic
+  id: JobOutpostTypanMedic
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -230,7 +230,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateRD
+  id: JobOutpostTypanRD
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -239,7 +239,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateScience
+  id: JobOutpostTypanScience
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -248,7 +248,7 @@
   - SocksUnderwear
 
 - type: roleLoadout
-  id: JobOutpostSyndicateTelecommunicationsOfficer
+  id: JobOutpostTypanTelecommunicationsOfficer
   groups:
   - NFSpeciesSpecific
   - ContractorWallet
@@ -320,3 +320,115 @@
   - TopUnderwear
   - PantsUnderwear
   - SocksUnderwear
+
+# Storm Creed
+- type: roleLoadout
+  id: JobStormCreedSoldier
+  groups:
+  - NFSpeciesSpecific
+  - PirateCaptainWallet
+  - TopUnderwear
+  - PantsUnderwear
+  - SocksUnderwear
+  - LGStormCreedPDA
+  - SCJumpsuit
+  - SCOuterClothing
+  - SCNeck
+  - SCHands
+  - SCEyes
+  - SCEars
+  - SCBack
+  - SCFace
+  - SCShoes
+  - SCHead
+  - SCBackpackItems
+  - SCBelt
+  - NfsdBoxSurvival
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: roleLoadout
+  id: JobStormCreedFirstmate
+  groups:
+  - NFSpeciesSpecific
+  - PirateCaptainWallet
+  - TopUnderwear
+  - PantsUnderwear
+  - SocksUnderwear
+  - LGSCFirstmatePDA
+  - SCJumpsuit
+  - SCOuterClothing
+  - SCNeck
+  - SCHands
+  - SCEyes
+  - SCEars
+  - SCBack
+  - SCFace
+  - SCShoes
+  - SCHead
+  - SCBackpackItems
+  - SCBelt
+  - NfsdBoxSurvival
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: roleLoadout
+  id: JobStormCreedCaptain
+  groups:
+  - NFSpeciesSpecific
+  - PirateCaptainWallet
+  - TopUnderwear
+  - PantsUnderwear
+  - SocksUnderwear
+  - LGSCCaptainPDA
+  - SCJumpsuit
+  - SCOuterClothing
+  - SCNeck
+  - SCHands
+  - SCEyes
+  - SCEars
+  - SCBack
+  - SCFace
+  - SCShoes
+  - SCHead
+  - SCBackpackItems
+  - SCBelt
+  - NfsdBoxSurvival
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific
+
+- type: roleLoadout
+  id: JobFrontierEngineer
+  groups:
+  - EngineeringHead
+  - EngineeringJumpsuit
+  - EngineeringGloves
+  - EngineeringBackpack
+  - EngineeringOuterClothing
+  - EngineeringForcedOuterClothing
+  - EngineeringShoes
+  - EngineeringFace
+  - EngineeringGlasses
+  - EngineeringBelt
+  - EngineeringEars
+  - ContractorBoxSurvival
+  - LGFrontierEngineerPDA #
+  - ContractorWallet
+  - ContractorCartridge
+  - ContractorImplanter
+  - ContractorEncryptionKey
+  - ContractorBackpackItems
+  - ContractorHandItems
+  - NFSpeciesSpecific

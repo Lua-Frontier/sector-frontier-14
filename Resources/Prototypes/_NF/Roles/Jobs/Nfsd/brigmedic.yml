@@ -3,21 +3,24 @@
   name: job-name-brigmedic
   description: job-description-brigmedic-nf
   playTimeTracker: JobBrigmedic
-  salary: 45000
+  salary: 40000 #Lua 45000<40000
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 43200 # 12 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 21600 # 6 hours
-  alternateRequirementSets:
-    longerPlaytimeLessSec:
-    - !type:OverallPlaytimeRequirement
-      time: 360000 # 100 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityGuard
-      time: 21600 # 6 hours as security guard
-  startingGear: BrigmedicGear
+  - !type:RoleTimeRequirement #Lua
+    role: JobSecurityOfficer
+    time: 36000 # 10h
+#    - !type:OverallPlaytimeRequirement # comment from _Lua
+#      time: 43200 # 12 hours
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 21600 # 6 hours
+#  alternateRequirementSets:
+#    longerPlaytimeLessSec:
+#    - !type:OverallPlaytimeRequirement
+#      time: 360000 # 100 hours
+#    - !type:RoleTimeRequirement
+#      role: JobSecurityGuard
+#      time: 21600 # 6 hours as security guard
+  startingGear: SDBaseLuaGear #Lua BrigmedicGear<SDBaseLuaGear
   icon: JobIconBrigmedicNF
   supervisors: job-supervisors-bailiff
   weight: 125
@@ -40,13 +43,13 @@
 
 - type: startingGear
   id: BrigmedicGear
-  equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+#  equipment:
+#    pocket1: NFWeaponPistolUniversalNfsdLessLethal
   storage:
     back:
     - Flash
-    - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
-    - Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
+    - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    - Magazine9x19mmPistolRubber #Lua 35 -> 9x19
     - FrontierUplinkCoin10
   encryptionKeys:
   - EncryptionKeyMedical

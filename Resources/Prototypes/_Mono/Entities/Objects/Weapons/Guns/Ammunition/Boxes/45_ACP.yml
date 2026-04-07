@@ -3,6 +3,7 @@
   parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseAmmoBox45_ACP
   name: ammunition box (.45 ACP FMJ)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -37,10 +38,12 @@
       path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
 
 #small ammo boxes
+# Standart
 - type: entity
   parent: BaseAmmoBox45_ACP
   id: AmmoBox45_ACPFMJ
   name: ammunition box (.45 ACP FMJ)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge45_ACPFMJ
@@ -55,6 +58,7 @@
   parent: BaseAmmoBox45_ACP
   id: AmmoBox45_ACPPractice
   name: ammunition box (.45 ACP practice)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge45_ACPPractice
@@ -68,8 +72,43 @@
 
 - type: entity
   parent: BaseAmmoBox45_ACP
+  id: AmmoBox45_ACPRubber
+  name: ammunition box (.45 ACP rubber)
+  suffix: Need balance test #Lua
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge45_ACPRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+# Mechanical
+- type: entity
+  parent: BaseAmmoBox45_ACP
+  id: AmmoBox45_ACPHP
+  name: ammunition box (.45 ACP hollow-point)
+  suffix: Need balance test #Lua
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge45_ACPHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: HP
+
+# Physical
+- type: entity
+  parent: BaseAmmoBox45_ACP
   id: AmmoBox45_ACPIncendiary
   name: ammunition box (.45 ACP incendiary)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge45_ACPIncendiary
@@ -85,6 +124,7 @@
   id: AmmoBox45_ACPUranium
   parent: BaseAmmoBox45_ACP
   name: ammunition box (.45 ACP uranium)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge45_ACPUranium
@@ -96,30 +136,15 @@
       map: ["enum.GunVisualLayers.Mag"]
     - state: uranium
 
-# Upstream
+# Special
 - type: entity
   parent: BaseAmmoBox45_ACP
-  id: AmmoBox45_ACPRubber
-  name: ammunition box (.45 ACP rubber)
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge45_ACPRubber
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: rubber
-
-# Frontier
-- type: entity
-  parent: BaseAmmoBox45_ACP
-  id: AmmoBox45_ACPEmp
+  id: AmmoBox45_ACPEMP
   name: ammunition box (.45 ACP emp)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge45_ACPEmp
+    proto: Cartridge45_ACPEMP
   - type: Sprite
     layers:
     - state: base
@@ -128,75 +153,18 @@
       map: ["enum.GunVisualLayers.Mag"]
     - state: emp
 
-# Mono AP syst
-#anti-flesh:
 - type: entity
   parent: BaseAmmoBox45_ACP
-  id: AmmoBox45_ACPHP
-  name: ammunition box (.45 ACP hollow-point)
+  id: AmmoBox45_ACPCaustic
+  name: ammunition box (.45 ACP Caustic)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge45_ACPHP
+    proto: Cartridge45_ACPCaustic
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: HP
-
-- type: entity
-  parent: BaseAmmoBox45_ACP
-  id: AmmoBox45_ACPRIP
-  name: ammunition box (.45 ACP RIP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge45_ACPRIP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: RIP
-
-#armor-piercing:
-- type: entity
-  parent: BaseAmmoBox45_ACP
-  id: AmmoBox45_ACPPlasteelAP
-  name: ammunition box (.45 ACP AP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge45_ACPPlasteelAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: plasteelAP
-
-#big ammo boxes
-- type: entity
-  parent: BaseAmmoBox45_ACP
-  id: AmmoBox45_ACPBigFMJ
-  name: big ammunition box (.45 ACP FMJ)
-  suffix: Big
-  components:
-  - type: Item
-    shape:
-    - 0,0,1,1
-  - type: BallisticAmmoProvider
-    capacity: 280 # 8 mags per box similar to rifle box
-    proto: Cartridge45_ACPFMJ
-  - type: Sprite
-    layers:
-    - state: base-b # Frontier: base-big<base-b
-      map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1 # Frontier: mag-big-1<magb-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: magb # Frontier: mag-big<magb
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
+    - state: caustic

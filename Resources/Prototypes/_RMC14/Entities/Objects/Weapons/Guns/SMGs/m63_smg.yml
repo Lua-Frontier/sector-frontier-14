@@ -13,11 +13,19 @@
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/SMGs/m63.rsi
-  - type: HeldSpeedModifier
-    walkModifier: 1.1
-    sprintModifier: 1.1
+#  - type: HeldSpeedModifier # comment (16-18) from _Lua
+#    walkModifier: 1.1
+#    sprintModifier: 1.1
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 5
+    examineCaliber: gun-examine-caliber-919 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 10.5 #Lua 5<10.5
     shotsPerBurst: 3
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m63.ogg
@@ -48,15 +56,16 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: CMMagazineSMGM63
+        startingItem: Magazine9x19mmSubMachineGunFMJ #Lua CMMagazineSMGM63<Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/smg_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/smg_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - CMMagazineSMGM63
-          - CMMagazineSMGM63AP
-          - CMMagazineSMGM63Ext
+          - Magazine9x19mmSubMachineGunFMJ #Lua
+#          - CMMagazineSMGM63
+#          - CMMagazineSMGM63AP
+#          - CMMagazineSMGM63Ext
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.715, 0.092

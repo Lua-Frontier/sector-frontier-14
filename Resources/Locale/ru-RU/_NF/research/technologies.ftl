@@ -1,7 +1,7 @@
 nf-research-discipline-engineering = Инженерия
 nf-research-discipline-medical = Медицина
 nf-research-discipline-arsenal-mercenary = Наёмники
-nf-research-discipline-arsenal-nfsd = ДСБФ
+nf-research-discipline-arsenal-nfsd = СРБС
 nf-research-discipline-salvage = Утилизация
 nf-research-discipline-science = Наука
 nf-research-discipline-service = Обслуживание

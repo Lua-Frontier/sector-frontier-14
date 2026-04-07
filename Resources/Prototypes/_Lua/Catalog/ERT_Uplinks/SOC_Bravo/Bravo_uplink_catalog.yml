@@ -1,0 +1,679 @@
+- type: listing
+  id: BravoUplinkMedicalPyraAutoInjector
+  name: автоинъектор пиразина
+  description: Экспресс-доза пиразина и дермалина, предназначенная для применения в боевых условиях.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: pyrapen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: PyraAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalPunctAutoInjector
+  name: Автоиньектор пунктураза
+  description: Экспресс-доза пунктураза и транексамовой кислоты, предназначенная для применения в боевых условиях.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: punctpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: PunctAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalCombatMedipen
+  name: боевой медипен
+  description: Одноразовый медипен, содержащий химические вещества, восстанавливающие большинство видов повреждений.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: morphen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: CombatMedipen
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalStimulantAutoInjector
+  name: медипен стимулятор
+  description: Экстренная доза сильнодействующих стимуляторов и регулирующих веществ. Содержит дезоксиэфедрин и диловен. Используйте с особой осторожностью.
+  icon: { sprite: _NF/Objects/Specific/Medical/medipen.rsi, state: stimulantpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: StimulantAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: AirlossAutoInjectorB
+  name: автоинъектор удушения
+  description: Экспресс-доза физраствора и дексалина плюс, предназначенная чтобы быстро поднять кого-нибудь на ноги.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: dexpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: AirlossAutoInjector
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalHypospray
+  name: Гипоспрей
+  description: Гипоспрей, позволяющий вводить препараты буквально мгновенно!
+  icon: { sprite: Objects/Specific/Medical/hypospray.rsi , state: hypo }
+  cost:
+    FrontierUplinkCoin: 5
+  productEntity: Hypospray
+  categories:
+    - BravoUplinkMedical
+
+- type: listing
+  id: BravoUplinkMedicalMedkitCombatFilled
+  name: боевая аптечка
+  description: Для любителей больших пушек среди нас.
+  icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    FrontierUplinkCoin: 2
+  productEntity: MedkitCombatFilled
+  categories:
+    - BravoUplinkMedical
+
+
+- type: listing
+  id: BravoUplinkMedicalDefibrillatorCompact
+  name: компактный дефибриллятор
+  description: Теперь и в весёлом размере!
+  icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
+  cost:
+    FrontierUplinkCoin: 3
+  productEntity: DefibrillatorCompact
+  categories:
+    - BravoUplinkMedical
+
+#region Прочее
+- type: listing
+  id: BravoUplinkMiscMindShieldImplanter
+  name: имплантер щита разума
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
+  productEntity: MindShieldImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscDeathAcidifierImplanter
+  name: имплантер посмертного растворителя
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
+  productEntity: DeathAcidifierImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscWelderExperimental
+  name: Экспериментальный сварочный аппарат
+  description: Экспериментальный сварочный аппарат, способный самостоятельно вырабатывать топливо, менее вреден для глаз.
+  icon: { sprite: Objects/Tools/welder_experimental.rsi, state: icon }
+  productEntity: WelderExperimental
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscNFShovel
+  name: Омнитул
+  description: Это омнитул.
+  icon: { sprite: Objects/Tools/omnitool.rsi, state: omnitool-screwing }
+  productEntity: Omnitool
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscJetpackVoidFilled
+  name: пустотный джетпак
+  description: Это реактивный ранец - джетпак.
+  icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
+  productEntity: JetpackVoidFilled
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: UplinkBravoEShieldGen
+  name:  uplink-security-eshieldgen-name
+  description: uplink-security-eshieldgen-desc
+  productEntity: ClothingBackpackEnergyShield
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkMisc
+
+- type: listing
+  id: BravoUplinkMiscBoxMRE
+  name: сухой паёк
+  description: Коробка старых военных ИРП. Они, на удивление, не испортились.
+  icon: { sprite: Objects/Consumable/Food/snacks.rsi, state: nutribrick }
+  productEntity: BoxMRE
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - BravoUplinkMisc
+
+# region Боеприпасы
+- type: listing
+  id: BravoUplinkMagazine762x39mmFMJ # Mag
+  name: uplink-security-Magazine762x39mmFMJ-name
+  description: uplink-security-Magazine762x39mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle762x39mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkMagazine556x45mmFMJ # Mag
+  name: uplink-security-Magazine556x45mmFMJ-name
+  description: uplink-security-Magazine556x45mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle556x45mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkMagazine9x19mmSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunFMJ-name
+  description: uplink-security-Magazine9x19mmSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkMagazine9x19mmPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+
+
+- type: listing
+  id: BravoUplinkMagazine45_ACPSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine45_ACPSubMachineGunFMJ-name
+  description: uplink-security-Magazine45_ACPSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkMagazine45_ACPPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkSpeedLoader45_magnumFMJ # speedloader
+  name: uplink-security-SpeedLoader45_magnumFMJ-name
+  description: uplink-security-SpeedLoader45_magnumFMJ-desc
+  productEntity: LuaBoxSpeedLoader45_magnumFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkMagazine762x51mmFMJ # Mag
+  name: uplink-security-Magazine762x51mmFMJ-name
+  description: uplink-security-Magazine762x51mmFMJ-desc
+  productEntity: LuaBoxMagazine762x51mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+- type: listing
+  id: BravoUplinkMagazine68x52mmCaselessBig # Mag
+  name: box magazine (6.8x52mm STANAG Caseless)
+  description:
+  productEntity: Magazine68x52mmCaselessBig
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi, state: base }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo  
+
+- type: listing
+  id: BravoUplinkMagazine8x65mmSKRBox # Mag
+  name: SAW box (8x65mm SKR)
+  description:  
+  productEntity: Magazine8x65mmSKRBox
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi, state: base }
+  cost:
+    Speso: 1000
+  categories:
+  - BravoUplinkAmmo
+
+# region Взрывка
+
+- type: listing
+  id: BravoUplinkExplosionsBoxEMPGrenadesNfsd
+  name: коробка ЭМИ гранат
+  description: Коробка, полная ЭМИ гранат.
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon }
+  productEntity: BoxEMPGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsBoxShrapnelGrenadesNfsd
+  name: коробка осколочных гранат
+  description: Коробка, полная осколочных гранат.
+  icon: { sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi, state: icon }
+  productEntity: BoxShrapnelGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsBoxIncendiaryGrenadesNfsd
+  name: коробка зажигательных гранат
+  description: Коробка, полная зажигательных гранат.
+  icon: { sprite: Objects/Weapons/Grenades/pyrogrenade.rsi, state: icon }
+  productEntity: BoxIncendiaryGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsBoxSmokeGrenades
+  name: коробка дымовых гранат
+  description: Коробка, полная дымовых гранат.
+  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
+  productEntity: BoxSmokeGrenades
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - BravoUplinkExplosions
+
+- type: listing
+  id: BravoUplinkExplosionsClothingBackpackDuffelSyndicateC4tBundle
+  name: набор C-4
+  description: Сумка которая содержит 8 зарядов взрывчатки С-4.
+  icon: { sprite: Objects/Weapons/Bombs/c4.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateC4tBundle
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - BravoUplinkExplosions
+
+# region Вооружение
+
+- type: listing
+  id: BravoUplinkWeaponMR8CBundle # VFD MR-8C DMR (7.62x54mm)
+  name:  uplink-security-MR8CBundle-name
+  description: uplink-security-MR8CBundle-desc
+  productEntity: WeaponCaseLongMR8CBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponGrizzlyBundle # Grizzly
+  name:  uplink-security-grizzly-name
+  description: uplink-security-grizzly-desc
+  productEntity: WeaponCaseLongGrizzlyBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/LMGs/grizzly/Grizzly-icon.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponHristovBundle # hristov
+  name:  uplink-security-hristov-name
+  description: uplink-security-hristov-desc
+  productEntity: WeaponCaseLongHristovExpedition
+  icon: { sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponXLR556Bundle # xlr556
+  name:  uplink-security-xlr556-name
+  description: uplink-security-xlr556-desc
+  productEntity: WeaponCaseLongXLR556Bundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponFirestarterBundle # firestarter
+  name:  uplink-security-firestarter-name
+  description: uplink-security-firestarter-desc
+  productEntity: WeaponCaseLongFirestarterBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/drozd.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponM54CE2Bundle # m54ce2
+  name:  uplink-security-m54ce2-name
+  description: uplink-security-m54ce2-desc
+  productEntity: WeaponCaseLongWeaponRifleM54CE2
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponUniversalBundle # Universal
+  name:  uplink-security-universal-name
+  description: uplink-security-universal-desc
+  productEntity: WeaponCaseShortUniversalExpedition
+  icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponMP5Bundle # MP5
+  name:  uplink-security-mp5-name
+  description: uplink-security-mp5-desc
+  productEntity: WeaponCaseLongWeaponSMGMP5
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/SMGs/mp5.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponD18Bundle # D18
+  name:  uplink-security-d18-name
+  description: uplink-security-d18-desc
+  productEntity: WeaponCaseShortRMCWeaponPistolD18
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/m43.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponBigBuddyBundle # bigbuddy
+  name:  uplink-security-bb-name
+  description: uplink-security-bb-desc
+  productEntity: WeaponCaseLongBigBuddyBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigBuddy.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponMR8BBundle # VFD MR-8B LWMMG (8x65 SKR)
+  name:  uplink-security-MR8BBundle-name
+  description: uplink-security-MR8BBundle-desc
+  productEntity: WeaponCaseLongLMGMR8BBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/LMGs/mr8b.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponNavyOfficerSword # Navy Officer Sabre
+  name:  uplink-security-navyofficersword-name
+  description: uplink-security-navyofficersword-desc
+  productEntity: ClothingBeltSheathFilledNavyOfficer
+  icon: { sprite: _Goobstation/Objects/Weapons/Melee/ccsabre.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkWeaponNtsfLtrBundle # NTSF-LTR-556 (5.56x45mm)
+  name:  uplink-security-NtsfLtrBundle-name
+  description: uplink-security-NtsfLtrBundle-desc
+  productEntity: WeaponCaseLongNtsfLtrBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/NTSF-LTR-556.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkWeaponLecterBundle # Lecter (7.62x39mm)
+  name:  uplink-security-LecterBundle-name
+  description: uplink-security-LecterBundle-desc
+  productEntity: WeaponCaseLongLecterBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkWeaponN1984 # N1984 (.45_ACP)
+  name:  uplink-security-N1984Bundle-name
+  description: uplink-security-N1984Bundle-desc
+  productEntity: WeaponCaseShortN1984Bundle
+  icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponInspectorBundle # Inspector (.45 Magnum)
+  name:  uplink-security-InspectorBundle-name
+  description: uplink-security-InspectorBundle-desc
+  productEntity: WeaponCaseShortInspectorBundle
+  icon: { sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponNonLethalArmory
+  name:  uplink-security-nonlethalarmory-name
+  description: uplink-security-nonlethalarmory-desc
+  productEntity: CrateArmoryNonLethalNfsd
+  icon: { sprite: _NF/Structures/Storage/Crates/nfsd_secure1.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+- type: listing
+  id: BravoUplinkWeaponLRC21PPLBundle # NT-WS LRC-21 PPL
+  name: uplink-security-LRC21PPLBundle-name
+  description: uplink-security-LRC21PPLBundle-desc
+  productEntity: WeaponCaseHeavyLRC21PPLBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/lrc21.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponAshstorm # EM72 Ashstorm
+  name:  uplink-security-ashstorm-name
+  description: uplink-security-ashstorm-desc
+  productEntity: ClothingBackpackDuffelAshstormBundle
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Battery/cell_mg.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponEg4 # Energy revolver EG-4
+  name:  uplink-security-eg4-name
+  description: uplink-security-eg4-desc
+  productEntity: WeaponEnergyRevolver
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+  - BravoUplinkWeapon
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SecurityUplink
+
+- type: listing
+  id: BravoUplinkWeaponLaserRifle # LaserRifle
+  name:  uplink-security-laserrifle-name
+  description: uplink-security-laserrifle-desc
+  productEntity: WeaponCaseShortN14WeaponLaserRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponUrbanPlasma # UrbanPlasma
+  name:  uplink-security-urbanplasma-name
+  description: uplink-security-urbanplasma-desc
+  productEntity: WeaponCaseShortN14WeaponUrbanPlasmaRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponRechargerRifle # RechargerRifle
+  name:  uplink-security-rechargerrifle-name
+  description: uplink-security-rechargerrifle-desc
+  productEntity: WeaponCaseLongN14WeaponRechargerRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponRechargerPistol # RechargerPistol
+  name:  uplink-security-rechargerpistol-name
+  description: uplink-security-rechargerpistol-desc
+  productEntity: WeaponCaseShortN14WeaponRechargerPistol
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon
+
+
+- type: listing
+  id: BravoUplinkWeaponRifleTemperature # RifleTemperature
+  name:  uplink-security-rifletemperature-name
+  description: uplink-security-rifletemperature-desc
+  productEntity: WeaponCaseLongTemperatureGunExpedition
+  icon: { sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - BravoUplinkWeapon

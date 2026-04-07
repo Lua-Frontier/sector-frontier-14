@@ -1,3 +1,3 @@
 chat-radio-traffic = Диспетчер
-chat-radio-nfsd = ДСБФ
+chat-radio-nfsd = СРБС
 chat-radio-greeting = Приветствие

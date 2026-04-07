@@ -3,6 +3,7 @@
   parent: BaseWeaponSniper
   id: N14WeaponSniperHunting
   description: A rugged bolt action rifle. Uses .308 ammo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
@@ -11,6 +12,30 @@
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Wieldable
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 1
+  - type: GunRequiresWield #Lua
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -34,6 +59,7 @@
   parent: [BaseC3SyndicateContraband, BaseWeaponRifle]
   id: N14WeaponAntiMateriel
   description: A anti materiel rifle with a ergonomic, metallic skeleton design. only seeing at it you can tell it will rip some limbs apart. Uses .50 anti-material ammo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/antimateriel.rsi
@@ -49,16 +75,24 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,4,3
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -104
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus # comment (78-80; 82-85) from _Lua
+#    minAngle: -23
+#    maxAngle: -104
   - type: Gun
-    minAngle: 24
-    maxAngle: 105
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 1.2
+    examineCaliber: gun-examine-caliber-127 #Lua
+#    minAngle: 24
+#    maxAngle: 105
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 1 #Lua 1.2<1
     soundGunshot:
       collection: N14AntiMaterielGunshot
     selectedMode: SemiAuto
@@ -68,56 +102,137 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14Magazine50AMR
+        startingItem: Magazine127x99mm #Lua N14Magazine50AMR<Magazine127x99mm
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - N14Magazine50AMR
-            - N14Magazine50AMRHEIAP
+            - Magazine127x99mm #Lua N14Magazine50AMR<Magazine127x99mm
+#            - N14Magazine50AMRHEIAP
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge50
+        startingItem: Cartridge127x99mm #Lua N14Cartridge50<Cartridge127x99mm
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge50
-            - N14Cartridge50HEIAP
+            - Cartridge127x99mm #Lua N14Cartridge50<Cartridge127x99mm
+#            - N14Cartridge50HEIAP
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: HeldSpeedModifier #Lua
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 1
 
 - type: entity
   name: .50 NCR rifle
-  parent: [BaseC3SyndicateContraband, BaseWeaponSniper]
+  parent: [BaseC3SyndicateContraband, BaseWeaponSniperNoContainer]
   id: N14Weapon50NcrRifle
   description: A try by the NCR to make .50 ammo a standart on normal infantry, very cheap but it will deal a lot of damage. Uses .50 anti-material ammo.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/50ncrrifle.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/50ncrrifle.rsi
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - N14Cartridge50
-    capacity: 1
-    proto: N14Cartridge50
+  - type: Item #Lua
+    shape:
+    - 0,0,4,3
+  - type: ContainerContainer #Lua
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider #Lua
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/batrifle_cock.ogg
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine127x99mm
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine127x99mm
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge127x99mm
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge127x99mm
+#  - type: BallisticAmmoProvider # comment from _Lua
+#    whitelist:
+#      tags:
+#      - N14Cartridge50
+#    capacity: 1
+#    proto: N14Cartridge50
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -104
+#  - type: GunWieldBonus # comment (162-164; 166-169) from _Lua
+#    minAngle: -23
+#    maxAngle: -104
   - type: Gun
-    minAngle: 24
-    maxAngle: 105
-    angleIncrease: 4
-    angleDecay: 16
+    examineCaliber: gun-examine-caliber-127 #Lua
+#    minAngle: 24
+#    maxAngle: 105
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
     fireRate: 1.2
     soundGunshot:
       collection: N14AntiMaterielGunshot
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 1
 
 - type: entity
   name: lever action carbine
@@ -155,41 +270,86 @@
   parent: [BaseC1Contraband, N14WeaponSniperHunting]
   id: N14WeaponLeverRifle
   description: A long lever action repeater rifle. Uses .308 ammo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/leverrifle.rsi
   - type: Gun
-    fireRate: 1.2
+    examineCaliber: gun-examine-caliber-76254 #Lua
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 2.4 #Lua 1.2<2.4
     soundGunshot:
       collection: N14LeverRifleGunshot
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Cartridge762x54mmRFMJ #Lua N14Cartridge308Rifle<Cartridge762x54mmRFMJ
+    capacity: 10
+    proto: Cartridge762x54mmRFMJ #Lua N14Cartridge308Rifle<Cartridge762x54mmRFMJ
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 7.5
+      pvsIncrease: 1
 
 - type: entity
   name: brush gun
   parent: [BaseC1Contraband, N14WeaponSniperHunting]
   id: N14WeaponBrushGun
   description: A powerfull lever action carbine. Uses .45-70 gov't ammo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
   - type: Item
+    shape: #Lua
+    - 0,0,4,3
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/brushgun.rsi
   - type: Gun
-    fireRate: 2
+    examineCaliber: gun-examine-caliber-127 #Lua
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 0.8 #Lua 1.2<0.8
     soundGunshot:
       collection: N14BrushGunGunshot
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-      - N14Cartridge45-70
+      - Cartridge127x99mm #Lua N14Cartridge45-70<Cartridge127x99mm
       - SpeedLoaderInternal
     capacity: 10
-    proto: N14Cartridge45-70
+    proto: Cartridge127x99mm #Lua N14Cartridge45-70<Cartridge127x99mm
 
 - type: entity
   name: pipe rifle

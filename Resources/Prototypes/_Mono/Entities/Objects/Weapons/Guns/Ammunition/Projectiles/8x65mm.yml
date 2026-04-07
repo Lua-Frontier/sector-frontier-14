@@ -1,3 +1,8 @@
+# Damage-per-second = 175 for machine guns; 175-25 = 150 for caustic ammo; max COO = 5.83
+# Main damage type - Piercing for standart; main damage/special damage = 70/30 for special
+# Structural DPS for machine guns = 300; for projectile 300/5.83 = 51.5
+# LeptonComm status clear
+# Standart
 - type: entity
   id: Bullet8x65mmSKR
   name: bullet (8x65mm SKR)
@@ -7,8 +12,10 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 45 #Lua 45
+        Piercing: 30
+        Structural: 51.5
 
+# Mechanical
 - type: entity
   id: Bullet8x65mmSKRPractice
   name: bullet (8x65mm SKR practice)
@@ -21,6 +28,20 @@
         Blunt: 1 #Lua -2
 
 - type: entity
+  id: Bullet8x65mmSKRHP
+  name: bullet (8x65mm SKR HP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 9      
+        Piercing: 21
+        Structural: 51.5
+
+# Physical
+- type: entity
   id: Bullet8x65mmSKRIncendiary
   parent: BaseBulletIncendiary
   name: bullet (8x65mm SKR incendiary)
@@ -29,5 +50,46 @@
   - type: Projectile
     damage:
       types:
-        piercing: 10 #Lua add
-        Heat: 35 #Lua +3
+        Piercing: 21
+        Heat: 9
+        Structural: 51.5
+
+- type: entity
+  id: Bullet8x65mmSKRUranium
+  name: bullet (8x65mm SKR Uranium)
+  parent: BaseBulletUranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 21
+        Radiation: 9
+        Structural: 51.5
+
+# Special
+- type: entity
+  id: Bullet8x65mmSKREMP
+  name: bullet (8x65mm SKR EMP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 21
+        Shock: 9
+        Structural: 51.5
+
+- type: entity
+  id: Bullet8x65mmSKRCaustic
+  name: bullet (8x65mm SKR Caustic)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 18
+        Caustic: 7.7
+        Structural: 51.5

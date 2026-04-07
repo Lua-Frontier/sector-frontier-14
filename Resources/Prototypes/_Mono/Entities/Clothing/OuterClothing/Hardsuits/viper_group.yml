@@ -3,13 +3,14 @@
   id: ClothingOuterHardsuitViperGroupStandard
   name: JACKAL mk.II viper hardsuit
   description: A hardsuit adorned with signature markings of the Viper Group. The armor is remarkably nimble for the protection it offers.
+  suffix: Pirate, Medium, Special #Lua
   components:
   - type: Sprite
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/viper_group_standard.rsi
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/medium_special.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/viper_group_standard.rsi
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/medium_special.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -18,28 +19,32 @@
   - type: Armor
     modifiers:
       coefficients:
+        #Mechanical 40/40/40//60/60//60/60//50/10
         Blunt: 0.6
-        Slash: 0.55
-        Piercing: 0.45
+        Slash: 0.6 #Lua 0.55<0.6
+        Piercing: 0.6 #Lua 0.45<0.6
+        #Physical
         Heat: 0.4
         Radiation: 0.4
-        Caustic: 0.45
-  - type: StaminaDamageResistance # Mono - Stamres
-    coefficient: 0.4
+        #Special
+        Shock: 0.4 #Lua
+        Caustic: 0.4 #Lua 0.45<0.4
+  - type: StaminaResistance # Mono - Stamres
+    damageCoefficient: 0.5 #Lua 0.4<0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.9 #Lua 0.95<0.9
+    sprintModifier: 0.9 #Lua 0.95<0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitViperGroupStandard
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
-  - type: HardsuitIdentification
-  - type: HardsuitDNARadial
-  - type: Speech
-  - type: TTS
-    voice: Adjutant
+  # - type: HardsuitIdentification
+  # - type: HardsuitDNARadial
+  # - type: Speech
+  # - type: TTS
+  #   voice: Adjutant
 
 
 - type: entity
@@ -47,40 +52,45 @@
   id: ClothingOuterHardsuitViperGroupMedic
   name: IMP mk.III viper hardsuit
   description: A hardsuit adorned with signature markings of the Viper Group. The armor features various reinforced plating in vital areas.
+  suffix: Pirate, Medium, Standart #Lua
   components:
   - type: Sprite
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/viper_group_medic.rsi
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/medium_standart.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/viper_group_medic.rsi
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/medium_standart.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
+        #Mechanical 60/60/60//40/40//40/40//50/10
+        Blunt: 0.4 #Lua 0.5<0.4
         Slash: 0.4
-        Piercing: 0.6
-        Heat: 0.45
-        Radiation: 0.33
-        Caustic: 0.25
-  - type: StaminaDamageResistance # Mono - Stamres
-    coefficient: 0.35
+        Piercing: 0.4 #Lua 0.6<0.4
+        #Physical
+        Heat: 0.6 #Lua 0.45<0.6
+        Radiation: 0.6 #Lua 0.33<0.6
+        #Special
+        Shock: 0.6 #Lua
+        Caustic: 0.6 #Lua 0.25<0.6
+  - type: StaminaResistance # Mono - Stamres
+    damageCoefficient: 0.5 #Lua 0.35<0.5
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
+    walkModifier: 0.9 #Lua 1<0.9
+    sprintModifier: 0.9 #Lua 1<0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitViperGroupMedic
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
-  - type: HardsuitIdentification
-  - type: HardsuitDNARadial
-  - type: Speech
-  - type: TTS
-    voice: Adjutant
+  # - type: HardsuitIdentification
+  # - type: HardsuitDNARadial
+  # - type: Speech
+  # - type: TTS
+  #   voice: Adjutant

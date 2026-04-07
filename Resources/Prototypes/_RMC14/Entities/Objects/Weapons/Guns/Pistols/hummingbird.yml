@@ -3,6 +3,7 @@
   id: RMCWeaponPistolD18 # TODO Add entry for it in loadouts, use RMCD18Case. Costs 4 points in CM13. Also to be mapped in on LV-624
   name: D18 Hummingbird
   description: The D18 Hummingbird Pistol was produced in the mid-2170s as a cheap and concealable firearm for CLF Sleeper Cell agents for assassinations and ambushes, and is able to be concealed in shoes and workboots.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/m43.rsi
@@ -13,6 +14,13 @@
   #   scatterUnwielded: 6
   #   baseFireRate: 10
   #   burstScatterMult: 3
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 12
   - type: Item
     size: Tiny
   # - type: GunDamageModifier
@@ -30,8 +38,8 @@
         priority: 2
         whitelist:
           tags:
-          - RMCMagazinePistolD18
-        startingItem: RMCMagazinePistolD18
+          - Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolD18<Magazine635x40mmCaselessPistol
+        startingItem: Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolD18<Magazine635x40mmCaselessPistol
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.620, 0.05

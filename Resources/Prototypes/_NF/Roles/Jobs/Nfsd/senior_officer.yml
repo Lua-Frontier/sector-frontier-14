@@ -3,23 +3,29 @@
   name: job-name-senior-officer
   description: job-description-senior-officer
   playTimeTracker: JobSeniorOfficer
-  salary: 60500
+  salary: 50000
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 108000 # 30 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 64800 # 18 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 43200 # 12 hours
-  alternateRequirementSets:
-    longerPlaytimeLessSec:
-    - !type:OverallPlaytimeRequirement
-      time: 540000 # 150 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 21600 # 6 hours
+  - !type:RoleTimeRequirement #Lua
+    role: JobBrigmedic
+    time: 18000 # 10h
+  - !type:RoleTimeRequirement #Lua
+    role: JobNfsdEngineer
+    time: 18000 # 10h
+#    - !type:OverallPlaytimeRequirement # comment from _Lua
+#      time: 108000 # 30 hours
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 64800 # 18 hours
+#    - !type:RoleTimeRequirement
+#      role: JobSecurityOfficer
+#      time: 43200 # 12 hours
+#  alternateRequirementSets:
+#    longerPlaytimeLessSec:
+#    - !type:OverallPlaytimeRequirement
+#      time: 540000 # 150 hours
+#    - !type:RoleTimeRequirement
+#      role: JobSecurityOfficer
+#      time: 21600 # 6 hours
   startingGear: SeniorOfficerGear
   icon: JobIconSergeant
   supervisors: job-supervisors-bailiff
@@ -43,13 +49,13 @@
 
 - type: startingGear
   id: SeniorOfficerGear
-  equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+#  equipment:
+#    pocket1: NFWeaponPistolUniversalNfsdLessLethal
   storage:
     back:
     - Flash
-    - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
-    - Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
+    - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    - Magazine9x19mmPistolRubber #Lua 35 -> 9x19
     - BaseSecurityUplinkRadioOfficer
     - ShipVoucherNfsdSergeant
 

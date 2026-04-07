@@ -8,41 +8,41 @@
 
 # Notes:
 # Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
-- type: pointOfInterest
-  id: Lodge
-  parent: BasePOI
-  name: 'Аванпост Экспедиций'
-  minimumDistance: 2300 #1650 Lua
-  maximumDistance: 5400 #3400 Lua
-  spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/lodge.yml
-  addComponents:
-  - type: RadarBlipIcon
-    icon: /Textures/_Lua/Interface/Radar/space-outpost.png
-    scale: 1.2
-    allowWhenHidden: true
-  - type: IFF
-    color: "#3737F8"
+# - type: pointOfInterest
+#   id: Lodge
+#   parent: BasePOI
+#   name: 'Аванпост Экспедиций'
+#   minimumDistance: 2300 #1650 Lua
+#   maximumDistance: 5400 #3400 Lua
+#   spawnGroup: Required
+#   gridPath: /Maps/_Lua/POI/lodge.yml
+#   addComponents:
+#   - type: RadarBlipIcon
+#     icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+#     scale: 1.2
+#     allowWhenHidden: true
+#   - type: IFF
+#     color: "#3737F8"
 
-- type: gameMap
-  id: Lodge
-  mapName: 'Аванпост Экспедиций'
-  mapPath: /Maps/_Lua/POI/lodge.yml
-  minPlayers: 0
-  stations:
-    Lodge:
-      stationProto: MarketFrontierOutpost
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Аванпост Экспедиций'
-        - type: ExtraStationInformation
-          iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
-          stationSubtext: 'frontier-lobby-exped-subtext'
-          stationDescription: 'frontier-lobby-exped-description'
-          lobbySortOrder: 3
-        - type: StationJobs
-          availableJobs:
-            Vip: [ -1, -1 ]
-            Pilot: [ -1, -1 ]
-        - type: StationDeadDrop
-          maxDeadDrops: 1 # Fewer here, players start here.
+# - type: gameMap
+#   id: Lodge
+#   mapName: 'Аванпост Экспедиций'
+#   mapPath: /Maps/_Lua/POI/lodge.yml
+#   minPlayers: 0
+#   stations:
+#     Lodge:
+#       stationProto: MarketFrontierOutpost
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Аванпост Экспедиций'
+#         - type: ExtraStationInformation
+#           iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
+#           stationSubtext: 'frontier-lobby-exped-subtext'
+#           stationDescription: 'frontier-lobby-exped-description'
+#           lobbySortOrder: 3
+#         - type: StationJobs
+#           availableJobs:
+#             Vip: [ -1, -1 ]
+#             Pilot: [ -1, -1 ]
+#         - type: StationDeadDrop
+#           maxDeadDrops: 1 # Fewer here, players start here.

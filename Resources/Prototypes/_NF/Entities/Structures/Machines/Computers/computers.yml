@@ -8,8 +8,8 @@
   - type: Computer
     board: AdvancedRadarConsoleCircuitboard
   - type: RadarConsole
-    maxRange: 768
-    maxIffRange: 1100 # a bit over sqrt(2) * 768
+    maxRange: 1100 #Lua 768<1100
+    maxIffRange: 1600 # a bit over sqrt(2) * 768 #Lua 1100<1600
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]

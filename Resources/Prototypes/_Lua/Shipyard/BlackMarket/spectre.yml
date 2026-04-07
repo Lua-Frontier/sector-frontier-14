@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: germanreutt (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: BMSpectre
+  name: BM-Spectre
+  description: "Большой научный корабль, переоборудованный под настоящую крепость. Последний сохранившийся представитель своей модели."
+  price: 200000 #test
+  limit: 4
+  category: Large
+  group: ASBlackMarket
+  whitelist:
+  - Frontier
+  - Luna
+  class:
+  - Science
+  engine:
+  - AME
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/spectre.yml
+
+- type: gameMap
+  id: BMSpectre
+  mapName: 'BM-Spectre'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/spectre.yml
+  minPlayers: 0
+  stations:
+    BMSpectre:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'BM-Spectre {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

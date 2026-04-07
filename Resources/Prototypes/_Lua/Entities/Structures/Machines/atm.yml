@@ -5,7 +5,7 @@
 - type: entity
   parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerBankATMTypan
-  suffix: Нордфолл
+  suffix: Тайпан
   components:
   - type: Sprite
     netsync: false
@@ -22,7 +22,7 @@
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMTypan
   description: Используется для управления банковским счетом станции.
-  suffix: Нордфолл
+  suffix: Тайпан
   components:
   - type: Sprite
     netsync: false

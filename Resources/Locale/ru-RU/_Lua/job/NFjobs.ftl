@@ -12,3 +12,5 @@ frontier-lobby-edison-description = Тяжелая промышленная ст
  {"["}color=gray]Снимать деньги со счёта станции для пополнения своего баланса [color=red] запрещено всем [/color] и только менеджеру можно расходывать для затрат в самом раунде.[/color]
 
 job-supervisors-typan-telecommunications-officer = Офицеру Телекомуникаций Синдиката
+job-name-nfsd-engineer = Инженер СРБС
+job-description-nfsd-engineer = Знаешь, я ведь инженер... И я умею решать проблемы...

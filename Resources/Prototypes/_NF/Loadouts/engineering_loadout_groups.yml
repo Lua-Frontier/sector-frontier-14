@@ -183,6 +183,21 @@
   fallbacks:
   - PlantTechnicianPlantTechnicianPDA
 
+- type: loadoutGroup #Lua # Возможно, позже перемещу в отдельный файл. Пока что так проще
+  id: LGFrontierEngineerPDA
+  name: loadout-group-contractor-pda
+  hidden: true
+  loadouts:
+  - LoadoutFrontierEngineerPDA
+  fallbacks:
+  - LoadoutFrontierEngineerPDA
+
+- type: loadout #Lua
+  id: LoadoutFrontierEngineerPDA
+  price: 0
+  equipment:
+    id: FrontierEngineerPDA
+
 - type: loadoutGroup
   id: PlantManagerGlasses
   name: loadout-group-contractor-glasses

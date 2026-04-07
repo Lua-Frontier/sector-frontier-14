@@ -4,7 +4,7 @@
   id: RMCBaseWeaponLMG
   components:
   - type: Gun
-    baseFireRate: 3.3
+#    baseFireRate: 3.3 # comment from _Lua
     shotsPerBurst: 5
     selectedMode: FullAuto
     soundEmpty:
@@ -12,7 +12,7 @@
     availableModes:
     - Fullauto
     - SemiAuto
-    - Burst
+#    - Burst # comment from _Lua
   # - type: RMCSelectiveFire
   #   baseFireModes:
   #   - FullAuto

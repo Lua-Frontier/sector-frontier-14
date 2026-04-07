@@ -1,8 +1,9 @@
 - type: entity
   parent: [ BaseCartridge, BaseC3PirateContraband ]
   description: Large anti-material round, capable of punching through armor and walls easily.
-  id: Cartridge127x99mm
+  id: BaseCartridge127x99mm
   name: cartridge (12.7x99mm anti-material)
+  suffix: Need balance test #Lua
   components:
   - type: Tag
     tags:
@@ -21,10 +22,21 @@
   - type: StaticPrice
     price: 20
 
+# Standart
+- type: entity
+  id: Cartridge127x99mm
+  name: cartridge (12.7x99mm anti-material)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge127x99mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet127x99mm
+
 - type: entity
   parent: [ BaseCartridge, BaseC3PirateContraband ]
   id: Cartridge127x99mmExplosive
   name: cartridge (12.7x99mm high-explosive)
+  suffix: Need balance test #Lua
   components:
   - type: Tag
     tags:
@@ -41,3 +53,86 @@
   - type: SpentAmmoVisuals
   - type: StaticPrice
     price: 20
+
+# Mechanical
+- type: entity
+  id: Cartridge127x99mmHP
+  name: cartridge (12.7x99mm HP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge127x99mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet127x99mmHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#991d39"
+
+# Physical
+- type: entity
+  id: Cartridge127x99mmIncendiary
+  name: cartridge (12.7x99mm Incendiary)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge127x99mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet127x99mmIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#f44336"
+
+- type: entity
+  id: Cartridge127x99mmUranium
+  name: cartridge (12.7x99mm Uranium)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge127x99mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet127x99mmUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#6b9747"
+
+# Special
+- type: entity
+  id: Cartridge127x99mmEMP
+  name: cartridge (12.7x99mm EMP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge127x99mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet127x99mmEMP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#044492"
+
+- type: entity
+  id: Cartridge127x99mmCaustic
+  name: cartridge (12.7x99mm Caustic)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge127x99mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet127x99mmCaustic
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#8b9229"

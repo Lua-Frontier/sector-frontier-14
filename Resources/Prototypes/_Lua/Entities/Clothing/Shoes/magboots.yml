@@ -14,6 +14,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -29,6 +31,8 @@
     state: icon
   - type: Clothing
     sprite: ADT/Clothing/Shoes/Boots/magboots-ert.rsi
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1

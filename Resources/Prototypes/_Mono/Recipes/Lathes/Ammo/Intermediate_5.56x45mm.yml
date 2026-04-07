@@ -29,6 +29,16 @@
   id: Magazine556x45mmEmpty
   result: Magazine556x45mmEmpty
 
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPIntermediateMagazineRecipe
+  id: Magazine556x45mmEMP
+  result: Magazine556x45mmEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticIntermediateMagazineRecipe
+  id: Magazine556x45mmCaustic
+  result: Magazine556x45mmCaustic
+
 - type: latheRecipe
   parent: BaseAmmoUraniumIntermediateMagazineRecipe
   id: Magazine556x45mmUranium
@@ -39,10 +49,15 @@
   id: Magazine556x45mmHP
   result: Magazine556x45mmHP
 
-- type: latheRecipe
-  parent: BaseAmmoRIPIntermediateMagazineRecipe
-  id: Magazine556x45mmRIP
-  result: Magazine556x45mmRIP
+- type: latheRecipe #Lua
+  parent: BaseAmmoEmptyIntermediateMagazineRecipe
+  id: MagazineNovaliteC1Empty
+  result: MagazineNovaliteC1Empty
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoFMJIntermediateMagazineRecipe
+  id: MagazineNovaliteC1
+  result: MagazineNovaliteC1
 
 #Speedloaders
 
@@ -83,11 +98,6 @@
   id: AmmoBox556x45mmFMJ
   result: AmmoBox556x45mmFMJ
 
-#- type: latheRecipe
-#  parent: BaseAmmoPlasteelAPIntermediateAmmoBoxRecipe
-#  id: AmmoBox556x45mmPlasteelAP
-#  result: AmmoBox556x45mmPlasteelAP
-
 - type: latheRecipe
   parent: BaseAmmoRubberIntermediateAmmoBoxRecipe
   id: AmmoBox556x45mmRubber
@@ -113,7 +123,12 @@
   id: AmmoBox556x45mmHP
   result: AmmoBox556x45mmHP
 
-- type: latheRecipe
-  parent: BaseAmmoRIPIntermediateAmmoBoxRecipe
-  id: AmmoBox556x45mmRIP
-  result: AmmoBox556x45mmRIP
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPIntermediateAmmoBoxRecipe
+  id: AmmoBox556x45mmEMP
+  result: AmmoBox556x45mmEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticIntermediateAmmoBoxRecipe
+  id: AmmoBox556x45mmCaustic
+  result: AmmoBox556x45mmCaustic

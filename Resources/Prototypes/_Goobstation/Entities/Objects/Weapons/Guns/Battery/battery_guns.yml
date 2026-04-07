@@ -23,25 +23,29 @@
     - Back
     sprite: _Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
   - type: Gun
-    fireRate: 1.5
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 3.8 #Lua 1.5<3.8
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 1800
-    startingCharge: 1800
+    maxCharge: 250 #Lua 1800<1000
+    startingCharge: 250 #Lua 1800<1000
   - type: ProjectileBatteryAmmoProvider
     proto: NFBulletDisabler
-    fireCost: 100
+    fireCost: 25
   - type: EnergyGun
     fireModes:
     - proto: NFBulletDisabler
-      fireCost: 100
+      fireCost: 25
       name: disable
       state: disabler
     - proto: BulletEnergyGunMagnum
-      fireCost: 150 # Mono - 150 < 225
+      fireCost: 25 # Mono - 150 < 225
       name: lethal
       state: lethal
   - type: MagazineVisuals
@@ -60,5 +64,4 @@
     - Sidearm
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 75 # Mono - 75 < 35
-
+    autoRechargeRate: 10 #Lua 10<35

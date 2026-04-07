@@ -16,6 +16,7 @@
   parent: [ BaseC1Contraband, NFBaseWeaponEnergyPistolHitScan, NFBaseWeaponFrameEnergyPistolFrontierGunsmith ]
   name: makeshift laser pistol
   description: Better pray it won't burn your hands off. At least it's legal.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/makeshift.rsi
@@ -26,6 +27,12 @@
     startingCharge: 840
   - type: BatterySelfRecharger # doesn't recharge
     autoRecharge: false
+  - type: Gun #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 3.2
 
 - type: entity
   categories: [ DoNotMap ]
@@ -34,6 +41,7 @@
   name: antique laser pistol
   description: |-
     This is an antique laser pistol with two settings: disable and kill. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/antiquelasergun.rsi
@@ -63,6 +71,7 @@
   name: X-01 multiphase energy gun
   description: |-
     This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
@@ -78,6 +87,7 @@
   name: advanced laser pistol
   description: |-
     An experimental civilian grade high-energy laser pistol with a self-charging nuclear battery and two settings: disable and kill.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/advancedlasergun.rsi
@@ -97,6 +107,12 @@
   - type: BatterySelfRecharger # Recharges 1 shot per 3 seconds
     autoRecharge: true
     autoRechargeRate: 20
+  - type: Gun #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 3.2
 
 # Frontier
 - type: entity
@@ -105,6 +121,7 @@
   name: laser pistol
   description: |-
     An older model of civilian-grade laser pistol with two settings: disable and kill.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
@@ -121,6 +138,12 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
+  - type: Gun #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 3
 
 #region Pulse
 - type: entity
@@ -129,14 +152,24 @@
   name: pulse pistol
   description: |-
     A state of the art energy pistol favoured as a sidearm by the NT operatives. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
   - type: Battery # 20 shots
-    maxCharge: 1200
-    startingCharge: 1200
+    maxCharge: 250
+    startingCharge: 250
+  - type: Gun #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 5.6
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
 
 #region Disablers
 - type: entity

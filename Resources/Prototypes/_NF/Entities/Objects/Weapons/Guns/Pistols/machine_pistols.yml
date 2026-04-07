@@ -34,6 +34,13 @@
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-919
+    minAngle: 3.1
+    maxAngle: 15.5
+    angleIncrease: 0.7
+    angleDecay: 5
+    fireRate: 7.5
 
 #region DeltaV
 - type: entity
@@ -41,13 +48,35 @@
   parent: [ NFBaseWeaponPistolChamber9x19, NFBaseWeaponFrameMachinePistolNanotrasen ] #Lua 35 -> 9x19
   name: pollock
   description: A compact and mass-produced combat pistol.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
-
-- type: entity
-  id: NFWeaponPistolPollockHighCapacityMag
-  parent: [ NFBaseWeaponPistolChamber9x19HighCapacity, NFWeaponPistolPollock ] #Lua 35 -> 9x19
-  suffix: Frontier, High capacity mag
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 6
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine635x40mmCaselessPistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine635x40mmCaselessPistol
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge635x40mmCaseless
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge635x40mmCaseless

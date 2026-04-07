@@ -93,7 +93,7 @@
         whitelist: &whitelist35
           tags:
             - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
-            - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
+            - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Standard
         name: Chamber
@@ -112,7 +112,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
+        startingItem: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -154,7 +154,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
+        startingItem: Magazine9x19mmPistolRubber #Lua 35 -> 9x19
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2

@@ -1,0 +1,112 @@
+#Mark: uniform base
+- type: entity
+  abstract: true
+  parent: UnsensoredClothingUniformBase
+  id: N14ClothingUniformBase
+  components:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 6
+
+#Mark: uniforms
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitEnclave
+  name: enclave uniform
+  description: A uniform worn by members of the Enclave.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/enclaveuni.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/enclaveuni.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitwinter
+  name: padded winter clothing
+  description: A set of fatigues with some extra insulation.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/PeltClothing.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/PeltClothing.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitLeatherSuit
+  name: drab winter clothing
+  description: Drab but warm brown fatigues.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/LeatherSuit.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/LeatherSuit.rsi
+
+#NCR
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformNCRDesert
+  name: NCR trooper uniform
+  description: The NCR-designated uniform for all infantry soldiers in the Republic army.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRuniform2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRuniform2.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingOfficerUniformNCRDesert
+  name: field NCR officer uniform
+  description: A field uniform wore with pride by the officers of the NCR.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRofficer2.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRofficer2.rsi
+
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformNCRSnow
+  name: NCR trooper uniform
+  description: The NCR-designated uniform for all infantry soldiers in the Republic army.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRuniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/NCRuniform.rsi
+
+# Chinese renmants
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitChinese
+  name: chinese uniform
+  description: A green single piece jumpsuit with the chinese flag on it.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/chineseuniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/chineseuniform.rsi
+
+# The Town Guard's uniforms
+- type: entity
+  parent: N14ClothingUniformBase
+  id: N14ClothingUniformJumpsuitTownGuard
+  name: the Guard's uniform
+  description: A pre-war military uniform (or replica of it), that was made the signature look of the Town's Guard around this region. Law and order!
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniform.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniform.rsi
+
+- type: entity
+  parent: N14ClothingUniformJumpsuitTownGuard
+  id: N14ClothingUniformJumpsuitTownGuardLight
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniformlight.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Uniforms/FalloutSuits/townguarduniformlight.rsi

@@ -207,3 +207,131 @@
   - type: Icon
     sprite: _Lua/Objects/Devices/pda.rsi
     state: pda_shareholder_syndicate
+
+# StormCreed
+- type: entity
+  parent: BasePDA
+  id: SCCaptainPDA
+  name: Напульсник Командира Кодекса
+  components:
+  - type: Clothing
+    sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+  - type: Sprite
+    layers:
+    - sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "icon"
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       icon
+  - type: Pda
+    id: SCCaptainIDCard
+  - type: PdaBorderColor
+    borderColor: "#171511"
+    accentVColor: "#948471"
+  - type: Icon
+    sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+    state: icon
+
+- type: entity
+  parent: BasePDA
+  id: SCFirstmatePDA
+  name: Напульсник Штурмана Кодекса
+  components:
+  - type: Clothing
+    sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+  - type: Sprite
+    layers:
+    - sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "icon"
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       icon
+  - type: Pda
+    id: SCFirstmateIDCard
+  - type: PdaBorderColor
+    borderColor: "#171511"
+    accentVColor: "#948471"
+  - type: Icon
+    sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+    state: icon
+
+- type: entity
+  parent: BasePDA
+  id: StormCreedPDA
+  name: Напульсник пустынника
+  components:
+  - type: Clothing
+    sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+  - type: Sprite
+    layers:
+    - sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "icon"
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - sprite: _NF/Objects/Devices/pda.rsi
+      state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       icon
+  - type: Pda
+    id: SCSoldierIDCard
+  - type: PdaBorderColor
+    borderColor: "#171511"
+    accentVColor: "#948471"
+  - type: Icon
+    sprite: _Lua/Objects/Devices/StormCreedPDA.rsi
+    state: icon
+
+- type: entity
+  parent: BasePDA
+  id: FrontierEngineerPDA
+  name: КПК Инженера ЭИК
+  description: Rugged and well-worn.
+  components:
+  - type: Pda
+    id: FrontierEngineerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-engineer
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-engineer

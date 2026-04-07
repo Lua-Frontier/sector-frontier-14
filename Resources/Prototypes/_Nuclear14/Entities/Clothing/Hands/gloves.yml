@@ -1,0 +1,79 @@
+- type: entity
+  parent: ClothingHandsButcherable
+  id: N14ClothingHandsGlovesBlackBiker
+  name: black biker gloves
+  description: Tough gloves for tough guys.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/Gloves/bikergloves.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Hands/Gloves/bikergloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-black
+  - type: FingerprintMask
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: N14ClothingHandsGlovesBrownBiker
+  name: brown biker gloves
+  description: Tough gloves for tough guys.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/Gloves/brownbikergloves.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Hands/Gloves/brownbikergloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-brown
+  - type: FingerprintMask
+  - type: Insulated
+
+- type: entity
+  parent: N14ClothingHandsButcherableLeather
+  id: N14ClothingHandsGlovesBlackLeather
+  name: black leather gloves
+  description: A pair of long black leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/Gloves/blackleathergloves.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Hands/Gloves/blackleathergloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-black
+  - type: FingerprintMask
+  - type: Insulated
+
+- type: entity
+  parent: N14ClothingHandsButcherableLeather
+  id: N14ClothingHandsGlovesLeather
+  name: leather gloves
+  description: A pair of brown leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/Gloves/leathergloves.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Hands/Gloves/leathergloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-brown
+  - type: FingerprintMask
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: N14ClothingHandsGlovesDriver
+  name: driver gloves
+  description: A pair of good-quality black leather gloves with multiple holes for ventilation.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Hands/Gloves/drivergloves.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Hands/Gloves/drivergloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-black
+  - type: FingerprintMask
+  - type: Insulated

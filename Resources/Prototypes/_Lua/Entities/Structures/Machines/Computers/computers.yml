@@ -13,8 +13,38 @@
     - EagleMercenary
     - Caretaker
     - Hedgehog
-    - MercXeno # Kideo
-    - Transporter
+    # - MCXeno # Kideo
+
+- type: entity
+  id: ComputerShipyardBASBlackMarket
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
+  name: Консоль верфи Чёрного Рынка
+  description: Старые исследовательские и боевые шаттлы, напичканные запрещенными штучками и не светящиеся в системе - прямо перед вами.
+  suffix: For Asteroid Sector Black market
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.ASBlackMarket
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.ASBlackMarket:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: ShipyardConsole
+    shipyardChannel: Freelance
+    taxAccounts:
+      Invalid: 0.40
+    ignoreBaseSaleRate: true # Fixed 70% sale rate.
+    canTransferDeed: false
 
 - type: entity
   name: консоль большой верфи

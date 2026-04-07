@@ -26,10 +26,11 @@
     burstFireRate: 5
     shotsPerBurst: 3
     burstCooldown: 1
-    selectedMode: FullAuto
+    selectedMode: SemiAuto #Lua FullAuto<SemiAuto
     availableModes:
-    - FullAuto
-    - Burst
+    - SemiAuto #Lua
+#    - FullAuto # comment from _Lua
+#    - Burst
   - type: NFWeaponDetails
     class: weapon-details-class-machine-pistol
 

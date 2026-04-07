@@ -37,8 +37,8 @@
     impactEffect: BulletImpactEffect
     damage:
       types:
-        Heat: 22
-        Caustic: 4
+        Shock: 16 #Lua 22<16
+        Caustic: 5 #Lua 4<5
     soundHit:
       path: "/Audio/Weapons/Guns/Hits/energy_meat1.ogg"
 

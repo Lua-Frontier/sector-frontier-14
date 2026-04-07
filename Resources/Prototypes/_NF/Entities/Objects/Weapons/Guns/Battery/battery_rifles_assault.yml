@@ -6,14 +6,48 @@
   name: pulse carbine
   description: |-
     A high tech energy carbine favoured by the NT-ERT operatives. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
   - type: Battery # 30 shots
-    maxCharge: 2400 #Lua edit: From 3200 to 2400
-    startingCharge: 2400 #Lua edit: From 3200 to 2400
+    maxCharge: 750 #Lua edit: From 3200 to 750
+    startingCharge: 750 #Lua edit: From 3200 to 750
+  - type: Gun # Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 7
+  - type: HitscanBatteryAmmoProvider
+    proto: LuaPulseRifleLow
+    fireCost: 25
+  - type: BatterySelfRecharger #Lua
+    autoRecharge: true
+    autoRechargeRate: 30
+
+- type: entity #Lua
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  id: LuaPulseRifleLow
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 15
+        Radiation: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 
 #region Laser
 # Frontier
@@ -23,15 +57,23 @@
   name: turbo laser mk3
   description: |-
     A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal.
+  suffix: Need balance test
   components:
   - type: Gun
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+    fireRate: 3.6
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
+    walkModifier: 0.7
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: Item
+    shape: #Lua
+    - 0,0,4,3
     size: Ginormous
     inhandVisuals:
       left:
@@ -71,3 +113,19 @@
     magState: charge-level
     steps: 6
     zeroVisible: true
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: LuaBulletLaserHigh
+      fireCost: 40 #Lua 80<40
+
+- type: entity #Lua
+  id: LuaBulletLaserHigh
+  parent: NFBaseBulletLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Shock: 17.5
+        Caustic: 7.5

@@ -5,14 +5,14 @@
   startingGear: MailCarrierGear
   alwaysUseSpawner: true
   playTimeTracker: JobMailCarrier
-  salary: 30000
+  salary: 40000 #Lua 30000<40000
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 36000 #Lua 10800<36000
   icon: "JobIconMailCarrier"
   supervisors: job-supervisors-sr
   weight: 90 # Frontier
-  displayWeight: 30 # Frontier
+  displayWeight: 50 # Frontier
   canBeAntag: false
   access:
   - External # Frontier

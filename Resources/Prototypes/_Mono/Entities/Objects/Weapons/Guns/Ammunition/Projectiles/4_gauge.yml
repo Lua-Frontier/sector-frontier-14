@@ -1,3 +1,8 @@
+# Damage-per-second = 175 for shotguns; 175-25 = 150 for caustic ammo; max COO = 2.5
+# Damage-per-second = 150 for slug because slug has no spread (analogy with rifles)
+# Main damage type - Slash for standart; main damage/blunt/piercing = 50/25/25 for HP; main damage/special damage = 70/30 for special
+# LeptonComm status clear
+# Standart
 - type: entity
   id: Pellet23x75mmSlug
   name: pellet (4 gauge slug)
@@ -10,44 +15,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 55 #Lua -20
-        Blunt: 10
-        Structural: 50 #Lua -150
-
-- type: entity
-  id: Pellet23x75mmFlashbang
-  name: pellet (4 gauge flashbang)
-  categories: [ HideSpawnMenu ]
-  parent: BaseBulletTrigger
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: slug
-  - type: FlashOnTrigger
-    range: 10
-  - type: SpawnOnTrigger
-    proto: GrenadeFlashEffect
-  - type: ActiveTimerTrigger
-    timeRemaining: 0.3
-  - type: DeleteOnTrigger
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 40
-
-- type: entity
-  id: Pellet23x75mmBeanbag
-  name: beanbag (4 gauge)
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 15 #Lua -5
-  - type: StaminaDamageOnCollide
-    damage: 80 #Lua -15
+        Slash: 60
 
 - type: entity
   id: Pellet23x75mmBuckshot
@@ -61,9 +29,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 13 #Lua -11
-  - type: TimedDespawn #Lua add
-    lifetime: 0.3 #taked from NFBasePellet
+        Slash: 14
 
 - type: entity
   id: Pellet23x75mmBuckshotSpread
@@ -76,34 +42,30 @@
     spread: 15
 
 - type: entity
-  id: Pellet23x75mmIncendiary
-  name: pellet (4 gauge incendiary)
+  id: Pellet23x75mmDozd
+  name: pellet (4 gauge)
   categories: [ HideSpawnMenu ]
-  parent: BaseBulletIncendiary
+  parent: BaseBullet
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot-flare
+    state: Dozd
   - type: Projectile
     damage:
       types:
-        Piercing: 4 #Lua add
-        Heat: 9 #Lua -5
-  - type: IgnitionSource
-    ignited: true
-  - type: TimedDespawn #Lua add
-    lifetime: 0.3 #taked from NFBasePellet
+        Slash: 7
 
 - type: entity
-  id: Pellet23x75mmIncendiarySpread
+  id: Pellet23x75mmDozdSpread
   categories: [ HideSpawnMenu ]
-  parent: Pellet23x75mmIncendiary
+  parent: Pellet23x75mmDozd
   components:
   - type: ProjectileSpread
-    proto: Pellet23x75mmIncendiary
-    count: 5 #Lua -1
-    spread: 15
+    proto: Pellet23x75mmDozd
+    count: 10
+    spread: 25
 
+# Mechanical
 - type: entity
   id: Pellet23x75mmPractice
   name: pellet (4 gauge practice)
@@ -130,6 +92,153 @@
     count: 5 #Lua -1
     spread: 15
 
+- type: entity
+  id: Pellet23x75mmBeanbag
+  name: beanbag (4 gauge)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 15 #Lua -5
+  - type: StaminaDamageOnCollide
+    damage: 80 #Lua -15
+
+- type: entity
+  id: Pellet23x75mmOOBuckshot
+  name: Pellet23x75mm (4 gauge OO magnum buckshot)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3.5
+        Slash: 7
+        Piercing: 3.5
+
+- type: entity
+  id: Pellet23x75mmOOBuckshotSpread
+  parent: Pellet23x75mmOOBuckshot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: Pellet23x75mmOOBuckshot
+    count: 5
+    spread: 15
+
+# Physical
+- type: entity
+  id: Pellet23x75mmIncendiary
+  name: pellet (4 gauge incendiary)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletIncendiary
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot-flare
+  - type: Projectile
+    damage:
+      types:
+        Slash: 9.8
+        Heat: 4.2
+  - type: IgnitionSource
+    ignited: true
+
+- type: entity
+  id: Pellet23x75mmIncendiarySpread
+  categories: [ HideSpawnMenu ]
+  parent: Pellet23x75mmIncendiary
+  components:
+  - type: ProjectileSpread
+    proto: Pellet23x75mmIncendiary
+    count: 5 #Lua -1
+    spread: 15
+
+- type: entity
+  id: Pellet23x75mmUranium
+  name: pellet (4 gauge uranium)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: depleted-uranium
+  - type: Projectile
+    damage:
+      types:
+        Slash: 9.8
+        Radiation: 4.2
+
+- type: entity
+  id: Pellet23x75mmUraniumSpread
+  categories: [ HideSpawnMenu ]
+  parent: Pellet23x75mmUranium
+  components:
+  - type: ProjectileSpread
+    proto: Pellet23x75mmUranium
+    count: 5
+    spread: 10
+
+# Special
+- type: entity
+  id: Pellet23x75mmBuckshotEMP
+  name: pellet (4 gauge EMP)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletEmp
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Slash: 9.8
+        Shock: 4.2
+
+- type: entity
+  id: Pellet23x75mmBuckshotEMPSpread
+  categories: [ HideSpawnMenu ]
+  parent: Pellet23x75mmBuckshotEMP
+  components:
+  - type: ProjectileSpread
+    proto: Pellet23x75mmBuckshotEMP
+    count: 5
+    spread: 15
+
+- type: entity
+  id: Pellet23x75mmBuckshotCaustic
+  name: pellet (4 gauge caustic)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Slash: 8.4
+        Caustic: 3.6
+
+- type: entity
+  id: Pellet23x75mmBuckshotCausticSpread
+  categories: [ HideSpawnMenu ]
+  parent: Pellet23x75mmBuckshotCaustic
+  components:
+  - type: ProjectileSpread
+    proto: Pellet23x75mmBuckshotCaustic
+    count: 5
+    spread: 15
+
+# Utilitary
 - type: entity
   id: Pellet23x75mmFlare
   name: pellet (4 gauge flare)
@@ -178,124 +287,23 @@
         Heat: 10
 
 - type: entity
-  id: Pellet23x75mmUranium
-  name: pellet (4 gauge uranium)
+  id: Pellet23x75mmFlashbang
+  name: pellet (4 gauge flashbang)
   categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: depleted-uranium
-  - type: Projectile
-    damage:
-      types:
-        Radiation: 9 #Lua -1
-        Piercing: 4 #Lua -8
-  - type: TimedDespawn #Lua add
-    lifetime: 0.3 #taked from NFBasePellet
-
-- type: entity
-  id: Pellet23x75mmUraniumSpread
-  categories: [ HideSpawnMenu ]
-  parent: Pellet23x75mmUranium
-  components:
-  - type: ProjectileSpread
-    proto: Pellet23x75mmUranium
-    count: 5
-    spread: 6
-
-- type: entity
-  id: Pellet23x75mmDozd
-  name: pellet (4 gauge)
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: Dozd
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 6 #Lua -2
-  - type: TimedDespawn #Lua add
-    lifetime: 0.3 #taked from NFBasePellet
-
-- type: entity
-  id: Pellet23x75mmDozdSpread
-  categories: [ HideSpawnMenu ]
-  parent: Pellet23x75mmDozd
-  components:
-  - type: ProjectileSpread
-    proto: Pellet23x75mmDozd
-    count: 12
-    spread: 30
-
-#Mono AP system
-#anti-flesh ammo
-- type: entity
-  id: Pellet23x75mmOOBuckshot
-  name: Pellet23x75mm (4 gauge OO magnum buckshot)
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
-  - type: Projectile
-    damage:
-      types:
-        Slash: 10 #Lua -5
-        Piercing: 10 #Lua -30
-  - type: TimedDespawn #Lua add
-    lifetime: 0.3 #taked from NFBasePellet
-
-- type: entity
-  id: Pellet23x75mmOOBuckshotSpread
-  parent: Pellet23x75mmOOBuckshot
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ProjectileSpread
-    proto: Pellet23x75mmOOBuckshot
-    count: 3
-    spread: 6
-
-- type: entity
-  id: Pellet23x75mmSlugRIP
-  name: Pellet23x75mm (4 gauge RIP)
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
+  parent: BaseBulletTrigger
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: slug
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 25 #Lua -5
-        Slash: 20 #Lua add
-        Blunt: 20 #Lua add
-        Structural: 250
-
-#armor-piercing ammo
-- type: entity
-  id: Pellet23x75mmSlugAP
-  name: Pellet23x75mm (4 gauge armor-piercing slug)
-  categories: [ HideSpawnMenu ]
-  parent: BaseBullet
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: slug
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 30 #Lua -10
-        blunt: 15 # Lua add
-        Structural: 250
-    ignoreResistances: true #Lua add
-  - type: Tracer
-    color: "#6f7c82ff"
-    length: 3
+  - type: FlashOnTrigger
+    range: 10
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 0.3
+  - type: DeleteOnTrigger
+  - type: StaminaDamageOnCollide #Lua add
+    damage: 40
 
 - type: entity
   id: Pellet23x75mmFlechette
@@ -326,3 +334,41 @@
     proto: Pellet23x75mmFlechette
     count: 5 #Lua -1
     spread: 12
+
+# Out of balance
+- type: entity
+  id: Pellet23x75mmSlugRIP
+  name: Pellet23x75mm (4 gauge RIP)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: slug
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25 #Lua -5
+        Slash: 20 #Lua add
+        Blunt: 20 #Lua add
+        Structural: 250
+
+- type: entity
+  id: Pellet23x75mmSlugAP
+  name: Pellet23x75mm (4 gauge armor-piercing slug)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: slug
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30 #Lua -10
+        blunt: 15 # Lua add
+        Structural: 250
+    ignoreResistances: true #Lua add
+  - type: Tracer
+    color: "#6f7c82ff"
+    length: 3

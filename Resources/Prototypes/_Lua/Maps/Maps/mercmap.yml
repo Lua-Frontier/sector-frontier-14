@@ -2,26 +2,26 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
-- type: gameMap
-  id: MercMap
-  mapName: 'Аванпост Наёмников'
-  mapPath: /Maps/_Lua/Maps/mercmap.yml
-  isGrid: true
-  minPlayers: 0
-  stations:
-    MercMap:
-      stationProto: StandardMercenaryVessel
-      components:
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/space-station.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: StationNameSetup
-          mapNameTemplate: 'Аванпост Наёмников'
-        - type: ExtraStationInformation
-          iconPath: /Textures/Structures/Wallmounts/flags.rsi/blank_mercenary.png # used the biggest one, looks better when downscaling than upscaling
-          stationSubtext: 'mercenary-lobby-outpost-subtext'
-          stationDescription: 'mercenary-lobby-outpost-description'
-        - type: StationJobs
-          availableJobs:
-            MercenaryBase: [ 3, 3 ]
+#- type: gameMap
+#  id: MercMap
+#  mapName: 'Аванпост Наёмников'
+#  mapPath: /Maps/_Lua/Maps/mercmap.yml
+#  isGrid: true
+#  minPlayers: 0
+#  stations:
+#    MercMap:
+#      stationProto: StandardMercenaryVessel
+#      components:
+#        - type: RadarBlipIcon
+#          icon: /Textures/_Lua/Interface/Radar/space-station.png
+#          scale: 1.2
+#          allowWhenHidden: true
+#        - type: StationNameSetup
+#          mapNameTemplate: 'Аванпост Наёмников'
+#        - type: ExtraStationInformation
+#          iconPath: /Textures/Structures/Wallmounts/flags.rsi/blank_mercenary.png # used the biggest one, looks better when downscaling than upscaling
+#          stationSubtext: 'mercenary-lobby-outpost-subtext'
+#          stationDescription: 'mercenary-lobby-outpost-description'
+#        - type: StationJobs
+#          availableJobs:
+#            MercenaryBase: [ 3, 3 ]

@@ -1,0 +1,218 @@
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband]
+  id: LuaClothingOuterHardsuitPirateEVA
+  name: Модифицированный скафандр ВКД
+  description: Скафандр ВКД, покрашенный и закатанный в пулестойкую броню в кустарных условиях.
+  suffix: Pirate, Heavy, Special
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/heavy_special.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/heavy_special.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 40/40/60//40/40//60/60//70/20
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.4
+        #Physical
+        Heat: 0.6
+        Radiation: 0.6
+        #Special
+        Shock: 0.4
+        Caustic: 0.4
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: LuaClothingHeadHelmetHardsuitPirateEVA
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband]
+  id: ClothingOuterHardsuitBloodRedPirate
+  name: Модифицированный кроваво-красный скафандр
+  description: Скафандр Мародеров Горлекса, сделанный по старым, архивным чертежам. Это настоящая редкость.
+  suffix: Pirate, Light, Special
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/light_special.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/light_special.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 60/60/40//40/40//60/60//30/0
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.6
+        #Physical
+        Heat: 0.6
+        Radiation: 0.6
+        #Special
+        Shock: 0.4
+        Caustic: 0.4
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateBloodRed
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband]
+  id: ClothingOuterHardsuitBloodRedElitePirate
+  name: Модифицированный элитный кроваво-красный скафандр
+  description: Элитный скафандр Мародеров Горлекса, сделанный по старым, архивным чертежам. Это настоящая редкость.
+  suffix: Pirate, Light, Standart
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/light_standart.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/light_standart.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 60/60/40//60/60//40/40//30/0
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.6
+        #Physical
+        Heat: 0.4
+        Radiation: 0.4
+        #Special
+        Shock: 0.6
+        Caustic: 0.6
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateBloodRedElite
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: LuaClothingHeadHelmetHardsuitPirateEVA
+  name: pirate EVA hardsuit helmet
+  description: A (probably stolen) EVA suit painted red with white stripes.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#faa70f"
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SCHardsuits/heavy_special.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SCHardsuits/heavy_special.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitPirateBloodRed
+  name: pirate BloodRed hardsuit helmet
+  description: A (probably stolen) SCAF suit painted red with white stripes.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#faa70f"
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SCHardsuits/light_special.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SCHardsuits/light_special.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitPirateBloodRedElite
+  name: pirate BloodRed Elite hardsuit helmet
+  description: A (probably stolen) SCAF suit painted red with white stripes.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#faa70f"
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SCHardsuits/light_standart.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SCHardsuits/light_standart.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide

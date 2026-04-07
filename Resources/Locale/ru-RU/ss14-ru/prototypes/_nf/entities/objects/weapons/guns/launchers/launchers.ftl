@@ -6,5 +6,5 @@ ent-WeaponLauncherRocketEmp = РПГ-7
     .suffix = ЭМИ
 ent-WeaponMailLake = почтовый СБДП
     .desc = Система Быстрой Доставки Посылок.
-ent-WeaponLauncherNfsdLake = Гранатомёт ДСБФ
-    .desc = Система Быстрой Доставки гранат от ДСБФ.
+ent-WeaponLauncherNfsdLake = Гранатомёт СРБС
+    .desc = Система Быстрой Доставки гранат от СРБС.

@@ -3,6 +3,7 @@
   id: RMCWeaponPistolSU6
   name: SU-6 smart pistol
   description: The SU-6 Smartpistol is an IFF-based sidearm currently undergoing field testing in the UNMC. Uses modified .45 ACP IFF bullets. Capable of firing in bursts.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/su6.rsi
@@ -18,12 +19,18 @@
       types:
         Blunt: 8
   - type: Gun
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 14 #Lua
     shotsPerBurst: 3
-    selectedMode: FullAuto
+    selectedMode: SemiAuto #Lua FullAuto<SemiAuto
     availableModes:
     - SemiAuto
-    - FullAuto
-    - Burst
+#    - FullAuto # comment (26-27) from _Lua
+#    - Burst
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/su6_shoot.ogg
   # - type: RMCSelectiveFire
@@ -56,8 +63,8 @@
         priority: 2
         whitelist:
           tags:
-          - RMCMagazinePistolSU6
-        startingItem: RMCMagazinePistolSU6
+          - Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolSU6<Magazine635x40mmCaselessPistol
+        startingItem: Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolSU6<Magazine635x40mmCaselessPistol
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.65, 0.09375

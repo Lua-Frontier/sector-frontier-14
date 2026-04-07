@@ -6,10 +6,10 @@
   salary: 80000
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 72000 # 20 hrs
+      time: 36000 # 10 hrs
     - !type:RoleTimeRequirement
-      role: JobSecurityGuard
-      time: 10800 # 3 hrs as security guard
+      role: JobFrontierEngineer
+      time: 36000 #Lua 10h 
   whitelisted: false
   startingGear: SrGear
   alwaysUseSpawner: true
@@ -17,7 +17,7 @@
   requireAdminNotify: true
   supervisors: job-supervisors-centcom
   weight: 170
-  displayWeight: 60 # Top
+  displayWeight: 80 # Top
   canBeAntag: false
   accessGroups:
   - AllAccess

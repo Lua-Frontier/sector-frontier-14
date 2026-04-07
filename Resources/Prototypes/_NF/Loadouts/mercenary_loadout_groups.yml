@@ -2,6 +2,7 @@
   id: MercenaryJumpsuit
   name: loadout-group-contractor-jumpsuit
   loadouts: #First Section: Role specific freebies/discounts/rewards
+  - SCN14ClothingUniformJumpsuitChinese
   - MercenaryClothingUniformJumpsuitMercenary
   - MercenaryClothingUniformJumpskirtMercenary
   - MercenaryClothingUniformJumpsuitPrivateSec
@@ -16,7 +17,7 @@
   - PilotJumpsuit
   - ContractorJumpsuit
   fallbacks:
-  - MercenaryClothingUniformJumpsuitMercenary
+  - SCN14ClothingUniformJumpsuitChinese #Lua MercenaryClothingUniformJumpsuitMercenary<SCN14ClothingUniformJumpsuitChinese
   - MercenaryClothingUniformJumpskirtMercenary
 
 - type: loadoutGroup

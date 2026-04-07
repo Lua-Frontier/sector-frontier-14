@@ -5,17 +5,17 @@
 # Maintainer Info
 # GitHub: Mace70903
 # Discord: mace_70903
-
+# StationTransit
 # Notes:
 #
 - type: pointOfInterest
   id: Nfsd
   parent: BasePOI
-  name: 'Аванспост ДСБФ'
+  name: 'Аванпост СРБС'
   minimumDistance: 2000 #750 Lua
   maximumDistance: 3000 #1000 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/nfsd.yml
+  gridPath: /Maps/_Lua/POI/DSNfsd.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/nfsd.png
@@ -26,15 +26,15 @@
 
 - type: gameMap
   id: Nfsd
-  mapName: 'Аванспост ДСБФ'
-  mapPath: /Maps/_Lua/POI/nfsd.yml
+  mapName: 'Аванпост СРБС'
+  mapPath: /Maps/_Lua/POI/DSNfsd.yml
   minPlayers: 0
   stations:
     Nfsd:
       stationProto: SecurityFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Аванспост ДСБФ'
+          mapNameTemplate: 'Аванпост СРБС'
         - type: ExtraStationInformation
           iconPath: /Textures/_NF/Structures/Decoration/banner.rsi/nfsd-banner.png
           stationSubtext: 'frontier-lobby-nfsd-subtext'
@@ -44,14 +44,15 @@
           availableJobs:
             Sheriff: [ 1, 1 ]
             Bailiff: [ 1, 1 ]
-            SeniorOfficer: [ 1, 1 ]
-            Brigmedic: [ 1, 1 ]
-            NFDetective: [ 1, 1 ]
-            Deputy: [ 3, 3 ]
-            Cadet: [ 2, 2 ]
+            SeniorOfficer: [ 2, 2 ]
+            Brigmedic: [ 2, 2 ]
+            SDEngineer: [ 2, 2 ]
+#            NFDetective: [ 1, 1 ]
+            Deputy: [ 4, 4 ]
+            Cadet: [ 8, 8 ]
             # Others:
-            PublicAffairsLiaison: [ 1, 1 ]
-            Prisoner: [ 0, 0 ]
+#            PublicAffairsLiaison: [ 1, 1 ]
+#            Prisoner: [ 0, 0 ]
           tags:
           - HeadOfPersonnel
           - HeadOfSecurity

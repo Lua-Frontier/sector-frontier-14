@@ -1,34 +1,39 @@
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3PirateContraband, HardsuitIdentify] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContraband
+  parent: [ClothingOuterHardsuitBase, BaseC3PirateContraband] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContraband
   id: ClothingOuterHardsuitPirateScaf
   name: pirate SCAF hardsuit
   description: A (probably stolen) SCAF suit painted red with white stripes. The armor feels degraded, but lighter.
+  suffix: Pirate, Heavy, Standart #Lua
   components:
   - type: Sprite
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/scaf_pirate.rsi
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/heavy_standart.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/scaf_pirate.rsi
+    sprite: _Lua/Clothing/OuterClothing/SCHardsuits/heavy_standart.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.3
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.45
-        Slash: 0.45
-        Piercing: 0.55
-        Heat: 0.5
+        #Mechanical 40/40/60//60/60//40/40//70/20
+        Blunt: 0.6 #Lua 0.45<0.6
+        Slash: 0.6 #Lua 0.45<0.6
+        Piercing: 0.4 #Lua 0.55<0.4
+        #Physical
+        Heat: 0.4 #Lua 0.5<0.4
         Radiation: 0.4
-        Caustic: 0.45
-  - type: StaminaDamageResistance # Mono - Stamres
-    coefficient: 0.35
+        #Special
+        Shock: 0.6 #Lua
+        Caustic: 0.6 #Lua 0.45<0.6
+  - type: StaminaResistance
+    damageCoefficient: 0.3 #Lua 0.25<0.3
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.8 #Lua 0.95<0.8
+    sprintModifier: 0.8 #Lua 0.95<0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateScaf

@@ -53,9 +53,9 @@ public sealed class NFPirateRuleSystem : GameRuleSystem<NFPirateRuleComponent>
         string ret;
         // This is hacky.
         if (HasComp<AutoPirateCaptainComponent>(uid))
-            ret = Loc.GetString("nf-piratecaptain-role-greeting");
+            ret = Loc.GetString("sc-captain-role-greeting"); // Lua nf-piratecaptain-role-greeting<sc-captain-role-greeting
         else
-            ret = Loc.GetString("nf-pirate-role-greeting");
+            ret = Loc.GetString("sc-soldier-role-greeting"); // Lua nf-pirate-role-greeting<sc-soldier-role-greeting
 
         if (HasComp<HumanoidAppearanceComponent>(uid))
             ret += "\n\n" + Loc.GetString("nf-pirate-role-greeting-equipment") + "\n";

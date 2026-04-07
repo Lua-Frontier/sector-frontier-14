@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/15/2025 11:25:24
-  entityCount: 1418
+  time: 03/29/2026 14:11:54
+  entityCount: 1411
 maps: []
 grids:
 - 1
@@ -26,6 +26,7 @@ tilemap:
   8: FloorReinforced
   22: HullReinforcedCornerSE
   23: HullReinforcedCornerSW
+  9: Lattice
   19: LatticeCornerNE
   17: LatticeCornerNW
   20: LatticeCornerSE
@@ -36,7 +37,6 @@ tilemap:
   16: PlatingCornerNW
   18: PlatingCornerSE
   21: PlatingCornerSW
-  9: ShieldLattice
   1: TrainLattice
 entities:
 - proto: ""
@@ -576,7 +576,8 @@ entities:
             0: 44544
             1: 192
           2,1:
-            1: 30495
+            1: 30483
+            3: 12
           2,2:
             1: 1539
             0: 57344
@@ -674,6 +675,21 @@ entities:
           moles:
           - 21.6852
           - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -1018,6 +1034,38 @@ entities:
     - type: Transform
       pos: 9.5,-13.5
       parent: 1
+- proto: AmmoBox23x75mmBuckshot
+  entities:
+  - uid: 827
+    components:
+    - type: Transform
+      parent: 824
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 828
+    components:
+    - type: Transform
+      parent: 824
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: AmmoBox9x19mmFMJ
+  entities:
+  - uid: 825
+    components:
+    - type: Transform
+      parent: 824
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 826
+    components:
+    - type: Transform
+      parent: 824
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: APCBasic
   entities:
   - uid: 48
@@ -5259,7 +5307,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 24.5,1.5
       parent: 1
-- proto: GunneryServerHigh
+- proto: GunneryServerUltra
   entities:
   - uid: 816
     components:
@@ -5310,36 +5358,30 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-  - uid: 817
-    components:
-    - type: Transform
-      anchored: True
-      pos: 11.5,4.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 818
-          - 819
-          - 822
-          - 820
-          - 823
-          - 821
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
   - uid: 824
     components:
     - type: Transform
       anchored: True
       pos: 10.5,4.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
     - type: Physics
       bodyType: Static
     - type: ContainerContainer
@@ -5348,12 +5390,12 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 825
           - 827
-          - 829
-          - 826
-          - 828
           - 830
+          - 828
+          - 826
+          - 829
+          - 825
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -5485,38 +5527,6 @@ entities:
     - type: Transform
       pos: 8.265024,8.371579
       parent: 1
-- proto: AmmoBox9x19mmFMJ
-  entities:
-  - uid: 825
-    components:
-    - type: Transform
-      parent: 824
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 826
-    components:
-    - type: Transform
-      parent: 824
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: AmmoBox23x75mmBuckshot
-  entities:
-  - uid: 827
-    components:
-    - type: Transform
-      parent: 824
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 828
-    components:
-    - type: Transform
-      parent: 824
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: NFHolopadShip
   entities:
   - uid: 844
@@ -5524,36 +5534,6 @@ entities:
     - type: Transform
       pos: 8.5,-3.5
       parent: 1
-- proto: AmmoBox45_magnumFMJ
-  entities:
-  - uid: 818
-    components:
-    - type: Transform
-      parent: 817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 819
-    components:
-    - type: Transform
-      parent: 817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 820
-    components:
-    - type: Transform
-      parent: 817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 821
-    components:
-    - type: Transform
-      parent: 817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: NfsdDeployableBarrier
   entities:
   - uid: 845
@@ -5596,22 +5576,6 @@ entities:
     - type: Transform
       pos: 15.5,-5.5
       parent: 1
-- proto: NFWeaponPistolN1984
-  entities:
-  - uid: 822
-    components:
-    - type: Transform
-      parent: 817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 823
-    components:
-    - type: Transform
-      parent: 817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: NFWeaponShotgunEnforcer
   entities:
   - uid: 829
@@ -6080,17 +6044,17 @@ entities:
     - type: Transform
       pos: 5.5,-2.5
       parent: 1
-- proto: SuitStorageCadet
+- proto: SuitStorageEVANfsd
   entities:
-  - uid: 923
-    components:
-    - type: Transform
-      pos: 6.5,4.5
-      parent: 1
-  - uid: 924
+  - uid: 817
     components:
     - type: Transform
       pos: 5.5,4.5
+      parent: 1
+  - uid: 818
+    components:
+    - type: Transform
+      pos: 6.5,4.5
       parent: 1
 - proto: TableReinforced
   entities:
@@ -6448,12 +6412,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,1.5
       parent: 1
-  - uid: 986
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,5.5
-      parent: 1
   - uid: 987
     components:
     - type: Transform
@@ -6641,11 +6599,6 @@ entities:
     components:
     - type: Transform
       pos: 16.5,7.5
-      parent: 1
-  - uid: 1024
-    components:
-    - type: Transform
-      pos: 15.5,5.5
       parent: 1
   - uid: 1025
     components:
@@ -6897,16 +6850,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,10.5
-      parent: 1
-  - uid: 1075
-    components:
-    - type: Transform
-      pos: 13.5,5.5
-      parent: 1
-  - uid: 1076
-    components:
-    - type: Transform
-      pos: 14.5,5.5
       parent: 1
   - uid: 1077
     components:
@@ -7407,12 +7350,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 10.5,-0.5
       parent: 1
-  - uid: 1167
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,5.5
-      parent: 1
   - uid: 1168
     components:
     - type: Transform
@@ -7906,12 +7843,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 18.5,1.5
       parent: 1
-  - uid: 1257
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,5.5
-      parent: 1
   - uid: 1258
     components:
     - type: Transform
@@ -8086,6 +8017,38 @@ entities:
     components:
     - type: Transform
       pos: -6.5,3.5
+      parent: 1
+- proto: WallPlastitaniumCapital
+  entities:
+  - uid: 819
+    components:
+    - type: Transform
+      pos: 3.5,5.5
+      parent: 1
+  - uid: 820
+    components:
+    - type: Transform
+      pos: 15.5,5.5
+      parent: 1
+  - uid: 821
+    components:
+    - type: Transform
+      pos: 13.5,5.5
+      parent: 1
+  - uid: 822
+    components:
+    - type: Transform
+      pos: 14.5,5.5
+      parent: 1
+  - uid: 823
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 1
+  - uid: 923
+    components:
+    - type: Transform
+      pos: 2.5,5.5
       parent: 1
 - proto: WallPlastitaniumDiagonal
   entities:

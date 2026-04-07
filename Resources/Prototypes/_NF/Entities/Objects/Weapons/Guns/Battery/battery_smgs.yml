@@ -6,7 +6,14 @@
   name: energy submachine gun
   description: |-
     An advanced hybrid energy submachine gun with two settings: disable and kill. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
+  - type: Gun #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 3 #Lua 3.6<3
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi
   - type: Clothing

@@ -14,12 +14,20 @@
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/SMGs/mp5.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 7
-    minAngle: 1
-    maxAngle: 45
-    angleIncrease: 10
-    angleDecay: 10
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    fireRate: 12 #Lua 7<12
+#    minAngle: 1 # comment from _Lua
+#    maxAngle: 45
+#    angleIncrease: 10
+#    angleDecay: 10
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
     shotsPerBurst: 3
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/smg_light.ogg
@@ -53,13 +61,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: CMMagazineSMGMP5
+        startingItem: Magazine635x40mmCaseless #Lua CMMagazineSMGMP5<Magazine635x40mmCaseless
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/smg_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/smg_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - CMMagazineSMGMP5
+          - Magazine635x40mmCaseless #Lua CMMagazineSMGMP5<Magazine635x40mmCaseless
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.84, 0

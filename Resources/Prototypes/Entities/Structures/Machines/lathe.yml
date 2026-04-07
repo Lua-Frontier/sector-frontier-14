@@ -151,10 +151,9 @@
     - NFMedicalMobilityStatic # Frontier
     - NFServiceKitchenStatic # Frontier
     - NFEvaSuitCommon # Frontier
-
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
+#  - type: EmagLatheRecipes # comment from _Lua
+#    emagStaticPacks:
+#    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -506,6 +505,7 @@
   parent: [NFBlueprintReceiverBase, BaseLatheLube] # Frontier: added NFBlueprintReceiverBase
   name: ammo techfab
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
+  suffix: Need balance test
   components:
     - type: Sprite
       sprite: Structures/Machines/techfab.rsi
@@ -527,11 +527,11 @@
       idleState: icon
       runningState: icon
       staticPacks:
-      - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
-      - NFMercenaryMagazineStatic
-      - RMCAmmoPack
-      - N14AmmoPack
-      - MonoAmmoPack
+#      - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
+#      - N14AmmoPack # comment (530-533) from _Lua
+#      - NFMercenaryMagazineStatic
+#      - RMCAmmoPack
+      - MonoAmmoPackModified #Lua MonoAmmoPack<MonoAmmoPackModified
     - type: MaterialStorage
       whitelist:
         tags:

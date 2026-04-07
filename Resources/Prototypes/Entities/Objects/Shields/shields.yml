@@ -5,6 +5,10 @@
   description: A shield!
   abstract: true
   components:
+    - type: Clothing #Lua
+      slots: 
+        - Back
+        - SuitStorage
     - type: Sprite
       sprite: Objects/Weapons/Melee/shields.rsi
       state: riot-icon
@@ -19,17 +23,26 @@
           Slash: 0.7
           Piercing: 0.7
           Heat: 0.7
+          Radiation: 0.7
+          Shock: 0.7
+          Caustic: 0.7
       activeBlockModifier:
         coefficients:
           Blunt: 0.5
           Slash: 0.5
           Piercing: 0.5
           Heat: 0.5
+          Radiation: 0.5
+          Shock: 0.5
+          Caustic: 0.5
         flatReductions:
           Blunt: 1
           Slash: 1
           Piercing: 1
           Heat: 1
+          Radiation: 1
+          Shock: 1
+          Caustic: 1
     - type: Damageable
       damageContainer: Shield
     - type: Destructible
@@ -42,7 +55,7 @@
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 100 #This is probably enough damage before it breaks
+            damage: 200 #This is probably enough damage before it breaks #Lua 100<200
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]

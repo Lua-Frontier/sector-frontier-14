@@ -3,6 +3,7 @@
   parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseAmmoBox556x45mm
   name: ammunition box (5.56x45mm FMJ)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -37,10 +38,12 @@
       path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
 
 #small ammo boxes
+# Standart
 - type: entity
   parent: BaseAmmoBox556x45mm
   id: AmmoBox556x45mmFMJ
   name: ammunition box (5.56x45mm FMJ)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge556x45mmFMJ
@@ -55,6 +58,7 @@
   parent: BaseAmmoBox556x45mm
   id: AmmoBox556x45mmPractice
   name: ammunition box (5.56x45mm practice)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge556x45mmPractice
@@ -68,8 +72,43 @@
 
 - type: entity
   parent: BaseAmmoBox556x45mm
+  id: AmmoBox556x45mmRubber
+  name: ammunition box (5.56x45mm rubber)
+  suffix: Need balance test #Lua
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge556x45mmRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+# Mechanical
+- type: entity
+  parent: BaseAmmoBox556x45mm
+  id: AmmoBox556x45mmHP
+  name: ammunition box (5.56x45mm hollow-point)
+  suffix: Need balance test #Lua
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge556x45mmHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: HP
+
+# Physical
+- type: entity
+  parent: BaseAmmoBox556x45mm
   id: AmmoBox556x45mmIncendiary
   name: ammunition box (5.56x45mm incendiary)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge556x45mmIncendiary
@@ -85,6 +124,7 @@
   id: AmmoBox556x45mmUranium
   parent: BaseAmmoBox556x45mm
   name: ammunition box (5.56x45mm uranium)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge556x45mmUranium
@@ -96,109 +136,35 @@
       map: ["enum.GunVisualLayers.Mag"]
     - state: uranium
 
-# Upstream
+# Special
 - type: entity
   parent: BaseAmmoBox556x45mm
-  id: AmmoBox556x45mmRubber
-  name: ammunition box (5.56x45mm rubber)
+  id: AmmoBox556x45mmEMP
+  name: ammunition box (5.56x45mm EMP)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmRubber
+    proto: Cartridge556x45mmEMP
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: rubber
+    - state: emp
 
-# Mono AP syst
-#anti-flesh:
 - type: entity
   parent: BaseAmmoBox556x45mm
-  id: AmmoBox556x45mmHP
-  name: ammunition box (5.56x45mm hollow-point)
+  id: AmmoBox556x45mmCaustic
+  name: ammunition box (5.56x45mm Caustic)
+  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmHP
+    proto: Cartridge556x45mmCaustic
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: HP
-
-- type: entity
-  parent: BaseAmmoBox556x45mm
-  id: AmmoBox556x45mmRIP
-  name: ammunition box (5.56x45mm RIP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmRIP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: RIP
-
-#armor-piercing:
-
-- type: entity
-  parent: BaseAmmoBox556x45mm
-  id: AmmoBox556x45mmPlasteelAP
-  name: ammunition box (5.56x45mm AP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmPlasteelAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: plasteelAP
-
-#big ammo boxes
-- type: entity
-  parent: BaseAmmoBox556x45mm
-  id: AmmoBox556x45mmBigFMJ
-  name: big ammunition box (5.56x45mm FMJ)
-  suffix: Big
-  components:
-  - type: Item
-    shape:
-    - 0,0,1,1
-  - type: BallisticAmmoProvider
-    capacity: 210 # 7 rifle mags
-    proto: Cartridge556x45mmFMJ
-  - type: Sprite
-    layers:
-    - state: base-b # Frontier: base-big<base-b
-      map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1 # Frontier: mag-big-1<magb-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: magb # Frontier: mag-big<magb
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  parent: AmmoBox556x45mmBigFMJ
-  id: AmmoBox556x45mmBigRubber
-  name: ammunition box (5.56x45mm rubber)
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 210
-    proto: Cartridge556x45mmRubber
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/5.56x45mm.rsi
-    layers:
-    - state: base-b
-      map: ["enum.GunVisualLayers.Base"]
-    - state: magb-3
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: practice-b
+    - state: caustic

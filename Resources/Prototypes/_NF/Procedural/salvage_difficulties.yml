@@ -4,8 +4,8 @@
 - type: salvageDifficulty
   id: NFLightWeight
   lootTable: NFSalvageLootModerate
-  lootBudget: 30
-  mobBudget: 17
+  lootBudget: 20 #Lua 30<20
+  mobBudget: 8 #Lua 17<8
   modifierBudget: 2
   color: "#6DD363"
   recommendedPlayers: 1
@@ -14,8 +14,8 @@
 - type: salvageDifficulty
   id: NFModerate
   lootTable: NFSalvageLootModerate
-  lootBudget: 60 #Lua 30<60
-  mobBudget: 25
+  lootBudget: 45 #Lua 30<45
+  mobBudget: 12 #Lua 25<12
   modifierBudget: 2
   color: "#EFB34196"
   recommendedPlayers: 2
@@ -24,8 +24,8 @@
 - type: salvageDifficulty
   id: NFHazardous
   lootTable: NFSalvageLootHazardous
-  lootBudget: 80 #Lua 40<80
-  mobBudget: 32
+  lootBudget: 60 #Lua 40<60
+  mobBudget: 16 #Lua 32<16
   modifierBudget: 3
   color: "#DE3A3A96"
   recommendedPlayers: 3
@@ -34,8 +34,8 @@
 - type: salvageDifficulty
   id: NFExtreme
   lootTable: NFSalvageLootExtreme
-  lootBudget: 100 #Lua 50<100
-  mobBudget: 40
+  lootBudget: 75 #Lua 50<75
+  mobBudget: 20 #Lua 40<20
   modifierBudget: 4
   color: "#D381C996"
   recommendedPlayers: 4

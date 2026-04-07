@@ -2,7 +2,8 @@
   name: R-91
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponRifleR91
-  description: An old fashioned assault rifle chambered in 5.56. # TODO: Need to create projectiles, magazines and boxes for 5.56.
+  description: An old fashioned assault rifle chambered in 5.56.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/r91.rsi
@@ -18,36 +19,45 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/r91.rsi
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -38
+#  - type: GunWieldBonus #comment from _Lua
+#    minAngle: -21
+#    maxAngle: -38
+  - type: GunRequiresWield #Lua
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    angleIncrease: 4
-    angleDecay: 16
+    examineCaliber: gun-examine-caliber-55645 #Lua
+#    minAngle: 24 # comment from _Lua
+#    maxAngle: 45
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 4.8 #Lua
     soundGunshot:
       collection: N14RifleR91Gunshot
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556Rifle
+        startingItem: Magazine556x45mmFMJ #Lua Magazine556Rifle<Magazine556x45mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine556Rifle
+            - Magazine556x45mmFMJ #Lua Magazine556Rifle<Magazine556x45mmFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge556Rifle
+        startingItem: Cartridge556x45mmFMJ #Lua N14Cartridge556Rifle<Cartridge556x45mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge556Rifle
+            - Cartridge556x45mmFMJ #Lua N14Cartridge556Rifle<Cartridge556x45mmFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -63,6 +73,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponChineseRifle
   description: A old foreing assault rifle with strange simbols on it, the chamber has enough space to hold a 7,62 bullet.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chineserifle.rsi
@@ -78,16 +89,24 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/chineserifle.rsi
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -38
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus
+#    minAngle: -21
+#    maxAngle: -38
   - type: Gun
-    minAngle: 24
-    maxAngle: 50
-    angleIncrease: 4
-    angleDecay: 16
+    examineCaliber: gun-examine-caliber-76239 #Lua
+#    minAngle: 24 # comment from _Lua
+#    maxAngle: 50
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
     fireRate: 4
     soundGunshot:
       collection: N14ChineseRifleGunshot
@@ -95,20 +114,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762Rifle
+        startingItem: Magazine762x39mmFMJ #Lua Magazine762Rifle<Magazine762x39mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine762Rifle
+            - Magazine762x39mmFMJ #Lua Magazine762Rifle<Magazine762x39mmFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge762Rifle
+        startingItem: Cartridge762x39mmFMJ #Lua N14Cartridge762Rifle<Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge762Rifle
+            - Cartridge762x39mmFMJ #Lua N14Cartridge762Rifle<Cartridge762x39mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -120,6 +139,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponCarbine
   description: A black compact assault rifle, uses 5.56 ammo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
@@ -135,51 +155,84 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -41
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus
+#    minAngle: -20
+#    maxAngle: -41
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    angleIncrease: 4
-    angleDecay: 16
+    examineCaliber: gun-examine-caliber-76251 #Lua
+#    minAngle: 24 # comment from _Lua
+#    maxAngle: 45
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 6 #Lua
     soundGunshot:
       collection: N14CarbineGunshot
-    selectedMode: FullAuto
+    selectedMode: SemiAuto #Lua FullAuto<SemiAuto
     availableModes:
-    - FullAuto
+#     - FullAuto #comment from _Lua
     - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: LongMagazine556Rifle
+        startingItem: Magazine762x51mmFMJ #Lua LongMagazine556Rifle<Magazine762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - LongMagazine556Rifle
+            - Magazine762x51mmFMJ #Lua LongMagazine556Rifle<Magazine762x51mmFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge556Rifle
+        startingItem: Cartridge762x51mmFMJ #Lua N14Cartridge556Rifle<Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge556Rifle
+            - Cartridge762x51mmFMJ #Lua N14Cartridge556Rifle<Cartridge762x51mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 5
+      pvsIncrease: 1
 
 - type: entity
   name: marksman carbine
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponMarksman
   description: A heavy semiautomatic rifle with a scope, uses 7.62 ammo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/marksman.rsi
@@ -195,39 +248,48 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -44
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus
+#    minAngle: -23
+#    maxAngle: -44
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    angleIncrease: 4
-    angleDecay: 16
+    examineCaliber: gun-examine-caliber-76239 #Lua
+#    minAngle: 24
+#    maxAngle: 45
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 5
     soundGunshot:
       collection: N14MarksmanGunshot
-    fireRate: 5
-    selectedMode: SemiAuto
+    selectedMode: FullAuto #Lua SemiAuto<FullAuto
     availableModes:
+    - FullAuto #Lua
     - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762Rifle
+        startingItem: Magazine762x39mmFMJ #Lua Magazine762Rifle<Magazine762x39mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine762Rifle
+            - Magazine762x39mmFMJ #Lua Magazine762Rifle<Magazine762x39mmFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge762Rifle
+        startingItem: Cartridge762x39mmFMJ #Lua N14Cartridge762Rifle<Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge762Rifle
+            - Cartridge762x39mmFMJ #Lua N14Cartridge762Rifle<Cartridge762x39mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -239,6 +301,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponService
   description: A cheap mass produced post war rifle made by the NCR, chambered in 5.56.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/servicerifle.rsi
@@ -253,16 +316,25 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -43
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus
+#    minAngle: -21
+#    maxAngle: -43
   - type: Gun
-    minAngle: 18
-    maxAngle: 40
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 5
+    examineCaliber: gun-examine-caliber-76251 #Lua
+#    minAngle: 18 # comment from _Lua
+#    maxAngle: 40
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 4.8 #Lua 5<4.8
     soundGunshot:
       collection: N14ServiceGunshot
     selectedMode: SemiAuto
@@ -272,31 +344,55 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556Rifle
+        startingItem: Magazine762x51mmFMJ #Lua Magazine556Rifle<Magazine762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine556Rifle
+            - Magazine762x51mmFMJ #Lua Magazine556Rifle<Magazine762x51mmFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge556Rifle
+        startingItem: Cartridge762x51mmFMJ #Lua N14Cartridge556Rifle<Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge556Rifle
+            - Cartridge762x51mmFMJ #Lua N14Cartridge556Rifle<Cartridge762x51mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 5
+      pvsIncrease: 1
 
 - type: entity
   name: scout rifle
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponScout
   description: A modified version of the service rifle made by rangers in the field. It is capable of using larger 5.56 magazines.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/scoutrifle.rsi
@@ -311,41 +407,49 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -46
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus
+#    minAngle: -21
+#    maxAngle: -46
   - type: Gun
-    minAngle: 18
-    maxAngle: 46
-    angleIncrease: 4
-    angleDecay: 12
-    fireRate: 6
+#    minAngle: 18 # comment from _Lua
+#    maxAngle: 46
+#    angleIncrease: 4
+#    angleDecay: 12
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 3 #Lua 6<3
     soundGunshot:
       collection: N14ServiceGunshot
-    selectedMode: FullAuto
+    selectedMode: SemiAuto #Lua FullAuto<SemiAuto
     availableModes:
-    - FullAuto
+#    - FullAuto #comment from _Lua
     - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556Rifle
+        startingItem: Magazine762x54mmRFMJ #Lua Magazine556Rifle<Magazine762x54mmRFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine556Rifle
-            - LongMagazine556Rifle
+            - Magazine762x54mmRFMJ #Lua Magazine556Rifle<Magazine762x54mmRFMJ
+#            - LongMagazine556Rifle
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge556Rifle
+        startingItem: Cartridge762x54mmRFMJ #Lua N14Cartridge556Rifle<Cartridge762x54mmRFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge556Rifle
+            - Cartridge762x54mmRFMJ #Lua N14Cartridge556Rifle<Cartridge762x54mmRFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -378,10 +482,10 @@
     minAngle: -23
     maxAngle: -56
   - type: Gun
-    minAngle: 24
-    maxAngle: 60
-    angleIncrease: 4
-    angleDecay: 16
+    minAngle: 23
+    maxAngle: 56
+    angleIncrease: 0
+    angleDecay: 0
     fireRate: 2
     soundGunshot:
       collection: N14BattleRifleGunshot
@@ -411,12 +515,36 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 7.5
+      pvsIncrease: 1
 
 - type: entity
   name: carbine
   parent: [BaseC2ExpeditionContraband, BaseWeaponRifle]
   id: N14WeaponOldCarbine
   description: A short compact rifle of the pre-war, chambered in 5.56.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/carbine.rsi
@@ -431,39 +559,49 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -40
+  - type: GunRequiresWield #Lua
+#  - type: GunWieldBonus
+#    minAngle: -21
+#    maxAngle: -40
   - type: Gun
-    minAngle: 24
-    maxAngle: 48
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 4
+    examineCaliber: gun-examine-caliber-55645 #Lua
+#    minAngle: 24 # comment from _Lua
+#    maxAngle: 48
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 6 #Lua 4<6
     soundGunshot:
       collection: N14OldCarbineGunshot
-    selectedMode: SemiAuto
+    selectedMode: FullAuto #Lua SemiAuto<FullAuto
     availableModes:
     - SemiAuto
+    - FullAuto #Lua
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556Rifle
+        startingItem: Magazine556x45mmFMJ #Lua Magazine556Rifle<Magazine556x45mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine556Rifle
+            - Magazine556x45mmFMJ #Lua Magazine556Rifle<Magazine556x45mmFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14Cartridge556Rifle
+        startingItem: Cartridge556x45mmFMJ #Lua N14Cartridge556Rifle<Cartridge556x45mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14Cartridge556Rifle
+            - Cartridge556x45mmFMJ #Lua N14Cartridge556Rifle<Cartridge556x45mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1

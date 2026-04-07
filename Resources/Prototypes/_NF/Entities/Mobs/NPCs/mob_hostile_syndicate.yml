@@ -368,7 +368,7 @@
       prototypes:
         - SyndicateNavalOperatorGearD
     - type: BasicEntityAmmoProvider
-      proto: Cartridge9x19mmRIP #Lua 35 -> 9x19
+      proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
       capacity: 7
       count: 7
 
@@ -458,7 +458,7 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: Cartridge9x19mmEmp #Lua 35 -> 9x19
+      proto: Cartridge9x19mmEMP #Lua 35 -> 9x19
       capacity: 4
       count: 4
     - type: Gun

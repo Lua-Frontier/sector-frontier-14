@@ -1,0 +1,92 @@
+
+- type: entity
+  parent: ClothingMaskGas
+  id: N14ClothingMaskNcr
+  name: Ncr trooper gasmask
+  description: A gasmask issued to ncr forces. 
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/NcrTrooperMask.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/NcrTrooperMask.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.9
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,0
+
+- type: entity
+  parent: ClothingMaskGas
+  id: N14ClothingMaskdrylandergoggles
+  name: Drylander Goggles
+  description: A gasmask issued to ncr forces. 
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/drylander-goggles.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/drylander-goggles.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.9
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,0
+
+- type: entity
+  parent: ClothingMaskGas
+  id: N14ClothingMaskDrylanderHeadwrap
+  name: Drylander headwrap
+  description: A gasmask issued to ncr forces. 
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/drylander-headwrap.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/drylander-headwrap.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.9
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,0
+
+- type: entity
+  parent: ClothingMaskGas
+  id: N14ClothingSackMask
+  name: Sackmask gasmask
+  description: A gasmask issued to ncr forces. 
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Mask/sackmask.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Mask/sackmask.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Radiation: 0.9
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,0

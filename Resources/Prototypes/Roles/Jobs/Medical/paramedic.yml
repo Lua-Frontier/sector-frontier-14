@@ -6,13 +6,16 @@
   salary: 70000
   setPreference: true # Lua
   requirements:
+  - !type:OverallPlaytimeRequirement #Lua
+    time: 36000
   - !type:DepartmentTimeRequirement
     department: Medical
-    time: 9000 #2.5 hrs
+    time: 36000 #2.5 hrs #Lua 2.5<20
   startingGear: ParamedicGear
   alwaysUseSpawner: true
   icon: "JobIconParamedic"
   supervisors: job-supervisors-mmo # Frontier
+  displayWeight: 30
   access:
   - Medical
   - Maintenance

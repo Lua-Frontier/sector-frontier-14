@@ -1,3 +1,8 @@
+# Damage-per-second = 150 for bolt-action rifles; 150-25 = 125 for caustic ammo; max COO = 1.5
+# Main damage type - Piercing for standart; main damage/special damage = 70/30 for special
+# Structural DPS = 600 for bolt-action rifles; Damage for projectile = 600/1.5 = 400
+# LeptonComm status clear
+# Standart
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
@@ -7,12 +12,13 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 35 #Lua base 35
+        Piercing: 100
         Structural: 400 # if you were a wall would you like having a .50 cal anti materiel round go through you (this breaks a normal wall in 3 shots, one mag goes through four normal walls, 10 rounds to take down a reinforced wall)
   - type: Tracer
     color: "#FFFFFFFF"
     length: 3
 
+# Mechanical
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseBulletTrigger
@@ -42,6 +48,88 @@
     layers:
     - state: bullet
       shader: unshaded
+  - type: Tracer
+    color: "#FFFFFFFF"
+    length: 3
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: Bullet127x99mmHP
+  name: bullet (12.7x99mm HP)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 30
+        Piercing: 70
+        Structural: 400
+  - type: Tracer
+    color: "#FFFFFFFF"
+    length: 3
+
+# Physical
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: Bullet127x99mmIncendiary
+  name: bullet (12.7x99mm incendiary)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Heat: 30
+        Structural: 400
+  - type: Tracer
+    color: "#FFFFFFFF"
+    length: 3
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletUranium
+  id: Bullet127x99mmUranium
+  name: bullet (12.7x99mm uranium)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Radiation: 30
+        Structural: 400
+  - type: Tracer
+    color: "#FFFFFFFF"
+    length: 3
+
+# Special
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletEmp
+  id: Bullet127x99mmEMP
+  name: bullet (12.7x99mm EMP)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Shock: 30
+        Structural: 400
+  - type: Tracer
+    color: "#FFFFFFFF"
+    length: 3
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: Bullet127x99mmCaustic
+  name: bullet (12.7x99mm caustic)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50
+        Caustic: 25
+        Structural: 400
   - type: Tracer
     color: "#FFFFFFFF"
     length: 3

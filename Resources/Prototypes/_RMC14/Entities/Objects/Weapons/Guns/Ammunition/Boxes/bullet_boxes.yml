@@ -688,3 +688,28 @@
         map: [ "full" ]
       - state: incendiarybuck_e
         map: [ "empty" ]
+
+- type: entity
+  parent: BaseCartridgeRifle
+  id: CMBaseCartridgeRifle
+  name: cartridge
+  abstract: true
+  components:
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+
+- type: entity
+  parent: BaseMagazineRifle
+  id: CMMagazineRifleBase
+  abstract: true
+  components:
+  - type: Item
+    size: Normal
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    slots:
+    - suitStorage

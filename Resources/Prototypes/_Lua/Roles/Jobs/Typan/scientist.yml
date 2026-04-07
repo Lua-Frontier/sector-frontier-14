@@ -3,9 +3,9 @@
 # See AGPLv3.txt for details.
 
 - type: job
-  id: OutpostSyndicateScience
+  id: OutpostTypanScience
   name: job-name-typan-science
-  playTimeTracker: JobOutpostTypanScience
+  playTimeTracker: JobOutpostSyndicateScience
   salary: 35000
   description: Учёный из далёкого космоса.
   startingGear: SyndicateScience
@@ -21,9 +21,6 @@
       department: Security
       time: 12000
     - !type:DepartmentTimeRequirement
-      department: Antag
-      time: 25000
-    - !type:DepartmentTimeRequirement
       department: Civilian
       time: 60000
     - !type:OverallPlaytimeRequirement
@@ -34,6 +31,8 @@
   accessGroups:
   - AllAccess
   special:
+  - !type:AddImplantSpecial
+    implants: [ DeathAcidifierImplantLWTypan ]
   - !type:AddComponentSpecial
     components:
       - type: Company
@@ -50,16 +49,16 @@
 - type: startingGear
   id: SyndicateScience
   equipment:
-    ears: ClothingHeadsetAltOutpostSyndicate
-    jumpsuit: ClothingUniformScienceOutpostSyndicate
+    ears: ClothingHeadsetAltOutpostTypan
+    jumpsuit: ClothingUniformScienceOutpostTypan
     outerClothing: ClothingOuterCoatLabOpened
-    gloves: ClothingHandsScienceOutpostSyndicate
+    gloves: ClothingHandsScienceOutpostTypan
     shoes: ClothingShoesBootsCombat
     back: ClothingBackpackSyndicateFilled
     id: SyndiPDAScience
 
 - type: chameleonOutfit
-  id: OutpostSyndicateScienceChameleonOutfit
-  job: OutpostSyndicateScience
+  id: OutpostTypanScienceChameleonOutfit
+  job: OutpostTypanScience
   equipment:
-    jumpsuit: ClothingUniformScienceOutpostSyndicate
+    jumpsuit: ClothingUniformScienceOutpostTypan
