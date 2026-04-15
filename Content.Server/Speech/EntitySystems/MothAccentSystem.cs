@@ -41,7 +41,7 @@ public sealed class MothAccentSystem : EntitySystem
         // ж => жжж
         message = Regex.Replace(
             message,"ж{1,3}",
-            _random.Pick(new List<string>() { "жж", "ЖЖ" })
+            _random.Pick(new List<string>() { "жж", "жжж" })
         );
         // Ж => ЖЖЖ
         message = Regex.Replace(
