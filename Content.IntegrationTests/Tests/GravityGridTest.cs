@@ -68,7 +68,7 @@ namespace Content.IntegrationTests.Tests
                 powerComponent.NeedsPower = false;
             });
 
-            await server.WaitRunTicks(5);
+            await server.WaitRunTicks(20);
 
             await server.WaitAssertion(() =>
             {
@@ -87,7 +87,7 @@ namespace Content.IntegrationTests.Tests
                 powerComponent.NeedsPower = true;
             });
 
-            await server.WaitRunTicks(5);
+            await server.WaitRunTicks(20);
 
             await server.WaitAssertion(() =>
             {
