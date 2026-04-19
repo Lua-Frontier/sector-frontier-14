@@ -106,6 +106,7 @@
     maxDuration: 780
     reoccurrenceDelay: 360 # 6 hours
   - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
