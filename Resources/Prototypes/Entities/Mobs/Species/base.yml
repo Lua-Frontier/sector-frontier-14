@@ -300,6 +300,10 @@
   - type: Carriable # Goobstation
   - type: LayingDown # WD EDIT
   - type: StunVisuals
+  - type: LuaJumpAbility # Lua
+    jumpDistance: 4
+    directionalAction: ActionLuaDirectionalJump
+    pointAction: null
 
 - type: entity
   save: false

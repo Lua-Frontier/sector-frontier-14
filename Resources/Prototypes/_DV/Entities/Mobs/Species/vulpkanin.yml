@@ -140,6 +140,8 @@
   - type: TallWhitelist
     scale: 1.2
   # End Frontier
+  - type: LuaJumpAbility # Lua: +25% jump distance
+    jumpDistance: 5
 
 - type: entity
   save: false
