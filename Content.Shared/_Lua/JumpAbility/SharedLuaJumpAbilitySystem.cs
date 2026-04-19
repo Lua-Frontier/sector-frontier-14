@@ -57,7 +57,7 @@ public abstract partial class SharedLuaJumpAbilitySystem : EntitySystem
         Actions.RemoveAction(ent.Owner, ent.Comp.PointActionEntity);
     }
 
-    private void OnDirectionalJump(Entity<LuaJumpAbilityComponent> ent, ref LuaDirectionalJumpEvent args)
+    protected virtual void OnDirectionalJump(Entity<LuaJumpAbilityComponent> ent, ref LuaDirectionalJumpEvent args)
     {
         if (_gravity.IsWeightless(args.Performer) || _standing.IsDown(args.Performer))
         {

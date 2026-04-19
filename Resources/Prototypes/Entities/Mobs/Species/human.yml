@@ -36,6 +36,12 @@
     understands:
     - Intergalactic
     # Lua end
+  - type: LuaSprint # Lua
+    maxSprint: 100
+    drainPerSecond: 6.0
+    regenPerSecond: 7.0
+    regenDelay: 0.30
+    recoverThresholdFraction: 0.30
 
 - type: entity
   parent: BaseSpeciesDummy

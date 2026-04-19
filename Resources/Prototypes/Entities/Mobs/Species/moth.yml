@@ -60,6 +60,12 @@
     baseWeightlessAcceleration: 1.5 # Move around more easily in space.
     baseWeightlessFriction: 1
     baseWeightlessModifier: 1
+  - type: LuaSprint # Lua
+    maxSprint: 90
+    drainPerSecond: 7.9
+    regenPerSecond: 8.2
+    regenDelay: 0.21
+    recoverThresholdFraction: 0.24
   - type: Flammable
     damage:
       types:

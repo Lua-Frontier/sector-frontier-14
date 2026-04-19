@@ -3,8 +3,10 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.JumpAbility;
+using Content.Shared._Lua.Sprint;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
+using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
@@ -25,6 +27,7 @@ public sealed partial class LuaJumpAbilitySystem : SharedLuaJumpAbilitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
     private static readonly ProtoId<StatusEffectPrototype> StunEffect = "Stun";
 
@@ -33,6 +36,16 @@ public sealed partial class LuaJumpAbilitySystem : SharedLuaJumpAbilitySystem
         base.Initialize();
 
         SubscribeLocalEvent<LuaJumpAbilityComponent, LuaJumpToPointEvent>(OnJumpToPoint);
+    }
+
+    protected override void OnDirectionalJump(Entity<LuaJumpAbilityComponent> ent, ref LuaDirectionalJumpEvent args)
+    {
+        base.OnDirectionalJump(ent, ref args);
+
+        if (!args.Handled)
+            return;
+
+        ConsumeSprintForJump(ent.Owner, ent.Comp);
     }
 
     public override void Update(float frameTime)
@@ -67,7 +80,29 @@ public sealed partial class LuaJumpAbilitySystem : SharedLuaJumpAbilitySystem
         if (ent.Comp.JumpSound != null)
             Audio.PlayPvs(ent.Comp.JumpSound, ent.Owner, AudioParams.Default.WithVolume(3));
 
+        ConsumeSprintForJump(ent.Owner, ent.Comp);
+
         args.Handled = true;
+    }
+
+    private void ConsumeSprintForJump(EntityUid uid, LuaJumpAbilityComponent jump)
+    {
+        if (!TryComp<LuaSprintComponent>(uid, out var sprint))
+            return;
+
+        var cost = sprint.MaxSprint * jump.SprintCostFraction;
+        if (cost <= 0f)
+            return;
+
+        var wasDepleted = sprint.Depleted;
+        sprint.CurrentSprint = MathF.Max(0f, sprint.CurrentSprint - cost);
+        sprint.LastSprintTime = _gameTiming.CurTime;
+        sprint.Depleted = sprint.CurrentSprint <= 0f;
+
+        if (wasDepleted != sprint.Depleted)
+            _movementSpeed.RefreshMovementSpeedModifiers(uid);
+
+        Dirty(uid, sprint);
     }
 
     private void ApplyJumpImpulse(EntityUid uid, LuaJumpAbilityComponent comp)

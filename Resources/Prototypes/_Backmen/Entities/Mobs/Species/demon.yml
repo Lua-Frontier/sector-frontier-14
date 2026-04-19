@@ -60,6 +60,12 @@
     understands:
     - Intergalactic
     - Demon # Lua end
+  - type: LuaSprint # Lua
+    maxSprint: 116
+    drainPerSecond: 5.9
+    regenPerSecond: 7.0
+    regenDelay: 0.29
+    recoverThresholdFraction: 0.28
 
 - type: entity
   parent: BaseSpeciesDummy

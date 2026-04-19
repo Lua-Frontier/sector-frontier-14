@@ -48,6 +48,9 @@ public sealed partial class LuaJumpAbilityComponent : Component
     public float Interval = 0.01f;
 
     [DataField, AutoNetworkedField]
+    public float SprintCostFraction = 0.65f;
+
+    [DataField, AutoNetworkedField]
     public SoundSpecifier? JumpSound;
 
     [DataField, AutoNetworkedField]
