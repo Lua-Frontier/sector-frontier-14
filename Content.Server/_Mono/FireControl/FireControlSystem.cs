@@ -19,6 +19,8 @@ using Content.Shared.Interaction;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
 using Content.Server.Salvage.Expeditions;
+using Content.Server.Station.Systems;
+using Content.Shared._NF.BindToStation;
 
 namespace Content.Server._Mono.FireControl;
 
@@ -32,6 +34,7 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PowerReceiverSystem _power = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private readonly StationSystem _station = default!;
     /// <summary>
     /// Dictionary of entities that have visualization enabled
     /// </summary>
@@ -278,6 +281,9 @@ public sealed partial class FireControlSystem : EntitySystem
         if (gridServer.ServerUid == null || gridServer.ServerComponent == null)
             return false;
 
+        if (!CanControlByStationBinding(controllable, gridServer.ServerUid.Value))
+            return false;
+
         var processingPowerCost = GetProcessingPowerCost(controllable, component);
 
         if (processingPowerCost > GetRemainingProcessingPower(gridServer.ServerUid.Value, gridServer.ServerComponent))
@@ -293,6 +299,22 @@ public sealed partial class FireControlSystem : EntitySystem
         {
             return false;
         }
+    }
+
+    private bool CanControlByStationBinding(EntityUid controllable, EntityUid server)
+    {
+        if (!TryComp<BindToStationComponent>(controllable, out var bindMarker) || !bindMarker.Enabled)
+            return true;
+
+        if (!TryComp<StationBoundObjectComponent>(controllable, out var bound) || !bound.Enabled || bound.BoundStation == null)
+            return false;
+
+        var serverStation = _station.GetOwningStation(server);
+        if (serverStation == null || serverStation != bound.BoundStation)
+            return false;
+
+        var currentStation = _station.GetOwningStation(controllable);
+        return currentStation != null && currentStation == bound.BoundStation;
     }
 
     public int GetRemainingProcessingPower(EntityUid server, FireControlServerComponent? component = null)
@@ -499,7 +521,8 @@ public sealed partial class FireControlSystem : EntitySystem
             if (TryComp<FireControllableComponent>(controllable, out var controlComp))
             {
                 var currentGrid = _xform.GetGrid(controllable);
-                if (currentGrid != component.ConnectedGrid)
+                if (currentGrid != component.ConnectedGrid
+                    || !CanControlByStationBinding(controllable, server))
                 {
                     Unregister(controllable, controlComp);
                 }
