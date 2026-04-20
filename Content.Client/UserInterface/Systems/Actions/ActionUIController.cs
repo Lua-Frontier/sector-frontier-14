@@ -754,8 +754,9 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             _window.SearchBar.OnTextChanged -= OnSearchChanged;
             _window.FilterButton.OnItemSelected -= OnFilterSelected;
 
-            _window.Close();
-            _window.Orphan();
+            if (!_window.Disposed && _window.IsOpen)
+                _window.Close();
+
             _window = null;
         }
     }

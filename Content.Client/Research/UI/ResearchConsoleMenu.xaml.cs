@@ -107,7 +107,10 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         foreach (var disciplineId in database.SupportedDisciplines)
         {
             var discipline = _prototype.Index<TechDisciplinePrototype>(disciplineId);
-            var tier = _research.GetHighestDisciplineTier(database, discipline);
+            if (!_research.IsDisciplineFactionAllowed(Entity, discipline))
+                continue;
+
+            var tier = _research.GetHighestDisciplineTier(Entity, database, discipline);
 
             // don't show tiers with no available tech
             if (tier == 0)

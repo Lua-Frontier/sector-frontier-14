@@ -93,10 +93,13 @@ public sealed partial class ResearchSystem
                 proto => proto.ID,
                 proto =>
                 {
+                    if (!IsTechnologyFactionAllowed(serverUid.Value, proto))
+                        return ResearchAvailability.Unavailable;
+
                     if (unlockedTechs.Contains(proto.ID))
                         return ResearchAvailability.Researched;
 
-                    var prereqsMet = proto.TechnologyPrerequisites.All(p => unlockedTechs.Contains(p));
+                    var prereqsMet = GetTechnologyPrerequisites(serverUid.Value, proto).All(p => unlockedTechs.Contains(p));
                     var canAfford = server.Points >= proto.Cost;
 
                     return prereqsMet ?

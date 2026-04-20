@@ -164,7 +164,11 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            var position = new Vector2(GridSize * proto.Position.X, GridSize * proto.Position.Y);
+            if (!_research.IsTechnologyFactionAllowed(Entity, proto))
+                continue;
+
+            var effectivePosition = _research.GetTechnologyPosition(Entity, proto);
+            var position = new Vector2(GridSize * effectivePosition.X, GridSize * effectivePosition.Y);
 
             if (!boundsSet)
             {
@@ -194,7 +198,11 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            var control = new FancyResearchConsoleItem(proto, _sprite, tech.Value);
+            if (!_research.IsTechnologyFactionAllowed(Entity, proto))
+                continue;
+
+            var effectivePrerequisites = _research.GetTechnologyPrerequisites(Entity, proto);
+            var control = new FancyResearchConsoleItem(proto, effectivePrerequisites, _sprite, tech.Value);
 
             DragContainer.AddChild(control);
 
@@ -233,7 +241,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var disciplineId in database.SupportedDisciplines)
         {
             var discipline = _prototype.Index<TechDisciplinePrototype>(disciplineId);
-            var tier = _research.GetTierCompletionPercentage(database, discipline, _prototype);
+            if (!_research.IsDisciplineFactionAllowed(Entity, discipline))
+                continue;
+
+            var tier = _research.GetTierCompletionPercentage(Entity, database, discipline, _prototype);
 
             var texture = new TextureRect
             {
@@ -318,7 +329,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         }
 
         // Create and add info panel
-        var control = new FancyTechnologyInfoPanel(proto, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
+        var control = new FancyTechnologyInfoPanel(proto, Entity, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
         control.BuyAction += args => OnTechnologyCardPressed?.Invoke(args.ID);
         InfoContainer.AddChild(control);
     }
@@ -363,9 +374,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     private Vector2 GetTechPosition(TechnologyPrototype proto)
     {
+        var position = _research.GetTechnologyPosition(Entity, proto);
         return new Vector2(
-            proto.Position.X * GridSize - _boundsMin.X + TreePadding,
-            proto.Position.Y * GridSize - _boundsMin.Y + TreePadding
+            position.X * GridSize - _boundsMin.X + TreePadding,
+            position.Y * GridSize - _boundsMin.Y + TreePadding
         );
     }
 

@@ -182,23 +182,4 @@
     - Vip
     - OutpostSyndicateShareholder
 
-- type: listing
-  id: UplinkVipFlatpackWarpDrive
-  name: uplink-vip-MachineWarpDriveFlatpack-name
-  description: uplink-vip-MachineWarpDriveFlatpack-desc
-  productEntity: MachineWarpDriveFlatpack
-  cost:
-    Speso: 20625
-  categories:
-  - UplinkVipFlatpack
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - VipUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
-
 

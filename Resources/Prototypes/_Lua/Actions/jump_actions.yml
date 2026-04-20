@@ -2,8 +2,8 @@
 - type: entity
   parent: BaseAction
   id: ActionLuaDirectionalJump
-  name: lua-action-jump-name
-  description: lua-action-jump-description
+  name: Jump
+  description: Activate the propulsion system and propel yourself in the direction you are looking.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -17,8 +17,8 @@
 - type: entity
   parent: BaseAction
   id: ActionLuaJumpToPoint
-  name: lua-action-jump-to-point-name
-  description: lua-action-jump-to-point-description
+  name: Jump to point
+  description: Jump to the selected location using a powerful impulse.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
