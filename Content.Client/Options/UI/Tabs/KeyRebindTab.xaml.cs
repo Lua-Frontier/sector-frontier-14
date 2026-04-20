@@ -109,6 +109,12 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SaveToFile();
         }
 
+        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args)
+        {
+            _cfg.SetCVar(CCVars.HoldLookUp, args.Pressed);
+            _cfg.SaveToFile();
+        }
+
         public KeyRebindTab()
         {
             IoCManager.InjectDependencies(this);
@@ -169,6 +175,7 @@ namespace Content.Client.Options.UI.Tabs
             AddCheckBox("ui-options-hotkey-toggle-walk", _cfg.GetCVar(CCVars.ToggleWalk), HandleToggleWalk);
             AddButton(ContentKeyFunctions.ToggleStanding);
             AddCheckBox("ui-options-function-auto-get-up", _cfg.GetCVar(CCVars.AutoGetUp), HandleToggleAutoGetUp); // WD EDIT
+            AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(CCVars.HoldLookUp), HandleHoldLookUp);
             InitToggleWalk();
             // Lua: Disabled ToggleKnockdown
             // AddButton(ContentKeyFunctions.ToggleKnockdown);
@@ -185,6 +192,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.Use);
             AddButton(EngineKeyFunctions.UseSecondary);
             AddButton(ContentKeyFunctions.UseItemInHand);
+            AddButton(ContentKeyFunctions.LookUp); // Lua
             AddButton(ContentKeyFunctions.AltUseItemInHand);
             AddButton(ContentKeyFunctions.ActivateItemInWorld);
             AddButton(ContentKeyFunctions.AltActivateItemInWorld);
