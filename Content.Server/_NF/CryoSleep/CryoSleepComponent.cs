@@ -17,6 +17,11 @@ public sealed partial class CryoSleepComponent : Component
     [DataField]
     public SoundSpecifier LeaveSound = new SoundCollectionSpecifier("RadiationPulse");
 
+    // Lua-start
+    [DataField]
+    public bool ShouldReopenRole = true;
+    // Lua-end
+
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool IsCryo = true;

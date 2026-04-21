@@ -929,7 +929,7 @@
     price: 750
 
 - type: entity
-  parent: HoverbikeFlatpack
+  parent: [HoverbikeFlatpack, BaseC1SyndicateContraband] # Lua-changes: added BaseC1SyndicateContraband
   id: HoverbikeSyndicateFlatpack
   name: syndicate hoverbike flatpack
   description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
@@ -1019,7 +1019,7 @@
     price: 2500
 
 - type: entity
-  parent: VendingMachineBoozeFlatpack
+  parent: [VendingMachineBoozeFlatpack, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
   id: VendingMachineClothingPunkFlatpack
   name: threadschoom vendomat flatpack
   description: A flatpack used for constructing a threadschoom vendomat.

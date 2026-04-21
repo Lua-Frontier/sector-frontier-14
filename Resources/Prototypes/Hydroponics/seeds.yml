@@ -924,8 +924,8 @@
     - FoodEgg
   harvestRepeat: Repeat
   lifespan: 75
-  maturation: 6
-  production: 12
+  maturation: 12 # Lua: 6<12
+  production: 20 # Lua: 12<20
   yield: 2
   potency: 20
   nutrientConsumption: 0.50

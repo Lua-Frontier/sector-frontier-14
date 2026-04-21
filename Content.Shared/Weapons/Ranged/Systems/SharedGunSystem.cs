@@ -76,6 +76,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
     private const float EjectOffset = 0.4f;
+    private const float MaxSpaceRecoilSpeed = 15f;
     protected const string AmmoExamineColor = "yellow";
     public const string FireRateExamineColor = "yellow"; // Frontier: protected<public
     public const string ModeExamineColor = "cyan";
@@ -394,7 +395,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (shots > 0)
             RaiseLocalEvent(gunUid, ev);
 
-        DebugTools.Assert(ev.Ammo.Count <= shots);
+        if (ev.Ammo.Count > shots)
+        {
+            Log.Warning("TakeAmmoEvent returned {Count} ammo for {Shots} shots on {Gun}. Trimming to avoid over-fire.", ev.Ammo.Count, shots, gunUid);
+            ev.Ammo.RemoveRange(shots, ev.Ammo.Count - shots);
+        }
         DebugTools.Assert(shots >= 0);
         UpdateAmmoCount(gunUid);
 
@@ -611,6 +616,11 @@ public abstract partial class SharedGunSystem : EntitySystem
     // Mono - rewritten
     public void CauseImpulse(EntityCoordinates toCoordinates, Entity<GunComponent> ent, float scale)
     {
+        var beforeEv = new BeforeCauseImpulseEvent();
+        RaiseLocalEvent(ent, ref beforeEv);
+        if (beforeEv.Cancelled)
+            return;
+
         var totalImpulse = ent.Comp.Recoil * scale;
         var selfXform = Transform(ent);
 
@@ -633,7 +643,69 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         var pos = impulseCoord.Position;
         pos = (pos - toBody.LocalCenter) * ent.Comp.RecoilRotation + toBody.LocalCenter;
-        Physics.ApplyLinearImpulse(toEnt, -dirVec * totalImpulse, pos);
+        var recoilImpulse = -dirVec * totalImpulse;
+        if (!TryLimitSpaceRecoilImpulse(toEnt, toBody, ref recoilImpulse))
+            return;
+
+        Physics.ApplyLinearImpulse(toEnt, recoilImpulse, pos);
+    }
+
+    private bool TryLimitSpaceRecoilImpulse(EntityUid uid, PhysicsComponent body, ref Vector2 recoilImpulse)
+    {
+        if (_gravity.EntityGridOrMapHaveGravity(uid))
+            return true;
+
+        if (body.InvMass <= 0f)
+            return true;
+
+        var currentVelocity = body.LinearVelocity;
+        var deltaVelocity = recoilImpulse * body.InvMass;
+        var predictedVelocity = currentVelocity + deltaVelocity;
+        var maxSpeedSq = MaxSpaceRecoilSpeed * MaxSpaceRecoilSpeed;
+
+        if (predictedVelocity.LengthSquared() <= maxSpeedSq)
+            return true;
+
+        var currentSpeed = currentVelocity.Length();
+        var predictedSpeed = predictedVelocity.Length();
+        if (currentSpeed >= MaxSpaceRecoilSpeed)
+        {
+            if (predictedSpeed > currentSpeed)
+            {
+                recoilImpulse = Vector2.Zero;
+                return false;
+            }
+
+            return true;
+        }
+
+        var deltaVelocityMagnitude = deltaVelocity.Length();
+        if (deltaVelocityMagnitude <= 0f)
+            return false;
+
+        var recoilDirection = Vector2.Normalize(deltaVelocity);
+        var velocityAlongRecoil = Vector2.Dot(currentVelocity, recoilDirection);
+        var discriminant = maxSpeedSq - currentVelocity.LengthSquared() + velocityAlongRecoil * velocityAlongRecoil;
+
+        if (discriminant <= 0f)
+        {
+            recoilImpulse = Vector2.Zero;
+            return false;
+        }
+
+        var maxAllowedDelta = -velocityAlongRecoil + MathF.Sqrt(discriminant);
+        if (maxAllowedDelta <= 0f)
+        {
+            recoilImpulse = Vector2.Zero;
+            return false;
+        }
+
+        if (deltaVelocityMagnitude <= maxAllowedDelta)
+            return true;
+
+        var impulseScale = maxAllowedDelta / deltaVelocityMagnitude;
+        recoilImpulse *= impulseScale;
+        return recoilImpulse.LengthSquared() > 0f;
     }
 
     public void RefreshModifiers(Entity<GunComponent?> gun)

@@ -1,0 +1,80 @@
+# region PKA Shotgun
+- type: entity
+  id: PkaShotgun
+  parent: [ WeaponProtoKineticAcceleratorBase, NFBaseWeaponFramePkaNanotrasen ] 
+  name: протокинетический дробовик
+  description: Стреляет шквалом сильных протокинетических снарядов, способных ломать породу, на короткое расстояние
+  components:
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+        #todo: add other 'empty' animations
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticSpread
+    capacity: 3
+    count: 3
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 44
+    maxAngle: 45
+    availableModes:
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: Sprite
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/shotgunpka.rsi
+    layers:
+    - state: icon
+      scale: 1.2, 1.2
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Item
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/shotgunpkahand64.rsi
+    shape:
+    - 0,0,3,1
+    heldPrefix: energy
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: Clothing
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/shotgunpka.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: GunRequiresWield
+  - type: StaticPrice 
+    price: 460
+
+# region Projectile
+- type: entity
+  id: ProtoShotgunProjectile
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 15
+        Structural: 150
+
+# region Spreading
+- type: entity
+  id: BulletKineticSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: ProtoShotgunProjectile
+    count: 6
+    spread: 40

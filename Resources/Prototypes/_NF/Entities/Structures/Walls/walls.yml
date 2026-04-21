@@ -56,8 +56,8 @@
   - type: SoundOnGather
   - type: Gatherable
     toolWhitelist:
-      components:
-      - MiningGatheringHard
+      tags:
+        - Pickaxe
   - type: MiningScannerViewable
 
 - type: entity

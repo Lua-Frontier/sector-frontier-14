@@ -59,7 +59,7 @@ public sealed partial class GatewayGeneratorComponent : Component
     };
 
     [DataField]
-    public int LootLayerCount = 3;
+    public int LootLayerCount = 0;
 
     /// <summary>
     /// Loot layers to pick from.
@@ -75,8 +75,8 @@ public sealed partial class GatewayGeneratorComponent : Component
         "OrePlasma",
         "OreUranium",
         "OreDiamond",
-        //"OreBananium",
         "OreArtifactFragment",
+        "OreMagmite",
     };
 }
 

@@ -1,0 +1,145 @@
+- type: stargatePlanetPreset
+  id: SGPresetJungleBioluminescentMix
+  biome:
+  - GateJungle
+  - GateBioluminescent
+  - GateGrassCaves
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  worldRadiusMin: 211
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.01
+
+- type: stargatePlanetPreset
+  id: SGPresetVerdantExpedition
+  biome:
+  - GateJungle
+  - GateBioluminescent
+  - GateLavaGrass
+  - GateDesertGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  worldRadiusMin: 193
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.1255
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  - NFCarps
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.01
+
+- type: stargatePlanetPreset
+  id: SGPresetTropicalRuins
+  biome:
+  - GateJungle
+  - GateGrassCaves
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  worldRadiusMin: 225
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetGlowingFrontier
+  biome:
+  - GateBioluminescent
+  - GateGrassCaves
+  - GateGrassLava
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  worldRadiusMin: 211
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Evening
+  - Daylight
+  weight: 0.01
+
+- type: stargatePlanetPreset
+  id: SGPresetWildernessMix
+  biome:
+  - GateJungle
+  - GateBioluminescent
+  - GateGrassDesert
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 70
+  dungeonDistanceMax: 150
+  worldRadiusMin: 198
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFCarps
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.01

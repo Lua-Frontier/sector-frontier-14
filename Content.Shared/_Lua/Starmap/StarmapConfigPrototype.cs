@@ -35,19 +35,10 @@ public sealed partial class StarmapConfigPrototype : IPrototype
     public StarmapParallaxLayer[] ParallaxLayers = Array.Empty<StarmapParallaxLayer>();
 
     [DataField]
-    public float StarDistanceMin = 5f;
-
-    [DataField]
-    public float StarDistanceMax = 15f;
-
-    [DataField]
     public float HyperlaneMaxDistance = 1200f;
 
     [DataField]
     public int HyperlaneNeighbors = 3;
-
-    [DataField("specialSectors")]
-    public SpecialSectorConfig[] SpecialSectors = Array.Empty<SpecialSectorConfig>();
 }
 
 [DataDefinition]
@@ -67,19 +58,6 @@ public sealed partial class StarmapParallaxLayer
 
     [DataField]
     public int Seed = 13;
-}
-
-[DataDefinition]
-public sealed partial class SpecialSectorConfig
-{
-    [DataField(required: true)]
-    public string Id = string.Empty;
-
-    [DataField]
-    public Vector2 Position = Vector2.Zero;
-
-    [DataField]
-    public Color? Color;
 }
 
 

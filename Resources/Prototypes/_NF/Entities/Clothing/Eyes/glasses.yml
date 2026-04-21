@@ -1,7 +1,7 @@
 - type: entity
   id: ClothingEyesArcadiaVisor
   name: arcadia visor
-  parent: [ ClothingEyesBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: [ClothingEyesBase, BaseC1Contraband] # Lua-changes: BaseC3ContrabandNoValue > BaseC1Contraband, deleted ContrabandClothing
   description: A visor produced by Arcadia Industries, with some high tech optics systems built in.
   components:
   - type: Sprite

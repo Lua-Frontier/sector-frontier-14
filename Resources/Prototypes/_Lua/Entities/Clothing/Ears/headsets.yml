@@ -22,7 +22,7 @@
     color: "#00fa9a"
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseC1SyndicateContraband]
   id: ClothingHeadsetAltOutpostSyndicate
   name: полноразмерная кроваво - красная гарнитура
   description: Модифицированный модульный интерком синдиката.
@@ -61,7 +61,7 @@
     color: "#F05C29"
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetAlt, BaseC1SyndicateContraband]
   id: ClothingHeadsetAltVipSyndicate
   name: vip over-ear headset
   suffix: Syndicate

@@ -107,6 +107,9 @@ public sealed class SmokeSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(args.OtherEntity, out var body))
             return;
 
+        if (TerminatingOrDeleted(args.OtherEntity))
+            return;
+
         foreach (var ent in _physics.GetContactingEntities(args.OtherEntity, body))
         {
             if (exists && ent == entity.Owner)

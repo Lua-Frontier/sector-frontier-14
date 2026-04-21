@@ -48,6 +48,8 @@ using Content.Server.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -72,7 +74,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly IMapManager _mapManager = default!; //Lua
     [Dependency] private readonly GameTicker _gameTicker = default!; //Lua
     [Dependency] private readonly IConfigurationManager _cfg = default!; //Lua
+    [Dependency] private readonly TagSystem _tag = default!; // Lua
     [Dependency] private readonly InventorySystem _inventory = default!; //For cryosleep warnings
+
+    private readonly ProtoId<TagPrototype> _dontReopenRoleTag = "DontReopenRole"; //Lua
 
     private readonly Dictionary<NetUserId, (TimeSpan OriginalEndTime, TimeSpan EntryTime)> _cryoTimers = new(); //Lua
 
@@ -478,6 +483,11 @@ public sealed partial class CryoSleepSystem : EntitySystem
         NetUserId? id = null;
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid: true } body)
         {
+            // Lua-start
+            if (!cryo.ShouldReopenRole)
+                _tag.AddTag(bodyId, _dontReopenRoleTag);
+            // Lua-end
+
             var argMind = mind;
             var ev = new CryosleepBeforeMindRemovedEvent(cryopod, argMind?.UserId);
             RaiseLocalEvent(bodyId, ev, true);
@@ -589,6 +599,8 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             _cryoTimers.Remove(userId.Value);
         }
+
+        _tag.RemoveTag(toEject.Value, _dontReopenRoleTag);
         //Lua end
 
         return true;

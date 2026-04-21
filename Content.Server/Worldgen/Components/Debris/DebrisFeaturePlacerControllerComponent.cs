@@ -39,5 +39,11 @@ public sealed partial class DebrisFeaturePlacerControllerComponent : Component
     /// </summary>
     [DataField("densityNoiseChannel", customTypeSerializer: typeof(PrototypeIdSerializer<NoiseChannelPrototype>))]
     public string DensityNoiseChannel { get; private set; } = default!;
+
+    public List<Vector2>? PendingPoints;
+
+    public int PendingPointIndex;
+
+    public EntityUid? PendingChunk;
 }
 

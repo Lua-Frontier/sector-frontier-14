@@ -119,7 +119,6 @@
         ents: []
       toggleable-clothing: !type:ContainerSlot {}
       cell_slot: !type:ContainerSlot {}
-      beakerSlot: !type:ContainerSlot # imperial hardsuit injection
   - type: HideLayerClothing
     slots:
     - Tail
@@ -258,8 +257,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayDynamicMode
+    allowedModes:
+    - HyposprayDynamicMode
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
 
@@ -303,6 +306,7 @@
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
+      - NanoChatCartridge # Lua
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge

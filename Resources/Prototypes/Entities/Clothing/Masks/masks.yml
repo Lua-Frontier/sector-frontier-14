@@ -43,7 +43,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ClothingMaskGas, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [ClothingMaskGas, BaseC1SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: ClothingMaskGasSyndicate
   name: syndicate gas mask
   description: A close-fitting tactical mask that can be connected to an air supply.
@@ -449,7 +449,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGasERT
+  parent: [ClothingMaskGasERT, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   id: ClothingMaskGasDeathSquad
   name: death squad gas mask
   description: A unique gas mask for the NT's most elite squad.
@@ -692,7 +692,7 @@
     replacement: italian
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: [ClothingMaskBase, BaseC1SpiderClanContraband] # Lua-changes: added BaseC1SpiderClanContraband
   id: ClothingMaskNinja
   name: ninja mask
   description: A close-fitting nano-enhanced mask that acts both as an air filter and a post-modern fashion statement.

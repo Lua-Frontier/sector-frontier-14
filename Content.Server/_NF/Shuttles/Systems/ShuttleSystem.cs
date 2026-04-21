@@ -1,8 +1,10 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
+
 using Content.Server._NF.Station.Components;
 using Content.Server.Shuttles.Components;
+using Content.Server._Lua.Shuttles.Systems; // Lua
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Shuttles.Components;
@@ -13,6 +15,8 @@ namespace Content.Server.Shuttles.Systems;
 public sealed partial class ShuttleSystem
 {
     [Dependency] private readonly RadarConsoleSystem _radarConsole = default!;
+    [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
+
     private const float SpaceFrictionStrength = 0.0075f;
     private const float DampenDampingStrength = 0.25f;
     private const float AnchorDampingStrength = 2.5f;
@@ -24,21 +28,25 @@ public sealed partial class ShuttleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, SetHideTargetRequest>(NfSetHideTarget);
     }
 
-    private bool SetInertiaDampening(EntityUid uid, PhysicsComponent physicsComponent, ShuttleComponent shuttleComponent, TransformComponent transform, InertiaDampeningMode mode)
+    private bool SetInertiaDampening(EntityUid uid, ShuttleComponent shuttleComponent, EntityUid shuttle, InertiaDampeningMode mode) // Lua
     {
+        /* Lua start
+
         if (!transform.GridUid.HasValue)
         {
             return false;
         }
 
+           Lua end */
+
         if (mode == InertiaDampeningMode.Query)
         {
-            _console.RefreshShuttleConsoles(transform.GridUid.Value);
+            _console.RefreshShuttleConsoles(shuttle); // Lua
             return false;
         }
 
-        if (!EntityManager.HasComponent<ShuttleDeedComponent>(transform.GridUid) ||
-            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(transform.GridUid)))
+        if (!EntityManager.HasComponent<ShuttleDeedComponent>(shuttle) || // Lua
+            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(shuttle))) // Lua
         {
             return false;
         }
@@ -53,36 +61,43 @@ public sealed partial class ShuttleSystem
 
         if (shuttleComponent.DampingModifier != 0)
             shuttleComponent.DampingModifier = shuttleComponent.BodyModifier;
-        _console.RefreshShuttleConsoles(transform.GridUid.Value);
+        _console.RefreshShuttleConsoles(shuttle); // Lua
         return true;
     }
 
     private void OnSetInertiaDampening(EntityUid uid, ShuttleConsoleComponent component, SetInertiaDampeningRequest args)
     {
-        // Ensure that the entity requested is a valid shuttle (stations should not be togglable)
-        if (!EntityManager.TryGetComponent(uid, out TransformComponent? transform) ||
-            !transform.GridUid.HasValue ||
-            !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
-            !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent))
+        // Lua start
+        if (!TryGetShuttle(uid, out var gridUid))
         {
             return;
         }
 
-        if (SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, args.Mode) && args.Mode != InertiaDampeningMode.Query)
+        if (!EntityManager.TryGetComponent(gridUid, out ShuttleComponent? shuttleComponent))
+        {
+            return;
+        }
+        // Lua end
+
+        if (SetInertiaDampening(uid, shuttleComponent, gridUid, args.Mode) && args.Mode != InertiaDampeningMode.Query) // Lua
             component.DampeningMode = args.Mode;
     }
 
     public InertiaDampeningMode NfGetInertiaDampeningMode(EntityUid entity)
     {
-        if (!EntityManager.TryGetComponent<TransformComponent>(entity, out var xform))
+        // Lua start
+        if (!TryGetShuttle(entity, out var gridUid))
+        {
             return InertiaDampeningMode.Dampen;
+        }
+        // Lua end
 
         // Not a shuttle, shouldn't be togglable
-        if (!EntityManager.HasComponent<ShuttleDeedComponent>(xform.GridUid) ||
-            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)))
+        if (!EntityManager.HasComponent<ShuttleDeedComponent>(gridUid) || // Lua
+            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(gridUid))) // Lua
             return InertiaDampeningMode.Station;
 
-        if (!EntityManager.TryGetComponent(xform.GridUid, out ShuttleComponent? shuttle))
+        if (!EntityManager.TryGetComponent(gridUid, out ShuttleComponent? shuttle)) // Lua
             return InertiaDampeningMode.Dampen;
 
         if (shuttle.BodyModifier >= AnchorDampingStrength)
@@ -95,19 +110,22 @@ public sealed partial class ShuttleSystem
 
     public void NfSetPowered(EntityUid uid, ShuttleConsoleComponent component, bool powered)
     {
-        // Ensure that the entity requested is a valid shuttle (stations should not be togglable)
-        if (!EntityManager.TryGetComponent(uid, out TransformComponent? transform) ||
-            !transform.GridUid.HasValue ||
-            !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
-            !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent))
+        // Lua start
+        if (!TryGetShuttle(uid, out var gridUid))
         {
             return;
         }
 
+        if (!EntityManager.TryGetComponent(gridUid, out ShuttleComponent? shuttleComponent))
+        {
+            return;
+        }
+        // Lua end
+
         // Update dampening physics without adjusting requested mode.
         if (!powered)
         {
-            SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, InertiaDampeningMode.Anchor);
+            SetInertiaDampening(uid, shuttleComponent, gridUid, InertiaDampeningMode.Anchor); // Lua
         }
         else
         {
@@ -117,7 +135,7 @@ public sealed partial class ShuttleSystem
                 currentDampening != InertiaDampeningMode.Station &&
                 component.DampeningMode != InertiaDampeningMode.Station)
             {
-                SetInertiaDampening(uid, physicsComponent, shuttleComponent, transform, component.DampeningMode);
+                SetInertiaDampening(uid, shuttleComponent, gridUid, component.DampeningMode); // Lua
             }
         }
     }
@@ -127,12 +145,12 @@ public sealed partial class ShuttleSystem
     /// </summary>
     public ServiceFlags NfGetServiceFlags(EntityUid uid)
     {
-        var transform = Transform(uid);
-        // Get the grid entity from the console transform
-        if (!transform.GridUid.HasValue)
+        // Lua start
+        if (!TryGetShuttle(uid, out var gridUid))
+        {
             return ServiceFlags.None;
-
-        var gridUid = transform.GridUid.Value;
+        }
+        // Lua end
 
         // Set the service flags on the IFFComponent.
         if (!EntityManager.TryGetComponent<IFFComponent>(gridUid, out var iffComponent))
@@ -146,12 +164,12 @@ public sealed partial class ShuttleSystem
     /// </summary>
     public void NfSetServiceFlags(EntityUid uid, ShuttleConsoleComponent component, SetServiceFlagsRequest args)
     {
-        var transform = Transform(uid);
-        // Get the grid entity from the console transform
-        if (!transform.GridUid.HasValue)
+        // Lua start
+        if (!TryGetShuttle(uid, out var gridUid))
+        {
             return;
-
-        var gridUid = transform.GridUid.Value;
+        }
+        // Lua end
 
         // Set the service flags on the IFFComponent.
         if (!EntityManager.TryGetComponent<IFFComponent>(gridUid, out var iffComponent))
@@ -167,12 +185,12 @@ public sealed partial class ShuttleSystem
         if (!TryComp<RadarConsoleComponent>(uid, out var radarConsole))
             return;
 
-        var transform = Transform(uid);
-        // Get the grid entity from the console transform
-        if (!transform.GridUid.HasValue)
+        // Lua start
+        if (!TryGetShuttle(uid, out var gridUid))
+        {
             return;
-
-        var gridUid = transform.GridUid.Value;
+        }
+        // Lua end
 
         _radarConsole.SetTarget((uid, radarConsole), args.TrackedEntity, args.TrackedPosition);
         _radarConsole.SetHideTarget((uid, radarConsole), false); // Force target visibility
@@ -184,14 +202,33 @@ public sealed partial class ShuttleSystem
         if (!TryComp<RadarConsoleComponent>(uid, out var radarConsole))
             return;
 
-        var transform = Transform(uid);
-        // Get the grid entity from the console transform
-        if (!transform.GridUid.HasValue)
+        // Lua start
+        if (!TryGetShuttle(uid, out var gridUid))
+        {
             return;
-
-        var gridUid = transform.GridUid.Value;
+        }
+        // Lua end
 
         _radarConsole.SetHideTarget((uid, radarConsole), args.Hidden);
         _console.RefreshShuttleConsoles(gridUid);
     }
+
+    // Lua start
+
+    private bool TryGetShuttle(EntityUid uid, out EntityUid gridUid)
+    {
+        gridUid = EntityUid.Invalid;
+
+        var grid = _tablet.GetTabletGrid(uid) ?? Transform(uid).GridUid;
+
+        if (grid == null)
+        {
+            return false;
+        }
+
+        gridUid = grid.Value;
+        return true;
+    }
+
+    // Lua end
 }

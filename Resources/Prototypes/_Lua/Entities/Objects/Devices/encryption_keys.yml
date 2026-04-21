@@ -22,7 +22,7 @@
     - state: trade_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC2Contraband]
   id: EncryptionKeyMercenary
   name: Mercenary control encryption key
   description: An encryption key for mercenary.
@@ -41,7 +41,7 @@
     - state: merc_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue]
   id: EncryptionKeyDeathSquad
   name: ключ шифрования эскадрона смерти
   description: Ключ шифрования отряда, несущего смерть.
@@ -56,7 +56,7 @@
     - state: nano_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue]
   id: EncryptionKeyKSO
   name: ключ шифрования КСО
   description: Ключ шифрования Корпуса Специальных Операций.
@@ -71,7 +71,7 @@
     - state: nano_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3SyndicateContraband]
   id: EncryptionKeyOutpostSyndicate
   name: красный ключ шифрования
   description: Ключ шифрования, используемый... хм... кем же?

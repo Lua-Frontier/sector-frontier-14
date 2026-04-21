@@ -15,7 +15,7 @@
     size: Tiny
 
 - type: entity
-  parent: [BaseItem, BaseCommandContraband]
+  parent: [BaseItem, BaseC3CentCommContraband] # Lua-changes: BaseCommandContraband > BaseC3CentCommContraband 
   id: DemagUnlimited
   name: cryptographic resequencer
   suffix: Unlimited

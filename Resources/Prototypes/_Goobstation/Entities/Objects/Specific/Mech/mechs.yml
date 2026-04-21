@@ -300,7 +300,7 @@
 # Marauder
 - type: entity
   id: MechMarauder
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [BaseMech, CombatMech, BaseC3CentCommContraband] # Lua-changes:  BaseCentcommContraband > BaseC3CentCommContraband
   name: Marauder
   description: Looks like we're all saved. # ERT mech
   components:
@@ -375,7 +375,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  parent: [ BaseMech, CombatMech, BaseC3CentCommContraband] # Lua-changes:  BaseCentcommContraband > BaseC3CentCommContraband
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:
@@ -453,7 +453,7 @@
 # Dark Gygax
 - type: entity
   id: MechGygaxSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [BaseMech, CombatMech, BaseC3SyndicateContrabandPremium] # Lua-changes: BaseSyndicateContraband > BaseC3SyndicateContrabandPremium
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -528,7 +528,7 @@
 # Mauler
 - type: entity
   id: MechMaulerSyndie
-  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  parent: [BaseMech, CombatMech, BaseC3SyndicateContrabandPremium] # Lua-changes: BaseSyndicateContraband > BaseC3SyndicateContrabandPremium
   name: Mauler
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:

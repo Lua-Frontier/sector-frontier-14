@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using Content.Server.Entry;
 using Robust.Shared.Configuration;

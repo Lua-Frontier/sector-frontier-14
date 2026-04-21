@@ -110,7 +110,11 @@ namespace Content.Server.PDA
             base.OnItemInserted(uid, pda, args);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
             if (id != null)
+            {
                 pda.OwnerName = id.FullName;
+                var ev = new OwnerNameChangedEvent();
+                RaiseLocalEvent(uid, ref ev);
+            }
             UpdatePdaUi(uid, pda);
         }
 
@@ -137,6 +141,8 @@ namespace Content.Server.PDA
         {
             pda.OwnerName = ownerName;
             pda.PdaOwner = owner;
+            var ev = new OwnerNameChangedEvent();
+            RaiseLocalEvent(uid, ref ev);
             UpdatePdaUi(uid, pda);
         }
 

@@ -95,8 +95,6 @@
       amount: 3
     - id: MaterialGoliathHide1
       amount: 1 #Lua 3<1
-  - type: TimedDespawn
-    lifetime: 2400
   - type: Reflect #Lua
     reflectProb: 0.2
 
@@ -253,8 +251,6 @@
   - type: Butcherable
     spawned:
     - id: FoodHivelordRemains
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   id: MobHivelordBrood

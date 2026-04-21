@@ -1,0 +1,136 @@
+- type: stargatePlanetPreset
+  id: SGPresetLavaShadowMix
+  biome:
+  - GateLavaShadow
+  - GateShadowLava
+  - GateInferno
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  worldRadiusMin: 212
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFXenos
+  - NFArgocytes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirHumid
+  - GateAirPoisoned
+  lightMods:
+  - Lavalight
+  - Evening
+  weight: 0.12
+
+- type: stargatePlanetPreset
+  id: SGPresetVolcanicOasis
+  biome:
+  - GateLavaGrass
+  - GateVolcanicSavanna
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  worldRadiusMin: 190
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.1875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Lavalight
+  - Daylight
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetFrozenGlow
+  biome:
+  - GateSnowDesert
+  - GateShadowSnow
+  - GateBioluminescent
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  worldRadiusMin: 216
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.1875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  - Evening
+  temperatureMods:
+  - Cold
+  weight: 0.01
+
+- type: stargatePlanetPreset
+  id: SGPresetWastelandExpedition
+  biome:
+  - GateWasteland
+  - GateInferno
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 2
+  dungeonCountMax: 3
+  dungeonDistanceMin: 70
+  dungeonDistanceMax: 160
+  worldRadiusMin: 199
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFXenos
+  - NFArgocytes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Evening
+  - Lavalight
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetCaveJungle
+  biome:
+  - GateCavesLava
+  - GateCavesGrass
+  - GateJungle
+  - GateBioluminescent
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  worldRadiusMin: 224
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.18
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFArgocytes
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Evening
+  weight: 0.01

@@ -1,16 +1,13 @@
-using Content.Server.Chemistry.Components;
-using Content.Server.Temperature.Components;
 using Content.Shared._Lua.Shuttles.Components;
-using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._Mono.Radar;
+using Content.Shared.Humanoid;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Movement.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
 using System.Numerics;
 
 namespace Content.Server._Mono.Radar;
@@ -19,7 +16,6 @@ public sealed partial class RadarBlipSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -30,37 +26,30 @@ public sealed partial class RadarBlipSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var jetpackQuery = EntityQueryEnumerator<ActiveJetpackComponent, RadarBlipComponent>();
-        while (jetpackQuery.MoveNext(out var uid, out _, out var blip))
+        var mobQuery = EntityQueryEnumerator<MobStateComponent, HumanoidAppearanceComponent>();
+        while (mobQuery.MoveNext(out var mobUid, out var mobState, out _))
         {
-            var t = _timing.CurTime;
-            var on = (t.TotalSeconds % 5.0) < 0.5;
-            blip.Enabled = on;
-        }
-        var vehicleQuery = EntityQueryEnumerator<VehicleComponent, RadarBlipComponent>();
-        while (vehicleQuery.MoveNext(out var uid, out var vehicle, out var blip))
-        {
-            if (vehicle.Driver == null)
-            { blip.Enabled = false; continue; }
-            var t = _timing.CurTime;
-            var on = (t.TotalSeconds % 5.0) < 0.5;
-            blip.Enabled = on;
-        }
-        var mobPulseQuery = EntityQueryEnumerator<Content.Shared.Mobs.Components.MobStateComponent, RadarBlipComponent>();
-        while (mobPulseQuery.MoveNext(out var uid, out _, out var blip))
-        {
-            var t = _timing.CurTime;
-            var on = (t.TotalSeconds % 5.0) < 0.5;
-            blip.Enabled = on;
-        }
-        var mobQuery = EntityQueryEnumerator<Content.Shared.Mobs.Components.MobStateComponent>();
-        while (mobQuery.MoveNext(out var mobUid, out _))
-        {
-            if (!HasComp<RadarBlipComponent>(mobUid))
+            var isDead = mobState.CurrentState == MobState.Dead;
+            if (isDead)
             {
-                var rb = EnsureComp<RadarBlipComponent>(mobUid);
-                rb.VisibleFromOtherGrids = false;
-                rb.RequireNoGrid = true;
+                if (!HasComp<RadarBlipComponent>(mobUid))
+                {
+                    var rb = EnsureComp<RadarBlipComponent>(mobUid);
+                    rb.VisibleFromOtherGrids = true;
+                    rb.RequireNoGrid = false;
+                    rb.RadarColor = Color.Red;
+                    rb.Scale = 0f;
+                    rb.Enabled = true;
+                    rb.MaxDistance = 512f;
+                    var icon = EnsureComp<RadarBlipIconComponent>(mobUid);
+                    icon.Icon = new Robust.Shared.Utility.ResPath("/Textures/_Lua/Interface/Radar/dead_cross.png");
+                    icon.Scale = 3.5f;
+                }
+            }
+            else
+            {
+                RemComp<RadarBlipComponent>(mobUid);
+                RemComp<RadarBlipIconComponent>(mobUid);
             }
         }
     }
@@ -103,9 +92,6 @@ public sealed partial class RadarBlipSystem : EntitySystem
             var radarGrid = _xform.GetGrid(uid);
             var radarMapId = radarXform.MapID;
 
-            // Check if the radar is on an FTL map
-            var isFtlMap = HasComp<FTLComponent>(radarXform.GridUid);
-
             var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent, PhysicsComponent>();
 
             while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform, out var blipPhysics))
@@ -121,51 +107,11 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
                 var blipGrid = blipXform.GridUid;
 
-                // if (HasComp<CircularShieldRadarComponent>(blipUid))
-                // {
-                //     // Skip if in FTL
-                //     if (isFtlMap)
-                //         continue;
-                //
-                //     // Skip if no grid
-                //     if (blipGrid == null)
-                //         continue;
-                //
-                //     // Ensure the grid is a valid MapGrid
-                //     if (!HasComp<MapGridComponent>(blipGrid.Value))
-                //         continue;
-                //
-                //     // Ensure the shield is a direct child of the grid
-                //     if (blipXform.ParentUid != blipGrid)
-                //         continue;
-                // }
-
                 var blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
 
                 var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
 
                 float maxDistance = blip.MaxDistance;
-                if (HasComp<VaporComponent>(blipUid))
-                { maxDistance = 160f; }
-                else if (HasComp<MobStateComponent>(blipUid))
-                {
-                    if (!TryComp<TemperatureComponent>(blipUid, out var temp)) continue;
-                    var tempC = temp.CurrentTemperature - 273.15f;
-                    if (tempC <= 0f) continue;
-                    var distDyn = 30f + tempC * 1.9f;
-                    if (distDyn < 25f) distDyn = 25f;
-                    if (distDyn > 160f) distDyn = 160f;
-                    maxDistance = distDyn;
-                }
-                else if (TryComp<TemperatureComponent>(blipUid, out var temp))
-                {
-                    var tempC = temp.CurrentTemperature - 273.15f;
-                    if (tempC <= 0f) { continue; }
-                    var distDyn = 30f + tempC * 1.9f;
-                    if (distDyn < 25f) distDyn = 25f;
-                    if (distDyn > 160f) distDyn = 160f;
-                    maxDistance = distDyn;
-                }
                 var radarMax = component?.MaxRange ?? SharedRadarConsoleSystem.DefaultMaxRange;
                 var allowedDistance = Math.Min(maxDistance, radarMax);
                 if (distance > allowedDistance) continue;
@@ -197,10 +143,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return hitscans;
 
-        var radarXform = Transform(uid);
         var radarPosition = _xform.GetWorldPosition(uid);
-        var radarGrid = _xform.GetGrid(uid);
-        var radarMapId = radarXform.MapID;
 
         var hitscanQuery = EntityQueryEnumerator<HitscanRadarComponent>();
 
@@ -222,11 +165,4 @@ public sealed partial class RadarBlipSystem : EntitySystem
         return hitscans;
     }
 
-    /// <summary>
-    /// Configures the radar blip for a vehicle entity.
-    /// </summary>
-    public void SetupVehicleRadarBlip(Entity<VehicleComponent> uid)
-    {
-        if (TryComp<RadarBlipComponent>(uid, out var blip)) blip.Enabled = true;
-    }
 }

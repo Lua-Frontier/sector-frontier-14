@@ -134,7 +134,6 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
-      beakerSlot: !type:ContainerSlot # imperial hardsuit injection
 
 # Helmet
 - type: entity
@@ -308,8 +307,12 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayDynamicMode
+    allowedModes:
+    - HyposprayDynamicMode
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
 
@@ -353,6 +356,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoChatCartridge # Lua
     - NanoTaskCartridge
     - NewsReaderCartridge
     - MedTekCartridge

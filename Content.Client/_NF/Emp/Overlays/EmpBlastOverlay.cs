@@ -90,10 +90,16 @@ namespace Content.Client._NF.Emp.Overlays
             {
                 if (!_blasts.ContainsKey(blastEntity) && BlastQualifies(blastEntity, currentEyeLoc, blast))
                 {
+                    var shaderId = string.IsNullOrEmpty(blast.ShaderId) ? "Emp" : blast.ShaderId;
+                    ShaderInstance shaderInstance;
+                    if (shaderId == "Emp" || !_prototypeManager.TryIndex<ShaderPrototype>(shaderId, out var shaderProto))
+                        shaderInstance = _baseShader.Duplicate();
+                    else
+                        shaderInstance = shaderProto.Instance().Duplicate();
                     _blasts.Add(
                             blastEntity,
                             (
-                                _baseShader.Duplicate(),
+                                shaderInstance,
                                 new EmpShaderInstance(
                                     _transform.GetMapCoordinates(blastEntity),
                                     blast.VisualRange,

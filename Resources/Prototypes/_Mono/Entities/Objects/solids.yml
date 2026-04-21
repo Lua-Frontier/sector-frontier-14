@@ -1,6 +1,6 @@
 - type: entity
   name: fentanyl crystal
-  parent: [ BaseItem, BaseC3ChemContraband ]
+  parent: [BaseItem, BaseC3Contraband] # Lua-changes: BaseC3ChemContraband > BaseC3Contraband
   id: FentanylSolidified
   description: 5u of Fentanyl solidified with Tricordrazine. Worth a lot.
   components:

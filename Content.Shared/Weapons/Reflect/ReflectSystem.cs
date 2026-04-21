@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
+using Content.Shared.Blocking;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -257,6 +258,10 @@ public sealed class ReflectSystem : EntitySystem
             }
             // WD EDIT END
 
+            var totalReflected = projectileComp.Damage.GetTotal().Float();
+            var refEv = new ShieldReflectedDamageEvent(totalReflected);
+            RaiseLocalEvent(reflector, ref refEv);
+
             _adminLogger.Add(LogType.BulletHit, LogImpact.Medium, $"{ToPrettyString(user)} reflected {ToPrettyString(projectile)} from {ToPrettyString(projectileComp.Weapon)} shot by {projectileComp.Shooter}");
 
             projectileComp.Shooter = user;
@@ -313,6 +318,9 @@ public sealed class ReflectSystem : EntitySystem
         if (reflect.DamageOnReflectModifier != 0 && damage != null)
             _damageable.TryChangeDamage(reflector, damage * reflect.DamageOnReflectModifier, origin: shooter);
         // WD EDIT END
+        var totalReflected = damage?.GetTotal().Float() ?? 0f;
+        var refEv = new ShieldReflectedDamageEvent(totalReflected);
+        RaiseLocalEvent(reflector, ref refEv);
 
         var spread = _random.NextAngle(-reflect.Spread / 2, reflect.Spread / 2);
         newDirection = -spread.RotateVec(direction);

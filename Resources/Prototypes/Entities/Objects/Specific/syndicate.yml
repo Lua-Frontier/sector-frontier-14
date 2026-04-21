@@ -49,7 +49,7 @@
 
 # Uplinks
 - type: entity
-  parent: [BaseItem, StorePresetUplink, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseItem, StorePresetUplink, BaseC3SyndicateContrabandPremium] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband  # Lua-changes: BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: BaseUplinkRadio
   name: syndicate uplink
   description: Suspiciously looking old radio...

@@ -326,7 +326,7 @@ namespace Content.Server.Light.EntitySystems
             light.LastGhostBlink = time;
 
             ToggleBlinkingLight(uid, light, true);
-            uid.SpawnTimer(light.GhostBlinkingTime, () =>
+            Timer.Spawn(light.GhostBlinkingTime, () =>
             {
                 ToggleBlinkingLight(uid, light, false);
             });

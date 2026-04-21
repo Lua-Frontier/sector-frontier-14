@@ -1,0 +1,7 @@
+- type: injectorMode
+  parent: [ BaseAdvancedJetInjectorMode, BaseInjectMode ]
+  id: VipJetInjectorInjectMode
+
+- type: injectorMode
+  parent: [ BaseAdvancedJetInjectorMode, BaseDynamicMode ]
+  id: VipJetInjectorDynamicMode

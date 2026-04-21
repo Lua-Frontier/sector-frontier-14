@@ -20,6 +20,7 @@ using Content.Shared.Procedural; // Frontier
 using Content.Shared.Salvage; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Shuttles.Components; // Frontier
 using Robust.Shared.Configuration;
 using Content.Shared.Ghost;
@@ -291,13 +292,20 @@ public sealed partial class SalvageSystem
 
     private SalvageExpeditionConsoleState GetState(EntityUid station, SalvageExpeditionDataComponent component)
     {
-        var missions = new List<SalvageMissionListing>(component.Missions.Count);
-
-        foreach (var missionParams in component.Missions.Values.OrderBy(m => m.Index))
+        List<SalvageMissionListing> missions;
+        if (!_cfgManager.GetCVar(CLVars.SalvageExpeditionEnabled))
         {
-            var difficulty = _prototypeManager.Index<SalvageDifficultyPrototype>(missionParams.Difficulty);
-            var mission = GetMission(missionParams.MissionType, difficulty, missionParams.Seed);
-            missions.Add(new SalvageMissionListing(missionParams, mission));
+            missions = new List<SalvageMissionListing>();
+        }
+        else
+        {
+            missions = new List<SalvageMissionListing>(component.Missions.Count);
+            foreach (var missionParams in component.Missions.Values.OrderBy(m => m.Index))
+            {
+                var difficulty = _prototypeManager.Index<SalvageDifficultyPrototype>(missionParams.Difficulty);
+                var mission = GetMission(missionParams.MissionType, difficulty, missionParams.Seed);
+                missions.Add(new SalvageMissionListing(missionParams, mission));
+            }
         }
 
         var isOurTurn = _pendingExpedition != null && _pendingExpedition.Station == station;

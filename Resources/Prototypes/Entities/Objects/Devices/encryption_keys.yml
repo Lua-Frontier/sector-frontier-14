@@ -69,7 +69,7 @@
     - state: nano_label
 
 - type: entity
-  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: BaseCentcommCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue] # Frontier: BaseCentcommCommandContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2Contraband > BaseC3CentCommContrabandNoValue
   id: EncryptionKeyStationMaster
   name: station master encryption key
   categories: [ DoNotMap ] # Frontier
@@ -95,7 +95,7 @@
     - state: cap_label
 
 - type: entity
-  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2Contraband > BaseC3CentCommContrabandNoValue
   id: EncryptionKeyCommand
   name: command encryption key
   categories: [ DoNotMap ] # Frontier
@@ -203,7 +203,7 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityLawyerContraband<BaseC2ContrabandUnredeemable
+  parent: [EncryptionKey, BaseC2Contraband] # Frontier: BaseSecurityLawyerContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC2Contraband
   id: EncryptionKeySecurity
   name: security encryption key
   categories: [ DoNotMap ] # Frontier
@@ -241,7 +241,7 @@
     - EncryptionService
 
 - type: entity
-  parent: [EncryptionKey, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [EncryptionKey, BaseC2SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes:  
   id: EncryptionKeySyndie
   name: blood-red encryption key
   categories: [ DoNotMap ] # Frontier
@@ -259,7 +259,7 @@
     price: 500 # 1000 for 2
 
 - type: entity
-  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseSiliconScienceContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny, BaseC2Contraband] # Frontier: added RecyclableItemDeviceTiny, removed BaseSiliconScienceContraband # Lua-changes: added BaseC2Contraband
   id: EncryptionKeyBinary
   name: binary translator key
   categories: [ DoNotMap ] # Frontier
@@ -275,7 +275,7 @@
     - state: ai_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
+  parent: [EncryptionKey, BaseC2SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC2SyndicateContrabandNoValue
   id: EncryptionKeyBinarySyndicate
   name: binary translator key
   description: A syndicate encryption key that translates binary signals used by silicons.

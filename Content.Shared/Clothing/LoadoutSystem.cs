@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -20,6 +21,7 @@ public sealed class LoadoutSystem : EntitySystem
     // Shared so we can predict it for placement manager.
 
     [Dependency] private readonly ActorSystem _actors = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedStationSpawningSystem _station = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -178,6 +180,12 @@ public sealed class LoadoutSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, LoadoutComponent component, MapInitEvent args)
     {
+        if (TryComp<InventoryComponent>(uid, out var inv))
+        {
+            var en = _inventory.GetSlotEnumerator((uid, inv));
+            if (en.NextItem(out _)) return;
+        }
+
         Equip(uid, component.StartingGear, component.RoleLoadout);
     }
 

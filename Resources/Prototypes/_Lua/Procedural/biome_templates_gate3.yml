@@ -1,0 +1,180 @@
+- type: biomeTemplate
+  id: GateBioluminescent
+  layers:
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+      divisions: 3
+      threshold: -0.50
+      noise:
+        seed: 1
+        noiseType: Cellular
+        frequency: 1.2
+      decals:
+        - BushAOne
+        - BushATwo
+        - BushAThree
+        - BushCOne
+        - BushCTwo
+        - BushCThree
+        - BushDOne
+        - BushDTwo
+        - BushDThree
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+      divisions: 2
+      threshold: 0.50
+      noise:
+        seed: 2
+        noiseType: OpenSimplex2
+        frequency: 1.5
+      decals:
+        - FlowersBROne
+        - FlowersBRTwo
+        - FlowersBRThree
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+      divisions: 2
+      threshold: -0.30
+      noise:
+        seed: 3
+        noiseType: Cellular
+        frequency: 0.25
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+      decals:
+        - BushAOne
+        - BushATwo
+        - BushCOne
+        - BushCTwo
+    - !type:BiomeEntityLayer
+      threshold: 0.55
+      spacing: 1
+      noise:
+        seed: 4
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 2.5
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+      entities:
+        - LightTree
+        - FloraTree
+        - FloraTreeLarge
+    - !type:BiomeEntityLayer
+      threshold: 0.75
+      noise:
+        seed: 7
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        frequency: 1.2
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+        - FloorPlanetDirt
+      entities:
+        - AnomalyFloraBulb
+    - !type:BiomeEntityLayer
+      threshold: 0.82
+      noise:
+        seed: 8
+        noiseType: OpenSimplex2
+        frequency: 1.0
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+        - FloorPlanetDirt
+      entities:
+        - FloraGreyStalagmite
+    - !type:BiomeEntityLayer
+      threshold: 0.88
+      noise:
+        seed: 9
+        noiseType: OpenSimplex2
+        fractalType: PingPong
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+        - FloorPlanetDirt
+      entities:
+        - CrystalCyan
+        - CrystalGreen
+        - CrystalPink
+        - CrystalBlue
+        - CrystalYellow
+        - CrystalOrange
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+        - FloorPlanetDirt
+      threshold: -0.30
+      spacing: 0
+      noise:
+        seed: 5
+        noiseType: Cellular
+        frequency: 0.05
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 5
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      entities:
+        - WallRock
+        - FloraRockSolid
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - FloorGrassJungle
+        - FloorPlanetGrass
+        - FloorPlanetDirt
+      threshold: 0.82
+      noise:
+        seed: 6
+        noiseType: OpenSimplex2
+        frequency: 0.004
+        lacunarity: 1.50
+        fractalType: Ridged
+        octaves: 1
+      entities:
+        - FloorWaterBiomeEntity
+    - !type:BiomeDummyLayer
+      id: Loot
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorPlanetDirt
+    - !type:BiomeTileLayer
+      threshold: -0.85
+      tile: FloorGrassJungle
+      noise:
+        seed: 0
+        frequency: 0.025
+        fractalType: None
+    - !type:BiomeTileLayer
+      tile: FloorPlanetDirt
+      threshold: -0.30
+      noise:
+        seed: 5
+        noiseType: Cellular
+        frequency: 0.05
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 5
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+    - !type:BiomeTileLayer
+      tile: FloorPlanetDirt
+      threshold: 0.82
+      noise:
+        seed: 6
+        noiseType: OpenSimplex2
+        frequency: 0.004
+        lacunarity: 1.50
+        fractalType: Ridged
+        octaves: 1

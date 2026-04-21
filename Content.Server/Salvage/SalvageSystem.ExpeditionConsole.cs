@@ -3,6 +3,7 @@ using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Server.Station.Components; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Dataset;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC; // Frontier
@@ -37,6 +38,13 @@ public sealed partial class SalvageSystem
 
         if (!TryComp<SalvageExpeditionDataComponent>(station.Value, out var data) || data.Claimed)
             return;
+
+        if (!_cfgManager.GetCVar(CLVars.SalvageExpeditionEnabled))
+        {
+            PlayDenySound((uid, component));
+            UpdateAllConsoles();
+            return;
+        }
 
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
@@ -378,6 +386,12 @@ public sealed partial class SalvageSystem
             return;
         if (!TryComp<SalvageExpeditionDataComponent>(station.Value, out var data) || data.Claimed)
             return;
+        if (!_cfgManager.GetCVar(CLVars.SalvageExpeditionEnabled))
+        {
+            PlayDenySound((uid, component));
+            UpdateAllConsoles();
+            return;
+        }
         if (!TryStartExpedition(uid, component, station.Value, data, _pendingExpedition.MissionParams))
             return;
         _pendingExpedition = null;

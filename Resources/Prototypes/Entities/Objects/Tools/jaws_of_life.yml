@@ -52,7 +52,7 @@
 
 - type: entity
   name: syndicate jaws of life
-  parent: [JawsOfLife, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [JawsOfLife, BaseC1SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: SyndicateJawsOfLife
   description: Useful for entering the station or its departments.
   components:

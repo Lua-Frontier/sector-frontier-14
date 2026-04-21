@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseC3SyndicateContrabandPremium] # Lua-changes: added BaseC3SyndicateContrabandPremium 
   id: ADTCyberHypospray
   name: гипоспрей Cybersun
   description: Великолепный медицинский девайс в удобном дизайне от Cybersun!
@@ -17,7 +17,11 @@
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
+  - type: Injector
+    solutionName: hypospray
+    activeModeProtoId: HyposprayDynamicMode
+    allowedModes:
+    - HyposprayDynamicMode
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5

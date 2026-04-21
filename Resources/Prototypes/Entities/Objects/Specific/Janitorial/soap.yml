@@ -117,7 +117,7 @@
 - type: entity
   name: soap
   id: SoapSyndie
-  parent: [Soap, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [Soap, BaseC1SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   description: An untrustworthy bar of soap. Smells of fear.
   components:
   - type: Sprite

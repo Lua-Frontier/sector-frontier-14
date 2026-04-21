@@ -57,6 +57,13 @@ public sealed class NPCRetaliationSystem : EntitySystem
         return true;
     }
 
+    public void ClearAllAttackMemories()
+    {
+        var query = AllEntityQuery<NPCRetaliationComponent>();
+        while (query.MoveNext(out _, out var retaliation))
+        { retaliation.AttackMemories.Clear(); }
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

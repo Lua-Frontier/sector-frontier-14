@@ -1,0 +1,36 @@
+- type: entity
+  id: AncientCircuitImprinter
+  parent: BaseLathe
+  name: древний принтер схем
+  description: Примитивный принтер плат. Печатает платы для машин. Собирается через древний автолат.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/ancient_machines.rsi
+    snapCardinals: true
+    layers:
+    - state: perservedimprinter
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: perservedimprinter
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Machine
+    board: AncientCircuitImprinterCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintAncientCircuitImprinter
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+  - type: Lathe
+    producingSound: /Audio/Machines/circuitprinter.ogg
+    idleState: perservedimprinter
+    runningState: perservedimprinter
+  - type: StaticPrice
+    price: 200

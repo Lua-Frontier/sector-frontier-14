@@ -1,4 +1,4 @@
-﻿using Content.Client.Guidebook;
+using Content.Client.Guidebook;
 using Content.Client.Guidebook.RichText;
 using Content.Client.UserInterface.Systems.Info;
 using Content.Shared.Guidebook;
@@ -27,6 +27,12 @@ public sealed partial class RulesControl : BoxContainer, ILinkClickHandler
         HomeButton.OnPressed += _ => SetGuide();
 
         BackButton.OnPressed += _ => SetGuide(_priorEntries.Pop(), false);
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+        SetGuide();
     }
 
     public void HandleClick(string link)

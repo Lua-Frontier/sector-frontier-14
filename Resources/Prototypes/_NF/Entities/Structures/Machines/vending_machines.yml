@@ -110,7 +110,7 @@
     sprite: _NF/Structures/Machines/VendingMachines/expeditionaryflatpackvend.rsi
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, StorePresetUplink, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, StorePresetUplink, VendingMachine, BaseC3SyndicateContrabandPremium] # Lua-changes: added 
   id: VendingMachineSyndieContraband
   name: ContraVend
   description: Wanted across multiple sectors!
@@ -194,7 +194,7 @@
 - type: entity
   id: VendingMachineArcadia
   name: ArcadiaDrobe
-  parent: [ VendingMachine, BaseC3Contraband ]
+  parent: [VendingMachine, BaseC1Contraband] # Lua-changes: BaseC3Contraband > BaseC1Contraband
   description: Selling clothes from another reality for cheap prices!
   components:
     - type: VendingMachine
@@ -482,6 +482,7 @@
   parent:
   - VendingMachine
   - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
+  - BaseC1Contraband # Lua
   id: VendingMachineClothingPunk
   name: ThreadsChoom
   description: A vandalized ClothesMate.

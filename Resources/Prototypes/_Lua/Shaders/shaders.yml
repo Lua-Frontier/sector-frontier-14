@@ -31,3 +31,11 @@
   id: CircleAlphaMask
   kind: source
   path: "/Textures/_Lua/Shaders/circle_alpha_mask.swsl"
+
+- type: shader
+  id: EmpLua
+  kind: source
+  path: "/Textures/_Lua/Shaders/emp_lua.swsl"
+  params:
+    positionInput: 0,0
+    life: 0

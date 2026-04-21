@@ -28,6 +28,8 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
     public event Action<List<NetEntity>>? UndockAllRequest;
     public event Action<List<NetEntity>, bool>? ToggleFTLLockRequest;
     public event Action<bool>? OnStarMapVisibilityChanged;
+    public event Action? OnWeaponSelectionChanged; // Lua
+    public event Action? OnFireControlRefresh; // Lua
 
     public ShuttleConsoleWindow()
     {
@@ -92,6 +94,11 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         {
             ToggleFTLLockRequest?.Invoke(dockEntities, enabled);
         };
+
+        // Lua
+        NavContainer.OnWeaponSelectionChanged += () => OnWeaponSelectionChanged?.Invoke();
+        NavContainer.OnFireControlRefresh += () => OnFireControlRefresh?.Invoke();
+        // End Lua
 
         NfInitialize(); // Frontier Initialization for the ShuttleConsoleWindow
     }
@@ -191,6 +198,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         StarMapContainer.SetConsole(owner);
 
         NavContainer.UpdateState(cState.NavState);
+        NavContainer.UpdateWeapons(cState.FireControlConnected, cState.FireControllables); // Lua
         MapContainer.UpdateState(cState.MapState);
         StarMapContainer.UpdateState(cState.StarMapState);
         DockContainer.UpdateState(coordinates?.EntityId, cState.DockState);

@@ -20,6 +20,9 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
     private const float OreSiloPreloadRangeSquared = 225f; // ~1 screen
     private const float OreSiloPreloadRange = 25f; // sqrt(OreSiloPreloadRangeSquared)
 
+    private const float PvsUpdateInterval = 2f;
+    private float _pvsUpdateAccumulator = 0f;
+
     private readonly HashSet<Entity<OreSiloClientComponent>> _clientLookup = new();
     private readonly HashSet<(NetEntity, string, string)> _clientInformation = new();
     private readonly HashSet<EntityUid> _silosToAdd = new();
@@ -114,6 +117,10 @@ public sealed class OreSiloSystem : SharedOreSiloSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        _pvsUpdateAccumulator += frameTime;
+        if (_pvsUpdateAccumulator < PvsUpdateInterval) return;
+        _pvsUpdateAccumulator = 0f;
 
         // Solving an annoying problem: we need to send the silo to people who are near the silo so that
         // Things don't start wildly mispredicting. We do this as cheaply as possible via grid-based local-pos checks.

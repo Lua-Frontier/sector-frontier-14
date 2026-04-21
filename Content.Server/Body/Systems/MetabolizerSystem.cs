@@ -156,7 +156,7 @@ namespace Content.Server.Body.Systems
                 }
 
                 // Frontier: all cryogenic reagents in the solution should be processed, others should be limited (buff cryo meds)
-                if (reagents >= ent.Comp1.MaxReagentsProcessable && !proto.Metabolisms.ContainsKey("Cryogenic"))
+                if (reagents >= ent.Comp1.MaxReagentsProcessable && !(ent.Comp1.CryogenicExemption && proto.Metabolisms.ContainsKey("Cryogenic")))
                     continue;
                 // End Frontier
 
@@ -179,6 +179,9 @@ namespace Content.Server.Body.Systems
                     if (group.SkipEffects)
                         continue;
                     // End Frontier
+
+                    if (rate <= 0)
+                        continue;
 
                     float scale = (float) mostToRemove / (float) rate;
 
@@ -221,7 +224,8 @@ namespace Content.Server.Body.Systems
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
                     // Frontier: do not count cryogenics chems against the reagent limit (to buff cryo meds)
-                    if (!proto.Metabolisms.ContainsKey("Cryogenic"))
+                    // CryogenicExemption can be disabled per-metabolizer to enforce strict reagent limits
+                    if (!(ent.Comp1.CryogenicExemption && proto.Metabolisms.ContainsKey("Cryogenic")))
                         reagents++;
                     // End Frontier
                 }

@@ -100,6 +100,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             return;
         }
 
+        if (humanoid.ProfileLoaded) return;
+
         if (string.IsNullOrEmpty(humanoid.Initial)
             || !_proto.TryIndex(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
         {
@@ -493,6 +495,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         humanoid.Age = profile.Age;
+        humanoid.ProfileLoaded = true;
 
         Dirty(uid, humanoid);
     }

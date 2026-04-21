@@ -668,14 +668,6 @@
   - type: Bloodstream
     bloodReagent: WeldingFuel
     bloodMaxVolume: 100
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-    - NFZombiePileLoophole
-    chance: 1
-    intervalSeconds: 240 # 4 min
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -731,13 +723,6 @@
   name: body bags pile
   description: A stacked pile of reinforced body bags. Some of them are moving!
   components:
-  - type: TimedSpawner
-    prototypes:
-    - NFSpawnMobZombieRandom
-    chance: 1
-    intervalSeconds: 300 # 5 min
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 3
   - type: Sprite
     sprite: _NF/Mobs/Zombies/zombie_human.rsi
     layers:

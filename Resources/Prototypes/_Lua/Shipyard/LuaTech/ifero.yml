@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: vessel
+  id: Ifero
+  parent: BaseVessel
+  name: Иферо
+  description: Крупный военный корабль C для экипажа от 6 человек.
+  price: 131000
+  category: Medium
+  marker: LuaTech
+  group: LuaTech
+  access: LuaTechOps
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - LuaTech
+  engine:
+  - AME
+  shuttlePath: /Maps/_Lua/Shuttles/LuaTech/ifero.yml
+
+- type: gameMap
+  id: Ifero
+  mapName: 'Иферо'
+  mapPath: /Maps/_Lua/Shuttles/LuaTech/ifero.yml
+  minPlayers: 0
+  stations:
+    Ifero:
+      stationProto: StandardLuaTechSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Иферо {1}'
+          nameGenerator:
+            !type:LuaTechNameGenerator
+            prefixCreator: '14'

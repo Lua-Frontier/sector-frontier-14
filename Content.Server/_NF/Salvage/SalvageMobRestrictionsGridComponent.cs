@@ -11,6 +11,5 @@ namespace Content.Server._NF.Salvage;
 public sealed partial class SalvageMobRestrictionsGridComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
-    [DataField("mobsToKill")]
     public List<EntityUid> MobsToKill = new();
 }

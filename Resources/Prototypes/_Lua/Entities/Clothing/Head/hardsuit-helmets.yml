@@ -6,7 +6,7 @@
 
 
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC1Contraband]
   id: ClothingHeadHelmetAriralExosuit
   name: Шлем экзоскафандра Арирал
   description: Как вы это увидели?
@@ -50,7 +50,7 @@
 
 #region Nanotrasen
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSecurityRed
+  parent: [ClothingHeadHelmetHardsuitSecurityRed, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitBlueShield
   categories: [ HideSpawnMenu ]
   name: шлем скафандра офицера "Синий Щит"
@@ -91,7 +91,7 @@
 
 #region FSF
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  parent: [ClothingHeadHelmetHardsuitSyndieCommander, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFCommanderBravo
   name: шлем командира рейнджеров
   suffix: ФСФ, Браво
@@ -114,7 +114,7 @@
         Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ClothingHeadHelmetHardsuitSyndie, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFSpecialistBravo
   name: средний шлем рейнджера
   suffix: ФСФ, Браво
@@ -141,7 +141,7 @@
 
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  parent: [ClothingHeadHelmetHardsuitSyndieCommander, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFCommanderCharlie
   name: шлем командира рейнджеров
   suffix: ФСФ, Чарли
@@ -164,7 +164,7 @@
         Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ClothingHeadHelmetHardsuitSyndie, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFSpecialistCharlie
   name: средний шлем рейнджера
   suffix: ФСФ, Чарли
@@ -190,7 +190,7 @@
 ###### ALT
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  parent: [ClothingHeadHelmetHardsuitSyndieCommander, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFCommanderAlt
   name: шлем командира рейнджеров
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -212,7 +212,7 @@
         Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ClothingHeadHelmetHardsuitSyndie, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFMediumAlt
   name: средний шлем рейнджера
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -234,7 +234,7 @@
         Heat: 0.9
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ClothingHeadHelmetHardsuitSyndie, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFLightAlt
   name: лёгкий шлем рейнджера
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -257,7 +257,7 @@
 
 #region Modsuit Helmets
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband, ContrabandClothing]
   id: ClothingHeadHelmetHardsuitBloodRedHardsuit
   name: Blood-red hardsuit helmet
   description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.
@@ -286,7 +286,7 @@
     - HeadSide
 
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband, ContrabandClothing]
   id: ClothingHeadHelmetHardsuitBloodRedHardsuitelite
   name: Blood-red elite hardsuit helmet
   description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.

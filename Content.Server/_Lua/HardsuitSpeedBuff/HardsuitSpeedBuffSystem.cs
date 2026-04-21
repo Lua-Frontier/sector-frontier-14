@@ -117,6 +117,8 @@ public sealed class HardsuitSpeedBuffSystem : EntitySystem
 
     private void OnGetActions(EntityUid uid, HardsuitSpeedBuffComponent comp, GetItemActionsEvent args)
     {
+        if (args.SlotFlags is not { } flags || (flags & SlotFlags.OUTERCLOTHING) == 0)
+            return;
         args.AddAction(ref comp.ActionEntity, comp.Action);
     }
 

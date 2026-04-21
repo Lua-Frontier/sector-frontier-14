@@ -1,6 +1,8 @@
 - type: vendingMachineInventory
   id: NFSalvageEquipmentInventory
   startingInventory:
+    EmergencyRockCutter: 2
+    WeaponPlasmaCutter: 6  
     NFWeaponHoloflareGun: 4
     NFWeaponPka: 4
     WeaponCrusher: 6
@@ -12,10 +14,13 @@
     BoxDispenserFlare: 5
     FlashlightLantern: 15
     RadioHandheldNF: 5
+    PkaShotgun: 5
 
 - type: vendingMachineInventory
   id: NFSalvageEquipmentPOIInventory
   startingInventory:
+    EmergencyRockCutter: 4294967295 # Infinite 
+    WeaponPlasmaCutter: 4294967295 # Infinite
     NFWeaponHoloflareGun: 4294967295 # Infinite
     NFWeaponPka: 4294967295 # Infinite
     WeaponCrusher: 4294967295 # Infinite
@@ -27,3 +32,4 @@
     BoxDispenserFlare: 4294967295 # Infinite
     FlashlightLantern: 4294967295 # Infinite
     RadioHandheldNF: 4294967295 # Infinite
+    PkaShotgun: 4294967295 # Infinite

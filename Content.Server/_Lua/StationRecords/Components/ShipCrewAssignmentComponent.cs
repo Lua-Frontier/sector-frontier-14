@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.StationRecords;
+using Robust.Shared.Network;
 
 namespace Content.Server._Lua.StationRecords.Components;
 
@@ -17,5 +18,8 @@ public sealed partial class ShipCrewAssignmentComponent : Component
 
     [DataField]
     public ShipCrewRole Role;
+
+    [DataField]
+    public NetUserId? AssignedUserId;
 }
 

@@ -49,13 +49,7 @@
     rotateWhilePulling: false
     rotateWhileAnchored: false
     increment: 45
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
@@ -136,13 +130,7 @@
         - MachineLayer
   - type: Transform
     anchored: true
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -230,13 +218,7 @@
         - MachineLayer
   - type: Transform
     anchored: true
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

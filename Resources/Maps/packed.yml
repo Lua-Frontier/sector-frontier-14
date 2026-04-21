@@ -11945,10 +11945,6 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
         storagebase: !type:Container
           showEnts: False
           occludes: True
@@ -37968,10 +37964,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
         storagebase: !type:Container
           showEnts: False
           occludes: True
@@ -37996,10 +37988,6 @@ entities:
           occludes: True
           ents: []
         ReagentDispenser-beaker: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        beakerSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: null
@@ -38039,10 +38027,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
         outputSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -38067,10 +38051,6 @@ entities:
           occludes: True
           ents: []
         ChemMaster-beaker: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        beakerSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: null
@@ -71636,7 +71616,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 5281
     components:
     - type: Transform
@@ -71924,7 +71903,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 7530
     components:
     - type: Transform
@@ -71933,7 +71911,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 7568
     components:
     - type: Transform
@@ -79250,10 +79227,6 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
         storagebase: !type:Container
           showEnts: False
           occludes: True

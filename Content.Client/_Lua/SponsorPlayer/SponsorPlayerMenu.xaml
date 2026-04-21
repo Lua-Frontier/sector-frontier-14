@@ -1,0 +1,162 @@
+<ui:FancyWindow xmlns="https://spacestation14.io"
+                xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                SetSize="520 500"
+                MinSize="440 280"
+                Title="{Loc 'sponsor-player-menu-title'}">
+    <BoxContainer Margin="4 0" Orientation="Horizontal">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="9">
+            <LineEdit Name="SearchBar"
+                      PlaceHolder="{Loc 'sponsor-player-search'}"
+                      Margin="3 3 3 0" />
+
+            <Label Name="StatusLabel"
+                   Text="{Loc 'sponsor-player-loading'}"
+                   StyleClasses="LabelSubText"
+                   Margin="8 4 8 0" />
+
+            <ItemList Name="TrackList"
+                      SelectMode="Button"
+                      Margin="3 3 3 3"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      SizeFlagsStretchRatio="8" />
+
+            <PanelContainer Margin="3 0 3 0">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#373B4E" BackgroundColor="#202129"/>
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="8 6 8 6">
+                    <Label Name="SongSelected"
+                           Text="{Loc 'sponsor-player-now-playing'}"
+                           StyleClasses="LabelKeyText" />
+                    <Label Name="SongName"
+                           Text="---"
+                           ClipText="True" />
+                </BoxContainer>
+            </PanelContainer>
+
+            <BoxContainer Orientation="Horizontal"
+                          HorizontalExpand="True"
+                          VerticalExpand="False"
+                          SizeFlagsStretchRatio="1"
+                          Margin="0 6 0 0">
+                <Control HorizontalExpand="True" />
+                <BoxContainer Orientation="Horizontal"
+                              SeparationOverride="4"
+                              HorizontalAlignment="Center">
+                    <Button Name="PreviousButton"
+                            StyleClasses="ButtonSquare"
+                            MinSize="40 34"
+                            ToolTip="{Loc 'sponsor-player-button-previous'}">
+                        <BoxContainer MouseFilter="Ignore"
+                                      Orientation="Horizontal"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      SeparationOverride="-3">
+                            <TextureRect SetSize="10 12"
+                                         Stretch="KeepAspectCentered"
+                                         TexturePath="/Textures/Interface/Default/filled_left_arrow.svg.192dpi.png" />
+                            <TextureRect SetSize="10 12"
+                                         Stretch="KeepAspectCentered"
+                                         TexturePath="/Textures/Interface/Default/filled_left_arrow.svg.192dpi.png" />
+                        </BoxContainer>
+                    </Button>
+                    <Button Name="PlayButton"
+                            StyleClasses="ButtonSquare"
+                            MinSize="44 34"
+                            ToolTip="{Loc 'sponsor-player-button-play'}">
+                        <TextureRect MouseFilter="Ignore"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     SetSize="18 18"
+                                     Stretch="KeepAspectCentered"
+                                     TexturePath="/Textures/Interface/AdminActions/play.png" />
+                    </Button>
+                    <Button Name="NextButton"
+                            StyleClasses="ButtonSquare"
+                            MinSize="40 34"
+                            ToolTip="{Loc 'sponsor-player-button-next'}">
+                        <BoxContainer MouseFilter="Ignore"
+                                      Orientation="Horizontal"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      SeparationOverride="-3">
+                            <TextureRect SetSize="10 12"
+                                         Stretch="KeepAspectCentered"
+                                         TexturePath="/Textures/Interface/Default/filled_right_arrow.svg.192dpi.png" />
+                            <TextureRect SetSize="10 12"
+                                         Stretch="KeepAspectCentered"
+                                         TexturePath="/Textures/Interface/Default/filled_right_arrow.svg.192dpi.png" />
+                        </BoxContainer>
+                    </Button>
+                    <Button Name="RepeatButton"
+                            ToggleMode="True"
+                            StyleClasses="ButtonSquare"
+                            MinSize="36 34"
+                            ToolTip="{Loc 'sponsor-player-button-repeat'}">
+                        <TextureRect MouseFilter="Ignore"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     SetSize="18 18"
+                                     Stretch="KeepAspectCentered"
+                                     TexturePath="/Textures/Interface/Nano/circular_arrow.svg.96dpi.png" />
+                    </Button>
+                    <Button Name="StopButton"
+                            StyleClasses="ButtonSquare"
+                            MinSize="60 34"
+                            ToolTip="{Loc 'sponsor-player-button-stop'}">
+                        <Label Text="{Loc 'sponsor-player-button-stop'}"
+                               MouseFilter="Ignore"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                    </Button>
+                </BoxContainer>
+                <Control HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+
+        <PanelContainer Margin="8 3 3 3" MinSize="116 0">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#373B4E" BackgroundColor="#202129"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical" Margin="8 10 8 10" VerticalExpand="True">
+                <Label Text="{Loc 'sponsor-player-volume-label'}"
+                       HorizontalAlignment="Center"
+                       StyleClasses="LabelKeyText"
+                       Margin="0 0 0 10" />
+
+                <PanelContainer StyleClasses="LowDivider" Margin="0 0 0 8" />
+
+                <PanelContainer HorizontalAlignment="Center" VerticalExpand="True" MinSize="58 264">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#2A2D3C" BackgroundColor="#15171F" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="0 8 0 8" HorizontalAlignment="Center" VerticalExpand="True">
+                        <Label Text="100" HorizontalAlignment="Center" StyleClasses="LabelSubText" />
+                        <VScrollBar Name="VolumeSlider"
+                                    MinSize="26 208"
+                                    HorizontalAlignment="Center"
+                                    VerticalExpand="True"
+                                    Margin="0 6 0 6"
+                                    MinValue="0"
+                                    MaxValue="100"
+                                    Value="0" />
+                        <Label Text="0" HorizontalAlignment="Center" StyleClasses="LabelSubText" />
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Margin="0 10 0 0">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#616A8C" BackgroundColor="#2A2E40" />
+                    </PanelContainer.PanelOverride>
+                    <Label Name="VolumeValueLabel"
+                           Text="100%"
+                           HorizontalAlignment="Center"
+                           StyleClasses="LabelHeading"
+                           Margin="0 4 0 4" />
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</ui:FancyWindow>

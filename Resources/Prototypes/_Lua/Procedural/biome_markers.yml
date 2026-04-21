@@ -1,71 +1,111 @@
 - type: biomeMarkerLayer
   id: Slimes
   prototype: SpawnMobSlimeGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFCarps
   prototype: SpawnMobCarpGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFXenos
   prototype: SpawnMobXenoGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFFlesh
   prototype: SpawnMobFleshGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFArgocytes
   prototype: SpawnMobArgocyteGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFPunks
   prototype: SpawnMobPunksGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFDinosaurs
   prototype: SpawnMobDinosaursGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFMercenaries
   prototype: SpawnMobMercenariesGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFSyndicate
   prototype: SpawnMobSyndicateGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFExplorers
   prototype: SpawnMobExplorersGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFSilicons
   prototype: SpawnMobSiliconsGate
+  radius: 24
+  spawnChance: 0.7
   minGroupSize: 1
-  maxGroupSize: 1
+  maxGroupSize: 2
 
 - type: biomeMarkerLayer
   id: NFCultists
   prototype: SpawnMobCultistsGate
+  radius: 24
+  spawnChance: 0.7
+  minGroupSize: 1
+  maxGroupSize: 2
+
+- type: biomeMarkerLayer
+  id: NFZombies
+  prototype: SpawnMobZombieStargate
+  radius: 24
+  spawnChance: 0.7
+  minGroupSize: 1
+  maxGroupSize: 2
+
+- type: biomeMarkerLayer
+  id: GateGasDeposits
+  prototype: SpawnGasDepositGate
+  radius: 35
+  spawnChance: 0.8
   minGroupSize: 1
   maxGroupSize: 1

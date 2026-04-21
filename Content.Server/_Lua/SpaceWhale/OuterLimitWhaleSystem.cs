@@ -4,6 +4,7 @@
 
 using Content.Server._Goobstation.MobCaller;
 using Content.Server.NPC;
+using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -13,11 +14,14 @@ using Content.Shared.Lua.CLVar;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -36,6 +40,7 @@ public sealed class OuterLimitWhaleSystem : EntitySystem
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PowerReceiverSystem _power = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     private bool _enabled;
     private float _outerLimitRadius;
     private float _checkIntervalMinutes;
@@ -54,6 +59,8 @@ public sealed class OuterLimitWhaleSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        UpdatesAfter.Add(typeof(NPCSteeringSystem));
 
         SubscribeLocalEvent<SpaceWhaleComponent, MapInitEvent>(OnWhaleMapInit);
         SubscribeLocalEvent<SpaceWhaleComponent, MobStateChangedEvent>(OnWhaleStateChanged);
@@ -91,6 +98,8 @@ public sealed class OuterLimitWhaleSystem : EntitySystem
         if (!_enabled)
             return;
 
+        SteerWhales();
+
         if (_timing.CurTime >= _nextMaintenanceTime)
         {
             _nextMaintenanceTime = _timing.CurTime + MaintenanceInterval;
@@ -104,6 +113,62 @@ public sealed class OuterLimitWhaleSystem : EntitySystem
 
         _nextCheckTime = _timing.CurTime + TimeSpan.FromMinutes(_checkIntervalMinutes);
         PerformSpawnCheck();
+    }
+
+    private const float WhaleMeleeRange = 4f;
+    private void SteerWhales()
+    {
+        var query = EntityQueryEnumerator<SpaceWhaleComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out var whale, out var xform))
+        {
+            if (whale.Target is not { } target || !Exists(target) || EntityManager.IsQueuedForDeletion(target))
+                continue;
+
+            if (!TryComp<TransformComponent>(target, out var targetXform))
+                continue;
+
+            if (xform.MapID != targetXform.MapID)
+                continue;
+
+            var whalePos = _transform.GetWorldPosition(xform);
+            var targetPos = _transform.GetWorldPosition(targetXform);
+            var direction = targetPos - whalePos;
+            var distance = direction.Length();
+
+            Vector2 desiredVelocity;
+
+            if (distance > WhaleMeleeRange)
+            {
+                float speed = 80f;
+                if (TryComp<MovementSpeedModifierComponent>(uid, out var speedMod))
+                    speed = speedMod.CurrentSprintSpeed;
+
+                desiredVelocity = (direction / distance) * speed;
+            }
+            else
+            {
+                desiredVelocity = Vector2.Zero;
+            }
+
+            if (TryComp<PhysicsComponent>(uid, out var body))
+                _physics.SetLinearVelocity(uid, desiredVelocity, body: body);
+            if (TryComp<InputMoverComponent>(uid, out var mover))
+            {
+                mover.CurTickSprintMovement = Vector2.Zero;
+                mover.LastInputTick = _timing.CurTick;
+                mover.LastInputSubTick = ushort.MaxValue;
+            }
+            if (TryComp<NPCSteeringComponent>(uid, out var steering) &&
+                steering.Status == SteeringStatus.NoPath)
+            {
+                steering.Status = SteeringStatus.Moving;
+                steering.FailedPathCount = 0;
+            }
+
+            if (distance > 0.5f)
+                _transform.SetWorldRotation(xform, MathF.Atan2(direction.Y, direction.X));
+        }
     }
     private void EnforceSafeZone()
     {
@@ -298,7 +363,7 @@ public sealed class OuterLimitWhaleSystem : EntitySystem
         var whaleQuery = EntityQueryEnumerator<SpaceWhaleComponent, TransformComponent>();
         var nearby = new HashSet<EntityUid>();
 
-        while (whaleQuery.MoveNext(out var whaleUid, out _, out var whaleXform))
+        while (whaleQuery.MoveNext(out var whaleUid, out var whale, out var whaleXform))
         {
             nearby.Clear();
             _lookup.GetEntitiesInRange(whaleUid, WhaleTargetRange, nearby, LookupFlags.Dynamic | LookupFlags.Approximate);
@@ -332,7 +397,12 @@ public sealed class OuterLimitWhaleSystem : EntitySystem
                 }
             }
             var target = bestAliveTarget ?? bestPowerTarget;
-            if (target == null) continue;
+            if (target == null)
+            {
+                whale.Target = null;
+                continue;
+            }
+            whale.Target = target;
             _npc.SetBlackboard(whaleUid, "Target", target.Value);
             _npc.SetBlackboard(whaleUid, NPCBlackboard.FollowTarget, new EntityCoordinates(target.Value, Vector2.Zero));
         }

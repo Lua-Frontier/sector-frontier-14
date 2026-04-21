@@ -22,6 +22,10 @@
   parent: EventHumanoidMindShielded
   speciesBlacklist:
     - Arachnid
+    - Ariral
+    - Sheleg
+    - Oni
+    - Avali
     - Diona
     - Dwarf
     # - Human
@@ -31,23 +35,22 @@
     - Vox
     - Demon
     - Shark
-    - Tajaran
     - Vulpkanin
     - Felinid
-    - Kobolt
-    - XenoSponsor
     - Goblin
     - Harpy
-    - IPC
-    - IPS
 
 - type: randomHumanoidSettings
   id: EventHumanoidMindShieldedCentcom
   parent: EventHumanoidMindShielded
   speciesBlacklist:
     # - Arachnid
+    # - Ariral
+    - Sheleg
+    # - Oni
+    - Avali
     - Diona
-    # - Dwarf
+    - Dwarf
     # - Human
     # - Moth
     # - Reptilian
@@ -55,40 +58,34 @@
     - Vox
     # - Demon
     # - Shark
-    # - Tajaran
     # - Vulpkanin
     - Felinid
-    - Kobolt
-    # - XenoSponsor
     - Goblin
     - Harpy
-    - IPC
-    - IPS
 
 - type: randomHumanoidSettings
   id: EventHumanoidERT
   parent: EventHumanoidMindShielded
   # Nanotrasen are a bit racist, but FSCP more racist
   speciesBlacklist:
-    # - Arachnid
+    - Arachnid
+    - Ariral
+    - Sheleg
+    - Oni
+    - Avali
     - Diona
-    # - Dwarf
+    - Dwarf
     # - Human
-    # - Moth
-    # - Reptilian
-    # - SlimePerson
+    - Moth
+    - Reptilian
+    - SlimePerson
     - Vox
-    # - Demon
-    # - Shark
-    # - Tajaran
-    # - Vulpkanin
+    - Demon
+    - Shark
+    - Vulpkanin
     - Goblin
     - Harpy
     - Felinid
-    - Kobolt
-    - XenoSponsor
-    - IPC
-    - IPS
   randomizeName: false
   components:
   - type: AutoImplant
@@ -100,25 +97,24 @@
   id: EventHumanoidFSF
   parent: EventHumanoidMindShielded
   speciesBlacklist:
-    # - Arachnid
+    - Arachnid
+    - Ariral
+    - Sheleg
+    - Oni
+    - Avali
     - Diona
-    # - Dwarf
+    - Dwarf
     # - Human
-    # - Moth
-    # - Reptilian
-    # - SlimePerson
+    - Moth
+    - Reptilian
     - Vox
-    # - Demon
-    # - Shark
-    # - Tajaran
-    # - Vulpkanin
+    - Vulpkanin
+    - SlimePerson
+    - Demon
+    - Shark
     - Goblin
     - Harpy
     - Felinid
-    - Kobolt
-    - XenoSponsor
-    - IPC
-    - IPS
   randomizeName: false
   components:
     - type: AutoImplant

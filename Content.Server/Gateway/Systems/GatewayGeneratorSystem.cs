@@ -194,15 +194,22 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         if (TryComp(ent.Owner, out BiomeComponent? biomeComp) && generatorComp != null)
         {
             // - Loot
-            var lootLayers = generatorComp.LootLayers.ToList();
-
-            for (var i = 0; i < generatorComp.LootLayerCount; i++)
+            if (generatorComp.LootLayerCount <= 0)
             {
-                var layerIdx = random.Next(lootLayers.Count);
-                var layer = lootLayers[layerIdx];
-                lootLayers.RemoveSwap(layerIdx);
-
-                _biome.AddMarkerLayer(ent.Owner, biomeComp, layer.Id);
+                foreach (var layer in generatorComp.LootLayers)
+                    _biome.AddMarkerLayer(ent.Owner, biomeComp, layer.Id);
+            }
+            else
+            {
+                var lootLayers = generatorComp.LootLayers.ToList();
+                var count = Math.Min(generatorComp.LootLayerCount, lootLayers.Count);
+                for (var i = 0; i < count; i++)
+                {
+                    var layerIdx = random.Next(lootLayers.Count);
+                    var layer = lootLayers[layerIdx];
+                    lootLayers.RemoveSwap(layerIdx);
+                    _biome.AddMarkerLayer(ent.Owner, biomeComp, layer.Id);
+                }
             }
 
             // - Mobs

@@ -1975,7 +1975,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine] # Frontier
+  parent: [BaseStructureDisableAnchoring, VendingMachine, BaseC2SyndicateContraband] # Frontier # Lua-changes: added BaseC2SyndicateContraband
   id: VendingMachineSyndieDrobe
   name: SyndieDrobe
   description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.

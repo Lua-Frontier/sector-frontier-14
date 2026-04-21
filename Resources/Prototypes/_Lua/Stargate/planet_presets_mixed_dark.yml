@@ -1,0 +1,90 @@
+- type: stargatePlanetPreset
+  id: SGPresetShadowCorruption
+  biome:
+  - GateShadowLava
+  - GateShadowSnow
+  - GateShadowDesert
+  - GateCavesShadow
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 90
+  worldRadiusMin: 215
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFCultists
+  - NFFlesh
+  - NFZombies
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  airMods:
+  - GateAirPoisoned
+  - GateAirToxic
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetShadowHellscape
+  biome:
+  - GateShadowLava
+  - GateLavaShadow
+  - GateInferno
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 80
+  worldRadiusMin: 215
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 2
+  mobLayers:
+  - NFCultists
+  - NFFlesh
+  - NFXenos
+  - NFSyndicate
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  temperatureMods:
+  - Hot
+  airMods:
+  - GateAirPlasmaTrace
+  - GateAirHeavyToxic
+  weight: 0.07
+
+- type: stargatePlanetPreset
+  id: SGPresetCursedWastes
+  biome:
+  - GateDesertShadow
+  - GateShadowDesert
+  - GateDesertCaves
+  - GateWasteland
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 45
+  dungeonDistanceMax: 100
+  worldRadiusMin: 202
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.3125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFFlesh
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Evening
+  - Night
+  airMods:
+  - GateAirSleepy
+  weight: 0.02

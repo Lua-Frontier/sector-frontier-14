@@ -52,6 +52,8 @@ reagent-desc-silicon = A hard and brittle crystalline solid with a blue-grey col
 reagent-name-silver = silver
 reagent-desc-silver = A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal.
 
+reagent-name-titanium = titanium
+reagent-desc-titanium = A silvery-white, light, strong, and corrosion-resistant metal.
 reagent-name-sulfur = sulfur
 reagent-desc-sulfur = A yellow, crystalline solid.
 

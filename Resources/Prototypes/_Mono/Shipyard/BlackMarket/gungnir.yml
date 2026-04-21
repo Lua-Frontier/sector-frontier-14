@@ -1,0 +1,36 @@
+- type: vessel
+  id: Gungnir
+  parent: BaseVesselAntag
+  name: Gungnir
+  description: Малый пиратский шаттл, снабженный артиллерийским вооружением и базовыми вещами для грабежа.
+  limit: 4
+  price: 130000 # 2000 above min
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/gungnir.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Pirate
+  engine:
+  - AME
+
+- type: gameMap
+  id: Gungnir
+  mapName: 'Gungnir'
+  mapPath: /Maps/_Mono/Shuttles/BlackMarket/gungnir.yml
+  minPlayers: 0
+  stations:
+    Gungnir:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Gungnir RG{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            NFPirate: [ 0, 0 ]

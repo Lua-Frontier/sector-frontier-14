@@ -1,0 +1,153 @@
+- type: stargatePlanetPreset
+  id: SGPresetCavesMultiDungeon
+  biome:
+  - Caves
+  - GateCavesLava
+  - GateCavesShadow
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 130
+  worldRadiusMin: 217
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFArgocytes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.06
+
+- type: stargatePlanetPreset
+  id: SGPresetDesertMega
+  biome:
+  - LowDesert
+  - GateDesertCaves
+  - GateDesertShadow
+  - GateGrassDesert
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 160
+  worldRadiusMin: 196
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFXenos
+  - NFFlesh
+  - NFMercenaries
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetLavaFortress
+  biome:
+  - Lava
+  - GateLavaCaves
+  - GateLavaDesert
+  - GateLavaShadow
+  - GateInferno
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  worldRadiusMin: 223
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFMercenaries
+  - NFSyndicate
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Hot
+  - Burning
+  weight: 0.08
+
+- type: stargatePlanetPreset
+  id: SGPresetShadowDomain
+  biome:
+  - Shadow
+  - GateShadowLava
+  - GateShadowSnow
+  - GateShadowDesert
+  - GateCavesShadow
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  worldRadiusMin: 209
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.3125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFCultists
+  - NFZombies
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  temperatureMods:
+  - Tundra
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetContinental
+  biome:
+  - Continental
+  - GateTripleMix
+  - GateVolcanicSavanna
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 150
+  worldRadiusMin: 201
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.375
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+
+- type: stargatePlanetPreset
+  id: SGPresetContinentalRich
+  biome:
+  - Continental
+  - GateTripleMix
+  - GateInferno
+  - GateVolcanicSavanna
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 80
+  dungeonDistanceMax: 200
+  worldRadiusMin: 228
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFXenos
+  - NFDinosaurs
+  - NFMercenaries
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.03

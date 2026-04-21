@@ -1,0 +1,66 @@
+- type: entity
+  parent: BaseItem
+  id: StargateMinimapTablet
+  name: cartographic tablet
+  description: A handheld tablet for mapping worlds. Lua Technologies engraving on the back.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Mono/Objects/Devices/pda.rsi
+    state: pda-map-off
+  - type: Icon
+    sprite: _Mono/Objects/Devices/pda.rsi
+    state: pda-map-off
+  - type: Appearance
+  - type: ActivatableUI
+    key: enum.StargateMinimapTabletUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StargateMinimapTabletUiKey.Key:
+        type: StargateMinimapTabletBoundUserInterface
+  - type: StargateMinimapTablet
+  - type: ItemSlots
+    slots:
+      disk_slot_1:
+        name: Disk 1
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - StargateMinimapDisk
+      disk_slot_2:
+        name: Disk 2
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - StargateMinimapDisk
+  - type: ContainerContainer
+    containers:
+      disk_slot_1: !type:ContainerSlot {}
+      disk_slot_2: !type:ContainerSlot {}
+  - type: StaticPrice
+    price: 1800
+
+- type: entity
+  parent: BaseItem
+  id: StargateMinimapDisk
+  name: cartography disk
+  description: A data disk for storing world cartographic data. Insert into a Tablet.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: harddisk
+      color: "#44cc88"
+  - type: Item
+    size: Tiny
+    storedRotation: -90
+  - type: StargateMinimapDisk
+  - type: StaticPrice
+    price: 400

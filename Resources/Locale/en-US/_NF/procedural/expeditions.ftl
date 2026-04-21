@@ -21,6 +21,16 @@ salvage-time-mod-rush = Rushs
 
 salvage-weather-mod-heavy-snowfall = Heavy Snowfall
 salvage-weather-mod-rain = Rain
+salvage-weather-mod-light-snowfall = Light Snowfall
+salvage-weather-mod-medium-snowfall = Medium Snowfall
+salvage-weather-mod-ashfall = Ashfall
+salvage-weather-mod-ashfall-light = Light Ashfall
+salvage-weather-mod-ashfall-heavy = Heavy Ashfall
+salvage-weather-mod-fallout = Fallout
+salvage-weather-mod-hail = Hail
+salvage-weather-mod-sandstorm = Sandstorm
+salvage-weather-mod-sandstorm-heavy = Heavy Sandstorm
+salvage-weather-mod-storm = Storm
 
 salvage-biome-mod-shadow = Shadow
 

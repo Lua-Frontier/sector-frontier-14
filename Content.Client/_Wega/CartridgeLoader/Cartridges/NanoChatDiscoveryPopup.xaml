@@ -1,0 +1,14 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Content.Client._Wega.CartridgeLoader.Cartridges.NanoChatDiscoveryPopup"
+               Title="{Loc 'nano-chat-ui-discovery-title'}"
+               MinWidth="400" MinHeight="300">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="4">
+        <Label Name="HintLabel" Text="{Loc 'nano-chat-ui-discovery-hint'}" StyleClasses="LabelSubText" Margin="0 0 0 4"/>
+        <ScrollContainer VerticalExpand="True">
+            <BoxContainer Name="EntriesContainer" Orientation="Vertical" HorizontalExpand="True"/>
+        </ScrollContainer>
+        <Label Name="EmptyLabel" Text="{Loc 'nano-chat-ui-discovery-empty'}" StyleClasses="LabelSubText" Visible="False"/>
+        <Button Name="CancelButton" Text="{Loc 'nano-chat-ui-cancel'}" HorizontalAlignment="Right" Margin="0 8 0 0"/>
+    </BoxContainer>
+</DefaultWindow>

@@ -98,8 +98,6 @@
       - SimpleHostile
   - type: Damageable
     damageContainer: StructuralInorganic
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   parent: MobOreCrab
@@ -416,8 +414,6 @@
     solution: bloodstream
   - type: DrainableSolution
     solution: bloodstream
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: Reagent Slime Spawner

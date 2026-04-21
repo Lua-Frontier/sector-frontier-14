@@ -13,7 +13,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
-using Content.Shared._Lua.Sectors;
 
 namespace Content.Server._Lua.Starmap.Systems;
 
@@ -25,27 +24,6 @@ public sealed class SectorStarMapSystem : EntitySystem
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     private float _updateTimer = 0f;
-
-    private bool TryGetConfiguredPosition(string sectorProtoId, out Vector2 position)
-    {
-        position = default;
-        try
-        { if (_prototypes.TryIndex<SectorSystemPrototype>(sectorProtoId, out var proto) && proto.StarmapPosition != null) { position = proto.StarmapPosition.Value; return true; } }
-        catch { }
-        return false;
-    }
-
-    private bool TryGetSpecialPosition(string id, out Vector2 position)
-    {
-        position = default;
-        try
-        {
-            if (_prototypes.TryIndex<StarmapConfigPrototype>("StarmapConfig", out var cfg))
-            { foreach (var sp in cfg.SpecialSectors) { if (string.Equals(sp.Id, id, StringComparison.Ordinal)) { position = sp.Position; return true; } } }
-        }
-        catch { }
-        return false;
-    }
 
     public override void Initialize()
     {
@@ -69,74 +47,56 @@ public sealed class SectorStarMapSystem : EntitySystem
     {
         var sectorStars = new List<Star>();
         if (!_configurationManager.GetCVar(CLVars.StarmapIncludeSectors))
-        { return sectorStars; }
+            return sectorStars;
+
         var currentPreset = _ticker.CurrentPreset?.ID;
+
         try
         {
-            var frontierMapId = GetFrontierSectorMapId();
-            if (frontierMapId != MapId.Nullspace)
+            var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
+            if (!_prototypes.TryIndex<StarmapDataPrototype>(dataId, out var data))
+                return sectorStars;
+
+            foreach (var def in data.Stars)
             {
-                if (TryGetSpecialPosition("FrontierSector", out var position))
+                if (def.RequiredGamePresets != null && def.RequiredGamePresets.Length > 0)
                 {
-                    var frontierName = GetMapEntityName(frontierMapId) ?? "Frontier Sector";
-                    var frontierStar = new Star(position, frontierMapId, frontierName, Vector2.Zero);
-                    sectorStars.Add(frontierStar);
+                    if (currentPreset == null || !def.RequiredGamePresets.Contains(currentPreset))
+                        continue;
                 }
-            }
-            var asteroidMapId = _sectorSystem.TryGetMapId("AsteroidSectorDefault", out var asteroidMap) ? asteroidMap : MapId.Nullspace;
-            if (asteroidMapId != MapId.Nullspace)
-            {
-                if (TryGetConfiguredPosition("AsteroidSectorDefault", out var position))
+                else if (!string.IsNullOrWhiteSpace(def.RequiredGamePreset))
                 {
-                    var display = GetMapEntityName(asteroidMapId) ?? "Asteroid Field";
-                    var star = new Star(position, asteroidMapId, display, Vector2.Zero);
-                    sectorStars.Add(star);
+                    if (currentPreset != def.RequiredGamePreset)
+                        continue;
                 }
-            }
-            var mercenaryMapId = _sectorSystem.TryGetMapId("MercenarySector", out var mercenaryMap) ? mercenaryMap : MapId.Nullspace;
-            if (mercenaryMapId != MapId.Nullspace)
-            {
-                if (TryGetConfiguredPosition("MercenarySector", out var position))
+
+                MapId mapId;
+
+                if (def.StarType == "frontier")
                 {
-                    var display = GetMapEntityName(mercenaryMapId) ?? "Mercenary Sector";
-                    var star = new Star(position, mercenaryMapId, display, Vector2.Zero);
-                    sectorStars.Add(star);
+                    mapId = GetFrontierSectorMapId();
+                    if (mapId == MapId.Nullspace) continue;
                 }
-            }
-            var pirateConfigId = currentPreset == "LuaAdventure" ? "PirateSectorLua" : "PirateSector";
-            var pirateMapId = _sectorSystem.TryGetMapId(pirateConfigId, out var pirateMap) ? pirateMap : MapId.Nullspace;
-            if (pirateMapId != MapId.Nullspace)
-            {
-                if (TryGetConfiguredPosition(pirateConfigId, out var position))
+                else if (def.StarType == "centcom")
                 {
-                    var display = GetMapEntityName(pirateMapId) ?? "Pirate Sector";
-                    var star = new Star(position, pirateMapId, display, Vector2.Zero);
-                    sectorStars.Add(star);
+                    continue;
                 }
-            }
-            var typanConfigId = currentPreset == "LuaAdventure" ? "TypanSectorLua" : "TypanSector";
-            var typanMapId = _sectorSystem.TryGetMapId(typanConfigId, out var typanMap) ? typanMap : MapId.Nullspace;
-            if (typanMapId != MapId.Nullspace)
-            {
-                if (TryGetConfiguredPosition(typanConfigId, out var position))
+                else
                 {
-                    var display = GetMapEntityName(typanMapId) ?? "Nordfall Sector";
-                    var star = new Star(position, typanMapId, display, Vector2.Zero);
-                    sectorStars.Add(star);
+                    if (!_sectorSystem.TryGetMapId(def.Id, out var resolved))
+                        continue;
+                    mapId = resolved;
                 }
-            }
-            var luaTechMapId = _sectorSystem.TryGetMapId("LuaTechSector", out var luaTechMap) ? luaTechMap : MapId.Nullspace;
-            if (luaTechMapId != MapId.Nullspace)
-            {
-                if (TryGetConfiguredPosition("LuaTechSector", out var position))
-                {
-                    var display = GetMapEntityName(luaTechMapId) ?? "LuaTech Sector";
-                    var star = new Star(position, luaTechMapId, display, Vector2.Zero);
-                    sectorStars.Add(star);
-                }
+
+                if (mapId == MapId.Nullspace) continue;
+
+                var displayName = GetMapEntityName(mapId) ?? def.Name;
+                var star = new Star(def.Position, mapId, displayName, Vector2.Zero);
+                sectorStars.Add(star);
             }
         }
         catch { }
+
         return sectorStars;
     }
 
@@ -190,65 +150,34 @@ public sealed class SectorStarMapSystem : EntitySystem
     {
         var info = new System.Text.StringBuilder();
         info.AppendLine("=== SectorStarMapSystem Diagnostic Info ===");
+
         try
         {
-            var listed = 0;
-            foreach (var proto in _prototypes.EnumeratePrototypes<SectorSystemPrototype>())
+            var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
+            if (_prototypes.TryIndex<StarmapDataPrototype>(dataId, out var data))
             {
-                if (proto.StarmapPosition == null) continue;
-                info.AppendLine($"  {proto.Name} ({proto.ID}): {proto.StarmapPosition.Value}");
-                listed++;
+                info.AppendLine($"Stars defined: {data.Stars.Length}");
+                info.AppendLine($"Hyperlanes defined: {data.Hyperlanes.Length}");
+                foreach (var def in data.Stars)
+                {
+                    info.AppendLine($"  {def.Name} ({def.Id}): pos={def.Position} type={def.StarType}");
+                }
             }
-            info.AppendLine($"Configured sectors: {listed}");
+            else
+            {
+                info.AppendLine($"StarmapData prototype '{dataId}' not found!");
+            }
         }
-        catch { info.AppendLine("Configured sectors: (error enumerating)"); }
+        catch (Exception ex) { info.AppendLine($"Error: {ex.Message}"); }
+
         info.AppendLine("\nSector MapIds:");
         var frontierMapId = GetFrontierSectorMapId();
-        if (frontierMapId == MapId.Nullspace)
-        { info.AppendLine($"  Frontier Sector: {frontierMapId} (NOT FOUND)"); }
-        else if (frontierMapId == new MapId(0))
-        { info.AppendLine($"  Frontier Sector: {frontierMapId} (Main Map - MapId 0)"); }
-        else
-        { info.AppendLine($"  Frontier Sector: {frontierMapId} (Other Map)"); }
-        try
-        {
-            var asteroidMapId = _sectorSystem.TryGetMapId("AsteroidSectorDefault", out var asteroidMap) ? asteroidMap : MapId.Nullspace;
-            info.AppendLine($"  Asteroid Field: {asteroidMapId}");
-        }
-        catch (Exception ex)
-        { info.AppendLine($"  Asteroid Field: ERROR - {ex.Message}"); }
-        try
-        {
-            var mercenaryMapId = _sectorSystem.TryGetMapId("MercenarySector", out var mercenaryMap) ? mercenaryMap : MapId.Nullspace;
-            info.AppendLine($"  Mercenary Sector: {mercenaryMapId}");
-        }
-        catch (Exception ex)
-        { info.AppendLine($"  Mercenary Sector: ERROR - {ex.Message}"); }
-        try
-        {
-            var pirateMapId = _sectorSystem.TryGetMapId("PirateSector", out var pirateMap) ? pirateMap : MapId.Nullspace;
-            info.AppendLine($"  Pirate Sector: {pirateMapId}");
-        }
-        catch (Exception ex)
-        { info.AppendLine($"  Pirate Sector: ERROR - {ex.Message}"); }
-        try
-        {
-            var typanMapId = _sectorSystem.TryGetMapId("TypanSector", out var typanMap) ? typanMap : MapId.Nullspace;
-            info.AppendLine($"  Nordfall Sector: {typanMapId}");
-        }
-        catch (Exception ex)
-        { info.AppendLine($"  Nordfall Sector: ERROR - {ex.Message}"); }
-        try
-        {
-            var luaTechMapId = _sectorSystem.TryGetMapId("LuaTechSector", out var luaTechMap) ? luaTechMap : MapId.Nullspace;
-            info.AppendLine($"  LuaTech Sector: {luaTechMapId}");
-        }
-        catch (Exception ex)
-        { info.AppendLine($"  LuaTech Sector: ERROR - {ex.Message}"); }
+        info.AppendLine($"  Frontier: {frontierMapId}");
+
         var starMapQuery = AllEntityQuery<StarMapComponent>();
         var starMapCount = 0;
         while (starMapQuery.MoveNext(out var uid, out var starMap))
-        { starMapCount++; }
+            starMapCount++;
         info.AppendLine($"\nStarMap components found: {starMapCount}");
         return info.ToString();
     }

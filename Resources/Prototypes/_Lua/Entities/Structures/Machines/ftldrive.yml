@@ -38,7 +38,7 @@
 - type: entity
   parent: MachineFTLDrive
   id: MachineFTLDriveLT600
-  name: LTA-600 purspace drive
+  name: LTA-600 purspace drive # хочет спрайт
   description: An advanced LuaTech FTL civilian drive that extends a ship's FTL range to ~600 meters, but with upgrades to allow for faster recharge and flight times. Does not stack.
   components:
     - type: LuaTech
@@ -70,6 +70,7 @@
       energy: 1.5
     - type: Machine
       board: MachineDriveLT600Circuitboard
+    - type: BluespaceDrive
     - type: BluespaceFuel
       rangeBonus: 3000
     - type: Destructible

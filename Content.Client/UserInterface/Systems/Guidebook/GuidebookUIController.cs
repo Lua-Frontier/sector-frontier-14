@@ -7,6 +7,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
 using Content.Shared.Guidebook;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Input;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
@@ -31,6 +32,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     private GuidebookWindow? _guideWindow;
     private MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
     private ProtoId<GuideEntryPrototype>? _lastEntry;
+    private bool _openedStargateGuideThisSession;
 
     public void OnStateEntered(LobbyState state)
     {
@@ -55,6 +57,16 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
             _jobRequirements.FetchOverallPlaytime() < TimeSpan.FromMinutes(PlaytimeOpenGuidebook))
         {
             OpenGuidebook();
+            _guideWindow.RecenterWindow(new(0.5f, 0.5f));
+            _guideWindow.SetPositionFirst();
+        }
+
+        if (state is GameplayState &&
+            !_configuration.GetCVar(CLVars.StargateGuideShown) &&
+            _prototypeManager.HasIndex<GuideEntryPrototype>("Stargate"))
+        {
+            _openedStargateGuideThisSession = true;
+            OpenGuidebook(selected: new ProtoId<GuideEntryPrototype>("Stargate"));
             _guideWindow.RecenterWindow(new(0.5f, 0.5f));
             _guideWindow.SetPositionFirst();
         }
@@ -141,6 +153,12 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     {
         if (GuidebookButton != null)
             GuidebookButton.Pressed = false;
+
+        if (_openedStargateGuideThisSession)
+        {
+            _configuration.SetCVar(CLVars.StargateGuideShown, true);
+            _openedStargateGuideThisSession = false;
+        }
 
         if (_guideWindow != null)
         {

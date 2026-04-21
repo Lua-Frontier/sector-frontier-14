@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Content.Server.Physics.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server._Lua.Shuttles.Systems; // Lua
 using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -27,6 +28,7 @@ public sealed class MoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
 
     private EntityQuery<ShuttleComponent> _shuttleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -345,7 +347,7 @@ public sealed class MoverController : SharedMoverController
 
             if (!TryComp(consoleEnt, out TransformComponent? xform)) continue;
 
-            var gridId = xform.GridUid;
+            var gridId = _tablet.GetTabletGrid(consoleEnt) ?? xform.GridUid; // Lua
             // This tries to see if the grid is a shuttle and if the console should work.
             if (!TryComp<MapGridComponent>(gridId, out var _) ||
                 !_shuttleQuery.TryGetComponent(gridId, out var shuttleComponent) ||

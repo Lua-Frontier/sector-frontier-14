@@ -33,6 +33,7 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Lua
         [Dependency] private readonly MagneticLatchSystem _magLatch = default!; // Lua
+        [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
 
         private const string DockingJoint = "docking";
 
@@ -457,7 +458,7 @@ namespace Content.Server.Shuttles.Systems
                 return;
             }
 
-            var shuttleUid = Transform(console.Value).GridUid;
+            var shuttleUid = _tablet.GetTabletGrid(uid) ?? Transform(console.Value).GridUid; // Lua
 
             if (!CanShuttleDock(shuttleUid))
             {

@@ -1,0 +1,40 @@
+- type: entityTable
+  id: LuaGateDungeonMobTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobCarpGate
+      amount: 1
+      weight: 1
+    - id: SpawnMobXenoGate
+      amount: 1
+      weight: 1
+    - id: SpawnMobZombieStargate
+      amount: 1
+      weight: 1
+    - id: SpawnMobFleshGate
+      amount: 1
+      weight: 1
+    - id: SpawnMobPunksGate
+      amount: 1
+      weight: 1
+    - id: SpawnMobSiliconsGate
+      amount: 1
+      weight: 1
+    - id: SpawnMobExplorersGate
+      amount: 1
+      weight: 1
+    - id: SpawnMobArgocyteGate
+      amount: 1
+      weight: 0.8
+    - id: SpawnMobDinosaursGate
+      amount: 1
+      weight: 0.8
+    - id: SpawnMobMercenariesGate
+      amount: 1
+      weight: 0.8
+    - id: SpawnMobSyndicateGate
+      amount: 1
+      weight: 0.6
+    - id: SpawnMobCultistsGate
+      amount: 1
+      weight: 0.6

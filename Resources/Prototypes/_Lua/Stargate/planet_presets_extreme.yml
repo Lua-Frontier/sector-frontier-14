@@ -1,0 +1,333 @@
+- type: stargatePlanetPreset
+  id: SGPresetRainyGrassland
+  biome:
+  - Grasslands
+  - GateGrassSnow
+  - GateGrassDesert
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  worldRadiusMin: 203
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Evening
+  weatherMods:
+  - Rain
+  weight: 0.02
+
+- type: stargatePlanetPreset
+  id: SGPresetBlizzard
+  biome:
+  - Snow
+  - GateSnowLava
+  - GateSnowCaves
+  - GateShadowSnow
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 90
+  worldRadiusMin: 220
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFCarps
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Evening
+  temperatureMods:
+  - Frozen
+  weatherMods:
+  - SnowfallHeavy
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetUnstableWeather
+  biome:
+  - Grasslands
+  - GateGrassSnow
+  - GateGrassDesert
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  worldRadiusMin: 203
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weatherMods:
+  - Ashfall
+  - AshfallLight
+  - AshfallHeavy
+  - Fallout
+  - Hail
+  - Rain
+  - Sandstorm
+  - SandstormHeavy
+  - SnowfallLight
+  - SnowfallMedium
+  - SnowfallHeavy
+  - Storm
+  weight: 0.01
+
+- type: stargatePlanetPreset
+  id: SGPresetLavaHell
+  biome:
+  - Lava
+  - GateLavaCaves
+  - GateLavaShadow
+  - GateInferno
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 30
+  dungeonDistanceMax: 70
+  worldRadiusMin: 210
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 2
+  mobLayers:
+  - NFXenos
+  - NFMercenaries
+  - NFSyndicate
+  - NFFlesh
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Burning
+  - Melting
+  weight: 0.07
+
+- type: stargatePlanetPreset
+  id: SGPresetToxicCaves
+  biome:
+  - Caves
+  - GateCavesLava
+  - GateCavesShadow
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 80
+  worldRadiusMin: 227
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFXenos
+  - NFArgocytes
+  - NFFlesh
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirPoisoned
+  - GateAirToxic
+  - GateAirSwamp
+  - GateAirAmmonia
+  - GateAirDusty
+  lightMods:
+  - Night
+  weight: 0.09
+
+- type: stargatePlanetPreset
+  id: SGPresetPlasmaWorld
+  biome:
+  - Lava
+  - GateLavaCaves
+  - GateLavaDesert
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 30
+  dungeonDistanceMax: 60
+  dungeonMobDensity: 12
+  dungeonMobCap: 40
+  worldRadiusMin: 150
+  worldRadiusMax: 250
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirPlasma
+  - GateAirVolatile
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Burning
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetSleepyGrass
+  biome:
+  - Grasslands
+  - GateGrassSnow
+  - GateGrassLava
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  worldRadiusMin: 203
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirSleepy
+  lightMods:
+  - Evening
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetFrezonSnow
+  biome:
+  - Snow
+  - GateSnowCaves
+  - GateShadowSnow
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 30
+  dungeonDistanceMax: 70
+  dungeonMobDensity: 12
+  dungeonMobCap: 40
+  worldRadiusMin: 192
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirFrezon
+  temperatureMods:
+  - Frozen
+  lightMods:
+  - Night
+  weight: 0.02
+
+- type: stargatePlanetPreset
+  id: SGPresetThinAtmosphere
+  biome:
+  - LowDesert
+  - GateDesertGrass
+  - GateSnowDesert
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 90
+  worldRadiusMin: 220
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFArgocytes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirThin
+  - GateAirDusty
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetTreasureWorld
+  biome:
+  - Caves
+  - GateCavesGrass
+  - GateCavesLava
+  - GateDesertCaves
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  worldRadiusMin: 221
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetDeathtrap
+  biome:
+  - Shadow
+  - GateShadowLava
+  - GateInferno
+  - GateLavaShadow
+  dungeonPool: true
+  dungeonCountMin: 2
+  dungeonCountMax: 3
+  dungeonDistanceMin: 30
+  dungeonDistanceMax: 80
+  worldRadiusMin: 202
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 2
+  mobLayers:
+  - NFCultists
+  - NFSyndicate
+  - NFFlesh
+  - NFXenos
+  - NFMercenaries
+  - NFSilicons
+  - NFZombies
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  temperatureMods:
+  - Tundra
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetExplorerParadise
+  biome:
+  - Continental
+  - GateTripleMix
+  - GateVolcanicSavanna
+  - GateInferno
+  dungeonPool: true
+  dungeonCountMin: 3
+  dungeonCountMax: 3
+  dungeonDistanceMin: 80
+  dungeonDistanceMax: 250
+  worldRadiusMin: 228
+  worldRadiusMax: 256
+  gateSafeRadius: 12
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - Slimes
+  - NFXenos
+  - NFPunks
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.03

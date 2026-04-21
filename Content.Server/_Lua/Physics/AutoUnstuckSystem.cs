@@ -56,6 +56,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
             if (!_physicsQuery.TryGetComponent(uid, out var body)) continue;
             if (body.BodyType == BodyType.Static || !body.CanCollide) continue;
             if (HasComp<MapGridComponent>(uid) || HasComp<MapComponent>(uid) || HasComp<ShuttleComponent>(uid)) continue;
+            if (IsPaused(uid)) continue;
             var hasStaticHardContact = false;
             var dirSum = Vector2.Zero;
             var contacts = _physics.GetContacts(uid);

@@ -74,3 +74,230 @@
       NorthWest: BrickTileWhiteInnerNw
       NorthEast: BrickTileWhiteInnerNe
     color: "#FFFFFF"
+
+- type: dungeonConfig
+  id: GateTinyOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateTiny
+    - GateTinySmall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+- type: dungeonConfig
+  id: GateSmallOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateSmall
+    - GatePair
+    - GateSmallCompact
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+- type: dungeonConfig
+  id: GateMediumOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateTriplet
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:DungeonEntranceDunGen
+    count: 2
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorSteel
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFScienceLabsWalls
+    tile: FloorSteel
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
+    color: "#D381C996"
+
+- type: dungeonConfig
+  id: GateScatteredCaches
+  minCount: 3
+  maxCount: 5
+  minOffset: 20
+  maxOffset: 40
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateTiny
+    - GateTinySmall
+    - GateCompact
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+- type: dungeonConfig
+  id: GateScatteredOutposts
+  minCount: 2
+  maxCount: 3
+  minOffset: 25
+  maxOffset: 50
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFMineshaft
+    presets:
+    - GateSmall
+    - GatePair
+    - GateSmallCompact
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:RoomEntranceDunGen
+    tile: FloorCaveDrought
+    contents: NFBaseWoodWall
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+  - !type:CornerClutterDunGen
+    contents: NFMineshaftClutter
+
+- type: dungeonConfig
+  id: GateTinyLab
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
+    presets:
+    - GateTiny
+    - GateTinySmall
+    - GateCompact
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+- type: dungeonConfig
+  id: GateSmallLab
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageExperiment
+    presets:
+    - GateSmall
+    - GatePair
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorSteel
+
+  - !type:RoomEntranceDunGen
+    tile: FloorSteel
+    contents: NFBaseAirlock
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorSteel
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter

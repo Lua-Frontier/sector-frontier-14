@@ -22,6 +22,10 @@
     netsync: false
   - type: AccessReader
   #  access: [["Engineering"]] # Frontier
+  - type: Tag
+    tags:
+    - Structure
+    - Unstackable
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: Structures/Power/apc.rsi
@@ -164,6 +168,9 @@
   - type: Sprite
     sprite: Structures/Power/apc.rsi
     state: frame
+  - type: Tag
+    tags:
+    - Unstackable
   - type: Construction
     graph: APC
     node: apcFrame

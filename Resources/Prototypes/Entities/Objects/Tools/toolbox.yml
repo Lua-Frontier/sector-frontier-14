@@ -86,7 +86,7 @@
 - type: entity
   name: electrical toolbox
   suffix: Syndicate, Turret
-  parent: [ToolboxElectrical, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
+  parent: [ToolboxElectrical, BaseClearContraband] # Frontier: added BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseClearContraband
   id: ToolboxElectricalTurret
   description: A toolbox typically stocked with electrical gear.
   components:
@@ -130,7 +130,7 @@
 
 - type: entity
   name: suspicious toolbox
-  parent: [ToolboxBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ToolboxBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue
   id: ToolboxSyndicate
   description: A sinister looking toolbox filled with elite syndicate tools.
   components:
