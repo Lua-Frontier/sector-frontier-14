@@ -1,0 +1,40 @@
+- type: entity
+  parent: [ BaseMajorContraband, ClothingBeltBase ]
+  id: CSClothingBeltInteQShieldBelt
+  name: InteQ shield belt
+  description: Brilliant ideas came before the bullet, and the mercenaries came up with the idea of using shields not only in hardsuits.
+  suffix: Chaos Station
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Chaos/Clothing/Belt/inteq_shieldbelt.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Chaos/Clothing/Belt/inteq_shieldbelt.rsi
+    equippedState: equipped-BELT
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: CSEnergyDomeGray
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+  - type: InteQShield
+  - type: ScannableForPoints # Goob
+    points: 1

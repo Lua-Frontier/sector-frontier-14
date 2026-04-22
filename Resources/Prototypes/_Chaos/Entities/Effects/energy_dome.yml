@@ -1,0 +1,15 @@
+- type: entity
+  parent: EnergyDomeBase
+  id: CSEnergyDomeGray
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Chaos/Effects/EnergyDome/energydomee.rsi
+    layers:
+    - state: shield_animation
+      color: "#D3D3D3"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#D3D3D3"
