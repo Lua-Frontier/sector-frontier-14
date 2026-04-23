@@ -89,8 +89,8 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// <summary>
     /// Position of this tech in console menu
     /// </summary>
-    [DataField(required: true)]
-    public Vector2 Position { get; private set; }
+    [DataField]
+    public Vector2? Position { get; private set; }
 
     /// <summary>
     /// Defines the visual style of prerequisite connection lines leading TO this technology.

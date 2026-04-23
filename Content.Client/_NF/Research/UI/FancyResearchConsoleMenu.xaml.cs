@@ -105,6 +105,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private bool _pendingCenterResetZoom;
     private Vector2 _boundsMin = Vector2.Zero;
     private Vector2 _boundsMax = Vector2.Zero;
+    private ProtoId<RndFactionPrototype>? _researchFaction;
 
     public FancyResearchConsoleMenu()
     {
@@ -148,6 +149,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     public void SetEntity(EntityUid entity)
         => Entity = entity;
 
+    public void SetResearchFaction(string? faction)
+    {
+        if (faction != null) _researchFaction = (ProtoId<RndFactionPrototype>) faction;
+        else _researchFaction = null;
+    }
+
     public void UpdatePanels(Dictionary<string, ResearchAvailability> dict)
     {
         // Clear existing items
@@ -164,10 +171,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            if (!_research.IsTechnologyFactionAllowed(Entity, proto))
+            if (!_research.IsTechnologyFactionAllowed(_researchFaction, proto))
                 continue;
 
-            var effectivePosition = _research.GetTechnologyPosition(Entity, proto);
+            var effectivePosition = _research.GetTechnologyPosition(_researchFaction, proto);
             var position = new Vector2(GridSize * effectivePosition.X, GridSize * effectivePosition.Y);
 
             if (!boundsSet)
@@ -198,10 +205,10 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
-            if (!_research.IsTechnologyFactionAllowed(Entity, proto))
+            if (!_research.IsTechnologyFactionAllowed(_researchFaction, proto))
                 continue;
 
-            var effectivePrerequisites = _research.GetTechnologyPrerequisites(Entity, proto);
+            var effectivePrerequisites = _research.GetTechnologyPrerequisites(_researchFaction, proto);
             var control = new FancyResearchConsoleItem(proto, effectivePrerequisites, _sprite, tech.Value);
 
             DragContainer.AddChild(control);
@@ -329,7 +336,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         }
 
         // Create and add info panel
-        var control = new FancyTechnologyInfoPanel(proto, Entity, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
+        var control = new FancyTechnologyInfoPanel(proto, _researchFaction, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
         control.BuyAction += args => OnTechnologyCardPressed?.Invoke(args.ID);
         InfoContainer.AddChild(control);
     }
@@ -374,7 +381,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
 
     private Vector2 GetTechPosition(TechnologyPrototype proto)
     {
-        var position = _research.GetTechnologyPosition(Entity, proto);
+        var position = _research.GetTechnologyPosition(_researchFaction, proto);
         return new Vector2(
             position.X * GridSize - _boundsMin.X + TreePadding,
             position.Y * GridSize - _boundsMin.Y + TreePadding

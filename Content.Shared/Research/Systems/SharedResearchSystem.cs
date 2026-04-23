@@ -105,19 +105,33 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public Vector2 GetTechnologyPosition(EntityUid uid, TechnologyPrototype tech)
     {
-        var factionOverride = GetTechnologyFactionOverride(uid, tech);
-        return factionOverride?.Position ?? tech.Position;
+        return GetTechnologyPosition(GetResearchFaction(uid), tech);
+    }
+
+    public Vector2 GetTechnologyPosition(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
+        var factionOverride = GetTechnologyFactionOverride(researchFaction, tech);
+        return factionOverride?.Position ?? tech.Position ?? Vector2.Zero;
     }
 
     public IReadOnlyList<ProtoId<TechnologyPrototype>> GetTechnologyPrerequisites(EntityUid uid, TechnologyPrototype tech)
     {
-        var factionOverride = GetTechnologyFactionOverride(uid, tech);
+        return GetTechnologyPrerequisites(GetResearchFaction(uid), tech);
+    }
+
+    public IReadOnlyList<ProtoId<TechnologyPrototype>> GetTechnologyPrerequisites(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
+        var factionOverride = GetTechnologyFactionOverride(researchFaction, tech);
         return factionOverride?.TechnologyPrerequisites ?? tech.TechnologyPrerequisites;
     }
 
     private TechnologyFactionOverride? GetTechnologyFactionOverride(EntityUid uid, TechnologyPrototype tech)
     {
-        var researchFaction = GetResearchFaction(uid);
+        return GetTechnologyFactionOverride(GetResearchFaction(uid), tech);
+    }
+
+    private TechnologyFactionOverride? GetTechnologyFactionOverride(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
         if (researchFaction == null || tech.FactionOverrides.Count == 0)
             return null;
 
@@ -132,10 +146,14 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public bool IsTechnologyFactionAllowed(EntityUid uid, TechnologyPrototype tech)
     {
+        return IsTechnologyFactionAllowed(GetResearchFaction(uid), tech);
+    }
+
+    public bool IsTechnologyFactionAllowed(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
         if (tech.Factions.Count == 0)
             return true;
 
-        var researchFaction = GetResearchFaction(uid);
         if (researchFaction == null)
             return true;
 

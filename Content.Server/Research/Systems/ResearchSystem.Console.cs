@@ -84,10 +84,12 @@ public sealed partial class ResearchSystem
         var allTechs = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>();
         Dictionary<string, ResearchAvailability> techList;
         var points = 0;
+        string? researchFaction = null;
 
         if (TryGetClientServer(uid, out var serverUid, out var server, clientComponent) &&
             TryComp<TechnologyDatabaseComponent>(serverUid, out var db))
         {
+            researchFaction = server.Faction;
             var unlockedTechs = new HashSet<ProtoId<TechnologyPrototype>>(db.UnlockedTechnologies);
             techList = allTechs.ToDictionary(
                 proto => proto.ID,
@@ -112,11 +114,12 @@ public sealed partial class ResearchSystem
         }
         else
         {
+            researchFaction = clientComponent?.AllowedFactions.FirstOrDefault();
             techList = allTechs.ToDictionary(proto => proto.ID, _ => ResearchAvailability.Unavailable);
         }
 
         _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key,
-            new ResearchConsoleBoundInterfaceState(points, techList));
+            new ResearchConsoleBoundInterfaceState(points, techList, researchFaction));
         // Frontier: R&D Console Rework End
     }
 

@@ -25,7 +25,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
     public TechnologyPrototype Prototype;
     public Action<TechnologyPrototype>? BuyAction;
 
-    public FancyTechnologyInfoPanel(TechnologyPrototype proto, EntityUid researchEntity, bool hasAccess, ResearchAvailability availability, SpriteSystem sprite)
+    public FancyTechnologyInfoPanel(TechnologyPrototype proto, ProtoId<RndFactionPrototype>? researchFaction, bool hasAccess, ResearchAvailability availability, SpriteSystem sprite)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -67,7 +67,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             //_sawmill.Warning($"Technology {proto.ID} has no icon specified. Consider adding an EntityIcon field.");
         }
 
-        InitializePrerequisites(researchEntity, proto, research, sprite);
+        InitializePrerequisites(researchFaction, proto, research, sprite);
 
         InitializeRecipeUnlocks(proto, lathe, sprite);
 
@@ -105,7 +105,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         _sawmill.Debug($"Created tech panel: {proto.ID}, availability: {availability}, button disabled: {ResearchButton.Disabled}");
     }
 
-    private void InitializePrerequisites(EntityUid researchEntity, TechnologyPrototype proto, ResearchSystem research, SpriteSystem sprite)
+    private void InitializePrerequisites(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype proto, ResearchSystem research, SpriteSystem sprite)
     {
         // required techs always visible, label in required techs
         foreach (var child in RequiredTechContainer.Children.ToList())
@@ -114,7 +114,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
                 RequiredTechContainer.RemoveChild(child);
         }
 
-        var prerequisites = research.GetTechnologyPrerequisites(researchEntity, proto);
+        var prerequisites = research.GetTechnologyPrerequisites(researchFaction, proto);
         NoPrereqLabel.Visible = prerequisites.Count == 0;
         foreach (var techId in prerequisites)
         {
