@@ -2394,4 +2394,25 @@
   technologyPrerequisites:
   - ShiparmoryPlastitaniumStructures
   position: 17.205, 18.974
+- type: technology
+  id: LuaStarGateShuttleBeacon
+  name: lua-research-technology-stargate-beacon
+  entityIcon: StarGateShuttleLandingBeacon
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - StarGateShuttleLandingBeaconCircuitboard
+  factionOverrides:
+    Syndicate:
+      position: -14.255, 1
+      technologyPrerequisites:
+      - NFShuttlecraft
+    Nanotrasen:
+      position: -14.152, 1.013
+      technologyPrerequisites:
+      - NFShuttlecraft
 ...
