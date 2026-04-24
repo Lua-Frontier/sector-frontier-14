@@ -20,6 +20,7 @@ using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Station.Systems;
+using Content.Server._Lua.Stargate.Components;
 using Content.Shared._NF.BindToStation;
 
 namespace Content.Server._Mono.FireControl;
@@ -420,6 +421,10 @@ public sealed partial class FireControlSystem : EntitySystem
         if (gridXform.MapUid != null && HasComp<SalvageExpeditionComponent>(gridXform.MapUid.Value))
             return false;
 
+        // Lua: СТАРОЕ<НОВОЕ блокируем вооружение шаттлов на планетах StarGate
+        if (gridXform.MapUid != null && HasComp<StargateDestinationComponent>(gridXform.MapUid.Value))
+            return false;
+
         return true;
     }
 
@@ -605,6 +610,11 @@ public sealed partial class FireControlSystem : EntitySystem
     {
         // Check if weapon is powered
         if (!_power.IsPowered(weapon))
+            return false;
+
+        // Lua: СТАРОЕ<НОВОЕ блокируем FireControllable на планетах StarGate
+        var weaponXform = Transform(weapon);
+        if (weaponXform.MapUid != null && HasComp<StargateDestinationComponent>(weaponXform.MapUid.Value))
             return false;
 
         // Check if weapon is connected to a server
