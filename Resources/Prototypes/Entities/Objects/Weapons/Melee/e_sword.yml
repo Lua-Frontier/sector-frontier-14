@@ -427,3 +427,36 @@
   - type: EnergySword
     colorOptions:
     - "#2288ff" # can only be blue
+
+
+# Lua start
+
+- type: entity
+  name: energy sword
+  parent: [BaseMeleeWeaponEnergy] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  id: EnergySwordCivil
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
+  components:
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Slash: 7
+        Heat: 8
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  - type: StaticPrice
+    price: 2500
+  - type: Reflect
+    reflectProb: .07
+    spread: 10
+
+# Lua end
