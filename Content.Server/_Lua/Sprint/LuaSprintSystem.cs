@@ -14,7 +14,7 @@ public sealed class LuaSprintSystem : SharedLuaSprintSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _moveSpeed = default!;
 
-    private const float DrainMultiplier = 0.7f; // константа расхода общая для всех рас
+    private const float DrainMultiplier = 0.4f; // константа расхода общая для всех рас
 
     public override void Update(float frameTime)
     {
