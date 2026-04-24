@@ -1,4 +1,4 @@
-﻿using Content.Server._Lua.Shipyard.Components;
+using Content.Server._Lua.Shipyard.Components;
 using Content.Server._Lua.Stargate.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -27,7 +27,7 @@ namespace Content.Server._Lua.Stargate.Systems;
 
 public sealed class StarGateShuttleLandingSystem : EntitySystem
 {
-    private const float PlanetShuttleMassLimit = 190f;
+    private const float PlanetShuttleMassLimit = 230f;
     private const float BeaconBlockRadius = 6f;
     private const float ConsoleBlockRadius = 8f;
     private const float GateBlockRadius = 8f;
