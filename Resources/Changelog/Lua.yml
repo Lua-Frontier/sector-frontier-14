@@ -3890,3 +3890,22 @@ Entries:
   id: 274
   time: '2026-04-24T11:40:00.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/550
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены мемориальные экспозиции
+    - type: Remove
+      message: Убрана стамина при беге
+    - type: Tweak
+      message: Стартовый баланс персонажа теперь 100000
+    - type: Tweak
+      message: Экшены теперь сохраняются
+    - type: Fix
+      message: Исправлен баг стрельбы с корабельного вооружения на планетах
+    - type: Fix
+      message: >-
+        Исправлен баг из-за которого шаттл при отзыве не возвращался в сектор а
+        оставался на планете
+  id: 275
+  time: '2026-04-25T12:05:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/552

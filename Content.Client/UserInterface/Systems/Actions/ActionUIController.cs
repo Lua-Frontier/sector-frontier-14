@@ -13,8 +13,10 @@ using Content.Client.UserInterface.Systems.Actions.Windows;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.CCVar;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Input;
+using Content.Shared.Lua.CLVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -22,7 +24,9 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.ContentPack;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Timing;
@@ -45,16 +49,24 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IResourceManager _res = default!;
 
     [UISystemDependency] private readonly ActionsSystem? _actionsSystem = default;
     [UISystemDependency] private readonly InteractionOutlineSystem? _interactionOutline = default;
     [UISystemDependency] private readonly TargetOutlineSystem? _targetOutline = default;
     [UISystemDependency] private readonly SpriteSystem _spriteSystem = default!;
 
-    private const int DefaultPageIndex = 0;
+    private const int DefaultPresetIndex = 0;
+    private const int ButtonsPerColumn = 10;
+    private const int ColumnsPerPreset = 3;
+    private const int PresetCount = 10;
     private ActionButtonContainer? _container;
     private readonly List<EntityUid?> _actions = new();
-    private int _currentPageIndex = DefaultPageIndex;
+    private readonly Dictionary<int, List<string>> _savedLayout = new();
+    private bool _layoutLoaded = false;
+    private string? _currentProfileKey;
+    private int _currentPresetIndex = DefaultPresetIndex;
     private readonly DragDropHelper<ActionButton> _menuDragHelper;
     private readonly TextureRect _dragShadow;
     private ActionsWindow? _window;
@@ -92,9 +104,22 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     public bool IsDragging => _menuDragHelper.IsDragging;
 
-    private int ButtonsPerPage => PrimaryHotbarKeys.Length;
-    private int PageCount => PresetBoundKeys.Length;
-    private int CurrentPageStart => _currentPageIndex * ButtonsPerPage;
+    private int ButtonsPerPreset => ButtonsPerColumn * ColumnsPerPreset;
+    private int CurrentPresetStart => _currentPresetIndex * ButtonsPerPreset;
+    private ResPath GetLayoutPath()
+    {
+        var serverId = _cfg.GetCVar(CCVars.ServerId);
+        if (string.IsNullOrWhiteSpace(_currentProfileKey))
+            return new($"/lua/actions_layout_/{serverId}.txt");
+        return new($"/lua/actions_layout_/{serverId}_{_currentProfileKey}.txt");
+    }
+
+    private string? GetMobProfileKey(EntityUid mob)
+    {
+        if (!EntityManager.TryGetComponent<MetaDataComponent>(mob, out var meta))
+            return null;
+        return meta.EntityPrototype?.ID;
+    }
 
     /// <summary>
     /// Action slot we are currently selecting a target for.
@@ -117,6 +142,8 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     public override void Initialize()
     {
         base.Initialize();
+
+        _currentPresetIndex = Math.Clamp(_cfg.GetCVar(CLVars.ActionsActivePreset), 0, PresetCount - 1);
 
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
@@ -164,12 +191,19 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             }, false, true));
         }
 
-        var loadoutKeys = PresetBoundKeys;
-        for (var i = 0; i < loadoutKeys.Length; i++)
+        var secondaryHotbarKeys = PresetBoundKeys;
+        for (var i = 0; i < secondaryHotbarKeys.Length; i++)
         {
-            var boundId = i;
-            var boundKey = loadoutKeys[i];
-            builder = builder.Bind(boundKey, InputCmdHandler.FromDelegate(_ => ChangePage(boundId)));
+            var boundId = ButtonsPerColumn + i;
+            var boundKey = secondaryHotbarKeys[i];
+            builder = builder.Bind(boundKey, new PointerInputCmdHandler((in PointerInputCmdArgs args) =>
+            {
+                if (args.State != BoundKeyState.Down)
+                    return false;
+
+                TriggerAction(boundId);
+                return true;
+            }, false, true));
         }
 
         builder
@@ -275,7 +309,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void TriggerAction(int index)
     {
-        var globalIndex = CurrentPageStart + index;
+        var globalIndex = CurrentPresetStart + index;
         if (!_actions.TryGetValue(globalIndex, out var actionId) ||
             _actionsSystem?.GetAction(actionId) is not {} action)
         {
@@ -302,31 +336,15 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_actions.Contains(action))
             return;
 
-        for (var i = 0; i < _actions.Count; i++)
-        {
-            if (_actions[i] == null)
-            {
-                _actions[i] = action;
-                return;
-            }
-        }
-
-        _actions.Add(action);
+        RebuildCurrentLayoutFromSaved();
     }
 
     private void OnActionRemoved(EntityUid actionId)
     {
-        if (_container == null)
-            return;
-
         if (actionId == SelectingTargetFor)
             StopTargeting();
 
-        for (var i = 0; i < _actions.Count; i++)
-        {
-            if (_actions[i] == actionId)
-                _actions[i] = null;
-        }
+        RebuildCurrentLayoutFromSaved();
     }
 
     private void OnActionsUpdated()
@@ -334,45 +352,45 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         QueueWindowUpdate();
 
         if (_actionsSystem != null)
-            _container?.SetActionData(_actionsSystem, GetCurrentPageActions());
+        {
+            RebuildCurrentLayoutFromSaved();
+            _container?.SetActionData(_actionsSystem, GetCurrentPresetActions());
+        }
     }
 
-    private void ChangePage(int index)
+    private void ChangePreset(int index)
     {
         if (_actionsSystem == null)
             return;
 
-        var lastPage = PageCount - 1;
-        if (lastPage < 0)
-            return;
-
         if (index < 0)
-            index = lastPage;
-        else if (index > lastPage)
+            index = PresetCount - 1;
+        else if (index > PresetCount - 1)
             index = 0;
 
-        _currentPageIndex = index;
-        _container?.SetActionData(_actionsSystem, GetCurrentPageActions());
+        _currentPresetIndex = index;
+        _cfg.SetCVar(CLVars.ActionsActivePreset, _currentPresetIndex);
+        _container?.SetActionData(_actionsSystem, GetCurrentPresetActions());
 
         if (ActionsBar != null)
-            ActionsBar.PageButtons.Label.Text = $"{_currentPageIndex + 1}";
+            ActionsBar.PageButtons.Label.Text = $"{_currentPresetIndex + 1}";
     }
 
-    private void OnLeftArrowPressed(ButtonEventArgs args) => ChangePage(_currentPageIndex - 1);
+    private void OnLeftArrowPressed(ButtonEventArgs args) => ChangePreset(_currentPresetIndex - 1);
 
-    private void OnRightArrowPressed(ButtonEventArgs args) => ChangePage(_currentPageIndex + 1);
+    private void OnRightArrowPressed(ButtonEventArgs args) => ChangePreset(_currentPresetIndex + 1);
 
-    private EntityUid?[] GetCurrentPageActions()
+    private EntityUid?[] GetCurrentPresetActions()
     {
-        var page = new EntityUid?[ButtonsPerPage];
-        for (var i = 0; i < ButtonsPerPage; i++)
+        var preset = new EntityUid?[ButtonsPerPreset];
+        for (var i = 0; i < ButtonsPerPreset; i++)
         {
-            var globalIndex = CurrentPageStart + i;
+            var globalIndex = CurrentPresetStart + i;
             if (_actions.TryGetValue(globalIndex, out var action))
-                page[i] = action;
+                preset[i] = action;
         }
 
-        return page;
+        return preset;
     }
 
     private void ActionButtonPressed(ButtonEventArgs args)
@@ -532,16 +550,18 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             button.ClearData();
             if (_container?.TryGetButtonIndex(button, out position) ?? false)
             {
-                var globalIndex = CurrentPageStart + position;
+                var globalIndex = CurrentPresetStart + position;
                 if (_actions.Count > globalIndex && globalIndex >= 0)
                     _actions[globalIndex] = null;
+
+                _savedLayout.Remove(globalIndex);
             }
         }
         else if (button.TryReplaceWith(actionId.Value, _actionsSystem) &&
             _container != null &&
             _container.TryGetButtonIndex(button, out position))
         {
-            var globalIndex = CurrentPageStart + position;
+            var globalIndex = CurrentPresetStart + position;
             if (globalIndex >= _actions.Count)
             {
                 while (_actions.Count <= globalIndex)
@@ -553,10 +573,20 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             {
                 _actions[globalIndex] = actionId;
             }
+
+            var reservationKey = GetActionReservationKey(actionId);
+            if (!string.IsNullOrWhiteSpace(reservationKey))
+            {
+                RemovePrototypeReservation(reservationKey);
+                AddSlotReservation(globalIndex, reservationKey);
+            }
         }
 
         if (updateSlots)
-            _container?.SetActionData(_actionsSystem, GetCurrentPageActions());
+        {
+            _container?.SetActionData(_actionsSystem, GetCurrentPresetActions());
+            SaveLayout();
+        }
     }
 
     private void DragAction()
@@ -579,7 +609,9 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             SetAction(dragged, swapAction, false);
 
         if (_actionsSystem != null)
-            _container?.SetActionData(_actionsSystem, GetCurrentPageActions());
+            _container?.SetActionData(_actionsSystem, GetCurrentPresetActions());
+
+        SaveLayout();
 
         _menuDragHelper.EndDrag();
     }
@@ -736,6 +768,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
     private void UnloadGui()
     {
+        SaveLayout();
         _actionsSystem?.UnlinkAllActions();
 
         if (ActionsBar == null)
@@ -780,7 +813,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         ActionsBar.PageButtons.LeftArrow.OnPressed += OnLeftArrowPressed;
         ActionsBar.PageButtons.RightArrow.OnPressed += OnRightArrowPressed;
-        ActionsBar.PageButtons.Label.Text = $"{_currentPageIndex + 1}";
+        ActionsBar.PageButtons.Label.Text = $"{_currentPresetIndex + 1}";
 
         RegisterActionContainer(ActionsBar.ActionsContainer);
 
@@ -811,18 +844,14 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             return;
 
         _actions.Clear();
-        var slotsPerHotbar = ButtonsPerPage;
         foreach (var assign in assignments)
         {
-            var index = assign.Hotbar * slotsPerHotbar + assign.Slot;
-
-            while (_actions.Count <= index)
-                _actions.Add(null);
-
-            _actions[index] = assign.ActionId;
+            if (!_actions.Contains(assign.ActionId))
+                _actions.Add(assign.ActionId);
         }
 
-        _container?.SetActionData(_actionsSystem, GetCurrentPageActions());
+        RebuildCurrentLayoutFromSaved();
+        _container?.SetActionData(_actionsSystem, GetCurrentPresetActions());
     }
 
     public void RemoveActionContainer()
@@ -858,13 +887,135 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (_actionsSystem == null)
             return;
 
+        _currentProfileKey = GetMobProfileKey(component.Owner);
+
         LoadDefaultActions();
-        _container?.SetActionData(_actionsSystem, GetCurrentPageActions());
+        if (!_layoutLoaded)
+        {
+            LoadLayout();
+            _layoutLoaded = true;
+        }
+        RebuildCurrentLayoutFromSaved();
+        _container?.SetActionData(_actionsSystem, GetCurrentPresetActions());
         QueueWindowUpdate();
+    }
+
+    private string? GetActionReservationKey(EntityUid? actionUid)
+    {
+        if (actionUid is not { } uid)
+            return null;
+
+        if (!EntityManager.TryGetComponent<MetaDataComponent>(uid, out var meta))
+            return null;
+
+        var actionPrototype = meta.EntityPrototype?.ID;
+        if (string.IsNullOrWhiteSpace(actionPrototype))
+            return null;
+
+        if (!EntityManager.TryGetComponent<ActionComponent>(uid, out var actionComp))
+            return actionPrototype;
+
+        if (actionComp.Container is not { } container)
+            return actionPrototype;
+
+        if (!EntityManager.TryGetComponent<MetaDataComponent>(container, out var containerMeta))
+            return actionPrototype;
+
+        var providerPrototype = containerMeta.EntityPrototype?.ID;
+        if (string.IsNullOrWhiteSpace(providerPrototype))
+            return actionPrototype;
+
+        return $"{actionPrototype}|{providerPrototype}";
+    }
+
+    private void SaveLayout()
+    {
+        try
+        {
+            var lines = new List<string>();
+            foreach (var (slot, prototypeIds) in _savedLayout.OrderBy(x => x.Key))
+            {
+                foreach (var prototypeId in prototypeIds)
+                {
+                    if (string.IsNullOrWhiteSpace(prototypeId))
+                        continue;
+
+                    lines.Add($"{slot}\t{prototypeId}");
+                }
+            }
+            if (lines.Count == 0) return;
+            var layoutPath = GetLayoutPath();
+            _res.UserData.CreateDir(layoutPath.Directory);
+            using var writer = _res.UserData.OpenWriteText(layoutPath.ToRootedPath());
+            foreach (var line in lines)
+            { writer.WriteLine(line); }
+        }
+        catch (Exception e)
+        { Log.Warning($"Failed to save actions layout: {e.Message}"); }
+    }
+
+    private void LoadLayout()
+    {
+        try
+        {
+            var path = GetLayoutPath().ToRootedPath();
+            if (!_res.UserData.Exists(path))
+            {
+                InitializeSavedLayoutFromCurrent();
+                return;
+            }
+
+            using var reader = _res.UserData.OpenText(path);
+            var savedSlots = new Dictionary<int, List<string>>();
+            while (reader.ReadLine() is { } line)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                var split = line.Split('\t', 2);
+                if (split.Length != 2)
+                    continue;
+
+                if (!int.TryParse(split[0], out var slot) || slot < 0)
+                    continue;
+
+                var prototypeId = split[1].Trim();
+                if (string.IsNullOrWhiteSpace(prototypeId))
+                    continue;
+
+                if (!savedSlots.TryGetValue(slot, out var list))
+                {
+                    list = new List<string>();
+                    savedSlots[slot] = list;
+                }
+
+                if (!list.Contains(prototypeId))
+                    list.Add(prototypeId);
+            }
+
+            if (savedSlots.Count == 0)
+            {
+                InitializeSavedLayoutFromCurrent();
+                return;
+            }
+
+            _savedLayout.Clear();
+            foreach (var (slot, prototypeIds) in savedSlots)
+            {
+                _savedLayout[slot] = prototypeIds;
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Warning($"Failed to load actions layout: {e.Message}");
+        }
     }
 
     private void OnComponentUnlinked()
     {
+        SaveLayout();
+        _layoutLoaded = false;
+        _currentProfileKey = null;
         _container?.ClearActionData();
         QueueWindowUpdate();
         StopTargeting();
@@ -884,6 +1035,128 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
             if (!_actions.Contains(action))
                 _actions.Add(action);
         }
+    }
+
+    private void InitializeSavedLayoutFromCurrent()
+    {
+        _savedLayout.Clear();
+        for (var i = 0; i < _actions.Count; i++)
+        {
+            var reservationKey = GetActionReservationKey(_actions[i]);
+            if (string.IsNullOrWhiteSpace(reservationKey))
+                continue;
+
+            AddSlotReservation(i, reservationKey);
+        }
+    }
+
+    private void AddSlotReservation(int slot, string prototypeId)
+    {
+        if (!_savedLayout.TryGetValue(slot, out var list))
+        {
+            list = new List<string>();
+            _savedLayout[slot] = list;
+        }
+
+        if (!list.Contains(prototypeId))
+            list.Add(prototypeId);
+    }
+
+    private void RemovePrototypeReservation(string prototypeId)
+    {
+        var emptySlots = new List<int>();
+        foreach (var (slot, list) in _savedLayout)
+        {
+            list.RemoveAll(proto => proto == prototypeId);
+            if (list.Count == 0)
+                emptySlots.Add(slot);
+        }
+
+        foreach (var slot in emptySlots)
+        {
+            _savedLayout.Remove(slot);
+        }
+    }
+
+    private void RebuildCurrentLayoutFromSaved()
+    {
+        if (_actionsSystem == null)
+            return;
+
+        var available = _actionsSystem.GetClientActions().Select(x => x.Owner).ToList();
+        var availableLookup = new Dictionary<string, Queue<EntityUid>>();
+        foreach (var action in available)
+        {
+            var reservationKey = GetActionReservationKey(action);
+            if (string.IsNullOrWhiteSpace(reservationKey))
+                continue;
+
+            if (!availableLookup.TryGetValue(reservationKey, out var queue))
+            {
+                queue = new Queue<EntityUid>();
+                availableLookup[reservationKey] = queue;
+            }
+
+            queue.Enqueue(action);
+        }
+
+        var maxSavedIndex = _savedLayout.Count > 0 ? _savedLayout.Keys.Max() : -1;
+        var restoredSize = Math.Max(Math.Max(_actions.Count, available.Count), maxSavedIndex + 1);
+        var restored = new List<EntityUid?>(Enumerable.Repeat<EntityUid?>(null, restoredSize));
+        var used = new HashSet<EntityUid>();
+
+        foreach (var (slot, prototypeIds) in _savedLayout.OrderBy(x => x.Key))
+        {
+            if (slot < 0 || slot >= restoredSize)
+                continue;
+
+            var targetSlot = slot;
+            foreach (var prototypeId in prototypeIds)
+            {
+                if (!availableLookup.TryGetValue(prototypeId, out var queue) || queue.Count == 0)
+                    continue;
+
+                EntityUid? selected = null;
+                while (queue.Count > 0)
+                {
+                    var candidate = queue.Dequeue();
+                    if (used.Add(candidate))
+                    {
+                        selected = candidate;
+                        break;
+                    }
+                }
+
+                if (selected == null)
+                    continue;
+
+                while (targetSlot < restored.Count && restored[targetSlot] != null)
+                    targetSlot++;
+
+                if (targetSlot >= restored.Count)
+                    restored.Add(selected);
+                else
+                    restored[targetSlot] = selected;
+            }
+        }
+
+        var fillIndex = 0;
+        foreach (var actionUid in available)
+        {
+            if (!used.Add(actionUid))
+                continue;
+
+            while (fillIndex < restored.Count && restored[fillIndex] != null)
+                fillIndex++;
+
+            if (fillIndex >= restored.Count)
+                restored.Add(actionUid);
+            else
+                restored[fillIndex] = actionUid;
+        }
+
+        _actions.Clear();
+        _actions.AddRange(restored);
     }
 
     /// <summary>
