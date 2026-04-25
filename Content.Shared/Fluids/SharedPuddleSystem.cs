@@ -22,11 +22,11 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
 
-    private static readonly ProtoId<ReagentPrototype> Blood = "Blood";
-    private static readonly ProtoId<ReagentPrototype> Slime = "Slime";
-    private static readonly ProtoId<ReagentPrototype> CopperBlood = "CopperBlood";
+    private const string Blood = "Blood";
+    private const string Slime = "Slime";
+    private const string CopperBlood = "CopperBlood";
 
-    private static readonly string[] StandoutReagents = [Blood, Slime, CopperBlood];
+    private static readonly string[] StandoutReagents = { Blood, Slime, CopperBlood };
 
     /// <summary>
     /// The lowest threshold to be considered for puddle sprite states as well as slipperiness of a puddle.

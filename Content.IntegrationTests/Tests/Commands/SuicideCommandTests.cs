@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Execution;
@@ -15,6 +14,8 @@ using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Commands;
 

@@ -354,4 +354,14 @@ public sealed class MindSystem : SharedMindSystem
         MakeSentient(target);
         TransferTo(mindId, target, ghostCheckOverride: true, mind: mind);
     }
+
+    public void ClearMindReferencesOnMap(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<MindContainerComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var mindContainer, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            mindContainer.Mind = null;
+        }
+    }
 }

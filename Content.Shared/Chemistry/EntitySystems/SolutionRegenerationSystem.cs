@@ -38,16 +38,16 @@ public sealed class SolutionRegenerationSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var curTime = _timing.CurTime;
         var query = EntityQueryEnumerator<SolutionRegenerationComponent, SolutionContainerManagerComponent>();
         while (query.MoveNext(out var uid, out var regen, out var manager))
         {
-            if (_timing.CurTime < regen.NextRegenTime)
+            if (curTime < regen.NextRegenTime)
                 continue;
 
-            // timer ignores if its full, it's just a fixed cycle
             regen.NextRegenTime += regen.Duration;
-            // Needs to be networked and dirtied so that the client can reroll it during prediction
             Dirty(uid, regen);
+
             if (!_solutionContainer.ResolveSolution((uid, manager),
                     regen.SolutionName,
                     ref regen.SolutionRef,
@@ -58,12 +58,35 @@ public sealed class SolutionRegenerationSystem : EntitySystem
             if (amount <= FixedPoint2.Zero)
                 continue;
 
-            // Don't bother cloning and splitting if adding the whole thing
             var generated = amount == regen.Generated.Volume
                 ? regen.Generated
-                : regen.Generated.Clone().SplitSolution(amount);
+                : ScaleProportional(regen.Generated, amount);
 
             _solutionContainer.TryAddSolution(regen.SolutionRef.Value, generated);
         }
+    }
+    private static Solution ScaleProportional(Solution source, FixedPoint2 amount)
+    {
+        var result = new Solution(source.Contents.Count) { Temperature = source.Temperature };
+        var effVol = source.Volume.Value;
+        var remaining = (long) amount.Value;
+
+        for (var i = source.Contents.Count - 1; i >= 0; i--)
+        {
+            var (reagent, quantity) = source.Contents[i];
+            var split = remaining * quantity.Value / effVol;
+
+            if (split <= 0)
+            {
+                effVol -= quantity.Value;
+                continue;
+            }
+
+            result.AddReagent(reagent, FixedPoint2.FromCents((int) split));
+            remaining -= split;
+            effVol -= quantity.Value;
+        }
+
+        return result;
     }
 }

@@ -9,6 +9,8 @@ using Content.Shared.Popups;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Map.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -48,6 +50,30 @@ public sealed class ToggleableClothingSystem : EntitySystem
         SubscribeLocalEvent<ToggleableClothingComponent, GetVerbsEvent<EquipmentVerb>>(OnGetVerbs);
         SubscribeLocalEvent<AttachedClothingComponent, GetVerbsEvent<EquipmentVerb>>(OnGetAttachedStripVerbsEvent);
         SubscribeLocalEvent<ToggleableClothingComponent, ToggleClothingDoAfterEvent>(OnDoAfterComplete);
+        SubscribeLocalEvent<BeforeSerializationEvent>(OnBeforeSave);
+    }
+
+    private void OnBeforeSave(BeforeSerializationEvent ev)
+    {
+        var query = AllEntityQuery<ToggleableClothingComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            var dirty = false;
+
+            if (comp.ClothingUid != null && TerminatingOrDeleted(comp.ClothingUid.Value))
+            {
+                comp.ClothingUid = null;
+                dirty = true;
+            }
+
+            if (comp.ActionEntity != null && TerminatingOrDeleted(comp.ActionEntity.Value))
+            {
+                comp.ActionEntity = null;
+                dirty = true;
+            }
+
+            if (dirty) Dirty(uid, comp);
+        }
     }
 
     private void GetRelayedVerbs(EntityUid uid, ToggleableClothingComponent component, InventoryRelayedEvent<GetVerbsEvent<EquipmentVerb>> args)
@@ -216,6 +242,9 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (toggleComp.LifeStage > ComponentLifeStage.Running)
             return;
 
+        if (MetaData(component.AttachedUid).EntityLifeStage >= EntityLifeStage.Terminating)
+            return;
+
         // As unequipped gets called in the middle of container removal, we cannot call a container-insert without causing issues.
         // So we delay it and process it during a system update:
         if (toggleComp.ClothingUid != null && toggleComp.Container != null)
@@ -297,6 +326,12 @@ public sealed class ToggleableClothingSystem : EntitySystem
 
         if (_actionContainer.EnsureAction(uid, ref component.ActionEntity, out var action, component.Action))
             _actionsSystem.SetEntityIcon((component.ActionEntity.Value, action), component.ClothingUid);
+    }
+
+    public void ClearActionEntity(EntityUid uid, ToggleableClothingComponent comp)
+    {
+        comp.ActionEntity = null;
+        Dirty(uid, comp);
     }
 }
 

@@ -1,12 +1,11 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2026 LuaWorld Contributors
-# See AGPLv3.txt for details.
-
 - type: technology
   id: LuaAdvancedSalvageMagmite
   name: research-technology-advanced-salvage
   entityIcon: WeaponMagmiteCrusher
   discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 3
   cost: 20000
   recipeUnlocks:
@@ -15,17 +14,20 @@
   - WeaponMagmiteAccelerator
   technologyPrerequisites:
   - NFImprovedSalvageWeapons
-  position: 4, 39
-
+  position: 5.83, 9.874
 - type: technology
   id: LuaAdvancedSalvageJetBoots
   name: research-technology-advanced-jet-boots
   entityIcon: ClothingShoesBootsJetBoots
   discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 3
   cost: 10000
   recipeUnlocks:
   - ClothingShoesBootsJetBoots
   technologyPrerequisites:
   - NFMagnetsTechCombat
-  position: 3, 14
+  position: -5.355, 11.053
+...

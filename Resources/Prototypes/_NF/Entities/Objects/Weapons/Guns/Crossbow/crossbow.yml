@@ -202,6 +202,33 @@
         whitelist:
           tags:
           - CrossbowBoltShrapnel
+  # Lua start
+  - type: Repairable
+    fuelCost: 2
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: GunJam
+    canJam: false
+  # Lua end
 
 - type: entity
   abstract: true
@@ -293,7 +320,7 @@
     node: ImprovisedCrossbow
 
 - type: entity
-  parent: [ BaseCrossbowWieldable, BaseC3CultContraband ]
+  parent: [BaseCrossbowWieldable, BaseC1CultContraband] # Lua-changes: BaseC3CultContrabandUnredeemable > BaseC1CultContraband
   id: CrossbowBloodCult
   name: blood cult crossbow
   components:
@@ -334,7 +361,7 @@
     node: ImprovisedCrossbowHand
 
 - type: entity
-  parent: [ NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC3CultContraband ]
+  parent: [NFBaseWeaponEncumbranceCrossbowHand, NFBaseGunMeleeAttackLow, BaseCrossbow, BaseC1CultContraband] # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   id: CrossbowBloodCultHand
   name: blood cult hand crossbow
   components:

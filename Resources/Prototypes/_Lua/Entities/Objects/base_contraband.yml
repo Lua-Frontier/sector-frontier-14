@@ -1,0 +1,190 @@
+# Class 1:
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC1SpiderClanContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class1SpiderClan
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+      Doubloon: 1
+
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC1CultContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class1Cult
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+      Doubloon: 1
+      
+- type: entity
+  parent: BaseC1CultContraband
+  id: BaseC1CultContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC1SyndicateContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class1Syndicate
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+      Doubloon: 1
+
+- type: entity
+  parent: BaseC1SyndicateContraband
+  id: BaseC1SyndicateContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC1PirateContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class1Pirate
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+
+- type: entity
+  parent: BaseC1PirateContraband
+  id: BaseC1PirateContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class1Pirate
+    allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 0
+      
+# Class 2:
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC2SyndicateContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2Syndicate
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+      Doubloon: 1
+      
+- type: entity
+  parent: BaseC2SyndicateContraband
+  id: BaseC2SyndicateContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2Syndicate
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC2PirateContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2Pirate
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 1
+      
+- type: entity
+  parent: BaseC2PirateContraband
+  id: BaseC2PirateContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2Pirate
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues:
+      FrontierUplinkCoin: 0
+      
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC2SpiderClanContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2SpiderClan
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues: 
+      FrontierUplinkCoin: 2
+      Doubloon: 2
+ 
+# Class 3:
+- type: entity
+  parent: BaseC3SyndicateContrabandUnredeemable
+  id: BaseC3SyndicateContrabandPremium
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: 
+      FrontierUplinkCoin: 4
+      Doubloon: 4
+
+- type: entity
+  parent: BaseC3PirateContraband
+  id: BaseC3PirateContrabandPremium
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: 
+      FrontierUplinkCoin: 4
+ 
+- type: entity
+  parent: BaseC3Contraband
+  id: BaseC3SpiderClanContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3SpiderClan
+    turnInValues: 
+      FrontierUplinkCoin: 2
+      Doubloon: 2
+      
+# Class 3.1 (CentCom and NFSD):
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC3CentCommContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3CentCom
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues:
+      Doubloon: 3
+      
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseC3CentCommContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3CentCom
+    allowedDepartments: [ Security, Command, CentralCommand ]
+    turnInValues:
+      Doubloon: 0

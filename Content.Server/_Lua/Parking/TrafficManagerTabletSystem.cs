@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaWorld/LuaCorp
 // See AGPLv3.txt for details.
 
+using Content.Shared._NF.Bank;
 using Content.Server._Lua.Frontier.Parking;
 using Content.Server._NF.Bank;
 using Content.Server._NF.Shipyard.Systems;
@@ -78,6 +79,8 @@ public sealed class TrafficManagerTabletSystem : EntitySystem
                 _parking.ResetTimer(shuttleUid); break;
             case TrafficManagerTabletAction.AddTenMinutes:
                 _parking.AddTenMinutes(shuttleUid); break;
+            case TrafficManagerTabletAction.Fine:
+                TryFine(user, shuttleUid); break;
             case TrafficManagerTabletAction.Sell:
                 TrySell(user, shuttleUid); break;
         }
@@ -108,12 +111,40 @@ public sealed class TrafficManagerTabletSystem : EntitySystem
                 var shuttleName = ShipyardSystem.GetFullName(deed);
                 var ownerName = deed.ShuttleOwner ?? "Unknown";
                 var sellEnabled = state.NeedsDisposal;
-                list.Add(new TrafficManagerTabletShuttleEntry(GetNetEntity(shuttle), shuttleName, ownerName, status, remaining, state.ExtraMinutes, state.NeedsDisposal, sellEnabled));
+                list.Add(new TrafficManagerTabletShuttleEntry(GetNetEntity(shuttle), shuttleName, ownerName, status, remaining, state.ExtraMinutes, state.FinePending, state.NeedsDisposal, sellEnabled));
             }
         }
         list = list.OrderByDescending(s => s.Status).ThenBy(s => s.ShuttleName).ToList();
         var stateUi = new TrafficManagerTabletUiState(authorized, error, list);
         _ui.SetUiState(uid, TrafficManagerTabletUiKey.Key, stateUi);
+    }
+
+    private void TryFine(EntityUid user, EntityUid shuttleUid)
+    {
+        var result = _parking.TryApplyManualFine(shuttleUid);
+        switch (result)
+        {
+            case FrontierParkingSystem.ManualFineResult.Success:
+                _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-fined"), user, user, PopupType.Medium);
+                break;
+            case FrontierParkingSystem.ManualFineResult.Queued:
+                _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-fine-queued"), user, user, PopupType.SmallCaution);
+                break;
+            case FrontierParkingSystem.ManualFineResult.InsufficientFunds:
+                _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-fine-insufficient-funds"), user, user, PopupType.SmallCaution);
+                break;
+            case FrontierParkingSystem.ManualFineResult.NotPending:
+                _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-fine-not-pending"), user, user, PopupType.SmallCaution);
+                break;
+            case FrontierParkingSystem.ManualFineResult.NoOwner:
+                _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-fine-owner-not-found"), user, user, PopupType.SmallCaution);
+                break;
+            case FrontierParkingSystem.ManualFineResult.NotTracked:
+            case FrontierParkingSystem.ManualFineResult.NoFrontierStation:
+            default:
+                _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-fine-failed"), user, user, PopupType.SmallCaution);
+                break;
+        }
     }
 
     private void TrySell(EntityUid user, EntityUid shuttleUid)

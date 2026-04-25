@@ -40,9 +40,21 @@ namespace Content.Server.Spawners.EntitySystems
 
         private void OnEntityTableSpawnMapInit(Entity<EntityTableSpawnerComponent> ent, ref MapInitEvent args)
         {
+            if (ent.Comp.HasSpawned) return;
             Spawn(ent);
+            ent.Comp.HasSpawned = true;
             if (ent.Comp.DeleteSpawnerAfterSpawn && !TerminatingOrDeleted(ent) && Exists(ent))
                 QueueDel(ent);
+        }
+
+        public void MarkPersistentSpawnersAsSpawnedOnMap(EntityUid mapUid)
+        {
+            var query = EntityQueryEnumerator<EntityTableSpawnerComponent, TransformComponent>();
+            while (query.MoveNext(out _, out var spawner, out var xform))
+            {
+                if (xform.MapUid != mapUid || spawner.DeleteSpawnerAfterSpawn) continue;
+                spawner.HasSpawned = true;
+            }
         }
 
         private void OnRuleStarted(ref GameRuleStartedEvent args)

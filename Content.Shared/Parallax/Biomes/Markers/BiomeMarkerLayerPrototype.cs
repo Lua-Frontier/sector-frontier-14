@@ -35,6 +35,9 @@ public sealed partial class BiomeMarkerLayerPrototype : IBiomeMarkerLayer
     [DataField("maxCount")]
     public int MaxCount = int.MaxValue;
 
+    [DataField]
+    public float SpawnChance = 1f;
+
     /// <summary>
     /// Minimum entities to spawn in one group.
     /// </summary>

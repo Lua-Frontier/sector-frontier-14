@@ -1,0 +1,45 @@
+- type: entity
+  id: ADTBaseWeaponCaseNT
+  name: weapon case
+  description: Weapon case, special designed for sophisticated and expensive weapons.
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  components:
+  - type: Sprite
+    sprite: _ADT/Objects/Storage/weaponcase_yellow.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+  - type: Appearance
+  - type: Item
+    sprite: _ADT/Objects/Storage/weaponcase_yellow.rsi
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,6,1
+
+- type: entity
+  id: ADTBaseWeaponCaseNTCC7Arbiter
+  suffix: CC-7 "Arbiter"
+  name: weapon case
+  description: Weapon case, special designed for sophisticated and expensive weapons.
+  parent: [ ADTBaseWeaponCaseNT ]
+  components:
+  - type: Sprite
+    sprite: _ADT/Objects/Storage/weaponcase_yellow.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+  - type: Appearance
+  - type: Item
+    sprite: _ADT/Objects/Storage/weaponcase_yellow.rsi
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+  - type: StorageFill
+    contents:
+     - id: ADTWeaponBlasterCC7Arbiter

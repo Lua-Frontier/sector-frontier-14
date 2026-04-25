@@ -1,0 +1,17 @@
+- type: entity
+  id: ADTBriefcaseCentcomm
+  name: Centcomm briefcase
+  parent: BriefcaseBrown
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _ADT/Objects/Misc/sec_auditor_briefcase.rsi
+    state: icon
+  - type: Item
+    sprite: _ADT/Objects/Misc/sec_auditor_briefcase.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"

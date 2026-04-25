@@ -1,10 +1,11 @@
-# Tier 1
-
 - type: technology
   id: Gygax
   name: research-technology-gygax
   entityIcon: MechGygax
   discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -21,28 +22,30 @@
   - WeaponMechCombatUltraRifle
   technologyPrerequisites:
   - Ripley2
-  position: 3, 17 # Lua: 4, 16 < 3, 17
-
-# Tier 2
-
+  position: 9.02, 4.546
 - type: technology
   id: ExplosiveMechAmmunition
   name: research-technology-explosive-mech-ammunition
   entityIcon: WeaponMechCombatMissileRack8
   discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 2
   cost: 12000
   recipeUnlocks:
   - WeaponMechCombatMissileRack8
   technologyPrerequisites:
   - NFExplosiveTechnology
-  position: 4, 41 # Lua: 4, 15 < 4, 41
-
+  position: 7.526, 13.098
 - type: technology
   id: Durand
   name: research-technology-durand
   entityIcon: MechDurand
   discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 2
   cost: 13000
   recipeUnlocks:
@@ -60,4 +63,5 @@
   - WeaponMechCombatShotgunIncendiary
   technologyPrerequisites:
   - Gygax
-  position: 4, 17 # Lua: 5, 16 < 4, 17
+  position: 10.052, 4.576
+...

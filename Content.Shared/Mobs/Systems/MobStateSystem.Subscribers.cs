@@ -1,4 +1,5 @@
-﻿using Content.Shared.Bed.Sleep;
+using System.Numerics;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
@@ -48,6 +49,7 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, DamageModifyEvent>(OnDamageModify);
 
         SubscribeLocalEvent<MobStateComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
+        SubscribeLocalEvent<MobStateComponent, TileFrictionEvent>(OnDeadTileFriction); // Lua
     }
 
     private void OnUnbuckleAttempt(Entity<MobStateComponent> ent, ref UnbuckleAttemptEvent args)
@@ -117,6 +119,11 @@ public partial class MobStateSystem
                 EnsureComp<CollisionWakeComponent>(target);
                 _standing.Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Dead);
+                if (TryComp<PhysicsComponent>(target, out var physics))
+                {
+                    _physics.SetLinearVelocity(target, Vector2.Zero, body: physics);
+                    _physics.SetAngularVelocity(target, 0f, body: physics);
+                }
                 break;
             case MobState.Invalid:
                 //unused;
@@ -195,6 +202,12 @@ public partial class MobStateSystem
     private void OnDamageModify(Entity<MobStateComponent> ent, ref DamageModifyEvent args)
     {
         args.Damage *= _damageable.UniversalMobDamageModifier;
+    }
+
+    private void OnDeadTileFriction(Entity<MobStateComponent> ent, ref TileFrictionEvent args)
+    {
+        if (ent.Comp.CurrentState == MobState.Dead)
+            args.Modifier *= 40f;
     }
 
     #endregion

@@ -57,7 +57,7 @@
 
 - type: entity
   id: NFWeaponShotgunEnforcer
-  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge
+  parent: [NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable, BaseC2ExpeditionContraband] #Lua 4 gauge
   name: Enforcer
   description: |-
     A premium semi-automatic shotgun, featuring an upgraded tube capacity.
@@ -79,7 +79,7 @@
 
 - type: entity
   id: NFWeaponShotgunKammerer
-  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge
+  parent: [ NFBaseWeaponShotgunChamber23x75, NFBaseWeaponFrameShotgunWieldable ] #Lua 4 gauge, added BaseC2ExpeditionContraband
   name: Kammerer
   description: |-
     An old yet faithful design, and a favorite among irregular forces on many worlds.

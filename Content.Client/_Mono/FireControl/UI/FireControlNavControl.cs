@@ -40,6 +40,7 @@ public sealed class FireControlNavControl : ShuttleNavControl
     protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
         base.MouseMove(args);
+        _lastMousePos = args.RelativePosition; // Lua
         if (_isMouseInside)
             // Continuously update the cursor position for guided missiles
             TryUpdateCursorPosition(_lastMousePos);

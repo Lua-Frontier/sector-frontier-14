@@ -189,11 +189,11 @@ public sealed partial class SingleMarkingPicker : BoxContainer
         var sortedMarkings = _markingPrototypeCache.Where(m =>
             m.Key.ToLower().Contains(filter.ToLower()) ||
             GetMarkingName(m.Value).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => Loc.GetString($"marking-{p.Key}"));
+        ).OrderBy(p => GetMarkingName(p.Value));
 
         foreach (var (id, marking) in sortedMarkings)
         {
-            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites[0]));
+            var item = MarkingList.AddItem(GetMarkingName(marking), _sprite.Frame0(marking.Sprites[0]));
             item.Metadata = marking.ID;
 
             if (_markings[Slot].MarkingId == id)
@@ -300,6 +300,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
     private string GetMarkingName(MarkingPrototype marking)
     {
-        return Loc.GetString($"marking-{marking.ID}");
+        var key = $"marking-{marking.ID}";
+        return Loc.TryGetString(key, out var name) ? name : marking.ID;
     }
 }

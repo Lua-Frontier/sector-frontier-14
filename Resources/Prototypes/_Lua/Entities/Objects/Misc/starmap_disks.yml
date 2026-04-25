@@ -20,7 +20,7 @@
       - !type:DoActsBehavior { acts: [ Destruction ] }
 
 - type: entity
-  parent: CoordinatesDisk
+  parent: [CoordinatesDisk, BaseC3SyndicateContraband]
   id: CoordinatesDiskNordfall
   name: coordinates disk (Nordfall)
   components:
@@ -62,7 +62,7 @@
       - !type:DoActsBehavior { acts: [ Destruction ] }
 
 - type: entity
-  parent: CoordinatesDisk
+  parent: [CoordinatesDisk, BaseC3PirateContraband]
   id: CoordinatesDiskPirate
   name: coordinates disk (Pirate)
   components:
@@ -135,7 +135,7 @@
 
 
 - type: entity
-  parent: CoordinatesDisk
+  parent: [CoordinatesDisk, BaseC3CentCommContraband]
   id: CoordinatesDiskCentCom
   name: coordinates disk (CentCom)
   components:
@@ -155,5 +155,3 @@
         damage: 5
       behaviors:
       - !type:DoActsBehavior { acts: [ Destruction ] }
-
-

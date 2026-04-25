@@ -31,6 +31,7 @@ public sealed class MappingSystem : EntitySystem
     /// </summary>
     /// <returns></returns>
     private Dictionary<EntityUid, (TimeSpan next, string fileName)> _currentlyAutosaving = new();
+    private readonly List<EntityUid> _autosaveKeysBuffer = new();
 
     private bool _autosaveEnabled;
 
@@ -60,14 +61,24 @@ public sealed class MappingSystem : EntitySystem
         if (!_autosaveEnabled)
             return;
 
-        foreach (var (uid, (time, name))in _currentlyAutosaving)
+        _autosaveKeysBuffer.Clear();
+        foreach (var uid in _currentlyAutosaving.Keys)
         {
+            _autosaveKeysBuffer.Add(uid);
+        }
+
+        foreach (var uid in _autosaveKeysBuffer)
+        {
+            if (!_currentlyAutosaving.TryGetValue(uid, out var tuple))
+                continue;
+
+            var (time, name) = tuple;
             if (_timing.RealTime <= time)
                 continue;
 
-            if (LifeStage(uid) >= EntityLifeStage.MapInitialized)
+            if (LifeStage(uid) >= EntityLifeStage.Terminating)
             {
-                Log.Warning($"Can't autosave entity {uid}; it doesn't exist, or is initialized. Removing from autosave.");
+                Log.Warning($"Can't autosave entity {uid}; it doesn't exist or is terminating. Removing from autosave.");
                 _currentlyAutosaving.Remove(uid);
                 continue;
             }
@@ -112,9 +123,9 @@ public sealed class MappingSystem : EntitySystem
         if (_currentlyAutosaving.Remove(uid) || path == null)
             return;
 
-        if (LifeStage(uid) >= EntityLifeStage.MapInitialized)
+        if (LifeStage(uid) >= EntityLifeStage.Terminating)
         {
-            Log.Error("Tried to enable autosaving on a post map-init entity.");
+            Log.Error("Tried to enable autosaving on a terminating/deleted entity.");
             return;
         }
 

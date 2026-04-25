@@ -1,27 +1,31 @@
-# Tier 2
-
 - type: technology
   id: NightVisionTech
   name: research-technology-night-vision
   entityIcon: ClothingEyesNightVisionGoggles
   discipline: NFScience
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 2
   cost: 10000
   recipeUnlocks:
   - ClothingEyesNightVisionGoggles
   technologyPrerequisites:
   - NFHardsuitsArmoredAdvanced
-  position: 3, 10 # Lua: 6, 9 < 3, 10
-
+  position: -6.162, 9.588
 - type: technology
   id: ThermalVisionTech
   name: research-technology-thermal-vision
   entityIcon: ClothingEyesThermalVisionGoggles
   discipline: NFScience
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 2
   cost: 10000
   recipeUnlocks:
   - ClothingEyesThermalVisionGoggles
   technologyPrerequisites:
   - NightVisionTech
-  position: 4, 10 # Lua: 6, 10 < 4, 10
+  position: -7.249, 10.596
+...

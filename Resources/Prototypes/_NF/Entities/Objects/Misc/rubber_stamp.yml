@@ -1,6 +1,6 @@
 - type: entity
   name: station representative's rubber stamp
-  parent: [RubberStampHop, BaseCommandContraband]
+  parent: [RubberStampHop, BaseC3CentCommContraband] # Lua-changes: BaseCommandContraband > BaseC3CentCommContraband
   id: RubberStampSr
   components:
   - type: Stamp
@@ -27,7 +27,7 @@
 
 - type: entity
   name: sheriff's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [RubberStampBase, BaseC3CentCommContraband] # Lua-changes: BaseCommandContraband > BaseC3CentCommContraband
   id: RubberStampSheriff
   categories: [ DoNotMap ]
   components:
@@ -68,7 +68,7 @@
 
 - type: entity
   name: public affairs liaison's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   id: RubberStampPal
   categories: [ DoNotMap ]
   components:
@@ -82,7 +82,7 @@
 
 - type: entity
   name: director of care's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [RubberStampBase, BaseC3CentCommContraband] # Lua-changes: BaseCommandContraband > BaseC3CentCommContraband
   id: RubberStampDoc
   categories: [ DoNotMap ]
   components:
@@ -96,7 +96,7 @@
 
 - type: entity
   name: bailiff's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   id: RubberStampBailiff
   categories: [ DoNotMap ]
   components:
@@ -110,7 +110,7 @@
 
 - type: entity
   name: plant manager's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
+  parent: [RubberStampBase, BaseC3CentCommContraband] # Lua-changes: BaseCommandContraband > BaseC3CentCommContraband
   id: RubberStampPlantManager
   categories: [ DoNotMap ]
   components:

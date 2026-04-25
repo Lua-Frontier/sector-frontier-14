@@ -33,6 +33,12 @@
     baseWalkSpeed: 2.8
     baseSprintSpeed: 5.8
     weightlessAcceleration: 2.5
+  - type: LuaSprint # Lua
+    maxSprint: 88
+    drainPerSecond: 8.7
+    regenPerSecond: 9.6
+    regenDelay: 0.16
+    recoverThresholdFraction: 0.20
   - type: PseudoItem
     storedOffset: 0,17
     shape:
@@ -277,6 +283,8 @@
         32:
           sprite: _Lua/Races/Avali/displacement.rsi
           state: inHand
+  - type: LuaJumpAbility # Lua
+    jumpDistance: 5
 
 - type: entity
   save: false

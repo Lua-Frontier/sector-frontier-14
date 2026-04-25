@@ -25,6 +25,9 @@
   chunkComponents:
     - type: SimpleDebrisSelector
       debrisTable:
+        - id: AsteroidDebrisSmall
+          prob: 0.01
+          orGroup: debris
         - id: AsteroidDebrisMedium
           prob: 0.03
           orGroup: debris
@@ -258,6 +261,9 @@
     - type: NoiseDrivenDebrisSelector
       noiseChannel: Wreck
       debrisTable:
+        - id: ScrapDebrisSmall
+          prob: 0.01
+          orGroup: wreck
         - id: ScrapDebrisMedium
           prob: 0.03
           orGroup: wreck

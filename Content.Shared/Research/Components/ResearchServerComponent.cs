@@ -1,4 +1,6 @@
 using Robust.Shared.GameStates;
+using Content.Shared.Research.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -7,6 +9,16 @@ namespace Content.Shared.Research.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ResearchServerComponent : Component
 {
+    [DataField("faction"), ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<RndFactionPrototype> Faction = "Nanotrasen";
+
+    [DataField("serverType")]
+    public string LegacyServerType
+    {
+        get => Faction;
+        set => Faction = value;
+    }
+
     /// <summary>
     /// The name of the server
     /// </summary>

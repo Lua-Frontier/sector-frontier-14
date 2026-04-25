@@ -7,6 +7,7 @@ using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Systems;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Tag;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -22,6 +23,9 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+
+    private readonly ProtoId<TagPrototype> _dontReopenRoleTag = "DontReopenRole"; //Lua
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -64,7 +68,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
     private void OnJobMindRemoved(Entity<JobTrackingComponent> ent, ref MindRemovedMessage ev)
     {
-        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value))
+        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value) || _tag.HasTag(ent.Owner, _dontReopenRoleTag)) // Lua
             return;
 
         OpenJob(ent);
@@ -72,7 +76,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
     private void OnJobBeforeCryoEntered(Entity<JobTrackingComponent> ent, ref CryosleepBeforeMindRemovedEvent ev)
     {
-        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value))
+        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value) || _tag.HasTag(ent.Owner, _dontReopenRoleTag)) // Lua
             return;
 
         OpenJob(ent);
@@ -108,6 +112,17 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
         }
         catch (KeyNotFoundException)
         {
+        }
+    }
+
+    public void ClearStationReferencesOnMap(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<JobTrackingComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var job, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            job.SpawnStation = EntityUid.Invalid;
+            job.Active = false;
         }
     }
 

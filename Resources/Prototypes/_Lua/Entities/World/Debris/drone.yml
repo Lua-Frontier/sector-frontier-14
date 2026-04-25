@@ -1,0 +1,62 @@
+# base Resources\Prototypes\_Mono\Entities\World\Debris\drone.yml
+
+#region LuaTech
+
+- type: entity
+  id: SpawnDroneLuaTechBase
+  parent: MarkerBase
+  abstract: true
+  components:
+  - type: GridSpawner
+    addComponents:
+    - type: Company
+      companyName: LuaTech
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/ai.png
+      scale: 1.2
+      allowWhenHidden: true
+    - type: IFF
+      color: "#2595db"
+    - type: GridCleanupGrid
+      cleanupAcceleration: 3
+      ignorePowered: true
+      ignoreIFF: true
+      ignorePrice: true
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - DroneTitleLuaTech
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneLTMedusa
+  parent: SpawnDroneLuaTechBase
+  suffix: LuaTech
+  components:
+  - type: GridSpawner
+    path: /Maps/_Lua/Shuttles/World/medusa.yml
+
+- type: entity
+  id: SpawnDroneLTCrown
+  parent: SpawnDroneLuaTechBase
+  suffix: LuaTech
+  components:
+  - type: GridSpawner
+    path: /Maps/_Lua/Shuttles/World/crown.yml
+
+- type: entity
+  id: SpawnDroneLTMPulsar
+  parent: SpawnDroneLuaTechBase
+  suffix: LuaTech
+  components:
+  - type: GridSpawner
+    path: /Maps/_Lua/Shuttles/World/mpulsar.yml
+
+#endregion

@@ -1,8 +1,8 @@
 using Content.Shared.Actions;
 using Content.Shared._EE.CCVar; // EE
-using Content.Shared._Mono.Radar;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
@@ -14,7 +14,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Movement.Systems;
 
-public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: added partial
+public abstract partial class SharedJetpackSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
@@ -36,9 +36,10 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
         SubscribeLocalEvent<JetpackUserComponent, EntParentChangedMessage>(OnJetpackUserEntParentChanged);
         SubscribeLocalEvent<JetpackComponent, EntGotInsertedIntoContainerMessage>(OnJetpackMoved);
 
+        SubscribeLocalEvent<JetpackUserComponent, MobStateChangedEvent>(OnJetpackUserMobStateChanged); // Lua
+
         SubscribeLocalEvent<GravityChangedEvent>(OnJetpackUserGravityChanged);
         SubscribeLocalEvent<JetpackComponent, MapInitEvent>(OnMapInit);
-        NfInitialize(); // Frontier
     }
 
     private void OnJetpackUserWeightlessMovement(Entity<JetpackUserComponent> ent, ref RefreshWeightlessModifiersEvent args)
@@ -126,6 +127,15 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
             _popup.PopupClient(Loc.GetString("jetpack-to-grid"), uid, uid);
+        }
+    }
+
+    private void OnJetpackUserMobStateChanged(EntityUid uid, JetpackUserComponent component, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Dead
+            && TryComp<JetpackComponent>(component.Jetpack, out var jetpack))
+        {
+            SetEnabled(component.Jetpack, jetpack, false, uid);
         }
     }
 
@@ -227,16 +237,11 @@ public abstract partial class SharedJetpackSystem : EntitySystem // Frontier: ad
         {
             SetupUser(user.Value, uid, component);
             EnsureComp<ActiveJetpackComponent>(uid);
-            // Frontier
-            if (component.RadarBlip) // add radar blip when jetpack is activated
-                SetupRadarBlip(uid);
-            // End Frontier
         }
         else
         {
             RemoveUser(user.Value, component);
             RemComp<ActiveJetpackComponent>(uid);
-            if (TryComp<RadarBlipComponent>(uid, out var blip)) blip.Enabled = false;
         }
 
         Appearance.SetData(uid, JetpackVisuals.Enabled, enabled);

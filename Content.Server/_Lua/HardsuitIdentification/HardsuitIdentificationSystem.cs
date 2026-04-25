@@ -21,6 +21,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Lua.HardsuitIdentification;
@@ -35,8 +36,10 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly Dictionary<EntityUid, SecurityData> _activeSecurity = new();
+    private readonly List<EntityUid> _securityToRemove = new();
 
     private struct SecurityData
     {
@@ -66,12 +69,12 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
     private void ProcessActiveSecurity(float frameTime)
     {
         var currentTime = _timing.CurTime;
-        var toRemove = new List<EntityUid>();
+        _securityToRemove.Clear();
         foreach (var (hardsuit, data) in _activeSecurity)
         {
             if (!EntityManager.EntityExists(hardsuit) || !EntityManager.EntityExists(data.Wearer))
             {
-                toRemove.Add(hardsuit);
+                _securityToRemove.Add(hardsuit);
                 continue;
             }
             var elapsed = currentTime - data.StartTime;
@@ -86,14 +89,14 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
             if (progress >= 1.0f)
             {
                 SecurityAction(hardsuit, data.Wearer, data.Mode);
-                toRemove.Add(hardsuit);
+                _securityToRemove.Add(hardsuit);
             }
             else
             {
                 _activeSecurity[hardsuit] = updatedData;
             }
         }
-        foreach (var hardsuit in toRemove)
+        foreach (var hardsuit in _securityToRemove)
         {
             _activeSecurity.Remove(hardsuit);
         }
@@ -385,8 +388,7 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
             args.Handled = true;
             return;
         }
-        var random = new Random();
-        if (random.NextDouble() > comp.EmagSuccessChance)
+        if (_random.NextDouble() > comp.EmagSuccessChance)
         {
             _popupSystem.PopupEntity(Loc.GetString("hardsuit-identification-emag-failed"), uid);
             _audio.PlayPvs(comp.SparkSound, uid);

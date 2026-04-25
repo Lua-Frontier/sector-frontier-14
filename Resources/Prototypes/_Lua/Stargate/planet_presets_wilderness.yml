@@ -1,0 +1,175 @@
+- type: stargatePlanetPreset
+  id: SGPresetEmptyDesert
+  biome:
+  - LowDesert
+  - GateDesertCaves
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 205
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.29
+
+- type: stargatePlanetPreset
+  id: SGPresetEmptySnow
+  biome:
+  - Snow
+  - GateSnowCaves
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 205
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  temperatureMods:
+  - Frozen
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetBarrenLava
+  biome:
+  - Lava
+  - GateLavaCaves
+  - GateLavaDesert
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 195
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Burning
+  weight: 0.09
+
+- type: stargatePlanetPreset
+  id: SGPresetVoidAsteroid
+  biome:
+  - Asteroid
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 120
+  worldRadiusMax: 200
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - Space
+  lightMods:
+  - Night
+  weight: 0.18
+
+- type: stargatePlanetPreset
+  id: SGPresetEmptyShadow
+  biome:
+  - Shadow
+  - GateShadowSnow
+  - GateShadowDesert
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 150
+  worldRadiusMax: 250
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetPeacefulGrass
+  biome:
+  - Grasslands
+  - GateGrassSnow
+  - GateGrassDesert
+  - GateGrassCaves
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 208
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.02
+
+- type: stargatePlanetPreset
+  id: SGPresetCavesMining
+  biome:
+  - Caves
+  - GateCavesGrass
+  - GateCavesLava
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 208
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.06
+
+- type: stargatePlanetPreset
+  id: SGPresetGrasslandSafe
+  biome:
+  - Grasslands
+  - GateGrassDesert
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  worldRadiusMin: 208
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.07
+
+- type: stargatePlanetPreset
+  id: SGPresetDesertMining
+  biome:
+  - LowDesert
+  - GateDesertCaves
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 80
+  worldRadiusMin: 205
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.29
+
+- type: stargatePlanetPreset
+  id: SGPresetSnowMining
+  biome:
+  - Snow
+  - GateSnowCaves
+  - GateSnowLava
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 219
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  temperatureMods:
+  - Cold
+  weight: 0.04

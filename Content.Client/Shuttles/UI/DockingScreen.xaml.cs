@@ -360,7 +360,8 @@ public sealed partial class DockingScreen : BoxContainer
 
         if (!Docks.TryGetValue(shuttleNent, out var shuttleDocks) || shuttleDocks.Count <= 0)
             return;
-
+        var visibleDocks = shuttleDocks.Where(d => d.DockType != DockType.Magnet).ToList();
+        if (visibleDocks.Count == 0) return;
         var dockText = new StringBuilder();
         var buttonGroup = new ButtonGroup();
         var idx = 0;
@@ -368,7 +369,7 @@ public sealed partial class DockingScreen : BoxContainer
         DockingPortState? firstState = null; // Frontier
 
         // Build the dock buttons for our docks.
-        foreach (var dock in shuttleDocks.OrderBy(x => x.LabelName ?? x.Name)) // Frontier: order by name
+        foreach (var dock in visibleDocks.OrderBy(x => x.LabelName ?? x.Name))
         {
             if (idx == 0) // Frontier: get first element
                 firstState = dock; // Frontier: get first element
@@ -471,7 +472,7 @@ public sealed partial class DockingScreen : BoxContainer
 
         var shuttleContainers = new Dictionary<NetEntity, DockObject>();
 
-        foreach (var dock in shuttleDocks.OrderBy(x => x.GridDockedWith))
+        foreach (var dock in visibleDocks.OrderBy(x => x.GridDockedWith))
         {
             if (dock.GridDockedWith == null)
                 continue;

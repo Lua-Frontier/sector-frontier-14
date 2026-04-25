@@ -25,6 +25,7 @@ petting-success-space-cat = Вы гладите { $target } по { POSS-ADJ($tar
 petting-success-tarantula = Вы гладите { $target } по { POSS-ADJ($target) } маленькой волосатой голове.
 petting-success-holo = Вы гладите { $target } по { POSS-ADJ($target) } металлической шипастой голове.
 petting-success-dragon = Уворачиваясь от клыков, когтей, и пламени, вы гладите { $target } по { POSS-ADJ($target) } огромной чешуйчатой голове.
+petting-success-leviathan = Вопреки здравому смыслу, вам удаётся погладить { $target } по { POSS-ADJ($target) } титанической, покрытой ракушками голове.
 petting-success-hamster = Вы гладите { $target } по { POSS-ADJ($target) } маленькой пушистой голове.
 petting-success-bear = Вы нерешительно гладите { $target } по { POSS-ADJ($target) } таинственной голове.
 petting-success-slimes = Вы гладите { $target } по { POSS-ADJ($target) } студенистой поверхности.
@@ -45,6 +46,7 @@ petting-failure-pig = Вы тянетесь погладить { $target }, но
 petting-failure-holo = Вы тянетесь погладить { $target }, но { $target } едва не пронзает шипами вашу руку!
 petting-failure-raccoon = Вы тянетесь погладить { $target }, но { $target } енотится от вас.
 petting-failure-dragon = Вы поднимаете руку, но { $target } издаёт рёв, и вы решаете, что не хотите стать кормом для карпов.
+petting-failure-leviathan = Вы тянетесь погладить { $target }, но одна мысль о размерах этого существа заставляет вас пересмотреть свои жизненные решения.
 petting-failure-hamster = Вы тянетесь погладить { $target }, но { $target } пытается укусить вас за палец, и только ваши молниеносные рефлексы спасают вас от почти смертельной травмы.
 petting-failure-bear = Вы думаете погладить { $target }, но { $target } рычит, заставляя вас подумать ещё раз.
 

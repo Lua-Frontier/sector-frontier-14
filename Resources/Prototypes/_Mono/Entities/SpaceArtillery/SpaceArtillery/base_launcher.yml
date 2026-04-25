@@ -49,13 +49,7 @@
     rotateWhilePulling: false
     rotateWhileAnchored: false
     increment: 45
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
@@ -63,6 +57,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: FireControllable
+  - type: BindToStation
   - type: RadarBlip
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
@@ -77,10 +72,8 @@
 
 - type: entity
   id: BallisticArtilleryUnanchorable
-  parent: BallisticArtilleryBase
+  parent: BallisticArtillery
   abstract: true
-  components:
-  - type: RequiresGrid
 
 - type: entity
   id: BallisticArtillery
@@ -88,7 +81,6 @@
   abstract: true
   components:
   - type: Anchorable
-    delay: 10
   - type: Pullable
   - type: PirateBountyItem # not putting this on the other, because like. how do you get a cyrexa for your bounty. thats stupid.
     id: ShipWeapon
@@ -136,17 +128,12 @@
         - MachineLayer
   - type: Transform
     anchored: true
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: FireControllable
+  - type: BindToStation
   - type: RadarBlip
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
@@ -175,17 +162,14 @@
   abstract: true
   components:
   - type: Anchorable
-    delay: 10
   - type: Pullable
   - type: PirateBountyItem # not putting this on the other, because like. how do you get a cyrexa for your bounty. thats stupid.
     id: ShipWeapon
 
 - type: entity
   id: BallisticArtilleryUnanchorableCartridge
-  parent: BallisticArtilleryBaseCartridge
+  parent: BallisticArtilleryCartridge
   abstract: true
-  components:
-  - type: RequiresGrid
 
 - type: entity
   id: BallisticArtilleryBaseMagazine
@@ -230,17 +214,12 @@
         - MachineLayer
   - type: Transform
     anchored: true
-  - type: DeviceLinkSink
-    ports:
-    - SpaceArtilleryFire
   - type: SpaceArtillery
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
   - type: FireControllable
+  - type: BindToStation
   - type: RadarBlip
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
@@ -277,14 +256,11 @@
   abstract: true
   components:
   - type: Anchorable
-    delay: 10
   - type: Pullable
   - type: PirateBountyItem # not putting this on the other, because like. how do you get a cyrexa for your bounty. thats stupid.
     id: ShipWeapon
 
 - type: entity
   id: BallisticArtilleryUnanchorableMagazine
-  parent: BallisticArtilleryBaseMagazine
+  parent: BallisticArtilleryMagazine
   abstract: true
-  components:
-  - type: RequiresGrid

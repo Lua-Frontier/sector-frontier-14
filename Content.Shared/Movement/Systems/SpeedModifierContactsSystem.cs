@@ -183,7 +183,8 @@ public sealed class SpeedModifierContactsSystem : EntitySystem
     /// <param name="uid">The entity to be added.</param>
     public void AddModifiedEntity(EntityUid uid)
     {
-        if (!HasComp<MovementSpeedModifierComponent>(uid))
+        // Mono
+        if (!HasComp<MovementSpeedModifierComponent>(uid) || TerminatingOrDeleted(uid))
             return;
 
         EnsureComp<SpeedModifiedByContactComponent>(uid);

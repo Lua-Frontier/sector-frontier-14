@@ -1,11 +1,12 @@
-using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reaction;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.UnitTesting.Pool;
 using System.Linq;
-using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.IntegrationTests.Tests.Chemistry
 {

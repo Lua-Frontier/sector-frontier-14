@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/14/2025 15:09:16
-  entityCount: 744
+  time: 02/15/2026 07:26:51
+  entityCount: 741
 maps: []
 grids:
 - 1
@@ -43,7 +43,6 @@ tilemap:
   23: PlatingCornerNW
   26: PlatingCornerSE
   22: PlatingCornerSW
-  13: ShieldLattice
   18: TrainLattice
 entities:
 - proto: ""
@@ -3066,15 +3065,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,-7.5
       parent: 1
-- proto: GunneryServerFlatpack
-  entities:
-  - uid: 309
-    components:
-    - type: Transform
-      parent: 307
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: GunSafe
   entities:
   - uid: 307
@@ -3091,7 +3081,6 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 309
           - 308
         paper_label: !type:ContainerSlot
           showEnts: False
@@ -4908,20 +4897,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,9.5
-      parent: 1
-- proto: WeaponTurretType35
-  entities:
-  - uid: 737
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,11.5
-      parent: 1
-  - uid: 738
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 8.5,11.5
       parent: 1
 - proto: WindowReinforcedDirectional
   entities:

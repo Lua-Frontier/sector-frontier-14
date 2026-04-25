@@ -68,16 +68,38 @@
 #region Frontier
 - type: entity
   id: NFWeaponRifleRepeater
-  parent: [ NFBaseWeaponRifleChamber556x45, NFBaseWeaponFrameRifleFrontierGunsmith ] #Lua 20 -> 556x45
+  parent: [ NFBaseWeaponRifleChamber556x45, NFBaseWeaponFrameRifleFrontierGunsmith ] #Lua 20 -> 45 magnum
   name: N2524 pattern repeater
   description: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability.
   components:
+  #Lua: changed firerate, sound. Added scope
+  - type: Gun
+    fireRate: 0.9
+    examineCaliber: gun-examine-caliber-45
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: ItemToggle
+    onUse: false
+    onActivate: true
+  - type: ComponentToggler
+    components:
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 0.7
+  #end Lua
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/repeater.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/repeater.rsi
   - type: BallisticAmmoProvider
-    capacity: 8
+    capacity: 10 # _Lua 8<10
+    #Lua: prototype of ammo changed to 45 magnum
+    proto: Cartridge45_magnumFMJ
+    whitelist:
+      tags: 
+      - Cartridge45_magnumFMJ
+    #end Lua
 
 - type: entity
   id: NFWeaponRifleSVS

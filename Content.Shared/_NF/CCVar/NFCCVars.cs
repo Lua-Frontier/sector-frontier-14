@@ -95,7 +95,7 @@ public sealed class NFCCVars
     public static readonly CVarDef<float> ShipyardSellRate =
 
         CVarDef.Create("shuttle.shipyard_base_sell_rate", 0.70f, CVar.SERVERONLY); // Lua 95%<70%
-  
+
     /*
      * Salvage
      */
@@ -278,4 +278,7 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<string> NewPlayerRadioGreetingChannel =
         CVarDef.Create("nf14.greeting.channel", "Service", CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> DynamicMarketEnabled =
+        CVarDef.Create("nf14.dynamic_market.enabled", false, CVar.SERVERONLY);
 }

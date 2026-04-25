@@ -1,7 +1,7 @@
 - type: entity
   id: ClothingUniformJumpsuitArcadia
   name: arcadia jumpsuit
-  parent: [ ClothingUniformBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: ClothingUniformBase # Lua-changes: deleted BaseC3ContrabandNoValue and ContrabandClothing
   description: A jumpsuit produced by Arcadia Industries. Designed to reduce chaffing between the legs for the comfort of skin, slime, scales, fluff, and wood.
   components:
   - type: Sprite
@@ -157,7 +157,7 @@
 - type: entity
   parent:
   - ClothingUniformJumpsuitRecruitSyndie
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingUniformJumpsuitRecruitSyndieNF
   components:
   - type: SuitSensor
@@ -167,7 +167,7 @@
 - type: entity
   parent:
   - ClothingUniformJumpsuitRepairmanSyndie
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingUniformJumpsuitRepairmanSyndieNF
   components:
   - type: SuitSensor
@@ -177,7 +177,7 @@
 - type: entity
   parent:
   - ClothingUniformJumpsuitParamedicSyndie
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingUniformJumpsuitParamedicSyndieNF
   components:
   - type: SuitSensor
@@ -187,7 +187,7 @@
 - type: entity
   parent:
   - ClothingUniformJumpsuitChiefEngineerSyndie
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingUniformJumpsuitChiefEngineerSyndieNF
   components:
   - type: SuitSensor
@@ -197,7 +197,7 @@
 - type: entity
   parent:
   - ClothingUniformJumpsuitSyndieFormal
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingUniformJumpsuitSyndieFormalNF
   components:
   - type: SuitSensor

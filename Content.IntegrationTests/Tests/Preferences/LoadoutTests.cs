@@ -1,10 +1,11 @@
-using System.Collections.Generic;
 using Content.Server.Station.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
+using System.Collections.Generic;
 
 namespace Content.IntegrationTests.Tests.Preferences;
 

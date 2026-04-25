@@ -73,6 +73,8 @@ public abstract class SharedGasDepositSystem : EntitySystem
             ent.Comp.DepositEntity = otherEnt.Value;
             return;
         }
+
+        ent.Comp.DepositEntity = null;
     }
 
     public void OnAnchorChanged(Entity<GasDepositExtractorComponent> ent, ref AnchorStateChangedEvent args)

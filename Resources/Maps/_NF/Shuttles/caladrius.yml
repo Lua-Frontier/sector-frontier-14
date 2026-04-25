@@ -12989,7 +12989,7 @@ entities:
     - type: Transform
       pos: 2.5,-8.5
       parent: 1
-- proto: MachineCryoSleepPod
+- proto: MachineCryoSleepPodPlayer
   entities:
   - uid: 294
     components:
@@ -13840,7 +13840,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
       parent: 1
-    - type: Timer
   - uid: 1027
     components:
     - type: Transform

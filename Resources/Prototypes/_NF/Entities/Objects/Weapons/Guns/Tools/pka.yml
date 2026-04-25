@@ -89,13 +89,13 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 2.5
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
     proto: NFBulletKineticHighPower
-    capacity: 1
-    count: 1
+    capacity: 3
+    count: 3
 
 - type: entity
   id: NFBaseWeaponPkaChamberKineticMedium
@@ -135,15 +135,48 @@
 - type: entity
   id: NFWeaponPkaCannon
   parent: [ NFBaseWeaponEncumbranceRifle, NFBaseWeaponFramePkaNanotrasen, NFBaseWeaponPkaChamberKineticHigh ]
-  name: proto-kinetic accelerator cannon
-  description: Fires high-damage kinetic bolts at a short range, strong enough to destroy hard rocks.
+  name: kinetic repeater # _Lua: a new using and textures
+  description: Fires a two high-damage kinetic bolts at a short range.
   components:
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+        #todo: add other 'empty' animations
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletKineticHighPower
+    capacity: 3
+    count: 3
+  - type: Gun
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 44
+    maxAngle: 45
+    availableModes:
+    - FullAuto
+    - SemiAuto
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/reapeterpka.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
   - type: Item
-    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/reapeterpka.rsi
+    shape:
+    - 0,0,3,1
+    heldPrefix: energy
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Basic/kinetic_accelerator_cannon.rsi
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/reapeterpka.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  # end _Lua
 
 #region Frontier
 - type: entity

@@ -3,15 +3,6 @@ appraisal-program-name = AppraiseAll Plus
 appraisal-label-name = Item
 appraisal-label-price = Appraised Price
 
-# Ledger cartridge
-ledger-program-name = SpesoFlow Lite
-ledger-header = Sector Ledger
-ledger-total-income = Total Income
-ledger-no-income = None
-ledger-total-expenses = Total Expenses
-ledger-no-expenses = None
-ledger-balance = Balance:
-ledger-no-balance = N/A
 
 ledger-tab-Frontier = Frontier Outpost
 ledger-tab-Nfsd = NFSD

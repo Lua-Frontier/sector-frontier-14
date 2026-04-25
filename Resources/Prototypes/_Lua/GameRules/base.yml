@@ -1,0 +1,65 @@
+- type: entity
+  id: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+
+- type: entity
+  id: BaseStationEvent
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
+
+- type: entity
+  id: BaseStationEventShortDelay
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
+
+- type: entity
+  id: BaseStationEventLongDelay
+  parent: BaseGameRule
+  abstract: true
+  components:
+  - type: GameRule
+    delay:
+      min:  40
+      max:  60
+
+- type: entity
+  parent: BaseGameRule
+  id: Sandbox
+  components:
+  - type: SandboxRule
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseVariationPass
+  components:
+  - type: StationVariationPassRule
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseNukeopsRule
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesOperationPrefix
+    - NamesOperationSuffix
+    nameFormat: name-format-nuclear-operation
+  - type: NukeopsRule
+  - type: RuleGrids
+  - type: AntagSelection
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+    speciesOverrideBlacklist:

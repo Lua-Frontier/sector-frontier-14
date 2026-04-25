@@ -71,7 +71,7 @@
 
 #SWAT Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingHeadHelmetBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: ClothingHeadHelmetSwat
   name: SWAT helmet
   description: An extremely robust helmet, commonly used by paramilitary forces. This one has the Nanotrasen logo emblazoned on the top.
@@ -97,7 +97,7 @@
 
 #Syndicate SWAT Helmet
 - type: entity
-  parent: [BaseC3SyndicateContraband, ClothingHeadHelmetSwat, ContrabandClothing] # Frontier: added ContrabandClothing, BaseC3SyndicateContraband as parent
+  parent: [BaseC1Contraband, ClothingHeadHelmetSwat] # Frontier: added ContrabandClothing, BaseC3SyndicateContraband as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1Contraband, removed ContrabandClothing
   id: ClothingHeadHelmetSwatSyndicate
   name: SWAT helmet
   suffix: Syndicate
@@ -176,7 +176,7 @@
 
 #Cult Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseC3CultContrabandNoValue, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3CultContrabandNoValue, ContrabandClothing as parent
+  parent: [ClothingHeadHelmetBase, BaseC1CultContraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3CultContrabandNoValue, ContrabandClothing as parent # Lua-changes: BaseC3CultContrabandNoValue > BaseC1CultContraband
   id: ClothingHeadHelmetCult
   name: cult helmet
   description: A robust, evil-looking cult helmet.
@@ -199,7 +199,7 @@
 
 #Space Ninja Helmet
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseC3ContrabandNoValue, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3ContrabandNoValue, add ContrabandClothing
+  parent: [ClothingHeadEVAHelmetBase, BaseC1SpiderClanContraband] # Frontier: BaseMajorContraband<BaseC3ContrabandNoValue, add ContrabandClothing # Lua-changes: BaseC3ContrabandNoValue > BaseC1SpiderClanContraband, deleted ContrabandClothing
   id: ClothingHeadHelmetSpaceNinja
   name: space ninja helmet
   description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear.

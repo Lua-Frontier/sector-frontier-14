@@ -1,12 +1,11 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2026 LuaWorld Contributors
-# See AGPLv3.txt for details.
-
 - type: technology
   id: LuaBluespaceArt
   name: lua-research-technology-bluespace-art
   entityIcon: SprayPainterMagic
   discipline: NFService
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 3
   cost: 20000
   recipeUnlocks:
@@ -15,4 +14,5 @@
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
   - NFAdvancedEntertainment
-  position: 2, 18
+  position: -7.565, -3.331
+...

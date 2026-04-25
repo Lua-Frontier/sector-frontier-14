@@ -6,6 +6,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
 using Robust.UnitTesting;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Utility;
 

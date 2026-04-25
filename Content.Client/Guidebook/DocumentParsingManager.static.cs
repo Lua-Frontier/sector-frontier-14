@@ -83,7 +83,7 @@ public sealed partial class DocumentParsingManager
                     }
 
                     msg.Pop();
-                    rt.SetMessage(msg);
+                    rt.SetMessage(msg, tagsAllowed: null, defaultColor: Color.White);
                     return rt;
                 },
                 TextParser)

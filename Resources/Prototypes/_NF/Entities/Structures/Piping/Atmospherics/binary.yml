@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: GasPressurePump
   id: GasPressurePumpOn
   suffix: On
@@ -186,6 +186,8 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+  - type: BindToStation
+    enabled: false
 
 - type: entity
   parent: [ BaseStructureDynamic, BasePressurePumpGaslock, BaseMachinePowered, ConstructibleMachine ]

@@ -1141,10 +1141,13 @@ public abstract partial class InteractionTest
 
     #region Power
 
-    protected void ToggleNeedPower(NetEntity? target = null)
+    protected async Task ToggleNeedPower(NetEntity? target = null)
     {
-        var comp = Comp<ApcPowerReceiverComponent>(target);
-        comp.NeedsPower = !comp.NeedsPower;
+        await Server.WaitPost(() =>
+        {
+            var comp = Comp<ApcPowerReceiverComponent>(target);
+            comp.NeedsPower = !comp.NeedsPower;
+        });
     }
 
     #endregion

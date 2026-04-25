@@ -16,3 +16,23 @@
         Slash: 0.8
         Piercing: 0.7
         Heat: 0.8
+
+# Тренчкот КЦК
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ADTClothingOuterCoatCCC
+  name: centcom consultant trenchcoat
+  description: Missing the times when smiles were sincere...
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/OuterClothing/Coats/ccc_coat.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/OuterClothing/Coats/ccc_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
+        Heat: 0.9
+        Cold: 0.9

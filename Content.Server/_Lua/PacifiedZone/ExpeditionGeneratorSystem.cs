@@ -17,6 +17,8 @@ namespace Content.Server._NF.ExpeditionZone
         [Dependency] private readonly AlertsSystem _alerts = default!;
 
         private const string Alert = "Frontier";
+        private readonly HashSet<EntityUid> _trackedNewBuffer = new();
+        private readonly List<EntityUid> _trackedRemoveBuffer = new();
 
         public override void Initialize()
         {
@@ -56,36 +58,40 @@ namespace Content.Server._NF.ExpeditionZone
             var genQuery = AllEntityQuery<ExpeditionZoneGeneratorComponent>();
             while (genQuery.MoveNext(out var genUid, out var component))
             {
-                List<EntityUid> newEntities = new List<EntityUid>();
                 if (_gameTiming.CurTime < component.NextUpdate)
                     continue;
 
+                _trackedNewBuffer.Clear();
                 var query = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(genUid).Coordinates, component.Radius);
                 foreach (var humanoidUid in query)
                 {
                     if (!_mindSystem.TryGetMind(humanoidUid, out var mindId, out var mind))
                         continue;
 
-                    if (component.TrackedEntities.Contains(humanoidUid))
-                    {
-                        newEntities.Add(humanoidUid);
-                        component.TrackedEntities.Remove(humanoidUid);
-                    }
-                    else
+                    if (!component.TrackedEntities.Contains(humanoidUid))
                     {
                         EnableAlert(humanoidUid);
                         AddComp<ExpeditionZoneComponent>(humanoidUid);
-                        newEntities.Add(humanoidUid);
                     }
+
+                    _trackedNewBuffer.Add(humanoidUid);
                 }
 
-                foreach (var humanoid_net_uid in component.TrackedEntities)
+                _trackedRemoveBuffer.Clear();
+                foreach (var humanoidUid in component.TrackedEntities)
                 {
-                    RemComp<ExpeditionZoneComponent>(humanoid_net_uid);
-                    DisableAlert(humanoid_net_uid);
+                    if (!_trackedNewBuffer.Contains(humanoidUid))
+                        _trackedRemoveBuffer.Add(humanoidUid);
                 }
 
-                component.TrackedEntities = newEntities;
+                foreach (var humanoidUid in _trackedRemoveBuffer)
+                {
+                    RemComp<ExpeditionZoneComponent>(humanoidUid);
+                    DisableAlert(humanoidUid);
+                }
+
+                component.TrackedEntities.Clear();
+                component.TrackedEntities.UnionWith(_trackedNewBuffer);
                 component.NextUpdate = _gameTiming.CurTime + component.UpdateInterval;
             }
         }

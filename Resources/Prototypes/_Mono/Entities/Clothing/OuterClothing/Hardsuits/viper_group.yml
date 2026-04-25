@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband]
+  parent: [ClothingOuterHardsuitBase, BaseC3PirateContrabandPremium] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContrabandPremium
   id: ClothingOuterHardsuitViperGroupStandard
   name: JACKAL mk.II viper hardsuit
   description: A hardsuit adorned with signature markings of the Viper Group. The armor is remarkably nimble for the protection it offers.
@@ -35,20 +35,15 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
-  - type: Inject
-    openCloseDelay: 0.1
-    autoClose: true
-    autoCloseDelay: 3
   - type: HardsuitIdentification
   - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
-  - type: ThermalCloak
-    enabled: false
+
 
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband]
+  parent: [ClothingOuterHardsuitBase, BaseC3PirateContrabandPremium] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContrabandPremium 
   id: ClothingOuterHardsuitViperGroupMedic
   name: IMP mk.III viper hardsuit
   description: A hardsuit adorned with signature markings of the Viper Group. The armor features various reinforced plating in vital areas.
@@ -84,12 +79,8 @@
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
-  - type: Inject
-    openCloseDelay: 2
   - type: HardsuitIdentification
   - type: HardsuitDNARadial
   - type: Speech
   - type: TTS
     voice: Adjutant
-  - type: ThermalCloak
-    enabled: false

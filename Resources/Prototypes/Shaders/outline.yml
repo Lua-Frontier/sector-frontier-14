@@ -17,3 +17,13 @@
     light_boost: 2
     light_gamma: 0.9
     light_whitepoint: 1
+
+# Mono
+- type: shader
+  id: ShieldingOutline
+  kind: source
+  path: "/Textures/Shaders/outline.swsl"
+  params:
+    outline_width: 1.7
+    outline_color: "#00AAFF88"
+    outline_fullbright: true

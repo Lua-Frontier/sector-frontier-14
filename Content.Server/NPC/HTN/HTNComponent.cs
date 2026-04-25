@@ -1,5 +1,6 @@
 using System.Threading;
 using Content.Server.NPC.Components;
+using Robust.Shared.Physics;
 
 namespace Content.Server.NPC.HTN;
 
@@ -18,6 +19,9 @@ public sealed partial class HTNComponent : NPCComponent
     /// </summary>
     [DataField("checkServices")]
     public bool CheckServices = true;
+
+    [ViewVariables]
+    public readonly Dictionary<string, float> ServiceCooldowns = new();
 
     /// <summary>
     /// The NPC's current plan.
@@ -51,9 +55,14 @@ public sealed partial class HTNComponent : NPCComponent
     /// </summary>
     [ViewVariables] public bool Planning => PlanningJob != null;
 
+    [DataField]
+    public float? SleepPlayerCheckRangeOverride = null;
+
     /// <summary>
     /// Determines whether plans should be made / updated for this entity
     /// </summary>
     [DataField]
     public bool Enabled = true;
+
+    public BodyType? SleepBodyType;
 }

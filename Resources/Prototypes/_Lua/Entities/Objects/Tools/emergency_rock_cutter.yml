@@ -1,0 +1,17 @@
+- type: entity
+  id: EmergencyRockCutter
+  parent: BaseItem
+  name: emergency rock cutter
+  description: A crude emergency tool for breaking through rock walls. Takes a while, but it will get you out. Single-use energy cell - auto recharging.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Lua/Objects/Tools/rcd_emergency.rsi
+    heldPrefix: inhand
+  - type: Sprite
+    sprite: _Lua/Objects/Tools/rcd_emergency.rsi
+    state: icon
+  - type: EmergencyRockCutter
+    delay: 4
+  - type: StaticPrice
+    price: 25

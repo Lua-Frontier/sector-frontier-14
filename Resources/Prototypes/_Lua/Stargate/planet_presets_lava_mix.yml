@@ -1,0 +1,82 @@
+- type: stargatePlanetPreset
+  id: SGPresetVolcanicDepths
+  biome:
+  - GateLavaCaves
+  - GateCavesLava
+  - GateLavaDesert
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 100
+  worldRadiusMin: 212
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Hot
+  weight: 0.14
+
+- type: stargatePlanetPreset
+  id: SGPresetFireAndIce
+  biome:
+  - GateLavaSnow
+  - GateSnowLava
+  - GateLavaGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 80
+  worldRadiusMin: 198
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFFlesh
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  - Evening
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetInfernalCorruption
+  biome:
+  - GateLavaShadow
+  - GateShadowLava
+  - GateInferno
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 90
+  worldRadiusMin: 198
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 2
+  mobLayers:
+  - NFCultists
+  - NFFlesh
+  - NFMercenaries
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  temperatureMods:
+  - Hot
+  - Burning
+  airMods:
+  - GateAirPlasmaTrace
+  weight: 0.09

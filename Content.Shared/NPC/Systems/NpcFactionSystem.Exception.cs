@@ -132,4 +132,10 @@ public sealed partial class NpcFactionSystem
             AggroEntity(ent, uid);
         }
     }
+
+    public void PruneStaleExceptions(EntityUid uid, FactionExceptionComponent comp, Predicate<EntityUid> shouldRemove)
+    {
+        comp.Ignored.RemoveWhere(shouldRemove);
+        comp.Hostiles.RemoveWhere(shouldRemove);
+    }
 }

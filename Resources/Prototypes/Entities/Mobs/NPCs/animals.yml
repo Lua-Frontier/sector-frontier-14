@@ -194,8 +194,6 @@
   - type: Bloodstream
     bloodMaxVolume: 0.1
   - type: ZombieImmune
-  - type: TimedDespawn
-    lifetime: 2400
 
 
 - type: entity
@@ -342,7 +340,6 @@
   parent: FoodEggLaid # Frontier: FoodEgg<FoodEggLaid
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -487,8 +484,6 @@
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: mothroach
@@ -784,7 +779,6 @@
   parent: FoodEggLaid # Frontier: FoodEgg<FoodEggLaid
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -1350,8 +1344,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: genetic ancestor
@@ -3072,8 +3064,6 @@
     heatDamage:
       types:
         Heat : 1 #per second, scales with temperature & other constants
-  - type: TimedDespawn
-    lifetime: 2400
 
 - type: entity
   name: corgi puppy

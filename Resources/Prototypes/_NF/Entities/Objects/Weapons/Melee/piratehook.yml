@@ -1,6 +1,6 @@
 - type: entity
   name: pirate hook
-  parent: BaseKnife
+  parent: [BaseKnife, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
   id: PirateHook
   description: A pirate hook.
   components:

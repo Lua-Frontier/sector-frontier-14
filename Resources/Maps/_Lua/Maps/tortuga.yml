@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 261.2.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/21/2025 06:25:46
-  entityCount: 2228
+  time: 03/06/2026 13:13:55
+  entityCount: 2223
 maps: []
 grids:
 - 1
@@ -495,12 +495,6 @@ entities:
             783: 10,21
             784: 10,21
         - node:
-            color: '#00E5FFFF'
-            id: FlowersBRThree
-          decals:
-            701: 25.057669,3.060596
-            702: 23.953503,3.8210125
-        - node:
             color: '#FFFFFFFF'
             id: Flowerspv1
           decals:
@@ -513,12 +507,6 @@ entities:
             22: 21.804176,-1.2012496
             23: 20.28587,1.6495848
             24: 15.803053,-1.0222902
-        - node:
-            color: '#00E5FFFF'
-            id: Flowerspv2
-          decals:
-            703: 24.078503,2.9460125
-            704: 25.193087,3.956429
         - node:
             color: '#FFFFFFFF'
             id: Flowerspv2
@@ -701,16 +689,6 @@ entities:
           decals:
             331: -4,-5
             332: -4,-6
-        - node:
-            color: '#00E5FFFF'
-            id: heart
-          decals:
-            700: 24.451576,3.8376842
-        - node:
-            color: '#5336FFFF'
-            id: heart
-          decals:
-            699: 24.47241,4.282129
         - node:
             angle: 3.141592653589793 rad
             color: '#FFA2000F'
@@ -1432,15 +1410,6 @@ entities:
     - type: Transform
       pos: 6.5,-3.5
       parent: 1
-- proto: ADTObjectWeaponsMeleeRoseBouquet
-  entities:
-  - uid: 2035
-    components:
-    - type: MetaData
-      desc: Нежный букет из розовых цветов гортензии. Отсылает вас к дате 21.07.2708.
-    - type: Transform
-      pos: 25.611488,3.645523
-      parent: 1
 - proto: AirAlarm
   entities:
   - uid: 7
@@ -1839,6 +1808,20 @@ entities:
     components:
     - type: Transform
       pos: -7.385537,0.61864287
+      parent: 1
+- proto: AmmoBox556x45mmFMJ
+  entities:
+  - uid: 985
+    components:
+    - type: Transform
+      pos: -9.504956,-0.48266685
+      parent: 1
+- proto: AmmoBox556x45mmRubber
+  entities:
+  - uid: 986
+    components:
+    - type: Transform
+      pos: -9.458081,-0.83422935
       parent: 1
 - proto: APCBasic
   entities:
@@ -5027,18 +5010,6 @@ entities:
     - type: Transform
       pos: -4.654452,12.392258
       parent: 1
-  - uid: 2036
-    components:
-    - type: Transform
-      pos: 25.380972,3.6338582
-      parent: 1
-- proto: ClothingHeadHatPirateTricord
-  entities:
-  - uid: 2042
-    components:
-    - type: Transform
-      pos: 25.451208,3.6920462
-      parent: 1
 - proto: ClothingShoesBootsPirateLuffy
   entities:
   - uid: 517
@@ -5139,6 +5110,36 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,10.5
+      parent: 1
+- proto: ComputerShipyardParking
+  entities:
+  - uid: 76
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,10.5
+      parent: 1
+  - uid: 77
+    components:
+    - type: Transform
+      pos: 5.5,12.5
+      parent: 1
+  - uid: 78
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.5,-3.5
+      parent: 1
+  - uid: 79
+    components:
+    - type: Transform
+      pos: 17.5,-1.5
+      parent: 1
+  - uid: 80
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,5.5
       parent: 1
 - proto: ComputerShuttle
   entities:
@@ -5788,18 +5789,6 @@ entities:
     components:
     - type: Transform
       pos: -3.6403198,7.7050633
-      parent: 1
-- proto: DrinkTeacup
-  entities:
-  - uid: 2058
-    components:
-    - type: Transform
-      pos: 24.73274,3.3794138
-      parent: 1
-  - uid: 2087
-    components:
-    - type: Transform
-      pos: 25.50699,3.697106
       parent: 1
 - proto: DrinkWineBottleFull
   entities:
@@ -8391,20 +8380,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -16.5,0.5
       parent: 1
-- proto: AmmoBox556x45mmFMJ
-  entities:
-  - uid: 985
-    components:
-    - type: Transform
-      pos: -9.504956,-0.48266685
-      parent: 1
-- proto: AmmoBox556x45mmRubber
-  entities:
-  - uid: 986
-    components:
-    - type: Transform
-      pos: -9.458081,-0.83422935
-      parent: 1
 - proto: NFAshtray
   entities:
   - uid: 1004
@@ -8519,28 +8494,6 @@ entities:
         Очень скоро мы узнали
 
         Что корабль проклят был
-  - uid: 2037
-    components:
-    - type: Transform
-      pos: 24.78921,3.7569928
-      parent: 1
-    - type: Paper
-      content: >-
-        Над водою стелется туман непроходимый
-
-        Сбился капитан с пути, безумием водимый
-
-        Слышит голос нежный и знакомый уж до боли
-
-        Красоте её лица противиться неволен
-
-        За бортом девица! Попробуй не влюбиться!
-
-        Слух ласкает песни звон, ему лучше смириться
-
-        За бортом девица! Он хочет утопиться!
-
-        Всё готов отдать пират, чтоб с ней губами слиться!
   - uid: 2092
     components:
     - type: Transform
@@ -8669,20 +8622,6 @@ entities:
     components:
     - type: Transform
       pos: 26.442139,12.920255
-      parent: 1
-- proto: PlushieHacksLua
-  entities:
-  - uid: 1246
-    components:
-    - type: Transform
-      pos: 24.375187,4.541689
-      parent: 1
-- proto: PlushieIrisLua
-  entities:
-  - uid: 1529
-    components:
-    - type: Transform
-      pos: 25.492704,4.57891
       parent: 1
 - proto: PlushiePinkFox
   entities:
@@ -9966,15 +9905,6 @@ entities:
     components:
     - type: Transform
       pos: 8.5,8.5
-      parent: 1
-- proto: TableFancyBlack
-  entities:
-  - uid: 2045
-    components:
-    - type: MetaData
-      desc: Отлично подходит, чтобы положить на него что-то, или кого-то...
-    - type: Transform
-      pos: 24.5,3.5
       parent: 1
 - proto: TableFrame
   entities:
@@ -11921,12 +11851,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,11.5
       parent: 1
-  - uid: 1444
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,3.5
-      parent: 1
   - uid: 1445
     components:
     - type: Transform
@@ -12322,16 +12246,6 @@ entities:
     - type: Transform
       pos: -8.5,-11.5
       parent: 1
-  - uid: 1523
-    components:
-    - type: Transform
-      pos: 24.5,2.5
-      parent: 1
-  - uid: 1531
-    components:
-    - type: Transform
-      pos: 23.5,2.5
-      parent: 1
   - uid: 1626
     components:
     - type: Transform
@@ -12382,11 +12296,6 @@ entities:
     components:
     - type: Transform
       pos: 17.5,20.5
-      parent: 1
-  - uid: 1770
-    components:
-    - type: Transform
-      pos: 25.5,2.5
       parent: 1
   - uid: 1811
     components:
@@ -12501,6 +12410,46 @@ entities:
       parent: 1
 - proto: WallRockChromite
   entities:
+  - uid: 68
+    components:
+    - type: Transform
+      pos: 24.5,3.5
+      parent: 1
+  - uid: 69
+    components:
+    - type: Transform
+      pos: 25.5,3.5
+      parent: 1
+  - uid: 70
+    components:
+    - type: Transform
+      pos: 24.5,4.5
+      parent: 1
+  - uid: 71
+    components:
+    - type: Transform
+      pos: 25.5,4.5
+      parent: 1
+  - uid: 72
+    components:
+    - type: Transform
+      pos: 25.5,2.5
+      parent: 1
+  - uid: 73
+    components:
+    - type: Transform
+      pos: 23.5,2.5
+      parent: 1
+  - uid: 74
+    components:
+    - type: Transform
+      pos: 24.5,2.5
+      parent: 1
+  - uid: 75
+    components:
+    - type: Transform
+      pos: 23.5,3.5
+      parent: 1
   - uid: 759
     components:
     - type: Transform
@@ -14505,7 +14454,7 @@ entities:
       pos: 4.5,7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -71703.51
+      secondsUntilStateChange: -71822.75
       state: Opening
   - uid: 1928
     components:

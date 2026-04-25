@@ -1,5 +1,6 @@
 using Content.Shared.Atmos.Monitor;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests.Atmos
 {

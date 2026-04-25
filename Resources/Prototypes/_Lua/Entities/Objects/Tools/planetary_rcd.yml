@@ -1,0 +1,23 @@
+- type: entity
+  name: planetary RCD
+  parent: RCD
+  id: PlanetaryRCD
+  description: A rapid construction device for StarGate worlds. Works only on planetary maps. Uses Shipyard RCD ammo (ShipyardRCDAmmo).
+  components:
+  - type: RCD
+    isShipyardRCD: true
+    onlyWorksInStargateWorld: true
+  - type: Sprite
+    sprite: _Goobstation/Tools/rcd_chrono.rsi
+    state: icon
+  - type: Item
+    sprite: _Goobstation/Tools/rcd_chrono.rsi
+    heldPrefix: inhand
+
+- type: entity
+  id: PlanetaryRCDEmpty
+  parent: PlanetaryRCD
+  suffix: Empty
+  components:
+  - type: LimitedCharges
+    lastCharges: -1

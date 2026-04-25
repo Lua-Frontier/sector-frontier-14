@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Content.Server._NF.Solar.Components; // Frontier
 using Content.Server._NF.Solar.EntitySystems; // Frontier
+using Robust.Shared.Map;
 
 namespace Content.Server.Solar.EntitySystems
 {
@@ -40,11 +41,12 @@ namespace Content.Server.Solar.EntitySystems
                 var query = EntityQueryEnumerator<SolarControlConsoleComponent, UserInterfaceComponent, TransformComponent>();
                 while (query.MoveNext(out var uid, out _, out var uiComp, out var xform))
                 {
+                    var sunAngle = _powerSolarSystem.GetSunAngle(GetConsoleMapId(xform));
                     SolarControlConsoleBoundInterfaceState state;
                     if (xform.GridUid != null && TryComp<SolarPoweredGridComponent>(xform.GridUid, out var gridPower))
-                        state = new SolarControlConsoleBoundInterfaceState(gridPower.TargetPanelRotation, gridPower.TargetPanelVelocity, gridPower.TotalPanelPower, _powerSolarSystem.TowardsSun);
+                        state = new SolarControlConsoleBoundInterfaceState(gridPower.TargetPanelRotation, gridPower.TargetPanelVelocity, gridPower.TotalPanelPower, sunAngle);
                     else
-                        state = new SolarControlConsoleBoundInterfaceState(0, 0, 0, _powerSolarSystem.TowardsSun);
+                        state = new SolarControlConsoleBoundInterfaceState(0, 0, 0, sunAngle);
 
                     _uiSystem.SetUiState((uid, uiComp), SolarControlConsoleUiKey.Key, state);
                 }
@@ -73,6 +75,11 @@ namespace Content.Server.Solar.EntitySystems
                 degrees = Math.Clamp(degrees, -PowerSolarSystem.MaxPanelVelocityDegrees, PowerSolarSystem.MaxPanelVelocityDegrees);
                 powerComp.TargetPanelVelocity = Angle.FromDegrees(degrees); // Frontier: _powerSolarSystem<powerComp
             }
+        }
+
+        private static MapId GetConsoleMapId(TransformComponent xform)
+        {
+            return xform.MapID;
         }
 
     }

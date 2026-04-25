@@ -7,7 +7,6 @@
   name: Правила сервера
   priority: 0
   ruleEntry: true
-  #ruleFilter: false
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRules.xml"
   children:
   - LuaWorldFrontierRule0
@@ -19,7 +18,6 @@
   - LuaWorldFrontierRule6
   - LuaWorldFrontierRule7
   - LuaWorldFrontierRule8
-  - LuaWorldFrontierRule4_4
   - LuaWorldFrontierRule9
   - LuaWorldFrontierRule10
   - LuaWorldFrontierRule11
@@ -28,257 +26,122 @@
   - LuaWorldFrontierRule14
   - LuaWorldFrontierRule15
   - LuaWorldFrontierRule16
-  - LuaWorldFrontierRule17
-  - LuaWorldFrontierRule18
-  - LuaWorldFrontierRule19
-  - LuaWorldFrontierRule20
-  - LuaWorldFrontierRule21
-  - LuaWorldFrontierRule23
-  - LuaWorldFrontierRule24
-  - LuaWorldFrontierRule25
-  - LuaWorldFrontierRule26
-  - LuaWorldFrontierRule27
-  - LuaWorldFrontierRule28
-  - LuaWorldFrontierRule15_2
-  - LuaWorldFrontierRule15_3
-  - LuaWorldFrontierRule15_4
-  - LuaWorldFrontierRule15_5
-  - LuaWorldFrontierRule15_6
 
 - type: guideEntry
   id: LuaWorldFrontierRule0
-  name: Правило 0
+  name: Правило 0 - Нулевая Аксиома
   priority: 1
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule0.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule1
-  name: Правило 1.1
+  name: Правило 1 - Гриф
   priority: 2
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule1.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule2
-  name: Правило 2.1
+  name: Правило 2 - Убийство, неоправданное нападение и самоантагонизм
   priority: 3
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule2.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule3
-  name: Правило 2.2
+  name: Правило 3 - Поведение, отыгрыш, метапрогрессия и работа
   priority: 4
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule3.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule4
-  name: Правило 2.3
+  name: Правило 4 - Метагейминг, выход из игры и ценность жизни персонажа
   priority: 5
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule4.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule5
-  name: Правило 3.1
+  name: Правило 5 - Зеленые зоны
   priority: 6
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule5.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule6
-  name: Правило 4.1
+  name: Правило 6 - Боевые фракции
   priority: 7
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule6.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule7
-  name: Правило 4.2
+  name: Правило 7 - Наёмники
   priority: 8
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule7.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule8
-  name: Правило 4.3
+  name: Правило 8 - Контракты и их исполнение
   priority: 9
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule8.xml"
 
 - type: guideEntry
-  id: LuaWorldFrontierRule4_4
-  name: Правило 4.4
-  priority: 9
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule4_4.xml"
-
-- type: guideEntry
   id: LuaWorldFrontierRule9
-  name: Правило 5.1
+  name: Правило 9 - ДСБФ
   priority: 10
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule9.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule10
-  name: Правило 5.2
+  name: Правило 10 - Пиратство
   priority: 11
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule10.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule11
-  name: Правило 6.1
+  name: Правило 11 - Игра за агрессивную фауну
   priority: 12
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule11.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule12
-  name: Правило 7.1
+  name: Правило 12 - Работа Командования
   priority: 13
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule12.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule13
-  name: Правило 8.1
+  name: Правило 13 - Нордфолл
   priority: 14
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule13.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule14
-  name: Правило 8.2
+  name: Правило 14 - Эротическая Ролевая Игра (ERP)
   priority: 15
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule14.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule15
-  name: Правило 8.3
+  name: Правило 15 - Нечестная Игра
   priority: 16
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule15.xml"
 
 - type: guideEntry
   id: LuaWorldFrontierRule16
-  name: Правило 9.1
+  name: Правило 16 - Постройка и переоборудование шаттлов
   priority: 17
   ruleEntry: true
   text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule16.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule17
-  name: Правило 9.2
-  priority: 18
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule17.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule18
-  name: Правило 9.3
-  priority: 19
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule18.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule19
-  name: Правило 10.1
-  priority: 20
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule19.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule20
-  name: Правило 10.2
-  priority: 21
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule20.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule21
-  name: Правило 10.3
-  priority: 22
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule21.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule23
-  name: Правило 11
-  priority: 24
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule23.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule24
-  name: Правило 12
-  priority: 25
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule24.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule25
-  name: Правило 13
-  priority: 26
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule25.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule26
-  name: Правило 15
-  priority: 27
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule26.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule27
-  name: Правило 17
-  priority: 28
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule27.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule28
-  name: Правило 18
-  priority: 29
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule28.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule15_2
-  name: Правило 19
-  priority: 30
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule15_2.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule15_3
-  name: Правило 20
-  priority: 31
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule15_3.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule15_4
-  name: Правило 21
-  priority: 32
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule15_4.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule15_5
-  name: Правило 22
-  priority: 33
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule15_5.xml"
-
-- type: guideEntry
-  id: LuaWorldFrontierRule15_6
-  name: Правило 23
-  priority: 34
-  ruleEntry: true
-  text: "/ServerInfo/_Lua/Guidebook/ServerRules/LuaWorldFrontierRule15_6.xml"

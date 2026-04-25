@@ -1,0 +1,132 @@
+- type: stargatePlanetPreset
+  id: SGPresetSnowShelter
+  biome:
+  - Snow
+  - GateSnowCaves
+  - GateSnowLava
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 30
+  dungeonDistanceMax: 70
+  worldRadiusMin: 190
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  temperatureMods:
+  - Tundra
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetShadowRuin
+  biome:
+  - Shadow
+  - GateShadowLava
+  - GateCavesShadow
+  dungeonPool: true
+  dungeonMobDensity: 12
+  dungeonMobCap: 40
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 25
+  dungeonDistanceMax: 60
+  worldRadiusMin: 160
+  worldRadiusMax: 250
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Night
+  weight: 0.16
+
+- type: stargatePlanetPreset
+  id: SGPresetCavesCache
+  biome:
+  - Caves
+  - GateCavesLava
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 30
+  dungeonDistanceMax: 70
+  worldRadiusMin: 190
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.08
+
+- type: stargatePlanetPreset
+  id: SGPresetGrasslandOutpost
+  biome:
+  - Grasslands
+  - GateGrassSnow
+  - GateGrassDesert
+  - GateGrassLava
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 100
+  worldRadiusMin: 194
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetLavaBunker
+  biome:
+  - Lava
+  - GateLavaCaves
+  - GateLavaShadow
+  - GateLavaGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 35
+  dungeonDistanceMax: 80
+  worldRadiusMin: 201
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFXenos
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  lightMods:
+  - Lavalight
+  temperatureMods:
+  - Hot
+  weight: 0.08
+
+- type: stargatePlanetPreset
+  id: SGPresetDesertLab
+  biome:
+  - LowDesert
+  - GateDesertCaves
+  - GateDesertShadow
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 40
+  dungeonDistanceMax: 90
+  worldRadiusMin: 229
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer

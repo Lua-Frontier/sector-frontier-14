@@ -3,16 +3,14 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared.Body.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using System.Linq;
-using System.Numerics;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
+using Robust.UnitTesting.Pool;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Body
 {
@@ -50,7 +48,6 @@ namespace Content.IntegrationTests.Tests.Body
         Asphyxiation: -1.5
 ";
 
-        [Test, Ignore("Help me pls ;-;")]
         public async Task AirConsistencyTest()
         {
             // --- Setup

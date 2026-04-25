@@ -5,16 +5,21 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.Client._NF.Research.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class FancyResearchConsoleItem : LayoutContainer
 {
+    private const float BaseCardSize = 64f;
+    private const float BaseIconSize = 56f;
+    private const float BaseIconScale = 1.75f;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     // Public fields
     public TechnologyPrototype Prototype;
+    public IReadOnlyList<ProtoId<TechnologyPrototype>> EffectivePrerequisites;
     public Action<TechnologyPrototype, ResearchAvailability>? SelectAction;
     public ResearchAvailability Availability;
 
@@ -45,13 +50,18 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         }
     }
 
-    public FancyResearchConsoleItem(TechnologyPrototype proto, SpriteSystem sprite, ResearchAvailability availability)
+    public FancyResearchConsoleItem(
+        TechnologyPrototype proto,
+        IReadOnlyList<ProtoId<TechnologyPrototype>> effectivePrerequisites,
+        SpriteSystem sprite,
+        ResearchAvailability availability)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         Availability = availability;
         Prototype = proto;
+        EffectivePrerequisites = effectivePrerequisites;
 
         // Get the primary discipline for background color
         var primaryDiscipline = _prototype.Index<TechDisciplinePrototype>(proto.Discipline);
@@ -142,6 +152,14 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         }
 
         UpdateColor();
+    }
+
+    public void SetScale(float scale)
+    {
+        var clampedScale = MathF.Max(0.1f, scale);
+        RootContainer.SetSize = new Vector2(BaseCardSize * clampedScale, BaseCardSize * clampedScale);
+        ResearchDisplay.SetSize = new Vector2(BaseIconSize * clampedScale, BaseIconSize * clampedScale);
+        ResearchDisplay.Scale = new Vector2(BaseIconScale * clampedScale, BaseIconScale * clampedScale);
     }
 
     private void UpdateColor()

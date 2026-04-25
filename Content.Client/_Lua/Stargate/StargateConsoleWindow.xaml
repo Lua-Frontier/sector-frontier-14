@@ -1,0 +1,69 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+              Title="{Loc 'stargate-console-title'}"
+              MinSize="550 700">
+  <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" Margin="5">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" MinWidth="550">
+      <PanelContainer Margin="0 0 0 5">
+        <BoxContainer Orientation="Vertical" Margin="5">
+          <Label Name="StatusLabel"
+                 Text="{Loc 'stargate-console-status-idle'}"
+                 HorizontalAlignment="Center"
+                 StyleClasses="LabelHeading" />
+          <Label Name="AddressDisplay"
+                 Text="_ _ _ _ _ _"
+                 HorizontalAlignment="Center"
+                 Margin="0 4 0 0" />
+        </BoxContainer>
+      </PanelContainer>
+      <LayoutContainer Name="DhdRingContainer"
+                       MinSize="490 490"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+      <BoxContainer Orientation="Vertical" Margin="0 5 0 0">
+        <Label Name="GateAddressTitleLabel"
+               Text="{Loc 'stargate-console-gate-address-label'}"
+               HorizontalAlignment="Center" />
+        <Label Name="GateAddressLabel"
+               Text=""
+               HorizontalAlignment="Center"
+               Margin="0 2 0 0" />
+        <Button Name="CopyAddressButton"
+                Text="{Loc 'stargate-console-copy'}"
+                MinWidth="80"
+                HorizontalAlignment="Center"
+                Margin="0 4 0 0" />
+      </BoxContainer>
+
+      <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5 0 0">
+        <Button Name="ClearButton"
+                Text="{Loc 'stargate-console-clear'}"
+                MinWidth="100"
+                Margin="5 0" />
+        <Button Name="ClosePortalButton"
+                Text="{Loc 'stargate-console-close-portal'}"
+                MinWidth="100"
+                Margin="5 0" />
+        <Button Name="IrisToggleButton"
+                MinSize="20 20"
+                Margin="5 0"
+                ToolTip="{Loc 'stargate-console-iris-lock'}" />
+      </BoxContainer>
+    </BoxContainer>
+
+    <PanelContainer Name="DiskPanel" MinWidth="360" Margin="5 0 0 0" VerticalExpand="True">
+      <BoxContainer Orientation="Vertical" Margin="5" VerticalExpand="True">
+        <Label Name="DiskTitleLabel"
+               Text="{Loc 'stargate-console-disk-title'}"
+               HorizontalAlignment="Center"
+               StyleClasses="LabelHeading" />
+        <Button Name="SaveAddressButton"
+                Text="{Loc 'stargate-console-disk-save'}"
+                HorizontalAlignment="Stretch"
+                Margin="0 4 0 4" />
+        <ScrollContainer VerticalExpand="True" HorizontalExpand="True" MinHeight="200">
+          <BoxContainer Name="DiskAddressList" Orientation="Vertical" HorizontalExpand="True" />
+        </ScrollContainer>
+      </BoxContainer>
+    </PanelContainer>
+  </BoxContainer>
+</DefaultWindow>

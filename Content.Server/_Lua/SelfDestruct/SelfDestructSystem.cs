@@ -56,7 +56,7 @@ public sealed class SelfDestructSystem : EntitySystem
                 var text = Loc.GetString("self-destruct-announcement-tick", ("ship", deedName), ("time", (int) comp.Remaining));
                 _chat.DispatchGlobalAnnouncement(text, Loc.GetString("self-destruct-announcement-sender"), playSound: false, colorOverride: Color.Red);
             }
-            if (!comp.PlayedFinalAlarm && comp.Remaining <= 13f) { comp.PlayedFinalAlarm = true; _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.AlertSound)); }
+            if (!comp.PlayedFinalAlarm && comp.Remaining <= 9f) { comp.PlayedFinalAlarm = true; _sound.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.AlertSound)); }
             UpdateState(uid, comp);
         }
     }

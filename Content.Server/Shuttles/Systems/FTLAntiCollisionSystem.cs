@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Lua.Stargate.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Maps;
@@ -65,6 +66,8 @@ public sealed class FTLAntiCollisionSystem : EntitySystem
     {
         var shuttle = ev.Entity;
         var mapUid = ev.MapUid;
+
+        if (HasComp<StargateDestinationComponent>(mapUid)) return;
 
         if (!_xformQuery.TryGetComponent(shuttle, out var xform) ||
             !_physicsQuery.TryGetComponent(shuttle, out var physics) ||

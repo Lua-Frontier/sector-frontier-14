@@ -169,6 +169,8 @@ public abstract partial class SharedGunSystem
             }
 
             Audio.PlayPredicted(component.BoltClosedSound, uid, user);
+            var ev = new BoltClosedEvent(user);
+            RaiseLocalEvent(uid, ref ev);
         }
         else
         {
@@ -426,5 +428,21 @@ public abstract partial class SharedGunSystem
             chamberEnt = slot.ContainedEntity;
             args.Ammo.Add((chamberEnt.Value, EnsureShootable(chamberEnt.Value)));
         }
+    }
+
+    // Mono
+    private void OnChamberMagazineCheckProto(Entity<ChamberMagazineAmmoProviderComponent> ent, ref CheckShootPrototypeEvent args)
+    {
+        if (Containers.TryGetContainer(ent, ChamberSlot, out var container)
+            && container is ContainerSlot slot
+            && slot.ContainedEntity != null)
+        {
+            args.ShootPrototype = MetaData(slot.ContainedEntity.Value).EntityPrototype;
+            return;
+        }
+
+        var mag = GetMagazineEntity(ent);
+        if (mag != null)
+            RaiseLocalEvent(mag.Value, ref args);
     }
 }

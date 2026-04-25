@@ -1,0 +1,26 @@
+flavor-tab-flavor = Описание
+flavor-tab-character = Черты персонажа
+flavor-tab-ooc-flavor = OOC Заметки
+flavor-tab-gyr = Предпочтения
+flavor-tab-nsfw = NSFW
+flavor-tab-nsfw-ooc-flavor = NSFW OOC
+flavor-tab-preview = Предпросмотр
+
+detail-examinable-window-title = Подробности
+detail-examinable-empty-flavor = Описание отсутствует.
+detail-examinable-empty-character = Описание характера отсутствует.
+detail-examinable-empty-ooc = OOC информация не указана.
+detail-examinable-empty-nsfw = NSFW описание отсутствует.
+detail-examinable-empty-links = Ссылки не добавлены.
+detail-examinable-empty-green = Список пуст.
+detail-examinable-empty-yellow = Список пуст.
+detail-examinable-empty-red = Список пуст.
+
+character-flavor-text-placeholder = Характер, личностные качества, поведение, привычки, психологические особенности, социальный облик, мировоззрение, мимика...
+ooc-flavor-text-placeholder = OOC замечания, раскрывающие персонажа или ваши предпочтения...
+tags-flavor-text-placeholder = #тег1, #тег2, #тег3...
+links-flavor-text-placeholder = docs.google.com, disk.yandex.by, docs.yandex.by, ru.imgbb.com, gyazo.com, e621.net, e926.net, ibb.co, steamcommunity.com...
+green-flavor-text-placeholder = Что вы, как Игрок, хотите видеть в чужой отыгровке.
+yellow-flavor-text-placeholder = Темы, которые с вами необходимо обсудить в LOOC перед отыгровкой.
+red-flavor-text-placeholder = Редфлаги, что вы, как Игрок, не желаете видеть в чужой отыгровке.
+nsfw-flavor-text-placeholder = NSFW описание...

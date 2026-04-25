@@ -9,6 +9,7 @@ public partial class SharedGunSystem
     private void InitializeClothing()
     {
         SubscribeLocalEvent<ClothingSlotAmmoProviderComponent, TakeAmmoEvent>(OnClothingTakeAmmo);
+        SubscribeLocalEvent<ClothingSlotAmmoProviderComponent, CheckShootPrototypeEvent>(OnClothingCheckProto); // Mono
         SubscribeLocalEvent<ClothingSlotAmmoProviderComponent, GetAmmoCountEvent>(OnClothingAmmoCount);
     }
 
@@ -20,6 +21,17 @@ public partial class SharedGunSystem
             return;
 
         RaiseLocalEvent(getConnectedContainerEvent.ContainerEntity.Value, args);
+    }
+
+    // Mono
+    private void OnClothingCheckProto(Entity<ClothingSlotAmmoProviderComponent> ent, ref CheckShootPrototypeEvent args)
+    {
+        var getConnectedContainerEvent = new GetConnectedContainerEvent();
+        RaiseLocalEvent(ent.Owner, ref getConnectedContainerEvent);
+        if (!getConnectedContainerEvent.ContainerEntity.HasValue)
+            return;
+
+        RaiseLocalEvent(getConnectedContainerEvent.ContainerEntity.Value, ref args);
     }
 
     private void OnClothingAmmoCount(EntityUid uid, ClothingSlotAmmoProviderComponent component, ref GetAmmoCountEvent args)

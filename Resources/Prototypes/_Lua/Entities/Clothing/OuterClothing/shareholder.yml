@@ -4,8 +4,7 @@
   name: десантный скафандр акционера
   description: Выглядит неприлично дорого, неизвестно чья это разработка но на бирке по стирке выгравировано "lt&cs"
   components:
-  - type: ThermalCloak
-    enabled: false
+
   - type: BreathMask
   - type: Sprite
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/shareholder_hardsuit.rsi
@@ -24,13 +23,8 @@
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
-      beakerSlot: !type:ContainerSlot
   - type: ItemSlots
     slots:
-      beakerSlot:
-        whitelist:
-          tags:
-          - FitsHardsuit
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor

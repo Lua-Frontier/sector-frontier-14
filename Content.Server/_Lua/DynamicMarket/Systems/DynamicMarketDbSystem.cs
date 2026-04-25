@@ -2,15 +2,19 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 using Content.Server.Database;
+using Content.Shared._NF.CCVar;
+using Robust.Shared.Configuration;
 using System.Threading.Tasks;
 
 namespace Content.Server._Lua.DynamicMarket.Systems;
 
 public sealed class DynamicMarketDbSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly ILogManager _log = default!;
     private ISawmill _sawmill = default!;
+    private bool _enabled;
     public const double DownDeltaPerUnit = 0.0040;
     public const double UpDeltaPerUnit = 0.0012;
     public const double MinModPrice = 0.01;
@@ -35,6 +39,13 @@ public sealed class DynamicMarketDbSystem : EntitySystem
     {
         base.Initialize();
         _sawmill = _log.GetSawmill("dynamic-market");
+        _enabled = _cfg.GetCVar(NFCCVars.DynamicMarketEnabled);
+        if (!_enabled)
+        {
+            _sawmill.Info("Dynamic market disabled via nf14.dynamic_market.enabled; no DB connection");
+            _loaded = true;
+            return;
+        }
         _ = LoadCache();
         _nextDriftPersistUtc = DateTime.UtcNow + DriftPersistInterval;
     }
@@ -42,7 +53,7 @@ public sealed class DynamicMarketDbSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        if (!_loaded) return;
+        if (!_enabled || !_loaded) return;
         var now = DateTime.UtcNow;
         if (now < _nextDriftPersistUtc) return;
         _nextDriftPersistUtc = now + DriftPersistInterval;
@@ -51,6 +62,7 @@ public sealed class DynamicMarketDbSystem : EntitySystem
 
     public double GetCurrentMultiplier(string prototypeId)
     {
+        if (!_enabled) return 1.0;
         var now = DateTime.UtcNow;
         var entry = GetOrCreateEntry(prototypeId, now);
         return entry.ModPrice;
@@ -58,6 +70,7 @@ public sealed class DynamicMarketDbSystem : EntitySystem
 
     public double GetProjectedMultiplierAfterSale(string prototypeId, int units)
     {
+        if (!_enabled) return 1.0;
         if (units <= 0) return GetCurrentMultiplier(prototypeId);
         var now = DateTime.UtcNow;
         var entry = GetOrCreateEntry(prototypeId, now);
@@ -66,6 +79,7 @@ public sealed class DynamicMarketDbSystem : EntitySystem
 
     public double GetProjectedMultiplierAfterPurchase(string prototypeId, int units)
     {
+        if (!_enabled) return 1.0;
         if (units <= 0) return GetCurrentMultiplier(prototypeId);
         var now = DateTime.UtcNow;
         var entry = GetOrCreateEntry(prototypeId, now);
@@ -74,13 +88,13 @@ public sealed class DynamicMarketDbSystem : EntitySystem
 
     public void ApplySale(IReadOnlyCollection<(string prototypeId, int units, double baseUnitPrice)> sold)
     {
-        if (sold.Count == 0) return;
+        if (!_enabled || sold.Count == 0) return;
         _ = ApplyAsync(sold, isSale: true);
     }
 
     public void ApplyPurchase(IReadOnlyCollection<(string prototypeId, int units, double baseUnitPrice)> bought)
     {
-        if (bought.Count == 0) return;
+        if (!_enabled || bought.Count == 0) return;
         _ = ApplyAsync(bought, isSale: false);
     }
 

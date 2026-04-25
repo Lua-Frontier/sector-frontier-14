@@ -660,9 +660,9 @@
 ## Antagonists / Contraband
 - type: entity
   parent:
-  - BaseC3SyndicateContrabandUnredeemable
+  - BaseC1SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandUnredeemable > BaseC1SyndicateContrabandNoValue
   - ClothingBackpackMessengerContractor
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingBackpackMessengerSyndicate
   name: syndicate messenger bag
   description: A robust messenger bag for waging war against oppressors.
@@ -701,9 +701,9 @@
 
 - type: entity
   parent:
-  - BaseC3CultContrabandUnredeemable
+  - BaseC1CultContrabandNoValue # Lua-changes: BaseC3CultContrabandUnredeemable > BaseC1CultContrabandNoValue
   - ClothingBackpackMessengerContractor
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingBackpackMessengerBloodCult
   name: cultist messenger bag
   description: A watertight messenger bag for loyal Nar'Sie followers.
@@ -743,7 +743,7 @@
 - type: entity
   id: ClothingBackpackMessengerArcadia
   name: arcadia messenger bag
-  parent: [ ClothingBackpackMessengerContractor, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: ClothingBackpackMessengerContractor # Lua-changes: deleted BaseC3ContrabandNoValue and ContrabandClothing
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/color.rsi

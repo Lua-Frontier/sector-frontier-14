@@ -1,4 +1,6 @@
+using Content.Shared._NF.Bank;
 using Content.Server._Lua.ShipProtection;
+using Content.Server._Lua.Shipyard.Systems;
 using Content.Server._Mono.Ships.Systems;
 using Content.Server._Mono.Shipyard;
 using Content.Server._NF.Bank;
@@ -113,16 +115,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (HasComp<ShuttleDeedComponent>(targetId))
+        if (TryComp<AccessReaderComponent>(shipyardConsoleUid, out var accessReaderComponent) && !_access.IsAllowed(player, shipyardConsoleUid, accessReaderComponent))
         {
-            ConsolePopup(player, Loc.GetString("shipyard-console-already-deeded"));
+            ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
 
-        if (TryComp<AccessReaderComponent>(shipyardConsoleUid, out var accessReaderComponent) && !_access.IsAllowed(player, shipyardConsoleUid, accessReaderComponent))
+        if (component.ParkingConsole)
         {
-            ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
+            HandleParkingPurchase(shipyardConsoleUid, component, player, targetId);
+            return;
+        }
+
+        if (HasComp<ShuttleDeedComponent>(targetId))
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-already-deeded"));
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
@@ -396,8 +404,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         EntityManager.AddComponents(shuttleUid, vessel.AddComponents);
 
-        if (vessel.Category == VesselSize.Small) EnsureComp<WhitelistConsolesComponent>(shuttleUid); // Lua
-
         // Lua
         if (isLuaTech)
         {
@@ -503,6 +509,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             ConsolePopup(player, Loc.GetString("shipyard-console-no-idcard"));
             PlayDenySound(player, uid, component);
+            return;
+        }
+
+        if (component.ParkingConsole)
+        {
+            HandleParkingSell(uid, component, player, targetId);
             return;
         }
 
@@ -673,12 +685,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (args.Actor is not { Valid: true } player)
             return;
 
-        //      mayhaps re-enable this later for HoS/SA
-        //        var station = _station.GetOwningStation(uid);
-
-        if (!TryComp<BankAccountComponent>(player, out var bank))
-            return;
-
         var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
 
         if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
@@ -691,6 +697,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+
+        if (component.ParkingConsole)
+        {
+            RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
+            return;
+        }
+
+        //      mayhaps re-enable this later for HoS/SA
+        //        var station = _station.GetOwningStation(uid);
+
+        if (!TryComp<BankAccountComponent>(player, out var bank))
+            return;
 
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
@@ -782,9 +800,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (user is not { Valid: true } player)
                 continue;
 
-            if (!TryComp<BankAccountComponent>(player, out var bank))
-                continue;
-
             var targetId = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
 
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
@@ -798,6 +813,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
 
+            if (component.ParkingConsole)
+            {
+                RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
+                continue;
+            }
+
+            if (!TryComp<BankAccountComponent>(player, out var bank)) continue;
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
             {
@@ -894,6 +916,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         var available = new List<string>();
         var unavailable = new List<string>();
+
+        if (TryGetAvailableParkingShuttles(uid, targetId, out available, out unavailable))
+            return (available, unavailable);
 
         var isErp = _configManager.GetCVar(CLVars.IsERP);
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))

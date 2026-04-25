@@ -565,10 +565,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     private bool DoHeavyAttack(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
     {
         // TODO: This is copy-paste as fuck with DoPreciseAttack
+        if (!Exists(user) || !Exists(meleeUid))
+            return false;
         if (!TryComp(user, out TransformComponent? userXform))
             return false;
 
-        var targetMap = TransformSystem.ToMapCoordinates(GetCoordinates(ev.Coordinates));
+        var coords = GetCoordinates(ev.Coordinates);
+        if (!Exists(coords.EntityId))
+            return false;
+        var targetMap = TransformSystem.ToMapCoordinates(coords);
 
         if (targetMap.MapId != userXform.MapID)
             return false;
@@ -716,9 +721,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             _meleeSound.PlayHitSound(target, user, GetHighestDamageSound(appliedDamage, _protoManager), hitEvent.HitSoundOverride, component);
         }
 
-        if (appliedDamage.GetTotal() > FixedPoint2.Zero)
+        if (appliedDamage.GetTotal() > FixedPoint2.Zero && targets.Count > 0 && Exists(targets[0]) && TryComp(targets[0], out TransformComponent? targetXform))
         {
-            DoDamageEffect(targets, user, Transform(targets[0]));
+            DoDamageEffect(targets, user, targetXform);
         }
 
         return true;

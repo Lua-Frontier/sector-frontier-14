@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: Machine
   start: start
   graph:
@@ -54,6 +54,7 @@
         - to: machine
           conditions:
             - !type:EntityAnchored
+            - !type:NoUnstackableInTileGraph
             - !type:MachineFrameComplete
               guideIconBoard:
                 sprite: Objects/Misc/module.rsi

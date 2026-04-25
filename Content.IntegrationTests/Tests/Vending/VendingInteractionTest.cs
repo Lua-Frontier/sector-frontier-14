@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Server.VendingMachines;
 using Content.Shared.Damage;
@@ -6,6 +5,8 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Prototypes;
+using Robust.UnitTesting.Pool;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Vending;
 
@@ -78,7 +79,7 @@ public sealed class VendingInteractionTest : InteractionTest
 
         // Power the vending machine
         var apc = await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
-        await RunTicks(1);
+        await RunTicks(20);
 
         // Interacting with powered vending machine opens BUI
         await Activate();
@@ -94,7 +95,7 @@ public sealed class VendingInteractionTest : InteractionTest
 
         // Remove power
         await Delete(apc);
-        await RunTicks(1);
+        await RunTicks(20);
 
         // The BUI should close when power is lost
         Assert.That(IsUiOpen(VendingMachineUiKey.Key), Is.False, "BUI failed to close on power loss.");
@@ -116,7 +117,7 @@ public sealed class VendingInteractionTest : InteractionTest
 
         // Power the vending machine
         await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
-        await RunTicks(1);
+        await RunTicks(20);
 
         // Open the BUI
         await Activate();
@@ -174,7 +175,7 @@ public sealed class VendingInteractionTest : InteractionTest
 
         // Power the vending machine
         await SpawnEntity("APCBasic", SEntMan.GetCoordinates(TargetCoords));
-        await RunTicks(1);
+        await RunTicks(20);
 
         // Break it
         await BreakVendor();

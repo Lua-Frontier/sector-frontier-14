@@ -100,14 +100,6 @@
     count: 3
 
 - type: entity
-  parent: ScrapOre
-  id: ScrapOre20
-  suffix: 20
-  components:
-  - type: Stack
-    count: 20
-
-- type: entity
   id: ScrapOre20RandomLowTech
   categories: [HideSpawnMenu]
   components:
@@ -128,6 +120,32 @@
     rarePrototypes:
     - ScrapOreTech20
     rareChance: 0.6
+
+#Mono aditions
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
+
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre50
+  suffix: 50
+  components:
+  - type: Stack
+    count: 50
+
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre100
+  suffix: 100
+  components:
+  - type: Stack
+    count: 100
+#Mono end
 
 # region Materials
 - type: material

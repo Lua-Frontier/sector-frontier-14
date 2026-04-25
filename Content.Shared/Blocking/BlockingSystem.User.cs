@@ -1,3 +1,4 @@
+using Content.Shared.Blocking.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -54,7 +55,31 @@ public sealed partial class BlockingSystem
 
             var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
             blockFraction = Math.Clamp(blockFraction, 0, 1);
-            _damageable.TryChangeDamage(component.BlockingItem, blockFraction * args.OriginalDamage);
+            var blockedDamage = blockFraction * args.OriginalDamage;
+            _damageable.TryChangeDamage(component.BlockingItem, blockedDamage);
+            var ballisticBonus = new DamageSpecifier();
+            if (blockedDamage.DamageDict.TryGetValue("Blunt", out var blunt))
+                ballisticBonus.DamageDict["Blunt"] = blunt;
+            if (blockedDamage.DamageDict.TryGetValue("Slash", out var slash))
+                ballisticBonus.DamageDict["Slash"] = slash;
+            if (blockedDamage.DamageDict.TryGetValue("Piercing", out var piercing))
+                ballisticBonus.DamageDict["Piercing"] = piercing;
+            if (!ballisticBonus.Empty)
+                _damageable.TryChangeDamage(component.BlockingItem, ballisticBonus);
+
+            var totalBlocked = blockedDamage.GetTotal().Float();
+            if (totalBlocked > 0)
+            {
+                var ballisticBlocked = 0f;
+                if (blockedDamage.DamageDict.TryGetValue("Blunt", out var bluntBlocked))
+                    ballisticBlocked += bluntBlocked.Float();
+                if (blockedDamage.DamageDict.TryGetValue("Slash", out var slashBlocked))
+                    ballisticBlocked += slashBlocked.Float();
+                if (blockedDamage.DamageDict.TryGetValue("Piercing", out var piercingBlocked))
+                    ballisticBlocked += piercingBlocked.Float();
+                var ev = new ShieldBlockedDamageEvent(totalBlocked, ballisticBlocked);
+                RaiseLocalEvent(component.BlockingItem.Value, ref ev);
+            }
 
             var modify = new DamageModifierSet();
             foreach (var key in dmgComp.Damage.DamageDict.Keys)

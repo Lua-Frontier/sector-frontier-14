@@ -1,19 +1,14 @@
-using System.Collections.Generic;
-using System.Linq;
 using Content.Server.Database;
-using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Preferences.Loadouts.Effects;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Configuration;
-using Robust.Shared.Enums;
 using Robust.Shared.Log;
 using Robust.Shared.Maths;
 using Robust.Shared.Network;
 using Robust.UnitTesting;
+using Robust.UnitTesting.Pool;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Preferences
 {

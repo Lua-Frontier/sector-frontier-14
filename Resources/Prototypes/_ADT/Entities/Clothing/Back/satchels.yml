@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC1SpiderClanContraband] # Lua-changes: added BaseC1SpiderClanContraband
   id: ADTClothingBackpackSatchelninja
   name: satchel
   description: A trendy looking satchel.
@@ -22,3 +22,14 @@
       - id: Wirecutter
       - id: Welder
       - id: Multitool
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCentcommContraband] # Lua-changes: added BaseCentcommContraband
+  id: ADTClothingBackpackSatchelCCC
+  name: centcom consultant satchel
+  description: No, sirr, I am not going to help you choose your new microwave.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Back/Satchels/centcom_satchel.rsi
+  - type: Storage
+    maxItemSize: Huge

@@ -17,7 +17,7 @@
     - state: stc_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue] # Lua-changes: added BaseC3CentCommContrabandNoValue
   id: EncryptionKeyNfsd
   name: NFSD encryption key
   categories: [ DoNotMap ]
@@ -36,7 +36,7 @@
     - state: nfsd_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue] # Lua-changes: added BaseC3CentCommContrabandNoValue
   id: EncryptionKeyDoc
   name: medical dispatch encryption key
   categories: [ DoNotMap ]

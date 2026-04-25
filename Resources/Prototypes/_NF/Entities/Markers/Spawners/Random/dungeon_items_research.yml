@@ -212,6 +212,7 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - StargateAddressDisk
     - CoordinatesDiskFrontier
     - ResearchDisk
     - ResearchDisk
@@ -295,7 +296,8 @@
     offset: 0.0
     rarePrototypes:
     - MachineAnomalyGeneratorFlatpack
-    rareChance: 0.001
+    - StargateAddressDisk
+    rareChance: 0.08
 
 - type: entity
   name: random law board

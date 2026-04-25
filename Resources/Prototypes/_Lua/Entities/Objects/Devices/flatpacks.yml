@@ -46,3 +46,14 @@
     entity: MedipenTechfab
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  parent: BaseFlatpack
+  id: WeaponShuttleGrapplingTurretFlatpack
+  name: grappling flatpack
+  description: A flatpack grappling.
+  components:
+  - type: Flatpack
+    entity: WeaponShuttleGrapplingTurret
+  - type: StaticPrice
+    price: 150

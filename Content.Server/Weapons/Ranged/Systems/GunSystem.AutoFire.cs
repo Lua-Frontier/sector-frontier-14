@@ -26,23 +26,28 @@ public sealed partial class GunSystem
 
         while (query.MoveNext(out var uid, out var gun))
         {
-            if (gun.NextFire > Timing.CurTime)
-                continue;
-
-            if (TryComp(uid, out AutoShootGunComponent? autoShoot))
-            {
-                if (!autoShoot.Enabled)
-                    continue;
-
-                AttemptShoot(uid, gun);
-            }
-            else if (gun.BurstActivated)
+            if (gun.BurstActivated)
             {
                 var parent = TransformSystem.GetParentUid(uid);
                 if (HasComp<DamageableComponent>(parent))
                     AttemptShoot(parent, uid, gun, gun.ShootCoordinates ?? new EntityCoordinates(uid, gun.DefaultDirection));
                 else
                     AttemptShoot(uid, gun);
+            }
+            else if (TryComp(uid, out AutoShootGunComponent? autoShoot))
+            {
+                // Mono
+                if (autoShoot.RemainingTime <= TimeSpan.FromSeconds(0))
+                {
+                    if (!autoShoot.Enabled)
+                        continue;
+                }
+                else
+                {
+                    autoShoot.RemainingTime -= TimeSpan.FromSeconds(frameTime);
+                }
+
+                AttemptShoot(uid, gun);
             }
         }
     }
@@ -141,6 +146,7 @@ public sealed partial class GunSystem
 
         if (CanEnable(uid, component))
             EnableGun(uid, component);
+        else if (!Transform(uid).Anchored && !HasComp<ApcPowerReceiverComponent>(uid)) component.CanFire = true;
     }
 
     private void OnGunShutdown(EntityUid uid, AutoShootGunComponent component, ComponentShutdown args)

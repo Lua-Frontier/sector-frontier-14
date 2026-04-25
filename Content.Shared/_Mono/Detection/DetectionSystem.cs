@@ -50,6 +50,27 @@ public sealed class DetectionSystem : EntitySystem
         // maybe make this also take IFF being on into account?
         return level;
     }
+
+    /// <summary>
+    /// Returns the best detection level for a grid, given multiple detectors.
+    /// </summary>
+    public DetectionLevel IsGridDetected(Entity<MapGridComponent?> grid, IEnumerable<EntityUid> byUids)
+    {
+        var best = DetectionLevel.Undetected;
+
+        foreach (var byUid in byUids)
+        {
+            var level = IsGridDetected(grid, byUid);
+
+            if (level == DetectionLevel.Detected)
+                return DetectionLevel.Detected;
+
+            if (level == DetectionLevel.PartialDetected)
+                best = DetectionLevel.PartialDetected;
+        }
+
+        return best;
+    }
 }
 
 public enum DetectionLevel

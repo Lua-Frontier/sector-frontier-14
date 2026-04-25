@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, BaseC1SyndicateContraband]
   id: ClothingBeltPlantOutpostSyndicate
   name: пояс ботаника синдиката
   description: Пояс, используемый для хранения основных принадлежностей для гидропоники. На удивление, не чёрный.
@@ -71,7 +71,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltSecurity
+  parent: [ClothingBeltSecurity, BaseC1SyndicateContraband]
   id: ClothingBeltOutpostSyndicateSecurityWebbing
   name: РПС синдиката
   description: Ременно-плечевая система тактических ремней, которую носят представители военных структур синдиката.

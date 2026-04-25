@@ -54,4 +54,7 @@ public sealed class NPCUseActionOnTargetSystem : EntitySystem
             TryUseTentacleAttack((uid, comp), target);
         }
     }
+
+    public void ClearActionEntity(EntityUid uid, NPCUseActionOnTargetComponent comp)
+    { comp.ActionEnt = null; }
 }

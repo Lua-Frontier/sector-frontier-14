@@ -1,0 +1,46 @@
+<memorial:MemorialDisplayWindow xmlns="https://spacestation14.io"
+                                xmlns:memorial="clr-namespace:Content.Client._Lua.Memorial"
+                                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                                SetSize="640 560"
+                                MinSize="520 420">
+    <PanelContainer Margin="8">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BorderColor="#A8823D" BorderThickness="2" BackgroundColor="#140F0A" />
+        </PanelContainer.PanelOverride>
+
+        <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                <Label Name="DisplayTitle"
+                       Text="Мемориальная экспозиция"
+                       FontColorOverride="#F3D8A2"
+                       HorizontalExpand="True"
+                       HorizontalAlignment="Center" />
+                <TextureButton Name="CloseButton"
+                               StyleClasses="windowCloseButton"
+                               VerticalAlignment="Center" />
+            </BoxContainer>
+
+            <PanelContainer Margin="0 2 0 2">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderColor="#5D4631" BorderThickness="1" BackgroundColor="#1E1711" />
+                </PanelContainer.PanelOverride>
+                <RichTextLabel Name="DisplayDescription"
+                               Margin="8"
+                               VerticalExpand="False" />
+            </PanelContainer>
+
+            <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderColor="#5D4631" BorderThickness="1" BackgroundColor="#110D09" />
+                </PanelContainer.PanelOverride>
+                <ScrollContainer Margin="8" HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" VScrollEnabled="True">
+                    <BoxContainer Name="EntriesContainer"
+                                  Orientation="Vertical"
+                                  SeparationOverride="6"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True" />
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</memorial:MemorialDisplayWindow>

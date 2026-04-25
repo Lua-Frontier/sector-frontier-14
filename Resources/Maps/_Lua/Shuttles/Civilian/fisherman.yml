@@ -5117,7 +5117,6 @@ entities:
     - type: Transform
       pos: 0.5,-6.5
       parent: 1
-    - type: Timer
 - proto: Poweredlight
   entities:
   - uid: 574
@@ -5233,7 +5232,6 @@ entities:
       powerLoad: 100
     - type: DamageOnInteract
       isDamageActive: False
-    - type: Timer
   - uid: 591
     components:
     - type: Transform

@@ -1,0 +1,36 @@
+<quest:PlanetQuestPanel
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:quest="clr-namespace:Content.Client._Lua.Stargate.PlanetQuest;assembly=Content.Client"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    x:Class="Content.Client._Lua.Stargate.PlanetQuest.PlanetQuestPanel"
+    MouseFilter="Stop"
+    MinWidth="220"
+    MaxWidth="320">
+    <PanelContainer.PanelOverride>
+        <graphics:StyleBoxFlat BackgroundColor="#20222099" ContentMarginLeftOverride="8" ContentMarginRightOverride="8" ContentMarginTopOverride="5" ContentMarginBottomOverride="5" />
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" SeparationOverride="3">
+        <PanelContainer Name="DragHeader" MouseFilter="Stop" MinHeight="20">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#00000033" ContentMarginLeftOverride="4" ContentMarginRightOverride="4" ContentMarginTopOverride="2" ContentMarginBottomOverride="2" />
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Horizontal">
+                <Label Name="TitleLabel" Text="{Loc 'planet-quest-panel-title'}" HorizontalExpand="True" FontColorOverride="#CCCCCC" />
+                <Button Name="CollapseButton" Text="-" MinWidth="22" MaxWidth="22" MinHeight="18" MaxHeight="18" />
+            </BoxContainer>
+        </PanelContainer>
+        <BoxContainer Name="ContentContainer" Orientation="Vertical" SeparationOverride="3">
+            <Label Name="QuestNameLabel" Margin="2 2 0 0" FontColorOverride="#FFFFFF" />
+            <BoxContainer Name="DescriptionBox" Orientation="Vertical" Margin="2 0 0 2">
+                <RichTextLabel Name="DescriptionLabel" HorizontalExpand="True" SetWidth="290" MaxWidth="290" />
+            </BoxContainer>
+            <Label Name="StructureLabel" FontColorOverride="#FFDD44" Margin="2 0 0 0" />
+            <Label Name="BossLabel" FontColorOverride="#FFDD44" Margin="2 0 0 0" />
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'planet-quest-panel-reward-label'}" FontColorOverride="#AAAAAA" />
+                <Label Name="RewardLabel" FontColorOverride="#44DD44" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</quest:PlanetQuestPanel>

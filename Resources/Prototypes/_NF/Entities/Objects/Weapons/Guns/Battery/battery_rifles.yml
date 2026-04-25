@@ -29,7 +29,7 @@
 #region Pulse
 - type: entity
   id: NFWeaponEnergyRiflePulse
-  parent: [ BaseC2Contraband, NFBaseWeaponEnergyRifleHitScanPulse, NFBaseWeaponFrameEnergyRifleNanotrasen ]
+  parent: [BaseC3CentCommContraband, NFBaseWeaponEnergyRifleHitScanPulse, NFBaseWeaponFrameEnergyRifleNanotrasen] # Lua-changes: BaseC2Contraband > BaseC3CentCommContraband
   name: pulse rifle
   description: |-
     A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'

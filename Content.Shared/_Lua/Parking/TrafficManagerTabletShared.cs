@@ -43,6 +43,7 @@ public readonly record struct TrafficManagerTabletShuttleEntry(
     TrafficManagerShuttleStatus Status,
     int TimeRemainingSeconds,
     int ExtraMinutes,
+    bool FinePending,
     bool NeedsDisposal,
     bool SellEnabled);
 
@@ -52,6 +53,7 @@ public enum TrafficManagerTabletAction : byte
     Refresh,
     ResetTimer,
     AddTenMinutes,
+    Fine,
     Sell
 }
 

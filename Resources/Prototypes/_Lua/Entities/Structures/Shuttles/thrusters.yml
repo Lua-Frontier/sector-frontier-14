@@ -14,6 +14,7 @@
     damage:
       types:
         Heat: 40
+        Structural: 40
   - type: ThermalSignature
   - type: ContainerContainer
     containers:
@@ -88,6 +89,7 @@
     damage:
       types:
         Heat: 40
+        Structural: 40
   - type: Destructible
     thresholds:
     - trigger:
@@ -141,6 +143,7 @@
     damage:
       types:
         Heat: 40
+        Structural: 40
 
 - type: entity
   id: OmniThrusterLua
@@ -203,6 +206,7 @@
     damage:
       types:
         Heat: 40
+        Structural: 40
   - type: ThermalSignature
   - type: ContainerContainer
     containers:
@@ -265,6 +269,7 @@
     damage:
       types:
         Heat: 120
+        Structural: 120
   - type: Sprite
     sprite: _Mono/Structures/Shuttles/thruster_medium.rsi
     offset: 0.5,-0.5
@@ -330,6 +335,7 @@
     damage:
       types:
         Heat: 120
+        Structural: 120
   - type: Sprite
     sprite: _Mono/Structures/Shuttles/thruster_large.rsi
     offset: 0,0

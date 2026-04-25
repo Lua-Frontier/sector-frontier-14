@@ -32,6 +32,87 @@
     price: 62
   - type: LuaTreasure # Lua
 
+#Mono start
+- type: entity
+  parent: ResearchDisk
+  id: ResearchDisk35000
+  name: research point disk (35000)
+  description: A disk for the R&D server containing 35000 points.
+  components:
+  - type: ResearchDisk
+    points: 35000
+  - type: StaticPrice
+    price: 7000
+
+- type: entity
+  parent: ResearchDisk
+  id: ResearchDisk65000
+  name: research point disk (65000)
+  description: A disk for the R&D server containing 65000 points.
+  components:
+  - type: ResearchDisk
+    points: 65000
+  - type: StaticPrice
+    price: 13000
+
+#Rogue silicon disks
+- type: entity
+  parent: ResearchDisk
+  id: RogueSiliconResearchDisk50000
+  name: research point disk (50000)
+  description: A rogue silicon data disk for an R&D server containing 50000 points.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Specific/Research/researchdisk.rsi
+    state: research-disk-boss
+  - type: ResearchDisk
+    points: 50000
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  parent: ResearchDisk
+  id: RogueSiliconResearchDisk25000
+  name: research point disk (25000)
+  description: A rogue silicon data disk for an R&D server containing 25000 points.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Specific/Research/researchdisk.rsi
+    state: research-disk-advanced
+  - type: ResearchDisk
+    points: 25000
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: ResearchDisk
+  id: RogueSiliconResearchDisk10000
+  name: research point disk (10000)
+  description: A rogue silicon data disk for an R&D server containing 10000 points.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Specific/Research/researchdisk.rsi
+    state: research-disk
+  - type: ResearchDisk
+    points: 10000
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  parent: ResearchDisk
+  id: RogueSiliconResearchDisk5000
+  name: research point disk (5000)
+  description: A rogue silicon data disk for an R&D server containing 5000 points.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Specific/Research/researchdisk.rsi
+    state: research-disk
+  - type: ResearchDisk
+    points: 5000
+  - type: StaticPrice
+    price: 1000
+#Mono end
+
 - type: entity
   parent: ResearchDisk
   id: ResearchDisk5000

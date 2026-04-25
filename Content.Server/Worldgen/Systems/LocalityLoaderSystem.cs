@@ -3,6 +3,8 @@ using Robust.Server.GameObjects;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Server._NF.Salvage; // Frontier
 using Content.Server.StationEvents.Events; // Frontier
+using Content.Server._Mono.GridClaimer;
+using Content.Server._Lua.Worldgen;
 using Robust.Shared.Spawners;
 
 namespace Content.Server.Worldgen.Systems;
@@ -48,7 +50,9 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
             {
                 for (var j = -1; j < 2 && !done; j++)
                 {
-                    var chunk = GetOrCreateChunk(coords + (i, j), xform.MapUid!.Value, controller);
+                    if (!controller.Chunks.TryGetValue(coords + (i, j), out var chunk))
+                        continue;
+
                     if (!loadedQuery.TryGetComponent(chunk, out var loaded) || loaded.Loaders is null)
                         continue;
 
@@ -74,6 +78,14 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     }
     private void ResetTimedDespawn(EntityUid uid)
     {
+        if (TryComp<ClaimableGridComponent>(uid, out var claimable) && claimable.Claimed ||
+            TryComp<SafeMiningComponent>(uid, out var safeMining) && safeMining.RefCount > 0)
+        {
+            if (HasComp<TimedDespawnComponent>(uid))
+                RemCompDeferred<TimedDespawnComponent>(uid);
+            return;
+        }
+
         if (TryComp<TimedDespawnComponent>(uid, out var timedDespawn))
         {
             timedDespawn.Lifetime = DebrisActiveDuration;

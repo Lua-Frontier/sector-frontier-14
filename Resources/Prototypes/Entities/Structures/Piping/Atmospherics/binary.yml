@@ -81,11 +81,17 @@
     graph: GasBinary
     node: pressurepump
   - type: AmbientSound
-    enabled: false
-    volume: -9
+    enabled: true
+    volume: -12
     range: 5
     sound:
-      path: /Audio/Ambience/Objects/gas_pump.ogg
+      path: /Audio/Ambience/Objects/gas_hiss.ogg
+  # - type: AmbientSound
+  #   enabled: false
+  #   volume: -9
+  #   range: 5
+  #   sound:
+  #     path: /Audio/Ambience/Objects/gas_pump.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
   - type: GuideHelp
@@ -256,12 +262,6 @@
     - type: Construction
       graph: GasBinary
       node: passivegate
-    - type: AmbientSound
-      enabled: true
-      volume: -9
-      range: 5
-      sound:
-        path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
     - type: GuideHelp

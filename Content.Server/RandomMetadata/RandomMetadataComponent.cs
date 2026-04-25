@@ -1,3 +1,4 @@
+
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 
@@ -9,12 +10,20 @@ namespace Content.Server.RandomMetadata;
 [RegisterComponent]
 public sealed partial class RandomMetadataComponent : Component
 {
-    [DataField]
-    public List<ProtoId<LocalizedDatasetPrototype>>? DescriptionSegments;
 
-    [DataField]
-    public List<ProtoId<LocalizedDatasetPrototype>>? NameSegments;
+    [DataField("descriptionSegments")]
+    public List<string>? DescriptionSegments;
 
+    [DataField("nameSegments")]
+    public List<string>? NameSegments;
+
+    [DataField("nameSeparator")]
+    public string NameSeparator = " ";
+
+    [DataField("descriptionSeparator")]
+    public string DescriptionSeparator = " ";
+    
+    /// Goobstation start
     /// <summary>
     /// LocId of the formatting string to use to assemble the <see cref="NameSegments"/> into the entity's name.
     /// Segments will be passed to the localization system with this string as variables named $part0, $part1, $part2, etc.
@@ -27,5 +36,5 @@ public sealed partial class RandomMetadataComponent : Component
     /// Segments will be passed to the localization system with this string as variables named $part0, $part1, $part2, etc.
     /// </summary>
     [DataField]
-    public LocId DescriptionFormat = "random-metadata-description-format-default";
+    public LocId DescriptionFormat = "random-metadata-description-format-default"; /// Goobstation end
 }

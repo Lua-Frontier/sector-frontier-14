@@ -147,6 +147,12 @@
     femaleDisplacements: {} # Frontier: female jumpsuit displacement
   - type: HarpyVisuals
   - type: UltraVision
+  - type: LuaSprint # Lua
+    maxSprint: 86
+    drainPerSecond: 8.5
+    regenPerSecond: 8.6
+    regenDelay: 0.17
+    recoverThresholdFraction: 0.20
 #  - type: Tag # Frontier
 #    tags: # Frontier
 #    - CanPilot # Frontier

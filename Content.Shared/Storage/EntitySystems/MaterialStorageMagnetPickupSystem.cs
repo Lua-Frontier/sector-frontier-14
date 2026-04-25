@@ -1,6 +1,7 @@
 using Content.Server.Storage.Components;
 using Content.Shared.Materials;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.Examine;   // Frontier
 using Content.Shared.Hands.Components;  // Frontier
@@ -17,10 +18,14 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _storage = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
+    private const float SleepRange = 32f;
+
     private EntityQuery<PhysicsComponent> _physicsQuery;
+    private readonly HashSet<Entity<ActorComponent>> _nearActorLookup = new();
 
     public override void Initialize()
     {
@@ -91,7 +96,7 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform))
         {
-            if (comp.NextScan < currentTime)
+            if (comp.NextScan > currentTime)
                 continue;
 
             comp.NextScan += ScanDelay;
@@ -101,6 +106,13 @@ public sealed class MaterialStorageMagnetPickupSystem : EntitySystem
                 continue;
 
             var parentUid = xform.ParentUid;
+
+            if (xform.MapID == Robust.Shared.Map.MapId.Nullspace) continue;
+            var worldPos = _transform.GetWorldPosition(xform);
+            if (!float.IsFinite(worldPos.X) || !float.IsFinite(worldPos.Y)) continue;
+            _nearActorLookup.Clear();
+            _lookup.GetEntitiesInRange(xform.Coordinates, SleepRange, _nearActorLookup);
+            if (_nearActorLookup.Count == 0) continue;
 
             foreach (var near in _lookup.GetEntitiesInRange(uid, comp.Range, LookupFlags.Dynamic | LookupFlags.Sundries))
             {

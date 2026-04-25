@@ -1,8 +1,11 @@
+using Content.Server._NF.Power.Components; // Frontier
 using Content.Server.Actions;
 using Content.Server.Popups;
+using Content.Server.Power.Components; // Frontier
 using Content.Server.Power.EntitySystems;
 using Content.Server.PowerCell;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Light;
@@ -16,8 +19,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
-using Content.Server._NF.Power.Components; // Frontier
-using Content.Server.Power.Components; // Frontier
 
 namespace Content.Server.Light.EntitySystems
 {
@@ -102,8 +103,12 @@ namespace Content.Server.Light.EntitySystems
 
         private void OnShutdown(EntityUid uid, HandheldLightComponent component, ComponentShutdown args)
         {
-            _actions.RemoveAction(uid, component.ToggleActionEntity);
-            _actions.RemoveAction(uid, component.SelfToggleActionEntity);
+            if (component.ToggleActionEntity is { } toggleId && toggleId.IsValid() && Exists(toggleId)
+                && TryComp<ActionComponent>(toggleId, out var toggleAction) && toggleAction.AttachedEntity == uid)
+                _actions.RemoveAction(uid, toggleId);
+            if (component.SelfToggleActionEntity is { } selfId && selfId.IsValid() && Exists(selfId)
+                && TryComp<ActionComponent>(selfId, out var selfToggleAction) && selfToggleAction.AttachedEntity == uid)
+                _actions.RemoveAction(uid, selfId);
         }
 
         private byte? GetLevel(Entity<HandheldLightComponent> ent)
@@ -294,6 +299,12 @@ namespace Content.Server.Light.EntitySystems
 
             ent.Comp.Level = level;
             Dirty(ent);
+        }
+
+        public void ClearActionEntities(EntityUid uid, HandheldLightComponent comp)
+        {
+            comp.ToggleActionEntity = null;
+            comp.SelfToggleActionEntity = null;
         }
     }
 }

@@ -1,0 +1,530 @@
+- type: planetQuest
+  id: PlanetQuestXenoStructures
+  name: planet-quest-xeno-structures
+  description: planet-quest-xeno-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 20000
+  rewardMax: 60000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - XenoWardingTower
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestXenoBoss
+  name: planet-quest-xeno-boss
+  description: planet-quest-xeno-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 30000
+  rewardMax: 80000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - NFMobXenoQueen
+
+- type: planetQuest
+  id: PlanetQuestXenoMixed
+  name: planet-quest-xeno-mixed
+  description: planet-quest-xeno-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 35000
+  rewardMax: 90000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - XenoWardingTower
+  bossPrototypes:
+  - NFMobXenoQueen
+
+- type: planetQuest
+  id: PlanetQuestCarpStructures
+  name: planet-quest-carp-structures
+  description: planet-quest-carp-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 20000
+  rewardMax: 60000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - CarpStatue
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestCarpBoss
+  name: planet-quest-carp-boss
+  description: planet-quest-carp-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 30000
+  rewardMax: 80000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - NFMobDragonDungeon
+
+- type: planetQuest
+  id: PlanetQuestCarpMixed
+  name: planet-quest-carp-mixed
+  description: planet-quest-carp-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 35000
+  rewardMax: 90000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - CarpStatue
+  bossPrototypes:
+  - NFMobDragonDungeon
+
+- type: planetQuest
+  id: PlanetQuestFleshStructures
+  name: planet-quest-flesh-structures
+  description: planet-quest-flesh-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 22000
+  rewardMax: 65000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - AberrantFleshDigestiveSack
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestFleshBoss
+  name: planet-quest-flesh-boss
+  description: planet-quest-flesh-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 32000
+  rewardMax: 82000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - MobHorrorExpeditions
+
+- type: planetQuest
+  id: PlanetQuestFleshMixed
+  name: planet-quest-flesh-mixed
+  description: planet-quest-flesh-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 38000
+  rewardMax: 92000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - AberrantFleshDigestiveSack
+  bossPrototypes:
+  - MobHorrorExpeditions
+
+- type: planetQuest
+  id: PlanetQuestArgocyteStructures
+  name: planet-quest-argocyte-structures
+  description: planet-quest-argocyte-structures-desc
+  structureCountMin: 3
+  structureCountMax: 8
+  bossCount: 0
+  rewardMin: 22000
+  rewardMax: 65000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - ArgocyteEgg
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestArgocyteBoss
+  name: planet-quest-argocyte-boss
+  description: planet-quest-argocyte-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 33000
+  rewardMax: 85000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - MobArgocyteLeviathingExpeditions
+
+- type: planetQuest
+  id: PlanetQuestArgocyteMixed
+  name: planet-quest-argocyte-mixed
+  description: planet-quest-argocyte-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 38000
+  rewardMax: 95000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - ArgocyteEgg
+  bossPrototypes:
+  - MobArgocyteLeviathingExpeditions
+
+- type: planetQuest
+  id: PlanetQuestPunkStructures
+  name: planet-quest-punk-structures
+  description: planet-quest-punk-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 23000
+  rewardMax: 65000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - PunkPartySupplies
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestPunkBoss
+  name: planet-quest-punk-boss
+  description: planet-quest-punk-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 33000
+  rewardMax: 85000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - MobPunkGangerLeader
+
+- type: planetQuest
+  id: PlanetQuestPunkMixed
+  name: planet-quest-punk-mixed
+  description: planet-quest-punk-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 38000
+  rewardMax: 95000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - PunkPartySupplies
+  bossPrototypes:
+  - MobPunkGangerLeader
+
+- type: planetQuest
+  id: PlanetQuestDinoStructures
+  name: planet-quest-dino-structures
+  description: planet-quest-dino-structures-desc
+  structureCountMin: 3
+  structureCountMax: 8
+  bossCount: 0
+  rewardMin: 24000
+  rewardMax: 70000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - DinosaurEgg
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestDinoBoss
+  name: planet-quest-dino-boss
+  description: planet-quest-dino-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 35000
+  rewardMax: 90000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - MobDinosaurTrexExpeditions
+
+- type: planetQuest
+  id: PlanetQuestDinoMixed
+  name: planet-quest-dino-mixed
+  description: planet-quest-dino-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 40000
+  rewardMax: 100000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - DinosaurEgg
+  bossPrototypes:
+  - MobDinosaurTrexExpeditions
+
+- type: planetQuest
+  id: PlanetQuestMercStructures
+  name: planet-quest-merc-structures
+  description: planet-quest-merc-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 26000
+  rewardMax: 75000
+  rewardMultiplier: 1.1
+  structurePrototypes:
+  - MercenaryCounterfeitCache
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestMercBoss
+  name: planet-quest-merc-boss
+  description: planet-quest-merc-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 36000
+  rewardMax: 95000
+  rewardMultiplier: 1.3
+  structurePrototypes: []
+  bossPrototypes:
+  - MobMercenaryCaptain
+
+- type: planetQuest
+  id: PlanetQuestMercMixed
+  name: planet-quest-merc-mixed
+  description: planet-quest-merc-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 42000
+  rewardMax: 110000
+  rewardMultiplier: 1.6
+  structurePrototypes:
+  - MercenaryCounterfeitCache
+  bossPrototypes:
+  - MobMercenaryCaptain
+
+- type: planetQuest
+  id: PlanetQuestSyndicateStructures
+  name: planet-quest-syndicate-structures
+  description: planet-quest-syndicate-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 26000
+  rewardMax: 80000
+  rewardMultiplier: 1.1
+  structurePrototypes:
+  - CybersunDataMiner
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestSyndicateBoss
+  name: planet-quest-syndicate-boss
+  description: planet-quest-syndicate-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 38000
+  rewardMax: 100000
+  rewardMultiplier: 1.3
+  structurePrototypes: []
+  bossPrototypes:
+  - MobSyndicateNavalCommanderA
+
+- type: planetQuest
+  id: PlanetQuestSyndicateMixed
+  name: planet-quest-syndicate-mixed
+  description: planet-quest-syndicate-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 45000
+  rewardMax: 120000
+  rewardMultiplier: 1.7
+  structurePrototypes:
+  - CybersunDataMiner
+  bossPrototypes:
+  - MobSyndicateNavalCommanderA
+
+- type: planetQuest
+  id: PlanetQuestExplorerStructures
+  name: planet-quest-explorer-structures
+  description: planet-quest-explorer-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 23000
+  rewardMax: 65000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - ExplorersLootRadar
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestExplorerBoss
+  name: planet-quest-explorer-boss
+  description: planet-quest-explorer-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 33000
+  rewardMax: 90000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - MobExplorerBoss
+
+- type: planetQuest
+  id: PlanetQuestExplorerMixed
+  name: planet-quest-explorer-mixed
+  description: planet-quest-explorer-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 39000
+  rewardMax: 95000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - ExplorersLootRadar
+  bossPrototypes:
+  - MobExplorerBoss
+
+- type: planetQuest
+  id: PlanetQuestSiliconStructures
+  name: planet-quest-silicon-structures
+  description: planet-quest-silicon-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 26000
+  rewardMax: 80000
+  rewardMultiplier: 1.1
+  structurePrototypes:
+  - RogueAiNode
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestSiliconBoss
+  name: planet-quest-silicon-boss
+  description: planet-quest-silicon-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 38000
+  rewardMax: 100000
+  rewardMultiplier: 1.3
+  structurePrototypes: []
+  bossPrototypes:
+  - MobRogueSiliconBoss
+
+- type: planetQuest
+  id: PlanetQuestSiliconMixed
+  name: planet-quest-silicon-mixed
+  description: planet-quest-silicon-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 45000
+  rewardMax: 120000
+  rewardMultiplier: 1.7
+  structurePrototypes:
+  - RogueAiNode
+  bossPrototypes:
+  - MobRogueSiliconBoss
+
+- type: planetQuest
+  id: PlanetQuestCultStructures
+  name: planet-quest-cult-structures
+  description: planet-quest-cult-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 26000
+  rewardMax: 80000
+  rewardMultiplier: 1.1
+  structurePrototypes:
+  - BloodCollector
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestCultBoss
+  name: planet-quest-cult-boss
+  description: planet-quest-cult-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 38000
+  rewardMax: 100000
+  rewardMultiplier: 1.3
+  structurePrototypes: []
+  bossPrototypes:
+  - MobBloodCultistAscended
+
+- type: planetQuest
+  id: PlanetQuestCultMixed
+  name: planet-quest-cult-mixed
+  description: planet-quest-cult-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 45000
+  rewardMax: 120000
+  rewardMultiplier: 1.7
+  structurePrototypes:
+  - BloodCollector
+  bossPrototypes:
+  - MobBloodCultistAscended
+
+- type: planetQuest
+  id: PlanetQuestSlimeStructures
+  name: planet-quest-slime-structures
+  description: planet-quest-slime-structures-desc
+  structureCountMin: 3
+  structureCountMax: 7
+  bossCount: 0
+  rewardMin: 22000
+  rewardMax: 65000
+  rewardMultiplier: 1.0
+  structurePrototypes:
+  - SlimeStructure
+  bossPrototypes: []
+
+- type: planetQuest
+  id: PlanetQuestSlimeBoss
+  name: planet-quest-slime-boss
+  description: planet-quest-slime-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 32000
+  rewardMax: 85000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - MobSlimesRainbowSpace
+
+- type: planetQuest
+  id: PlanetQuestSlimeMixed
+  name: planet-quest-slime-mixed
+  description: planet-quest-slime-mixed-desc
+  structureCountMin: 3
+  structureCountMax: 6
+  bossCount: 1
+  rewardMin: 37000
+  rewardMax: 95000
+  rewardMultiplier: 1.5
+  structurePrototypes:
+  - SlimeStructure
+  bossPrototypes:
+  - MobSlimesRainbowSpace
+
+- type: planetQuest
+  id: PlanetQuestZombieBoss
+  name: planet-quest-zombie-boss
+  description: planet-quest-zombie-boss-desc
+  structureCountMin: 0
+  structureCountMax: 0
+  bossCount: 1
+  rewardMin: 30000
+  rewardMax: 80000
+  rewardMultiplier: 1.2
+  structurePrototypes: []
+  bossPrototypes:
+  - NFMobZombieOdysseus
+

@@ -1,6 +1,6 @@
 - type: entity
   parent:
-  - BaseC3CultContraband
+  - BaseC1CultContraband # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   - ClothingBeltBase
   - ContrabandClothing
   id: ClothingBeltCultForceField
@@ -19,9 +19,9 @@
 
 - type: entity
   parent:
-  - BaseC3CultContrabandUnredeemable
+  - BaseC1CultContrabandNoValue # Lua-changes: BaseC3CultContrabandUnredeemable > BaseC1CultContrabandNoValue
   - NFClothingBeltStorageBase
-  - ContrabandClothing
+# - ContrabandClothing # Lua
   id: ClothingBeltCultWebbing
   name: cult webbing
   description: A webbing with pockets lined with waterproof (water, huh?) material.

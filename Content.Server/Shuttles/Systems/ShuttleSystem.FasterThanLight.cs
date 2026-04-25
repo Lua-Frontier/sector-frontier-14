@@ -20,6 +20,7 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
+using Content.Shared._Lua.Shuttles.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -31,6 +32,10 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
+using Content.Server.Salvage.Expeditions;
+using Content.Shared._Mono.Ships;
+using Content.Shared._Crescent.SpaceBiomes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -96,6 +101,8 @@ public sealed partial class ShuttleSystem
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<FTLSmashImmuneComponent> _immuneQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
+
+    [Dependency] private readonly IEntityManager _entManager = default!; // Mono
 
     private void InitializeFTL()
     {
@@ -289,6 +296,20 @@ public sealed partial class ShuttleSystem
             return false;
         }
 
+        var dockedShuttles = new HashSet<EntityUid>();
+        GetAllDockedShuttles(shuttleUid, dockedShuttles);
+        if (!GetAllMagnetLatchedShuttles(shuttleUid, dockedShuttles, out reason))
+            return false;
+
+        foreach (var dockedUid in dockedShuttles)
+        {
+            if (dockedUid == shuttleUid)
+                continue;
+
+            if (!CanFTLAsDockedCargo(dockedUid, out reason))
+                return false;
+        }
+
         reason = null;
         return true;
     }
@@ -448,6 +469,34 @@ public sealed partial class ShuttleSystem
     }
     // FTL Mono Carrier end
 
+    private bool GetAllMagnetLatchedShuttles(EntityUid shuttleUid, HashSet<EntityUid> dockedShuttles)
+    {
+        return GetAllMagnetLatchedShuttles(shuttleUid, dockedShuttles, out _);
+    }
+
+    private bool GetAllMagnetLatchedShuttles(EntityUid shuttleUid, HashSet<EntityUid> dockedShuttles, [NotNullWhen(false)] out string? reason)
+    {
+        reason = null;
+        var latchSet = new HashSet<Entity<MagneticLatchComponent, TransformComponent>>();
+        _lookup.GetChildEntities(shuttleUid, latchSet);
+        foreach (var ent in latchSet)
+        {
+            var latch = ent.Comp1;
+            var xform = ent.Comp2;
+            if (xform.GridUid != shuttleUid || latch.JointId == null) continue;
+            if (latch.TargetGrid == null) continue;
+            var target = latch.TargetGrid.Value;
+            if (!HasComp<ShuttleComponent>(target))
+            {
+                reason = Loc.GetString("shuttle-console-ftl-magnet-target");
+                return false;
+            }
+            if (!dockedShuttles.Add(target)) continue;
+            if (!GetAllMagnetLatchedShuttles(target, dockedShuttles, out reason)) return false;
+        }
+        return true;
+    }
+
     private bool TrySetupFTL(EntityUid uid, ShuttleComponent shuttle, [NotNullWhen(true)] out FTLComponent? component)
     {
         component = null;
@@ -472,6 +521,11 @@ public sealed partial class ShuttleSystem
         // Determine docked shuttles that should travel together (respecting FTLLock).
         var dockedShuttles = new HashSet<EntityUid>();
         GetAllDockedShuttles(uid, dockedShuttles);
+        if (!GetAllMagnetLatchedShuttles(uid, dockedShuttles, out var latchReason))
+        {
+            Log.Warning($"Failed to start FTL for {ToPrettyString(uid)}: {latchReason}");
+            return false;
+        }
         // Force undock emergency and arrivals shuttles.
         if (HasComp<EmergencyShuttleComponent>(uid) || HasComp<ArrivalsShuttleComponent>(uid))
         {
@@ -484,8 +538,11 @@ public sealed partial class ShuttleSystem
                 if (dockedUid == uid)
                     continue;
 
-                if (!CanFTLAsDockedCargo(dockedUid, out _)) // Lua
+                if (!CanFTLAsDockedCargo(dockedUid, out var cargoReason)) // Lua
+                {
+                    Log.Warning($"Failed to start FTL for {ToPrettyString(uid)} because docked cargo {ToPrettyString(dockedUid)} cannot FTL: {cargoReason}");
                     return false;
+                }
             }
             foreach (var dock in _dockSystem.GetDocks(uid))
             {
@@ -620,6 +677,7 @@ public sealed partial class ShuttleSystem
         // Move docked shuttles into hyperspace while keeping their relative transforms to the main shuttle.
         var dockedShuttles = new HashSet<EntityUid>();
         GetAllDockedShuttles(uid, dockedShuttles);
+        GetAllMagnetLatchedShuttles(uid, dockedShuttles);
 
         var relativeTransforms = new Dictionary<EntityUid, (Vector2 Position, Angle Rotation)>();
         var mainPos = _transform.GetWorldPosition(uid);
@@ -714,6 +772,7 @@ public sealed partial class ShuttleSystem
             _console.RefreshShuttleConsoles(dockedUid);
         }
         // FTL Mono Carrier end
+        RestoreMagneticLatchesInHyperspace(dockedShuttles);
 
         Enable(uid, component: body);
         _physics.SetLinearVelocity(uid, new Vector2(0f, 20f), body: body);
@@ -790,6 +849,7 @@ public sealed partial class ShuttleSystem
         // Capture relative transforms + docking connections for all docked shuttles before moving the main shuttle.
         var dockedShuttles = new HashSet<EntityUid>();
         GetAllDockedShuttles(uid, dockedShuttles);
+        GetAllMagnetLatchedShuttles(uid, dockedShuttles);
 
         var relativeTransforms = new Dictionary<EntityUid, (Vector2 Position, Angle Rotation, List<(EntityUid DockA, EntityUid DockB)> Docks)>();
         var preMoveMainPos = _transform.GetWorldPosition(uid);
@@ -992,10 +1052,14 @@ public sealed partial class ShuttleSystem
     private void UpdateHyperspace()
     {
         var curTime = _gameTiming.CurTime;
+        var toUpdate = new ValueList<EntityUid>();
         var query = EntityQueryEnumerator<FTLComponent, ShuttleComponent>();
 
-        while (query.MoveNext(out var uid, out var comp, out var shuttle))
+        while (query.MoveNext(out var uid, out _, out _))
+        { toUpdate.Add(uid); }
+        foreach (var uid in toUpdate)
         {
+            if (!TryComp<FTLComponent>(uid, out var comp) || !TryComp<ShuttleComponent>(uid, out var shuttle)) continue;
             // FTL Mono Carrier start
             // Linked shuttles are driven by the main shuttle; skip their state machine.
             if (comp.LinkedShuttle.HasValue)

@@ -1,6 +1,6 @@
 - type: entity
   id: MilitaryPowerCellMG
-  parent: BaseMilitaryPowerCell
+  parent: [BaseMilitaryPowerCell, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
   name: EM72 Ashstorm battery cell
   description: A round battery cell designed for a EM72 Ashstorm.
   components:
@@ -34,7 +34,7 @@
 
 - type: entity
   id: PulsedPlasmaLaserCanister
-  parent: BaseMilitaryPowerCell
+  parent: [BaseMilitaryPowerCell, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   name: NT PPL magnetic storage container
   description: A small, advanced magnetic containment unit for the storage of high-energy plasma. Powered off an internal microreactor with iridite electromagnets, it can contain plasma indefinitely. Recharges via using electricity to synthesize plasma from surrounding air.
   components:

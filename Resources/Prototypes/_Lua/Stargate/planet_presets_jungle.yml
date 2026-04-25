@@ -1,0 +1,148 @@
+- type: stargatePlanetPreset
+  id: SGPresetJungle
+  biome:
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 140
+  worldRadiusMin: 207
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125875
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.04
+
+- type: stargatePlanetPreset
+  id: SGPresetJunglePeaceful
+  biome:
+  - GateJungle
+  dungeonCountMin: 1
+  dungeonCountMax: 0
+  worldRadiusMin: 218
+  worldRadiusMax: 256
+  mobSpawnMode: None
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Daylight
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetJungleRuins
+  biome:
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 70
+  dungeonDistanceMax: 150
+  worldRadiusMin: 195
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.125
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Daylight
+  - Evening
+  weight: 0.03
+
+- type: stargatePlanetPreset
+  id: SGPresetJungleHostile
+  biome:
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 50
+  dungeonDistanceMax: 120
+  worldRadiusMin: 222
+  worldRadiusMax: 256
+  mobSpawnMode: Surface
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFXenos
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirHumid
+  - GateAirSwamp
+  lightMods:
+  - Evening
+  weight: 0.02
+
+- type: stargatePlanetPreset
+  id: SGPresetJungleExpedition
+  biome:
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 2
+  dungeonCountMax: 3
+  dungeonDistanceMin: 80
+  dungeonDistanceMax: 180
+  worldRadiusMin: 191
+  worldRadiusMax: 256
+  mobSpawnMode: Both
+  mobLayerCount: 1
+  mobLayers:
+  - NFDinosaurs
+  - NFXenos
+  - Slimes
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirHumid
+  lightMods:
+  - Daylight
+  weight: 0.02
+
+- type: stargatePlanetPreset
+  id: SGPresetJungleTreasure
+  biome:
+  - GateJungle
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 3
+  dungeonDistanceMin: 60
+  dungeonDistanceMax: 130
+  worldRadiusMin: 214
+  worldRadiusMax: 256
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  rareSurfaceMobChance: 0.25
+  rareSurfaceMobLayerCount: 1
+  rareSurfaceMobLayers:
+  - NFDinosaurs
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  lightMods:
+  - Daylight
+  weight: 0.04

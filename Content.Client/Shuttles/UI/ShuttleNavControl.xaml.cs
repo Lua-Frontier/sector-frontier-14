@@ -35,6 +35,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    protected override bool AllowResize => true; // Lua
+    protected override bool ScaleWithControlSize => true; // Lua
     private readonly DetectionSystem _detection; // Mono
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
@@ -72,7 +74,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
-    public Func<EntityUid, MapGridComponent, IFFComponent?, bool>? IFFFilter { get; set; } = null;
+    public Func<EntityUid, MapGridComponent, IFFComponent?, string?, bool>? IFFFilter { get; set; } = null;
 
     /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
@@ -80,6 +82,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     public Action<EntityCoordinates>? OnRadarClick;
 
     private List<Entity<MapGridComponent>> _grids = new();
+    public List<EntityUid>? Detectors = null;
     private List<Content.Shared.Shuttles.UI.MapObjects.ShuttleExclusionObject>? _radarExclusions; // Lua
     public ShuttleNavControl() : this(64f, 256f, 256f) { } // Mono
 
@@ -311,7 +314,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var flags = iff?.Flags ?? IFFFlags.None; // Lua mod
             var hideLabel = (flags & IFFFlags.HideLabel) != 0x0; // Lua mod
             var hideLabelShuttle = (flags & IFFFlags.HideLabelShuttle) != 0x0; // Lua Decrypt mod
-            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : _detection.IsGridDetected(grid.Owner, _consoleEntity.Value);
+            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : GetGridDetected(grid.Owner);
             var blipOnly = detectionLevel != DetectionLevel.Detected; // don't show outline outside of detection radius even if IFF on
 
             // Lua company radar rules
@@ -367,7 +370,11 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 { labelName = decrypt.Revealed; }
                 else if (decrypt.Phase == IFFDecryptPhase.Decrypting)
                 {
-                    labelName = string.Concat(decrypt.Revealed, CipherStart, decrypt.Cipher, CipherEnd);
+                    labelName = string.Concat(
+                        decrypt.Revealed,
+                        CipherStart.ToString(),
+                        decrypt.Cipher,
+                        CipherEnd.ToString());
                     cipherName = true;
                     unknownShuttle = true;
                 }
@@ -400,7 +407,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var shouldDrawIFF = ShowIFF && labelName != null;
             if (IFFFilter != null)
             {
-                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff);
+                shouldDrawIFF &= IFFFilter(gUid, grid.Comp, iff, labelName);
             }
             if (isPlayerShuttle)
             {
@@ -443,6 +450,16 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Lua decrypt mod start
             var allowBlip = !hideLabel;
             if (effectiveHideLabelShuttle) allowBlip = true;
+
+            const float FullScaleDistance = 512f;
+            const float MinDistanceScale = 0.35f;
+            var maxScaleRange = MathF.Max(WorldMaxRange, FullScaleDistance + 1f);
+            var scaledMousePos = GetMouseCoordinatesFromCenter().Position * UIScale;
+            var isHovered = Vector2.Distance(scaledMousePos, uiPosition * UIScale) < 30f;
+            var distanceScale = isHovered || worldDist <= FullScaleDistance
+                ? 1f
+                : MathF.Max(MinDistanceScale, 1f - (worldDist - FullScaleDistance) / (maxScaleRange - FullScaleDistance) * (1f - MinDistanceScale));
+
             Texture? vesselIcon = null;
             var blipScale = 1f;
             if (EntManager.TryGetComponent<VesselComponent>(gUid, out var vesselComp))
@@ -481,7 +498,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         if (cache.TryGetResource<TextureResource>(blipComp.Icon, out var texRes))
                         {
                             var tex = texRes.Texture;
-                            var s = (RadarBlipSize * UIScale) * blipComp.Scale;
+                            var s = (RadarBlipSize * UIScale) * blipComp.Scale * distanceScale;
                             var half = new Vector2(s / 2f, s / 2f);
                             var box = new UIBox2(uiPosition * UIScale - half, uiPosition * UIScale + half);
                             handle.DrawTextureRect(tex, box, labelColor);
@@ -493,7 +510,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
                 else if (allowBlip && vesselIcon != null)
                 {
-                    var s = (RadarBlipSize * UIScale) * blipScale;
+                    var s = (RadarBlipSize * UIScale) * blipScale * distanceScale;
                     var half = new Vector2(s / 2f, s / 2f);
                     var box = new UIBox2(uiPosition * UIScale - half, uiPosition * UIScale + half);
                     handle.DrawTextureRect(vesselIcon, box, labelColor);
@@ -521,15 +538,16 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     // Calculate unscaled offsets. + Lua decrypt md start
                     var lines = labelText.Split('\n');
                     var mainLabel = lines[0];
-                    var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, 1f) : handle.GetDimensions(Font, mainLabel, 1f);
+                    var dimScale = 0.9f * distanceScale;
+                    var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, dimScale) : handle.GetDimensions(Font, mainLabel, dimScale);
                     var labelDimensions = mainDim;
                     if (lines.Length > 1)
                     {
-                        var otherDim = handle.GetDimensions(Font, lines[1], 1f);
+                        var otherDim = handle.GetDimensions(Font, lines[1], dimScale);
                         labelDimensions = new Vector2(Math.Max(labelDimensions.X, otherDim.X), labelDimensions.Y + otherDim.Y);
                     }
                     // Lua decrypt mod end
-                    var blipSize = RadarBlipSize * 0.7f;
+                    var blipSize = RadarBlipSize * 0.7f * distanceScale;
                     var labelOffset = new Vector2()
                     {
                         X = uiPosition.X > Width / 2f
@@ -553,8 +571,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             displayColor = compColor;
                     }
 
-                    if (cipherName) DrawCipherString(handle, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, displayColor); //Lua decrypt mod
-                    else handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, UIScale * 0.9f, displayColor); //Lua decrypt mod
+                    var textScale = UIScale * 0.9f * distanceScale;
+                    if (cipherName) DrawCipherString(handle, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
+                    else handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
 
                     // Draw company label if present
                     if (lines.Length > 1)
@@ -562,10 +581,10 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         var companyLabel = lines[1];
                         var companyLabelOffset = new Vector2(
                             labelOffset.X,
-                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, 0.9f).Y
+                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, textScale).Y
                         );
 
-                        handle.DrawString(Font, (uiPosition + companyLabelOffset) * UIScale, companyLabel, UIScale * 0.9f, displayColor);
+                        handle.DrawString(Font, (uiPosition + companyLabelOffset) * UIScale, companyLabel, textScale, displayColor);
                     }
 
                     if (isMouseOver && !HideCoords)
@@ -736,7 +755,26 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // Check if this blip is within view bounds before drawing
             if (monoViewBounds.Contains(blipPosInView))
             {
-                DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
+                var handledByLuaStyle = false;
+                DrawLuaRadarBlip(handle, blip.NetUid, blip.SonarEcho, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape, ref handledByLuaStyle);
+                if (!handledByLuaStyle)
+                {
+                    var blipEnt = EntManager.GetEntity(blip.NetUid);
+                    if (blipEnt != EntityUid.Invalid && EntManager.TryGetComponent<RadarBlipIconComponent>(blipEnt, out var blipIcon) && blipIcon.Icon != default)
+                    {
+                        var cache = IoCManager.Resolve<IResourceCache>();
+                        if (cache.TryGetResource<TextureResource>(blipIcon.Icon, out var texRes))
+                        {
+                            var s = blip.Scale * 3.5f * blipIcon.Scale;
+                            var half = new Vector2(s / 2f, s / 2f);
+                            var box = new UIBox2(blipPosInView - half, blipPosInView + half);
+                            handle.DrawTextureRect(texRes.Texture, box);
+                            handledByLuaStyle = true;
+                        }
+                    }
+                    if (!handledByLuaStyle)
+                        DrawBlipShape(handle, blipPosInView, blip.Scale * 3f, blip.Color.WithAlpha(0.8f), blip.Shape);
+                }
             }
         }
 
@@ -771,8 +809,18 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             }
         }
 
+        DrawWeaponLines(handle); // Lua
+
         ClearShader(handle);
         #endregion
+    }
+
+    protected DetectionLevel GetGridDetected(EntityUid grid)
+    {
+        if (Detectors != null)
+            return _detection.IsGridDetected(grid, Detectors);
+
+        return _consoleEntity == null ? DetectionLevel.Undetected : _detection.IsGridDetected(grid, _consoleEntity.Value);
     }
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
@@ -844,7 +892,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         }
     }
     partial void GetDockColorOverride(ref Color color, DockingPortState state); // Lua
-
     protected Vector2 InverseScalePosition(Vector2 value)
     {
         // Account for UI scaling: value is unscaled, so adjust by UIScale
@@ -880,7 +927,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             if (EntManager.HasComponent<FTLComponent>(parentXform.Owner)) continue;
             var shieldWorldPos = _transform.GetWorldPosition(parentXform);
             if (Vector2.Distance(shieldWorldPos, consoleWorldPos) > CornerRadarRange) continue;
-            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : _detection.IsGridDetected(parentXform.Owner, _consoleEntity.Value);
+            var detectionLevel = _consoleEntity == null ? DetectionLevel.Detected : GetGridDetected(parentXform.Owner);
             if (detectionLevel != DetectionLevel.Detected)
                 continue;
 

@@ -1,0 +1,60 @@
+# Plastitanium - ported from Monolith
+
+- type: material
+  id: Plastitanium
+  stackEntity: SheetPlastitanium1
+  name: materials-plastitanium
+  unit: materials-unit-sheet
+  icon: { sprite: /Textures/_Mono/Objects/Materials/plastitanium.rsi, state: plastitanium }
+  color: "#5c5c5c"
+  price: 4 # 400/sheet
+
+- type: entity
+  parent: MaterialBase
+  id: SheetPlastitanium
+  name: plastitanium
+  description: A commonly produced high-strength alloy. Even if its rare here, its extremely abundant in core sectors.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Materials/plastitanium.rsi
+    state: plastitanium_3
+    layers:
+    - state: plastitanium_3
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Sheet
+  - type: Item
+    sprite: _Mono/Objects/Materials/plastitanium.rsi
+    heldPrefix: plastitanium
+  - type: Stack
+    stackType: Plastitanium
+    count: 100
+    baseLayer: base
+    layerStates:
+    - plastitanium
+    - plastitanium_2
+    - plastitanium_3
+  - type: Material
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Plastitanium: 100
+
+- type: entity
+  parent: SheetPlastitanium
+  id: SheetPlastitanium1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: SheetPlastitanium
+  id: SheetPlastitanium10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+

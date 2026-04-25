@@ -1,0 +1,260 @@
+- type: entityTable
+  id: StargateZombieMobTable
+  table: !type:GroupSelector
+    children:
+    - id: NFMobZombieSuit
+      weight: 1
+    - id: NFMobZombieJumpsuit
+      weight: 1
+    - id: NFMobZombieSuitRadiation
+      weight: 1
+    - id: NFMobZombieClown
+      weight: 1
+    - id: NFMobZombieExploding
+      weight: 1
+    - id: NFMobZombieSuitFire
+      weight: 1
+    - id: NFMobZombieSuitAtmos
+      weight: 1
+    - id: NFMobZombieFast
+      weight: 1
+    - id: NFMobZombieOdysseus
+      weight: 0.15
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobZombieStargate
+  name: Stargate zombie spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: StargateZombieMobTable
+      prob: 1.00
+
+# Таблицы для всех Stargate-спавнеров (без NFZombiePile).
+- type: entityTable
+  id: SpawnMobCarpGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobCarpGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobXenoGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobXenoGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobZombieStargateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobZombieStargate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobFleshGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobFleshGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobPunksGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobPunksGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobSiliconsGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSiliconsGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobExplorersGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobExplorersGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobArgocyteGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobArgocyteGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobDinosaursGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobDinosaursGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobMercenariesGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobMercenariesGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobSyndicateGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateGate
+      amount: 1
+
+- type: entityTable
+  id: SpawnMobCultistsGateTable
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobCultistsGate
+      amount: 1
+
+- type: entityTable
+  id: StargateGasDepositTable
+  table: !type:GroupSelector
+    children:
+    # Standard
+    - id: GasDepositOxygen
+      weight: 1.5
+    - id: GasDepositNitrogen
+      weight: 1.5
+    - id: GasDepositCarbonDioxide
+      weight: 1.5
+    - id: GasDepositPlasma
+      weight: 1.5
+    - id: GasDepositAmmonia
+      weight: 1.5
+    - id: GasDepositWaterVapor
+      weight: 1.5
+    - id: GasDepositNitrousOxide
+      weight: 1.5
+    - id: GasDepositAir
+      weight: 1.5
+    - id: GasDepositMuddleEven
+      weight: 1.5
+    - id: GasDepositMuddlePlasma
+      weight: 1.5
+    - id: GasDepositHelium
+      weight: 1.5
+    # VerySmall
+    - id: GasDepositOxygenVerySmall
+      weight: 3
+    - id: GasDepositNitrogenVerySmall
+      weight: 3
+    - id: GasDepositCarbonDioxideVerySmall
+      weight: 3
+    - id: GasDepositPlasmaVerySmall
+      weight: 3
+    - id: GasDepositAmmoniaVerySmall
+      weight: 3
+    - id: GasDepositWaterVaporVerySmall
+      weight: 3
+    - id: GasDepositNitrousOxideVerySmall
+      weight: 3
+    - id: GasDepositAirVerySmall
+      weight: 3
+    - id: GasDepositMuddleEvenVerySmall
+      weight: 3
+    - id: GasDepositMuddlePlasmaVerySmall
+      weight: 3
+    - id: GasDepositHeliumVerySmall
+      weight: 3
+    # Small
+    - id: GasDepositOxygenSmall
+      weight: 2
+    - id: GasDepositNitrogenSmall
+      weight: 2
+    - id: GasDepositCarbonDioxideSmall
+      weight: 2
+    - id: GasDepositPlasmaSmall
+      weight: 2
+    - id: GasDepositAmmoniaSmall
+      weight: 2
+    - id: GasDepositWaterVaporSmall
+      weight: 2
+    - id: GasDepositNitrousOxideSmall
+      weight: 2
+    - id: GasDepositAirSmall
+      weight: 2
+    - id: GasDepositMuddleEvenSmall
+      weight: 2
+    - id: GasDepositMuddlePlasmaSmall
+      weight: 2
+    - id: GasDepositHeliumSmall
+      weight: 2
+    # Large
+    - id: GasDepositOxygenLarge
+      weight: 0.8
+    - id: GasDepositNitrogenLarge
+      weight: 0.8
+    - id: GasDepositCarbonDioxideLarge
+      weight: 0.8
+    - id: GasDepositPlasmaLarge
+      weight: 0.8
+    - id: GasDepositAmmoniaLarge
+      weight: 0.8
+    - id: GasDepositWaterVaporLarge
+      weight: 0.8
+    - id: GasDepositNitrousOxideLarge
+      weight: 0.8
+    - id: GasDepositAirLarge
+      weight: 0.8
+    - id: GasDepositMuddleEvenLarge
+      weight: 0.8
+    - id: GasDepositMuddlePlasmaLarge
+      weight: 0.8
+    - id: GasDepositHeliumLarge
+      weight: 0.8
+    # VeryLarge
+    - id: GasDepositOxygenVeryLarge
+      weight: 0.3
+    - id: GasDepositNitrogenVeryLarge
+      weight: 0.3
+    - id: GasDepositCarbonDioxideVeryLarge
+      weight: 0.3
+    - id: GasDepositPlasmaVeryLarge
+      weight: 0.3
+    - id: GasDepositAmmoniaVeryLarge
+      weight: 0.3
+    - id: GasDepositWaterVaporVeryLarge
+      weight: 0.3
+    - id: GasDepositNitrousOxideVeryLarge
+      weight: 0.3
+    - id: GasDepositAirVeryLarge
+      weight: 0.3
+    - id: GasDepositMuddleEvenVeryLarge
+      weight: 0.3
+    - id: GasDepositMuddlePlasmaVeryLarge
+      weight: 0.3
+    - id: GasDepositHeliumVeryLarge
+      weight: 0.3
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnGasDepositGate
+  name: Stargate gas deposit spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: StargateGasDepositTable
+      prob: 1.00
+

@@ -1,5 +1,4 @@
 #nullable enable annotations
-using System.Numerics;
 using Content.Server.Interaction;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -9,8 +8,8 @@ using Content.Shared.Item;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Reflection;
+using Robust.UnitTesting.Pool;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Interaction.Click
 {

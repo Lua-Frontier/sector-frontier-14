@@ -1,20 +1,18 @@
-# Tier 1
-
-# Tier 2
-
 - type: technology
   id: HONKWeapons
   name: research-technology-honk-weapons
   entityIcon: WeaponMechSpecialBananaMortar
   discipline: NFService
+  factions:
+  - Nanotrasen
+  - Syndicate
   tier: 2
   cost: 6000
-  prerequisiteLineType: Diagonal # Lua
+  prerequisiteLineType: Diagonal
   recipeUnlocks:
   - MechEquipmentHonkerBananaMortar
   - MechEquipmentHonkerMousetrapMortar
   technologyPrerequisites:
   - NFHONKMech
-  position: 3, 15 # Lua: 3, 17 < 3, 15
-
-# Tier 3
+  position: 7.932, 3.751
+...

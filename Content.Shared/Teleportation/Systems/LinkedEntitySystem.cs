@@ -4,6 +4,13 @@ using Content.Shared.Teleportation.Components;
 
 namespace Content.Shared.Teleportation.Systems;
 
+public sealed class LinkedEntityChangedEvent : EntityEventArgs
+{
+    public HashSet<EntityUid> NewLinks;
+    public LinkedEntityChangedEvent(HashSet<EntityUid> newLinks)
+    { NewLinks = newLinks; }
+}
+
 /// <summary>
 ///     Handles symmetrically linking two entities together, and removing links properly.
 ///     This does not do anything on its own (outside of deleting entities that have 0 links, if that option is true)
@@ -57,8 +64,13 @@ public sealed class LinkedEntitySystem : EntitySystem
         Dirty(first, firstLink);
         Dirty(second, secondLink);
 
-        return firstLink.LinkedEntities.Add(second)
-            && secondLink.LinkedEntities.Add(first);
+        var result = firstLink.LinkedEntities.Add(second) && secondLink.LinkedEntities.Add(first);
+        if (result)
+        {
+            RaiseLocalEvent(first, new LinkedEntityChangedEvent(firstLink.LinkedEntities));
+            RaiseLocalEvent(second, new LinkedEntityChangedEvent(secondLink.LinkedEntities));
+        }
+        return result;
     }
 
     /// <summary>
@@ -74,7 +86,9 @@ public sealed class LinkedEntitySystem : EntitySystem
 
         Dirty(source, firstLink);
 
-        return firstLink.LinkedEntities.Add(target);
+        var result = firstLink.LinkedEntities.Add(target);
+        if (result) RaiseLocalEvent(source, new LinkedEntityChangedEvent(firstLink.LinkedEntities));
+        return result;
     }
 
     /// <summary>
@@ -103,6 +117,12 @@ public sealed class LinkedEntitySystem : EntitySystem
 
         Dirty(first, firstLink);
         Dirty(second, secondLink);
+
+        if (success)
+        {
+            RaiseLocalEvent(first, new LinkedEntityChangedEvent(firstLink.LinkedEntities));
+            RaiseLocalEvent(second, new LinkedEntityChangedEvent(secondLink.LinkedEntities));
+        }
 
         if (firstLink.LinkedEntities.Count == 0 && firstLink.DeleteOnEmptyLinks)
             QueueDel(first);

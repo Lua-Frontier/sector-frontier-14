@@ -32,6 +32,7 @@ namespace Content.Client.Actions
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly IResourceManager _resources = default!;
+        [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public event Action<EntityUid>? OnActionAdded;
@@ -287,7 +288,16 @@ namespace Content.Client.Actions
                 }
 
                 AddActionDirect((user, actions), actionId);
+
+                var nodeAssignments = _serialization.Read<List<(byte Hotbar, byte Slot)>>(assignmentNode, notNullableOverride: true);
+                foreach (var index in nodeAssignments)
+                {
+                    var assignment = new SlotAssignment(index.Hotbar, index.Slot, actionId);
+                    assignments.Add(assignment);
+                }
             }
+
+            AssignSlot?.Invoke(assignments);
         }
 
         private void OnWorldTargetAttempt(Entity<WorldTargetActionComponent> ent, ref ActionTargetAttemptEvent args)
@@ -309,7 +319,7 @@ namespace Content.Client.Actions
             // this is the actual entity-world targeting magic
             EntityUid? targetEnt = null;
             if (TryComp<EntityTargetActionComponent>(ent, out var entity) &&
-                args.Input.EntityUid != null &&
+                args.Input.EntityUid.Valid &&
                 ValidateEntityTarget(user, args.Input.EntityUid, (uid, entity)))
             {
                 targetEnt = args.Input.EntityUid;

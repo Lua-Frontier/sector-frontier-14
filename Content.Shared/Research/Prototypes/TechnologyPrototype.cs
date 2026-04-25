@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Shared.Research.Prototypes;
 
@@ -54,6 +55,12 @@ public sealed partial class TechnologyPrototype : IPrototype
     [DataField]
     public bool Hidden;
 
+    [DataField]
+    public List<ProtoId<RndFactionPrototype>> Factions = new();
+
+    [DataField]
+    public Dictionary<ProtoId<RndFactionPrototype>, TechnologyFactionOverride> FactionOverrides = new();
+
     /// <summary>
     /// How much research is needed to unlock.
     /// </summary>
@@ -82,8 +89,8 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// <summary>
     /// Position of this tech in console menu
     /// </summary>
-    [DataField(required: true)]
-    public Vector2i Position { get; private set; }
+    [DataField]
+    public Vector2? Position { get; private set; }
 
     /// <summary>
     /// Defines the visual style of prerequisite connection lines leading TO this technology.
@@ -120,6 +127,16 @@ public sealed partial class TechnologyPrototype : IPrototype
         return Discipline == disciplineId || (SecondaryDiscipline.HasValue && SecondaryDiscipline.Value == disciplineId);
     }
     /// End Frontier: R&D console rework
+}
+
+[DataDefinition]
+public sealed partial class TechnologyFactionOverride
+{
+    [DataField]
+    public Vector2? Position;
+
+    [DataField]
+    public List<ProtoId<TechnologyPrototype>>? TechnologyPrerequisites;
 }
 
 [DataDefinition]

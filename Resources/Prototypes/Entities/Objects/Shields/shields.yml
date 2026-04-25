@@ -419,6 +419,7 @@
     - type: ItemTogglePointLight
     - type: Reflect
       reflectProb: 0.95
+      damageOnReflectModifier: 0.25
       reflects:
         - Energy
     - type: Blocking
@@ -525,7 +526,7 @@
       heldPrefix: eshield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
@@ -569,18 +570,18 @@
       price: 350
       # WD EDIT START
     - type: Battery
-      maxCharge: 60
-      startingCharge: 60
+      maxCharge: 360
+      startingCharge: 360
     - type: BatterySelfRecharger
       autoRecharge: true
-      autoRechargeRate: 5
+      autoRechargeRate: 20
     - type: RechargeableBlocking
       # WD EDIT END
 #Lua edit end: Add a self-recharging shield
 
 - type: entity
   name: telescopic shield
-  parent: [BaseShield, BaseC2ContrabandUnredeemable] # Frontier: BaseC2ContrabandUnredeemable
+  parent: [BaseShield, BaseC1Contraband] # Frontier: BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: TelescopicShield
   description: An advanced riot shield made of lightweight materials that collapses for easy storage.
   components:

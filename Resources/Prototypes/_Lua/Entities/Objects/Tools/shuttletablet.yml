@@ -1,0 +1,113 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: shuttle control tablet
+  parent: BaseHandheldComputer
+  id: ShuttleControlTablet
+  description: A portable tablet for shuttle control. Has a slot for ID card. To function must be linked to ordinary console.
+  components:
+  - type: Item
+    sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
+  - type: Sprite
+    sprite: _Lua/Objects/Tools/handheldshuttleconsole.rsi
+    state: default
+  - type: ShuttleTablet
+  - type: ShuttleConsole
+    zoom: 1.0, 1.0
+  - type: ActivatableUI
+    key: enum.ShuttleTabletWindowUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.ShuttleTabletWindowUiKey.Key:
+          type: ShuttleTabletWindowBoundUserInterface
+  - type: RadarConsole
+    maxRange: 512
+    maxIffRange: 512
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 2
+    visualMultiplier: 16
+    infraredOutlinePortion: 1.0
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      id_container:
+        name: shuttle-tablet-id-slot
+        priority: 3
+        whitelist:
+          components:
+          - IdCard
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      id_container: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellDraw
+    drawRate: 2
+  - type: StaticPrice
+    price: 250
+    vendPrice: 2500
+
+- type: entity
+  id: ShuttleControlTabletAdmin
+  parent: ShuttleControlTablet
+  suffix: 10000m, IgnoreSector, CombatTablet, Microreactor
+  components:
+  - type: ShuttleTablet
+    linkRange: 10000
+    ignoreSector: true
+    combatTablet: true
+  - type: ItemSlots
+    slots:
+      id_container:
+        name: shuttle-tablet-id-slot
+        priority: 3
+        whitelist:
+          components:
+          - IdCard
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+- type: entity
+  id: ShuttleControlTabletEmpty
+  parent: ShuttleControlTablet
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      id_container:
+        name: shuttle-tablet-id-slot
+        priority: 3
+        whitelist:
+          components:
+          - IdCard
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: ShuttleControlTablet
+  id: ShuttleControlTabletSalvage
+  suffix: Salvage
+  components:
+  - type: Sprite
+    state: salvage
+
+- type: entity
+  parent: ShuttleControlTablet
+  id: ShuttleControlTabletSecurity
+  suffix: Security
+  components:
+  - type: Sprite
+    state: security
+
+- type: entity
+  parent: ShuttleControlTablet
+  id: ShuttleControlTabletSyndicate
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    state: syndicate

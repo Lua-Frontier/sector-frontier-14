@@ -448,7 +448,7 @@
   description: A flatpack used for constructing a cryopod.
   components:
   - type: Flatpack
-    entity: MachineCryoSleepPod
+    entity: MachineCryoSleepPodPlayer
   - type: StaticPrice
     price: 1500
   - type: Sprite
@@ -536,7 +536,7 @@
   description: Упакованный сервер управления огнём для наведения и управления огнём оружия установленного на шаттле.
   components:
   - type: Flatpack
-    entity: GunneryServerMedium
+    entity: GunneryServerLow
   - type: StaticPrice
     price: 250
   - type: Sprite
@@ -552,21 +552,6 @@
   components:
   - type: Flatpack
     entity: MachineFTLDrive600
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: MachineWarpDriveFlatpack
-  name: упакованный межзвёздный блюспейс двигатель
-  description: Упакованный межзвёздный блюспейс двигатель необходимый для межзвёздных путешествий
-  components:
-  - type: Flatpack
-    entity: MachineWarpDrive
   - type: StaticPrice
     price: 250
   - type: Sprite

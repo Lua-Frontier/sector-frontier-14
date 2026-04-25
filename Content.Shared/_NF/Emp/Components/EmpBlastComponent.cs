@@ -27,4 +27,7 @@ public sealed partial class EmpBlastComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float VisualRange = 5f;
+
+    [DataField, AutoNetworkedField]
+    public string ShaderId = "Emp";
 }

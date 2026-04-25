@@ -4,6 +4,7 @@ using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.GC;
 using Content.Server.Worldgen.Tools;
+using Content.Server._Lua.Stargate.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -28,6 +29,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private ISawmill _sawmill = default!;
+    private const int StargateInitialDebrisBudget = 18;
+    private const int StargateTickDebrisBudget = 12;
 
     private List<Entity<MapGridComponent>> _mapGrids = new();
 
@@ -42,6 +45,42 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         SubscribeLocalEvent<OwnedDebrisComponent, TryCancelGC>(OnTryCancelGC); // Mono Re-add
         SubscribeLocalEvent<SimpleDebrisSelectorComponent, TryGetPlaceableDebrisFeatureEvent>(
             OnTryGetPlacableDebrisEvent);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<DebrisFeaturePlacerControllerComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.PendingPoints == null || comp.PendingChunk == null)
+                continue;
+
+            if (!TryComp<WorldChunkComponent>(comp.PendingChunk.Value, out var chunk))
+            {
+                comp.PendingPoints = null;
+                comp.PendingPointIndex = 0;
+                comp.PendingChunk = null;
+                continue;
+            }
+
+            if (!HasComp<LoadedChunkComponent>(comp.PendingChunk.Value))
+                continue;
+
+            if (!TryComp<MapComponent>(chunk.Map, out var map))
+                continue;
+
+            var done = PlaceDebrisPoints(uid, comp, comp.PendingChunk.Value, chunk.Map, map.MapId, comp.PendingPoints, comp.PendingPointIndex, StargateTickDebrisBudget);
+            comp.PendingPointIndex = done;
+
+            if (comp.PendingPointIndex >= comp.PendingPoints.Count)
+            {
+                comp.PendingPoints = null;
+                comp.PendingPointIndex = 0;
+                comp.PendingChunk = null;
+            }
+        }
     }
 
     /// <summary>
@@ -113,6 +152,9 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         }
 
         component.DoSpawns = true;
+        component.PendingPoints = null;
+        component.PendingPointIndex = 0;
+        component.PendingChunk = null;
     }
 
     /// <summary>
@@ -187,63 +229,15 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         points ??= GeneratePointsInChunk(args.Chunk, density, chunk.Coordinates, chunkMap);
 
         var mapId = map.MapId;
+        var budget = HasComp<StargateDestinationComponent>(chunkMap) ? StargateInitialDebrisBudget : int.MaxValue;
+        var done = PlaceDebrisPoints(uid, component, args.Chunk, chunkMap, mapId, points, 0, budget);
 
-        var safetyBounds = Box2.UnitCentered.Enlarged(component.SafetyZoneRadius);
-        var failures = 0; // Avoid severe log spam.
-        foreach (var point in points)
+        if (done < points.Count)
         {
-            if (component.OwnedDebris.TryGetValue(point, out var existing))
-            {
-                DebugTools.Assert(Exists(existing));
-                continue;
-            }
-
-            var pointDensity = _noiseIndex.Evaluate(uid, densityChannel, WorldGen.WorldToChunkCoords(point));
-            if (pointDensity == 0 && component.DensityClip || _random.Prob(component.RandomCancellationChance))
-                continue;
-
-            if (HasCollisions(mapId, safetyBounds.Translated(point)))
-                continue;
-
-            var coords = new EntityCoordinates(chunkMap, point);
-
-            var preEv = new PrePlaceDebrisFeatureEvent(coords, args.Chunk);
-            RaiseLocalEvent(uid, ref preEv);
-            if (uid != args.Chunk)
-                RaiseLocalEvent(args.Chunk, ref preEv);
-
-            if (preEv.Handled)
-                continue;
-
-            var debrisFeatureEv = new TryGetPlaceableDebrisFeatureEvent(coords, args.Chunk);
-            RaiseLocalEvent(uid, ref debrisFeatureEv);
-
-            if (debrisFeatureEv.DebrisProto == null)
-            {
-                // Try on the chunk...?
-                if (uid != args.Chunk)
-                    RaiseLocalEvent(args.Chunk, ref debrisFeatureEv);
-
-                if (debrisFeatureEv.DebrisProto == null)
-                {
-                    // Nope.
-                    failures++;
-                    continue;
-                }
-            }
-
-            var ent = Spawn(debrisFeatureEv.DebrisProto, coords);
-            component.OwnedDebris.Add(point, ent);
-
-            var owned = EnsureComp<OwnedDebrisComponent>(ent);
-            owned.OwningController = uid;
-            owned.LastKey = point;
-
-            EnsureComp<SpaceDebrisComponent>(ent); // Frontier
+            component.PendingPoints = points;
+            component.PendingPointIndex = done;
+            component.PendingChunk = args.Chunk;
         }
-
-        if (failures > 0)
-            _sawmill.Error($"Failed to place {failures} debris at chunk {args.Chunk}");
     }
 
     /// <summary>
@@ -278,6 +272,83 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         }
 
         return debrisPoints;
+    }
+
+    private int PlaceDebrisPoints(
+        EntityUid uid,
+        DebrisFeaturePlacerControllerComponent component,
+        EntityUid chunkUid,
+        EntityUid chunkMap,
+        MapId mapId,
+        List<Vector2> points,
+        int startIndex,
+        int budget)
+    {
+        var safetyBounds = Box2.UnitCentered.Enlarged(component.SafetyZoneRadius);
+        var densityChannel = component.DensityNoiseChannel;
+        var failures = 0;
+        var processed = 0;
+
+        for (var i = startIndex; i < points.Count; i++)
+        {
+            if (processed >= budget)
+                return i;
+
+            var point = points[i];
+
+            if (component.OwnedDebris.TryGetValue(point, out var existing))
+            {
+                DebugTools.Assert(Exists(existing));
+                continue;
+            }
+
+            var pointDensity = _noiseIndex.Evaluate(uid, densityChannel, WorldGen.WorldToChunkCoords(point));
+            if (pointDensity == 0 && component.DensityClip || _random.Prob(component.RandomCancellationChance))
+                continue;
+
+            if (HasCollisions(mapId, safetyBounds.Translated(point)))
+                continue;
+
+            var coords = new EntityCoordinates(chunkMap, point);
+
+            var preEv = new PrePlaceDebrisFeatureEvent(coords, chunkUid);
+            RaiseLocalEvent(uid, ref preEv);
+            if (uid != chunkUid)
+                RaiseLocalEvent(chunkUid, ref preEv);
+
+            if (preEv.Handled)
+                continue;
+
+            var debrisFeatureEv = new TryGetPlaceableDebrisFeatureEvent(coords, chunkUid);
+            RaiseLocalEvent(uid, ref debrisFeatureEv);
+
+            if (debrisFeatureEv.DebrisProto == null)
+            {
+                if (uid != chunkUid)
+                    RaiseLocalEvent(chunkUid, ref debrisFeatureEv);
+
+                if (debrisFeatureEv.DebrisProto == null)
+                {
+                    failures++;
+                    continue;
+                }
+            }
+
+            var ent = Spawn(debrisFeatureEv.DebrisProto, coords);
+            component.OwnedDebris.Add(point, ent);
+
+            var owned = EnsureComp<OwnedDebrisComponent>(ent);
+            owned.OwningController = uid;
+            owned.LastKey = point;
+            EnsureComp<SpaceDebrisComponent>(ent);
+
+            processed++;
+        }
+
+        if (failures > 0)
+            _sawmill.Error($"Failed to place {failures} debris at chunk {chunkUid}");
+
+        return points.Count;
     }
 }
 

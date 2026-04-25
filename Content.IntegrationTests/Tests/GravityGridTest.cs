@@ -5,6 +5,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
+using Robust.UnitTesting.Pool;
 
 namespace Content.IntegrationTests.Tests
 {
@@ -67,7 +68,7 @@ namespace Content.IntegrationTests.Tests
                 powerComponent.NeedsPower = false;
             });
 
-            await server.WaitRunTicks(5);
+            await server.WaitRunTicks(20);
 
             await server.WaitAssertion(() =>
             {
@@ -86,7 +87,7 @@ namespace Content.IntegrationTests.Tests
                 powerComponent.NeedsPower = true;
             });
 
-            await server.WaitRunTicks(5);
+            await server.WaitRunTicks(20);
 
             await server.WaitAssertion(() =>
             {

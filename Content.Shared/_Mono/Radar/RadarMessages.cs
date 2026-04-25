@@ -23,21 +23,21 @@ public sealed class GiveBlipsEvent : EntityEventArgs
     /// <summary>
     /// Blips are now (position, velocity, scale, color, shape).
     /// </summary>
-    public readonly List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> Blips;
+    public readonly List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> Blips;
 
     /// <summary>
     /// Hitscan lines to display on the radar as (start position, end position, thickness, color).
     /// </summary>
     public readonly List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> HitscanLines;
 
-    public GiveBlipsEvent(List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> blips)
+    public GiveBlipsEvent(List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> blips)
     {
         Blips = blips;
         HitscanLines = new List<(Vector2 Start, Vector2 End, float Thickness, Color Color)>();
     }
 
     public GiveBlipsEvent(
-        List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape)> blips,
+        List<(NetEntity uid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> blips,
         List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> hitscans)
     {
         Blips = blips;
