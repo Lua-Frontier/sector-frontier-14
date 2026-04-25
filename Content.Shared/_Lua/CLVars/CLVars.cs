@@ -69,6 +69,9 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<bool> StargateGuideShown =
             CVarDef.Create("stargate.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+        public static readonly CVarDef<int> ActionsActivePreset =
+            CVarDef.Create("actions.active_preset", 0, CVar.CLIENTONLY | CVar.ARCHIVE);
+
         public static readonly CVarDef<string> RabbitMQConnectionString =
             CVarDef.Create("rabbitmq.connection_string", "", CVar.SERVERONLY);
 
