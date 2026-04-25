@@ -147,7 +147,7 @@
         Slash: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
-    baseSprintSpeed: 4.5
+    baseRunningSpeed: 4.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -453,7 +453,7 @@
         recursive: false
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
-    baseSprintSpeed : 3
+    baseRunningSpeed : 3
   - type: DamageStateVisuals
     states:
       Alive:
@@ -572,7 +572,7 @@
         Base: spacedead
   - type: MovementSpeedModifier
     baseWalkSpeed : 5 #he go fast, also they cant slip so its probably fine.
-    baseSprintSpeed : 7
+    baseRunningSpeed : 7
 #  - type: ActiveJetpack # I think this will need a custom component to not make tests angry.
   - type: MovementAlwaysTouching
 

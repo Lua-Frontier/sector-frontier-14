@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: jaunt
   parent: [Incorporeal, BaseMob]
   id: BaseMobJaunt
@@ -13,7 +13,7 @@
     context: "ghost"
   - type: InputMover
   - type: MovementSpeedModifier
-    baseSprintSpeed: 12
+    baseRunningSpeed: 12
     baseWalkSpeed: 8
   - type: Visibility
     layer: 2
@@ -36,7 +36,7 @@
     overrideContainerOcclusion: true
     drawdepth: Ghosts
   - type: MovementSpeedModifier
-    baseSprintSpeed: 6
+    baseRunningSpeed: 6
     baseWalkSpeed: 4
 
 - type: entity
@@ -47,5 +47,5 @@
   components:
   - type: Spectral
   - type: MovementSpeedModifier
-    baseSprintSpeed: 0
+    baseRunningSpeed: 0
     baseWalkSpeed: 0

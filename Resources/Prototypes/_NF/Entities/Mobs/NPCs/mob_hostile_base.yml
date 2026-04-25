@@ -258,7 +258,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.7 # ~10% slowdown #Lua 4.2<4.7
-    baseSprintSpeed : 4.7 # ~10% slowdown #Lua 4.2<4.7
+    baseRunningSpeed : 4.7 # ~10% slowdown #Lua 4.2<4.7
 
 - type: entity
   id: MobMovementSpeedModifierEVAMelee
@@ -266,7 +266,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.8 # ~15% slowdown
-    baseSprintSpeed : 3.8 # ~15% slowdown
+    baseRunningSpeed : 3.8 # ~15% slowdown
 
 - type: entity
   id: MobMovementSpeedModifierRanged
@@ -274,7 +274,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
-    baseSprintSpeed : 3.5
+    baseRunningSpeed : 3.5
 
 - type: entity
   id: MobMovementSpeedModifierEVARanged
@@ -282,7 +282,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 3 # ~15% slowdown
-    baseSprintSpeed : 3 # ~15% slowdown
+    baseRunningSpeed : 3 # ~15% slowdown
 
 - type: entity
   id: MobMovementSpeedModifierSpecial
@@ -290,7 +290,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
-    baseSprintSpeed : 5
+    baseRunningSpeed : 5
 
 - type: entity
   id: MobMovementSpeedModifierBoss
@@ -298,7 +298,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
+    baseRunningSpeed : 4.5
 #endregion
 
 #region Stamina

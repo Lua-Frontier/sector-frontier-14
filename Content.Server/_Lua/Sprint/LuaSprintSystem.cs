@@ -14,7 +14,7 @@ public sealed class LuaSprintSystem : SharedLuaSprintSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _moveSpeed = default!;
 
-    private const float DrainMultiplier = 0f; // константа расхода общая для всех рас 0-2/0.5/1
+    private const float DrainMultiplier = 1f; // константа расхода общая для всех рас 0-2/0.5/1
 
     public override void Update(float frameTime)
     {
@@ -27,9 +27,9 @@ public sealed class LuaSprintSystem : SharedLuaSprintSystem
             var oldSprint = endurance.CurrentSprint;
             var hadDepleted = endurance.Depleted;
             var isFlying = HasComp<JetpackUserComponent>(uid);
-            var wasSprinting = !isFlying && mover.CanMove && mover.Sprinting && mover.HasDirectionalMovement && !endurance.Depleted;
+            var isBurningSprint = !isFlying && mover.CanMove && mover.IsSprinting && mover.HasDirectionalMovement && !endurance.Depleted;
 
-            if (wasSprinting)
+            if (isBurningSprint)
             {
                 endurance.CurrentSprint = MathF.Max(0f, endurance.CurrentSprint - endurance.DrainPerSecond * DrainMultiplier * frameTime);
                 endurance.LastSprintTime = curTime;

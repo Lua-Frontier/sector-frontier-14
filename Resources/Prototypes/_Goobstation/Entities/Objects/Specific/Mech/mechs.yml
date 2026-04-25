@@ -75,7 +75,7 @@
         Blunt: 20
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseRunningSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: StaticPrice
@@ -133,7 +133,7 @@
         Blunt: 26
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.5
+    baseRunningSpeed: 4.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: StaticPrice
@@ -209,7 +209,7 @@
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+    baseRunningSpeed: 2.6
   - type: StaticPrice
     price: 3000
   - type: Tag
@@ -269,7 +269,7 @@
         Structural: 220
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2
+    baseRunningSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -339,7 +339,7 @@
         Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseRunningSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -414,7 +414,7 @@
         Structural: 400
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseRunningSpeed: 3.7
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -492,7 +492,7 @@
         Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseRunningSpeed: 3.7
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -567,7 +567,7 @@
         Structural: 400
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseRunningSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir

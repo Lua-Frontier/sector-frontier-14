@@ -57,7 +57,7 @@
       - Unimplantable
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.5
+    baseRunningSpeed: 2.5
 # Doesn't seem to work for some reason?
 #  - type: PointLight
 #    radius: 1.0
@@ -99,7 +99,7 @@
     soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
   - type: MovementSpeedModifier #Slower then normal to make them easier to hit
     baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseRunningSpeed: 2
 
 - type: entity
   parent: MobHivebotRanged
@@ -117,7 +117,7 @@
       60: Dead
   - type: MovementSpeedModifier #Even slower then the ranged variant, to make them even easier to hit
     baseWalkSpeed: 0.75
-    baseSprintSpeed: 1.75
+    baseRunningSpeed: 1.75
   - type: SlowOnDamage
     speedModifierThresholds:
       25: 0.7

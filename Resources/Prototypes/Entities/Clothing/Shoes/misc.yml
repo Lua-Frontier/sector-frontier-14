@@ -146,8 +146,8 @@
   - type: ToggleClothing
     action: ActionToggleSpeedBoots
   - type: ClothingSpeedModifier
-    walkModifier: 1.45 # DeltaV #Lua 1.7<1.45
-    sprintModifier: 1.45 # DeltaV #Lua 1.7<1.45
+    walkModifier: 1.25 # DeltaV #Lua 1.7<1.45
+    sprintModifier: 1.25 # DeltaV #Lua 1.7<1.45
     standing: true
   - type: Appearance
   - type: GenericVisualizer
@@ -159,7 +159,7 @@
   - type: StaticPrice
     price: 500
   - type: PowerCellDraw
-    drawRate: 30 # DeltaV 4>30, you have to turn off micro reactor at somepoint
+    drawRate: 40 # DeltaV 4>30, you have to turn off micro reactor at somepoint
   - type: ToggleCellDraw
   - type: ItemSlots
     slots:

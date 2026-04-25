@@ -66,6 +66,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
         public static readonly BoundKeyFunction ToggleStanding = "ToggleStanding"; // WD EDIT
         public static readonly BoundKeyFunction LookUp = "LookUp"; // Lua
+        public static readonly BoundKeyFunction ToggleWalk = "ToggleWalk";
 
         public static readonly BoundKeyFunction ArcadeUp = "ArcadeUp";
         public static readonly BoundKeyFunction ArcadeDown = "ArcadeDown";

@@ -238,7 +238,9 @@ public abstract partial class SharedMoverController : VirtualController
         {
             // Find the speed we should be moving at and make sure we're not trying to move faster than that
             var walkSpeed = moveSpeedComponent?.WeightlessWalkSpeed ?? MovementSpeedModifierComponent.DefaultBaseWalkSpeed;
-            var sprintSpeed = moveSpeedComponent?.WeightlessSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
+            var sprintSpeed = mover.IsSprinting
+                ? moveSpeedComponent?.WeightlessSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed
+                : moveSpeedComponent?.WeightlessRunningSpeed ?? MovementSpeedModifierComponent.DefaultBaseRunningSpeed;
 
             wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
 
@@ -279,7 +281,9 @@ public abstract partial class SharedMoverController : VirtualController
                 tileDef = (ContentTileDefinition)_tileDefinitionManager[tile.Tile.TypeId];
 
             var walkSpeed = moveSpeedComponent?.CurrentWalkSpeed ?? MovementSpeedModifierComponent.DefaultBaseWalkSpeed;
-            var sprintSpeed = moveSpeedComponent?.CurrentSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
+            var sprintSpeed = mover.IsSprinting
+                ? moveSpeedComponent?.CurrentSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed
+                : moveSpeedComponent?.CurrentRunningSpeed ?? MovementSpeedModifierComponent.DefaultBaseRunningSpeed;
 
             wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
 

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   abstract: true
   parent:
     - NFMobAtmos
@@ -79,7 +79,7 @@
           amount: 2
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
-      baseSprintSpeed: 2
+      baseRunningSpeed: 2
 
 - type: entity
   parent: BaseMobArtifactConstruct

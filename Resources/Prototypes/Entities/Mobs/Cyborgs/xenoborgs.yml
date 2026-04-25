@@ -85,7 +85,7 @@
       - XenoborgModuleHeavy
   - type: MovementSpeedModifier # slower
     baseWalkSpeed : 1.2
-    baseSprintSpeed : 2.2
+    baseRunningSpeed : 2.2
   - type: FlashImmunity
   - type: MobThresholds # tankier
     thresholds:
@@ -176,7 +176,7 @@
       - XenoborgModuleScout
   - type: MovementSpeedModifier # faster
     baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseRunningSpeed : 6
   - type: ContainerFill
     containers:
       borg_brain:

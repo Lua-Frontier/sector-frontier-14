@@ -69,6 +69,7 @@ public sealed partial class LuaJumpAbilitySystem : SharedLuaJumpAbilitySystem
         if (args.Handled)
             return;
 
+        if (!HasEnoughSprintForJump(ent.Owner, ent.Comp)) return;
         ent.Comp.IsJumping = true;
         ent.Comp.TimeUntilEndJump = _gameTiming.CurTime + TimeSpan.FromSeconds(ent.Comp.JumpDuration);
         ent.Comp.JumpTarget = args.Target;
