@@ -8,10 +8,9 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterHardsuitBaseNF, BaseC2ContrabandUnredeemable]
+  parent: ClothingOuterHardsuitBaseNF # Lua-changes: deleted BaseC2ContrabandUnredeemable
   id: ClothingOuterHardsuitBaseNFNfsd
   components:
-
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000

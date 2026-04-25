@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   id: ClothingUniformJumpsuitDeathSquad
   name: death squad uniform
   description: Advanced armored jumpsuit used by special forces in special operations.
@@ -787,7 +787,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [UnsensoredClothingUniformBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -798,7 +798,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [UnsensoredClothingUniformBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -809,7 +809,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [UnsensoredClothingUniformBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -864,7 +864,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hosformal.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [UnsensoredClothingUniformBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpsuitOperative
   name: operative jumpsuit
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
@@ -903,7 +903,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/mercenary.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, BaseC1SpiderClanContraband] # Lua-changes: added BaseC1SpiderClanContraband
   id: ClothingUniformJumpsuitNinja
   name: ninja jumpsuit
   description: Comfortable ninja suit, for convenience when relaxing and when you need to practice.
@@ -1174,7 +1174,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hawaiyellow.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as a parent
+  parent: [ClothingUniformBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as a parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpsuitSyndieFormal
   name: syndicate formal suit
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."

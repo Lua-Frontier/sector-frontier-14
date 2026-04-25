@@ -324,6 +324,19 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: ResearchComputerSyndicateCircuitboard
+  name: syndicate R&D computer board
+  description: A computer printed circuit board for a syndicate R&D console.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentSyndicate
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopResearchAndDevelopmentSyndicate
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: AnalysisComputerCircuitboard
   name: analysis computer board
   description: A computer printed circuit board for an analysis console.

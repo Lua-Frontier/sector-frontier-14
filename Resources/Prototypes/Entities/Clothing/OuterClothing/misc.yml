@@ -137,7 +137,7 @@
     accent: SpanishAccent
 
 - type: entity
-  parent: [ClothingOuterBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingOuterBase, BaseC1CultContrabandNoValue] # Frontier: added ContrabandClothing as parent # Lua-changes: added BaseC1CultContrabandNoValue, removed ContrabandClothing
   id: ClothingOuterRobesCult
   name: cult robes
   description: There's no cult without classic red/crimson cult robes.

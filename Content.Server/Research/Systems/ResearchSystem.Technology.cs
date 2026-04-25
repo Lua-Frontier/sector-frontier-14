@@ -148,10 +148,10 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref client, ref database, false))
             return false;
 
-        if (!TryGetClientServer(uid, out _, out var serverComp, client))
+        if (!TryGetClientServer(uid, out var serverUid, out var serverComp, client))
             return false;
 
-        if (!IsTechnologyAvailable(database, technology))
+        if (!IsTechnologyAvailable(serverUid.Value, database, technology))
             return false;
 
         if (technology.Cost > serverComp.Points)

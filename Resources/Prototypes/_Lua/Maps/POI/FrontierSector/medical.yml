@@ -1,10 +1,6 @@
 # Author Info
-# GitHub: dustylens
-# Discord: dustylens
-
-# Maintainer Info
-# GitHub: dustylens
-# Discord: dustylens
+# GitHub: LeptonComm
+# Discord: germanreutt
 
 # Notes:
 # Medical ship garage, medical manager base and medical bounty staging area.
@@ -15,19 +11,22 @@
   minimumDistance: 1000 #450 Lua
   maximumDistance: 2000 #600 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/MedCenter.yml #Lua
+  gridPath: /Maps/_Lua/POI/Med2.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/medical.png
     scale: 1.8
     allowWhenHidden: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
   - type: IFF
     color: "#00b7eb"
 
 - type: gameMap
   id: Medical
   mapName: 'Медицинский Центр'
-  mapPath: /Maps/_Lua/POI/MedCenter.yml #Lua
+  mapPath: /Maps/_Lua/POI/Med2.yml
   minPlayers: 0
   stations:
     Medical:

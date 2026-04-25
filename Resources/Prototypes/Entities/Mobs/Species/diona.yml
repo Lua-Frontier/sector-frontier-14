@@ -123,6 +123,12 @@
   - type: Carriable # Carrying system from nyanotrasen.
   - type: ProtectedFromStepTriggers # Frontier
   - type: FTLKnockdownImmune # Frontier
+  - type: LuaSprint # Lua
+    maxSprint: 138
+    drainPerSecond: 4.6
+    regenPerSecond: 5.6
+    regenDelay: 0.42
+    recoverThresholdFraction: 0.36
 
 - type: entity
   parent: BaseSpeciesDummy

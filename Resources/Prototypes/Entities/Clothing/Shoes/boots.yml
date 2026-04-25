@@ -162,7 +162,7 @@
     sprite: Clothing/Shoes/Boots/winterbootssec.rsi
 
 - type: entity
-  parent: [ClothingShoesBaseWinterBoots, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ClothingShoesBaseWinterBoots, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue
   id: ClothingShoesBootsWinterSyndicate
   name: syndicate's winter boots
   description: Durable heavy boots, looks like merch from "Syndieland".

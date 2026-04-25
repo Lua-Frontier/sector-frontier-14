@@ -16,18 +16,19 @@
         visible: false
         shader: unshaded
         color: "#8fcfff"
-    - type: FTLDrive
-      range: 600
-      cooldown: 7.5
-      hyperSpaceTime: 15
-      startupTime: 4.2
-      thermalSignature: 4000000 # ~4000m range but for smaller ships it might not have time to get to full heat signature
+    - type: UnifiedDrive
+      localFTLRange: 600
+      localFTLCooldown: 7.5
+      localFTLHyperSpaceTime: 15
+      localFTLStartupTime: 4.2
+      thermalSignature: 4000000
+      interstellarCooldownSeconds: 200
     - type: ThermalSignature
     - type: ApcPowerReceiver
       powerLoad: 4000
     - type: PointLight
       enabled: false
-      color: "#010101" # beb color
+      color: "#010101"
       radius: 2.0
       energy: 1.5
     - type: Machine
@@ -52,14 +53,15 @@
         visible: false
         shader: unshaded
         color: "#7962a8"
-    - type: FTLDrive
-      range: 600
-      cooldown: 7.5
-      hyperSpaceTime: 15
-      startupTime: 4.2
+    - type: UnifiedDrive
+      localFTLRange: 600
+      localFTLCooldown: 7.5
+      localFTLHyperSpaceTime: 15
+      localFTLStartupTime: 4.2
       skipHyperspace: true
       skipHyperspaceEmpRange: 45
       thermalSignature: 4000000
+      interstellarCooldownSeconds: 150
     - type: ThermalSignature
     - type: ApcPowerReceiver
       powerLoad: 4000
@@ -70,7 +72,6 @@
       energy: 1.5
     - type: Machine
       board: MachineDriveLT600Circuitboard
-    - type: BluespaceDrive
     - type: BluespaceFuel
       rangeBonus: 3000
     - type: Destructible

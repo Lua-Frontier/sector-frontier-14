@@ -825,7 +825,7 @@
 
 - type: entity
   name: romerol pill
-  parent: Pill
+  parent: [Pill, BaseC3SyndicateContraband] # Lua-changes: added BaseC3SyndicateContraband
   id: PillRomerol
   components:
   - type: SolutionContainerManager
@@ -1117,7 +1117,7 @@
 
 #this is where all the syringes are so i didn't know where to put it
 - type: entity
-  parent: [PrefilledSyringe, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [PrefilledSyringe, BaseC3SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC3SyndicateContrabandNoValue
   suffix: romerol
   id: SyringeRomerol
   components:
@@ -1132,7 +1132,7 @@
           Quantity: 15
 
 - type: entity
-  parent: [PrefilledSyringe, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [PrefilledSyringe, BaseC2SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC2SyndicateContrabandNoValue
   suffix: hyperzine
   id: SyringeStimulants
   components:

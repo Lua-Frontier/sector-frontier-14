@@ -13,7 +13,13 @@ public sealed partial class ShipOwnershipComponent : Component
     public bool IsDeletionTimerRunning;
 
     [DataField, AutoNetworkedField]
+    public bool IsDeletionTimerPaused;
+
+    [DataField, AutoNetworkedField]
     public TimeSpan DeletionTimerStartTime;
+
+    [DataField, AutoNetworkedField]
+    public TimeSpan AccumulatedUnpoweredTime;
 
     [DataField]
     public float DeletionTimeoutSeconds = 7200;

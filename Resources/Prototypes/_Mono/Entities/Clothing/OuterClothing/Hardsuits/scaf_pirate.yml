@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, HardsuitIdentify]
+  parent: [ClothingOuterHardsuitBase, BaseC3PirateContraband, HardsuitIdentify] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContraband
   id: ClothingOuterHardsuitPirateScaf
   name: pirate SCAF hardsuit
   description: A (probably stolen) SCAF suit painted red with white stripes. The armor feels degraded, but lighter.
@@ -35,4 +35,3 @@
   - type: StaticPrice
     price: 750
     vendPrice: 2500
-

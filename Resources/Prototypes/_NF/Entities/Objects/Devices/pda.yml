@@ -385,7 +385,7 @@
     - MailMetricsCartridge
 
 - type: entity
-  parent: PiratePDA
+  parent: [PiratePDA, BaseC2PirateContrabandNoValue] # Lua-changes: added BaseC2PirateContrabandNoValue
   id: NFPiratePDA
   name: pirate PDA
   suffix: Frontier
@@ -399,7 +399,7 @@
         pda-pirate
 
 - type: entity
-  parent: PiratePDA
+  parent: [PiratePDA, BaseC2PirateContrabandNoValue] # Lua-changes: added BaseC2PirateContrabandNoValue
   id: NFPirateCaptainPDA
   name: pirate captain PDA
   suffix: Frontier
@@ -413,7 +413,7 @@
         pda-pirate
 
 - type: entity
-  parent: PiratePDA
+  parent: [PiratePDA, BaseC2PirateContrabandNoValue] # Lua-changes: added BaseC2PirateContrabandNoValue
   id: NFPirateFirstMatePDA
   name: pirate first mate PDA
   suffix: Frontier
@@ -427,7 +427,7 @@
         pda-pirate
 
 - type: entity
-  parent: PiratePDA
+  parent: [PiratePDA, BaseC2PirateContrabandNoValue] # Lua-changes: added BaseC2PirateContrabandNoValue
   id: NFShantymanPDA
   name: shantyman PDA
   description: It's pirate party time!
@@ -454,14 +454,14 @@
       "Lyre": {46: 0}
 
 - type: entity
-  parent: NFShantymanPDA
+  parent: [NFShantymanPDA, BaseC2PirateContrabandNoValue] # Lua-changes: added BaseC2PirateContrabandNoValue
   id: NFCaptainShantymanPDA
   components:
   - type: Pda
     id: NFPirateCaptainIDCard
 
 - type: entity
-  parent: NFShantymanPDA
+  parent: [NFShantymanPDA, BaseC2PirateContrabandNoValue] # Lua-changes: added BaseC2PirateContrabandNoValue
   id: NFFirstMateShantymanPDA
   components:
   - type: Pda

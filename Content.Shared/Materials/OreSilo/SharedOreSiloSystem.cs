@@ -33,6 +33,9 @@ public abstract class SharedOreSiloSystem : EntitySystem
 
     private void OnToggleOreSiloClient(Entity<OreSiloComponent> ent, ref ToggleOreSiloClientMessage args)
     {
+        if (!Exists(args.Actor) || !_transform.InRange((args.Actor, (TransformComponent?)null), (ent.Owner, (TransformComponent?)null), ent.Comp.Range + 2f))
+            return;
+
         var client = GetEntity(args.Client);
 
         if (!_clientQuery.TryComp(client, out var clientComp))

@@ -101,48 +101,10 @@
     - OutpostSyndicateShareholder
 
 - type: listing
-  id: UplinkVipNocatMpplayerBoich
-  name: uplink-vip-MpplayerBoich-name
-  description: uplink-vip-MpplayerBoich-desc
-  productEntity: MpplayerBoich
-  cost:
-    Speso: 1000
-  categories:
-  - UplinkVipNocat
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - VipUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
-
-- type: listing
-  id: UplinkVipNocatMpplayer
-  name: uplink-vip-Mpplayer-name
-  description: uplink-vip-Mpplayer-desc
-  productEntity: Mpplayer
-  cost:
-    Speso: 1000
-  categories:
-  - UplinkVipNocat
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - VipUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
-
-- type: listing
-  id: UplinkVipNocatMpplayerNetscape
-  name: uplink-vip-MpplayerNetscape-name
-  description: uplink-vip-MpplayerNetscape-desc
-  productEntity: MpplayerNetscape
+  id: UplinkVipNocatSponsorMusicPlayer
+  name: uplink-vip-SponsorMusicPlayer-name
+  description: uplink-vip-SponsorMusicPlayer-desc
+  productEntity: SponsorMusicPlayer
   cost:
     Speso: 1000
   categories:

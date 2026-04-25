@@ -147,7 +147,7 @@
 
 # Security
 - type: entity
-  parent: ClothingOuterHardsuitBaseNFNfsd
+  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable] # Lua-changes: added BaseC2ContrabandUnredeemable
   id: ClothingOuterHardsuitNfsdBronze
   name: NFSD bronze patrol suit
   description: The standard-issue NFSD space proof suit for patrol duty. This bronze variant has cadet rank markings.
@@ -390,7 +390,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
 
 - type: entity
-  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing, HardsuitIdentify] # Lua: add HardsuitIdentify
+  parent: [BaseC2PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing, HardsuitIdentify] # Lua-changes: added HardsuitIdentify, BaseC3PirateContraband > BaseC2PirateContraband
   id: ClothingOuterHardsuitPirateElite
   name: elite pirate hardsuit
   description: An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.

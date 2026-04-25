@@ -551,7 +551,7 @@
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua added: HardsuitIdentify
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContrabandPremium, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua added: HardsuitIdentify, BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: ClothingOuterHardsuitSyndie
   name: blood-red hardsuit
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
@@ -596,7 +596,7 @@
 
 # Syndicate Medic Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitSyndie, BaseC3SyndicateContraband, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua: added HardsuitIdentify
+  parent: [ClothingOuterHardsuitSyndie, BaseC3SyndicateContrabandPremium, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua: added HardsuitIdentify, BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: ClothingOuterHardsuitSyndieMedic
   name: blood-red medic hardsuit
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
@@ -614,7 +614,7 @@
 
 #Syndicate Elite Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua: added HardsuitIdentify
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContrabandPremium, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua: added HardsuitIdentify, BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: ClothingOuterHardsuitSyndieElite
   name: syndicate elite hardsuit
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
@@ -660,7 +660,7 @@
 
 #Syndicate Commander Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua: added HardsuitIdentify
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContrabandPremium, ContrabandClothing, HardsuitIdentify] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua: added HardsuitIdentify, BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: ClothingOuterHardsuitSyndieCommander
   name: syndicate commander hardsuit
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
@@ -700,7 +700,7 @@
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, ContrabandClothing, HardsuitIdentify] # Frontier: added BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing as parent # Lua: added HardsuitIdentify
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContrabandPremium, ContrabandClothing, HardsuitIdentify] # Frontier: added BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing as parent # Lua: added HardsuitIdentify, BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: ClothingOuterHardsuitJuggernaut
   name: cybersun juggernaut suit
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
@@ -777,7 +777,7 @@
 
 #Ling Space Suit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3Contraband, ContrabandClothing] # Frontier: added BaseC3Contraband, ContrabandClothing as parent
+  parent: ClothingOuterHardsuitBase # Frontier: added BaseC3Contraband, ContrabandClothing as parent # Lua-changes: deleted BaseC3Contraband and ContrabandClothing
   id: ClothingOuterHardsuitLing
   name: organic space suit
   description: A spaceworthy biomass of pressure and temperature resistant tissue.
@@ -808,7 +808,7 @@
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3PirateContraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3PirateContraband, added ContrabandClothing as parent
+  parent: [ClothingOuterHardsuitBase, BaseC1PirateContraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3PirateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3PirateContraband > BaseC1PirateContraband
   id:  ClothingOuterHardsuitPirateEVA
   name: deep space EVA suit
   suffix: Pirate
@@ -841,7 +841,7 @@
 
 #Pirate Captain Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseC3PirateContraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3PirateContraband, added ContrabandClothing as parent
+  parent: [ClothingOuterHardsuitBase, BaseC1PirateContraband] # Frontier: BaseMajorContraband<BaseC3PirateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3PirateContraband > BaseC1Contraband, deleted ContrabandClothing
   id: ClothingOuterHardsuitPirateCap
   name: pirate captain's hardsuit
   description: An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
@@ -877,7 +877,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [BaseC3CentCommContraband, ClothingOuterHardsuitBase, HardsuitIdentify] # Lua: add HardsuitIdentify, BaseCentcommContraband > BaseC3CentCommContraband, deleted ClothingOuterHardsuitSyndieCommander, ClothingOuterHardsuitSyndieCommander > ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitERTLeader
   name: ERT leader's hardsuit
   description: A protective hardsuit worn by the leader of an emergency response team.
@@ -888,10 +888,32 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+# Lua-changes-start:
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Radiation: 0.25
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+# Lua-changes-end.
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [BaseC3CentCommContraband, ClothingOuterHardsuitJuggernaut, HardsuitIdentify] # Lua: add HardsuitIdentify, BaseCentcommContraband > BaseC3CentCommContraband, ClothingOuterHardsuitJuggernaut > ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitERTChaplain
   name: ERT chaplain's hardsuit
   description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
@@ -902,10 +924,30 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+# Lua-changes-start:
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
+  - type: HeldSpeedModifier
+# Lua-changes-end.
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitCBURN, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [ClothingOuterHardsuitCBURN, HardsuitIdentify] # Lua: add HardsuitIdentify
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
   description: A protective hardsuit worn by the engineers of an emergency response team.
@@ -921,7 +963,7 @@
 
 #ERT Medic Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [BaseC3CentCommContraband, ClothingOuterHardsuitBase, HardsuitIdentify] # Lua: add HardsuitIdentify, BaseCentcommContraband > BaseC3CentCommContraband, ClothingOuterHardsuitSyndieMedic > ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitERTMedical
   name: ERT medic's hardsuit
   description: A protective hardsuit worn by the medics of an emergency response team.
@@ -932,10 +974,31 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+# Lua-changes-end.
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [BaseC3CentCommContraband, ClothingOuterHardsuitBase, HardsuitIdentify] # Lua: add HardsuitIdentify, BaseCentcommContraband > BaseC3CentCommContraband, ClothingOuterHardsuitSyndie > ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitERTSecurity
   name: ERT security's hardsuit
   description: A protective hardsuit worn by the security officers of an emergency response team.
@@ -950,10 +1013,32 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+# Lua-changes-start:
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+# Lua-changes-end.
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitCBURN, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [ClothingOuterHardsuitCBURN, HardsuitIdentify] # Lua: add HardsuitIdentify
   id: ClothingOuterHardsuitERTJanitor
   name: ERT janitor's hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.
@@ -967,7 +1052,7 @@
 
 #Deathsquad
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [BaseC3CentCommContraband, ClothingOuterHardsuitBase, HardsuitIdentify] # Lua: add HardsuitIdentify, BaseCentcommContraband > BaseC3CentCommContraband
   id: ClothingOuterHardsuitDeathsquad
   name: death squad hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.
@@ -1008,7 +1093,7 @@
 
 #CBURN Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase, HardsuitIdentify ] # Lua: add HardsuitIdentify
+  parent: [ BaseC3CentCommContraband, ClothingOuterHardsuitBase, HardsuitIdentify ] # Lua: add HardsuitIdentify # Lua-changes: BaseCentcommContraband > BaseC3CentCommContraband
   id: ClothingOuterHardsuitCBURN
   name: CBURN exosuit
   description: A lightweight yet strong exosuit used for special cleanup operations.

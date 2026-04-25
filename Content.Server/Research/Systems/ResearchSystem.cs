@@ -104,7 +104,19 @@ namespace Content.Server.Research.Systems
                 return ClientLookup;
 
             _lookup.GetGridEntities(grid, ClientLookup);
+
+            if (!TryComp(client, out ResearchClientComponent? clientComponent))
+                return ClientLookup;
+            ClientLookup.RemoveWhere(server => !IsClientServerTypeCompatible(clientComponent, server.Comp));
             return ClientLookup;
+        }
+
+        private static bool IsClientServerTypeCompatible(ResearchClientComponent client, ResearchServerComponent server)
+        {
+            if (client.AllowedFactions.Count == 0)
+                return true;
+
+            return client.AllowedFactions.Any(faction => faction == server.Faction);
         }
 
         public override void Update(float frameTime)

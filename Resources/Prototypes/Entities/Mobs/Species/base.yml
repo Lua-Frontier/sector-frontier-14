@@ -226,6 +226,7 @@
     - AnomalyHost
   - type: MobSpeedLimit # Lua
     maxLinearVelocity: 25
+  - type: LuaSprint
 
 - type: entity
   save: false
@@ -300,6 +301,10 @@
   - type: Carriable # Goobstation
   - type: LayingDown # WD EDIT
   - type: StunVisuals
+  - type: LuaJumpAbility # Lua
+    jumpDistance: 4
+    directionalAction: ActionLuaDirectionalJump
+    pointAction: null
 
 - type: entity
   save: false

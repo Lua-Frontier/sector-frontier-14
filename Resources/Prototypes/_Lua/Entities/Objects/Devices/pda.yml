@@ -174,7 +174,7 @@
     state: pda_vip
 
 - type: entity
-  parent: BasePDA
+  parent: [BasePDA, BaseC2SyndicateContrabandNoValue]
   id: SyndieShareholderPDA
   name: shareholder PDA
   description: Why isn't it not gray?

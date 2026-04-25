@@ -13,6 +13,42 @@ paths:
   - Resources/Prototypes/_Mono/Research/Universal/shipgun_ammo.yml
   - Resources/Prototypes/_White/Research/experimental.yml
 
+disciplinePaths:
+  - Resources/Prototypes/_Lua/Research/nf_disciplines.yml
+  - Resources/Prototypes/_Lua/Research/disciplines.yml
+
+factionPaths:
+  - Resources/Prototypes/_Lua/Research/factions.yml
+
+profiles:
+  - id: default
+    name: Обычный сервер
+    faction: Nanotrasen
+    paths:
+      - Resources/Prototypes/_Lua/Research/techtree.yml
+      - Resources/Prototypes/_Lua/Research/shiparmory.yml
+      - Resources/Prototypes/_Goobstation/Research/arsenal.yml
+      - Resources/Prototypes/_Goobstation/Research/civilianservices.yml
+      - Resources/Prototypes/_Lua/Research/arsenal.yml
+      - Resources/Prototypes/_Lua/Research/industrial.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
+      - Resources/Prototypes/_Mono/Research/Universal/shipgun_ammo.yml
+      - Resources/Prototypes/_White/Research/experimental.yml
+
+  - id: syndicate
+    name: Сервер синдиката
+    faction: Syndicate
+    paths:
+      - Resources/Prototypes/_Lua/Research/techtree.yml
+      - Resources/Prototypes/_Lua/Research/shiparmory.yml
+      - Resources/Prototypes/_Goobstation/Research/arsenal.yml
+      - Resources/Prototypes/_Goobstation/Research/civilianservices.yml
+      - Resources/Prototypes/_Lua/Research/arsenal.yml
+      - Resources/Prototypes/_Lua/Research/industrial.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
+      - Resources/Prototypes/_Mono/Research/Universal/shipgun_ammo.yml
+      - Resources/Prototypes/_White/Research/experimental.yml
+
 # Paths to entity prototype files or directories for resolving entityIcon.
 entityPaths:
   - Resources/Prototypes

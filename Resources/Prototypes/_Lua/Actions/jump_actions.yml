@@ -1,0 +1,34 @@
+# © 2025 LuaCorp (HacksLua) — Sector Frontier 14
+- type: entity
+  parent: BaseAction
+  id: ActionLuaDirectionalJump
+  name: Jump
+  description: Activate the propulsion system and propel yourself in the direction you are looking.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 8
+    icon:
+      sprite: Interface/Actions/jump.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:LuaDirectionalJumpEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: ActionLuaJumpToPoint
+  name: Jump to point
+  description: Jump to the selected location using a powerful impulse.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Interface/Actions/jump.rsi
+      state: icon
+    itemIconStyle: NoItem
+  - type: TargetAction
+    range: 0
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:LuaJumpToPointEvent

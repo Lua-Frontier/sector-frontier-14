@@ -485,7 +485,7 @@
     modifier: 0.05
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   id: BalloonSyn
   name: syndie balloon
   description: Handed out to the bravest souls who survived the "atomic twister" ride at Syndieland.

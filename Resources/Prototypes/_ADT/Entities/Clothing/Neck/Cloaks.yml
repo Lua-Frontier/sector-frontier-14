@@ -44,7 +44,7 @@
     sprite: ADT/Clothing/Neck/Cloaks/gothic_cloak.rsi #спрайты от floppo4ka
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   id: ADTClothingNeckSyndicateCloak
   name: syndicate cloak
   description: Antagonize with style!
@@ -53,7 +53,7 @@
     sprite: ADT/Clothing/Neck/Cloaks/syndicate_cloak.rsi #спрайты от floppo4ka
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   id: ADTClothingNeckNukeOpsCloak
   name: nuke ops cloak
   description: Protect from cold evening on a nukie planet.

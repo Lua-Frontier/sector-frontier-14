@@ -142,6 +142,9 @@ public abstract class SharedWieldableSystem : EntitySystem
 
     private void OnRefreshSpeedWielded(EntityUid uid, SpeedModifiedOnWieldComponent component, ref HeldRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
     {
+        if (HasComp<GunComponent>(uid) || HasComp<MeleeWeaponComponent>(uid))
+            return;
+
         if (TryComp<WieldableComponent>(uid, out var wield) && wield.Wielded)
         {
             args.Args.ModifySpeed(component.WalkModifier, component.SprintModifier);

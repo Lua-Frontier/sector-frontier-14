@@ -132,7 +132,7 @@
 
 - type: entity
   id: VehicleSyndicateSegway
-  parent: VehicleSecway
+  parent: [VehicleSecway, BaseC1SyndicateContraband] # Lua-changes: added BaseC1SyndicateContraband
   name: syndicate segway
   description: Be an enemy of the corporation, in style.
   components:

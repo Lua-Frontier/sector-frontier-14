@@ -119,7 +119,7 @@
 #Empty black
 - type: entity
   id: JetpackBlack
-  parent: [BaseJetpack, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: BaseJetpack # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: deleted BaseC3SyndicateContraband
   name: jetpack
   suffix: Empty
   components:

@@ -46,13 +46,13 @@
     - NukeCodePaper
 
 - type: entity
-  parent: ClothingBeltSecurityWebbing
+  parent: [ClothingBeltSecurityWebbing, BaseC3CentCommContraband]
   id: ClothingBeltDeathSquadWebbingFilled
   name: РПС эскадрона смерти
   description: РПС члена отряда элитной эвакуации.
 
 - type: entity
-  parent: ClothingHeadset
+  parent: [ClothingHeadset, BaseC3CentCommContraband]
   id: ClothingHeadsetDeathSquad
   name: мастер гарнитура
   description: Уникальный образец гарнитуры c доступом во все каналы.

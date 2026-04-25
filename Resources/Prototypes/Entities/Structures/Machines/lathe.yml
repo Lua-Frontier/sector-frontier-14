@@ -320,7 +320,6 @@
     - NFEngineeringBoards # Frontier
     - NFMedicalBoards # Frontier
     - NFServiceBoards # Frontier
-    - LuaShipCpuTechnology # Lua
   - type: EmagLatheRecipes
     emagDynamicPacks: [] # Frontier: empty list
     # - SecurityBoards # Frontier
@@ -444,7 +443,7 @@
 
 - type: entity
   id: SecurityTechFab
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseC3CentCommContraband] # Lua-changes : added BaseC3CentCommContraband
   name: security techfab
   description: Prints equipment for use by security crew.
   categories: [ HideSpawnMenu ] # Frontier

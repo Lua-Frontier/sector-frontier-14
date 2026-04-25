@@ -512,7 +512,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
 
 - type: entity
-  parent: [BaseC3SyndicateContraband, UnsensoredClothingUniformSkirtBase, ContrabandClothing ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
+  parent: [BaseC1SyndicateContrabandNoValue, UnsensoredClothingUniformSkirtBase] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpskirtOperative
   name: operative jumpskirt
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
@@ -628,7 +628,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/lawyergood.rsi
 
 - type: entity
-  parent: [BaseC3SyndicateContraband, ClothingUniformSkirtBase, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
+  parent: [BaseC1SyndicateContraband, ClothingUniformSkirtBase] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingUniformJumpskirtSyndieFormalDress
   name: syndicate formal dress
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."

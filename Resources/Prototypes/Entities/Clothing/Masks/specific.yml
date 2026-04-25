@@ -25,7 +25,7 @@
       - Snout
 
 - type: entity
-  parent: ClothingMaskGasChameleon
+  parent: [ClothingMaskGasChameleon, BaseC1SyndicateContraband] # Lua-changes: added BaseC1SyndicateContraband
   id: ClothingMaskGasVoiceChameleon
   suffix: Voice Mask, Chameleon
   components:
@@ -43,6 +43,8 @@
           type: ChameleonBoundUserInterface
         enum.VoiceMaskUIKey.Key:
           type: VoiceMaskBoundUserInterface
+    - type: Contraband # Lua
+      hideValues: true
 
 - type: entity
   parent: ClothingMaskBase

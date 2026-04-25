@@ -53,7 +53,7 @@
 - type: entity
   name: explosive grenade
   description: Grenade that creates a small but devastating explosion.
-  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [GrenadeBase, BaseC2ExpeditionContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC2ExpeditionContraband
   id: ExGrenade
   components:
   - type: ExplodeOnTrigger
@@ -74,7 +74,7 @@
 - type: entity
   name: flashbang
   description: Eeeeeeeeeeeeeeeeeeeeee.
-  parent: [ GrenadeBase, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [GrenadeBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: GrenadeFlashBang
   components:
   - type: Sprite
@@ -372,7 +372,7 @@
 - type: entity
   name: EMP grenade
   description: A grenade designed to wreak havoc on electronic systems.
-  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [GrenadeBase, BaseC2ExpeditionContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC2ExpeditionContraband
   id: EmpGrenade
   components:
   - type: Sprite
@@ -416,7 +416,7 @@
     price: 10000
 
 - type: entity
-  parent: [ GrenadeBase, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [GrenadeBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Lua-changes: <BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: SmokeGrenade
   name: smoke grenade
   description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
@@ -434,7 +434,7 @@
       path: /Audio/Items/smoke_grenade_prime.ogg
 
 - type: entity
-  parent: SmokeGrenade # Frontier: removed BaseCivilianContraband
+  parent: [SmokeGrenade, BaseClearContraband] # Frontier: removed BaseCivilianContraband # Lua-changes: added BaseClearContraband
   id: CleanerGrenade
   name: cleanade
   description: Special grenade for janitors, releasing large cloud of space cleaner foam.
@@ -469,7 +469,7 @@
         Quantity: 20
 
 - type: entity
-  parent: SmokeGrenade # Frontier: removed BaseEngineeringContraband
+  parent: [SmokeGrenade, BaseClearContraband] # Frontier: removed BaseEngineeringContraband # Lua-changes: added BaseClearContraband
   id: MetalFoamGrenade
   name: metal foam grenade
   description: An emergency tool used for patching hull breaches with special quick-set metal foam. Almost as good as real floors!
@@ -522,7 +522,7 @@
 - type: entity
   name: trick grenade
   description: All the grenade without any of the boom.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC1SyndicateContraband] # Lua-changes: added BaseC1SyndicateContraband
   id: GrenadeDummy
   components:
   - type: Sprite
@@ -541,7 +541,7 @@
 - type: entity
   name: syndicate trickybomb
   description: A syndicate-manufactured explosive used to make an excellent distraction.
-  parent: [GrenadeDummy, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [GrenadeDummy, BaseC1SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: SyndieTrickyBomb
   components:
   - type: Sprite

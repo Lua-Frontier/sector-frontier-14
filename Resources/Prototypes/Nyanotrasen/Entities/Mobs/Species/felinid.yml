@@ -119,6 +119,14 @@
     scale: 1 # Frontier
   - type: Inventory # Frontier
     speciesId: felinid # Frontier
+  - type: LuaJumpAbility # Lua
+    jumpDistance: 5
+  - type: LuaSprint # Lua
+    maxSprint: 92
+    drainPerSecond: 8.0
+    regenPerSecond: 8.8
+    regenDelay: 0.18
+    recoverThresholdFraction: 0.22
 
 - type: entity
   save: false

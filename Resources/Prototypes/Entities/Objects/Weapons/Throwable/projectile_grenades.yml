@@ -40,7 +40,7 @@
         friction: 0.2
 
 - type: entity
-  parent: [ProjectileGrenadeBase, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
+  parent: [ProjectileGrenadeBase, BaseC1Contraband] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC1Contraband
   id: GrenadeStinger
   name: stinger grenade
   description: Nothing to see here, please disperse.
@@ -67,7 +67,7 @@
       path: /Audio/Effects/countdown.ogg
 
 - type: entity
-  parent: [ProjectileGrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ProjectileGrenadeBase, BaseC2ExpeditionContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband  > BaseC2ExpeditionContraband 
   id: GrenadeIncendiary
   name: incendiary grenade
   description: Guaranteed to light up the mood.
@@ -95,7 +95,7 @@
     price: 1500
 
 - type: entity
-  parent: [ProjectileGrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ProjectileGrenadeBase, BaseC2ExpeditionContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC2ExpeditionContraband
   id: GrenadeShrapnel
   name: shrapnel grenade
   description: Releases a deadly spray of shrapnel that causes severe bleeding.
