@@ -30,7 +30,7 @@
     sprite: _Lua/Clothing/Back/Satchels/pathologist.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC1SyndicateContraband]
   id: ClothingBackpackSatchelOutpostSyndicate
   name: сумка синдиката
   description: Модная сумка в красно-чёрных тонах.

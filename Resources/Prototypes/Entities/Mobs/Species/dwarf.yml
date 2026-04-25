@@ -75,6 +75,12 @@
   - type: InnateMiningScannerViewer # Frontier
     pingSound: null # Frontier
     viewRange: 5 # Frontier
+  - type: LuaSprint # Lua
+    maxSprint: 124
+    drainPerSecond: 5.2
+    regenPerSecond: 6.2
+    regenDelay: 0.35
+    recoverThresholdFraction: 0.32
 
 - type: entity
   parent: BaseSpeciesDummy

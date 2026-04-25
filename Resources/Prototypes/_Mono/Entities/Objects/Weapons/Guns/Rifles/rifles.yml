@@ -1,6 +1,6 @@
 - type: entity
   name: VFD MR-8C DMR (8x65mm SKR)
-  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC3CentCommContraband] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: WeaponRifleMR8C
   description: The DMR variant of the MR-8 series, firing with incredible accuracy. Chambered in 8x65mm SKR. A label on the side reads "FOR MILITARY USE ONLY".
   components:

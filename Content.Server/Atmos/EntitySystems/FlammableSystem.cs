@@ -26,6 +26,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Robust.Server.Audio;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Timing;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
@@ -412,7 +413,7 @@ namespace Content.Server.Atmos.EntitySystems
             _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2f));
 
             // TODO FLAMMABLE: Make this not use TimerComponent...
-            uid.SpawnTimer(2000, () =>
+            Timer.Spawn(2000, () =>
             {
                 flammable.Resisting = false;
                 flammable.FireStacks -= 1f;

@@ -1,0 +1,249 @@
+#[italic][/italic][color=#E0C68B][/color][bold][/bold]
+- type: entity
+  parent: PosterBase
+  id: BaseMemorialDisplayLua
+  name: Базовая мемориальная экспозиция
+  abstract: true
+  description: Базовая экспозиция памяти и благодарности.
+  components:
+  - type: ActivatableUI
+    key: enum.MemorialDisplayUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MemorialDisplayUiKey.Key:
+        type: MemorialDisplayBoundUserInterface
+  - type: Godmode
+  - type: MemorialDisplay
+    displayName: Мемориальная экспозиция
+    displayDescription: "[italic]Память и благодарность живут в каждом имени.[/italic]"
+
+- type: entity
+  parent: BaseMemorialDisplayLua
+  id: MemorialDisplayPatrons
+  name: Мемориальная экспозиция Меценатов
+  description: Экспозиция благодарности меценатам за поддержку проекта.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/memorial_sign.rsi
+    state: memorial
+  - type: MemorialDisplay
+    displayName: Мемориальная экспозиция Меценатов
+    displayDescription: "Имена меценатов, которые поддерживают проект огромными ресурсами и временем."
+    entries:
+    - nickname: "[color=#3fbf77]Wisdom[/color]"
+    - nickname: "[color=#88b038]Иван Клёцин[/color]"
+    - nickname: "[color=#ed943b]azidragon[/color]"
+    - nickname: "[color=#174480]Gix[/color]"
+
+- type: entity
+  parent: BaseMemorialDisplayLua
+  id: MemorialDisplayInMemoriam
+  name: Мемориальная экспозиция Памяти
+  description: Память о тех, кого больше нет с нами.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/memorial_sign.rsi
+    state: memorial
+  - type: MemorialDisplay
+    displayName: Мемориальная экспозиция Памяти
+    displayDescription: "[color=#D5D5D5]В память о людях из нашего сообщества, ушедших из жизни в реальном мире.[/color]"
+    entries:
+    - nickname: m9kotb
+      description: Нам будет тебя не хватать добрый куратор.
+
+- type: entity
+  parent: BaseMemorialDisplayLua
+  id: MemorialDisplayShareholders
+  name: Мемориальная экспозиция Акционеров
+  description: Экспозиция благодарности акционерам, поддерживающим развитие Сектора Фронтир.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Wallmounts/memorial_sign.rsi
+    state: memorial
+  - type: MemorialDisplay
+    displayName: Мемориальная экспозиция Акционеров #24.04.2026
+    displayDescription: "Список акционеров, чей вклад помогает двигать Сектор Фронтир вперёд."
+    entries:
+    - nickname: F_L_E_X
+    - nickname: BeerScuff
+    - nickname: oskarnil
+    - nickname: TrakaPasaule
+    - nickname: Vecortys
+    - nickname: Elpis
+    - nickname: San4ito
+    - nickname: AgentFuchs
+    - nickname: EllisTinker
+    - nickname: OterGate
+    - nickname: BlueStarwing
+    - nickname: shinoba
+    - nickname: Maximus4521
+    - nickname: Vladislaiv
+    - nickname: dsdadsa
+    - nickname: forwot
+    - nickname: Ralecs
+    - nickname: Salo2016
+    - nickname: TheNoriLegend
+    - nickname: NeoBF
+    - nickname: Maksimvini
+    - nickname: stg40
+    - nickname: StalkerYuraRUS
+    - nickname: Big_Chungus
+    - nickname: Besamon
+    - nickname: For_farcraft
+    - nickname: _Cheremsha_
+    - nickname: rapter_nun
+    - nickname: Sharlord
+    - nickname: _SwordNikki_
+    - nickname: Dizi
+    - nickname: Foxei
+    - nickname: RadiantStardust_11037
+    - nickname: legendaryboxer_1
+    - nickname: NOFIN
+    - nickname: Covral
+    - nickname: VoldemarPsheno
+    - nickname: AroJan
+    - nickname: Balora
+    - nickname: pots
+    - nickname: z1pp
+    - nickname: Seras
+    - nickname: Berusar
+    - nickname: NKT_nik
+    - nickname: SoCitySoSock
+    - nickname: pepelinitsa
+    - nickname: Hedy
+    - nickname: HacksLua
+    - nickname: RK_
+    - nickname: Tea_BeTA
+    - nickname: Khornet
+    - nickname: HalloWorld
+    - nickname: fishcard
+    - nickname: KinDiath
+    - nickname: DDLis
+    - nickname: GODWINCH
+    - nickname: QRETROJEM
+    - nickname: cliki777
+    - nickname: Ogawa
+    - nickname: Dovacot
+    - nickname: AIRRFT
+    - nickname: dofus
+    - nickname: Troi
+    - nickname: Joingos
+    - nickname: Xleb21272
+    - nickname: Adrenalin_Rush_B
+    - nickname: Albevigar
+    - nickname: Donek23
+    - nickname: DefectiveThief
+    - nickname: Azrail
+    - nickname: Greed_Gillmen
+    - nickname: Isoroku_Yamamoto
+    - nickname: Lirikinchik
+    - nickname: Dragon55220
+    - nickname: RuRalsei
+    - nickname: AlexL1ne
+    - nickname: Banana1
+    - nickname: Lalka_0
+    - nickname: NIkich
+    - nickname: MIGAN
+    - nickname: antiWAFG
+    - nickname: malyatko
+    - nickname: daner1010
+    - nickname: tarakan_yorik
+    - nickname: HenryBell
+    - nickname: Lux_Noctis
+    - nickname: EmptyCore
+    - nickname: Popugich
+    - nickname: FurryGaySex1984
+    - nickname: Bredpit
+    - nickname: arsenikses
+    - nickname: Smail9029
+    - nickname: maasarie
+    - nickname: Ruri_Chan
+    - nickname: dexterg00n
+    - nickname: Zuzanno
+    - nickname: CyanWai
+    - nickname: 25Hydra08
+    - nickname: jurka
+    - nickname: 1223sea
+    - nickname: Mrfolium
+    - nickname: Kanelorra
+    - nickname: Nasral_V_Sunduk
+    - nickname: ryci3000
+    - nickname: KarasuTenshi
+    - nickname: sergei0740
+    - nickname: I_akylia
+    - nickname: Auren
+    - nickname: Zscreeper
+    - nickname: Nazrin
+    - nickname: D1night
+    - nickname: N0rth_Air
+    - nickname: whatyo
+    - nickname: LazyLord
+    - nickname: cynwiz
+    - nickname: Magnavex
+    - nickname: KarriJM
+    - nickname: Felexia
+    - nickname: Mallkaros
+    - nickname: 19431503
+    - nickname: Helna
+    - nickname: Miker
+    - nickname: _Sil
+    - nickname: VladosPivosos
+    - nickname: TheAnemone
+    - nickname: Aur0ra
+    - nickname: UGRFreeman
+    - nickname: any_
+    - nickname: LoneWolf7008
+    - nickname: C_Quarian
+    - nickname: orudgev
+    - nickname: QJI
+    - nickname: Legion_Astro
+    - nickname: Granval
+    - nickname: Evered
+    - nickname: Mikio
+    - nickname: Nice121111
+    - nickname: MrGman
+    - nickname: Pabble
+    - nickname: mrl4an
+    - nickname: zver_ko
+    - nickname: Varlok9600
+    - nickname: JoBot
+    - nickname: KDenVi
+    - nickname: andreyxe
+    - nickname: Trigly
+    - nickname: dekalites
+    - nickname: Terio
+    - nickname: Gekatas
+    - nickname: Hornet55346
+    - nickname: Andrey_Zubov
+    - nickname: Satva
+    - nickname: Ov0sh
+    - nickname: Stavii_
+    - nickname: Military
+    - nickname: Salat_Vion
+    - nickname: Raldjatech
+    - nickname: 31st
+    - nickname: perigrim
+    - nickname: IoIOverLordIoI
+    - nickname: Defer
+    - nickname: efia
+    - nickname: DeadLament
+    - nickname: Tayler_Eko
+    - nickname: _avangard
+    - nickname: Miste4
+    - nickname: denm00
+    - nickname: Dullary
+    - nickname: AziDRAGON
+    - nickname: Angie_ClownPrince
+    - nickname: Schrodingerr
+    - nickname: MizukaPas
+    - nickname: RaNlik
+    - nickname: Nefou
+    - nickname: Mewtawmorh_fufu
+    - nickname: HolyPain
+    - nickname: matveii
+    - nickname: MrissMan
+    - nickname: Ultra_Bober
+    - nickname: FeNiKs0023
+    - nickname: Iriska
+    - nickname: Omni404
+    - nickname: Donevinoll

@@ -54,7 +54,7 @@
     sprite: ADT/Clothing/Uniforms/Jumpsuit/priest_primal_suit.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   id: ADTClothingUniformCyberSun
   name: костюм Cybersun
   description: Костюм Cybersun, стильно и практично!

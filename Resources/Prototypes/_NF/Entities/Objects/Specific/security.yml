@@ -1,6 +1,6 @@
 - type: entity
   name: frontier uplink coin
-  parent: BaseItem
+  parent: [BaseItem, BaseC3CentCommContrabandNoValue] # Lua-changes: added BaseC3CentCommContrabandNoValue
   id: FrontierUplinkCoin
   suffix: 20 TC
   description: A token awarded to the NFSD for turning in contraband. It can be exchanged in an NFSD uplink device for a variety of law enforcement tools.
@@ -49,7 +49,7 @@
 
 # Uplinks
 - type: entity
-  parent: [ BaseItem, StorePresetSecurityUplink ]
+  parent: [BaseItem, StorePresetSecurityUplink, BaseC3CentCommContraband]  # Lua-changes: added BaseC3CentCommContraband 
   id: BaseSecurityUplinkRadio
   name: NFSD uplink
   description: Retro looking old radio...

@@ -1,5 +1,5 @@
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3CentCommContrabandNoValue] # Lua-changes: added BaseC3CentCommContrabandNoValue
   id: EncryptionKeyCentComOperative
   name: ключ шифрования Центрального Оператора
   description: An encryption key used by captain's bosses.

@@ -1,3 +1,4 @@
+using Content.Shared._NF.Bank;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NF.Cargo.Components;

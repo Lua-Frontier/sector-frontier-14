@@ -56,7 +56,7 @@
 
 - type: entity
   name: CentComm rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   id: RubberStampCentcom
   categories: [ DoNotMap ]
   components:

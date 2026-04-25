@@ -3,7 +3,6 @@ using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Fluids.Components;
 using Content.Server.Gravity;
 using Content.Server.Popups;
-using Content.Shared._Mono.Radar;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -159,7 +158,6 @@ public sealed class SpraySystem : EntitySystem
             var ent = (vapor, vaporComponent);
             _vapor.TryAddSolution(ent, newSolution);
 
-            EnsureComp<RadarBlipComponent>(vapor);
             // impulse direction is defined in world-coordinates, not local coordinates
             var impulseDirection = rotation.ToVec();
             var time = diffLength / entity.Comp.SprayVelocity;

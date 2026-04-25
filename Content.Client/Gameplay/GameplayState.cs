@@ -51,7 +51,7 @@ namespace Content.Client.Gameplay
             // Add the hand-item overlay.
             _overlayManager.AddOverlay(new ShowHandItemOverlay());
 
-            _fpsCounter = new HudPerfLabel(_gameTiming, EntitySystem.Get<_Lua.Tick.ClientServerPerfSystem>()); // Lua fps mod
+            _fpsCounter = new HudPerfLabel(_gameTiming, EntitySystem.Get<_Lua.Tick.ClientServerPerfSystem>(), _configurationManager); // Lua fps mod
             UserInterfaceManager.PopupRoot.AddChild(_fpsCounter);
             _fpsCounter.Visible = _configurationManager.GetCVar(CCVars.HudFpsCounterVisible);
             _configurationManager.OnValueChanged(CCVars.HudFpsCounterVisible, (show) => { _fpsCounter.Visible = show; });

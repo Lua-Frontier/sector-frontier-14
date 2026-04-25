@@ -94,6 +94,12 @@
     cosmeticOnly: false # Frontier
   - type: TallWhitelist # Frontier
     scale: 1.2 # Frontier
+  - type: LuaSprint # Lua
+    maxSprint: 112
+    drainPerSecond: 5.8
+    regenPerSecond: 6.8
+    regenDelay: 0.31
+    recoverThresholdFraction: 0.29
 
 - type: entity
   parent: BaseSpeciesDummy

@@ -117,7 +117,7 @@
     - Hair
 
 - type: entity
-  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingHeadBase, BaseC1CultContrabandNoValue] # Frontier: added ContrabandClothing as parent # Lua-changes: added BaseC1CultContrabandNoValue , removed ContrabandClothing
   id: ClothingHeadHatHoodCulthood
   name: cult hood
   description: There's no cult without cult hoods.

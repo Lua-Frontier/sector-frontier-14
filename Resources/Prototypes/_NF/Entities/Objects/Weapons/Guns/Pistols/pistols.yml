@@ -59,7 +59,7 @@
 
 - type: entity
   id: NFWeaponPistolUniversalNfsd
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponPistolChamber9x19HighCapacity, NFWeaponPistolUniversal ] #Lua 35 -> 9x19
+  parent: [BaseC1Contraband, NFBaseWeaponPistolChamber9x19HighCapacity, NFWeaponPistolUniversal] #Lua-changes: 35 -> 9x19, BaseC2ExpeditionContraband > BaseC1Contraband
   name: mk32-M "Universal" service pistol
   description: |-
     The Mark 32 Offensive Service Pistol. On the handle is a label that says 'for authorized use only.'

@@ -69,6 +69,8 @@ namespace Content.Server.Power.EntitySystems
         private readonly List<EntityUid> _processBuffer = new();
 
         private BatteryRampPegSolver _solver = new();
+        private float _powerAccumulator = 0f;
+        private const float PowerTickInterval = 1f / 4f;
 
         public override void Initialize()
         {
@@ -317,14 +319,16 @@ namespace Content.Server.Power.EntitySystems
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-
             ReconnectNetworks();
+
+            _powerAccumulator += frameTime;
+            if (_powerAccumulator < PowerTickInterval) return;
+            var solverFrameTime = _powerAccumulator;
+            _powerAccumulator = 0f;
 
             // Synchronize batteries
             RaiseLocalEvent(new NetworkBatteryPreSync());
-
-            // Run power solver.
-            _solver.Tick(frameTime, _powerState, _parMan);
+            _solver.Tick(solverFrameTime, _powerState, _parMan);
 
             // Synchronize batteries, the other way around.
             RaiseLocalEvent(new NetworkBatteryPostSync());
@@ -338,7 +342,7 @@ namespace Content.Server.Power.EntitySystems
             PowerDirtyLoadsGauge.Set(_solver.DirtyLoads.Count);
             PowerDirtyBatteriesGauge.Set(_solver.DirtyBatteries.Count);
 
-            UpdateApcPowerReceivers(frameTime);
+            UpdateApcPowerReceivers(solverFrameTime);
             UpdatePowerConsumers();
             UpdateNetworkBatteries();
         }

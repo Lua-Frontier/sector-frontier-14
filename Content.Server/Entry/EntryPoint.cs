@@ -2,6 +2,8 @@ using Content.Server._NF.Auth;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server._Lua.ChatFilter; // Lua
+using Content.Server._Lua.Networking; // Lua
+using Content.Server._Lua.SponsorPlayer; // Lua
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
@@ -61,6 +63,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly IChatManager _chatSan = default!; // NOTE: Check if this should be _chatManager or similar in new version, kept as per file context but watch out for interface mismatches if IChatManager isn't IChatSanitizationManager
         [Dependency] private readonly IChatSanitizationManager _chat = default!;
         [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
+        [Dependency] private readonly DecryptFailLogger _decryptFailLogger = default!; // Lua
         [Dependency] private readonly IComponentFactory _factory = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IConnectionManager _connection = default!;
@@ -88,6 +91,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly DiscordAuthManager _discordAuth = default!; // Corvax-DiscordAuth
         [Dependency] private readonly JoinQueueManager _joinQueue = default!; // Corvax-Queue
         [Dependency] private readonly TTSManager _tts = default!; // Corvax-TTS
+        [Dependency] private readonly SponsorMusicManager _sponsorMusic = default!; // Lua SponsorPlayer
         [Dependency] private readonly MiniAuthManager _miniAuth = default!; // _NF.Auth
 
         public override void PreInit()
@@ -141,6 +145,7 @@ namespace Content.Server.Entry
                 _discordAuth.Initialize(); // Corvax-DiscordAuth
                 _joinQueue.Initialize(); // Corvax-Queue
                 _tts.Initialize(); // Corvax-TTS
+                _sponsorMusic.Initialize(); // Lua SponsorPlayer
                 _serverInfo.Initialize();
                 _serverApi.Initialize();
                 _voteManager.Initialize();
@@ -165,6 +170,7 @@ namespace Content.Server.Entry
             _discordAuth.Initialize(); // Corvax-DiscordAuth
             _joinQueue.Initialize(); // Corvax-Queue
             _tts.Initialize(); // Corvax-TTS
+            _sponsorMusic.Initialize(); // Lua SponsorPlayer
             _serverInfo.Initialize();
             _serverApi.Initialize();
             _voteManager.Initialize();
@@ -182,6 +188,7 @@ namespace Content.Server.Entry
             _chatSan.Initialize();
             _chat.Initialize();
             _chatFilter.Initialize(); // Lua
+            _decryptFailLogger.Initialize(); // Lua
 
             var dest = _cfg.GetCVar(CCVars.DestinationFile);
             if (!string.IsNullOrEmpty(dest))

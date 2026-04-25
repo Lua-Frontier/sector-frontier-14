@@ -55,7 +55,7 @@
 - type: entity
   name: pinpointer
   id: PinpointerNuclear
-  parent: [ BaseC2ContrabandUnredeemable, PinpointerBase ] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseC3CentCommContraband, PinpointerBase] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   components:
   - type: Pinpointer
     component: NukeDisk
@@ -133,7 +133,7 @@
     price: 150
 
 - type: entity
-  parent: PinpointerBase
+  parent: [PinpointerBase, BaseC3SpiderClanContraband] # Lua-changes: added BaseC3SpiderClanContraband
   name: station pinpointer
   description: A handheld tracking device that leads to the direction of any nearby station.
   id: PinpointerStation

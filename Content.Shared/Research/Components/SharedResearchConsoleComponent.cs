@@ -31,15 +31,18 @@ namespace Content.Shared.Research.Components
     {
         public int Points;
 
+        public string? ResearchFaction;
+
         /// <summary>
         /// Frontier field - all researches and their availablities
         /// </summary>
         public Dictionary<string, ResearchAvailability> Researches;
 
-        public ResearchConsoleBoundInterfaceState(int points, Dictionary<string, ResearchAvailability> researches) // Frontier R&D console rework = researches field
+        public ResearchConsoleBoundInterfaceState(int points, Dictionary<string, ResearchAvailability> researches, string? researchFaction = null) // Frontier R&D console rework = researches field
         {
             Points = points;
             Researches = researches; // Frontier R&D console rework
+            ResearchFaction = researchFaction;
         }
     }
 }

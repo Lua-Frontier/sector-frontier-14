@@ -21,6 +21,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Lua.HardsuitIdentification;
@@ -35,6 +36,7 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly Dictionary<EntityUid, SecurityData> _activeSecurity = new();
     private readonly List<EntityUid> _securityToRemove = new();
@@ -386,8 +388,7 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
             args.Handled = true;
             return;
         }
-        var random = new Random();
-        if (random.NextDouble() > comp.EmagSuccessChance)
+        if (_random.NextDouble() > comp.EmagSuccessChance)
         {
             _popupSystem.PopupEntity(Loc.GetString("hardsuit-identification-emag-failed"), uid);
             _audio.PlayPvs(comp.SparkSound, uid);

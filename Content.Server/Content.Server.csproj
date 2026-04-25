@@ -10,6 +10,7 @@
   </PropertyGroup>
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
+    <PackageReference Include="Serilog" />
     <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
     <PackageReference Include="Discord.Net" />
     <PackageReference Include="prometheus-net" />

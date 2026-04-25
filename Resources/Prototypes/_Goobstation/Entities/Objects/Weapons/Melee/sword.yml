@@ -1,6 +1,6 @@
 - type: entity
   name: navy officer's sabre
-  parent: [ BaseSword, BaseCentcommContraband ]
+  parent: [BaseSword, BaseC1Contraband] # Lua-changes: BaseCentcommContraband > BaseC1Contraband
   id: NavyOfficerSabre
   description: Used primarily in ceremonies by naval officers, it remains a proven weapon.
   components:

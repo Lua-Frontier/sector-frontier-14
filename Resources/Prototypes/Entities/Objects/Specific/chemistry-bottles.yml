@@ -248,7 +248,7 @@
 - type: entity
   id: ChemistryBottleNocturine
   suffix: nocturine
-  parent: BaseChemistryBottleFilled
+  parent: [BaseChemistryBottleFilled, BaseC3SyndicateContrabandNoValue] # Lua-changes: added BaseC3SyndicateContrabandNoValue
   components:
   - type: Label
     currentLabel: reagent-name-nocturine
@@ -338,7 +338,7 @@
 - type: entity
   id: ChemistryBottleLead
   suffix: lead
-  parent: BaseChemistryBottleFilled
+  parent: [BaseChemistryBottleFilled, BaseC3ContrabandNoValue] # Lua-changes: added BaseC3ContrabandNoValue
   components:
   - type: Label
     currentLabel: reagent-name-lead

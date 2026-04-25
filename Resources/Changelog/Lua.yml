@@ -3715,3 +3715,197 @@ Entries:
   id: 261
   time: '2026-03-20T17:54:20.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/517
+- author: 25Hydra08
+  changes:
+    - type: Tweak
+      message: Ремап МЦ by 25Hydra08 and HolyPain
+  id: 262
+  time: '2026-03-20T20:26:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/520
+- author: k1bitka
+  changes:
+    - type: Tweak
+      message: Теперь Hard руда добывается обычными инструментами
+    - type: Remove
+      message: компонент MiningGathering у пород и инструментов
+    - type: Tweak
+      message: Прототип проджектайла Протокинетического дробовика
+    - type: Tweak
+      message: Протокинетическая пушка -> протокинетический повторитель
+    - type: Remove
+      message: текстуры протокинетической пушки
+    - type: Add
+      message: Новые текстуры
+  id: 263
+  time: '2026-03-20T21:46:24.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/518
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Квельдрёв - оснащенный 1 Чароном, и 2 торпедными
+        аппаратами. Имеет на борту средний сервер вооружения.
+    - type: Remove
+      message: Удалён шаттл Перл.
+  id: 264
+  time: '2026-03-21T07:17:43.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/509
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены телепорты между станциями
+  id: 265
+  time: '2026-03-22T08:31:05.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/529
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен корабельный процессор, доступен для изучения в РНД.
+    - type: Remove
+      message: >-
+        Удалены метки у джетпаков, огнетушителей, всего вида транспорта,
+        тепловая сигнатура, 
+    - type: Remove
+      message: Удалена термальная маскировка
+    - type: Add
+      message: Добавлена сигнатура мёртвых
+    - type: Tweak
+      message: >-
+        Теперь чем дальше шаттл тем меньше его текст, при наведении скейлится в
+        полный размер.
+    - type: Tweak
+      message: Добавлен чекбокс отключения меток в консоли управления вооружением
+  id: 266
+  time: '2026-03-22T17:57:44.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/530
+- author: TheZuTi
+  changes:
+    - type: Fix
+      message: Платы КПУ Шаттлов можно крафтить в принтере схем
+  id: 267
+  time: '2026-03-25T14:51:54.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/534
+- author: Almaz3200
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл "Гладиатор" для ДСБФ. Имеет тяжелую броню и 2 кирехи с
+        прискорбными углами наведения
+    - type: Remove
+      message: Удален шаттл "Fracture"
+  id: 268
+  time: '2026-04-02T10:32:33.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/532
+- author: Pcolik505
+  changes:
+    - type: Add
+      message: Новые классы контрабанды.
+    - type: Tweak
+      message: >-
+        Вся контрабанда была переработана под реалии вики (как и сама вики под
+        реалии контрабанды), изменены расценки, классы и ещё некоторые мелочи.
+        **Изменения не касаются вооружения!**
+    - type: Fix
+      message: >-
+        Больше нельзя дюпать ТаможенныеКредиты через стимпаки и боевые медипены
+        (они больше ничего не стоят)
+    - type: Fix
+      message: >-
+        Турели АКЭТ больше не расстреливают бойцов КСО/ОБР и РХБЗЗ из-за их
+        скафандров.
+  id: 269
+  time: '2026-04-16T12:56:06.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/536
+- author: PyotrIgn
+  changes:
+    - type: Add
+      message: >-
+        Добавлена недостающая локализация для некоторых позиций в продаже на
+        консоли заказов ТА и ЧР
+    - type: Add
+      message: >-
+        Добавлена недостающая локализация для хС-67 и спрайты оружия на слоте
+        баллона и в двух руках
+    - type: Fix
+      message: >-
+        Исправлено необходимое число реагента "яйцо" для кулинарных рецептов -
+        требования уменьшены в 6 раз, в соответствии с уменьшившимся ранее
+        количеством реагента в яйцах. 
+  id: 270
+  time: '2026-04-16T12:58:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/541
+- author: LeptonComm
+  changes:
+    - type: Add
+      message: Третий ремап МЦ
+  id: 271
+  time: '2026-04-16T13:35:51.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/542
+- author: Nz
+  changes:
+    - type: Fix
+      message: Нианы и унатхи теперь имеют свои акценты.
+  id: 272
+  time: '2026-04-16T13:37:22.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/545
+- author: Almaz3200
+  changes:
+    - type: Add
+      message: Fracture получила ремап и была возвращена на верфь СРБС!
+  id: 273
+  time: '2026-04-24T11:03:13.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/549
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен рывок
+    - type: Add
+      message: Добавлен спринт и шкала выносливости
+    - type: Add
+      message: Добавлено прицеливание через пробел
+    - type: Tweak
+      message: Хотбар экшенов (быстрых действий) теперь зафиксирован
+    - type: Tweak
+      message: >-
+        Корабельное вооружение теперь откручивается быстрее но получило привязку
+        грида владельца
+    - type: Fix
+      message: Чат фильтр теперь будет меньше выгонять с сервера
+    - type: Add
+      message: Добавлена логика фракционных серверов но не применена в игре
+    - type: Add
+      message: >-
+        Теперь доступна возможность посадить шаттл на планету через маяк (маяк
+        можно изучить в РНД)
+    - type: Fix
+      message: Смягчение логики автоудаления шаттлов
+    - type: Tweak
+      message: Межзвездный двигатель и БСС двигатель теперь одно целое
+    - type: Tweak
+      message: Ивентовые события и астероиды перенесены в ПА
+    - type: Tweak
+      message: Удалены цены на химические вещества
+    - type: Tweak
+      message: Цены на руду увеличены в 2 раза
+  id: 274
+  time: '2026-04-24T11:40:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/550
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены мемориальные экспозиции
+    - type: Remove
+      message: Убрана стамина при беге
+    - type: Tweak
+      message: Стартовый баланс персонажа теперь 100000
+    - type: Tweak
+      message: Экшены теперь сохраняются
+    - type: Fix
+      message: Исправлен баг стрельбы с корабельного вооружения на планетах
+    - type: Fix
+      message: >-
+        Исправлен баг из-за которого шаттл при отзыве не возвращался в сектор а
+        оставался на планете
+  id: 275
+  time: '2026-04-25T12:05:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/552

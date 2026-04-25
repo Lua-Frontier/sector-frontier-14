@@ -19,6 +19,7 @@ public sealed class CoordinatesDiskMergerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {
@@ -120,8 +121,7 @@ public sealed class CoordinatesDiskMergerSystem : EntitySystem
     {
         disk = default;
         comp = default!;
-        if (!TryComp<ContainerManagerComponent>(owner, out var contMan)) return false;
-        if (!contMan.TryGetContainer(slot, out var container)) return false;
+        if (!_containerSystem.TryGetContainer(owner, slot, out var container)) return false;
         if (container.ContainedEntities.Count == 0) return false;
         var ent = container.ContainedEntities[0];
         if (!TryComp(ent, out StarMapCoordinatesDiskComponent? compNullable)) return false;

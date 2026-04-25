@@ -124,6 +124,12 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: LuaSprint # Lua
+    maxSprint: 84
+    drainPerSecond: 7.8
+    regenPerSecond: 10.2
+    regenDelay: 0.14
+    recoverThresholdFraction: 0.18
 
 - type: entity
   parent: MobHumanDummy

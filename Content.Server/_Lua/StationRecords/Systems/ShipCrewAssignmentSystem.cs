@@ -38,7 +38,6 @@ public sealed class ShipCrewAssignmentSystem : EntitySystem
         assignment.ShuttleUid = shuttleUid;
         assignment.ShipName = shipName;
         assignment.Role = role;
-        assignment.AssignedMindUid = null;
         assignment.AssignedUserId = null;
         TryRefreshAssignmentIdentity(targetIdCard, assignment);
         var status = EnsureComp<ShipCrewAssignmentStatusComponent>(targetIdCard);
@@ -128,29 +127,28 @@ public sealed class ShipCrewAssignmentSystem : EntitySystem
         if (!Resolve(idCard, ref assignment, false))
             return false;
 
-        if (assignment.AssignedUserId != null && assignment.AssignedMindUid is { Valid: true })
+        if (assignment.AssignedUserId != null)
             return true;
 
-        if (!TryResolveAssignedMind(idCard, out var mindUid, out var userId))
+        if (!TryResolveAssignedUserId(idCard, out var userId))
             return false;
 
-        assignment.AssignedMindUid = mindUid;
         assignment.AssignedUserId = userId;
         return true;
     }
 
     public bool ForceRefreshAssignmentIdentity(EntityUid idCard, ShipCrewAssignmentComponent? assignment = null)
     {
-        if (!Resolve(idCard, ref assignment, false)) return false;
-        if (!TryResolveAssignedMind(idCard, out var mindUid, out var userId)) return false;
-        assignment.AssignedMindUid = mindUid;
+        if (!Resolve(idCard, ref assignment, false))
+            return false;
+
+        TryResolveAssignedUserId(idCard, out var userId);
         assignment.AssignedUserId = userId;
-        return true;
+        return userId != null;
     }
 
-    private bool TryResolveAssignedMind(EntityUid targetIdCard, out EntityUid? mindUid, out NetUserId? userId)
+    private bool TryResolveAssignedUserId(EntityUid targetIdCard, out NetUserId? userId)
     {
-        mindUid = null;
         userId = null;
 
         if (!TryComp<StationRecordKeyStorageComponent>(targetIdCard, out var keyStorage) ||
@@ -165,7 +163,7 @@ public sealed class ShipCrewAssignmentSystem : EntitySystem
             if (session.Status is not (SessionStatus.Connected or SessionStatus.InGame))
                 continue;
 
-            if (!_mind.TryGetMind(session.UserId, out var currentMindUid, out var mind) ||
+            if (!_mind.TryGetMind(session.UserId, out _, out var mind) ||
                 mind.UserId != session.UserId)
             {
                 continue;
@@ -174,7 +172,6 @@ public sealed class ShipCrewAssignmentSystem : EntitySystem
             if (!MindMatchesRecordKey(mind, targetKey))
                 continue;
 
-            mindUid = currentMindUid;
             userId = session.UserId;
             return true;
         }

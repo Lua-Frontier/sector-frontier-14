@@ -65,7 +65,7 @@ public sealed partial class DungeonSystem
         }
         else
         {
-            seed = new Random().Next();
+            seed = _random.Next();
         }
 
         shell.WriteLine(Loc.GetString("cmd-dungen-start", ("seed", seed)));

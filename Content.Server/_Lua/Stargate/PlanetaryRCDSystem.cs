@@ -15,6 +15,11 @@ public sealed class PlanetaryRCDSystem : EntitySystem
 
     private void OnAttemptPlanetaryRCDUse(AttemptPlanetaryRCDUseEvent ev)
     {
+        if (HasComp<StargateDestinationComponent>(ev.GridUid))
+        {
+            ev.Allowed = true;
+            return;
+        }
         var mapUid = _transform.GetParentUid(ev.GridUid);
         ev.Allowed = HasComp<StargateDestinationComponent>(mapUid);
     }

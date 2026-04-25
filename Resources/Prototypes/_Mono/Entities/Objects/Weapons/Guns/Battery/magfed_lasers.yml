@@ -1,6 +1,6 @@
 - type: entity
   name: EM72 Ashstorm
-  parent: [ MonoBaseWeaponPowerCell, BaseC2ContrabandUnredeemable ]
+  parent: [MonoBaseWeaponPowerCell, BaseC3CentCommContraband] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: WeaponLaserCellMG
   description: EM72 Ashstorm, The TSF-EM72 Ashstorm is a directed-energy light machine gun developed by Aetherion Dynamics under TSF weapons contract 934A. Designed for sustained suppressive fire in void or planetary combat. The signature green glow of the Ashstorm's thermal capacitors is feared across insurgent lines in the Helion Belt.
   components:
@@ -62,7 +62,7 @@
 
 - type: entity
   name: NT-WS LRC-21 PPL
-  parent: [ MonoBaseWeaponPowerCell, BaseGunWieldable, BaseC2ContrabandUnredeemable ]
+  parent: [MonoBaseWeaponPowerCell, BaseGunWieldable, BaseC3CentCommContraband] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: WeaponLRC21PPL
   description: A heavy pulsed plasma lance rifle. Eviscerates targets with ease.
   components:

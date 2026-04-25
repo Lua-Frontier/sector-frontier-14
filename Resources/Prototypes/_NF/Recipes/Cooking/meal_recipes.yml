@@ -150,7 +150,7 @@
   time: 5
   group: Breakfast
   reagents:
-    Egg: 12
+    Egg: 2 #Lua 12 to 2
   solids:
     FoodBagel: 1
     FoodAvocadoSlice: 1
@@ -165,7 +165,7 @@
   time: 5
   group: Breakfast
   reagents:
-    Egg: 12
+    Egg: 2 #Lua 12 to 2
   solids:
     FoodBagelPoppy: 1
     FoodAvocadoSlice: 1
@@ -488,7 +488,7 @@
   group: Savory # TODO: move to ingredients
   reagents:
     Flour: 5
-    Egg: 6
+    Egg: 1 #Lua 6 to 1
   solids:
     FoodMeatChicken: 1
   recipeType:
@@ -502,7 +502,7 @@
   time: 2 # ~5 seconds for three
   reagents:
     Flour: 1.5 # ~1/3 of a click
-    Egg: 2 # 1/3 of an egg
+    Egg: 0.3 # 1/3 of an egg #Lua 2 to 0.3
   solids:
     FoodMeatChickenCutlet: 1
   recipeType:
@@ -516,7 +516,7 @@
   time: 5
   reagents:
     Flour: 5
-    Egg: 6
+    Egg: 1 #Lua 6 to 1
   solids:
     FoodCuredCarp: 1
   recipeType:
@@ -530,7 +530,7 @@
   time: 2 # ~5 seconds for three
   reagents:
     Flour: 1.5 # ~1/3 of a click
-    Egg: 2 # 1/3 of an egg
+    Egg: 0.3 # 1/3 of an egg #Lua 2 to 0.3
   solids:
     FoodOnionSlice: 1
   recipeType:
@@ -543,7 +543,7 @@
   time: 2
   reagents:
     Flour: 1.5
-    Egg: 2
+    Egg: 0.3 # 1/3 of an egg #Lua 2 to 0.3
   solids:
     FoodTofuSlice: 1
   recipeType:
@@ -901,7 +901,7 @@
     FoodButter: 1
   reagents:
     Ichor: 12
-    Egg: 12
+    Egg: 2 #Lua 12 to 2
     TableSalt: 5
     Blackpepper: 5
   recipeType:
@@ -1123,7 +1123,7 @@
   reagents:
     Soysauce: 5
     Water: 15
-    Egg: 6
+    Egg: 1 #Lua 6 to 1
   recipeType:
   - Oven
 
@@ -1157,7 +1157,7 @@
   reagents:
     Soysauce: 5
     Water: 15
-    Egg: 6
+    Egg: 1 #Lua 6 to 1
   recipeType:
   - Oven
 

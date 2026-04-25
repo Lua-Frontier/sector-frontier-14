@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
@@ -63,21 +64,24 @@ public abstract class SharedResearchSystem : EntitySystem
             return new List<TechnologyPrototype>();
 
         var availableTechnologies = new List<TechnologyPrototype>();
-        var disciplineTiers = GetDisciplineTiers(component);
+        var disciplineTiers = GetDisciplineTiers(uid, component);
         foreach (var tech in PrototypeManager.EnumeratePrototypes<TechnologyPrototype>())
         {
-            if (IsTechnologyAvailable(component, tech, disciplineTiers))
+            if (IsTechnologyAvailable(uid, component, tech, disciplineTiers))
                 availableTechnologies.Add(tech);
         }
 
         return availableTechnologies;
     }
 
-    public bool IsTechnologyAvailable(TechnologyDatabaseComponent component, TechnologyPrototype tech, Dictionary<string, int>? disciplineTiers = null)
+    public bool IsTechnologyAvailable(EntityUid uid, TechnologyDatabaseComponent component, TechnologyPrototype tech, Dictionary<string, int>? disciplineTiers = null)
     {
-        disciplineTiers ??= GetDisciplineTiers(component);
+        disciplineTiers ??= GetDisciplineTiers(uid, component);
 
         if (tech.Hidden)
+            return false;
+
+        if (!IsTechnologyFactionAllowed(uid, tech))
             return false;
 
         var techDisciplines = tech.GetAllDisciplines(); // Frontier: Updated to support dual-discipline technologies - tech is available if ANY of its disciplines are supported
@@ -90,7 +94,7 @@ public abstract class SharedResearchSystem : EntitySystem
         if (component.UnlockedTechnologies.Contains(tech.ID))
             return false;
 
-        foreach (var prereq in tech.TechnologyPrerequisites)
+        foreach (var prereq in GetTechnologyPrerequisites(uid, tech))
         {
             if (!component.UnlockedTechnologies.Contains(prereq))
                 return false;
@@ -99,12 +103,101 @@ public abstract class SharedResearchSystem : EntitySystem
         return true;
     }
 
+    public Vector2 GetTechnologyPosition(EntityUid uid, TechnologyPrototype tech)
+    {
+        return GetTechnologyPosition(GetResearchFaction(uid), tech);
+    }
+
+    public Vector2 GetTechnologyPosition(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
+        var factionOverride = GetTechnologyFactionOverride(researchFaction, tech);
+        return factionOverride?.Position ?? tech.Position ?? Vector2.Zero;
+    }
+
+    public IReadOnlyList<ProtoId<TechnologyPrototype>> GetTechnologyPrerequisites(EntityUid uid, TechnologyPrototype tech)
+    {
+        return GetTechnologyPrerequisites(GetResearchFaction(uid), tech);
+    }
+
+    public IReadOnlyList<ProtoId<TechnologyPrototype>> GetTechnologyPrerequisites(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
+        var factionOverride = GetTechnologyFactionOverride(researchFaction, tech);
+        return factionOverride?.TechnologyPrerequisites ?? tech.TechnologyPrerequisites;
+    }
+
+    private TechnologyFactionOverride? GetTechnologyFactionOverride(EntityUid uid, TechnologyPrototype tech)
+    {
+        return GetTechnologyFactionOverride(GetResearchFaction(uid), tech);
+    }
+
+    private TechnologyFactionOverride? GetTechnologyFactionOverride(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
+        if (researchFaction == null || tech.FactionOverrides.Count == 0)
+            return null;
+
+        foreach (var (faction, factionOverride) in tech.FactionOverrides)
+        {
+            if (faction == researchFaction)
+                return factionOverride;
+        }
+
+        return null;
+    }
+
+    public bool IsTechnologyFactionAllowed(EntityUid uid, TechnologyPrototype tech)
+    {
+        return IsTechnologyFactionAllowed(GetResearchFaction(uid), tech);
+    }
+
+    public bool IsTechnologyFactionAllowed(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
+    {
+        if (tech.Factions.Count == 0)
+            return true;
+
+        if (researchFaction == null)
+            return true;
+
+        return tech.Factions.Any(faction => faction == researchFaction);
+    }
+
+    public bool IsDisciplineFactionAllowed(EntityUid uid, TechDisciplinePrototype discipline)
+    {
+        if (discipline.Factions.Count == 0)
+            return true;
+
+        var researchFaction = GetResearchFaction(uid);
+        if (researchFaction == null)
+            return true;
+
+        return discipline.Factions.Any(faction => faction == researchFaction);
+    }
+
+    private ProtoId<RndFactionPrototype>? GetResearchFaction(EntityUid uid)
+    {
+        if (TryComp(uid, out ResearchServerComponent? server))
+            return server.Faction;
+
+        if (TryComp(uid, out ResearchClientComponent? client) &&
+            client.Server is { } serverUid &&
+            TryComp(serverUid, out ResearchServerComponent? linkedServer))
+        {
+            return linkedServer.Faction;
+        }
+
+        return null;
+    }
+
     public Dictionary<string, int> GetDisciplineTiers(TechnologyDatabaseComponent component)
+    {
+        return GetDisciplineTiers(EntityUid.Invalid, component);
+    }
+
+    public Dictionary<string, int> GetDisciplineTiers(EntityUid uid, TechnologyDatabaseComponent component)
     {
         var tiers = new Dictionary<string, int>();
         foreach (var discipline in component.SupportedDisciplines)
         {
-            tiers.Add(discipline, GetHighestDisciplineTier(component, discipline));
+            tiers.Add(discipline, GetHighestDisciplineTier(uid, component, discipline));
         }
 
         return tiers;
@@ -112,18 +205,35 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public int GetHighestDisciplineTier(TechnologyDatabaseComponent component, string disciplineId)
     {
-        return GetHighestDisciplineTier(component, PrototypeManager.Index<TechDisciplinePrototype>(disciplineId));
+        return GetHighestDisciplineTier(EntityUid.Invalid, component, PrototypeManager.Index<TechDisciplinePrototype>(disciplineId));
+    }
+
+    public int GetHighestDisciplineTier(EntityUid uid, TechnologyDatabaseComponent component, string disciplineId)
+    {
+        return GetHighestDisciplineTier(uid, component, PrototypeManager.Index<TechDisciplinePrototype>(disciplineId));
     }
 
     public int GetHighestDisciplineTier(TechnologyDatabaseComponent component, TechDisciplinePrototype techDiscipline)
     {
+        return GetHighestDisciplineTier(EntityUid.Invalid, component, techDiscipline);
+    }
+
+    public int GetHighestDisciplineTier(EntityUid uid, TechnologyDatabaseComponent component, TechDisciplinePrototype techDiscipline)
+    {
+        if (!IsDisciplineFactionAllowed(uid, techDiscipline))
+            return 0;
+
         var allTech = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.HasDiscipline(techDiscipline.ID) && !p.Hidden).ToList(); // Frontier: Updated to support dual-discipline technologies
+            .Where(p => p.HasDiscipline(techDiscipline.ID) && !p.Hidden && IsTechnologyFactionAllowed(uid, p)).ToList(); // Frontier: Updated to support dual-discipline technologies
+
+        if (allTech.Count == 0)
+            return 0;
+
         var allUnlocked = new List<TechnologyPrototype>();
         foreach (var recipe in component.UnlockedTechnologies)
         {
             var proto = PrototypeManager.Index<TechnologyPrototype>(recipe);
-            if (!proto.HasDiscipline(techDiscipline.ID)) // Frontier: Updated to support dual-discipline technologies
+            if (!proto.HasDiscipline(techDiscipline.ID) || !IsTechnologyFactionAllowed(uid, proto)) // Frontier: Updated to support dual-discipline technologies
                 continue;
             allUnlocked.Add(proto);
         }

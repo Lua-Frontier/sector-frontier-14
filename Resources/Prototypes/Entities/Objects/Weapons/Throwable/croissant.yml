@@ -1,5 +1,5 @@
 - type: entity
-  parent: FoodBakedCroissant
+  parent: [FoodBakedCroissant, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   id: WeaponCroissant
   suffix: Weapon
   components:

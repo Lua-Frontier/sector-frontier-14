@@ -11,7 +11,28 @@
             </BoxContainer>
         </PanelContainer>
 
+        <!-- Sprint bar in right mode: below alert grid -->
+        <ProgressBar Name="RightSprintBar"
+                     Access="Public"
+                     Visible="False"
+                     MinValue="0"
+                     MaxValue="1"
+                     Value="1"
+                     SetSize="196 10"
+                     HorizontalAlignment="Right"
+                     Margin="0 4 0 0" />
+
         <!-- Bottom layout: center-outwards above hotbar -->
+        <!-- Sprint bar in bottom mode: above alert grid -->
+        <ProgressBar Name="BottomSprintBar"
+                     Access="Public"
+                     Visible="False"
+                     MinValue="0"
+                     MaxValue="1"
+                     Value="1"
+                     SetSize="196 10"
+                     HorizontalAlignment="Center"
+                     Margin="0 0 0 4" />
         <GridContainer Name="BottomModeRoot" Columns="2" HorizontalAlignment="Center">
             <BoxContainer Name="LeftAlertContainer"
                           Access="Public"

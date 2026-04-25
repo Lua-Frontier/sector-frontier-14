@@ -1,0 +1,39 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: almaz3200 (discord)
+
+- type: vessel
+  parent: BaseVesselAntag
+  id: VasKoFracture
+  name: Fracture
+  description: Передовой шаттл поддержки с мощными ЭМИ-пушками и парой тяжелых артиллерийских орудий
+  limit: 4
+  price: 160000
+  category: Medium
+  group: Security
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Nfsd
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/SD/fracture.yml
+
+- type: gameMap
+  id: VasKoFracture
+  mapName: 'Fracture'
+  mapPath: /Maps/_Lua/Shuttles/SD/fracture.yml
+  minPlayers: 0
+  stations:
+    VasKoFracture:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Fracture {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+
+

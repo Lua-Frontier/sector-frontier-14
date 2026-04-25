@@ -1,4 +1,4 @@
-using Content.Shared._Mono.Ships;
+using Content.Shared._Lua.Shuttles;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.BUIStates;
@@ -13,6 +13,7 @@ using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Mono.Ships;
 
 namespace Content.Shared.Shuttles.Systems;
 
@@ -178,12 +179,10 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
     public float GetFTLRange(EntityUid shuttleUid) // Monolith - FTL Rework
     {
-        // Return the default FTL range if no powered drive was found
-        // In the future, we could return a different range if an unpowered drive was found
         if (!TryGetFTLDrive(shuttleUid, out var drive, out var driveComp) || !_powerReceiverSystem.IsPowered(drive.Value))
             return FTLRange;
 
-        var range = driveComp.Range;
+        var range = driveComp.LocalFTLRange;
 
         float bonus = 0f;
         var query = EntityQueryEnumerator<BluespaceFuelComponent, TransformComponent>();
@@ -202,11 +201,11 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         return range;
     }
 
-    public bool TryGetBluespaceDrive(EntityUid shuttleUid, out EntityUid? driveUid, out BluespaceDriveComponent? drive)
+    public bool TryGetBluespaceDrive(EntityUid shuttleUid, out EntityUid? driveUid, out UnifiedDriveComponent? drive)
     {
         driveUid = null;
         drive = null;
-        var query = AllEntityQuery<BluespaceDriveComponent>();
+        var query = AllEntityQuery<UnifiedDriveComponent>();
         var poweredFound = false;
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -220,27 +219,22 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         return poweredFound;
     }
 
-    public bool TryGetWarpDrive(EntityUid shuttleUid, out EntityUid? driveUid, out BluespaceDriveComponent? drive)
+    public bool TryGetWarpDrive(EntityUid shuttleUid, out EntityUid? driveUid, out UnifiedDriveComponent? drive)
     { return TryGetBluespaceDrive(shuttleUid, out driveUid, out drive); }
 
     /// <summary>
     /// Tries to get the highest range FTL drive on the shuttle. Prioritizes powered drives.
     /// </summary>
-    public bool TryGetFTLDrive(EntityUid shuttleUid, [NotNullWhen(true)] out EntityUid? driveUid, [NotNullWhen(true)] out FTLDriveComponent? drive)
+    public bool TryGetFTLDrive(EntityUid shuttleUid, [NotNullWhen(true)] out EntityUid? driveUid, [NotNullWhen(true)] out UnifiedDriveComponent? drive)
     {
         var highestRange = 0f;
 
         driveUid = null;
         drive = null;
 
-        // Okay so, this is fucking stupid, but it works.
-        // When making this method smarter I needed to do two things.
-        // 1. Maintain parity between TryGetFTLDrive results regardless of what they're used for. (so I don't cause weird bugs)
-        // 2. Get a powered drive if one exists since those are the only ones you can actually jump with.
-        // So instead of only getting powered drives we prioritize powered drives.
         var poweredDriveFound = false;
 
-        var query = AllEntityQuery<FTLDriveComponent>();
+        var query = AllEntityQuery<UnifiedDriveComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -249,16 +243,15 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
             var isPowered = _powerReceiverSystem.IsPowered(uid);
 
-            // If we've already found an powered drive, ignore unpowered ones.
             if (poweredDriveFound && !isPowered)
                 continue;
 
-            var isBetterCandidate = (comp.Range > highestRange) || (isPowered && !poweredDriveFound);
+            var isBetterCandidate = (comp.LocalFTLRange > highestRange) || (isPowered && !poweredDriveFound);
 
             if (!isBetterCandidate)
                 continue;
 
-            highestRange = comp.Range;
+            highestRange = comp.LocalFTLRange;
 
             driveUid = uid;
             drive = comp;

@@ -4,6 +4,7 @@ using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Alerts.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
+using Content.Shared._Lua.Sprint;
 using Content.Shared.Alert;
 using Content.Shared.Lua.CLVar;
 using Robust.Client.GameObjects;
@@ -13,6 +14,7 @@ using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using static Robust.Client.UserInterface.Controls.LayoutContainer;
 
 namespace Content.Client.UserInterface.Systems.Alerts;
@@ -20,6 +22,7 @@ namespace Content.Client.UserInterface.Systems.Alerts;
 public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayState>, IOnSystemChanged<ClientAlertsSystem>
 {
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [UISystemDependency] private readonly ClientAlertsSystem? _alertsSystem = default;
@@ -52,6 +55,7 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
     {
         ApplyPosition(value);
         SyncAlerts();
+        UpdateSprintBar();
     }
 
     private void OnScreenUnload() // Lua
@@ -73,6 +77,7 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
 
         ApplyPosition(_cfg.GetCVar(CLVars.AlertsPosition));
         SyncAlerts();
+        UpdateSprintBar();
     }
 
     private void OnAlertPressed(object? sender, ProtoId<AlertPrototype> e)
@@ -111,6 +116,13 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
     {
         // initially populate the frame if system is available
         SyncAlerts();
+        UpdateSprintBar();
+    }
+
+    public override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+        UpdateSprintBar();
     }
 
     public void SyncAlerts()
@@ -202,5 +214,22 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
             if (found != null) return found;
         }
         return null;
+    }
+
+    private void UpdateSprintBar()
+    {
+        if (_alertsUi == null)
+            return;
+
+        var player = _player.LocalSession?.AttachedEntity ?? _player.LocalEntity;
+        if (player is not { } playerEnt ||
+            !_entMan.TryGetComponent<LuaSprintComponent>(playerEnt, out var sprint) ||
+            sprint.MaxSprint <= 0f)
+        {
+            _alertsUi.SetSprint(0f, false);
+            return;
+        }
+
+        _alertsUi.SetSprint(sprint.CurrentSprint / sprint.MaxSprint, true);
     }
 }

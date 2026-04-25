@@ -45,4 +45,7 @@ public sealed partial class TechDisciplinePrototype : IPrototype
     /// </summary>
     [DataField("lockoutTier")]
     public int LockoutTier = 3;
+
+    [DataField]
+    public List<ProtoId<RndFactionPrototype>> Factions = new();
 }

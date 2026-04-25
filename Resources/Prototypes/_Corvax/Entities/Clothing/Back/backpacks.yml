@@ -11,7 +11,7 @@
     - 0,0,9,5
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   id: ClothingDeathSquadronBackpack
   name: death squadron backpack
   description: A spacious backpack using bluespace technology.

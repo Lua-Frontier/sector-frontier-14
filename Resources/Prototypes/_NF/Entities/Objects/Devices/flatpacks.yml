@@ -619,6 +619,20 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: ComputerResearchAndDevelopmentSyndicateFlatpack
+  name: syndicate research and development computer flatpack
+  description: A flatpack used for constructing a syndicate research and development computer.
+  components:
+  - type: Flatpack
+    entity: ComputerResearchAndDevelopmentSyndicate
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_console
+
+- type: entity
+  parent: BaseNFFlatpack
   id: ComputerAnalysisConsoleFlatpack
   name: analysis console flatpack
   description: A flatpack used for constructing an analysis console.
@@ -676,6 +690,20 @@
   components:
   - type: Flatpack
     entity: ResearchAndDevelopmentServer
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_server
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ResearchAndDevelopmentServerSyndicateFlatpack
+  name: syndicate research and development server flatpack
+  description: A flatpack used for constructing a syndicate research and development server.
+  components:
+  - type: Flatpack
+    entity: ResearchAndDevelopmentServerSyndicate
   - type: StaticPrice
     price: 250
   - type: Sprite
@@ -929,7 +957,7 @@
     price: 750
 
 - type: entity
-  parent: HoverbikeFlatpack
+  parent: [HoverbikeFlatpack, BaseC1SyndicateContraband] # Lua-changes: added BaseC1SyndicateContraband
   id: HoverbikeSyndicateFlatpack
   name: syndicate hoverbike flatpack
   description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
@@ -1019,7 +1047,7 @@
     price: 2500
 
 - type: entity
-  parent: VendingMachineBoozeFlatpack
+  parent: [VendingMachineBoozeFlatpack, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
   id: VendingMachineClothingPunkFlatpack
   name: threadschoom vendomat flatpack
   description: A flatpack used for constructing a threadschoom vendomat.
