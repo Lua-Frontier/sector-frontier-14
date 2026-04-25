@@ -6,10 +6,10 @@
 - type: vessel
   id: Edelweiss
   parent: BaseVessel
-  name: NXL-Edelweiss
+  name: Edelweiss
   description: Корабль крупной судоверфи Гефест. Создан для спасательных операций в самых дальних уголках космоса.
-  price: 68000
-  category: Medium
+  price: 43000
+  category: Small
   group: Medical
   shuttlePath: /Maps/_Lua/Shuttles/Civilian/Edelweiss.yml
   guidebookPage: null
@@ -24,15 +24,15 @@
 
 - type: gameMap
   id: Edelweiss
-  mapName: 'NXL-Edelweiss'
+  mapName: 'Edelweiss'
   mapPath: /Maps/_Lua/Shuttles/Civilian/Edelweiss.yml
   minPlayers: 0
   stations:
-    GFSeagull:
+    Edelweiss:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NXL-Edelweiss {1}'
+          mapNameTemplate: 'Edelweiss {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
