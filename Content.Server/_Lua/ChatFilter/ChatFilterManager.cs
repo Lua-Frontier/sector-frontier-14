@@ -30,9 +30,12 @@ public sealed class ChatFilterManager : IPostInjectInit
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
     private readonly Dictionary<NetUserId, Queue<(string Message, TimeSpan Timestamp)>> _messageHistory = new();
+    private readonly Dictionary<NetUserId, Queue<TimeSpan>> _violationHistory = new();
     private const int MaxRepeatedMessages = 3;
+    private const int MaxWarningsBeforeKick = 3;
     private const int MessageHistorySize = 5;
     private static readonly TimeSpan MessageHistoryTimeout = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan ViolationHistoryTimeout = TimeSpan.FromMinutes(5);
     private static readonly TimeSpan ExperiencedThreshold = TimeSpan.FromHours(40);
     private static readonly Regex SingleWordRegex = new(@"^(\w+)$", RegexOptions.Compiled);
     private static readonly Regex WordBoundaryRegex = new(@"\b(\w+)\b", RegexOptions.Compiled);
@@ -43,6 +46,7 @@ public sealed class ChatFilterManager : IPostInjectInit
     {
         if (e.NewStatus != SessionStatus.Disconnected) return;
         _messageHistory.Remove(e.Session.UserId);
+        _violationHistory.Remove(e.Session.UserId);
     }
 
     private static readonly Dictionary<string, string> WordReplacements = new()
@@ -668,12 +672,20 @@ public sealed class ChatFilterManager : IPostInjectInit
         if (CheckRepeatedMessages(session.UserId, message))
         {
             LogAndNotify(source, _loc.GetString("chat-filter-repeated-message"));
-            session.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
+            var violation = RegisterViolation(session.UserId);
+            if (violation.Disconnect)
+                session.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
+            else
+                WarnPlayer(session, _loc.GetString("chat-filter-spam-reason"), violation.WarningNumber);
             return true;
         }
         if (!CheckProhibitedContent(message, experienced)) return false;
         LogAndNotify(source, message);
-        session.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
+        var prohibitedViolation = RegisterViolation(session.UserId);
+        if (prohibitedViolation.Disconnect)
+            session.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
+        else
+            WarnPlayer(session, _loc.GetString("chat-filter-kick-reason"), prohibitedViolation.WarningNumber);
         return true;
     }
 
@@ -684,14 +696,55 @@ public sealed class ChatFilterManager : IPostInjectInit
         if (CheckRepeatedMessages(source.UserId, message))
         {
             LogAndNotify(source, _loc.GetString("chat-filter-repeated-message"));
-            source.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
+            var violation = RegisterViolation(source.UserId);
+            if (violation.Disconnect)
+                source.Channel.Disconnect(_loc.GetString("chat-filter-spam-reason"));
+            else
+                WarnPlayer(source, _loc.GetString("chat-filter-spam-reason"), violation.WarningNumber);
             return true;
         }
 
         if (!CheckProhibitedContent(message, experienced)) return false;
         LogAndNotify(source, message);
-        source.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
+        var prohibitedViolation = RegisterViolation(source.UserId);
+        if (prohibitedViolation.Disconnect)
+            source.Channel.Disconnect(_loc.GetString("chat-filter-kick-reason"));
+        else
+            WarnPlayer(source, _loc.GetString("chat-filter-kick-reason"), prohibitedViolation.WarningNumber);
         return true;
+    }
+
+    private (bool Disconnect, int WarningNumber) RegisterViolation(NetUserId userId)
+    {
+        var currentTime = _timing.CurTime;
+        if (!_violationHistory.TryGetValue(userId, out var history))
+        {
+            history = new Queue<TimeSpan>();
+            _violationHistory[userId] = history;
+        }
+
+        while (history.Count > 0 && currentTime - history.Peek() > ViolationHistoryTimeout)
+        {
+            history.Dequeue();
+        }
+
+        history.Enqueue(currentTime);
+        while (history.Count > MaxWarningsBeforeKick + 1)
+        {
+            history.Dequeue();
+        }
+
+        var disconnect = history.Count > MaxWarningsBeforeKick;
+        var warningNumber = Math.Min(history.Count, MaxWarningsBeforeKick);
+        return (disconnect, warningNumber);
+    }
+
+    private void WarnPlayer(ICommonSession session, string reason, int warningNumber)
+    {
+        _chatManager.DispatchServerMessage(
+            session,
+            _loc.GetString("chat-filter-warning", ("reason", reason), ("current", warningNumber), ("max", MaxWarningsBeforeKick)),
+            suppressLog: true);
     }
 
     private bool CheckProhibitedContent(string message, bool experienced)

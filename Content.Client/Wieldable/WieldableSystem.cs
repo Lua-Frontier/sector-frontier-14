@@ -4,6 +4,8 @@ using Content.Client.Movement.Systems;
 using Content.Shared.Camera;
 using Content.Shared.Hands;
 using Content.Shared.Movement.Components;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Robust.Client.Timing;
@@ -38,6 +40,9 @@ public sealed class WieldableSystem : SharedWieldableSystem
             return;
 
         if (!wieldableComp.Wielded)
+            return;
+
+        if (HasComp<GunComponent>(entity.Owner) || HasComp<MeleeWeaponComponent>(entity.Owner))
             return;
 
         var offset = _eyeOffset.OffsetAfterMouse(entity.Owner, null);

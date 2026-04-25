@@ -19,6 +19,7 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
 
     // Public fields
     public TechnologyPrototype Prototype;
+    public IReadOnlyList<ProtoId<TechnologyPrototype>> EffectivePrerequisites;
     public Action<TechnologyPrototype, ResearchAvailability>? SelectAction;
     public ResearchAvailability Availability;
 
@@ -49,13 +50,18 @@ public sealed partial class FancyResearchConsoleItem : LayoutContainer
         }
     }
 
-    public FancyResearchConsoleItem(TechnologyPrototype proto, SpriteSystem sprite, ResearchAvailability availability)
+    public FancyResearchConsoleItem(
+        TechnologyPrototype proto,
+        IReadOnlyList<ProtoId<TechnologyPrototype>> effectivePrerequisites,
+        SpriteSystem sprite,
+        ResearchAvailability availability)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         Availability = availability;
         Prototype = proto;
+        EffectivePrerequisites = effectivePrerequisites;
 
         // Get the primary discipline for background color
         var primaryDiscipline = _prototype.Index<TechDisciplinePrototype>(proto.Discipline);

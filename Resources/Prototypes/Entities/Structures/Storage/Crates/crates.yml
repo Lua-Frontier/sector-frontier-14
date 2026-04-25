@@ -821,7 +821,7 @@
     state: base
 
 - type: entity
-  parent: [ BaseC3SyndicateContraband, CrateGenericSteel ] # Frontier: Added BaseC3SyndicateContraband
+  parent: [BaseC1SyndicateContraband, CrateGenericSteel] # Frontier: Added BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: CrateSyndicate
   name: Syndicate crate
   description: A dark steel crate with red bands and a letter S embossed on the front.

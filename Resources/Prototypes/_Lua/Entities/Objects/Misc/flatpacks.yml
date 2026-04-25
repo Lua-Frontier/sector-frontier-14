@@ -561,21 +561,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: MachineWarpDriveFlatpack
-  name: упакованный межзвёздный блюспейс двигатель
-  description: Упакованный межзвёздный блюспейс двигатель необходимый для межзвёздных путешествий
-  components:
-  - type: Flatpack
-    entity: MachineWarpDrive
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
   id: PlayerStationAiVesselFlatpack
   name: упакованный ИИ шаттла
   description: Упакованный ИИ шаттла, составит компанию вашим путешествиям

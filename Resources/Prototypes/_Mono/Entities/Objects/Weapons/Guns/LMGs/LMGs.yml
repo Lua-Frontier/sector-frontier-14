@@ -68,7 +68,7 @@
 
 - type: entity
   name: VFD MR-8B LWMMG (8x65mm SKR)
-  parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC3CentCommContraband] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: WeaponLMGMR8B
   description: The LWMMG variant of the MR-8 series. Chambered in 8x65mm SKR, and accepts both box and STANAG magazines. A label on the side reads "FOR MILITARY USE ONLY".
   components:

@@ -1,8 +1,8 @@
 - type: entity
   parent:
-  - BaseC3CultContrabandUnredeemable
+# - BaseC3CultContrabandUnredeemable # Lua-changes: commented
   - ClothingHeadHelmetBasic
-  - BaseC3CultContraband
+  - BaseC1CultContraband # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   - ContrabandClothing
   id: ClothingHeadHelmetCultJanitor
   name: cult janitor helmet
@@ -17,10 +17,10 @@
 
 - type: entity
   parent:
-  - BaseC3CultContrabandUnredeemable
+# - BaseC3CultContrabandUnredeemable # Lua-changes: commented
   - ClothingHeadBase
-  - BaseC3CultContraband
-  - ContrabandClothing
+  - BaseC1CultContrabandNoValue # Lua-changes: BaseC3CultContraband > BaseC1CultContrabandNoValue
+# - ContrabandClothing # Lua-changes: commented
   id: ClothingHeadHatHoodBloodCulthood
   name: cult hood
   categories: [ HideSpawnMenu ]
@@ -34,7 +34,7 @@
     - Hair
 
 - type: entity # for looks only
-  parent: [ ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic, BaseC3CultContraband, ContrabandClothing ]
+  parent: [ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic, BaseC1CultContrabandNoValue, ContrabandClothing] # Lua-changes: BaseC3CultContraband > BaseC1CultContrabandNoValue
   id: ClothingHeadHatHoodBloodCulthoodUnremoveable
   categories: [ HideSpawnMenu ]
   name: cult hood

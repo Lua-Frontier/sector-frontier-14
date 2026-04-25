@@ -7,15 +7,6 @@ appraisal-program-name = ОцениВСЁ Плюс
 appraisal-label-name = Предмет
 appraisal-label-price = Оценочная стоимость
 
-# Ledger cartridge
-ledger-program-name = SpesoFlow Lite
-ledger-header = Sector Ledger
-ledger-total-income = Общий доход
-ledger-no-income = Нет
-ledger-total-expenses = Общий убыток
-ledger-no-expenses = Нет
-ledger-balance = Баланс:
-ledger-no-balance = N/A
 
 ledger-tab-Frontier = Аванпост Фронтир
 ledger-tab-Nfsd = ДСБФ

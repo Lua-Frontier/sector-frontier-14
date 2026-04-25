@@ -498,7 +498,7 @@
 
 - type: entity
   id: BorgModuleSecurity
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: [BaseBorgModule, BaseProviderBorgModule, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
   name: security cyborg module
   components:
   - type: Sprite
@@ -516,7 +516,7 @@
 
 - type: entity
   id: BorgModuleMercenary
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: [BaseBorgModule, BaseProviderBorgModule, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
   name: mercenary cyborg module
   components:
   - type: Sprite
@@ -1306,7 +1306,7 @@
 #syndicate modules
 - type: entity
   id: BorgModuleSyndicateWeapon
-  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseBorgModule, BaseProviderBorgModule, BaseC1SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   name: weapon cyborg module
   components:
   - type: Sprite

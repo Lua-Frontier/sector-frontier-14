@@ -6,6 +6,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server._Lua.Sectors;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
+using Content.Shared._Lua.Shuttles;
 using Content.Shared.Examine;
 using Robust.Shared.Timing;
 using System.Numerics;
@@ -26,7 +27,7 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BluespaceDriveComponent, ExaminedEvent>(OnDriveExamineEvent);
+        SubscribeLocalEvent<UnifiedDriveComponent, ExaminedEvent>(OnDriveExamineEvent);
         TryLoadConfig();
         SubscribeLocalEvent<MapRemovedEvent>(OnMapRemoved);
     }
@@ -288,10 +289,10 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
     public void RefreshConsoles()
     { try { _shuttleConsole.RefreshStarMapForOpenConsoles(); } catch { } }
 
-    private void OnDriveExamineEvent(EntityUid uid, BluespaceDriveComponent component, ExaminedEvent args)
+    private void OnDriveExamineEvent(EntityUid uid, UnifiedDriveComponent component, ExaminedEvent args)
     {
         var readyIn = TimeSpan.Zero;
-        if (component.CooldownEndsAt > IoCManager.Resolve<IGameTiming>().CurTime) readyIn = component.CooldownEndsAt - IoCManager.Resolve<IGameTiming>().CurTime;
-        args.PushMarkup($"Bluespace drive cooldown: {(readyIn > TimeSpan.Zero ? (int)readyIn.TotalSeconds + "s" : "ready")}");
+        if (component.InterstellarCooldownEndsAt > IoCManager.Resolve<IGameTiming>().CurTime) readyIn = component.InterstellarCooldownEndsAt - IoCManager.Resolve<IGameTiming>().CurTime;
+        args.PushMarkup($"Interstellar drive cooldown: {(readyIn > TimeSpan.Zero ? (int)readyIn.TotalSeconds + "s" : "ready")}");
     }
 }

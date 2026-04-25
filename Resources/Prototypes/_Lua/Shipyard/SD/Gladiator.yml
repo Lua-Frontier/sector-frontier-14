@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: almaz3200 (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: VasKoGladiator
+  name: Гладиатор
+  description: Тяжелобронированный шаттл с 2 артиллерийскими установками "CYREXA"
+  limit: 4
+  price: 130000
+  category: Small
+  group: Security
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Nfsd
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/SD/Gladiator.yml
+
+- type: gameMap
+  id: VasKoGladiator
+  mapName: 'Гладиатор'
+  mapPath: /Maps/_Lua/Shuttles/SD/Gladiator.yml
+  minPlayers: 0
+  stations:
+    VasKoGladiator:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Гладиатор {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -93,7 +93,7 @@ public sealed class LimitedShuttleSystem : EntitySystem
         if (vessel.LimitActive <= 0)
             return true;
 
-        var query = EntityQueryEnumerator<VesselComponent>();
+        var query = AllEntityQuery<VesselComponent>();
         var shuttleCount = 0;
 
         while (query.MoveNext(out _, out var targetVessel))

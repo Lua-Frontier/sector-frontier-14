@@ -759,7 +759,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterWarden
 
 - type: entity
-  parent: [BaseC3SyndicateContraband, ClothingOuterWinterCoatToggleable, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [BaseC1SyndicateContrabandNoValue, ClothingOuterWinterCoatToggleable] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingOuterWinterSyndieCap
   name: syndicate's winter coat
   description: "The syndicate's winter coat is made of durable fabric, with gilded patterns, and coarse wool."
@@ -784,7 +784,7 @@
 
 ##############################################################
 - type: entity
-  parent: [BaseC3SyndicateContraband, ClothingOuterWinterWarden, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [BaseC1SyndicateContraband, ClothingOuterWinterWarden, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: ClothingOuterWinterSyndieCapArmored
   name: syndicate's armored winter coat
   description: "The syndicate's armored winter coat is made of durable fabric, with gilded patterns, and coarse wool."
@@ -798,7 +798,7 @@
 ##############################################################
 
 - type: entity
-  parent: [BaseC3SyndicateContraband, ClothingOuterWinterCoatToggleable, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [BaseC1SyndicateContrabandNoValue, ClothingOuterWinterCoatToggleable] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContrabandNoValue, removed ContrabandClothing
   id: ClothingOuterWinterSyndie
   name: syndicate's winter coat
   description: Insulated winter coat, looks like a merch from "Syndieland".

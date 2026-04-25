@@ -1,7 +1,7 @@
 # Syndicate Bomb Suit Helmet
 - type: entity
   parent:
-  - BaseC3SyndicateContrabandUnredeemable
+  - BaseC1SyndicateContraband # Lua-changes: BaseC3SyndicateContrabandUnredeemable > BaseC1SyndicateContraband
   - ClothingHeadHelmetBombSuit
   - ContrabandClothing
   id: ClothingHeadHelmetBombSuitSyndie
@@ -18,7 +18,7 @@
 # Syndicate armored bio suit hood
 - type: entity
   parent:
-  - BaseC3SyndicateContrabandUnredeemable
+  - BaseC1SyndicateContraband # Lua-changes: BaseC3SyndicateContrabandUnredeemable > BaseC1SyndicateContraband
   - ClothingHeadHatHoodBioGeneral
   - ContrabandClothing
   id: ClothingHeadHatHoodBioArmoredSyndicate

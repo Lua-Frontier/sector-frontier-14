@@ -110,7 +110,7 @@
     netsync: false
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseC3CultContraband, ContrabandClothing ] # Frontier: added BaseC3CultContraband, ContrabandClothing
+  parent: [ClothingShoesBaseButcherable, BaseC1CultContrabandNoValue] # Frontier: added BaseC3CultContraband, ContrabandClothing # Lua-changes: BaseC3CultContrabandUnredeemable > BaseC1CultContrabandNoValue, removed ContrabandClothing
   id: ClothingShoesCult
   name: cult shoes
   description: A pair of boots worn by the followers of Nar'Sie.
@@ -138,7 +138,7 @@
     maxContactWalkSlowdown: 0.7
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseC3Contraband, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing
+  parent: [ClothingShoesBaseButcherable, BaseC2SpiderClanContraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing # Lua-changes: BaseС3SpiderClanContraband > BaseC2SpiderClanContraband
   id: ClothingShoesSpaceNinja
   name: space ninja shoes
   description: A pair of nano-enhanced boots with built-in magnetic suction cups.
@@ -219,7 +219,7 @@
           type: ChameleonBoundUserInterface
 
 - type: entity
-  parent: [ClothingShoesChameleon, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
+  parent: [ClothingShoesChameleon, BaseC1SyndicateContraband] # Frontier: add BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: ClothingShoesChameleonNoSlips
   name: black shoes #actual name and description in uplink_catalog.yml
   suffix: No-slip, Chameleon

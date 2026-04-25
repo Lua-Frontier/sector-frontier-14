@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseItem
+  id: StarGateShuttleLandingBeacon
+  name: shuttle beacon
+  description: A beacon that can call the shuttle linked to an inserted deed ID.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/singularity_beacon.rsi
+    layers:
+    - state: icon
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NavMapBeaconVisuals.Enabled:
+        0:
+          True: {state: icon}
+          False: {state: icon}
+  - type: Item
+    size: Huge
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+  - type: Physics
+    canCollide: false
+    bodyType: Static
+  - type: CollideOnAnchor
+  - type: ActivatableUI
+    key: enum.StarGateLandingBeaconUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.StarGateLandingBeaconUiKey.Key:
+        type: StarGateLandingBeaconBoundUserInterface
+  - type: ItemSlots
+  - type: FTLBeacon
+  - type: StarGateLandingBeacon
+    edgeOffsetTiles: 4
+    deedSlot:
+      name: stargate-shuttle-beacon-id-slot
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+  - type: Machine
+    board: StarGateShuttleLandingBeaconCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      stargate-deed: !type:ContainerSlot
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board

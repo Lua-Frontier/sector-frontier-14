@@ -51,7 +51,7 @@
 # Syndicate armored bio suit
 - type: entity
   parent:
-  - BaseC3SyndicateContraband
+  - BaseC1SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   - ClothingOuterBioGeneral
   - ContrabandClothing
   id: ClothingOuterBioArmoredSyndicate

@@ -296,7 +296,7 @@
 
 #Syndicate
 - type: entity
-  parent: [NFClothingBackpack, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ClothingBackpack<NFClothingBackpack
+  parent: [NFClothingBackpack, BaseC1SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ClothingBackpack<NFClothingBackpack # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband
   id: ClothingBackpackSyndicate
   name: syndicate backpack
   description:

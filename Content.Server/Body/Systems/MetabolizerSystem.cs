@@ -180,6 +180,9 @@ namespace Content.Server.Body.Systems
                         continue;
                     // End Frontier
 
+                    if (rate <= 0)
+                        continue;
+
                     float scale = (float) mostToRemove / (float) rate;
 
                     // if it's possible for them to be dead, and they are,

@@ -527,7 +527,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltBase, ClothingSlotBase, BaseC1Contraband] # Frontier: BaseCommandContraband<BaseC1Contraband
+  parent: [ClothingBeltBase, ClothingSlotBase] # Frontier: BaseCommandContraband<BaseC1Contraband # Lua-changes: deleted BaseC1Contraband
   id: ClothingBeltSheath
   name: sabre sheath
   description: An ornate sheath designed to hold an officer's blade.
@@ -614,7 +614,7 @@
      - CartridgeAmmo
 
 - type: entity
-  parent: [NFClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [NFClothingBeltStorageBase, BaseC1SyndicateContraband] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent # Lua-changes: BaseC3SyndicateContraband > BaseC1SyndicateContraband, removed ContrabandClothing
   id: ClothingBeltSyndieHolster
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.

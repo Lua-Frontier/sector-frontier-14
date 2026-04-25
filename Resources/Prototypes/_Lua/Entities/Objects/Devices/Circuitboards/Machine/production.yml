@@ -118,6 +118,23 @@
       PurMatterBin: 2
 
 - type: entity
+  id: StarGateShuttleLandingBeaconCircuitboard
+  parent: BaseMachineCircuitboard
+  name: shuttle beacon machine board
+  description: A machine board for a shuttle landing beacon.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: StarGateShuttleLandingBeacon
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+    stackRequirements:
+      Steel: 8
+      Glass: 8
+
+- type: entity
   id: MachineShieldPLTCircuitboardBuild
   parent: [MachineShieldPLTCircuitboard, BaseMachineCircuitboard]
   suffix: Lua

@@ -1,4 +1,5 @@
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Shared._Wega.CartridgeLoader.Cartridges;
 
@@ -77,15 +78,24 @@ public sealed class ChatGroup
     }
 }
 
-[Serializable, NetSerializable]
-public sealed class ChatMessage
+// Lua: добавлен [DataDefinition] для поддержки сохранения мира StarGate
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class ChatMessage
 {
-    public string SenderId { get; }
-    public string SenderName { get; }
-    public string Message { get; }
-    public TimeSpan Timestamp { get; }
-    public bool IsOwnMessage { get; }
-    public bool Delivered { get; }
+    [DataField]
+    public string SenderId { get; set; } = string.Empty;
+    [DataField]
+    public string SenderName { get; set; } = string.Empty;
+    [DataField]
+    public string Message { get; set; } = string.Empty;
+    [DataField]
+    public TimeSpan Timestamp { get; set; }
+    [DataField]
+    public bool IsOwnMessage { get; set; }
+    [DataField]
+    public bool Delivered { get; set; }
+
+    public ChatMessage() { }
 
     public ChatMessage(string senderId, string senderName, string message, TimeSpan timestamp, bool isOwnMessage, bool delivered)
     {

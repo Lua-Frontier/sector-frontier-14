@@ -17,13 +17,14 @@
       recoilRotation: 0
     - type: Rotatable
     - type: Anchorable
-      delay: 480
+    - type: Pullable
     - type: ExtensionCableReceiver
     - type: LightningTarget
       priority: 1
     - type: ApcPowerReceiver
       powerLoad: 250
     - type: FireControllable
+    - type: BindToStation
     - type: InteractionOutline
     - type: Clickable
     - type: Actions

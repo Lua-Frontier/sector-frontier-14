@@ -1,6 +1,6 @@
 - type: entity
   id: BannerPirates
-  parent: BannerBase
+  parent: [BannerBase, BaseC1PirateContrabandNoValue]
   name: pirate banner
   description: A banner flying pirate colors.
   components:
@@ -10,7 +10,7 @@
 
 - type: entity
   id: BannerSectorPirates
-  parent: BannerPirates
+  parent: [BannerPirates, BaseC1PirateContraband]
   name: pirate sector banner
   description: A pirate banner marking control over a sector.
   components:
@@ -27,7 +27,7 @@
 
 - type: entity
   id: BannerSectorSyndicate
-  parent: BannerSyndicate
+  parent: [BannerSyndicate, BaseC1SyndicateContraband]
   name: syndicate sector banner
   description: A syndicate banner marking control over a sector.
   components:

@@ -1528,7 +1528,7 @@
 
 #region Pirate
 - type: entity
-  parent: NFDepartmentalEVASuitShoulderLight
+  parent: [NFDepartmentalEVASuitShoulderLight, BaseC1PirateContraband] # Lua-changes: added BaseC1PirateContraband
   id: ClothingOuterEVASuitPirate
   name: pirate EVA suit
   description: An EVA suit with a built-in helmet commonly used by pirates.

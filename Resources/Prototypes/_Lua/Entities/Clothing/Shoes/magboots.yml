@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: ClothingShoesBootsMag
+  parent: [ClothingShoesBootsMag, BaseC3CentCommContraband]
   id: ClothingShoesBootsMagFSF
   components:
   - type: Sprite
@@ -21,7 +21,7 @@
     price: 750
 
 - type: entity
-  parent: ClothingShoesBootsMag
+  parent: [ClothingShoesBootsMag, BaseC3CentCommContraband]
   id: ADTClothingShoesBootsMagERT
   components:
   - type: Sprite

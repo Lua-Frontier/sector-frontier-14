@@ -1127,7 +1127,7 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: [ BasePDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
+  parent: [BasePDA, BaseC2SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC2SyndicateContrabandNoValue
   id: SyndiPDA
   name: syndicate PDA
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
@@ -1512,7 +1512,7 @@
     state: pda-pirate
 
 - type: entity
-  parent: [ BaseMedicalPDA, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
+  parent: [BaseMedicalPDA, BaseC2SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > aseC2SyndicateContrabandNoValue
   id: SyndiAgentPDA
   name: syndicate corpsman PDA
   description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!

@@ -91,7 +91,7 @@
 
 - type: entity
   id: SecurityTechFabCircuitboard
-  parent: BaseMachineCircuitboard
+  parent: [BaseMachineCircuitboard, BaseC3CentCommContraband] # Lua-changes: added BaseC3CentCommContraband
   name: security techfab machine board
   categories: [ HideSpawnMenu ] # Frontier
   description: A machine printed circuit board for a security techfab.
@@ -225,6 +225,21 @@
       Plasma: 5
   - type: BindToStation # Frontier
     enabled: false # Frontier - should be draggable between stations
+
+- type: entity
+  id: ResearchAndDevelopmentServerSyndicateMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: syndicate R&D server machine board
+  description: A machine printed circuit board for a syndicate R&D server.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ResearchAndDevelopmentServerSyndicate
+    stackRequirements:
+      Plasma: 5
+  - type: BindToStation
+    enabled: false
 
 - type: entity
   id: BiogeneratorMachineCircuitboard

@@ -65,6 +65,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             human.AddFunction(ContentKeyFunctions.Drop);
             human.AddFunction(ContentKeyFunctions.UseItemInHand);
+            human.AddFunction(ContentKeyFunctions.LookUp); // Lua
             human.AddFunction(ContentKeyFunctions.AltUseItemInHand);
             human.AddFunction(ContentKeyFunctions.OpenCharacterMenu);
             human.AddFunction(ContentKeyFunctions.OpenEmotesMenu);

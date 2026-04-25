@@ -25,7 +25,7 @@
       Doubloon: 1
 
 - type: entity
-  parent: Doubloon
+  parent: [Doubloon, BaseC3PirateContraband] # Lua-changes: added BaseC3PirateContraband
   id: Doubloon1
   suffix: 1 DB
   components:
@@ -50,7 +50,7 @@
 
 # region Uplinks
 - type: entity
-  parent: [ BaseItem, StorePresetPirateUplink ]
+  parent: [BaseItem, StorePresetPirateUplink, BaseC3PirateContrabandPremium] # Lua-changes: added BaseC3PirateContrabandPremium
   id: BasePirateUplink
   name: pirate uplink
   description: A coconut with an antenna?

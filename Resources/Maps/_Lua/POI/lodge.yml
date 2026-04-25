@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/13/2026 08:21:28
-  entityCount: 2717
+  time: 03/21/2026 16:55:49
+  entityCount: 2718
 maps: []
 grids:
 - 1
@@ -16216,6 +16216,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,14.5
+      parent: 1
+- proto: StationTeleporterSector
+  entities:
+  - uid: 2718
+    components:
+    - type: Transform
+      pos: -15.5,5.5
       parent: 1
 - proto: StoolBar
   entities:

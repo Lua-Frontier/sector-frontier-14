@@ -157,16 +157,13 @@ public abstract partial class SharedPuddleSystem
         // First update the hit count so non-reactive targets won't count towards the total.
         foreach (var hit in args.HitEntities)
         {
-            if (!_solutionContainerSystem.TryGetInjectableSolution(hit, out _, out _))
+            if (!HasComp<ReactiveComponent>(hit))
                 hitCount -= 1;
         }
 
-        if (hitCount <= 0)
-            return;
-
         foreach (var hit in args.HitEntities)
         {
-            if (!_solutionContainerSystem.TryGetInjectableSolution(hit, out _, out _))
+            if (!HasComp<ReactiveComponent>(hit))
                 continue;
 
             var splitSolution = _solutionContainerSystem.SplitSolution(soln.Value, totalSplit / hitCount);

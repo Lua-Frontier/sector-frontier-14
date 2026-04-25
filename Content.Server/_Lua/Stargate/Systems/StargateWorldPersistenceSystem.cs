@@ -41,6 +41,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Speech.Components;
 using Content.Shared.Store.Components;
 using Content.Shared.UserInterface;
+using Content.Shared.Blocking.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Configuration;
@@ -184,6 +185,7 @@ public sealed class StargateWorldPersistenceSystem : EntitySystem
         _shipyard.ClearShuttleDeedReferencesOnMap(mapUid);
         PruneNpcEntityRefs(mapUid);
         CleanStaleContainerRefs(mapUid);
+        ClearBlockingUserRefs(mapUid);
         var projectileQuery = AllEntityQuery<TargetedProjectileComponent, TransformComponent>();
         while (projectileQuery.MoveNext(out var projUid, out _, out var xform))
         { if (xform.MapUid == mapUid) QueueDel(projUid); }
@@ -457,6 +459,22 @@ public sealed class StargateWorldPersistenceSystem : EntitySystem
         }
         return false;
     }
+    private void ClearBlockingUserRefs(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<BlockingComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var blocking, out var xform))
+        {
+            if (xform.MapUid != mapUid) continue;
+            if (blocking.User == null) continue;
+            if (!Exists(blocking.User.Value) || !IsEntityOnMap(blocking.User.Value, mapUid))
+            {
+                blocking.User = null;
+                blocking.IsBlocking = false;
+                Dirty(uid, blocking);
+            }
+        }
+    }
+
     private void CleanStaleContainerRefs(EntityUid mapUid)
     {
         var query = AllEntityQuery<ContainerManagerComponent, TransformComponent>();

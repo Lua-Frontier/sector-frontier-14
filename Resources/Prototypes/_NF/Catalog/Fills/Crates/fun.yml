@@ -40,7 +40,7 @@
 
 - type: entity
   id: CrateFunHoverbikeNFPirate
-  parent: CrateLivestock
+  parent: [CrateLivestock, BaseC1PirateContrabandNoValue] # Lua-changes: added BaseC1PirateContrabandNoValue
   name: hoverbike crate
   suffix: Pirate
   description: Harder, better, faster, stronger? No, just faster, faster, faster.
@@ -87,7 +87,7 @@
 
 - type: entity
   id: NFCrateFunSyndicateSegway
-  parent: CrateLivestock
+  parent: [CrateLivestock, BaseC1SyndicateContrabandNoValue] # Lua-changes: added BaseC1SyndicateContrabandNoValue
   name: Syndicate segway crate
   description: A crate containing a two-wheeler that will help you escape from the security officers. Or not.
   components:

@@ -32,8 +32,6 @@
     maxIntensity: 1500
     intensitySlope: 30
     totalIntensity: 4000
-  - type: MiningGatheringSoft
-  - type: MiningGatheringHard
   # destructible components below
   - type: Physics
     bodyType: Dynamic
@@ -130,8 +128,6 @@
     maxIntensity: 1000
     intensitySlope: 10
     totalIntensity: 4000
-  - type: MiningGatheringSoft
-  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 15
     detectionRange: 750
@@ -234,8 +230,6 @@
     maxIntensity: 500
     intensitySlope: 10
     totalIntensity: 500
-  - type: MiningGatheringSoft
-  - type: MiningGatheringHard
   - type: TargetSeeking
     acceleration: 200
     detectionRange: 1

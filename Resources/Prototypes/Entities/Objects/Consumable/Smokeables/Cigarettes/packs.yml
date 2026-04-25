@@ -182,7 +182,7 @@
 
 - type: entity
   id: CigPackSyndicate
-  parent: [CigPackBase, BaseC3SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [CigPackBase, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
   name: Interdyne herbals packet
   description: Elite cigarettes for elite syndicate agents. Infused with medicine for when you need to do more than calm your nerves.
   components:

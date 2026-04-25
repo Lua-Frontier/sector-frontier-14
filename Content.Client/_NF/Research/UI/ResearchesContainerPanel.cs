@@ -62,7 +62,7 @@ public sealed partial class ResearchesContainerPanel : LayoutContainer
 
         foreach (var dependent in _itemsById.Values)
         {
-            var prereqs = dependent.Prototype.TechnologyPrerequisites;
+            var prereqs = dependent.EffectivePrerequisites;
             if (prereqs.Count == 0)
                 continue;
 

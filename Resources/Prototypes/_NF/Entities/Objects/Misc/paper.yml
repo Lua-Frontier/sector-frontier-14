@@ -1,6 +1,6 @@
 - type: entity
   id: PaperPirateBountyManifest
-  parent: PaperCargoInvoice
+  parent: [PaperCargoInvoice, BaseC1PirateContrabandNoValue] # Lua-changes: added BaseC1PirateContrabandNoValue
   name: pirate bounty reminder
   description: A little scroll reminding you of the bounty you agreed to pilfer. How is it stained?
   components:

@@ -2,7 +2,7 @@
   id: ClothingOuterCoatCultJanitor
   name: cult janitor robes
   parent:
-  - BaseC3CultContraband
+  - BaseC1CultContraband # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   - ClothingOuterStorageBase
   - ClothingOuterArmorBulletproof
   - ContrabandClothing
@@ -17,7 +17,7 @@
   id: ClothingOuterCoatBloodCultRobes
   name: cult robes
   parent:
-  - BaseC3CultContraband
+  - BaseC1CultContraband # Lua-changes: BaseC3CultContraband > BaseC1CultContraband
   - ClothingOuterStorageToggleableBase
   - ClothingOuterArmorBasic
   - ContrabandClothing

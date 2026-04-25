@@ -1,5 +1,5 @@
 - type: entity
-  parent: [DoorRemoteDefault, BaseCommandContraband]
+  parent: [DoorRemoteDefault, BaseC3CentCommContraband] # Lua-changes: BaseCommandContraband > BaseC3CentCommContraband
   id: DoorRemoteNfsd
   name: NFSD door remote
   components:

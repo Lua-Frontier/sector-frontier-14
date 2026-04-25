@@ -425,14 +425,8 @@ uplink-vip-CardBoxBlack-desc = { ent-CardBoxBlack }
 uplink-vip-MpplayerDefault-name = { ent-MpplayerDefault }
 uplink-vip-MpplayerDefault-desc = { ent-MpplayerDefault.desc }
 
-uplink-vip-MpplayerBoich-name = { ent-MpplayerBoich }
-uplink-vip-MpplayerBoich-desc = { ent-MpplayerBoich.desc }
-
-uplink-vip-Mpplayer-name = { ent-Mpplayer }
-uplink-vip-Mpplayer-desc = { ent-Mpplayer.desc }
-
-uplink-vip-MpplayerNetscape-name = { ent-MpplayerNetscape }
-uplink-vip-MpplayerNetscape-desc = { ent-MpplayerNetscape.desc }
+uplink-vip-SponsorMusicPlayer-name = { ent-SponsorMusicPlayer }
+uplink-vip-SponsorMusicPlayer-desc = { ent-SponsorMusicPlayer.desc }
 
 uplink-vip-CrateCargoGambling-name = { ent-CrateCargoGambling }
 uplink-vip-CrateCargoGambling-desc = { ent-CrateCargoGambling.desc }
@@ -520,14 +514,8 @@ ent-CardBoxNanotrasen = коробка с картами Nanotrasen
 ent-MpplayerDefault = портативный плеер
     .desc = Небольшой портативный музыкальный плеер.
 
-ent-MpplayerBoich = портативный плеер Боича
-    .desc = Небольшой портативный музыкальный плеер с особым плейлистом.
-
-ent-Mpplayer = портативный плеер Луа
-    .desc = Небольшой портативный музыкальный плеер старой модели.
-
-ent-MpplayerNetscape = портативный плеер Нетскейпа
-    .desc = Плеер с интерфейсом в стиле старых браузеров.
+ent-SponsorMusicPlayer = плеер
+    .desc = Особый плеер с личной музыкой.
 
 ent-ClothingUniformLatexLovedmaid = латексный наряд горничной
     .desc = Обтягивающий латексный костюм горничной для особых случаев.

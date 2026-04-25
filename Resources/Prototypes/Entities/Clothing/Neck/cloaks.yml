@@ -166,7 +166,7 @@
     node: GoliathCloack
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseC1PirateContrabandNoValue] # Lua-changes: added BaseC1PirateContrabandNoValue
   id: ClothingNeckCloakPirateCap
   name: pirate captain cloak
   description: A rather fetching black pirate cloak, complete with skull motif.

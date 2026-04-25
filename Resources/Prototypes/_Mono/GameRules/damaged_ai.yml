@@ -33,10 +33,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -89,10 +89,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -145,10 +145,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -201,10 +201,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -257,10 +257,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -313,10 +313,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -369,10 +369,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -425,10 +425,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -481,10 +481,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -537,10 +537,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -593,10 +593,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 150 # 2.5 hours
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -649,10 +649,10 @@
     requiredJobs:
       Sheriff: 1
     reoccurrenceDelay: 120 # 2 hours
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -705,10 +705,10 @@
 #     minimumPlayers: 10
 #     requiredJobs:
 #       Sheriff: 1
-#     duration: -1
+#     duration: 3600
 #   - type: AiShuttleSpawnRule
-#     deleteGridsOnEnd: false
-#     asteroid: false
+#     deleteGridsOnEnd: true
+#     asteroid: true
 #     groups:
 #       grid: !type:AiShuttleGridSpawnGroup
 #         minimumDistance: 1600
@@ -761,10 +761,10 @@
     minimumPlayers: 10
     requiredJobs:
       Sheriff: 1
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -817,10 +817,10 @@
     minimumPlayers: 10
     requiredJobs:
       Sheriff: 1
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600
@@ -873,10 +873,10 @@
     minimumPlayers: 10
     requiredJobs:
       Sheriff: 1
-    duration: -1
+    duration: 3600
   - type: AiShuttleSpawnRule
-    deleteGridsOnEnd: false
-    asteroid: false
+    deleteGridsOnEnd: true
+    asteroid: true
     groups:
       grid: !type:AiShuttleGridSpawnGroup
         minimumDistance: 1600

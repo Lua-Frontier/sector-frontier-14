@@ -140,6 +140,14 @@
   - type: TallWhitelist
     scale: 1.2
   # End Frontier
+  - type: LuaJumpAbility # Lua: +25% jump distance
+    jumpDistance: 5
+  - type: LuaSprint # Lua
+    maxSprint: 118
+    drainPerSecond: 5.8
+    regenPerSecond: 8.9
+    regenDelay: 0.16
+    recoverThresholdFraction: 0.23
 
 - type: entity
   save: false

@@ -211,7 +211,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseC3Contraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing as parent
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseC3SpiderClanContraband] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing as parent # Lua-changes: BaseC3Contraband > BaseC3SpiderClanContraband, deleted ContrabandClothing
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.

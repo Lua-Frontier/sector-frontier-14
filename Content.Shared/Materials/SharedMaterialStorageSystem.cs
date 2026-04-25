@@ -133,7 +133,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return false;
-        return component.StorageLimit == null || GetTotalMaterialAmount(uid, component, true) + volume <= component.StorageLimit;
+        return component.StorageLimit == null || GetTotalMaterialAmount(uid, component, localOnly) + volume <= component.StorageLimit;
     }
 
     /// <summary>
@@ -361,7 +361,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             totalVolume += vol * multiplier;
         }
 
-        if (!CanTakeVolume(receiver, totalVolume, storage, localOnly: true))
+        if (!CanTakeVolume(receiver, totalVolume, storage))
             return false;
 
         foreach (var (mat, vol) in composition.MaterialComposition)

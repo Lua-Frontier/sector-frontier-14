@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Whether or not world generation is enabled.
     /// </summary>
     public static readonly CVarDef<bool> WorldgenEnabled =
-        CVarDef.Create("worldgen.enabled", true, CVar.SERVERONLY); // Frontier: true
+        CVarDef.Create("worldgen.enabled", false, CVar.SERVERONLY); // Lua: false all generation in asteroid sector
 
     /// <summary>
     ///     The worldgen config to use.

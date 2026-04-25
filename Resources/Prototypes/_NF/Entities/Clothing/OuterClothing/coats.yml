@@ -127,7 +127,7 @@
       - state: equipped-OUTERCLOTHING
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseC3PirateContrabandNoValue ]
+  parent: ClothingOuterStorageBase # Lua-changes: deleted BaseC3PirateContrabandNoValue
   id: ClothingOuterCoatPirateCaptain
   name: pirate captain's coat
   description: Y'arrgh har fiddle di dee.
@@ -138,7 +138,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/pirate_captain.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: [ClothingOuterStorageFoldableBase, BaseC1Contraband] # Lua-changes: BaseC3ContrabandNoValue > BaseC1Contraband, deleted ContrabandClothing
   id: ClothingOuterCoatArcadiaTrench
   name: arcadia flak trenchcoat
   description: A flak trenchcoat produced by Arcadia Industries, enhanced with a bulletproof alloy for some extra protection.

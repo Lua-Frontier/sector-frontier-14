@@ -1,7 +1,7 @@
 - type: entity
   id: ClothingBeltArcadia
   name: arcadia webbing
-  parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: NFClothingBeltStorageBase # Lua-changes: deleted BaseC3ContrabandNoValue and ContrabandClothing
   description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite

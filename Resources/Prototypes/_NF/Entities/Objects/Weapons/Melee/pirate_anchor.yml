@@ -1,6 +1,6 @@
 - type: entity
   name: pirate anchor
-  parent: [BaseC3PirateContraband, SecBreachingHammer]
+  parent: [BaseC1Contraband, SecBreachingHammer] # Lua-changes: BaseC3PirateContraband > BaseC1Contraband
   id: PirateBreachingAnchor
   description: A large, heavy anchor to beat down anyone and anything standing between you and your plunder.
   components:

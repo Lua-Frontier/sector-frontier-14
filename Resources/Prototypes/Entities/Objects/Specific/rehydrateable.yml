@@ -203,7 +203,7 @@
 # It inherits FoodComponent from PlushieCarp, but is de-facto inedible
 # PlushieCarp has requiresSpecialDigestion:true, and this one is not whitelisted anywhere, so it behaves like it's not edible
 - type: entity
-  parent: [BaseC3SyndicateContraband, PlushieCarp, RehydratableItem] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [BaseC2SyndicateContraband, PlushieCarp, RehydratableItem] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC2SyndicateContraband
   id: DehydratedSpaceCarp
   name: dehydrated space carp
   description: Looks like a plush toy carp, but just add water and it becomes a real-life space carp!

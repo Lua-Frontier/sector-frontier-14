@@ -25,12 +25,6 @@
   name: jetpack
   description: It's a jetpack. It can hold 5 L of gas.
   components:
-  - type: RadarBlip
-    radarColor: "#8A2BE2"
-    scale: 0.6
-    visibleFromOtherGrids: true
-    requireNoGrid: false
-    enabled: false
   - type: Sprite
     sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
     layers:
@@ -125,7 +119,7 @@
 #Empty black
 - type: entity
   id: JetpackBlack
-  parent: [BaseJetpack, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: BaseJetpack # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband # Lua-changes: deleted BaseC3SyndicateContraband
   name: jetpack
   suffix: Empty
   components:

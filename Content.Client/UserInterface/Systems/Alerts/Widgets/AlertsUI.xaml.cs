@@ -23,6 +23,7 @@ public sealed partial class AlertsUI : UIWidget
 {
     // also known as Control.Children?
     private readonly Dictionary<AlertKey, AlertControl> _alertControls = new();
+    private bool _showSprint;
 
     public AlertsLayoutMode LayoutMode { get; private set; } = AlertsLayoutMode.Bottom; // Lua
 
@@ -36,11 +37,21 @@ public sealed partial class AlertsUI : UIWidget
         LayoutMode = mode;
         RightModeRoot.Visible = mode == AlertsLayoutMode.Right;
         BottomModeRoot.Visible = mode == AlertsLayoutMode.Bottom;
+        ApplySprintVisibility();
         RebuildLayout(null);
     }
 
     public void SetIconScale(float scale)
     { foreach (var control in _alertControls.Values) { control.SetIconScale(scale); } }
+
+    public void SetSprint(float value, bool visible)
+    {
+        _showSprint = visible;
+        var clamped = Math.Clamp(value, 0f, 1f);
+        RightSprintBar.Value = clamped;
+        BottomSprintBar.Value = clamped;
+        ApplySprintVisibility();
+    }
 
     public void SyncControls(AlertsSystem alertsSystem,
         AlertOrderPrototype? alertOrderPrototype,
@@ -196,6 +207,12 @@ public sealed partial class AlertsUI : UIWidget
                 }
                 break;
         }
+    }
+
+    private void ApplySprintVisibility()
+    {
+        RightSprintBar.Visible = _showSprint && LayoutMode == AlertsLayoutMode.Right;
+        BottomSprintBar.Visible = _showSprint && LayoutMode == AlertsLayoutMode.Bottom;
     }
 
     private AlertControl CreateAlertControl(AlertPrototype alert, AlertState alertState)

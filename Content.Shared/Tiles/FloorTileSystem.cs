@@ -195,7 +195,7 @@ public sealed class FloorTileSystem : EntitySystem
 
         if (ev.Cancelled)
         {
-            reason = Loc.GetString("invalid-floor-placement");
+            reason = ev.Reason ?? Loc.GetString("invalid-floor-placement");
             return false;
         }
 

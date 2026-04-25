@@ -35,7 +35,7 @@
 #Empty pirate
 - type: entity
   id: JetpackPirate
-  parent: [BaseJetpack, BaseC3PirateContraband]
+  parent: [BaseJetpack, BaseC1PirateContraband] # Lua-changes: BaseC3PirateContraband > BaseC1PirateContraband
   name: pirate jetpack
   suffix: Empty
   components:
