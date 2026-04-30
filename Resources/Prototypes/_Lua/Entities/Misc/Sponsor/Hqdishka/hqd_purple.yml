@@ -4,7 +4,7 @@
 - type: entity
   parent: [ ClothingBackpackIris, ClothingBackpack ]
   id: ClothingBackpackIrisP
-  name: модифицированная сумка "LuaTech"
+  name: фиолетовая сумка "LuaTech"
   suffix: Айрис
   description: Сумка разработанная "LuaTech" с функцией РИГ.
   categories: [ HideSpawnMenu ]
@@ -17,21 +17,7 @@
     slot: outerClothing
   - type: StorageFill
     contents:
-      - id: IrisHandsRing
       - id: PaperLawsIris
-      - id: HacksHat
-      - id: HacksPDA
-      - id: ClothingShoesBootsLua
-      - id: ClothingNeckCapeLuaDalt
-      - id: ClothingNeckCapeLuaBlackDalt
-      - id: ClothingUniformJumpsuitIris
-      - id: HyposprayLua
-      - id: ClothingEyesHudLuaTech
-      - id: PlushieSharkBlack
-      - id: PlushieIrisLua
-      - id: PlushieHacksLua
-      - id: ClothingBeltIrisRed
-      - id: BlinkImplanterLua
 
 - type: entity
   parent: [ ClothingHeadHelmetIris, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]

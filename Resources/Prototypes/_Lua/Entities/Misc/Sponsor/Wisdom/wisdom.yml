@@ -1,12 +1,22 @@
-# Sponsor Loadout
+# Backpack
 - type: sponsorLoadout
   id: Wisdom
-  entity: ClothingBackpackWisdom
-  sponsorOnly: true
-  login: Wisdom
-  sponsorRole: Божество
+  ownerLogin: Wisdom
+  tier: god
+  entities:
+    - ClothingBackpackWisdom
+    - ClothingBeltWisdom
+    - ClothingHandsGlovesWisdom
+    - ClothingOuterHardsuitWisdom
+    - ClothingUniformJumpsuitWisdom
+    - ClothingShoesBootsMagWisdom
+    - ClothingMaskWisdom
+    - ClothingHeadsetWisdom
+    - PDAWisdom
+    - ClothingOuterCoatWisdom
+    - ClothingBeltHolsterWisdom
+    - SyndicateJawsOfLifeWisdom
 
-# Backpack
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackWisdom
@@ -21,19 +31,6 @@
     maxItemSize: Huge
     grid:
     - 0,0,11,5
-  - type: StorageFill
-    contents:
-    - id: ClothingBeltWisdom
-    - id: ClothingHandsGlovesWisdom
-    - id: ClothingOuterHardsuitWisdom
-    - id: ClothingUniformJumpsuitWisdom
-    - id: ClothingShoesBootsMagWisdom
-    - id: ClothingMaskWisdom
-    - id: ClothingHeadsetWisdom
-    - id: PDAWisdom
-    - id: ClothingOuterCoatWisdom
-    - id: ClothingBeltHolsterWisdom
-    - id: SyndicateJawsOfLifeWisdom
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
 

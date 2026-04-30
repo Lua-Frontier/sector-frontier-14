@@ -1,9 +1,10 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Server.Store.Conditions;
 using Content.Shared.Mind;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Server.Store.Systems;
 
@@ -24,11 +25,9 @@ public sealed partial class StoreSystem
         {
             foreach (var previousStateListingItem in previousState)
             {
-                if (!previousStateListingItem.IsCostModified
-                    || !TryGetListing(newState, previousStateListingItem.ID, out var found))
-                {
-                    continue;
-                }
+                if (!TryGetListing(newState, previousStateListingItem.ID, out var found)) continue;
+                if (previousStateListingItem.PurchaseAmount > 0) found.PurchaseAmount = previousStateListingItem.PurchaseAmount;
+                if (!previousStateListingItem.IsCostModified) continue;
 
                 foreach (var (modifierSourceId, costModifier) in previousStateListingItem.CostModifiersBySourceId)
                 {
@@ -143,15 +142,7 @@ public sealed partial class StoreSystem
             if (listing.Conditions != null)
             {
                 var args = new ListingConditionArgs(GetBuyerMind(buyer), storeEntity, listing, EntityManager);
-                var conditionsMet = true;
-                var hasLimitedStock = false; // Lua stock mod
-
-                foreach (var condition in listing.Conditions) // Lua stock mod
-                {
-                    if (condition is ListingLimitedStockCondition) { hasLimitedStock = true; continue; }
-                    if (!condition.Condition(args)) { conditionsMet = false; break; }
-                }
-                if (!conditionsMet && !hasLimitedStock) continue;
+                if (!listing.Conditions.All(c => c.Condition(args))) continue;
             }
 
             yield return listing;

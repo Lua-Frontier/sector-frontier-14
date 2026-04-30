@@ -43,6 +43,7 @@ namespace Content.Client.Input
             // Lua: allow toggling language menu via keybind (F)
             common.AddFunction(ContentKeyFunctions.OpenLanguageMenu);
             common.AddFunction(ContentKeyFunctions.OpenCompanyFactionsMenu);
+            common.AddFunction(ContentKeyFunctions.OpenDonateShopMenu);
 
             // Not in engine, because engine cannot check for sanbox/admin status before starting placement.
             common.AddFunction(ContentKeyFunctions.EditorCopyObject);

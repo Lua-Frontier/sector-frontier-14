@@ -68,6 +68,14 @@ public sealed partial class StoreSystem
         UpdateUserInterface(user, storeEnt, component);
     }
 
+    public void OpenUi(EntityUid user, EntityUid storeEnt, StoreComponent? component = null)
+    {
+        if (!Resolve(storeEnt, ref component)) return;
+        if (!TryComp<ActorComponent>(user, out var actor)) return;
+        if (!_ui.TryOpenUi(storeEnt, StoreUiKey.Key, user)) return;
+        UpdateUserInterface(user, storeEnt, component);
+    }
+
     /// <summary>
     /// Closes the store UI for everyone, if it's open
     /// </summary>
@@ -169,7 +177,7 @@ public sealed partial class StoreSystem
         //condition checking because why not
         if (listing.Conditions != null)
         {
-            var args = new ListingConditionArgs(component.AccountOwner ?? GetBuyerMind(buyer), uid, listing, EntityManager);
+            var args = new ListingConditionArgs(GetBuyerMind(component.AccountOwner ?? buyer), uid, listing, EntityManager);
             var conditionsMet = listing.Conditions.All(condition => condition.Condition(args));
 
             if (!conditionsMet)

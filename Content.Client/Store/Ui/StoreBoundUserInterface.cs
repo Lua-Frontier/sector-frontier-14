@@ -29,6 +29,12 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
+        if (_menu is { Disposed: false })
+        {
+            _menu.MoveToFront();
+            return;
+        }
+
         _menu = this.CreateWindow<StoreMenu>();
         if (EntMan.TryGetComponent<StoreComponent>(Owner, out var store))
             _menu.Title = Loc.GetString(store.Name);

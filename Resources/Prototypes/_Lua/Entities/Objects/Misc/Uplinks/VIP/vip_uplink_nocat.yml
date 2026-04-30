@@ -14,15 +14,15 @@
     Speso: 2800
   categories:
     - UplinkVipNocat
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipNocatCardBoxSyndicate
@@ -33,15 +33,15 @@
     Speso: 2100
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatCardBoxNanotrasen
@@ -52,15 +52,15 @@
     Speso: 2100
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatCardBoxBlack
@@ -71,15 +71,15 @@
     Speso: 2100
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatMpplayerDefault
@@ -90,15 +90,15 @@
     Speso: 1000
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatSponsorMusicPlayer
@@ -109,15 +109,15 @@
     Speso: 1000
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatCrateCargoGambling
@@ -128,15 +128,15 @@
     Speso: 15000
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
   - !type:ListingLimitedStockCondition
     stock: 20
 
@@ -149,15 +149,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatCoordinatesDiskFrontier
@@ -168,14 +168,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    #Only Frontier Vipe
+    - Акционер
     - Vip
 
 - type: listing
@@ -187,14 +188,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    #Only NF Vip
+    - Акционер
     - OutpostSyndicateShareholder
 
 - type: listing
@@ -206,15 +208,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatAdvancedMineralScanner
@@ -225,15 +227,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatMedicalAppraisalTool
@@ -244,15 +246,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatHandHeldMassScanner
@@ -263,15 +265,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatContrabandAppraisalTool
@@ -282,15 +284,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipNocatAppraisalTool
@@ -301,15 +303,15 @@
     Speso: 300
   categories:
   - UplinkVipNocat
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 
 
@@ -323,15 +325,15 @@
     Speso: 17000
   categories:
     - UplinkVipNocat
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
     - !type:ListingLimitedStockCondition
       stock: 1
 
@@ -345,15 +347,15 @@
     Speso: 360
   categories:
     - UplinkVipNocat
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
     - !type:ListingLimitedStockCondition
       stock: 30
 
@@ -367,14 +369,14 @@
     Speso: 360
   categories:
     - UplinkVipNocat
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 

@@ -1757,6 +1757,16 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<List<Sponsor>> GetAllActiveSponsors(Guid player)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.Set<Sponsor>()
+                .Where(s => s.PlayerUserId == player)
+                .Where(s => s.EndDate == null)
+                .ToListAsync();
+        }
+
         #endregion
 
         #region Job Whitelists
