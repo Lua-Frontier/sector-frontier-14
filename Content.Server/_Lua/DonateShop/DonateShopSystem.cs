@@ -2,18 +2,27 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
-using Content.Server.Store.Systems;
-using Content.Server.Sponsors;
-using Content.Shared.Ghost;
+using Content.Server._NF.Bank;
+using Content.Server.Actions;
+using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
+using Content.Server.Sponsors;
 using Content.Server.Store.Conditions;
+using Content.Server.Store.Systems;
 using Content.Shared._Lua.DonateShop;
 using Content.Shared._Lua.SponsorLoadout;
 using Content.Shared._NF.Bank.Components;
+using Content.Shared.Actions;
+using Content.Shared.Audio;
+using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.Ghost;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Lua.CLVar;
+using Content.Shared.Mind;
 using Content.Shared.Store;
-using Content.Shared.Store.Components;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -39,7 +48,14 @@ public sealed class DonateShopSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    private readonly Dictionary<NetUserId, EntityUid> _donateShops = new();
+    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly IAdminLogManager _admin = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    private static readonly SoundSpecifier BuySound = new SoundPathSpecifier("/Audio/Items/appraiser.ogg");
     private readonly HashSet<(int RoundId, NetUserId UserId, string ListingId)> _roundPurchases = new();
     private readonly HttpClient _httpClient = new();
     private readonly ConcurrentDictionary<Guid, (long Balance, DateTime ExpiresAt)> _lunaCoinCache = new();
@@ -47,6 +63,34 @@ public sealed class DonateShopSystem : EntitySystem
     private string _lunaCoinApiUrl = string.Empty;
     private string _lunaCoinApiToken = string.Empty;
     private ISawmill _sawmill = default!;
+
+    private static readonly HashSet<ProtoId<StoreCategoryPrototype>> DonateShopCategories =
+    [
+        "UplinkVipHardsuits",
+        "UplinkVipClothing",
+        "UplinkVipCloaks",
+        "UplinkVipBedsheets",
+        "UplinkVipUseful",
+        "UplinkVipFuel",
+        "UplinkVipBackpack",
+        "UplinkVipGun",
+        "UplinkVipAmmo",
+        "UplinkVipNocat",
+        "UplinkVipFlatpack",
+        "UplinkVipCrates",
+        "UplinkVipTierShareholder",
+        "UplinkVipTierGod",
+        "UplinkVipTierRank1",
+        "UplinkVipTierRank2",
+        "UplinkVipTierRank3",
+    ];
+
+    private static readonly ProtoId<CurrencyPrototype>[] CurrencyWhitelist =
+    [
+        "Speso",
+        "LunaCoin",
+    ];
+
     public override void Initialize()
     {
         base.Initialize();
@@ -65,7 +109,6 @@ public sealed class DonateShopSystem : EntitySystem
         _lunaCoinCache.TryRemove(ev.Player.UserId.UserId, out _);
         _playerPurchaseLocks.TryRemove(ev.Player.UserId.UserId, out var playerLock);
         playerLock?.Dispose();
-        if (_donateShops.Remove(ev.Player.UserId, out var donateShop) && Exists(donateShop)) Del(donateShop);
     }
 
     private async void OnRequestState(RequestDonateShopStateMessage msg, EntitySessionEventArgs args)
@@ -93,30 +136,20 @@ public sealed class DonateShopSystem : EntitySystem
         await playerLock.WaitAsync();
         try
         {
-            var donateShop = EnsureDonateShop(session.UserId, player);
-            if (!TryComp<StoreComponent>(donateShop, out var store))
-            {
-                await SendStateAsync(session, "donate-shop-error-access-denied");
-                return;
-            }
             var lunaCoinBalance = await GetLunaCoinBalanceAsync(userId);
-            SetLunaCoinBalance(store, lunaCoinBalance);
-            _store.RefreshAllListings(store);
-            AppendPersonalListings(store, player, session.UserId);
-            var availableListings = _store.GetAvailableListings(player, donateShop, store).ToDictionary(listing => listing.ID, StringComparer.Ordinal);
-            if (!availableListings.ContainsKey(msg.ListingId))
+            var catalog = BuildCatalog(player, session.UserId, lunaCoinBalance);
+            var availableListings = GetAvailableDonateListings(player, catalog).ToDictionary(l => l.ID, StringComparer.Ordinal);
+            if (!availableListings.TryGetValue(msg.ListingId, out var listing))
             {
                 await SendStateAsync(session);
                 return;
             }
-            if (IsRoundLimitedAndAlreadyPurchased(session.UserId, availableListings[msg.ListingId]))
+            if (IsRoundLimitedAndAlreadyPurchased(session.UserId, listing))
             {
                 await SendStateAsync(session);
                 return;
             }
-
-            var listingToBuy = availableListings[msg.ListingId];
-            var lunaCost = GetLunaCoinCost(listingToBuy);
+            var lunaCost = GetLunaCoinCost(listing);
             if (lunaCost > 0)
             {
                 var spendResult = await SpendLunaCoinAsync(userId, lunaCost, $"DonateShop purchase: {msg.ListingId}");
@@ -128,25 +161,45 @@ public sealed class DonateShopSystem : EntitySystem
                     await SendStateAsync(session, errorKey);
                     return;
                 }
-
                 if (_lunaCoinCache.TryGetValue(userId, out var cached))
+                    _lunaCoinCache[userId] = (Math.Max(0, cached.Balance - lunaCost), DateTime.UtcNow.AddSeconds(60));
+            }
+            if (listing.Cost.TryGetValue("Speso", out var spesoAmount) && spesoAmount > FixedPoint2.Zero)
+            {
+                if (!_bank.TryBankWithdraw(player, spesoAmount.Int()))
                 {
-                    var newBalance = Math.Max(0, cached.Balance - lunaCost);
-                    _lunaCoinCache[userId] = (newBalance, DateTime.UtcNow.AddSeconds(60));
+                    await SendStateAsync(session, "donate-shop-error-insufficient-funds");
+                    return;
                 }
             }
-
-            var purchaseBefore = availableListings[msg.ListingId].PurchaseAmount;
-            var buyMessage = new StoreBuyListingMessage(msg.ListingId)
-            { Actor = player, };
-            RaiseLocalEvent(donateShop, buyMessage, true);
-            var listingAfterBuy = store.FullListingsCatalog.FirstOrDefault(listing => listing.ID == msg.ListingId);
-            if (listingAfterBuy != null && listingAfterBuy.PurchaseAmount > purchaseBefore && IsRoundLimited(listingAfterBuy))
-                _roundPurchases.Add((_gameTicker.RoundId, session.UserId, msg.ListingId));
+            ExecutePurchase(player, listing);
+            if (HasLimitedStock(listing))_roundPurchases.Add((_gameTicker.RoundId, session.UserId, listing.ID));
             await SendStateAsync(session);
         }
         finally
         { playerLock.Release(); }
+    }
+
+    private void ExecutePurchase(EntityUid buyer, ListingDataWithCostModifiers listing)
+    {
+        if (listing.ProductEntity != null)
+        {
+            var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
+            _hands.PickupOrDrop(buyer, product);
+        }
+        if (!string.IsNullOrWhiteSpace(listing.ProductAction))
+        {
+            if (!_mind.TryGetMind(buyer, out var mind, out _))_actions.AddAction(buyer, listing.ProductAction);
+            else _actionContainer.AddAction(mind, listing.ProductAction);
+        }
+        if (listing.ProductEvent != null)
+        {
+            if (!listing.RaiseProductEventOnUser)RaiseLocalEvent(listing.ProductEvent);
+            else RaiseLocalEvent(buyer, listing.ProductEvent);
+        }
+        _admin.Add(LogType.StorePurchase, LogImpact.Low, $"{ToPrettyString(buyer):player} purchased donate shop listing \"{ListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _prototypes)}\"");
+        listing.PurchaseAmount++;
+        _audio.PlayEntity(BuySound, buyer, buyer);
     }
 
     private async Task SendStateAsync(ICommonSession session, string? errorLocKey = null)
@@ -156,22 +209,15 @@ public sealed class DonateShopSystem : EntitySystem
         var lunaCoinBalance = await GetLunaCoinBalanceAsync(session.UserId.UserId);
         if (!hasSubscription)
         {
-            if (session.AttachedEntity is { Valid: true } playerNoSub)
+            if (session.AttachedEntity is { Valid: true } playerNoSub && !HasComp<GhostComponent>(playerNoSub))
             {
-                var shopNoSub = EnsureDonateShop(session.UserId, playerNoSub);
-                if (TryComp<StoreComponent>(shopNoSub, out var storeNoSub))
-                {
-                    SetLunaCoinBalance(storeNoSub, lunaCoinBalance);
-                    _store.RefreshAllListings(storeNoSub);
-                    var listingsNoSub = storeNoSub.FullListingsCatalog
-                        .Where(l => _store.ListingHasCategory(l, storeNoSub.Categories))
-                        .ToHashSet();
-                    var bankBalanceNoSub = TryComp<BankAccountComponent>(playerNoSub, out var bankNoSub) ? bankNoSub.Balance : 0;
-                    var hasBankNoSub = HasComp<BankAccountComponent>(playerNoSub);
-                    var balanceNoSub = BuildBalance(storeNoSub, bankBalanceNoSub, hasBankNoSub);
-                    RaiseNetworkEvent(new DonateShopStateMessage(false, false, string.Empty, string.Empty, listingsNoSub, balanceNoSub, bankBalanceNoSub, hasBankNoSub, lunaCoinBalance: lunaCoinBalance), session);
-                    return;
-                }
+                var catalogNoSub = BuildCatalog(playerNoSub, session.UserId, lunaCoinBalance);
+                var listingsNoSub = catalogNoSub.Where(l => _store.ListingHasCategory(l, DonateShopCategories)).ToHashSet();
+                var bankBalanceNoSub = TryComp<BankAccountComponent>(playerNoSub, out var bankNoSub) ? bankNoSub.Balance : 0;
+                var hasBankNoSub = HasComp<BankAccountComponent>(playerNoSub);
+                var balanceNoSub = BuildBalance(bankBalanceNoSub, hasBankNoSub, lunaCoinBalance);
+                RaiseNetworkEvent(new DonateShopStateMessage(false, false, string.Empty, string.Empty, listingsNoSub, balanceNoSub, bankBalanceNoSub, hasBankNoSub, lunaCoinBalance: lunaCoinBalance), session);
+                return;
             }
             RaiseNetworkEvent(new DonateShopStateMessage(false, false, string.Empty, string.Empty, lunaCoinBalance: lunaCoinBalance), session);
             return;
@@ -183,31 +229,95 @@ public sealed class DonateShopSystem : EntitySystem
             RaiseNetworkEvent(new DonateShopStateMessage(false, true, primary.Role, primary.PlannedEndDate.HasValue ? $"{primary.PlannedEndDate.Value:dd.MM.yyyy}" : "∞", errorLocKey: "donate-shop-error-no-entity", activeTierNames: activeTierNames, lunaCoinBalance: lunaCoinBalance), session);
             return;
         }
-        var donateShop = EnsureDonateShop(session.UserId, player);
-        if (!TryComp<StoreComponent>(donateShop, out var store))
-        {
-            RaiseNetworkEvent(new DonateShopStateMessage(false, true, primary.Role, primary.PlannedEndDate.HasValue ? $"{primary.PlannedEndDate.Value:dd.MM.yyyy}" : "∞", errorLocKey: "donate-shop-error-access-denied", activeTierNames: activeTierNames, lunaCoinBalance: lunaCoinBalance), session);
-            return;
-        }
-        SetLunaCoinBalance(store, lunaCoinBalance);
-        _store.RefreshAllListings(store);
-        AppendPersonalListings(store, player, session.UserId);
-        var listings = GetDisplayListings(player, donateShop, store);
+        var catalog = BuildCatalog(player, session.UserId, lunaCoinBalance);
+        var listings = GetDisplayListings(player, catalog);
         var bankBalance = TryComp<BankAccountComponent>(player, out var bank) ? bank.Balance : 0;
         var hasBankBalance = HasComp<BankAccountComponent>(player);
-        var balance = BuildBalance(store, bankBalance, hasBankBalance);
+        var balance = BuildBalance(bankBalance, hasBankBalance, lunaCoinBalance);
         var status = primary.PlannedEndDate.HasValue ? $"{primary.PlannedEndDate.Value:dd.MM.yyyy}" : "∞";
         RaiseNetworkEvent(new DonateShopStateMessage(true, true, primary.Role, status, listings, balance, bankBalance, hasBankBalance, errorLocKey, activeTierNames, lunaCoinBalance), session);
     }
 
+    private HashSet<ListingDataWithCostModifiers> BuildCatalog(EntityUid player, NetUserId actorUserId, long lunaCoinBalance)
+    {
+        var catalog = _store.GetAllListings();
+        foreach (var listing in catalog)
+        { if (HasLimitedStock(listing) && _roundPurchases.Contains((_gameTicker.RoundId, actorUserId, listing.ID)))listing.PurchaseAmount = 1; }
+        AppendPersonalListings(catalog, player, actorUserId);
+        return catalog;
+    }
+    private IEnumerable<ListingDataWithCostModifiers> GetAvailableDonateListings(EntityUid player, HashSet<ListingDataWithCostModifiers> catalog)
+    {
+        var mind = _store.GetBuyerMind(player);
+        foreach (var listing in catalog)
+        {
+            if (!_store.ListingHasCategory(listing, DonateShopCategories)) continue;
+            if (listing.Conditions != null)
+            {
+                var args = new ListingConditionArgs(mind, null, listing, EntityManager);
+                var ok = true;
+                foreach (var condition in listing.Conditions)
+                {
+                    if (condition is StoreWhitelistCondition) continue;
+                    if (!condition.Condition(args)) { ok = false; break; }
+                }
+                if (!ok) continue;
+            }
+            yield return listing;
+        }
+    }
+
+    private HashSet<ListingDataWithCostModifiers> GetDisplayListings(EntityUid player, HashSet<ListingDataWithCostModifiers> catalog)
+    {
+        var mind = _store.GetBuyerMind(player);
+        var result = new HashSet<ListingDataWithCostModifiers>();
+        foreach (var listing in catalog)
+        {
+            if (!_store.ListingHasCategory(listing, DonateShopCategories)) continue;
+            if (listing.Conditions != null)
+            {
+                var args = new ListingConditionArgs(mind, null, listing, EntityManager);
+                var ok = true;
+                foreach (var condition in listing.Conditions)
+                {
+                    if (condition is ListingLimitedStockCondition) continue;
+                    if (condition is BuyerSponsorTierCondition) continue;
+                    if (condition is StoreWhitelistCondition) continue;
+                    if (!condition.Condition(args)) { ok = false; break; }
+                }
+                if (!ok) continue;
+            }
+            result.Add(listing);
+        }
+        return result;
+    }
+
+    private static Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> BuildBalance(int bankBalance, bool hasBankBalance, long lunaCoinBalance)
+    {
+        var result = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>();
+        var maxDisplayAmount = (int)FixedPoint2.MaxValue;
+        foreach (var currency in CurrencyWhitelist)
+        {
+            result[currency] = FixedPoint2.Zero;
+            if (hasBankBalance && currency == "Speso")
+            {
+                result[currency] = bankBalance > maxDisplayAmount ? FixedPoint2.MaxValue : FixedPoint2.New(bankBalance);
+                continue;
+            }
+            if (currency == "LunaCoin")
+            {
+                var clamped = lunaCoinBalance switch { < 0 => 0, > int.MaxValue => int.MaxValue, _ => (int)lunaCoinBalance };
+                result[currency] = FixedPoint2.New(clamped);
+            }
+        }
+        return result;
+    }
     private async Task<long> GetLunaCoinBalanceAsync(Guid userId)
     {
         if (string.IsNullOrEmpty(_lunaCoinApiUrl) || string.IsNullOrEmpty(_lunaCoinApiToken)) return 0;
-
         var now = DateTime.UtcNow;
         if (_lunaCoinCache.TryGetValue(userId, out var cached) && cached.ExpiresAt > now)
             return cached.Balance;
-
         try
         {
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
@@ -226,35 +336,6 @@ public sealed class DonateShopSystem : EntitySystem
             _sawmill.Warning($"GetLunaCoinBalance failed for {userId}: {e.Message}");
             return 0;
         }
-    }
-
-    private Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> BuildBalance(StoreComponent store, int bankBalance, bool hasBankBalance)
-    {
-        var result = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>();
-        var maxDisplayAmount = (int) FixedPoint2.MaxValue;
-        foreach (var currency in store.CurrencyWhitelist)
-        {
-            result[currency] = FixedPoint2.Zero;
-            if (hasBankBalance && currency == "Speso")
-            {
-                result[currency] = bankBalance > maxDisplayAmount ? FixedPoint2.MaxValue : FixedPoint2.New(bankBalance);
-                continue;
-            }
-            if (store.Balance.TryGetValue(currency, out var value)) result[currency] = value;
-        }
-        return result;
-    }
-
-    private static void SetLunaCoinBalance(StoreComponent store, long lunaCoinBalance)
-    {
-        var clamped = lunaCoinBalance switch
-        {
-            < 0 => 0,
-            > int.MaxValue => int.MaxValue,
-            _ => (int)lunaCoinBalance,
-        };
-
-        store.Balance["LunaCoin"] = FixedPoint2.New(clamped);
     }
 
     private static long GetLunaCoinCost(ListingDataWithCostModifiers listing)
@@ -300,32 +381,7 @@ public sealed class DonateShopSystem : EntitySystem
 
     private sealed record LunaCoinSpendRequest(Guid UserId, long Amount, string Comment);
 
-    private static readonly ProtoId<StoreCategoryPrototype>[] TierCategories =
-    [
-        "UplinkVipTierShareholder",
-        "UplinkVipTierGod",
-        "UplinkVipTierRank1",
-        "UplinkVipTierRank2",
-        "UplinkVipTierRank3",
-    ];
-    private EntityUid EnsureDonateShop(NetUserId userId, EntityUid player)
-    {
-        if (_donateShops.TryGetValue(userId, out var donateShop) && Exists(donateShop))
-        {
-            if (TryComp<StoreComponent>(donateShop, out var existingStore)) existingStore.AccountOwner = player;
-            return donateShop;
-        }
-        donateShop = Spawn("DonateShopVirtual", Transform(player).Coordinates);
-        if (TryComp<StoreComponent>(donateShop, out var store))
-        {
-            store.AccountOwner = player;
-            foreach (var cat in TierCategories) store.Categories.Add(cat);
-        }
-        _donateShops[userId] = donateShop;
-        return donateShop;
-    }
-
-    private void AppendPersonalListings(StoreComponent store, EntityUid player, NetUserId actorUserId)
+    private void AppendPersonalListings(HashSet<ListingDataWithCostModifiers> catalog, EntityUid player, NetUserId actorUserId)
     {
         if (!TryComp<ActorComponent>(player, out var actor)) return;
         var playerName = actor.PlayerSession.Name;
@@ -337,7 +393,7 @@ public sealed class DonateShopSystem : EntitySystem
             foreach (var entityId in loadout.Entities)
             {
                 var listingId = $"SponsorPersonal_{loadout.ID}_{entityId}";
-                if (store.FullListingsCatalog.Any(x => x.ID == listingId)) continue;
+                if (catalog.Any(x => x.ID == listingId)) continue;
                 var alreadyPurchased = _roundPurchases.Contains((_gameTicker.RoundId, actorUserId, listingId)) ? 1 : 0;
                 var listingData = new ListingData(
                     name: null,
@@ -363,7 +419,7 @@ public sealed class DonateShopSystem : EntitySystem
                     restockTime: TimeSpan.Zero,
                     dataDiscountDownTo: new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>(),
                     disableRefund: false);
-                store.FullListingsCatalog.Add(new ListingDataWithCostModifiers(listingData) { Stock = 1, PurchaseAmount = alreadyPurchased });
+                catalog.Add(new ListingDataWithCostModifiers(listingData) { Stock = 1, PurchaseAmount = alreadyPurchased });
             }
         }
     }
@@ -376,30 +432,6 @@ public sealed class DonateShopSystem : EntitySystem
         "rank3" => "UplinkVipTierRank3",
         _       => "UplinkVipTierRank3",
     };
-    private HashSet<ListingDataWithCostModifiers> GetDisplayListings(EntityUid player, EntityUid donateShop, StoreComponent store)
-    {
-        var mind = _store.GetBuyerMind(player);
-        var result = new HashSet<ListingDataWithCostModifiers>();
-        foreach (var listing in store.FullListingsCatalog)
-        {
-            if (!_store.ListingHasCategory(listing, store.Categories)) continue;
-            if (listing.Conditions != null)
-            {
-                var args = new ListingConditionArgs(mind, donateShop, listing, EntityManager);
-                var ok = true;
-                foreach (var condition in listing.Conditions)
-                {
-                    if (condition is ListingLimitedStockCondition) continue;
-                    if (condition is BuyerSponsorTierCondition) continue;
-                    if (!condition.Condition(args)) { ok = false; break; }
-                }
-                if (!ok) continue;
-            }
-            result.Add(listing);
-        }
-        return result;
-    }
-
     private async Task<List<Content.Server.Database.Sponsor>> GetAllShopDonorsAsync(ICommonSession session)
     {
         if (!_playerManager.TryGetSessionById(session.UserId, out _)) return [];
@@ -421,15 +453,13 @@ public sealed class DonateShopSystem : EntitySystem
 
     private bool IsRoundLimitedAndAlreadyPurchased(NetUserId userId, ListingDataWithCostModifiers listing)
     {
-        if (!IsRoundLimited(listing)) return false;
+        if (!HasLimitedStock(listing)) return false;
         return _roundPurchases.Contains((_gameTicker.RoundId, userId, listing.ID));
     }
 
-    private static bool IsRoundLimited(ListingDataWithCostModifiers listing)
+    private static bool HasLimitedStock(ListingDataWithCostModifiers listing)
     {
         if (listing.Conditions == null) return false;
-        var hasOwnerCondition = listing.Conditions.Any(condition => condition is BuyerSponsorOwnerCondition);
-        var hasStockOne = listing.Conditions.Any(condition => condition is ListingLimitedStockCondition stockCondition && stockCondition.Stock <= 1);
-        return hasOwnerCondition && hasStockOne;
+        return listing.Conditions.Any(condition => condition is ListingLimitedStockCondition stockCondition && stockCondition.Stock <= 1);
     }
 }
