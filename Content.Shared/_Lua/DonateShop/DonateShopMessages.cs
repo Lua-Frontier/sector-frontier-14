@@ -18,7 +18,7 @@ public sealed class RequestDonateShopBuyMessage(string listingId) : EntityEventA
 { public string ListingId = listingId; }
 
 [Serializable, NetSerializable]
-public sealed class DonateShopStateMessage(bool canAccess, bool hasSubscription, string tierName, string subscriptionStatus, HashSet<ListingDataWithCostModifiers>? listings = null, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>? balance = null, int bankBalance = 0, bool hasBankBalance = false, string? errorLocKey = null, List<string>? activeTierNames = null) : EntityEventArgs
+public sealed class DonateShopStateMessage(bool canAccess, bool hasSubscription, string tierName, string subscriptionStatus, HashSet<ListingDataWithCostModifiers>? listings = null, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>? balance = null, int bankBalance = 0, bool hasBankBalance = false, string? errorLocKey = null, List<string>? activeTierNames = null, long lunaCoinBalance = 0) : EntityEventArgs
 {
     public bool CanAccess = canAccess;
     public bool HasSubscription = hasSubscription;
@@ -30,4 +30,5 @@ public sealed class DonateShopStateMessage(bool canAccess, bool hasSubscription,
     public bool HasBankBalance = hasBankBalance;
     public string? ErrorLocKey = errorLocKey;
     public List<string> ActiveTierNames = activeTierNames ?? [];
+    public long LunaCoinBalance = lunaCoinBalance;
 }

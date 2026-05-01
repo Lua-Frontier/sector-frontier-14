@@ -309,4 +309,38 @@
     whitelist:
     - Акционер
 
+# TEST LunaCoin
+- type: listing
+  id: UplinkVipClothingNeckCapeLuaBlackDalt
+  productEntity: ClothingNeckCapeLuaBlackDalt
+  cost:
+    Speso: 300
+    LunaCoin: 1
+  categories:
+  - UplinkVipClothing
+  - UplinkVipTierShareholder
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - Акционер
 
+- type: listing
+  id: UplinkVipClothingHacksHat
+  productEntity: HacksHat
+  cost:
+    LunaCoin: 1
+  categories:
+  - UplinkVipClothing
+  - UplinkVipTierShareholder
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - Акционер

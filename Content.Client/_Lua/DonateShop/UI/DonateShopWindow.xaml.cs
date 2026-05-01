@@ -129,9 +129,20 @@ public sealed partial class DonateShopWindow : BaseWindow
         }
         RoleLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-role-label", ("role", roleMarkup))));
         StatusLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-status-label", ("status", state.SubscriptionStatus))));
-        if (state.HasBankBalance) BalanceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-balance-label", ("amount", BankSystemExtensions.ToSpesoString(state.BankBalance)))));
-        else if (state.Balance.TryGetValue("Speso", out var speso)) BalanceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-balance-label", ("amount", BankSystemExtensions.ToSpesoString((int) speso)))));
-        else BalanceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-balance-label", ("amount", "0 ₴"))));
+        string bankAmount;
+        if (state.HasBankBalance)
+            bankAmount = BankSystemExtensions.ToSpesoString(state.BankBalance);
+        else if (state.Balance.TryGetValue("Speso", out var speso))
+            bankAmount = BankSystemExtensions.ToSpesoString((int) speso);
+        else
+            bankAmount = "0 $";
+
+        var lunaAmount = FormatLunaAmount(state.LunaCoinBalance);
+
+        BalanceLabel.SetMessage(FormattedMessage.FromMarkupPermissive(
+            Loc.GetString("donate-shop-balance-label", ("balance", bankAmount), ("luna", lunaAmount))));
+        LunaCoinLabel.Visible = false;
+        LunaCoinLabel.SetMessage(FormattedMessage.Empty);
         if (!string.IsNullOrWhiteSpace(state.ErrorLocKey))
         {
             ErrorLabel.Visible = true;
@@ -424,7 +435,21 @@ public sealed partial class DonateShopWindow : BaseWindow
     private string GetCostString(IReadOnlyDictionary<ProtoId<CurrencyPrototype>, FixedPoint2> cost)
     {
         if (cost.Count == 0) return Loc.GetString("store-currency-free");
-        return string.Join(" + ", cost.Select(entry => entry.Key == "Speso" ? BankSystemExtensions.ToSpesoString((int) entry.Value) : BankSystemExtensions.ToIndependentString((int) entry.Value)));
+        return string.Join(" + ", cost.Select(entry => entry.Key.Id switch
+        {
+            "Speso" => BankSystemExtensions.ToSpesoString((int) entry.Value),
+            "LunaCoin" => $"⏾{BankSystemExtensions.ToIndependentString((int) entry.Value)}",
+            _ => BankSystemExtensions.ToIndependentString((int) entry.Value)
+        }));
+    }
+
+    private static string FormatLunaAmount(long amount)
+    {
+        if (amount <= 0)
+            return BankSystemExtensions.ToIndependentString(0);
+
+        var clamped = amount > int.MaxValue ? int.MaxValue : (int) amount;
+        return BankSystemExtensions.ToIndependentString(clamped);
     }
 
     private static Color GetTierColor(string tierName) =>
