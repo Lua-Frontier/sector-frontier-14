@@ -20,6 +20,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Collections.Concurrent;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -41,7 +42,8 @@ public sealed class DonateShopSystem : EntitySystem
     private readonly Dictionary<NetUserId, EntityUid> _donateShops = new();
     private readonly HashSet<(int RoundId, NetUserId UserId, string ListingId)> _roundPurchases = new();
     private readonly HttpClient _httpClient = new();
-    private readonly Dictionary<Guid, (long Balance, DateTime ExpiresAt)> _lunaCoinCache = new();
+    private readonly ConcurrentDictionary<Guid, (long Balance, DateTime ExpiresAt)> _lunaCoinCache = new();
+    private readonly ConcurrentDictionary<Guid, SemaphoreSlim> _playerPurchaseLocks = new();
     private string _lunaCoinApiUrl = string.Empty;
     private string _lunaCoinApiToken = string.Empty;
     private ISawmill _sawmill = default!;
@@ -60,6 +62,9 @@ public sealed class DonateShopSystem : EntitySystem
     private void OnPlayerDetached(PlayerDetachedEvent ev)
     {
         if (ev.Player.Status != SessionStatus.Disconnected) return;
+        _lunaCoinCache.TryRemove(ev.Player.UserId.UserId, out _);
+        _playerPurchaseLocks.TryRemove(ev.Player.UserId.UserId, out var playerLock);
+        playerLock?.Dispose();
         if (_donateShops.Remove(ev.Player.UserId, out var donateShop) && Exists(donateShop)) Del(donateShop);
     }
 
@@ -82,57 +87,66 @@ public sealed class DonateShopSystem : EntitySystem
             await SendStateAsync(session, "donate-shop-error-no-entity");
             return;
         }
-        var donateShop = EnsureDonateShop(session.UserId, player);
-        if (!TryComp<StoreComponent>(donateShop, out var store))
-        {
-            await SendStateAsync(session, "donate-shop-error-access-denied");
-            return;
-        }
-        var lunaCoinBalance = await GetLunaCoinBalanceAsync(session.UserId.UserId);
-        SetLunaCoinBalance(store, lunaCoinBalance);
-        _store.RefreshAllListings(store);
-        AppendPersonalListings(store, player, session.UserId);
-        var buyerForListing = player;
-        var availableListings = _store.GetAvailableListings(buyerForListing, donateShop, store).ToDictionary(listing => listing.ID, StringComparer.Ordinal);
-        if (!availableListings.ContainsKey(msg.ListingId))
-        {
-            await SendStateAsync(session);
-            return;
-        }
-        if (IsRoundLimitedAndAlreadyPurchased(session.UserId, availableListings[msg.ListingId]))
-        {
-            await SendStateAsync(session);
-            return;
-        }
 
-        var listingToBuy = availableListings[msg.ListingId];
-        var lunaCost = GetLunaCoinCost(listingToBuy);
-        if (lunaCost > 0)
+        var userId = session.UserId.UserId;
+        var playerLock = _playerPurchaseLocks.GetOrAdd(userId, _ => new SemaphoreSlim(1, 1));
+        await playerLock.WaitAsync();
+        try
         {
-            var spendResult = await SpendLunaCoinAsync(session.UserId.UserId, lunaCost, $"DonateShop purchase: {msg.ListingId}");
-            if (!spendResult.Success)
+            var donateShop = EnsureDonateShop(session.UserId, player);
+            if (!TryComp<StoreComponent>(donateShop, out var store))
             {
-                var errorKey = spendResult.InsufficientFunds
-                    ? "donate-shop-error-lunacoin-insufficient"
-                    : "donate-shop-error-lunacoin-spend-failed";
-                await SendStateAsync(session, errorKey);
+                await SendStateAsync(session, "donate-shop-error-access-denied");
+                return;
+            }
+            var lunaCoinBalance = await GetLunaCoinBalanceAsync(userId);
+            SetLunaCoinBalance(store, lunaCoinBalance);
+            _store.RefreshAllListings(store);
+            AppendPersonalListings(store, player, session.UserId);
+            var availableListings = _store.GetAvailableListings(player, donateShop, store).ToDictionary(listing => listing.ID, StringComparer.Ordinal);
+            if (!availableListings.ContainsKey(msg.ListingId))
+            {
+                await SendStateAsync(session);
+                return;
+            }
+            if (IsRoundLimitedAndAlreadyPurchased(session.UserId, availableListings[msg.ListingId]))
+            {
+                await SendStateAsync(session);
                 return;
             }
 
-            if (_lunaCoinCache.TryGetValue(session.UserId.UserId, out var cached))
+            var listingToBuy = availableListings[msg.ListingId];
+            var lunaCost = GetLunaCoinCost(listingToBuy);
+            if (lunaCost > 0)
             {
-                var newBalance = Math.Max(0, cached.Balance - lunaCost);
-                _lunaCoinCache[session.UserId.UserId] = (newBalance, DateTime.UtcNow.AddSeconds(60));
-            }
-        }
+                var spendResult = await SpendLunaCoinAsync(userId, lunaCost, $"DonateShop purchase: {msg.ListingId}");
+                if (!spendResult.Success)
+                {
+                    var errorKey = spendResult.InsufficientFunds
+                        ? "donate-shop-error-lunacoin-insufficient"
+                        : "donate-shop-error-lunacoin-spend-failed";
+                    await SendStateAsync(session, errorKey);
+                    return;
+                }
 
-        var purchaseBefore = availableListings[msg.ListingId].PurchaseAmount;
-        var buyMessage = new StoreBuyListingMessage(msg.ListingId)
-        { Actor = player, };
-        RaiseLocalEvent(donateShop, buyMessage, true);
-        var listingAfterBuy = store.FullListingsCatalog.FirstOrDefault(listing => listing.ID == msg.ListingId);
-        if (listingAfterBuy != null && listingAfterBuy.PurchaseAmount > purchaseBefore && IsRoundLimited(listingAfterBuy)) _roundPurchases.Add((_gameTicker.RoundId, session.UserId, msg.ListingId));
-        await SendStateAsync(session);
+                if (_lunaCoinCache.TryGetValue(userId, out var cached))
+                {
+                    var newBalance = Math.Max(0, cached.Balance - lunaCost);
+                    _lunaCoinCache[userId] = (newBalance, DateTime.UtcNow.AddSeconds(60));
+                }
+            }
+
+            var purchaseBefore = availableListings[msg.ListingId].PurchaseAmount;
+            var buyMessage = new StoreBuyListingMessage(msg.ListingId)
+            { Actor = player, };
+            RaiseLocalEvent(donateShop, buyMessage, true);
+            var listingAfterBuy = store.FullListingsCatalog.FirstOrDefault(listing => listing.ID == msg.ListingId);
+            if (listingAfterBuy != null && listingAfterBuy.PurchaseAmount > purchaseBefore && IsRoundLimited(listingAfterBuy))
+                _roundPurchases.Add((_gameTicker.RoundId, session.UserId, msg.ListingId));
+            await SendStateAsync(session);
+        }
+        finally
+        { playerLock.Release(); }
     }
 
     private async Task SendStateAsync(ICommonSession session, string? errorLocKey = null)
