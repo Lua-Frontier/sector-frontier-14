@@ -10,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Content.Shared._Lua.Sprint;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 
@@ -59,7 +60,7 @@ public abstract partial class SharedLuaJumpAbilitySystem : EntitySystem
 
     protected virtual void OnDirectionalJump(Entity<LuaJumpAbilityComponent> ent, ref LuaDirectionalJumpEvent args)
     {
-        if (_gravity.IsWeightless(args.Performer) || _standing.IsDown(args.Performer))
+        if (_gravity.IsWeightless(args.Performer) || _standing.IsDown(args.Performer) || !HasEnoughSprintForJump(args.Performer, ent.Comp))
         {
             if (ent.Comp.JumpFailedPopup != null)
                 _popup.PopupClient(Loc.GetString(ent.Comp.JumpFailedPopup.Value), args.Performer, args.Performer);
@@ -79,6 +80,14 @@ public abstract partial class SharedLuaJumpAbilitySystem : EntitySystem
         }
 
         args.Handled = true;
+    }
+
+    protected bool HasEnoughSprintForJump(EntityUid uid, LuaJumpAbilityComponent jump)
+    {
+        if (!TryComp<LuaSprintComponent>(uid, out var sprint)) return true;
+        if (sprint.Depleted) return false;
+        var cost = sprint.MaxSprint * jump.SprintCostFraction;
+        return sprint.CurrentSprint >= cost;
     }
 
     private void OnLeaperCollide(Entity<ActiveLeaperComponent> ent, ref StartCollideEvent args)

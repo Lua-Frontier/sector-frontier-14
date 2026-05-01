@@ -48,7 +48,7 @@
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseC1SyndicateContrabandNoValue]
-  id: ClothingOuterApronOutpostSyndicateChef
+  id: ClothingOuterApronOutpostTypanChef
   name: фартук шеф-повара синдиката
   description: Пятна крови на нём смотрятся как влитые.
   components:
@@ -59,7 +59,7 @@
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseC1SyndicateContrabandNoValue]
-  id: ClothingOuterCoatRDOutpostSyndicate
+  id: ClothingOuterCoatRDOutpostTypan
   name: лабораторный халат директора исследований
   description: Яркий лабораторный халат, предоставляющий защиту от окружающей среды.
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, BaseC1SyndicateContrabandNoValue]
-  id: ClothingOuterMedOutpostSyndicate
+  id: ClothingOuterMedOutpostTypan
   name: халат медика синдиката
   description: Халат с едва заметными неотстиранными пятнами крови. Пахнет пытками.
   components:
@@ -89,7 +89,7 @@
 
 - type: entity
   parent: [ClothingOuterWinterCoat, BaseC1SyndicateContrabandNoValue]
-  id: ClothingOuterWinterOutpostSyndicateChef
+  id: ClothingOuterWinterOutpostTypanChef
   name: куртка шеф-повара синдиката
   description:  Куртка, разработанная специально для работы в холодильных камерах.
   components:
@@ -100,7 +100,7 @@
 
 - type: entity
   parent: [ClothingOuterStorageBase, BaseC1SyndicateContrabandNoValue]
-  id: ClothingOuterApronOutpostSyndicateBotanist
+  id: ClothingOuterApronOutpostTypanBotanist
   name: фартук ботаника синдиката
   suffix: Botanical
   description: Толстый фартук, идеально подходящий для защиты вашей нежной плоти от пятен, грязи и крови.

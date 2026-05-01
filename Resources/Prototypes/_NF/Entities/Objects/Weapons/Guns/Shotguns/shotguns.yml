@@ -8,25 +8,33 @@
   name: Bulldog
   description: |-
     An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
   - type: GunSpreadModifier
     spread: 1.1
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     soundGunshot:
       path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
-    fireRate: 3 # _Lua
+    fireRate: 3.5 #Lua
     selectedMode: FullAuto
     availableModes:
     - FullAuto
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-gorlex-steel-works
   - type: Item
-    shape:
-    - 0,0,4,1
+#    shape: # comment from _Lua
+#    - 0,0,4,1
+    shape: #Lua
+    - 0,0,3,1
 
 - type: entity
   id: NFWeaponShotgunDoubleBarreled
@@ -34,20 +42,24 @@
   name: double-barreled shotgun
   description: |-
     An immortal classic. A civilian grade shotgun.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Item
-    shape:
-    - 0,0,3,0
+#    shape: # comment from _Lua
+#    - 0,0,3,0
+    shape: #Lua
+    - 0,0,3,1
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunSpreadModifier
     spread: 0.5
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     fireRate: 2
   - type: Construction
     graph: NFShotgunSawn
@@ -61,6 +73,7 @@
   name: Enforcer
   description: |-
     A premium semi-automatic shotgun, featuring an upgraded tube capacity.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
@@ -73,6 +86,7 @@
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     soundGunshot:
       path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_metal.ogg
     fireRate: 2
@@ -83,6 +97,7 @@
   name: Kammerer
   description: |-
     An old yet faithful design, and a favorite among irregular forces on many worlds.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
@@ -90,19 +105,21 @@
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
-    shape:
-    - 0,0,4,0
+#    shape: # comment from _Lua
+#    - 0,0,4,0
+    shape: #Lua
+    - 0,0,3,1
   - type: GunSpreadModifier
     spread: 0.7
   - type: BallisticAmmoProvider
     capacity: 5
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     soundGunshot:
       path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_alt.ogg
-    fireRate: 2
+    fireRate: 1.5 #Lua 2<1.5
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-nanotrasen-munitions
-
 
 - type: entity
   id: NFWeaponShotgunSawn
@@ -110,6 +127,7 @@
   name: sawn-off shotgun
   description: |-
     Groovy!
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
@@ -118,7 +136,7 @@
   - type: Item
     size: Normal
     shape:
-      - 0,0,1,1
+      - 0,0,2,0
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
     soundGunshot:

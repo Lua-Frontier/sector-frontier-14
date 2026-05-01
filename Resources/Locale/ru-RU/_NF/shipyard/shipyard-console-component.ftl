@@ -103,6 +103,7 @@ shipyard-console-class-Atmospherics = Газодобывающий
 shipyard-console-class-Medical = Медицинский
 shipyard-console-class-Civilian = Гражданский
 shipyard-console-class-Kitchen = Сервисный
+shipyard-console-class-BlackMarket = Чёрный рынок
 
 shipyard-console-category-All = Все
 shipyard-console-category-Micro = Мини

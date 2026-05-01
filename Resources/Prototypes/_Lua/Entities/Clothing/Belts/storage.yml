@@ -4,7 +4,7 @@
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseC1SyndicateContraband]
-  id: ClothingBeltPlantOutpostSyndicate
+  id: ClothingBeltPlantOutpostTypan
   name: пояс ботаника синдиката
   description: Пояс, используемый для хранения основных принадлежностей для гидропоники. На удивление, не чёрный.
   components:
@@ -32,7 +32,7 @@
 
 - type: entity
   parent: ClothingBeltStorageBase
-  id: ClothingBeltAssaultOutpostSyndicate
+  id: ClothingBeltAssaultOutpostTypan
   name: тактический пояс
   description: Удобный пояс, часто используемый синдикатом на засекреченных территориях.
   components:
@@ -72,7 +72,7 @@
 
 - type: entity
   parent: [ClothingBeltSecurity, BaseC1SyndicateContraband]
-  id: ClothingBeltOutpostSyndicateSecurityWebbing
+  id: ClothingBeltOutpostTypanSecurityWebbing
   name: РПС синдиката
   description: Ременно-плечевая система тактических ремней, которую носят представители военных структур синдиката.
   components:
@@ -81,10 +81,20 @@
   - type: Sprite
     sprite: _Lua/Clothing/Belt/webbing.rsi
 
+- type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltStormCreedWebbing
+  name: РПС Кодекса
+  description: Ременно-плечевая система тактических ремней, которую носят жители Бури.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Belt/stormcreedwebbing.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Belt/stormcreedwebbing.rsi
 
 - type: entity
   name: сумка для растений синдиката
-  id: OutpostSyndicatePlantBag
+  id: OutpostTypanPlantBag
   parent: BaseStorageItem
   description: Сумка для ботаников, чтобы легко переносить свои огромные урожаи.
   components:

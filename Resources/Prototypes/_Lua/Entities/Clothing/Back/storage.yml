@@ -31,7 +31,7 @@
 
 - type: entity
   parent: [ClothingBackpack, BaseC1SyndicateContraband]
-  id: ClothingBackpackSatchelOutpostSyndicate
+  id: ClothingBackpackSatchelOutpostTypan
   name: сумка синдиката
   description: Модная сумка в красно-чёрных тонах.
   components:
@@ -42,3 +42,23 @@
     - 8,0,9,3
   - type: Sprite
     sprite: _Lua/Clothing/Back/bag.rsi
+
+- type: entity
+  parent: [ Clothing, EnergyShieldClothing ]
+  id: ClothingBackpackEnergyShield
+  name: Генератор поля Абсолютной Защиты
+  description: Экспериментальный, тяжелый генератор защитного поля. Обеспечивают дополнительную защиту от пуль, лазеров и ударов, однако позвоночник не скажет спасибо от долгого ношения этой дуры.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Specific/harmpack.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    slots: 
+      - BELT
+      - BACK
+  - type: ClothingSpeedModifier #Lua
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier

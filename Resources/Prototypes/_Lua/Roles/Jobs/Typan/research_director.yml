@@ -3,28 +3,34 @@
 # See AGPLv3.txt for details.
 
 - type: job
-  id: OutpostSyndicateRD
+  id: OutpostTypanRD
   name: job-name-typan-rd
-  playTimeTracker: JobOutpostTypanRD
-  salary: 70000 #Lua 45000<70000
-  description: Руководитель, назначающий оперативникам дату смерти в героическом штурме
+  playTimeTracker: JobOutpostSyndicateRD
+  salary: 45000
+  description: Директор исследований из далёкого космоса.
   startingGear: SyndicateRD
   icon: "JobIconSyndicateRD"
   supervisors: job-supervisors-typan-syndicate
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobOutpostTypanCargotech
-      time: 50000 #Lua
-    - !type:DepartmentTimeRequirement
-      department: Frontier
-      time: 100000 #Lua 83<100
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 100000 #Lua 83000<100000
-    - !type:OverallPlaytimeRequirement
-      time: 200000 #Lua 150<200
+  - !type:RoleTimeRequirement
+    role: JobHeadOfPersonnel
+    time: 72000 # 20h
+  - !type:DepartmentTimeRequirement
+    department: OutpostSyndicate
+    time: 72000 # 20h
+    # - !type:DepartmentTimeRequirement
+    #   department: Security
+    #   time: 32000
+    # - !type:DepartmentTimeRequirement
+    #   department: Civilian
+    #   time: 73000
+    # - !type:DepartmentTimeRequirement
+    #   department: Frontier
+    #   time: 83000
+    # - !type:OverallPlaytimeRequirement
+    #   time: 150000
   access:
   - SyndicateAgent
   - NuclearOperative
@@ -32,6 +38,8 @@
   accessGroups:
   - AllAccess
   special:
+  - !type:AddImplantSpecial
+    implants: [ DeathAcidifierImplantLWTypan ]
   - !type:AddComponentSpecial
     components:
       - type: Company
@@ -49,17 +57,18 @@
   id: SyndicateRD
   equipment:
     eyes: ClothingEyesGlassesHiddenSecurity
-    ears: ClothingHeadsetAltOutpostSyndicate
+    ears: ClothingHeadsetAltOutpostTypan
     shoes: ClothingShoesBootsCombat
-    outerClothing: ClothingOuterCoatRDOutpostSyndicate
-    gloves: ClothingHandsRDOutpostSyndicate
+    outerClothing: ClothingOuterCoatRDOutpostTypan
+    gloves: ClothingHandsRDOutpostTypan
     id: SyndiPDARD
     back: ClothingBackpackSyndicateFilled
     jumpsuit: ClothingUniformJumpsuitSyndieFormal
-    belt: ClothingBeltAssaultOutpostSyndicate
+    belt: ClothingBeltAssaultOutpostTypan
 
 - type: chameleonOutfit
-  id: OutpostSyndicateRDChameleonOutfit
-  job: OutpostSyndicateRD
+  id: OutpostTypanRDChameleonOutfit
+  job: OutpostTypanRD
   equipment:
     jumpsuit: ClothingUniformJumpsuitSyndieFormal
+

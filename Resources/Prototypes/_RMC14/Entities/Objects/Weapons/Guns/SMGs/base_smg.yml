@@ -1,16 +1,18 @@
 - type: entity
   abstract: true
-  parent: [CMBaseWeaponRifle, BaseGunWieldable]
+  parent: [CMBaseWeaponRifleUnwieldable] #Lua BaseGunWieldable; CMBaseWeaponRifle<CMBaseWeaponRifleUnwieldable
   id: CMBaseWeaponSMG
   components:
   - type: Item
     size: Large
   - type: AmmoCounter
   - type: Gun
+    minAngle: 1 #Lua
+    maxAngle: 2 #Lua
     selectedMode: FullAuto
     availableModes:
-    - SemiAuto
-    - Burst
+#    - SemiAuto # comment from _Lua
+#    - Burst
     - FullAuto
   # - type: RMCSelectiveFire
   #   baseFireModes:

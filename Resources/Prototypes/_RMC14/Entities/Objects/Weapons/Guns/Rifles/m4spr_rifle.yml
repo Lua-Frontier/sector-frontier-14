@@ -3,6 +3,7 @@
   name: M4SPR battle rifle
   id: WeaponRifleM4SPR
   description: The M4SPR battle rifle is a designated marksman rifle in service with the Marine. Sporting a bullpup configuration, the M4SPR battle rifle is perfect for reconnaissance and fire support teams.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/m4spr.rsi
@@ -16,12 +17,21 @@
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/m4spr.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,7,4
   - type: Gun
-    fireRate: 2
+    examineCaliber: gun-examine-caliber-865 #Lua
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+    fireRate: 8.2 #Lua 2<8.2
     shotsPerBurst: 0
-    selectedMode: SemiAuto
+    selectedMode: FullAuto #Lua SemiAuto<FullAuto
     availableModes:
     - SemiAuto
+    - FullAuto #Lua
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m4spr.ogg
   # - type: RMCSelectiveFire
@@ -34,15 +44,16 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: CMMagazineRifleM4SPR
+        startingItem: Magazine8x65mmSKRBox #Lua CMMagazineRifleM4SPR<Magazine8x65mmSKRBox
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - CMMagazineRifleM4SPR
-          - CMMagazineRifleM4SPRAP
-          - CMMagazineRifleM4SPRExt
+          - MagazineBox8x65mmSKR #Lua
+#          - CMMagazineRifleM4SPR # comment (44-46) from _Lua
+#          - CMMagazineRifleM4SPRAP
+#          - CMMagazineRifleM4SPRExt
   # - type: GunDamageModifier
   #   multiplier: 1.4
   - type: AttachableHolderVisuals
@@ -50,6 +61,13 @@
       rmc-aslot-barrel: 1.18, 0.0
       rmc-aslot-rail: 0.225, 0.125
       rmc-aslot-underbarrel: 0.62, -0.31
+  - type: HeldSpeedModifier #Lua
+  - type: ClothingSpeedModifier #Lua
+    sprintModifier: 0.85
+    walkModifier: 0.85
+  - type: SpeedModifiedOnWield #Lua
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
 - type: entity
   parent: CMMagazineRifleBase

@@ -90,7 +90,7 @@
     - Cutlass
     - Claymore
     - Truncheon
-    - WeaponCaseShortEnergyDaggerExpedition
+#    - WeaponCaseShortEnergyDaggerExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -142,13 +142,13 @@
     - sprite: Effects/crayondecals.rsi
       state: 5
       color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortEnergySwordExpedition
-    - WeaponCaseShortEnergyCutlassExpedition
-    - WeaponCaseShortEnergySwordDoubleExpedition
-    chance: 1.0
-    offset: 0.0
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortEnergySwordExpedition
+  #   - WeaponCaseShortEnergyCutlassExpedition
+  #   - WeaponCaseShortEnergySwordDoubleExpedition
+  #   chance: 1.0
+  #   offset: 0.0
 
 #region guns T1
 - type: entity
@@ -170,14 +170,14 @@
   - type: RandomSpawner
     prototypes:
     - WeaponCaseShortMk58Expedition
-    - WeaponCaseShortUniversalExpedition
+#    - WeaponCaseShortUniversalExpedition # comment from _Lua
     - WeaponCaseShortPollockExpedition
     - WeaponCaseShortFaithExpedition
     - WeaponCaseShortArgentiExpedition
     - WeaponCaseShortLuckyExpedition
-    - WeaponCaseShortDeckardExpedition
+#    - WeaponCaseShortDeckardExpedition # comment from _Lua
     - WeaponCaseShortRitland45Expedition
-    - WeaponCaseLongBarlowsBoltExpedition
+#    - WeaponCaseLongBarlowsBoltExpedition # comment from _Lua
     - WeaponCaseLongRepeaterExpedition
     - WeaponCaseLongSniperCeremonialExpedition
     chance: 1.0
@@ -205,16 +205,16 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseShortCobra
-    - WeaponCaseShortN1984Expedition
+#    - WeaponCaseShortCobra # comment from _Lua
+#    - WeaponCaseShortN1984Expedition # comment from _Lua
     - WeaponCaseShortViper
 #    - WeaponCaseShortFitzExpedition #Lua
-    - WeaponCaseShortWard45Expedition
-    - WeaponCaseShortRevolverPirate
+#    - WeaponCaseShortWard45Expedition # comment from _Lua
+#    - WeaponCaseShortRevolverPirate # comment from _Lua
     - WeaponCaseLongC20r
     - WeaponCaseLongJackdaw
-#    - WeaponCaseLongGestioExpedition #Lua
-#    - WeaponCaseLongWeaponRifleNovaliteC1Expedition #Lua
+    - WeaponCaseLongGestioExpedition
+    - WeaponCaseLongWeaponRifleNovaliteC1Expedition
 #    - WeaponCaseLongSVSExpedition #Lua
     - WeaponCaseLongKammererExpedition
 #    - WeaponCaseShortLaserGunExpedition #Lua
@@ -244,14 +244,14 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseLongTypewriterExpedition
-    - WeaponCaseLongAtreidesExpedition
+#    - WeaponCaseLongTypewriterExpedition # comment from _Lua
+#    - WeaponCaseLongAtreidesExpedition # comment from _Lua
     - WeaponCaseLongWT550Expedition
     - WeaponCaseLongDrozdExpedition
 #    - WeaponCaseLongM90Expedition
-    - WeaponCaseLongLecterExpedition
-    - WeaponCaseShortSvalinnExpedition
-    - WeaponCaseLongHristovExpedition
+#    - WeaponCaseLongLecterExpedition # comment from _Lua
+#    - WeaponCaseShortSvalinnExpedition # comment from _Lua
+#    - WeaponCaseLongHristovExpedition # comment from _Lua
 #    - WeaponCaseLongMusketExpedition
     chance: 1.0
     offset: 0.0
@@ -280,13 +280,13 @@
     prototypes:
     - WeaponCaseLongSm
     - WeaponCaseLongVulcanExpedition
-    - WeaponCaseLongBulldog
+#    - WeaponCaseLongBulldog # comment from _Lua
     - WeaponCaseLongEnforcerExpedition
-    - WeaponCaseShortAntiqueLaserExpedition
+#    - WeaponCaseShortAntiqueLaserExpedition # comment from _Lua
     - WeaponCaseShortAdvancedLaserExpedition
     - WeaponCaseLongLaserCarbineExpedition
     - WeaponCaseLongXrayCannonExpedition
-    - WeaponCaseLongTemperatureGunExpedition
+#    - WeaponCaseLongTemperatureGunExpedition # comment from _Lua
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -314,10 +314,10 @@
     prototypes:
     # - WeaponCaseLongLauncherRocketExpedition # Lua
     # - WeaponCaseLongLauncherChinaLake # Lua
-    - WeaponCaseHeavyLightMachineGunL6
+#    - WeaponCaseHeavyLightMachineGunL6 # comment from _Lua
     - WeaponCaseLongEnergyGunExpedition
     - WeaponCaseLongLaserCannonExpedition
-    - WeaponCaseHeavyAsmgtExpeditions
+#    - WeaponCaseHeavyAsmgtExpeditions
     chance: 1.0
     offset: 0.0
 
@@ -339,10 +339,10 @@
       state: 1
       color: red
   - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortFireBomb
-    chance: 0.3
-    offset: 0.0
+    # prototypes:
+    # - WeaponCaseShortFireBomb
+    # chance: 0.3
+    # offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT2
     rareChance: 0.05
@@ -364,14 +364,14 @@
     - sprite: Effects/crayondecals.rsi
       state: 2
       color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortPipeBomb
-    chance: 0.4
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootExplosivesT3
-    rareChance: 0.05
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortPipeBomb
+  #   chance: 0.4
+  #   offset: 0.0
+  #   rarePrototypes:
+  #   - SpawnDungeonLootExplosivesT3
+  #   rareChance: 0.05
 
 #region bombs T3
 - type: entity
@@ -391,10 +391,10 @@
       state: 3
       color: red
   - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortSeismicCharge
-    chance: 0.5
-    offset: 0.0
+    # prototypes:
+    # - WeaponCaseShortSeismicCharge
+    # chance: 0.5
+    # offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT4
     rareChance: 0.05
@@ -417,10 +417,10 @@
       state: 4
       color: red
   - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortExGrenade
-    chance: 0.4
-    offset: 0.0
+    # prototypes:
+    # - WeaponCaseShortExGrenade
+    # chance: 0.4
+    # offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT5
     rareChance: 0.01
@@ -442,11 +442,11 @@
     - sprite: Effects/crayondecals.rsi
       state: 5
       color: red
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortC4
-    chance: 0.3
-    offset: 0.0
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortC4
+  #   chance: 0.3
+  #   offset: 0.0
 
 #region Ammo
 - type: entity
@@ -462,28 +462,28 @@
       scale: 0.7, 0.7
     - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
       state: icon
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortAmmoBoxLethal20
-    - WeaponCaseShortAmmoBoxLethal30
-    - WeaponCaseShortAmmoBoxLethal35
-    - WeaponCaseShortAmmoBoxLethal25
-    - WeaponCaseShortAmmoBoxLethalShotgun
-    - WeaponCaseShortAmmoBoxSlugShotgun
-    - WeaponCaseShortAmmoBoxLethal45
-    chance: 0.8
-    offset: 0.0
-    rarePrototypes:
-    - WeaponCaseShortAmmoBoxBigLethal20
-    - WeaponCaseShortAmmoBoxBigLethal30
-    - WeaponCaseShortAmmoBoxBigLethal25
-    - WeaponCaseShortAmmoBoxEmp35
-    - WeaponCaseShortAmmoBoxFlareShotgun
-    - SpawnDungeonLootAmmoRubber
-    - SpawnDungeonLootAmmoPractice
-    - SpawnDungeonLootAmmoIncendiary
-    - SpawnDungeonLootAmmoUranium
-    rareChance: 0.01
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortAmmoBoxLethal20
+  #   - WeaponCaseShortAmmoBoxLethal30
+  #   - WeaponCaseShortAmmoBoxLethal35
+  #   - WeaponCaseShortAmmoBoxLethal25
+  #   - WeaponCaseShortAmmoBoxLethalShotgun
+  #   - WeaponCaseShortAmmoBoxSlugShotgun
+  #   - WeaponCaseShortAmmoBoxLethal45
+  #   chance: 0.8
+  #   offset: 0.0
+  #   rarePrototypes:
+  #   - WeaponCaseShortAmmoBoxBigLethal20
+  #   - WeaponCaseShortAmmoBoxBigLethal30
+  #   - WeaponCaseShortAmmoBoxBigLethal25
+  #   - WeaponCaseShortAmmoBoxEmp35
+  #   - WeaponCaseShortAmmoBoxFlareShotgun
+  #   - SpawnDungeonLootAmmoRubber
+  #   - SpawnDungeonLootAmmoPractice
+  #   - SpawnDungeonLootAmmoIncendiary
+  #   - SpawnDungeonLootAmmoUranium
+  #   rareChance: 0.01
 
 - type: entity
   name: random ammo
@@ -498,20 +498,20 @@
       scale: 0.7, 0.7
     - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
       state: icon
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortAmmoBoxRubber20
-    - WeaponCaseShortAmmoBoxRubber30
-    - WeaponCaseShortAmmoBoxRubber35
-    - WeaponCaseShortAmmoBoxRubber25
-    - WeaponCaseShortAmmoBoxRubberShotgun
-    - WeaponCaseShortAmmoBoxRubber45
-    chance: 0.7
-    offset: 0.0
-    rarePrototypes:
-    - WeaponCaseShortAmmoBoxBigRubber20
-    - WeaponCaseShortAmmoBoxBigRubber25
-    rareChance: 0.01
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortAmmoBoxRubber20
+  #   - WeaponCaseShortAmmoBoxRubber30
+  #   - WeaponCaseShortAmmoBoxRubber35
+  #   - WeaponCaseShortAmmoBoxRubber25
+  #   - WeaponCaseShortAmmoBoxRubberShotgun
+  #   - WeaponCaseShortAmmoBoxRubber45
+  #   chance: 0.7
+  #   offset: 0.0
+  #   rarePrototypes:
+  #   - WeaponCaseShortAmmoBoxBigRubber20
+  #   - WeaponCaseShortAmmoBoxBigRubber25
+  #   rareChance: 0.01
 
 - type: entity
   name: random ammo
@@ -526,16 +526,16 @@
       scale: 0.7, 0.7
     - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
       state: icon
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortAmmoBoxPractice20
-    - WeaponCaseShortAmmoBoxPractice30
-    - WeaponCaseShortAmmoBoxPractice35
-    - WeaponCaseShortAmmoBoxPractice25
-    - WeaponCaseShortAmmoBoxPracticeShotgun
-    - WeaponCaseShortAmmoBoxPractice45
-    chance: 0.6
-    offset: 0.0
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortAmmoBoxPractice20
+  #   - WeaponCaseShortAmmoBoxPractice30
+  #   - WeaponCaseShortAmmoBoxPractice35
+  #   - WeaponCaseShortAmmoBoxPractice25
+  #   - WeaponCaseShortAmmoBoxPracticeShotgun
+  #   - WeaponCaseShortAmmoBoxPractice45
+  #   chance: 0.6
+  #   offset: 0.0
 
 - type: entity
   name: random ammo
@@ -550,18 +550,18 @@
       scale: 0.7, 0.7
     - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
       state: icon
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortAmmoBoxIncendiary20
-    - WeaponCaseShortAmmoBoxIncendiary30
-    - WeaponCaseShortAmmoBoxIncendiary35
-    - WeaponCaseShortAmmoBoxIncendiaryShotgun
-    - WeaponCaseShortAmmoBoxIncendiary45
-    chance: 0.5
-    offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootAmmoUranium
-    rareChance: 0.01
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortAmmoBoxIncendiary20
+  #   - WeaponCaseShortAmmoBoxIncendiary30
+  #   - WeaponCaseShortAmmoBoxIncendiary35
+  #   - WeaponCaseShortAmmoBoxIncendiaryShotgun
+  #   - WeaponCaseShortAmmoBoxIncendiary45
+  #   chance: 0.5
+  #   offset: 0.0
+  #   rarePrototypes:
+  #   - SpawnDungeonLootAmmoUranium
+  #   rareChance: 0.01
 
 - type: entity
   name: random ammo
@@ -576,12 +576,12 @@
       scale: 0.7, 0.7
     - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
       state: icon
-  - type: RandomSpawner
-    prototypes:
-    - WeaponCaseShortAmmoBoxUranium20
-    - WeaponCaseShortAmmoBoxUranium30
-    - WeaponCaseShortAmmoBoxUranium35
-    - WeaponCaseShortAmmoBoxUraniumShotgun
-    - WeaponCaseShortAmmoBoxUranium45
-    chance: 0.4
-    offset: 0.0
+  # - type: RandomSpawner
+  #   prototypes:
+  #   - WeaponCaseShortAmmoBoxUranium20
+  #   - WeaponCaseShortAmmoBoxUranium30
+  #   - WeaponCaseShortAmmoBoxUranium35
+  #   - WeaponCaseShortAmmoBoxUraniumShotgun
+  #   - WeaponCaseShortAmmoBoxUranium45
+  #   chance: 0.4
+  #   offset: 0.0

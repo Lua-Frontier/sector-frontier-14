@@ -1,0 +1,67 @@
+# Neutral
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakLeather
+  name: leather cloak
+  description: A handmade cloak, comfy and warm.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/leathercloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakYaoguai
+  name: Yao Guai cloak
+  description: A handmade cloak, comfy and warm. This piece comes from a dangerous Yao Guai.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/yaoguai.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckCloakGhillie
+  name: ghillie cloak
+  description: A cloak of ghillie forest camo.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/ghilliecloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckShawl
+  name: shawl
+  description: A shawl worn around the neck.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/Shawl.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckTownGuardCloak
+  name: old cloak
+  description: A brown old cloak, which will keep you warm on a cold winter, probably.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/townformalcloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckMantleLeather
+  name: leather mantle
+  description: A comfortable brown leather mantle.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Neck/leathermantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckBeige
+  name: Beige cloack
+  description: A comfortable brown leather cloack.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Neck/beige.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Neck/beige.rsi

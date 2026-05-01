@@ -13,8 +13,16 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: ADT/Objects/Weapons/Guns/SMGs/ppch_45u.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 6
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 12 #Lua 6<12
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
@@ -24,21 +32,22 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGun45
+        startingItem: Magazine635x40mmCaseless #Lua NFMagazineSubMachineGun45<Magazine635x40mmCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - NFMagazineSubMachineGunPistol45
+            - Magazine635x40mmCaseless #Lua NFMagazineSubMachineGunPistol45<Magazine635x40mmCaseless
       gun_chamber:
         name: Chamber
         startingItem: NFCartridgePistol45
         priority: 1
         whitelist:
           tags:
-            - CartridgeMagnum
-            - NFCartridgePistol45
+            - Cartridge635x40mmCaseless #Lua
+#            - CartridgeMagnum #comment (41-42) from _Lua
+#            - NFCartridgePistol45
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -48,7 +57,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: ump
   parent: [BaseC2ExpeditionContraband, BaseWeaponSubMachineGun]

@@ -22,9 +22,11 @@
   - type: StaticPrice
     price: 1
 
+# Standart
 - type: entity
   id: Cartridge45_ACPFMJ
   name: cartridge (.45 ACP FMJ)
+  suffix: Need balance test #Lua
   parent: BaseCartridge45_ACP
   components:
   - type: CartridgeAmmo
@@ -33,6 +35,7 @@
 - type: entity
   id: Cartridge45_ACPPractice
   name: cartridge (.45 ACP practice)
+  suffix: Need balance test #Lua
   parent: BaseCartridge45_ACP
   components:
   - type: CartridgeAmmo
@@ -46,39 +49,9 @@
          color: "#dbdbdb"
 
 - type: entity
-  id: Cartridge45_ACPIncendiary
-  name: cartridge (.45 ACP incendiary)
-  parent: BaseCartridge45_ACP
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet45_ACPIncendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff6e52"
-
-- type: entity
-  id: Cartridge45_ACPUranium
-  name: cartridge (.45 ACP uranium)
-  parent: BaseCartridge45_ACP
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet45_ACPUranium
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#65fe08"
-
-# Upstream
-- type: entity
   id: Cartridge45_ACPRubber
   name: cartridge (.45 ACP rubber)
+  suffix: Need balance test #Lua
   parent: BaseCartridge45_ACP
   components:
   - type: CartridgeAmmo
@@ -91,24 +64,11 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
 
-# Frontier
-- type: entity
-  id: Cartridge45_ACPEmp
-  name: cartridge (.45 ACP emp)
-  parent: BaseCartridge45_ACP
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet45_ACPEmp
-  - type: EmpDescription
-    range: 0.3
-    energyConsumption: 2700000
-    disableDuration: 10
-
-# Mono AP syst
-#anti-flesh:
+# Mechanical
 - type: entity
   id: Cartridge45_ACPHP
   name: cartridge (.45 ACP hollow-point)
+  suffix: Need balance test #Lua
   parent: BaseCartridge45_ACP
   components:
   - type: CartridgeAmmo
@@ -119,36 +79,74 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#90EE90"
+        color: "#991d39"
 
+# Physical
 - type: entity
-  id: Cartridge45_ACPRIP
-  name: cartridge (.45 ACP RIP)
+  id: Cartridge45_ACPIncendiary
+  name: cartridge (.45 ACP Incendiary)
+  suffix: Need balance test #Lua
   parent: BaseCartridge45_ACP
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_ACPRIP
+    proto: Bullet45_ACPIncendiary
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#C04000"
-
-#armor-piercing:
+        color: "#f44336"
 
 - type: entity
-  id: Cartridge45_ACPPlasteelAP
-  name: cartridge (.45 ACP AP)
+  id: Cartridge45_ACPUranium
+  name: cartridge (.45 ACP Uranium)
+  suffix: Need balance test #Lua
   parent: BaseCartridge45_ACP
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_ACPPlasteelAP
+    proto: Bullet45_ACPUranium
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#888888"
+        color: "#6b9747"
+
+# Special
+- type: entity
+  id: Cartridge45_ACPEMP
+  name: cartridge (.45 ACP EMP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge45_ACP
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_ACPEmp
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#044492"
+#  - type: EmpDescription
+#    range: 0.3
+#    energyConsumption: 2700000
+#    disableDuration: 10
+
+- type: entity
+  id: Cartridge45_ACPCaustic
+  name: cartridge (.45 ACP Caustic)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge45_ACP
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet45_ACPCaustic
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#8b9229"

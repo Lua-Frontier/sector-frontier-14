@@ -1,6 +1,7 @@
 - type: entity
   id: BaseMagazine9x19mm
   name: pistol magazine (9x19mm FMJ)
+  suffix: Need balance test #Lua
   parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemSteelTiny
   abstract: true
   components:
@@ -31,7 +32,8 @@
     zeroVisible: false
   - type: Appearance
 
-#Start Pistol mags
+#Pistol mags
+# Standart
 - type: entity
   id: Magazine9x19mmPistolFMJ
   name: pistol magazine (9x19mm FMJ)
@@ -49,7 +51,6 @@
 - type: entity
   id: Magazine9x19mmPistolEmpty
   name: pistol magazine (9x19mm any)
-  suffix: empty
   parent: Magazine9x19mmPistolFMJ
   components:
   - type: BallisticAmmoProvider
@@ -57,20 +58,6 @@
   - type: Sprite
     layers:
     - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine9x19mmPistolIncendiary
-  name: pistol magazine (9x19mm incendiary)
-  parent: Magazine9x19mmPistolFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmIncendiary
-  - type: Sprite
-    layers:
-    - state: red
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -90,21 +77,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine9x19mmPistolUranium
-  name: pistol magazine (9x19mm uranium)
-  parent: BaseMagazine9x19mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-#Upstream
-- type: entity
   id: Magazine9x19mmPistolRubber
   name: pistol magazine (9x19mm rubber)
   parent: BaseMagazine9x19mm
@@ -119,8 +91,7 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-#Mono AP system
-#anti-flesh ammo
+#Mechanical
 - type: entity
   id: Magazine9x19mmPistolHP
   name: pistol magazine (9x19mm hollow-point)
@@ -131,138 +102,71 @@
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_pistol_mag.rsi
     layers:
-    - state: HP
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Physical
+- type: entity
+  id: Magazine9x19mmPistolIncendiary
+  name: pistol magazine (9x19mm incendiary)
+  parent: Magazine9x19mmPistolFMJ
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge9x19mmIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine9x19mmPistolRIP
-  name: pistol magazine (9x19mm RIP)
+  id: Magazine9x19mmPistolUranium
+  name: pistol magazine (9x19mm uranium)
   parent: BaseMagazine9x19mm
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmRIP
+    proto: Cartridge9x19mmUranium
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_pistol_mag.rsi
     layers:
-    - state: RIP
+    - state: uranium
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-#armor-piercing ammo
-
+# Special
 - type: entity
-  id: Magazine9x19mmPistolPlasteelAP
-  name: pistol magazine (9x19mm AP)
+  id: Magazine9x19mmPistolEMP
+  name: pistol magazine (9x19mm emp)
   parent: BaseMagazine9x19mm
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmPlasteelAP
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_pistol_mag.rsi
-    layers:
-    - state: plasteelAP
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-#End Pistol mags
-#Start HighCapacity mags
-- type: entity
-  id: BaseMagazine9x19mmPistolHighCapacityFMJ
-  name: machine pistol magazine (9x19mm FMJ)
-  parent: [BaseItem, BaseC1Contraband, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny, BaseC1Contraband
-  abstract: true
-  components:
-  - type: Tag
-    tags:
-      - Magazine9x19mmPistolHighCapacityFMJ
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - Cartridge9x19mmFMJ
-    capacity: 25 #Lua 34 -> 25
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_pistol_high_capacity_mag.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: Magazine9x19mmPistolHighCapacityEmpty
-  name: machine pistol magazine (9x19mm any)
-  suffix: empty
-  parent: BaseMagazine9x19mmPistolHighCapacityFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
+    proto: Cartridge9x19mmEMP
   - type: Sprite
     layers:
-    - state: base
+    - state: emp
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine9x19mmPistolHighCapacityFMJ
-  name: machine pistol magazine (9x19mm FMJ)
-  parent: BaseMagazine9x19mmPistolHighCapacityFMJ
+  id: Magazine9x19mmPistolCaustic
+  name: pistol magazine (9x19mm Caustic)
+  parent: BaseMagazine9x19mm
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmFMJ
+    proto: Cartridge9x19mmCaustic
   - type: Sprite
     layers:
-    - state: base
+    - state: caustic
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-- type: entity
-  id: Magazine9x19mmPistolHighCapacityPractice
-  name: machine pistol magazine (9x19mm practice)
-  parent: BaseMagazine9x19mmPistolHighCapacityFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmFMJ
-  - type: Sprite
-    layers:
-    - state: practice
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine9x19mmPistolHighCapacityRubber
-  name: machine pistol magazine (9x19mm rubber)
-  parent: BaseMagazine9x19mmPistolHighCapacityFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmFMJ
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_pistol_high_capacity_mag.rsi
-    layers:
-    - state: rubber
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-#End HighCapacity mags
-#Start SubMachineGun mags
+# SMG's mags
+# Standart
 - type: entity
   id: BaseMagazine9x19mmSubMachineGunFMJ
   name: SMG magazine (9x19mm FMJ)
@@ -277,7 +181,7 @@
     whitelist:
       tags:
         - Cartridge9x19mmFMJ
-    capacity: 35
+    capacity: 30 #Lua 35<30
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -318,7 +222,6 @@
 - type: entity
   id: Magazine9x19mmSubMachineGunEmpty
   name: SMG magazine (9x19mm any)
-  suffix: empty
   parent: BaseMagazine9x19mmSubMachineGunFMJ
   components:
   - type: BallisticAmmoProvider
@@ -345,34 +248,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine9x19mmSubMachineGunUranium
-  name: SMG magazine (9x19mm uranium)
-  parent: BaseMagazine9x19mmSubMachineGunFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  parent: BaseMagazine9x19mmSubMachineGunFMJ
-  id: Magazine9x19mmSubMachineGunIncendiary
-  name: SMG magazine (9x19mm incendiary)
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmIncendiary
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: Magazine9x19mmSubMachineGunRubber
   name: SMG magazine (9x19mm rubber)
   parent: BaseMagazine9x19mmSubMachineGunFMJ
@@ -387,24 +262,7 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-# Frontier
-- type: entity
-  id: Magazine9x19mmSubMachineGunEmp
-  name: SMG magazine (9x19mm emp)
-  parent: BaseMagazine9x19mmSubMachineGunFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmEmp
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_smg_mag.rsi
-    layers:
-    - state: emp
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-#Mono AP system
-#anti-flesh ammo
+#Mechanical
 - type: entity
   id: Magazine9x19mmSubMachineGunHP
   name: SMG magazine (9x19mm hollow-point)
@@ -415,45 +273,72 @@
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_smg_mag.rsi
     layers:
-    - state: HP
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Physical
+- type: entity
+  parent: BaseMagazine9x19mmSubMachineGunFMJ
+  id: Magazine9x19mmSubMachineGunIncendiary
+  name: SMG magazine (9x19mm incendiary)
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge9x19mmIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine9x19mmSubMachineGunRIP
-  name: SMG magazine (9x19mm RIP)
+  id: Magazine9x19mmSubMachineGunUranium
+  name: SMG magazine (9x19mm uranium)
   parent: BaseMagazine9x19mmSubMachineGunFMJ
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmRIP
+    proto: Cartridge9x19mmUranium
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_smg_mag.rsi
     layers:
-    - state: RIP
+    - state: uranium
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-#armor-piercing ammo
+# Special
+- type: entity
+  id: Magazine9x19mmSubMachineGunEMP
+  name: SMG magazine (9x19mm emp)
+  parent: BaseMagazine9x19mmSubMachineGunFMJ
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge9x19mmEMP
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_smg_mag.rsi
+    layers:
+    - state: emp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine9x19mmSubMachineGunPlasteelAP
-  name: SMG magazine (9x19mm AP)
+  id: Magazine9x19mmSubMachineGunCaustic
+  name: SMG magazine (9x19mm Caustic)
   parent: BaseMagazine9x19mmSubMachineGunFMJ
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge9x19mmPlasteelAP
+    proto: Cartridge9x19mmCaustic
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/9x19mm/9x19mm_smg_mag.rsi
     layers:
-    - state: plasteelAP
+    - state: caustic
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-#End SubMachineGun mags
-#Start TopMounted mags
+# TopMounted mags
 - type: entity
   id: Magazine9x19mmSubMachineGunTopMountedFMJ
   name: top-mounted magazine (9x19mm top-mounted)
@@ -493,4 +378,3 @@
   components:
   - type: BallisticAmmoProvider
     proto: null
-#End TopMounted mags

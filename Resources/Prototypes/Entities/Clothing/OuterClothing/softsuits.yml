@@ -122,21 +122,24 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.95 #Lua
+    walkModifier: 1 #Lua 0.9<1
+    sprintModifier: 1 #Lua 0.95<1
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: Armor
     modifiers:
-      coefficients:
+      coefficients: # Damage values from Spatio hardsuit 30/30/20//30/30//20/20//30/0
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.9
-        Heat: 0.5
+        Piercing: 0.8 #Lua 0.9<0.8
+        Heat: 0.7 #Lua 0.5<0.7
         Radiation: 0.7
-        Caustic: 0.5
+        Shock: 0.8 #Lua
+        Caustic: 0.8 #Lua 0.5<0.8
+  - type: StaminaResistance #Lua
+    damageCoefficient: 0.7
   - type: GroupExamine
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed

@@ -1,8 +1,8 @@
 #Pistol Magazines
-- type: latheRecipe
-  parent: BaseAmmoFMJIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolFMJ
-  result: Magazine45_magnumPistolFMJ
+# - type: latheRecipe
+#   parent: BaseAmmoFMJIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolFMJ
+#   result: Magazine45_magnumPistolFMJ
 
 #Lua ignore start
 #- type: latheRecipe
@@ -11,40 +11,40 @@
 #  result: Magazine45_magnumPistolPlasteelAP
 #Lua ignore end
 
-- type: latheRecipe
-  parent: BaseAmmoRubberIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolRubber
-  result: Magazine45_magnumPistolRubber
+# - type: latheRecipe
+#   parent: BaseAmmoRubberIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolRubber
+#   result: Magazine45_magnumPistolRubber
 
-- type: latheRecipe
-  parent: BaseAmmoIncendiaryIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolIncendiary
-  result: Magazine45_magnumPistolIncendiary
+# - type: latheRecipe
+#   parent: BaseAmmoIncendiaryIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolIncendiary
+#   result: Magazine45_magnumPistolIncendiary
 
-- type: latheRecipe
-  parent: BaseAmmoPracticeIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolPractice
-  result: Magazine45_magnumPistolPractice
+# - type: latheRecipe
+#   parent: BaseAmmoPracticeIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolPractice
+#   result: Magazine45_magnumPistolPractice
 
-- type: latheRecipe
-  parent: BaseAmmoEmptyIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolEmpty
-  result: Magazine45_magnumPistolEmpty
+# - type: latheRecipe
+#   parent: BaseAmmoEmptyIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolEmpty
+#   result: Magazine45_magnumPistolEmpty
 
-- type: latheRecipe
-  parent: BaseAmmoUraniumIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolUranium
-  result: Magazine45_magnumPistolUranium
+# - type: latheRecipe
+#   parent: BaseAmmoUraniumIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolUranium
+#   result: Magazine45_magnumPistolUranium
 
-- type: latheRecipe
-  parent: BaseAmmoHPIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolHP
-  result: Magazine45_magnumPistolHP
+# - type: latheRecipe
+#   parent: BaseAmmoHPIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolHP
+#   result: Magazine45_magnumPistolHP
 
-- type: latheRecipe
-  parent: BaseAmmoRIPIntermediateMagazineRecipe
-  id: Magazine45_magnumPistolRIP
-  result: Magazine45_magnumPistolRIP
+# - type: latheRecipe
+#   parent: BaseAmmoRIPIntermediateMagazineRecipe
+#   id: Magazine45_magnumPistolRIP
+#   result: Magazine45_magnumPistolRIP
 
 #Speedloaders
 
@@ -90,11 +90,6 @@
   id: SpeedLoader45_magnumHP
   result: SpeedLoader45_magnumHP
 
-- type: latheRecipe
-  parent: BaseAmmoRIPIntermediateSpeedloaderRecipe
-  id: SpeedLoader45_magnumRIP
-  result: SpeedLoader45_magnumRIP
-
 #Boxes
 
 - type: latheRecipe
@@ -124,22 +119,22 @@
   id: AmmoBox45_magnumPractice
   result: AmmoBox45_magnumPractice
 
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPIntermediateMagazineRecipe
+  id: AmmoBox45_magnumEMP
+  result: AmmoBox45_magnumEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticIntermediateMagazineRecipe
+  id: AmmoBox45_magnumCaustic
+  result: AmmoBox45_magnumCaustic
+
 - type: latheRecipe
   parent: BaseAmmoUraniumIntermediateMagazineRecipe
   id: AmmoBox45_magnumUranium
   result: AmmoBox45_magnumUranium
 
 - type: latheRecipe
-  parent: BaseAmmoFMJIntermediateMagazineRecipe
-  id: AmmoBox45_magnumAP
-  result: AmmoBox45_magnumAP
-
-- type: latheRecipe
   parent: BaseAmmoHPIntermediateMagazineRecipe
   id: AmmoBox45_magnumHP
   result: AmmoBox45_magnumHP
-
-- type: latheRecipe
-  parent: BaseAmmoRIPIntermediateMagazineRecipe
-  id: AmmoBox45_magnumRIP
-  result: AmmoBox45_magnumRIP

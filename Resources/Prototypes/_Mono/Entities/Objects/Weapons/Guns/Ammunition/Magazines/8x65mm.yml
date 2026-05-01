@@ -1,97 +1,8 @@
-- type: entity
-  id: BaseMagazine8x65mm
-  name: STANAG magazine (8x65mm SKR)
-  parent: [BaseItem, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny
-  abstract: true
-  components:
-  - type: Tag
-    tags:
-      - Magazine8x65mmSKR
-      - MagazineBox8x65mmSKR
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - Cartridge8x65mmSKR
-    capacity: 25
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 7
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: Magazine8x65mmEmpty
-  name: STANAG magazine (8x65mm SKR any)
-  suffix: empty
-  parent: BaseMagazine8x65mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine8x65mmSKR
-  name: STANAG magazine (8x65mm SKR)
-  parent: BaseMagazine8x65mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge8x65mmSKR
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine8x65mmSKRIncendiary
-  name: STANAG magazine (8x65mm SKR incendiary)
-  parent: BaseMagazine8x65mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge8x65mmSKRIncendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine8x65mmSKRPractice
-  name: STANAG magazine (8x65mm SKR practice)
-  parent: BaseMagazine8x65mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge8x65mmSKRPractice
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
+# Base
 - type: entity
   id: BaseMagazine8x65mmBox
   name: SAW box (8x65mm SKR)
+  suffix: Need balance test #Lua
   parent: [BaseItem, RecyclableItemSteelTiny] # Frontier: added RecyclableItemSteelTiny
   abstract: true
   components:
@@ -103,7 +14,7 @@
     whitelist:
       tags:
       - Cartridge8x65mmSKR
-    capacity: 100
+    capacity: 75 #Lua 100<75
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -122,20 +33,7 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
-  id: Magazine8x65mmEmptyBox
-  name: SAW box (8x65mm SKR any)
-  suffix: empty
-  parent: BaseMagazine8x65mmBox
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
+# Standart
 
 - type: entity
   id: Magazine8x65mmSKRBox
@@ -145,8 +43,102 @@
   - type: BallisticAmmoProvider
     proto: Cartridge8x65mmSKR
   - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
     layers:
     - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine8x65mmEmptyBox
+  name: SAW box (8x65mm SKR any)
+  parent: BaseMagazine8x65mmBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Mechanical
+- type: entity
+  id: Magazine8x65mmSKRBoxHP
+  name: SAW box (8x65mm SKR HP)
+  parent: BaseMagazine8x65mmBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKRHP
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
+    layers:
+    - state: hollowpoint
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Physical
+- type: entity
+  id: Magazine8x65mmSKRBoxIncendiary
+  name: SAW box (8x65mm SKR Incendiary)
+  parent: BaseMagazine8x65mmBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKRIncendiary
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine8x65mmSKRBoxUranium
+  name: SAW box (8x65mm SKR Uranium)
+  parent: BaseMagazine8x65mmBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKRUranium
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Special
+- type: entity
+  id: Magazine8x65mmSKRBoxEMP
+  name: SAW box (8x65mm SKR EMP)
+  parent: BaseMagazine8x65mmBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKREMP
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
+    layers:
+    - state: emp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine8x65mmSKRBoxCaustic
+  name: SAW box (8x65mm SKR Caustic)
+  parent: BaseMagazine8x65mmBox
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge8x65mmSKRCaustic
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi
+    layers:
+    - state: caustic
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]

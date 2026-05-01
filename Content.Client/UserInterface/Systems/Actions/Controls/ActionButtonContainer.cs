@@ -11,6 +11,10 @@ namespace Content.Client.UserInterface.Systems.Actions.Controls;
 [Virtual]
 public class ActionButtonContainer : GridContainer
 {
+    private const int SlotsPerColumn = 10;
+    private const int ColumnsPerPreset = 3;
+    private const int SlotsPerPreset = SlotsPerColumn * ColumnsPerPreset;
+
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IInputManager _input = default!;
 
@@ -30,8 +34,7 @@ public class ActionButtonContainer : GridContainer
 
     private void BuildActionButtons(int count)
     {
-
-        var keys = ContentKeyFunctions.GetHotbarBoundKeys().Take(10).ToArray();
+        var keys = ContentKeyFunctions.GetHotbarBoundKeys().Take(SlotsPerColumn * 2).ToArray();
 
         Children.Clear();
         for (var i = 0; i < count; i++)
@@ -57,7 +60,7 @@ public class ActionButtonContainer : GridContainer
 
     public void SetActionData(ActionsSystem system, params EntityUid?[] actionTypes)
     {
-        var uniqueCount = Math.Max(ContentKeyFunctions.GetHotbarBoundKeys().Take(10).Count(), actionTypes.Length + 1);
+        var uniqueCount = Math.Max(SlotsPerPreset, actionTypes.Length);
         if (ChildCount != uniqueCount)
             BuildActionButtons(uniqueCount);
 

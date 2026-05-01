@@ -1,3 +1,7 @@
+# Damage-per-second = 125 for pistols; 125-25 = 100 for caustic ammo; max COO = 10
+# Main damage type - Blunt for standart; main damage/special damage = 70/30 for special
+# LeptonComm status clear
+# Standart
 - type: entity
   id: Bullet635x40mmCaseless
   name: bullet (635x40mm Caseless)
@@ -7,11 +11,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15 #Lua -4
-        Blunt: 4 #Lua add
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 5
+        Blunt: 12.5
 
+# Mechanical
 - type: entity
   id: Bullet635x40mmCaselessPractice
   name: bullet (635x40mm Caseless practice)
@@ -35,3 +37,65 @@
         Blunt: 3
   - type: StaminaDamageOnCollide #Lua add
     damage: 15
+
+- type: entity
+  id: Bullet635x40mmCaselessHP
+  name: bullet (635x40mm HP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 8.75
+        Piercing: 3.75
+
+# Physical
+- type: entity
+  id: Bullet635x40mmCaselessIncendiary
+  name: bullet (635x40mm incendiary)
+  parent: BaseBulletIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 8.75
+        Heat: 3.75
+
+- type: entity
+  id: Bullet635x40mmCaselessUranium
+  name: bullet (635x40mm uranium)
+  parent: BaseBulletUranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 8.75
+        Radiation: 3.75
+
+# Special
+- type: entity
+  id: Bullet635x40mmCaselessEMP
+  name: bullet (635x40mm EMP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 8.75
+        Shock: 3.75
+
+- type: entity
+  id: Bullet635x40mmCaselessCaustic
+  name: bullet (635x40mm Caustic)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 7
+        Caustic: 3

@@ -3,6 +3,7 @@
   name: M4SPR custom battle rifle
   id: WeaponRifleM4SPRCustom
   description: An improvement over the already great M4SPR. Able to take A19 rounds, as well as having better control and accuracy at the cost of being harder to use. Can take traditional M4SPR mags, at lower damage.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/m4spr_custom.rsi
@@ -24,7 +25,17 @@
   #   baseFireRate: 1.8
   # - type: GunDamageModifier
   #   multiplier: 1.1 # Lower to allow for normal M4SPR mags to have lower damage. A19 mags do more damage to compensate.
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
+  - type: GunRequiresWield #Lua
   - type: Gun
+    examineCaliber: gun-examine-caliber-76254 #Lua
+    minAngle: 1.4 #Lua
+    maxAngle: 7 #Lua
+    angleIncrease: 5.6 #Lua
+    angleDecay: 3.7 #Lua
+    fireRate: 4.2 #Lua
     shotsPerBurst: 2
     selectedMode: SemiAuto
     availableModes:
@@ -45,7 +56,7 @@
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/l42_unload.ogg
         priority: 2
-        startingItem: RMCMagazineRifleM4SPRA19
+        startingItem: Magazine762x54mmRFMJ #Lua RMCMagazineRifleM4SPRA19<Magazine762x54mmRFMJ
         whitelist:
           tags:
           - CMMagazineRifleM4SPR
@@ -53,6 +64,35 @@
           - CMMagazineRifleM4SPRExt
           - RMCMagazineRifleM4SPRA19
           - RMCMagazineRifleM4SPRA19Impact
+          - Magazine762x54mmRFMJ #Lua
+#          - CMMagazineRifleM4SPR #comment (53-57) from _Lua
+#          - CMMagazineRifleM4SPRAP
+#          - CMMagazineRifleM4SPRExt
+#          - RMCMagazineRifleM4SPRA19
+#          - RMCMagazineRifleM4SPRA19Impact
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 7.5
+      pvsIncrease: 1
 
 - type: entity
   parent: CMMagazineRifleBase

@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: germanreutt (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: BMFish
+  name: BM-Fish
+  description: "Когда-то бывший невероятно популярным десантный шаттл Синдиката. Переоборудован под спасательное судно."
+  price: 90000 #test
+  category: Medium
+  group: ASBlackMarket
+  whitelist:
+  - Frontier
+  - Luna
+  class:
+  - Medical
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/fish.yml
+
+- type: gameMap
+  id: BMFish
+  mapName: 'BM-Fish'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/fish.yml
+  minPlayers: 0
+  stations:
+    BMFish:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'BM-Fish {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

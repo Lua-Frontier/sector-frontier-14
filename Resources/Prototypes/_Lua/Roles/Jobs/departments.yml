@@ -4,20 +4,20 @@
 
 - type: department
   id: OutpostSyndicate
-  name: department-Outpost-Syndicate
-  description: department-Outpost-Syndicate-description
+  name: department-Outpost-Typan
+  description: department-Outpost-Typan-description
   color: "#D381C9"
   weight: -9
   roles:
-  - OutpostSyndicateAtmosTech
-  - OutpostSyndicateBotanist
-  - OutpostSyndicateCargotech
-  - OutpostSyndicateChef
-  - OutpostSyndicateMedic
-  - OutpostSyndicateRD
-  - OutpostSyndicateScience
-  - OutpostSyndicateTelecommunicationsOfficer
-  - OutpostSyndicateResearcher
+#  - OutpostTypanAtmosTech
+#  - OutpostTypanBotanist
+  - OutpostTypanCargotech
+#  - OutpostTypanChef
+#  - OutpostTypanMedic
+#  - OutpostTypanRD
+  - OutpostTypanScience
+  - OutpostTypanTelecommunicationsOfficer
+#  - OutpostTypanResearcher
   - OutpostSyndicateShareholder
 
 - type: department
@@ -28,3 +28,15 @@
   weight: -9
   roles:
   - OpsLuaTech
+
+- type: department
+#  id: StormCreed
+  id: Antag
+  name: department-stormcreed
+  description: department-stormcreed-description
+  color: "#948471"
+  weight: 60
+  roles:
+  - StormCreedCaptain
+  - StormCreedFirstmate
+  - StormCreedSoldier

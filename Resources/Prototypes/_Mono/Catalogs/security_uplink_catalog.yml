@@ -11,18 +11,202 @@
 # Lua fully ignored
 # All content moved by path: \Prototypes\_Lua\Catalog\uplink_catalog_security.yml
 
+#Lua edit start: Transfered sec hardsuits with the new id's here
+# Equipment
+#comment (251-414) from _Lua
+#- type: listing
+#  id: UplinkSecurityHardsuitM73
+#  name:  uplink-security-hardsuit-name
+#  description: uplink-security-hardsuit-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM73
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m73.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 6
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
 
-# - type: listing
-#   id: UplinkSecurityAuroraExosuit
-#   name:  uplink-exosuit-aurora-name
-#   description: uplink-exosuit-aurora-desc
-#   productEntity: ClothingOuterExosuitAurora
-#   cost:
-#     FrontierUplinkCoin: 25
-#   categories:
-#   - UplinkSecurityHardsuits
-#   conditions:
-#   - !type:StoreWhitelistCondition
-#     whitelist:
-#       tags:
-#       - SecurityUplink
+#- type: listing
+#  id: UplinkSecurityHardsuitM74
+#  name:  uplink-security-hardsuit-patrol-name
+#  description: uplink-security-hardsuit-patrol-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM74
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m74.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 6
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+
+#- type: listing
+#  id: UplinkSecurityHardsuitM73-C
+#  name:  uplink-security-hardsuit-brigmedic-name
+#  description: uplink-security-hardsuit-brigmedic-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM73-C
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m73-c.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 6
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Bailiff
+#        - Sheriff
+#        - Brigmedic
+
+#- type: listing
+#  id: UplinkSecurityHardsuitM75
+#  name:  uplink-security-hardsuit-warden-name
+#  description: uplink-security-hardsuit-warden-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM75
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m75.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 6
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Bailiff
+#        - SeniorOfficer
+#        - Sheriff
+
+#- type: listing
+#  id: UplinkSecurityHardsuitM93
+#  name:  uplink-security-hardsuit-combat-name
+#  description: uplink-security-hardsuit-combat-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM93
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m93.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 15
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+
+#- type: listing
+#  id: UplinkSecurityCommandM93-C
+#  name: uplink-security-hardsuit-command-name
+#  description: uplink-security-hardsuit-command-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM93-C
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m93-c.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 15
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Bailiff
+#        - Sheriff
+
+#- type: listing
+#  id: UplinkSecurityHardsuitJuggernaut
+#  name:  uplink-security-hardsuit-experimental-name
+#  description: uplink-security-hardsuit-experimental-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM92-X
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m92-x.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 40
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Sheriff
+
+#- type: listing
+#  id: UplinkSecurityHardsuitM92
+#  name:  uplink-security-hardsuit-sheriff-name
+#  description: uplink-security-hardsuit-sheriff-desc
+#  productEntity: ClothingOuterHardsuitTSFMCM92
+#  icon: { sprite: _EE/Clothing/OuterClothing/Hardsuits/tsfmc_m92.rsi, state: icon }
+#  cost:
+#    FrontierUplinkCoin: 8
+#  categories:
+#    - UplinkSecurityHardsuits
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+#    - !type:BuyerJobCondition
+#      whitelist:
+#        - Sheriff
+#Lua edit end
+
+# Utility
+
+#- type: listing
+#  id: UplinkSecurityPortableRecharger
+#  name:  uplink-security-portable-recharger-name
+#  description: uplink-security-portable-recharger-desc
+#  productEntity: PortableRecharger
+#  cost:
+#    FrontierUplinkCoin: 7
+#  categories:
+#  - UplinkSecurityUtility
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - SecurityUplink
+
+#- type: listing
+#  id: UplinkSecurityCash25000
+#  name: uplink-security-cash25000-name
+#  description: uplink-security-cash25000-desc
+#  productEntity: SpaceCash25000
+#  icon: { sprite: Objects/Economy/cash.rsi, state: cash_25000 }
+#  cost:
+#    FrontierUplinkCoin: 10
+#  categories:
+#    - UplinkSecurityUtility
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink
+
+#- type: listing
+#  id: UplinkSecurityMedipenCase
+#  name: uplink-pirate-syringe-case-name
+#  description: uplink-pirate-syringe-case-desc
+#  productEntity: SyringeCaseAltFilled
+#  cost:
+#    FrontierUplinkCoin: 6
+#  categories:
+#    - UplinkSecurityUtility
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - SecurityUplink

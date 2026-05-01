@@ -28,9 +28,9 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
+#  - type: Wieldable # comment from _Lua
+#    unwieldOnUse: false
+#  - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -0 # Set to 0 because GunRequiresWield
     maxAngle: -0
@@ -118,8 +118,29 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: NFPulse
-    fireCost: 100
+    proto: LuaPulseRifle
+    fireCost: 42
+
+- type: entity #Lua
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  id: LuaPulseRifle
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 25 #Lua 35<25
+        Radiation: 17 #Lua
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 
 - type: entity
   id: NFBaseWeaponEnergyRifleEmp

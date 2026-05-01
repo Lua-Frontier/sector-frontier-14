@@ -1,0 +1,129 @@
+- type: entity
+  id: BluespaceVesselLuaTech
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-cache-start-announcement
+    startAudio:
+      path: /Audio/_Lua/Announcements/attention.ogg # Lua
+    warningAnnouncement: station-event-bluespace-cache-warning-announcement
+    endAnnouncement: station-event-bluespace-cache-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
+    earliestStart: 100
+    weight: 5
+    duration: 1350
+    maxDuration: 1560
+    reoccurrenceDelay: 360 # 6 hours
+    requiredJobs:
+      Sheriff: 1
+  - type: BluespaceErrorRule
+    asteroid: false
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-SyndicateWeaponsCache
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: "#FFFFFF"
+        - type: Shuttle
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor # Added post-FTL, so anchoring is fine.
+        - type: ClaimableGrid # Mono
+        paths:
+        - /Maps/_Lua/Bluespace/luatechcache.yml
+    rewardAccounts:
+      Nfsd: 1.0
+
+- type: entity
+  id: BluespaceVesselSyndie
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-cache-start-announcement
+    startAudio:
+      path: /Audio/_Lua/Announcements/attention.ogg # Lua
+    warningAnnouncement: station-event-bluespace-cache-warning-announcement
+    endAnnouncement: station-event-bluespace-cache-end-announcement
+    endAudio:
+      path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_bluespace_cache_leave.ogg
+    earliestStart: 100
+    weight: 5
+    duration: 1350
+    maxDuration: 1560
+    reoccurrenceDelay: 360 # 6 hours
+    requiredJobs:
+      Sheriff: 1
+  - type: BluespaceErrorRule
+    asteroid: false
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-SyndicateWeaponsCache
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: "#E10F9B"
+        - type: Shuttle
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor # Added post-FTL, so anchoring is fine.
+        - type: ClaimableGrid # Mono
+        paths:
+        - /Maps/_Lua/Bluespace/syndievessel.yml
+    rewardAccounts:
+      Nfsd: 1.0
+
+- type: entity
+  id: BluespaceAsteroidSyndie
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-asteroid-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    warningAnnouncement: station-event-bluespace-asteroid-warning-announcement
+    endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    earliestStart: 100
+    minimumPlayers: 25
+    weight: 3
+    duration: 2100
+    maxDuration: 2400
+    reoccurrenceDelay: 240 # once per 4 hours
+    requiredJobs:
+      Sheriff: 1
+  - type: BluespaceErrorRule
+    asteroid: false
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-UnusualAsteroid
+        minimumDistance: 1500
+        maximumDistance: 3500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+          color: "#E10F9B"
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ForceAnchor
+        paths:
+        - /Maps/_Lua/Bluespace/syndieasteroid.yml

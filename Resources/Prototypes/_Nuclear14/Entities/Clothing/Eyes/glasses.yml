@@ -1,0 +1,28 @@
+
+- type: entity
+  parent: ClothingEyesBase
+  id: N14ClothingEyesGlassesPilot
+  name: pilot goggles
+  description: Goggles designed to cover the eyes, commonly used by pilots in their flying machines.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Eyes/pilotgoggles.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Eyes/pilotgoggles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: ClothingEyesBase
+  id: N14ClothingSnowGoggles
+  name: snow goggles
+  description: Thick goggles made specifically for keeping snow and dust out of the eyes.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Eyes/snowgoggles.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Eyes/snowgoggles.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5

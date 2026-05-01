@@ -67,6 +67,8 @@
   parent: [ClothingShoesBase, ClothingSlotBase]
   id: ClothingShoesMilitaryBase
   components:
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
   - type: Matchbox
   - type: ItemSlots
     slots:
@@ -75,6 +77,7 @@
         whitelist:
           tags:
           - Knife
+          - Holdout #Lua
 
 - type: entity
   abstract: true

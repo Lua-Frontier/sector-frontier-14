@@ -9,14 +9,14 @@
   minimumDistance: 2500
   maximumDistance: 3500
   spawnGroup: AsteroidMarketStation
-  gridPath: /Maps/_Lua/POI/asteroidtradeoutpost.yml
+  gridPath: /Maps/_Lua/POI/BlackMarket.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/black_market.png
     scale: 1.2
     allowWhenHidden: true
   - type: IFF
-    color: "#741010"
+    color: "#d93204"
   - type: ProtectedGrid
     preventArtifactTriggers: true
   - type: SolarPoweredGrid
@@ -32,7 +32,7 @@
 - type: gameMap
   id: AsteroidTradeOutpost
   mapName: 'Чёрный Рынок'
-  mapPath: /Maps/_Lua/POI/asteroidtradeoutpost.yml
+  mapPath: /Maps/_Lua/POI/BlackMarket.yml
   minPlayers: 0
   stations:
     AsteroidTradeOutpost:
@@ -40,7 +40,15 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Trade Outpost'
+        - type: ExtraStationInformation #Lua
+          iconPath: /Textures/Structures/Wallmounts/flags.rsi/pirate_flag.png
+          stationSubtext: 'frontier-lobby-blackmarket-subtext'
+          stationDescription: 'frontier-lobby-blackmarket-description'
         - type: StationDeadDrop
           maxDeadDrops: 3
         - type: TradeCrateDestination
           destinationProto: Trade
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]

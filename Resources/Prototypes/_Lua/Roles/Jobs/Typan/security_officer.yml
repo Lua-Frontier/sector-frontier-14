@@ -3,9 +3,9 @@
 # See AGPLv3.txt for details.
 
 - type: job
-  id: OutpostSyndicateTelecommunicationsOfficer
+  id: OutpostTypanTelecommunicationsOfficer
   name: job-name-typan-telecommunications-officer
-  playTimeTracker: JobOutpostTypanTelecommunicationsOfficer
+  playTimeTracker: JobOutpostSyndicateTelecommunicationsOfficer
   salary: 65000
   description: Офицер телекомуникаций из далёкого космоса.
   startingGear: SyndicateFormal
@@ -14,20 +14,23 @@
   canBeAntag: true
   hideConsoleVisibility: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Antag
-      time: 30000
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 95000
-    - !type:DepartmentTimeRequirement
-      department: Frontier
-      time: 108000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 108000
-    - !type:OverallPlaytimeRequirement
-      time: 360000
+  - !type:RoleTimeRequirement
+    role: JobHeadOfPersonnel
+    time: 72000 # 20h
+  - !type:DepartmentTimeRequirement
+    department: OutpostSyndicate
+    time: 72000 # 20h
+#    - !type:DepartmentTimeRequirement
+#      department: Civilian
+#      time: 95000
+#    - !type:DepartmentTimeRequirement
+#      department: Frontier
+#      time: 108000
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 108000
+#    - !type:OverallPlaytimeRequirement
+#      time: 360000
   access:
   - SyndicateAgent
   - NuclearOperative
@@ -35,6 +38,8 @@
   accessGroups:
   - AllAccess
   special:
+  - !type:AddImplantSpecial
+    implants: [ DeathAcidifierImplantLWTypan ]
   - !type:AddComponentSpecial
     components:
       - type: Company
@@ -51,20 +56,20 @@
 - type: startingGear
   id: SyndicateFormal
   equipment:
-    eyes: ClothingEyesHudOutpostSyndicate
-    ears: ClothingHeadsetAltOutpostSyndicate
+    eyes: ClothingEyesHudOutpostTypan
+    ears: ClothingHeadsetAltOutpostTypan
     shoes: ClothingShoesBootsCombat
     jumpsuit: ClothingUniformJumpsuitSyndieFormal
     gloves: ClothingHandsGlovesCombat
     id: SyndiPDACom
     back: ClothingBackpackSyndicateFilled
-    belt: ClothingBeltAssaultOutpostSyndicate
+    belt: ClothingBeltAssaultOutpostTypan
     pocket1: SyndicateWhistle
     pocket2: ClothingMaskGasSyndicate
     outerClothing: ClothingOuterHardsuitSyndieCommander
 
 - type: chameleonOutfit
-  id: OutpostSyndicateTelecommunicationsOfficerChameleonOutfit
-  job: OutpostSyndicateTelecommunicationsOfficer
+  id: OutpostTypanTelecommunicationsOfficerChameleonOutfit
+  job: OutpostTypanTelecommunicationsOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitSyndieFormal

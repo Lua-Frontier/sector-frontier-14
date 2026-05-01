@@ -4,7 +4,7 @@ station-event-bluespace-vault-warning-announcement = Запущены удалё
 
 station-event-bluespace-vault-end-announcement = Транспортный модуль успешно извлечён из "{ $mapdestination }". Ближайший секторальный аванпост получил соответствующую компенсацию. Слава NT!
 
-station-event-bluespace-cache-start-announcement = Неизвестный транспортный модуль сбился с курса во время блюспейс-перехода и вскоре прибудет в "{ $mapdestination }". Приказываем силам ДСБФ провести расследование на предмет контрабандной деятельности.
+station-event-bluespace-cache-start-announcement = Неизвестный транспортный модуль сбился с курса во время блюспейс-перехода и вскоре прибудет в "{ $mapdestination }". Приказываем силам СРБС провести расследование на предмет контрабандной деятельности.
 
 station-event-bluespace-cache-warning-announcement = Запущены удалённые FTL процедуры в "{ $mapdestination }", осталось пять минут до извлечения оружейного хранилища.
 
@@ -28,7 +28,7 @@ station-event-bluespace-syndicate-ftl-interception-warning-announcement = Зап
 
 station-event-bluespace-syndicate-ftl-interception-end-announcement = В соответствии с протоколами блюспейс-передвижений NanoTrasen, неизвестный шаттл был уничтожен в { $mapdestination }. Слава NT!
 
-station-event-bluespace-wizardfederation-scout-start-announcement = Внимание всему доступному персоналу NanoTrasen! Командование флота NanoTrasen обнаружило блюспейс-аномалию в пространстве { $mapdestination } с сигнатурой, указывающей на скорое прибытие шаттла Федерации Волшебников. Код: Перехватить, Задержать, Заключить. Арестуйте нарушителей и подготовьте их к передаче подразделению ДСБФ NanoTrasen для проведения допроса.
+station-event-bluespace-wizardfederation-scout-start-announcement = Внимание всему доступному персоналу NanoTrasen! Командование флота NanoTrasen обнаружило блюспейс-аномалию в пространстве { $mapdestination } с сигнатурой, указывающей на скорое прибытие шаттла Федерации Волшебников. Код: Перехватить, Задержать, Заключить. Арестуйте нарушителей и подготовьте их к передаче подразделению СРБС NanoTrasen для проведения допроса.
 
 station-event-bluespace-wizardfederation-scout-warning-announcement = Дистанционные процедуры FTL инициализированы, осталось пять минут до рассеивания шаттла Федерации Волшебников из { $mapdestination }.
 

@@ -1,0 +1,534 @@
+#region Вооружение 
+- type: listing
+  id: CharlieUplinkPulseCarbine
+  name: Импульсный карабин
+  description: Высокотехнологичный энергетический карабин, излюбленный бойцами ОБР NanoTrasen. На рукоятке имеется наклейка с надписью «Только для авторизованного использования».
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: icon }
+  productEntity: NFWeaponEnergyRifleAssaultPulseCarbine
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkNFWeaponEnergyRiflePulse
+  name: импульсная винтовка
+  description: Оружие, почти столь же печально известное, как и его пользователи.
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi, state: icon }
+  productEntity: NFWeaponEnergyRiflePulse
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkNFWeaponEnergyPistolPulse
+  name: импульсный пистолет
+  description: Новейший энергетический пистолет, предпочитаемый Рейнджерами NanoTrasen в качестве запасного оружия.
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: icon }
+  productEntity: NFWeaponEnergyPistolPulse
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkN14WeaponMultiplas
+  name: мультиплазменная винтовка
+  description: Мультиплазменная винтовка - оружие, которое выстреливает тремя сгустками плазмы за раз. Сгустки плазмы нагревают и плавят все на своем пути.
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/multiplas.rsi, state: icon }
+  productEntity: N14WeaponMultiplas
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkRMCM5Bayonet
+  name: Штык M5 «Night Raider»
+  description: Штатный штык Морпехов. Можно прятать в ботинки или пристегнуть к винтовке.
+  icon: { sprite: _RMC14/Objects/Weapons/Melee/m5_bayonet.rsi, state: icon }
+  productEntity: RMCM5Bayonet
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkCMM2132Machete
+  name: Мачете M2132
+  description: Последняя версия мачете Морпехов.
+  icon: { sprite: _RMC14/Objects/Weapons/Melee/machete.rsi, state: icon }
+  productEntity: CMM2132Machete
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkNFWeaponShotgunBulldog
+  name: Бульдог 
+  description: Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра 4 gauge.
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+  productEntity: NFWeaponShotgunBulldog
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkRMCWeaponPistolSU6
+  name: Смарт-пистолет SU-6
+  description: Экспериментальный пистолет с идентификацией «свой-чужой», проходит войсковые испытания в UNMC. Использует модифицированные .45 ACP IFF боеприпасы, способен стрелять очередями.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/su6.rsi, state: icon }
+  productEntity: RMCWeaponPistolSU6
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkCMWeaponPistolMK80
+  name: Пистолет MK80
+  description: Массивный и грозный самозарядный пистолет под 9-мм Squash-Head. Часто встречается как у ЧВК We-Ya, так и у корп. управленцев; проходит ограниченные войсковые испытания у Морпехов.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/mk80.rsi, state: icon }
+  productEntity: CMWeaponPistolMK80
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkWeaponSMGM63
+  name: Пистолет-пулемет М63
+  description: Пистолет-пулемет Aegis Battlefield Armaments M-63. Иногда используется легкой пехотой, разведчиками, саперами и медиками.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/SMGs/m63.rsi, state: icon }
+  productEntity: WeaponSMGM63
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkCMWeaponPistolM77
+  name: Боевой пистолет M77
+  description: Штатное оружие Морпехов, также встречается у ЧВК We-Ya. Стреляет 9-мм бронебойными патронами, может вести огонь очередями по 3 выстрела.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/m77.rsi, state: icon }
+  productEntity: CMWeaponPistolM77
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkWeaponSubMachineGunVectorNtsfHclm
+  name: NTSF-HCLM-45 
+  description: Тяжелый калибр NTSF. Очень высококачественный тяжелый пистолет-пулемет калибра .45 Magnum, предназначенный для использования силами безопасности NanoTrasen и спецназом NT.
+  productEntity: WeaponSubMachineGunVectorNtsfHclm
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkRMCWeaponRevolverM44
+  name: Боевой револьвер M44
+  description: Громоздкий револьвер, встречается у штурмовиков и офицеров корпуса Морпехов, а также у гражданских сил правопорядка. Стреляет патронами .44 Magnum.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/m44.rsi, state: icon }
+  productEntity: RMCWeaponRevolverM44
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkWeaponRifleM4SPRCustom
+  name: модернизированная боевая винтовка M4SPR
+  description: Улучшенная версия и без того отличной M4SPR. Способна использовать патроны A19, а также обладает лучшим контролем и точностью, но при этом сложнее в использовании. Может использовать традиционные магазины M4SPR, но с меньшим уроном.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Rifles/m4spr_custom.rsi, state: icon }
+  productEntity: WeaponRifleM4SPRCustom
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkNFWeaponRifleAssaultM90GrenadeLauncher
+  name: М-90gl
+  description: Карабин старой модели, выполненный по схеме булл-пап, с подствольным гранатомётом. Использует патроны калибра 5.56x45mm.
+  icon: { sprite: Objects/Weapons/Guns/Rifles/carbine.rsi, state: icon }
+  productEntity: NFWeaponRifleAssaultM90GrenadeLauncher
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkWeaponRifleAnnie
+  name: TCA M27 Annie
+  description: Зверь, созданный для выполнения невыполнимых миссий. Использует патроны калибра 7,62x39 мм.
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
+  productEntity: WeaponRifleAnnie
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkWeaponRifleM16
+  name: Винтовка М16
+  description: Старая, надежная конструкция, впервые принятая на вооружение американской армией в 1960-х годах. Подобное оружие должно находиться в музее военной истории. 
+  productEntity: WeaponRifleM16
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+- type: listing
+  id: CharlieUplinkWeaponRifleM4SPR
+  name: Боевой карабин M4SPR
+  description: Дальнобойная винтовка разведподразделений морпехов. Буллпап-конфигурация делает ее удобной для разведки и огневой поддержки.
+  icon: { sprite: _RMC14/Objects/Weapons/Guns/Rifles/m4spr.rsi, state: icon }
+  productEntity: WeaponRifleM4SPR
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkWeapon
+
+#region Медицина
+
+- type: listing
+  id: CharlieUplinkMedicalPyraAutoInjector
+  name: автоинъектор пиразина
+  description: Экспресс-доза пиразина и дермалина, предназначенная для применения в боевых условиях.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: pyrapen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: PyraAutoInjector
+  categories:
+    - CharlieUplinkMedical
+
+- type: listing
+  id: CharlieUplinkMedicalPunctAutoInjector
+  name: Автоиньектор пунктураза
+  description: Экспресс-доза пунктураза и транексамовой кислоты, предназначенная для применения в боевых условиях.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: punctpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: PunctAutoInjector
+  categories:
+    - CharlieUplinkMedical
+
+- type: listing
+  id: CharlieUplinkMedicalCombatMedipen
+  name: боевой медипен
+  description: Одноразовый медипен, содержащий химические вещества, восстанавливающие большинство видов повреждений.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: morphen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: CombatMedipen
+  categories:
+    - CharlieUplinkMedical
+
+- type: listing
+  id: CharlieUplinkMedicalStimulantAutoInjector
+  name: медипен стимулятор
+  description: Экстренная доза сильнодействующих стимуляторов и регулирующих веществ. Содержит дезоксиэфедрин и диловен. Используйте с особой осторожностью.
+  icon: { sprite: _NF/Objects/Specific/Medical/medipen.rsi, state: stimulantpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: StimulantAutoInjector
+  categories:
+    - CharlieUplinkMedical
+
+- type: listing
+  id: AirlossAutoInjectorCh
+  name: автоинъектор удушения
+  description: Экспресс-доза физраствора и дексалина плюс, предназначенная чтобы быстро поднять кого-нибудь на ноги.
+  icon: { sprite: Objects/Specific/Medical/medipen.rsi, state: dexpen }
+  cost:
+    FrontierUplinkCoin: 1
+  productEntity: AirlossAutoInjector
+  categories:
+    - CharlieUplinkMedical
+
+- type: listing
+  id: CharlieUplinkMedicalHypospray
+  name: Гипоспрей
+  description: Гипоспрей, позволяющий вводить препараты буквально мгновенно!
+  icon: { sprite: Objects/Specific/Medical/hypospray.rsi , state: hypo }
+  cost:
+    FrontierUplinkCoin: 5
+  productEntity: Hypospray
+  categories:
+    - CharlieUplinkMedical
+
+- type: listing
+  id: CharlieUplinkMedicalMedkitCombatFilled
+  name: боевая аптечка
+  description: Для любителей больших пушек среди нас.
+  icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    FrontierUplinkCoin: 2
+  productEntity: MedkitCombatFilled
+  categories:
+    - CharlieUplinkMedical
+
+
+- type: listing
+  id: CharlieUplinkMedicalDefibrillatorCompact
+  name: компактный дефибриллятор
+  description: Теперь и в весёлом размере!
+  icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
+  cost:
+    FrontierUplinkCoin: 3
+  productEntity: DefibrillatorCompact
+  categories:
+    - CharlieUplinkMedical
+
+#region Прочее
+- type: listing
+  id: CharlieUplinkMiscMindShieldImplanter
+  name: имплантер щита разума
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
+  productEntity: MindShieldImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - CharlieUplinkMisc
+
+- type: listing
+  id: CharlieUplinkMiscDeathAcidifierImplanter
+  name: имплантер посмертного растворителя
+  description: Одноразовый шприц, специально предназначенный для введения подкожных имплантов.
+  icon: { sprite: Objects/Specific/Medical/syndi_implanter.rsi, state: implanter0 }
+  productEntity: DeathAcidifierImplanter
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - CharlieUplinkMisc
+
+- type: listing
+  id: CharlieUplinkMiscWelderExperimental
+  name: Экспериментальный сварочный аппарат
+  description: Экспериментальный сварочный аппарат, способный самостоятельно вырабатывать топливо, менее вреден для глаз.
+  icon: { sprite: Objects/Tools/welder_experimental.rsi, state: icon }
+  productEntity: WelderExperimental
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - CharlieUplinkMisc
+
+- type: listing
+  id: CharlieUplinkMiscNFShovel
+  name: Омнитул
+  description: Это омнитул.
+  icon: { sprite: Objects/Tools/omnitool.rsi, state: omnitool-screwing }
+  productEntity: Omnitool
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - CharlieUplinkMisc
+
+- type: listing
+  id: CharlieUplinkMiscJetpackVoidFilled
+  name: пустотный джетпак
+  description: Это реактивный ранец - джетпак.
+  icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
+  productEntity: JetpackVoidFilled
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - CharlieUplinkMisc
+
+- type: listing
+  id: CharlieUplinkMiscBoxMRE
+  name: сухой паёк
+  description: Коробка старых военных ИРП. Они, на удивление, не испортились.
+  icon: { sprite: Objects/Consumable/Food/snacks.rsi, state: nutribrick }
+  productEntity: BoxMRE
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - CharlieUplinkMisc
+
+- type: listing
+  id: UplinkCharlieEShieldGen
+  name:  uplink-security-eshieldgen-name
+  description: uplink-security-eshieldgen-desc
+  productEntity: ClothingBackpackEnergyShield
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - CharlieUplinkMisc
+
+# region Боеприпасы
+- type: listing
+  id: CharlieUplinkMagazine762x39mmFMJ # Mag
+  name: uplink-security-Magazine762x39mmFMJ-name
+  description: uplink-security-Magazine762x39mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle762x39mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkMagazine556x45mmFMJ # Mag
+  name: uplink-security-Magazine556x45mmFMJ-name
+  description: uplink-security-Magazine556x45mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle556x45mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkMagazine9x19mmSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunFMJ-name
+  description: uplink-security-Magazine9x19mmSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkMagazine9x19mmPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+
+
+- type: listing
+  id: CharlieUplinkMagazine45_ACPSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine45_ACPSubMachineGunFMJ-name
+  description: uplink-security-Magazine45_ACPSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkMagazine45_ACPPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkSpeedLoader45_magnumFMJ # speedloader
+  name: uplink-security-SpeedLoader45_magnumFMJ-name
+  description: uplink-security-SpeedLoader45_magnumFMJ-desc
+  productEntity: LuaBoxSpeedLoader45_magnumFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkMagazine762x51mmFMJ # Mag
+  name: uplink-security-Magazine762x51mmFMJ-name
+  description: uplink-security-Magazine762x51mmFMJ-desc
+  productEntity: LuaBoxMagazine762x51mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+- type: listing
+  id: CharlieUplinkMagazine68x52mmCaselessBig # Mag
+  name: box magazine (6.8x52mm STANAG Caseless)
+  description:
+  productEntity: Magazine68x52mmCaselessBig
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi, state: base }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo  
+
+- type: listing
+  id: CharlieUplinkMagazine8x65mmSKRBox # Mag
+  name: SAW box (8x65mm SKR)
+  description:  
+  productEntity: Magazine8x65mmSKRBox
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/8x65mm/8x65mm_box.rsi, state: base }
+  cost:
+    Speso: 1000
+  categories:
+  - CharlieUplinkAmmo
+
+# region Взрывка
+
+- type: listing
+  id: CharlieUplinkExplosionsBoxEMPGrenadesNfsd
+  name: коробка ЭМИ гранат
+  description: Коробка, полная ЭМИ гранат.
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon }
+  productEntity: BoxEMPGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - CharlieUplinkExplosions
+
+- type: listing
+  id: CharlieUplinkExplosionsBoxShrapnelGrenadesNfsd
+  name: коробка осколочных гранат
+  description: Коробка, полная осколочных гранат.
+  icon: { sprite: Objects/Weapons/Grenades/shrapnelgrenade.rsi, state: icon }
+  productEntity: BoxShrapnelGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - CharlieUplinkExplosions
+
+- type: listing
+  id: CharlieUplinkExplosionsBoxIncendiaryGrenadesNfsd
+  name: коробка зажигательных гранат
+  description: Коробка, полная зажигательных гранат.
+  icon: { sprite: Objects/Weapons/Grenades/pyrogrenade.rsi, state: icon }
+  productEntity: BoxIncendiaryGrenadesNfsd
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - CharlieUplinkExplosions
+
+- type: listing
+  id: CharlieUplinkExplosionsBoxSmokeGrenades
+  name: коробка дымовых гранат
+  description: Коробка, полная дымовых гранат.
+  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
+  productEntity: BoxSmokeGrenades
+  cost:
+    FrontierUplinkCoin: 2
+  categories:
+    - CharlieUplinkExplosions
+
+- type: listing
+  id: CharlieUplinkExplosionsClothingBackpackDuffelSyndicateC4tBundle
+  name: набор C-4
+  description: Сумка которая содержит 8 зарядов взрывчатки С-4.
+  icon: { sprite: Objects/Weapons/Bombs/c4.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateC4tBundle
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - CharlieUplinkExplosions

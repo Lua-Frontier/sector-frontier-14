@@ -33,7 +33,7 @@ namespace Content.Shared.Preferences
         private static readonly Regex RestrictedNameRegex = new(@"[^А-Яа-яёЁ0-9' -]"); // Corvax-Localization
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
-        public const int DefaultBalance = 30000; // Frontier
+        public const int DefaultBalance = 100000; // Frontier
 
         /// <summary>
         /// Job preferences for initial spawn.

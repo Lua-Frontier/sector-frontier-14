@@ -5,11 +5,18 @@
   name: inspector
   description: |-
     A detective's best friend. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+  - type: Gun #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1.9 #Lua
 
 - type: entity
   id: NFWeaponRevolverWard45
@@ -17,12 +24,18 @@
   name: ward-45
   description: |-
     The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
   - type: Gun
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1.9 #Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
@@ -51,6 +64,8 @@
     magState: mag
     steps: 4
     zeroVisible: true
+  - type: Gun #Lua
+    fireRate: 1.6 #Lua
 
 - type: entity
   id: NFWeaponRevolverRitland45
@@ -58,11 +73,18 @@
   name: ritland-45
   description: |-
     An illegal revolver favoured by Syndicate agents.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+  - type: Gun #Lua
+    fireRate: 1.6 #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
 
 - type: entity
   id: NFWeaponRevolverPirate
@@ -104,7 +126,14 @@
   name: fitz special
   description: |-
     A compact and concealable self defence snub revolver.
+  suffix: Need balance test
   components:
+  - type: Gun #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1 #Lua
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Revolvers/fitz.rsi
   - type: Clothing
@@ -116,7 +145,14 @@
   name: faith
   description: |-
     Delivers blessings in bullet form.
+  suffix: Need balance test
   components:
+  - type: Gun #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1.3 #Lua 1.8<1.3
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Revolvers/faith.rsi
   - type: Clothing
@@ -132,19 +168,34 @@
   name: lucky
   description: |-
     Luck always beats skill, ya weasel.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-45acp
+    minAngle: 3.1
+    maxAngle: 15.5
+    angleIncrease: 0.7
+    angleDecay: 5
+    fireRate: 4
+  - type: RevolverAmmoProvider #Lua
+    whitelist:
+      tags:
+        - Cartridge45_ACPFMJ #Lua Cartridge45_magnumFMJ<Cartridge45_ACPFMJ
+#        - SpeedLoader45_magnumFMJ comment from _Lua
+    proto: Cartridge45_ACPFMJ #Lua Cartridge45_magnumFMJ<Cartridge45_ACPFMJ
 
 #region Frontier
 - type: entity
   id: NFWeaponRevolverArgenti
-  parent: [ BaseWeaponRevolver, NFBaseWeaponFrameRevolverFrontierGunsmith ]
+  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua BaseWeaponRevolver<NFBaseWeaponRevolverChamber45Magnum
   name: argenti
   description: |-
     The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
+  suffix: Need balance test
   components:
   - type: Sprite
     scale: 0.75, 0.75
@@ -152,15 +203,20 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Gun
-    fireRate: 2.5
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 3 #Lua 2.5<3
     resetOnHandSelected: false
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge9x19mmFMJ #Lua 35 -> 9x19
-        - SpeedLoader9x19mmFMJ #Lua 35 -> 9x19
+        - Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
+#        - SpeedLoader9x19mmFMJ # comment from _Lua
+    proto: Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
     capacity: 8
-    proto: Cartridge9x19mmFMJ #Lua 35 -> 9x19
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice

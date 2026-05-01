@@ -124,12 +124,12 @@
   id: GunneryServerUltra
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: ultra-high-power gunnery control server
-  suffix: 90
+  suffix: 96
   components:
   - type: Machine
     board: MachineGCSUltraCircuitboard
   - type: FireControlServer
-    processingPower: 90
+    processingPower: 96
   - type: PassiveThermalSignature
     signature: 4000000 # ~4km
   - type: ThermalSignature

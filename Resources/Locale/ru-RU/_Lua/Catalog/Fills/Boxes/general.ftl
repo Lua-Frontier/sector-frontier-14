@@ -3,3 +3,6 @@ ent-BoxEncryptionKeyAllBasic = коробка со всеми основными
 
 all-basic-encryption-keys-box-uplink-name = Коробка с всеми основными ключами шифрования
 all-basic-encryption-keys-box-uplink-desc = Содержит все ключи шифрования для тех, кто любит подслушивать, либо чьи ушки не устают.
+
+uplink-security-Magazine127x99mmFMJ-name = Магазин патронов 12.7x99mm
+uplink-security-Magazine127x99FMJ-desc = Магазин тяжелых, длинных, мать его, гвоздей. Прибьют к стене кого угодно.

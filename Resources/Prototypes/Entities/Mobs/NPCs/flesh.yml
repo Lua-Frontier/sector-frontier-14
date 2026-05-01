@@ -31,7 +31,7 @@
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseRunningSpeed: 1.5
   - type: MobState
     allowedStates:
     - Alive
@@ -140,7 +140,7 @@
       30: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
+    baseRunningSpeed: 2.5
 
 - type: entity
   parent: BaseMobFlesh
@@ -165,7 +165,7 @@
       30: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
+    baseRunningSpeed: 2.5
 
 - type: entity
   parent: BaseMobFlesh
@@ -195,7 +195,7 @@
       100: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.5
+    baseRunningSpeed: 2.5
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
@@ -234,7 +234,7 @@
   - type: MovementAlwaysTouching
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseRunningSpeed: 1.5
   - type: MobState
     allowedStates:
     - Alive
@@ -343,7 +343,7 @@
       30: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
+    baseRunningSpeed: 2.5
 
 - type: entity
   parent: BaseMobFleshSalvage
@@ -368,4 +368,4 @@
       30: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
+    baseRunningSpeed: 2.5

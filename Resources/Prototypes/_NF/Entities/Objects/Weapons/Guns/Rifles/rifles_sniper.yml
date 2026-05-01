@@ -1,22 +1,73 @@
 #region WizDen
 - type: entity
   id: NFWeaponRifleSniperHristov
-  parent: [ NFBaseWeaponRifleChamber60, NFBaseWeaponFrameRifleSniperCybersun ]
+  parent: [NFBaseWeaponFrameRifleSniperCybersun, BaseWeaponSniperNoContainer ] #NFBaseWeaponRifleChamber60
   name: Hristov
   description: A portable anti-materiel rifle.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
-#Lua added toggling scope
-  - type: ItemToggle
+  - type: ChamberMagazineAmmoProvider #Lua
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/batrifle_cock.ogg
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-127
+    minAngle: 0 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 0 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 1.2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: Item #Lua
+    shape:
+    - 0,0,4,3
+  - type: ItemToggle #Lua
     onUse: false
-    onActivate: true
-  - type: ComponentToggler
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
     components:
+    - type: HeldSpeedModifier #Lua
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
     - type: CursorOffsetRequiresWield
     - type: EyeCursorOffset
       maxOffset: 10
-      pvsIncrease: 0.7
-#end Lua
+      pvsIncrease: 1
+  - type: ContainerContainer #Lua
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine127x99mm
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine127x99mm
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge127x99mm
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge127x99mm

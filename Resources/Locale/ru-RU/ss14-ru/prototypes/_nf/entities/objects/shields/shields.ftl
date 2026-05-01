@@ -1,2 +1,2 @@
-ent-EnergyShieldNfsd = энергощит ДСБФ
+ent-EnergyShieldNfsd = энергощит СРБС
     .desc = { ent-EnergyShield.desc }

@@ -23,7 +23,7 @@
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseC1SyndicateContraband]
-  id: ClothingHeadsetAltOutpostSyndicate
+  id: ClothingHeadsetAltOutpostTypan
   name: полноразмерная кроваво - красная гарнитура
   description: Модифицированный модульный интерком синдиката.
   components:
@@ -38,7 +38,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyOutpostSyndicate
+      - EncryptionKeyOutpostTypan
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -74,7 +74,7 @@
       - EncryptionKeyTrade
       - EncryptionKeyTraffic
       - EncryptionKeyVip
-      - EncryptionKeyOutpostSyndicate
+      - EncryptionKeyOutpostTypan
   - type: Sprite
     sprite: _Lua/Ears/vipalt.rsi
   - type: Clothing

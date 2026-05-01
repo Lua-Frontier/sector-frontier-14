@@ -21,9 +21,18 @@
   name: C-20r
   description: |-
     An illegal firearm that is often used by the infamous nuclear operatives.
+  suffix: Need balance test
   components:
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 6 #_Lua
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 4 #Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: Sprite
@@ -31,20 +40,48 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: ChamberMagazineAmmoProvider
-    autoEject: true
+    autoEject: false #Lua true<false
   - type: MagazineVisuals
     magState: mag
     steps: 6
     zeroVisible: true
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine45_ACPSubMachineGunFMJ #Lua Magazine9x19mmSubMachineGunFMJ<Magazine45_ACPSubMachineGunFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist: &mag35Whitelist
+          tags:
+            - Magazine45_ACPSubMachineGunFMJ #Lua Magazine9x19mmSubMachineGunFMJ<Magazine45_ACPSubMachineGunFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber35Standard
+        name: Chamber
+        startingItem: Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
 
 - type: entity
   id: NFWeaponSubMachineGunDrozd
   parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunNanotrasen ] #Lua 35 -> 9x19 base
   name: Drozd
   description: A fully automatic SMG.
+  suffix: Need balance test
   components: &drozdComponents
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 5.5 #_Lua
+    examineCaliber: gun-examine-caliber-919 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 4.5 #Lua 5.5<4.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
   - type: Sprite
@@ -66,9 +103,18 @@
   name: WT-550
   description: |-
     An excellent SMG. On the receiver is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 6 #_Lua
+    examineCaliber: gun-examine-caliber-919 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 6 #Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: Sprite

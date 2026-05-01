@@ -324,6 +324,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
     private void StoreReturnPosition(Entity<StarGateLandingBeaconComponent> beacon, EntityUid shuttleUid, MapId targetMapId)
     {
         if (!_xformQuery.TryGetComponent(shuttleUid, out var shuttleXform) || shuttleXform.MapUid == null) return;
+        if (HasComp<StargateDestinationComponent>(shuttleXform.MapUid.Value)) return;
         if (_transform.GetMapId(shuttleXform.Coordinates) == targetMapId && beacon.Comp.ReturnMapUid != null) return;
         beacon.Comp.ReturnMapUid = shuttleXform.MapUid.Value;
         beacon.Comp.ReturnWorldPosition = _transform.GetWorldPosition(shuttleXform);

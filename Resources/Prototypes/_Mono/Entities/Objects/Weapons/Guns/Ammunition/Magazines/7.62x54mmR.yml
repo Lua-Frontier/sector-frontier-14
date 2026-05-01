@@ -2,6 +2,7 @@
 - type: entity
   id: BaseMagazine762x54mmR
   name: "magazine (7.62x54mmR FMJ)"
+  suffix: Need balance test #Lua
   parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ] # Frontier: BaseSecurityContraband<BaseC1Contraband added RecyclableItemSteelTiny
   abstract: true
   components:
@@ -14,7 +15,7 @@
       tags:
         - Cartridge762x54mmRFMJ
     proto: Cartridge762x54mmRFMJ
-    capacity: 10
+    capacity: 15 #Lua 10<15
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -32,8 +33,32 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 7.5
+      pvsIncrease: 1
 
 # Magazines
+# Standart
 - type: entity
   id: Magazine762x54mmRFMJ
   name: "magazine (7.62x54mmR FMJ)"
@@ -51,7 +76,6 @@
 - type: entity
   id: Magazine762x54mmREmpty
   name: "magazine (7.62x54mmR any)"
-  suffix: empty
   parent: Magazine762x54mmRFMJ
   components:
   - type: BallisticAmmoProvider
@@ -78,34 +102,6 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine762x54mmRUranium
-  name: "magazine (7.62x54mmR uranium)"
-  parent: BaseMagazine762x54mmR
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge762x54mmRUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine762x54mmRIncendiary
-  name: "magazine (7.62x54mmR incendiary)"
-  parent: Magazine762x54mmRFMJ
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge762x54mmRIncendiary
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: Magazine762x54mmRRubber
   name: "magazine (7.62x54mmR rubber)"
   parent: BaseMagazine762x54mmR
@@ -120,8 +116,7 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-# Mono AP syst
-#anti-flesh:
+# Mechanical
 - type: entity
   id: Magazine762x54mmRHP
   name: "magazine (7.62x54mmR hollow-point)"
@@ -131,37 +126,65 @@
     proto: Cartridge762x54mmRHP
   - type: Sprite
     layers:
-    - state: HP
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Physical
+- type: entity
+  id: Magazine762x54mmRIncendiary
+  name: "magazine (7.62x54mmR incendiary)"
+  parent: Magazine762x54mmRFMJ
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge762x54mmRIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine762x54mmRRIP
-  name: "magazine (7.62x54mmR RIP)"
+  id: Magazine762x54mmRUranium
+  name: "magazine (7.62x54mmR uranium)"
   parent: BaseMagazine762x54mmR
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge762x54mmRRIP
+    proto: Cartridge762x54mmRUranium
   - type: Sprite
     layers:
-    - state: RIP
+    - state: uranium
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-#armor-piercing:
-
+# Special
 - type: entity
-  id: Magazine762x54mmRPlasteelAP
-  name: "magazine (7.62x54mmR AP)"
+  id: Magazine762x54mmREMP
+  name: "magazine (7.62x54mmR EMP)"
   parent: BaseMagazine762x54mmR
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge762x54mmRPlasteelAP
+    proto: Cartridge762x54mmREMP
   - type: Sprite
     layers:
-    - state: plasteelAP
+    - state: emp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine762x54mmRCaustic
+  name: "magazine (7.62x54mmR Caustic)"
+  parent: BaseMagazine762x54mmR
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge762x54mmRCaustic
+  - type: Sprite
+    layers:
+    - state: caustic
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]

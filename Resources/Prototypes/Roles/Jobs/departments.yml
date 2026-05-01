@@ -18,6 +18,7 @@
   description: department-NFCivilian-description # Frontier
   color: "#9FED58"
   weight: -10
+  editorHidden: true # Frontier
   roles:
   # - Bartender # Frontier
   # - Botanist # Frontier
@@ -35,11 +36,10 @@
   # - Visitor # Frontier
   # - Zookeeper # Frontier
   # - ServiceWorker # Frontier
-  - Contractor # Frontier
+#  - Contractor # Frontier
   - MercenaryBase # Lua
-  - Pilot # Frontier
-  - Borg # Frontier
-  - Vip # Акционер (донат-роль)
+#  - Pilot # Frontier
+#  - Borg # Frontier
 
 - type: department
   id: CentralCommand
@@ -99,8 +99,8 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  - StationRepresentative # Frontier
-  - Sheriff # Frontier
+#  - StationRepresentative # Frontier
+#  - Sheriff # Frontier
   - PlantManager # Frontier
   - StationTrafficController # Frontier
   primary: false
@@ -127,8 +127,9 @@
   name: department-Medical
   description: department-Medical-description
   color: "#52B4E9"
-  weight: 49
+  weight: 75
   roles:
+  - DirectorOfCare #Lua
   - Chemist
   - MedicalDoctor
   - Paramedic
@@ -138,23 +139,24 @@
   name: department-Security
   description: department-NFSecurity-description # Frontier
   color: "#5C7D4D" # Frontier: DE3A3A<5C7D4D
-  weight: 1 # Frontier: 20<1 - accounted for in jobs
+  weight: 70 # Frontier: 20<1 - accounted for in jobs
   roles:
 #  - Detective # Frontier
 #  - HeadOfSecurity # Frontier
 #  - SecurityCadet # Frontier
 #  - SecurityOfficer # Frontier
 #  - Warden # Frontier
-  - PrisonGuard ##nyano
-  - Brigmedic # Frontier
+#  - PrisonGuard ##nyano
 #  - SecurityGuard # Frontier
-  - NFDetective # Frontier
-  - Cadet # Frontier
-  - Deputy # Frontier
-  - Bailiff # Frontier
-  - Sheriff # Frontier
-  - SeniorOfficer # Frontier
-  - PublicAffairsLiaison # Frontier
+#  - NFDetective # Frontier #comment from _Lua
+#  - PublicAffairsLiaison # Frontier #comment from _Lua
+   - Sheriff
+   - Bailiff
+   - SeniorOfficer
+   - Brigmedic
+   - SDEngineer
+   - Deputy
+   - Cadet
 
 - type: department
   id: Science

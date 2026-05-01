@@ -1,0 +1,38 @@
+- type: vessel
+  id: Sentinel
+  parent: BaseVesselAntag
+  name: Sentinel
+  description: Крупный, защищенный фрегат, предназначенный для фронтального боя
+  limit: 1
+  price: 253060
+  category: Large
+  group: Security
+  access: Armory
+  shuttlePath: /Maps/_Mono/Shuttles/Nfsd/Sentinel.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Capital
+  - Nfsd
+  engine:
+  - AME
+
+- type: gameMap
+  id: Sentinel
+  mapName: 'Sentinel'
+  mapPath: /Maps/_Mono/Shuttles/Nfsd/Sentinel.yml
+  minPlayers: 0
+  stations:
+    Sentinel:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Sentinel {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Deputy: [ 0, 0 ]

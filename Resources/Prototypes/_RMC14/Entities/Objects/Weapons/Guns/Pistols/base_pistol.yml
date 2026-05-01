@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, CMBaseWeaponGun, BaseGunWieldable]
+  parent: [BaseItem, CMBaseWeaponGun] #Lua BaseGunWieldable
   abstract: true
   id: CMWeaponPistolBase
   components:
@@ -12,19 +12,21 @@
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Item
     size: Normal
-  - type: Tag
-    tags:
-    - Sidearm
+#  - type: Tag #comment (15-17; 22) from _Lua
+#    tags:
+#    - Sidearm
   - type: Clothing
     slots:
     - suitStorage
     - belt
-  - type: Wieldable
+#  - type: Wieldable
   - type: MeleeWeapon
     damage:
       types:
         Blunt: 6
-  - type: Gun
+  - type: Gun #Lua
+    minAngle: 1
+    maxAngle: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -54,7 +56,7 @@
     zeroVisible: true
   - type: Appearance
   - type: MagazineAmmoProvider
-    autoEject: true
+    autoEject: false #Lua true<false
 
 - type: entity
   abstract: true

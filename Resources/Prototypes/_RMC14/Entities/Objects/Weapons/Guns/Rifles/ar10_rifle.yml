@@ -3,7 +3,7 @@
   name: AR10 Assault Rifle
   id: WeaponRifleAR10
   description: An earlier version of the more widespread M16 rifle. Considered to be the father of the 20th century rifle. How one of these ended up here is a mystery of its own. It is chambered in 7.62x51mm.
-  suffix: Filled
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/ar10.rsi
@@ -17,17 +17,25 @@
       offset: -0.5, 0
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/ar10.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: Gun
+    examineCaliber: gun-examine-caliber-55645 #Lua
     shotsPerBurst: 4
-    minAngle: 1
-    maxAngle: 10
-    angleIncrease: 1
-    angleDecay: 1
-    fireRate: 8
-    selectedMode: SemiAuto
+#    minAngle: 1 # comment from _Lua
+#    maxAngle: 10
+#    angleIncrease: 1
+#    angleDecay: 1
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 7.2 #Lua 8<7.2
+    selectedMode: FullAuto #Lua SemiAuto<FullAuto
     availableModes:
     - SemiAuto
-    - Burst
+    - FullAuto #Lua Burst<FullAuto
     soundGunshot:
       collection: CMAR10Shoot
   # - type: RMCSelectiveFire
@@ -53,13 +61,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: RMCMagazineRifleAR10
+        startingItem: Magazine556x45mmFMJ #Lua RMCMagazineRifleAR10<Magazine556x45mmFMJ
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - RMCMagazineRifleAR10
+          - Magazine556x45mmFMJ #Lua RMCMagazineRifleAR10<Magazine556x45mmFMJ
   # - type: GunDamageModifier
   #   multiplier: 1.4
   - type: AttachableHolderVisuals

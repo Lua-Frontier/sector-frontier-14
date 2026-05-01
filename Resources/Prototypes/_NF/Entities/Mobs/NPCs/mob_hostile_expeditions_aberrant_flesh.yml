@@ -449,7 +449,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 0
-    baseSprintSpeed: 0
+    baseRunningSpeed: 0
   - type: DamageOtherOnHit
     damage:
       types:
@@ -508,7 +508,7 @@
         Structural: 20
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.8
-    baseSprintSpeed : 3.8
+    baseRunningSpeed : 3.8
 
 - type: entity
   id: MobFleshJaredExpeditionsNewborn

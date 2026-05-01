@@ -69,7 +69,7 @@
   description: Сосредоточение наизлейших технологий! Пахнет дешёвым пластиком...
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardRd
+    id: OutpostTypanIDCardRd
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -82,7 +82,7 @@
   description: Похоже этот КПК был взломан.
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardScience
+    id: OutpostTypanIDCardScience
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -95,7 +95,7 @@
   description: Весь разъеден ядами растительного происхождения.
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardBotanist
+    id: OutpostTypanIDCardBotanist
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -108,7 +108,7 @@
   description: Ходят легенды, что на нём отображается пульс главы НТ.
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardMed
+    id: OutpostTypanIDCardMed
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -133,7 +133,7 @@
   description: Крепкий КПК мастера на все руки.
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardEng
+    id: OutpostTypanIDCardEng
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -146,7 +146,7 @@
   description: Оснащён всеми средствами и возможностями для получения наизлейших приказов.
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardCom
+    id: OutpostTypanIDCardCom
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -159,7 +159,7 @@
   description: В слоту для ручки застрял зуб карпоакулы.
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardCargo
+    id: OutpostTypanIDCardCargo
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -172,7 +172,7 @@
   description: Ну так как оно будет? С кишками или без кишок?
   components:
   - type: Pda
-    id: OutpostSyndicateIDCardChef
+    id: OutpostTypanIDCardChef
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -185,7 +185,7 @@
   description: Крепкий КПК исследователя из далеких краёв.
   components:
   - type: Pda
-    id: OutpostSyndicateIDResearcher
+    id: OutpostTypanIDResearcher
   - type: PdaBorderColor
     borderColor: "#891417"
   - type: Icon
@@ -215,7 +215,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconOutpostSyndicateBotanist
+  id: JobIconOutpostTypanBotanist
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: botanist
@@ -223,7 +223,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconOutpostSyndicateCargotech
+  id: JobIconOutpostTypanCargotech
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: cargo_technician
@@ -231,7 +231,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconOutpostSyndicateChef
+  id: JobIconOutpostTypanChef
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: chef

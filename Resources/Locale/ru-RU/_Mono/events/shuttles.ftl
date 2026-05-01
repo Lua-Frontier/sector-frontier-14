@@ -12,8 +12,8 @@ ghost-role-information-redacted-core-description = Реликтовый борт
 ghost-role-information-vessel-core = Ядро ИИ судна
 ghost-role-information-vessel-core-description = Ядро ИИ автоматизированного оборонного корабля, перепрограммированное и установленное на гражданском судне.
 
-ghost-role-information-NFSD-core = Ядро ИИ ДСБФ
-ghost-role-information-NFSD-core-description = Ядро ИИ автоматизированного оборонного корабля, перепрограммированное и установленное на судне ДСБФ.
+ghost-role-information-NFSD-core = Ядро ИИ СРБС
+ghost-role-information-NFSD-core-description = Ядро ИИ автоматизированного оборонного корабля, перепрограммированное и установленное на судне СРБС.
 
 ghost-role-information-rogue-core = Ядро ИИ «Изгой»
 ghost-role-information-rogue-core-description = Ядро ИИ автоматизированного оборонного корабля, перепрограммированное и установленное на судне «Изгой».

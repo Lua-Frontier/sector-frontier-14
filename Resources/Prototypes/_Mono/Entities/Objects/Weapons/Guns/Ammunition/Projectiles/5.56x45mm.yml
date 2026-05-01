@@ -1,3 +1,7 @@
+# Damage-per-second = 150 for rifles; 150-25 = 125 for caustic ammo; max COO = 6
+# Main damage type - Piercing for standart; main damage/special damage = 70/30 for special
+# LeptonComm status clear
+# Standart
 - type: entity
   id: Bullet556x45mmFMJ
   name: bullet (5.56x45mm FMJ)
@@ -7,8 +11,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 28 #Lua +5
+        Piercing: 25
 
+# Mechanical
 - type: entity
   id: Bullet556x45mmPractice
   name: bullet (5.56x45mm practice)
@@ -34,6 +39,19 @@
     damage: 20
 
 - type: entity
+  id: Bullet556x45mmHP
+  parent: BaseBullet
+  name: bullet (5.56x45mm hollow-point)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 7.5
+        Piercing: 17.5
+
+# Physical
+- type: entity
   id: Bullet556x45mmIncendiary
   parent: BaseBulletIncendiary
   name: bullet (5.56x45mm incendiary)
@@ -42,8 +60,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10 #Lua add
-        Heat: 17
+        Piercing: 17.5
+        Heat: 7.5
 
 - type: entity
   id: Bullet556x45mmUranium
@@ -54,24 +72,35 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 17 #Lua +9
-        Piercing: 10
+        Radiation: 7.5
+        Piercing: 17.5
 
-# Mono AP syst
-# + 0.05 base AP
-#anti-flesh:
+#Special
 - type: entity
-  id: Bullet556x45mmHP
-  parent: BaseBullet
-  name: bullet (5.56x45mm hollow-point)
+  id: Bullet556x45mmEMP
+  name: bullet (5.56x45mm EMP)
+  parent: BaseBulletEmp
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Slash: 15 #Lua +11
-        Piercing: 10 #Lua -20
+        Piercing: 17.5
+        Shock: 7.5
 
+- type: entity
+  id: Bullet556x45mmCaustic
+  name: bullet (5.56x45mm caustic)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14.6
+        Caustic: 6.2
+
+# Out of balance
 - type: entity
   id: Bullet556x45mmRIP
   parent: BaseBullet
@@ -84,8 +113,6 @@
         Slash: 10 #Lua +3
         Piercing: 10 #Lua -27
         Blunt: 10 #Lua add
-
-#armor-piercing:
 
 - type: entity
   id: Bullet556x45mmPlasteelAP

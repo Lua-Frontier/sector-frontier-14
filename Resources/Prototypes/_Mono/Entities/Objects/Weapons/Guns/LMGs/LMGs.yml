@@ -1,76 +1,77 @@
-- type: entity
-  name: NCI DP-29
-  parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC3Contraband]
-  id: WeaponDP29
-  description: A staple of USSP military doctrine, the DP-29 is a mass-produced light machine gun designed for reliability, ease of use, and battlefield endurance. Featuring a distinctive top-mounted pan magazine and a folding bipod, the DP-29 excels at providing suppressive fire in both urban and open combat scenarios. While its design dates back decades, its reliability and ease of maintenance make it a favorite among USSP infantry squads.
-  components:
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/LMGs/dp29.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -20
-  - type: Gun
-    minAngle: 22
-    maxAngle: 40
-    angleIncrease: 2
-    angleDecay: 22
-    fireRate: 7 #Lua -1
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/hmg.ogg
-  - type: ChamberMagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineDP29
-        insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineDP29
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: Cartridge762x39mmFMJ
-        priority: 1
-        whitelist:
-          tags:
-            - Cartridge762x39mmFMJ
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
-  - type: Clothing
-    sprite: _Mono/Objects/Weapons/Guns/LMGs/dp29.rsi
-  - type: StaticPrice
-    price: 1750
-    vendPrice: 50000
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.65
-  - type: GunRequiresWield
-  - type: PirateBountyItem # Mono
-    id: ExperimentalFactionWeapon
+# - type: entity
+#   name: NCI DP-29
+#   parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC3Contraband]
+#   id: WeaponDP29
+#   description: A staple of USSP military doctrine, the DP-29 is a mass-produced light machine gun designed for reliability, ease of use, and battlefield endurance. Featuring a distinctive top-mounted pan magazine and a folding bipod, the DP-29 excels at providing suppressive fire in both urban and open combat scenarios. While its design dates back decades, its reliability and ease of maintenance make it a favorite among USSP infantry squads.
+#   components:
+#   - type: Sprite
+#     sprite: _Mono/Objects/Weapons/Guns/LMGs/dp29.rsi
+#     layers:
+#       - state: base
+#         map: ["enum.GunVisualLayers.Base"]
+#       - state: mag-0
+#         map: ["enum.GunVisualLayers.Mag"]
+#   - type: GunWieldBonus
+#     minAngle: -20
+#     maxAngle: -20
+#   - type: Gun
+#     minAngle: 22
+#     maxAngle: 40
+#     angleIncrease: 2
+#     angleDecay: 22
+#     fireRate: 7 #Lua -1
+#     selectedMode: FullAuto
+#     availableModes:
+#     - FullAuto
+#     soundGunshot:
+#       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/hmg.ogg
+#   - type: ChamberMagazineAmmoProvider
+#   - type: ItemSlots
+#     slots:
+#       gun_magazine:
+#         name: Magazine
+#         startingItem: MagazineDP29
+#         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+#         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
+#         priority: 2
+#         whitelist:
+#           tags:
+#             - MagazineDP29
+#         whitelistFailPopup: gun-magazine-whitelist-fail
+#       gun_chamber:
+#         name: Chamber
+#         startingItem: Cartridge762x39mmFMJ
+#         priority: 1
+#         whitelist:
+#           tags:
+#             - Cartridge762x39mmFMJ
+#   - type: ContainerContainer
+#     containers:
+#       gun_magazine: !type:ContainerSlot
+#       gun_chamber: !type:ContainerSlot
+#   - type: MagazineVisuals
+#     magState: mag
+#     steps: 1
+#     zeroVisible: true
+#   - type: Appearance
+#   - type: Clothing
+#     sprite: _Mono/Objects/Weapons/Guns/LMGs/dp29.rsi
+#   - type: StaticPrice
+#     price: 1750
+#     vendPrice: 50000
+#   - type: SpeedModifiedOnWield
+#     walkModifier: 0.8
+#     sprintModifier: 0.65
+#   - type: GunRequiresWield
+#   - type: PirateBountyItem # Mono
+#     id: ExperimentalFactionWeapon
 
 - type: entity
   name: VFD MR-8B LWMMG (8x65mm SKR)
   parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC3CentCommContraband] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: WeaponLMGMR8B
   description: The LWMMG variant of the MR-8 series. Chambered in 8x65mm SKR, and accepts both box and STANAG magazines. A label on the side reads "FOR MILITARY USE ONLY".
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/LMGs/mr8b.rsi
@@ -79,15 +80,23 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -20
+#  - type: GunWieldBonus # comment (82-84; 86-89) from _Lua
+#    minAngle: -20
+#    maxAngle: -20
+  - type: Item #Lua
+    shape:
+    - 0,0,7,4
   - type: Gun
-    minAngle: 24
-    maxAngle: 36
-    angleIncrease: 1.5 #Lua 3 -> 1.5
-    angleDecay: 34
-    fireRate: 6.2 #Lua -> 0.2
+    examineCaliber: gun-examine-caliber-865 #Lua
+#    minAngle: 24
+#    maxAngle: 36
+#    angleIncrease: 1.5 #Lua 3 -> 1.5
+#    angleDecay: 34
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+    fireRate: 7 # Lua 6.2<7
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -101,23 +110,23 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: AmmoBox762x51mmFMJ #Lua
+        startingItem: Magazine8x65mmSKRBox #Lua
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x51mmFMJ #Lua
-          - Magazine762x51mmBoxSmall #Lua
-          - Magazine762x51mmLowCapacityFMJ #Lua
+          - Magazine762x39mmFMJ #Lua
+          - MagazineBox8x65mmSKR #Lua
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ #Lua
+        startingItem: Cartridge8x65mmSKR #Lua
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x51mmFMJ #Lua
+          - Cartridge762x39mmFMJ #Lua
+          - Cartridge8x65mmSKR #Lua
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -131,18 +140,23 @@
     sprite: _Mono/Objects/Weapons/Guns/LMGs/mr8b.rsi
   - type: StaticPrice
     price: 2500
-  - type: SpeedModifiedOnWield
+  - type: HeldSpeedModifier #Lua
+  - type: ClothingSpeedModifier #Lua
+    sprintModifier: 0.85
     walkModifier: 0.85
-    sprintModifier: 0.75
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.7 #Lua 0.85<0.7
+    sprintModifier: 0.7 #Lua 0.65<0.7
   - type: GunRequiresWield
   - type: PirateBountyItem # Mono
     id: ExperimentalFactionWeapon
 
 - type: entity
-  name: NCI AK-150 HAMMER (7.62x39mm)
+  name: NCI AK-150 HAMMER (6.8x52mm)
   parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC2ContrabandUnredeemable]
   id: WeaponLMGHammer
   description: A modified old style AK from earth which has been improved with USSP engineering and new design philosophies. At a base level? It's been turned into an LMG with a box magazine attached alongside various recoil lessening upgrades and a stylized chassis. Hail The Commissariat.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/LMGs/HAMMER/hammer-icon.rsi
@@ -152,16 +166,23 @@
     - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,7,4
     sprite: _Mono/Objects/Weapons/Guns/LMGs/HAMMER/hammer-inhands.rsi
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -28
+#  - type: GunWieldBonus # comment (160-162; 164-167) from _Lua
+#    minAngle: -23
+#    maxAngle: -28
   - type: Gun
-    minAngle: 24
-    maxAngle: 36
-    angleIncrease: 3
-    angleDecay: 34
-    fireRate: 6.5 #Lua +0.5
+    examineCaliber: gun-examine-caliber-6852 #Lua
+#    minAngle: 24
+#    maxAngle: 36
+#    angleIncrease: 3
+#    angleDecay: 34
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+    fireRate: 7 #Lua 6.5<7
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -175,22 +196,24 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmBox
+        startingItem: Magazine68x52mmCaselessBig #Lua Magazine762x39mmBox<Magazine68x52mmCaselessBig
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x39mmFMJ
-          - Magazine762x39mmBox
+#          - Magazine762x39mmFMJ
+          - Magazine556x45mmFMJ #Lua
+          - Magazine556x45mmBox #Lua
+          - Magazine68x52mmCaseless #Lua Magazine762x39mmBox<Magazine68x52mmCaseless
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ
+        startingItem: Cartridge68x52mmCaseless #Lua Cartridge762x39mmFMJ<Cartridge68x52mmCaseless
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x39mmFMJ
+          - Cartridge68x52mmCaseless #Lua Cartridge762x39mmFMJ<Cartridge68x52mmCaseless
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -204,9 +227,13 @@
     sprite: _Mono/Objects/Weapons/Guns/LMGs/HAMMER/hammer-inhands.rsi
   - type: StaticPrice
     price: 8000
+  - type: HeldSpeedModifier #Lua
+  - type: ClothingSpeedModifier #Lua
+    sprintModifier: 0.85
+    walkModifier: 0.85
   - type: SpeedModifiedOnWield
-    walkModifier: 0.65
-    sprintModifier: 0.65
+    walkModifier: 0.7 #Lua 0.65<0.7
+    sprintModifier: 0.7 #Lua 0.65<0.7
   - type: GunRequiresWield
   - type: PirateBountyItem # Mono
     id: ExperimentalFactionWeapon
@@ -216,6 +243,7 @@
   parent: [BaseWeaponLightMachineGun, BaseC2ContrabandUnredeemable]
   id: WeaponLMGGrizzly
   description: A medium machine gun chambered in 6.8x52mm Caseless, accepts both box and standard magazines. A label on the side reads "FOR MILITARY USE ONLY". The weight of the machine gun make it hard to wield easily. To assist with standardization, it also accepts 5.56x45mm and 7.62x39mm.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/LMGs/grizzly/Grizzly-icon.rsi
@@ -226,15 +254,20 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Wieldable
     unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -23 #Lua -20 -> -23
-    maxAngle: -25 #Lua -20 -> -25
+#  - type: GunWieldBonus # comment (239-241; 247-250) from _Lua
+#    minAngle: -23 #Lua -20 -> -23
+#    maxAngle: -25 #Lua -20 -> -25
   - type: Gun
-    minAngle: 24
-    maxAngle: 36
-    angleIncrease: 3
-    angleDecay: 34
-    fireRate: 7 #Lua +1
+    examineCaliber: gun-examine-caliber-6852 #Lua
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+#    minAngle: 24
+#    maxAngle: 36
+#    angleIncrease: 3
+#    angleDecay: 34
+    fireRate: 8.4 #Lua 7<8.4
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -267,9 +300,9 @@
           - Magazine68x52mmCaseless
           - Magazine556x45mmFMJ
           - Magazine556x45mmBox
-          - Magazine762x39mmFMJ
-          - Magazine762x39mmLowCapacityFMJ
-          - Magazine762x39mmBox
+#          - Magazine762x39mmFMJ # comment (270-272) from _Lua
+#          - Magazine762x39mmLowCapacityFMJ
+#          - Magazine762x39mmBox
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -279,7 +312,7 @@
           tags:
           - Cartridge68x52mmCaseless
           - Cartridge556x45mmFMJ
-          - Cartridge762x39mmFMJ
+#          - Cartridge762x39mmFMJ # comment from _lua
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -299,17 +332,18 @@
     id: ExperimentalFactionWeapon
   - type: HeldSpeedModifier
   - type: ClothingSpeedModifier
-    sprintModifier: 0.65 #Lua 0.9 -> 0.65
-    walkModifier: 0.65 #Lua 0.9 -> 0.65
+    sprintModifier: 0.85 #Lua 0.9<0.85
+    walkModifier: 0.85 #Lua 0.9<0.85
   - type: SpeedModifiedOnWield
-    walkModifier: 0.7 #Lua 0.4 -> 0.7
-    sprintModifier: 0.5 #Lua 0.35 -> 0.5
+    walkModifier: 0.7 #Lua 0.4<0.7
+    sprintModifier: 0.7 #Lua 0.35<0.7
 
 - type: entity
-  name: VFD PSW "Ratel" (7.62x51mm)
+  name: VFD PSW "Ratel" (8x65 SKR)
   parent: BaseWeaponLightMachineGun
   id: WeaponLMGRatel
   description: The precision support weapon chambered in 7.62x51mm and fits simple ammo box and all kind of magazines. Based on the Vulcan and made with higher quality materials as well as a mounted precision scope. A label on the side that seems to have been tampered with reads "FOR MILI-CENARY USE ONLY".
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/LMGs/ratel/Ratel-icon.rsi
@@ -320,19 +354,26 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     sprite: _Mono/Objects/Weapons/Guns/LMGs/ratel/Ratel-inhands.rsi
-    shape:
-    - 0,0,5,2
+#    shape: # comment from _Lua
+#    - 0,0,5,2
+    shape: #Lua
+    - 0,0,7,4
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/LMGs/ratel/Ratel-inhands.rsi
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -30
+#  - type: GunWieldBonus # comment (349-351; 353-356) from _Lua
+#    minAngle: -20
+#    maxAngle: -30
   - type: Gun
-    minAngle: 25
-    maxAngle: 40
-    angleIncrease: 5
-    angleDecay: 34
-    fireRate: 5.7 # Lua +0.7
+    examineCaliber: gun-examine-caliber-865 #Lua
+#    minAngle: 25
+#    maxAngle: 40
+#    angleIncrease: 5
+#    angleDecay: 34
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+    fireRate: 5.83 # Lua 5.7<5.83
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -346,23 +387,27 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: AmmoBox762x51mmFMJ
+        startingItem: Magazine8x65mmSKRBox #Lua AmmoBox762x51mmFMJ<Magazine8x65mmSKRBox
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x51mmBoxSmall
-          - Magazine762x51mmFMJ
-          - Magazine762x51mmLowCapacityFMJ
+          - Magazine762x39mmFMJ #Lua
+          - MagazineBox8x65mmSKR #Lua
+#          - Magazine762x51mmBoxSmall #comment (359-361) from _Lua
+#          - Magazine762x51mmFMJ
+#          - Magazine762x51mmLowCapacityFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ
+        startingItem: Cartridge8x65mmSKR #Lua Cartridge762x51mmFMJ<Cartridge8x65mmSKR
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x51mmFMJ
+          - Cartridge762x39mmFMJ #Lua
+          - Cartridge8x65mmSKR #Lua
+#          - Cartridge762x51mmFMJ #comment from _Lua
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -374,10 +419,14 @@
   - type: Appearance
   - type: StaticPrice
     price: 2500
-  - type: SpeedModifiedOnWield
+  - type: HeldSpeedModifier #Lua
+  - type: ClothingSpeedModifier #Lua
+    sprintModifier: 0.85
     walkModifier: 0.85
-    sprintModifier: 0.75
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.7 #Lua 0.85<0.7
+    sprintModifier: 0.7 #Lua 0.75<0.7
+#  - type: CursorOffsetRequiresWield # comment from _Lua
+#  - type: EyeCursorOffset
+#    maxOffset: 3
+#    pvsIncrease: 0.3

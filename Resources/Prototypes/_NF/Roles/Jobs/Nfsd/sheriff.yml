@@ -5,27 +5,30 @@
   playTimeTracker: JobHeadOfSecurity
   salary: 80000
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 129600 # 36 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 86400 # 24 hours
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 21600 # 6 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 43200 # 12 hours
-  alternateRequirementSets:
-    longerPlaytimeLessSec:
-    - !type:OverallPlaytimeRequirement
-      time: 1080000 # 300 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 64800 # 18 hours
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 21600 # 6 hours
+  - !type:RoleTimeRequirement #Lua
+    role: JobWarden
+    time: 36000 # 10h
+#    - !type:OverallPlaytimeRequirement # comment from _Lua
+#      time: 129600 # 36 hours
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 86400 # 24 hours
+#    - !type:RoleTimeRequirement
+#      role: JobWarden
+#      time: 21600 # 6 hours
+#    - !type:RoleTimeRequirement
+#      role: JobSeniorOfficer
+#      time: 43200 # 12 hours
+#  alternateRequirementSets:
+#    longerPlaytimeLessSec:
+#    - !type:OverallPlaytimeRequirement
+#      time: 1080000 # 300 hours
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 64800 # 18 hours
+#    - !type:RoleTimeRequirement
+#      role: JobWarden
+#      time: 21600 # 6 hours
   whitelisted: false
   startingGear: SheriffGear
   alwaysUseSpawner: true
@@ -53,7 +56,7 @@
 - type: startingGear
   id: SheriffGear
   equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+#    pocket1: NFWeaponPistolUniversalNfsdLessLethal
     pocket2: ADTWeaponPistolX01
   storage:
     back:

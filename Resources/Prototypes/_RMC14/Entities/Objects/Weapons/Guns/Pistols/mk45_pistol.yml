@@ -3,7 +3,7 @@
   id: RMCWeaponPistolMK45
   name: "MK-45 'high-power' automagnum"
   description: Originally designed as a replacement for the UNMC's M44 combat revolver, it was rejected at the last minute by a committee, citing its need to be cocked after every loaded magazine to be too cumbersone and antiquated.
-  suffix: Filled
+  suffix: Need balance test
   components:
   # - type: RMCSelectiveFire
   #   scatterWielded: 10
@@ -18,30 +18,39 @@
   - type: MagazineAmmoProvider
     autoEject: false
     soundAutoEject: null
+  - type: Item #Lua
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
   - type: Gun
-    minAngle: 0
-    maxAngle: 35
-    angleIncrease: 5
-    angleDecay: 5
-    fireRate: 2
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+#    minAngle: 0 # comment from _Lua
+#    maxAngle: 35
+#    angleIncrease: 5
+#    angleDecay: 5
+    fireRate: 5 #Lua 2<5
     soundGunshot:
       collection: N14AntiMaterielGunshot
     selectedMode: SemiAuto
-    shotsPerBurst: 3
+#    shotsPerBurst: 3 # comment (30; 33) from _Lua
     availableModes:
     - SemiAuto
-    - Burst
+#    - Burst
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: RMCMagazinePistolMK45
+        startingItem: Magazine45_ACPPistolFMJ #Lua RMCMagazinePistolMK45<Magazine45_ACPPistolFMJ
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/gun_mk80_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/gun_88m4_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - RMCMagazinePistolMK45
+          - Magazine45_ACPPistolFMJ #Lua RMCMagazinePistolMK45<Magazine45_ACPPistolFMJ
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.71, 0.095

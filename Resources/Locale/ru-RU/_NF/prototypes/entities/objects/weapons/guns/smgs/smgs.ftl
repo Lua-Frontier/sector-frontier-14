@@ -1,7 +1,7 @@
 ent-NFWeaponSubMachineGunAtreides = Атрейдес (9x19mm)
    .desc = Пле-ке-ке-ке-ке! Использует патроны 9x19mm.
-ent-NFWeaponSubMachineGunC20r = C-20r (9x19mm)
-   .desc = Превосходный ПП, использующий патроны калибра 9x19mm. Часто используется печально известными ядерными оперативниками.
+ent-NFWeaponSubMachineGunC20r = C-20r (45 ACP)
+   .desc = Превосходный ПП, использующий патроны калибра 45ACP. Часто используется печально известными ядерными оперативниками.
 ent-NFWeaponSubMachineGunDrozd = Дрозд (9x19mm)
    .desc = Превосходный, полностью автоматический, тяжёлый пистолет-пулемёт. Использует патроны калибра 9x19mm.
 ent-NFWeaponSubMachineGunDrozdLessLethal = Дрозд (9x19mm)

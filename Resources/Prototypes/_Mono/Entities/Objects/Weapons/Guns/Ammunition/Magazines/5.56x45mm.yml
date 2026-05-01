@@ -33,9 +33,11 @@
   - type: Appearance
 
 # Magazines
+# Standart
 - type: entity
   id: Magazine556x45mmFMJ
   name: "magazine (5.56x45mm FMJ)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine556x45mm
   components:
   - type: BallisticAmmoProvider
@@ -50,7 +52,7 @@
 - type: entity
   id: Magazine556x45mmEmpty
   name: "magazine (5.56x45mm any)"
-  suffix: empty
+  suffix: Need balance test #Lua
   parent: Magazine556x45mmFMJ
   components:
   - type: BallisticAmmoProvider
@@ -63,15 +65,16 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: Magazine556x45mmIncendiary
-  name: "magazine (5.56x45mm incendiary)"
-  parent: Magazine556x45mmFMJ
+  id: Magazine556x45mmRubber
+  name: "magazine (5.56x45mm rubber)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine556x45mm
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmIncendiary
+    proto: Cartridge556x45mmRubber
   - type: Sprite
     layers:
-    - state: red
+    - state: rubber
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -79,6 +82,7 @@
 - type: entity
   id: Magazine556x45mmPractice
   name: "magazine (5.56x45mm practice)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine556x45mm
   components:
   - type: BallisticAmmoProvider
@@ -90,9 +94,42 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
+# Mechanical
+- type: entity
+  id: Magazine556x45mmHP
+  name: "magazine (5.56x45mm hollow-point)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine556x45mm
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge556x45mmHP
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Physical
+- type: entity
+  id: Magazine556x45mmIncendiary
+  name: "magazine (5.56x45mm incendiary)"
+  suffix: Need balance test #Lua
+  parent: Magazine556x45mmFMJ
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge556x45mmIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
 - type: entity
   id: Magazine556x45mmUranium
   name: "magazine (5.56x45mm uranium)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine556x45mm
   components:
   - type: BallisticAmmoProvider
@@ -104,16 +141,33 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
+# Special
 - type: entity
-  id: Magazine556x45mmRubber
-  name: "magazine (5.56x45mm rubber)"
+  id: Magazine556x45mmEMP
+  name: "magazine (5.56x45mm EMP)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine556x45mm
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmRubber
+    proto: Cartridge556x45mmEMP
   - type: Sprite
     layers:
-    - state: rubber
+    - state: emp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine556x45mmCaustic
+  name: "magazine (5.56x45mm Caustic)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine556x45mm
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge556x45mmCaustic
+  - type: Sprite
+    layers:
+    - state: caustic
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -135,7 +189,7 @@
     whitelist:
       tags:
         - Cartridge556x45mmFMJ
-    capacity: 25
+    capacity: 30
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -167,63 +221,3 @@
     - state: mag-15
       map: ["enum.GunVisualLayers.Mag"]
 
-- type: entity
-  parent: MagazineNovaliteC1Empty
-  id: MagazineNovaliteC1Rubber
-  name: "clip (5.56x45mm rubber)"
-  suffix: full
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmRubber
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-15
-      map: ["enum.GunVisualLayers.Mag"]
-
-# Mono AP syst
-#anti-flesh:
-- type: entity
-  id: Magazine556x45mmHP
-  name: "magazine (5.56x45mm hollow-point)"
-  parent: BaseMagazine556x45mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmHP
-  - type: Sprite
-    layers:
-    - state: HP
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  id: Magazine556x45mmRIP
-  name: "magazine (5.56x45mm RIP)"
-  parent: BaseMagazine556x45mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmRIP
-  - type: Sprite
-    layers:
-    - state: RIP
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-#armor-piercing:
-
-- type: entity
-  id: Magazine556x45mmPlasteelAP
-  name: "magazine (5.56x45mm AP)"
-  parent: BaseMagazine556x45mm
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge556x45mmPlasteelAP
-  - type: Sprite
-    layers:
-    - state: plasteelAP
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]

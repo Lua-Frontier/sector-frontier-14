@@ -159,7 +159,7 @@
     state: iron_crab
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.5
-    baseSprintSpeed : 2
+    baseRunningSpeed : 2
   - type: Destructible
     thresholds:
     - trigger:
@@ -252,7 +252,7 @@
         Blunt: 12
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
-    baseSprintSpeed : 2.25
+    baseRunningSpeed : 2.25
   - type: NpcFactionMember
     factions:
       - SimpleHostile

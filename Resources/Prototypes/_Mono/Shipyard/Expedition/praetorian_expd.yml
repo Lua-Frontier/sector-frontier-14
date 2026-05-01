@@ -5,13 +5,13 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: PraetorianEXPD
+  id: BMPraetorian
   parent: BaseVessel
-  name: Praetorian
+  name: BM-Praetorian
   description: A Praetorian outfitted with a nav computer for expeditions. Other than that, functionally almost the same. This ship has a military IFF designation.
   price: 94801 # 2000 above min
   category: Medium
-  group: Expedition
+  group: ASBlackMarket
   access: Mercenary
   shuttlePath: /Maps/_Mono/Shuttles/Expedition/praetorian_expd.yml
   guidebookPage: Null
@@ -19,23 +19,21 @@
   - Luna
   - Frontier
   class:
-  - Civilian
-  - Pursuit
-  - Expedition
+  - Mercenary
   engine:
   - Uranium
 
 - type: gameMap
-  id: PraetorianEXPD
-  mapName: 'Praetorian'
+  id: BMPraetorian
+  mapName: 'BM-Praetorian'
   mapPath: /Maps/_Mono/Shuttles/Expedition/praetorian_expd.yml
   minPlayers: 0
   stations:
-    PraetorianEXPD:
+    BMPraetorian:
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Praetorian {1}'
+          mapNameTemplate: 'BM-Praetorian {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -81,7 +81,7 @@
     group: Silicon
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseRunningSpeed : 4
   - type: Stamina
     critThreshold: 120
   - type: Destructible
@@ -297,7 +297,7 @@
         maxVol: 50
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseRunningSpeed: 3
   - type: HTN
     rootTask:
       task: CleanbotCompound

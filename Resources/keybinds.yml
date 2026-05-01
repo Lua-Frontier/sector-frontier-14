@@ -44,6 +44,9 @@ binds:
 - function: Walk
   type: State
   key: Shift
+- function: ToggleWalk
+  type: State
+  key: C
 - function: ToggleStanding
   type: State
   key: R

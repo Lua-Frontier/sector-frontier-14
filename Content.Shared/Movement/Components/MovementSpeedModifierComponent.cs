@@ -26,7 +26,8 @@ namespace Content.Shared.Movement.Components
 
         // movement
         public const float DefaultBaseWalkSpeed = 2.5f;
-        public const float DefaultBaseSprintSpeed = 4.5f;
+        public const float DefaultBaseRunningSpeed = 4.5f;
+        public const float DefaultBaseSprintSpeed = 6.5f;
 
         #endregion
 
@@ -37,6 +38,9 @@ namespace Content.Shared.Movement.Components
         /// </summary>
         [DataField, AutoNetworkedField]
         public float BaseWalkSpeed = DefaultBaseWalkSpeed;
+
+        [DataField, AutoNetworkedField]
+        public float BaseRunningSpeed = DefaultBaseRunningSpeed;
 
         [DataField, AutoNetworkedField]
         public float BaseSprintSpeed = DefaultBaseSprintSpeed;
@@ -66,6 +70,8 @@ namespace Content.Shared.Movement.Components
         [ViewVariables]
         public float CurrentWalkSpeed => WalkSpeedModifier * BaseWalkSpeed;
         [ViewVariables]
+        public float CurrentRunningSpeed => RunningSpeedModifier * BaseRunningSpeed;
+        [ViewVariables]
         public float CurrentSprintSpeed => SprintSpeedModifier * BaseSprintSpeed;
 
         /// <summary>
@@ -94,6 +100,9 @@ namespace Content.Shared.Movement.Components
         public float WalkSpeedModifier = 1.0f;
 
         [AutoNetworkedField, ViewVariables]
+        public float RunningSpeedModifier = 1.0f;
+
+        [AutoNetworkedField, ViewVariables]
         public float SprintSpeedModifier = 1.0f;
 
         #endregion
@@ -118,6 +127,8 @@ namespace Content.Shared.Movement.Components
 
         [ViewVariables]
         public float WeightlessWalkSpeed => WeightlessModifier * BaseWalkSpeed;
+        [ViewVariables]
+        public float WeightlessRunningSpeed => WeightlessModifier * BaseRunningSpeed;
         [ViewVariables]
         public float WeightlessSprintSpeed => WeightlessModifier * BaseSprintSpeed;
 

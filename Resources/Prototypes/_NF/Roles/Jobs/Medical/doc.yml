@@ -7,13 +7,13 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobChemist
-      time: 21600 # 6 hours
+      time: 18000 # 5 hours
     - !type:RoleTimeRequirement
       role: JobParamedic
-      time: 21600 # 6 hours
+      time: 18000 # 5 hours
     - !type:RoleTimeRequirement
       role: JobMedicalDoctor
-      time: 21600 # 6 hours
+      time: 18000 # 5 hours
     - !type:OverallPlaytimeRequirement
       time: 72000 # 20 hrs
   whitelisted: false

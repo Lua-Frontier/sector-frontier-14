@@ -90,6 +90,99 @@
     - HeadSide
 
 #region FSF
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitFSFBaseBravo
+  name: шлем солдата Браво
+  suffix: КСО, Браво
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SDHardsuits/bravobasehelmet.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SDHardsuits/bravobasehelmet.rsi
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitFSFCommandBravo
+  name: шлем Командира Браво
+  suffix: КСО, Браво
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SDHardsuits/bravocommhelmet.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SDHardsuits/bravocommhelmet.rsi
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitFSFBaseCharlie
+  name: шлем солдата Чарли
+  suffix: КСО, Чарли
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SDHardsuits/charliebasehelmet.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SDHardsuits/charliebasehelmet.rsi
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitFSFCommandCharlie
+  name: шлем солдата Чарли
+  suffix: КСО, Чарли
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/SDHardsuits/charliecommhelmet.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/SDHardsuits/charliecommhelmet.rsi
+  - type: PointLight
+    color: "#addbff"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
 - type: entity
   parent: [ClothingHeadHelmetHardsuitSyndieCommander, BaseC3CentCommContraband]
   id: ClothingHeadHelmetHardsuitFSFCommanderBravo

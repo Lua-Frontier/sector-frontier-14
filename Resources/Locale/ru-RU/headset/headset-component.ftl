@@ -13,14 +13,14 @@ chat-radio-security = Безопасность
 chat-radio-service = Сервис
 chat-radio-supply = Снабжение
 chat-radio-syndicate = Синдикат
-chat-radio-freelance = Фриланс
+chat-radio-freelance = Кодекс
 # not headset but whatever
 chat-radio-handheld = Портативный
 chat-radio-binary = Двоичный
 chat-radio-deathsquad = Эскадрон смерти
 chat-radio-law = Юридический
 chat-radio-merc = Наёмники
-chat-radio-typan = Синдикат
+chat-radio-typan = Тайпан
 chat-radio-unitolog = Юнитологи
 chat-radio-spiders = Связующая паутина
 chat-radio-hivemind = Улей

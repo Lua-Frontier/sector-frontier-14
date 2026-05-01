@@ -1,0 +1,54 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: job
+  id: StormCreedCaptain
+  name: job-name-sc-captain
+  description: job-description-sc-captain
+  playTimeTracker: JobStormCreedCaptain
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobStormCreedFirstmate
+    time: 36000 # 20h
+  startingGear: StormCreedCaptainGear
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: true
+  icon: "JobIconNFPirateCaptain"
+  supervisors: job-supervisors-sc-captain
+  weight: 20
+  displayWeight: 20
+  setPreference: true
+  newPlayerMessage: false
+  access:
+  - Pirate
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoPirateCaptain
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: Company
+      companyName: StormCreed
+    - type: DisableSuitSensors
+  - !type:AddImplantSpecial
+    implants: [ FreelanceTrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: StormCreedCaptainGear
+  equipment:
+    belt: ClothingBeltUtility
+    pocket1: BaseStormCreedUplink10
+  storage:
+    back:
+    - AppraisalTool
+
+- type: chameleonOutfit
+  id: SCCaptainChameleonOutfit
+  job: StormCreedCaptain

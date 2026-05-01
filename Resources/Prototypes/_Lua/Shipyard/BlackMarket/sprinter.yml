@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: 2342424243_42084 (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: BMSprinter
+  name: BM-Sprinter
+  description: "Довольно массивный исследовательский шаттл, в старое время славившийся своей маневренностью."
+  price: 150000 #test
+  category: Medium
+  group: ASBlackMarket
+  whitelist:
+  - Frontier
+  - Luna
+  class:
+  - Mercenary
+  - Salvage
+  engine:
+  - AME
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/sprinter.yml
+
+- type: gameMap
+  id: BMSprinter
+  mapName: 'BM-Sprinter'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/sprinter.yml
+  minPlayers: 0
+  stations:
+    BMSprinter:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'BM-Sprinter {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

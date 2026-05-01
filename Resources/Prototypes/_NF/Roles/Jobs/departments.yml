@@ -1,26 +1,40 @@
 - type: department
-  id: Frontier
-  name: department-Frontier
-  description: department-NF-description
+  id: LuaCivilian
+  name: department-service
+  description: department-service-description
   color: "#334E6D"
-  weight: 50 # accounted for in jobs
+  weight: 90
   roles:
-  - StationRepresentative
-  - DirectorOfCare
-  - StationTrafficController
-  - Valet # nyano
-  - NFJanitor
-  - MailCarrier # nyano
-  - SecurityGuard
+  - Contractor
+  - Mercenary
 
 - type: department
-  id: Antag
-  name: department-Antag
-  description: department-NFAntag-description
-  color: "#DE3A3A"
-  weight: -20 # accounted for in jobs
+  id: Frontier
+  name: department-Frontier-ds
+  description: department-NF-description
+  color: "#334E6D"
+  weight: 80 # accounted for in jobs
   roles:
-  - NFPirateCaptain
-  - NFPirateFirstMate
-  - NFPirate
-  - Prisoner #nyano
+  - StationRepresentative
+  - SecurityGuard
+  - FrontierEngineer #Lua
+  - MailCarrier
+  - Valet # nyano
+  - Vip # Акционер (донат-роль)
+  - Pilot
+  - Borg
+
+# - type: department
+#   id: NFSD
+#   name: department-security
+#   description: department-security-description
+#   color: "#96B089"
+#   weight: 70 # accounted for in jobs
+#   roles:
+#   - Sheriff
+#   - Bailiff
+#   - SeniorOfficer
+#   - Brigmedic
+#   - SDEngineer
+#   - Deputy
+#   - Cadet

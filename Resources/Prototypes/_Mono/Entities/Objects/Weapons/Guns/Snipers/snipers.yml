@@ -3,6 +3,7 @@
   name: NCI AK-410 (7.62x54mmR)
   parent: [ BaseWeaponRifle, BaseC1Contraband ]
   description: "Bullpup DMR feeding from 762x54mmR magazines, developed to modernize USSP long-range infantry weapons."
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Snipers/ak410.rsi
@@ -12,6 +13,8 @@
     - state: base
       map: ["enum.GunVisualLayers.Base"]
   - type: Item # Mono
+    shape: #Lua
+    - 0,0,3,2
     size: Huge
     sprite: _Mono/Objects/Weapons/Guns/Snipers/ak410_inhands_32x.rsi
   - type: Clothing
@@ -20,13 +23,18 @@
     slots:
     - Back
     - suitStorage
-  - type: GunWieldBonus
-    minAngle: -27
-    maxAngle: -36
+#  - type: GunWieldBonus # comment from _Lua
+#    minAngle: -27
+#    maxAngle: -36
   - type: Gun
-    minAngle: 27
-    maxAngle: 39
-    fireRate: 3.8 #Lua + 0.8
+    examineCaliber: gun-examine-caliber-76254 #Lua
+#    minAngle: 27 # comment from _Lua
+#    maxAngle: 39
+    minAngle: 1.4 #Lua
+    maxAngle: 7 #Lua
+    angleIncrease: 5.6 #Lua
+    angleDecay: 3.7 #Lua
+    fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -63,10 +71,29 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 13 #Lua 2.5 -> 13
-    pvsIncrease: 0.4
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 7.5
+      pvsIncrease: 1
   - type: SpeedModifiedOnWield # Mono
     walkModifier: 0.80 #Lua 0.85 -> 0.80
     sprintModifier: 0.80 #Lua 0.85 -> 0.80

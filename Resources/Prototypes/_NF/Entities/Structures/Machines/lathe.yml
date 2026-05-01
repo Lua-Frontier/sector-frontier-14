@@ -21,6 +21,7 @@
   parent: [ NFBlueprintReceiverBase, SecurityTechFab ]
   name: NFSD techfab
   description: Prints equipment for use by NFSD.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
@@ -42,7 +43,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - MonoAmmoPack
+    - MonoAmmoPackModified #Lua MonoAmmoPack<MonoAmmoPackModified
     - NFLightsStatic
     - NFBasicToolsStatic
     - NFBasicStorageStatic
@@ -53,9 +54,6 @@
     - NFMaterialElectronicsStatic
     - ReportingStatic # DeltaV
     - NfsdWeaponsStatic
-    - NfsdPracticeStatic
-    - NfsdAmmoStatic
-    - NFMercenaryMagazineStatic
     - NFMercenaryStorageStatic
     - NfsdToolsStatic
     - NfsdTargetsStatic
@@ -93,7 +91,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - MonoAmmoPack
+    - MonoAmmoPackModifiedCivilian
     - NFMercenaryTechfabDeprecatedStatic
     - NFLightsStatic
     - NFBasicToolsStatic
@@ -108,11 +106,59 @@
     - NFMercenaryClothesStatic
     - NFMercenaryStorageStatic
     - NFMercenaryWeaponsStatic
-    - NFMercenaryAmmoBoxesStatic
-    - NfsdPracticeStatic
-    - NFMercenaryMagazineStatic
     - NFTopicalsStatic
     - NFMercenaryArchetypeStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - NFBlueprintMercenaryTechfab
+      - NFBlueprintAdvanced
+  - type: OreSiloClient
+
+- type: entity
+  id: MercenaryTechFabStation
+  parent: [ NFBlueprintReceiverBase, BaseLatheLube, BaseStructureDisableToolUse, BaseStructureIndestructible ]
+  name: mercenary techfab
+  description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
+  suffix: POI
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mercenary
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: MercenaryTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - MonoAmmoPackModifiedCivilian
+    # - NFMercenaryTechfabDeprecatedStatic
+    # - NFLightsStatic
+    # - NFBasicToolsStatic
+    # - NFBasicStorageStatic
+    # - NFBasicPartsStatic
+    # - NFBasicElectronicsStatic
+    # - NFBasicEvaStatic
+    # - NFBasicEVAToolsStatic
+    # - NFMaterialElectronicsStatic
+    # - NFBasicEvaLightsStatic
+    # - NFMercenaryStatic
+    # - NFMercenaryClothesStatic
+    # - NFMercenaryStorageStatic
+    # - NFMercenaryWeaponsStatic
+    # - NFTopicalsStatic
+    # - NFMercenaryArchetypeStatic
   - type: BlueprintReceiver
     whitelist:
       tags:

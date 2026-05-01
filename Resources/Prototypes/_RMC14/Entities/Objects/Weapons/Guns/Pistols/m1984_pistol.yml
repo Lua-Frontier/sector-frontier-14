@@ -3,10 +3,16 @@
   id: CMWeaponPistolM1984
   name: M1984 service pistol
   description: An M1984 Service Pistol, once the standard issue sidearm of the Marines but has recently been replaced with the M77 combat pistol. Fires 9mm pistol rounds.
+  suffix: Need balance test
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
     selectedMode: SemiAuto
-    fireRate: 3
+    fireRate: 6 #Lua 3<6
   # - type: RMCSelectiveFire
   #   scatterWielded: 10
   #   scatterUnwielded: 10
@@ -25,8 +31,8 @@
         priority: 2
         whitelist:
           tags:
-          - CMMagazinePistolM1984
-        startingItem: CMMagazinePistolM1984
+          - Magazine45_ACPPistolFMJ #Lua CMMagazinePistolM1984<Magazine45_ACPPistolFMJ
+        startingItem: Magazine45_ACPPistolFMJ #Lua CMMagazinePistolM1984<Magazine45_ACPPistolFMJ
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.71, 0.095

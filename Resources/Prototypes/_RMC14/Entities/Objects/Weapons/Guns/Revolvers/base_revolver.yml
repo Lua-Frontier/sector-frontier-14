@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, CMBaseWeaponGun, BaseGunWieldable]
+  parent: [BaseItem, CMBaseWeaponGun] #Lua BaseGunWieldable
   abstract: true
   id: RMCWeaponRevolverBase
   components:
@@ -15,7 +15,7 @@
     slots:
     - suitStorage
     - belt
-  - type: Wieldable
+#  - type: Wieldable #Lua
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -36,9 +36,11 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-      - RMCMagazineRevolver
-      - RMCSpeedLoaderM44
-      - RMCCartridgeRevolver44
+      - Cartridge45_magnumFMJ #Lua
+      - SpeedLoader45_magnumFMJ #Lua
+#      - RMCMagazineRevolver # comment (39-41) from _Lua
+#      - RMCSpeedLoaderM44
+#      - RMCCartridgeRevolver44
     proto: RMCCartridgeRevolver44
     capacity: 6
     chambers: [ True, True, True, True, True, True ]

@@ -1,4 +1,5 @@
 using Content.Server._Lua.Shipyard.Components;
+using Content.Server._Lua.Stargate.Components;
 using Content.Server.StationEvents.Events;
 using Content.Server.Shuttles.Components;
 using Content.Server.Power.Components;
@@ -61,6 +62,18 @@ public sealed class ShipOwnershipSystem : EntitySystem
         {
             if (!TryComp<MapGridComponent>(uid, out _))
             {
+                continue;
+            }
+
+            if (HasComp<ParkedShuttleComponent>(uid))
+            {
+                StopDeletionTimer(uid, ownership, "shuttle is parked", resetElapsed: true);
+                continue;
+            }
+
+            if (Transform(uid).MapUid is { } mapUid && HasComp<StargateDestinationComponent>(mapUid))
+            {
+                StopDeletionTimer(uid, ownership, "shuttle is in StarGate world", resetElapsed: true);
                 continue;
             }
 

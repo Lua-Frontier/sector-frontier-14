@@ -3,16 +3,16 @@
   name: job-name-valet
   description: job-description-valet
   playTimeTracker: JobValet
-  salary: 25000
+  salary: 35000 #Lua 25000<35000
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 18000 #Lua 10800<18000 (5 часов ~= 1-2 смены)
   startingGear: ValetGear
   alwaysUseSpawner: true
-  icon: "JobIconValet"
+  icon: "JobIconBartender"
   supervisors: job-supervisors-sr
   weight: 60
-  displayWeight: 10
+  displayWeight: 40
   canBeAntag: false
   access:
   - Maintenance
@@ -25,6 +25,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen
 
 - type: startingGear
   id: ValetGear

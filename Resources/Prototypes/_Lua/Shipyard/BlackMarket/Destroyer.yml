@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: karasutenshi (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: BMDestroyer
+  name: BM-Destroyer
+  description: Старый боевой крейсер, переживший рождение и уничтожение Братства.
+  price: 150000 #test
+  category: Large
+  group: ASBlackMarket
+  whitelist:
+  - Frontier
+  - Luna
+  class:
+  - Mercenary
+  engine:
+  - AME
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/DestroyerBM.yml
+
+- type: gameMap
+  id: BMDestroyer
+  mapName: 'BM-Destroyer'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/DestroyerBM.yml
+  minPlayers: 0
+  stations:
+    BMDestroyer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'BM-Destroyer {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

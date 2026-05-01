@@ -7,11 +7,12 @@
   setPreference: true # Lua
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 9000 #2.5 hrs
+      time: 18000 #10 hrs #Lua 2.5<10
   startingGear: DoctorGear
   alwaysUseSpawner: true
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-mmo # Frontier
+  displayWeight: 10
   access:
   - Medical
   - Maintenance

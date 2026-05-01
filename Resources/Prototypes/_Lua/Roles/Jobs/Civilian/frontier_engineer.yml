@@ -1,0 +1,46 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: job
+  id: FrontierEngineer
+  name: job-name-engineer
+  description: job-description-engineer
+  playTimeTracker: JobFrontierEngineer
+  salary: 30000
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20 часов
+  startingGear: StationEngineerGear
+  alwaysUseSpawner: true
+  icon: "JobIconStationEngineer"
+  supervisors: job-supervisors-sr
+  weight: 80
+  displayWeight: 60
+  access:
+  - Engineering
+  - Atmospherics
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen
+
+- type: chameleonOutfit
+  id: FrontierEngineerChameleonOutfit
+  job: FrontierEngineer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+    mask: ClothingMaskBreath
+    neck: ClothingNeckScarfStripedOrange
+    outerClothing: ClothingOuterWinterEngi
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesBootsMag

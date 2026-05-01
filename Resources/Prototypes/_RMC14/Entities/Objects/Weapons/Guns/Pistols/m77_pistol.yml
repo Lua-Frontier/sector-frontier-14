@@ -3,6 +3,7 @@
   id: CMWeaponPistolM77
   name: M77 combat pistol # TODO RMC14 sounds
   description: Standard issue Marine firearm. Also found in the hands of We-Ya PMC teams. Fires 9mm armor shredding rounds and is capable of 3-round burst.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/m77.rsi
@@ -13,15 +14,20 @@
       types:
         Blunt: 8
   - type: Gun
-    selectedMode: Burst
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    selectedMode: SemiAuto #Lua Burst<SemiAuto
     shotsPerBurst: 3
-    minAngle: 10
-    maxAngle: 50
-    angleIncrease: 15
-    angleDecay: 40
-    fireRate: 1
+#    minAngle: 10 # comment from _Lua
+#    maxAngle: 50
+#    angleIncrease: 15
+#    angleDecay: 40
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 7 #Lua 1<7
     availableModes:
-    - Burst
+    - SemiAuto #Lua Burst<SemiAuto
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_88m4_v7.ogg
   # - type: RMCSelectiveFire
@@ -48,8 +54,8 @@
         priority: 2
         whitelist:
           tags:
-          - CMMagazinePistolM77AP
-        startingItem: CMMagazinePistolM77AP
+          - Magazine45_ACPPistolFMJ #Lua CMMagazinePistolM77AP<Magazine45_ACPPistolFMJ
+        startingItem: Magazine45_ACPPistolFMJ #Lua CMMagazinePistolM77AP<Magazine45_ACPPistolFMJ
   # - type: GunDamageModifier
   #   multiplier: 1.2
   - type: AttachableHolderVisuals

@@ -8,11 +8,12 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 18000 #5 hrs
+      time: 18000 #10 hrs #Lua 5<10
   startingGear: ChemistGear
   alwaysUseSpawner: true
   icon: "JobIconChemist"
   supervisors: job-supervisors-mmo # Frontier
+  displayWeight: 20
   access:
   - Medical
   - Chemistry

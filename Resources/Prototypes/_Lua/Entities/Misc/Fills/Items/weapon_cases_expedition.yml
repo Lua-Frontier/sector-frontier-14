@@ -8,6 +8,30 @@
 
 - type: entity
   parent: WeaponCaseShort
+  id: WeaponCaseShortN14WeaponPistol10mm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: N14WeaponPistol10mm
+      amount: 1
+    - id: Magazine9x19mmPistolFMJ
+      amount: 3
+
+- type: entity
+  parent: WeaponCaseHeavy
+  id: WeaponCaseLongN14AutoRifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: N14WeaponAutoRifle
+      amount: 1
+    - id: Magazine68x52mmCaselessBig
+      amount: 3
+
+- type: entity
+  parent: WeaponCaseShort
   id: WeaponCaseShortN14WeaponLaserPistol
   categories: [ HideSpawnMenu ]
   components:
@@ -16,18 +40,6 @@
     - id: N14WeaponLaserPistol
       amount: 1
     - id: N14PowerCellSmall
-      amount: 3
-
-- type: entity
-  parent: WeaponCaseShort
-  id: WeaponCaseShortN14WeaponPlasmaPistol
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-    - id: N14WeaponPlasmaPistol
-      amount: 1
-    - id: N14PlasmaCartridge
       amount: 3
 
 - type: entity
@@ -95,7 +107,7 @@
     contents:
     - id: N14WeaponLaserProtoRifle
       amount: 1
-    - id: N14PowerCellAdvanced
+    - id: N14PowerCellHigh #Lua N14PowerCellAdvanced<N14PowerCellHigh
       amount: 2
 
 - type: entity
@@ -189,7 +201,7 @@
     contents:
     - id: N14WeaponLMG
       amount: 1
-    - id: LMGMagazine556Rifle
+    - id: Magazine8x65mmSKRBox
       amount: 2
 
 - type: entity
@@ -201,19 +213,7 @@
     contents:
     - id: N14WeaponPistol9mm
       amount: 1
-    - id: N14MagazinePistol9mm
-      amount: 3
-
-- type: entity
-  parent: WeaponCaseShort
-  id: WeaponCaseShortN14WeaponPistol10mm
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StorageFill
-    contents:
-    - id: N14WeaponPistol10mm
-      amount: 1
-    - id: N14MagazinePistol10mm
+    - id: Magazine9x19mmPistolFMJ
       amount: 3
 
 - type: entity
@@ -249,7 +249,7 @@
     contents:
     - id: N14WeaponPipe10mm
       amount: 1
-    - id: N14MagazinePistol10mm
+    - id: Magazine45_ACPPistolFMJ
       amount: 3
 
 - type: entity
@@ -261,7 +261,7 @@
     contents:
     - id: N14WeaponPistolChinese
       amount: 1
-    - id: MagazineBox9mm
+    - id: Magazine635x40mmCaselessPistol
       amount: 1
 
 - type: entity
@@ -273,7 +273,7 @@
     contents:
     - id: N14WeaponPistolSpy
       amount: 1
-    - id: MagazineBox9mm
+    - id: Magazine635x40mmCaselessPistol
       amount: 1
 
 - type: entity
@@ -309,8 +309,6 @@
     contents:
     - id: N14WeaponRevolver10mm
       amount: 1
-    - id: SpeedLoader10
-      amount: 2
 
 - type: entity
   parent: WeaponCaseShort
@@ -321,7 +319,7 @@
     contents:
     - id: N14WeaponRevolverMagnun
       amount: 1
-    - id: SpeedLoader44
+    - id: SpeedLoader45_magnumFMJ
       amount: 2
 
 - type: entity
@@ -333,7 +331,7 @@
     contents:
     - id: N14WeaponRevolverCaptainMagnun
       amount: 1
-    - id: SpeedLoader44
+    - id: SpeedLoader45_magnumFMJ
       amount: 2
 
 - type: entity
@@ -345,7 +343,7 @@
     contents:
     - id: N14WeaponHunterRevolver
       amount: 1
-    - id: SpeedLoader45-70
+    - id: SpeedLoader45_magnumFMJ
       amount: 2
 
 - type: entity
@@ -381,7 +379,7 @@
     contents:
     - id: N14WeaponRifleR91
       amount: 1
-    - id: Magazine556Rifle
+    - id: Magazine556x45mmFMJ
       amount: 2
 
 - type: entity
@@ -393,7 +391,7 @@
     contents:
     - id: N14WeaponChineseRifle
       amount: 1
-    - id: Magazine762Rifle
+    - id: Magazine762x39mmFMJ
       amount: 2
 
 - type: entity
@@ -405,7 +403,7 @@
     contents:
     - id: N14WeaponCarbine
       amount: 1
-    - id: LongMagazine556Rifle
+    - id: Magazine762x51mmFMJ
       amount: 2
 
 - type: entity
@@ -417,7 +415,7 @@
     contents:
     - id: N14WeaponMarksman
       amount: 1
-    - id: Magazine762Rifle
+    - id: Magazine762x39mmFMJ
       amount: 2
 
 - type: entity
@@ -429,7 +427,7 @@
     contents:
     - id: N14WeaponService
       amount: 1
-    - id: Magazine556Rifle
+    - id: Magazine762x51mmFMJ
       amount: 2
 
 - type: entity
@@ -453,7 +451,7 @@
     contents:
     - id: N14WeaponBattleRifle
       amount: 1
-    - id: ClipMagazine308Rifle
+    - id: Magazine762x54mmRFMJ
       amount: 2
 
 - type: entity
@@ -465,7 +463,7 @@
     contents:
     - id: N14WeaponOldCarbine
       amount: 1
-    - id: Magazine556Rifle
+    - id: Magazine556x45mmFMJ
       amount: 2
 
 - type: entity
@@ -477,7 +475,7 @@
     contents:
     - id: N14WeaponDoubleBarrelShotgun
       amount: 1
-    - id: MagazineBox12gauge
+    - id: AmmoBox23x75mmBuckshot
       amount: 2
 
 - type: entity
@@ -489,7 +487,7 @@
     contents:
     - id: N14WeaponShotgun
       amount: 1
-    - id: MagazineBox12gauge
+    - id: AmmoBox23x75mmBuckshot
       amount: 2
 
 - type: entity
@@ -501,7 +499,7 @@
     contents:
     - id: N14WeaponAutoShotgun
       amount: 1
-    - id: N14MagazineShotgun12
+    - id: AmmoBox23x75mmBuckshot
       amount: 2
 
 - type: entity
@@ -513,7 +511,7 @@
     contents:
     - id: N14WeaponCaravanShotgun
       amount: 1
-    - id: MagazineBox20gauge
+    - id: AmmoBox23x75mmBuckshot
       amount: 2
 
 - type: entity
@@ -549,7 +547,7 @@
     contents:
     - id: N14WeaponSubMachineGun10mm
       amount: 1
-    - id: N14MagazineSMG10mm
+    - id: Magazine9x19mmSubMachineGunFMJ
       amount: 3
 
 - type: entity
@@ -561,7 +559,7 @@
     contents:
     - id: N14WeaponSubMachineGun12mm
       amount: 1
-    - id: N14MagazineSMG12mm
+    - id: Magazine635x40mmCaseless
       amount: 3
 
 - type: entity
@@ -573,7 +571,7 @@
     contents:
     - id: N14weapon12mmpipe
       amount: 1
-    - id: N14MagazineSMG12mm
+    - id: Magazine45_ACPSubMachineGunFMJ
       amount: 3
 
 - type: entity
@@ -585,7 +583,7 @@
     contents:
     - id: N14weapon10mmpipe
       amount: 1
-    - id: N14MagazineSMG10mm
+    - id: Magazine9x19mmSubMachineGunFMJ
       amount: 3
 
 - type: entity
@@ -597,7 +595,7 @@
     contents:
     - id: N14WeaponAdvanceSubMachineGun12mm
       amount: 1
-    - id: N14TopMagazineSMG12mm
+    - id: Magazine45_ACPSubMachineGunFMJ
       amount: 3
 
 - type: entity
@@ -609,7 +607,7 @@
     contents:
     - id: N14weapon9mmSMG
       amount: 1
-    - id: N14MagazineSMG9mm
+    - id: Magazine635x40mmCaseless
       amount: 3
 
 - type: entity
@@ -637,7 +635,7 @@
       amount: 2
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongN14WeaponAntiMateriel
   categories: [ HideSpawnMenu ]
   components:
@@ -645,11 +643,11 @@
     contents:
     - id: N14WeaponAntiMateriel
       amount: 1
-    - id: N14Magazine50AMR
+    - id: Magazine127x99mm #Lua N14Magazine50AMR<Magazine127x99mm
       amount: 2
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongN14Weapon50NcrRifle
   categories: [ HideSpawnMenu ]
   components:
@@ -657,7 +655,7 @@
     contents:
     - id: N14Weapon50NcrRifle
       amount: 1
-    - id: MagazineBox50
+    - id: Magazine127x99mm
       amount: 1
 
 - type: entity
@@ -681,11 +679,11 @@
     contents:
     - id: N14WeaponLeverRifle
       amount: 1
-    - id: MagazineBox308
+    - id: Magazine762x54mmRFMJ
       amount: 1
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongN14WeaponBrushGun
   categories: [ HideSpawnMenu ]
   components:
@@ -693,7 +691,7 @@
     contents:
     - id: N14WeaponBrushGun
       amount: 1
-    - id: MagazineBox45-70
+    - id: Magazine127x99mm
       amount: 1
 
 - type: entity
@@ -733,7 +731,7 @@
       amount: 1
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongN14WeaponLaserGatling
   categories: [ HideSpawnMenu ]
   components:
@@ -745,7 +743,7 @@
       amount: 2
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongN14WeaponMinigun
   categories: [ HideSpawnMenu ]
   components:
@@ -753,11 +751,11 @@
     contents:
     - id: N14WeaponMinigun
       amount: 1
-    - id: N14MagazineMinigun5mm
+    - id: Magazine68x52mmCaselessBig
       amount: 2
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongN14WeaponAvengerMinigun
   categories: [ HideSpawnMenu ]
   components:
@@ -765,7 +763,7 @@
     contents:
     - id: N14WeaponAvengerMinigun
       amount: 1
-    - id: N14MagazineMinigun5mm
+    - id: Magazine8x65mmSKRBox
       amount: 2
 
 # МАРИНЫ ################################
@@ -781,7 +779,7 @@
       amount: 1
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongRMCWeaponLMGM60
   categories: [ HideSpawnMenu ]
   components:
@@ -789,7 +787,7 @@
     contents:
     - id: RMCWeaponLMGM60
       amount: 1
-    - id: RMCMagazineLMGM60
+    - id: Magazine8x65mmSKRBox
       amount: 2
 
 - type: entity
@@ -801,7 +799,7 @@
     contents:
     - id: RMCWeaponPistolB92FS
       amount: 1
-    - id: RMCMagazinePistolB92FS
+    - id: Magazine9x19mmPistolFMJ
       amount: 2
 
 - type: entity
@@ -813,7 +811,7 @@
     contents:
     - id: RMCWeaponPistolHoldout
       amount: 1
-    - id: RMCMagazinePistolHoldout
+    - id: Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolHoldout<Magazine635x40mmCaselessPistol
       amount: 2
 
 - type: entity
@@ -825,7 +823,7 @@
     contents:
     - id: RMCWeaponPistolD18
       amount: 1
-    - id: RMCMagazinePistolD18
+    - id: Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolD18<Magazine635x40mmCaselessPistol
       amount: 2
 
 - type: entity
@@ -837,7 +835,7 @@
     contents:
     - id: CMWeaponPistolM1984
       amount: 1
-    - id: CMMagazinePistolM1984
+    - id: Magazine45_ACPPistolFMJ
       amount: 2
 
 - type: entity
@@ -849,7 +847,7 @@
     contents:
     - id: CMWeaponPistolM77
       amount: 1
-    - id: CMMagazinePistolM77AP
+    - id: Magazine45_ACPPistolFMJ
       amount: 2
 
 - type: entity
@@ -861,7 +859,7 @@
     contents:
     - id: RMCWeaponPistolMK45
       amount: 1
-    - id: RMCMagazinePistolMK45
+    - id: Magazine45_ACPPistolFMJ #Lua RMCMagazinePistolMK45<Magazine45_ACPPistolFMJ
       amount: 2
 
 - type: entity
@@ -873,7 +871,7 @@
     contents:
     - id: RMCWeaponPistolSU6
       amount: 1
-    - id: RMCMagazinePistolSU6
+    - id: Magazine635x40mmCaselessPistol
       amount: 2
 
 - type: entity
@@ -885,7 +883,7 @@
     contents:
     - id: RMCWeaponRevolverM44
       amount: 1
-    - id: RMCSpeedLoaderM44
+    - id: SpeedLoader45_magnumFMJ
       amount: 2
 
 - type: entity
@@ -909,7 +907,7 @@
     contents:
     - id: WeaponRifleAR10
       amount: 1
-    - id: RMCMagazineRifleAR10
+    - id: Magazine556x45mmFMJ
       amount: 2
 
 - type: entity
@@ -921,11 +919,11 @@
     contents:
     - id: WeaponRifleM16
       amount: 1
-    - id: RMCMagazineRifleM16
+    - id: Magazine556x45mmFMJ
       amount: 2
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongWeaponRifleM4SPR
   categories: [ HideSpawnMenu ]
   components:
@@ -933,7 +931,7 @@
     contents:
     - id: WeaponRifleM4SPR
       amount: 1
-    - id: CMMagazineRifleM4SPR
+    - id: Magazine8x65mmSKRBox
       amount: 2
 
 - type: entity
@@ -945,7 +943,7 @@
     contents:
     - id: WeaponRifleM4SPRCustom
       amount: 1
-    - id: RMCMagazineRifleM4SPRA19
+    - id: Magazine762x54mmRFMJ
       amount: 2
 
 - type: entity
@@ -957,7 +955,7 @@
     contents:
     - id: WeaponRifleM54CE2
       amount: 1
-    - id: CMMagazineRifleM54CE2
+    - id: Magazine9x19mmSubMachineGunFMJ
       amount: 2
 
 - type: entity
@@ -1041,7 +1039,7 @@
     contents:
     - id: WeaponSMGM63
       amount: 1
-    - id: CMMagazineSMGM63
+    - id: Magazine9x19mmSubMachineGunFMJ
       amount: 2
 
 - type: entity
@@ -1053,7 +1051,7 @@
     contents:
     - id: WeaponSMGMP5
       amount: 1
-    - id: CMMagazineSMGMP5
+    - id: Magazine635x40mmCaseless #Lua CMMagazineSMGMP5<Magazine635x40mmCaseless
       amount: 2
 
 - type: entity
@@ -1183,7 +1181,7 @@
     contents:
     - id: ADTObjectsWeaponSubMachineGunPPCH45S
       amount: 1
-    - id: NFMagazineSubMachineGun45
+    - id: Magazine635x40mmCaseless
       amount: 4
 
 - type: entity
@@ -1307,7 +1305,7 @@
       amount: 1
 
 - type: entity
-  parent: WeaponCaseLong
+  parent: WeaponCaseHeavy
   id: WeaponCaseLongWeaponLaserCannon
   categories: [ HideSpawnMenu ]
   components:

@@ -5,19 +5,22 @@
   playTimeTracker: JobSecurityOfficer
   salary: 40000
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 43200 # 12 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 21600 # 6 hours
-  alternateRequirementSets:
-    longerPlaytimeLessSec:
-    - !type:OverallPlaytimeRequirement
-      time: 360000 # 100 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityGuard
-      time: 21600 # 6 hours as security guard
-  startingGear: DeputyGear
+  - !type:RoleTimeRequirement #Lua
+    role: JobSecurityCadet
+    time: 36000 # 10h
+#    - !type:OverallPlaytimeRequirement # comment from _Lua
+#      time: 43200 # 12 hours
+#    - !type:DepartmentTimeRequirement
+#      department: Security
+#      time: 21600 # 6 hours
+#  alternateRequirementSets:
+#    longerPlaytimeLessSec:
+#    - !type:OverallPlaytimeRequirement
+#      time: 360000 # 100 hours
+#    - !type:RoleTimeRequirement
+#      role: JobSecurityGuard
+#      time: 21600 # 6 hours as security guard
+  startingGear: SDBaseLuaGear #Lua DeputyGear<SDBaseLuaGear
   icon: JobIconDeputy
   supervisors: job-supervisors-sergeant
   weight: 130
@@ -38,13 +41,13 @@
 
 - type: startingGear
   id: DeputyGear
-  equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+#  equipment:
+#    pocket1: NFWeaponPistolUniversalNfsdLessLethal
   storage:
     back:
     - Flash
-    - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
-    - Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
+    - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    - Magazine9x19mmPistolRubber #Lua 35 -> 9x19
     - FrontierUplinkCoin10
 
 - type: chameleonOutfit

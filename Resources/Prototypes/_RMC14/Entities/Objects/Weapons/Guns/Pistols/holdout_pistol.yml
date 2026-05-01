@@ -3,7 +3,7 @@
   id: RMCWeaponPistolHoldout
   name: holdout pistol
   description: A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from.
-  suffix: Filled
+  suffix: Need balance test
   components:
   - type: Item
     size: Tiny
@@ -16,6 +16,13 @@
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/holdout.rsi
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/holdout.rsi
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 10
   - type: MagazineAmmoProvider
     autoEject: false
     soundAutoEject: null
@@ -23,14 +30,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: RMCMagazinePistolHoldout
+        startingItem: Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolHoldout<Magazine635x40mmCaselessPistol
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/gun_mk80_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/gun_88m4_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - Holdout
-          - RMCMagazinePistolHoldout
+#          - Holdout
+          - Magazine635x40mmCaselessPistol #Lua RMCMagazinePistolHoldout<Magazine635x40mmCaselessPistol
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.71, 0.095

@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using Content.IntegrationTests.Tests.Interaction;
+using Content.Shared.Input;
 using Content.Shared.Movement.Components;
 using Content.Shared.Slippery;
 using Content.Shared.Stunnable;
@@ -40,14 +41,16 @@ public sealed class SlippingTest : MovementTest
         Assert.That(sys.Slipped, Does.Not.Contain(SEntMan.GetEntity(Player)));
 
         // Walking over the banana slowly does not trigger a slip.
-        await SetKey(EngineKeyFunctions.Walk, BoundKeyState.Down);
+        await SetKey(ContentKeyFunctions.ToggleWalk, BoundKeyState.Down);
+        await SetKey(ContentKeyFunctions.ToggleWalk, BoundKeyState.Up);
         await Move(DirectionFlag.East, 1f);
         Assert.That(Delta(), Is.LessThan(0.5f));
         Assert.That(sys.Slipped, Does.Not.Contain(SEntMan.GetEntity(Player)));
         AssertComp<KnockedDownComponent>(false, Player);
 
         // Moving at normal speeds does trigger a slip.
-        await SetKey(EngineKeyFunctions.Walk, BoundKeyState.Up);
+        await SetKey(ContentKeyFunctions.ToggleWalk, BoundKeyState.Down);
+        await SetKey(ContentKeyFunctions.ToggleWalk, BoundKeyState.Up);
         await Move(DirectionFlag.West, 1f);
         Assert.That(sys.Slipped, Does.Contain(SEntMan.GetEntity(Player)));
         AssertComp<KnockedDownComponent>(true, Player);

@@ -3,13 +3,23 @@
   name: M60 General Purpose Machine Gun
   id: RMCWeaponLMGM60
   description: The Pig. The Action Hero's dream. Chambered in 7.62x51 NATO
+  suffix: Need balance test
   components:
-  - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
-  - type: HeldSpeedModifier
-    walkModifier: 0.6
-    sprintModifier: 0.6
+#  - type: ClothingSpeedModifier
+#    walkModifier: 0.75
+#    sprintModifier: 0.75
+  - type: HeldSpeedModifier #Lua
+  - type: ClothingSpeedModifier #Lua
+    sprintModifier: 0.85
+    walkModifier: 0.85
+  - type: SpeedModifiedOnWield #Lua
+    walkModifier: 0.85
+    sprintModifier: 0.85
+#    walkModifier: 0.6 #comment (11-12) from _Lua
+#    sprintModifier: 0.6
+  - type: Item #Lua
+    shape:
+    - 0,0,7,4
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/LMGs/m60.rsi
     layers:
@@ -32,12 +42,21 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+  - type: MagazineAmmoProvider #Lua
+    autoEject: false
+    soundAutoEject: null
   - type: Gun
+    examineCaliber: gun-examine-caliber-865 #Lua
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
     shotsPerBurst: 5
+    fireRate: 7 #Lua
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
-    - Burst
+#    - Burst #comment from _Lua
     - FullAuto
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_m60.ogg
@@ -69,13 +88,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: RMCMagazineLMGM60
+        startingItem: Magazine8x65mmSKRBox #Lua RMCMagazineLMGM60<Magazine8x65mmSKRBox
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/m41_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - RMCMagazineLMGM60
+          - MagazineBox8x65mmSKR #Lua RMCMagazineLMGM60<MagazineBox8x65mmSKR
   # - type: GunDamageModifier
   #   multiplier: 1
   # - type: UniqueAction
@@ -93,7 +112,6 @@
       rmc-aslot-underbarrel: 0.618, -0.263
   - type: Wieldable
   - type: GunRequiresWield
-
 
 - type: entity
   parent: RMCMagazineLMGBase

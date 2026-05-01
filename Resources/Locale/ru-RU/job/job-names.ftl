@@ -97,15 +97,15 @@ JobBoxer = боксёр
 JobZookeeper = зоотехник
 
 # typan-
-job-name-typan-researcher = Оперативник Нордфолла
-job-name-typan-atmos-tech = Военный Инженер Нордфолла
+job-name-typan-researcher = Исследователь
+job-name-typan-atmos-tech = Атмосферный инженер Синдиката
 job-name-typan-botanist = Ботаник Синдиката
-job-name-typan-cargotech = Взводный Сержант Нордфолла
-job-name-typan-chef = Сервисный Работник Нордфолла
-job-name-typan-medic = Полевой Медик Нордфолла
-job-name-typan-rd = Директор Боевых Операций
-job-name-typan-science = Научный Сотрудник Нордфолла
-job-name-typan-telecommunications-officer = Офицер телекомуникаций Нордфолла
+job-name-typan-cargotech = Карготехник Синдиката
+job-name-typan-chef = Повар Синдиката
+job-name-typan-medic = Медик Синдиката
+job-name-typan-rd = Директор исследований Синдиката
+job-name-typan-science = Учёный Синдиката
+job-name-typan-telecommunications-officer = Офицер телекомуникаций Синдиката
 
 job-name-outpost-syndicate-shareholder = Акционер Синдиката
 
@@ -114,14 +114,14 @@ job-name-ops-luatech = Оперативник Lua Technologies
 JobOpsLuaTech = Оперативник Lua Technologies
 
 # Typan
-JobTypanAtmosTech = Военный Инженер Нордфолла
+JobTypanAtmosTech = Атмосферный инженер Синдиката
 JobTypanBotanist = Ботаник Синдиката
-JobTypanCargotech = Взводный Сержант Нордфолла
-JobTypanChef = Сервисный Работник Нордфолла
-JobTypanMedic = Полевой Медик Нордфолла
-JobTypanRD = Директор Боевых Операций
-JobTypanScience = Научный Сотрудник Нордфолла
-JobTypanTelecommunicationsOfficer = Офицер телекомуникаций Нордфолла
+JobTypanCargotech = Карготехник Синдиката
+JobTypanChef = Повар Синдиката
+JobTypanMedic = Медик Синдиката
+JobTypanRD = Директор исследований Синдиката
+JobTypanScience = Учёный Синдиката
+JobTypanTelecommunicationsOfficer = Офицер телекомуникаций Синдиката
 
 JobOutpostSyndicateShareholder = Акционер Синдиката
 
