@@ -24,27 +24,11 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
-  - type: Store
-    balance:
-      Speso: 0
   - type: Tag
     tags:
     - MercenaryUplink
 
 - type: entity
   parent: [ StorePresetMercenaryUplink, BaseMercenaryUplinkRadio ]
-  id: BaseMercenaryUplinkRadioDebug
-  suffix: Mercenary, DEBUG
-  components:
-  - type: Store
-    balance:
-      Speso: 999999
-
-- type: entity
-  parent: [ StorePresetMercenaryUplink, BaseMercenaryUplinkRadio ]
   id: BaseMercenaryUplinkRadioMercenary
   suffix: Mercenary
-  components:
-  - type: Store
-    balance:
-      Speso: 0

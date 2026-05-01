@@ -139,7 +139,7 @@ public sealed partial class StoreSystem
         // only tell operatives to lock their uplink if it can be locked
         var showFooter = HasComp<RingerUplinkComponent>(store);
 
-        var allowWithdraw = !component.UseBankAccount;
+        var allowWithdraw = !component.UseBankAccount || component.CurrencyWhitelist.Any(x => x != "Speso");
 
         var state = new StoreUpdateState( component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, allowWithdraw, bankComp?.Balance ?? 0, component.UseBankAccount && bankComp != null);
         _ui.SetUiState(store, StoreUiKey.Key, state);
@@ -335,7 +335,8 @@ public sealed partial class StoreSystem
     /// </remarks>
     private void OnRequestWithdraw(EntityUid uid, StoreComponent component, StoreRequestWithdrawMessage msg)
     {
-        if (component.UseBankAccount) return;
+        if (component.UseBankAccount && msg.Currency == "Speso")
+            return;
 
         if (msg.Amount <= 0)
             return;
