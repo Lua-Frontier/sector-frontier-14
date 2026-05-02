@@ -24,6 +24,7 @@ public sealed class SponsorManager : IPostInjectInit
         "OutpostSyndicateShareholder"
     };
     private readonly Dictionary<NetUserId, Sponsor> _activeSponsors = new();
+    private readonly Dictionary<NetUserId, List<Sponsor>> _allActiveSponsors = new();
 
     void IPostInjectInit.PostInject()
     {
@@ -80,15 +81,18 @@ public sealed class SponsorManager : IPostInjectInit
         try
         {
             var sponsor = await _db.GetActiveSponsor(session.UserId.UserId);
+            var allSponsors = await _db.GetAllActiveSponsors(session.UserId.UserId);
             if (sponsor != null)
             {
                 _activeSponsors[session.UserId] = sponsor;
+                _allActiveSponsors[session.UserId] = allSponsors;
                 foreach (var jobId in ShareholderJobIds)
                 { _jobWhitelist.AddWhitelist(session.UserId, jobId); }
             }
             else
             {
                 _activeSponsors.Remove(session.UserId);
+                _allActiveSponsors.Remove(session.UserId);
                 foreach (var jobId in ShareholderJobIds)
                 {
                     var isWhitelisted = await _db.IsJobWhitelisted(session.UserId.UserId, jobId);
@@ -102,13 +106,28 @@ public sealed class SponsorManager : IPostInjectInit
     }
 
     private void OnPlayerDisconnect(ICommonSession session)
-    { _activeSponsors.Remove(session.UserId); }
+    {
+        _activeSponsors.Remove(session.UserId);
+        _allActiveSponsors.Remove(session.UserId);
+    }
 
     public bool TryGetActiveSponsor(NetUserId userId, out Sponsor sponsor)
     { return _activeSponsors.TryGetValue(userId, out sponsor!); }
 
+    public bool TryGetAllActiveSponsors(NetUserId userId, out List<Sponsor> sponsors)
+    { return _allActiveSponsors.TryGetValue(userId, out sponsors!); }
+
+    public void CacheActiveSponsor(NetUserId userId, Sponsor sponsor)
+    { _activeSponsors[userId] = sponsor; }
+
+    public void CacheAllActiveSponsors(NetUserId userId, List<Sponsor> sponsors)
+    { _allActiveSponsors[userId] = sponsors; }
+
     public async Task<Sponsor?> GetActiveSponsorAsync(NetUserId userId)
     { return await _db.GetActiveSponsor(userId.UserId); }
+
+    public async Task<List<Sponsor>> GetAllActiveSponsorsAsync(NetUserId userId)
+    { return await _db.GetAllActiveSponsors(userId.UserId); }
 }
 
 

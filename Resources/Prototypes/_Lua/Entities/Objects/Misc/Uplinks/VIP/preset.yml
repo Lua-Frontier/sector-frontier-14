@@ -3,11 +3,11 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  id: StorePresetVipUplink
+  id: StorePresetDonateShop
   abstract: true
   components:
   - type: Store
-    name: store-preset-name-vip-uplink
+    name: store-preset-name-donate-shop
     categories:
     - UplinkVipHardsuits
     - UplinkVipClothing
@@ -23,4 +23,5 @@
     - UplinkVipCrates
     currencyWhitelist:
     - Speso
+    - LunaCoin
     useBankAccount: true

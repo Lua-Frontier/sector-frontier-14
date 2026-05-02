@@ -3960,3 +3960,49 @@ Entries:
   id: 281
   time: '2026-04-25T20:53:27.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/554
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен полноценный магазин(терминал) Акционеров на F4
+    - type: Add
+      message: Добавлена новая валюта LunaCoin
+    - type: Remove
+      message: Удален аплинк акционеров
+    - type: Tweak
+      message: >-
+        Все аплинки теперь привязаны к балансу пользователя, их больше ненужно
+        пополнять.
+  id: 282
+  time: '2026-05-01T19:36:15.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/564
+- author: Almaz3200
+  changes:
+    - type: Tweak
+      message: >-
+        В меде Гладиатора и Фрактуры теперь по 2 боевых аптечки а также коробка
+        мензурок
+    - type: Tweak
+      message: У Гладиатора и Даггера были изменены силуэты
+    - type: Tweak
+      message: Из оружейной Гладиатора были убраны Лектеры и лазерные винтовки
+    - type: Tweak
+      message: >-
+        Даггер был укреплён в слабых местах, в душевую добавлен шкафчик с
+        медикаментами, сервер вооружений перенесён в инж а на его место был
+        поставлен телекоммуникационный сервер
+    - type: Tweak
+      message: >-
+        у Джудикари и Магуса скафандры наймов были заменены на скафандры частной
+        охраны
+  id: 283
+  time: '2026-05-01T19:37:15.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/563
+- author: Maksimvini
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Edelweiss - полный аналог шаттла Apothecary, с похожим
+        стилем, но своими достатками. Создан с нуля по аналогу.
+  id: 284
+  time: '2026-05-01T19:39:45.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/555

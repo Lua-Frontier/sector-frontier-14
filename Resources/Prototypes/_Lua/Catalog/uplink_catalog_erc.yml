@@ -725,8 +725,7 @@
     - UplinkERCMedicine
     currencyWhitelist:
     - Speso
-    balance:
-      Speso: 0
+    useBankAccount: true
 
 # Uplink console
 - type: entity
@@ -756,9 +755,6 @@
       machine_board: !type:Container
       machine_parts: !type:Container
       board: !type:Container
-  - type: Store
-    balance:
-      Speso: 0
   - type: Tag
     tags:
     - ERCUplink

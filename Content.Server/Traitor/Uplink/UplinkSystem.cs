@@ -69,7 +69,11 @@ public sealed class UplinkSystem : EntitySystem
 
         store.AccountOwner = mind;
 
+        var preservedBalances = store.Balance
+            .Where(entry => !entry.Key.Equals(TelecrystalCurrencyPrototype))
+            .ToArray();
         store.Balance.Clear();
+        foreach (var (currency, amount) in preservedBalances) store.Balance[currency] = amount;
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
             uplink,
             store);
@@ -88,6 +92,9 @@ public sealed class UplinkSystem : EntitySystem
     /// </summary>
     private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts)
     {
+        _ = _proto;
+        _ = _subdermalImplant;
+
         // Frontier - don't try and implant an uplink
         return false;
         /*

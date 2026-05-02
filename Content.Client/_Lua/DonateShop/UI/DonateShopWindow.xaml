@@ -1,0 +1,90 @@
+<donate:DonateShopWindow xmlns="https://spacestation14.io"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:donate="clr-namespace:Content.Client._Lua.DonateShop.UI"
+               SetSize="760 680"
+               MinSize="600 500">
+    <PanelContainer Margin="8">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BorderColor="#A8823D" BorderThickness="2" BackgroundColor="#140F0A" />
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" Margin="12" SeparationOverride="8">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                <Label Name="WindowTitle"
+                       Text="DonateShop"
+                       FontColorOverride="#F3D8A2"
+                       HorizontalExpand="True"
+                       HorizontalAlignment="Center" />
+                <TextureButton Name="DonateCloseButton"
+                               StyleClasses="windowCloseButton"
+                               VerticalAlignment="Center" />
+            </BoxContainer>
+            <PanelContainer Margin="0 0 0 2">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderColor="#5D4631" BorderThickness="1" BackgroundColor="#1E1711" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="4">
+                    <RichTextLabel Name="RoleLabel" />
+                    <RichTextLabel Name="StatusLabel" />
+                    <RichTextLabel Name="BalanceLabel" />
+                    <RichTextLabel Name="LunaCoinLabel" />
+                    <RichTextLabel Name="ErrorLabel" Visible="False" />
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer>
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderColor="#A8823D" BorderThickness="1" BackgroundColor="#1A1208" />
+                </PanelContainer.PanelOverride>
+
+                <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+                    <ScrollContainer HorizontalExpand="True"
+                                     HScrollEnabled="True"
+                                     VScrollEnabled="False"
+                                     MinSize="0 40">
+                        <BoxContainer Name="TierTabContainer"
+                                      Orientation="Horizontal"
+                                      SeparationOverride="4"
+                                      Margin="2 0" />
+                    </ScrollContainer>
+                </BoxContainer>
+            </PanelContainer>
+            <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderColor="#5D4631" BorderThickness="1" BackgroundColor="#110D09" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Horizontal" Margin="8" SeparationOverride="8" VerticalExpand="True">
+                    <PanelContainer Name="CategoryPanel"
+                                    MinSize="160 0"
+                                    VerticalExpand="True"
+                                    Visible="False">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BorderColor="#5D4631" BorderThickness="1" BackgroundColor="#1A1410" />
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer HorizontalExpand="True"
+                                         VerticalExpand="True"
+                                         HScrollEnabled="False"
+                                         VScrollEnabled="True">
+                            <BoxContainer Name="CategoryListContainer"
+                                          Orientation="Vertical"
+                                          SeparationOverride="2"
+                                          Margin="4"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True" />
+                        </ScrollContainer>
+                    </PanelContainer>
+                    <LayoutContainer Name="ItemsAreaContainer" HorizontalExpand="True" VerticalExpand="True">
+                        <ScrollContainer Name="ItemsScroll"
+                                         HScrollEnabled="False"
+                                         VScrollEnabled="True">
+                            <BoxContainer Name="ItemsContainer"
+                                          Orientation="Vertical"
+                                          SeparationOverride="6"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True" />
+                        </ScrollContainer>
+                    </LayoutContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</donate:DonateShopWindow>

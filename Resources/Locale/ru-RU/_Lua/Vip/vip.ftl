@@ -1,3 +1,4 @@
+
 chat-radio-vip = Вип
 
 ent-EncryptionKeyVip = ключ шифрования канала вип
@@ -16,13 +17,6 @@ job-description-vip = Элитный пассажир-акционер, поль
 
 job-description-outpost-syndicate-shareholder = Акционер Нордфолла, пользующийся особым расположением Синдиката.
 
-ent-BaseVipUplinkRadioVip = аплинк випа
-    .desc = Старое радио в стиле ретро... Но почему-то черное.. и.. с золтом?
-    .suffix = Вип
-ent-BaseVipUplinkRadioDebug = { ent-BaseVipUplinkRadioVip }
-    .desc =  { ent-BaseVipUplinkRadioVip.desc }
-    .suffix = Вип, Дебаг
-
 ent-ClothingNeckCloakNanotrasenVip = плащ випа
     .desc = Выдается лучшим из лучших
 
@@ -31,6 +25,12 @@ ent-WeaponSubMachineGunVectorLegal = легальный вектор
 
 ent-EnergySwordDoubleLegal = легальный двухклинковый энергетический меч
     .desc = NanoTrasen разобрала склад контрабанды и легализовала некоторые мечи для вип. Его можно хранить в кармане.
+
+store-vip-tier-shareholder = Акционер
+store-vip-tier-god = Божество
+store-vip-tier-rank1 = Ранг I
+store-vip-tier-rank2 = Ранг II
+store-vip-tier-rank3 = Ранг III
 
 store-vip-category-flatpack = упаковки
 store-vip-category-crates = ящики

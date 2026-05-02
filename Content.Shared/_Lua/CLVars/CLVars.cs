@@ -190,5 +190,12 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("sponsor_music.api_url", "", CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<string> SponsorMusicApiToken =
             CVarDef.Create("sponsor_music.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+        public static readonly CVarDef<string> LunaCoinApiUrl =
+            CVarDef.Create("lunacoin.api_url", "", CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<string> LunaCoinApiToken =
+            CVarDef.Create("lunacoin.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+        public static readonly CVarDef<string> LunaCoinServerName =
+            CVarDef.Create("lunacoin.server_name", "luna", CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }

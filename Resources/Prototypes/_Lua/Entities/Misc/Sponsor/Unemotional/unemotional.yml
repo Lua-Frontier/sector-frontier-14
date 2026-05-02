@@ -1,11 +1,19 @@
+# Cloak
 - type: sponsorLoadout
   id: unemotional
-  entity: ClothingBackpackdeFoA
-  sponsorOnly: true
-  login: unemotional
-  sponsorRole: Божество
+  ownerLogin: unemotional
+  tier: god
+  entities:
+    - ClothingBackpackdeFoA
+    - ClothingOuterHardsuitdeFOA
+    - ClothingMaskdeFOA
+    - GlovesdeFOA
+    - ClothingBeltdeFOA
+    - ClothingEyesHuddeFOA
+    - ClothingShoesBootsdeFOA
+    - ClothingUniformdeFOA
+    - ClothingNeckCapedeFOA
 
-# Cloak
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCapedeFOA
@@ -274,11 +282,3 @@
   - type: StorageFill
     contents:
     - id: PaperLawsdeFoA
-    - id: ClothingOuterHardsuitdeFOA
-    - id: ClothingMaskdeFOA
-    - id: GlovesdeFOA
-    - id: ClothingBeltdeFOA
-    - id: ClothingEyesHuddeFOA
-    - id: ClothingShoesBootsdeFOA
-    - id: ClothingUniformdeFOA
-    - id: ClothingNeckCapedeFOA

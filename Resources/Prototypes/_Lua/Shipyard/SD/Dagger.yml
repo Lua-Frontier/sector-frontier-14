@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: almaz3200 (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: VasKoDagger
+  name: Dagger
+  description: Проверенный временем шаттл поддержки. Лучший для ведения боя на больших дистанциях.
+  limit: 4
+  price: 150000
+  category: Medium
+  group: Security
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Nfsd
+  engine:
+  - Singularity
+  shuttlePath: /Maps/_Lua/Shuttles/SD/Dagger.yml
+
+- type: gameMap
+  id: VasKoDagger
+  mapName: 'Dagger'
+  mapPath: /Maps/_Lua/Shuttles/SD/Dagger.yml
+  minPlayers: 0
+  stations:
+    VasKoDagger:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Dagger {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+

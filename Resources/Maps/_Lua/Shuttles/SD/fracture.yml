@@ -4,7 +4,7 @@ meta:
   engineVersion: 275.1.0
   forkId: ""
   forkVersion: ""
-  time: 04/11/2026 17:04:23
+  time: 05/01/2026 08:16:25
   entityCount: 608
 maps: []
 grids:
@@ -709,7 +709,7 @@ entities:
   - uid: 597
     components:
     - type: Transform
-      pos: 2.3966355,-2.300703
+      pos: 2.5226598,-2.2647798
       parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -2280,7 +2280,7 @@ entities:
       pos: -1.5,-3.5
       parent: 1
     - type: Battery
-      startingCharge: 248.66669
+      startingCharge: 246.00003
     - type: ApcPowerReceiver
       powerLoad: 10
     - type: ApcPowerReceiverBattery
@@ -2301,11 +2301,14 @@ entities:
       parent: 1
 - proto: LockerEngineerFilled
   entities:
-  - uid: 180
+  - uid: 187
     components:
     - type: Transform
+      anchored: True
       pos: -3.5,-4.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
   - uid: 115
@@ -2315,13 +2318,6 @@ entities:
       pos: -5.5,-7.5
       parent: 1
 - proto: MachineFTLDrive600
-  entities:
-  - uid: 187
-    components:
-    - type: Transform
-      pos: -3.5,-3.5
-      parent: 1
-- proto: MachineWarpDrive
   entities:
   - uid: 103
     components:
@@ -2337,10 +2333,15 @@ entities:
       parent: 1
 - proto: MedkitCombatFilled
   entities:
+  - uid: 180
+    components:
+    - type: Transform
+      pos: 2.685811,-2.5515327
+      parent: 1
   - uid: 596
     components:
     - type: Transform
-      pos: 2.7247605,-2.535078
+      pos: 2.342061,-2.3484077
       parent: 1
 - proto: NFHolopadShip
   entities:

@@ -13,15 +13,15 @@
     Speso: 3600
   categories:
   - UplinkVipFuel
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipFuelBananium
@@ -32,15 +32,15 @@
     Speso: 15000
   categories:
   - UplinkVipFuel
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipFuelAmeJar
@@ -51,15 +51,15 @@
     Speso: 12000
   categories:
   - UplinkVipFuel
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipFuelUranium
@@ -70,15 +70,15 @@
     Speso: 7500
   categories:
   - UplinkVipFuel
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipFuelBluespace
@@ -89,14 +89,14 @@
     Speso: 37500
   categories:
   - UplinkVipFuel
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 

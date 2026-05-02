@@ -312,6 +312,7 @@ namespace Content.Server.Database
         Task CloseSponsor(Guid player, string role, DateTime endDate);
         Task<Sponsor?> GetActiveSponsor(Guid player, string role);
         Task<Sponsor?> GetActiveSponsor(Guid player);
+        Task<List<Sponsor>> GetAllActiveSponsors(Guid player);
 
         #endregion
 
@@ -1035,6 +1036,12 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetActiveSponsor(player));
+        }
+
+        public Task<List<Sponsor>> GetAllActiveSponsors(Guid player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAllActiveSponsors(player));
         }
 
         public Task<bool> CleanIPIntelCache(TimeSpan range)
