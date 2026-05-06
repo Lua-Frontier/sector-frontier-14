@@ -1,0 +1,12 @@
+ent-ClothingmodsuitBloodRedHardsuit = кроваво-красный модсьют
+    .desc = Бронескафандр, отмеченный символикой синдиката. Он отличается удивительной гибкостью при хорошей защите.
+ent-ClothingOuterHardsuitBloodRedHardsuit = {ent-ClothingmodsuitBloodRedHardsuit}
+    .desc = {ent-ClothingmodsuitBloodRedHardsuit.desc}
+ent-ClothingHeadHelmetHardsuitBloodRedHardsuit = шлем кроваво-красного модсьюта
+    .desc = Шлем с фирменной маркировкой Viper. Имеет встроенный медицинский визор.
+ent-ClothingmodsuitBloodRedHardsuitElite = элитный кроваво-красный модсьют
+    .desc = {ent-ClothingmodsuitBloodRedHardsuit.desc}
+ent-ClothingOuterHardsuitBloodRedHardsuitelite = {ent-ClothingmodsuitBloodRedHardsuitElite}
+    .desc = {ent-ClothingmodsuitBloodRedHardsuit.desc}
+ent-ClothingHeadHelmetHardsuitBloodRedHardsuitelite = элитный шлем кроваво-красного модсьюта
+    .desc = {ent-ClothingHeadHelmetHardsuitBloodRedHardsuit.desc}
