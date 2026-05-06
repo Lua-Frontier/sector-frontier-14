@@ -307,15 +307,15 @@ public sealed partial class FireControlSystem : EntitySystem
         if (!TryComp<BindToStationComponent>(controllable, out var bindMarker) || !bindMarker.Enabled)
             return true;
 
-        if (!TryComp<StationBoundObjectComponent>(controllable, out var bound) || !bound.Enabled || bound.BoundStation == null)
-            return false;
+        // No StationBoundObject means the weapon was player-purchased and not bound to any specific station — allow it.
+        if (!TryComp<StationBoundObjectComponent>(controllable, out var bound) || !bound.Enabled)
+            return true;
+
+        if (bound.BoundStation == null)
+            return true;
 
         var serverStation = _station.GetOwningStation(server);
-        if (serverStation == null || serverStation != bound.BoundStation)
-            return false;
-
-        var currentStation = _station.GetOwningStation(controllable);
-        return currentStation != null && currentStation == bound.BoundStation;
+        return serverStation != null && serverStation == bound.BoundStation;
     }
 
     public int GetRemainingProcessingPower(EntityUid server, FireControlServerComponent? component = null)

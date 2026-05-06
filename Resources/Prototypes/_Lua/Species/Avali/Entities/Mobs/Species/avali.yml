@@ -30,8 +30,9 @@
       types:
         Heat : 3
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.8
-    baseRunningSpeed: 5.8
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 4.5
+    baseSprintSpeed: 6.5
     weightlessAcceleration: 2.5
   - type: LuaSprint # Lua
     maxSprint: 88
@@ -324,8 +325,9 @@
       types:
         Heat : 3
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.8
-    baseRunningSpeed: 5.8
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 4.5
+    baseSprintSpeed: 6.5
     weightlessAcceleration: 2.5
 
 - type: entity
@@ -346,8 +348,9 @@
         types:
           Heat : 3
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2.8
-      baseRunningSpeed: 5.8
+      baseWalkSpeed: 2.5
+      baseRunningSpeed: 4.5
+      baseSprintSpeed: 6.5
       weightlessAcceleration: 2.5
     - type: HumanoidAppearance
       species: Avali
