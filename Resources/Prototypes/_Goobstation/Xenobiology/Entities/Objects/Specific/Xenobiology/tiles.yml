@@ -34,8 +34,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: SpeedModifierContacts
-    walkSpeedModifier: 1.55
-    sprintSpeedModifier: 1.55
+    walkSpeedModifier: 1.25
+    sprintSpeedModifier: 1.25
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -89,8 +89,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.45
-    sprintSpeedModifier: 0.45
+    walkSpeedModifier: 0.88
+    sprintSpeedModifier: 0.88
   - type: Physics
     bodyType: Static
   - type: Fixtures

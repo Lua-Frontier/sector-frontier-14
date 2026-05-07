@@ -2415,4 +2415,20 @@
       position: -14.152, 1.013
       technologyPrerequisites:
       - NFShuttlecraft
-...
+- type: technology
+  id: LuaBluespaceTiles
+  name: lua-research-technology-bluespace-tiles
+  entityIcon: FloorBluespaceEntity
+  discipline: NFScience
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 1
+  cost: 50000
+  recipeUnlocks:
+  - FloorTileItemBluespace
+  - FloorTileItemSepia
+  technologyPrerequisites:
+  - NFFauxAstroTiles
+  position: -1.332, -7.466
