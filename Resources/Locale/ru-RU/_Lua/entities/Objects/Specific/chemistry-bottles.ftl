@@ -143,3 +143,7 @@ ent-ChemistryBottleSugar = { ent-BaseChemistryBottleFilled }
 ent-ChemistryBottleSulfur = { ent-BaseChemistryBottleFilled }
     .desc = { ent-BaseChemistryBottleFilled.desc }
     .suffix = сера
+
+ent-ChemistryBottlePethidine = { ent-BaseChemistryBottleFilled }
+    .desc = { ent-BaseChemistryBottleFilled.desc }
+    .suffix = петидин

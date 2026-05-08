@@ -1,0 +1,18 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: ChemistryBottlePethidine
+  suffix: pethidine
+  parent: [BaseChemistryBottleFilled, BaseC3ContrabandNoValue]
+  components:
+  - type: Label
+    currentLabel: reagent-name-pethidine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Pethidine
+          Quantity: 30
