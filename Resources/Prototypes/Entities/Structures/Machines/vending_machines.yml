@@ -2230,8 +2230,8 @@
       Medical: 0.4 # Frontier
     offState: off
     brokenState: broken
-    normalState: normal
-    denyState: deny
+    normalState: normal-unshaded # Lua: normal < normal-unshaded
+    denyState: deny-unshaded # Lua: deny < deny-unshaded
     ejectDelay: 2
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chemvend.rsi
@@ -2240,6 +2240,7 @@
       map: ["enum.VendingMachineVisualLayers.Base"]
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded # Lua
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: GuideHelp
@@ -2257,8 +2258,8 @@
     pack: ChemVendInventorySyndicate
     offState: off
     brokenState: broken
-    normalState: normal
-    denyState: deny
+    normalState: normal-unshaded # Lua: normal < normal-unshaded
+    denyState: deny-unshaded # Lua: deny < deny-unshaded
     ejectDelay: 2
   - type: AccessReader
     access: [["SyndicateAgent"]]
