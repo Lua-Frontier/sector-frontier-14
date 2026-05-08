@@ -32,6 +32,7 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility; // Lua
 using Robust.Shared.Timing;
 
 namespace Content.Server.Medical;
@@ -54,7 +55,7 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
 
     // Frontier: keep a list of cryogenics reagents. The pod will only filter these out from the provided solution.
-    private static readonly string[] CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"];
+    private static readonly HashSet<string> CryogenicsReagents = ["Cryoxadone", "Aloxadone", "Doxarubixadone", "Opporozidone", "Necrosol", "Traumoxadone", "Stelloxadone"]; // Lua: Array < HashSet
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
     public override void Initialize()
@@ -118,15 +119,19 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
                     continue;
                 }
 
+                // Lua start
 
-                // Frontier
-                // Filter out a fixed amount of each reagent from the cryo pod's beaker
-                // var solutionToInject = _solutionContainerSystem.SplitSolution(containerSolution.Value, cryoPod.BeakerTransferAmount);
-                var solutionToInject = _solutionContainerSystem.SplitSolutionPerReagentWithOnly(containerSolution.Value, cryoPod.BeakerTransferAmount, CryogenicsReagents);
+                var solutionToInject = _solutionContainerSystem.SplitSolutionPerReagent(containerSolution.Value, cryoPod.BeakerTransferAmount);
 
-                // For every .25 units used, .5 units per second are added to the body, making cryo-pod more efficient than injections.
-                solutionToInject.ScaleSolution(cryoPod.PotencyMultiplier);
-                // End Frontier
+                foreach (var reagent in solutionToInject.Contents.ShallowClone())
+                {
+                    if (CryogenicsReagents.Contains(reagent.Reagent.Prototype))
+                    {
+                        solutionToInject.AddReagent(reagent.Reagent, reagent.Quantity * (cryoPod.PotencyMultiplier - 1));
+                    }
+                }
+
+                // Lua end
 
                 _bloodstreamSystem.TryAddToChemicals((patient.Value, bloodstream), solutionToInject);
                 _reactiveSystem.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);
