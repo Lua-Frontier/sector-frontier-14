@@ -19,8 +19,8 @@
     cleanupExempt: true # Mono
   - type: StaticPrice
     price: 5
-  - type: InjectableSolution
-    solution: smokable
+  #- type: InjectableSolution # Lua
+  #  solution: smokable # Lua
 
 # Base for all cigars and cigarettes.
 - type: entity
@@ -37,10 +37,17 @@
   - type: SolutionContainerManager
     solutions:
       smokable:
-        maxVol: 20
+        maxVol: 15 # Lua: 20 < 15
         reagents:
           - ReagentId: Nicotine
             Quantity: 10
+  # Lua start
+  - type: InjectableSolution
+    solution: smokable
+  - type: RefillableSolution
+    solution: smokable
+    preventTransferOut: true
+  # Lua end
 
 - type: entity
   parent: BaseSmokable

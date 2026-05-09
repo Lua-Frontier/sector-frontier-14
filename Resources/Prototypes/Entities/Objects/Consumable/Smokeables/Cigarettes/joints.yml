@@ -24,7 +24,7 @@
   - type: SolutionContainerManager
     solutions:
       smokable:
-        maxVol: 30
+        maxVol: 25 # Lua: 30 < 25
         reagents:
           - ReagentId: THC
             Quantity: 20
@@ -85,7 +85,7 @@
   - type: SolutionContainerManager
     solutions:
       smokable:
-        maxVol: 30
+        maxVol: 25 # Lua: 30 < 25
         reagents:
           - ReagentId: THC
             Quantity: 20
