@@ -1,0 +1,28 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: SmartFridgeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: smart fridge machine board
+  description: A machine printed circuit board for a smart fridge.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: SmartFridge
+    requirements:
+      MatterBin: 3
+      Manipulator: 2
+    stackRequirements:
+      Glass: 3
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: SmartFridgeFlatpack
+  name: smart fridge flatpack
+  description: A flatpack used for constructing a smart fridge.
+  components:
+  - type: Flatpack
+    entity: SmartFridge

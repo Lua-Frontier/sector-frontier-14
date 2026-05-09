@@ -2,6 +2,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Construction; // Lua
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
@@ -32,6 +33,8 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         SubscribeLocalEvent<SmartFridgeComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
         SubscribeLocalEvent<SmartFridgeComponent, DumpEvent>(OnDump);
+
+        SubscribeLocalEvent<SmartFridgeComponent, MachineDeconstructedEvent>(OnDeconstructed); // Lua
 
         Subs.BuiEvents<SmartFridgeComponent>(SmartFridgeUiKey.Key,
             sub =>
@@ -171,4 +174,16 @@ public sealed class SmartFridgeSystem : EntitySystem
 
         DoInsert(ent, args.User, args.DumpQueue, false);
     }
+
+    // Lua start
+
+    private void OnDeconstructed(EntityUid fridge, SmartFridgeComponent fridgeComp, MachineDeconstructedEvent args)
+    {
+        if (_container.TryGetContainer(fridge, fridgeComp.Container, out var container))
+        {
+            _container.EmptyContainer(container, true, Transform(fridge).Coordinates);
+        }
+    }
+
+    // Lua end
 }
