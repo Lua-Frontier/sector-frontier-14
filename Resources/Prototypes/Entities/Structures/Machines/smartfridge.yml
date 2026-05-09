@@ -46,11 +46,18 @@
       - Produce
       - Seed
       - Injector # Frontier
+      - Implanter # Lua
       tags:
       - PillCanister
       - Bottle
       - Syringe
       - ChemDispensable
+      # Lua start
+      - Brutepack
+      - Ointment
+      - Gauze
+      - Bloodpack
+      # Lua end
   - type: ActivatableUI
     key: enum.SmartFridgeUiKey.Key
   - type: ActivatableUIRequiresPower
