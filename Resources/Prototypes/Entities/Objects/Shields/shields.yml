@@ -661,3 +661,10 @@
                   max: 2
     - type: StaticPrice
       price: 150
+    # Lua start
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 250
+        Steel: 80
+        RawScrap: 20
+    # Lua end

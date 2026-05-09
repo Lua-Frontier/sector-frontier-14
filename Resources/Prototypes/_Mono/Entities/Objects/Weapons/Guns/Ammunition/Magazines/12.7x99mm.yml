@@ -3,7 +3,7 @@
   id: BaseMagazine127x99mm
   name: "magazine (12.7x99mm)"
   suffix: Need balance test #Lua
-  parent: [ BaseItem, BaseC3PirateContraband ]
+  parent: [BaseItem, BaseC3PirateContraband, RecyclableItemSteelTiny] # Lua: Added RecyclableItemSteelTiny
   abstract: true
   components:
   - type: Tag
