@@ -42,6 +42,12 @@
       - MedicalDoctor
     - type: PirateBountyItem # Frontier
       id: Defibrillator # Frontier
+    # Lua start
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 100
+        RawScrap: 25
+    # Lua end
 
 - type: entity
   id: Defibrillator
