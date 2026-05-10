@@ -259,3 +259,224 @@
     sprite: _Lua/Clothing/Uniforms/cargotechskirt.rsi
   - type: Sprite
     sprite: _Lua/Clothing/Uniforms/cargotechskirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMedicNFSD
+  name: blue security medic uniform
+  description: A blue uniform that is specialized for field operations. Healing toolbox is build-in.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Uniforms/Jumpsuit/nfsd_brigmedic_uniform.rsi
+    - type: Clothing
+      sprite: _Lua/Clothing/Uniforms/Jumpsuit/nfsd_brigmedic_uniform.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdjutantAlt
+  name: adjutant's turtleneck
+  description: A blue uniform that is specialized for field operations. Healing toolbox is build-in.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Uniforms/Jumpsuit/adjutant_alt.rsi
+    - type: Clothing
+      sprite: _Lua/Clothing/Uniforms/Jumpsuit/adjutant_alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtAdjutantAlt
+  name: adjutant's turtleneck
+  description: A blue turtleneck with skirt to service heads even at the cold stations.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Uniforms/Jumpskirt/adjutant_alt.rsi
+    - type: Clothing
+      sprite: _Lua/Clothing/Uniforms/Jumpskirt/adjutant_alt.rsi
+
+#region Nanotrasen
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBrigmedicAlt
+  name: brigmedic's uniform
+  description: Standart red brigmedic's uniform. Much less uncanny than the black one.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/brigmedic.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/brigmedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBrigmedicAlt
+  name: brigmedic's skirt
+  description: Standart red brigmedic's skirt. Much less uncanny than the black one.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/brigmedic.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/brigmedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBrigmedicTurtle
+  name: brigmedic's turtleneck
+  description: Red enough to hide spots of 'oh shit' on itself.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/brigmedic_alt.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/brigmedic_alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBrigmedicTurtle
+  name: brigmedic's turtleneck with skirt
+  description: Red enough to hide spots of 'oh!' on itself. Now with a skirt.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/brigmedic_alt.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/brigmedic_alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBrigmedicWhite
+  name: white brigmedic's jumpsuit
+  description: There is a rumor, that this type of jumpsuits were created by same brand, that created SpaceCleaner. White, for real guardian angel.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/brigmedic_white.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/brigmedic_white.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBrigmedicWhite
+  name: white brigmedic's jumpskirt
+  description: There is a rumor, that this type of jumpskirts were created by same brand, that created SpaceCleaner. White, for real guardian angel.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/brigmedic_white.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/brigmedic_white.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitTurtleScientist
+  name: scientist's turtleneck
+  description: It's a durable turtleneck for elite sciences in bad conditions.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/scientist_turtle.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/scientist_turtle.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtTurtleScientist
+  name: scientist's turtleneck skirt
+  description: It's a durable turtleneck with skirt for elite sciences in bad conditions.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/scientist_turtle.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/scientist_turtle.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSalvageSpecialistFormal
+  name: salvage specialist's formal jumpsuit
+  description: It's a jumpsuit with a sturdy set of overalls. It's dirty... a bit.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/salvageformal.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/salvageformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSalvageSpecialistFormal
+  name: salvage specialist's formal jumpskirt
+  description: It's a jumpskirt with a sturdy set of overalls. It's not dirty at all.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/salvageformal.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/salvageformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCryotech
+  name: cryotech jumpsuit
+  description: This is VERY warm turtleneck, it's also very sturdy.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/cryotech.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/cryotech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtCryotech
+  name: cryotech jumpskirt
+  description: This is VERY warm turtleneck, it's also very sturdy. This one has skirt.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/cryotech.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/cryotech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitDetectiveFormal
+  name: detective's formal uniform
+  description: Formal uniform, consists of brown jacket, white shirt and a tie.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/detective.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/detective.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitDetectiveFormalBlack
+  name: gray detective's formal uniform
+  description: Formal uniform, consists of black jacket, white shirt and a tie. It's time to play the piano!
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/detective_grey.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/detective_grey.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitChiefEngineerFormal
+  name: chief engineer's formal jumpsuit
+  description: Formal uniform with trousers for chief of engineers. It's time to shine with gold not only in industry, but also in clothing!
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/ce_formal.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/ce_formal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSalvageSpecialist
+  name: salvage specialist's jumpskirt
+  description: It's a snappy jumpskirt with a sturdy set of overalls. It's very dirty.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/salvage.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/salvage.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtScientistFormal
+  name: scientist's formal jumpskirt
+  description: A uniform for sophisticated scientists, best worn with its matching tie and skirt.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/scientist_formal.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpskirt/scientist_formal.rsi

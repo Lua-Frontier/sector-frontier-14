@@ -958,6 +958,9 @@
         Radiation: 0.80
         Caustic: 0.95
   - type: FlashImmunity # Goobstation
+  - type: Tag
+    tags:
+    - Recyclable # screw the WhitelistChameleon tag
 
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.2

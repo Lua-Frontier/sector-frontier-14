@@ -93,7 +93,6 @@
   - type: Item
     size: Huge
 
-
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitNanotrasenStandart
@@ -127,6 +126,109 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
 
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitSecurityPilot
+  name: security pilot's hardsuit
+  description: Robust hardsuit for slayer of the pirate's doom!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/security_pilot.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/security_pilot.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.5
+        Heat: 0.8
+        Radiation: 0.2
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecurityPilot
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitBrigmedicWhite
+  name: white brigmedic's hardsuit
+  description: White version of brigmedic's hardsuit. Quite the same, just has different color.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBrigmedicWhite
+  - type: Item
+    size: Huge
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.6
+        Caustic: 0.5
+        Radiation: 0.4
+        Shock: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC2ContrabandUnredeemable]
+  id: ClothingOuterHardsuitCapspaceReinforced
+  name: captain's combat hardsuit
+  description: An elite captain's combat hardsuit. It is given to the best captains, for whom battle encounters happen every Monday.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/capspace_reinforced.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/capspace_reinforced.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.35
+        Heat: 0.3
+        Cold: 0.3
+        Caustic: 0.4
+        Radiation: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitCapspaceHelmetReinforced
 
 #region FSF
 
@@ -655,3 +757,44 @@
   - type: Speech
   - type: TTS
     voice: Adjutant
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitChiefEngineerMOD
+  name: advanced chief engineer hardsuit
+  description: An elite white hardsuit for Frontier engineers. It is soft and robust.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/engimod.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/engimod.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.8
+        Heat: 0.5
+        Cold: 0.65
+        Radiation: 0.1
+        Caustic: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitChiefEngineerMOD
+  - type: StaticPrice
+    price: 15000
+    vendPrice: 40000
+  - type: HardsuitIdentification
+  - type: HardsuitDNARadial
+  - type: Speech
+  - type: TTS
+    voice: Noble

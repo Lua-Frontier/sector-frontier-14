@@ -208,6 +208,202 @@
     sprite: _Lua/Objects/Devices/pda.rsi
     state: pda_shareholder_syndicate
 
+- type: entity
+  parent: [BasePDA, BaseItem, StorePresetUplink, BaseC2SyndicateContrabandNoValue] # Lua-changes: added BaseC2SyndicateContrabandNoValue
+  id: BaseTypanPDA
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Devices/typan_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: /Textures/_Lua/Objects/Devices/typan_pda.rsi
+    state: pda
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDARD
+  name: КПК Директора Исследований Синдиката
+  description: Сосредоточение наизлейших технологий! Пахнет дешёвым пластиком...
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardRd
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-science
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDAScience
+  name: КПК Учёного Синдиката
+  description: Похоже этот КПК был взломан.
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardScience
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-science
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDABotan
+  name: КПК Ботаника Синдиката
+  description: Весь разъеден ядами растительного происхождения.
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardBotanist
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-botan
+
+- type: entity
+  parent: BaseTypanPDA
+  id: MedicalPDASyndi
+  name: КПК Врача Синдиката
+  description: Ходят легенды, что на нём отображается пульс главы НТ.
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardMed
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-med
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - YupiTransferCartridge
+      - NanoChatCartridge # Lua
+      - NewsReaderCartridge
+      - MedTekCartridge
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDAEng
+  name: КПК Атмосферного Инженера Синдиката
+  description: Крепкий КПК мастера на все руки.
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardEng
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-eng
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDACom
+  name: КПК Офицера Телекомуникаций Синдиката
+  description: Оснащён всеми средствами и возможностями для получения наизлейших приказов.
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardCom
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-com
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDACargo
+  name: КПК Карготехника Синдиката
+  description: В слоту для ручки застрял зуб карпоакулы.
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardCargo
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-cargo
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDAChef
+  name: КПК Повара Синдиката
+  description: Ну так как оно будет? С кишками или без кишок?
+  components:
+  - type: Pda
+    id: OutpostTypanIDCardChef
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-chef
+
+- type: entity
+  parent: BaseTypanPDA
+  id: SyndiPDAResearcher
+  name: КПК Исследователя
+  description: Крепкий КПК исследователя из далеких краёв.
+  components:
+  - type: Pda
+    id: OutpostTypanIDResearcher
+  - type: PdaBorderColor
+    borderColor: "#891417"
+  - type: Icon
+    state: pda-syndi-researcher
+
+- type: entity
+  parent: HacksPDA
+  id: LuaPDAOps
+  name: КПК Оперативника "Lua Technologies"
+  description: Оснащён всеми средствами и возможностями для получения приказов.
+  components:
+  - type: Pda
+    id: OpsLuaTechIDCard
+  - type: PdaBorderColor
+    borderColor: "#35a5da"
+
+- type: entity
+  parent: BasePDA
+  id: AdjutantPDA
+  name: adjutant PDA
+  description: Ink and coffee stains are seen on its surface.
+  components:
+  - type: Pda
+    id: AdjutantIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+      !type:String
+        adj-pda
+  - type: Sprite
+    sprite: _Lua/Objects/Devices/pda.rsi
+    layers:
+    - state: "adj-pda"
+      map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: PdaBorderColor
+    borderColor: "#999875"
+    accentHColor: "#274d5f"
+    accentVColor: "#274d5f"
+  - type: Icon
+    sprite: _Lua/Objects/Devices/pda.rsi
+    state: adj-pda
+
 # StormCreed
 - type: entity
   parent: BasePDA

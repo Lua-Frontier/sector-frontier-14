@@ -95,9 +95,9 @@
   description: Черный берет с позолоченной вышивкой, предпочитаемый офицерами телекоммуникаций.
   components:
   - type: Clothing
-    sprite: Clothing/Head/Hats/beret_hos.rsi
+    sprite: _Lua/Clothing/Head/Hats/beret_co.rsi
   - type: Sprite
-    sprite: Clothing/Head/Hats/beret_hos.rsi
+    sprite: _Lua/Clothing/Head/Hats/beret_co.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -119,3 +119,36 @@
     - ClothMade
     - HamsterWearable
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadPapahaBumanLopes
+  name: Buman Lopes' papaha
+  description: Suspicious.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/ded_papaha.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/ded_papaha.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBeretChemist
+  name: chemist's beret
+  description: Robust beret for ordinary chemist.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/beret_chemist.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHeadOfSecurity
+  name: head of security's hat
+  description: Great hat for a great man.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/hoshat.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/hoshat.rsi

@@ -17,7 +17,7 @@ chat-radio-freelance = Кодекс
 # not headset but whatever
 chat-radio-handheld = Портативный
 chat-radio-binary = Двоичный
-chat-radio-deathsquad = Эскадрон смерти
+chat-radio-deathsquad = ???
 chat-radio-law = Юридический
 chat-radio-merc = Наёмники
 chat-radio-typan = Тайпан

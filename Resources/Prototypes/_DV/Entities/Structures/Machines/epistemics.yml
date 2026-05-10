@@ -1,0 +1,51 @@
+- type: entity
+  id: DecorationalGlimmerProber
+  name: unidentified scientifical machine
+  parent: BaseMachinePowered
+  description: This machine probably does something, though it isn't obvious.
+  components:
+  - type: Sprite
+    sprite: _DV/Structures/Machines/glimmer_machines.rsi
+    layers:
+    - state: "base"
+    - state: "intermediate"
+    - state: "prober"
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Transform
+    anchored: true
+  - type: Appearance
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+          SheetGlass1:
+            min: 2
+            max: 5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.40,0.40"
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        density: 200

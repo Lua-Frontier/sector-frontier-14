@@ -55,10 +55,64 @@
   - type: Item
     size: Ginormous
   - type: Clothing
-    slots: 
+    slots:
       - BELT
       - BACK
   - type: ClothingSpeedModifier #Lua
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBrigmedicWhite
+  name: white brigmedic's backpack
+  description: White backpack for various white brigmedic things.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Backpacks/brigmedic.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelBrigmedicWhite
+  name: white brigmedic's satchel
+  description: Good satchel for medical goods.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Satchels/brigmedic.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelBrigmedicWhite
+  name: white brigmedic's duffel
+  description: Big duffel bag for big things.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Back/Duffels/brigmedic.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackHeadOfPersonnel
+  name: head of personnel's backpack
+  description: Although looks expensive, costs not very much
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Backpacks/hop.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelHeadOfPersonnel
+  name: head of personnel's satchel
+  description: Great bureaucratic satchel for pens and papers.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Satchels/hop.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelHeadOfPersonnel
+  name: head of personnel's duffel
+  description: Full of money and papers.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Back/Duffels/hop.rsi

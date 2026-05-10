@@ -43,6 +43,7 @@
   price: 500
   equipment:
     neck: ClothingNeckTieBH
+  groupBy: "ties"
 
 - type: loadout
   id: ContractorClothingNeckTieRed
@@ -52,6 +53,7 @@
   price: 500
   equipment:
     neck: ClothingNeckTieRed
+  groupBy: "ties"
 
 - type: loadout
   id: ContractorClothingNeckTieSci
@@ -61,6 +63,167 @@
   price: 500
   equipment:
     neck: ClothingNeckTieSci
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieObscure
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieObscure
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieDarkPurple
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieDarkPurple
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieDarkBrown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieDarkBrown
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieChemist
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieChemist
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieGreen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieGreen
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieWhite
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieWhite
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieAquamarine
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieAquamarine
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieAzure
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieAzure
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieBrown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieBrown
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieBlue
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieBlue
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieGolden
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieGolden
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieLightGrey
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieLightGrey
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieOrange
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieOrange
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTiePink
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTiePink
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTiePurple
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTiePurple
+  groupBy: "ties"
+
+- type: loadout
+  id: ContractorClothingNeckTieYellow
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    neck: ClothingNeckTieYellow
+  groupBy: "ties"
 
 - type: loadout
   id: ContractorClothingNeckLawyerbadge
@@ -360,6 +523,15 @@
   groupBy: "IFFstrobe"
 
 - type: loadout
+  id: ContractorClothingNeckCloakSeniorEngineer
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    neck: ClothingNeckCloakFormalSeniorEngineer
+
+- type: loadout
   id: ContractorClothingNeckMantleCap
   effects:
   - !type:GroupLoadoutEffect
@@ -449,6 +621,15 @@
   price: 2500
   equipment:
     neck: ClothingNeckMantleCE
+
+- type: loadout
+  id: ContractorClothingNeckFormalCE
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  price: 2500
+  equipment:
+    neck: ClothingNeckCloakFormalSeniorEngineer
 
 - type: loadout
   id: ContractorClothingNeckCloakVoid

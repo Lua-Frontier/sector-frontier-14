@@ -41,6 +41,24 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
 
 - type: loadout
+  id: ContractorClothingUniformJumpskirtSalvageSpecialist
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageSpecialist
+
+- type: loadout
+  id: ContractorClothingUniformJumpsuitSalvageSpecialistFormal
+  price: 250
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialistFormal
+
+- type: loadout
+  id: ContractorClothingUniformJumpskirtSalvageSpecialistFormal
+  price: 250
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageSpecialistFormal
+
+- type: loadout
   id: ContractorClothingUniformJumpsuitChef
   price: 200
   equipment:
@@ -99,6 +117,18 @@
   price: 200
   equipment:
     jumpsuit: ClothingUniformJumpskirtScientist
+
+- type: loadout
+  id: ContractorClothingUniformJumpsuitTurtleneckScientist
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTurtleScientist
+
+- type: loadout
+  id: ContractorClothingUniformJumpskirtTurtleneckScientist
+  price: 200
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtTurtleScientist
 
 - type: loadout
   id: ContractorClothingUniformJumpsuitColorGrey
@@ -690,6 +720,15 @@
     jumpsuit: ClothingUniformJumpsuitScientistFormal
 
 - type: loadout
+  id: ContractorClothingUniformJumpskirtScientistFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 500
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtScientistFormal
+
+- type: loadout
   id: ContractorClothingUniformJumpsuitRoboticist
   effects:
   - !type:GroupLoadoutEffect
@@ -1251,6 +1290,25 @@
     jumpsuit: ClothingUniformJumpskirtCMOTurtle
 
 - type: loadout
+  id: ContractorClothingUniformJumpsuitAdjutantAlt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdjutantAlt
+
+- type: loadout
+  id: ContractorClothingUniformJumpskirtAdjutantAlt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtAdjutantAlt
+
+
+- type: loadout
   id: ContractorClothingUniformJumpsuitSeniorResearcher
   effects:
   - !type:GroupLoadoutEffect
@@ -1348,6 +1406,24 @@
   price: 1000
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtle
+
+- type: loadout
+  id: ContractorClothingUniformJumpsuitCryotech
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCryotech
+
+- type: loadout
+  id: ContractorClothingUniformJumpskirtCryotech
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCryotech
 
 - type: loadout
   id: ContractorClothingUniformJumpsuitJester

@@ -41,3 +41,60 @@
     - WhitelistChameleon
   - type: StaticPrice
     price: 750
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagCaptain
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Shoes/Boots/captain_magboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Lua/Clothing/Shoes/Boots/captain_magboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: [ClothingShoesBootsMag, BaseC3CentCommContraband]
+  id: ClothingShoesBootsMagBlueshield
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Shoes/Boots/bs_magboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Lua/Clothing/Shoes/Boots/bs_magboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: ClothingSlowOnDamageModifier #Lua
+    modifier: 0.5
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: StaticPrice
+    price: 600
+
+- type: entity
+  parent: [ClothingShoesBootsMag, BaseC3CentCommContraband]
+  id: ClothingShoesBootsMagDeathSquad
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Shoes/Boots/magboots-deathsquad.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Lua/Clothing/Shoes/Boots/magboots-deathsquad.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.2
+  - type: StaticPrice
+    price: 1800

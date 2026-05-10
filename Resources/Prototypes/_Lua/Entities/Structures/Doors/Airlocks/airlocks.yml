@@ -13,6 +13,25 @@
   - type: Wires
     layoutId: AirlockSecurity
 
+- type: entity
+  parent: Airlock
+  id: AirlockRepresentative
+  suffix: Sr
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/representative.rsi
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: Airlock
+  id: AirlockOld
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/basic.rsi
+  - type: Wires
+    layoutId: Airlock
+
 # Glass Airlocks
 - type: entity
   parent: AirlockGlass
@@ -24,6 +43,40 @@
   - type: Wires
     layoutId: AirlockSecurity
 
+- type: entity
+  parent: AirlockGlass
+  id: AirlockGlassRepresentative
+  suffix: Sr
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/representative.rsi
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockOldGlass
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/basic.rsi
+  - type: Wires
+    layoutId: Airlock
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockGlassOld
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_old.rsi
+  - type: Wires
+    layoutId: Airlock
+
+- type: entity
+  id: MediumAirlockGlassOld
+  parent: [MediumGlassAirlockBase, AirlockGlass]
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/big_glass_old.rsi
 
 # LuaTech
 - type: entity

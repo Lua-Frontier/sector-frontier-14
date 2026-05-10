@@ -1,0 +1,16 @@
+- type: entity
+  id: HolographisProjector
+  parent: BaseStructure
+  name: holographic projector
+  description: A cool device, that shows 3D projection of the station. It seems to be powered by the light. It's console seems to be broken, as the hologram cannot be changed.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _DV/Structures/Decoration/shuttle_manipulator.rsi
+    state: holograph_station
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: PointLight
+    radius: 1.5
+    energy: 2.5
+    color: "#5cccc3"

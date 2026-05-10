@@ -1,0 +1,83 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckAngelWings
+  name: angelic wings
+  description: Float like a butterfly! It's just a shame that like a brick. Made of cotton wool.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/Angel.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckVampireWings
+  name: vampire's wings
+  description: Black wings. In the light they glow vermilion.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/BlackVampire.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsMagic
+  name: mage's wings
+  description: Pity that are completely not magical.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/Magic.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsPegasus
+  name: pegasus' wings
+  description: The majestic wings of a divine horse, torn off by poachers and sold to you. Just kidding.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/Pegas.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsSkeleton
+  name: skeleton's wings
+  description: Wings from a real skeleton. Wait... Since when do skeletons have wings..?
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/Skeleton.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsSkeletonBlack
+  name: black skeleton's wings
+  description: Were created after a petition from the Black-furred Vulpcanin Coalition, which stated that black-furred Vulpcanins lacked the appropriate wings. Unfortunately, the petitions from the Blue Coalition and the Green Coalition were humiliatingly rejected.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/SkeletonBlack.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsSkeletonRed
+  name: red skeleton's wings
+  description: Please die, little dreams. Kill the cammelias in me.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/SkeletonRed.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsForCoolGuys
+  name: really angelic wings
+  description: Not different from regular ones. They still don't allow you to fly.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/Violet.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckWingsTheAnemone
+  name: wings of horror
+  description: Fly, perfect wings!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Wings/horror.rsi
+  - type: Tag
+    tags:
+    - ClothMade

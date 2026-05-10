@@ -46,6 +46,10 @@ job-name-ertjanitor = уборщик ОБР
 job-name-boxer = боксёр
 job-name-zookeeper = зоотехник
 job-name-visitor = посетитель
+job-name-seniorresearcher = доцент
+job-name-seniorengineer = ведущий инженер
+job-name-seniorofficer = инструктор СБ
+job-name-seniorphysician = ведущий врач
 # Role timers - Make these alphabetical or I cut you
 JobAtmosphericTechnician = атмосферный техник
 JobBartender = бармен

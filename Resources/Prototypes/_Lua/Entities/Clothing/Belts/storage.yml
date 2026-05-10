@@ -120,6 +120,25 @@
         - Seed
 
 - type: entity
+  id: ClothingBeltPlantManagerFilled
+  parent: ClothingBeltChiefEngineer
+  suffix: Filled
+  components:
+  - type: Storage
+    grid:
+    - 0,0,9,1
+  - type: StorageFill
+    contents:
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: WelderExperimental
+      - id: Multitool
+      - id: HolofanProjector
+      - id: GasAnalyzer
+      - id: trayScanner
+      - id: RCDRecharging
+
+- type: entity
   id: ClothingBeltMilitaryWebbingBlueShieldFilled
   parent: ClothingBeltMilitaryWebbingMed
   name: РПС офицера "Синий Щит"
@@ -140,3 +159,41 @@
     sprite: _Lua/Clothing/Belt/webbing_blueshield.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Belt/webbing_blueshield.rsi
+
+- type: entity
+  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
+  id: ClothingBeltWebbingMedicNFSD
+  name: medical NFSD webbing
+  description: Webbing for medical security workers' needs.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Belt/web_er_nfsd.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Belt/web_er_nfsd.rsi
+
+- type: entity
+  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
+  id: ClothingBeltMedicNFSD
+  name: medical NFSD belt
+  description: Medical belt for NFSD workers.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Belt/belt_er_nfsd.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Belt/belt_er_nfsd.rsi
+
+- type: entity
+  id: ClothingBeltNfsdFilledBrigmedic
+  parent: ClothingBeltMedicNFSD
+  suffix: Filled, Brigmedic
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into

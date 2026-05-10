@@ -460,6 +460,15 @@
 
 - type: entity
   parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksWomanDetective
+  name: чулки констебля
+  description: Стандартные чулки констебля.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Security/detective/womensocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
   id: ClothingUnderwearSocksSecurityOfficer
   name: носки офицера СБ
   description: Стандартные носки офицера СБ.
@@ -651,3 +660,12 @@
   components:
   - type: Sprite
     sprite: _Lua/Clothing/Underwear/Misc/Socks/Color/yellow_longsocks.rsi
+
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: ClothingUnderwearSocksBlueshield
+  name: blueshield socks
+  description: Standard socks for blueshield soliders.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Underwear/Command/blue_shield/socks.rsi

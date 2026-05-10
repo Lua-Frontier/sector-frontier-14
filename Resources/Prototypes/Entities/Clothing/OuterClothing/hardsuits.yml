@@ -264,6 +264,7 @@
         Piercing: 0.6
         Heat: 0.8
         Caustic: 0.7
+        Shock: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -293,12 +294,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
+        Blunt: 0.7
+        Slash: 0.6
         Piercing: 0.7
+        Heat: 0.6
+        Caustic: 0.5
+        Radiation: 0.4
+        Shock: 0.6
   - type: ClothingSpeedModifier
-    walkModifier: 0.65
-    sprintModifier: 0.65
+    walkModifier: 0.8
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
@@ -357,7 +362,7 @@
         Piercing: 0.7
         Heat: 0.7 #Lua 0.75<0.7
         Radiation: 0.7 #Lua 0.5<0.7
-        Shock: 0.8 #Lua 
+        Shock: 0.8 #Lua
         Caustic: 0.8 #Lua 0.6<0.8
   - type: ExplosionResistance
     damageCoefficient: 0.3
@@ -472,7 +477,7 @@
         Blunt: 0.8 #Lua 0.6<0.8
         Slash: 0.8
         Piercing: 0.8
-        Heat: 0.7 
+        Heat: 0.7
         Radiation: 0.2 #Radiation resistance is out-of-balance because rd is special hardsuit for work with high radiation background
         Shock: 0.7 #Lua
         Caustic: 0.7 #Lua 0.2<0.7
@@ -1136,6 +1141,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 1
+  - type: Tag
+    tags:
+    - Hardsuit # screw the WhitelistChameleon tag
 
 #CBURN Hardsuit
 - type: entity

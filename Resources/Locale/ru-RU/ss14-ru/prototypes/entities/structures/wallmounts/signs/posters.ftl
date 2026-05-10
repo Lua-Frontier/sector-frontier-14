@@ -180,8 +180,8 @@ ent-PosterLegitFruitBowl = Миска с фруктами
     .desc = Просто, но впечатляюще.
 ent-PosterLegitPDAAd = Реклама КПК
     .desc = Плакат, рекламирующий новейшие КПК от поставщиков Nanotrasen.
-ent-PosterLegitEnlist = Вступай!
-    .desc = Запишитесь в резерв эскадрона смерти Nanotrasen сегодня!
+
+
 ent-PosterLegitNanomichiAd = Реклама Nanomichi
     .desc = Плакат, рекламирующий аудиокассеты бренда Nanomichi.
 ent-PosterLegit12Gauge = 12 калибр

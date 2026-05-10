@@ -4,6 +4,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: IAA
+  jobName: job-name-iaa
 
 - type: jobIcon
   parent: JobIcon
@@ -11,6 +12,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SeniorCargo
+  jobName: job-name-seniorsalvage
 
 - type: jobIcon
   parent: JobIcon
@@ -18,6 +20,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: NanotrasenRed
+  jobName: job-name-soc
 
 - type: jobIcon
   parent: JobIcon
@@ -25,6 +28,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SeniorService
+  jobName: job-name-seniorservice
 
 - type: jobIcon
   parent: JobIcon
@@ -32,6 +36,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Pathologist
+  jobName: job-name-pathologist
 
 - type: jobIcon
   parent: JobIcon
@@ -39,157 +44,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SecurityPilot
-
-- type: entity
-  parent: [BasePDA, BaseItem, StorePresetUplink, BaseC2SyndicateContrabandNoValue] # Lua-changes: added BaseC2SyndicateContrabandNoValue
-  id: BaseTypanPDA
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Devices/typan_pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-  - type: Icon
-    sprite: /Textures/_Lua/Objects/Devices/typan_pda.rsi
-    state: pda
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDARD
-  name: КПК Директора Исследований Синдиката
-  description: Сосредоточение наизлейших технологий! Пахнет дешёвым пластиком...
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardRd
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-science
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDAScience
-  name: КПК Учёного Синдиката
-  description: Похоже этот КПК был взломан.
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardScience
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-science
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDABotan
-  name: КПК Ботаника Синдиката
-  description: Весь разъеден ядами растительного происхождения.
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardBotanist
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-botan
-
-- type: entity
-  parent: BaseTypanPDA
-  id: MedicalPDASyndi
-  name: КПК Врача Синдиката
-  description: Ходят легенды, что на нём отображается пульс главы НТ.
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardMed
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-med
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - YupiTransferCartridge
-      - NanoChatCartridge # Lua
-      - NewsReaderCartridge
-      - MedTekCartridge
-  - type: GuideHelp
-    guides:
-    - MedicalDoctor
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDAEng
-  name: КПК Атмосферного Инженера Синдиката
-  description: Крепкий КПК мастера на все руки.
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardEng
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-eng
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDACom
-  name: КПК Офицера Телекомуникаций Синдиката
-  description: Оснащён всеми средствами и возможностями для получения наизлейших приказов.
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardCom
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-com
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDACargo
-  name: КПК Карготехника Синдиката
-  description: В слоту для ручки застрял зуб карпоакулы.
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardCargo
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-cargo
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDAChef
-  name: КПК Повара Синдиката
-  description: Ну так как оно будет? С кишками или без кишок?
-  components:
-  - type: Pda
-    id: OutpostTypanIDCardChef
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-chef
-
-- type: entity
-  parent: BaseTypanPDA
-  id: SyndiPDAResearcher
-  name: КПК Исследователя
-  description: Крепкий КПК исследователя из далеких краёв.
-  components:
-  - type: Pda
-    id: OutpostTypanIDResearcher
-  - type: PdaBorderColor
-    borderColor: "#891417"
-  - type: Icon
-    state: pda-syndi-researcher
+  jobName: job-name-securitypilot
 
 - type: jobIcon
   parent: JobIcon
@@ -197,6 +52,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: BlueShieldOfficer
+  jobName: job-name-blueshield
 
 - type: jobIcon
   parent: JobIcon
@@ -204,6 +60,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Magistrat
+  jobName: job-name-magistrat
 
 - type: jobIcon
   parent: JobIcon
@@ -283,6 +140,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Surgeon
+  jobName: job-name-surgeon
 
 - type: jobIcon
   parent: JobIcon
@@ -290,14 +148,4 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: ops_luatech
-
-- type: entity
-  parent: HacksPDA
-  id: LuaPDAOps
-  name: КПК Оперативника "Lua Technologies"
-  description: Оснащён всеми средствами и возможностями для получения приказов.
-  components:
-  - type: Pda
-    id: OpsLuaTechIDCard
-  - type: PdaBorderColor
-    borderColor: "#35a5da"
+  jobName: job-name-opslua

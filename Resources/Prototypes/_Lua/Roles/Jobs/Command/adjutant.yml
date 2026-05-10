@@ -1,0 +1,60 @@
+- type: job
+  id: Adjutant
+  name: Адъютант
+  description: Помощник отдела командования, главный специалист по эстетике на станции и та самая горничная-хитман.
+  playTimeTracker: JobAdjutant
+  salary: 15000
+  setPreference: false
+  supervisors: job-supervisors-sr
+  canBeAntag: true
+  hideConsoleVisibility: false
+  icon: "JobIconAdjutant"
+  requirements:
+  - !type:OverallPlaytimeRequirement
+     time: 18000
+  startingGear: AdjutantGear
+  displayWeight: 40
+  access:
+  - External
+  - Maintenance
+  - StationTrafficController
+  - Service
+  - Command
+  - Frontier
+  - Pilot
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen
+
+- type: startingGear
+  id: AdjutantGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdjutantAlt
+    back: NFClothingBackpack
+    mask: ClothingMaskBreath
+    eyes: ClothingEyesGlassesCommand
+    ears: ClothingHeadsetCommand
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsLaceup
+    id: AdjutantPDA
+#    suitstorage: AirTankFilled
+  storage:
+    back:
+    - Flash
+    - HandheldStationMapUnpowered
+    - BoxFolderClipboard
+
+- type: chameleonOutfit
+  id: AdjutantChameleonOutfit
+  job: Adjutant
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdjutantAlt
+    back: NFClothingBackpack
+    mask: ClothingMaskBreath
+    eyes: ClothingEyesGlassesCommand
+    ears: ClothingHeadsetCommand
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsLaceup
+    id: AdjutantPDA

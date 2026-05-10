@@ -89,6 +89,60 @@
     - HeadTop
     - HeadSide
 
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurity
+  id: ClothingHeadHelmetHardsuitSecurityPilot
+  categories: [ HideSpawnMenu ]
+  name: security pilot's helmet
+  description: A helmet with wide field of view for threat observation.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/pilotsuithelmsec.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/pilotsuithelmsec.rsi
+  - type: PointLight
+    color: "#77fff8"
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurity
+  id: ClothingHeadHelmetHardsuitBrigmedicWhite
+  categories: [ HideSpawnMenu ]
+  name: white brigmedic' helmet
+  description: White medical version of security hardsuit's helmet.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/brigmedic.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/brigmedic.rsi
+  - type: PointLight
+    color: "#E6E6FA"
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSecurityRed
+  id: ClothingHeadHelmetHardsuitCapspaceHelmetReinforced
+  categories: [ HideSpawnMenu ]
+  name: captain combat hardsuit's helmet
+  description: The helmet, that protects heads of elite captains.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/capspace_helmet_reinforced.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/capspace_helmet_reinforced.rsi
+  - type: PointLight
+    color: "#ffaf38"
+
 #region FSF
 
 - type: entity
@@ -354,6 +408,7 @@
   id: ClothingHeadHelmetHardsuitBloodRedHardsuit
   name: Blood-red hardsuit helmet
   description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Clothing/Head/nukeops.rsi
@@ -383,6 +438,7 @@
   id: ClothingHeadHelmetHardsuitBloodRedHardsuitelite
   name: Blood-red elite hardsuit helmet
   description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Clothing/Head/pmc.rsi
@@ -400,6 +456,36 @@
         Slash: 0.90
         Piercing: 0.90
         Heat: 0.90
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitChiefEngineerMOD
+  name: advanced chief engineer hardsuit helmet
+  description: White hardsuit helmet for elite engineer hardsuit.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hardsuits/engimodhelmet.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hardsuits/engimodhelmet.rsi
+  - type: PointLight
+    color: "#ffd107"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.90
+        Heat: 0.90
+        Cold: 0.95
   - type: HideLayerClothing
     slots:
     - Hair

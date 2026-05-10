@@ -1,3 +1,4 @@
+# Standard
 - type: entity
   parent: AirlockAssembly
   id: AirlockAssemblySecurityOld
@@ -9,9 +10,76 @@
 
 - type: entity
   parent: AirlockAssembly
+  id: AirlockOldAssembly
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/basic.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyRepresentative
+  suffix: Sr
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Standard/representative.rsi
+    state: "assembly"
+
+# Glass
+- type: entity
+  parent: AirlockAssembly
   id: AirlockAssemblySecurityGlassOld
   suffix: Security, Glass
   components:
   - type: Sprite
     sprite: _Lua/Structures/Doors/Airlocks/Glass/secairlockredglass.rsi
     state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyRepresentativeGlass
+  suffix: Sr
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/representative.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockOldAssemblyGlass
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/basic.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyGlassOld
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/glass_old.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyGlassOldWide
+  suffix:
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Airlocks/Glass/big_glass_old.rsi
+    state: "assembly"
+    snapCardinals: false
+    offset: 0.5,0
+  - type: Transform
+    noRot: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,1.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - GlassAirlockLayer
