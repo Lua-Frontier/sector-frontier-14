@@ -1,0 +1,79 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: constructionGraph
+  id: SinkGraph
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:SpawnPrototype
+      prototype: SheetSteel1
+      amount: 1
+    - !type:DeleteEntity
+    edges:
+    - to: SinkNode
+      steps:
+      - tag: Pipe
+        icon:
+          sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeStraight
+        name: construction-graph-tag-pipe
+      - material: Steel
+        amount: 5
+      - tag: WaterRegenerator
+        icon:
+          sprite: _Lua/Objects/Specific/Service/water_regenerator.rsi
+          state: icon
+        name: construction-graph-tag-water-regenerator
+        doAfter: 10
+
+  - node: SinkNode
+    entity: SinkEmpty
+    edges:
+    - to: SinkWideNode
+      steps:
+      - tool: Anchoring
+        doAfter: 3
+      - material: Steel
+        amount: 3
+        doAfter: 2
+      - tool: Welding
+        doAfter: 10
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 10
+      - tool: Prying
+        doAfter: 5
+
+  - node: SinkWideNode
+    entity: SinkWideEmpty
+    edges:
+    - to: SinkNode
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 3
+      steps:
+      - tool: Anchoring
+        doAfter: 3
+      - tool: Welding
+        doAfter: 10
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 8
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 12
+      - tool: Prying
+        doAfter: 7

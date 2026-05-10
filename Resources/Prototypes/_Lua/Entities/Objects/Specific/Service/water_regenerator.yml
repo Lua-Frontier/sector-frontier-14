@@ -1,0 +1,27 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseItem
+  id: WaterRegenerator
+  name: water regenerator
+  description: A fragile passive water regenerator collecting air wetness.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Service/water_regenerator.rsi
+    state: icon
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 100
+      Steel: 100
+      Glass: 30
+      RawScrap: 30
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - WaterRegenerator

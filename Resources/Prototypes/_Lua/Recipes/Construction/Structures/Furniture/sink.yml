@@ -1,0 +1,23 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: construction
+  id: SinkConstruction
+  graph: SinkGraph
+  startNode: start
+  targetNode: SinkNode
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: SinkWideConstruction
+  graph: SinkGraph
+  startNode: start
+  targetNode: SinkWideNode
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

@@ -15,4 +15,19 @@
   technologyPrerequisites:
   - NFAdvancedEntertainment
   position: -7.565, -3.331
+- type: technology
+  id: LuaWaterRegenerator
+  name: lua-research-technology-water-regenerator
+  entityIcon: WaterRegenerator
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - WaterRegenerator
+  technologyPrerequisites:
+  - NFAdvancedCleaning
+  position: 5.212, 22.518
 ...
