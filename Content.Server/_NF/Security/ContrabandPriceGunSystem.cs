@@ -18,7 +18,7 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ContrabandPricingSystem _contraband = default!;
+    [Dependency] private readonly ContrabandPricingSystem _contraband = default!; // Lua
 
     /// <inheritdoc/>
     public override void Initialize()
