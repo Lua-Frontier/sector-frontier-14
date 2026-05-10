@@ -1,0 +1,32 @@
+- type: technology
+  id: LuaVirology
+  name: lua-research-technology-virology
+  entityIcon: DiseaseDiagnoser
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+  - VaccinatorMachineCircuitboard
+  - DiagnoserMachineCircuitboard
+  technologyPrerequisites:
+  - NFBasicMedicine
+  position: 3.812, 20.028
+- type: technology
+  id: LuaSmartFridge
+  name: lua-research-technology-smart-fridge
+  entityIcon: SmartFridge
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - SmartFridgeCircuitboard
+  technologyPrerequisites:
+  - NFEngineeringMedicine
+  position: 4.9, 20.518
+...

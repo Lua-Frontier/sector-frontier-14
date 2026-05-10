@@ -1,7 +1,7 @@
 ent-SmartFridge = умный холодильник
     .desc = Охлаждаемое хранилище для складирования лекарств и химикатов.
 
-ent-SmartFridgeCircuitboard = машинная плата умного холодильника
+ent-SmartFridgeCircuitboard = умный холодильник (машинная плата)
     .desc = {ent-BaseMachineCircuitboard.desc}
 
 ent-SmartFridgeFlatpack = упакованный умный холодильник
