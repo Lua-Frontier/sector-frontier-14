@@ -4,9 +4,27 @@
                 HorizontalExpand="True">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True">
+        <!-- Lua start -->
+        <TextureRect Name="ClassIcon"
+                     SetSize="16 16"
+                     Stretch="KeepAspectCentered"
+                     Access="Public"
+                     Margin="6"/>
+        <!-- Lua end -->
         <Label Name="VesselName"
             Access="Public"
             HorizontalExpand="True" />
+        <!-- Lua start -->
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" HorizontalExpand="True">
+            <TextureRect Name="EngineIcon"
+                         SetSize="28 28"
+                         Stretch="KeepAspectCentered"
+                         Access="Public"
+                         TextureScale="2 2"
+                         Margin="6 0"/>
+            <Label Name="CategoryLabel" Access="Public"/>
+        </BoxContainer>
+        <!-- Lua end -->
         <Label Name="Price"
             Access="Public"
             MinWidth="80"
@@ -24,8 +42,8 @@
             Access="Public"
             Text="{Loc 'shipyard-console-guidebook'}"
             StyleClasses="LabelSubText"
-            Margin="0 0 12 0"
-            HorizontalAlignment="Right" /> <!-- Left margin only -->
+            Margin="0 0 5 0"
+            HorizontalAlignment="Right" /> <!-- Left margin only --> <!-- Lua: Margin="0 0 12 0" < "0 0 5 0"-->
         <PanelContainer>
             <PanelContainer.PanelOverride>
                 <gfx:StyleBoxFlat BackgroundColor="#252825" />
