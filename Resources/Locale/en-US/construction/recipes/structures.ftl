@@ -25,3 +25,6 @@ construction-recipe-pinion-airlock-glass = glass clockwork airlock
 construction-recipe-airlock-glass-shuttle = glass shuttle airlock
 construction-recipe-plastic-flaps-clear = plastic flaps (clear)
 construction-recipe-plastic-flaps-opaque = plastic flaps (opaque)
+recipe-bulb-floor-light = floor light bulb
+recipe-tube-floor-light-middle = floor light tube middle
+recipe-tube-floor-light-side = floor light tube side
