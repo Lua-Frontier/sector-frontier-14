@@ -347,7 +347,7 @@
 - type: rcd
   id: TubeFloorLightMiddle
   category: Lighting
-  sprite: _Lua/Structures/Wallmounts/Lightning/floor_light_middle.rsi/glow.png
+  sprite: /Textures/Interface/Radial/RCD/floor_light.png
   mode: ConstructObject
   prototype: FloorLightMiddle
   cost: 2
@@ -360,7 +360,7 @@
 - type: rcd
   id: BulbFloorLight
   category: Lighting
-  sprite: _Lua/Structures/Wallmounts/Lightning/floor_light_bulb_middle.rsi/glow.png
+  sprite: /Textures/Interface/Radial/RCD/floor-light-small.png
   mode: ConstructObject
   prototype: SmallFloorLightMiddle
   cost: 2
@@ -373,7 +373,7 @@
 - type: rcd
   id: TubeFloorLightSide
   category: Lighting
-  sprite: _Lua/Structures/Wallmounts/Lightning/floor_light_middle.rsi/glow.png
+  sprite: /Textures/Interface/Radial/RCD/
   mode: ConstructObject
   prototype: FloorLightSide
   cost: 2
