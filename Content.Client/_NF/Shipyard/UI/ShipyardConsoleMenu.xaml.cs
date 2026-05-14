@@ -64,7 +64,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         [VesselClass.Pursuit] = new(LuaShuttleIcons, "pursuit"),
 
         [VesselClass.Expedition] = new(JobIcons, "SecurityPilot"),
-        [VesselClass.Scrapyard] = new(JobIcons, "Unknown"),
+        [VesselClass.Scrapyard] = new(LuaShuttleIcons, "scrapyard"),
 
         [VesselClass.Salvage] = new(JobIcons, "ShaftMiner"),
         [VesselClass.Science] = new(ResearchDisciplines, "experimental"),
@@ -75,6 +75,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         [VesselClass.Atmospherics] = new(JobIcons, "AtmosphericTechnician"),
         [VesselClass.Mercenary] = new(LuaJobIcons, "Mercenary"),
         [VesselClass.Medical] = new(JobIcons, "MedicalDoctor"),
+        [VesselClass.Paramedical] = new(JobIcons, "Paramedic"),
+        [VesselClass.Cryogenic] = new(LuaShuttleIcons, "cryogenic"),
         [VesselClass.Civilian] = new(ResearchDisciplines, "civilianservices"),
         [VesselClass.Kitchen] = new(JobIcons, "Chef"),
 
@@ -92,10 +94,11 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         [VesselEngine.Solar] = "SolarPanel",
         [VesselEngine.RTG] = "GeneratorRTG",
         [VesselEngine.APU] = "GeneratorWallmountAPU",
-        [VesselEngine.Welding] = "JerryCanWeldingFuel",
+        [VesselEngine.Welding] = "PortableGeneratorJrPacmanShuttle",
         [VesselEngine.Plasma] = "FuelPlasma",
         [VesselEngine.Uranium] = "FuelUranium",
-        [VesselEngine.Bananium] = "FuelBananium"
+        [VesselEngine.Bananium] = "FuelBananium",
+        [VesselEngine.Bluespace] = "FuelBluespace"
     };
 
     private static readonly EntProtoId VesselEngineDefaultProtoId = "MobCat";
