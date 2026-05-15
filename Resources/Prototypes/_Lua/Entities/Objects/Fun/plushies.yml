@@ -185,3 +185,23 @@
   - type: Sprite
     sprite: _Lua/Plushie/toys.rsi
     state: plushie_Agonia
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAmata
+  name: Плюшевая Амата Хабарова
+  description: Плюшевая игрушка бригмедика, с тремя рядами красным полосок на щеках. Выглядит дружелюбной и милой, взгляд полон радости жизни. Пахнет кокосом, на ощупь мягкая.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Amata
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAmataBlack
+  name: Плюшевая Амата Хабарова
+  description: Плюшевая игрушка бригмедика, с тремя рядами красным полосок на щеках. Выглядит дружелюбной и милой, взгляд полон радости жизни. Пахнет кокосом, на ощупь мягкая.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Amata_black
