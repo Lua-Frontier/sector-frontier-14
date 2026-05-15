@@ -1074,6 +1074,58 @@
   conditions:
     - !type:TileNotBlocked
 
+# Lua start
+- type: construction
+  id: PGlassWindoor
+  graph: Windoor
+  startNode: start
+  targetNode: pwindoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: UGlassWindoor
+  graph: Windoor
+  startNode: start
+  targetNode: uwindoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: UGlassWindoorSecure
+  graph: Windoor
+  startNode: start
+  targetNode: uwindoorSecure
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PGlassWindoorSecure
+  graph: Windoor
+  startNode: start
+  targetNode: pwindoorSecure
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+
+# Lua end
 #lighting
 - type: construction
   id: LightTubeFixture
