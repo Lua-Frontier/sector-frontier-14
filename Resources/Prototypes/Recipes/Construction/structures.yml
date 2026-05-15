@@ -1326,3 +1326,109 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Lua start
+- type: construction
+  id: Stairs
+  name: construction-recipe-stairs-steel
+  graph: StairsCraft
+  startNode: start
+  targetNode: steelStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStage
+  name: construction-recipe-stairs-steel-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: steelStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairWhite
+  name: construction-recipe-stairs-white
+  graph: StairsCraft
+  startNode: start
+  targetNode: whiteStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageWhite
+  name: construction-recipe-stairs-white-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: whiteStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairDark
+  name: construction-recipe-stairs-dark
+  graph: StairsCraft
+  startNode: start
+  targetNode: darkStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageDark
+  name: construction-recipe-stairs-dark-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: darkStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairWood
+  name: construction-recipe-stairs-wood
+  graph: StairsCraft
+  startNode: start
+  targetNode: woodStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageWood
+  name: construction-recipe-stairs-wood-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: woodStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+# Lua End

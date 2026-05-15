@@ -35,6 +35,9 @@
             max: 4
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Construction
+    graph: StairsCraft
+    node: steelStairs
 
 - type: entity
   id: StairStage
@@ -45,6 +48,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_steel
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: steelStairsStage
 
 - type: entity
   id: StairWhite
@@ -55,6 +61,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_white
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: whiteStairs
 
 - type: entity
   id: StairStageWhite
@@ -65,6 +74,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_white
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: whiteStairsStage
 
 - type: entity
   id: StairDark
@@ -75,6 +87,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_dark
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: darkStairs
 
 - type: entity
   id: StairStageDark
@@ -85,6 +100,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_dark
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: darkStairsStage
 
 - type: entity
   id: StairWood
@@ -95,6 +113,9 @@
     sprite: Structures/stairs.rsi
     state: stairs_wood
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: woodStairs
 
 - type: entity
   id: StairStageWood
@@ -105,3 +126,6 @@
     sprite: Structures/stairs.rsi
     state: stairs_stage_wood
     drawdepth: FloorTiles
+  - type: Construction
+    graph: StairsCraft
+    node: woodStairsStage
