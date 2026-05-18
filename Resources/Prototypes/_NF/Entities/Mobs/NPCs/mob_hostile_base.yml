@@ -479,6 +479,7 @@
       types: {}
   - type: TTS
     enabled: false
+  - type: DisableSuitSensors # Lua
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -553,6 +554,7 @@
   - type: FTLKnockdownImmune
   - type: TTS
     enabled: false
+  - type: DisableSuitSensors # Lua
 
 # A simpler base for extending existing mobs (e.g. carp, kangaroos, snakes, xenos)
 - type: entity
