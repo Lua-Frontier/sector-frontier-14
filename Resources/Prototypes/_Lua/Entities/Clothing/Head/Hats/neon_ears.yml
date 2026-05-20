@@ -1,0 +1,71 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNeonCatEars
+  name: neon cat ears
+  description: At least this way!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/neon_ears.rsi
+    layers:
+    - state: icon-inner
+      map: ["icon-inner"]
+      shader: unshaded
+    - state: icon-outer
+      map: ["icon-outer"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: inhand-left-inner
+        map: ["inhand-left-inner"]
+        shader: unshaded
+      - state: inhand-left-outer
+        map: ["inhand-left-outer"]
+        shader: unshaded
+      right:
+      - state: inhand-right-inner
+        map: ["inhand-right-inner"]
+        shader: unshaded
+      - state: inhand-right-outer
+        map: ["inhand-right-outer"]
+        shader: unshaded
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/neon_ears.rsi
+    clothingVisuals:
+      head:
+      - state: inner
+        map: ["inner"]
+        shader: unshaded
+      - state: outer
+        map: ["outer"]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    - icon-inner:
+        icon-inner: Inner
+      icon-outer:
+        icon-outer: Outer
+      inner:
+        inner: Inner
+      outer:
+        outer: Outer
+      inhand-left-inner:
+        inhand-left-inner: Inner
+      inhand-left-outer:
+        inhand-left-outer: Outer
+      inhand-right-inner:
+        inhand-right-inner: Inner
+      inhand-right-outer:
+        inhand-right-outer: Outer
+    mappedColors:
+      Inner: CyberpunkNeon
+      Outer: CyberpunkNeon
+  - type: StaticPrice
+    price: 10
+    vendPrice: 700
