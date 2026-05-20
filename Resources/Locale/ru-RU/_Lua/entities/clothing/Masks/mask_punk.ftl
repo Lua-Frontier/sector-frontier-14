@@ -1,3 +1,3 @@
-ent-ClothingMaskPunkHalf = Панковская полумаска
+ent-ClothingMaskPunkHalf = панковская полумаска
     .suffix = Случайный цвет
     .desc = Плотно прилегающая дыхательная маска с геймерской подсветкой!
