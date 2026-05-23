@@ -175,8 +175,11 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
+        var freeSlots = component.KeySlots - component.KeyContainer.ContainedEntities.Count; // Lua
+
         if (component.KeyContainer.ContainedEntities.Count == 0)
         {
+            args.PushMarkup(Loc.GetString("examine-encryption-free-slots", ("amount", freeSlots))); // Lua
             args.PushMarkup(Loc.GetString("encryption-keys-no-keys"));
             return;
         }
@@ -191,6 +194,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                     args,
                     _protoManager,
                     "examine-encryption-channel");
+                args.PushMarkup(Loc.GetString("examine-encryption-free-slots", ("amount", freeSlots))); // Lua
             }
         }
     }
