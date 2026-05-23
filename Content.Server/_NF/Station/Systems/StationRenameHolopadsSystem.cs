@@ -15,12 +15,20 @@ public sealed class StationRenameHolopadsSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<StationRenameHolopadsComponent, StationPostInitEvent>(OnPostInit);
+        SubscribeLocalEvent<StationRenameHolopadsComponent, StationRenamedEvent>(OnStationRenamed); // Lua
     }
 
     private void OnPostInit(EntityUid uid, StationRenameHolopadsComponent component, ref StationPostInitEvent args)
     {
         SyncHolopadsNames(uid);
     }
+
+    // Lua start
+    private void OnStationRenamed(EntityUid uid, StationRenameHolopadsComponent component, StationRenamedEvent args)
+    {
+        SyncHolopadsNames(uid);
+    }
+    // Lua end
 
     private void SyncHolopadsNames(EntityUid stationUid)
     {
