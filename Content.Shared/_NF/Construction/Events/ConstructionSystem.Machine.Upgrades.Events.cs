@@ -48,40 +48,35 @@ public sealed class UpgradeExamineEvent : EntityEventArgs
     }
 
     // Lua start
-
-    /// <summary>
-    /// Add a line to the upgrade examine tooltip with a percentage-based increase or decrease
-    /// Includes time modifier, bases color on it and affects total percentage.
-    /// </summary>
     public void AddPercentageUpgrade(string upgradedLocId, float multiplier, float timeModifier)
     {
-        var locId = multiplier switch
-        {
-            < 1 => "machine-upgrade-decreased-by-percentage-extra",
-            1 or float.NaN => "machine-upgrade-not-upgraded-extra",
-            > 1 => "machine-upgrade-increased-by-percentage-extra",
-        };
-
         // Lube's timeModifier is 0.5
         // Glue's timeModifier is 5
-        // If percent is 300% increase, lube should make it 600%.
-        // And if percent is 66% decrease, lube should make it 33%.
-        FixedPoint2 percent = multiplier switch
+        var current = 100 * multiplier / timeModifier;
+
+        var locId = current switch
         {
-            < 1 => 100 * timeModifier * MathF.Abs(multiplier - 1),
-            1 or float.NaN => 100 / timeModifier,
-            > 1 => 100 / timeModifier * MathF.Abs(multiplier - 1)
+            < 100 => "machine-upgrade-decreased-by-percentage-extra",
+            100 or float.NaN => "machine-upgrade-not-upgraded",
+            > 100 => "machine-upgrade-increased-by-percentage-extra"
+        };
+
+        var change = current switch
+        {
+            < 100 => 100 - current,
+            100 or float.NaN => 100,
+            > 100 => current - 100
         };
 
         var locColor = timeModifier switch
         {
-            < 1 => "#6DFFA5", // Boosted
+            < 1 => "#9AFFC1", // Boosted
             1 or float.NaN => "#FFFFFF",
-            > 1 => "#FF7A7A" // Slowed
+            > 1 => "#FFA2A2" // Slowed
         };
 
         var upgraded = Loc.GetString(upgradedLocId);
-        this._message.TryAddMarkup(Loc.GetString(locId, ("upgraded", upgraded), ("percent", percent), ("color", locColor)) + '\n', out _);
+        _message.TryAddMarkup(Loc.GetString(locId, ("upgraded", upgraded), ("percent", Math.Round(change, 2)), ("color", locColor)) + '\n', out _);
     }
     // Lua end
 
