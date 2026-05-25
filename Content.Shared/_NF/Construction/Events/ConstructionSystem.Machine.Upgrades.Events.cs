@@ -52,20 +52,20 @@ public sealed class UpgradeExamineEvent : EntityEventArgs
     {
         // Lube's timeModifier is 0.5
         // Glue's timeModifier is 5
-        var current = 100 * multiplier / timeModifier;
+        var absolute = 100 * multiplier / timeModifier;
 
-        var locId = current switch
+        var locId = absolute switch
         {
             < 100 => "machine-upgrade-decreased-by-percentage-extra",
             100 or float.NaN => "machine-upgrade-not-upgraded",
             > 100 => "machine-upgrade-increased-by-percentage-extra"
         };
 
-        var change = current switch
+        var change = absolute switch
         {
-            < 100 => 100 - current,
+            < 100 => 100 - absolute,
             100 or float.NaN => 100,
-            > 100 => current - 100
+            > 100 => absolute - 100
         };
 
         var locColor = timeModifier switch
