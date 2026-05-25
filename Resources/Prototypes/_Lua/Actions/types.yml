@@ -1,6 +1,7 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2025 LuaWorld Contributors
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
 # See AGPLv3.txt for details.
+
 - type: entity
   id: ActionAriralLayEgg
   name: Отложить яйцо
@@ -73,3 +74,16 @@
     itemIconStyle: NoItem
   - type: InstantAction
     event: !type:ToggleActionEvent
+
+- type: entity
+  id: ActionToggleSoftNightVision
+  parent: BaseAction
+  name: Toggle soft night vision
+  description: Strain or relax your eyes.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: Interface/Actions/eyeclose.png
+    iconOn: Interface/Actions/eyeopen.png
+  - type: InstantAction
+    event: !type:ToggleSoftNightVisionActionEvent

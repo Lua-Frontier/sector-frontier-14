@@ -82,12 +82,7 @@
     item: Hairball
     action: ActionHairball
     coughPopup: hairball-cough
-  - type: SoftDarkVision # Lua start
-    perfectRadius: 2.7
-    falloffRadius: 4
-    color: "#cfd6d9"
-    innerEnergy: 0.23
-    outerEnergy: 0.08 # Lua end
+  - type: SoftNightVision # Lua
   - type: Felinid
   - type: LanguageKnowledge # Lua start
     speaks:
