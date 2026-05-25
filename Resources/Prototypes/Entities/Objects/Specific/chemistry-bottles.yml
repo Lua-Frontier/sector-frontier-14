@@ -338,7 +338,7 @@
 - type: entity
   id: ChemistryBottleLead
   suffix: lead
-  parent: [BaseChemistryBottleFilled, BaseC1Contraband] # Lua: BaseC3ContrabandNoValue < BaseC1Contraband
+  parent: [BaseChemistryBottleFilled, BaseC3ContrabandNoValue] # Lua-changes: added BaseC3ContrabandNoValue
   components:
   - type: Label
     currentLabel: reagent-name-lead
