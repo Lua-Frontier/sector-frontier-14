@@ -8,8 +8,7 @@ namespace Content.Shared._NF.Bank;
 [NetSerializable, Serializable]
 public enum BankATMMenuUiKey : byte
 {
-    ATM,
-    BlackMarket
+    Key // Lua
 }
 
 public abstract partial class SharedBankSystem : EntitySystem

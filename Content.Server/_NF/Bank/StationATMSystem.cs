@@ -233,14 +233,14 @@ public sealed partial class BankSystem
 
         if (!TryGetBalance(component.Account, out var stationBank))
         {
-            _uiSystem.SetUiState(uid, BankATMMenuUiKey.ATM,
+            _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
                 new StationBankATMMenuInterfaceState(stationBank, false, deposit));
             return;
         }
 
         // Get whether our actor has access or not.
         TryComp(uid, out UserInterfaceComponent? ui);
-        var actorSet = _uiSystem.GetActors((uid, ui), BankATMMenuUiKey.ATM);
+        var actorSet = _uiSystem.GetActors((uid, ui), BankATMMenuUiKey.Key); // Lua
         // Nobody accessing UI
         if (actorSet.Count() <= 0)
             return;
@@ -248,11 +248,11 @@ public sealed partial class BankSystem
 
         if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid: true })
         {
-            _uiSystem.SetUiState(uid, BankATMMenuUiKey.ATM,
+            _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, 0));
         }
 
-        _uiSystem.SetUiState(uid, BankATMMenuUiKey.ATM,
+        _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
             new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
     }
 
@@ -265,12 +265,12 @@ public sealed partial class BankSystem
 
         if (!TryGetBalance(component.Account, out var stationBank))
         {
-            _uiSystem.SetUiState(uid, BankATMMenuUiKey.ATM,
+            _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
                 new StationBankATMMenuInterfaceState(stationBank, false, deposit));
             return;
         }
 
-        _uiSystem.SetUiState(uid, BankATMMenuUiKey.ATM,
+        _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
             new StationBankATMMenuInterfaceState(stationBank, _access.IsAllowed(player, uid), deposit));
     }
 

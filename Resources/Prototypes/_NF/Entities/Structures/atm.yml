@@ -32,11 +32,11 @@
         components:
           - Cash
   - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.ATM
+    key: enum.BankATMMenuUiKey.Key # Lua: ATM < Key
   - type: UserInterface
     interfaces:
-      enum.BankATMMenuUiKey.ATM:
-        type: BankATMMenuBoundUserInterface
+      enum.BankATMMenuUiKey.Key: # Lua: ATM < Key
+        type: LuaATMMenuBoundUserInterface #  Lua: BankATMMenuBoundUserInterface < LuaATMMenuBoundUserInterface
 
 - type: entity
   name: withdraw-only bank ATM
@@ -46,6 +46,7 @@
   abstract: true
   components:
   - type: BankATM
+    withdrawOnly: true # Lua
     cashSlot:
       name: bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
@@ -54,11 +55,11 @@
       swap: false
       locked: true
   - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.ATM
+    key: enum.BankATMMenuUiKey.Key # Lua: ATM < Key
   - type: UserInterface
     interfaces:
-      enum.BankATMMenuUiKey.ATM:
-        type: BankATMWithdrawOnlyMenuBoundUserInterface
+      enum.BankATMMenuUiKey.Key: # Lua: ATM < Key
+        type: LuaATMMenuBoundUserInterface #  Lua: BankATMWithdrawOnlyMenuBoundUserInterface < LuaATMMenuBoundUserInterface
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMDeposit]
@@ -136,12 +137,13 @@
     - map: ["computerLayerScreen"]
       state: unshaded
   - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.BlackMarket
+    key: enum.BankATMMenuUiKey.Key # Lua: BlackMarket < Key
   - type: UserInterface
     interfaces:
-      enum.BankATMMenuUiKey.BlackMarket:
-        type: BankATMMenuBoundUserInterface
+      enum.BankATMMenuUiKey.Key: # Lua: BlackMarket < Key
+        type: LuaATMMenuBoundUserInterface #  Lua: BankATMMenuBoundUserInterface < LuaATMMenuBoundUserInterface
   - type: BankATM
+    corrupted: true # Lua
     taxAccounts:
       Frontier: 0.3 # The scandal!
 
@@ -160,12 +162,13 @@
     - map: ["computerLayerScreen"]
       state: unshaded
   - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.BlackMarket
+    key: enum.BankATMMenuUiKey.Key # Lua: BlackMarket < Key
   - type: UserInterface
     interfaces:
-      enum.BankATMMenuUiKey.BlackMarket:
-        type: BankATMMenuBoundUserInterface
+      enum.BankATMMenuUiKey.Key: # Lua: BlackMarket < Key
+        type: LuaATMMenuBoundUserInterface #  Lua: BankATMMenuBoundUserInterface < LuaATMMenuBoundUserInterface
   - type: BankATM
+    corrupted: true # Lua
     taxAccounts:
       Frontier: 0.3 # The scandal!
 
@@ -200,10 +203,10 @@
         components:
           - Cash
   - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.ATM
+    key: enum.BankATMMenuUiKey.Key # Lua: ATM < Key
   - type: UserInterface
     interfaces:
-      enum.BankATMMenuUiKey.ATM:
+      enum.BankATMMenuUiKey.Key: # Lua: ATM < Key
         type: StationAdminConsoleBoundUserInterface
   - type: ActivatableUIRequiresAccess
   - type: ActivatableUIRequiresPower
