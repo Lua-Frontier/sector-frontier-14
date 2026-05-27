@@ -241,3 +241,17 @@
     FoodCheeseSlice: 1
   recipeType: Oven # Lua
   hideInGuidebook: true
+
+- type: microwaveMealRecipe
+  id: RecipeMashed
+  name: mashed recipe
+  result: FoodMashed
+  time: 15
+  reagents:
+    Water: 30
+    Milk: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPotato: 2
+    FoodMeatMeatball: 2
+  recipeType: Oven # Frontier

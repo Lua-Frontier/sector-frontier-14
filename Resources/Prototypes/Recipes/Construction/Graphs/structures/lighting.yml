@@ -75,6 +75,32 @@
               amount: 2
               doAfter: 1.0
         # End Frontier: shielded lights
+        # Lua start
+        - to: tubeFloorLightMiddle
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1.0
+            - material: Plasteel
+              amount: 1
+              doAfter: 1.0
+        - to: tubeFloorLightSide
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1.0
+            - material: Plasteel
+              amount: 1
+              doAfter: 1.0
+        - to: bulbFloorLight
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 1.0
+            - material: Plasteel
+              amount: 1
+              doAfter: 1.0
+        # Lua end
     - node: bulbLight
       entity: PoweredSmallLightEmpty
       edges:
@@ -183,3 +209,51 @@
               amount: 1
             - !type:DeleteEntity {}
     # End Frontier: shielded lights
+    # Lua start
+    - node: tubeFloorLightSide
+      entity: FloorLightSideEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: bulbFloorLight
+      entity: SmallFloorLightMiddleEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: tubeFloorLightMiddle
+      entity: FloorLightMiddleEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    #Lua end
