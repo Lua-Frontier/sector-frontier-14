@@ -342,6 +342,49 @@
   rotation: User
   fx: EffectRCDConstruct1
 
+# Lua start
+
+- type: rcd
+  id: TubeFloorLightMiddle
+  category: Lighting
+  sprite: /Textures/Interface/Radial/RCD/floor_light.png
+  mode: ConstructObject
+  prototype: FloorLightMiddle
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: BulbFloorLight
+  category: Lighting
+  sprite: /Textures/Interface/Radial/RCD/floor-light-small.png
+  mode: ConstructObject
+  prototype: SmallFloorLightMiddle
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  rotation: User
+  fx: EffectRCDConstruct1
+
+- type: rcd
+  id: TubeFloorLightSide
+  category: Lighting
+  sprite: /Textures/Interface/Radial/RCD/
+  mode: ConstructObject
+  prototype: FloorLightSide
+  cost: 2
+  delay: 1
+  collisionMask: TabletopMachineMask
+  collisionBounds: "-0.23,-0.49,0.23,-0.36"
+  rotation: User
+  fx: EffectRCDConstruct1
+
+# Lua end
+
 # Electrical
 - type: rcd
   id: LVCable

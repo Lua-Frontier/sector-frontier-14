@@ -34,3 +34,6 @@ construction-recipe-stairs-dark = {ent-StairDark}
 construction-recipe-stairs-dark-stage = {ent-StairStageDark}
 construction-recipe-stairs-wood = {ent-StairWood}
 construction-recipe-stairs-wood-stage = {ent-StairStageWood}
+recipe-bulb-floor-light = маленький напольный светильник
+recipe-tube-floor-light-middle = напольный светильник (центр)
+recipe-tube-floor-light-side = напольный светильник (крайний)

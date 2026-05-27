@@ -1449,6 +1449,20 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: bulbFloorLightFixture
+  name: recipe-bulb-floor-light
+  graph: LightFixture
+  startNode: start
+  targetNode: bulbFloorLight
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   id: StairStageWhite
   name: construction-recipe-stairs-white-stage
   graph: StairsCraft
@@ -1462,6 +1476,20 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: tubeFloorLightMiddleFixture
+  name: recipe-tube-floor-light-middle
+  graph: LightFixture
+  startNode: start
+  targetNode: tubeFloorLightMiddle
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   id: StairDark
   name: construction-recipe-stairs-dark
   graph: StairsCraft
@@ -1470,6 +1498,20 @@
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: tubeFloorLightSideFixture
+  name: recipe-tube-floor-light-side
+  graph: LightFixture
+  startNode: start
+  targetNode: tubeFloorLightSide
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
