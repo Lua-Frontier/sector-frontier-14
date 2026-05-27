@@ -66,7 +66,7 @@ public sealed partial class LuaATMMenu : FancyWindow
         DepositButton.Disabled = amount <= 0;
         DepositLabel.Text = amount >= 0
         ? BankSystemExtensions.ToSpesoString(amount)
-        : DepositLabel.Text = Loc.GetString("bank-atm-menu-cash-error");
+        : Loc.GetString("bank-atm-menu-cash-error");
         DepositContainer.Visible = !withdrawOnly;
     }
 
@@ -107,7 +107,7 @@ public sealed partial class LuaATMMenu : FancyWindow
         {
             var typeString = Loc.GetString($"bank-atm-menu-operation-{operation.Type.ToString().ToLower()}");
             var valueString = BankSystemExtensions.ToSpesoString(operation.Value);
-            var timeString = operation.Time.ToString().Split('.')[0];
+            var timeString = operation.Time.ToString(@"hh\:mm\:ss");
             var operationString = Loc.GetString("bank-atm-menu-operation", ("type", typeString), ("value", valueString), ("time", timeString));
 
             var operationLabel = new Label
@@ -136,7 +136,8 @@ public sealed partial class LuaATMMenu : FancyWindow
 
     private void OnAmountChanged(LineEdit.LineEditEventArgs args)
     {
-        WithdrawButton.Disabled = !int.TryParse(args.Text, out var amount) || !_enabled;
-        _amount = amount;
+        var parsable = int.TryParse(args.Text, out var amount);
+        _amount = parsable ? amount : null;
+        WithdrawButton.Disabled = !_enabled || !parsable;
     }
 }

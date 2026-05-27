@@ -11,7 +11,7 @@ namespace Content.Shared._NF.Bank.Components;
 
 public sealed partial class BankATMComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)] // Lua
+    [DataField] // Lua
     public ProtoId<StackPrototype> CashType = "Credit"; // Lua
 
     public static string CashSlotId = "bank-ATM-cashSlot";
