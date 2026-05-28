@@ -485,6 +485,9 @@
           - !type:OrganType
             type: Vox
             shouldHave: false
+          - !type:OrganType #Lua_Start
+            type: Demon
+            shouldHave: false #Lua_End
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]

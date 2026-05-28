@@ -4,7 +4,9 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
-  - sprite: _ADT/Mobs/Demon/custom.rsi
+  - sprite: _ADT/Mobs/Demon/parts.rsi
+    state: tail
+  - sprite: _ADT/Mobs/Customization/Demon/tail.rsi
     state: demon_tail
 
 - type: marking
@@ -13,7 +15,9 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
-  - sprite: _ADT/Mobs/Demon/custom.rsi
+  - sprite: _ADT/Mobs/Demon/parts.rsi
+    state: tail
+  - sprite: _ADT/Mobs/Customization/Demon/tail.rsi
     state: long
 
 - type: marking
@@ -22,8 +26,62 @@
   markingCategory: Tail
   speciesRestriction: [Demon]
   sprites:
-  - sprite: _ADT/Mobs/Demon/custom.rsi
+  - sprite: ADT/Mobs/Demon/parts.rsi
+    state: tail
+  - sprite: _ADT/Mobs/Customization/Demon/tail.rsi
     state: up
+
+- type: marking
+  id: MobDemonTailColor
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+    - sprite: _ADT/Mobs/Demon/parts.rsi
+      state: tail
+
+ # Corvax-Wega Animated Tail demons
+- type: marking
+  id: DemomTail1Animated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _ADT/Mobs/Demon/parts.rsi
+    state: tail_waggin
+  - sprite: _ADT/Mobs/Customization/Demon/tail.rsi
+    state: demon_tail_waggin
+
+- type: marking
+  id: DemomTailLongAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _ADT/Mobs/Demon/parts.rsi
+    state: tail_waggin
+  - sprite: _ADT/Mobs/Customization/Demon/tail.rsi
+    state: long_waggin
+
+- type: marking
+  id: DemomTailUpAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _ADT/Mobs/Demon/parts.rsi
+    state: tail_waggin
+  - sprite: _ADT/Mobs/Customization/Demon/tail.rsi
+    state: up_waggin
+
+- type: marking
+  id: MobDemonTailColorAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: _ADT/Mobs/Demon/parts.rsi
+    state: tail_waggin
 
 - type: marking
   id: DemonCowEars
@@ -43,13 +101,14 @@
   - sprite: _ADT/Mobs/Demon/custom.rsi
     state: demon_ears
 
+#рога
 - type: marking
   id: DemonCowHorns
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Demon]
   sprites:
-  - sprite: _ADT/Mobs/Demon/custom.rsi
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
     state: cow_horns
 
 - type: marking
@@ -58,7 +117,7 @@
   markingCategory: HeadTop
   speciesRestriction: [Demon]
   sprites:
-  - sprite: _ADT/Mobs/Demon/custom.rsi
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
     state: deer_antlers_horns
 
 - type: marking
@@ -67,8 +126,182 @@
   markingCategory: HeadTop
   speciesRestriction: [Demon]
   sprites:
-  - sprite: _ADT/Mobs/Demon/custom.rsi
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
     state: small_horns
+
+- type: marking
+  id: DemonHornsBuffalo
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_buffalo
+
+- type: marking
+  id: DemonHornsCarpicorn
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_capricorn
+
+- type: marking
+  id: DemonHornsDevilOne
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: []
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_devil_one
+
+- type: marking
+  id: DemonHornsDevil
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_devil
+
+- type: marking
+  id: DemonHornsDevil2
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_devil2
+
+- type: marking
+  id: DemonHornsDevil3
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_devil3
+
+- type: marking
+  id: DemonHornsDevil4
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_devil4
+
+- type: marking
+  id: DemonHornsRam
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_ram
+
+- type: marking
+  id: DemonHornsUnicorn
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_unicorn
+
+- type: marking
+  id: DemonHornsMedium
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_medium
+
+- type: marking
+  id: DemonHornsHeart
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_heart
+
+- type: marking
+  id: DemonHornsDiadem
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_diadem
+
+- type: marking
+  id: DemonHornsPretzel
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn.rsi
+    state: horns_pretzel
+
+#Start-Рога от Иллюми, 32x64
+- type: marking
+  id: DemonHornsBackwardHorns
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn32x64.rsi
+    state: backward_horns
+
+- type: marking
+  id: DemonHornsDarkCrown
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn32x64.rsi
+    state: dark_crown
+
+- type: marking
+  id: DemonHornsDevilPrimeSi1
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn32x64.rsi
+    state: devil_prime1_s
+
+- type: marking
+  id: DemonHornsDevilPrime1
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn32x64.rsi
+    state: devil_prime1
+
+- type: marking
+  id: DemonHornsDevilPrime2
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn32x64.rsi
+    state: devil_prime2
+
+- type: marking
+  id: DemonHornsFat_Horn
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _ADT/Mobs/Customization/Demon/horn32x64.rsi
+    state: fat_horn
+#End-Рога от Иллюми, 32x64
+#конец рожков
 
 - type: marking
   id: DemonChestCowSpots

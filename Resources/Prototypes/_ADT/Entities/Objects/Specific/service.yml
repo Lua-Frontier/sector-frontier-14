@@ -1,0 +1,36 @@
+- type: entity
+  id: ADTIronTray
+  name: Iron tray
+  parent: BaseStorageItem
+  description: An iron tray to store and service food
+  components:
+  - type: Sprite
+    sprite: _ADT/Objects/Specific/Service/iron_tray.rsi
+    state: icon
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    maxItemSize: Large
+  - type: Item
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+  - type: AntiRottingContainer
+  - type: StaticPrice # Frontier
+    price: 25 # Frontier
+
+- type: entity
+  parent: NFClothingBackpack # Frontier: ClothingBackpack<NFClothingBackpack
+  id: ClothingBackpackFreezer
+  name: freezer backpack
+  description: Freezer backpack
+  components:
+  - type: Sprite
+    sprite: _ADT/Objects/Specific/Service/freezer_backpack.rsi
+  - type: AntiRottingContainer
+  - type: StaticPrice # Frontier
+    price: 35 # Frontier
