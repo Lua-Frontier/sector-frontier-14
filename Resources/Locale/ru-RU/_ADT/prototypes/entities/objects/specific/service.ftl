@@ -1,5 +1,5 @@
 ent-ADTIronTray = поднос
     .desc = Железный поднос для хранения и сервировки продуктов.
 
-ent-ClothingBackpackFreezer = тёрмосумка
+ent-ClothingBackpackFreezer = термосумка
     .desc = Рюкзак с возможность охлаждения - все продукты в ней будут свежими как можно дольше.
