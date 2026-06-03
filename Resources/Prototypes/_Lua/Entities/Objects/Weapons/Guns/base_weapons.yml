@@ -205,6 +205,99 @@
   - type: GunJam
 #Lua end
 
+- type: entity
+  name: BaseWeaponRifleUnwieldable
+  parent: [BaseItem]
+  id: BaseWeaponRifleUnwieldable
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+    fireRate: 5
+    projectileSpeed: 55 # Mono
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        # startingItem: MagazineLightRifle # Frontier
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        # startingItem: CartridgeLightRifle # Frontier
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  # Goobstation edit end
+#Lua added durability and repairing
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: GunJam
+#Lua end
+
 # ========================
 # Shotguns
 # ========================
@@ -460,6 +553,74 @@
     - trigger:
         !type:DamageTrigger
         damage: 13500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: GunJam
+  # Lua end
+
+- type: entity
+  name: BaseWeaponSniperNoContainer
+  parent: BaseItem
+  id: BaseWeaponSniperNoContainer
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    projectileSpeed: 65 # Mono
+  - type: StaticPrice
+    price: 500
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
+  # Goobstation edit end
+  # Lua start
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 4500
       behaviors:
       - !type:PlaySoundBehavior
         sound:

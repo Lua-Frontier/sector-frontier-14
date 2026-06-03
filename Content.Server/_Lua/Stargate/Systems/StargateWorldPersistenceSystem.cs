@@ -19,6 +19,7 @@ using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Systems;
 using Content.Server.Spawners.EntitySystems;
+using Content.Server.Store.Systems;
 using Content.Shared._Goobstation.Vehicles;
 using Content.Shared._Lua.HardsuitIdentification;
 using Content.Shared.Actions;
@@ -41,6 +42,9 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Speech.Components;
 using Content.Shared.Store.Components;
 using Content.Shared.UserInterface;
+using Content.Shared.Blocking.Components;
+using Content.Shared.DeviceLinking;
+using Content.Shared.Materials.OreSilo;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Configuration;
@@ -81,6 +85,9 @@ public sealed class StargateWorldPersistenceSystem : EntitySystem
     [Dependency] private readonly NPCUseActionOnTargetSystem _npcUseAction = default!;
     [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
     [Dependency] private readonly CombatModeSystem _combatMode = default!;
+    [Dependency] private readonly StoreSystem _store = default!;
+    [Dependency] private readonly SharedOreSiloSystem _oreSilo = default!;
+    [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
 
     private ZStdCompressionContext? _zstdContext;
 
@@ -184,6 +191,10 @@ public sealed class StargateWorldPersistenceSystem : EntitySystem
         _shipyard.ClearShuttleDeedReferencesOnMap(mapUid);
         PruneNpcEntityRefs(mapUid);
         CleanStaleContainerRefs(mapUid);
+        ClearBlockingRefsForStargateSave(mapUid);
+        _deviceLink.PruneStaleDeviceLinkSourcesForMap(mapUid, IsEntityOnMap);
+        _store.ClearStaleStoreRefundRefsForMap(mapUid, IsEntityOnMap);
+        _oreSilo.ClearStaleOreSiloClientsForMap(mapUid, IsEntityOnMap);
         var projectileQuery = AllEntityQuery<TargetedProjectileComponent, TransformComponent>();
         while (projectileQuery.MoveNext(out var projUid, out _, out var xform))
         { if (xform.MapUid == mapUid) QueueDel(projUid); }
@@ -191,7 +202,7 @@ public sealed class StargateWorldPersistenceSystem : EntitySystem
         var opts = SerializationOptions.Default with
         {
             Category = FileCategory.Map,
-            MissingEntityBehaviour = MissingEntityBehaviour.Error
+            MissingEntityBehaviour = MissingEntityBehaviour.Ignore
         };
         MappingDataNode data;
         FileCategory cat;
@@ -457,6 +468,32 @@ public sealed class StargateWorldPersistenceSystem : EntitySystem
         }
         return false;
     }
+    private void ClearBlockingRefsForStargateSave(EntityUid mapUid)
+    {
+        var query = AllEntityQuery<BlockingComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var blocking, out var xform))
+        {
+            if (xform.MapUid != mapUid && !IsEntityOnMap(uid, mapUid)) continue;
+            var changed = false;
+            if (blocking.User is { } user && (!Exists(user) || !IsEntityOnMap(user, mapUid)))
+            {
+                blocking.User = null;
+                blocking.IsBlocking = false;
+                changed = true;
+            }
+
+            if (blocking.BlockingToggleActionEntity is { } actionEnt
+                && (!Exists(actionEnt) || !IsEntityOnMap(actionEnt, mapUid)))
+            {
+                blocking.BlockingToggleActionEntity = null;
+                changed = true;
+            }
+
+            if (changed)
+                Dirty(uid, blocking);
+        }
+    }
+
     private void CleanStaleContainerRefs(EntityUid mapUid)
     {
         var query = AllEntityQuery<ContainerManagerComponent, TransformComponent>();

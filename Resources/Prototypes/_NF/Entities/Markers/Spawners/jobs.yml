@@ -214,6 +214,15 @@
   - type: SpawnPoint
     job_id: NFDetective
 
+- type: entity #from _Lua
+  id: NFSpawnPointSDEngineer
+  parent: SpawnPointSecurityOfficer
+  name: SD Engineer
+  suffix: Frontier
+  components:
+  - type: SpawnPoint
+    job_id: SDEngineer
+
 - type: entity
   id: SpawnPointPublicAffairsLiaison
   parent: SpawnPointLawyer

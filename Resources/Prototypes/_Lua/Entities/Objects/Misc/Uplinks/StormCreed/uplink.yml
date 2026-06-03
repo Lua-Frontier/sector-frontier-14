@@ -1,0 +1,70 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Uplinks
+- type: entity
+  parent: [ BaseGrenade, StorePresetPirateUplink, BaseItem ]
+  id: BaseStormCreedUplink
+  name: Старый телефон
+  description: Выглядит так, будто им стреляли из рельсотрона. Почему бы не повторить?
+  suffix: Empty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Devices/communication.rsi
+    layers:
+    - state: nokia3310
+      scale: 0.7, 0.7
+      shader: unshaded
+  - type: Item
+    sprite: _Lua/Objects/Devices/communication.rsi
+    heldPrefix: nokia3310
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Lua/Items/Misc/nokia_activate_sound.ogg
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Doubloon: 0
+  - type: Tag
+    tags:
+    - PirateUplink
+    - CharonSlug
+  - type: CartridgeAmmo
+    proto: ShipRailgunProjectileSubnuclear
+    deleteOnSpawn: true
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: BaseStormCreedUplink
+  id: BaseStormCreedUplinkDebug
+  suffix: StormCreed, DEBUG
+  components:
+  - type: Store
+    balance:
+      Doubloon: 999999
+
+- type: entity
+  parent: BaseStormCreedUplink
+  id: BaseStormCreedUplinkEmpty
+  suffix: StormCreed, Empty
+  components:
+  - type: Store
+    balance:
+      Doubloon: 0
+
+- type: entity
+  parent: BaseStormCreedUplink
+  id: BaseStormCreedUplink10
+  suffix: StormCreed, 10
+  components:
+  - type: Store
+    balance:
+      Doubloon: 10

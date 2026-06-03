@@ -555,6 +555,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ResearchClient
+    allowedFactions: [Nanotrasen] # Lua: one family<multi-family research clients
   - type: ResearchConsole
   - type: ActiveRadio
     channels:
@@ -580,6 +581,54 @@
     radius: 1.5
     energy: 4.0
     color: "#b53ca1"
+  - type: GuideHelp
+    guides:
+    - Science
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerResearchAndDevelopmentSyndicate
+  name: syndicate R&D computer
+  description: A computer used to interface with syndicate R&D tools.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ResearchClient
+    allowedFactions: [Syndicate]
+  - type: ResearchConsole
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+  - type: TechnologyDatabase
+  - type: ActivatableUI
+    key: enum.ResearchConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ResearchConsoleUiKey.Key:
+        type: ResearchConsoleFrontierBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: ResearchComputerSyndicateCircuitboard
+  - type: AccessReader
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#c33c3c"
   - type: GuideHelp
     guides:
     - Science

@@ -1,8 +1,9 @@
 - type: entity
-  name: VFD MR-8C DMR (8x65mm SKR)
-  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC3CentCommContraband] # Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
+  name: VFD MR-8C DMR (7.62x54)
+  parent: [BaseWeaponRifle, BaseC3CentCommContraband] #Lua BaseGunWieldable
   id: WeaponRifleMR8C
   description: The DMR variant of the MR-8 series, firing with incredible accuracy. Chambered in 8x65mm SKR. A label on the side reads "FOR MILITARY USE ONLY".
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi
@@ -13,16 +14,24 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Wieldable
     unwieldOnUse: false
+  - type: ClothingSpeedModifier #Lua%
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -21
-    maxAngle: -47
+#  - type: GunWieldBonus # comment (17-19) from _Lua
+#    minAngle: -21
+#    maxAngle: -47
   - type: Gun
-    minAngle: 21
-    maxAngle: 48
-    angleIncrease: 20 #Lua 27 -> 20
-    angleDecay: 4 #Lua 2 -> 4
-    fireRate: 4
+    examineCaliber: gun-examine-caliber-76254 #Lua
+#    minAngle: 21 # comment from _Lua
+#    maxAngle: 48
+#    angleIncrease: 27
+#    angleDecay: 2
+    minAngle: 20 #Lua # Я ебал эту логику, ставлю нули и мне похуй
+    maxAngle: 30 #Lua
+    angleIncrease: 0 #Lua
+    angleDecay: 0 #Lua
+    fireRate: 3.6 #Lua 4<3.6
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -35,21 +44,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine8x65mmSKR
+        startingItem: Magazine762x54mmRFMJ #Lua Magazine8x65mmSKR<Magazine762x54mmRFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine8x65mmSKR
+            - Magazine762x54mmRFMJ #Lua Magazine8x65mmSKR<Magazine762x54mmRFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge8x65mmSKR
+        startingItem: Cartridge762x54mmRFMJ #Lua Cartridge8x65mmSKR<Cartridge762x54mmRFMJ
         priority: 1
         whitelist:
           tags:
-            - Cartridge8x65mmSKR
+            - Cartridge762x54mmRFMJ #Lua Cartridge8x65mmSKR<Cartridge762x54mmRFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -62,26 +71,41 @@
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c_inhands_32x.rsi
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c_inhands_32x.rsi
   - type: StaticPrice
     price: 2400
-#Lua: added toggling scope
-  - type: ItemToggle
+  - type: ItemToggle #Lua
     onUse: false
-    onActivate: true
-  - type: ComponentToggler
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
     components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
     - type: CursorOffsetRequiresWield
     - type: EyeCursorOffset
-      maxOffset: 10
-      pvsIncrease: 0.7
-#End Lua
+      maxOffset: 7.5
+      pvsIncrease: 1
 
 - type: entity
-  name: NCI AK-502 (7.62x39mm)
-  parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  name: NCI AK-502 (7.62x51mm)
+  parent: [BaseWeaponRifleUnwieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband #Lua BaseWeaponRifle<BaseWeaponRifleUnwieldable
   id: WeaponRifleAK502
   description: A standard-issue USSP combat rifle. Uses 7.62x39mm ammo.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/ak502.rsi
@@ -90,18 +114,29 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus #Set to 0 because GunRequiresWield
-    minAngle: -0 #Lua -21 -> -0
-    maxAngle: -0 #Lua -47 -> -0
+  - type: HeldSpeedModifier #Lua
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
+#  - type: Wieldable # comment (88-91) from _Lua
+#    unwieldOnUse: false
+#  - type: GunRequiresWield
+#  - type: GunWieldBonus #Set to 0 because GunRequiresWield
+#    minAngle: -0 #Lua -21 -> -0
+#    maxAngle: -0 #Lua -47 -> -0
   - type: Gun
-    minAngle: 1 #Lua 21 -> 1
-    maxAngle: 5 #Lua 52 -> 5
-    angleIncrease: 3 #Lua 6 -> 3
-    angleDecay: 20 #Lua 24 -> 20
-    fireRate: 5.5 #Lua 5 -> 5.5
+    examineCaliber: gun-examine-caliber-76251 #Lua
+#    minAngle: 21 # comment from _Lua
+#    maxAngle: 52
+#    angleIncrease: 6
+#    angleDecay: 24
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 6 #Lua 5<6
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/ak_fire.ogg
   - type: ChamberMagazineAmmoProvider
@@ -113,22 +148,22 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmFMJ
+        startingItem: Magazine762x51mmFMJ #Lua Magazine762x39mmFMJ<Magazine762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x39mmFMJ
+          - Magazine762x51mmFMJ #Lua Magazine762x39mmFMJ<Magazine762x51mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ
+        startingItem: Cartridge762x51mmFMJ #Lua Cartridge762x39mmFMJ<Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x39mmFMJ
-          - Magazine762x39mmLowCapacityFMJ
+          - Cartridge762x51mmFMJ #Lua Cartridge762x39mmFMJ<Cartridge762x51mmFMJ
+#          - Magazine762x39mmLowCapacityFMJ # comment from _Lua
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -144,10 +179,11 @@
     id: StandardFactionLongarm
 
 - type: entity
-  name: VFD XLR-556 ICWS (5.56x45mm)
-  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC2ContrabandUnredeemable]
+  name: VFD XLR-556 ICWS (7.62x51mm)
+  parent: [BaseWeaponRifleUnwieldable, BaseC2ContrabandUnredeemable] #Lua BaseGunWieldable; BaseWeaponRifle<BaseWeaponRifleUnwieldable
   id: WeaponRifleXlr556
-  description: A proposed next-gen "rifle" for TSF standard infantry. Chambered in 5.56x45mm rifle rounds, its RPM is incredible - but with great firerate comes great fire control...
+  description: A proposed next-gen "rifle" for TSF standard infantry. Chambered in 5.56x45mm rifle rounds, its RPM is incredible - but with great fireRate comes great fire control...
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556.rsi
@@ -156,18 +192,26 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -14
-    maxAngle: -17
+#  - type: GunWieldBonus # comment from _Lua
+#    minAngle: -14
+#    maxAngle: -17
+  - type: HeldSpeedModifier #Lua
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: Gun
-    minAngle: 20 #Lua +2
-    maxAngle: 35
-    angleIncrease: 5 #Lua +1
-    angleDecay: 45 #Lua +5
-    fireRate: 10 #Lua -1 600 rpm
-    shotsPerBurst: 3
+    examineCaliber: gun-examine-caliber-76251 #Lua
+#    minAngle: 20 # comment from _Lua
+#    maxAngle: 35
+#    angleIncrease: 4
+#    angleDecay: 40
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 7.2 #Lua 10<7.2
+#    shotsPerBurst: 3 # comment from _Lua
     availableModes:
-    - Burst
+#    - Burst # comment from _Lua
     - FullAuto
     - SemiAuto
     soundGunshot:
@@ -178,26 +222,28 @@
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556_inhands_32x.rsi
   - type: Item
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556_inhands_32x.rsi
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556x45mmFMJ
+        startingItem: Magazine762x51mmFMJ #Lua Magazine556x45mmFMJ<Magazine762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine556x45mmFMJ
+          - Magazine762x51mmFMJ #Lua Magazine556x45mmFMJ<Magazine762x51mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge556x45mmFMJ
+        startingItem: Cartridge762x51mmFMJ #Lua Cartridge556x45mmFMJ<Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
-          - Cartridge556x45mmFMJ
+          - Cartridge762x51mmFMJ #Lua Cartridge556x45mmFMJ<Cartridge762x51mmFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -219,6 +265,7 @@
   parent: WeaponRifleVulcan
   id: WeaponRifleVulcanFCMC
   description: The Herstal Weapon Manufacture "Vulcan" Civilian Medium combat rifle (Fusil de Combat Moyen Civil) in 762x51mm, this civilian version only has semi-automatic mode and reduced firerate.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/WeaponRifleVulcanFCMC.rsi
@@ -272,8 +319,11 @@
   parent: [BaseWeaponRifle, BaseC1Contraband]
   id: WeaponRiflePrometheus
   description: The Herstal Weapon Manufacture "Prometheus" Light combat rifle (Fusil de Combat Léger) in 556x45mm. Made to be mass producable for fight against xenos. Its firerate is decent with burst being superior and accuracy poor.
+  suffix: Need balance test #Lua
   components:
   - type: Item # Mono
+    shape: #Lua
+    - 0,0,3,2
     size: Huge
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/prometheus.rsi # Mono
@@ -294,17 +344,22 @@
     minAngle: -0 #Lua -27 -> -0
     maxAngle: -0 #Lua -40 -> -0
   - type: Gun
-    minAngle: 1 #Lua 30 -> 1
-    maxAngle: 3.5 #Lua 46 -> 3.5
-    angleIncrease: 0.2 #Lua 76 -> 0.2
-    angleDecay: 1 #Lua 7 -> 1
+    examineCaliber: gun-examine-caliber-55645 #Lua
+#    minAngle: 30
+#    maxAngle: 46
+#    angleIncrease: 76
+#    angleDecay: 7
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
     cameraRecoilScalar: 1 #Lua 0 -> 1
-    fireRate: 4 #Lua 3 -> 4
-    selectedMode: Burst
+    fireRate: 6 #Lua 3<6
+    selectedMode: FullAuto #Lua Burst<FullAuto
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/light_rifle_1.ogg # Mono
     availableModes:
-    - Burst
+#    - Burst #comment from _Lua
     - SemiAuto
     - FullAuto
     burstCooldown: 0.5
@@ -344,10 +399,11 @@
 #Pre-fracture NT lecter/prometheus
 
 - type: entity
-  name: NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)
+  name: NTSF-LTR-556 (5.56x45mm)
   parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable]
   id: WeaponRifleNtsfLtr
   description: An old pre-fracture gun. The Nano Trasen Security Forces and Special Forces's Light Tactical Rifle chambered in 5.56x45mm, also accepts 6.8x52mm due to it being a brand new caliber of its time and being a prototype. This rifle is of high-quality with plastitanium internal and plasteel furnitures.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/NTSF-LTR-556.rsi
@@ -363,17 +419,25 @@
       path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
   - type: Wieldable
     unwieldOnUse: false
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: GunRequiresWield
   - type: GunWieldBonus #Set to 0 because GunRequiresWield
     minAngle: -0 #Lua -32 -> -0
     maxAngle: -0 #Lua -52 -> -0
   - type: Gun
-    minAngle: 1 #Lua 45 -> 1
-    maxAngle: 3.5 #Lua 62 -> 3.5
-    angleIncrease: 0.2 #Lua 6 -> 0.2
-    angleDecay: 40
+    examineCaliber: gun-examine-caliber-55645 #Lua
+#    minAngle: 45 # comment from _Lua
+#    maxAngle: 62
+#    angleIncrease: 6
+#    angleDecay: 40
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
     cameraRecoilScalar: 0.5 #Lua 0 -> 0.5
-    fireRate: 5.5 #Lua 9 -> 5.5
+    fireRate: 7.2 #Lua 9<7.2
     availableModes:
     - FullAuto
     - SemiAuto
@@ -389,7 +453,7 @@
         priority: 2
         whitelist:
           tags:
-            - Magazine68x52mmCaseless
+#            - Magazine68x52mmCaseless #comment from _Lua
             - Magazine556x45mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
@@ -398,7 +462,7 @@
         priority: 1
         whitelist:
           tags:
-            - Cartridge68x52mmCaseless
+#            - Cartridge68x52mmCaseless #comment from _Lua
             - Cartridge556x45mmFMJ
   - type: ContainerContainer
     containers:

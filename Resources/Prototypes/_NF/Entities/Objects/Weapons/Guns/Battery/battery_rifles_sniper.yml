@@ -1,56 +1,91 @@
-
 # WizDen
 #region Laser
 - type: entity
   id: NFWeaponEnergyRifleSniperCannon
   parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponEnergyRifleSniperHitScan, NFBaseWeaponFrameEnergyRifleSniperNanotrasen ]
   name: laser cannon
-  suffix: Frontier
   description: |-
     A heavy duty, high powered laser sniper rifle. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
-
-#Lua: Changed firerate, added scope
-  - type: Gun
-    fireRate: 1.5
-  - type: ItemToggle
+  - type: Item #Lua
+    shape:
+    - 0,0,4,3
+  - type: Gun #Lua
+    minAngle: 1.4 #Lua
+    maxAngle: 7 #Lua
+    angleIncrease: 5.6 #Lua
+    angleDecay: 3.7 #Lua
+    fireRate: 0.6
+  - type: HitscanBatteryAmmoProvider #Lua
+    proto: PulsedPlasma
+    fireCost: 120
+  - type: ItemToggle #Lua
     onUse: false
-    onActivate: true
-  - type: ComponentToggler
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
     components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
     - type: CursorOffsetRequiresWield
     - type: EyeCursorOffset
       maxOffset: 10
-      pvsIncrease: 0.7
-#end Lua
+      pvsIncrease: 1
+
 - type: entity
   id: NFWeaponEnergyRifleSniperXrayCannon
   parent: [ BaseC3Contraband, NFBaseWeaponEnergyRifleSniperHitScanXray, NFBaseWeaponFrameEnergyRifleSniperNanotrasen ]
   name: x-ray cannon
-  suffix: Frontier
   description: |-
     An illegal and experimental weapon that uses concentrated x-ray energy against its target.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
-#Lua: Changed sound of gunshot, added scope
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-    fireRate: 2
-  - type: ItemToggle
+  - type: Gun #Lua
+    minAngle: 1.4 #Lua
+    maxAngle: 7 #Lua
+    angleIncrease: 5.6 #Lua
+    angleDecay: 3.7 #Lua
+    fireRate: 1.8
+  - type: ItemToggle #Lua
     onUse: false
-    onActivate: true
-  - type: ComponentToggler
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
     components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
     - type: CursorOffsetRequiresWield
     - type: EyeCursorOffset
       maxOffset: 10
-      pvsIncrease: 0.7
-#end Lua
+      pvsIncrease: 1

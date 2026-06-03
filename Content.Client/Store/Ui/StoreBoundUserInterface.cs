@@ -10,7 +10,7 @@ namespace Content.Client.Store.Ui;
 [UsedImplicitly]
 public sealed class StoreBoundUserInterface : BoundUserInterface
 {
-    private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Lua
 
     [ViewVariables]
     private StoreMenu? _menu;
@@ -28,6 +28,12 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+
+        if (_menu is { Disposed: false })
+        {
+            _menu.MoveToFront();
+            return;
+        }
 
         _menu = this.CreateWindow<StoreMenu>();
         if (EntMan.TryGetComponent<StoreComponent>(Owner, out var store))

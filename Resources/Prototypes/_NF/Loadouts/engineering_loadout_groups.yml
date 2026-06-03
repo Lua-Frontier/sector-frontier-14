@@ -6,6 +6,8 @@
   - PlantManagerClothingUniformJumpskirtChiefEngineer
   - PlantManagerClothingUniformJumpsuitChiefEngineerTurtle
   - PlantManagerClothingUniformJumpskirtChiefEngineerTurtle
+  - PlantManagerClothingUniformJumpskirtChiefEngineerNT
+  - PlantManagerClothingUniformJumpskirtChiefEngineerFormal
   - PlantManagerClothingUniformJumpsuitMilitaryEngineeringChief
   fallbacks:
   - PlantManagerClothingUniformJumpsuitChiefEngineer
@@ -21,6 +23,8 @@
   - EngineeringClothingUniformJumpsuitAtmos
   - EngineeringClothingUniformJumpskirtAtmos
   - EngineeringClothingUniformJumpsuitAtmosCasual
+  - EngineeringClothingUniformJumpsuitSeniorEngineer
+  - EngineeringClothingUniformJumpskirtSeniorEngineer
   - EngineeringClothingUniformJumpsuitMilitaryEngineering
   - EngineeringClothingUniformJumpsuitMilitaryAtmospherics
   fallbacks:
@@ -31,6 +35,9 @@
   id: PlantManagerBackpack
   name: loadout-group-contractor-backpack
   loadouts:
+  - PlantManagerClothingBackpackChiefEngineer
+  - PlantManagerClothingBackpackSatchelChiefEngineer
+  - PlantManagerClothingBackpackDuffelChiefEngineer
   - PlantManagerClothingBackpackMessengerChiefEngineer
   - EngineeringClothingBackpackEngineering
   - EngineeringClothingBackpackDuffelEngineering
@@ -115,6 +122,7 @@
   minLimit: 0
   loadouts:
   - PlantManagerClothingHeadHatHardhatWhite
+  - PlantManagerClothingHeadHatBeretChiefEngineer
   - PlantManagerClothingHeadHatBeretEngineering
   subgroups:
   - EngineeringHead
@@ -164,6 +172,7 @@
   loadouts:
   - PlantManagerClothingNeckMantleCE
   - PlantManagerClothingNeckCloakCe
+  - PlantManagerClothingNeckCloakFormalCE
 
 - type: loadoutGroup
   id: PlantManagerPDA
@@ -182,6 +191,21 @@
   - PlantTechnicianPlantTechnicianPDA
   fallbacks:
   - PlantTechnicianPlantTechnicianPDA
+
+- type: loadoutGroup #Lua # Возможно, позже перемещу в отдельный файл. Пока что так проще
+  id: LGFrontierEngineerPDA
+  name: loadout-group-contractor-pda
+  hidden: true
+  loadouts:
+  - LoadoutFrontierEngineerPDA
+  fallbacks:
+  - LoadoutFrontierEngineerPDA
+
+- type: loadout #Lua
+  id: LoadoutFrontierEngineerPDA
+  price: 0
+  equipment:
+    id: FrontierEngineerPDA
 
 - type: loadoutGroup
   id: PlantManagerGlasses
@@ -209,6 +233,12 @@
   - EngineeringClothingMaskGasAtmos
   fallbacks:
   - EngineeringClothingMaskGasAtmos
+
+- type: loadoutGroup
+  id: EngineeringNeck
+  name: loadout-group-contractor-neck
+  loadouts:
+  - EngineeringClothingNeckCloakSE
 
 - type: loadoutGroup
   id: PlantManagerBelt

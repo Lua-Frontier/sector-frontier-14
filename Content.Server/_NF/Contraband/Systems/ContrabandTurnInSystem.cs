@@ -10,11 +10,15 @@ using Content.Shared._NF.Contraband.Events;
 using Content.Shared.Contraband;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
+using Robust.Server.Containers; // Lua
+using Content.Shared.Weapons.Ranged.Components; // Lua
 using Content.Shared.Coordinates;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Containers; // Lua
 using Content.Server._NF.Cargo.Systems;
+using Content.Server._Lua.Contraband.Systems; // Lua
 using Content.Server.Hands.Systems;
 
 namespace Content.Server._NF.Contraband.Systems;
@@ -31,6 +35,8 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly ContrabandPricingSystem _contraband = default!; // Lua
+    [Dependency] private readonly ContainerSystem _container = default!; // Lua
 
     private EntityQuery<MobStateComponent> _mobQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -119,6 +125,22 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
             RaiseLocalEvent(ref ev);
         }
 
+        // Lua start
+        foreach (var ent in toSell)
+        {
+            if (!TryComp<ContainerManagerComponent>(ent, out var containerComp)
+                || HasComp<GunComponent>(ent))
+            {
+                continue;
+            }
+
+            foreach (var container in containerComp.Containers.Values)
+            {
+                _container.EmptyContainer(container, true, Transform(ent).Coordinates);
+            }
+        }
+        // Lua end
+
         foreach (var ent in toSell)
         {
             Del(ent);
@@ -129,6 +151,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
     {
         amount = 0;
         toSell = new HashSet<EntityUid>();
+        var processed = new HashSet<EntityUid>(); // Lua
 
         foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
@@ -139,7 +162,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
                 // - anything already being sold
                 // - anything anchored (e.g. light fixtures)
                 // - anything blacklisted (e.g. players).
-                if (toSell.Contains(ent) ||
+                if (processed.Contains(ent) || // Lua: toSell < processed
                     _xformQuery.TryGetComponent(ent, out var xform) &&
                     (xform.Anchored || !CanSell(ent, xform)))
                 {
@@ -149,20 +172,23 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
-                if (TryComp<ContrabandComponent>(ent, out var comp))
-                {
-                    if (!comp.TurnInValues.ContainsKey(console.RewardType))
-                        continue;
+                // Lua start
+                processed.Add(ent);
 
-                    toSell.Add(ent);
-                    var value = comp.TurnInValues[console.RewardType];
-                    if (value <= 0)
-                        continue;
-                    amount += value;
+                if (_contraband.TryGetItemPrice(ent, console.RewardType, CanSell, out var itemPrice, ref toSell))
+                {
+                    amount += itemPrice;
                 }
             }
         }
     }
+
+    private bool CanSell(EntityUid uid)
+    {
+        return _xformQuery.TryGetComponent(uid, out var xform)
+            && CanSell(uid, xform);
+    }
+    // Lua end
 
     private bool CanSell(EntityUid uid, TransformComponent xform)
     {

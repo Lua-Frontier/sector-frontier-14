@@ -87,6 +87,28 @@
   materials:
     Steel: 475
 
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPIntermediateMagazineRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 75
+    Gold: 400
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticIntermediateMagazineRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 75
+    Brass: 400
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoRIPIntermediateMagazineRecipe
@@ -264,6 +286,28 @@
     Steel: 570
     Uranium: 855
 
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPIntermediateAmmoBoxRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 570
+    Gold: 855
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticIntermediateAmmoBoxRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 570
+    Brass: 855
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoHPIntermediateAmmoBoxRecipe
@@ -361,6 +405,28 @@
   materials:
     Steel: 200
     Uranium: 375
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPFullyPoweredMagazineRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 200
+    Glass: 375
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticFullyPoweredMagazineRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 200
+    Brass: 375
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -463,6 +529,30 @@
   materials:
     Steel: 1725
 
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPFullyPoweredAmmoBoxRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 345
+    Glass: 345
+    Gold: 1035
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticFullyPoweredAmmoBoxRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 345
+    Plasteel: 345
+    Brass: 1035
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoRIPFullyPoweredAmmoBoxRecipe
@@ -564,6 +654,28 @@
     Steel: 50
     Uranium: 125
 
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPPistolCaliberPistolMagazineRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 50
+    Gold: 125
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticPistolCaliberPistolMagazineRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 50
+    Brass: 125
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoHPPistolCaliberPistolMagazineRecipe
@@ -599,6 +711,28 @@
   abstract: true
   materials:
     Steel: 375
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPPistolCaliberSubMachineGunMagazineRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 50
+    Gold: 325
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticPistolCaliberSubMachineGunMagazineRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 50
+    Brass: 325
 
 #- type: latheRecipe
 #  parent: BaseAmmoRecipe
@@ -813,6 +947,28 @@
   materials:
     Steel: 375
     Uranium: 750
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoEMPPistolCaliberAmmoBoxRecipe
+  categories:
+  - EMPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 375
+    Gold: 750
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoRecipe
+  id: BaseAmmoCausticPistolCaliberAmmoBoxRecipe
+  categories:
+  - CausticAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 375
+    Brass: 750
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

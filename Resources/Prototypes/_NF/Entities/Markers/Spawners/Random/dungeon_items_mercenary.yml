@@ -597,16 +597,16 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - AmmoTechFab
+#    - AmmoTechFab # comment from _Lua
     - MercenaryTechFab
     - MercenaryTechFabFlatpack
     - MercenaryTechFabCircuitboardNF
-    - AmmoTechFabFlatpack
+#    - AmmoTechFabFlatpack # comment from _Lua
     chance: 1
     offset: 0.0
     rarePrototypes:
     - MercenaryTechFab
     - MercenaryTechFabFlatpack
     - MercenaryTechFabCircuitboardNF
-    - AmmoTechFabFlatpack
+#    - AmmoTechFabFlatpack # comment from _Lua
     rareChance: 0.005

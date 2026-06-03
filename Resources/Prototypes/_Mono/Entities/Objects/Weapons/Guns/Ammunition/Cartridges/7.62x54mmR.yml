@@ -1,6 +1,7 @@
 - type: entity
   id: BaseCartridge762x54mmR
   name: cartridge (7.62x54mmR FMJ)
+  suffix: Need balance test #Lua
   parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
   description: A full-power rifle round commonly used in DMRs and civilian bolt-action rifles.
   abstract: true
@@ -22,9 +23,11 @@
   - type: StaticPrice
     price: 1
 
+# Standart
 - type: entity
   id: Cartridge762x54mmRFMJ
   name: cartridge (7.62x54mmR FMJ)
+  suffix: Need balance test #Lua
   parent: BaseCartridge762x54mmR
   components:
   - type: CartridgeAmmo
@@ -33,6 +36,7 @@
 - type: entity
   id: Cartridge762x54mmRPractice
   name: cartridge (7.62x54mmR practice)
+  suffix: Need balance test #Lua
   parent: BaseCartridge762x54mmR
   components:
   - type: CartridgeAmmo
@@ -46,38 +50,9 @@
         color: "#dbdbdb"
 
 - type: entity
-  id: Cartridge762x54mmRIncendiary
-  name: cartridge (7.62x54mmR incendiary)
-  parent: BaseCartridge762x54mmR
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet762x54mmRIncendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff6e52"
-
-- type: entity
-  id: Cartridge762x54mmRUranium
-  name: cartridge (7.62x54mmR uranium)
-  parent: BaseCartridge762x54mmR
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet762x54mmRUranium
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#65fe08"
-
-- type: entity
   id: Cartridge762x54mmRRubber
   name: cartridge (7.62x54mmR rubber)
+  suffix: Need balance test #Lua
   parent: BaseCartridge762x54mmR
   components:
   - type: CartridgeAmmo
@@ -90,11 +65,11 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
 
-# Mono AP syst
-#anti-flesh:
+# Mechanical
 - type: entity
   id: Cartridge762x54mmRHP
   name: cartridge (7.62x54mmR hollow-point)
+  suffix: Need balance test #Lua
   parent: BaseCartridge762x54mmR
   components:
   - type: CartridgeAmmo
@@ -105,36 +80,70 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#90EE90"
+        color: "#991d39"
 
+# Physical
 - type: entity
-  id: Cartridge762x54mmRRIP
-  name: cartridge (7.62x54mmR RIP)
+  id: Cartridge762x54mmRIncendiary
+  name: cartridge (7.62x54mmR Incendiary)
+  suffix: Need balance test #Lua
   parent: BaseCartridge762x54mmR
   components:
   - type: CartridgeAmmo
-    proto: Bullet762x54mmRRIP
+    proto: Bullet762x54mmRIncendiary
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#C04000"
-
-#armor-piercing:
+        color: "#f44336"
 
 - type: entity
-  id: Cartridge762x54mmRPlasteelAP
-  name: cartridge (7.62x54mmR AP)
+  id: Cartridge762x54mmRUranium
+  name: cartridge (7.62x54mmR Uranium)
+  suffix: Need balance test #Lua
   parent: BaseCartridge762x54mmR
   components:
   - type: CartridgeAmmo
-    proto: Bullet762x54mmRPlasteelAP
+    proto: Bullet762x54mmRUranium
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#888888"
+        color: "#6b9747"
+
+# Special
+- type: entity
+  id: Cartridge762x54mmREMP
+  name: cartridge (7.62x54mmR EMP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge762x54mmR
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet762x54mmREMP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#044492"
+
+- type: entity
+  id: Cartridge762x54mmRCaustic
+  name: cartridge (7.62x54mmR Caustic)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge762x54mmR
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet762x54mmRCaustic
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#8b9229"

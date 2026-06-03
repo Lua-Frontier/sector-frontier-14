@@ -9,7 +9,7 @@
   На карте отображаются [color=yellow]звёзды[/color] — это точки в космосе, каждая из которых представляет отдельный сектор. Цвет звёзд зависит от их типа и владельца:
   - [color=blue]Синяя звезда[/color] — текущее местоположение вашего корабля
   - [color=white]Белая звезда[/color] — анархичные сектора, неконтролируемые фракциями
-  - [color=#96B089]Зелёная звезда[/color] — сектор под контролем фракции [color=#96B089]ДСБФ[/color]
+  - [color=#96B089]Зелёная звезда[/color] — сектор под контролем фракции [color=#96B089]СРБС[/color]
   - [color=#d93204]Красная звезда[/color] — сектор под контролем фракции [color=#d93204]Синдикат[/color]
   - [color=#948471]Коричневая звезда[/color] - сектор под контролем фракции [color=#948471]Пираты[/color]
 
@@ -66,7 +66,7 @@
   [color=yellow][bold]Примечание:[/bold][/color] Гражданские суда и суда экспедиций [bold]не оснащены[/bold] межзвёздным двигателем по умолчанию. Его необходимо приобрести и установить отдельно.
 
   <Box>
-    <GuideEntityEmbed Entity="MachineWarpDrive"/>
+    <GuideEntityEmbed Entity="MachineFTLDrive600"/>
   </Box>
 
   #### Системный двигатель
@@ -101,12 +101,12 @@
   <Box>
     <GuideEntityEmbed Entity="BannerSectorPirates" Caption="Баннер пиратов"/>
     <GuideEntityEmbed Entity="BannerSectorSyndicate" Caption="Баннер Синдиката"/>
-    <GuideEntityEmbed Entity="BannerSectorSecurity" Caption="Баннер ДСБФ"/>
+    <GuideEntityEmbed Entity="BannerSectorSecurity" Caption="Баннер СРБС"/>
   </Box>
 
   - [color=#948471][bold]знамя сектора Пиратов[/bold][/color] — баннер пиратов
   - [color=#d93204][bold]знамя сектора Синдиката[/bold][/color] — баннер Синдиката
-  - [color=#96B089][bold]знамя сектора ДСБФ[/bold][/color] — баннер ДСБФ
+  - [color=#96B089][bold]знамя сектора СРБС[/bold][/color] — баннер СРБС
 
   ### Как захватить сектор
   - Доберитесь до сектора, который хотите захватить
@@ -126,12 +126,12 @@
   Некоторые сектора позволяют собирать [color=gold]выплаты[/color] за контроль над ними. Для этого используется устройство [bold]Терминал выплат[/bold]. Каждая фракция имеет свой собственный терминал выплат на своей основной станции:
 
   <Box>
-    <GuideEntityEmbed Entity="NfsdSectorPayoutCollector" Caption="Терминал выплат ДСБФ"/>
+    <GuideEntityEmbed Entity="NfsdSectorPayoutCollector" Caption="Терминал выплат СРБС"/>
     <GuideEntityEmbed Entity="SyndicateSectorPayoutCollector" Caption="Терминал выплат Синдиката"/>
     <GuideEntityEmbed Entity="PirateSectorPayoutCollector" Caption="Терминал выплат Пиратов"/>
   </Box>
 
-  - [color=#96B089][bold]Терминал выплат ДСБФ[/bold][/color] — собирает монеты Таможенные кредиты за подконтрольные сектора
+  - [color=#96B089][bold]Терминал выплат СРБС[/bold][/color] — собирает монеты Таможенные кредиты за подконтрольные сектора
   <Box>
     <GuideEntityEmbed Entity="FrontierUplinkCoin" Caption="Таможенные кредиты"/>
   </Box>
@@ -185,7 +185,7 @@
   Без диска координат вы не сможете видеть скрытые сектора на карте а без межзвёздного двигателя совершать межзвёздные путешествия через StarMap.
 
   ### Захват и контроль
-  Будучи участником фракции Пираты/ДСБФ/Синдикат:
+  Будучи участником фракции Пираты/СРБС/Синдикат:
 
   - Захватывайте стратегически важные сектора для контроля гиперланов
   - Защищайте свои баннеры — их уничтожение приведёт к потере контроля

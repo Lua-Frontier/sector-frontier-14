@@ -48,3 +48,15 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+# toggleable scope
+- type: entity
+  parent: BaseAction
+  id: ActionToggleScope
+  name: Toggle Scope
+  description: Toggles the scope on and off.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent

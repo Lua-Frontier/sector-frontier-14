@@ -619,6 +619,20 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: ComputerResearchAndDevelopmentSyndicateFlatpack
+  name: syndicate research and development computer flatpack
+  description: A flatpack used for constructing a syndicate research and development computer.
+  components:
+  - type: Flatpack
+    entity: ComputerResearchAndDevelopmentSyndicate
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_console
+
+- type: entity
+  parent: BaseNFFlatpack
   id: ComputerAnalysisConsoleFlatpack
   name: analysis console flatpack
   description: A flatpack used for constructing an analysis console.
@@ -676,6 +690,20 @@
   components:
   - type: Flatpack
     entity: ResearchAndDevelopmentServer
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    layers:
+    - state: science_server
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ResearchAndDevelopmentServerSyndicateFlatpack
+  name: syndicate research and development server flatpack
+  description: A flatpack used for constructing a syndicate research and development server.
+  components:
+  - type: Flatpack
+    entity: ResearchAndDevelopmentServerSyndicate
   - type: StaticPrice
     price: 250
   - type: Sprite

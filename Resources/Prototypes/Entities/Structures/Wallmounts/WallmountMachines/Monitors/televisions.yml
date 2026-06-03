@@ -15,6 +15,7 @@
         state: television_wall
       - map: ["computerLayerScreen"]
         state: television_wallscreen
+        shader: unshaded # Lua
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera

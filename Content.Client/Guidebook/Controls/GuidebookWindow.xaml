@@ -3,16 +3,16 @@
                 xmlns:fancyTree="clr-namespace:Content.Client.UserInterface.Controls.FancyTree"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                 SetSize="900 700"
-                MinSize="100 200"
+                MinSize="300 200"
                 Resizable="True"
-                Title="{Loc 'guidebook-window-title'}">
+                Title="{Loc 'guidebook-window-title'}"> <!-- Lua: MinSize="100 200" < "300 200" -->
     <SplitContainer Orientation="Horizontal" HorizontalExpand="True" Name="Split">
         <!-- Guide select -->
-        <BoxContainer Orientation="Horizontal" Name="TreeBox">
+        <BoxContainer Orientation="Horizontal" Name="TreeBox" MinSize="150 100"> <!-- Lua: Added MinSize="150 100" -->
             <fancyTree:FancyTree Name="Tree" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
             <cc:VSeparator StyleClasses="LowDivider" Margin="0 -2"/>
         </BoxContainer>
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" MinSize="150 100"> <!-- Lua: Added MinSize="150 100" -->
             <BoxContainer Name="SearchContainer" Visible="False" HorizontalExpand="True">
                 <LineEdit
                     Name="SearchBar"

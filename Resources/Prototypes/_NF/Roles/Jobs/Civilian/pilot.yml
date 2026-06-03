@@ -3,10 +3,10 @@
   name: job-name-pilot
   description: job-description-pilot
   playTimeTracker: JobPilot
-  salary: 7100
-  requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 43200
+  salary: 15000 #Lua 7100<15000
+#  requirements: # comment from _Lua
+#    - !type:OverallPlaytimeRequirement
+#      time: 43200
   icon: "JobIconPilot"
   supervisors: job-supervisors-hire
   weight: 2 # Prioritize station & department jobs
@@ -17,6 +17,10 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen
 
 # Interview variant
 - type: job

@@ -2,7 +2,8 @@
   name: 10mm SMG
   parent: [BaseC2ExpeditionContraband, BaseWeaponSubMachineGun]
   id: N14WeaponSubMachineGun10mm
-  description: Fully automatic submachinegun chambered in 10mm. # TODO: Need to create projectiles, magazines and boxes for 10mm.
+  description: Fully automatic submachinegun chambered in 10mm.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMG.rsi
@@ -18,42 +19,49 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,2,1
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmSMG.rsi
   - type: Gun
-    fireRate: 8
+    examineCaliber: gun-examine-caliber-919 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 7.5 #Lua 8<7.5
     soundGunshot:
       collection: N14Pistol10mmGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
-    minAngle: 8
-    maxAngle: 48
-    angleIncrease: 6
-    angleDecay: 16
+#    minAngle: 8 #comment from _Lua
+#    maxAngle: 48
+#    angleIncrease: 6
+#    angleDecay: 16
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -7
-    maxAngle: -15
+#  - type: Wieldable #comment from _Lua
+#  - type: GunWieldBonus
+#    minAngle: -7
+#    maxAngle: -15
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14MagazineSMG10mm
+        startingItem: Magazine9x19mmSubMachineGunFMJ #Lua N14MagazineSMG10mm<Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         whitelist:
           tags:
-            - N14MagazineSMG10mm
+            - Magazine9x19mmSubMachineGunFMJ #Lua N14MagazineSMG10mm<Magazine9x19mmSubMachineGunFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol10
+        startingItem: Cartridge9x19mmFMJ #Lua N14CartridgePistol10<Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol10
+            - Cartridge9x19mmFMJ #Lua N14CartridgePistol10<Cartridge9x19mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -65,6 +73,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponSubMachineGun]
   id: N14WeaponSubMachineGun12mm
   description: A heavy submachinegun chambered in 12mm. # TODO: Need to create projectiles, magazines and boxes for 12mm.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmSMG.rsi
@@ -79,42 +88,50 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 6
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    fireRate: 10 #Lua 6<10
     soundGunshot:
       collection: N14Pistol12mmGunshot
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    minAngle: 12
-    maxAngle: 40
-    angleIncrease: 4
-    angleDecay: 16
+#    minAngle: 12 #comment from _Lua
+#    maxAngle: 40
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -11
-    maxAngle: -23
+#  - type: Wieldable #comment from _Lua
+#  - type: GunWieldBonus
+#    minAngle: -11
+#    maxAngle: -23
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14MagazineSMG12mm
+        startingItem: Magazine635x40mmCaseless #Lua N14MagazineSMG12mm<Magazine635x40mmCaseless
         insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - N14MagazineSMG12mm
+            - Magazine635x40mmCaseless #Lua N14MagazineSMG12mm<Magazine635x40mmCaseless
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol127
+        startingItem: Cartridge635x40mmCaseless #Lua N14CartridgePistol127<Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol127
+            - Cartridge635x40mmCaseless #Lua N14CartridgePistol127<Cartridge635x40mmCaseless
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -126,6 +143,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponSubMachineGun]
   id: N14weapon12mmpipe
   description: a makeshift 12mm SMG, looks like is gonna explode the second it shoots.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
@@ -141,43 +159,50 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,2,1
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/12mmPIPE.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-45acp #Lua
     fireRate: 4
     soundGunshot:
       collection: N14Pistol12mmGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
-    minAngle: 8
-    maxAngle: 56
-    angleIncrease: 4
-    angleDecay: 16
+#    minAngle: 8 #comment from _Lua
+#    maxAngle: 56
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -7
-    maxAngle: -15
+#  - type: Wieldable #comment from _Lua
+#  - type: GunWieldBonus
+#    minAngle: -7
+#    maxAngle: -15
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14MagazineSMG12mm
+        startingItem: Magazine45_ACPPistolHighCapacityFMJ #Lua N14MagazineSMG12mm<Magazine45_ACPPistolHighCapacityFMJ
         insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - N14MagazineSMG12mm
+            - Magazine45_ACPPistolHighCapacityFMJ #Lua N14MagazineSMG12mm<Magazine45_ACPPistolHighCapacityFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol127
+        startingItem: Cartridge45_ACPFMJ #Lua N14CartridgePistol127<Cartridge45_ACPFMJ
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol127
+            - Cartridge45_ACPFMJ #Lua N14CartridgePistol127<Cartridge45_ACPFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -189,6 +214,7 @@
   parent: [BaseC3Contraband, BaseWeaponSubMachineGun]
   id: N14weapon10mmpipe
   description: a makeshift 10mm SMG, if you shake it you could hear the loose parts inside of the gun.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
@@ -204,42 +230,49 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,2,1
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/10mmPIPE.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-919 #Lua
     fireRate: 6
     soundGunshot:
       collection: N14Pistol10mmGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
-    minAngle: 8
-    maxAngle: 56
-    angleIncrease: 4
-    angleDecay: 16
+#    minAngle: 8 #comment from _Lua
+#    maxAngle: 56
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -7
-    maxAngle: -15
+#  - type: Wieldable #comment from _Lua
+#  - type: GunWieldBonus
+#    minAngle: -7
+#    maxAngle: -15
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14MagazineSMG10mm
+        startingItem: Magazine9x19mmSubMachineGunFMJ #Lua N14MagazineSMG10mm<Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         whitelist:
           tags:
-            - N14MagazineSMG10mm
+            - Magazine9x19mmSubMachineGunFMJ #Lua N14MagazineSMG10mm<Magazine9x19mmSubMachineGunFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol10
+        startingItem: Cartridge9x19mmFMJ #Lua N14CartridgePistol10<Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol10
+            - Cartridge9x19mmFMJ #Lua N14CartridgePistol10<Cartridge9x19mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -251,6 +284,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponSubMachineGun]
   id: N14WeaponAdvanceSubMachineGun12mm
   description: A bulky sub machine gun with a top magazine fed system, it uses 12mm ammmo.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/advance12mm.rsi
@@ -265,42 +299,50 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    fireRate: 7
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    fireRate: 5 #Lua 7<5
     soundGunshot:
       collection: N14Pistol12mmGunshot
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    minAngle: 16
-    maxAngle: 30
-    angleIncrease: 4
-    angleDecay: 16
+#    minAngle: 16 #comment from _Lua
+#    maxAngle: 30
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -15
-    maxAngle: -29
+#  - type: Wieldable #comment from _Lua
+#  - type: GunWieldBonus
+#    minAngle: -15
+ #   maxAngle: -29
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14TopMagazineSMG12mm
+        startingItem: Magazine45_ACPSubMachineGunFMJ #Lua N14TopMagazineSMG12mm<Magazine45_ACPSubMachineGunFMJ
         insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - N14TopMagazineSMG12mm
+            - Magazine45_ACPSubMachineGunFMJ #Lua N14TopMagazineSMG12mm<Magazine45_ACPSubMachineGunFMJ
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol127
+        startingItem: Cartridge45_ACPFMJ #Lua N14CartridgePistol127<Cartridge45_ACPFMJ
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol127
+            - Cartridge45_ACPFMJ #Lua N14CartridgePistol127<Cartridge45_ACPFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -312,6 +354,7 @@
   parent: [BaseC2ExpeditionContraband, BaseWeaponSubMachineGun]
   id: N14weapon9mmSMG
   description: a metallic pre-war simple SMG, chambered in 9mm.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
@@ -327,42 +370,52 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,2,1
     sprite: _Nuclear14/Objects/Weapons/Guns/SMGs/9mmSMG.rsi
   - type: Gun
-    fireRate: 7
+    examineCaliber: gun-examine-caliber-63540 #Lua
+    fireRate: 8 #Lua 7<8
     soundGunshot:
       collection: N14Pistol9mmGunshot
     selectedMode: Fullauto
     availableModes:
     - Fullauto
-    minAngle: 8
-    maxAngle: 24
-    angleIncrease: 4
-    angleDecay: 16
+#    minAngle: 8 #comment from _Lua
+#    maxAngle: 24
+#    angleIncrease: 4
+#    angleDecay: 16
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_cock.ogg
-  - type: Wieldable
   - type: GunWieldBonus
     minAngle: -7
     maxAngle: -15
+#  - type: Wieldable #comment from _Lua
+#  - type: GunWieldBonus
+#    minAngle: -7
+#    maxAngle: -15
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14MagazineSMG9mm
+        startingItem: Magazine635x40mmCaseless
         insertSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magin.ogg
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         whitelist:
           tags:
-            - N14MagazineSMG9mm
+            - Magazine635x40mmCaseless
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol9
+        startingItem: Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol9
+            - Cartridge635x40mmCaseless
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -417,14 +470,14 @@
         ejectSound: /Audio/_Nuclear14/Weapons/Effects/Reload/SMGs/smg_magout.ogg
         whitelist:
           tags:
-            - Magazine45SubMachineGun
+            - Magazine635x40mmCaseless #Lua N14MagazineSMG9mm<Magazine635x40mmCaseless
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol45
+        startingItem: Cartridge635x40mmCaseless #Lua N14CartridgePistol9<Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol45
+            - Cartridge635x40mmCaseless #Lua N14CartridgePistol9<Cartridge635x40mmCaseless
   - type: MagazineVisuals
     magState: mag
     steps: 1

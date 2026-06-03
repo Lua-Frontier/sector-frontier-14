@@ -14,15 +14,15 @@
     Speso: 5400
   categories:
     - UplinkVipClothing
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipClothingOuterSuitFox
@@ -33,15 +33,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingOuterSuitRacoon
@@ -52,15 +52,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingHeadHatFox
@@ -71,15 +71,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingHeadHatRacoon
@@ -90,15 +90,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingHandsTacticalMaidGloves
@@ -109,15 +109,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingHeadHatTacticalMaidHeadband
@@ -128,15 +128,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipUniformMaid
@@ -147,15 +147,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformLatexLovedmaid
@@ -166,15 +166,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformJumpskirtTacticalMaid
@@ -185,15 +185,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformJumpsuitGalaxyBlue
@@ -204,15 +204,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformJumpsuitGalaxyRed
@@ -223,15 +223,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformJumpsuitDameDane
@@ -242,15 +242,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformJumpsuitJester
@@ -261,15 +261,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingHeadHatJester
@@ -280,15 +280,15 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkVipClothingUniformJumpskirtJanimaid
@@ -299,14 +299,48 @@
     Speso: 300
   categories:
   - UplinkVipClothing
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
+# TEST LunaCoin
+- type: listing
+  id: UplinkVipClothingNeckCapeLuaBlackDalt
+  productEntity: ClothingNeckCapeLuaBlackDalt
+  cost:
+    Speso: 300
+    LunaCoin: 1
+  categories:
+  - UplinkVipClothing
+  - UplinkVipTierShareholder
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - Акционер
 
+- type: listing
+  id: UplinkVipClothingHacksHat
+  productEntity: HacksHat
+  cost:
+    LunaCoin: 1
+  categories:
+  - UplinkVipClothing
+  - UplinkVipTierShareholder
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - Акционер

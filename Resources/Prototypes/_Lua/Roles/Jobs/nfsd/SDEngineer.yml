@@ -1,0 +1,55 @@
+- type: job
+  id: SDEngineer
+  name: job-name-nfsd-engineer
+  description: job-description-nfsd-engineer
+  playTimeTracker: JobNfsdEngineer
+  salary: 40000
+  requirements:
+  - !type:RoleTimeRequirement #Lua
+    role: JobSecurityOfficer
+    time: 36000 # 20h
+  startingGear: SDBaseLuaGear
+  icon: JobIconSDEngineerNF
+  supervisors: job-supervisors-bailiff
+  weight: 125
+  displayWeight: 35
+  canBeAntag: false
+  accessGroups:
+  - GeneralNfsdAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Security
+
+- type: startingGear
+  id: SDBaseLuaGear
+  equipment:
+    pocket1: NFWeaponRevolverWard45
+  storage:
+    back:
+    - Flash
+    - NFSpeedLoaderPistol45Overpressure
+    - FrontierUplinkCoin10
+
+- type: chameleonOutfit
+  id: SDEngineerChameleonOutfit
+  job: SDEngineer
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatNfsdBeretBrown
+    mask: ClothingMaskGasNfsd
+    eyes: ClothingEyesGlassesNfsd
+    outerClothing: ClothingOuterArmorNfsd
+    neck: ClothingNeckNfsdBadgeSecurity
+    belt: ClothingBeltNfsdFilled
+    gloves: ClothingHandsGlovesCombatNfsdBrown
+    shoes: ClothingShoesBootsNfsdBrownFilled
+
+- type: playTimeTracker
+  id: JobNfsdEngineer

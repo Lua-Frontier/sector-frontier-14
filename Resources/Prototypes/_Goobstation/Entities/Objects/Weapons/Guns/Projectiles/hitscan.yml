@@ -129,7 +129,8 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 14
+        Heat: 15 #Lua 14<15
+        Radiation: 10 #Lua
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi

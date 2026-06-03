@@ -182,6 +182,8 @@ public enum VesselClass : byte
     Atmospherics,
     Mercenary,
     Medical,
+    Cryogenic, // Lua
+    Paramedical, // Lua
     Civilian, // Service catch-all - reporter, legal, entertainment, misc. ships
     Kitchen,
     // Antag ships
@@ -210,4 +212,5 @@ public enum VesselEngine : byte
     Plasma,
     Uranium,
     Bananium,
+    Bluespace // Lua
 }

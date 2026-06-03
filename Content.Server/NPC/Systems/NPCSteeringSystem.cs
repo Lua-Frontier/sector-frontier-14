@@ -486,9 +486,9 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     {
         if (!Resolve(uid, ref modifier, false))
         {
-            return MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
+            return MovementSpeedModifierComponent.DefaultBaseRunningSpeed;
         }
 
-        return modifier.CurrentSprintSpeed;
+        return modifier.CurrentRunningSpeed;
     }
 }

@@ -20,6 +20,10 @@
   - type: RoarAccent
   - type: Hunger
   - type: Thirst
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 4.5
+    baseSprintSpeed: 6.5
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -45,9 +49,6 @@
         Heat : 0.1 #per second, scales with temperature & other constants
   - type: Perishable
   # Lua start
-  - type: SpeedModifierContacts
-    walkSpeedModifier: 1.2
-    sprintSpeedModifier: 1.2
   - type: LanguageKnowledge
     speaks:
     - Intergalactic

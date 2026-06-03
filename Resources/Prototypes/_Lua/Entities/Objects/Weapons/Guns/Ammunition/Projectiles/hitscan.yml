@@ -48,7 +48,8 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 18
+        Heat: 15 #Lua 18<15
+        Radiation: 10 #Lua
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -111,8 +112,8 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 20 #Lua 10<20
-        Radiation: 20 #Lua 10<20
+        Heat: 25 #Lua 10<25
+        Radiation: 17 #Lua 10<17
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi

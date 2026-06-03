@@ -16,6 +16,10 @@
     - Tail
   - type: Hunger
   - type: Thirst
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 4.5
+    baseSprintSpeed: 6.5
   - type: Sprite
     netsync: false
     noRot: true
@@ -60,6 +64,12 @@
     understands:
     - Intergalactic
     - Demon # Lua end
+  - type: LuaSprint # Lua
+    maxSprint: 116
+    drainPerSecond: 5.9
+    regenPerSecond: 7.0
+    regenDelay: 0.29
+    recoverThresholdFraction: 0.28
 
 - type: entity
   parent: BaseSpeciesDummy

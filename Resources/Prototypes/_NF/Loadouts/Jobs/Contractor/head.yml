@@ -324,6 +324,54 @@
     head: ClothingHeadHatBeretMedic
 
 - type: loadout
+  id: ContractorClothingHeadHatChiefEngineer
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFHeadwearCapable
+  price: 650
+  equipment:
+    head: ADTClothingHeadHatsBeretChiefEngineer
+
+- type: loadout
+  id: ContractorClothingHeadHatAtmos
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFHeadwearCapable
+  price: 650
+  equipment:
+    head: ADTClothingHeadHatsBeretAtmosphericTechnician
+
+- type: loadout
+  id: ContractorClothingHeadHatCargo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFHeadwearCapable
+  price: 650
+  equipment:
+    head: ADTClothingHeadHatsBeretCargo
+
+- type: loadout
+  id: ContractorClothingHeadHatChemist
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFHeadwearCapable
+  price: 650
+  equipment:
+    head: ClothingHeadBeretChemist
+
+- type: loadout
   id: ContractorClothingHeadHatSurgcapGreen
   effects:
   - !type:GroupLoadoutEffect

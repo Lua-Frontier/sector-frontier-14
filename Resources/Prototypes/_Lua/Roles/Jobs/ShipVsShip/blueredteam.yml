@@ -148,6 +148,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: BlueIconTeamPilot
+    jobName: job-name-blueteampilot
 
 - type: job
   id: BlueTeamPilot
@@ -193,6 +194,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: BlueIconTeamGunner
+  jobName: job-name-blueteamgunner
 
 - type: job
   id: BlueTeamGunner
@@ -238,6 +240,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: BlueIconTeam
+  jobName: job-name-blueteam
 
 - type: job
   id: BlueTeamSpecialist
@@ -341,6 +344,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: BlueIconTeamCaptain
+  jobName: job-name-blueteamcaptain
 
 - type: job
   id: BlueTeamCaptain
@@ -419,6 +423,7 @@
 - type: entity
   parent: ERTSecurityIDCard
   id: BlueTeamSpecialistIDCard
+  name: ID карта специалиста команды синих
   components:
   - type: PresetIdCard
     job: BlueTeamSpecialist
@@ -426,6 +431,7 @@
 - type: entity
   parent: ERTSecurityIDCard
   id: BlueTeamCaptainIDCard
+  name: ID карта капитана команды синих
   components:
   - type: PresetIdCard
     job: BlueTeamCaptain
@@ -444,17 +450,17 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltBlueTeam
-  name: полноразмерная кроваво - красная гарнитура
-  description: Модифицированный модульный интерком синдиката.
+  name: полноразмерная гарнитура команды синих
+  description: Модифицированный модульный интерком команды синих. Принимает ключи шифрования.
   components:
   - type: Headset
     color: "#30b3ff"
   - type: EncryptionKeyHolder
     keySlots: 5
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Lua/Clothing/Ears/Headsets/blueteam.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Lua/Clothing/Ears/Headsets/blueteam.rsi
   - type: ContainerFill
     containers:
       key_slots:
@@ -613,6 +619,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: RedIconTeamPilot
+  jobName: job-name-redteampilot
 
 - type: job
   id: RedTeamPilot
@@ -658,6 +665,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: RedIconTeamGunner
+  jobName: job-name-redteamgunner
 
 - type: job
   id: RedTeamGunner
@@ -703,6 +711,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: RedIconTeam
+  jobName: job-name-redteam
 
 - type: job
   id: RedTeamSpecialist
@@ -807,6 +816,7 @@
   icon:
     sprite: /Textures/_Lua/Interface/Misc/job_icons.rsi
     state: RedIconTeamCaptain
+  jobName: job-name-redteamcaptain
 
 - type: job
   id: RedTeamCaptain
@@ -885,6 +895,7 @@
 - type: entity
   parent: ERTSecurityIDCard
   id: RedTeamSpecialistIDCard
+  name: ID карта специалиста команды красных
   components:
   - type: PresetIdCard
     job: RedTeamSpecialist
@@ -892,6 +903,7 @@
 - type: entity
   parent: ERTSecurityIDCard
   id: RedTeamCaptainIDCard
+  name: ID карта капитана команды красных
   components:
   - type: PresetIdCard
     job: RedTeamCaptain
@@ -910,17 +922,17 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltRedTeam
-  name: полноразмерная кроваво - красная гарнитура
-  description: Модифицированный модульный интерком синдиката.
+  name: полноразмерная гарнитура команды красных
+  description: Модифицированный модульный интерком команды красных. Принимает ключи шифрования.
   components:
   - type: Headset
     color: "#ff4860"
   - type: EncryptionKeyHolder
     keySlots: 5
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Lua/Clothing/Ears/Headsets/redteam.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/syndicate.rsi
+    sprite: _Lua/Clothing/Ears/Headsets/redteam.rsi
   - type: ContainerFill
     containers:
       key_slots:

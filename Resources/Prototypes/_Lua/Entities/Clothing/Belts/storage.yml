@@ -4,7 +4,7 @@
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseC1SyndicateContraband]
-  id: ClothingBeltPlantOutpostSyndicate
+  id: ClothingBeltPlantOutpostTypan
   name: пояс ботаника синдиката
   description: Пояс, используемый для хранения основных принадлежностей для гидропоники. На удивление, не чёрный.
   components:
@@ -32,7 +32,7 @@
 
 - type: entity
   parent: ClothingBeltStorageBase
-  id: ClothingBeltAssaultOutpostSyndicate
+  id: ClothingBeltAssaultOutpostTypan
   name: тактический пояс
   description: Удобный пояс, часто используемый синдикатом на засекреченных территориях.
   components:
@@ -72,7 +72,7 @@
 
 - type: entity
   parent: [ClothingBeltSecurity, BaseC1SyndicateContraband]
-  id: ClothingBeltOutpostSyndicateSecurityWebbing
+  id: ClothingBeltOutpostTypanSecurityWebbing
   name: РПС синдиката
   description: Ременно-плечевая система тактических ремней, которую носят представители военных структур синдиката.
   components:
@@ -81,10 +81,20 @@
   - type: Sprite
     sprite: _Lua/Clothing/Belt/webbing.rsi
 
+- type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltStormCreedWebbing
+  name: РПС Кодекса
+  description: Ременно-плечевая система тактических ремней, которую носят жители Бури.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Belt/stormcreedwebbing.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Belt/stormcreedwebbing.rsi
 
 - type: entity
   name: сумка для растений синдиката
-  id: OutpostSyndicatePlantBag
+  id: OutpostTypanPlantBag
   parent: BaseStorageItem
   description: Сумка для ботаников, чтобы легко переносить свои огромные урожаи.
   components:
@@ -110,6 +120,25 @@
         - Seed
 
 - type: entity
+  id: ClothingBeltPlantManagerFilled
+  parent: ClothingBeltChiefEngineer
+  suffix: Filled
+  components:
+  - type: Storage
+    grid:
+    - 0,0,9,1
+  - type: StorageFill
+    contents:
+      - id: PowerDrill
+      - id: JawsOfLife
+      - id: WelderExperimental
+      - id: Multitool
+      - id: HolofanProjector
+      - id: GasAnalyzer
+      - id: trayScanner
+      - id: RCDRecharging
+
+- type: entity
   id: ClothingBeltMilitaryWebbingBlueShieldFilled
   parent: ClothingBeltMilitaryWebbingMed
   name: РПС офицера "Синий Щит"
@@ -130,3 +159,41 @@
     sprite: _Lua/Clothing/Belt/webbing_blueshield.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Belt/webbing_blueshield.rsi
+
+- type: entity
+  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
+  id: ClothingBeltWebbingMedicNFSD
+  name: medical NFSD webbing
+  description: Webbing for medical security workers' needs.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Belt/web_er_nfsd.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Belt/web_er_nfsd.rsi
+
+- type: entity
+  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
+  id: ClothingBeltMedicNFSD
+  name: medical NFSD belt
+  description: Medical belt for NFSD workers.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Belt/belt_er_nfsd.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Belt/belt_er_nfsd.rsi
+
+- type: entity
+  id: ClothingBeltNfsdFilledBrigmedic
+  parent: ClothingBeltMedicNFSD
+  suffix: Filled, Brigmedic
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into

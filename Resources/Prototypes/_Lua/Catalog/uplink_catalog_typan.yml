@@ -440,21 +440,21 @@
       - NukeOpsUplink
       - TypanUplink
 
-- type: listing
-  id: UplinkMagazine635x40mmCaselessBig # Mag extended
-  name: uplink-typan-Magazine635x40mmCaselessBig-name
-  description: uplink-typan-Magazine635x40mmCaselessBig-desc
-  productEntity: Magazine635x40mmCaselessBig
-  cost:
-    Speso: 15000
-  categories:
-    - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - TypanUplink
+# - type: listing
+#   id: UplinkMagazine635x40mmCaselessBig # Mag extended
+#   name: uplink-typan-Magazine635x40mmCaselessBig-name
+#   description: uplink-typan-Magazine635x40mmCaselessBig-desc
+#   productEntity: Magazine635x40mmCaselessBig
+#   cost:
+#     Speso: 15000
+#   categories:
+#     - UplinkAmmo
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - NukeOpsUplink
+#       - TypanUplink
 
 #region starmap
 

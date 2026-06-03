@@ -1,8 +1,9 @@
 - type: entity
   name: M54CE2 heavy assault rifle
-  parent: [BaseC3Contraband, CMBaseWeaponRifle]
+  parent: [BaseC3Contraband, CMBaseWeaponRifleUnwieldable] #Lua CMBaseWeaponRifle<CMBaseWeaponRifleUnwieldable
   id: WeaponRifleM54CE2
   description: A large squad support weapon capable of laying down sustained suppressing fire from a mounted position. While unstable and less accurate, it can be lugged and shot with two hands.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2.rsi
@@ -11,21 +12,29 @@
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
-  - type: HeldSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+#  - type: HeldSpeedModifier # comment (14-16) from _Lua
+#    walkModifier: 0.75
+#    sprintModifier: 0.75
   - type: Clothing
     sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2.rsi
   - type: Tag
     tags:
     - WeaponRifleM54CE2
     - RMCGunBipodFullAuto
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
-    minAngle: 1
-    maxAngle: 10
-    angleIncrease: 1
-    angleDecay: 1
-    fireRate: 6
+    examineCaliber: gun-examine-caliber-919 #Lua
+#    minAngle: 1 # comment from _Lua
+#    maxAngle: 10
+#    angleIncrease: 1
+#    angleDecay: 1
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 9 #Lua 6<9
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -57,14 +66,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: CMMagazineRifleM54CE2
+        startingItem: Magazine9x19mmSubMachineGunFMJ #Lua CMMagazineRifleM54CE2<Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/_RMC14/Weapons/Guns/Reload/hpr_reload.ogg
         ejectSound: /Audio/_RMC14/Weapons/Guns/Reload/hpr_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - CMMagazineRifleM54CE2
-  - type: GunRequiresWield
+          - Magazine9x19mmSubMachineGunFMJ #Lua CMMagazineRifleM54CE2<Magazine9x19mmSubMachineGunFMJ
+#  - type: GunRequiresWield # comment from _Lua
   - type: AttachableHolderVisuals # CHANGE THESE WHEN THIS THING GETS ITS OWN SPRITE
     offsets:
       rmc-aslot-barrel: 0.81, 0.029

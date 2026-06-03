@@ -1,0 +1,1091 @@
+#region hardsuits
+
+- type: listing
+  id: UplinkBMHardsuitWarlord
+  name:  uplink-bm-hardsuitwarlord-name
+  description: uplink-bm-hardsuitwarlord-desc
+  productEntity: ClothingOuterHardsuitWarlord
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMMercenaryHardsuit
+  name:  uplink-bm-mercenary-hardsuit-name
+  description: uplink-bm-mercenary-hardsuit-desc
+  productEntity: ClothingOuterHardsuitMercenary
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMHardsuitUSSPLightOfficer
+  name:  uplink-bm-hardsuitussplightofficer-name
+  description: uplink-bm-hardsuitussplightofficer-desc
+  productEntity: ClothingOuterHardsuitUSSPLightOfficer
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMHardsuitUSSPLightMK2
+  name:  uplink-bm-hardsuitlightmk2-name
+  description: uplink-bm-hardsuitlightmk2-desc
+  productEntity: ClothingOuterHardsuitUSSPLightMK2
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMHardsuitUSSPCombat
+  name:  uplink-bm-hardsuitusspcombat-name
+  description: uplink-bm-hardsuitusspcombat-desc
+  productEntity: ClothingOuterHardsuitUSSPCombat
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+#region clothing
+
+# - type: listing
+#   id: UplinkBMStelsJetpack
+#   name:  uplink-pirate-stealth-jetpack-name
+#   description: uplink-pirate-stealth-jetpack-desc
+#   productEntity: JetpackStealthFilled
+#   cost:
+#     Speso: 12500
+#   categories:
+#     - UplinkBMUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - BMUplink
+
+- type: listing
+  id: UplinkBMChameleon
+  name:  uplink-bm-chameleon-name
+  description: uplink-bm-chameleon-desc
+  productEntity: ClothingBackpackChameleonFill
+  icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
+  cost:
+    Speso: 12500
+  categories:
+    - UplinkBMUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# - type: listing
+#   id: UplinkBMAgentID
+#   name:  uplink-bm-agentid-name
+#   description: uplink-bm-agentid-desc
+#   productEntity: AgentIDCard
+#   cost:
+#     Speso: 12500
+#   categories:
+#     - UplinkBMUtility
+#   conditions:
+#     - !type:StoreWhitelistCondition
+#       whitelist:
+#         tags:
+#           - BMUplink
+
+- type: listing
+  id: UplinkBMBackpackSyndicate
+  name:  uplink-bm-backpacksyndie-name
+  description: uplink-bm-backpacksyndie-desc
+  productEntity: ClothingBackpackSyndicate
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkBMUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# Region weapons
+## 6.8x54 STANAG LMGs
+- type: listing
+  id: UplinkBMAutoRifle
+  name:  uplink-bm-autorifle-name
+  description: uplink-bm-autorifle-desc
+  productEntity: N14WeaponAutoRifle
+  cost:
+    Speso: 35000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 8x65 SKR LMGs
+- type: listing
+  id: UplinkBMLMG
+  name:  uplink-bm-LMG-name
+  description: uplink-bm-LMG-desc
+  productEntity: N14WeaponLMG
+  cost:
+    Speso: 35000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 12.7mm Bolt-action rifles
+- type: listing
+  id: UplinkBMBrushGun
+  name:  uplink-bm-brushgun-name
+  description: uplink-bm-brushgun-desc
+  productEntity: N14WeaponBrushGun
+  cost:
+    Speso: 35000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 5.56x45 Auto rifles
+- type: listing
+  id: UplinkBMRifleR91
+  name:  uplink-bm-R91-name
+  description: uplink-bm-R91-desc
+  productEntity: N14WeaponRifleR91
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 7.62x39 Auto rifles
+- type: listing
+  id: UplinkBMChineseRifle
+  name:  uplink-bm-chinese-name
+  description: uplink-bm-chinese-desc
+  productEntity: N14WeaponChineseRifle
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 7.62x51 Semi-auto rifles
+- type: listing
+  id: UplinkBMService
+  name:  uplink-bm-service-name
+  description: uplink-bm-service-desc
+  productEntity: N14WeaponService
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 7.62x54 Semi-auto marksman rifles
+- type: listing
+  id: UplinkBMLeverRifle
+  name:  uplink-bm-lever-name
+  description: uplink-bm-lever-desc
+  productEntity: N14WeaponLeverRifle
+  cost:
+    Speso: 35000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# .45 magnum Revolvers
+- type: listing
+  id: UplinkBMMagnum
+  name:  uplink-bm-magnum-name
+  description: uplink-bm-magnum-desc
+  productEntity: N14WeaponRevolverMagnun
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# .45 ACP Heavy SMGs and pistols
+- type: listing
+  id: UplinkBM12mmPipe
+  name:  uplink-bm-12mmpipe-name
+  description: uplink-bm-12mmpipe-desc
+  productEntity: N14weapon12mmpipe
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMPistol12mm
+  name:  uplink-bm-pistol12mm-name
+  description: uplink-bm-pistol12mm-desc
+  productEntity: N14WeaponPistol12mm
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 9x19mm Medium SMGs and pistols
+- type: listing
+  id: UplinkBM10mmPipe
+  name:  uplink-bm-10mmpipe-name
+  description: uplink-bm-10mmpipe-desc
+  productEntity: N14weapon10mmpipe
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMPistol9mm
+  name:  uplink-bm-pistol9mm-name
+  description: uplink-bm-pistol9mm-desc
+  productEntity: N14WeaponPistol9mm
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 6.35x40 Light SMGs and pistols
+- type: listing
+  id: UplinkBM9mmSMG
+  name:  uplink-bm-9mmsmg-name
+  description: uplink-bm-9mmsmg-desc
+  productEntity: N14weapon9mmSMG
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMPistolChinese
+  name:  uplink-bm-pistolchinese-name
+  description: uplink-bm-pistolchinese-desc
+  productEntity: N14WeaponPistolChinese
+  cost:
+    Speso: 15000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# 4_gauge Shotguns
+- type: listing
+  id: UplinkBMShotgun
+  name:  uplink-bm-shotgun-name
+  description: uplink-bm-shotgun-desc
+  productEntity: N14WeaponShotgun
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMDBShotgun
+  name:  uplink-bm-dbshotgun-name
+  description: uplink-bm-dbshotgun-desc
+  productEntity: N14WeaponDoubleBarrelShotgun
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# Energy guns
+- type: listing
+  id: UplinkBMLaserAutoRifle
+  name: uplink-bm-laserautorifle-name
+  description: uplink-bm-laserautorifle-desc
+  productEntity: WeaponCaseShortN14WeaponLaserAutoRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_autorifle.rsi, state: icon }
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMPlasmaRifle
+  name: uplink-bm-plasmarifle-name
+  description: uplink-bm-plasmarifle-desc
+  productEntity: WeaponCaseShortN14WeaponPlasmaRifle
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_rifle.rsi, state: icon }
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMWatzz2000
+  name: uplink-bm-wattz2-name
+  description: uplink-bm-wattz2-desc
+  productEntity: WeaponCaseShortN14WeaponWattz2000
+  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz2000.rsi, state: icon }
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMPlasmaCutter
+  name: uplink-bm-plasmacutter-name
+  description: uplink-bm-plasmacutter-desc
+  productEntity: WeaponPlasmaCutter
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMAutoPulser
+  name: uplink-bm-autopulser-name
+  description: uplink-bm-autopulser-desc
+  productEntity: WeaponRifleAsakimAutopulser
+  cost:
+    Speso: 50000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# Region ammo
+
+# 6.8x52mm
+
+# FMJ
+
+- type: listing
+  id: BMUplinkMagazine68x52mmCaselessBig # Mag
+  name: box magazine (6.8x52mm STANAG Caseless)
+  description:
+  productEntity: Magazine68x52mmCaselessBig
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi, state: base }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# 12.7x99mm
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine127x99mmFMJ # Mag
+  name: uplink-security-Magazine127x99mmFMJ-name
+  description: uplink-security-Magazine127x99FMJ-desc
+  productEntity: Magazine127x99mm
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# 7.62x39mm
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine762x39mmFMJ # Mag
+  name: uplink-security-Magazine762x39mmFMJ-name
+  description: uplink-security-Magazine762x39mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle762x39mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine762x39mmRubber # Mag
+  name: uplink-security-Magazine762x39mmRubber-name
+  description: uplink-security-Magazine762x39mmRubber-desc
+  productEntity: LuaBoxMagazineRifle762x39mmRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# 5.56x45mm
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine556x45mmFMJ # Mag
+  name: uplink-security-Magazine556x45mmFMJ-name
+  description: uplink-security-Magazine556x45mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle556x45mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine556x45mmRubber # Mag
+  name: uplink-security-Magazine556x45mmRubber-name
+  description: uplink-security-Magazine556x45mmRubber-desc
+  productEntity: LuaBoxMagazineRifle556x45mmRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# 9x19mm
+
+# SubMachineGun
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine9x19mmSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunFMJ-name
+  description: uplink-security-Magazine9x19mmSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine9x19mmSubMachineGunRubber # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunRubber-name
+  description: uplink-security-Magazine9x19mmSubMachineGunRubber-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Pistol
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine9x19mmPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine9x19mmPistolHighCapacityRubber # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityRubber-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityRubber-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# .45_ACP
+
+# SubMachineGun
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine45_ACPSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine45_ACPSubMachineGunFMJ-name
+  description: uplink-security-Magazine45_ACPSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine45_ACPSubMachineGunRubber # Mag
+  name: uplink-security-Magazine45_ACPSubMachineGunRubber-name
+  description: uplink-security-Magazine45_ACPSubMachineGunRubber-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Pistol
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine45_ACPPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine45_ACPPistolHighCapacityRubber # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityRubber-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityRubber-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# .45 Magnum
+
+# FMJ
+
+- type: listing
+  id: UplinkBMSpeedLoader45_magnumFMJ # speedloader
+  name: uplink-security-SpeedLoader45_magnumFMJ-name
+  description: uplink-security-SpeedLoader45_magnumFMJ-desc
+  productEntity: LuaBoxSpeedLoader45_magnumFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMSpeedLoader45_magnumRubber # speedloader
+  name: uplink-security-SpeedLoader45_magnumRubber-name
+  description: uplink-security-SpeedLoader45_magnumRubber-desc
+  productEntity: LuaBoxSpeedLoader45_magnumRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# 7.62x51mm
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine762x51mmFMJ # Mag
+  name: uplink-security-Magazine762x51mmFMJ-name
+  description: uplink-security-Magazine762x51mmFMJ-desc
+  productEntity: LuaBoxMagazine762x51mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+- type: listing
+  id: UplinkBMAmmoBox762x51mmFMJ # Mag (For VFD MR-8B LWMMG (7.62x51mm))
+  name: uplink-security-AmmoBox762x51mmFMJ-name
+  description: uplink-security-AmmoBox762x51mmFMJ-desc
+  productEntity: AmmoBox762x51mmFMJ
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkBMMagazine762x51mmRubber # Mag
+  name: uplink-security-Magazine762x51mmRubber-name
+  description: uplink-security-Magazine762x51mmRubber-desc
+  productEntity: LuaBoxMagazine762x51mmRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# 8x65 STANAG
+
+# FMJ
+
+- type: listing
+  id: UplinkBMMagazine8x65mmSKR # Mag
+  name: uplink-security-Magazine8x65mmSKR-name
+  description: uplink-security-Magazine8x65mmSKR-desc
+  productEntity: LuaBoxMagazine8x65mmSKR
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+# Region grenade
+
+- type: listing
+  id: UplinkBMEmpGrenadeBox
+  name:  uplink-security-empgrenade-box-name
+  description: uplink-security-empgrenade-box-desc
+  productEntity: BoxEMPGrenadesNfsd
+  icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
+  cost:
+    Speso: 25000
+  categories:
+    - UplinkBMExplosives
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMSmokeGrenadeBox
+  name:  uplink-security-smokegrenade-box-name
+  description: uplink-security-smokegrenade-box-desc
+  productEntity: BoxSmokeGrenades
+  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon}
+  cost:
+    Speso: 12500
+  categories:
+    - UplinkBMExplosives
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMFlashbangGrenadeBox
+  name:  uplink-security-flashbanggrenade-box-name
+  description: uplink-security-flashbanggrenade-box-desc
+  productEntity: BoxFlashBangGrenades
+  icon: { sprite: Objects/Weapons/Grenades/flashbang.rsi, state: icon}
+  cost:
+    Speso: 12500
+  categories:
+    - UplinkBMExplosives
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+# Region medicine
+
+- type: listing
+  id: UplinkBMCombatMedkit
+  name:  uplink-security-medkit-name
+  description: uplink-security-medkit-desc
+  productEntity: MedkitCombatFilled
+  icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkBMMedicine
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMMechMedipen
+  name:  uplink-bm-mechmedipen-name
+  description: uplink-bm-mechmedipen-desc
+  productEntity: BruteAutoInjector
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkBMMedicine
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMBurnMedipen
+  name:  uplink-bm-burnmedipen-name
+  description: uplink-bm-burnmedipen-desc
+  productEntity: BurnAutoInjector
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkBMMedicine
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMStimpackMini
+  name:  uplink-bm-stimpackmini-name
+  description: uplink-bm-stimpackmini-desc
+  productEntity: StimpackMini
+  icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  cost:
+    Speso: 12500
+  categories:
+    - UplinkBMMedicine
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase
+
+# Region utility
+
+- type: listing
+  id: UplinkBMTeleShield
+  name:  uplink-security-teleshield-name
+  description: uplink-security-teleshield-desc
+  productEntity: TelescopicShield
+  icon: { sprite: Objects/Weapons/Melee/teleriot_shield.rsi, state: teleriot-on }
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkBMUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase
+
+- type: listing
+  id: UplinkBMTrackingDartsAmmo
+  name:  uplink-security-trackingdart-ammo-name
+  description: uplink-security-trackingdart-ammo-desc
+  productEntity: NFBoxDartsTracking
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-dart }
+  cost:
+    Speso: 12500
+  categories:
+    - UplinkBMAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - MercenaryBase
+
+# Categories
+- type: storeCategory
+  id: UplinkBMHardsuits
+  name: store-category-bmhardsuits
+
+- type: storeCategory
+  id: UplinkBMUtility
+  name: store-category-bmutility
+
+- type: storeCategory
+  id: UplinkBMWeapons
+  name: store-category-bmweapons
+
+- type: storeCategory
+  id: UplinkBMAmmo
+  name: store-category-bmammo
+
+- type: storeCategory
+  id: UplinkBMExplosives
+  name: store-category-bmexplosives
+
+- type: storeCategory
+  id: UplinkBMMedicine
+  name: store-category-bmmedicine
+
+# Tag
+- type: Tag
+  id: BMUplink
+
+# StorePreset
+- type: entity
+  id: StorePresetBMUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-bm-uplink
+    categories:
+    - UplinkBMHardsuits
+    - UplinkBMWeapons
+    - UplinkBMAmmo
+    - UplinkBMUtility
+    - UplinkBMExplosives
+    - UplinkBMMedicine
+    currencyWhitelist:
+    - Speso
+    useBankAccount: true
+
+# Uplink console
+- type: entity
+  name: стационарный аплинк чёрного рынка
+  parent: [BaseStructureDisableToolUse, ComputerUplinkBase, StorePresetBMUplink, BaseStructureIndestructible, BaseStructureComputer]
+  id: LuaComputerUplinkBM
+  description: Все самые запрещённые штучки теперь прямо перед вами!
+  suffix: Need balance test
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard_trade
+    - map: ["computerLayerScreen"]
+      state: transferPirateN
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      board: !type:Container
+  - type: Tag
+    tags:
+    - BMUplink

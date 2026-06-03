@@ -69,6 +69,9 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<bool> StargateGuideShown =
             CVarDef.Create("stargate.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+        public static readonly CVarDef<int> ActionsActivePreset =
+            CVarDef.Create("actions.active_preset", 0, CVar.CLIENTONLY | CVar.ARCHIVE);
+
         public static readonly CVarDef<string> RabbitMQConnectionString =
             CVarDef.Create("rabbitmq.connection_string", "", CVar.SERVERONLY);
 
@@ -95,7 +98,7 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("lua.worldgen.typan_cargo_depots", 1, CVar.SERVERONLY);
 
         public static readonly CVarDef<bool> AsteroidSectorEnabled =
-            CVarDef.Create("game.asteroid_sector_enabled", false, CVar.SERVERONLY);
+            CVarDef.Create("game.asteroid_sector_enabled", true, CVar.SERVERONLY);
 
         /// <summary>
         /// Интервал автоматической выдачи зарплаты в секундах 3600 = 1 час.
@@ -187,5 +190,12 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("sponsor_music.api_url", "", CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<string> SponsorMusicApiToken =
             CVarDef.Create("sponsor_music.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+        public static readonly CVarDef<string> LunaCoinApiUrl =
+            CVarDef.Create("lunacoin.api_url", "", CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<string> LunaCoinApiToken =
+            CVarDef.Create("lunacoin.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+        public static readonly CVarDef<string> LunaCoinServerName =
+            CVarDef.Create("lunacoin.server_name", "luna", CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }

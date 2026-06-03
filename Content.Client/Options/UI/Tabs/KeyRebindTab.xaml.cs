@@ -42,60 +42,7 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SaveToFile();
         }
 
-        private void InitToggleWalk()
-        {
-            if (_cfg.GetCVar(CCVars.ToggleWalk))
-            {
-                ToggleFunctions.Add(EngineKeyFunctions.Walk);
-            }
-            else
-            {
-                ToggleFunctions.Remove(EngineKeyFunctions.Walk);
-            }
-        }
 
-        private void HandleToggleWalk(BaseButton.ButtonToggledEventArgs args)
-        {
-            _cfg.SetCVar(CCVars.ToggleWalk, args.Pressed);
-            _cfg.SaveToFile();
-            InitToggleWalk();
-
-            if (!_keyControls.TryGetValue(EngineKeyFunctions.Walk, out var keyControl))
-            {
-                return;
-            }
-
-            var bindingType = args.Pressed ? KeyBindingType.Toggle : KeyBindingType.State;
-            for (var i = 0; i <= 1; i++)
-            {
-                var binding = (i == 0 ? keyControl.BindButton1 : keyControl.BindButton2).Binding;
-                if (binding == null)
-                {
-                    continue;
-                }
-
-                var registration = new KeyBindingRegistration
-                {
-                    Function = EngineKeyFunctions.Walk,
-                    BaseKey = binding.BaseKey,
-                    Mod1 = binding.Mod1,
-                    Mod2 = binding.Mod2,
-                    Mod3 = binding.Mod3,
-                    Priority = binding.Priority,
-                    Type = bindingType,
-                    CanFocus = binding.CanFocus,
-                    CanRepeat = binding.CanRepeat,
-                };
-
-                _deferCommands.Add(() =>
-                {
-                    _inputManager.RemoveBinding(binding);
-                    _inputManager.RegisterBinding(registration);
-                });
-            }
-
-            _deferCommands.Add(_inputManager.SaveToUserData);
-        }
 
         private void HandleStaticStorageUI(BaseButton.ButtonToggledEventArgs args)
         {
@@ -106,6 +53,12 @@ namespace Content.Client.Options.UI.Tabs
         private void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args) // WD EDIT
         {
             _cfg.SetCVar(CCVars.AutoGetUp, args.Pressed);
+            _cfg.SaveToFile();
+        }
+
+        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args)
+        {
+            _cfg.SetCVar(CCVars.HoldLookUp, args.Pressed);
             _cfg.SaveToFile();
         }
 
@@ -166,10 +119,10 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.MoveDown);
             AddButton(EngineKeyFunctions.MoveRight);
             AddButton(EngineKeyFunctions.Walk);
-            AddCheckBox("ui-options-hotkey-toggle-walk", _cfg.GetCVar(CCVars.ToggleWalk), HandleToggleWalk);
+            AddButton(ContentKeyFunctions.ToggleWalk);
             AddButton(ContentKeyFunctions.ToggleStanding);
             AddCheckBox("ui-options-function-auto-get-up", _cfg.GetCVar(CCVars.AutoGetUp), HandleToggleAutoGetUp); // WD EDIT
-            InitToggleWalk();
+            AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(CCVars.HoldLookUp), HandleHoldLookUp);
             // Lua: Disabled ToggleKnockdown
             // AddButton(ContentKeyFunctions.ToggleKnockdown);
 
@@ -185,6 +138,7 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.Use);
             AddButton(EngineKeyFunctions.UseSecondary);
             AddButton(ContentKeyFunctions.UseItemInHand);
+            AddButton(ContentKeyFunctions.LookUp); // Lua
             AddButton(ContentKeyFunctions.AltUseItemInHand);
             AddButton(ContentKeyFunctions.ActivateItemInWorld);
             AddButton(ContentKeyFunctions.AltActivateItemInWorld);
@@ -215,6 +169,7 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-ui");
             AddButton(ContentKeyFunctions.OpenLanguageMenu); // Lua
             AddButton(ContentKeyFunctions.OpenCompanyFactionsMenu); // Lua
+            AddButton(ContentKeyFunctions.OpenDonateShopMenu);
             AddButton(ContentKeyFunctions.FocusChat);
             AddButton(ContentKeyFunctions.FocusLocalChat);
             AddButton(ContentKeyFunctions.FocusEmote);

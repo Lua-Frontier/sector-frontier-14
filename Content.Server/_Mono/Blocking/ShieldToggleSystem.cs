@@ -35,7 +35,7 @@ public sealed class ShieldToggleSystem : EntitySystem
 
     private void OnGetActions(Entity<ShieldToggleComponent> ent, ref GetItemActionsEvent args)
     {
-        if (args.SlotFlags is not { } flags || (flags & SlotFlags.OUTERCLOTHING) == 0)
+        if (args.SlotFlags is not { } flags || (((flags & SlotFlags.OUTERCLOTHING) == 0) && ((flags & SlotFlags.BELT) == 0))) //Lua BELT slot added
             return;
         args.AddAction(ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction);
     }

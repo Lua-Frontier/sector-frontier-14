@@ -18,6 +18,11 @@
     whitelist:
       components:
       - CondimentCup
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 30
+  # Lua end
 
 - type: entity
   name: condiment cup dispenser

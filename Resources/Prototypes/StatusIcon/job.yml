@@ -223,7 +223,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Captain
   jobName: job-name-captain
-  allowSelection: false # Frontier
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -232,7 +232,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: HeadOfPersonnel
   jobName: job-name-hop
-  allowSelection: false # Frontier: prefer contractor
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -257,7 +257,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Passenger
   jobName: job-name-passenger
-  allowSelection: false # Frontier: prefer contractor
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -282,7 +282,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: HeadOfSecurity
   jobName: job-name-hos
-  allowSelection: false # Frontier
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -291,7 +291,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Brigmedic
   jobName: job-name-brigmedic
-  allowSelection: false # Frontier
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -324,7 +324,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Warden
   jobName: job-name-warden
-  allowSelection: false # Frontier
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -397,7 +397,7 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SecurityCadet
   jobName: job-name-cadet
-  allowSelection: false # Frontier: don't display, no job
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -429,7 +429,8 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SeniorPhysician
-  allowSelection: false
+  jobName: job-name-seniorphysician
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -437,7 +438,8 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SeniorOfficer
-  allowSelection: false
+  jobName: job-name-seniorofficer
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -445,7 +447,8 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SeniorEngineer
-  allowSelection: false
+  jobName: job-name-seniorengineer
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon
@@ -453,7 +456,8 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: SeniorResearcher
-  allowSelection: false
+  jobName: job-name-seniorresearcher
+  allowSelection: true
 
 - type: jobIcon
   parent: JobIcon

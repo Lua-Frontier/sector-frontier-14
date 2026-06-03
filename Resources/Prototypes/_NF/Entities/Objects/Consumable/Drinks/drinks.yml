@@ -129,6 +129,11 @@
       drink:
         maxVol: 10
   - type: NFIngredient
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 3
+  # Lua end
 
 # imp coffee cup
 - type: entity

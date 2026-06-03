@@ -4,27 +4,45 @@
   id: NFWeaponEnergyRifleCarbine
   parent: [ BaseC1Contraband, NFBaseWeaponEnergyRifleFireModes, NFBaseWeaponFrameEnergyRifleNanotrasen ]
   name: laser carbine
-  suffix: Frontier
   description: |-
     A simple civilian grade laser carbine, the workhorse of many private security organizations.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
-
-- type: entity
-  id: NFWeaponEnergyRifleCarbinePractice
-  parent: [ NFBaseWeaponEnergyGunPractice, NFBaseWeaponFrameEnergyRifleNanotrasen ]
-  name: practice laser carbine
-  suffix: Frontier
-  description: |-
-    This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
+  - type: Wieldable #Lua
+  - type: GunRequiresWield #Lua
+  - type: Gun
+    minAngle: 1.4 #Lua
+    maxAngle: 7 #Lua
+    angleIncrease: 5.6 #Lua
+    angleDecay: 3.7 #Lua
+    fireRate: 2.4
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 5
+      pvsIncrease: 1
 
 #region Pulse
 - type: entity
@@ -33,14 +51,49 @@
   name: pulse rifle
   description: |-
     A weapon that is almost as infamous as its users. On the handle is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
   - type: Battery # 300 shots. # Frontier, why the fuck did you make a deathsquad gun designed to kill stations without needing to recharge only 30 shots?
-    maxCharge: 30000 #Lua edit: from 3000 to 30000
-    startingCharge: 30000 #Lua edit: from 3000 to 30000
+    maxCharge: 750 #Lua edit: from 3000 to 750
+    startingCharge: 750 #Lua edit: from 3000 to 750
+  - type: Wieldable #Lua
+  - type: GunRequiresWield #Lua
+  - type: Gun #Lua
+    minAngle: 1.4 #Lua
+    maxAngle: 7 #Lua
+    angleIncrease: 5.6 #Lua
+    angleDecay: 3.7 #Lua
+    fireRate: 4.2
+  - type: ItemToggle #Lua
+    onUse: false
+    onActivate: false
+    soundActivate:
+      path: /Audio/_Lua/Weapons/mantison.wav
+      params:
+        volume: 3
+    soundDeactivate:
+      path: /Audio/_Lua/Weapons/mantisoff.wav
+      params:
+        volume: 3
+  - type: ToggleClothing #Lua
+    action: ActionToggleScope
+    mustEquip: false
+  - type: ComponentToggler #Lua
+    components:
+    - type: ClothingSpeedModifier #Lua
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 10
+      pvsIncrease: 1
+  - type: BatterySelfRecharger #Lua
+    autoRecharge: true
+    autoRechargeRate: 30
 
 #region Other
 - type: entity
@@ -117,8 +170,21 @@
   parent: [ BaseC3ContrabandUnredeemable, NFBaseWeaponFrameEnergyRifleNanotrasen ] # chamber defined below, no huge value in a one-off
   name: temperature gun
   description: An advanced gun that shoots beams capable of heating or cooling their target.
+  suffix: Need balance test
   components:
+  - type: Item #Lua
+    shape:
+    - 0,0,2,1
   - type: Gun
+    selectedMode: FullAuto #Lua
+    availableModes:
+    - SemiAuto
+    - FullAuto #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 6 #Lua
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
   - type: Sprite
@@ -132,20 +198,43 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
   - type: Battery # 30 shots
-    maxCharge: 3000
-    startingCharge: 3000
+    maxCharge: 500
+    startingCharge: 500
   - type: ProjectileBatteryAmmoProvider
     proto: NFBoltTempgunCold # Frontier
-    fireCost: 100
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: NFBoltTempgunCold
-      fireCost: 100
-    - proto: NFBoltTempgunHot
-      fireCost: 100
+    fireCost: 20
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: false
   - type: NFWeaponDetails
     manufacturer: weapon-details-manufacturer-custom-made
+  - type: BatterySelfRecharger #Lua
+    autoRecharge: true
+    autoRechargeRate: 20
+
+- type: entity
+  name: freezing bolt
+  id: NFBoltTempgunCold
+  parent: BoltTempgunCold
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Shock: 15
+        Caustic: 5
+
+- type: entity
+  id: NFWeaponEnergyRifleCarbinePractice
+  parent: [ NFBaseWeaponEnergyGunPractice, NFBaseWeaponFrameEnergyRifleNanotrasen ]
+  name: practice laser carbine
+  suffix: Frontier
+  description: |-
+    This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Battery/practice_laser_gun.rsi

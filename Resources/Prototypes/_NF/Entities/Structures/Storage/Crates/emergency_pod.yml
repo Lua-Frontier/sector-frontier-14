@@ -96,6 +96,8 @@
     price: 50 # Frontier: 75<50 - TODO: material value rework
   - type: RequireProjectileTarget
   - type: AntiRottingContainer
+  - type: MedicalPodAirRegenerator
+    targetOxygenMoles: 40
   - type: Construction
     graph: MedicalPod
     node: medicalpod
@@ -197,6 +199,15 @@
     price: 50
   - type: RequireProjectileTarget
   - type: AntiRottingContainer
+  - type: MedicalPodAirRegenerator
+    targetOxygenMoles: 40
+
+- type: entity
+  parent: MedicalPodBase
+  id: MedicalPodFSF
+  categories: [ HideSpawnMenu ]
+  name: криохранилище FSF
+  description: Фронтирская криокапсула с поддержанием среды.
 
 - type: entity
   parent: MedicalPodBase

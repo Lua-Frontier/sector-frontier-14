@@ -5,7 +5,7 @@
 #Recruit
 - type: entity
   parent: [Clothing, BaseC1SyndicateContrabandNoValue] # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
-  id: ClothingSyndieBaseOutpostSyndicate
+  id: ClothingSyndieBaseOutpostTypan
   name: syndicate base
   description: A dubious,, dark-grey jumpsuit. As if passengers weren't dubious enough already.
   abstract: true
@@ -36,7 +36,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingSyndieBaseOutpostSyndicate
+  parent: ClothingSyndieBaseOutpostTypan
   id: ClothingUniformJumpsuitRecruitNT
   name: recruit jumpsuit
   description: A classy grey jumpsuit with blue trims. Perfect for the dignified helper.
@@ -47,7 +47,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/recruit_nt.rsi
 
 - type: entity
-  parent: [ClothingSyndieBaseOutpostSyndicate, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
+  parent: [ClothingSyndieBaseOutpostTypan, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
   id: ClothingUniformJumpsuitRecruitSyndie
   name: syndicate recruit jumpsuit
   description: A dubious, dark-grey jumpsuit. As if passengers weren't dubious enough already.
@@ -59,7 +59,7 @@
 
 #Repairman
 - type: entity
-  parent: ClothingSyndieBaseOutpostSyndicate
+  parent: ClothingSyndieBaseOutpostTypan
   id: ClothingUniformJumpsuitRepairmanNT
   name: repairman jumpsuit
   description: A jumpsuit that reminds you of a certain crew-sector work position. Hopefully, you won't have to do the same job as THOSE freaks.
@@ -70,7 +70,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/repairman_nt.rsi
 
 - type: entity
-  parent: [ClothingSyndieBaseOutpostSyndicate, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
+  parent: [ClothingSyndieBaseOutpostTypan, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
   id: ClothingUniformJumpsuitRepairmanSyndie
   name: syndicate repairman jumpsuit
   description: Functional, fashionable, and badass. Nanotrasen's engineers wish they could look as good as this.
@@ -82,7 +82,7 @@
 
 #Paramedic
 - type: entity
-  parent: ClothingSyndieBaseOutpostSyndicate
+  parent: ClothingSyndieBaseOutpostTypan
   id: ClothingUniformJumpsuitParamedicNT
   name: paramedic jumpsuit
   description: A basic white & blue jumpsuit made for Nanotrasen paramedics stationed in combat sectors.
@@ -93,7 +93,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/paramedic_nt.rsi
 
 - type: entity
-  parent: [ClothingSyndieBaseOutpostSyndicate, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
+  parent: [ClothingSyndieBaseOutpostTypan, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
   id: ClothingUniformJumpsuitParamedicSyndie
   name: syndicate paramedic jumpsuit
   description: For some reason, wearing this makes you feel like you're awfully close to violating the Geneva Convention.
@@ -106,7 +106,7 @@
 #HEADS OF STAFF
 #Chief Engineer
 - type: entity
-  parent: ClothingSyndieBaseOutpostSyndicate
+  parent: ClothingSyndieBaseOutpostTypan
   id: ClothingUniformJumpsuitChiefEngineerNT
   name: chief engineer jumpsuit
   description: It is often joked that the role of the combat-sector Chief Engineer is where the actual, logistically-minded engineers are promoted to. Good luck.
@@ -117,7 +117,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/ce_nt.rsi
 
 - type: entity
-  parent: [ClothingSyndieBaseOutpostSyndicate, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
+  parent: [ClothingSyndieBaseOutpostTypan, BaseC1SyndicateContrabandNoValue] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue # Lua-changes: BaseC3SyndicateContrabandNoValue > BaseC1SyndicateContrabandNoValue
   id: ClothingUniformJumpsuitChiefEngineerSyndie
   name: syndicate chief engineer jumpsuit
   description: An evil-looking jumpsuit with a reflective vest & red undershirt. #TODO: Write a better description for this once Ship vs. Ship is real and actual player habits begin forming

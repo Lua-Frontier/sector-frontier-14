@@ -1,20 +1,36 @@
 - type: vendingMachineInventory
   id: VendingMachineBountyVendPunkInventory
   startingInventory:
+    PinpointerUniversal: 1 # Lua
     ClothingEyesPunkGoggles: 6
     ClothingEyesPunkInfoShades: 3
     ClothingMaskPunkHalf: 6
-    ClothingUniformRandomPunkCroptop: 12
-    ClothingUniformRandomPunkTanktop: 8
-    ClothingUniformRandomArmlessNoSkirt: 6
-    ClothingUniformRandomPunkPantsOnly: 6
-    ClothingUniformRandomPunkShortsOnly: 6
+    Zipties: 2 # Lua
+    # Lua start
+    #ClothingUniformRandomPunkCroptop: 12
+    #ClothingUniformRandomPunkTanktop: 8
+    #ClothingUniformRandomArmlessNoSkirt: 6
+    #ClothingUniformRandomPunkPantsOnly: 6
+    #ClothingUniformRandomPunkShortsOnly: 6
+    # Lua end
+    ClothingHandsGlovesColorBlack: 1 # Lua
+    ClothingHandsGlovesFingerless: 1 # Lua
+    GroundCannabis: 1 # Lua
     ClothingBeltPunkRandomized: 6
     ClothingMaskBalaclavaRandom: 6
+    NFClothingBackpackDuffelColorRandom: 2 # Lua
+    ClothingBackpackMessengerColorRandom: 2 # Lua
     NFPouchPunk: 6
+    PowerCellMedium: 1 # Lua
     ClothingShoesBootsPunkRandomized: 6
     ClothingOuterArmorPunkRandomized: 4
+    MakeshiftShield: 1 # Lua
     ClothingOuterArmorPunkGreen: 2
     ClothingOuterArmorPunkOrange: 2
     ClothingOuterArmorPunkRed: 2
+    ClothingOuterArmorElitePunkRandomized: 1 # Lua
+    DrinkBeerCan: 2 # Lua
+    Syringe: 1 # Lua
     HoloGraffitiProjector: 4
+  contrabandInventory: # Lua
+    BaseBallBat: 1 # Lua

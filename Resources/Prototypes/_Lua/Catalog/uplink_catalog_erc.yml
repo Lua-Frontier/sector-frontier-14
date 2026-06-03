@@ -1,0 +1,760 @@
+#region hardsuits
+
+- type: listing
+  id: UplinkERCHardsuitSpatio
+  name:  uplink-erc-hardsuitspatio-name
+  description: uplink-erc-hardsuitspatio-desc
+  productEntity: ClothingOuterHardsuitSpatio
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkERCHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCHardsuitPilot
+  name:  uplink-erc-hardsuitpilot-name
+  description: uplink-erc-hardsuitpilot-desc
+  productEntity: ClothingOuterHardsuitPilot
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkERCHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCHardsuitEngineering
+  name:  uplink-erc-hardsuiteng-name
+  description: uplink-erc-hardsuiteng-desc
+  productEntity: ClothingOuterHardsuitEngineering
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkERCHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCHardsuitRD
+  name:  uplink-erc-hardsuitrd-name
+  description: uplink-erc-hardsuitrd-desc
+  productEntity: ClothingOuterHardsuitRd
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkERCHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCHardsuitCap
+  name:  uplink-erc-hardsuitcap-name
+  description: uplink-erc-hardsuitcap-desc
+  productEntity: ClothingOuterHardsuitCap
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkERCHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCHardsuitPrivate
+  name:  uplink-erc-hardsuitprivate-name
+  description: uplink-erc-hardsuitprivate-desc
+  productEntity: ClothingOuterHardsuitPrivateSecurity
+  cost:
+    Speso: 10000
+  categories:
+    - UplinkERCHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+#region clothing
+
+
+
+# Region weapons
+## 6.8x54 STANAG LMGs
+
+# 8x65 SKR LMGs
+
+# 12.7mm Bolt-action rifles
+- type: listing
+  id: UplinkERCRepeater
+  name:  uplink-erc-repeater-name
+  description: uplink-erc-repeater-desc
+  productEntity: NFWeaponRifleRepeater
+  cost:
+    Speso: 7500
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# 5.56x45 Auto rifles
+- type: listing
+  id: UplinkERCNovalite
+  name:  uplink-erc-novalite-name
+  description: uplink-erc-novalite-desc
+  productEntity: NFWeaponRifleAssaultNovaliteC1
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# 7.62x39 Auto rifles
+- type: listing
+  id: UplinkERCGestio
+  name:  uplink-erc-gestio-name
+  description: uplink-erc-gestio-desc
+  productEntity: NFWeaponRifleAssaultGestio
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# 7.62x51 Semi-auto rifles
+
+# 7.62x54 Semi-auto marksman rifles
+
+# .45 magnum Revolvers
+- type: listing
+  id: UplinkERCFitz
+  name:  uplink-erc-fitz-name
+  description: uplink-erc-fitz-desc
+  productEntity: NFWeaponRevolverFitz
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# .45 ACP Heavy SMGs and pistols
+- type: listing
+  id: UplinkERCArgenti
+  name:  uplink-erc-argenti-name
+  description: uplink-erc-argenti-desc
+  productEntity: NFWeaponRevolverArgenti
+  cost:
+    Speso: 2500
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# 9x19mm Medium SMGs and pistols
+- type: listing
+  id: UplinkERCDrozd
+  name:  uplink-erc-drozd-name
+  description: uplink-erc-drozd-desc
+  productEntity: NFWeaponSubMachineGunDrozd
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCMK58
+  name:  uplink-erc-mk58-name
+  description: uplink-erc-mk58-desc
+  productEntity: NFWeaponPistolMk58
+  cost:
+    Speso: 2500
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# 6.35x40 Light SMGs and pistols
+- type: listing
+  id: UplinkERCPollock
+  name:  uplink-erc-pollock-name
+  description: uplink-erc-pollock-desc
+  productEntity: NFWeaponPistolPollock
+  cost:
+    Speso: 2500
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# 4_gauge Shotguns
+- type: listing
+  id: UplinkERCKammerer
+  name:  uplink-erc-kammerer-name
+  description: uplink-erc-cammerer-desc
+  productEntity: NFWeaponShotgunKammerer
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCDBShotgun
+  name:  uplink-bm-dbshotgun-name
+  description: uplink-bm-dbshotgun-desc
+  productEntity: NFWeaponShotgunDoubleBarreled
+  cost:
+    Speso: 5000
+  categories:
+    - UplinkERCWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# Region ammo
+
+# 6.8x52mm
+
+# FMJ
+
+- type: listing
+  id: ERCUplinkMagazine68x52mmCaselessBig # Mag
+  name: box magazine (6.8x52mm STANAG Caseless)
+  description:
+  productEntity: Magazine68x52mmCaselessBig
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi, state: base }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# 12.7x99mm
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine127x99mmFMJ # Mag
+  name: uplink-security-Magazine127x99mmFMJ-name
+  description: uplink-security-Magazine127x99FMJ-desc
+  productEntity: Magazine127x99mm
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# 7.62x39mm
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine762x39mmFMJ # Mag
+  name: uplink-security-Magazine762x39mmFMJ-name
+  description: uplink-security-Magazine762x39mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle762x39mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine762x39mmRubber # Mag
+  name: uplink-security-Magazine762x39mmRubber-name
+  description: uplink-security-Magazine762x39mmRubber-desc
+  productEntity: LuaBoxMagazineRifle762x39mmRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# 5.56x45mm
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine556x45mmFMJ # Mag
+  name: uplink-security-Magazine556x45mmFMJ-name
+  description: uplink-security-Magazine556x45mmFMJ-desc
+  productEntity: LuaBoxMagazineRifle556x45mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine556x45mmRubber # Mag
+  name: uplink-security-Magazine556x45mmRubber-name
+  description: uplink-security-Magazine556x45mmRubber-desc
+  productEntity: LuaBoxMagazineRifle556x45mmRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# 9x19mm
+
+# SubMachineGun
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine9x19mmSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunFMJ-name
+  description: uplink-security-Magazine9x19mmSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine9x19mmSubMachineGunRubber # Mag
+  name: uplink-security-Magazine9x19mmSubMachineGunRubber-name
+  description: uplink-security-Magazine9x19mmSubMachineGunRubber-desc
+  productEntity: LuaBoxMagazine9x19mmSubMachineGunRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Pistol
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine9x19mmPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine9x19mmPistolHighCapacityRubber # Mag extended
+  name: uplink-security-Magazine9x19mmPistolHighCapacityRubber-name
+  description: uplink-security-Magazine9x19mmPistolHighCapacityRubber-desc
+  productEntity: LuaBoxMagazine9x19mmPistolHighCapacityRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# .45_ACP
+
+# SubMachineGun
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine45_ACPSubMachineGunFMJ # Mag
+  name: uplink-security-Magazine45_ACPSubMachineGunFMJ-name
+  description: uplink-security-Magazine45_ACPSubMachineGunFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine45_ACPSubMachineGunRubber # Mag
+  name: uplink-security-Magazine45_ACPSubMachineGunRubber-name
+  description: uplink-security-Magazine45_ACPSubMachineGunRubber-desc
+  productEntity: LuaBoxMagazine45_ACPSubMachineGunRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Pistol
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine45_ACPPistolHighCapacityFMJ # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityFMJ-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine45_ACPPistolHighCapacityRubber # Mag extended
+  name: uplink-security-Magazine45_ACPPistolHighCapacityRubber-name
+  description: uplink-security-Magazine45_ACPPistolHighCapacityRubber-desc
+  productEntity: LuaBoxMagazine45_ACPPistolHighCapacityRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# .45 Magnum
+
+# FMJ
+
+- type: listing
+  id: UplinkERCSpeedLoader45_magnumFMJ # speedloader
+  name: uplink-security-SpeedLoader45_magnumFMJ-name
+  description: uplink-security-SpeedLoader45_magnumFMJ-desc
+  productEntity: LuaBoxSpeedLoader45_magnumFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCSpeedLoader45_magnumRubber # speedloader
+  name: uplink-security-SpeedLoader45_magnumRubber-name
+  description: uplink-security-SpeedLoader45_magnumRubber-desc
+  productEntity: LuaBoxSpeedLoader45_magnumRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# 7.62x51mm
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine762x51mmFMJ # Mag
+  name: uplink-security-Magazine762x51mmFMJ-name
+  description: uplink-security-Magazine762x51mmFMJ-desc
+  productEntity: LuaBoxMagazine762x51mmFMJ
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+- type: listing
+  id: UplinkERCAmmoBox762x51mmFMJ # Mag (For VFD MR-8B LWMMG (7.62x51mm))
+  name: uplink-security-AmmoBox762x51mmFMJ-name
+  description: uplink-security-AmmoBox762x51mmFMJ-desc
+  productEntity: AmmoBox762x51mmFMJ
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Rubber
+
+- type: listing
+  id: UplinkERCMagazine762x51mmRubber # Mag
+  name: uplink-security-Magazine762x51mmRubber-name
+  description: uplink-security-Magazine762x51mmRubber-desc
+  productEntity: LuaBoxMagazine762x51mmRubber
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# 8x65 STANAG
+
+# FMJ
+
+- type: listing
+  id: UplinkERCMagazine8x65mmSKR # Mag
+  name: uplink-security-Magazine8x65mmSKR-name
+  description: uplink-security-Magazine8x65mmSKR-desc
+  productEntity: LuaBoxMagazine8x65mmSKR
+  icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
+# Region grenade
+
+# Region medicine
+- type: listing
+  id: UplinkERCMechMedipen
+  name:  uplink-bm-mechmedipen-name
+  description: uplink-bm-mechmedipen-desc
+  productEntity: BruteAutoInjector
+  cost:
+    Speso: 1000
+  categories:
+    - UplinkERCMedicine
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+- type: listing
+  id: UplinkERCBurnMedipen
+  name:  uplink-bm-burnmedipen-name
+  description: uplink-bm-burnmedipen-desc
+  productEntity: BurnAutoInjector
+  cost:
+    Speso: 1000
+  categories:
+    - UplinkERCMedicine
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - ERCUplink
+
+# Region utility
+
+# Categories
+- type: storeCategory
+  id: UplinkERCHardsuits
+  name: store-category-bmhardsuits
+
+# - type: storeCategory
+#   id: UplinkERCUtility
+#   name: store-category-bmutility
+
+- type: storeCategory
+  id: UplinkERCWeapons
+  name: store-category-bmweapons
+
+- type: storeCategory
+  id: UplinkERCAmmo
+  name: store-category-bmammo
+
+# - type: storeCategory
+#   id: UplinkERCExplosives
+#   name: store-category-bmexplosives
+
+- type: storeCategory
+  id: UplinkERCMedicine
+  name: store-category-bmmedicine
+
+# Tag
+- type: Tag
+  id: ERCUplink
+
+# StorePreset
+- type: entity
+  id: StorePresetERCUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-erc-uplink
+    categories:
+    - UplinkERCHardsuits
+    - UplinkERCWeapons
+    - UplinkERCAmmo
+    # - UplinkERCUtility
+    # - UplinkERCExplosives
+    - UplinkERCMedicine
+    currencyWhitelist:
+    - Speso
+    useBankAccount: true
+
+# Uplink console
+- type: entity
+  name: стационарный аплинк ЭИК
+  parent: [BaseStructureDisableToolUse, ComputerUplinkBase, StorePresetERCUplink, BaseStructureIndestructible, BaseStructureComputer]
+  id: LuaComputerUplinkERC
+  description: Чтобы выжить в мире хищников, нужно иметь зубы.
+  suffix: Need balance test
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard_trade
+    - map: ["computerLayerScreen"]
+      state: transferERC
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      board: !type:Container
+  - type: Tag
+    tags:
+    - ERCUplink

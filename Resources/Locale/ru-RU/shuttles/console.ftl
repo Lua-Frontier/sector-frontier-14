@@ -5,6 +5,28 @@ shuttle-console-mass = Слишком большой для БСС
 shuttle-console-prevent = Вы не можете пилотировать этот корабль
 shuttle-console-ftl-magnet-target = Нельзя уйти в БСС, пока магнит удерживает объект, который не является шаттлом.
 
+stargate-shuttle-beacon-label = Маяк вызова шаттла.
+stargate-shuttle-beacon-id-slot = слот ID с правом на шаттл
+stargate-shuttle-beacon-no-id = Сначала вставьте в маяк ID-карту.
+stargate-shuttle-beacon-no-bound-shuttle = Нет привязанного шаттла к ID-карте.
+stargate-shuttle-beacon-summon-ok = Вызов шаттла запущен.
+stargate-shuttle-beacon-ui-title = Маяк посадки шаттла
+stargate-shuttle-beacon-ui-no-card = Нет вставленной ID-карты.
+stargate-shuttle-beacon-ui-shuttle = Шаттл: { $name }
+stargate-shuttle-beacon-ui-summon = Вызвать шаттл
+stargate-shuttle-beacon-ui-recall = Отозвать шаттл
+stargate-shuttle-beacon-ui-recall-pending = Отзыв через { $time }
+stargate-shuttle-beacon-wrong-map = Цель не на той же карте, что и маяк.
+stargate-shuttle-beacon-not-stargate-world = Этот маяк работает только на планете.
+stargate-shuttle-beacon-blocked-gate = Нельзя садить шаттл ближе 8 м к вратам.
+stargate-shuttle-beacon-blocked-beacon = Слишком близко к самому маяку посадки.
+stargate-shuttle-beacon-blocked-console = Нельзя садить шаттл на наборную консоль.
+stargate-shuttle-beacon-blocked-shuttle = Нельзя посадить шаттл на занятое место другим шаттлом.
+stargate-shuttle-beacon-too-heavy = Шаттл слишком тяжёлый для посадки на планету. Максимальная масса: { $mass }т.
+stargate-shuttle-beacon-recall-unavailable = Для этого маяка сейчас недоступен отзыв шаттла.
+stargate-shuttle-beacon-recall-started = Отзыв шаттла запущен. Отправление через { $minutes } мин.
+stargate-shuttle-beacon-shuttle-parked = Шаттл припаркован на и не может быть вызван.
+
 # NAV
 
 shuttle-console-display-label = Дисплей

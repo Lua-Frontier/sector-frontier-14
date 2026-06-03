@@ -20,9 +20,9 @@
         visible: false
         shader: unshaded
         color: "#50dada"
-    - type: FTLDrive
-      range: 5000
-      thermalSignature: 2000000 # ~2828m range
+    - type: UnifiedDrive
+      localFTLRange: 5000
+      thermalSignature: 2000000
     - type: ThermalSignature
     - type: ApcPowerReceiver
       powerLoad: 2000
@@ -91,9 +91,9 @@
         visible: false
         shader: unshaded
       color: "#923f46"
-    - type: FTLDrive
-      range: 10000
-      thermalSignature: 4000000 # ~4000m range
+    - type: UnifiedDrive
+      localFTLRange: 10000
+      thermalSignature: 4000000
     - type: ThermalSignature
     - type: ApcPowerReceiver
       powerLoad: 4000
@@ -123,12 +123,12 @@
         visible: false
         shader: unshaded
       color: "#f8b043"
-    - type: FTLDrive
-      range: 5000
-      cooldown: 7.5
-      hyperSpaceTime: 15
-      startupTime: 4.2
-      thermalSignature: 4000000 # ~4000m range but for smaller ships it might not have time to get to full heat signature
+    - type: UnifiedDrive
+      localFTLRange: 5000
+      localFTLCooldown: 7.5
+      localFTLHyperSpaceTime: 15
+      localFTLStartupTime: 4.2
+      thermalSignature: 4000000
     - type: ThermalSignature
     - type: ApcPowerReceiver
       powerLoad: 4000

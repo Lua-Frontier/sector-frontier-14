@@ -4,7 +4,7 @@
 
 - type: gameMap
   id: Typan
-  mapName: 'Нордфолл'
+  mapName: 'ННКСС "Тайпан"'
   mapPath: /Maps/_Lua/Maps/ds_typan.yml
   isGrid: true
   minPlayers: 0
@@ -18,7 +18,7 @@
         allowWhenHidden: true
       - type: MailStationDisabled
       - type: StationNameSetup
-        mapNameTemplate: 'Нордфолл'
+        mapNameTemplate: 'ННКСС "Тайпан"'
       - type: ExtraStationInformation
         iconPath: /Textures/Structures/Wallmounts/flags.rsi/syndie_flag.png # used the biggest one, looks better when downscaling than upscaling
         stationSubtext: 'typan-lobby-outpost-subtext'
@@ -26,15 +26,15 @@
       - type: StationJobs
         availableJobs:
           OutpostSyndicateShareholder: [ -1, -1 ]
-          OutpostSyndicateResearcher: [ 0, 4 ]
-          OutpostSyndicateAtmosTech: [ 0, 1 ]
-          OutpostSyndicateBotanist: [ 0, 0 ]
-          OutpostSyndicateCargotech: [ 0, 1 ]
-          OutpostSyndicateChef: [ 0, 1 ]
-          OutpostSyndicateMedic: [ 0, 2 ]
-          OutpostSyndicateRD: [ 0, 1 ]
-          OutpostSyndicateScience: [ 0, 2 ]
-          OutpostSyndicateTelecommunicationsOfficer: [ 0, 1 ]
+#          OutpostTypanResearcher: [ 0, 4 ]
+#          OutpostTypanAtmosTech: [ 0, 1 ]
+#          OutpostTypanBotanist: [ 0, 1 ]
+          OutpostTypanCargotech: [ 0, 2 ]
+          OutpostTypanChef: [ 0, 1 ]
+          OutpostTypanMedic: [ 0, 2 ]
+          OutpostTypanRD: [ 0, 1 ]
+          OutpostTypanScience: [ 0, 2 ]
+          OutpostTypanTelecommunicationsOfficer: [ 0, 1 ]
 
 - type: gameMap
   id: TypanLua
@@ -60,9 +60,10 @@
       - type: StationJobs
         availableJobs:
           OutpostSyndicateShareholder: [ -1, -1 ]
-          OutpostSyndicateResearcher: [ 0, 4 ]
-          OutpostSyndicateAtmosTech: [ 0, 1 ]
-          OutpostSyndicateMedic: [ 0, 1 ]
-          OutpostSyndicateRD: [ 0, 1 ]
-          OutpostSyndicateScience: [ 0, 1 ]
-          OutpostSyndicateTelecommunicationsOfficer: [ 0, 1 ]
+#          OutpostTypanResearcher: [ 0, 4 ]
+#          OutpostTypanAtmosTech: [ 0, 1 ]
+#          OutpostTypanMedic: [ 0, 1 ]
+#          OutpostTypanRD: [ 0, 1 ]
+          OutpostTypanCargotech: [ 0, 1 ]
+          OutpostTypanScience: [ 0, 1 ]
+          OutpostTypanTelecommunicationsOfficer: [ 0, 1 ]

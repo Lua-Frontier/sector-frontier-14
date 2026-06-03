@@ -1,0 +1,106 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseItem
+  id: FuelBluespace
+  name: fuel-grade bluespace
+  description: A rod made of semi-processed bluespace, suitable for fuel.
+  suffix: 20, НЕ МАППИТЬ!
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FuelGradeBluespace: 100
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Fuel/fuelgrade_material.rsi
+    layers:
+    - state: bluespace
+      map: ["base"]
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 12500
+  - type: Tag
+    tags:
+      - BluespaceFuel
+  - type: Stack
+    stackType: FuelBluespace
+    count: 20
+  - type: NFFuel # Frontier
+
+- type: entity
+  parent: FuelBluespace
+  id: FuelBluespace1
+  suffix: 1, НЕ МАППИТЬ!
+  components:
+  - type: Stack
+    count: 1
+  - type: StaticPrice
+    vendPrice: 0
+
+- type: entity
+  name: Ампула
+  parent: BaseBeakerMetallic
+  id: AmpulaReinforced
+  description: Крепкая металлическая емкость для хранения медицинских препаратов, защищенная от внешних воздействий.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/ampula.rsi
+    layers:
+      - state: ampula
+      - state: ampula-0
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: ampula-
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+  - type: SolutionTransfer
+    maxTransferAmount: 50
+  - type: Item
+    size: Tiny
+    sprite: _Lua/Objects/Specific/Chemistry/ampula.rsi
+  - type: Tag
+    tags:
+    - Bottle
+
+- type: entity
+  name: Коробка ампул
+  id: AmpulaPouch
+  parent: [ PillCanister, BaseBagOpenClose ]
+  description: Прочная картонная коробка для удобного хранения ампул.
+  components:
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Specific/Chemistry/medical_pouch.rsi # Frontier: NF prefix
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Chemistry/medical_pouch.rsi # Frontier: NF prefix
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,4,1
+    whitelist:
+      tags:
+      - Pill
+      - Bottle
+      - CentrifugeCompatible # Frontier: Vial > CentrifugeCompatible
+      - Syringe
+      components:
+      - Injector
+  - type: StorageFill
+    contents:
+    - id: AmpulaReinforced
+      amount: 8
+  - type: StaticPrice
+    price: 0
+    vendPrice: 5000

@@ -64,9 +64,6 @@
     speechSounds: Arachnid
     allowedEmotes: ['Click', 'Chitter']
   - type: UltraVision # Lua start
-  - type: ContentEye
-    maxZoom: 1.35, 1.35
-    targetZoom: 1.35, 1.35 # Lua end
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -132,6 +129,12 @@
     templateId: arachnid
     speciesId: arachnid
   - type: Carriable # Frontier: Carrying system from nyanotrasen.
+  - type: LuaSprint # Lua
+    maxSprint: 99
+    drainPerSecond: 7.4
+    regenPerSecond: 7.8
+    regenDelay: 0.24
+    recoverThresholdFraction: 0.25
 
 
 - type: entity

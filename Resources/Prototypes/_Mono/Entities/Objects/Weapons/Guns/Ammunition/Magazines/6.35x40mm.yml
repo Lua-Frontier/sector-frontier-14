@@ -1,3 +1,4 @@
+# Base for rifles
 - type: entity
   id: BaseMagazine635x40mmCaseless
   name: "magazine (635x40mm Caseless)"
@@ -13,7 +14,7 @@
       tags:
         - Cartridge635x40mmCaseless
     proto: Cartridge635x40mmCaseless
-    capacity: 30
+    capacity: 40 #Lua 30<40
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -32,28 +33,11 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
-  id: BaseMagazine635x40mmCaselessShort
-  name: "caseless rifle short magazine (635x40mm Caseless)"
-  parent: BaseMagazine635x40mmCaseless
-  abstract: true
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge635x40mmCaseless
-    capacity: 10
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_rifle_mag_short.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
+# Base for pistols
 - type: entity
   id: BaseMagazine635x40mmCaselessPistol
   name: "pistol magazine (635x40mm Caseless)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine635x40mmCaseless
   abstract: true
   components:
@@ -65,7 +49,7 @@
       tags:
         - Cartridge635x40mmCaseless
     proto: Cartridge635x40mmCaseless
-    capacity: 10
+    capacity: 20 #Lua 10<20
   - type: Item
     size: Small
   - type: Sprite
@@ -81,24 +65,12 @@
     zeroVisible: false
   - type: Appearance
 
-- type: entity
-  id: Magazine635x40mmCaselessBig
-  name: "box magazine (635x40mm Caseless)"
-  parent: BaseMagazine635x40mmCaseless
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge635x40mmCaseless
-    capacity: 60 # Lua 99 -> 60
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/6.35x40mm_caseless/6.35x40mm_caseless_lmg_mag.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-
+# Pistol mags
+# Standart
 - type: entity
   id: Magazine635x40mmCaselessPistol
   name: "pistol magazine (635x40mm Caseless)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine635x40mmCaselessPistol
   components:
   - type: BallisticAmmoProvider
@@ -106,7 +78,7 @@
     capacity: 10
   - type: Sprite
     layers:
-    - state: red
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -119,6 +91,7 @@
 - type: entity
   id: Magazine635x40mmCaselessPistolPractice
   name: "pistol magazine (635x40mm Caseless practice)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine635x40mmCaselessPistol
   components:
   - type: BallisticAmmoProvider
@@ -136,16 +109,127 @@
     zeroVisible: false
   - type: Appearance
 
+# Mechanical
+- type: entity
+  id: Magazine635x40mmCaselessPistolHP
+  name: "pistol magazine (635x40mm HP)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaselessPistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessHP
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+# Physical
+- type: entity
+  id: Magazine635x40mmCaselessPistolIncendiary
+  name: "pistol magazine (635x40mm Incendiary)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaselessPistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessIncendiary
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: Magazine635x40mmCaselessPistolUranium
+  name: "pistol magazine (635x40mm Uranium)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaselessPistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessUranium
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+# Special
+- type: entity
+  id: Magazine635x40mmCaselessPistolEMP
+  name: "pistol magazine (635x40mm EMP)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaselessPistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessEMP
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: emp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: Magazine635x40mmCaselessPistolCaustic
+  name: "pistol magazine (635x40mm Caustic)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaselessPistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessCaustic
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: caustic
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+# Rifles
+# Standart
 - type: entity
   id: Magazine635x40mmCaseless
   name: "magazine (635x40mm Caseless)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine635x40mmCaseless
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge635x40mmCaseless
   - type: Sprite
     layers:
-    - state: red
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -153,6 +237,7 @@
 - type: entity
   id: Magazine635x40mmCaselessRubber
   name: "magazine (635x40mm Caseless)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine635x40mmCaseless
   components:
   - type: BallisticAmmoProvider
@@ -167,6 +252,7 @@
 - type: entity
   id: Magazine635x40mmCaselessPractice
   name: "magazine (635x40mm Caseless practice)"
+  suffix: Need balance test #Lua
   parent: BaseMagazine635x40mmCaseless
   components:
   - type: BallisticAmmoProvider
@@ -178,14 +264,15 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
+# Mechanical
 - type: entity
-  id: Magazine635x40mmCaselessShort
-  name: "short magazine (635x40mm Caseless)"
-  parent: BaseMagazine635x40mmCaselessShort
+  id: Magazine635x40mmCaselessHP
+  name: "magazine (635x40mm HP)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaseless
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge635x40mmCaseless
-    capacity: 20
+    proto: Cartridge635x40mmCaselessHP
   - type: Sprite
     layers:
     - state: red
@@ -193,17 +280,64 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
+# Physical
 - type: entity
-  id: Magazine635x40mmCaselessShortPractice
-  name: "short magazine (635x40mm Caseless practice)"
-  parent: BaseMagazine635x40mmCaselessShort
+  id: Magazine635x40mmCaselessIncendiary
+  name: "magazine (635x40mm Incendiary)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaseless
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge635x40mmCaselessPractice
-    capacity: 20
+    proto: Cartridge635x40mmCaselessIncendiary
   - type: Sprite
     layers:
-    - state: practice
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine635x40mmCaselessUranium
+  name: "magazine (635x40mm Uranium)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaseless
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+# Special
+- type: entity
+  id: Magazine635x40mmCaselessEMP
+  name: "magazine (635x40mm EMP)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaseless
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessEMP
+  - type: Sprite
+    layers:
+    - state: emp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine635x40mmCaselessCaustic
+  name: "magazine (635x40mm Caustic)"
+  suffix: Need balance test #Lua
+  parent: BaseMagazine635x40mmCaseless
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge635x40mmCaselessCaustic
+  - type: Sprite
+    layers:
+    - state: caustic
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]

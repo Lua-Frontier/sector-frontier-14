@@ -101,12 +101,12 @@
   categories: [ HideSpawnMenu ]
   id: NFWeaponPistolMk58Expedition
 
-- type: entity
-  parent:
-  - BaseExpeditionWeaponTier1
-  - NFWeaponPistolPollockHighCapacityMag
-  categories: [ HideSpawnMenu ]
-  id: NFWeaponPistolPollockExpedition
+# - type: entity # comment from _Lua
+#   parent:
+#   - BaseExpeditionWeaponTier1
+#   - NFWeaponPistolPollockHighCapacityMag
+#   categories: [ HideSpawnMenu ]
+#   id: NFWeaponPistolPollockExpedition
 
 - type: entity
   parent:
@@ -257,12 +257,12 @@
   id: NFWeaponRifleAssaultGestioExpedition
 
 ## Rifles
-- type: entity
-  parent:
-  - BaseExpeditionWeaponTier2
-  - NFWeaponRifleSVS
-  categories: [ HideSpawnMenu ]
-  id: NFWeaponRifleSVSExpedition
+# - type: entity # comment from _Lua
+#   parent:
+#   - BaseExpeditionWeaponTier2
+#   - NFWeaponRifleSVS
+#   categories: [ HideSpawnMenu ]
+#   id: NFWeaponRifleSVSExpedition
 
 ## Energy
 - type: entity

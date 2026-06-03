@@ -1,11 +1,14 @@
 #region WizDen
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultSm
-  parent: [ NFBaseWeaponRifleAssaultChamber762x39, NFBaseWeaponFrameRifleAssaultCybersun ] #Lua 30 -> 762x39
+  parent: [ NFBaseWeaponRifleAssaultChamber762x39, NFBaseWeaponFrameRifleAssaultCybersunUnwieldable ] #Lua 30 -> 762x39
   name: Soland-Moss # Renamed: real brand name
+  suffix: Need balance test
   description: |-
     An iconic weapon of war. An illegal firearm often used by Syndicate agents.
   components:
+  - type: GunRequiresWield #Lua
+  - type: Wieldable #Lua
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/akm_inhands_32x.rsi # Mono
   - type: Sprite
@@ -16,11 +19,20 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item # Mono
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Mono/Objects/Weapons/Guns/Rifles/akm_inhands_32x.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
+  - type: Gun
+    examineCaliber: gun-examine-caliber-76239 #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 5 #Lua
 
 - type: entity # TODO: switch to .25 rifle (caseless)
   id: NFWeaponRifleAssaultM90GrenadeLauncher
@@ -28,11 +40,43 @@
   name: M-90gl
   description: |-
     An older bullpup carbine model, with an attached underbarrel grenade launcher. An illegal firearm often used by Syndicate agents.
+  suffix: Need balance test
   components:
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
+  - type: Gun #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 8.4
+  - type: HeldSpeedModifier #Lua
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762x51mmFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: &mag20Whitelist
+          tags:
+            - Magazine762x51mmFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: &chamber20Standard
+        name: Chamber
+        startingItem: Cartridge762x51mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge762x51mmFMJ
 
 - type: entity
   id: NFWeaponRifleAssaultLecter
@@ -40,30 +84,49 @@
   name: Lecter
   description: |-
     A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
+  suffix: Need balance test
   components: &lecterComponents
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter_inhands_32x.rsi
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter.rsi
   - type: Item # Mono
+    shape: #Lua
+    - 0,0,3,2
     sprite: _Mono/Objects/Weapons/Guns/Rifles/lecter_inhands_32x.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
   - type: Gun
+    examineCaliber: gun-examine-caliber-76239 #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 6 #Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
-
-#region WizDen: Rubber
-- type: entity
-  id: NFWeaponRifleAssaultLecterLessLethal
-  parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber556x45Rubber, NFBaseWeaponFrameRifleAssaultNanotrasen ] #Lua 20 -> 556x45
-  name: Lecter
-  description: |-
-    A medium end military grade assault rifle. On the receiver is a label that says 'for authorized use only.'
-  suffix: Frontier, Less-lethal
-  components: *lecterComponents
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine762x39mmFMJ #Lua Magazine556x45mmFMJ<Magazine762x39mmFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist: # &mag20Whitelist #comment from _Lua
+          tags:
+            - Magazine762x39mmFMJ #Lua Magazine556x45mmFMJ<Magazine762x39mmFMJ
+#            - NFMagazineDrumRifle556x45 #comment from _Lua
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber: # &chamber20Standard #comment from _Lua
+        name: Chamber
+        startingItem: Cartridge762x39mmFMJ #Lua Cartridge556x45mmFMJ<Cartridge762x39mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge762x39mmFMJ #Lua Cartridge556x45mmFMJ<Cartridge762x39mmFMJ
 
 #region DeltaV
 - type: entity
@@ -72,6 +135,7 @@
   name: Vulcan
   description: |-
     One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
+  suffix: Need balance test
   components: &vulcanComponents
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Rifles/vulcan.rsi
@@ -81,31 +145,36 @@
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-76239
+    minAngle: 1
+    maxAngle: 3.5
+    angleIncrease: 0.2
+    angleDecay: 1
+    fireRate: 4
 
 - type: entity
   id: NFWeaponRifleAssaultJackdaw
   parent: [ BaseC2ExpeditionContraband, NFBaseWeaponRifleAssaultChamber556x45, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 25 -> 556x45
   name: Jackdaw
+  categories: [ HideSpawnMenu ] #Lua
   description: |-
     The beginning of the end is heralded by the song of a Jackdaw.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _DV/Objects/Weapons/Guns/Rifles/jackdaw.rsi
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Rifles/jackdaw.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: Gun
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/jackdaw.ogg
-
-#region DeltaV: Rubber
-- type: entity
-  id: NFWeaponRifleAssaultVulcanLessLethal
-  parent: [ NFBaseWeaponRifleAssaultChamber762x39Rubber, NFBaseWeaponFrameRifleAssaultFrontierGunsmith ] #Lua 30 -> 762x39
-  name: Vulcan
-  description: |-
-    One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World".
-  suffix: Frontier, Less-lethal
-  components: *vulcanComponents
 
 #region Frontier
 - type: entity
@@ -114,6 +183,7 @@
   name: Gestio
   description: |-
     An old burst-fire rifle designed by Silver Industries that never left trials.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
@@ -121,13 +191,20 @@
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Item
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
-  - type: Gun
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-76239 #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 3
     burstFireRate: 5
     shotsPerBurst: 2
     burstCooldown: 0.8
-    selectedMode: Burst
+    selectedMode: FullAuto #Lua Burst<FullAuto
     availableModes:
-      - Burst
+      - FullAuto
+#      - Burst
     soundGunshot:
       path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
 
@@ -137,14 +214,25 @@
   name: Novalite C1
   description: |-
     A civilian grade semi-automatic rifle with an internal magazine.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
+  - type: Item #Lua
+    shape:
+    - 0,0,3,2
   - type: Gun
-    selectedMode: SemiAuto
+    examineCaliber: gun-examine-caliber-55645 #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 3.6 #Lua
+    selectedMode: FullAuto
     availableModes:
       - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg

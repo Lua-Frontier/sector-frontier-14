@@ -1,0 +1,18 @@
+- type: entity
+  id: StorePresetBravoUplink
+  abstract: true
+  components:
+  - type: Store
+    name: uplink-bravo-fsf
+    categories:
+    - BravoUplinkWeapon
+    - BravoUplinkMedical
+    - BravoUplinkAmmo
+    - BravoUplinkMisc
+    - BravoUplinkExplosions
+    currencyWhitelist:
+    - FrontierUplinkCoin
+    - Speso
+    balance:
+      FrontierUplinkCoin: 0
+    useBankAccount: true

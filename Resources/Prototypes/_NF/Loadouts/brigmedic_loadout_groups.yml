@@ -7,6 +7,7 @@
   fallbacks:
   - BrigmedicClothingUniformJumpsuitBrigmedic
   - BrigmedicClothingUniformJumpskirtBrigmedic
+  - BrigmedicClothingUniformBrigmedic
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing
@@ -48,7 +49,7 @@
   - BrigmedicBrigmedicPDA
   fallbacks:
   - BrigmedicBrigmedicPDA
-  
+
 - type: loadoutGroup
   id: BrigmedicGlasses
   name: loadout-group-contractor-glasses
@@ -71,8 +72,8 @@
   id: BrigmedicBelt
   minLimit: 1
   name: loadout-group-contractor-belt
-  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
-  - BrigmedicClothingBeltBrigmedicWebbing
+  - BrigmedicClothingBelt
+  - BrigmedicClothingBeltWeb
   fallbacks:
-  - BrigmedicClothingBeltBrigmedicWebbing
+  - BrigmedicClothingBeltWeb

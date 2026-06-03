@@ -1,5 +1,5 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2026 LuaWorld Contributors
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
 # See AGPLv3.txt for details.
 
 - type: latheRecipe
@@ -21,3 +21,13 @@
     Bluespace: 100
     Plastic: 500
     Plasma: 200
+
+- type: latheRecipe
+  id: WaterRegenerator
+  completetime: 6
+  result: WaterRegenerator
+  materials:
+    Silver: 300
+    Steel: 300
+    Glass: 100
+    Bluespace: 20

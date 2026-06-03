@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   save: false
   parent: [ BaseSimpleMob, MobCombat ]
   id: BaseMobArgocyte
@@ -79,7 +79,7 @@
     - id: FoodMeatXeno
       amount: 1
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
+    baseRunningSpeed : 3.5
     baseWalkSpeed : 3
   - type: MeleeWeapon
     damage:
@@ -193,7 +193,7 @@
     - id: FoodMeatXeno
       amount: 2
   - type: MovementSpeedModifier
-    baseSprintSpeed : 5
+    baseRunningSpeed : 5
 
 - type: entity
   parent: BaseMobArgocyte
@@ -219,7 +219,7 @@
     - id: FoodMeatXeno
       amount: 2
   - type: MovementSpeedModifier
-    baseSprintSpeed : 4
+    baseRunningSpeed : 4
     baseWalkSpeed : 3.5
 
 - type: entity
@@ -280,7 +280,7 @@
         Blunt: 3.5
         Slash: 3.5
   - type: MovementSpeedModifier
-    baseSprintSpeed : 5
+    baseRunningSpeed : 5
     baseWalkSpeed: 4.5
 
 - type: entity
@@ -344,7 +344,7 @@
         Slash: 5
         Structural: 5
   - type: MovementSpeedModifier
-    baseSprintSpeed : 6.5
+    baseRunningSpeed : 6.5
     baseWalkSpeed: 5
 
 - type: entity
@@ -377,7 +377,7 @@
         Slash: 15
         Structural: 10
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3.5
+    baseRunningSpeed : 3.5
     baseWalkSpeed: 3
 
 - type: entity
@@ -423,7 +423,7 @@
         Blunt: 25
         Structural: 25
   - type: MovementSpeedModifier
-    baseSprintSpeed : 3
+    baseRunningSpeed : 3
     baseWalkSpeed: 3
 
 - type: entity

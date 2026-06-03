@@ -3,26 +3,11 @@
   name: job-name-bailiff
   description: job-description-bailiff
   playTimeTracker: JobWarden
-  salary: 65000
+  salary: 50000 #Lua 65000<50000
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 108000 # 30 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 64800 # 18 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 21600 # 6 hours
-  alternateRequirementSets:
-    longerPlaytimeLessSec:
-    - !type:OverallPlaytimeRequirement
-      time: 720000 # 200 hours
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 43200 # 12 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 21600 # 6 hours
+  - !type:RoleTimeRequirement #Lua
+    role: JobSeniorOfficer
+    time: 36000 # 10h
   startingGear: BailiffGear
   icon: JobIconBailiff
   supervisors: job-supervisors-sheriff
@@ -50,13 +35,13 @@
 - type: startingGear
   id: BailiffGear
   equipment:
-    pocket1: NFWeaponPistolUniversalNfsdLessLethal
+#    pocket1: NFWeaponPistolUniversalNfsdLessLethal
     pocket2: HoloprojectorNfsd
   storage:
     back:
     - Flash
-    - Magazine9x19mmPistolHighCapacityFMJ #Lua 35 -> 9x19
-    - Magazine9x19mmPistolHighCapacityRubber #Lua 35 -> 9x19
+    - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    - Magazine9x19mmPistolRubber #Lua 35 -> 9x19
     - BaseSecurityUplinkRadioOfficer
     - ShipVoucherNfsdBailiff
     - RubberStampBailiff

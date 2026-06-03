@@ -40,7 +40,7 @@
     - Speso #Lua add
     balance:
       FrontierUplinkCoin: 0
-      Speso: 0 #Lua add
+    useBankAccount: true
 
 - type: entity
   id: StorePresetPirateUplink
@@ -60,4 +60,4 @@
     - Speso #Lua
     balance:
       Doubloon: 0
-      Speso: 0 #Lua
+    useBankAccount: true

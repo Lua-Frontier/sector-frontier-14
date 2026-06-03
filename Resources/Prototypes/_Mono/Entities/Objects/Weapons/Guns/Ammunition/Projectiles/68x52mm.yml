@@ -1,3 +1,8 @@
+# Damage-per-second = 175 for machine guns; 175-25 = 150 for caustic ammo; max COO = 7
+# Main damage type - Piercing for standart; main damage/special damage = 70/30 for special
+# Structural DPS for machine guns = 300; for projectile = 300/7 = 42.9
+# LeptonComm status clear
+# Standart
 - type: entity
   id: Bullet68x52mmCaseless
   name: bullet (6.8x52mm Caseless)
@@ -7,8 +12,10 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 27 #Lua +3
+        Piercing: 25
+        Structural: 42.9
 
+# Mechanical
 - type: entity
   id: Bullet68x52mmCaselessPractice
   name: bullet (6.8x52mm Caseless practice)
@@ -32,3 +39,70 @@
         Blunt: 3
   - type: StaminaDamageOnCollide #Lua add
     damage: 20
+
+- type: entity
+  id: Bullet68x52mmCaselessHP
+  name: bullet (6.8x52mm Caseless HP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 7.5      
+        Piercing: 17.5
+        Structural: 42.9
+
+# Physical
+- type: entity
+  id: Bullet68x52mmCaselessIncendiary
+  name: bullet (6.8x52mm Caseless incendiary)
+  parent: BaseBulletIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 17.5
+        Heat: 7.5
+        Structural: 42.9
+
+- type: entity
+  id: Bullet68x52mmCaselessUranium
+  name: bullet (6.8x52mm Caseless uranium)
+  parent: BaseBulletUranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 17.5
+        Radiation: 7.5
+        Structural: 42.9
+
+# Special
+- type: entity
+  id: Bullet68x52mmCaselessEMP
+  name: bullet (6.8x52mm Caseless EMP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 17.5
+        Shock: 7.5
+        Structural: 42.9
+
+- type: entity
+  id: Bullet68x52mmCaselessCaustic
+  name: bullet (6.8x52mm Caseless caustic)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+        Caustic: 6.4
+        Structural: 42.9

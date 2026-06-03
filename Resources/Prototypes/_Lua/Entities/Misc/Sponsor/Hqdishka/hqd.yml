@@ -3,14 +3,31 @@
 # See AGPLv3.txt for details.
 - type: sponsorLoadout
   id: hqdishka
-  entity: ClothingBackpackIris
-  sponsorOnly: true
-  login: hqdishka
+  ownerLogin: hqdishka
+  tier: tier1
+  entities:
+    - ClothingBackpackIris
+    - ClothingBackpackIrisP
+    - ClothingBackpackIrisRed
+    - IrisHandsRing
+    - HacksHat
+    - HacksPDA
+    - ClothingShoesBootsLua
+    - ClothingNeckCapeLuaDalt
+    - ClothingNeckCapeLuaBlackDalt
+    - ClothingUniformJumpsuitIris
+    - HyposprayLua
+    - ClothingEyesHudLuaTech
+    - PlushieSharkBlack
+    - PlushieIrisLua
+    - PlushieHacksLua
+    - ClothingBeltIrisRed
+    - BlinkImplanterLua
 
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackIris
-  name: модифицированная сумка "LuaTech"
+  name: белая сумка "LuaTech"
   suffix: Айрис
   description: Сумка разработанная "LuaTech" с функцией РИГ.
   categories: [ HideSpawnMenu ]
@@ -34,20 +51,7 @@
       toggleable-clothing: !type:ContainerSlot
   - type: StorageFill
     contents:
-      - id: IrisHandsRing
       - id: PaperLawsIris
-      - id: HacksHat
-      - id: HacksPDA
-      - id: ClothingShoesBootsLua
-      - id: ClothingNeckCapeLuaDalt
-      - id: ClothingNeckCapeLuaBlackDalt
-      - id: ClothingUniformJumpsuitIris
-      - id: HyposprayLua
-      - id: ClothingEyesHudLuaTech
-      - id: PlushieSharkBlack
-      - id: PlushieIrisLua
-      - id: PlushieHacksLua
-      - id: ClothingBeltIrisRed
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: HardsuitIdentification

@@ -1,3 +1,4 @@
+using System;
 using Content.Shared.Power.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Shared.Utility;
@@ -167,5 +168,21 @@ public abstract class SharedOreSiloSystem : EntitySystem
             return false;
 
         return true;
+    }
+
+    public void ClearStaleOreSiloClientsForMap(EntityUid mapUid, Func<EntityUid, EntityUid, bool> isEntityOnMap)
+    {
+        var query = AllEntityQuery<OreSiloClientComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var client, out var xform))
+        {
+            if (xform.MapUid != mapUid && !isEntityOnMap(uid, mapUid))
+                continue;
+            if (client.Silo is not { } silo)
+                continue;
+            if (Exists(silo) && isEntityOnMap(silo, mapUid))
+                continue;
+            client.Silo = null;
+            Dirty(uid, client);
+        }
     }
 }

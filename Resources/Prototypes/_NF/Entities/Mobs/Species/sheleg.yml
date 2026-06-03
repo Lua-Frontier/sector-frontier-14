@@ -152,6 +152,12 @@
     blockInjectOnProjectile: true
   - type: InventorySlotFriction
   - type: AutoToggleableOuterClothing
+  - type: LuaSprint # Lua
+    maxSprint: 136
+    drainPerSecond: 4.7
+    regenPerSecond: 5.5
+    regenDelay: 0.40
+    recoverThresholdFraction: 0.35
 
 - type: entity
   save: false

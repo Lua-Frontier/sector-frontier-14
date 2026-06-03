@@ -70,6 +70,8 @@ public sealed partial class ResearchSystem
 
         if (serverComponent.Clients.Contains(client))
             return;
+        if (!IsClientServerTypeCompatible(clientComponent, serverComponent))
+            return;
 
         // Frontier: check grids
         if (!TryComp(client, out TransformComponent? clientXform)

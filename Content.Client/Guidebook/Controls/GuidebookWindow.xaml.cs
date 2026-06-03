@@ -12,6 +12,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Input; // Lua
 
 namespace Content.Client.Guidebook.Controls;
 
@@ -34,6 +35,9 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         _sawmill = Logger.GetSawmill("guidebook");
 
         Tree.OnSelectedItemChanged += OnSelectionChanged;
+
+        Split.OnKeyBindDown += ToggleTree; // Lua
+        OnKeyBindDown += ToggleTree; // Lua
 
         SearchBar.OnTextChanged += _ =>
         {
@@ -108,6 +112,20 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         SearchContainer.Visible = false;
         EntryContainer.RemoveAllChildren();
     }
+
+    // Lua start
+    private void ToggleTree(GUIBoundKeyEventArgs args)
+    {
+        if (args.Function == EngineKeyFunctions.UIRightClick && _entries.Count != 1)
+        {
+            TreeBox.Visible = !TreeBox.Visible;
+            Split.State = SplitContainer.SplitState.Auto;
+            Split.ResizeMode = Split.ResizeMode == SplitContainer.SplitResizeMode.RespectChildrenMinSize
+            ? SplitContainer.SplitResizeMode.NotResizable
+            : SplitContainer.SplitResizeMode.RespectChildrenMinSize;
+        }
+    }
+    // Lua end
 
     private void ShowGuide(GuideEntry entry)
     {

@@ -14,6 +14,7 @@
     - LoadoutClothingUnderwearSocksSalvage
     - LoadoutClothingUnderwearSocksSeniorSalvage
     - LoadoutClothingUnderwearSocksHeadofPersonnel
+    - LoadoutClothingUnderwearSocksBlueshield
     - LoadoutClothingUnderwearSocksService
     - LoadoutClothingUnderwearSocksBartender
     - LoadoutClothingUnderwearSocksBotanist
@@ -253,6 +254,12 @@
   price: 200
   equipment:
     socks: ClothingUnderwearSocksSeniorEngineer
+
+- type: loadout
+  id: LoadoutClothingUnderwearSocksBlueshield
+  price: 200
+  equipment:
+    socks: ClothingUnderwearSocksBlueshield
 
 - type: loadout
   id: LoadoutClothingUnderwearSocksTechnicalAssistant

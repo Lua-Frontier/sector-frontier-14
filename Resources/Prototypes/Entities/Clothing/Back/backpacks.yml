@@ -36,6 +36,9 @@
         volume: -11
   # Goobstation edit end
   - type: Storage
+    blacklist: #Lua
+      tags:
+      - Webbing
     grid:
     - 0,0,6,3
     maxItemSize: Huge
@@ -293,6 +296,9 @@
     - type: Storage
       grid:
       - 0,0,7,6
+    - type: Tag
+      tags:
+      - ClothMade
 
 #Syndicate
 - type: entity

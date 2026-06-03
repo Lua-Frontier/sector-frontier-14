@@ -23,7 +23,7 @@
         - MobLayer
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseRunningSpeed : 4
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -113,7 +113,7 @@
         Blunt: 7
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 4
+    baseRunningSpeed : 4
   - type: NpcFactionMember
     factions:
       - SimpleHostile

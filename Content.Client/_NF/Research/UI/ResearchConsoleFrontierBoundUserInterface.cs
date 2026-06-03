@@ -104,6 +104,7 @@ public sealed class ResearchConsoleFrontierBoundUserInterface : BoundUserInterfa
         }
 
         _sawmill.Debug($"Updating UI state with {castState.Points} points and {castState.Researches.Count} technologies");
+        _consoleMenu.SetResearchFaction(castState.ResearchFaction);
 
         var availableTechs = castState.Researches.Count(t => t.Value == ResearchAvailability.Available);
         _sawmill.Debug($"Available technologies: {availableTechs}");

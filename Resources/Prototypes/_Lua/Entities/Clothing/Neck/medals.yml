@@ -1,0 +1,109 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityOfficer
+  name: security officer medal
+  description: Only given to the best officers!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/officer.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/officer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityDetective
+  name: detective medal
+  description: The truth hides, but you always find it.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/detective.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/detective.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityMedic
+  name: security medic medal
+  description: Only theese who run away from explosions rather than into them may have this medal!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/brigmed.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/brigmed.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityPilot
+  name: security pilot medal
+  description: Soar up high!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/pilot.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/pilot.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecuritySeniorOfficer
+  name: senior officer medal
+  description: Medal over medals. Only given to the best instructors.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/seniorofficer.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/seniorofficer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityWarden
+  name: warden medal
+  description: The prisoners aren't held by walls, they are held by your will. This medal honours it.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/warden.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/warden.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityHeadOfSecurity
+  name: head of security medal
+  description: This medal don't seems to differ from others, but it is more golden!
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/warden.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/warden.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalScienceEpistemics
+  name: scientific medal
+  description: This one looks strangely handsome. Even with Nanotrasen logo on its back, you can't identify the field it belongs to.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/sciencemedal.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/sciencemedal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalSecurityShield
+  name: security shield medal
+  description: This medal is given to those, who protected who they love with their own body.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/securitymedal.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/securitymedal.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMedalProsecutor
+  name: prosecutor's badge
+  description: This badge can shoo bad cops and criminals away.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/Medals/prosecutorbadge.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/Medals/prosecutorbadge.rsi

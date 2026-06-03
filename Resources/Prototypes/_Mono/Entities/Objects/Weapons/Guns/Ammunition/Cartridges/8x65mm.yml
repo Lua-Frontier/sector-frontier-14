@@ -22,9 +22,11 @@
   - type: StaticPrice
     price: 1
 
+# Standart
 - type: entity
   id: Cartridge8x65mmSKR
   name: cartridge (8x65mm SKR FMJ)
+  suffix: Need balance test #Lua
   parent: BaseCartridge8x65mmSKR
   components:
   - type: CartridgeAmmo
@@ -33,6 +35,7 @@
 - type: entity
   id: Cartridge8x65mmSKRPractice
   name: cartridge (8x65mm SKR practice)
+  suffix: Need balance test #Lua
   parent: BaseCartridge8x65mmSKR
   components:
   - type: CartridgeAmmo
@@ -45,9 +48,28 @@
       map: [ "enum.AmmoVisualLayers.Tip" ]
       color: "#38b1d6"
 
+# Mechanical
+- type: entity
+  id: Cartridge8x65mmSKRHP
+  name: cartridge (8x65mm SKR HP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge8x65mmSKR
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet8x65mmSKRHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#991d39"
+
+# Physical
 - type: entity
   id: Cartridge8x65mmSKRIncendiary
-  name: cartridge (8x65mm SKR incendiary)
+  name: cartridge (8x65mm SKR Incendiary)
+  suffix: Need balance test #Lua
   parent: BaseCartridge8x65mmSKR
   components:
   - type: CartridgeAmmo
@@ -58,4 +80,53 @@
       map: [ "enum.AmmoVisualLayers.Base" ]
     - state: tip
       map: [ "enum.AmmoVisualLayers.Tip" ]
-      color: "#f53b31"
+      color: "#f44336"
+
+- type: entity
+  id: Cartridge8x65mmSKRUranium
+  name: cartridge (8x65mm SKR Uranium)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge8x65mmSKR
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet8x65mmSKRUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#6b9747"
+
+# Special
+- type: entity
+  id: Cartridge8x65mmSKREMP
+  name: cartridge (8x65mm SKR EMP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge8x65mmSKR
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet8x65mmSKREMP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#044492"
+
+- type: entity
+  id: Cartridge8x65mmSKRCaustic
+  name: cartridge (8x65mm SKR Caustic)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge8x65mmSKR
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet8x65mmSKRCaustic
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#8b9229"

@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Author: Maksimvini (discord)
+
+- type: vessel
+  id: FrameWorker
+  parent: BaseVessel
+  name: FrameWorker
+  description: Небольшой шаттл, часто используемый для недалёкого полёта, или используемый как основу для строительства шаттлов и станций.
+  price: 9500
+  category: Micro
+  group: Shipyard
+  shuttlePath: /Maps/_Lua/Shuttles/Civilian/FrameWorker.yml
+  guidebookPage: Null
+  whitelist:
+  - Luna
+  - Frontier
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: FrameWorker
+  mapName: 'FrameWorker'
+  mapPath: /Maps/_Lua/Shuttles/Civilian/FrameWorker.yml
+  minPlayers: 0
+  stations:
+    FrameWorker:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'FrameWorker {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

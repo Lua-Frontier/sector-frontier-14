@@ -1,2 +1,2 @@
-ent-NfsdWhistle = свисток дсбф
+ent-NfsdWhistle = свисток СРБС
     .desc = Его звуки заставляют вас бояться.

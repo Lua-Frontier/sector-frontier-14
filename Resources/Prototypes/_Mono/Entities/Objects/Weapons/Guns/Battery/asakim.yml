@@ -1,8 +1,9 @@
 - type: entity
   name: kunisa-pattern plasma autopulser
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery] #Lua BaseGunWieldable
   id: WeaponRifleAsakimAutopulser
   description: An advanced handheld plasma rifle. The design bears similarities to pre-fracture plasma weapons.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
@@ -14,20 +15,26 @@
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
   - type: Item
+    shape: #Lua
+    - 0,0,2,1
     sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
-  - type: GunWieldBonus
-    minAngle: -16 #Lua -18 -> -16
-    maxAngle: -14
+#  - type: GunWieldBonus # comment from _Lua
+#    minAngle: -16 #Lua -18 -> -16
+#    maxAngle: -14
   - type: Gun
-    minAngle: 18
-    maxAngle: 26
-    fireRate: 6
+#    minAngle: 18
+#    maxAngle: 26
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 4 #Lua 6<4
     burstFireRate: 10 #Lua 15 -> 10
     shotsPerBurst: 5
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
-    - Burst
+#    - Burst # comment from _Lua
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
@@ -37,11 +44,13 @@
     zeroVisible: false
   - type: ProjectileBatteryAmmoProvider
     proto: HandheldAutopulserProjectile
-    fireCost: 25
+    fireCost: 20
   - type: Appearance
   - type: StaticPrice
     price: 1750
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 15
-  - type: GunRequiresWield #Lua
+    autoRechargeRate: 20
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500

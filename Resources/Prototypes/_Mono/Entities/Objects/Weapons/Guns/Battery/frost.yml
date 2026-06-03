@@ -1,8 +1,9 @@
 - type: entity
   name: VFD EN-5 FROST
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCommandContraband] # Frontier: added BaseCommandContraband
+  parent: [BaseWeaponBattery, BaseCommandContraband] # Frontier: added BaseCommandContraband #Lua BaseGunWieldable
   id: WeaponEnergyGunFrost
   description: A self-recharging energy gun with lethal rounds that can inflict serious damage. Comes with disabling munitions and improved accuracy compared to it's previous versions.
+  suffix: Need balance test #Lua
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Battery/frost.rsi
@@ -13,6 +14,8 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
+    shape: #Lua
+    - 0,0,2,1
     size: Large
     sprite: _Mono/Objects/Weapons/Guns/Battery/frost.rsi
   - type: Clothing
@@ -21,12 +24,16 @@
     - Back
     - suitStorage
     sprite: _Mono/Objects/Weapons/Guns/Battery/frost.rsi
-  - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -25
+#  - type: GunWieldBonus # comment from _Lua
+#    minAngle: -20
+#    maxAngle: -25
   - type: Gun
-    minAngle: 21
-    maxAngle: 34
+#    minAngle: 21 # comment from _Lua
+#    maxAngle: 34
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -37,16 +44,16 @@
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 5250
-    startingCharge: 5250
+    maxCharge: 500
+    startingCharge: 500
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEnergyGunFrostNonLethal
-    fireCost: 75
-  - type: EnergyGun
-    fireModes:
-    - proto: BulletEnergyGunFrostNonLethal
-      fireCost: 75
-      name: disable
+    fireCost: 20 #Lua 75<20
+  # - type: EnergyGun # comment from _Lua
+  #   fireModes:
+  #   - proto: BulletEnergyGunFrostNonLethal
+  #     fireCost: 20 #Lua 75<20
+  #     name: disable
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -59,6 +66,6 @@
     price: 750
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 125
+    autoRechargeRate: 20 #Lua 125<20
   - type: PirateBountyItem # Mono
     id: ExperimentalFactionWeapon

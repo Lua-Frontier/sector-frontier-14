@@ -153,6 +153,7 @@ loadout-group-medical-intern-jumpsuit = Интерн, комбинезон
 loadout-group-chemist-jumpsuit = Химик, комбинезон
 loadout-group-chemist-outerclothing = Химик, верхняя одежда
 loadout-group-chemist-backpack = Химик, рюкзак
+loadout-group-chemist-head = Химик, голова
 loadout-group-paramedic-head = Парамедик, голова
 loadout-group-paramedic-jumpsuit = Парамедик, комбинезон
 loadout-group-paramedic-outerclothing = Парамедик, верхняя одежда

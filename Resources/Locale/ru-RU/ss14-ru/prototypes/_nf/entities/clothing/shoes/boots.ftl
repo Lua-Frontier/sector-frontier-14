@@ -1,8 +1,8 @@
-ent-ClothingShoesBootsPilot = ботинки пилота
+ent-ClothingShoesBootsPilot = ботинки исследователя
     .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
-ent-ClothingShoesBootsNfsdBrown = ботинки ДСБФ
+ent-ClothingShoesBootsNfsdBrown = ботинки СРБС
     .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
-ent-ClothingShoesBootsNfsdCream = ботинки ДСБФ
+ent-ClothingShoesBootsNfsdCream = ботинки СРБС
     .desc = Стильные ботинки для бега кругами по палубе во время чрезвычайных ситуаций.
 ent-ClothingShoesBootsPirate = Пиратские ботинки
     .desc = Эти ботинки способны вместить бесконечное множество ног.

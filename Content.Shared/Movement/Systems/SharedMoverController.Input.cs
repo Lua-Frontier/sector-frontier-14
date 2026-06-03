@@ -38,7 +38,8 @@ namespace Content.Shared.Movement.Systems
                 .Bind(EngineKeyFunctions.MoveLeft, moveLeftCmdHandler)
                 .Bind(EngineKeyFunctions.MoveRight, moveRightCmdHandler)
                 .Bind(EngineKeyFunctions.MoveDown, moveDownCmdHandler)
-                .Bind(EngineKeyFunctions.Walk, new WalkInputCmdHandler(this))
+                .Bind(EngineKeyFunctions.Walk, new SprintInputCmdHandler(this))
+                .Bind(ContentKeyFunctions.ToggleWalk, new WalkToggleCmdHandler(this))
                 .Bind(EngineKeyFunctions.CameraRotateLeft, new CameraRotateInputCmdHandler(this, Direction.East))
                 .Bind(EngineKeyFunctions.CameraRotateRight, new CameraRotateInputCmdHandler(this, Direction.West))
                 .Bind(EngineKeyFunctions.CameraReset, new CameraResetInputCmdHandler(this))
@@ -344,25 +345,41 @@ namespace Content.Shared.Movement.Systems
             entity.Comp.TargetRelativeRotation = Angle.Zero;
         }
 
-        private void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
+        private void HandleSprintChange(EntityUid uid, ushort subTick, bool active)
         {
             MoverQuery.TryGetComponent(uid, out var moverComp);
 
             if (TryComp<RelayInputMoverComponent>(uid, out var relayMover))
             {
-                // if we swap to relay then stop our existing input if we ever change back.
                 if (moverComp != null)
-                {
                     SetMoveInput((uid, moverComp), MoveButtons.None);
-                }
-
-                HandleRunChange(relayMover.RelayEntity, subTick, walking);
+                HandleSprintChange(relayMover.RelayEntity, subTick, active);
                 return;
             }
 
             if (moverComp == null) return;
+            SetSprintActive((uid, moverComp), subTick, active);
+        }
+        private void HandleWalkToggle(EntityUid uid, ushort subTick)
+        {
+            MoverQuery.TryGetComponent(uid, out var moverComp);
+            if (TryComp<RelayInputMoverComponent>(uid, out var relayMover))
+            {
+                if (moverComp != null) SetMoveInput((uid, moverComp), MoveButtons.None);
+                HandleWalkToggle(relayMover.RelayEntity, subTick);
+                return;
+            }
 
-            SetSprinting((uid, moverComp), subTick, walking);
+            if (moverComp == null) return;
+            ToggleWalkMode((uid, moverComp), subTick);
+        }
+
+        public virtual void SetSprintActive(Entity<InputMoverComponent> entity, ushort subTick, bool active)
+        { SetMoveInput(entity, subTick, active, MoveButtons.Sprint); }
+        public virtual void ToggleWalkMode(Entity<InputMoverComponent> entity, ushort subTick)
+        {
+            var isWalking = (entity.Comp.HeldMoveButtons & MoveButtons.Walk) != 0;
+            SetMoveInput(entity, subTick, !isWalking, MoveButtons.Walk);
         }
 
         public (Vector2 Walking, Vector2 Sprinting) GetVelocityInput(InputMoverComponent mover)
@@ -471,8 +488,6 @@ namespace Content.Shared.Movement.Systems
 
         public virtual void SetSprinting(Entity<InputMoverComponent> entity, ushort subTick, bool walking)
         {
-            // Logger.Info($"[{_gameTiming.CurTick}/{subTick}] Sprint: {enabled}");
-
             SetMoveInput(entity, subTick, walking, MoveButtons.Walk);
         }
 
@@ -577,11 +592,26 @@ namespace Content.Shared.Movement.Systems
             }
         }
 
-        private sealed class WalkInputCmdHandler : InputCmdHandler
+        private sealed class SprintInputCmdHandler : InputCmdHandler
         {
             private SharedMoverController _controller;
 
-            public WalkInputCmdHandler(SharedMoverController controller)
+            public SprintInputCmdHandler(SharedMoverController controller)
+            { _controller = controller; }
+
+            public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session, IFullInputCmdMessage message)
+            {
+                if (session?.AttachedEntity == null) return false;
+
+                _controller.HandleSprintChange(session.AttachedEntity.Value, message.SubTick, message.State == BoundKeyState.Down);
+                return false;
+            }
+        }
+        private sealed class WalkToggleCmdHandler : InputCmdHandler
+        {
+            private SharedMoverController _controller;
+
+            public WalkToggleCmdHandler(SharedMoverController controller)
             {
                 _controller = controller;
             }
@@ -589,8 +619,9 @@ namespace Content.Shared.Movement.Systems
             public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session, IFullInputCmdMessage message)
             {
                 if (session?.AttachedEntity == null) return false;
+                if (message.State != BoundKeyState.Down) return false;
 
-                _controller.HandleRunChange(session.AttachedEntity.Value, message.SubTick, message.State == BoundKeyState.Down);
+                _controller.HandleWalkToggle(session.AttachedEntity.Value, message.SubTick);
                 return false;
             }
         }
@@ -626,6 +657,7 @@ namespace Content.Shared.Movement.Systems
         Left = 4,
         Right = 8,
         Walk = 16,
+        Sprint = 32,
         AnyDirection = Up | Down | Left | Right,
     }
 

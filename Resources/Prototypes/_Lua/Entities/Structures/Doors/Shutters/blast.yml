@@ -1,0 +1,59 @@
+- type: entity
+  id: BlastDoorGlass
+  parent: BaseShutter
+  name: glass blast door
+  description: This one says 'BLAST DONGER'.
+  components:
+  - type: AccessReader
+    containerAccessProvider: board
+  - type: Sprite
+    sprite: _Lua/Structures/Doors/Shutters/blast_door_glass.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Door
+    closeTimeOne: 0.4
+    closeTimeTwo: 0.4
+    openTimeOne: 0.4
+    openTimeTwo: 0.4
+    openingAnimationTime: 1.0
+    closingAnimationTime: 1.0
+    canPry: false
+    crushDamage:
+      types:
+        Blunt: 25 # yowch
+    openSound:
+      path: /Audio/Machines/blastdoor.ogg
+    closeSound:
+      path: /Audio/Machines/blastdoor.ogg
+  - type: Appearance
+  - type: RadiationBlocker
+    resistance: 8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000 #1500 for steel blast doors, but this is glass, so 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronics ]
+#  - type: Construction
+#    graph: BlastDoor    i will do it soon
+#    node: blastdoor
+#    containers:
+#    - board
+  - type: StaticPrice
+    price: 300
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg

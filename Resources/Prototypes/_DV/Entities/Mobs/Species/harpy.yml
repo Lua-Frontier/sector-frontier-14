@@ -134,7 +134,7 @@
           True: {visible: true}
   - type: MovementSpeedModifier
 #    baseWalkSpeed: 2.5 # Frontier
-#    baseSprintSpeed: 5.0 # Frontier
+#    baseRunningSpeed: 5.0 # Frontier
     weightlessAcceleration: 2.5
   - type: Inventory
     speciesId: harpy
@@ -147,6 +147,12 @@
     femaleDisplacements: {} # Frontier: female jumpsuit displacement
   - type: HarpyVisuals
   - type: UltraVision
+  - type: LuaSprint # Lua
+    maxSprint: 86
+    drainPerSecond: 8.5
+    regenPerSecond: 8.6
+    regenDelay: 0.17
+    recoverThresholdFraction: 0.20
 #  - type: Tag # Frontier
 #    tags: # Frontier
 #    - CanPilot # Frontier

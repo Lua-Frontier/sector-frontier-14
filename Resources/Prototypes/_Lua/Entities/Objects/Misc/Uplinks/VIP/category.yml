@@ -2,7 +2,33 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
-#VIP
+#VIP Tier tabs (top bar in DonateShop)
+- type: storeCategory
+  id: UplinkVipTierShareholder
+  name: store-vip-tier-shareholder
+  priority: -100
+
+- type: storeCategory
+  id: UplinkVipTierGod
+  name: store-vip-tier-god
+  priority: -90
+
+- type: storeCategory
+  id: UplinkVipTierRank1
+  name: store-vip-tier-rank1
+  priority: -80
+
+- type: storeCategory
+  id: UplinkVipTierRank2
+  name: store-vip-tier-rank2
+  priority: -70
+
+- type: storeCategory
+  id: UplinkVipTierRank3
+  name: store-vip-tier-rank3
+  priority: -60
+
+#VIP item categories
 - type: storeCategory
   id: UplinkVipHardsuits
   name: store-merc-category-hardsuit
@@ -50,3 +76,4 @@
 - type: storeCategory
   id: UplinkVipCrates
   name: store-vip-category-crates
+

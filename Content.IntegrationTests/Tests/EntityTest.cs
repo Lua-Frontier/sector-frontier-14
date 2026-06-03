@@ -262,10 +262,10 @@ namespace Content.IntegrationTests.Tests
 
             var protoIds = server.ProtoMan
                 .EnumeratePrototypes<EntityPrototype>()
-                .Where(p => !p.Abstract)
-                .Where(p => !pair.IsTestPrototype(p))
-                .Where(p => !excluded.Any(p.Components.ContainsKey))
-                .Where(p => p.Categories.All(x => x.ID != SpawnerCategory))
+                .Where(p => !p.Abstract
+                    && !pair.IsTestPrototype(p)
+                    && !excluded.Any(p.Components.ContainsKey)
+                    && p.Categories.All(x => x.ID != SpawnerCategory))
                 .Select(p => p.ID)
                 .ToList();
 
@@ -283,7 +283,7 @@ namespace Content.IntegrationTests.Tests
 
             // We consider only non-audio entities, as some entities will just play sounds when they spawn.
             int Count(IEntityManager ent) => ent.EntityCount - ent.Count<AudioComponent>();
-            IEnumerable<EntityUid> Entities(IEntityManager entMan) => entMan.GetEntities().Where(entMan.HasComponent<AudioComponent>);
+            IEnumerable<EntityUid> Entities(IEntityManager entMan) => entMan.GetEntities().Where(e => !entMan.HasComponent<AudioComponent>(e)); // Lua
 
             await Assert.MultipleAsync(async () =>
             {

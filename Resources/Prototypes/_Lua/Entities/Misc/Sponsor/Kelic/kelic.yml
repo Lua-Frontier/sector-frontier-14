@@ -1,11 +1,26 @@
+# Backpack
 - type: sponsorLoadout
   id: Kelic
-  entity: ClothingBackpackKelic
-  sponsorOnly: true
-  login: Kelic
-  sponsorRole: Божество
+  ownerLogin: Kelic
+  tier: god
+  entities:
+    - ClothingBackpackKelic
+    - ClothingNeckKelic
+    - ClothingBeltKelic
+    - ClothingShoesBootsMagKelic
+    - ClothingHandsGlovesCombatKelic
+    - ClothingUniformJumpsuitKelic
+    - ClothingEyesGlassesKelic
+    - ClothingMaskGasKelic
+    - MedkitFilled
+    - SynthesizerInstrument
+    - PDAKelic
+    - ClothingHandsRingDiamondKelic
+    - ClothingHandsRingRubinoKelic
+    - DoubleEmergencyOxygenTankFilled
+    - WeaponCrusherKelic
+    - HypoKelic
 
-# Backpack
 - type: entity
   parent: [ClothingBackpack, HardsuitIdentifySponsor]
   id: ClothingBackpackKelic
@@ -21,23 +36,6 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
-  - type: StorageFill
-    contents:
-      - id: ClothingNeckKelic
-      - id: ClothingBeltKelic
-      - id: ClothingShoesBootsMagKelic
-      - id: ClothingHandsGlovesCombatKelic
-      - id: ClothingUniformJumpsuitKelic
-      - id: ClothingEyesGlassesKelic
-      - id: ClothingMaskGasKelic
-      - id: MedkitFilled
-      - id: SynthesizerInstrument
-      - id: PDAKelic
-      - id: ClothingHandsRingDiamondKelic
-      - id: ClothingHandsRingRubinoKelic
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: WeaponCrusherKelic
-      - id: HypoKelic
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: ToggleableClothing

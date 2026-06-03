@@ -29,6 +29,9 @@ binds:
   type: Toggle
   mod1: Shift
   key: F4
+- function: OpenDonateShopMenu
+  type: Toggle
+  key: F4
 - function: MoveUp
   type: State
   key: W
@@ -44,6 +47,9 @@ binds:
 - function: Walk
   type: State
   key: Shift
+- function: ToggleWalk
+  type: State
+  key: C
 - function: ToggleStanding
   type: State
   key: R
@@ -187,6 +193,9 @@ binds:
 - function: ActivateItemInHand
   type: State
   key: Z
+- function: LookUp
+  type: State
+  key: Space
 - function: AltActivateItemInHand
   type: State
   key: Z

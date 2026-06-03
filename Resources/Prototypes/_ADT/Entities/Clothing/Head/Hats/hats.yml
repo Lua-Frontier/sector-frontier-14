@@ -79,3 +79,51 @@
     sprite: _ADT/Clothing/Head/Hats/ccc_cap.rsi
   - type: Clothing
     sprite: _ADT/Clothing/Head/Hats/ccc_cap.rsi
+
+# Берет СИ
+- type: entity
+  parent: ClothingHeadBase
+  id: ADTClothingHeadHatsBeretChiefEngineer
+  name: chief engineer's beret
+  description: Team! Get to work!
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Head/Hats/beret_ce.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Head/Hats/beret_ce.rsi
+
+# Берет атмосиан
+- type: entity
+  parent: ClothingHeadBase
+  id: ADTClothingHeadHatsBeretAtmosphericTechnician
+  name: atmospheric technician's beret
+  description: Let the gas cook!
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Head/Hats/beret_atmospheric_technician.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Head/Hats/beret_atmospheric_technician.rsi
+
+# Берет ГП
+- type: entity
+  parent: ClothingHeadBase
+  id: ADTClothingHeadHatsBeretHeadOfPersonnel
+  name: head of personnel's beret
+  description: Paper, paper and paper once again!
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Head/Hats/beret_HOP.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Head/Hats/beret_HOP.rsi
+
+# Берет снабжения
+- type: entity
+  parent: ClothingHeadBase
+  id: ADTClothingHeadHatsBeretCargo
+  name: cargo's beret
+  description: Signature beret of cargo department.
+  components:
+  - type: Sprite
+    sprite: _ADT/Clothing/Head/Hats/beret_cargo.rsi
+  - type: Clothing
+    sprite: _ADT/Clothing/Head/Hats/beret_cargo.rsi

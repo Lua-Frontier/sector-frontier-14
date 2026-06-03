@@ -3,10 +3,16 @@
   id: RMCWeaponPistolB92FS
   name: Beretta M92FS
   description: A popular police firearm in the 20th century, often employed by hard-boiled cops while confronting terrorists. A classic of its time, chambered in 9mm. Normally found in the hands of Survivors and the Colony Liberation Front.
+  suffix: Need balance test
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-919 #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
     selectedMode: SemiAuto
-    fireRate: 4
+    fireRate: 9 #Lua 4<9
   # - type: RMCSelectiveFire
   #   scatterWielded: 8
   #   scatterUnwielded: 8
@@ -24,8 +30,8 @@
         priority: 2
         whitelist:
           tags:
-          - RMCMagazinePistolB92FS
-        startingItem: RMCMagazinePistolB92FS
+          - Magazine9x19mmPistolFMJ #Lua RMCMagazinePistolB92FS<Magazine9x19mmPistolFMJ
+        startingItem: Magazine9x19mmPistolFMJ #Lua RMCMagazinePistolB92FS<Magazine9x19mmPistolFMJ
   # - type: GunDamageModifier
   #   multiplier: 0.9
   - type: AttachableHolderVisuals

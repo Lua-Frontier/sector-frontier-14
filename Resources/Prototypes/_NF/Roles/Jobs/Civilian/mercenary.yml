@@ -4,14 +4,26 @@
   description: job-description-mercenary
   playTimeTracker: JobMercenary
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 108000
+    - !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 36000 #Lua 10h 
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 #Lua 10h
+    - !type:DepartmentTimeRequirement
+      department: Frontier
+      time: 36000 #Lua 10h 
+    - !type:RoleTimeRequirement
+      role: JobSecurityCadet
+      time: 36000 #Lua 10h 
+#    - !type:OverallPlaytimeRequirement
+#      time: 108000
   startingGear: MercenaryGear
   canBeAntag: true
   icon: "JobIconMercenary"
   supervisors: job-supervisors-hire
   weight: 3 # Prioritize station & department jobs
-  displayWeight: 20 # Second from the bottom
+  displayWeight: 40 # Second from the bottom
   setPreference: true
   access:
   - Mercenary
@@ -25,8 +37,8 @@
 - type: startingGear
   id: MercenaryGear
 #Lua add uplink for limited mercenary
-  equipment:
-    pocket1: BaseMercenaryUplinkRadioMercenary
+  equipment: {}
+#    pocket1: BaseMercenaryUplinkRadioMercenary
 
 - type: chameleonOutfit
   id: MercenaryBaseChameleonOutfit

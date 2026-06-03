@@ -11,11 +11,11 @@
 - type: pointOfInterest
   id: Lodge
   parent: BasePOI
-  name: 'Аванпост Экспедиций'
+  name: 'Аванпост ЭИК'
   minimumDistance: 2300 #1650 Lua
   maximumDistance: 5400 #3400 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/lodge.yml
+  gridPath: /Maps/_Lua/POI/ERCOutpostL.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/space-outpost.png
@@ -26,23 +26,27 @@
 
 - type: gameMap
   id: Lodge
-  mapName: 'Аванпост Экспедиций'
-  mapPath: /Maps/_Lua/POI/lodge.yml
+  mapName: 'Аванпост ЭИК'
+  mapPath: /Maps/_Lua/POI/ERCOutpostL.yml
   minPlayers: 0
   stations:
     Lodge:
       stationProto: MarketFrontierOutpost
       components:
+        - type: SolarPoweredGrid
+          trackOnInit: true
+          doNotCull: true
         - type: StationNameSetup
-          mapNameTemplate: 'Аванпост Экспедиций'
+          mapNameTemplate: 'Аванпост ЭИК'
         - type: ExtraStationInformation
           iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
-          stationSubtext: 'frontier-lobby-exped-subtext'
-          stationDescription: 'frontier-lobby-exped-description'
+          stationSubtext: 'frontier-lobby-erc-subtext'
+          stationDescription: 'frontier-lobby-erc-description'
           lobbySortOrder: 3
         - type: StationJobs
           availableJobs:
             Vip: [ -1, -1 ]
+            Contractor: [ -1, -1 ]
             Pilot: [ -1, -1 ]
         - type: StationDeadDrop
           maxDeadDrops: 1 # Fewer here, players start here.

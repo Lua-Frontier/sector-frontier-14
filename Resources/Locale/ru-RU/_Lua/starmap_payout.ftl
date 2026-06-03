@@ -5,7 +5,7 @@ payout-accum = Накоплено: { $amount }
 payout-owned-default = Подконтрольных секторов: 0
 payout-accum-default = Накоплено: 0
 
-ent-NfsdSectorPayoutCollector = терминал выплат ДСБФ
+ent-NfsdSectorPayoutCollector = терминал выплат СРБС
     .desc = Собирает монеты за подконтрольные сектора.
 
 ent-SyndicateSectorPayoutCollector = терминал выплат Синдиката

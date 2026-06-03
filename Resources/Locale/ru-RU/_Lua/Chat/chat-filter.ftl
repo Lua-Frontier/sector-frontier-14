@@ -4,3 +4,4 @@ chat-filter-alert = { $player } попытался отправить запре
 chat-filter-alert-session = { $player } попытался отправить запрещённое сообщение: { $message }
 
 chat-filter-repeated-message = Многократная отправка одного сообщения
+chat-filter-warning = Ваше сообщение заблокировано ({ $reason }). Предупреждение { $current } из { $max }.

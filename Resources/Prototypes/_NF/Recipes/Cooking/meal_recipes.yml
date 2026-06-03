@@ -1579,3 +1579,38 @@
   recipeType:
   - Oven
   - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeDonutUncooked
+  name: donut uncooked
+  result: FoodDonutUncooked
+  time: 5
+  group: Dessert
+  solids:
+    FoodDoughSlice: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonut
+  name: donut
+  result: FoodDonutPlain
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutUncooked: 1
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJelly
+  name: donut
+  result: FoodDonutJellyPlain
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutUncookedJelly: 1
+  recipeType:
+  - Oven
+  - Microwave

@@ -75,6 +75,15 @@
     solution: tank
   - type: ExaminableSolution
     solution: tank
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 250
+      Steel: 80
+      RawScrap: 20
+  - type: StaticPrice
+    price: 80
+  # Lua end
 
 - type: entity
   parent: ClothingBackpack

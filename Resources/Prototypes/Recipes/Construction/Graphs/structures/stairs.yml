@@ -1,0 +1,142 @@
+- type: constructionGraph
+  id: StairsCraft
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: steelStairs
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 2.0
+        - to: steelStairsStage
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 2.0
+        - to: whiteStairs
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 2.0
+        - to: whiteStairsStage
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 2.0
+        - to: darkStairs
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 2.0
+        - to: darkStairsStage
+          steps:
+            - material: Steel
+              amount: 4
+              doAfter: 2.0
+        - to: woodStairs
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2.0
+        - to: woodStairsStage
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2.0
+    - node: steelStairs
+      entity: Stairs
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: steelStairsStage
+      entity: StairStage
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: whiteStairs
+      entity: StairWhite
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: whiteStairsStage
+      entity: StairStageWhite
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: darkStairs
+      entity: StairDark
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: darkStairsStage
+      entity: StairStageDark
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: woodStairs
+      entity: StairWood
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity {}
+    - node: woodStairsStage
+      entity: StairStageWood
+      edges:
+        - to: start
+          steps:
+            - tool: Prying
+              doAfter: 5.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity {}

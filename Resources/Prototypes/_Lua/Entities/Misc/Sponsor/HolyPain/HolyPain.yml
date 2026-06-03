@@ -1,0 +1,547 @@
+- type: sponsorLoadout
+  id: HolyPain
+  ownerLogin: HolyPain
+  tier: rank3
+  entities:
+    - HolyPainRankKit
+    - BoxPillCanisterHolyPain
+    - PlushieHolyPainEri
+    - BronzeBeaker
+    - BronzeSyringe
+    - BronzeJetInjector
+    - CaressOfALovedOne
+    - DiceBag
+    - MedkitCombatFilled
+    - DefibrillatorCompact
+    - PowerCellMicroreactor
+    - FoodSnackCheesie
+    - DrinkJuiceOrangeCartonXL
+    - BronzeVisor
+
+#region Сумка
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: HolyPainRankKit
+  name: Блюспейс кристал HolyPain
+  description: Уникальный артефакт на золотой цепи — творение мастера HolyPain, стабилизированный в условиях мёртвого космоса и вручаемый как знак заслуг за вклад в одноимённый проект.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/HolyPainCrystalBag.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,14,7
+    storageOpenSound:
+      collection: CrystalBagOpening
+      params:
+        variation: 0.125
+    storageCloseSound:
+      collection: CrystalBagClosing
+      params:
+        variation: 0.125
+    storageInsertSound:
+      collection: CrystalBagItemInsert
+      params:
+        variation: 0.125
+    storageRemoveSound:
+      collection: CrystalBagItemRemove
+      params:
+        variation: 0.125
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Clothing
+    sprite: _Lua/Sponsor/HolyPain/HolyPainCrystalBag.rsi
+    quickEquip: false
+    slots:
+    - back
+    equipSound:
+      collection: CrystalBagEquip
+      params:
+        volume: -9
+        variation: 0.125
+    unequipSound:
+      collection: CrystalBagUnequip
+      params:
+        volume: -9
+        variation: 0.125
+  - type: EmitSoundOnPickup
+    sound:
+      collection: CrystalBagPickup
+      params:
+        volume: -9
+        variation: 0.125
+  - type: EmitSoundOnDrop
+    sound:
+      collection: CrystalBagDrop
+      params:
+        volume: -11
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      collection: CrystalBagLand
+      params:
+        volume: -11
+        variation: 0.125
+  - type: HardsuitIdentification
+    securityMode: Acid
+    emaggable: false
+    gibWearer: false
+    createAcidEffect: true
+  - type: HardsuitDNARadial
+  - type: TTS
+    voice: Cirilla
+  - type: Speech
+
+#region таблетница
+- type: entity
+  name: Коробочка таблеток HolyPain
+  parent: BoxCardboard
+  id: BoxPillCanisterHolyPain
+  categories: [ HideSpawnMenu ]
+  description: Баночки на все случаи жизни.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PillCanisterAntibiotic
+      - id: PillCanisterBicaridine
+        amount: 2
+      - id: PillCanisterDexalin
+      - id: PillCanisterDermaline
+      - id: PillCanisterDylovene
+      - id: PillCanisterTricordrazine
+      - id: PillCanisterHyronalin
+      - id: PillCanisterCharcoal
+  - type: Sprite
+    layers:
+      - state: box
+      - state: pillbox
+  - type: ExplosionResistance
+    damageCoefficient: 0
+    worn: false
+
+#region коллекции звуков
+- type: soundCollection
+  id: CrystalBagOpening
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagOpening.ogg
+
+- type: soundCollection
+  id: CrystalBagClosing
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagClosing.ogg
+
+- type: soundCollection
+  id: CrystalBagItemInsert
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/ItemInsert.ogg
+
+- type: soundCollection
+  id: CrystalBagItemRemove
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/ItemRemove.ogg
+
+- type: soundCollection
+  id: CrystalBagLand
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagLand1.ogg
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagLand2.ogg
+
+- type: soundCollection
+  id: CrystalBagEquip
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagEquip.ogg
+
+- type: soundCollection
+  id: CrystalBagUnequip
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagUnequip.ogg
+
+- type: soundCollection
+  id: CrystalBagPickup
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagPickup.ogg
+
+- type: soundCollection
+  id: CrystalBagDrop
+  files:
+  - /Audio/_Lua/Sponsor/HolyPain/HolyPainCrystalBag/BagDrop.ogg
+
+#region Плюшевая Эри
+#база говорящей плюшки
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseStash]
+  id: BasePlushieSpeakable
+  components:
+  - type: EmitSoundOnCollide
+    sound:
+      collection: ToySqueak
+      params:
+        volume: -4
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToySqueak
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 5
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: Speech
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: MeleeWeapon
+    # attackRate: 0.333 # Frontier
+    wideAnimationRotation: 180
+    soundHit:
+      collection: ToySqueak
+      params:
+        volume: -4
+    damage:
+      types:
+        Blunt: 0
+    hidden: true
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 5
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      collection: ToySqueak
+      params:
+        volume: -4
+    delay: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5 # Frontier: 10<5
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 5 # Frontier: 10<5
+  - type: Tag
+    tags:
+    - Payload
+    - ClothMade
+  - type: MothFood # Frontier
+
+#сама Эри
+- type: entity
+  parent: BasePlushieSpeakable
+  id: PlushieHolyPainEri
+  name: плюшевая Эри
+  description: "Скажите ей спасибо, что оказались в такой ситуации! На бирке виднеется надпись: HolyPain"
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/HolyPainPlushie.rsi
+    state: icon
+  - type: Item
+    sprite: _Lua/Sponsor/HolyPain/HolyPainPlushie.rsi
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 10
+  - type: Clothing
+    quickEquip: false
+    sprite: _Lua/Sponsor/HolyPain/HolyPainPlushie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+    speechVerb: Reptilian
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: LizardPlushie
+  - type: Tag
+    tags:
+    - Payload
+    - ClothMade
+    - PlushieLizard
+  - type: SpeakOnTrigger
+    pack: HolyPainPlushieSpeak
+  - type: TTS
+    voice: Naisha
+
+- type: localizedDataset
+  id: HolyPainPlushieSpeak
+  values:
+    prefix: holypainplushie-
+    count: 17
+
+
+#region бронзовая мензурка
+#база бронзовой мензурки
+- type: entity
+  parent: BaseItem
+  id: BaseBeakerBronze
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - GlassBeaker
+  - type: Item
+    sprite: _Lua/Sponsor/HolyPain/BronzeBeaker.rsi
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+  - type: MixableSolution
+    solution: beaker
+  - type: FitsInDispenser
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: InjectableSolution
+    solution: beaker
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+    minTransferAmount: 1 # Lua
+    maxTransferAmount: 1000 # Lua
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Drink
+    solution: beaker
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beaker
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: StaticPrice
+    price: 30
+  - type: DnaSubstanceTrace
+  - type: TrashOnSolutionEmpty # Frontier
+    solution: beaker # Frontier
+
+#сама менза
+- type: entity
+  name: Бронзовая мензурка с изумрудом
+  parent: BaseBeakerBronze
+  description: Чем сосуд наполнен, то из него и льётся.
+  id: BronzeBeaker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Spillable
+    solution: beaker
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/BronzeBeaker.rsi
+    layers:
+      - state: bronzebeaker
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 200
+
+#region бронзовый шприц
+#база бронзового шприца
+- type: entity
+  name: syringe
+  parent: BaseItem
+  description: Used to draw blood samples from mobs, or to inject them with reagents.
+  id: BaseSyringeBronze
+  abstract: true
+  components:
+  - type: Icon
+    sprite: _Lua/Sponsor/HolyPain/BronzeSyringe.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    sprite: _Lua/Sponsor/HolyPain/BronzeSyringe.rsi
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+  - type: Injector
+    activeModeProtoId: SyringeDrawMode
+    allowedModes:
+    - SyringeDrawMode
+    - SyringeInjectMode
+  - type: ExaminableSolution
+    solution: injector
+  - type: Spillable
+    solution: injector
+  - type: TrashOnSolutionEmpty
+    solution: injector
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Syringe
+  # Lua start
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25
+      Steel: 5
+  # Lua end
+
+#сам шприц
+- type: entity
+  id: BronzeSyringe
+  parent: BaseSyringeBronze
+  name: Бронзовый изумрудный шприц
+  description: Используется для забора образцов крови у благородных и не очень существ, или для введения им реагентов.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/BronzeSyringe.rsi
+    layers:
+      - state: icon
+  - type: Icon
+    sprite: _Lua/Sponsor/HolyPain/BronzeSyringe.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+  - type: Injector
+    activeModeProtoId: BluespaceSyringeDrawMode
+    allowedModes:
+    - BluespaceSyringeInjectMode
+    - BluespaceSyringeDrawMode
+  - type: Tag
+    tags:
+    - Syringe
+
+#region jet injector
+#база
+- type: entity
+  parent: BaseHypospray
+  id: BronzeJetInjectorBase
+  name: jet injector
+  abstract: true
+  description: A sterile injector for convenient administration of drugs to patients.
+  components:
+  - type: UseDelay
+    delay: 1.5
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: null # Inject everything on injection.
+    activeModeProtoId: JetInjectorDynamicMode
+    allowedModes:
+    - JetInjectorDynamicMode
+    - JetInjectorInjectMode
+
+#Сам джет инжектор
+- type: entity
+  parent: BronzeJetInjectorBase
+  id: BronzeJetInjector
+  name: Бронзовый джет-инъектор
+  description: Уникальный инъектор, украшенный изумрудом, с гравировкой в честь HolyPain на бронзовых частях.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/BronzeJetInjector.rsi
+    layers:
+    - state: jetinjector_base
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: _Lua/Sponsor/HolyPain/BronzeJetInjector.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+  - type: Injector
+    activeModeProtoId: AdvancedJetInjectorDynamicMode
+    allowedModes:
+    - AdvancedJetInjectorDynamicMode
+    - AdvancedJetInjectorInjectMode
+
+#region перчатки
+- type: entity
+  parent: [ ClothingHandsGlovesColorBlack ]
+  id: CaressOfALovedOne
+  name: Ласка любимого
+  description: "Самой прагматичной и храброй любовницей в истории была, конечно же, HolyPain. В ее честь названа популярная прическа, и для нее было написано множество чрезвычайно сопливых стихов (в большинстве из них она сравнивается с какими-нибудь географическими объектами)."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/CaressOfALovedOne.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/HolyPain/CaressOfALovedOne.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+#region очки
+- type: entity
+  parent: ClothingEyesHudMultiversal
+  id: BronzeVisor
+  name: Визор с бронзовой оправой
+  description: Высококлассный визор на половину лица, украшенный гравировкой с изображением рыцарских поединков на бронзовой оправе
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/BronzeVisor.rsi
+  - type: Clothing
+    sprite: _Lua/Sponsor/HolyPain/BronzeVisor.rsi
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ThermalVision
+    flashDurationMultiplier: 2
+    pulseTime: 1
+    isEquipment: true
+    color: "#9b9366"
+    toggleAction: ToggleThermalVision
+  - type: NightVision
+    isEquipment: true
+    color: "#a5a5a5"
+    toggleAction: ToggleNightVision
+  - type: Tag
+    tags: []

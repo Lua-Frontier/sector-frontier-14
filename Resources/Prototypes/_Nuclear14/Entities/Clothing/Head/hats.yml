@@ -1,0 +1,45 @@
+# General
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatArmyBeretRanger
+  name: army ranger beret
+  description: A pre-war army beret. Brown with a Ranger insignia.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/armyberetranger.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/armyberetranger.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatArmyBeretSpecial
+  name: army special forces beret
+  description: A pre-war army beret. This one is green.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/armyberetspecial.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/armyberetspecial.rsi
+
+# Brotherhood
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatBrotherhoodCap
+  name: brotherhood of steel cap
+  description: A cap worn by members of the Brotherhood of Steel.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/brotherhoodcap.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/brotherhoodcap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: N14ClothingHeadHatBrotherhoodFieldCap
+  name: brotherhood of steel field cap
+  description: A cap worn by Paladins of the Midwest Brotherhood during their field duties.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/brotherhoodhat.rsi
+  - type: Clothing
+    sprite: _Nuclear14/Clothing/Head/FalloutHats/brotherhoodhat.rsi

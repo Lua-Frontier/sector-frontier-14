@@ -1,4 +1,5 @@
 using Robust.Shared.Serialization;
+using Content.Shared._Lua.MedicalScanner.UI; // Lua
 
 namespace Content.Shared.MedicalScanner;
 
@@ -16,8 +17,9 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public bool? Unrevivable;
     public bool? Unclonable; // Frontier
     public bool Printable; // Frontier
+    public HealthAnalyzerRotTime RotTime; // Lua
 
-    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, bool? unclonable, bool printable = false) // Frontier: added unclonable, printable
+    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, bool? unclonable, bool printable = false, HealthAnalyzerRotTime rotTime = HealthAnalyzerRotTime.None) // Frontier: added unclonable, printable // Lua: Added rotTime
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -27,6 +29,6 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
         Unrevivable = unrevivable;
         Unclonable = unclonable; // Frontier
         Printable = printable; // Frontier
+        RotTime = rotTime; // Lua
     }
 }
-

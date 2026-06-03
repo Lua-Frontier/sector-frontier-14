@@ -3,11 +3,14 @@
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC3SyndicateContraband]
   id: WeaponShotgunBigLeady
   description: A massive 4 gauge (23x75mm) shotgun made to kill what any caliber bellow autocannon cant.
+  suffix: Need balance test #Lua
   components: # intend for BigLeady to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
     size: Normal
-    shape:
-    - 0,0,4,1
+#    shape: # comment from _LUa
+#    - 0,0,4,1
+    shape: #Lua
+    - 0,0,3,1
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigLeady_inhands_64x.rsi # Frontier: add _Mono prefix
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigLeady.rsi
@@ -15,9 +18,10 @@
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigLeady.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/bigshotgun_fire.ogg
-    fireRate: 1.5 #Lua 1 -> 1.5
+    fireRate: 2.5 #Lua 1<2.5
   - type: Tag
     tags:
     - WeaponShotgunBigLeady
@@ -38,11 +42,14 @@
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC1Contraband]
   id: WeaponShotgunBigJohnny
   description: A massive 4 gauge (23x75mm) shotgun made to kill what any caliber bellow autocannon cant. This one is outfitted with various tactical additions and is made for CQC at the cost of low ammo capacity.
+  suffix: Need balance test #Lua
   components: # intend for BigLeady to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
     size: Normal
-    shape:
-    - 0,0,4,1
+#    shape: # comment from _Lua
+#    - 0,0,4,1
+    shape: #Lua
+    - 0,0,3,1
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigJohnny_inhands_64x.rsi
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigJohnny.rsi
@@ -50,9 +57,10 @@
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigJohnny.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/bigshotgun_fire.ogg
-    fireRate: 1.5 #Lua 1 -> 1.5
+    fireRate: 2.5 #Lua 1<2.5
   - type: Tag
     tags:
     - WeaponShotgunBigLeady
@@ -60,7 +68,7 @@
     whitelist:
       tags:
       - ShellShotgun23x75mmBuckshot
-    capacity: 3
+    capacity: 6 #Lua 3<6
     proto: ShellShotgun23x75mmBuckshot
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
@@ -73,11 +81,14 @@
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC3SyndicateContraband]
   id: WeaponShotgunBigBuddy
   description: A massive 4 gauge (23x75mm) shotgun made to kill what any caliber bellow autocannon cant.
+  suffix: Need balance test #Lua
   components: # intend for BigBuddy to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
     size: Normal
-    shape:
-    - 0,0,4,1
+#    shape: # comment from _Lua
+#    - 0,0,4,1
+    shape: #Lua
+    - 0,0,3,1
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigBuddy_inhands_64x.rsi # Frontier: add _Mono prefix
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigBuddy.rsi
@@ -85,9 +96,10 @@
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigBuddy.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
+    examineCaliber: gun-examine-caliber-4g #Lua
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/bigshotgun_fire.ogg
-    fireRate: 1.5 #Lua 1 -> 1.5
+    fireRate: 2.5 #Lua 1<2.5
   - type: Tag
     tags:
     - WeaponShotgunBigBuddy

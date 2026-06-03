@@ -1,23 +1,22 @@
-# Loadout Definitions
+# Backpack
 - type: sponsorLoadout
   id: Reimon
-  entity: ClothingBackpackReimon
-  sponsorOnly: true
-  login: Reimon
-#
-#- type: sponsorLoadout
-#  id: ReimonHypospray
-#  entity: HypoReimon
-#  sponsorOnly: true
-#  whitelistJobs: [ChiefMedicalOfficer, SeniorPhysician, Chemist, MedicalDoctor, Paramedic, Coroner, MedicalIntern]
-#
-#- type: sponsorLoadout
-#  id: ReimonWeaponCrusher
-#  entity: WeaponCrusherReimon
-#  sponsorOnly: true
-#  whitelistJobs: [SalvageSpecialist, SeniorSalvageSpecialist]
+  ownerLogin: Reimon
+  tier: god
+  entities:
+    - ClothingBackpackReimon
+    - ClothingNeckReimon
+    - ClothingBeltReimon
+    - ClothingShoesBootsMagReimon
+    - ClothingHandsGlovesCombatReimon
+    - ClothingUniformJumpsuitReimon
+    - ClothingEyesGlassesReimon
+    - ClothingMaskGasReimon
+    - PDAReimon
+    - ClothingHeadsetReimon
+    - ClothingHeadCapReimon
+    - WeaponCrusherReimon
 
-# Backpack
 - type: entity
   parent: [ ClothingBackpack, HardsuitIdentifySponsor ]
   id: ClothingBackpackReimon
@@ -33,19 +32,6 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
-  - type: StorageFill
-    contents:
-    - id: ClothingNeckReimon
-    - id: ClothingBeltReimon
-    - id: ClothingShoesBootsMagReimon
-    - id: ClothingHandsGlovesCombatReimon
-    - id: ClothingUniformJumpsuitReimon
-    - id: ClothingEyesGlassesReimon
-    - id: ClothingMaskGasReimon
-    - id: PDAReimon
-    - id: ClothingHeadsetReimon
-    - id: ClothingHeadCapReimon
-    - id: WeaponCrusherReimon
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: ToggleableClothing
@@ -60,7 +46,7 @@
 
 # Belt
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: ClothingBeltStorageBaseNoWeaponSlot
   id: ClothingBeltReimon
   name: поясная сумка Minaris
   description: Обычная поясная сумка, входит в стандартную экипировку офицера-исследователя Minaris.

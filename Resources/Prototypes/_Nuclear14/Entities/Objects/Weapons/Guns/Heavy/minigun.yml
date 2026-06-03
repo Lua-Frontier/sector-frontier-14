@@ -2,7 +2,9 @@
   name: minigun
   parent: BaseWeaponRifle
   id: BaseWeaponMinigun
-  description: A extremely heavy minigun with 3 barrels, it uses 5mm ammo. # TODO: Need to create projectiles, magazines and boxes for 5.56.
+  description: A extremely heavy minigun with 3 barrels, it uses 5mm ammo.
+  categories: [ HideSpawnMenu ]
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/minigun.rsi
@@ -12,32 +14,40 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Item
+    shape: #Lua
+    - 0,0,7,4
     sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/minigun.rsi
     size: Ginormous
   - type: Gun
-    minAngle: 4
-    maxAngle: 12
-    fireRate: 12
+#    minAngle: 4 # comment from _Lua
+#    maxAngle: 12
+#    angleIncrease: 3
+#    angleDecay: 34
+    minAngle: 3 #Lua
+    maxAngle: 15 #Lua
+    angleIncrease: 1.3 #Lua
+    angleDecay: 4.7 #Lua
+    fireRate: 7 #Lua 12<7
     soundGunshot:
       collection: N14MinigunGunshot
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: N14MagazineMinigun5mm
+        startingItem: Magazine68x52mmCaselessBig #Lua N14MagazineMinigun5mm<Magazine68x52mmCaselessBig
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - N14MagazineMinigun5mm
+            - Magazine68x52mmCaseless #Lua N14MagazineMinigun5mm<Magazine68x52mmCaseless
       gun_chamber:
         name: Chamber
-        startingItem: N14CartridgePistol5
+        startingItem: Cartridge68x52mmCaseless #Lua N14CartridgePistol5<Cartridge68x52mmCaseless
         priority: 1
         whitelist:
           tags:
-            - N14CartridgePistol5
+            - Cartridge68x52mmCaseless #Lua N14CartridgePistol5<Cartridge68x52mmCaseless
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -54,19 +64,23 @@
   name: minigun
   parent: [BaseC3Contraband, BaseWeaponMinigun]
   id: N14WeaponMinigun
-  description: A extremely heavy minigun with 3 barrels, it uses 5mm ammo. # TODO: Need to create projectiles, magazines and boxes for 5.56.
+  description: A extremely heavy minigun with 3 barrels, it uses 5mm ammo.
+  suffix: Need balance test
   components:
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+  - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-6852
 
 - type: entity
   name: avenger minigun
   parent: [BaseC2Contraband, BaseWeaponMinigun]
   id: N14WeaponAvengerMinigun
-  description: A extremely heavy advance minigun with multiple barrels, it uses 5mm ammo. # TODO: Need to create projectiles, magazines and boxes for 5.56.
+  description: A extremely heavy advance minigun with multiple barrels, it uses 5mm ammo.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/avengerminigun.rsi
@@ -79,9 +93,28 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/avengerminigun.rsi
   - type: Gun
-    minAngle: 3
-    maxAngle: 6
-    fireRate: 16
+    examineCaliber: gun-examine-caliber-865 #Lua
+#    minAngle: 3
+#    maxAngle: 6
+    fireRate: 5.83
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.7 #Lua 0.8<0.7
+    sprintModifier: 0.7 #Lua 0.8<0.7
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine: 
+        name: Magazine
+        startingItem: Magazine8x65mmSKRBox
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineBox8x65mmSKR
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge8x65mmSKR
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge8x65mmSKR

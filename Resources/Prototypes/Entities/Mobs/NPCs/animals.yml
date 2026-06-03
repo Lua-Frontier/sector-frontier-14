@@ -6,7 +6,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseRunningSpeed : 6
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -93,7 +93,7 @@
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 7
+    baseRunningSpeed : 7
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -388,7 +388,7 @@
       1: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 5
+    baseRunningSpeed : 5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -555,7 +555,7 @@
       60: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 4
+    baseRunningSpeed : 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
     baseWeightlessModifier: 1
@@ -798,7 +798,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseRunningSpeed : 6
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1261,7 +1261,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
-    baseSprintSpeed: 4.5
+    baseRunningSpeed: 4.5
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1594,7 +1594,7 @@
       125: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
-    baseSprintSpeed: 5
+    baseRunningSpeed: 5
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -1806,7 +1806,7 @@
       20: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.9  # DeltaV - Allows them to sneak over traps
-    baseSprintSpeed : 5
+    baseRunningSpeed : 5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2060,7 +2060,7 @@
   # End Imp: kobold accent, reptilian vocal sounds, and ReptilianHiss emote
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseRunningSpeed: 3
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2117,7 +2117,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
-    baseSprintSpeed : 3
+    baseRunningSpeed : 3
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2166,7 +2166,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
-    baseSprintSpeed: 6
+    baseRunningSpeed: 6
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2237,7 +2237,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 6
+    baseRunningSpeed : 6
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2394,7 +2394,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
-    baseSprintSpeed: 5
+    baseRunningSpeed: 5
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -3163,7 +3163,7 @@
     - VimPilot
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 4
+    baseRunningSpeed: 4
   # DeltaV: get cats to fight with mice
   - type: HTN
     rootTask:
@@ -3346,7 +3346,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 0.5
-    baseSprintSpeed : 1
+    baseRunningSpeed : 1
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/sloth.rsi
@@ -3513,7 +3513,7 @@
       60: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.9  # DeltaV - Allows them to sneak over traps
-    baseSprintSpeed : 4
+    baseRunningSpeed : 4
   - type: Inventory
     speciesId: hamster
     templateId: hamster
@@ -3731,7 +3731,7 @@
       60: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 4.5
+    baseRunningSpeed : 4.5
   - type: Grammar
     attributes:
       gender: epicene

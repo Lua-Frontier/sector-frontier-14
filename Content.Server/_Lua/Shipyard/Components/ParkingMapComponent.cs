@@ -7,5 +7,7 @@ namespace Content.Server._Lua.Shipyard.Components;
 public sealed partial class ParkingMapComponent : Component
 {
     [DataField]
-    public float NextShuttleIndex = 500f;
+    public int CurrentRing = 0;
+    [DataField]
+    public int CurrentSlotInRing = 0;
 }

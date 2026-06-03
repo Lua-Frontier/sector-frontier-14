@@ -488,7 +488,7 @@
   description: A vandalized ClothesMate.
   components:
   - type: VendingMachine
-    pack: VendingMachineBountyVendPunkInventory
+    pack: VendingMachineClothingPunkInventory # Lua: VendingMachineBountyVendPunkInventory < VendingMachineClothingPunkInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded

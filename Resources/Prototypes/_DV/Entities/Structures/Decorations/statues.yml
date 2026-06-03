@@ -1,0 +1,51 @@
+- type: entity
+  id: StatueOracle
+  parent: BaseStructure
+  name: statue of Oracle
+  description: An ancient marble statue of angel without head and limbs. It has bronze bowl in front of it. It, perhaps, should be filled with liquid?
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _DV/Structures/Decoration/statues.rsi
+    layers:
+    - state: oracle-0
+    - state: oracle-1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Appearance
+  - type: SolutionContainerManager
+    solutions:
+      bowl:
+        maxVol: 1000
+  - type: MixableSolution
+    solution: bowl
+  - type: RefillableSolution
+    solution: bowl
+  - type: DrainableSolution
+    solution: bowl
+  - type: ExaminableSolution
+    solution: bowl
+  - type: DrawableSolution
+    solution: bowl
+  - type: InjectableSolution
+    solution: bowl
+  - type: SolutionContainerVisuals
+    maxFillLevels: 9
+    fillBaseName: oracle-
+  - type: Drink
+    solution: bowl
+
+- type: entity
+  id: StatueSophie
+  parent: BaseStructure
+  name: statue of Sophie
+  description: An ancient marble statue. It represents some unknown deity. Maybe, The Science Navy knows anything about it?
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _DV/Structures/Decoration/statues.rsi
+    state: sophie
+    drawdepth: Mobs
+    offset: "0.0,0.5"

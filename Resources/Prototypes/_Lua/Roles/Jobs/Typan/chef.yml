@@ -3,40 +3,48 @@
 # See AGPLv3.txt for details.
 
 - type: job
-  id: OutpostSyndicateChef
+  id: OutpostTypanChef
   name: job-name-typan-chef
-  playTimeTracker: JobOutpostTypanChef
-  salary: 35000 #Lua 25000<35000
-  description: Сервисный работник, задача которого - напоить и накормить группу самых мирных людей в секторе
+  playTimeTracker: JobOutpostSyndicateChef
+  salary: 25000
+  description: Повар из далёкого космоса.
   startingGear: SyndicateChef
-  icon: "JobIconOutpostSyndicateChef"
+  icon: "JobIconOutpostTypanChef"
   supervisors: job-supervisors-typan-telecommunications-officer
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
+  - !type:RoleTimeRequirement
+    role: JobPilot
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobPassenger
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobFrontierEngineer
+    time: 72000 # 20h
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 72000 # 20h
     # - !type:RoleTimeRequirement
     #   role: JobOutpostTypanAtmosTech
     #   time: 20600
-    - !type:RoleTimeRequirement
-      role: JobChemist
-      time: 50000 #Lua
-    - !type:DepartmentTimeRequirement
-      department: Antag
-      time: 50000 #Lua 32000<50000
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 50000 #Lua 27000<50000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 50000 #Lua 23000<50000
-    - !type:OverallPlaytimeRequirement
-      time: 200000 #Lua 360000<200000
+    # - !type:DepartmentTimeRequirement
+    #   department: Civilian
+    #   time: 27000
+    # - !type:DepartmentTimeRequirement
+    #   department: Security
+    #   time: 23000
+    # - !type:OverallPlaytimeRequirement
+    #   time: 360000
   access:
   - SyndicateAgent
   - NuclearOperative
   accessGroups:
   - AllAccess
   special:
+  - !type:AddImplantSpecial
+    implants: [ DeathAcidifierImplantLWTypan ]
   - !type:AddComponentSpecial
     components:
       - type: Company
@@ -53,15 +61,15 @@
 - type: startingGear
   id: SyndicateChef
   equipment:
-    ears: ClothingHeadsetAltOutpostSyndicate
-    jumpsuit: ClothingUniformJumpsuitOutpostSyndicateChef
+    ears: ClothingHeadsetAltOutpostTypan
+    jumpsuit: ClothingUniformJumpsuitOutpostTypanChef
     back: ClothingBackpackSyndicateFilled
-    outerClothing: ClothingOuterApronOutpostSyndicateChef
+    outerClothing: ClothingOuterApronOutpostTypanChef
     shoes: ClothingShoesColorBlack
     id: SyndiPDAChef
 
 - type: chameleonOutfit
-  id: OutpostSyndicateChefChameleonOutfit
-  job: OutpostSyndicateChef
+  id: OutpostTypanChefChameleonOutfit
+  job: OutpostTypanChef
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOutpostSyndicateChef
+    jumpsuit: ClothingUniformJumpsuitOutpostTypanChef

@@ -17,6 +17,15 @@
     head: ClothingHeadHatBeretEngineering
 
 - type: loadout
+  id: PlantManagerClothingHeadHatBeretChiefEngineer
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NFHeadwearCapable
+  price: 0
+  equipment:
+    head: ADTClothingHeadHatsBeretChiefEngineer
+
+- type: loadout
   id: EngineeringClothingHeadHatHardhatYellow
   hideEffects:
   - !type:GroupLoadoutEffect

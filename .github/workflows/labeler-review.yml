@@ -1,18 +1,22 @@
-name: "Labels: Approved"
+name: "Labels: Review State"
 on:
   pull_request_review:
     types: [submitted]
 jobs:
-  add_label:
+  review_labels:
     # Change the repository name after you've made sure the team name is correct for your fork!
     # Frontier: repo changed (space-wizards/space-station-14 < new-frontiers-14/frontier-station-14)
-    if: ${{ (github.repository == 'Lua-Frontier/sector-frontier-14') && (github.event.review.state == 'APPROVED') }}
+    if: ${{
+      (github.repository == 'Lua-Frontier/sector-frontier-14') &&
+      (github.event.review.state == 'APPROVED' || github.event.review.state == 'CHANGES_REQUESTED' || github.event.review.state == 'COMMENTED')
+      }}
     permissions:
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-    - uses: tspascoal/get-user-teams-membership@v3
+    - if: ${{ github.actor != 'HacksLua' }}
+      uses: tspascoal/get-user-teams-membership@v3
       id: checkUserMember
       with:
         username: ${{ github.actor }}
@@ -20,7 +24,33 @@ jobs:
         organization: "Lua-Frontier"
       env:
         GITHUB_TOKEN: ${{ secrets.LABELER_PAT }}
-    - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
+
+    - if: ${{
+        github.event.review.state == 'APPROVED' &&
+        (github.actor == 'HacksLua' || steps.checkUserMember.outputs.isTeamMember == 'true')
+      }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
-        labels: "APPROVED"
+        labels: "Подтверждено"
+    - if: ${{
+        github.event.review.state == 'APPROVED' &&
+        (github.actor == 'HacksLua' || steps.checkUserMember.outputs.isTeamMember == 'true')
+      }}
+      uses: actions-ecosystem/action-remove-labels@v1
+      with:
+        labels: "Внимание"
+
+    - if: ${{
+        (github.event.review.state == 'CHANGES_REQUESTED' || github.event.review.state == 'COMMENTED') &&
+        (github.actor == 'HacksLua' || steps.checkUserMember.outputs.isTeamMember == 'true')
+      }}
+      uses: actions-ecosystem/action-add-labels@v1
+      with:
+        labels: "Внимание"
+    - if: ${{
+        (github.event.review.state == 'CHANGES_REQUESTED' || github.event.review.state == 'COMMENTED') &&
+        (github.actor == 'HacksLua' || steps.checkUserMember.outputs.isTeamMember == 'true')
+      }}
+      uses: actions-ecosystem/action-remove-labels@v1
+      with:
+        labels: "Подтверждено"

@@ -3,41 +3,48 @@
 # See AGPLv3.txt for details.
 
 - type: job
-  id: OutpostSyndicateMedic
+  id: OutpostTypanMedic
   name: job-name-typan-medic
-  playTimeTracker: JobOutpostTypanMedic
-  salary: 50000 #Lua 35000<50000
-  description: Боевой медик, конвертирующий фарш обратно в оперативников Нордфолла
+  playTimeTracker: JobOutpostSyndicateMedic
+  salary: 35000
+  description: Медик из далёкого космоса.
   startingGear: SyndicateParamedic
   icon: "JobIconSyndicateParamedic"
   supervisors: job-supervisors-typan-telecommunications-officer
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
+  - !type:RoleTimeRequirement
+    role: JobPilot
+    time: 36000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobPassenger
+    time: 36000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobFrontierEngineer
+    time: 36000 # 20h
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 36000 # 20h
     # - !type:RoleTimeRequirement
     #   role: JobOutpostTypanBotanist
     #   time: 20600
-
-    - !type:RoleTimeRequirement
-      role: JobChemist
-      time: 25000 #Lua
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 75000 #Lua
-    - !type:DepartmentTimeRequirement
-      department: Antag
-      time: 50000 #Lua 31<50
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 100000 #Lua 72<100
-    - !type:OverallPlaytimeRequirement
-      time: 100000 #Lua 360<100
+    # - !type:DepartmentTimeRequirement
+    #   department: Civilian
+    #   time: 18000
+    # - !type:DepartmentTimeRequirement
+    #   department: Security
+    #   time: 72000 # 20 hours
+    # - !type:OverallPlaytimeRequirement
+    #   time: 360000
   access:
   - SyndicateAgent
   - NuclearOperative
   accessGroups:
   - AllAccess
   special:
+  - !type:AddImplantSpecial
+    implants: [ DeathAcidifierImplantLWTypan ]
   - !type:AddComponentSpecial
     components:
       - type: Company
@@ -54,17 +61,17 @@
 - type: startingGear
   id: SyndicateParamedic
   equipment:
-    eyes: ClothingEyesHudSyndicateAgentOutpostSyndicate
-    ears: ClothingHeadsetAltOutpostSyndicate
+    eyes: ClothingEyesHudSyndicateAgentOutpostTypan
+    ears: ClothingHeadsetAltOutpostTypan
     jumpsuit: ClothingUniformJumpsuitParamedicSyndie
-    outerClothing: ClothingOuterMedOutpostSyndicate
+    outerClothing: ClothingOuterMedOutpostTypan
     shoes: ClothingShoesBootsCombat
     id: MedicalPDASyndi
     back: ClothingBackpackSyndicateFilled
     belt: ClothingBeltMedicalFilled
 
 - type: chameleonOutfit
-  id: OutpostSyndicateMedicChameleonOutfit
-  job: OutpostSyndicateMedic
+  id: OutpostTypanMedicChameleonOutfit
+  job: OutpostTypanMedic
   equipment:
     jumpsuit: ClothingUniformJumpsuitParamedicSyndie

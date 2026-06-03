@@ -23,6 +23,7 @@
   parent: [BaseC1Contraband, BaseWeaponRevolver]
   id: N14WeaponRevolver10mm
   description: The first prototype for the semiauto 10mm pistol, Uses 10mm ammo.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/10mmrevolver.rsi
@@ -31,10 +32,17 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - N14CartridgePistol10
+        - Cartridge45_ACPFMJ #Lua N14CartridgePistol10<Cartridge45_ACPFMJ
         - SpeedLoader10
-    proto: N14CartridgePistol10
+    proto: Cartridge45_ACPFMJ #Lua N14CartridgePistol10<Cartridge45_ACPFMJ
+  - type: Item #Lua
   - type: Gun
+    examineCaliber: gun-examine-caliber-45acp #Lua
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 5
     soundGunshot:
       collection: N14Revolver10mmGunshot
 
@@ -43,18 +51,31 @@
   parent: [BaseC1Contraband, BaseWeaponRevolver]
   id: N14WeaponRevolverMagnun
   description: The Big Iron. Uses .44 magnum ammo.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Revolvers/magnum.rsi
-  - type: RevolverAmmoProvider
+#  - type: RevolverAmmoProvider #comment from _Lua
+#    whitelist:
+#      tags:
+#        - N14Cartridge44Magnum
+#        - SpeedLoader44
+#    proto: N14Cartridge44Magnum
+  - type: RevolverAmmoProvider #Lua
     whitelist:
       tags:
-        - N14Cartridge44Magnum
-        - SpeedLoader44
-    proto: N14Cartridge44Magnum
+        - Cartridge45_magnumFMJ
+        - SpeedLoaderMagnum
+    proto: Cartridge45_magnumFMJ
   - type: Gun
+    examineCaliber: gun-examine-caliber-45mgn #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1.3 #Lua 2.4<1.3
     soundGunshot:
       collection: N14RevolverMagnunGunshot
 
@@ -63,9 +84,15 @@
   parent: [BaseC1Contraband, BaseWeaponRevolver]
   id: N14WeaponRevolverCaptainMagnun
   description: A true freedom fighter carries his flag everywhere, even on his gun. Uses .44 magnum ammo.
+  suffix: Need balance test
   components:
   - type: Gun
-    fireRate: 2
+    examineCaliber: gun-examine-caliber-45mgn #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1.6 #Lua 2<1.6
     resetOnHandSelected: false
     soundGunshot:
       collection: N14RevolverMagnunGunshot
@@ -76,17 +103,24 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - N14Cartridge44Magnum
-        - SpeedLoader44
-    proto: N14Cartridge44Magnum
+        - Cartridge45_magnumFMJ #Lua N14Cartridge44Magnum<Cartridge45_magnumFMJ
+        - SpeedLoaderMagnum #Lua SpeedLoader44<SpeedLoaderMagnum
+    proto: Cartridge45_magnumFMJ #Lua N14Cartridge44Magnum<Cartridge45_magnumFMJ
 
 - type: entity
   name: hunting revolver
   parent: [BaseC1Contraband, BaseWeaponRevolver]
   id: N14WeaponHunterRevolver
   description: A heavy revolver with a long cannon designed to hunt small animals, but it also works for people. Uses .45-70 gov't ammo.
+  suffix: Need balance test
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-45mgn #Lua
+    minAngle: 1 #Lua
+    maxAngle: 3.5 #Lua
+    angleIncrease: 0.2 #Lua
+    angleDecay: 1 #Lua
+    fireRate: 1.6 #Lua
     soundGunshot:
       collection: N14HunterRevolverGunshot
   - type: Sprite
@@ -96,9 +130,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - N14Cartridge45-70
-        - SpeedLoader45-70
-    proto: N14Cartridge45-70
+        - Cartridge45_magnumFMJ #Lua N14Cartridge45-70<Cartridge45_magnumFMJ
+        - SpeedLoaderMagnum #Lua SpeedLoader45-70<SpeedLoaderMagnum
+    proto: Cartridge45_magnumFMJ #Lua N14Cartridge45-70<Cartridge45_magnumFMJ
 
 - type: entity
   name: wild whisper

@@ -1,0 +1,12 @@
+ent-TapeRecorder = ленточный диктофон
+    .desc = Всё, что было сказано вами, уже записано этим диктофоном, а поэтому может и будет использовано против вас в суде.
+ent-CassetteTape = ленточная кассета
+    .desc = Магнитная лента, которая может содержать до двух минут записи.
+ent-TapeRecorderFilled = {ent-TapeRecorder}
+    .desc = {ent-TapeRecorder.desc}
+ent-TapeRecorderTranscript = распечатка записи диктофона
+    .desc = Кусок белой бумаги
+ent-CassetteTapeInterview = {ent-CassetteTape}
+    .desc = {ent-CassetteTape.desc}
+ent-BoxTapeRecorder = коробка с ленточным диктофоном
+    .desc = Коробка, содержащая в себе 4 цветных кассеты и кассетный диктофон.

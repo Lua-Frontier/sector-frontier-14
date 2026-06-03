@@ -31,7 +31,7 @@
 
 - type: entity
   parent: [ClothingBackpack, BaseC1SyndicateContraband]
-  id: ClothingBackpackSatchelOutpostSyndicate
+  id: ClothingBackpackSatchelOutpostTypan
   name: сумка синдиката
   description: Модная сумка в красно-чёрных тонах.
   components:
@@ -42,3 +42,77 @@
     - 8,0,9,3
   - type: Sprite
     sprite: _Lua/Clothing/Back/bag.rsi
+
+- type: entity
+  parent: [ Clothing, EnergyShieldClothing ]
+  id: ClothingBackpackEnergyShield
+  name: Генератор поля Абсолютной Защиты
+  description: Экспериментальный, тяжелый генератор защитного поля. Обеспечивают дополнительную защиту от пуль, лазеров и ударов, однако позвоночник не скажет спасибо от долгого ношения этой дуры.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Specific/harmpack.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    slots:
+      - BELT
+      - BACK
+  - type: ClothingSpeedModifier #Lua
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBrigmedicWhite
+  name: white brigmedic's backpack
+  description: White backpack for various white brigmedic things.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Backpacks/brigmedic.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelBrigmedicWhite
+  name: white brigmedic's satchel
+  description: Good satchel for medical goods.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Satchels/brigmedic.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelBrigmedicWhite
+  name: white brigmedic's duffel
+  description: Big duffel bag for big things.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Back/Duffels/brigmedic.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackHeadOfPersonnel
+  name: head of personnel's backpack
+  description: Although looks expensive, costs not very much
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Backpacks/hop.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelHeadOfPersonnel
+  name: head of personnel's satchel
+  description: Great bureaucratic satchel for pens and papers.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Back/Satchels/hop.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelHeadOfPersonnel
+  name: head of personnel's duffel
+  description: Full of money and papers.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Back/Duffels/hop.rsi

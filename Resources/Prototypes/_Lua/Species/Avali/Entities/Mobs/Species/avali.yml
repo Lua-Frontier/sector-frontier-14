@@ -30,9 +30,16 @@
       types:
         Heat : 3
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.8
-    baseSprintSpeed: 5.8
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 4.5
+    baseSprintSpeed: 6.5
     weightlessAcceleration: 2.5
+  - type: LuaSprint # Lua
+    maxSprint: 88
+    drainPerSecond: 8.7
+    regenPerSecond: 9.6
+    regenDelay: 0.16
+    recoverThresholdFraction: 0.20
   - type: PseudoItem
     storedOffset: 0,17
     shape:
@@ -277,6 +284,8 @@
         32:
           sprite: _Lua/Races/Avali/displacement.rsi
           state: inHand
+  - type: LuaJumpAbility # Lua
+    jumpDistance: 5
 
 - type: entity
   save: false
@@ -316,8 +325,9 @@
       types:
         Heat : 3
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.8
-    baseSprintSpeed: 5.8
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 4.5
+    baseSprintSpeed: 6.5
     weightlessAcceleration: 2.5
 
 - type: entity
@@ -338,8 +348,9 @@
         types:
           Heat : 3
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2.8
-      baseSprintSpeed: 5.8
+      baseWalkSpeed: 2.5
+      baseRunningSpeed: 4.5
+      baseSprintSpeed: 6.5
       weightlessAcceleration: 2.5
     - type: HumanoidAppearance
       species: Avali

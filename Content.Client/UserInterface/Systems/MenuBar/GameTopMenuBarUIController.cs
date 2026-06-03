@@ -1,4 +1,5 @@
 using Content.Client._Lua.UserInterface.Systems.Language; // Lua
+using Content.Client._Lua.UserInterface.Systems.DonateShop;
 using Content.Client.UserInterface.Systems.Actions;
 using Content.Client.UserInterface.Systems.Admin;
 using Content.Client.UserInterface.Systems.Bwoink;
@@ -28,6 +29,7 @@ public sealed class GameTopMenuBarUIController : UIController
     [Dependency] private readonly EmotesUIController _emotes = default!;
     [Dependency] private readonly LanguageMenuUIController _language = default!; // Lua
     [Dependency] private readonly CompanyMenuUIController _company = default!; // Lua
+    [Dependency] private readonly DonateShopUIController _donateShop = default!;
 
     private GameTopMenuBar? GameTopMenuBar => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>();
 
@@ -53,6 +55,7 @@ public sealed class GameTopMenuBarUIController : UIController
         _emotes.UnloadButton();
         _language.UnloadButton(); // Lua
         _company.UnloadButton(); // Lua
+        _donateShop.UnloadButton();
     }
 
     public void LoadButtons()
@@ -68,5 +71,6 @@ public sealed class GameTopMenuBarUIController : UIController
         _emotes.LoadButton();
         _language.LoadButton(); // Lua
         _company.LoadButton(); // Lua
+        _donateShop.LoadButton();
     }
 }

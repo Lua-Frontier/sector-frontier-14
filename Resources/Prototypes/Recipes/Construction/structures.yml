@@ -518,6 +518,35 @@
   objectType: Structure
   placementMode: SnapgridCenter
 
+# Lua start
+- type: construction
+  id: UraniumWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: UraniumReinforcedWindowDirectional
+  graph: WindowDirectional
+  startNode: start
+  targetNode: uraniumReinforcedWindowDirectional
+  category: construction-category-structures
+  canBuildInImpassable: true
+  conditions:
+    - !type:EmptyOrWindowValidInTile
+    - !type:NoWindowsInTile
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+# Lua end
+
 - type: construction
   id: UraniumWindow
   graph: Window
@@ -615,6 +644,7 @@
 
 - type: construction
   id: Turnstile
+  name: construction-recipe-turnstile
   graph: Turnstile
   startNode: start
   targetNode: turnstile
@@ -1073,6 +1103,58 @@
   conditions:
     - !type:TileNotBlocked
 
+# Lua start
+- type: construction
+  id: PGlassWindoor
+  graph: Windoor
+  startNode: start
+  targetNode: pwindoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: UGlassWindoor
+  graph: Windoor
+  startNode: start
+  targetNode: uwindoor
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: UGlassWindoorSecure
+  graph: Windoor
+  startNode: start
+  targetNode: uwindoorSecure
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PGlassWindoorSecure
+  graph: Windoor
+  startNode: start
+  targetNode: pwindoorSecure
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+
+# Lua end
 #lighting
 - type: construction
   id: LightTubeFixture
@@ -1325,3 +1407,151 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Lua start
+- type: construction
+  id: Stairs
+  name: construction-recipe-stairs-steel
+  graph: StairsCraft
+  startNode: start
+  targetNode: steelStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStage
+  name: construction-recipe-stairs-steel-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: steelStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairWhite
+  name: construction-recipe-stairs-white
+  graph: StairsCraft
+  startNode: start
+  targetNode: whiteStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: bulbFloorLightFixture
+  name: recipe-bulb-floor-light
+  graph: LightFixture
+  startNode: start
+  targetNode: bulbFloorLight
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageWhite
+  name: construction-recipe-stairs-white-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: whiteStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: tubeFloorLightMiddleFixture
+  name: recipe-tube-floor-light-middle
+  graph: LightFixture
+  startNode: start
+  targetNode: tubeFloorLightMiddle
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairDark
+  name: construction-recipe-stairs-dark
+  graph: StairsCraft
+  startNode: start
+  targetNode: darkStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: tubeFloorLightSideFixture
+  name: recipe-tube-floor-light-side
+  graph: LightFixture
+  startNode: start
+  targetNode: tubeFloorLightSide
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageDark
+  name: construction-recipe-stairs-dark-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: darkStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairWood
+  name: construction-recipe-stairs-wood
+  graph: StairsCraft
+  startNode: start
+  targetNode: woodStairs
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StairStageWood
+  name: construction-recipe-stairs-wood-stage
+  graph: StairsCraft
+  startNode: start
+  targetNode: woodStairsStage
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+# Lua End

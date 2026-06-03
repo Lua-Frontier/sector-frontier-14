@@ -15,6 +15,33 @@
     magState: mag
     steps: 4
     zeroVisible: true
+  - type: Gun #Lua
+    fireRate: 8.4
+  - type: ItemSlots #Lua
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine68x52mmCaselessBig
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine68x52mmCaseless
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge68x52mmCaseless
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge68x52mmCaseless
+  - type: HeldSpeedModifier #Lua
+  - type: ClothingSpeedModifier #Lua
+    sprintModifier: 0.85
+    walkModifier: 0.85
+  - type: SpeedModifiedOnWield #Lua
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
 - type: entity
   id: NFWeaponLightMachineGunL6C

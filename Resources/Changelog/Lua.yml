@@ -3848,3 +3848,373 @@ Entries:
   id: 272
   time: '2026-04-16T13:37:22.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/545
+- author: Almaz3200
+  changes:
+    - type: Add
+      message: Fracture получила ремап и была возвращена на верфь СРБС!
+  id: 273
+  time: '2026-04-24T11:03:13.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/549
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен рывок
+    - type: Add
+      message: Добавлен спринт и шкала выносливости
+    - type: Add
+      message: Добавлено прицеливание через пробел
+    - type: Tweak
+      message: Хотбар экшенов (быстрых действий) теперь зафиксирован
+    - type: Tweak
+      message: >-
+        Корабельное вооружение теперь откручивается быстрее но получило привязку
+        грида владельца
+    - type: Fix
+      message: Чат фильтр теперь будет меньше выгонять с сервера
+    - type: Add
+      message: Добавлена логика фракционных серверов но не применена в игре
+    - type: Add
+      message: >-
+        Теперь доступна возможность посадить шаттл на планету через маяк (маяк
+        можно изучить в РНД)
+    - type: Fix
+      message: Смягчение логики автоудаления шаттлов
+    - type: Tweak
+      message: Межзвездный двигатель и БСС двигатель теперь одно целое
+    - type: Tweak
+      message: Ивентовые события и астероиды перенесены в ПА
+    - type: Tweak
+      message: Удалены цены на химические вещества
+    - type: Tweak
+      message: Цены на руду увеличены в 2 раза
+  id: 274
+  time: '2026-04-24T11:40:00.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/550
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены мемориальные экспозиции
+    - type: Remove
+      message: Убрана стамина при беге
+    - type: Tweak
+      message: Стартовый баланс персонажа теперь 100000
+    - type: Tweak
+      message: Экшены теперь сохраняются
+    - type: Fix
+      message: Исправлен баг стрельбы с корабельного вооружения на планетах
+    - type: Fix
+      message: >-
+        Исправлен баг из-за которого шаттл при отзыве не возвращался в сектор а
+        оставался на планете
+  id: 275
+  time: '2026-04-25T12:05:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/552
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Порт обновления Липтона
+  id: 276
+  time: '2026-04-25T13:35:16.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/553
+- author: ressuw
+  changes:
+    - type: Tweak
+      message: Полный ремап Ориона
+  id: 277
+  time: '2026-04-25T13:37:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/506
+- author: mke35870-jpg
+  changes:
+    - type: Add
+      message: Feledor
+  id: 278
+  time: '2026-04-25T14:33:46.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/458
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Сентинел -  новый пиратский шаттл(за референс взят шаттл с монолита и
+        переделан +-достаточно сильно), имеет 2 эми, 2 пулемета, 2 220мм, 1
+        чаронета, 2 гарпун пушки. Сильное носовое бронирование,
+        неповоротливость.
+  id: 279
+  time: '2026-04-25T14:34:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/515
+- author: harara228-prog
+  changes:
+    - type: Add
+      message: >-
+        Шаттл Sentinel с вооружением в виде: 3 220мм Сайбрекса, 2 ЭМИ-Рубикон, 2
+        средних миномёта. В наличии ультра-сервер вооружения. Для ДСБФ.
+  id: 280
+  time: '2026-04-25T14:37:03.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/500
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: >-
+        мех <img width="840" height="466" alt="image"
+        src="https://github.com/user-attachments/assets/66e98ee3-e8d9-4ad0-a022-082cf243676c"
+        />
+  id: 281
+  time: '2026-04-25T20:53:27.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/554
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлен полноценный магазин(терминал) Акционеров на F4
+    - type: Add
+      message: Добавлена новая валюта LunaCoin
+    - type: Remove
+      message: Удален аплинк акционеров
+    - type: Tweak
+      message: >-
+        Все аплинки теперь привязаны к балансу пользователя, их больше ненужно
+        пополнять.
+  id: 282
+  time: '2026-05-01T19:36:15.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/564
+- author: Almaz3200
+  changes:
+    - type: Tweak
+      message: >-
+        В меде Гладиатора и Фрактуры теперь по 2 боевых аптечки а также коробка
+        мензурок
+    - type: Tweak
+      message: У Гладиатора и Даггера были изменены силуэты
+    - type: Tweak
+      message: Из оружейной Гладиатора были убраны Лектеры и лазерные винтовки
+    - type: Tweak
+      message: >-
+        Даггер был укреплён в слабых местах, в душевую добавлен шкафчик с
+        медикаментами, сервер вооружений перенесён в инж а на его место был
+        поставлен телекоммуникационный сервер
+    - type: Tweak
+      message: >-
+        у Джудикари и Магуса скафандры наймов были заменены на скафандры частной
+        охраны
+  id: 283
+  time: '2026-05-01T19:37:15.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/563
+- author: Maksimvini
+  changes:
+    - type: Add
+      message: >-
+        Добавлен шаттл Edelweiss - полный аналог шаттла Apothecary, с похожим
+        стилем, но своими достатками. Создан с нуля по аналогу.
+  id: 284
+  time: '2026-05-01T19:39:45.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/555
+- author: BTReflex
+  changes:
+    - type: Add
+      message: немало локализаций
+  id: 285
+  time: '2026-05-08T03:57:37.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/568
+- author: BTReflex
+  changes:
+    - type: Add
+      message: Добавлены блюспейс ковры
+  id: 286
+  time: '2026-05-08T03:58:11.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/570
+- author: KiraFaust
+  changes:
+    - type: Add
+      message: Униформа, пояс и РПС фельдшера
+    - type: Add
+      message: Кубанка Бумана Лопеса для Бумана Лопеса
+    - type: Add
+      message: Остеклённый гермозатвор
+    - type: Add
+      message: Добавлены крылья, их можно купить в плащвенде
+    - type: Add
+      message: Куча одежды разного назначения
+    - type: Add
+      message: Несколько старых шлюзов и шлюз ПФа
+    - type: Fix
+      message: Локализация для некоторых вещей
+    - type: Add
+      message: Добавлено множество вещей в СБДроб (пока только в меню спавна)
+    - type: Remove
+      message: Из Хамелеона убраны вещи Эскадрона Смерти, а также удалён плакат ЭС
+    - type: Add
+      message: Медали СБ, значок Прокурора и прочие медальки
+    - type: Add
+      message: Носки ОСЩ
+    - type: Add
+      message: Декоративные научные конструкции связанные с эпистемикой
+    - type: Add
+      message: Добавлено множество вещей в лод-ауты
+    - type: Add
+      message: Сильно изменён лод-аут Менеджера Э"Э", а также ВендОМат СИ
+    - type: Tweak
+      message: >-
+        Теперь HighSec-шлюзы имеют старые звуки шлюзов (они звучат более
+        тяжёлыми и мощными)
+  id: 288
+  time: '2026-05-10T07:00:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/546
+- author: dovacot
+  changes:
+    - type: Tweak
+      message: >-
+        Оценщик контрабанды теперь показывает ценность предметов в контейнере;
+        палета может продавать контрабанду из контейнера
+    - type: Tweak
+      message: >-
+        Криокапсула теперь вводит и обычные реагенты (без двойной эффективности;
+        криогенные сохранили её)
+    - type: Tweak
+      message: >-
+        Свинец в рецепте Фентанила заменён на Петидин, возвращён в Синдисоки и
+        добавлен в набор химического синтеза
+    - type: Tweak
+      message: Можно заливать химикаты в сигареты без гипоспрея/шприца
+    - type: Tweak
+      message: Свободный объём в сигаретах уменьшен, в уже пропитанных убран
+    - type: Add
+      message: >-
+        В умный холодильник можно класть имплантеры, бинты, наборы для ушибов,
+        мази, регенеративные сети, медицинскую нить и пакеты крови
+    - type: Fix
+      message: Экраны ХимкоМата и плоского телевизора теперь светятся
+    - type: Fix
+      message: Исправление разметки в отчёте МедТека
+    - type: Add
+      message: МедТек теперь показывает примерное время гниения
+    - type: Add
+      message: >-
+        Новые РнД технологии: "Регенератор воды" для создания раковин,
+        "Вирусология", "Умный холодильник"
+    - type: Tweak
+      message: Максимальный объём раковин уменьшен с 500u до 300u
+    - type: Tweak
+      message: >-
+        Переработчик материалов может перерабатывать хирургические инструменты,
+        дефибриллятор, ранцевый водяной резервуар, мелкие сервисные предметы,
+        телескопический щит, болу, воспламенитель и другие коробки патрон
+    - type: Add
+      message: Добавлены белые боевые перчатки
+  id: 289
+  time: '2026-05-13T05:35:45.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/575
+- author: BTReflex
+  changes:
+    - type: Add
+      message: Добавлены напольные светильники
+  id: 290
+  time: '2026-05-27T14:28:40.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/576
+- author: dovacot
+  changes:
+    - type: Add
+      message: Консоль верфи теперь показывает размер, тип и питание шаттла
+    - type: Fix
+      message: У большинства шаттлов подправлена информация о типе и питании
+  id: 291
+  time: '2026-05-27T14:35:42.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/578
+- author: HavvaMariajmiPalmer
+  changes:
+    - type: Add
+      message: Добавлено Кортофельное пюре с тефтелями и его крафт
+  id: 292
+  time: '2026-05-27T14:36:02.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/579
+- author: ressuw
+  changes:
+    - type: Add
+      message: Добавлено веселье!
+    - type: Remove
+      message: Удалено веселье!
+    - type: Tweak
+      message: Изменено веселье!
+    - type: Fix
+      message: >-
+        На орион:  Добавлены кнопочки для гермозатворов, повернут медвенд,
+        добавлены углы на сканере масс, добавлены стулья в отделе рнд, убрано 2
+        плаката, полноценные подстанции заменены на настенные, категория шаттла
+        стала медиум, снижена цена на 7500 спесос.
+  id: 293
+  time: '2026-05-27T14:37:15.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/580
+- author: BTReflex
+  changes:
+    - type: Add
+      message: Крафты раздвижных окон и бронеокон из урана и плазмы.
+    - type: Add
+      message: Крафты пончиков и желейных пончиков.
+    - type: Add
+      message: Крафты ступенек.
+    - type: Add
+      message: Плюшки Аматы Хабаровой.
+    - type: Add
+      message: Крафты направленных урановых окон и бронеокон
+  id: 294
+  time: '2026-05-27T14:49:33.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/577
+- author: dovacot
+  changes:
+    - type: Add
+      message: >-
+        В руководство добавлена возможность скрыть дерево записей нажатием ПКМ
+        на заголовок окна
+    - type: Tweak
+      message: >-
+        Возвращение в категорию химических веществ руководства подкатегории
+        "Другое"
+    - type: Remove
+      message: >-
+        Откат Петидина, Свинец возвращён в рецепт Фентанила, убран из Синдисоков
+        и набора химического синтеза
+    - type: Tweak
+      message: Враждебной фауне отключены датчики на комбинезонах
+    - type: Add
+      message: >-
+        Добавлен рецепт инженерных очков в технологию "Эксп. сварочные
+        инструменты"
+    - type: Fix
+      message: ПанкоМат теперь имеет свой ассортимент, а не БонанзоМата
+    - type: Tweak
+      message: >-
+        Ассортимент ПанкоМата расширен одеждой (и новыми неоновыми кошачьими
+        ушками)
+    - type: Tweak
+      message: Ассортимент БонанзоМата расширен экипировкой
+    - type: Add
+      message: >-
+        Гарнитура теперь показывает в описании отображаемый в рации цвет и
+        количество свободных слотов для ключей шифрования
+    - type: Tweak
+      message: >-
+        Перевод некоторых гарнитур, панковских вещей, правильное отображение
+        панковских очков в хранилище
+    - type: Tweak
+      message: Фелиниды могут переключать мягкое ночное зрение
+    - type: Fix
+      message: >-
+        Машины уже точно правильно показывают процент ускорения/замедления от
+        смазки/клея
+    - type: Tweak
+      message: Голопад меняет имя при переименовании шаттла
+  id: 295
+  time: '2026-05-27T15:03:55.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/582
+- author: Maksimvini
+  changes:
+    - type: Add
+      message: Добавлены шаттлы  FrameWorker, Avorion, Lifecomer
+    - type: Remove
+      message: Удалены шаттлы  Eden, Framework, Skalpel
+    - type: Tweak
+      message: Изменено веселье!
+    - type: Fix
+      message: >-
+        Skalpel более не имеет Сервера мониторинга экипажа, что ломает при
+        покупке все мониторинги сервера.
+  id: 296
+  time: '2026-05-27T15:04:07.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/581

@@ -1,0 +1,384 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Base
+- type: entity
+  id: MedipenCaseMechFilled
+  parent: SyringeCase
+  name: Кейс с механическими иньекторами
+  description: Стальной портсигар с красной маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasemech.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: BruteAutoInjector
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+- type: entity
+  id: MedipenCasePhysFilled
+  parent: SyringeCase
+  name: Кейс с ожоговыми иньекторами
+  description: Стальной портсигар с синей маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasephys.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: BurnAutoInjector
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+- type: entity
+  id: MedipenCaseToxinFilled
+  parent: SyringeCase
+  name: Кейс с иньекторами противоядия
+  description: Стальной портсигар с фиолетовой маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasetoxin.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: AntiPoisonMedipen
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+- type: entity
+  id: MedipenCaseRadFilled
+  parent: SyringeCase
+  name: Кейс с антирадиационными иньекторами
+  description: Воронёный стальной портсигар с оранжевой маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencaserad.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: RadAutoInjector
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+- type: entity
+  id: MedipenCaseExtraFilled
+  parent: SyringeCase
+  name: Кейс с экстренными иньекторами
+  description: Стальной портсигар с зелёной маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencaseextra.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+# Advanced
+- type: entity
+  id: MedipenCasePunctFilled
+  parent: SyringeCase
+  name: Кейс с иньекторами пунктураза
+  description: Стальной портсигар с желтой маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasepunct.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: PunctAutoInjector
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+- type: entity
+  id: MedipenCasePyraFilled
+  parent: SyringeCase
+  name: Кейс с иньекторами пиразина
+  description: Стальной портсигар с оранжевой маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasepyra.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: PyraAutoInjector
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+# Stimulators
+- type: entity
+  id: MedipenCaseHyperFilled
+  parent: SyringeCase
+  name: Черный кейс со стимуляторами
+  description: Черный стальной портсигар с красной маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasehyper.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: Stimpack
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1
+
+- type: entity
+  id: MedipenCaseStimFilled
+  parent: SyringeCase
+  name: Кейс со стимуляторами
+  description: Стальной портсигар с голубой маркировкой и 6 иньекторами внутри.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Chemistry/pencasestim.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: filled-1
+      map: ["filled-1"]
+      visible: false
+    - state: filled-2
+      map: ["filled-2"]
+      visible: false
+    - state: filled-3
+      map: ["filled-3"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+  - type: StorageFill
+    contents:
+    - id: StimulantAutoInjector
+      amount: 6
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - filled-1
+    - filled-2
+    - filled-3
+  - type: Storage
+    grid:
+    - 0,0,2,1

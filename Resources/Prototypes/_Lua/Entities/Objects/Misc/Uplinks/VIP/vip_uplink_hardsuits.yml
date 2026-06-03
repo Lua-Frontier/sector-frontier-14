@@ -14,15 +14,15 @@
     Speso: 24600
   categories:
     - UplinkVipHardsuits
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipHardsuitSanta
@@ -33,15 +33,15 @@
     Speso: 21100
   categories:
   - UplinkVipHardsuits
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 - type: listing
   id: UplinkClothingOuterHardsuitShareholder
@@ -52,14 +52,15 @@
     Speso: 36350
   categories:
   - UplinkVipHardsuits
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
+    - Акционер
   - !type:ListingLimitedStockCondition
     stock: 1
 
@@ -72,14 +73,18 @@
     Speso: 36350
   categories:
   - UplinkVipHardsuits
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - OutpostSyndicateShareholder
+    - Акционер
+  - !type:BuyerCompanyCondition
+    whitelist:
+    - Syndicate
   - !type:ListingLimitedStockCondition
     stock: 1
 

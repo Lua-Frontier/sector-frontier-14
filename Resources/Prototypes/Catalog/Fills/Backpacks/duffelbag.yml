@@ -216,7 +216,7 @@
   components:
     - type: StorageFill
       contents:
-        - id: ChameleonPDA
+        # - id: ChameleonPDA # comment 219 227 229 from _Lua
         - id: ClothingUniformJumpsuitChameleon
         - id: ClothingOuterChameleon
         - id: ClothingNeckChameleon
@@ -224,9 +224,9 @@
         - id: ClothingHeadHatChameleon
         - id: ClothingHandsChameleon
         - id: ClothingEyesChameleon
-        - id: ClothingHeadsetChameleon
+        # - id: ClothingHeadsetChameleon
         - id: ClothingShoesChameleon
-        - id: ChameleonControllerImplanter
+        # - id: ChameleonControllerImplanter
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

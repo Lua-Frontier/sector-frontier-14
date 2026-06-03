@@ -1,6 +1,7 @@
 using Content.Server.Popups;
 using Content.Shared.Contraband;
 using Content.Server._NF.Security.Components;
+using Content.Server._Lua.Contraband.Systems; // Lua
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
@@ -17,6 +18,7 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ContrabandPricingSystem _contraband = default!; // Lua
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,10 +35,10 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
         if (!TryComp(entity, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((entity, useDelay)))
             return;
 
-        if (!TryComp<ContrabandComponent>(args.Target, out var contraband) || !contraband.TurnInValues.ContainsKey(entity.Comp.Currency))
+        if (!_contraband.TryGetItemPrice(args.Target, entity.Comp.Currency, out var price)) // Lua
             return;
 
-        var price = contraband.TurnInValues[entity.Comp.Currency];
+        //var price = contraband.TurnInValues[entity.Comp.Currency]; // Lua
         var user = args.User;
         var target = args.Target;
 
@@ -62,8 +64,8 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
         if (!TryComp(entity, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((entity, useDelay)))
             return;
 
-        if (TryComp<ContrabandComponent>(args.Target, out var contraband) && contraband.TurnInValues.ContainsKey(entity.Comp.Currency))
-            _popupSystem.PopupEntity(Loc.GetString($"{entity.Comp.LocStringPrefix}contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", contraband.TurnInValues[entity.Comp.Currency])), args.User, args.User);
+        if (_contraband.TryGetItemPrice(args.Target.Value, entity.Comp.Currency, out var price)) // Lua
+            _popupSystem.PopupEntity(Loc.GetString($"{entity.Comp.LocStringPrefix}contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", price)), args.User, args.User); // Lua
         else
             _popupSystem.PopupEntity(Loc.GetString($"{entity.Comp.LocStringPrefix}contraband-price-gun-pricing-result-none", ("object", Identity.Entity(args.Target.Value, EntityManager))), args.User, args.User);
 

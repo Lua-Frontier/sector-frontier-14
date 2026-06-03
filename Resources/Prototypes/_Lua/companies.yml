@@ -108,6 +108,17 @@
   leaderJobs: [ Sheriff ]
 
 - type: company
+  id: StromCreed
+  name: Кодекс Бури
+  description: Фракция, состоящая из бывших наёмников ныне несуществующего Братства Бури. Nanotrasen называет их террористами, остатки Братства - предателями, а Синдикат - удобным инструментом. Сам Кодекс не придумывает названий - он тихо копит силы в неосвоенных периферийных секторах, чтобы в один день вернуть власть и свободу в родной дом...
+  color: "#948471"
+  form: Антаганисты
+  disabled: true
+  showCompanyRadar: true
+  hiddenFromNonMembers: true
+  leaderJobs: [ StormCreedCaptain ]
+
+- type: company
   id: Syndicate
   name: Синдикат
   description: Преступная организация на Фронтире с разрозненной структурой, торгующая оружием, наркотиками и имплантами. Поддерживается такими корпорациями, как Cybersun и Saibasan. Влияет на экономику, коррупцией проникает во власть. Использует насилие, шантаж и вербовку. Черный рынок — основа его существования и деятельности.
@@ -116,5 +127,5 @@
   disabled: true
   hiddenFromNonMembers: true
   aliesOnRadar: true
-  leaderJobs: [ OutpostSyndicateTelecommunicationsOfficer ]
+  leaderJobs: [ OutpostTypanTelecommunicationsOfficer ]
 # НЕ ТРОГАТЬ

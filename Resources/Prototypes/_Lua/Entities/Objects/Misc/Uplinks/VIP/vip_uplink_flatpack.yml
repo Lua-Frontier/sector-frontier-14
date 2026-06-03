@@ -33,15 +33,15 @@
     Speso: 66000
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackIFFFlatpack
@@ -53,15 +53,15 @@
     Speso: 99000
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackAutolathe
@@ -73,15 +73,15 @@
     Speso: 12375
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackTrayEmptyFlatpack
@@ -93,15 +93,15 @@
     Speso: 12375
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackProtolatheFlatpack
@@ -113,15 +113,15 @@
     Speso: 20625
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackImprinterFlatpack
@@ -133,15 +133,15 @@
     Speso: 20625
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackOreMachine
@@ -153,15 +153,15 @@
     Speso: 20625
   categories:
     - UplinkVipFlatpack
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipFlatpackFTLDrive600
@@ -172,33 +172,14 @@
     Speso: 20625
   categories:
   - UplinkVipFlatpack
+  - UplinkVipTierShareholder
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - VipUplink
-  - !type:BuyerJobCondition
+  - !type:BuyerSponsorTierCondition
     whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
-
-- type: listing
-  id: UplinkVipFlatpackWarpDrive
-  name: uplink-vip-MachineWarpDriveFlatpack-name
-  description: uplink-vip-MachineWarpDriveFlatpack-desc
-  productEntity: MachineWarpDriveFlatpack
-  cost:
-    Speso: 20625
-  categories:
-  - UplinkVipFlatpack
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - VipUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Vip
-    - OutpostSyndicateShareholder
+    - Акционер
 
 

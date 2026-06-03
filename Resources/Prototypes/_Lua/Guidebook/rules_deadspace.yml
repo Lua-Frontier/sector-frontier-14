@@ -3,282 +3,375 @@
 # See AGPLv3.txt for details.
 
 - type: guideEntry
+  id: DSRulesIC
+  name: СРП и Космический Закон
+  priority: -2
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSJobRules.xml"
+  children:
+  - DSJobRulesERC
+  - DSJobRulesSD
+  - DSRegulations
+  - DSJobRulesMerc
+  - DSJobRulesSС
+  - DSJobGuides
+
+- type: guideEntry
+  id: DSJobRulesERC
+  name: Экспедиционно-Исследовательский Корпус NT
+  priority: 1
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSJobRulesERC.xml"
+
+- type: guideEntry
+  id: DSJobRulesSD
+  name: Служба Разведки и Безопасности Сектора
+  priority: 2
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSJobRulesSD.xml"
+
+- type: guideEntry
+  id: DSRegulations
+  name: Положения и Режимные Приказы
+  priority: 3
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSRegulations.xml"
+
+- type: guideEntry
+  id: DSJobRulesMerc
+  name: Кодекс Наёмника
+  priority: 4
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSJobRulesMerc.xml"
+
+- type: guideEntry
+  id: DSJobRulesSС
+  name: Кодекс Бури
+  priority: 5
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSJobRulesSC.xml"
+
+- type: guideEntry
+  id: DSJobGuides
+  name: Гайды и советы по отыгрышу
+  priority: 6
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesIC/DSJobGuides.xml"
+
+
+
+- type: guideEntry
   id: DeadSpaceFrontierRuleset
   name: Правила сервера
   priority: 0
   ruleEntry: true
   #ruleFilter: false
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRules.xml"
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRules.xml"
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRules.xml"
   children:
-  - DeadSpaceFrontierRule0
-  - DeadSpaceFrontierRule1
-  - DeadSpaceFrontierRule2
-  - DeadSpaceFrontierRule1_2
-  - DeadSpaceFrontierRule3
-  - DeadSpaceFrontierRule4
-  - DeadSpaceFrontierRule2_2
-  - DeadSpaceFrontierRule5
-  - DeadSpaceFrontierRule6
-  - DeadSpaceFrontierRule7
-  - DeadSpaceFrontierRule8
-  - DeadSpaceFrontierRule9
-  - DeadSpaceFrontierRule10
-  - DeadSpaceFrontierRule11
-  - DeadSpaceFrontierRule12
-  - DeadSpaceFrontierRule13
-  - DeadSpaceFrontierRule14
-  - DeadSpaceFrontierRule15
-  - DeadSpaceFrontierRule16
-  - DeadSpaceFrontierRule17
-  - DeadSpaceFrontierRule18
-  - DeadSpaceFrontierRule19
-  - DeadSpaceFrontierRule20
-  - DeadSpaceFrontierRule21
-  - DeadSpaceFrontierRule22
-  - DeadSpaceFrontierRule23
-  - DeadSpaceFrontierRule24
-  - DeadSpaceFrontierRule25
-  - DeadSpaceFrontierRule26
-  - DeadSpaceFrontierRule27
-  - DeadSpaceFrontierRule28
-  - DeadSpaceFrontierRule29
-  - DeadSpaceFrontierRule30
-  - DeadSpaceFrontierRule31
+  - DSFrontierRule0
+  - DSFrontierRule1
+  - DSFrontierRule2
+  - DSFrontierRule3
+  - DSFrontierRule4
+  - DSFrontierRule5
+#  - DeadSpaceFrontierRule0
+#  - DeadSpaceFrontierRule1
+#  - DeadSpaceFrontierRule2
+#  - DeadSpaceFrontierRule1_2
+#  - DeadSpaceFrontierRule3
+#  - DeadSpaceFrontierRule4
+#  - DeadSpaceFrontierRule2_2
+#  - DeadSpaceFrontierRule5
+#  - DeadSpaceFrontierRule6
+#  - DeadSpaceFrontierRule7
+#  - DeadSpaceFrontierRule8
+#  - DeadSpaceFrontierRule9
+#  - DeadSpaceFrontierRule10
+#  - DeadSpaceFrontierRule11
+#  - DeadSpaceFrontierRule12
+#  - DeadSpaceFrontierRule13
+#  - DeadSpaceFrontierRule14
+#  - DeadSpaceFrontierRule15
+#  - DeadSpaceFrontierRule16
+#  - DeadSpaceFrontierRule17
+#  - DeadSpaceFrontierRule18
+#  - DeadSpaceFrontierRule19
+#  - DeadSpaceFrontierRule20
+#  - DeadSpaceFrontierRule21
+#  - DeadSpaceFrontierRule22
+#  - DeadSpaceFrontierRule23
+#  - DeadSpaceFrontierRule24
+#  - DeadSpaceFrontierRule25
+#  - DeadSpaceFrontierRule26
+#  - DeadSpaceFrontierRule27
+#  - DeadSpaceFrontierRule28
+#  - DeadSpaceFrontierRule29
+#  - DeadSpaceFrontierRule30
+#  - DeadSpaceFrontierRule31
 
 - type: guideEntry
-  id: DeadSpaceFrontierRule0
+  id: DSFrontierRule0
   name: Правило 0
   priority: 1
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule0.xml"
+  #ruleEntry: true
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRule0.xml"
 
 - type: guideEntry
-  id: DeadSpaceFrontierRule1
+  id: DSFrontierRule1
   name: Правило 1
   priority: 2
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule1.xml"
+  #ruleEntry: true
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRule1.xml"
 
 - type: guideEntry
-  id: DeadSpaceFrontierRule2
-  name: Правило 1.1
-  priority: 3
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule2.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule1_2
-  name: Правило 1.2
-  priority: 3
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule1_2.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule3
+  id: DSFrontierRule2
   name: Правило 2
-  priority: 4
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule3.xml"
+  priority: 3
+  #ruleEntry: true
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRule2.xml"
 
 - type: guideEntry
-  id: DeadSpaceFrontierRule4
-  name: Правило 2.1
-  priority: 5
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule4.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule2_2
-  name: Правило 2.2
-  priority: 5
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule2_2.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule5
+  id: DSFrontierRule3
   name: Правило 3
-  priority: 6
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule5.xml"
+  priority: 4
+  #ruleEntry: true
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRule3.xml"
 
 - type: guideEntry
-  id: DeadSpaceFrontierRule6
-  name: Правило 3.1
-  priority: 7
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule6.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule7
-  name: Правило 3.2
-  priority: 8
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule7.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule8
-  name: Правило 3.3
-  priority: 9
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule8.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule9
-  name: Правило 3.4
-  priority: 10
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule9.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule10
-  name: Правило 3.5
-  priority: 11
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule10.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule11
-  name: Правило 3.6
-  priority: 12
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule11.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule12
+  id: DSFrontierRule4
   name: Правило 4
-  priority: 13
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule12.xml"
+  priority: 5
+  #ruleEntry: true
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRule4.xml"
 
 - type: guideEntry
-  id: DeadSpaceFrontierRule13
-  name: Правило 4.1
-  priority: 14
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule13.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule14
-  name: Правило 4.2
-  priority: 15
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule14.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule15
-  name: Правило 4.3
-  priority: 16
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule15.xml"
-
-- type: guideEntry
-  id: DeadSpaceFrontierRule16
+  id: DSFrontierRule5
   name: Правило 5
-  priority: 17
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule16.xml"
+  priority: 6
+  #ruleEntry: true
+  text: "/ServerInfo/_Lua/Guidebook/ServerRules/DSRulesOOC/DSFrontierRule5.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule17
-  name: Правило 5.1
-  priority: 18
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule17.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule0
+#  name: Правило 0
+#  priority: 1
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule0.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule18
-  name: Правило 5.2
-  priority: 19
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule18.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule1
+#  name: Правило 1
+#  priority: 2
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule1.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule19
-  name: Правило 5.3
-  priority: 20
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule19.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule2
+#  name: Правило 1.1
+#  priority: 3
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule2.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule20
-  name: Правило 5.4 - Игра за оперативников Нордфолл
-  priority: 21
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule20.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule3
+#  name: Правило 2
+#  priority: 4
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule3.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule21
-  name: Правило 6
-  priority: 22
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule21.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule4
+#  name: Правило 2.1
+#  priority: 5
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule4.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule22
-  name: Правило 6.1
-  priority: 23
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule22.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule2_2
+#  name: Правило 2.2
+#  priority: 5
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule2_2.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule23
-  name: Правило 6.2
-  priority: 24
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule23.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule5
+#  name: Правило 3
+#  priority: 6
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule5.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule24
-  name: Правило 7
-  priority: 25
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule24.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule6
+#  name: Правило 3.1
+#  priority: 7
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule6.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule25
-  name: Правило 7.1
-  priority: 26
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule25.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule7
+#  name: Правило 3.2
+#  priority: 8
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule7.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule26
-  name: Правило 8
-  priority: 27
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule26.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule8
+#  name: Правило 3.3
+#  priority: 9
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule8.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule27
-  name: Правило 9
-  priority: 28
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule27.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule9
+#  name: Правило 3.4
+#  priority: 10
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule9.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule28
-  name: Правило 9.1
-  priority: 29
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule28.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule10
+#  name: Правило 3.5
+#  priority: 11
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule10.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule29
-  name: Правило 9.2
-  priority: 30
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule29.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule11
+#  name: Правило 3.6
+#  priority: 12
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule11.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule30
-  name: Правило 9.3
-  priority: 31
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule30.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule12
+#  name: Правило 4
+#  priority: 13
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule12.xml"
 
-- type: guideEntry
-  id: DeadSpaceFrontierRule31
-  name: Правило 10
-  priority: 32
-  ruleEntry: true
-  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule31.xml"
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule13
+#  name: Правило 4.1
+#  priority: 14
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule13.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule14
+#  name: Правило 4.2
+#  priority: 15
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule14.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule15
+#  name: Правило 4.3
+#  priority: 16
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule15.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule16
+#  name: Правило 5
+#  priority: 17
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule16.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule17
+#  name: Правило 5.1
+#  priority: 18
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule17.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule18
+#  name: Правило 5.2
+#  priority: 19
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule18.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule19
+#  name: Правило 5.3
+#  priority: 20
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule19.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule20
+#  name: Правило 5.4
+#  priority: 21
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule20.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule21
+#  name: Правило 6
+#  priority: 22
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule21.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule22
+#  name: Правило 6.1
+#  priority: 23
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule22.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule23
+#  name: Правило 6.2
+#  priority: 24
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule23.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule24
+#  name: Правило 7
+#  priority: 25
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule24.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule25
+#  name: Правило 7.1
+#  priority: 26
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule25.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule26
+#  name: Правило 8
+#  priority: 27
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule26.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule27
+#  name: Правило 9
+#  priority: 28
+# ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule27.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule28
+#  name: Правило 9.1
+#  priority: 29
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule28.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule29
+#  name: Правило 9.2
+#  priority: 30
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule29.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule30
+#  name: Правило 9.3
+#  priority: 31
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule30.xml"
+
+#- type: guideEntry
+#  id: DeadSpaceFrontierRule31
+#  name: Правило 10
+#  priority: 32
+#  ruleEntry: true
+#  text: "/ServerInfo/_DeadSpace/Guidebook/ServerRules/DeadSpaceFrontierRule31.xml"

@@ -16,12 +16,47 @@
     sound:
       collection: RiflesDrop
   # Goobstation edit end
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunRequiresWield
-  - type: GunWieldBonus
-    minAngle: -0 # Set to 0 because GunRequiresWield
-    maxAngle: -0
+  # - type: Wieldable
+  #   unwieldOnUse: false
+  # - type: GunRequiresWield
+  # - type: GunWieldBonus
+  #   minAngle: -0 # Set to 0 because GunRequiresWield
+  #   maxAngle: -0
+  - type: Gun
+    projectileSpeed: 55 #Lua
+    minAngle: 2
+    maxAngle: 10
+    angleIncrease: 0.5
+    angleDecay: 2.5
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+  # - type: CursorOffsetRequiresWield
+  # - type: EyeCursorOffset
+    # maxOffset: 2.5
+    # pvsIncrease: 0.25
+  - type: NFWeaponDetails
+    class: weapon-details-class-assault-rifle
+
+- type: entity
+  abstract: true
+  parent: [ NFBaseWeaponEncumbranceRifleAssault, NFBaseGunMeleeAttackMedium, NFBaseItemWeaponGunMagazineFed ]
+  id: NFBaseWeaponFrameRifleAssaultUnwieldable
+  name: assault rifle
+  components:
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  # Goobstation edit end
   - type: Gun
     projectileSpeed: 55 #Lua
     minAngle: 2
@@ -54,11 +89,35 @@
     fireRate: 5 #Lua 3.4<5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-nanotrasen-munitions
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
 
 - type: entity
   abstract: true
   parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleAssault ]
   id: NFBaseWeaponFrameRifleAssaultCybersun
+  components:
+  - type: Gun
+    angleIncrease: 0.2 #Lua 0.6<0.2
+    angleDecay: 1 #Lua 4.2<1
+    fireRate: 5 #Lua 3.2<5
+  - type: NFWeaponDetails
+    class: weapon-details-manufacturer-cybersun-industries
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
+
+- type: entity
+  abstract: true
+  parent: [ BaseC3SyndicateContraband, NFBaseWeaponFrameRifleAssaultUnwieldable ]
+  id: NFBaseWeaponFrameRifleAssaultCybersunUnwieldable
   components:
   - type: Gun
     angleIncrease: 0.2 #Lua 0.6<0.2
@@ -80,6 +139,12 @@
     fireRate: 4.5 #Lua 3.2<4.5
   - type: NFWeaponDetails
     class: weapon-details-manufacturer-frontier-gunsmith-consortium
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -0 # Set to 0 because GunRequiresWield
+    maxAngle: -0
 
 #region chamber
 - type: entity
@@ -216,7 +281,7 @@
         whitelist: &mag30Whitelist
           tags:
             - Magazine762x39mmFMJ #Lua 30 -> 762x39
-            - Magazine762x39mmLowCapacityFMJ #Lua 30 -> 762x39
+            - Magazine762x39mmFMJ #Lua 30 -> 762x39
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber30Standard
         name: Chamber
@@ -256,7 +321,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmLowCapacityFMJ #Lua 30 -> 762x39
+        startingItem: Magazine762x39mmFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -273,7 +338,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmLowCapacityRubber #Lua 30 -> 762x39
+        startingItem: Magazine762x39mmRubber #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2

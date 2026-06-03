@@ -21,10 +21,10 @@ shipyard-console-sale-organic-aboard = Экипаж должен покинут�
 # This error message is bad, but if it happens, something awful's happened.
 shipyard-console-sale-invalid-ship = Шаттл не соответствует нормам и не может быть продан.
 shipyard-console-sale-unknown-reason = Шаттл не может быть продан: { reason }
-shipyard-console-no-idcard-helper-line1 = Вставьте ID карту чтобы купить или продать корабль.
-shipyard-console-no-idcard-helper-line2 = Ваша ID карта находится в КПК.
+#shipyard-console-no-idcard-helper-line1 = Вставьте ID карту чтобы купить или продать корабль. # Lua
+#shipyard-console-no-idcard-helper-line2 = Ваша ID карта находится в КПК. # Lua
 shipyard-console-deed-label = Зарегистрированный шаттл:
-shipyard-console-appraisal-label = Оценочная стоимость шаттла:{ " " }
+#shipyard-console-appraisal-label = Оценочная стоимость шаттла:{ " " } # Lua
 shipyard-console-no-voucher-redemptions = Все ваучеры использованы.
 shipyard-console-invalid-voucher-type = Этот ваучер не может быть использован на этой консоли.
 shipyard-console-denied = Вы не можете приобрести этот корабль в данный момент.
@@ -103,6 +103,7 @@ shipyard-console-class-Atmospherics = Газодобывающий
 shipyard-console-class-Medical = Медицинский
 shipyard-console-class-Civilian = Гражданский
 shipyard-console-class-Kitchen = Сервисный
+shipyard-console-class-BlackMarket = Чёрный рынок
 
 shipyard-console-category-All = Все
 shipyard-console-category-Micro = Мини

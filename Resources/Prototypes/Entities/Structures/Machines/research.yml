@@ -25,6 +25,7 @@
     color: "#b211b2"
   - type: LitOnPowered
   - type: ResearchServer
+    faction: Nanotrasen # Lua: single family<multi-family research servers
   - type: DiseaseServer # backmen: для сохранения болезней
   - type: TechnologyDatabase
     supportedDisciplines:
@@ -51,6 +52,97 @@
   - type: WiresVisuals
   - type: Machine
     board: ResearchAndDevelopmentServerMachineCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: {visible: true}
+            False: {visible: false}
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: GuideHelp
+    guides:
+    - Science
+
+- type: entity
+  id: ResearchAndDevelopmentServerSyndicate
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: syndicate R&D server
+  description: Stores classified syndicate research data.
+  components:
+  - type: BindToStation
+    enabled: false
+  - type: Sprite
+    sprite: Structures/Machines/server.rsi
+    snapCardinals: true
+    layers:
+      - state: server-off
+      - state: server-on
+        visible: false
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+      - state: variant-crew
+      - state: server_o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.2
+    energy: 3.0
+    color: "#d12b2b"
+  - type: LitOnPowered
+  - type: ResearchServer
+    faction: Syndicate
+  - type: DiseaseServer
+  - type: TechnologyDatabase
+    supportedDisciplines:
+     # Lua: shared discipline set, availability is now filtered by faction on technologies
+     - NFEngineering
+     - NFMedical
+     - NFArsenalMercenary
+     - NFArsenalNfsd
+     - NFSalvage
+     - NFScience
+     - NFService
+     - Shiparmory
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Machine
+    board: ResearchAndDevelopmentServerSyndicateMachineCircuitboard
   - type: Destructible
     thresholds:
     - trigger:

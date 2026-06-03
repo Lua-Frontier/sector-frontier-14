@@ -1,8 +1,8 @@
 <controls:FancyWindow
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-    MaxHeight="525"
-    MinWidth="300">
+    MaxHeight="600"
+    MinWidth="300"> <!-- Lua: MaxHeight="525" < "600" -->
     <ScrollContainer
         Margin="5 5 5 5"
         ReturnMeasure="True"
@@ -32,14 +32,8 @@
                                VerticalAlignment="Top" Name="ScanModeLabel"
                                Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
                         <BoxContainer Orientation="Vertical" Name="PrintButtonsContainer">
-                            <!-- Lua start -->
-                            <!--
-                            <Button Name="PrintRecordButton" HorizontalExpand="True">
-                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore"
-                            -->
-                            <Button Name="PrintRecordButton" HorizontalExpand="False">
-                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore" SetSize="30 30"/>
-                            <!-- Lua end -->
+                            <Button Name="PrintRecordButton" HorizontalExpand="False"> <!-- Lua: HorizontalExpand="True" < "False" -->
+                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore" SetSize="30 30"/> <!-- Lua: Added SetSize="30 30" -->
                             </Button>
                         </BoxContainer>
                     </BoxContainer>
@@ -59,6 +53,11 @@
                     <Label Name="DamageLabel" />
                 </GridContainer>
             </BoxContainer>
+
+            <!-- Lua start -->
+            <PanelContainer Name="RotDivider" Visible="False" StyleClasses="LowDivider" />
+            <RichTextLabel Name="RotLabel" Visible="False" Margin="0 9" HorizontalAlignment="Center" MaxWidth="300"/>
+            <!-- Lua end -->
 
             <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" />
 

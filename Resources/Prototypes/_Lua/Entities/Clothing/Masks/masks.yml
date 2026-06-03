@@ -17,3 +17,23 @@
     tags:
     - WhitelistChameleon
   - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasCaptainCombat
+  name: captain's combat mask
+  description: Even if this is just recolored explorer's gas mask, it is still good.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Mask/gascaptaincombat.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Mask/gascaptaincombat.rsi
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.90
+        Cold: 0.95

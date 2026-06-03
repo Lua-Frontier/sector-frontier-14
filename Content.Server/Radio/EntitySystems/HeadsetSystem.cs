@@ -4,6 +4,7 @@ using Content.Server.Emp;
 using Content.Server.Radio.Components;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Emp;
+using Content.Shared.Examine; // Lua
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
@@ -25,6 +26,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<HeadsetComponent, ExaminedEvent>(OnExamined); // Lua
         SubscribeLocalEvent<HeadsetComponent, RadioReceiveEvent>(OnHeadsetReceive);
         SubscribeLocalEvent<HeadsetComponent, EncryptionChannelsChangedEvent>(OnKeysChanged);
 
@@ -32,6 +34,18 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
         SubscribeLocalEvent<HeadsetComponent, EmpPulseEvent>(OnEmpPulse);
     }
+
+    // Lua start
+    private void OnExamined(EntityUid uid, HeadsetComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+        {
+            return;
+        }
+
+        args.PushMarkup(Loc.GetString("headset-examine-color", ("color", component.Color.ToHex())));
+    }
+    // Lua end
 
     private void OnKeysChanged(EntityUid uid, HeadsetComponent component, EncryptionChannelsChangedEvent args)
     {

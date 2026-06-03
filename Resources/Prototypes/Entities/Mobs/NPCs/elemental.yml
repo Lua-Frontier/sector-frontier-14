@@ -23,7 +23,7 @@
         - MobLayer
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
-    baseSprintSpeed : 3
+    baseRunningSpeed : 3
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -92,7 +92,7 @@
         Blunt: 5
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
-    baseSprintSpeed : 2.25
+    baseRunningSpeed : 2.25
   - type: NpcFactionMember
     factions:
       - SimpleHostile
@@ -138,7 +138,7 @@
         Blunt: 5
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.5
-    baseSprintSpeed : 2
+    baseRunningSpeed : 2
   - type: Destructible
     thresholds:
     - trigger:
@@ -170,7 +170,7 @@
         Blunt: 2.5
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.0
-    baseSprintSpeed : 1.5
+    baseRunningSpeed : 1.5
   - type: Destructible
     thresholds:
     - trigger:

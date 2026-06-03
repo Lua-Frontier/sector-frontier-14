@@ -3,6 +3,7 @@
   id: CMWeaponPistolMK80
   name: MK80 pistol
   description: A massive, formidable semi-automatic handgun chambered in 9mm squash-head rounds. A common sight throughout both UN and TSE space, often held by both We-Ya PMC units and corporate executives. This weapon is also undergoing limited field testing as part of the Marines' next generation pistol program. The slide is engraved with the We-Ya logo reminding you who's really in charge.
+  suffix: Need balance test
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/Pistols/mk80.rsi
@@ -13,16 +14,21 @@
       types:
         Blunt: 8
   - type: Gun
-    minAngle: 0
-    maxAngle: 25
-    angleIncrease: 1
-    angleDecay: 1
-    fireRate: 0.2
+    examineCaliber: gun-examine-caliber-919 #Lua
+#    minAngle: 0 # comment from _Lua
+#    maxAngle: 25
+#    angleIncrease: 1
+#    angleDecay: 1
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
+    fireRate: 10.5 #Lua 0.2<10.5
     shotsPerBurst: 6
-    selectedMode: Burst
+    selectedMode: SemiAuto #Lua Burst<SemiAuto
     availableModes:
     - SemiAuto
-    - Burst
+#    - Burst
     soundGunshot:
       path: /Audio/_RMC14/Weapons/Guns/Gunshots/gun_mk80.ogg
   # - type: RMCSelectiveFire
@@ -51,8 +57,8 @@
         priority: 2
         whitelist:
           tags:
-          - CMMagazinePistolMK80
-        startingItem: CMMagazinePistolMK80
+          - Magazine9x19mmPistolFMJ #Lua CMMagazinePistolMK80<Magazine9x19mmPistolFMJ
+        startingItem: Magazine9x19mmPistolFMJ #Lua CMMagazinePistolMK80<Magazine9x19mmPistolFMJ
   - type: AttachableHolderVisuals
     offsets:
       rmc-aslot-barrel: 0.685, 0.125

@@ -22,9 +22,12 @@
   - type: StaticPrice
     price: 1
 
+
+# Standart
 - type: entity
   id: Cartridge9x19mmFMJ
   name: cartridge (9x19mm FMJ)
+  suffix: Need balance test #Lua
   parent: BaseCartridge9x19mm
   components:
   - type: CartridgeAmmo
@@ -33,6 +36,7 @@
 - type: entity
   id: Cartridge9x19mmPractice
   name: cartridge (9x19mm practice)
+  suffix: Need balance test #Lua
   parent: BaseCartridge9x19mm
   components:
   - type: CartridgeAmmo
@@ -46,39 +50,9 @@
          color: "#dbdbdb"
 
 - type: entity
-  id: Cartridge9x19mmIncendiary
-  name: cartridge (9x19mm incendiary)
-  parent: BaseCartridge9x19mm
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet9x19mmIncendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff6e52"
-
-- type: entity
-  id: Cartridge9x19mmUranium
-  name: cartridge (9x19mm uranium)
-  parent: BaseCartridge9x19mm
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet9x19mmUranium
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#65fe08"
-
-# Upstream
-- type: entity
   id: Cartridge9x19mmRubber
   name: cartridge (9x19mm rubber)
+  suffix: Need balance test #Lua
   parent: BaseCartridge9x19mm
   components:
   - type: CartridgeAmmo
@@ -91,24 +65,11 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
 
-# Frontier
-- type: entity
-  id: Cartridge9x19mmEmp
-  name: cartridge (9x19mm emp)
-  parent: BaseCartridge9x19mm
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet9x19mmEmp
-  - type: EmpDescription
-    range: 0.3
-    energyConsumption: 2700000
-    disableDuration: 10
-
-# Mono AP syst
-#anti-flesh:
+# Mechanical
 - type: entity
   id: Cartridge9x19mmHP
   name: cartridge (9x19mm hollow-point)
+  suffix: Need balance test #Lua
   parent: BaseCartridge9x19mm
   components:
   - type: CartridgeAmmo
@@ -119,36 +80,74 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#90EE90"
+        color: "#991d39"
 
+# Physical
 - type: entity
-  id: Cartridge9x19mmRIP
-  name: cartridge (9x19mm RIP)
+  id: Cartridge9x19mmIncendiary
+  name: cartridge (9x19mm Incendiary)
+  suffix: Need balance test #Lua
   parent: BaseCartridge9x19mm
   components:
   - type: CartridgeAmmo
-    proto: Bullet9x19mmRIP
+    proto: Bullet9x19mmIncendiary
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#C04000"
-
-#armor-piercing:
+        color: "#f44336"
 
 - type: entity
-  id: Cartridge9x19mmPlasteelAP
-  name: cartridge (9x19mm AP)
+  id: Cartridge9x19mmUranium
+  name: cartridge (9x19mm Uranium)
+  suffix: Need balance test #Lua
   parent: BaseCartridge9x19mm
   components:
   - type: CartridgeAmmo
-    proto: Bullet9x19mmPlasteelAP
+    proto: Bullet9x19mmUranium
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#888888"
+        color: "#6b9747"
+
+# Special
+- type: entity
+  id: Cartridge9x19mmEMP
+  name: cartridge (9x19mm EMP)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge9x19mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet9x19mmEmp
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#044492"
+#  - type: EmpDescription
+#    range: 0.3
+#    energyConsumption: 2700000
+#    disableDuration: 10
+
+- type: entity
+  id: Cartridge9x19mmCaustic
+  name: cartridge (9x19mm Caustic)
+  suffix: Need balance test #Lua
+  parent: BaseCartridge9x19mm
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet9x19mmCaustic
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#8b9229"

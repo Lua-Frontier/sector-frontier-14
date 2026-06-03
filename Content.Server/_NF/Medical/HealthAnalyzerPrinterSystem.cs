@@ -185,7 +185,8 @@ public sealed class HealthAnalyzerPrinterSystem : EntitySystem
                 ("damageGroup", group.LocalizedName),
                 ("amount", groupDamage)
             );
-            report.AddText(groupTitleText);
+
+            report.TryAddMarkup(groupTitleText, out _); // Lua
             report.PushNewline();
 
             // List individual damage types
@@ -197,11 +198,12 @@ public sealed class HealthAnalyzerPrinterSystem : EntitySystem
                     continue;
                 }
 
-                report.AddText(Loc.GetString(
+                report.TryAddMarkup(Loc.GetString // Lua
+                (
                     "health-analyzer-printout-damage-type-text",
                     ("damageType", _prototypes.Index<DamageTypePrototype>(type).LocalizedName),
                     ("amount", amount)
-                ));
+                ), out _);
                 report.PushNewline();
             }
         }

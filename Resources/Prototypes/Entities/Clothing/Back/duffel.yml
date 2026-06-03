@@ -117,11 +117,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/mime.rsi
-  - type: Storage
-    storageOpenSound:
-      collection: null
-    storageInsertSound:
-      collection: null
+  # Lua start
+  #- type: Storage
+  #
+  #  storageOpenSound:
+  #    collection: null
+  #  storageInsertSound:
+  #    collection: null
+  # Lua end
 
 - type: entity
   parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel

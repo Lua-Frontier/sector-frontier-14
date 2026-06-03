@@ -1,18 +1,42 @@
+# Hardsuit
 - type: sponsorLoadout
   id: Sil
-  entity: ClothingBackpackSil
-  sponsorOnly: true
-  login: _Sil
-  sponsorRole: Божество
+  ownerLogin: _Sil
+  tier: god
+  entities:
+    - ClothingBackpackSil
+    - HypospraySil
+    - ClothingBeltSilFilled
+    - ClothingMaskGasSil
+    - ClothingShoesBootsSil
+    - PDASil
+    - AirTankSil
+    - ClothingUniformJumpsuitSil
+    - ClothingNeckSil
+    - ClothingHandsGlovesSil
+    - ClothingEyesHudSil
+    - ViolinInstrument
+    - PlushieSilAily
+    - PlushieSilAizek
+    - PlushieSilAzrail
+    - PlushieSilEmilia
+    - PlushieSilEva
+    - PlushieSilKrivazora
+    - PlushieSilAzrailHardsuit
+    - PlushieSilSharp
+    - PlushieSilRenaTakala
+    - PlushieSilEso
+    - PlushieSilKel
+    - PlushieSilWeaver
+    - PlushieSilEyrinLiht
+    - PlushieSilKelicKato1
+    - PlushieSilKelicKato2
+    - PlushieSilYuliWinter
+    - PlushieSilEkaterinaAkkerman
+    - PlushieSilYohanaWinter
+    - PlushieSilGermanKvaSki
+    - PlushieSilTimAkkerman
 
-- type: sponsorLoadout
-  id: SilHypospray
-  entity: HypospraySil
-  sponsorOnly: true
-  login: _Sil
-  whitelistJobs: [ChiefMedicalOfficer, SeniorPhysician, Chemist, MedicalDoctor, Paramedic, MedicalIntern] # У нас нет коронеров rm Coroner
-
-# Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitAtmos, HardsuitSpeedBuff]
   id: ClothingOuterHardsuitSil
@@ -52,10 +76,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.4
-        Heat: 0.5
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
         Radiation: 0.5
         Caustic: 0.5
   - type: ClothingSpeedModifier
@@ -194,7 +218,7 @@
 
 # Belt
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: ClothingBeltStorageBaseNoWeaponSlot
   id: ClothingBeltSilFilled
   name: белый разгрузочный пояс
   description: Пояс, который принадлежит члену экипажа под покровительством спонсорской организации.
@@ -275,38 +299,6 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
-  - type: StorageFill
-    contents:
-    - id: ClothingBeltSilFilled
-    - id: ClothingMaskGasSil
-    - id: ClothingShoesBootsSil
-    - id: PDASil
-    - id: AirTankSil
-    - id: ClothingUniformJumpsuitSil
-    - id: ClothingNeckSil
-    - id: ClothingHandsGlovesSil
-    - id: ClothingEyesHudSil
-    - id: ViolinInstrument
-    - id: PlushieSilAily
-    - id: PlushieSilAizek
-    - id: PlushieSilAzrail
-    - id: PlushieSilEmilia
-    - id: PlushieSilEva
-    - id: PlushieSilKrivazora
-    - id: PlushieSilAzrailHardsuit
-    - id: PlushieSilSharp
-    - id: PlushieSilRenaTakala
-    - id: PlushieSilEso
-    - id: PlushieSilKel
-    - id: PlushieSilWeaver
-    - id: PlushieSilEyrinLiht
-    - id: PlushieSilKelicKato1
-    - id: PlushieSilKelicKato2
-    - id: PlushieSilYuliWinter
-    - id: PlushieSilEkaterinaAkkerman
-    - id: PlushieSilYohanaWinter
-    - id: PlushieSilGermanKvaSki
-    - id: PlushieSilTimAkkerman
   - type: ToggleableClothing
     clothingPrototype: ClothingOuterHardsuitSil
     requiredSlot: BACK

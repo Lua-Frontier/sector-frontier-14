@@ -1,0 +1,21 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatWhite
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Hands/Gloves/white_combat.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Hands/Gloves/white_combat.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Hands/Gloves/white_combat.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right

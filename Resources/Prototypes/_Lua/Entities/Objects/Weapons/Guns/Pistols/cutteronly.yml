@@ -30,6 +30,10 @@
   - type: Clothing
     sprite: _Lua/Objects/Weapons/Guns/Pistols/plasma_cutter.rsi
   - type: Gun
+    minAngle: 3.1 #Lua
+    maxAngle: 15.5 #Lua
+    angleIncrease: 0.7 #Lua
+    angleDecay: 5 #Lua
     fireRate: 1.6
     selectedMode: SemiAuto
     availableModes:

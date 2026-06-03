@@ -44,14 +44,14 @@
       [head=2]Medical Patient Record[/head]
 
       [head=3]Patient Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
+          [bold]Name:[/bold]
+          [bold]Species:[/bold]
           [bold]Occupation:[/bold]
 
       [head=3]Responder Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Vessel IFF:[/bold] 
-          [bold]Shift Time (upon arrival):[/bold] 
+          [bold]Name:[/bold]
+          [bold]Vessel IFF:[/bold]
+          [bold]Shift Time (upon arrival):[/bold]
 
       [head=3]Sustained Injuries[/head]
           [bold]Brute Injuries:[/bold]
@@ -106,10 +106,10 @@
       [head=2]Medical Prescription[/head]
 
       [head=3]Patient Information[/head]
-          [bold]Name:[/bold] 
-          [bold]Species:[/bold] 
-          [bold]Occupation:[/bold] 
-          [bold]Vessel IFF:[/bold] 
+          [bold]Name:[/bold]
+          [bold]Species:[/bold]
+          [bold]Occupation:[/bold]
+          [bold]Vessel IFF:[/bold]
 
       [head=3]Prescription[/head]
           [bullet/] CHEMICAL, dosage: XX u
@@ -136,8 +136,8 @@
       [head=3]Policy Holder Information[/head]
           [bold]Name:[/bold]
           [bold]Species:[/bold]
-          [bold]Occupation:[/bold] 
-          [bold]Vessel IFF:[/bold] 
+          [bold]Occupation:[/bold]
+          [bold]Vessel IFF:[/bold]
 
       [head=3]Plan Coverage[/head]
           [bold]Medical Coverage:[/bold]
@@ -170,12 +170,12 @@
       [head=3]Patient Information[/head]
             [bold]Name:[/bold]
             [bold]Species:[/bold]
-            [bold]Occupation:[/bold] 
+            [bold]Occupation:[/bold]
 
       [head=3]Responder Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Vessel IFF:[/bold] 
-            [bold]Shift Time:[/bold] 
+            [bold]Name:[/bold]
+            [bold]Vessel IFF:[/bold]
+            [bold]Shift Time:[/bold]
 
       [head=3]Invoice[/head]
         $XX,XXX - Treatment
@@ -192,7 +192,7 @@
 
 
       [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
-            
+
 - type: entity
   id: PaperWrittenMedicalFormReceiptInvoice
   name: medical dispatch payment
@@ -206,9 +206,9 @@
       [head=2]Medical Dispatch Payment[/head]
 
       [head=3]Contractor Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Species:[/bold] 
-            [bold]Occupation:[/bold] 
+            [bold]Name:[/bold]
+            [bold]Species:[/bold]
+            [bold]Occupation:[/bold]
 
       [head=3]Description of Services Provided[/head]
 
@@ -217,9 +217,9 @@
           Material Delivery: $0
           Medical Services: $0
           Other: $0
-      
+
       [bold]Total Value: $XXX,XXX[/bold]
-      
+
       [color=#AAAAAA]This Form is void without the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
 
 - type: entity
@@ -235,21 +235,21 @@
       [head=2]Medical Release Form[/head]
 
       [head=3]Patient Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Species:[/bold] 
-            [bold]Occupation:[/bold] 
+            [bold]Name:[/bold]
+            [bold]Species:[/bold]
+            [bold]Occupation:[/bold]
 
       [head=3]Responder Information[/head]
-            [bold]Name:[/bold] 
-            [bold]Vessel IFF:[/bold] 
-            [bold]Shift Time:[/bold] 
+            [bold]Name:[/bold]
+            [bold]Vessel IFF:[/bold]
+            [bold]Shift Time:[/bold]
 
       [head=3]Services Provided[/head]
 
 
 
       [head=3]Notes[/head]
-      
+
 
 
       [head=3]I, the undersigned, agree that the services listed above are accurate and consent to release.[/head]
@@ -258,54 +258,50 @@
 
       [color=#AAAAAA]This Form is only acknowledged with the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
 
-#
-# Lua start
-#
-#- type: entity
-#  id: PaperWrittenMedicalMedtekPatientRecord
-#  parent: Paper
-#  name: Patient Record
-#  categories: [ HideSpawnMenu ]
-#  description: A printed medical patient record.
-#  components:
-#  - type: Tag
-#    tags:
-#    - Document
-#    - Trash
-#    - Paper
-#  - type: StaticPrice
-#    price: 0
-#  - type: Sprite
-#    sprite: Objects/Misc/bureaucracy.rsi
-#    layers:
-#    - state: paper_receipt
-#    - state: paper_receipt_words
-#      map: ["enum.PaperVisualLayers.Writing"]
-#      visible: false
-#    - state: paper_stamp-generic
-#      map: ["enum.PaperVisualLayers.Stamp"]
-#      visible: false
-#  - type: PaperVisuals
-#    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
-#    headerImagePath: "/Textures/_NF/Interface/Paper/paper_heading_medtek_report.svg.96dpi.png"
-#    headerMargin: 0.0, 0.0, 0.0, 6.0
-#    backgroundImageTile: true
-#    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
-#    contentMargin: 12.0, 0.0, 12.0, 0.0
-#    # This is a narrow piece of paper
-#    maxWritableArea: 256.0, 0.0
-#  - type: Paper
-#    content: |
-#      [head=3]Patient[/head]
-#      [bold]Name:[/bold] {patient.name}
-#      [bold]Species:[/bold] {patient.species}
-#
-#      [head=3]Responder[/head]
-#      [bold]Name:[/bold] {responder.name}
-#      [bold]Shift Time:[/bold] {roundTime}
-#
-#      [head=3]Injuries[/head]
-#      {damageList}
-#
-# Lua end
-#
+- type: entity
+  id: PaperWrittenMedicalMedtekPatientRecord
+  parent: Paper
+  name: Patient Record
+  categories: [ HideSpawnMenu ]
+  description: A printed medical patient record.
+  components:
+  - type: Tag
+    tags:
+    - Document
+    - Trash
+    - Paper
+  - type: StaticPrice
+    price: 0
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper_receipt
+    - state: paper_receipt_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
+    headerImagePath: "/Textures/_Lua/Interface/Paper/paper_heading_medtek_report.svg.96dpi.png" # Lua: "/Textures/_NF/..." < "/Textures/_Lua/..."
+    headerMargin: 0.0, 0.0, 0.0, 6.0
+    backgroundImageTile: true
+    backgroundPatchMargin: 0.0, 6.0, 0.0, 6.0
+    contentMargin: 12.0, 0.0, 12.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 256.0, 0.0
+  - type: Paper
+    # Lua start
+    content: |
+      [head=3]Пациент[/head]
+      [bold]Имя:[/bold] {patient.name}
+      [bold]Раса:[/bold] {patient.species}
+
+      [head=3]Исполняющий[/head]
+      [bold]Имя:[/bold] {responder.name}
+      [bold]Время Смены:[/bold] {roundTime}
+
+      [head=3]Повреждения[/head]
+      {damageList}
+    # Lua end

@@ -58,15 +58,17 @@
     - state: omnilaser
       shader: unshaded
   - type: Ammo
-  - type: StaminaDamageOnCollide
-    damage: 20
+#  - type: StaminaDamageOnCollide # comment from _Lua
+#    damage: 20
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Cold: 2
+        Shock: 15 #Lua
+        Caustic: 5 #Lua
+#        Cold: 2 # comment from _Lua
     soundHit:
       collection: WeakHit
     forceSound: true
-  - type: ChangeTemperatureOnCollide
-    heat: -35500
+  # - type: ChangeTemperatureOnCollide # comment from _Lua
+  #   heat: -35500

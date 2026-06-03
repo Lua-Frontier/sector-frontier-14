@@ -16,6 +16,7 @@
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
   - type: BluespaceErrorRule
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameDataset: NamesScrap
@@ -53,13 +54,115 @@
     channels:
     - Engineering
 
+# - type: entity
+#   id: BluespaceSalvageAsteroid
+#   parent: BaseStationEventShortDelay
+#   name: NT Bluespace Monitoring Asteroid # This name shows up in the radio messages.
+#   categories: [ HideSpawnMenu ]
+#   components:
+#   - type: StationEvent
+#     startRadioAnnouncement: station-event-bluespace-scrap-start-announcement
+#     startRadioAnnouncementChannel: Engineering
+#     warningRadioAnnouncement: station-event-bluespace-scrap-warning-announcement
+#     warningRadioAnnouncementChannel: Engineering
+#     endRadioAnnouncement: station-event-bluespace-scrap-end-announcement
+#     endRadioAnnouncementChannel: Engineering
+#     weight: 5
+#     duration: 1800 # 30 minutes
+#     maxDuration: 1800 # 30 minutes
+#   - type: BluespaceErrorRule
+#     asteroid: true
+#     groups:
+#       grid: !type:GridSpawnGroup
+#         nameDataset: NamesScrap
+#         nameDatasetType: Nanotrasen # they're shuttles
+#         minCount: 2
+#         maxCount: 3
+#         minimumDistance: 1000
+#         maximumDistance: 2000
+#         addComponents:
+#         - type: IFF
+#           color: "#AAAAAA"
+#         - type: LinkedLifecycleGridParent
+#         - type: ProtectedGrid
+#           preventArtifactTriggers: true
+#         - type: PreventPilot
+#         paths:
+# #        - /Maps/_NF/Shuttles/Scrap/canister.yml # Too small
+#         - /Maps/_NF/Shuttles/Scrap/disciple.yml
+#         - /Maps/_NF/Shuttles/Scrap/nugget.yml
+#         - /Maps/_NF/Shuttles/Scrap/orange.yml
+#         - /Maps/_NF/Shuttles/Scrap/point.yml
+#         - /Maps/_NF/Shuttles/Scrap/tide.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-investigator.yml # Please replace all this maps ones we finish some automated system
+#         - /Maps/_NF/Shuttles/Scrap/scrap-hauler.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-crescent.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-barge.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-courserx.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-comet.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-sprinter.yml
+#         - /Maps/_NF/Shuttles/Scrap/scrap-sparrow.yml
+#   - type: ActiveRadio
+#     channels:
+#     - Engineering
+
+### Custom scrap
 - type: entity
-  id: BluespaceSalvageAsteroid
+  id: BluespaceCustomScrapFS
   parent: BaseStationEventShortDelay
-  name: NT Bluespace Monitoring Asteroid # This name shows up in the radio messages.
+  name: NT Bluespace Monitoring # This name shows up in the radio messages.
   categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
+    # TODO: add path to  start warning and end Voiceover
+    startRadioAnnouncement: station-event-bluespace-scrap-start-announcement
+    startRadioAnnouncementChannel: Engineering
+    warningRadioAnnouncement: station-event-bluespace-scrap-warning-announcement
+    warningRadioAnnouncementChannel: Engineering
+    endRadioAnnouncement: station-event-bluespace-scrap-end-announcement
+    endRadioAnnouncementChannel: Engineering
+    weight: 5
+    duration: 1800 # 30 minutes
+    maxDuration: 1800 # 30 minutes
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameDataset: NamesCustomScrap
+        nameDatasetType: Nanotrasen # they're shuttles
+        minCount: 2
+        maxCount: 3
+        minimumDistance: 1000
+        maximumDistance: 2000
+        addComponents:
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/salvage.png
+          scale: 1.4
+        - type: IFF
+          color: "#AAAAAA"
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
+        - type: ClaimableGrid # Mono
+        paths:
+        - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS1.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS2.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS3.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS4.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS5.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS6.yml
+  - type: ActiveRadio
+    channels:
+    - Engineering
+
+- type: entity
+  id: BluespaceCustomScrapAS
+  parent: BaseStationEventShortDelay
+  name: NT Bluespace Monitoring # This name shows up in the radio messages.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    # TODO: add path to  start warning and end Voiceover
     startRadioAnnouncement: station-event-bluespace-scrap-start-announcement
     startRadioAnnouncementChannel: Engineering
     warningRadioAnnouncement: station-event-bluespace-scrap-warning-announcement
@@ -73,34 +176,32 @@
     asteroid: true
     groups:
       grid: !type:GridSpawnGroup
-        nameDataset: NamesScrap
+        nameDataset: NamesCustomScrap
         nameDatasetType: Nanotrasen # they're shuttles
         minCount: 2
         maxCount: 3
         minimumDistance: 1000
         maximumDistance: 2000
         addComponents:
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/salvage.png
+          scale: 1.4
         - type: IFF
           color: "#AAAAAA"
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
+        - type: ClaimableGrid # Mono
         paths:
-#        - /Maps/_NF/Shuttles/Scrap/canister.yml # Too small
-        - /Maps/_NF/Shuttles/Scrap/disciple.yml
-        - /Maps/_NF/Shuttles/Scrap/nugget.yml
-        - /Maps/_NF/Shuttles/Scrap/orange.yml
-        - /Maps/_NF/Shuttles/Scrap/point.yml
-        - /Maps/_NF/Shuttles/Scrap/tide.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-investigator.yml # Please replace all this maps ones we finish some automated system
-        - /Maps/_NF/Shuttles/Scrap/scrap-hauler.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-crescent.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-barge.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-courserx.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-comet.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-sprinter.yml
-        - /Maps/_NF/Shuttles/Scrap/scrap-sparrow.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS1.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS2.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS3.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS4.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS5.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS6.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS7.yml
+        - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS8.yml
   - type: ActiveRadio
     channels:
     - Engineering

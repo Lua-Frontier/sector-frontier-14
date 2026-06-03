@@ -1,0 +1,291 @@
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, HardsuitIdentify]
+  id: ClothingOuterHardsuitWarlord
+  name: Warlord Elite Hardsuit
+  description: Довольно дорогая модель легкого боевого скафандра, не так давно появившаяся на Черном Рынке. Краска цвета хаки не имеет ни одного скола.
+  suffix: BlackMarket, Light, Standart
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/merc_warlordsuit.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/merc_warlordsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 45/45/30//45/45//30/30//30/5
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.7
+        #Physical
+        Heat: 0.55
+        Radiation: 0.55
+        #Special
+        Shock: 0.7
+        Caustic: 0.7
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWarlord
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, HardsuitIdentify]
+  id: ClothingOuterHardsuitUSSPCombat
+  name: USSP Combat Hardsuit
+  description: Старый боевой скафандр СССП, изрядно поношенный и потрепанный. Судя по всему, был взят с какого-то заброшенного боевого корабля.
+  suffix: BlackMarket, Heavy, Standart
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/ussp_combat.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/ussp_combat.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 30/30/45//45/45//30/30//70/25
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.55
+        #Physical
+        Heat: 0.55
+        Radiation: 0.55
+        #Special
+        Shock: 0.7
+        Caustic: 0.7
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitUSSPCombat
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, HardsuitIdentify]
+  id: ClothingOuterHardsuitUSSPLightOfficer
+  name: USSP Light Officer Hardsuit
+  description: Старый боевой скафандр СССП, изрядно поношенный и потрепанный. Судя по всему, был взят с какого-то заброшенного боевого корабля.
+  suffix: BlackMarket, Medium, Standart
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/ussp_combat_light_officer.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/ussp_combat_light_officer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 45/45/45//30/30//30/30//50/15
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        #Physical
+        Heat: 0.7
+        Radiation: 0.7
+        #Special
+        Shock: 0.7
+        Caustic: 0.7
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitUSSPLightOfficer
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseC3SyndicateContraband, HardsuitIdentify]
+  id: ClothingOuterHardsuitUSSPLightMK2
+  name: USSP Light Hardsuit mk-2
+  description: Старый боевой скафандр СССП, изрядно поношенный и потрепанный. Судя по всему, был взят с какого-то заброшенного боевого корабля.
+  suffix: BlackMarket, Medium, Special
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/ussp_combat_lightmk2.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/ussp_combat_lightmk2.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        #Mechanical 30/30/30//45/45//45/45//50/15
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        #Physical
+        Heat: 0.55
+        Radiation: 0.55
+        #Special
+        Shock: 0.55
+        Caustic: 0.55
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitUSSPLightMK2
+  - type: StaticPrice
+    price: 750
+    vendPrice: 2500
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitWarlord
+  name: Warlord hardsuit helmet
+  description: warlord hardsuit helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#b8b873"
+  - type: Sprite
+    sprite: _Mono/Clothing/Head/Hardsuits/merc_warlordsuit.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Head/Hardsuits/merc_warlordsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitUSSPCombat
+  name: ussp combat hardsuit helmet
+  description: ussp combat harsuit helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#b8b873"
+  - type: Sprite
+    sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitUSSPLightOfficer
+  name: ussp light officer hardsuit helmet
+  description: ussp light officer helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#b8b873"
+  - type: Sprite
+    sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat_light_officer.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat_light_officer.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  id: ClothingHeadHelmetHardsuitUSSPLightMK2
+  name: ussp light mk-2 hardsuit helmet
+  description: ussp light mk-2 helmet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#b8b873"
+  - type: Sprite
+    sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat_lightmk2.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat_lightmk2.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide

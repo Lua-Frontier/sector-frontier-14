@@ -1,13 +1,11 @@
 using Content.Server._Lua.Shipyard.Components;
-using Content.Server._Lua.Shipyard.Systems;
-using Content.Server._Lua.StationRecords.Components;
-using Content.Server._Lua.StationRecords.Systems;
+using Content.Server._Lua.Stargate.Components;
 using Content.Server.StationEvents.Events;
+using Content.Server.Shuttles.Components;
+using Content.Server.Power.Components;
 using Content.Shared._NF.Shipyard.Components;
-using Content.Shared.Access.Components;
-using Robust.Server.Player;
-using Robust.Shared.Enums;
-using Robust.Shared.Network;
+using Content.Shared.Power;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -15,13 +13,12 @@ namespace Content.Server._NF.Shipyard.Systems;
 
 public sealed class ShipOwnershipSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
-    [Dependency] private readonly ShuttleParkingSystem _parking = default!;
-    [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private readonly HashSet<EntityUid> _pendingDeletionShips = new();
+    private readonly HashSet<Entity<ShuttleConsoleComponent>> _shuttleConsoles = new();
 
     private TimeSpan _nextDeletionCheckTime;
     private const int DeletionCheckIntervalSeconds = 60;
@@ -31,25 +28,22 @@ public sealed class ShipOwnershipSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ShipOwnershipComponent, ComponentStartup>(OnShipOwnershipStartup);
-        SubscribeLocalEvent<ShipOwnershipComponent, ComponentShutdown>(OnShipOwnershipShutdown);
-        SubscribeLocalEvent<ParkedShuttleComponent, ComponentRemove>(OnShuttleUnparked);
 
         _nextDeletionCheckTime = _gameTiming.CurTime;
     }
 
     public void RegisterShipOwnership(EntityUid gridUid, ICommonSession owningPlayer)
     {
-        if (!EntityManager.EntityExists(gridUid))
+        if (!Exists(gridUid))
             return;
 
         var comp = EnsureComp<ShipOwnershipComponent>(gridUid);
         comp.OwnerUserId = owningPlayer.UserId;
-        comp.IsDeletionTimerRunning = false;
-        comp.DeletionTimerStartTime = TimeSpan.Zero;
+        ResetDeletionTimer(comp);
 
         Dirty(gridUid, comp);
 
-        Logger.InfoS("shipOwnership", $"Registered ship {ToPrettyString(gridUid)} to player {owningPlayer.Name} ({owningPlayer.UserId})");
+        Log.Info($"Registered ship {ToPrettyString(gridUid)} to player {owningPlayer.Name} ({owningPlayer.UserId})");
     }
 
     public override void Update(float frameTime)
@@ -61,65 +55,63 @@ public sealed class ShipOwnershipSystem : EntitySystem
 
         _nextDeletionCheckTime = _gameTiming.CurTime + TimeSpan.FromSeconds(DeletionCheckIntervalSeconds);
 
-        Logger.DebugS("shipOwnership", "Checking for abandoned ships to delete");
-
-        var onlineUserIds = GetOnlineUserIds();
+        Log.Debug("Checking for abandoned ships to delete");
 
         var query = EntityQueryEnumerator<ShipOwnershipComponent>();
         while (query.MoveNext(out var uid, out var ownership))
         {
-            if (onlineUserIds.Contains(ownership.OwnerUserId))
+            if (!TryComp<MapGridComponent>(uid, out _))
             {
-                StopDeletionTimer(uid, ownership, "owner is online");
                 continue;
             }
 
-            if (_parking.IsParked(uid))
+            if (HasComp<ParkedShuttleComponent>(uid))
             {
-                StopDeletionTimer(uid, ownership, "shuttle is parked");
-                Logger.DebugS("shipOwnership", $"Skipping deletion of parked shuttle {ToPrettyString(uid)}");
+                StopDeletionTimer(uid, ownership, "shuttle is parked", resetElapsed: true);
                 continue;
             }
 
-            var onlineCrewNames = GetOnlineCrewNames(uid, onlineUserIds);
-            if (onlineCrewNames.Count > 0)
+            if (Transform(uid).MapUid is { } mapUid && HasComp<StargateDestinationComponent>(mapUid))
             {
-                StopDeletionTimer(uid, ownership, $"assigned crew online: {string.Join(", ", onlineCrewNames)}");
-                Logger.WarningS("shipOwnership", $"Skipping deletion of shuttle {ToPrettyString(uid)} because assigned crew are online: {string.Join(", ", onlineCrewNames)}");
+                StopDeletionTimer(uid, ownership, "shuttle is in StarGate world", resetElapsed: true);
                 continue;
             }
 
-            if (!ownership.IsDeletionTimerRunning)
+            var powered = IsShuttlePowered(uid);
+            if (powered)
             {
-                StartDeletionTimer(uid, ownership);
+                StopDeletionTimer(uid, ownership, "shuttle is powered", resetElapsed: true);
                 continue;
             }
 
-            var elapsed = _gameTiming.CurTime - ownership.DeletionTimerStartTime;
+            if (HasPlayersOnShip(uid))
+            {
+                PauseDeletionTimer(uid, ownership, "players are aboard");
+                continue;
+            }
+
+            ResumeDeletionTimer(uid, ownership);
+
             var timeout = TimeSpan.FromSeconds(ownership.DeletionTimeoutSeconds);
-
-            if (elapsed >= timeout)
+            if (ownership.AccumulatedUnpoweredTime >= timeout)
             {
-                Logger.InfoS("shipOwnership", $"Queueing abandoned ship {ToPrettyString(uid)} for deletion. countdown={elapsed.TotalMinutes:F1}m timeout={ownership.DeletionTimeoutSeconds:F0}s");
+                Log.Info($"Queueing abandoned ship {ToPrettyString(uid)} for deletion. elapsed={ownership.AccumulatedUnpoweredTime.TotalMinutes:F1}m timeout={ownership.DeletionTimeoutSeconds:F0}s");
                 _pendingDeletionShips.Add(uid);
                 continue;
             }
 
-            var remaining = timeout - elapsed;
-            Logger.DebugS("shipOwnership", $"Ship {ToPrettyString(uid)} not yet eligible for deletion. countdown={elapsed.TotalMinutes:F1}m remaining={remaining.TotalMinutes:F1}m");
+            var remaining = timeout - ownership.AccumulatedUnpoweredTime;
+            Log.Debug($"Ship {ToPrettyString(uid)} not yet eligible for deletion. elapsed={ownership.AccumulatedUnpoweredTime.TotalMinutes:F1}m remaining={remaining.TotalMinutes:F1}m");
         }
 
         foreach (var shipUid in _pendingDeletionShips)
         {
-            if (!EntityManager.EntityExists(shipUid))
+            if (!Exists(shipUid))
                 continue;
 
-            if (TryComp<TransformComponent>(shipUid, out var transform) && transform.GridUid == shipUid)
+            if (Transform(shipUid).GridUid == shipUid)
             {
-                Logger.InfoS("shipOwnership", $"Deleting abandoned ship {ToPrettyString(shipUid)}");
-                var cleared = _shipCrew.ClearAllForShuttle(shipUid);
-                if (cleared > 0)
-                    Logger.InfoS("shipOwnership", $"Cleared {cleared} crew assignment(s) for abandoned ship {ToPrettyString(shipUid)}");
+                Log.Info($"Deleting abandoned ship {ToPrettyString(shipUid)}");
                 _linkedLifecycleGrid.UnparentPlayersFromGrid(shipUid, true);
             }
         }
@@ -127,88 +119,101 @@ public sealed class ShipOwnershipSystem : EntitySystem
         _pendingDeletionShips.Clear();
     }
 
-    private HashSet<NetUserId> GetOnlineUserIds()
+    private bool IsShuttlePowered(EntityUid shuttleUid)
     {
-        var online = new HashSet<NetUserId>();
-        foreach (var session in _playerManager.Sessions)
+        _shuttleConsoles.Clear();
+        _lookup.GetGridEntities(shuttleUid, _shuttleConsoles);
+
+        var totalConsoles = 0;
+        var poweredConsoles = 0;
+
+        foreach (var console in _shuttleConsoles)
         {
-            if (session.Status is SessionStatus.Connected or SessionStatus.InGame)
-                online.Add(session.UserId);
+            if (!TryComp<ApcPowerReceiverComponent>(console, out var power))
+                continue;
+
+            totalConsoles++;
+            if (power.Powered)
+                poweredConsoles++;
         }
-        return online;
+
+        if (totalConsoles == 0)
+            return false;
+
+        return poweredConsoles > 0;
     }
 
-    private List<string> GetOnlineCrewNames(EntityUid shuttleUid, HashSet<NetUserId> onlineUserIds)
+    private bool HasPlayersOnShip(EntityUid shuttleUid)
     {
-        var matches = new List<string>();
-        if (onlineUserIds.Count == 0)
-            return matches;
-
-        var query = EntityQueryEnumerator<IdCardComponent, ShipCrewAssignmentComponent>();
-        while (query.MoveNext(out var uid, out var id, out var assignment))
+        var query = EntityQueryEnumerator<ActorComponent, TransformComponent>();
+        while (query.MoveNext(out _, out _, out var transform))
         {
-            if (assignment.ShuttleUid != shuttleUid)
-                continue;
-
-            _shipCrew.ForceRefreshAssignmentIdentity(uid, assignment);
-
-            if (assignment.AssignedUserId is not { } assignedUserId)
-                continue;
-
-            if (!onlineUserIds.Contains(assignedUserId))
-                continue;
-
-            var name = id.FullName ?? MetaData(uid).EntityName ?? string.Empty;
-            if (!string.IsNullOrWhiteSpace(name))
-                matches.Add(name);
+            if (transform.GridUid == shuttleUid)
+                return true;
         }
 
-        matches.Sort(StringComparer.OrdinalIgnoreCase);
-        return matches;
+        return false;
     }
 
     private void OnShipOwnershipStartup(EntityUid uid, ShipOwnershipComponent component, ComponentStartup args)
     {
-        component.IsDeletionTimerRunning = false;
-        component.DeletionTimerStartTime = TimeSpan.Zero;
+        ResetDeletionTimer(component);
         Dirty(uid, component);
     }
 
-    private void OnShipOwnershipShutdown(EntityUid uid, ShipOwnershipComponent component, ComponentShutdown args)
-    {
-    }
-
-    private void OnShuttleUnparked(EntityUid uid, ParkedShuttleComponent component, ref ComponentRemove args)
-    {
-        if (!TryComp<ShipOwnershipComponent>(uid, out var ownership))
-            return;
-
-        ownership.IsDeletionTimerRunning = false;
-        ownership.DeletionTimerStartTime = TimeSpan.Zero;
-        Dirty(uid, ownership);
-
-        Logger.DebugS("shipOwnership", $"Shuttle {ToPrettyString(uid)} was unparked; abandonment timer reset");
-    }
-
-    private void StartDeletionTimer(EntityUid shipUid, ShipOwnershipComponent ownership)
+    private void PauseDeletionTimer(EntityUid shipUid, ShipOwnershipComponent ownership, string reason)
     {
         if (ownership.IsDeletionTimerRunning)
+        {
+            ownership.AccumulatedUnpoweredTime += _gameTiming.CurTime - ownership.DeletionTimerStartTime;
+            ownership.IsDeletionTimerRunning = false;
+        }
+
+        if (ownership.IsDeletionTimerPaused)
             return;
 
-        ownership.IsDeletionTimerRunning = true;
-        ownership.DeletionTimerStartTime = _gameTiming.CurTime;
+        ownership.IsDeletionTimerPaused = true;
         Dirty(shipUid, ownership);
-        Logger.DebugS("shipOwnership", $"Started abandonment timer for ship {ToPrettyString(shipUid)} ({ownership.DeletionTimeoutSeconds:F0}s)");
+        Log.Debug($"Paused abandonment timer for ship {ToPrettyString(shipUid)} because {reason}");
     }
 
-    private void StopDeletionTimer(EntityUid shipUid, ShipOwnershipComponent ownership, string reason)
+    private void ResumeDeletionTimer(EntityUid shipUid, ShipOwnershipComponent ownership)
     {
         if (!ownership.IsDeletionTimerRunning)
+        {
+            ownership.IsDeletionTimerRunning = true;
+            ownership.IsDeletionTimerPaused = false;
+            ownership.DeletionTimerStartTime = _gameTiming.CurTime;
+            Dirty(shipUid, ownership);
+            Log.Debug($"Started abandonment timer for ship {ToPrettyString(shipUid)} ({ownership.DeletionTimeoutSeconds:F0}s)");
+            return;
+        }
+
+        ownership.AccumulatedUnpoweredTime += _gameTiming.CurTime - ownership.DeletionTimerStartTime;
+        ownership.DeletionTimerStartTime = _gameTiming.CurTime;
+        Dirty(shipUid, ownership);
+    }
+
+    private void StopDeletionTimer(EntityUid shipUid, ShipOwnershipComponent ownership, string reason, bool resetElapsed)
+    {
+        if (!ownership.IsDeletionTimerRunning && !ownership.IsDeletionTimerPaused && !resetElapsed)
             return;
 
+        if (resetElapsed)
+            ownership.AccumulatedUnpoweredTime = TimeSpan.Zero;
+
         ownership.IsDeletionTimerRunning = false;
+        ownership.IsDeletionTimerPaused = false;
         ownership.DeletionTimerStartTime = TimeSpan.Zero;
         Dirty(shipUid, ownership);
-        Logger.DebugS("shipOwnership", $"Stopped abandonment timer for ship {ToPrettyString(shipUid)} because {reason}");
+        Log.Debug($"Stopped abandonment timer for ship {ToPrettyString(shipUid)} because {reason}");
+    }
+
+    private void ResetDeletionTimer(ShipOwnershipComponent ownership)
+    {
+        ownership.IsDeletionTimerRunning = false;
+        ownership.IsDeletionTimerPaused = false;
+        ownership.DeletionTimerStartTime = TimeSpan.Zero;
+        ownership.AccumulatedUnpoweredTime = TimeSpan.Zero;
     }
 }

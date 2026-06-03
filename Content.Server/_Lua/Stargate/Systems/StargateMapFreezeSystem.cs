@@ -25,15 +25,15 @@ public sealed class StargateMapFreezeSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly StarGateShuttleLandingSystem _landing = default!;
     [Dependency] private readonly StargateAddressRegistrySystem _registry = default!;
     [Dependency] private readonly StargateWorldPersistenceSystem _persistence = default!;
 
     private float _checkAccumulator;
 
+    private EntityQuery<MindContainerComponent> _mindContainerQuery;
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<GhostComponent> _ghostQuery;
-    private EntityQuery<MindContainerComponent> _mindContainerQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<StargatePortalTimerComponent> _portalTimerQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -51,9 +51,9 @@ public sealed class StargateMapFreezeSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
         _actorQuery = GetEntityQuery<ActorComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
-        _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _portalTimerQuery = GetEntityQuery<StargatePortalTimerComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
@@ -105,7 +105,9 @@ public sealed class StargateMapFreezeSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var dest, out _))
         {
-            var isActive = MapHasPlayers(uid) || HasOpenPortal(dest);
+            var hasValidPlayers = _landing.MapHasValidPlayers(uid);
+            var hasBoundShuttle = _landing.HasBoundShuttleOnMap(uid);
+            var isActive = hasValidPlayers || hasBoundShuttle || HasOpenPortal(dest);
 
             if (isActive)
             {
@@ -132,29 +134,6 @@ public sealed class StargateMapFreezeSystem : EntitySystem
 
     private bool HasOpenPortal(StargateDestinationComponent dest)
     { return dest.GateUid is { } gateUid && _portalTimerQuery.HasComp(gateUid); }
-
-    private bool MapHasPlayers(EntityUid mapUid)
-    {
-        if (!_xformQuery.TryGetComponent(mapUid, out var mapXform))
-            return false;
-
-        return RecursiveHasPlayer(mapXform);
-    }
-
-    private bool RecursiveHasPlayer(TransformComponent xform)
-    {
-        var enumerator = xform.ChildEnumerator;
-        while (enumerator.MoveNext(out var child))
-        {
-            if (_actorQuery.HasComp(child) && !_ghostQuery.HasComp(child))
-                return true;
-
-            if (_xformQuery.TryGetComponent(child, out var childXform) && RecursiveHasPlayer(childXform))
-                return true;
-        }
-
-        return false;
-    }
 
     private bool MapHasUnsettledMind(EntityUid mapUid)
     {

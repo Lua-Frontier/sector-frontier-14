@@ -37,7 +37,8 @@ public sealed class ShuttleParkingSystem : EntitySystem
 
     public readonly record struct ShuttleParkingResult(ShuttleParkingError Error, string? OrganicName = null);
     private const float ParkingBuffer = 8f;
-    private const float ParkingSpawnY = 1f;
+    private const float ParkingRingStep = 120f;
+    private const float ParkingBaseSlotSize = 60f;
     [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapSystem _map = default!;
@@ -109,29 +110,57 @@ public sealed class ShuttleParkingSystem : EntitySystem
     private Vector2 FindParkingPosition(EntityUid shuttleUid, MapGridComponent shuttleGrid, Entity<ParkingMapComponent> parkingMap)
     {
         var mapId = Transform(parkingMap.Owner).MapID;
-        var leftEdge = parkingMap.Comp.NextShuttleIndex;
         var shuttleAabb = shuttleGrid.LocalAABB;
         var intersecting = new List<Entity<MapGridComponent>>();
+
+        var ring = parkingMap.Comp.CurrentRing;
+        var slot = parkingMap.Comp.CurrentSlotInRing;
+
         while (true)
         {
-            var spawnPosition = new Vector2(leftEdge + shuttleAabb.Width / 2f, ParkingSpawnY) - shuttleAabb.Center;
-            var aabb = shuttleAabb.Translated(spawnPosition).Enlarged(1f);
-            intersecting.Clear();
-            _mapManager.FindGridsIntersecting(mapId, aabb, ref intersecting);
-            intersecting.RemoveAll(ent => ent.Owner == shuttleUid);
-            if (intersecting.Count == 0)
+            var totalSlots = GetSlotsForRing(ring);
+            while (slot < totalSlots)
             {
-                parkingMap.Comp.NextShuttleIndex = leftEdge + shuttleAabb.Width + ParkingBuffer;
-                return spawnPosition;
+                var center = GetRingSlotPosition(ring, slot, totalSlots);
+                var spawnPosition = center - shuttleAabb.Center;
+                var aabb = shuttleAabb.Translated(spawnPosition).Enlarged(ParkingBuffer / 2f);
+                intersecting.Clear();
+                _mapManager.FindGridsIntersecting(mapId, aabb, ref intersecting);
+                intersecting.RemoveAll(ent => ent.Owner == shuttleUid);
+                if (intersecting.Count == 0)
+                {
+                    var nextSlot = slot + 1;
+                    if (nextSlot >= totalSlots)
+                    {
+                        parkingMap.Comp.CurrentRing = ring + 1;
+                        parkingMap.Comp.CurrentSlotInRing = 0;
+                    }
+                    else
+                    {
+                        parkingMap.Comp.CurrentRing = ring;
+                        parkingMap.Comp.CurrentSlotInRing = nextSlot;
+                    }
+                    return spawnPosition;
+                }
+                slot++;
             }
-            var furthestRight = leftEdge;
-            foreach (var other in intersecting)
-            {
-                var otherAabb = _transform.GetWorldMatrix(other).TransformBox(other.Comp.LocalAABB);
-                furthestRight = MathF.Max(furthestRight, otherAabb.Right + ParkingBuffer);
-            }
-            leftEdge = furthestRight;
+            ring++;
+            slot = 0;
         }
+    }
+    private static int GetSlotsForRing(int ring)
+    {
+        if (ring == 0) return 1;
+        var radius = ring * ParkingRingStep;
+        return Math.Max(4, (int)(MathF.PI * 2f * radius / ParkingBaseSlotSize));
+    }
+
+    private static Vector2 GetRingSlotPosition(int ring, int slot, int totalSlots)
+    {
+        if (ring == 0) return Vector2.Zero;
+        var radius = ring * ParkingRingStep;
+        var angle = slot * (MathF.PI * 2f / totalSlots);
+        return new Vector2(radius * MathF.Cos(angle), radius * MathF.Sin(angle));
     }
 
     private bool IsDockedToConsoleStation(EntityUid consoleUid, EntityUid shuttleUid)

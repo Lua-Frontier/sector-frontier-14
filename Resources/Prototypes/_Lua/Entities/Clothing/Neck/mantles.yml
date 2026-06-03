@@ -22,6 +22,39 @@
   description: Very formal. In fact, You might go away from me, Sir.
   components:
   - type: Sprite
-    sprite: _Lua/Clothing/Neck/capmantle.rsi
+    sprite: _Lua/Clothing/Neck/mantles/capmantle.rsi
   - type: Clothing
-    sprite: _Lua/Clothing/Neck/capmantle.rsi
+    sprite: _Lua/Clothing/Neck/mantles/capmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleBlue
+  name: blue mantle
+  description: Just a simple blue mantle.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/mantles/blue_mantle.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/mantles/blue_mantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleBlueShield
+  name: blueshield mantle
+  description: Who is the hitman now?
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/mantles/blueshieldmantle_shoulder.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/mantles/blueshieldmantle_shoulder.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleWarden
+  name: warden mantle
+  description: Is held by the pure will.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/mantles/wardenmantle.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/mantles/wardenmantle.rsi

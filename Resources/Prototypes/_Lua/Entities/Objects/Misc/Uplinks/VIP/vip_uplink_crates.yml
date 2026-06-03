@@ -14,15 +14,15 @@
     Speso: 34000
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipSteel
@@ -34,15 +34,15 @@
     Speso: 9900
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipGlass
@@ -54,15 +54,15 @@
     Speso: 16500
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipPlasteel
@@ -74,15 +74,15 @@
     Speso: 24750
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipPlasma
@@ -94,15 +94,15 @@
     Speso: 9900
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipCloth
@@ -114,15 +114,15 @@
     Speso: 16500
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipDonkpocket
@@ -134,15 +134,15 @@
     Speso: 18000
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 - type: listing
   id: UplinkVipCratesVipPlastic
@@ -154,14 +154,14 @@
     Speso: 16500
   categories:
     - UplinkVipCrates
+    - UplinkVipTierShareholder
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:
         tags:
           - VipUplink
-    - !type:BuyerJobCondition
+    - !type:BuyerSponsorTierCondition
       whitelist:
-        - Vip
-        - OutpostSyndicateShareholder
+      - Акционер
 
 

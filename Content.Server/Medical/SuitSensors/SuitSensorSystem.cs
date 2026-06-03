@@ -53,8 +53,6 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SectorSystem _sectors = default!; // Lua
 
-    [Dependency] private readonly GameTicking.GameTicker _ticker = default!; //Lua Added to check run level
-
     // Lua start
     private TimeSpan _nextSensorsScan = TimeSpan.Zero;
     private static readonly TimeSpan SensorsScanInterval = TimeSpan.FromMilliseconds(200);
@@ -238,21 +236,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
         if (component.RandomMode)
         {
-            var modesDist = new[]
-            {
-                SuitSensorMode.SensorOff,
-                SuitSensorMode.SensorBinary, SuitSensorMode.SensorBinary,
-                SuitSensorMode.SensorVitals, SuitSensorMode.SensorVitals, SuitSensorMode.SensorVitals,
-                SuitSensorMode.SensorCords, SuitSensorMode.SensorCords
-            };
-            component.Mode = _random.Pick(modesDist);
-        }
-
-        //Lua: if an item with built-in sensors spawns during the round and sensors are not forced off in component - force Coordinates mode
-        if (_ticker.RunLevel == GameRunLevel.InRound && component.RandomMode)
-        {
-            SetSensor((uid, component), SuitSensorMode.SensorCords); //Lua: default to coordinates so medics can find players
-            return;
+            component.Mode = SuitSensorMode.SensorCords; // Lua
         }
     }
 

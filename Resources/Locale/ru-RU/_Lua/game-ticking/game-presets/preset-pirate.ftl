@@ -14,3 +14,13 @@ objective-issuer-nf-pirate = [color=#F6CE64]Союз Вольных Букань
 nf-pirate-round-end-agent-name = Пират
 
 roles-antag-nf-pirate-objective = Грабьте сектор, наживайте дублоны.
+
+
+
+sc-soldier-role-greeting = Вы - последний оплот независимости и справедливости. Уничтожьте вражеские военные силы, свергните корпоративную власть и верните родному сектору свободу.
+
+objective-issuer-sc-soldier = [color=#948471]Кодекс Бури[/color]
+sc-soldier-round-end-agent-name = Солдат Кодекса
+
+roles-antag-sc-soldier-objective = Боритесь против корпоративной оккупации.
+sc-captain-role-greeting = Вы - Командир последнего оплота независимости и справедливости. Уничтожьте вражеские военные силы, свергните корпоративную власть и верните родному сектору свободу.

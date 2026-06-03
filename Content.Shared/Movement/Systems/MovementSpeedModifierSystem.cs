@@ -107,6 +107,7 @@ namespace Content.Shared.Movement.Systems
 
             move.WalkSpeedModifier = ev.WalkSpeedModifier;
             move.SprintSpeedModifier = ev.SprintSpeedModifier;
+            move.RunningSpeedModifier = ev.SprintSpeedModifier;
             Dirty(uid, move);
         }
 

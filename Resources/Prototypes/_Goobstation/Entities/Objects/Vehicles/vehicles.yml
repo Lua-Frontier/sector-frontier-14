@@ -60,7 +60,7 @@
   - type: MovementSpeedModifier
     acceleration: 8
     friction: 5 # wheels dont stop instantly
-    baseSprintSpeed: 6
+    baseRunningSpeed: 6
     baseWalkSpeed: 4.5 # default walking speed
   - type: ItemSlots
     slots:
@@ -241,7 +241,7 @@
   - type: MovementSpeedModifier
     acceleration: 10
     friction: 10
-    baseSprintSpeed: 3.5
+    baseRunningSpeed: 3.5
     baseWalkSpeed: 2.5
   - type: StaticPrice
     price: 75
@@ -284,7 +284,7 @@
   - type: MovementSpeedModifier
     acceleration: 5 # Frontier: 10<5
     friction: 2.5 # Frontier: 0.5<2.5
-    baseSprintSpeed: 3.5
+    baseRunningSpeed: 3.5
     baseWalkSpeed: 2.5
   - type: StaticPrice
     price: 175

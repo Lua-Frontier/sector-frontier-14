@@ -444,6 +444,15 @@
   - type: Wires
     layoutId: AirlockSecurity
 
+- type: entity
+  parent: AirlockRepresentative
+  id: AirlockRepresentativeLocked
+  suffix: Sr
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfPersonnel ] # Will change to "Sr" when I will finish it
+
 #Glass
 - type: entity
   parent: AirlockGlass
@@ -457,3 +466,12 @@
       board: [ DoorElectronicsSecurity ]
   - type: Wires
     layoutId: AirlockSecurity
+
+- type: entity
+  parent: AirlockGlassRepresentative
+  id: AirlockGlassRepresentativeLocked
+  suffix: Sr
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHeadOfPersonnel ] # Will change to "Sr" when I will finish it
