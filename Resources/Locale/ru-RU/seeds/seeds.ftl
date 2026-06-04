@@ -118,3 +118,5 @@ seeds-pyrotton-name = пирохлопок
 seeds-pyrotton-display-name = куст пирохлопка
 seeds-goldenapple-name = золотое яблоко
 seeds-goldenapple-display-name = золотая яблоня
+seeds-mint-name = мята
+seeds-mint-display-name = куст мяты

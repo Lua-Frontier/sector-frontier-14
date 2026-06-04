@@ -436,6 +436,8 @@
   packetPrototype: TeaPlantSeeds
   productPrototypes:
     - LeavesTea
+  mutationPrototypes:
+    - mint
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 5
@@ -448,6 +450,10 @@
   idealHeat: 298
   chemicals:
     Vitamin:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    GreenTeaPowder:
       Min: 1
       Max: 5
       PotencyDivisor: 20
@@ -2007,3 +2013,30 @@
       Min: 1
       Max: 2
       PotencyDivisor: 40
+
+- type: seed
+  id: mint
+  name: seeds-mint-name
+  noun: seeds-noun-seeds
+  displayName: seeds-mint-display-name
+  plantRsi: Objects/Specific/Hydroponics/mint.rsi
+  packetPrototype: MintSeeds
+  productPrototypes:
+    - FoodMint
+  harvestRepeat: Repeat
+  lifespan: 35
+  maturation: 6
+  production: 3
+  yield: 3
+  potency: 20
+  idealLight: 8
+  growthStages: 5
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Cryoxadone:
+      Min: 3
+      Max: 13
+      PotencyDivisor: 10

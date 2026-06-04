@@ -24,3 +24,7 @@ reagent-name-oil = масло
 reagent-desc-oil = Используется поварами для приготовления пищи.
 reagent-name-capsaicin-oil = капсаициновое масло
 reagent-desc-capsaicin-oil = Капсаициновое масло - это ингредиент, содержащийся в различных сортах острого перца.
+reagent-name-tea-powder = чёрный чайный порошок
+reagent-desc-tea-powder = Мелкоизмельчённые чайные листья, используемые для заваривания чёрного чая
+reagent-name-green-tea-powder = зелёный чайный порошок 
+reagent-desc-green-tea-powder = Мелкоизмельчённые чайные листья, используемые для заваривания зелёного чая
