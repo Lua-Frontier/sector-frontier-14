@@ -33,6 +33,8 @@
   - type: Item
     sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
     size: Huge
+    shape: # Lua
+      - 0,0,3,2 # Lua
   - type: UserInterface
     interfaces:
       enum.SharedGasTankUiKey.Key:
@@ -177,7 +179,6 @@
     # End DeltaV modifications
   - type: Item
     sprite: Objects/Tanks/Jetpacks/captain.rsi
-    size: Normal
   - type: Tag
     tags:
     - HighRiskItem
@@ -211,8 +212,9 @@
   components:
     - type: Item
       sprite: Objects/Tanks/Jetpacks/mini.rsi
-      shape: # Frontier
-      - 0,0,3,2 # Frontier
+      size: Normal
+      shape: # Lua
+      - 0,0,2,1 # Lua
     - type: Sprite
       sprite: Objects/Tanks/Jetpacks/mini.rsi
     - type: Clothing
@@ -289,6 +291,9 @@
   components:
   - type: Item
     sprite: Objects/Tanks/Jetpacks/void.rsi
+    size: Normal
+    shape: # Lua
+      - 0,0,2,1 # Lua
   - type: Sprite
     sprite: Objects/Tanks/Jetpacks/void.rsi
   - type: Clothing

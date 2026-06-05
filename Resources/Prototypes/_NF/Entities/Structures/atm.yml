@@ -67,7 +67,7 @@
   - type: Sprite
     netsync: false
     noRot: true
-    sprite: _NF/Structures/Machines/atm/atm.rsi
+    sprite: _Lua/Structures/Machines/atm/atm_outdoor.rsi
     layers:
     - map: ["computerLayerBody"]
       state: icon
@@ -81,7 +81,7 @@
   - type: Sprite
     netsync: false
     noRot: true
-    sprite: _NF/Structures/Machines/atm/atm.rsi
+    sprite: _Lua/Structures/Machines/atm/atm_outdoor.rsi
     layers:
     - map: ["computerLayerBody"]
       state: icon
@@ -97,7 +97,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: _NF/Structures/Machines/atm/wall_atm.rsi
+    sprite: _Lua/Structures/Machines/atm/atm.rsi
     layers:
       - map: ["computerLayerBody"]
         state: icon
@@ -111,7 +111,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: _NF/Structures/Machines/atm/wall_atm.rsi
+    sprite: _Lua/Structures/Machines/atm/atm.rsi
     layers:
       - map: ["computerLayerBody"]
         state: icon
@@ -129,7 +129,7 @@
   - type: Sprite
     netsync: false
     noRot: true
-    sprite: _NF/Structures/Machines/atm/illegal_atm.rsi
+    sprite: _Lua/Structures/Machines/atm/bm_atm_outdoor.rsi
     layers:
     - map: ["computerLayerBody"]
       state: icon
@@ -153,7 +153,7 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: _NF/Structures/Machines/atm/wall_illegal_atm.rsi
+    sprite: _Lua/Structures/Machines/atm/bm_atm.rsi
     layers:
     - map: ["computerLayerBody"]
       state: icon
