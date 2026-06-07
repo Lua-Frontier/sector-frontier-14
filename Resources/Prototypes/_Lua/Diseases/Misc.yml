@@ -1,0 +1,382 @@
+#region базы без хтн
+#никаких удалений морф игроков ценой огромного количества лишнего кода и моих 17 часов жизни потраченных на поиск обхода
+
+
+
+#region космические морфы
+- type: entity
+  abstract: true
+  parent:
+  - BaseSimpleMob
+  - MobAtmosExposed
+  - MobCombat
+  - MobBloodstream
+  - MobFlammable
+  id: SimpleNonHTNSpaceMobBase #автоудаление было наёбано успешно
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+  - type: Body
+    prototype: Animal
+  - type: Climbing
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MobPrice
+    price: 1000 # Living critters are valuable in space.
+  - type: Perishable
+  - type: MovementAlwaysTouching #Lua
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    maxRange: 2048 # Frontier: increase admin radar range
+    followEntity: true
+    hideCoords: false # Frontier
+    maxIffRange: null # Frontier
+  - type: ComplexInteraction
+
+
+#region атмосферные морфы
+- type: entity
+  parent:
+  - MobRespirator
+  - MobAtmosStandard
+  - SimpleNonHTNSpaceMobBase
+  id: SimpleNonHTNMobBase # for air breathers
+  suffix: AI
+  abstract: true
+  components:
+  - type: DiseaseCarrier
+  - type: Hunger
+    thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.00925925925926 # it is okay for animals to eat and drink less than humans, but more frequently
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: StatusEffects
+    allowed:
+    - Stutter
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Adrenaline
+  - type: Bloodstream
+    bloodMaxVolume: 150
+  - type: MobPrice
+    price: 150
+  - type: FloatingVisuals
+
+
+#region тела
+#костыль для видимости биоструктур в термалах
+- type: body
+  id: UniversalBodyStructure
+  name: UniversalBodyStructure
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+
+#просто видимое в термалах тело без рук
+- type: body
+  id: UniversalBodyMob
+  name: UniversalBodyMob
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - legs
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+#тело с 2 руками но без инвентаря
+- type: body
+  id: UniversalBodyMob2Handed
+  name: UniversalBodyMob2Handed
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - legs
+      - right_arm
+      - left_arm
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmHuman
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandHuman
+    left_hand:
+      part: LeftHandHuman
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+
+
+
+
+#region крыски
+#в большинстве случаев именно они являются бессимптомными переносчиками всякой гадости
+
+
+
+
+
+#region спора
+- type: entity
+  name: странная крыса
+  id: DiseaseRatCrimsonSpore
+  suffix: Красная Спора
+  parent: [ SimpleMobBase, MobCombat, BaseTrashFauna600 ]
+  description: Мерзкое облезлое существо, скорее всего оно чем-то болеет. Лучше выбросить в космос.
+  components:
+  - type: Carriable #DeltaV
+    freeHandsRequired: 1
+  - type: CombatMode
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: BiohazardousHTNMeleeCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true 
+      NavSmash: !type:Bool 
+        true
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Mobs/Animals/rat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: rat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: eyes
+      shader: unshaded
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: rat-moving
+    noMovementLayers:
+      movement:
+        state: rat
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 30 #Bulky by mouse standards...
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      15: Critical
+      30: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 60
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
+  - type: Stamina
+    critThreshold: 60
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 1
+        Piercing: 2
+  - type: Body
+    prototype: Rat
+    requiredLegs: 1 # TODO: More than 1 leg
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: rat
+        BaseUnshaded: eyes
+      Critical:
+        Base: dead
+      Dead:
+        Base: splat
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 1
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+    wilhelmProbability: 0.001
+  - type: Tag
+    tags:
+      - CannotSuicide
+      - FootstepSound
+      - Biohazard
+  - type: NoSlip
+  - type: MobPrice
+    price: 500 # rat wealth
+  - type: Speech
+    speechVerb: SmallMob
+  - type: FelinidFood # Nyanotrasen - Felinid, ability to eat rat, see Content.Server/Nyanotrasen/Abilities/Felinid/FelinidSystem.cs
+  - type: Food # Delta V - Make them edible and pickable.
+  - type: Item # Delta V - Make them edible and pickable.
+    size: Tiny # Delta V - Make them edible and pickable.
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+  - type: NightVision # Goobstation - Nigthvision
+    color: "#a05454"
+    activateSound: null
+    deactivateSound: null
+  - type: InfectOnMelee
+    disease: CrimsonSpore
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - CrimsonSpore
+
+#region обезьяновирус
+- type: entity
+  name: странная крыса
+  id: DiseaseRatMonkeyPox
+  suffix: "обезьяновирус"
+  parent: [ DiseaseRatCrimsonSpore ]
+  description: Мерзкое облезлое существо, скорее всего являющееся переносчиком заразы. Покрыто язвами, и выглядит явно болезненным.
+  components:
+  - type: InfectOnMelee
+    disease: MonkeyPox
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - MonkeyPox
+
+#region драконовирус
+- type: entity
+  name: странная крыса
+  id: DiseaseRatDragonFlu
+  suffix: "драконий грипп"
+  parent: [ DiseaseRatCrimsonSpore ]
+  description: Мерзкое облезлое существо, скорее всего являющееся переносчиком заразы. Частично покрыто чешуёй, и выглядит явно болезненным.
+  components:
+  - type: InfectOnMelee
+    disease: DragonFlu
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - DragonFlu
+
+#region Крысиное бешенство
+- type: entity
+  name: странная крыса
+  id: DiseaseRatRatRabies
+  suffix: "Крысиное бешенство"
+  parent: [ DiseaseRatCrimsonSpore ]
+  description: Мерзкое облезлое существо, скорее всего являющееся переносчиком заразы. Из пасти существа капает пена, и выглядит оно явно болезненным.
+  components:
+  - type: InfectOnMelee
+    disease: RatRabies
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - RatRabies
+
+#region Паучья лихорадка
+- type: entity
+  name: странная крыса
+  id: DiseaseRatSpiderFever
+  suffix: "Паучья лихорадка"
+  parent: [ DiseaseRatCrimsonSpore ]
+  description: Мерзкое облезлое существо, скорее всего являющееся переносчиком заразы. Существо частично покрыто паутиной, и выглядит оно явно болезненным.
+  components:
+  - type: InfectOnMelee
+    disease: SpiderFever
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - SpiderFever
+
+
+- type: entity
+  parent: MarkerBase
+  id: RandomDiseaseRatsSpawn
+  name: RandomDiseaseRatsSpawn
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - DiseaseRatCrimsonSpore
+    - DiseaseRatMonkeyPox
+    - DiseaseRatDragonFlu
+    - DiseaseRatRatRabies
+    - DiseaseRatSpiderFever
+    chance: 1
+    offset: 0.0

@@ -17,12 +17,15 @@
     - FoodSnackCheesie
     - DrinkJuiceOrangeCartonXL
     - BronzeVisor
+    - ClothingBeltChiefEngineerFilled
+    - JetpackCaptainFilled
+    - MedicalPouchFilledHigh
 
 #region Сумка
 - type: entity
   parent: ClothingBackpackDuffel
   id: HolyPainRankKit
-  name: Блюспейс кристал HolyPain
+  name: блюспейс кристал HolyPain
   description: Уникальный артефакт на золотой цепи — творение мастера HolyPain, стабилизированный в условиях мёртвого космоса и вручаемый как знак заслуг за вклад в одноимённый проект.
   categories: [ HideSpawnMenu ]
   components:
@@ -96,7 +99,7 @@
 
 #region таблетница
 - type: entity
-  name: Коробочка таблеток HolyPain
+  name: коробочка таблеток HolyPain
   parent: BoxCardboard
   id: BoxPillCanisterHolyPain
   categories: [ HideSpawnMenu ]
@@ -237,7 +240,7 @@
   parent: BasePlushieSpeakable
   id: PlushieHolyPainEri
   name: плюшевая Эри
-  description: "Скажите ей спасибо, что оказались в такой ситуации! На бирке виднеется надпись: HolyPain"
+  description: "Скажите ей спасибо, что оказались в такой ситуации! На бирке виднеется надпись: HolyPain."
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/HolyPain/HolyPainPlushie.rsi
@@ -363,7 +366,7 @@
 
 #сама менза
 - type: entity
-  name: Бронзовая мензурка с изумрудом
+  name: бронзовая мензурка с изумрудом
   parent: BaseBeakerBronze
   description: Чем сосуд наполнен, то из него и льётся.
   id: BronzeBeaker
@@ -427,7 +430,7 @@
 - type: entity
   id: BronzeSyringe
   parent: BaseSyringeBronze
-  name: Бронзовый изумрудный шприц
+  name: бронзовый изумрудный шприц
   description: Используется для забора образцов крови у благородных и не очень существ, или для введения им реагентов.
   categories: [ HideSpawnMenu ]
   components:
@@ -474,7 +477,7 @@
 - type: entity
   parent: BronzeJetInjectorBase
   id: BronzeJetInjector
-  name: Бронзовый джет-инъектор
+  name: бронзовый джет-инъектор
   description: Уникальный инъектор, украшенный изумрудом, с гравировкой в честь HolyPain на бронзовых частях.
   categories: [ HideSpawnMenu ]
   components:
@@ -504,7 +507,7 @@
 - type: entity
   parent: [ ClothingHandsGlovesColorBlack ]
   id: CaressOfALovedOne
-  name: Ласка любимого
+  name: ласка любимого
   description: "Самой прагматичной и храброй любовницей в истории была, конечно же, HolyPain. В ее честь названа популярная прическа, и для нее было написано множество чрезвычайно сопливых стихов (в большинстве из них она сравнивается с какими-нибудь географическими объектами)."
   categories: [ HideSpawnMenu ]
   components:
@@ -520,8 +523,8 @@
 - type: entity
   parent: ClothingEyesHudMultiversal
   id: BronzeVisor
-  name: Визор с бронзовой оправой
-  description: Высококлассный визор на половину лица, украшенный гравировкой с изображением рыцарских поединков на бронзовой оправе
+  name: визор с бронзовой оправой
+  description: Высококлассный визор на половину лица, украшенный гравировкой с изображением рыцарских поединков на бронзовой оправе.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

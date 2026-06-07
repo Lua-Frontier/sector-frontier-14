@@ -1,0 +1,139 @@
+#region телепорт
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportNOAdminVariable
+  name: телепорт подкреплений ЯО
+  suffix: "админский, вариативный, не для игроков"
+  description: Универсальный телепорт для бойцов ЯО, позволяющий отправить на поле боя низкокачественных клонов, запаянных в скафандры. Имеет встроенный модуль автозарядки, и способен выдать два полных отряда бойцов за один час. "Интердайн решили взять количеством, а не качеством" - комментарий ОВРС.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ba2222"
+    - state: door_remotescreencolour
+      color: "#871a1a"
+  - type: Item
+    storedRotation: -90
+  - type: Battery
+    maxCharge: 360000000
+    startingCharge: 360000000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100000
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Machines/phasein.ogg
+  - type: EnergyGun
+    fireModes:
+    - proto: AiNOComa
+      fireCost: 10
+      name: клон ЯО командир
+    - proto: AINOBeacon
+      fireCost: 10
+      name: Маяк командира ЯО
+    - proto: AiNOShotgun
+      fireCost: 10
+      name: клон ЯО с дробовиком
+    - proto: AiNOLaser
+      fireCost: 10
+      name: клон ЯО с импульсным лазером
+    - proto: AiNOMedic
+      fireCost: 10
+      name: клон ЯО медик
+  - type: ProjectileBatteryAmmoProvider
+    proto: AiNOComa
+    fireCost: 10
+
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportNOAdmin
+  name: телепорт подкреплений ЯО
+  suffix: "админский, отрядный, не для игроков"
+  description: Универсальный телепорт для бойцов ЯО, позволяющий отправить на поле боя низкокачественных клонов, запаянных в скафандры. Имеет встроенный модуль автозарядки, и способен выдать два полных отряда бойцов за один час. "Интердайн решили взять количеством, а не качеством" - комментарий ОВРС.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ba2222"
+    - state: door_remotescreencolour
+      color: "#871a1a"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AINOTeleportSpawner
+    capacity: 100
+    count: 100
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportNO
+  name: телепорт подкреплений ЯО
+  suffix: "отрядный, для игроков"
+  description: Универсальный телепорт для бойцов ЯО, позволяющий отправить на поле боя низкокачественных клонов, запаянных в скафандры. Имеет встроенный модуль автозарядки, и способен выдать два полных отряда бойцов за один час. "Интердайн решили взять количеством, а не качеством" - комментарий ОВРС.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ba2222"
+    - state: door_remotescreencolour
+      color: "#871a1a"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1200
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AINOTeleportSpawner
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+#region спавнер
+- type: entity
+  name: AINOTeleportSpawner
+  id: AINOTeleportSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: AINOBeacon
+      - !type:EntSelector
+        id: AiNOComa
+      - !type:EntSelector
+        id: AiNOLaser
+      - !type:EntSelector
+        id: AiNOLaser
+      - !type:EntSelector
+        id: AiNOMedic
+      - !type:EntSelector
+        id: AiNOMedic
+      - !type:EntSelector
+        id: AiNOShotgun

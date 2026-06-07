@@ -1,0 +1,139 @@
+#region телепорты
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportFSFAdminVariable
+  name: телепорт подкреплений КСО
+  suffix: "админский, вариативный, не для игроков"
+  description: Универсальный телепорт для бойцов КСО, позволяющий отправить на поле боя клонов, запаяных в скафандры. Имеет встроенный модуль автозарядки, и способен выдать два полных отряда бойцов за один час. "НТ решили взять количеством, а не качеством" - комментарий ОСО.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#2eba22"
+    - state: door_remotescreencolour
+      color: "#22871a"
+  - type: Item
+    storedRotation: -90
+  - type: Battery
+    maxCharge: 360000000
+    startingCharge: 360000000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100000
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Machines/phasein.ogg
+  - type: EnergyGun
+    fireModes:
+    - proto: AiFSFComa
+      fireCost: 10
+      name: клон КСО командир
+    - proto: AIFSFBeacon
+      fireCost: 10
+      name: Маяк командира КСО
+    - proto: AiFSFShotgun
+      fireCost: 10
+      name: клон КСО с дробовиком
+    - proto: AiFSFPulse
+      fireCost: 10
+      name: клон КСО с импульсным лазером
+    - proto: AiFSFMedic
+      fireCost: 10
+      name: клон КСО медик
+  - type: ProjectileBatteryAmmoProvider
+    proto: AiFSFComa
+    fireCost: 10
+
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportFSFAdmin
+  name: телепорт подкреплений КСО
+  suffix: "админский, отрядный, не для игроков"
+  description: Универсальный телепорт для бойцов КСО, позволяющий отправить на поле боя клонов, запаяных в скафандры. Имеет встроенный модуль автозарядки, и способен выдать два полных отряда бойцов за один час. "НТ решили взять количеством, а не качеством" - комментарий ОСО.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#2eba22"
+    - state: door_remotescreencolour
+      color: "#22871a"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AIFSFTeleportSpawner
+    capacity: 100
+    count: 100
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportFSF
+  name: телепорт подкреплений КСО
+  suffix: "отрядный, для игроков"
+  description: Универсальный телепорт для бойцов КСО, позволяющий отправить на поле боя клонов, запаяных в скафандры. Имеет встроенный модуль автозарядки, и способен выдать два полных отряда бойцов за один час. "НТ решили взять количеством, а не качеством" - комментарий ОСО.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#2eba22"
+    - state: door_remotescreencolour
+      color: "#22871a"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1200
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AIFSFTeleportSpawner
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+#region спавнер
+- type: entity
+  name: AIFSFTeleportSpawner
+  id: AIFSFTeleportSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: AIFSFBeacon
+      - !type:EntSelector
+        id: AiFSFComa
+      - !type:EntSelector
+        id: AiFSFPulse
+      - !type:EntSelector
+        id: AiFSFPulse
+      - !type:EntSelector
+        id: AiFSFMedic
+      - !type:EntSelector
+        id: AiFSFMedic
+      - !type:EntSelector
+        id: AiFSFShotgun

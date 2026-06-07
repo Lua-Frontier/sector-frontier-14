@@ -1,0 +1,28 @@
+- type: entity
+  id: ESFSueta
+  parent: TeslaToy
+  name: "Самонаводящаяся Суета"
+  description: "Суета — это состояние беспокойства и суетливости, часто связанное с выполнением множества задач одновременно или с ощущением нехватки времени. Это может проявляться в виде постоянной занятости, стремления к достижению целей без отдыха и расслабления, а также в ощущении внутреннего напряжения и стресса. Суета может негативно влиять на качество жизни, приводя к усталости, снижению продуктивности и ухудшению психического здоровья. Чтобы справиться с суетой, важно научиться расставлять приоритеты, планировать время и находить моменты для отдыха и восстановления."
+  components:
+  - type: RgbLightController
+  - type: ChasingWalk
+    minSpeed: 3
+    maxSpeed: 5
+    chasingComponent:
+    - type: LightningTarget
+  - type: ChaoticJump
+    jumpMinInterval: 8
+    jumpMaxInterval: 15
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/tesla_collapse.ogg
+      params:
+        variation: 0.3
+  - type: AmbientSound
+    volume: 3
+    range: 15
+    sound:
+      path: /Audio/Effects/tesla.ogg
+  - type: CanMoveInAir
+  - type: TimedDespawn
+    lifetime: 600

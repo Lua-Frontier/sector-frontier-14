@@ -1,0 +1,684 @@
+#region телепорты
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportSCAdminVariable
+  name: телепорт подкреплений Кодекса Бури
+  suffix: "админский, вариативный, не для игроков"
+  description: Универсальный телепорт рекрутов Кодекса Бури, оснащённый модулем автозарядки.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ff9100"
+    - state: door_remotescreencolour
+      color: "#836000"
+  - type: Item
+    storedRotation: -90
+  - type: Battery
+    maxCharge: 360000000
+    startingCharge: 360000000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100000
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Machines/phasein.ogg
+  - type: EnergyGun
+    fireModes:
+    - proto: AiSCComaSpawner
+      fireCost: 10
+      name: командир рекрутов Кодекса Бури
+    - proto: AISCBeacon
+      fireCost: 10
+      name: маяк командира рекрутов Кодекса Бури
+    - proto: AiSCStormtrooperSpawner
+      fireCost: 10
+      name: штурмовик Кодекса Бури
+    - proto: AiSCSniperSpawner
+      fireCost: 10
+      name: снайпер Кодекса Бури
+    - proto: AiSСMedicSpawner
+      fireCost: 10
+      name: медик Кодекса Бури
+  - type: ProjectileBatteryAmmoProvider
+    proto: AiSCComaSpawner
+    fireCost: 10
+
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportSCAdmin
+  name: телепорт подкреплений Кодекса Бури
+  suffix: "админский, отрядный, не для игроков"
+  description: Универсальный телепорт рекрутов Кодекса Бури, оснащённый модулем автозарядки.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ff9100"
+    - state: door_remotescreencolour
+      color: "#836000"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AISCTeleportSpawner
+    capacity: 100
+    count: 100
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportSC
+  name: телепорт подкреплений Кодекса Бури
+  suffix: "отрядный, для игроков"
+  description: Универсальный телепорт рекрутов Кодекса Бури, оснащённый модулем автозарядки. Способен отправить 3 полных отряда за час.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ff9100"
+    - state: door_remotescreencolour
+      color: "#836000"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1200
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AISCTeleportSpawner
+    capacity: 2
+    count: 2
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+#region спавнер бойцов
+- type: entity
+  name: AISCTeleportSpawner
+  id: AISCTeleportSpawner
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: AISCBeacon
+      - !type:EntSelector
+        id: AiSCComaSpawner
+      - !type:EntSelector
+        id: AiSCSniperSpawner
+      - !type:EntSelector
+        id: AiSСMedicSpawner
+      - !type:EntSelector
+        id: AiSCStormtrooperSpawner
+
+#region ттс комы
+#1
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa1
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Soldier_Metro
+
+#2
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa2
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: AlastorMadEyeMoody
+
+
+#3
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa3
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: AlbusDumbledore
+
+
+#4
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa4
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Anubarak
+
+
+#5
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa5
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Aradesh
+
+
+#6
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa6
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Dinah_hecat
+
+
+#7
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa7
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Alyx_Alyx
+
+
+#8
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa8
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Alexstraza
+
+
+#9
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa9
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Ana
+
+
+#10
+- type: entity
+  parent: AiSCComa
+  id: AiSCComa10
+  name: командир рекрутов Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Babazina
+
+
+#region Спавнер комы
+- type: entity
+  parent: MarkerBase
+  id: AiSCComaSpawner
+  name: AiSCComaSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AiSCComa1
+    - AiSCComa2
+    - AiSCComa3
+    - AiSCComa4
+    - AiSCComa5
+    - AiSCComa6
+    - AiSCComa7
+    - AiSCComa8
+    - AiSCComa9
+    - AiSCComa10
+    chance: 1
+    offset: 0.2
+
+#region ттс снайпера
+#1
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper1
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Pavel
+
+#2
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper2
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Richard
+
+
+#3
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper3
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Saharov
+
+
+#4
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper4
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Admiral
+
+
+#5
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper5
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Aragorn
+
+
+#6
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper6
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Aranna
+
+
+#7
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper7
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Astrid
+
+
+#8
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper8
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Valeera
+
+
+#9
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper9
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Vex
+
+
+#10
+- type: entity
+  parent: AiSCSniper
+  id: AiSCSniper10
+  name: снайпер Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Vivienne
+
+
+#region Спавнер снайпера
+- type: entity
+  parent: MarkerBase
+  id: AiSCSniperSpawner
+  name: AiSCSniperSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AiSCSniper1
+    - AiSCSniper2
+    - AiSCSniper3
+    - AiSCSniper4
+    - AiSCSniper5
+    - AiSCSniper6
+    - AiSCSniper7
+    - AiSCSniper8
+    - AiSCSniper9
+    - AiSCSniper10
+    chance: 1
+    offset: 0.2
+
+#region ттс медика
+#1
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic1
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Novice02
+
+#2
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic2
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Boar
+
+
+#3
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic3
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Degtyarev
+
+
+#4
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic4
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Arthas
+
+
+#5
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic5
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Archmage
+
+
+#6
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic6
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Wendy
+
+
+#7
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic7
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Sorceress
+
+
+#8
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic8
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Goya
+
+
+#9
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic9
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Grelka
+
+
+#10
+- type: entity
+  parent: AiSCMedic
+  id: AiSCMedic10
+  name: медик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Deva
+
+
+#region Спавнер медика
+- type: entity
+  parent: MarkerBase
+  id: AiSСMedicSpawner
+  name: AiSCMedicSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AiSCMedic1
+    - AiSCMedic2
+    - AiSCMedic3
+    - AiSCMedic4
+    - AiSCMedic5
+    - AiSCMedic6
+    - AiSCMedic7
+    - AiSCMedic8
+    - AiSCMedic9
+    - AiSCMedic10
+    chance: 1
+    offset: 0.2
+
+  
+#region ттс штурмовика
+#1
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper1
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: MBandit
+
+#2
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper2
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Bandit2
+
+
+#3
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper3
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Bandit
+
+
+#4
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper4
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Bandit3
+
+
+#5
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper5
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Barman
+
+
+#6
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper6
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Dolg1
+
+
+#7
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper7
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Dolg2
+
+
+#8
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper8
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Laezel
+
+
+#9
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper9
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Lynette
+
+
+#10
+- type: entity
+  parent: AiSCStormtrooper
+  id: AiSCStormtrooper10
+  name: штурмовик Кодекса Бури
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Lissandra
+
+
+#region Спавнер штурмовика
+- type: entity
+  parent: MarkerBase
+  id: AiSCStormtrooperSpawner
+  name: AiSCStormtrooperSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AiSCStormtrooper1
+    - AiSCStormtrooper2
+    - AiSCStormtrooper3
+    - AiSCStormtrooper4
+    - AiSCStormtrooper5
+    - AiSCStormtrooper6
+    - AiSCStormtrooper7
+    - AiSCStormtrooper8
+    - AiSCStormtrooper9
+    - AiSCStormtrooper10
+    chance: 1
+    offset: 0.2

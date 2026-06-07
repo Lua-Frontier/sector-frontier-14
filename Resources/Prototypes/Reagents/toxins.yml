@@ -664,6 +664,9 @@
     Poison:
       effects:
       - !type:Electrocute
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
         probability: 0.8
 
 - type: reagent

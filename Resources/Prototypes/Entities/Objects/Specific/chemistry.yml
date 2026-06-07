@@ -295,10 +295,11 @@
 - type: entity
   name: cryostasis beaker
   parent: BaseBeakerMetallic
-  description: Used to contain chemicals or solutions without reactions.
+  description: Used to contain chemicals or solutions without reactions. Now unspillable!
   id: CryostasisBeaker
   components:
   - type: Spillable
+    spillWhenThrown: false
     solution: beaker
   - type: Sprite
     sprite: Objects/Specific/Chemistry/beaker_cryostasis.rsi

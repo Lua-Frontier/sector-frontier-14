@@ -1,0 +1,32 @@
+#region Бананоцид
+- type: reagent
+  id: Bananocide
+  group: Medicine
+  name: Бананоцид
+  desc: Проверенное временем лекарство от обезьяньей оспы. На вкус как банановый коктейль.
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: "как банановый коктейль"
+  color: "#e5e75e"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.01
+
+- type: reaction
+  id: Bananocide
+  reactants:
+    Antibiotic:
+      amount: 1
+    JuiceBanana:
+      amount: 1
+    Tricordrazine:
+      amount: 1
+  products:
+    Bananocide: 3

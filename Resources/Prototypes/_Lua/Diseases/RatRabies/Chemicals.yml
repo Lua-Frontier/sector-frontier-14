@@ -1,0 +1,32 @@
+#region Ратексин
+- type: reagent
+  id: Ratexin
+  group: Medicine
+  name: Ратексин
+  desc: Частично провалившее медицинские испытания лекаство от крысиного бешенства. Осторожно, побочным эффектом может стать панический страх мышеловок!
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: как сыр
+  color: "#d4bf78"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.01
+
+- type: reaction
+  id: Ratexin
+  reactants:
+    Enzyme:
+      amount: 1
+    Milk:
+      amount: 1
+    Mannitol:
+      amount: 1
+  products:
+    Ratexin: 3

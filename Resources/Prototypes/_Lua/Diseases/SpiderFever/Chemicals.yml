@@ -1,0 +1,32 @@
+#region Ратексин
+- type: reagent
+  id: Arachnostatine
+  group: Medicine
+  name: Арахностатин
+  desc: Лучшее лекарство от паучьей лихорадки в галактике. Может вызывать привыкание при регулярном употреблении.
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: как йод
+  color: "#6d5300"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.01
+
+- type: reaction
+  id: Arachnostatine
+  reactants:
+    Iodine:
+      amount: 2
+    Copper:
+      amount: 1
+    Hexabione:
+      amount: 1
+  products:
+    Arachnostatine: 3

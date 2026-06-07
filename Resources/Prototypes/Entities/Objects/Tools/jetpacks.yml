@@ -63,6 +63,13 @@
         enum.JetpackVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
+  - type: RadarBlip # Lua-changes: added RadarBlip for balance
+    radarColor: "#0093c0"
+    scale: 0.8
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 1024
   - type: StaticPrice
     price: 100
 
