@@ -40,6 +40,12 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
     private void OnCameraRecoilGetEyeOffset(Entity<CameraRecoilComponent> ent, ref GetEyeOffsetEvent args)
     {
+         // NaN fixes. The check allows you to avoid a fatal client error when shooting at an object from zero distance.
+         if (!float.IsFinite(ent.Comp.CurrentKick.X) || !float.IsFinite(ent.Comp.CurrentKick.Y))
+         {
+             ent.Comp.CurrentKick = Vector2.Zero;
+         }
+    
         args.Offset += ent.Comp.BaseOffset + ent.Comp.CurrentKick;
     }
 
