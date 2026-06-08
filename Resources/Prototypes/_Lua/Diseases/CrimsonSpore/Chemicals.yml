@@ -20,6 +20,11 @@
             Poison: 0.05
   pricePerUnit: 2
 
+- type: flavor
+  id: Hexabione-flavor
+  flavorType: Complex
+  description: Hexabione-flavor
+
 - type: reaction
   id: Hexabione
   reactants:
@@ -53,6 +58,11 @@
           types:
             Cellular: 0.02
   pricePerUnit: 150
+
+- type: flavor
+  id: CrimsonFungicide-flavor
+  flavorType: Complex
+  description: CrimsonFungicide-flavor
 
 - type: reaction
   id: CrimsonFungicide
@@ -104,3 +114,8 @@
           types:
             Cellular: 0.1
   pricePerUnit: 100
+
+- type: flavor
+  id: CrimzonSporeBlood-flavor
+  flavorType: Complex
+  description: CrimzonSporeBlood-flavor

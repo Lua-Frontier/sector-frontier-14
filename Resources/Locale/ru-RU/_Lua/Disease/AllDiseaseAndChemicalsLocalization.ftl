@@ -44,12 +44,16 @@ Hexabione-desc = Более мощная версия антибиотика, к
 Hexabione-flavor = как больница
 
 
+DragonFlu-name = Драконий грипп
+
 Reptilox-name = Рептилокс
 
 Reptilox-desc = Недавно открытое лекарство против драконьего гриппа. Равррр!
 
 Reptilox-flavor = как горелое дерево
 
+
+MonkeyPox-name = Обезьянья оспа
 
 Bananocide-name = Бананоцид
 
@@ -58,12 +62,16 @@ Bananocide-desc = Проверенное временем лекарство о�
 Bananocide-flavor = как банановый коктейль
 
 
+RatRabies-name = Крысиное бешенство
+
 Ratexin-name = Ратексин
 
 Ratexin-desc = Частично провалившее медицинские испытания лекаство от крысиного бешенства. Осторожно, побочным эффектом может стать панический страх мышеловок!
 
 Ratexin-flavor = как сыр
 
+
+SpiderFever-name = Паучья лихорадка
 
 Arachnostatine-name = Арахностатин
 
