@@ -17,3 +17,22 @@ crimson-spore-disease-message7 = Вы чувствуете как из вас р
 crimson-spore-disease-polymorph-message1 = Вас полностью оплетает красная спора...
 
 crimson-spore-disease-polymorph-message2 = Вы станоситесь новым альфа-заразителем...
+
+CrimsonSporeFleshStack-name = споровая плоть
+
+CrimsonSporeFleshStackWaken-name = пробуждённая споровая плоть
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

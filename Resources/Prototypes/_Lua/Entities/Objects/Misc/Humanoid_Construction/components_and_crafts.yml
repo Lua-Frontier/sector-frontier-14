@@ -112,7 +112,7 @@
       - !type:SnapToGrid
       steps:
       - tag: CyborgEndoskeleton
-        name: "эндоскелет киборга"
+        name: CyborgEndoskeleton-name
         icon:
           sprite: Objects/Specific/Robotics/cyborg_parts.rsi
           state: robo_suit
@@ -268,13 +268,13 @@
       - !type:SnapToGrid
       steps:
       - tag: HumanoidEndoskeleton
-        name: "эндоскелет гуманоида"
+        name: HumanoidEndoskeleton-name
         icon:
           sprite: _NF/Mobs/RogueSilicons/robots.rsi
           state: body_light
         doAfter: 2
       - tag: MindControlModuleEmpty
-        name: "модуль контроля сознания пустой"
+        name: MindControlModuleEmpty-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
@@ -415,13 +415,13 @@
       - !type:SnapToGrid
       steps:
       - tag: HumanoidEndoskeleton
-        name: "эндоскелет гуманоида"
+        name: HumanoidEndoskeleton-name
         icon:
           sprite: _NF/Mobs/RogueSilicons/robots.rsi
           state: body_light
         doAfter: 2
       - tag: MindControlModuleNeutral
-        name: "модуль контроля сознания нейтральный"
+        name: MindControlModuleNeutral-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
@@ -562,13 +562,13 @@
       - !type:SnapToGrid
       steps:
       - tag: HumanoidEndoskeleton
-        name: "эндоскелет гуманоида"
+        name: HumanoidEndoskeleton-name
         icon:
           sprite: _NF/Mobs/RogueSilicons/robots.rsi
           state: body_light
         doAfter: 2
       - tag: MindControlModuleNT
-        name: "модуль контроля сознания Nanotrasen"
+        name: MindControlModuleNT-name
         icon:
           sprite: _NF/Objects/Devices/encryption_keys.rsi
           state: nfsd_label
@@ -709,13 +709,13 @@
       - !type:SnapToGrid
       steps:
       - tag: HumanoidEndoskeleton
-        name: "эндоскелет гуманоида"
+        name: HumanoidEndoskeleton-name
         icon:
           sprite: _NF/Mobs/RogueSilicons/robots.rsi
           state: body_light
         doAfter: 2
       - tag: MindControlModuleStormCreed
-        name: "модуль контроля сознания Кодекса Бури"
+        name: MindControlModuleStormCreed-name
         icon:
           sprite: Objects/Devices/encryption_keys.rsi
           state: pirate_label
@@ -856,13 +856,13 @@
       - !type:SnapToGrid
       steps:
       - tag: HumanoidEndoskeleton
-        name: "эндоскелет гуманоида"
+        name: HumanoidEndoskeleton-name
         icon:
           sprite: _NF/Mobs/RogueSilicons/robots.rsi
           state: body_light
         doAfter: 2
       - tag: MindControlModuleSyndie
-        name: "модуль контроля сознания Синдиката"
+        name: MindControlModuleSyndie-name
         icon:
           sprite: Objects/Devices/encryption_keys.rsi
           state: synd_label
@@ -975,13 +975,13 @@
       - !type:SnapToGrid
       steps:
       - tag: MMI
-        name: "мозгомашинный интерфейс"
+        name: MMI-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
         doAfter: 2
       - tag: PositronicBrain
-        name: "позитронный мозг"
+        name: PositronicBrain-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: posibrain
@@ -1086,13 +1086,13 @@
       - !type:SnapToGrid
       steps:
       - tag: MindControlModuleEmpty
-        name: "пустой модуль контроля сознания"
+        name: MindControlModuleEmpty-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
         doAfter: 2
       - tag: EncryptionCommon
-        name: "ключ шифрования общего канала"
+        name: EncryptionCommon-name
         icon:
           sprite: _NF/Objects/Devices/encryption_keys.rsi
           state: common_label
@@ -1197,13 +1197,13 @@
       - !type:SnapToGrid
       steps:
       - tag: MindControlModuleEmpty
-        name: "пустой модуль контроля сознания"
+        name: MindControlModuleEmpty-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
         doAfter: 2
       - tag: EncryptionKeyNfsd
-        name: "ключ шифрования СРБС"
+        name: EncryptionKeyNfsd-name
         icon:
           sprite: _NF/Objects/Devices/encryption_keys.rsi
           state: nfsd_label
@@ -1308,13 +1308,13 @@
       - !type:SnapToGrid
       steps:
       - tag: MindControlModuleEmpty
-        name: "пустой модуль контроля сознания"
+        name: MindControlModuleEmpty-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
         doAfter: 2
       - tag: EncryptionKeyFreelance
-        name: "ключ шифрования пустынника"
+        name: EncryptionKeyFreelance-name
         icon:
           sprite: Objects/Devices/encryption_keys.rsi
           state: pirate_label
@@ -1419,13 +1419,13 @@
       - !type:SnapToGrid
       steps:
       - tag: MindControlModuleEmpty
-        name: "пустой модуль контроля сознания"
+        name: MindControlModuleEmpty-name
         icon:
           sprite: Objects/Specific/Robotics/mmi.rsi
           state: mmi_off
         doAfter: 2
       - tag: EncryptionKeySyndie
-        name: "ключ шифрования Синдиката"
+        name: EncryptionKeySyndie-name
         icon:
           sprite: Objects/Devices/encryption_keys.rsi
           state: synd_label
