@@ -59,7 +59,7 @@
   - type: Pullable
 #монтаж и демонтаж
   - type: Construction
-    graph: HumanoidEndoskeleton
+    graph: HumanoidEndoskeletonGraph
     node: HumanoidEndoskeleton
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -215,7 +215,7 @@
   - type: Pullable
 #монтаж и демонтаж
   - type: Construction
-    graph: HumanoidEndoskeletonNeutralAgressive
+    graph: HumanoidEndoskeletonNeutralAgressiveGraph
     node: HumanoidEndoskeletonNeutralAgressive
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -362,7 +362,7 @@
   - type: Pullable
 #монтаж и демонтаж
   - type: Construction
-    graph: HumanoidEndoskeletonNeutral
+    graph: HumanoidEndoskeletonNeutralGraph
     node: HumanoidEndoskeletonNeutral
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -509,7 +509,7 @@
   - type: Pullable
 #монтаж и демонтаж
   - type: Construction
-    graph: HumanoidEndoskeletonNT
+    graph: HumanoidEndoskeletonNTGraph
     node: HumanoidEndoskeletonNT
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -656,7 +656,7 @@
   - type: Pullable
 #монтаж и демонтаж
   - type: Construction
-    graph: HumanoidEndoskeletonStormCreed
+    graph: HumanoidEndoskeletonStormCreedGraph
     node: HumanoidEndoskeletonStormCreed
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -803,7 +803,7 @@
   - type: Pullable
 #монтаж и демонтаж
   - type: Construction
-    graph: HumanoidEndoskeletonSyndie
+    graph: HumanoidEndoskeletonSyndieGraph
     node: HumanoidEndoskeletonSyndie
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -925,7 +925,7 @@
     - MindControlModuleEmpty
 #монтаж и демонтаж
   - type: Construction
-    graph: MindControlModuleEmpty
+    graph: MindControlModuleEmptyGraph
     node: MindControlModuleEmpty
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -1036,7 +1036,7 @@
     - MindControlModuleNeutral
 #монтаж и демонтаж
   - type: Construction
-    graph: MindControlModuleNeutral
+    graph: MindControlModuleNeutralGraph
     node: MindControlModuleNeutral
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -1147,7 +1147,7 @@
     - MindControlModuleNT
 #монтаж и демонтаж
   - type: Construction
-    graph: MindControlModuleNT
+    graph: MindControlModuleNTGraph
     node: MindControlModuleNT
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -1258,7 +1258,7 @@
     - MindControlModuleStormCreed
 #монтаж и демонтаж
   - type: Construction
-    graph: MindControlModuleStormCreed
+    graph: MindControlModuleStormCreedGraph
     node: MindControlModuleStormCreed
   - type: Damageable
     damageContainer: StructuralInorganic
@@ -1369,7 +1369,7 @@
     - MindControlModuleSyndie
 #монтаж и демонтаж
   - type: Construction
-    graph: MindControlModuleSyndie
+    graph: MindControlModuleSyndieGraph
     node: MindControlModuleSyndie
   - type: Damageable
     damageContainer: StructuralInorganic
