@@ -187,21 +187,45 @@
     state: plushie_Agonia
 
 - type: entity
-  parent: BasePlushie
-  id: PlushieAmata
-  name: Плюшевая Амата Хабарова
-  description: Плюшевая игрушка бригмедика, с тремя рядами красным полосок на щеках. Выглядит дружелюбной и милой, взгляд полон радости жизни. Пахнет кокосом, на ощупь мягкая.
+  parent: BasePlushieSpeakable
+  id: PlushieSidrie
+  name: Плюшевый Сидри Друмаррунг
+  description: Это единственный (на момент выпуска) плюшевый дворф, выпущенный компанией "Друмаррунг и Сыновья". И даже этот плюшевый дворф - бюрократ, и может заполнить за тебя документы. Но ты ведь не доверишь свои финансовые документы плюшевой игрушке... Не доверишь ведь?
   components:
   - type: Sprite
-    sprite: _Lua/Plushie/toys.rsi
-    state: plushie_Amata
+    sprite: _Lua/Plushie/Equipable/Sidrie.rsi
+    state: icon
+  - type: Item
+    sprite: _Lua/Plushie/Equipable/Sidrie.rsi
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/quack.ogg
+    animation: WeaponArcBite
+  - type: Clothing
+    quickEquip: false
+    sprite: _Lua/Plushie/Equipable/Sidrie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+  - type: ReplacementAccent
+    accent: dwarf
+  - type: Tag
+    tags:
+    - Payload
+  - type: SpeakOnTrigger
+    pack: SidriePlushieSpeak
+  - type: TTS
+    voice: Mannoroth
 
-- type: entity
-  parent: BasePlushie
-  id: PlushieAmataBlack
-  name: Плюшевая Амата Хабарова
-  description: Плюшевая игрушка бригмедика, с тремя рядами красным полосок на щеках. Выглядит дружелюбной и милой, взгляд полон радости жизни. Пахнет кокосом, на ощупь мягкая.
-  components:
-  - type: Sprite
-    sprite: _Lua/Plushie/toys.rsi
-    state: plushie_Amata_black
+- type: localizedDataset
+  id: SidriePlushieSpeak
+  values:
+    prefix: Sidrieplushie-
+    count: 26

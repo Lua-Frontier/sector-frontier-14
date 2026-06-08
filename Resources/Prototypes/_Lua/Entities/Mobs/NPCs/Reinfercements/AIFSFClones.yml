@@ -290,10 +290,10 @@
   - type: TTS
     voice: Demoman
   - type: NPCUseActionOnTarget
-    actionId: ActionGravityJump
+    actionId: ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
   - type: ActionGrant
     actions:
-    - ActionGravityJump
+    - ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
   - type: JumpAbility
     jumpDistance: 7
     jumpThrowSpeed: 15
@@ -304,8 +304,8 @@
   - type: DatasetVocalizer
     dataset: AIFSFShotgunChatter
   - type: Jittering
-    Amplitude: 10
-    Frequency: 4
+    # Amplitude: 10 #fix
+    # Frequency: 4 #fix
 
 
 - type: startingGear
@@ -622,12 +622,12 @@
   - type: SolutionTransfer
     maxTransferAmount: 10
   - type: Injector
-    injectOnly: true
+    # injectOnly: true #fix
     ignoreMobs: false
-    minTransferAmount: 10
-    maxTransferAmount: 10
-    transferAmount: 10
-    toggleState: inject
+    # minTransferAmount: 10 #fix
+    # maxTransferAmount: 10 #fix
+    # transferAmount: 10 #fix
+    # toggleState: inject #fix
   - type: TimedDespawn
     lifetime: 10
 
