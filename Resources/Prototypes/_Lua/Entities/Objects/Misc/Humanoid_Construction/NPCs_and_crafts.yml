@@ -86,7 +86,7 @@
   - type: AutoWakeUp
 #монтаж и демонтаж
   - type: Construction
-    graph: MobBodyguardAgressive
+    graph: MobBodyguardAgressiveGraph
     node: MobBodyguardAgressive
   - type: Butcherable
     spawned:
@@ -123,7 +123,7 @@
 - type: constructionGraph
   id: MobBodyguardAgressiveGraph
   start: start
-  graph:
+  graph: 
   - node: start
     edges:
     - to: MobBodyguardAgressive
