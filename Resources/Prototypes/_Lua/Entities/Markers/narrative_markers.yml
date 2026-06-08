@@ -31,7 +31,7 @@
   - type: TimedDespawn
     lifetime: 310
   - type: SpawnOnDespawn
-    prototype: MarkerSlaveNarrative1.5
+    prototype: MarkerSlaveNarrative0_5
 
 #region актёр 1
 - type: entity
@@ -69,11 +69,11 @@
     count: 10
 
 
-#region мастер 1.5
+#region слейв 0_5
 #приветствие должно быть в первые 5 минут, поэтому первый разбит на два этапа
 - type: entity
-  name: MarkerMasterNarrative1.5
-  id: MarkerMasterNarrative1.5
+  name: MarkerSlaveNarrative0_5
+  id: MarkerSlaveNarrative0_5
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
   components:
@@ -95,7 +95,7 @@
     prototype: MarkerSlaveNarrative1
 
 
-#region мастер 2
+#region слейв 1
 - type: entity
   name: MarkerSlaveNarrative1
   id: MarkerSlaveNarrative1
@@ -148,7 +148,7 @@
     count: 10
 
 
-#region мастер 3
+#region слейв 2
 - type: entity
   name: MarkerSlaveNarrative2
   id: MarkerSlaveNarrative2

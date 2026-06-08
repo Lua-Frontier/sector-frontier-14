@@ -14,45 +14,45 @@
   # сообщения о заражении
   - !type:DiseasePopUp
     probability: 0.015
-    message: Вы чувствуете болезненное шевеление под кожей...
+    message: crimson-spore-disease-message1
     visualType: Medium
     stages:
     - 0
   - !type:DiseasePopUp
     probability: 0.03
-    message: Вы чувствуете как что-то копошится внутри вас...
+    message: crimson-spore-disease-message2
     visualType: Medium
     stages:
     - 1
   - !type:DiseasePopUp
     probability: 0.03
-    message: Вы чувствуете как что-то растёт под кожей...
+    message: crimson-spore-disease-message3
     visualType: Medium
     stages:
     - 1
   - !type:DiseasePopUp
     probability: 0.05
-    message: Вы чувствуете сильную боль по всему телу...
+    message: crimson-spore-disease-message4
     visualType: Medium
     stages:
     - 2
   - !type:DiseasePopUp
     probability: 0.05
-    message: Вы чувствуете что ваше тело уже не совсем ваше...
-    visualType: Medium
-    stages:
-    - 2
-    - 3
-  - !type:DiseasePopUp
-    probability: 0.05
-    message: Вы чувствуете как на вашей коже появляется множество красных язв...
+    message: crimson-spore-disease-message5
     visualType: Medium
     stages:
     - 2
     - 3
   - !type:DiseasePopUp
     probability: 0.05
-    message: Вы чувствуете как из вас растёт алая плесень...
+    message: crimson-spore-disease-message6
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: crimson-spore-disease-message7
     visualType: Medium
     stages:
     - 2
@@ -123,15 +123,15 @@
   - !type:DiseasePolymorph
     probability: 0.1
     polymorphId: MobDiseaseMorphBeta
-    polymorphMessage: Вас полностью оплетает красная спора...
+    polymorphMessage: crimson-spore-disease-polymorph-message1
     polymorphSound:
       path: /Audio/Effects/demon_consume.ogg
     stages:
     - 3
   - !type:DiseasePolymorph
-    probability: 0.01
+    probability: 0.05
     polymorphId: MobDiseaseMorphAlpha
-    polymorphMessage: Вы станоситесь новым альфа-заразителем...
+    polymorphMessage: crimson-spore-disease-polymorph-message2
     polymorphSound:
       path: /Audio/Effects/demon_consume.ogg
     stages:
@@ -246,7 +246,7 @@
     - Dead
   - type: NpcFactionMember
     factions:
-    - BiohazardousEntities
+    - SimpleHostile
   - type: Carriable
   - type: Tag
     tags:
@@ -519,11 +519,11 @@
       Dead:
         Base: dead
   - type: InfectOnMelee
-    disease: Biovirus
+    disease: CrimsonSpore
     infectChance: 1
   - type: DiseaseCarrier
     naturalImmunities:
-    - Biovirus
+    - CrimsonSpore
   - type: ActionGun
     action: BiohazardSpawnInfection
     gunProto: BiohazardInfectionThrow
