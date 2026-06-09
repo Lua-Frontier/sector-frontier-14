@@ -436,6 +436,8 @@
   packetPrototype: TeaPlantSeeds
   productPrototypes:
     - LeavesTea
+  mutationPrototypes: #Lua
+    - mint
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 5
@@ -451,6 +453,11 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
+    GreenTeaPowder: #Lua
+      Min: 1
+      Max: 5
+      PotencyDivisor: 10
+
 
 - type: seed
   id: papercane
