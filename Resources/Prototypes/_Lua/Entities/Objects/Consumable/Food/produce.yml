@@ -54,3 +54,29 @@
     damageContainer: Inorganic
   - type: Produce
     seedId: firealoe
+
+- type: entity
+  name: mint
+  description: Освежает.
+  parent: FoodProduceBase
+  id: FoodMint
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Hydroponics/mint.rsi
+    state: produce
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: mint
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Cryoxadone
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Fruit
