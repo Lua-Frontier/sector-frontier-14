@@ -1,2 +1,12 @@
 ent-FoodMint = мята
     .desc = Освежает.
+ent-MintSeeds = пакет семян (куст мяты)
+    .desc = Пакет семян мяты с освежающим вкусом.
+seeds-mint-name = мята
+seeds-mint-display-name = куст мяты
+ent-FoodFireAloe = огненное алоэ
+    .desc = ЖЖЖЖЖЕТСЯ!!!
+ent-FireAloeSeeds = пакет семян (огненное алоэ)
+    .desc = Будет боль и будут крики.
+seeds-fire-aloe-display-name = огненное алоэ
+seeds-fire-aloe-name = огненное алоэ
