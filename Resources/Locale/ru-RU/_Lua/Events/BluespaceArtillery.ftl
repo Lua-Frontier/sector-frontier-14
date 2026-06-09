@@ -1,3 +1,3 @@
-bluespace-artillery-message = Внимание всему персоналу NanoTrasen! Обнаружен выстрел блюспейс-артиллерии! Приготовьтесь к удару! Слава NanoTrasen!
+long-range-artillery-message = Внимание всему персоналу NanoTrasen! Обнаружен огонь артиллерии дальнего действия! Приготовьтесь к удару! Слава NanoTrasen!
 
-bluespace-artillery-message-sender = Центральное Командование
+long-range-artillery-message-sender = Центральное Командование

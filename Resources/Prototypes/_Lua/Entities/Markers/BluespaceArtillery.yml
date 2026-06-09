@@ -1,7 +1,7 @@
-#region вызов БСА
+#region вызов АДД
 - type: entity
   name: моментальный эффект
-  suffix: "БСА удар"
+  suffix: "АДД удар"
   id: AdminInstantEffectBSA
   parent: MarkerBase
   components:
@@ -11,10 +11,10 @@
     - sprite: Objects/Misc/torch.rsi
       state: icon
   - type: AnnounceOnSpawn
-    message: bluespace-artillery-message
-    sender: bluespace-artillery-message-sender
+    message: long-range-artillery-message
+    sender: long-range-artillery-message-sender
     sound:
-      path: /Audio/_Lua/Adminbuse/Artillery.ogg
+      path: /Audio/_Lua/Adminbuse/LongRangeArtillery.ogg
     color: orange
   - type: TimedSpawner
     prototypes:
@@ -26,10 +26,10 @@
   - type: TimedDespawn
     lifetime: 10
 
-#region наводка БСА
+#region наводка АДД
 - type: entity
   name: моментальный эффект
-  suffix: "БСА наводка"
+  suffix: "АДД наводка"
   id: AdminInstantEffectBSATarget
   categories: [ HideSpawnMenu ]
   parent: MarkerBase
@@ -51,10 +51,10 @@
   - type: SpawnOnDespawn
     prototype: AdminInstantEffectBSAHit
 
-#region выстрел БСА
+#region выстрел АДД
 - type: entity
   name: моментальный эффект
-  suffix: "БСА выстрел"
+  suffix: "АДД выстрел"
   id: AdminInstantEffectBSAShot
   parent: MarkerBase
   categories: [ HideSpawnMenu ]
@@ -76,10 +76,10 @@
   - type: TimedDespawn
     lifetime: 1
 
-#region попадание БСА
+#region попадание АДД
 - type: entity
   name: моментальный эффект
-  suffix: "попадание БСА"
+  suffix: "попадание АДД"
   parent: MarkerBase
   id: AdminInstantEffectBSAHit
   components:
