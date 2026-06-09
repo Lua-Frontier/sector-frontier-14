@@ -1,0 +1,56 @@
+- type: entity
+  name: firealoe
+  id: FoodFireAloe
+  description: IT BURNS!! IT BURNS!!!
+  parent: ProduceBase
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FoodFireAloe: 100
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/firealoe.rsi
+  - type: Item
+    size: Small
+    sprite: Objects/Specific/Hydroponics/firealoe.rsi
+    heldPrefix: produce
+  - type: MeleeWeapon
+    damage:
+      types:
+        Heat: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Pyrazine
+          Quantity: 5
+        - ReagentId: Leporazine
+          Quantity: 5
+  - type: IgniteOnMeleeHit
+    fireStacks: 2
+  - type: DamageOnHoldingAliveOnly  #  чтобы пакостники не ложили в руки трупами и не стакали по миллион урона
+    damage:
+      types:
+        Heat: 1
+    interval: 0.1
+    ignoreResistances: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/burning.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ] 
+  - type: DamageOnHit # как у гитары вообщем... только через 3 удара ломается.
+    damage:
+      types:
+        Heat: 5
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Produce
+    seedId: firealoe

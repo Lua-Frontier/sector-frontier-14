@@ -116,6 +116,46 @@
     price: 20
 
 - type: entity
+  name: regenerative fire mesh
+  description: Used to treat even the nastiest burns. Also effective against caustic burns.
+  parent: BaseHealingItem
+  id: RegenerativeFireMesh
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    state: regenerative-mesh
+  - type: Item
+    size: Normal
+    heldPrefix: regenerative-mesh
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -20
+        Cold: -20
+        Shock: -20
+        Caustic: -20
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Stack
+    stackType: RegenerativeMesh
+    count: 5
+  - type: StackPrice
+    price: 20
+
+- type: entity
   id: OintmentAdvanced1
   parent: RegenerativeMesh
   suffix: Single

@@ -1,0 +1,10 @@
+- type: entity
+  parent: SeedBase
+  name: packet of fire aloe seeds
+  description: "Soothing."
+  id: FireAloeSeeds
+  components:
+    - type: Seed
+      seedId: firealoe
+    - type: Sprite
+      sprite: _Lua/Objects/Specific/Hydroponics/firealoe.rsi
