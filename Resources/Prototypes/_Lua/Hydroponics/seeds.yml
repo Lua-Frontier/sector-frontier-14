@@ -24,28 +24,29 @@
       Max: 10
       PotencyDivisor: 10
 
-- type: entity
-  name: mint
-  description: Освежает.
-  parent: FoodProduceBase
-  id: FoodMint
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Specific/Hydroponics/mint.rsi
-    state: produce
-  - type: Item
-    heldPrefix: produce
-  - type: Produce
-    seedId: mint
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Cryoxadone
-          Quantity: 2
-  - type: Tag
-    tags:
-    - Fruit
+- type: seed
+  id: mint
+  name: seeds-mint-name
+  noun: seeds-noun-seeds
+  displayName: seeds-mint-display-name
+  plantRsi: Objects/Specific/Hydroponics/mint.rsi
+  packetPrototype: MintSeeds
+  productPrototypes:
+    - FoodMint
+  harvestRepeat: Repeat
+  lifespan: 35
+  maturation: 6
+  production: 3
+  yield: 3
+  potency: 20
+  idealLight: 8
+  growthStages: 5
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Cryoxadone:
+      Min: 3
+      Max: 13
+      PotencyDivisor: 10
