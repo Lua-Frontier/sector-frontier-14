@@ -1,12 +1,9 @@
 - type: reaction
   id: GreenTea
   reactants:
-  - ReagentId: GreenTeaPowder
-    Quantity: 1
-  - ReagentId: Water
-    Quantity: 5
+   GreenTeaPowder:
+     amount: 1
+   Water:
+     amount: 5
   products:
-  - ReagentId: GreenTea
-    Quantity: 6
-
-
+   GreenTea: 6
