@@ -250,14 +250,14 @@
         true
   - type: Damageable
     damageModifierSet: AISCReinforcementStormtrooper
-  - type: NPCUseActionOnTarget
-    actionId: ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
-  - type: ActionGrant
-    actions:
-    - ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
-  - type: JumpAbility
-    jumpDistance: 7
-    jumpThrowSpeed: 15
+  # - type: NPCUseActionOnTarget
+  #   actionId: ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
+  # - type: ActionGrant
+  #   actions:
+  #   - ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
+  # - type: JumpAbility
+  #   jumpDistance: 7
+  #   jumpThrowSpeed: 15
   - type: DatasetVocalizer
     dataset: AISCStormtrooperChatter
 
