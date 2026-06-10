@@ -14,7 +14,7 @@ diagnoser-no-cures = Для это болезни отсутвуют особы�
 diagnoser-cure-has = Против заболевания имеются следующие лекарства:
 
 diagnoser-cure-bedrest = Лежать в кровати {$time} секунд, или {$sleep} на сон.
-diagnoser-cure-reagent = Следует принимать {$reagent} в объёме {$units}u.
+#diagnoser-cure-reagent = Следует принимать {$reagent} в объёме {$units}u. # Lua
 diagnoser-cure-wait = Пройдёт само через {$time} секунд.
 diagnoser-cure-temp = Достигните температуру тела ниже {$max}°K или выше чем {$min}°K.
 diagnoser-cure-temp-min = Держите температуру выше {$min}°K.

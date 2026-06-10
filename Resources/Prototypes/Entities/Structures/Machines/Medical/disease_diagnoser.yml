@@ -10,16 +10,29 @@
     sprite: Structures/Machines/diagnoser.rsi
     layers:
     - state: icon
-      map: ["enum.DiseaseMachineVisualLayers.IsRunning"]
+      #map: ["enum.DiseaseMachineVisualLayers.IsRunning"] # Lua
+      map: ["enum.DiseaseAnalyzerVisualLayers.IsPrinting"] # Lua
     - state: unlit
       shader: unshaded
-      map: ["enum.DiseaseMachineVisualLayers.IsOn"]
-  - type: DiseaseDiagnoser
-  - type: DiseaseMachine
-    machineOutput: DiagnosisReportPaper
-  - type: DiseaseMachineVisuals
+      #map: ["enum.DiseaseMachineVisualLayers.IsOn"] # Lua
+      map: ["enum.DiseaseAnalyzerVisualLayers.IsOn"] # Lua
+  # Lua start
+  #- type: DiseaseDiagnoser
+  #- type: DiseaseMachine
+  #  machineOutput: DiagnosisReportPaper
+  #- type: DiseaseMachineVisuals
+  #  idleState: icon
+  #  runningState: running
+  - type: DiseaseAnalyzer
     idleState: icon
     runningState: running
+  - type: ActivatableUI
+    key: enum.DiseaseAnalyzerWindowUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DiseaseAnalyzerWindowUiKey.Key:
+        type: DiseaseAnalyzerWindowBoundUserInterface
+  # Lua end
   - type: Appearance
   - type: Machine
     board: DiagnoserMachineCircuitboard
