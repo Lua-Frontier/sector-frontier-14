@@ -1,0 +1,34 @@
+
+- type: constructionGraph
+  id: ADTPaperCrane
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: done
+      steps:
+      - tag: Paper
+        name: construction-graph-tag-paper
+        icon:
+          sprite: Objects/Misc/bureaucracy.rsi
+          state: paper
+        doAfter: 5
+  - node: done
+    entity: ADTPaperCrane
+
+- type: constructionGraph
+  id: ADTPaperShip
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: done
+      steps:
+      - tag: Paper
+        name: construction-graph-tag-paper
+        icon:
+          sprite: Objects/Misc/bureaucracy.rsi
+          state: paper
+        doAfter: 4
+  - node: done
+    entity: ADTPaperShip
