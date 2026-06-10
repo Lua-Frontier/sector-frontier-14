@@ -4,4 +4,4 @@ station-event-bluespace-BluespaceBarkhan-8Tranzit-warning-announcement = Вни�
 
 station-event-bluespace-BluespaceBarkhan-8Tranzit-end-announcement = Станция Бархан-8 покинула сектор!
 
-station-event-bluespace-name-Barkhan-8 = Бархан-8
+station-event-bluespace-name-Barkhan-8 = NTHH-Бархан-8
