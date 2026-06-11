@@ -33,3 +33,6 @@ reagent-desc-faustnetzach = Лёгкая морозная свежесть с п
 
 reagent-name-vanmin = Напиток Van_Min
 reagent-desc-vanmin = Вкус усталости, денег и немного солёный.
+
+reagent-name-green-tea-powder = зелёный чайный порошок
+reagent-desc-green-tea-powder = Из этого можно сделать зелёный чай, смешав с водой.
