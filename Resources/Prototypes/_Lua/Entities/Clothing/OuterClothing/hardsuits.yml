@@ -800,7 +800,7 @@
     voice: Noble
 
 - type: entity
-  parent: NFClothingOuterEVASuitBase
+  parent: ClothingOuterBase
   id: ClothingOuterHardsuitBotanist
   name: скафандр ботаника
   description: Крутяк правда?
@@ -809,6 +809,8 @@
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/botanist.rsi
     layers:
     - state: icon
+  - type: Item
+    size: Normal
   - type: Appearance
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/botanist.rsi
@@ -822,11 +824,6 @@
   - type: GroupExamine
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBotanist
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
   - type: ClothingIgnoreKudzu
   - type: Tag
     tags:

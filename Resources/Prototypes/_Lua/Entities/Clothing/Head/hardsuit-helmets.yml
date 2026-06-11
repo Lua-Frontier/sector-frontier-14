@@ -494,16 +494,23 @@
     - HeadSide
 
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadEVAHelmetBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBotanist
   name: шлем скафандра ботаника
-  description: крутяк правда?
+  description: Фонарик светяшка... круто?
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Clothing/Head/Hardsuits/botanist.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Head/Hardsuits/botanist.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      head-vox:
+      - state: equipped-head-vox
+  - type: HandheldLight
+    addPrefix: false
   - type: PointLight
     color: "#ffd107"
   - type: PressureProtection
