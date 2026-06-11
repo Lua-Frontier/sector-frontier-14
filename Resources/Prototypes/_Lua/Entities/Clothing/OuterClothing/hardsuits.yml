@@ -815,25 +815,13 @@
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
-  - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: GroupExamine
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetVoidParamed
-  - type: ItemToggle
-    onUse: false
-    soundActivate:
-      path: /Audio/Items/flashlight_on.ogg
-    soundDeactivate:
-      path: /Audio/Items/flashlight_off.ogg
-  - type: UseDelay
-    delay: 1.0
-  - type: ItemTogglePointLight
+    clothingPrototype: ClothingHeadHelmetHardsuitBotanist
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -842,7 +830,6 @@
   - type: ClothingIgnoreKudzu
   - type: Tag
     tags:
-    - CorgiWearable
     - WhitelistChameleon
   - type: DamageOnInteractProtection
     damageProtection:
