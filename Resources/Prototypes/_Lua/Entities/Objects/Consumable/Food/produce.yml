@@ -8,6 +8,9 @@
   - type: PhysicalComposition
     materialComposition:
       FoodFireAloe: 100
+  - type: Stack
+    stackType: FoodFireAloe
+    count: 1
   - type: Sprite
     sprite: _Lua/Objects/Specific/Hydroponics/firealoe.rsi
   - type: Item
@@ -92,6 +95,13 @@
     state: produce
   - type: Item
     heldPrefix: produce
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FoodJuniper: 100
+  - type: Stack
+    stackType: FoodJuniper
+    count: 1
   - type: Produce
     seedId: juniper
   - type: SolutionContainerManager
