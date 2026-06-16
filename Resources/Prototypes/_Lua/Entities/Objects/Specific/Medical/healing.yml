@@ -1,0 +1,117 @@
+
+- type: entity
+  name: improved medicated suture
+  description: Пропитаны олигомерами с можжевельником, а также физраствором. Из-за этого они также способны эффективно лечить кровопотерю и поднимать уровень крови.
+  parent: BaseHealingItem
+  id: ImprovedMedicatedSuture
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Medical/medical.rsi
+    state: improved-medicated-suture
+  - type: Item
+    size: Normal
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      groups:
+        Brute: -75
+      types:
+        Bloodloss: -5
+    modifyBloodLevel: 5
+    bloodlossModifier: -10
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Stack
+    stackType: ImprovedMedicatedSuture
+    count: 5
+  - type: StackPrice
+    price: 20
+
+- type: entity
+  id: ImprovedMedicatedSuture1
+  parent: ImprovedMedicatedSuture
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: ImprovedMedicatedSuture
+    count: 1
+
+- type: entity
+  parent: ImprovedMedicatedSuture
+  id: ImprovedMedicatedSutureLingering0
+  suffix: 0, Lingering
+  components:
+  - type: Stack
+    lingering: true
+    count: 0
+
+- type: entity
+  name: regenerative fire mesh
+  description: Вау.. огненные сетки. Кто это придумал?
+  parent: BaseHealingItem
+  id: RegenerativeFireMesh
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Medical/medical.rsi
+    state: regenerative-fire-mesh
+  - type: Item
+    size: Normal
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -25
+        Cold: -25
+        Shock: -25
+        Caustic: -25
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Stack
+    stackType: RegenerativeFireMesh
+    count: 5
+  - type: StackPrice
+    price: 20
+
+- type: entity
+  id: RegenerativeFireMesh1
+  parent: RegenerativeFireMesh
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: RegenerativeFireMesh
+    count: 1
+
+- type: entity
+  parent: RegenerativeFireMesh
+  id: RegenerativeFireMeshLingering0
+  suffix: 0, Lingering
+  components:
+  - type: Stack
+    lingering: true
+    count: 0

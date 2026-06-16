@@ -38,7 +38,7 @@
   maturation: 6
   production: 3
   yield: 3
-  potency: 20
+  potency: 5
   idealLight: 8
   growthStages: 5
   chemicals:
@@ -50,3 +50,30 @@
       Min: 3
       Max: 13
       PotencyDivisor: 10
+
+- type: seed
+  id: juniper
+  name: seeds-juniper-name
+  noun: seeds-noun-seeds
+  displayName: seeds-juniper-display-name
+  plantRsi: _Lua/Objects/Specific/Hydroponics/juniper.rsi
+  packetPrototype: JuniperSeeds
+  productPrototypes:
+    - FoodJuniper
+  harvestRepeat: Repeat
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 20
+  idealLight: 8
+  growthStages: 6
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    SalicylicAcid:
+      Min: 1
+      Max: 7
+      PotencyDivisor: 25

@@ -80,3 +80,26 @@
   - type: Tag
     tags:
     - Fruit
+
+- type: entity
+  name: juniper
+  description: Известно ли вам то, что в можжевельнике в небольших дозировках имеется фенол?
+  parent: FoodProduceBase
+  id: FoodJuniper
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Hydroponics/juniper.rsi
+    state: produce
+  - type: Item
+    heldPrefix: produce
+  - type: Produce
+    seedId: juniper
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: SalicylicAcid
+          Quantity: 2
