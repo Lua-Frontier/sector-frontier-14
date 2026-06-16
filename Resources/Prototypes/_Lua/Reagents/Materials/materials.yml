@@ -161,3 +161,19 @@
   icon: { sprite: _Lua/Objects/Materials/Sheets/metal.rsi, state: compactastrolite }
   color: "#322f36"
   price: 0.6644
+
+- type: material
+  id: FoodFireAloe
+  stackEntity: FoodFireAloe
+  name: materials-FoodFireAloe
+  icon: { sprite: _Lua/Objects/Specific/Hydroponics/firealoe.rsi, state: produce }
+  color: "#537633"
+  price: 0.01
+
+- type: material
+  id: FoodJuniper
+  stackEntity: FoodJuniper
+  name: materials-FoodJuniper
+  icon: { sprite: _Lua/Objects/Specific/Hydroponics/juniper.rsi, state: produce }
+  color: "#537633"
+  price: 0.01

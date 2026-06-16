@@ -16,3 +16,5 @@ ent-RegenerativeFireMesh1 = { ent-RegenerativeFireMesh }
 ent-RegenerativeFireMesh0 = { ent-RegenerativeFireMesh }
     .suffix = 10, Не исчезают закончившись
     .desc = { ent-RegenerativeFireMesh.desc }
+stack-improved-medicated-suture = Улучшенная медицинская нить
+stack-regenerative-fire-mesh = Огненная регенеративная сеть
