@@ -68,4 +68,7 @@ public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
 
     [DataField("infectious", serverOnly: true)]
     public bool Infectious = true;
+
+    [DataField] // Lua
+    public int Price = 2500; // Lua
 }

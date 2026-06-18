@@ -1,7 +1,7 @@
 - type: entity
-  id: DiseaseDiagnoser
+  id: OldDiseaseDiagnoser # Lua: DiseaseDiagnoser < OldDiseaseDiagnoser
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
-  name: Disease Diagnoser Delta Extreme
+  name: old Disease Diagnoser Delta Extreme # Lua: Added Old
   description: A machine that analyzes disease samples.
   placement:
     mode: SnapgridCenter
@@ -18,9 +18,6 @@
   - type: DiseaseMachine
     machineOutput: DiagnosisReportPaper
   - type: DiseaseMachineVisuals
-    idleState: icon
-    runningState: running
-  - type: DiseaseAnalyzer
     idleState: icon
     runningState: running
   - type: Appearance

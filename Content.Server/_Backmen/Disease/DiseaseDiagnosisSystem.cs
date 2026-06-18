@@ -15,6 +15,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools.Components;
+using Content.Shared._Lua.Disease.Components; // Lua
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -292,6 +293,13 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
             return;
 
         swab.Disease = _random.Pick(carrier.Diseases);
+
+        // Lua start
+        if (TryComp<DiseaseContainerComponent>(args.Args.Used, out var swabDiseaseContComp))
+        {
+            swabDiseaseContComp.DiseaseIDs = [.. carrier.Diseases.Select(d => d.ID)];
+        }
+        // Lua end
     }
 
     /// <summary>

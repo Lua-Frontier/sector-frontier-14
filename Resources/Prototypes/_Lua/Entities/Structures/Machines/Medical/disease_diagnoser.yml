@@ -1,0 +1,48 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: DiseaseDiagnoser
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  name: Disease Diagnoser Delta Extreme
+  description: A machine that analyzes disease samples.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/diagnoser.rsi
+    layers:
+    - state: icon
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: DiseaseAnalyzer
+  - type: ActivatableUIRequiresPower
+  - type: ActivatableUI
+    key: enum.DiseaseAnalyzerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DiseaseAnalyzerUiKey.Key:
+        type: DiseaseAnalyzerWindowBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      sample_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      sample_slot:
+        name: disease-analyzer-sample-slot
+        whitelist:
+          components:
+          - DiseaseContainer
+  - type: Appearance
+  - type: Machine
+    board: DiagnoserMachineCircuitboard

@@ -1,5 +1,5 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2026 LuaWorld Contributors
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
 # See AGPLv3.txt for details.
 
 - type: entity
@@ -29,8 +29,8 @@
 - type: entity
   parent: SampleTube
   id: SampleTubeX1
-  suffix: FurryVirus
-  name: sample tube X1
+  suffix: X1, FurryVirus
+  name: sample tube
   description: A glass tube with some sort of goop in it. Looks prone to breaking.
   components:
   - type: DiseaseContainer
@@ -39,9 +39,19 @@
 - type: entity
   parent: SampleTube
   id: SampleTubeX2
-  suffix: FurryVirus, GreenFlu, MemeticAmirmir
-  name: sample tube X2
+  suffix: X2, FurryVirus, GreenFlu, MemeticAmirmir
+  name: sample tube
   description: A glass tube with some sort of goop in it. Looks prone to breaking.
   components:
   - type: DiseaseContainer
     diseases: [FurryVirus, GreenFlu, MemeticAmirmir]
+
+- type: entity
+  parent: SampleTube
+  id: SampleTubeX3
+  suffix: X3, BirdFlew, SpaceCold
+  name: sample tube
+  description: A glass tube with some sort of goop in it. Looks prone to breaking.
+  components:
+  - type: DiseaseContainer
+    diseases: [BirdFlew, SpaceCold]
