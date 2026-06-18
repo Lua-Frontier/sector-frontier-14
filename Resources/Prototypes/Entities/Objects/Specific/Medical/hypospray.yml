@@ -53,7 +53,7 @@
     solutionName: hypospray
 
 - type: entity
-  parent: [BaseHypospray, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
+  parent: [BaseHypospray, BaseC3SyndicateContrabandPremium] # Frontier: add BaseC3SyndicateContraband # Lua-changes: BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
   id: SyndiHypo
   name: gorlex hypospray
   description: A sterile injector for rapid administration of drugs. Reverse-engineered from Nanotrasen designs, Cybersun produces these in limited quantities for Gorlex Marauders' corpsmen.
@@ -160,6 +160,92 @@
     allowedModes:
     - AdvancedJetInjectorDynamicMode
     - AdvancedJetInjectorInjectMode
+
+- type: entity
+  parent: JetInjector
+  id: AdvancedJetInjectorNfsd
+  name: advanced jet injector
+  description: A pristine, fashionable, high quality injector. Allows for a faster injection, with a slightly larger capacity.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/advanced_jetinjector.rsi
+    layers:
+    - state: jetinjector_nfsd
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: Objects/Specific/Medical/advanced_jetinjector.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+  - type: Injector
+    activeModeProtoId: AdvancedJetInjectorDynamicMode
+    allowedModes:
+    - AdvancedJetInjectorDynamicMode
+    - AdvancedJetInjectorInjectMode
+
+- type: entity
+  parent: JetInjector
+  id: AdvancedJetInjectorSC
+  name: advanced jet injector
+  description: A pristine, fashionable, high quality injector. Allows for a faster injection, with a slightly larger capacity.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/advanced_jetinjector.rsi
+    layers:
+    - state: jetinjector_sc
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: Objects/Specific/Medical/advanced_jetinjector.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+  - type: Injector
+    activeModeProtoId: AdvancedJetInjectorDynamicMode
+    allowedModes:
+    - AdvancedJetInjectorDynamicMode
+    - AdvancedJetInjectorInjectMode
+
+# ERT Hypo
+- type: entity
+  parent: JetInjector
+  id: AdvancedJetInjectorERT
+  name: ERT jetinjector
+  description: A pristine, fashionable, high quality injector. Allows for a faster injection, with a slightly larger capacity.
+  components:
+  - type: Sprite
+    sprite: ADT/Objects/Specific/Medical/adt_combathypo.rsi
+    layers:
+    - state: jetinjector_sc
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: ADT/Objects/Specific/Medical/adt_combathypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+  - type: Injector
+    activeModeProtoId: AdvancedJetInjectorDynamicMode
+    allowedModes:
+    - AdvancedJetInjectorDynamicMode
+    - AdvancedJetInjectorInjectMode
+
 
 - type: entity
   parent: SyndiHypo
@@ -547,7 +633,7 @@
             Quantity: 20
 
 - type: entity
-  parent: [ChemicalMedipen, BaseSyndicateContraband]
+  parent: [ChemicalMedipen, BaseC2SyndicateContrabandNoValue] # Lua-changes: BaseSyndicateContraband > BaseC2SyndicateContrabandNoValue
   id: Stimpack
   name: hyperzine injector
   description: A chemical injector containing a large shot of pure hyperzine. For when it's time to throw down. Effects last for about 60 seconds.
@@ -586,7 +672,7 @@
     price: 1500
 
 - type: entity
-  parent: [ChemicalMedipen, BaseSyndicateContraband]
+  parent: [ChemicalMedipen, BaseC2SyndicateContrabandNoValue] # Lua-changes: BaseSyndicateContraband > BaseC2SyndicateContrabandNoValue
   id: StimpackMini
   name: hyperzine microinjector
   description: A chemical microinjector containing a small shot of pure hyperzine. Effects last for about 30 seconds.
@@ -625,7 +711,7 @@
     price: 583 # 3500 for 6 as a freaky fraction
 
 - type: entity
-  parent: [ChemicalMedipen, BaseSyndicateContraband]
+  parent: ChemicalMedipen # Lua-changes: deleted BaseSyndicateContraband
   id: CombatMedipen
   name: combat medipen
   description: A single-dose, non-refillable medipen containing a chemical cocktail that treats most forms of damage.
@@ -692,7 +778,7 @@
     handle: false # don't want the sound to stop the self-inject from triggering
 
 - type: entity
-  parent: [ BaseItem, BaseSyndicateContraband ]
+  parent: [BaseItem, BaseC2SyndicateContraband] # Lua-changes: BaseSyndicateContraband > BaseC2SyndicateContraband
   id: HypopenBox
   name: hypopen box
   description: A small box containing a hypopen. Packaging disintegrates when opened, leaving no evidence behind.
