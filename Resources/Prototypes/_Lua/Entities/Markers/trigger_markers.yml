@@ -90,11 +90,6 @@
     lifetime: 1
 
 
-
-
-
-
-
 #region 60 минут
 # 
 # 
@@ -114,8 +109,6 @@
     intervalSeconds: 225
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn
-    lifetime: 1200
 
 - type: entity
   parent: MarkerBase

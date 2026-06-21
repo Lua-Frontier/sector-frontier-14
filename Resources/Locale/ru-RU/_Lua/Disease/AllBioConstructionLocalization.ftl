@@ -13,8 +13,6 @@ HumanoidEndoskeletonSyndie-name = эндоскелет гуманоида Син
 
 CyborgEndoskeleton-name = эндоскелет киборга
 
-HumanoidEndoskeleton-name = эндоскелет гуманоида
-
 MindControlModuleEmpty-name = модуль контроля сознания пустой
 
 MindControlModuleNeutral-name = модуль контроля сознания нейтральный
