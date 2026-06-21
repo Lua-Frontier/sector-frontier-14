@@ -103,6 +103,14 @@
   - type: RequireProjectileTarget
   - type: PotentialDeadDrop # Frontier
     hintText: dead-drop-hint-disposals # Frontier
+#Lua-changes: added TimedSpawner
+  - type: TimedSpawner
+    prototypes:
+    - RandomSmallMobSpawn
+    chance: 0.1
+    intervalSeconds: 1200
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
 
 - type: entity
   id: MailingUnit
