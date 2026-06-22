@@ -17,3 +17,5 @@ materials-FoodPoppy = мак
 materials-FoodLily = лилия
 materials-FoodSpacemansTrumpet = космонавтская труба
 materials-FoodBloodTomato = кровяной помидор
+materials-FoodFireAloe = огненное алоэ
+materials-FoodJuniper = можжевельник
