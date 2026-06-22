@@ -8,6 +8,7 @@ using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Content.Shared._Lua.Bank; // Lua
 using Content.Shared._NF.Bank.Events;
 using Content.Shared.GameTicking;
 using Robust.Shared.Network;
@@ -94,6 +95,7 @@ public sealed partial class BankSystem : SharedBankSystem
         if (TryBankWithdraw(session, prefs, profile, amount, out var newBalance))
         {
             bank.Balance = newBalance.Value;
+            AddOperationRecord(bank, BankAccountOperationType.Withdraw, amount); // Lua
             Dirty(mobUid, bank);
             _log.Info($"{mobUid} withdrew {amount}");
             return true;
@@ -142,6 +144,7 @@ public sealed partial class BankSystem : SharedBankSystem
         if (TryBankDeposit(session, prefs, profile, amount, out var newBalance))
         {
             bank.Balance = newBalance.Value;
+            AddOperationRecord(bank, BankAccountOperationType.Deposit, amount); // Lua
             Dirty(mobUid, bank);
             _log.Info($"{mobUid} deposited {amount}");
             return true;
