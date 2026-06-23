@@ -22,7 +22,7 @@
     corrupted: true
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMBase]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMTypan]
   id: ComputerWallmountBankATMTypan
   name: bank ATM
   description: A badass ATM on the wall. Looks cool and threatening at the same time.
@@ -36,16 +36,9 @@
       state: icon
     - map: ["computerLayerScreen"]
       state: unshaded
-  - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.BlackMarket
-  - type: UserInterface
-    interfaces:
-      enum.BankATMMenuUiKey.BlackMarket:
-        type: BankATMMenuBoundUserInterface
   - type: BankATM
     taxAccounts:
       Frontier: 0.3 # The scandal!
-
 
 - type: entity
   name: консоль администрирования станции
