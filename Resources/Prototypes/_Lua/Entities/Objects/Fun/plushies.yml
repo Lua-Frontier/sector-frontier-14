@@ -205,3 +205,13 @@
   - type: Sprite
     sprite: _Lua/Plushie/toys.rsi
     state: plushie_Amata_black
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKain
+  name: Плюшевая Каин
+  description: Вечно во всем виновата и даже не скрывает этого. Возможно, именно из-за неё появляются гномы-шагокрады
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: kain

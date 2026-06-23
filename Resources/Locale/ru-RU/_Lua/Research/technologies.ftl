@@ -3,3 +3,4 @@ lua-research-technology-stargate-beacon = Посадочный маяк
 lua-research-technology-water-regenerator = Регенератор воды
 lua-research-technology-virology = Вирусология
 lua-research-technology-smart-fridge = Умный холодильник
+lua-research-technology-botanist-hardsuit = Скафандр ботаника

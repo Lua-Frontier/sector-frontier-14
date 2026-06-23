@@ -798,3 +798,43 @@
   - type: Speech
   - type: TTS
     voice: Noble
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterHardsuitBotanist
+  name: скафандр ботаника
+  description: С ним вас больше не замедляет кудза! А также можно спокойно брать смертокрапиву даже без перчаток!.. А еще помните не слово про яблоки.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/botanist.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Normal
+  - type: Appearance
+  - type: Clothing
+    sprite: _Lua/Clothing/OuterClothing/Hardsuits/botanist.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: HeldSpeedModifier
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: GroupExamine
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBotanist
+  - type: ClothingIgnoreKudzu
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+        Caustic: 5

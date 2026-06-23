@@ -420,3 +420,15 @@
     intensitySlope: 5
     maxIntensity: 1450
   - type: GatheringProjectile
+
+# peacekeeper
+
+- type: entity
+  name: peacekeeper spread
+  parent: ShipDravonProjectile
+  id: PeacekeeperSpread
+  components:
+  - type: ProjectileSpread
+    proto: ShipDravonProjectile
+    count: 4
+    spread: 8

@@ -436,6 +436,9 @@
   packetPrototype: TeaPlantSeeds
   productPrototypes:
     - LeavesTea
+  mutationPrototypes: #Lua
+    - mint
+    - juniper
   harvestRepeat: Repeat
   lifespan: 75
   maturation: 5
@@ -451,6 +454,11 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
+    GreenTeaPowder: #Lua
+      Min: 1
+      Max: 5
+      PotencyDivisor: 10
+
 
 - type: seed
   id: papercane
@@ -1192,6 +1200,8 @@
   packetPrototype: AloeSeeds
   productPrototypes:
     - FoodAloe
+  mutationPrototypes: # Lua
+    - firealoe
   lifespan: 25
   maturation: 10
   production: 3

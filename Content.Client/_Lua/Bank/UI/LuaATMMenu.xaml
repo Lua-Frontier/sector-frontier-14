@@ -1,0 +1,69 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      Title="{Loc 'bank-atm-menu-title'}"
+                      MinSize="300 125"
+                      Resizable="False">
+    <BoxContainer Orientation="Vertical">
+        <controls:StripeBack>
+            <PanelContainer Name="ATMNamePanel">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat/>
+                </PanelContainer.PanelOverride>
+                <Label Name="ATMName" Align="Center" Text="{Loc 'bank-atm-menu-name-nt'}"/>
+            </PanelContainer>
+        </controls:StripeBack>
+        <BoxContainer Margin="8 0 3 3" Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Text="{Loc 'bank-atm-menu-balance-label'}" FontColorOverride="Silver"/>
+                <Label Name="BalanceLabel" Text="{Loc 'bank-atm-menu-no-bank'}" Margin="3 0"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Text="{Loc 'bank-atm-yupi-code'}" FontColorOverride="Silver"/>
+                <Label Name="YUPICode" Text="{Loc 'bank-atm-yupi-code-default'}" Margin="3 0" StyleClasses="monospace"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc 'bank-atm-menu-operation-history-label'}" FontColorOverride="Silver"/>
+                <BoxContainer Name="OperationHistoryContainer" Orientation="Vertical">
+                    <Label Text="{Loc 'bank-atm-menu-operation-default'}"/>
+                </BoxContainer>
+            </BoxContainer>
+            <BoxContainer Name="DepositContainer" Orientation="Horizontal" HorizontalExpand="True" VerticalAlignment="Bottom">
+                <Label Text="{Loc 'bank-atm-menu-deposit-label'}" FontColorOverride="Silver"/>
+                <Label Name="DepositLabel" Text="{Loc 'bank-atm-menu-no-deposit'}" HorizontalExpand="True"/>
+                <Button Name="DepositButton"
+                        Text="{Loc 'bank-atm-menu-deposit-button'}"
+                        SetSize="96 30"
+                        Margin="6 1 3 1"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Bottom">
+                <LineEdit Name="WithdrawEdit" SetHeight="28" HorizontalExpand="True"/>
+                <Button Name="WithdrawButton"
+                        Text="{Loc 'bank-atm-menu-withdraw-button'}"
+                        SetSize="96 30"
+                        Margin="3 1"/>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" Margin="0 2 0 0" VerticalAlignment="Bottom">
+            <PanelContainer StyleClasses="LowDivider"/>
+            <BoxContainer Orientation="Horizontal"
+                          Margin="10 2 5 0"
+                          VerticalAlignment="Bottom">
+                <Label Text="{Loc 'bank-atm-hint'}"
+                       StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Left"
+                       Margin="0 0 5 0" />
+                <Label Text="{Loc 'bank-atm-version'}"
+                       StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Right"
+                       HorizontalExpand="True"
+                       Margin="0 0 5 0" />
+                <TextureRect StyleClasses="NTLogoDark"
+                             Stretch="KeepAspectCentered"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Right"
+                             SetSize="19 19"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

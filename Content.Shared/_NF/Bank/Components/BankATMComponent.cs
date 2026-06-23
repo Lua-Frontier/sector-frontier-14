@@ -3,7 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes; // Lua
 
 namespace Content.Shared._NF.Bank.Components;
 
@@ -11,8 +11,8 @@ namespace Content.Shared._NF.Bank.Components;
 
 public sealed partial class BankATMComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer: typeof(PrototypeIdSerializer<StackPrototype>))]
-    public string CashType = "Credit";
+    [DataField] // Lua
+    public ProtoId<StackPrototype> CashType = "Credit"; // Lua
 
     public static string CashSlotId = "bank-ATM-cashSlot";
 
@@ -30,4 +30,12 @@ public sealed partial class BankATMComponent : Component
     [DataField]
     public SoundSpecifier ConfirmSound =
         new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+
+    // Lua start
+    [DataField]
+    public bool WithdrawOnly = false;
+
+    [DataField]
+    public bool Corrupted = false;
+    // Lua end
 }
