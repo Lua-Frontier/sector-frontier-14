@@ -10,7 +10,7 @@
     sprite: _Lua/Structures/cryopod.rsi # Lua
     #snapCardinals: true # Frontier Чтобы это пофиксить я потратил 19 часов....
     layers:
-    - state: opened
+    # - state: opened
     - state: closed
   - type: Physics
     bodyType: Static
@@ -47,7 +47,7 @@
   - type: Sprite
     sprite: _Lua/Structures/cryopod.rsi
     layers:
-    - state: opened
+    # - state: opened
     - state: closed
   - type: Physics
     bodyType: Static
