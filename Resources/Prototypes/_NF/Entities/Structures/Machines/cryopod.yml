@@ -7,6 +7,7 @@
   components:
   - type: Sprite
     # sprite: _NF/Structures/Machines/cryopod.rsi
+    noRot: true
     sprite: _Lua/Structures/cryopod.rsi # Lua
     #snapCardinals: true # Frontier Чтобы это пофиксить я потратил 19 часов....
     layers:
@@ -45,6 +46,7 @@
   suffix: player
   components:
   - type: Sprite
+    noRot: true
     sprite: _Lua/Structures/cryopod.rsi
     layers:
     # - state: opened
