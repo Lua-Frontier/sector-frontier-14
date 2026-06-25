@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleGlider
+  name: Toggle glider
+  description: Toggles the glider, giving you movement outside the station.
+  components:
+  - type: Action
+    icon:
+      sprite: _Lua/Objects/Tools/glider.rsi
+      state: icon
+    iconOn:
+      sprite: _Lua/Objects/Tools/glider.rsi
+      state: icon-on
+    useDelay: 1.0
+  - type: InstantAction
+    event: !type:ToggleJetpackEvent

@@ -1,0 +1,390 @@
+#region Эндоскелеты
+- type: construction
+  id: HumanoidEndoskeleton
+  graph: HumanoidEndoskeletonGraph
+  startNode: start
+  targetNode: HumanoidEndoskeleton
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: HumanoidEndoskeletonGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: HumanoidEndoskeleton
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: CyborgEndoskeleton
+        name: CyborgEndoskeleton-name
+        icon:
+          sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+          state: robo_suit
+        doAfter: 2
+      - material: Steel
+        amount: 10
+        doAfter: 2
+      - material: Plastic
+        amount: 15
+        doAfter: 2
+      - material: Magmite
+        amount: 1
+        doAfter: 2
+  - node: HumanoidEndoskeleton
+    entity: HumanoidEndoskeleton
+
+- type: construction
+  id: HumanoidEndoskeletonNeutralAgressive
+  graph: HumanoidEndoskeletonNeutralAgressiveGraph
+  startNode: start
+  targetNode: HumanoidEndoskeletonNeutralAgressive
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: HumanoidEndoskeletonNeutralAgressiveGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: HumanoidEndoskeletonNeutralAgressive
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeleton
+        name: HumanoidEndoskeleton-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 2
+      - tag: MindControlModuleEmpty
+        name: MindControlModuleEmpty-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+  - node: HumanoidEndoskeletonNeutralAgressive
+    entity: HumanoidEndoskeletonNeutralAgressive
+
+- type: construction
+  id: HumanoidEndoskeletonNeutral
+  graph: HumanoidEndoskeletonNeutralGraph
+  startNode: start
+  targetNode: HumanoidEndoskeletonNeutral
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: HumanoidEndoskeletonNeutralGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: HumanoidEndoskeletonNeutral
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeleton
+        name: HumanoidEndoskeleton-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 2
+      - tag: MindControlModuleNeutral
+        name: MindControlModuleNeutral-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+  - node: HumanoidEndoskeletonNeutral
+    entity: HumanoidEndoskeletonNeutral
+
+- type: construction
+  id: HumanoidEndoskeletonNT
+  graph: HumanoidEndoskeletonNTGraph
+  startNode: start
+  targetNode: HumanoidEndoskeletonNT
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: HumanoidEndoskeletonNTGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: HumanoidEndoskeletonNT
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeleton
+        name: HumanoidEndoskeleton-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 2
+      - tag: MindControlModuleNT
+        name: MindControlModuleNT-name
+        icon:
+          sprite: _NF/Objects/Devices/encryption_keys.rsi
+          state: nfsd_label
+        doAfter: 2
+  - node: HumanoidEndoskeletonNT
+    entity: HumanoidEndoskeletonNT
+
+- type: construction
+  id: HumanoidEndoskeletonStormCreed
+  graph: HumanoidEndoskeletonStormCreedGraph
+  startNode: start
+  targetNode: HumanoidEndoskeletonStormCreed
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: HumanoidEndoskeletonStormCreedGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: HumanoidEndoskeletonStormCreed
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeleton
+        name: HumanoidEndoskeleton-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 2
+      - tag: MindControlModuleStormCreed
+        name: MindControlModuleStormCreed-name
+        icon:
+          sprite: Objects/Devices/encryption_keys.rsi
+          state: pirate_label
+        doAfter: 2
+  - node: HumanoidEndoskeletonStormCreed
+    entity: HumanoidEndoskeletonStormCreed
+
+
+- type: construction
+  id: HumanoidEndoskeletonSyndie
+  graph: HumanoidEndoskeletonSyndieGraph
+  startNode: start
+  targetNode: HumanoidEndoskeletonSyndie
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: HumanoidEndoskeletonSyndieGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: HumanoidEndoskeletonSyndie
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeleton
+        name: HumanoidEndoskeleton-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 2
+      - tag: MindControlModuleSyndie
+        name: MindControlModuleSyndie-name
+        icon:
+          sprite: Objects/Devices/encryption_keys.rsi
+          state: synd_label
+        doAfter: 2
+  - node: HumanoidEndoskeletonSyndie
+    entity: HumanoidEndoskeletonSyndie
+
+#region предметы
+- type: construction
+  id: MindControlModuleEmpty
+  graph: MindControlModuleEmptyGraph
+  startNode: start
+  targetNode: MindControlModuleEmpty
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MindControlModuleEmptyGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MindControlModuleEmpty
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: MMI
+        name: MMI-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+      - tag: PositronicBrain
+        name: PositronicBrain-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: posibrain
+        doAfter: 2
+  - node: MindControlModuleEmpty
+    entity: MindControlModuleEmpty
+
+- type: construction
+  id: MindControlModuleNeutral
+  graph: MindControlModuleNeutralGraph
+  startNode: start
+  targetNode: MindControlModuleNeutral
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MindControlModuleNeutralGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MindControlModuleNeutral
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: MindControlModuleEmpty
+        name: MindControlModuleEmpty-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+      - tag: EncryptionCommon
+        name: EncryptionCommon-name
+        icon:
+          sprite: _NF/Objects/Devices/encryption_keys.rsi
+          state: common_label
+        doAfter: 2
+  - node: MindControlModuleNeutral
+    entity: MindControlModuleNeutral
+
+- type: construction
+  id: MindControlModuleNT
+  graph: MindControlModuleNTGraph
+  startNode: start
+  targetNode: MindControlModuleNT
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MindControlModuleNTGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MindControlModuleNT
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: MindControlModuleEmpty
+        name: MindControlModuleEmpty-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+      - tag: EncryptionKeyNfsd
+        name: EncryptionKeyNfsd-name
+        icon:
+          sprite: _NF/Objects/Devices/encryption_keys.rsi
+          state: nfsd_label
+        doAfter: 2
+  - node: MindControlModuleNT
+    entity: MindControlModuleNT
+
+- type: construction
+  id: MindControlModuleStormCreed
+  graph: MindControlModuleStormCreedGraph
+  startNode: start
+  targetNode: MindControlModuleStormCreed
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MindControlModuleStormCreedGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MindControlModuleStormCreed
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: MindControlModuleEmpty
+        name: MindControlModuleEmpty-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+      - tag: EncryptionKeyFreelance
+        name: EncryptionKeyFreelance-name
+        icon:
+          sprite: Objects/Devices/encryption_keys.rsi
+          state: pirate_label
+        doAfter: 2
+  - node: MindControlModuleStormCreed
+    entity: MindControlModuleStormCreed
+
+- type: construction
+  id: MindControlModuleSyndie
+  graph: MindControlModuleSyndieGraph
+  startNode: start
+  targetNode: MindControlModuleSyndie
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MindControlModuleSyndieGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MindControlModuleSyndie
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: MindControlModuleEmpty
+        name: MindControlModuleEmpty-name
+        icon:
+          sprite: Objects/Specific/Robotics/mmi.rsi
+          state: mmi_off
+        doAfter: 2
+      - tag: EncryptionKeySyndie
+        name: EncryptionKeySyndie-name
+        icon:
+          sprite: Objects/Devices/encryption_keys.rsi
+          state: synd_label
+        doAfter: 2
+  - node: MindControlModuleSyndie
+    entity: MindControlModuleSyndie
