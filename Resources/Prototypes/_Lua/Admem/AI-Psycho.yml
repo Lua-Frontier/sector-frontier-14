@@ -99,8 +99,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: NpcFactionMember
     factions:
@@ -161,7 +161,6 @@
     size: Small
   - type: Visibility
     layer: 1
-  - type: SubFloorHide
   - type: Anchorable
   - type: Tag
     tags:
@@ -717,7 +716,6 @@
   id: AIPsychoStunSoapThrowAction
   parent: BaseAction
   name: "[color=cyan] кинуть мыло [/color]"
-  description: 
   components:
   - type: Action
     icon: { sprite : Objects/Weapons/Grenades/stingergrenade.rsi, state: icon }

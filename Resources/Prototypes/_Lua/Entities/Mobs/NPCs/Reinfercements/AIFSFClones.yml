@@ -242,7 +242,6 @@
     size: Small
   - type: Visibility
     layer: 1
-  - type: SubFloorHide
   - type: Anchorable
   - type: Tag
     tags:
@@ -282,8 +281,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AIReinforcementShotgun
@@ -433,8 +432,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AIReinforcementLaser
@@ -520,8 +519,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AIReinforcementMedic
@@ -541,7 +540,6 @@
   id: AIFSFMedibotSpawnAction
   parent: BaseAction
   name: "[color=cyan]Вызвать медибота КСО[/color]"
-  description: 
   components:
   - type: Action
     icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: medical }
@@ -727,7 +725,7 @@
   - type: Sprite
     sprite: /Textures/Mobs/Silicon/chassis.rsi
     drawdepth: Mobs
-    layers: 
+    layers:
     - state: medical
     - state: medical_e
       shader: unshaded
@@ -836,8 +834,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AIReinforcementComa
@@ -859,7 +857,6 @@
   id: AIFSFStunGreadeThrowAction
   parent: BaseAction
   name: "[color=cyan] кинуть гранату [/color]"
-  description: 
   components:
   - type: Action
     icon: { sprite : Objects/Weapons/Grenades/stingergrenade.rsi, state: icon }
@@ -909,6 +906,9 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
   - type: ProjectileGrenade
     fillPrototype: NFPelletClusterRubber
     capacity: 45

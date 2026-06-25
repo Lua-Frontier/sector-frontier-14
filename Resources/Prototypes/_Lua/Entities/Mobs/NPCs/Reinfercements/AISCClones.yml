@@ -205,7 +205,6 @@
     size: Small
   - type: Visibility
     layer: 1
-  - type: SubFloorHide
   - type: Anchorable
   - type: Tag
     tags:
@@ -245,8 +244,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AISCReinforcementStormtrooper
@@ -404,8 +403,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AISCReinforcementSniper
@@ -522,8 +521,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AISCReinforcementMedic
@@ -542,7 +541,6 @@
   id: AISCMedibotSpawnAction
   parent: BaseAction
   name: "[color=orange]Вызвать медибота Кодекса Бури[/color]"
-  description: 
   components:
   - type: Action
     icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: robot }
@@ -675,7 +673,7 @@
   - type: Sprite
     sprite: /Textures/Mobs/Silicon/chassis.rsi
     drawdepth: Mobs
-    layers: 
+    layers:
     - state: robot
     - state: robot_e_r
       shader: unshaded
@@ -785,8 +783,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Damageable
     damageModifierSet: AISCReinforcementComa
