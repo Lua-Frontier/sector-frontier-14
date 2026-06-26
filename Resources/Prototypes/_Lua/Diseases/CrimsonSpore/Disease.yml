@@ -422,7 +422,7 @@
   id: BiohazardSpawnLeeches
   parent: BaseAction
   name: "[color=red]Отделить пиявок[/color]"
-  description: 
+  description:
   components:
   - type: Action
     icon: { sprite : _Lua/Diseases/Mobs/BiohazardMobs.rsi, state: mini_armored }
@@ -607,7 +607,7 @@
   id: BiohazardSpawnInfection
   parent: BaseAction
   name: "[color=red]Создать новый источник инфекции[/color]"
-  description: 
+  description:
   components:
   - type: Action
     icon: { sprite : Objects/Misc/fleshkudzu.rsi, state: kudzu_11 }
