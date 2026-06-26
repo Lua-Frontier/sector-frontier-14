@@ -1,0 +1,220 @@
+#region спавн медбота КСО
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AIFSFMedibotSpawnAction
+  parent: BaseAction
+  name: "[color=cyan]Вызвать медибота КСО[/color]"
+  components:
+  - type: Action
+    icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: medical }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Items/rped.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AIFSFMedicBotThrow
+  name: AIFSFMedicBotThrow
+  description: Для того что бы медик мог спавнить своего бота
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 180
+    maxAngle: 180
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/rped.ogg
+  - type: BasicEntityAmmoProvider
+    proto: FSFMedibot
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound: /Audio/_NF/Effects/silence.ogg
+
+#region граната комы КСО
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AIFSFStunGreadeThrowAction
+  parent: BaseAction
+  name: "[color=cyan] кинуть гранату [/color]"
+  components:
+  - type: Action
+    icon: { sprite : Objects/Weapons/Grenades/stingergrenade.rsi, state: icon }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AIFSFStunGreadeThrow
+  name: AIFSFStunGreadeThrow
+  description: Для того что бы кома мог кидать свою гранату
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 1
+    maxAngle: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: FSFStunGreade
+    capacity: 2
+    count: 2
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound: /Audio/_NF/Effects/silence.ogg
+
+#region спавн медбота ЯО
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AINOMedibotSpawnAction
+  parent: BaseAction
+  name: "[color=red]Вызвать медибота ЯО[/color]"
+  components:
+  - type: Action
+    icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: synd_medical }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Items/rped.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AINOMedicBotThrow
+  name: AINOMedicBotThrow
+  description: Для того что бы медик мог спавнить своего бота
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 180
+    maxAngle: 180
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/rped.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NOMedibot
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound: /Audio/_NF/Effects/silence.ogg
+
+#region граната комы ЯО
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AINOStunGreadeThrow
+  name: AINOStunGreadeThrow
+  description: Для того что бы кома мог кидать свою гранату
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 1
+    maxAngle: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NOStunGreade
+    capacity: 2
+    count: 2
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: NOStunGreade
+  name: NOStunGreade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/stingergrenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    fillPrototype: NFPelletClusterRubber
+    capacity: 45
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Effects/flash_bang.ogg"
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+
+#region спавн медбота КБ
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AISCMedibotSpawnAction
+  parent: BaseAction
+  name: "[color=orange]Вызвать медибота Кодекса Бури[/color]"
+  components:
+  - type: Action
+    icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: robot }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Items/rped.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AISCMedicBotThrow
+  name: AISCMedicBotThrow
+  description: Для того что бы медик мог спавнить своего бота
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 180
+    maxAngle: 180
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Items/rped.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SCMedibot
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound: /Audio/_NF/Effects/silence.ogg

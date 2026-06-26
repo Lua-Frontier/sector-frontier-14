@@ -1,0 +1,64 @@
+#region молотильщик
+- type: entity
+  parent: [ BiohazardousMobBase, MobPassiveRegen ]
+  id: BiohazardousPuncher
+  name: молотильщик
+  description: Безвольный сгусток красной споры и мяса, оснащённый огромным органическим молотом вместо руки. Он с лёгкостью может расплющить вас в лепёшку, оказавшись поблизости.
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: punching
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: punching
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CrimsonSporeFlesh1:
+            min: 2
+            max: 7
+  - type: HTN
+    rootTask:
+       task: BiohazardousHTNMeleeCompound
+    blackboard:
+      VisionRadius: !type:Single
+        15
+      AggroVisionRadius: !type:Single
+        15
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 15
+        Structural: 30
+    soundHit:
+      collection: MetalThud
+  - type: StaticPrice
+    price: 3000

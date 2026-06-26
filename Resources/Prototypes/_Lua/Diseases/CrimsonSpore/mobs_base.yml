@@ -1,0 +1,123 @@
+#region база всех мобов
+- type: entity
+  abstract: true
+  parent:
+  - BaseMob
+  - MobMovementSpeedModifierMelee
+  - MobStaminaFodder
+  - MobDamageable
+  - MobCombat
+  - NFMobAtmos
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  - SelfRemove600
+  id: BiohazardousMobBase
+  components:
+  - type: NPCRetaliation
+    attackMemoryLength: 30
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Vinegar ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 2
+    - reagents: [ CrimsonFungicide ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 10
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - Drowsiness
+    - Adrenaline
+  - type: Buckle
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: DiseaseProtection
+  - type: ZombieImmune
+  - type: Hands
+  - type: Puller
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.5
+      50: 0.2
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      125: Dead
+  - type: Body
+    prototype: BiohazardousBodyMob
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+    - Biohazard
+  - type: FTLKnockdownImmune
+  - type: TTS
+    enabled: true
+  - type: ComplexInteraction
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      tags:
+      - BiohazardLeader
+    follow: true
+    spawnFriendsSearchRadius: 50
+  - type: InfectOnMelee
+    disease: CrimsonSpore
+    infectChance: 0.3
+  - type: SpamEmitSound
+    minInterval: 20
+    maxInterval: 120
+    sound:
+      collection: BiohazardousSounds
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 15
+        Structural: 30
+  - type: Butcherable
+    spawned:
+    - id: CrimsonSporeFlesh1
+      amount: 2
+  - type: Bloodstream
+    bloodReagent: CrimzonSporeBlood
+  - type: StaticPrice
+    price: 2000

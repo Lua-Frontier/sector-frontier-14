@@ -81,176 +81,28 @@
     feet:
       part: FeetAnimal
 
-- type: localizedDataset
-  id: AIFSFComaChatter
-  values:
-    prefix: AIFSFCommander-chat-
-    count: 90
-
-- type: localizedDataset
-  id: AIFSFLaserChatter
-  values:
-    prefix: AIFSFLaser-chat-
-    count: 83
-
-- type: localizedDataset
-  id: AIFSFMedicChatter
-  values:
-    prefix: AIFSFMedic-chat-
-    count: 75
-
-- type: localizedDataset
-  id: AIFSFShotgunChatter
-  values:
-    prefix: AIFSFShotgun-chat-
-    count: 38
-
 #region база мобов
 - type: entity
   abstract: true
   parent:
-  - BaseMob
+  - AIClonesBase
   - AIFSFMovementSpeedModifierRanged
-  - MobStaminaFodder
-  - MobDamageable
-  - MobCombat
-  - NFMobAtmos
-  - MobBloodstream
-  - MobFlammable
-  - MobEnhancedMovement
   id: AIFSFMobBase
   components:
-  - type: StandingState
-  - type: InputMover
-  - type: MobMover
-  - type: DiseaseProtection
-  - type: ZombieImmune
-  - type: Inventory
-    templateId: hostilehumanoidsimplified
-  - type: InventorySlots
-  - type: Hands
-  - type: Puller
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      150: 0.85
-      175: 0.7
-  - type: MobState
-    allowedStates:
-    - Alive
-    - Critical
-    - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
   - type: Body
     prototype: AIFSFBody
     requiredLegs: 1
     thermalVisibility: true
-  - type: DamageStateVisuals
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 90
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: Access
-    groups:
-    - AllAccess
-    - Silicon
-    tags:
-    - CentralCommand
-    - NuclearOperative
-    - SyndicateAgent
-    - Wizard
-    - Xenoborg
-    - Pirate
-  - type: Prying
-    pryPowered: true
-    force: true
-    speedModifier: 2
-    useSound:
-      path: /Audio/Items/crowbar.ogg
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
       tags:
       - AIFSFBeacon
     follow: true
     spawnFriendsSearchRadius: 5
-  - type: Carriable
-  - type: Tag
-    tags:
-    - CanPilot
-    - FootstepSound
-    - DoorBumpOpener
-    - CannotSuicide
-  - type: FTLKnockdownImmune
-  - type: AutoImplant
-    implants:
-    - GibAcidifierImplantNF
-  - type: Vocalizer
-    minVocalizeInterval: 60
-    maxVocalizeInterval: 120
-  - type: Speech
-  - type: TTS
-    enabled: true
-  - type: ComplexInteraction
-  - type: MeleeWeapon
-    attackRate: 1.0
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Slash: 15
-        Structural: 50
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-      params:
-        variation: 0.125
-  - type: TimedDespawn  #никаких абузов с сотней отрядов
-    lifetime: 3600
-  - type: Climbing
-  - type: SpawnOnDespawn
-    prototype: AdminInstantEffectBluespace
 
-
-
-#region маяк
-- type: entity
-  parent: BaseItem
-  id: AIFSFBeacon
-  name: маяк командиров клонов КСО
-  description: Маленький маяк, призванный помочь вам управлять отрядами клонов КСО. Просто бросьте его в комнату с противником, и посмотрите как его раскатают в блин сапогами с логотипом НТ.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/station_beacon.rsi
-    drawdepth: BelowFloor
-    layers:
-    - state: blink
-      map: ["base"]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.NavMapBeaconVisuals.Enabled:
-        base:
-          True: {state: blink}
-          False: {state: icon}
-  - type: Item
-    size: Small
-  - type: Visibility
-    layer: 1
-  - type: Anchorable
-  - type: Tag
-    tags:
-    - AIFSFBeacon
-  - type: TimedDespawn
-    lifetime: 3600
-
-- type: Tag
-  id: AIFSFBeacon
 
 #region болванки
 
@@ -343,7 +195,7 @@
 
 #база шотганера
 - type: entity
-  name: mercenary breacher
+  name: FSF breacher
   parent:
   - AIFSFMobBase
   id: MobFSFBreacherShotgun
@@ -533,50 +385,6 @@
     actionId: AIFSFMedibotSpawnAction
   - type: DatasetVocalizer
     dataset: AIFSFMedicChatter
-
-#region спавн медбота
-- type: entity
-  categories: [ HideSpawnMenu ]
-  id: AIFSFMedibotSpawnAction
-  parent: BaseAction
-  name: "[color=cyan]Вызвать медибота КСО[/color]"
-  components:
-  - type: Action
-    icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: medical }
-    priority: 2
-    itemIconStyle: BigAction
-    useDelay: 120
-    sound:
-      path: /Audio/Items/rped.ogg
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  id: AIFSFMedicBotThrow
-  name: AIFSFMedicBotThrow
-  description: Для того что бы медик мог спавнить своего бота
-  components:
-  - type: Gun
-    showExamineText: false
-    fireRate: 1
-    minAngle: 180
-    maxAngle: 180
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Items/rped.ogg
-  - type: BasicEntityAmmoProvider
-    proto: FSFMedibot
-    capacity: 1
-    count: 1
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 120
-    rechargeSound: /Audio/_NF/Effects/silence.ogg
-
 
 #шприц
 - type: entity
@@ -853,49 +661,6 @@
     dataset: AIFSFComaChatter
 
 - type: entity
-  categories: [ HideSpawnMenu ]
-  id: AIFSFStunGreadeThrowAction
-  parent: BaseAction
-  name: "[color=cyan] кинуть гранату [/color]"
-  components:
-  - type: Action
-    icon: { sprite : Objects/Weapons/Grenades/stingergrenade.rsi, state: icon }
-    priority: 2
-    itemIconStyle: BigAction
-    useDelay: 120
-    sound:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  id: AIFSFStunGreadeThrow
-  name: AIFSFStunGreadeThrow
-  description: Для того что бы кома мог кидать свою гранату
-  components:
-  - type: Gun
-    showExamineText: false
-    fireRate: 1
-    minAngle: 1
-    maxAngle: 2
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-    soundEmpty: /Audio/_NF/Effects/silence.ogg
-  - type: BasicEntityAmmoProvider
-    proto: FSFStunGreade
-    capacity: 2
-    count: 2
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 120
-    rechargeSound: /Audio/_NF/Effects/silence.ogg
-
-- type: entity
   parent: BaseBulletTrigger
   id: FSFStunGreade
   name: FSFStunGreade
@@ -917,10 +682,6 @@
       path: "/Audio/Effects/flash_bang.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
-
-
-- type: Tag
-  id: AIFSFComa
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG

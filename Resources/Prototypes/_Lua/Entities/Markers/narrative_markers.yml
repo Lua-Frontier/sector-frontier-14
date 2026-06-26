@@ -4,17 +4,18 @@
 
 
 #region Бархан-8
-# 
-# 
-# 
-# 
-# 
+#
+#
+#
+#
+#
 #region мастер 1
 #приветствие должно быть в первые 5 минут, поэтому первый разбит на два этапа
 - type: entity
-  name: MarkerMasterNarrative
+  name: стартовый нарратор Бархана-8
   id: MarkerMasterNarrative
   parent: MarkerBase
+  suffix: "НЕ МАППИТЬ, НЕ СПАВНИТЬ"
   components:
   - type: Sprite
     layers:

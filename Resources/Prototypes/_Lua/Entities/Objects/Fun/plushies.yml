@@ -208,6 +208,49 @@
 
 - type: entity
   parent: BasePlushieSpeakable
+  id: Plushie25Hydra08Alliria
+  name: плюшевая Аллирия
+  description: Плюшевая акулка, сделанная по образу Аллирии Тёрской. Мягкая и приятная на ощупь, она станет отличным подарком для любого фаната Аллирии или просто любителя акул. Плюшевая Аллирия может стать прекрасным украшением для комнаты или офиса, а также отличным компаньоном для сна.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/25Hydra08/AlliriaPlushie.rsi
+    state: icon
+  - type: Item
+    sprite: _Lua/Sponsor/25Hydra08/AlliriaPlushie.rsi
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/rawr.ogg
+    animation: WeaponArcBite
+  - type: Clothing
+    quickEquip: false
+    sprite: _Lua/Sponsor/25Hydra08/AlliriaPlushie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+  - type: RoarAccent
+  - type: Tag
+    tags:
+    - Payload
+  - type: SpeakOnTrigger
+    pack: AlliriaPlushieSpeak
+  - type: TTS
+    voice: Mortred
+
+- type: localizedDataset
+  id: AlliriaPlushieSpeak
+  values:
+    prefix: Alliriaplushie-
+    count: 26
+
+- type: entity
+  parent: BasePlushieSpeakable
   id: PlushieSidrie
   name: Плюшевый Сидри Друмаррунг
   description: Это единственный (на момент выпуска) плюшевый дворф, выпущенный компанией "Друмаррунг и Сыновья". И даже этот плюшевый дворф - бюрократ, и может заполнить за тебя документы. Но ты ведь не доверишь свои финансовые документы плюшевой игрушке... Не доверишь ведь?

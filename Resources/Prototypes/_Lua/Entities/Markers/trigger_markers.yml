@@ -1,14 +1,15 @@
 #region 20 минут
-# 
-# 
-# 
-# 
-# 
+#
+#
+#
+#
+#
 #region мастер 1
 - type: entity
-  name: MarkerMasterTrigger
+  name: стартовый триггер Бархана-8
   id: MarkerMasterTrigger
   parent: MarkerBase
+  suffix: "НЕ МАППИТЬ, НЕ СПАВНИТЬ"
   components:
   - type: Sprite
     layers:
@@ -31,7 +32,7 @@
   parent: MarkerBase
   id: MarkerTriggerLvl1
   name: MarkerTriggerLvl1
-  # categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     prototypes:
@@ -47,16 +48,17 @@
 
 
 #region 40 минут
-# 
-# 
-# 
-# 
-# 
+#
+#
+#
+#
+#
 #region слейв 2
 - type: entity
   name: MarkerSlaveTrigger1
   id: MarkerSlaveTrigger1
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedSpawner
     prototypes:
@@ -74,7 +76,7 @@
   parent: MarkerBase
   id: MarkerTriggerLvl2
   name: MarkerTriggerLvl2
-  # categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     prototypes:
@@ -91,16 +93,17 @@
 
 
 #region 60 минут
-# 
-# 
-# 
-# 
-# 
+#
+#
+#
+#
+#
 #region слейв 3
 - type: entity
   name: MarkerSlaveTrigger2
   id: MarkerSlaveTrigger2
   parent: MarkerBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedSpawner
     prototypes:
@@ -114,7 +117,7 @@
   parent: MarkerBase
   id: MarkerTriggerLvl3
   name: MarkerTriggerLvl3
-  # categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: RandomSpawner
     prototypes:

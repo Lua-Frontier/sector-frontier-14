@@ -1,0 +1,93 @@
+#region маяк КСО
+- type: entity
+  parent: BaseItem
+  id: AIFSFBeacon
+  name: маяк командиров клонов КСО
+  description: Маленький маяк, призванный помочь вам управлять отрядами клонов КСО. Просто бросьте его в комнату с противником, и посмотрите как его раскатают в блин сапогами с логотипом НТ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/station_beacon.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: blink
+      map: ["base"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NavMapBeaconVisuals.Enabled:
+        base:
+          True: {state: blink}
+          False: {state: icon}
+  - type: Item
+    size: Small
+  - type: Visibility
+    layer: 1
+  - type: Anchorable
+  - type: Tag
+    tags:
+    - AIFSFBeacon
+  - type: TimedDespawn
+    lifetime: 3600
+
+#region маяк ЯО
+- type: entity
+  parent: BaseItem
+  id: AINOBeacon
+  name: маяк командиров клонов ЯО
+  description: Маленький маяк, призванный помочь вам управлять отрядами клонов ЯО. Просто бросьте его в комнату с противником, и посмотрите как его раскатают в блин сапогами с логотипом Интердайн.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/station_beacon.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: blink
+      map: ["base"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NavMapBeaconVisuals.Enabled:
+        base:
+          True: {state: blink}
+          False: {state: icon}
+  - type: Item
+    size: Small
+  - type: Visibility
+    layer: 1
+  - type: Anchorable
+  - type: Tag
+    tags:
+    - AINOBeacon
+  - type: TimedDespawn
+    lifetime: 3600
+
+#region маяк КБ
+- type: entity
+  parent: BaseItem
+  id: AISCBeacon
+  name: маяк командира рекрутов Кодекса Бури
+  description: Маленький маяк, призванный помочь вам управлять отрядами рекрутов Кодекса Бури. Просто бросьте его в комнату с противником, и посмотрите как его раскатают в блин сапогами с логотипом СССП.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/station_beacon.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: blink
+      map: ["base"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NavMapBeaconVisuals.Enabled:
+        base:
+          True: {state: blink}
+          False: {state: icon}
+  - type: Item
+    size: Small
+  - type: Visibility
+    layer: 1
+  - type: Anchorable
+  - type: Tag
+    tags:
+    - AISCBeacon
+  - type: TimedDespawn
+    lifetime: 3600

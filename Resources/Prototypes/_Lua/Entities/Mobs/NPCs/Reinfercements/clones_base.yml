@@ -1,0 +1,95 @@
+#region база клонов
+- type: entity
+  abstract: true
+  parent:
+  - BaseMob
+  - MobStaminaFodder
+  - MobDamageable
+  - MobCombat
+  - NFMobAtmos
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  id: AIClonesBase
+  components:
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: DiseaseProtection
+  - type: ZombieImmune
+  - type: Inventory
+    templateId: hostilehumanoidsimplified
+  - type: InventorySlots
+  - type: Hands
+  - type: Puller
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.85
+      175: 0.7
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: DamageStateVisuals
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Access
+    groups:
+    - AllAccess
+    - Silicon
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Wizard
+    - Xenoborg
+    - Pirate
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Carriable
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: FTLKnockdownImmune
+  - type: AutoImplant
+    implants:
+    - GibAcidifierImplantNF
+  - type: Vocalizer
+    minVocalizeInterval: 60
+    maxVocalizeInterval: 120
+  - type: Speech
+  - type: TTS
+    enabled: true
+  - type: ComplexInteraction
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 15
+        Structural: 50
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+      params:
+        variation: 0.125
+  - type: TimedDespawn  #никаких абузов с сотней отрядов
+    lifetime: 3600
+  - type: Climbing
+  - type: SpawnOnDespawn
+    prototype: AdminInstantEffectBluespace

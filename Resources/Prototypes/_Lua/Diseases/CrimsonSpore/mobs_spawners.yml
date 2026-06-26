@@ -1,0 +1,58 @@
+- type: entity
+  name: BiohazardousFungusSpawnGib
+  id: BiohazardousFungusSpawnGib
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: BiohazardousSlicer
+      - !type:EntSelector
+        id: BiohazardousStabber
+      - !type:EntSelector
+        id: BiohazardousPuncher
+      - !type:EntSelector
+        id: BiohazardousShooter
+      - !type:EntSelector
+        id: BiohazardousMiniArmored
+      - !type:EntSelector
+        id: BiohazardousMiniUnArmored
+      - !type:EntSelector
+        id: BiohazardousSporeClot
+      - !type:EntSelector
+        id: BiohazardousHandyman
+      - !type:EntSelector
+        id: BiohazardousKudzu
+
+
+- type: entity
+  parent: MarkerBase
+  id: BiohazardousFungusSpawn
+  name: BiohazardousFungusSpawn
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - BiohazardousSlicer
+    - BiohazardousStabber
+    - BiohazardousPuncher
+    - BiohazardousShooter
+    - BiohazardousMiniArmored
+    - BiohazardousMiniUnArmored
+    - BiohazardousSporeClot
+    - BiohazardousHandyman
+    chance: 1
+    offset: 0.0

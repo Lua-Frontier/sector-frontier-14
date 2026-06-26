@@ -46,174 +46,28 @@
     feet:
       part: FeetAnimal
 
-- type: localizedDataset
-  id: AISCComaChatter
-  values:
-    prefix: AISCCommander-chat-
-    count: 90
-
-- type: localizedDataset
-  id: AISCSniperChatter
-  values:
-    prefix: AISCSniper-chat-
-    count: 83
-
-- type: localizedDataset
-  id: AISCMedicChatter
-  values:
-    prefix: AISCMedic-chat-
-    count: 75
-
-- type: localizedDataset
-  id: AISCStormtrooperChatter
-  values:
-    prefix: AISCStormtrooper-chat-
-    count: 38
-
 #region база мобов
 - type: entity
   abstract: true
   parent:
-  - BaseMob
+  - AIClonesBase
   - AISCMovementSpeedModifierRanged
-  - MobStaminaFodder
-  - MobDamageable
-  - MobCombat
-  - NFMobAtmos
-  - MobBloodstream
-  - MobFlammable
-  - MobEnhancedMovement
   id: AISCMobBase
   components:
-  - type: StandingState
-  - type: InputMover
-  - type: MobMover
-  - type: DiseaseProtection
-  - type: ZombieImmune
-  - type: Inventory
-    templateId: hostilehumanoidsimplified
-  - type: InventorySlots
-  - type: Hands
-  - type: Puller
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      150: 0.85
-      175: 0.7
-  - type: MobState
-    allowedStates:
-    - Alive
-    - Critical
-    - Dead
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
   - type: Body
     prototype: AISCBody
     requiredLegs: 1
     thermalVisibility: true
-  - type: DamageStateVisuals
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 90
   - type: NpcFactionMember
     factions:
     - NFPirate
-  - type: Access
-    groups:
-    - AllAccess
-    - Silicon
-    tags:
-    - CentralCommand
-    - NuclearOperative
-    - SyndicateAgent
-    - Wizard
-    - Xenoborg
-    - Pirate
-  - type: Prying
-    pryPowered: true
-    force: true
-    speedModifier: 2
-    useSound:
-      path: /Audio/Items/crowbar.ogg
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
       tags:
       - AISCBeacon
     follow: true
     spawnFriendsSearchRadius: 5
-  - type: Carriable
-  - type: Tag
-    tags:
-    - CanPilot
-    - FootstepSound
-    - DoorBumpOpener
-    - CannotSuicide
-  - type: FTLKnockdownImmune
-  - type: AutoImplant
-    implants:
-    - GibAcidifierImplantNF
-  - type: Vocalizer
-    minVocalizeInterval: 60
-    maxVocalizeInterval: 120
-  - type: Speech
-  - type: TTS
-    enabled: true
-  - type: ComplexInteraction
-  - type: MeleeWeapon
-    attackRate: 1.0
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcPunch
-    damage:
-      types:
-        Slash: 15
-        Structural: 50
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-      params:
-        variation: 0.125
-  - type: TimedDespawn  #никаких абузов с сотней отрядов
-    lifetime: 3600
-  - type: Climbing
-  - type: SpawnOnDespawn
-    prototype: AdminInstantEffectBluespace
 
-
-#region маяк
-- type: entity
-  parent: BaseItem
-  id: AISCBeacon
-  name: маяк командира рекрутов Кодекса Бури
-  description: Маленький маяк, призванный помочь вам управлять отрядами рекрутов Кодекса Бури. Просто бросьте его в комнату с противником, и посмотрите как его раскатают в блин сапогами с логотипом СССП.
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/station_beacon.rsi
-    drawdepth: BelowFloor
-    layers:
-    - state: blink
-      map: ["base"]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.NavMapBeaconVisuals.Enabled:
-        base:
-          True: {state: blink}
-          False: {state: icon}
-  - type: Item
-    size: Small
-  - type: Visibility
-    layer: 1
-  - type: Anchorable
-  - type: Tag
-    tags:
-    - AISCBeacon
-  - type: TimedDespawn
-    lifetime: 3600
-
-- type: Tag
-  id: AISCBeacon
 
 #region болванки
 
@@ -332,7 +186,7 @@
 
 #база штурмовика
 - type: entity
-  name: mercenary breacher
+  name: SC breacher
   parent:
   - AISCMobBase
   id: MobSCBreacherStormtrooper
@@ -533,50 +387,6 @@
     actionId: AISCMedibotSpawnAction
   - type: DatasetVocalizer
     dataset: AISCMedicChatter
-
-
-#region спавн медбота
-- type: entity
-  categories: [ HideSpawnMenu ]
-  id: AISCMedibotSpawnAction
-  parent: BaseAction
-  name: "[color=orange]Вызвать медибота Кодекса Бури[/color]"
-  components:
-  - type: Action
-    icon: { sprite : /Textures/Mobs/Silicon/chassis.rsi, state: robot }
-    priority: 2
-    itemIconStyle: BigAction
-    useDelay: 120
-    sound:
-      path: /Audio/Items/rped.ogg
-  - type: TargetAction
-    checkCanAccess: false
-    range: 0
-  - type: WorldTargetAction
-    event: !type:ActionGunShootEvent
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  id: AISCMedicBotThrow
-  name: AISCMedicBotThrow
-  description: Для того что бы медик мог спавнить своего бота
-  components:
-  - type: Gun
-    showExamineText: false
-    fireRate: 1
-    minAngle: 180
-    maxAngle: 180
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot: /Audio/Items/rped.ogg
-  - type: BasicEntityAmmoProvider
-    proto: SCMedibot
-    capacity: 1
-    count: 1
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 120
-    rechargeSound: /Audio/_NF/Effects/silence.ogg
 
 #костыль для надевания лоадаута
 - type: entity
@@ -793,9 +603,6 @@
     - AISCComa
   - type: DatasetVocalizer
     dataset: AISCComaChatter
-
-- type: Tag
-  id: AISCComa
 
 - type: entity
   parent: ClothingHandsGlovesColorBlackSMG
