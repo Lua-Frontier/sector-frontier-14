@@ -1,0 +1,674 @@
+#region базы
+
+- type: htnCompound
+  id: AISCCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: InnateRangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: entity
+  id: AISCMovementSpeedModifierRanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 8
+    baseSprintSpeed : 8
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -3
+
+#костыль для того что бы их было видно в термалах
+- type: body
+  id: AISCBody
+  name: AISCBody
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - legs
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+#region база мобов
+- type: entity
+  abstract: true
+  parent:
+  - AIClonesBase
+  - AISCMovementSpeedModifierRanged
+  id: AISCMobBase
+  components:
+  - type: Body
+    prototype: AISCBody
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: NpcFactionMember
+    factions:
+    - NFPirate
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      tags:
+      - AISCBeacon
+    follow: true
+    spawnFriendsSearchRadius: 5
+
+
+#region болванки
+
+
+
+
+
+#region болванка штурмовик
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiSCStormtrooperBase
+  - MobPassiveRegen
+  id: AiSCStormtrooper
+  name: штурмовик Кодекса Бури
+  description: Рекрут Кодекса Бури, призванный защитить основные силы. Осторожно, может быть заряжен кровавой культурой и желанием убивать врагов Кодекса Бури.
+  components:
+  - type: HTN
+    rootTask:
+       task: AISCCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AISCReinforcementStormtrooper
+  # - type: NPCUseActionOnTarget
+  #   actionId: ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
+  # - type: ActionGrant
+  #   actions:
+  #   - ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
+  # - type: JumpAbility
+  #   jumpDistance: 7
+  #   jumpThrowSpeed: 15
+  - type: DatasetVocalizer
+    dataset: AISCStormtrooperChatter
+
+
+- type: startingGear
+  id: SCLoadoutStormtrooper
+  equipment:
+    gloves: ClothingHandsGlovesColorSCStormtrooper
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+- type: entity
+  id: SCBaseLoadoutStormtrooper
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _Lua/Clothing/OuterClothing/SCHardsuits/heavy_standart.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _Lua/Clothing/Head/SCHardsuits/heavy_standart.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#faa70f"
+      shader: unshaded
+  - type: PointLight
+    color: "#faa70f"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: entity
+  id: AiSCStormtrooperBase
+  parent:
+  - SCBaseLoadoutStormtrooper
+  - MobSCBreacherStormtrooper
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - SCLoadoutStormtrooper
+
+#перчи штурмовика
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorSCStormtrooper
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _Mono/Objects/Weapons/Guns/Rifles/akm_inhands_32x.rsi
+        state: wielded-inhand-right
+
+#база штурмовика
+- type: entity
+  name: SC breacher
+  parent:
+  - AISCMobBase
+  id: MobSCBreacherStormtrooper
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: Cartridge762x39mmFMJ
+    capacity: 25
+    count: 25
+  - type: Gun
+    showExamineText: false
+    fireRate: 5
+    minAngle: 1
+    maxAngle: 3.5
+    angleIncrease: 0.2
+    angleDecay: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/_Goobstation/Weapons/Guns/Gunshots/thock.ogg
+
+
+#region болванка снайпер
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiSCSniperBase
+  - MobPassiveRegen
+  id: AiSCSniper
+  name: снайпер Кодекса Бури
+  description: Рекрут Кодекса Бури, призванный защитить основные силы. Осторожно, может быть заряжен кровавой культурой и желанием убивать врагов Кодекса Бури.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: Cartridge762x54mmRFMJ
+    capacity: 15
+    count: 15
+  - type: Gun
+    fireRate: 3
+    showExamineText: false
+    minAngle: 1
+    maxAngle: 4
+    angleIncrease: 1
+    angleDecay: 3
+    selectedMode: semiAuto
+    availableModes:
+      - semiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: HTN
+    rootTask:
+       task: AISCCompound
+    blackboard:
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AISCReinforcementSniper
+  - type: DatasetVocalizer
+    dataset: AISCSniperChatter
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorSCSniper
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _Mono/Objects/Weapons/Guns/Snipers/ak410_inhands_32x.rsi
+        state: wielded-inhand-right
+
+- type: startingGear
+  id: SCLoadoutSniper
+  equipment:
+    gloves: ClothingHandsGlovesColorSCSniper
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+- type: entity
+  id: AiSCSniperBase
+  parent:
+  - AISCMovementSpeedModifierRanged
+  - SCBaseLoadoutSniper
+  - AISCMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - SCLoadoutSniper
+
+- type: entity
+  id: SCBaseLoadoutSniper
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _Lua/Clothing/OuterClothing/SCHardsuits/light_standart.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _Lua/Clothing/Head/SCHardsuits/light_standart.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#ffdf2d"
+      shader: unshaded
+  - type: PointLight
+    color: "#faa70f"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+#region болванка медик
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiSCMedicBase
+  - MobPassiveRegen
+  id: AiSCMedic
+  name: медик Кодекса Бури
+  description: Рекрут Кодекса Бури, призванный защитить основные силы. Осторожно, может быть заряжен кровавой культурой и желанием лечить бойцов Кодекса Бури.
+  components:
+  - type: Gun
+    minAngle: 1
+    maxAngle: 3
+    angleIncrease: 0.5
+    angleDecay: 1.7
+    fireRate: 5
+    showExamineText: false
+    soundGunshot:
+      collection: N14PlasmaAutoRifleGunshot
+  - type: ProjectileBatteryAmmoProvider
+    proto: LuaBulletBigPlasma
+    fireCost: 25
+  - type: Battery
+    maxCharge: 250
+    startingCharge: 250
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: HTN
+    rootTask:
+       task: AISCCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AISCReinforcementMedic
+  - type: ActionGun
+    action: AISCMedibotSpawnAction
+    gunProto: AISCMedicBotThrow
+  - type: NPCUseActionOnTarget
+    actionId: AISCMedibotSpawnAction
+  - type: DatasetVocalizer
+    dataset: AISCMedicChatter
+
+#костыль для надевания лоадаута
+- type: entity
+  id: AiSCMedicBase
+  parent:
+  - AISCMovementSpeedModifierRanged
+  - SCBaseLoadoutMedic
+  - AISCMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - SCLoadoutMedic
+
+#сам лоадаут медика
+- type: startingGear
+  id: SCLoadoutMedic
+  equipment:
+    gloves: ClothingHandsGlovesColorSCMedic
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+#перчатки медика
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorSCMedic
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi
+        state: wielded-inhand-right
+
+#лоадаут скафа и всей хуйни
+- type: entity
+  id: SCBaseLoadoutMedic
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _Lua/Clothing/OuterClothing/SCHardsuits/medium_special.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _Lua/Clothing/Head/SCHardsuits/medium_special.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#ff3b2d"
+      shader: unshaded
+  - type: PointLight
+    color: "#faa70f"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+#region медбот КБ
+- type: entity
+  parent:
+  - AISCMovementSpeedModifierRanged
+  - MobSiliconBase
+  id: SCMedibot
+  name: Медибот Кодекса Бури
+  description: Продвинутый помощник доктора, способный вернуть с того света целый отряд. Осторожно, может быть заряжен кровавой культурой и желанием лечить бойцов Кодекса Бури.
+  components:
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Omnizine
+        quantity: 15
+        minDamage: 0
+        maxDamage: 199
+      Critical:
+        reagent: Ichor
+        quantity: 10
+  - type: Sprite
+    sprite: /Textures/Mobs/Silicon/chassis.rsi
+    drawdepth: Mobs
+    layers:
+    - state: robot
+    - state: robot_e_r
+      shader: unshaded
+    - state: robot_l
+      shader: unshaded
+  - type: HTN
+    rootTask:
+      task: SCMedibotCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      tags:
+      - AISCComa
+    follow: true
+    spawnFriendsSearchRadius: 20
+  - type: NpcFactionMember
+    factions:
+    - NFPirate
+  - type: InteractionPopup
+    interactSuccessString: petting-success-medibot
+    interactFailureString: petting-failure-medibot
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: MedibotAds
+  - type: Inventory
+    templateId: medibot
+  - type: DoAfter
+  - type: Access
+    groups:
+    - AllAccess
+    - Silicon
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Wizard
+    - Xenoborg
+    - Pirate
+  - type: TimedDespawn
+    lifetime: 60
+  - type: TTS
+    enabled: true
+    voice: Overwatch
+  - type: PointLight
+    color: "#faa70f"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: htnCompound
+  id: SCMedibotCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: InjectNearbyCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+#region болванка комы
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiSCComaBase
+  - MobPassiveRegenStrong
+  id: AiSCComa
+  name: командир рекрутов Кодекса Бури
+  description: Командир отряда, призванный поддерживать боевой дух и координировать действия бойцов. Осторожно, может быть заряжен кровавой культурой и желанием убивать врагов НТ. В руках держит модифицированный автомат с подствольным гранатомётом.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: Cartridge68x52mmCaseless
+    capacity: 100
+    count: 100
+  - type: Gun
+    showExamineText: false
+    fireRate: 7
+    minAngle: 1
+    maxAngle: 8
+    angleIncrease: 1.3
+    angleDecay: 4.7
+    selectedMode: semiAuto
+    availableModes:
+      - semiAuto
+    soundGunshot:
+      path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
+  - type: HTN
+    rootTask:
+       task: AISCCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AISCReinforcementComa
+  - type: Tag
+    tags:
+    - AISCComa
+  - type: DatasetVocalizer
+    dataset: AISCComaChatter
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorSCComa
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _Mono/Objects/Weapons/Guns/LMGs/HAMMER/hammer-inhands.rsi
+        state: wielded-inhand-right
+
+- type: startingGear
+  id: SCLoadoutComa
+  equipment:
+    gloves: ClothingHandsGlovesColorSCComa
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+- type: entity
+  id: SCBaseComaLoadout
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _Lua/Clothing/OuterClothing/SCHardsuits/light_special.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _Lua/Clothing/Head/SCHardsuits/light_special.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#ffc852"
+      shader: unshaded
+  - type: PointLight
+    color: "#faa70f"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: entity
+  id: AiSCComaBase
+  parent:
+  - AISCMovementSpeedModifierRanged
+  - SCBaseComaLoadout
+  - AISCMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - SCLoadoutComa

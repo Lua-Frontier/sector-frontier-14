@@ -215,3 +215,18 @@
     - аууу # Lua: ауу < аууу
     - издаёт аууу # Lua
     - издаёт авуу # Lua
+
+- type: emote
+  id: fox_trill
+  name: delta-chat-emote-name-fox-trill
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-vulpkanin-trill"]
+  chatTriggers:
+    - издаёт трель

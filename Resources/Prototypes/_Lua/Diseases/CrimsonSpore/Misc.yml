@@ -1,0 +1,47 @@
+#region всякое MISC
+- type: entity
+  id: BiohazardousMobPassiveRegen
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 800
+    damage:
+      groups:
+        Brute: -2
+        Burn: -2
+        Airloss: -4
+
+#
+- type: soundCollection
+  id: BiohazardousSounds
+  files:
+  - /Audio/_NF/Animals/dinosaur_breath1.ogg
+  - /Audio/_NF/Animals/dinosaur_breath2.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound1.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound2.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound3.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound4.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound5.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound6.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound7.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound8.ogg
+  - /Audio/_Lua/Diseases/Mobs/BiohazardousMobsSound9.ogg
+
+#автоудаление
+- type: entity
+  id: SelfRemove600
+  abstract: true
+  components:
+  - type: TimedDespawn
+    lifetime: 600
+
+
+#region тэги
+- type: Tag
+  id: Biohazard
+
+- type: Tag
+  id: BiohazardLeader

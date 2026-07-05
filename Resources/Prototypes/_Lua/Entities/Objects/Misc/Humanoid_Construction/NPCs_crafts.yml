@@ -1,0 +1,192 @@
+- type: construction
+  id: MobBodyguardAgressive
+  graph: MobBodyguardAgressiveGraph
+  startNode: start
+  targetNode: MobBodyguardAgressive
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MobBodyguardAgressiveGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MobBodyguardAgressive
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeleton
+        name: HumanoidEndoskeleton-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 10
+      - material: CrimsonSporeFleshStackWaken
+        amount: 5
+        doAfter: 10
+  - node: MobBodyguardAgressive
+    entity: MobBodyguardAgressive
+
+- type: construction
+  id: MobBodyguardNeutralAgressive
+  graph: MobBodyguardNeutralAgressiveGraph
+  startNode: start
+  targetNode: MobBodyguardNeutralAgressive
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MobBodyguardNeutralAgressiveGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MobBodyguardNeutralAgressive
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeletonNeutralAgressive
+        name: HumanoidEndoskeletonNeutralAgressive-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 10
+      - material: CrimsonSporeFleshStackWaken
+        amount: 5
+        doAfter: 10
+  - node: MobBodyguardNeutralAgressive
+    entity: MobBodyguardNeutralAgressive
+
+- type: construction
+  id: MobBodyguardNeutral
+  graph: MobBodyguardNeutralGraph
+  startNode: start
+  targetNode: MobBodyguardNeutral
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MobBodyguardNeutralGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MobBodyguardNeutral
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeletonNeutral
+        name: HumanoidEndoskeletonNeutral-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 10
+      - material: CrimsonSporeFleshStackWaken
+        amount: 5
+        doAfter: 10
+  - node: MobBodyguardNeutral
+    entity: MobBodyguardNeutral
+
+- type: construction
+  id: MobBodyguardNT
+  graph: MobBodyguardNTGraph
+  startNode: start
+  targetNode: MobBodyguardNT
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MobBodyguardNTGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MobBodyguardNT
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeletonNT
+        name: HumanoidEndoskeletonNT-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 10
+      - material: CrimsonSporeFleshStackWaken
+        amount: 5
+        doAfter: 10
+  - node: MobBodyguardNT
+    entity: MobBodyguardNT
+
+#строительство
+- type: construction
+  id: MobBodyguardStormCreed
+  graph: MobBodyguardStormCreedGraph
+  startNode: start
+  targetNode: MobBodyguardStormCreed
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MobBodyguardStormCreedGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MobBodyguardStormCreed
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeletonStormCreed
+        name: HumanoidEndoskeletonStormCreed-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 10
+      - material: CrimsonSporeFleshStackWaken
+        amount: 5
+        doAfter: 10
+  - node: MobBodyguardStormCreed
+    entity: MobBodyguardStormCreed
+
+- type: construction
+  id: MobBodyguardSyndie
+  graph: MobBodyguardSyndieGraph
+  startNode: start
+  targetNode: MobBodyguardSyndie
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: MobBodyguardSyndieGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MobBodyguardSyndie
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - tag: HumanoidEndoskeletonSyndie
+        name: HumanoidEndoskeletonSyndie-name
+        icon:
+          sprite: _NF/Mobs/RogueSilicons/robots.rsi
+          state: body_light
+        doAfter: 10
+      - material: CrimsonSporeFleshStackWaken
+        amount: 5
+        doAfter: 10
+  - node: MobBodyguardSyndie
+    entity: MobBodyguardSyndie

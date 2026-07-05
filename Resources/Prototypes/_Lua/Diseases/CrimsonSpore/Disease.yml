@@ -1,0 +1,646 @@
+#region болезнь
+
+- type: disease
+  id: CrimsonSpore
+  name: CrimsonSpore-name
+  cureResist: 1
+  infectious: false
+  stages:
+  - 0
+  - 30
+  - 600
+  - 900
+  effects:
+  # сообщения о заражении
+  - !type:DiseasePopUp
+    probability: 0.015
+    message: crimson-spore-disease-message1
+    visualType: Medium
+    stages:
+    - 0
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: crimson-spore-disease-message2
+    visualType: Medium
+    stages:
+    - 1
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: crimson-spore-disease-message3
+    visualType: Medium
+    stages:
+    - 1
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: crimson-spore-disease-message4
+    visualType: Medium
+    stages:
+    - 2
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: crimson-spore-disease-message5
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: crimson-spore-disease-message6
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: crimson-spore-disease-message7
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  # Физические симптомы
+  - !type:DiseaseSnough
+    probability: 0.03
+    emote: Cough
+    stages:
+    - 0
+  - !type:DiseaseAdjustReagent
+    probability: 0.020
+    reagent:
+      ReagentId: Ipecac
+    amount: 5
+    stages:
+    - 1
+  - !type:DiseaseAdjustReagent
+    probability: 0.015
+    reagent:
+      ReagentId: Razorium
+    amount: 1
+    stages:
+    - 1
+  - !type:DiseaseAdjustReagent
+    probability: 0.025
+    reagent:
+      ReagentId: Licoxide
+    amount: 0.5
+    stages:
+    - 2
+    - 3
+  - !type:DiseaseAdjustReagent
+    probability: 0.015
+    reagent:
+      ReagentId: Razorium
+    amount: 1
+    stages:
+    - 2
+    - 3
+  # дефекты речи от болезни
+  - !type:DiseaseAdjustReagent
+    probability: 0.05
+    reagent:
+      ReagentId: Ethanol
+    amount: 2
+    stages:
+    - 2
+    - 3
+  - !type:DiseaseAdjustReagent
+    probability: 0.05
+    reagent:
+      ReagentId: SpaceDrugs
+    amount: 2
+    stages:
+    - 2
+    - 3
+  # урон от растущей внутри споры
+  - !type:DiseaseHealthChange
+    probability: 0.025
+    damage:
+      types:
+        Genetic: 0.5
+    stages:
+    - 2
+    - 3
+  # полиморфа на крайней стадии заражения
+  - !type:DiseasePolymorph
+    probability: 0.1
+    polymorphId: MobDiseaseMorphBeta
+    polymorphMessage: crimson-spore-disease-polymorph-message1
+    polymorphSound:
+      path: /Audio/Effects/demon_consume.ogg
+    stages:
+    - 3
+  - !type:DiseasePolymorph
+    probability: 0.05
+    polymorphId: MobDiseaseMorphAlpha
+    polymorphMessage: crimson-spore-disease-polymorph-message2
+    polymorphSound:
+      path: /Audio/Effects/demon_consume.ogg
+    stages:
+    - 3
+  cures:
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Antibiotic
+    min: 5
+    cureChance: 0.1
+    stages:
+    - 0
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Hexabione
+    min: 5
+    cureChance: 0.1
+    stages:
+    - 1
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: CrimsonFungicide
+    min: 5
+    cureChance: 0.1
+    stages:
+    - 2
+    - 3
+
+#region полиморфы
+- type: polymorph
+  id: MobDiseaseMorphBeta
+  configuration:
+    entity: MobDiseaseBeta
+    forced: true
+    inventory: None
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: true
+    exitPolymorphSound: /Audio/Effects/demon_consume.ogg
+
+- type: polymorph
+  id: MobDiseaseMorphAlpha
+  configuration:
+    entity: MobDiseaseAlpha
+    forced: true
+    inventory: None
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: true
+    exitPolymorphSound: /Audio/Effects/demon_consume.ogg
+
+#region база для игроков
+- type: entity
+  abstract: true
+  parent:
+  - BaseMob
+  - MobMovementSpeedModifierMelee
+  - MobDamageable
+  - MobCombat
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  id: BiohazardousPolymorphBase
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Vinegar ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 0.2
+    - reagents: [ CrimsonFungicide ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 1
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - Drowsiness
+    - Adrenaline
+  - type: Buckle
+  - type: Cuffable
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: Climbing
+  - type: LayingDown
+  - type: CanEscapeInventory
+  - type: DiseaseProtection
+  - type: ZombieImmune
+  - type: Hands
+  - type: Stripping
+  - type: Puller
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable
+  - type: Tag
+    tags:
+    - BiohazardLeader
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: FTLKnockdownImmune
+  - type: TTS
+    enabled: true
+  - type: GoblinAccent
+  - type: LizardAccent
+  - type: MothAccent
+  - type: ScrambledAccent
+  - type: RadarSonarEcho
+  - type: Speech # Frontier
+    speechSounds: Alto
+    allowedEmotes: ['Belch'] # Frontier
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    understands:
+    - Intergalactic
+    # Lua end
+  - type: DamageForceSay
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: ComplexInteraction
+  - type: InfectOnMelee
+    disease: CrimsonSpore
+    infectChance: 0.3
+  - type: SpamEmitSound
+    minInterval: 20
+    maxInterval: 120
+    sound:
+      collection: BiohazardousSounds
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
+  - type: MindContainer
+    showExamineInfo: true
+  - type: Body
+    prototype: BiohazardousBodyMob2Handed
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: Sericulture
+    productionLength: 5
+    entityProduced: CrimsonSporeFlesh1
+    hungerCost: 0
+    action: ActionBiohazardousSericulture
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    maxRange: 1024 # Frontier: increase admin radar range
+    followEntity: true
+    hideCoords: false # Frontier
+    maxIffRange: null # Frontier
+  - type: Butcherable
+    spawned:
+    - id: CrimsonSporeFlesh1
+      amount: 10
+  - type: Bloodstream
+    bloodReagent: CrimzonSporeBlood
+  - type: Sharp
+
+- type: entity
+  parent: BaseAction
+  id: ActionBiohazardousSericulture
+  name: отделить часть споры
+  description: Отделите часть споровой плоти что бы сформировать из неё новый объект
+  components:
+  - type: Action
+    icon: _Lua/Interface/Actions/plain.png
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SericultureActionEvent
+
+- type: entity
+  parent: BulletAcid
+  id: BiohazardousSpit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/water_shot.rsi
+    layers:
+    - state: icon
+      map: ["enum.VaporVisualLayers.Base"]
+    color: "#8f0030"
+  - type: InfectOnProjectileHit
+    disease: CrimsonSpore
+    infectChance: 0.8
+
+#region морфа беты
+
+- type: entity
+  parent: [ BiohazardousPolymorphBase, BiohazardousMobPassiveRegen ]
+  id: MobDiseaseBeta
+  name: сгусток споры
+  description: Огромный шар из мяса, костей, и развившейся споры. Скорее всего когда-то он был разумным существом, проигравшим в борьбе с красной спорой. Очень опасен своей живучестью и способностью отделять части своего шарообразного тела.
+  suffix: "NoAI, DiseaseMorph"
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: meatball
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: meatball
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Critical
+      700: Dead
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.1
+    rechargeSound: /Audio/Effects/gib3.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BiohazardousSpit
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.5
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Effects/gib1.ogg
+  - type: ThermalVision
+    lightRadius: 20
+    color: "#d38e8e"
+    activateSound: null
+    deactivateSound: null
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 30
+        Structural: 60
+    soundHit:
+      collection: MetalThud
+  - type: ActionGun
+    action: BiohazardSpawnLeeches
+    gunProto: BiohazardLeechesThrow
+  - type: TTS
+    voice: Gman
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: BiohazardSpawnLeeches
+  parent: BaseAction
+  name: "[color=red]Отделить пиявок[/color]"
+  description:
+  components:
+  - type: Action
+    icon: { sprite : _Lua/Diseases/Mobs/BiohazardMobs.rsi, state: mini_armored }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Effects/gib3.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: BiohazardLeechesThrow
+  name: BiohazardLeechesThrow
+  description: костыль для создания пиявок
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 180
+    maxAngle: 180
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Effects/demon_consume.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SpawnBiohazardousLeeches
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 300
+    rechargeSound: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  name: SpawnBiohazardousLeeches
+  id: SpawnBiohazardousLeeches
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+      state: mini_armored
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: BiohazardousMiniArmored
+      - !type:EntSelector
+        id: BiohazardousMiniArmored
+      - !type:EntSelector
+        id: BiohazardousMiniArmored
+      - !type:EntSelector
+        id: BiohazardousMiniUnArmored
+      - !type:EntSelector
+        id: BiohazardousMiniUnArmored
+
+#region морфа альфы
+- type: entity
+  parent: [ BiohazardousPolymorphBase, BiohazardousMobPassiveRegen ]
+  id: MobDiseaseAlpha
+  name: альфа-заразитель
+  description: Существо, практически полностью покрытое органической бронёй, обладающее огромными клинками на тыльной стороне ладоней. Выглядит так, словно является предводителем всех заражённых.
+  suffix: "NoAI, DiseaseMorph"
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alpha
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      600: Critical
+      800: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      450: 0.8
+      550: 0.7
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alpha
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: InfectOnMelee
+    disease: CrimsonSpore
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - CrimsonSpore
+  - type: ActionGun
+    action: BiohazardSpawnInfection
+    gunProto: BiohazardInfectionThrow
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.1
+    rechargeSound: /Audio/Effects/gib3.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BiohazardousSpit
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Effects/gib1.ogg
+  - type: StaminaDamageResistance #Lua
+    coefficient: 0.4
+  - type: ThermalVision
+    lightRadius: 20
+    color: "#d38e8e"
+    activateSound: null
+    deactivateSound: null
+  - type: Tool
+    speedModifier: 3
+    qualities:
+      - Prying
+    hideQualities: true
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 3
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: Body
+    prototype: BiohazardousBodyMob2Handed
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump
+  - type: JumpAbility
+    jumpDistance: 5
+    jumpThrowSpeed: 15
+    jumpSound:
+      collection: BiohazardousAlphaJumpSounds
+      params:
+        variation: 0.125
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 30
+        Structural: 60
+    autoAttack: true
+    attackRate: 1.5
+  - type: TTS
+    voice: GmanE2
+
+- type: soundCollection
+  id: BiohazardousAlphaJumpSounds
+  files:
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump1.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump2.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump3.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump3.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump3.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump3.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump4.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump4.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump4.ogg
+  - /Audio/_Lua/Diseases/Mobs/AlphaJump4.ogg
+
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: BiohazardSpawnInfection
+  parent: BaseAction
+  name: "[color=red]Создать новый источник инфекции[/color]"
+  description:
+  components:
+  - type: Action
+    icon: { sprite : Objects/Misc/fleshkudzu.rsi, state: kudzu_11 }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 600
+    sound:
+      path: /Audio/Effects/demon_consume.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: BiohazardInfectionThrow
+  name: BiohazardInfectionThrow
+  description: костыль для создания источника инфекции
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 180
+    maxAngle: 180
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Effects/demon_consume.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BiohazardousKudzu
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 600
+    rechargeSound: /Audio/_NF/Effects/silence.ogg

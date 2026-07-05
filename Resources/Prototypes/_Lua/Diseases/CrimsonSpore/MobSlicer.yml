@@ -1,0 +1,64 @@
+#region нарезчик
+- type: entity
+  parent: [ BiohazardousMobBase, MobPassiveRegen ]
+  id: BiohazardousSlicer
+  name: нарезчик
+  description: Безвольный сгусток красной споры и мяса, оснащённый огромным органическим ножом вместо руки. Он с лёгкостью может нарезать вас на ломтики, оказавшись поблизости.
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slicing
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slicing
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CrimsonSporeFlesh1:
+            min: 2
+            max: 7
+  - type: HTN
+    rootTask:
+       task: BiohazardousHTNMeleeCompound
+    blackboard:
+      VisionRadius: !type:Single
+        15
+      AggroVisionRadius: !type:Single
+        15
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 15
+        Structural: 30
+  - type: StaticPrice
+    price: 3000

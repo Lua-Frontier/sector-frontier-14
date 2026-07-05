@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Content.Shared._Lua.Bank; // Lua
 
 namespace Content.Shared._NF.Bank.Components;
 
@@ -12,9 +13,11 @@ public sealed partial class BankAccountComponent : Component
 	[AutoNetworkedField]
 	public int Balance;
 
-	//Lua Start The UPI code is linked via the BankAccount component
-	[DataField, Access(typeof(SharedBankSystem))]
-	[AutoNetworkedField]
-	public string YupiCode = string.Empty;
-	//Lua End
+    // Lua start
+    [ViewVariables, Access(typeof(SharedBankSystem))]
+    public string YupiCode = string.Empty;
+
+    [ViewVariables, Access(typeof(SharedBankSystem))]
+    public List<BankAccountOperation> OperationHistory = new();
+    // Lua end
 }

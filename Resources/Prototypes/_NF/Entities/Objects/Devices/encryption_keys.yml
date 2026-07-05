@@ -34,6 +34,13 @@
     layers:
     - state: crypt_gray
     - state: nfsd_label
+#Lua-changes: added Tag
+  - type: Tag
+    tags: 
+    - EncryptionKeyNfsd
+
+- type: Tag
+  id: EncryptionKeyNfsd
 
 - type: entity
   parent: [EncryptionKey, BaseC3CentCommContrabandNoValue] # Lua-changes: added BaseC3CentCommContrabandNoValue

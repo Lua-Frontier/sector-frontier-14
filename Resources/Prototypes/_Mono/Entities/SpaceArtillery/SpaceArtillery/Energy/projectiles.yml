@@ -35,7 +35,31 @@
     intensitySlope: 6
     maxIntensity: 25
     maxTileBreak: 1
+  
+# type 2048
 
+- type: entity
+  name: cerberus spread
+  parent: ShipMediumPlasmaProjectile
+  id: CerberusSpread
+  components:
+  - type: ProjectileSpread
+    proto: ShipMediumPlasmaProjectile
+    count: 3
+    spread: 8
+
+#Scylla
+
+- type: entity
+  name: Scylla spread
+  parent: ShipMediumPlasmaProjectile
+  id: ScyllaSpread
+  components:
+  - type: ProjectileSpread
+    proto: 20mmBulletArmorPiercing
+    count: 20
+    spread: 90
+      
 # Autopulser
 
 - type: entity

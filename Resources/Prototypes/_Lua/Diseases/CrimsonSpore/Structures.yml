@@ -1,0 +1,504 @@
+#region базы
+#база споровых укреп
+- type: entity
+  id: BiohazardousFleshBlocker
+  parent: FleshBlocker
+  name: опухоль
+  description: Надоедливый комок жил и плоти.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Decoration/flesh_decoration.rsi
+    color: "#583838"
+    layers:
+    - state: closed
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Impassable
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: ContainerContainer
+    containers:
+      body_root_part: !type:ContainerSlot
+  - type: Body
+    prototype: BiohazardousBodyStructure
+    requiredLegs: 0
+    thermalVisibility: true
+  - type: Climbable
+  - type: TimedDespawn
+    lifetime: 1600
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Vinegar ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Structural: 10
+    - reagents: [ CrimsonFungicide ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Structural: 50
+  - type: Construction
+    graph: BiohazardousFleshBlockerGraph
+    node: BiohazardousFleshBlocker
+
+#region кудза
+- type: entity
+  id: BiohazardousKudzu
+  parent: BaseKudzu
+  name: плесень красной споры
+  description: Мерзкие переплетения мицелия красной споры. Вы не уверены, что это такое, но определённо не хотите с этим связываться. "Ганс, тащи бак с отравой!!!"
+  components:
+    - type: Kudzu
+      spriteVariants: 3
+      spreadChance: 0.3
+    - type: RandomSpawner
+      deleteSpawnerAfterSpawn: false
+      offset: 0.4
+      chance: 0.15
+      prototypes:
+      - BiohazardousSlicer
+      - BiohazardousStabber
+      - BiohazardousPuncher
+      - BiohazardousShooter
+      - BiohazardousMiniArmored
+      - BiohazardousMiniUnArmored
+      - BiohazardousSporeClot
+      rareChance: 0.05
+      rarePrototypes:
+      - BiohazardousFleshBlocker
+      - BiohazardousFleshBlocker
+      - BiohazardousFleshBlocker
+      - BiohazardousFleshBlocker
+      - BiohazardousFleshBlocker
+      - BiohazardousFleshBlocker
+      - BiohazardousFleshHandyManCocoon
+      - BiohazardousFleshDigestiveSack
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: _Lua/Diseases/Objects/Misc/CrimsonSpore.rsi
+      state: kudzu_11
+      drawdepth: Overdoors
+    - type: KudzuVisuals
+    - type: Clickable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+          - FullTileMask
+          layer:
+          - WallLayer
+    - type: Damageable
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 10
+      coldDamage:
+        types:
+          Cold: 5 #per second, scales with temperature & other constants
+    - type: Flammable
+      fireSpread: true
+      damage:
+       types:
+         Heat: 3
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        tags:
+        - Biohazard
+        - BiohazardLeader
+        components:
+        - IgnoreKudzu
+    - type: DamageContacts
+      damage:
+        types:
+          Slash: 1.5
+          Heat: 1.5
+          Structural: 10
+      ignoreWhitelist:
+        tags:
+        - Biohazard
+        - BiohazardLeader
+    - type: Food # delightfully devilish !
+      delay: 0.5
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          reagents:
+          - ReagentId: Razorium
+            Quantity: 2
+          - ReagentId: Protein
+            Quantity: 1
+    - type: Reactive
+      groups:
+        Flammable: [ Touch ]
+        Extinguish: [ Touch ]
+      reactions:
+      - reagents: [ Vinegar ]
+        methods: [ Touch ]
+        effects:
+        - !type:HealthChange
+          scaleByQuantity: true
+          damage:
+            types:
+              Structural: 2
+      - reagents: [ CrimsonFungicide ]
+        methods: [ Touch ]
+        effects:
+        - !type:HealthChange
+          scaleByQuantity: true
+          damage:
+            types:
+              Structural: 50
+    - type: TimedDespawn
+      lifetime: 1600
+
+#region опухоль-спавнер
+
+- type: entity
+  parent: 
+  - AberrantFleshDigestiveSack
+  - GasMinerAmmonia
+  id: BiohazardousFleshDigestiveSack
+  name: большая опухоль
+  description: Они что, вылезают оттуда?
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - SpawnBiohazardousFlesh
+    chance: 0.85
+    intervalSeconds: 600
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Impassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnBiohazardousFlesh:
+            min: 1
+            max: 2
+  - type: GasMiner
+    spawnGas: Ammonia
+    maxExternalPressure: 130
+    spawnAmount: 50
+  - type: Physics
+    canCollide: true
+  - type: ContainerContainer
+    containers:
+      body_root_part: !type:ContainerSlot
+  - type: Body
+    prototype: BiohazardousBodyStructure
+    requiredLegs: 0
+    thermalVisibility: true
+  - type: Climbable
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Vinegar ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Structural: 10
+    - reagents: [ CrimsonFungicide ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Structural: 50
+  - type: Construction
+    graph: BiohazardousFleshDigestiveSackGraph
+    node: BiohazardousFleshDigestiveSack
+  - type: TimedDespawn
+    lifetime: 1600
+  - type: SpawnOnDespawn
+    prototype: SpawnBiohazardousFlesh
+
+- type: entity
+  name: biohazardous flesh spawner
+  id: SpawnBiohazardousFlesh
+  categories: [ HideSpawnMenu ]
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: BiohazardousSlicer
+      - !type:EntSelector
+        id: BiohazardousStabber
+      - !type:EntSelector
+        id: BiohazardousPuncher
+      - !type:EntSelector
+        id: BiohazardousShooter
+      - !type:EntSelector
+        id: BiohazardousMiniArmored
+      - !type:EntSelector
+        id: BiohazardousMiniUnArmored
+      - !type:EntSelector
+        id: BiohazardousSporeClot
+      - !type:EntSelector
+        id: BiohazardousHandyman
+
+#region спавнер рукастых
+
+- type: entity
+  id: BiohazardousFleshHandyManCocoon
+  parent: BaseStructure
+  name: необычная опухоль
+  description: Большое новообразование с полупрозрачной стенкой. Через неё видно маринующееся внутри существо.
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    sprite: _Lua/Diseases/Structures/BioStructures/CrimsonSporeCocoon.rsi
+    drawdepth: Mobs
+    layers:
+    - state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Impassable
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnBiohazardousHandyMan:
+            min: 1
+            max: 1
+  - type: ContainerContainer
+    containers:
+      body_root_part: !type:ContainerSlot
+  - type: Body
+    prototype: BiohazardousBodyStructure
+    requiredLegs: 0
+    thermalVisibility: true
+  - type: Climbable
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Vinegar ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Structural: 10
+    - reagents: [ CrimsonFungicide ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Structural: 50
+  - type: TimedSpawner
+    prototypes:
+    - SpawnBiohazardousHandyMan
+    chance: 1
+    intervalSeconds: 600
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: PointLight
+    color: "#c58000"
+    radius: 1.5
+    energy: 1
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      collection: blood #eating
+      params:
+        variation: 0.250
+  - type: Construction
+    graph: BiohazardousFleshHandyManCocoonGraph
+    node: BiohazardousFleshHandyManCocoon
+  - type: TimedDespawn
+    lifetime: 1600
+  - type: SpawnOnDespawn
+    prototype: SpawnBiohazardousHandyMan
+    
+
+- type: entity
+  name: SpawnBiohazardousHandyMan
+  id: SpawnBiohazardousHandyMan
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: BiohazardousHandyman
+      - !type:EntSelector
+        id: BiohazardousHandyman
+      - !type:EntSelector
+        id: BiohazardousMiniUnArmored
+      - !type:EntSelector
+        id: BiohazardousHandyman
+      - !type:EntSelector
+        id: BiohazardousHandyman
+
+
+
+
+
+
+
+
+#region гм спавнер
+#для ивентов и геймрулов, не разрушаемый, с большой задеркой, не спавнит газ, не удаляется сам
+- type: entity
+  parent: 
+  - AberrantFleshDigestiveSack
+  id: BiohazardousFleshDigestiveSackEvent
+  name: большая опухоль
+  description: Они что, вылезают оттуда?
+  suffix: "ивентовая"
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - SpawnBiohazardousFlesh
+    chance: 0.50
+    intervalSeconds: 1200
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Impassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Godmode

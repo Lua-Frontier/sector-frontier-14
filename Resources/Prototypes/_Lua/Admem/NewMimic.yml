@@ -1,0 +1,209 @@
+- type: entity
+  name: Подозрительные напитки Robust
+  id: MobMimicRealistic
+  parent: [ SimpleMobBase, MobCombat ]
+  description: Автомат подозрительных напитков, предоставленный компанией Robust Industries, LLC. Правда. Честно.
+  components:
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: normal
+  - type: Icon
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: normal
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MachineLayer
+  - type: AnimationPlayer
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 20
+    bluntStaminaDamageFactor: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseRunningSpeed : 7
+  - type: Butcherable
+    spawned:
+    - id: DrinkChangelingStingCan
+      amount: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 299
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DrinkChangelingStingCan:
+            min: 3
+            max: 5
+  - type: TimedDespawn
+    lifetime: 3600
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#3c5eb5"
+  - type: VendingMachine
+    pack: RobustSoftdrinksInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    ejectDelay: 1.9
+  - type: DatasetVocalizer
+    dataset: RobustSoftdrinksAds
+  - type: SpeakOnUIClosed
+    pack: RobustSoftdrinksGoodbyes
+  - type: ComplexInteraction
+  - type: Access
+    groups:
+    - AllAccess
+    - Silicon
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Wizard
+    - Xenoborg
+    - Pirate
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: StaticPrice
+    price: 10000
+
+
+- type: entity
+  name: Подозрительные напитки Robust
+  id: MobMimicRealisticPlayable
+  parent: [ SimpleNonHTNSpaceMobBase, MobPassiveRegen ]
+  description: Автомат подозрительных напитков, предоставленный компанией Robust Industries, LLC. Правда. Честно.
+  suffix: "играбельный, адмем, NoHTN"
+  components:
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: normal
+  - type: Icon
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: normal
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MachineLayer
+  - type: AnimationPlayer
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 20
+    bluntStaminaDamageFactor: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1
+    baseRunningSpeed : 7
+  - type: Butcherable
+    spawned:
+    - id: DrinkChangelingStingCan
+      amount: 10
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 299
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          DrinkChangelingStingCan:
+            min: 3
+            max: 5
+  - type: TimedDespawn
+    lifetime: 3600
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#3c5eb5"
+  - type: VendingMachine
+    pack: RobustSoftdrinksInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    ejectDelay: 1.9
+  - type: DatasetVocalizer
+    dataset: RobustSoftdrinksAds
+  - type: SpeakOnUIClosed
+    pack: RobustSoftdrinksGoodbyes
+  - type: ComplexInteraction
+  - type: Access
+    groups:
+    - AllAccess
+    - Silicon
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Wizard
+    - Xenoborg
+    - Pirate
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: StaticPrice
+    price: 10000

@@ -1,0 +1,141 @@
+#region материнский мицелий
+- type: entity
+  parent: [ BiohazardousMobBase, MobPassiveRegen ]
+  id: BiohazardousMotherFungus
+  name: материнский мицелий
+  description: Гигинтский шар из мицелия, покрытый шевелящимися наростами. Невероятно опасен, под поверхностью мицелия видны находящиеся в нём существа.
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Lua/Diseases/Mobs/BiohazardBoss.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: CrimsonSporeBigClot
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: CrimsonSporeBigClot
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1100: Critical
+      1200: Dead
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound: /Audio/Effects/gib3.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BiohazardousFungusSpawn
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Effects/gib1.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+  - type: HTN
+    rootTask:
+       task: BiohazardousHTNRangedCompound
+    blackboard:
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: ThermalVision
+    lightRadius: 20
+    color: "#b96161"
+    activateSound: null
+    deactivateSound: null
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 60
+        Structural: 200
+    soundHit:
+      collection: MetalThud
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.9
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BiohazardousFungusSpawnGib:
+            min: 1
+            max: 1
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      600: 0.5
+      850: 0.2
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 60
+    sound:
+      collection: BiohazardousSounds
+      params:
+        variation: 0.125
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: Tag
+    tags:
+    - BiohazardLeader
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    maxRange: 1024 # Frontier: increase admin radar range
+    followEntity: true
+    hideCoords: false # Frontier
+    maxIffRange: null # Frontier
+  - type: Construction
+    graph: BiohazardousMotherFungusGraph
+    node: BiohazardousMotherFungus

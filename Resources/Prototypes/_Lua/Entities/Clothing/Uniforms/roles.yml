@@ -362,6 +362,28 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNfsdService
+  name: nfsd service jumpsuit
+  description: Coffee-colored jumpsuit with white shirt. It smells like SpaceCleaner, like paper and like cacao.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/nfsd_service.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Uniforms/Jumpsuit/nfsd_service.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtNfsdService
+  name: nfsd service jumpskirt
+  description: Coffee-colored jumpsuit and skirt with white shirt. It smells like SpaceCleaner, like paper and like cacao.
+  components:
+  - type: Sprite
+    sprite:  _Lua/Clothing/Uniforms/Jumpskirt/nfsd_service.rsi
+  - type: Clothing
+    sprite:  _Lua/Clothing/Uniforms/Jumpskirt/nfsd_service.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitTurtleScientist
   name: scientist's turtleneck
   description: It's a durable turtleneck for elite sciences in bad conditions.

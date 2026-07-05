@@ -53,6 +53,13 @@
     whitelist:
       components:
       - SecretStash
+  - type: Tag
+    tags: 
+    - MMI
+
+- type: Tag
+  id: MMI
+
 
 - type: entity
   parent: MMI
@@ -67,6 +74,7 @@
         whitelist:
           components:
             - Brain
+
 
 - type: entity
   parent: BaseItem
@@ -122,6 +130,7 @@
     - type: Tag
       tags:
       - CannotSuicide
+      - PositronicBrain
     - type: GenericVisualizer
       visuals:
         enum.ToggleableGhostRoleVisuals.Status:
@@ -137,3 +146,6 @@
       whitelist:
         components:
         - SecretStash
+
+- type: Tag
+  id: PositronicBrain

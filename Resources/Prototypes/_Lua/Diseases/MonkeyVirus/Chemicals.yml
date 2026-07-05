@@ -1,0 +1,37 @@
+#region Бананоцид
+- type: reagent
+  id: Bananocide
+  group: Medicine
+  name: Bananocide-name
+  desc: Bananocide-desc
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: Bananocide-flavor
+  color: "#e5e75e"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.01
+
+- type: flavor
+  id: Bananocide-flavor
+  flavorType: Complex
+  description: Bananocide-flavor
+
+- type: reaction
+  id: Bananocide
+  reactants:
+    Antibiotic:
+      amount: 1
+    JuiceBanana:
+      amount: 1
+    Tricordrazine:
+      amount: 1
+  products:
+    Bananocide: 3

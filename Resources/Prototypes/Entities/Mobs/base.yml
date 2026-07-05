@@ -55,6 +55,54 @@
 
 - type: entity
   save: false
+  id: BaseMobUnmovable
+  abstract: true
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+  - type: MobCollision
+  - type: Physics
+    bodyType: KinematicController
+  - type: ForceAnchor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: LagCompensation
+  - type: Actions
+  - type: Alerts
+  - type: Appearance
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: DoAfter
+  - type: Examiner
+  - type: Eye
+  - type: ContentEye
+  - type: CameraRecoil
+  - type: Telescope # Lua: СТАРОЕ<НОВОЕ default look-up aiming source like Hullrot base mob
+  - type: MindContainer
+  - type: RequireProjectileTarget
+    active: False
+  - type: AnimatedEmotes # goob edit - animated emotes
+  - type: TTS # Corvax-TTS
+  - type: PassiveThermalSignature # Mono
+    signature: 225 # if nothing else is generating heat, 30m radius, 60m with 4 mobs, 120 with 16
+  - type: ThermalSignature # Mono
+  - type: StunVisuals
+
+- type: entity
+  save: false
   id: MobPolymorphable
   abstract: true
   components:

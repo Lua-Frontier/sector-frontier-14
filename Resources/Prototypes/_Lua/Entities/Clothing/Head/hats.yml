@@ -152,3 +152,25 @@
     sprite: _Lua/Clothing/Head/Hats/hoshat.rsi
   - type: Sprite
     sprite: _Lua/Clothing/Head/Hats/hoshat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdCap
+  name: nfsd cap
+  description: A cap for high officers of Frontier Security Department.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/nfsd_cap.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/nfsd_cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatNfsdCapAlt
+  name: nfsd small cap
+  description: A smaller, more convinient cap for high officers of Frontier Security Department.
+  components:
+  - type: Clothing
+    sprite: _Lua/Clothing/Head/Hats/nfsd_cap_alt.rsi
+  - type: Sprite
+    sprite: _Lua/Clothing/Head/Hats/nfsd_cap_alt.rsi

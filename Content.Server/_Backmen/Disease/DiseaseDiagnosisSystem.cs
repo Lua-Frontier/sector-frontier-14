@@ -15,6 +15,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools.Components;
+using Content.Shared._Lua.Disease.Components; // Lua
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -163,10 +164,10 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
             _popupSystem.PopupEntity(Loc.GetString("diagnoser-cant-use-swab", ("machine", uid), ("swab", args.Used)), uid, args.User);
             return;
         }
-        
+
         if (!TryComp<DiseaseMachineComponent>(uid, out var vaccineMachine))
             return;
-            
+
         _popupSystem.PopupEntity(Loc.GetString("machine-insert-item", ("machine", uid), ("item", args.Used), ("user", args.User)), uid, args.User);
         vaccineMachine.Disease = swab.Disease;
         EntityManager.DeleteEntity(args.Used);
@@ -292,6 +293,13 @@ public sealed class DiseaseDiagnosisSystem : EntitySystem
             return;
 
         swab.Disease = _random.Pick(carrier.Diseases);
+
+        // Lua start
+        if (TryComp<DiseaseContainerComponent>(args.Args.Used, out var swabDiseaseContComp))
+        {
+            swabDiseaseContComp.DiseaseIDs = [.. carrier.Diseases.Select(d => d.ID)];
+        }
+        // Lua end
     }
 
     /// <summary>

@@ -1,0 +1,924 @@
+#region Спавнер
+- type: entity
+  parent: [ BaseItem ]
+  id: AiTeleportPsychoAdmin
+  name: телепорт подкреплений ГРЕЙТАЙД
+  suffix: "адмем"
+  description: Унивенсальный телепорт для призыва ГРЕЙТАЙДЕРОВ на сервер. "проклятие стало клоунадой и посмешищем" - комментарий 25Hydra08
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#ff00dd"
+    - state: door_remotescreencolour
+      color: "#9c9c9c"
+  - type: Item
+    storedRotation: -90
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound: /Audio/Machines/phasein.ogg
+  - type: BasicEntityAmmoProvider
+    proto: AIPsychoTeleportSpawner
+    capacity: 100
+    count: 100
+  - type: Gun
+    fireRate: 1
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Machines/phasein.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+
+- type: entity
+  name: AIPsychoTeleportSpawner
+  id: AIPsychoTeleportSpawner
+  parent: MarkerBase
+  components:
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 1
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: AIPsychoBeacon
+      - !type:EntSelector
+        id: AIPsychoPoorSpawner
+      - !type:EntSelector
+        id: AIPsychoPoorSpawner
+      - !type:EntSelector
+        id: AIPsychoPoorSpawner
+      - !type:EntSelector
+        id: AIPsychoPoorSpawner
+      - !type:EntSelector
+        id: AIPsychoWelderSpawner
+      - !type:EntSelector
+        id: AIPsychoWelderSpawner
+      - !type:EntSelector
+        id: AIPsychoBreakerSpawner
+      - !type:EntSelector
+        id: AIPsychoBreakerSpawner
+      - !type:EntSelector
+        id: AIPsychoBreakerSpawner
+      - !type:EntSelector
+        id: AIPsychoStunSpawner
+      - !type:EntSelector
+        id: AIPsychoStunSpawner
+      - !type:EntSelector
+        id: AIPsychoStunSpawner
+
+#region БАЗЫ
+
+- type: entity
+  parent: BaseMobHuman
+  id: AIPsychoBase
+  name: AI Псих
+  abstract: true
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Common
+  - type: TTS
+    enabled: true
+  - type: HTN
+    rootTask:
+       task: AIPsychoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      tags:
+      - AIPsychoBeacon
+    follow: true
+    spawnFriendsSearchRadius: 5
+  - type: Vocalizer
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: spacepunkhumanoidchatter
+  - type: AutoWakeUp
+  - type: TimedDespawn
+    lifetime: 7200
+
+- type: htnCompound
+  id: AIPsychoCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: RangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+#region Маяк
+- type: entity
+  parent: BaseItem
+  id: AIPsychoBeacon
+  name: маяк ГРЕЙТАЙДЕРОВ
+  description: Маленький маяк, призванный помочь вам управлять отрядами ГРЕЙТАЙДЕРОВ.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/station_beacon.rsi
+    drawdepth: BelowFloor
+    layers:
+    - state: blink
+      map: ["base"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.NavMapBeaconVisuals.Enabled:
+        base:
+          True: {state: blink}
+          False: {state: icon}
+  - type: Item
+    size: Small
+  - type: Visibility
+    layer: 1
+  - type: Anchorable
+  - type: Tag
+    tags:
+    - AIPsychoBeacon
+  - type: TimedDespawn
+    lifetime: 7200
+
+- type: Tag
+  id: AIPsychoBeacon
+
+#region Бедность
+- type: entity
+  parent: AIPsychoBase
+  id: AIPsychoPoorBase
+  name: AI Псих
+  suffix: Бедный
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - AIPsychoPoorGear
+
+- type: startingGear
+  id: AIPsychoPoorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    back: NFClothingBackpack
+    ears: ClothingHeadsetGreyCommon
+    gloves: ClothingHandsGlovesColorYellow
+    shoes: ClothingShoesColorBlack
+    id: ContractorPDA
+    pocket2: Cablecuffs
+    belt: ClothingBeltUtility
+  storage:
+    back:
+    - ClothingMaskBreath
+    - NFBoxSurvival
+    - EmergencyRockCutter
+
+#region Вариации ттс
+#1
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor1
+  name: AI Псих
+  suffix: Бедный 1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Alchemist
+
+#2
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor2
+  name: AI Псих
+  suffix: Бедный 2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Aragorn
+
+#3
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor3
+  name: AI Псих
+  suffix: Бедный 3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Ahri
+
+#4
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor4
+  name: AI Псих
+  suffix: Бедный 4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Arthas
+
+#5
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor5
+  name: AI Псих
+  suffix: Бедный 5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Archmage
+
+#6
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor6
+  name: AI Псих
+  suffix: Бедный 6
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Akazamzarak
+
+#7
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor7
+  name: AI Псих
+  suffix: Бедный 7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Grandmother
+
+#8
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor8
+  name: AI Псих
+  suffix: Бедный 8
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Baechao
+
+#9
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor9
+  name: AI Псих
+  suffix: Бедный 9
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Bolan
+
+#10
+- type: entity
+  parent: AIPsychoPoorBase
+  id: AIPsychoPoor10
+  name: AI Псих
+  suffix: Бедный 10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Vanndara
+
+#region Спавнер
+- type: entity
+  parent: MarkerBase
+  id: AIPsychoPoorSpawner
+  name: AIPsychoPoorSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AIPsychoPoor1
+    - AIPsychoPoor2
+    - AIPsychoPoor3
+    - AIPsychoPoor4
+    - AIPsychoPoor5
+    - AIPsychoPoor6
+    - AIPsychoPoor7
+    - AIPsychoPoor8
+    - AIPsychoPoor9
+    - AIPsychoPoor10
+    chance: 1
+    offset: 0.2
+
+#region Сварщик
+- type: entity
+  parent: AIPsychoBase
+  id: AIPsychoWelderBase
+  name: AI Псих
+  suffix: Сварщик
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - AIPsychoWelderGear
+
+- type: startingGear
+  id: AIPsychoWelderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellow
+    back: ClothingBackpackDuffelEngineering
+    mask: ClothingMaskWeldingGas
+    eyes: ClothingEyesGlassesMeson
+    ears: ClothingHeadsetGreyCommon
+    gloves: ClothingHandsGlovesColorYellow
+    outerClothing: ClothingOuterVestHazard
+    shoes: ClothingShoesColorBlack
+    id: ContractorPDA
+    pocket1: ShardGlass
+    pocket2: FireBomb
+    belt: ClothingBeltUtilityEngineering
+  storage:
+    back:
+    - ClothingMaskBreath
+    - NFBoxSurvival
+    - EmergencyRockCutter
+    - Bola
+    - FireBombFuel
+    - ShardGlass
+    - MaterialCloth1
+    - SpaceCash1000
+  inhand:
+  - Welder
+
+#region Вариации ттс
+#1
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder1
+  name: AI Псих
+  suffix: Сварщик 1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Ycf
+
+#2
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder2
+  name: AI Псих
+  suffix: Сварщик 2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Thrud
+
+#3
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder3
+  name: AI Псих
+  suffix: Сварщик 3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Reaper
+
+#4
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder4
+  name: AI Псих
+  suffix: Сварщик 4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Dremora
+
+#5
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder5
+  name: AI Псих
+  suffix: Сварщик 5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Dolg1
+
+#6
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder6
+  name: AI Псих
+  suffix: Сварщик 6
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Jackie
+
+#7
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder7
+  name: AI Псих
+  suffix: Сварщик 7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Decker
+
+#8
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder8
+  name: AI Псих
+  suffix: Сварщик 8
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Graves
+
+#9
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder9
+  name: AI Псих
+  suffix: Сварщик 9
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Gnomenapper
+
+#10
+- type: entity
+  parent: AIPsychoWelderBase
+  id: AIPsychoWelder10
+  name: AI Псих
+  suffix: Сварщик 10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Vree
+
+#region Спавнер
+- type: entity
+  parent: MarkerBase
+  id: AIPsychoWelderSpawner
+  name: AIPsychoWelderSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AIPsychoWelder1
+    - AIPsychoWelder2
+    - AIPsychoWelder3
+    - AIPsychoWelder4
+    - AIPsychoWelder5
+    - AIPsychoWelder6
+    - AIPsychoWelder7
+    - AIPsychoWelder8
+    - AIPsychoWelder9
+    - AIPsychoWelder10
+    chance: 1
+    offset: 0.2
+
+#region Ломатель
+- type: entity
+  parent: AIPsychoBase
+  id: AIPsychoBreakerBase
+  name: AI Псих
+  suffix: ломатель
+  components:
+  - type: Loadout
+    prototypes:
+    - AIPsychoBreakerGear
+
+- type: startingGear
+  id: AIPsychoBreakerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    back: NFClothingBackpack
+    mask: ClothingMaskGas
+    eyes: ClothingEyesGlassesMeson
+    ears: ClothingHeadsetGreyCommon
+    gloves: ClothingHandsGlovesColorYellow
+    outerClothing: ClothingOuterArmorBasic
+    shoes: ClothingShoesColorBlack
+    id: ContractorPDA
+    pocket1: Soap
+    pocket2: FlashlightLantern
+    belt: ClothingBeltUtilityEngineering
+  storage:
+    back:
+    - ClothingMaskBreath
+    - NFBoxSurvival
+    - EmergencyRockCutter
+    - DrinkSpaceLube
+    - Shiv
+    - Flash
+    - ShardGlassReinforced
+    - ShardGlassReinforced
+    - ShardGlassReinforced
+    - WeaponFlareGun
+  inhand:
+  - ToolboxEmergencyFilled
+
+#region Вариации ттс
+#1
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker1
+  name: AI Псих
+  suffix: Ломатель 1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Admiral
+
+#2
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker2
+  name: AI Псих
+  suffix: Ломатель 2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Barbossa
+
+#3
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker3
+  name: AI Псих
+  suffix: Ломатель 3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Brann
+
+#4
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker4
+  name: AI Псих
+  suffix: Ломатель 4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Vort
+
+#5
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker5
+  name: AI Псих
+  suffix: Ломатель 5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Vree
+
+#6
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker6
+  name: AI Псих
+  suffix: Ломатель 6
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Gnomenapper
+
+#7
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker7
+  name: AI Псих
+  suffix: Ломатель 7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Graves
+#8
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker8
+  name: AI Псих
+  suffix: Ломатель 8
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Decker
+
+#9
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker9
+  name: AI Псих
+  suffix: Ломатель 9
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Jackie
+
+#10
+- type: entity
+  parent: AIPsychoBreakerBase
+  id: AIPsychoBreaker10
+  name: AI Псих
+  suffix: Ломатель 10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Dolg1
+
+#region Спавнер
+- type: entity
+  parent: MarkerBase
+  id: AIPsychoBreakerSpawner
+  name: AIPsychoBreakerSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AIPsychoBreaker1
+    - AIPsychoBreaker2
+    - AIPsychoBreaker3
+    - AIPsychoBreaker4
+    - AIPsychoBreaker5
+    - AIPsychoBreaker6
+    - AIPsychoBreaker7
+    - AIPsychoBreaker8
+    - AIPsychoBreaker9
+    - AIPsychoBreaker10
+    chance: 1
+    offset: 0.2
+
+
+#region Станнер
+- type: entity
+  parent: AIPsychoBase
+  id: AIPsychoStunBase
+  name: AI Псих
+  suffix: Станнер
+  components:
+  - type: Loadout
+    prototypes:
+    - AIPsychoStunGear
+  - type: ActionGun
+    action: AIPsychoStunSoapThrowAction
+    gunProto: AIPsychoStunSoapThrow
+  - type: NPCUseActionOnTarget
+    actionId: AIPsychoStunSoapThrowAction
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AIPsychoStunSoapThrowAction
+  parent: BaseAction
+  name: "[color=cyan] кинуть мыло [/color]"
+  components:
+  - type: Action
+    icon: { sprite : Objects/Weapons/Grenades/stingergrenade.rsi, state: icon }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AIPsychoStunSoapThrow
+  name: AIPsychoStunSoapThrow
+  description: для того что бы кинуть мыло в лицо
+  components:
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 1
+    maxAngle: 2
+    projectileSpeed: 30
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/_NF/Effects/silence.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: Soap
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 120
+    rechargeSound: /Audio/_NF/Effects/silence.ogg
+
+- type: startingGear
+  id: AIPsychoStunGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPilot
+    back: ClothingBackpackDuffelPilot
+    mask: ClothingMaskPilot
+    eyes: ClothingEyesGlassesPilot
+    ears: ClothingHeadsetGreyCommon
+    gloves: ClothingHandsGlovesPilot
+    outerClothing: ClothingOuterHardsuitSpatio
+    shoes: ClothingShoesBootsMag
+    id: PilotPDA
+    pocket1: AmmoBox45_magnumRubber
+    pocket2: NFWeaponRevolverArgentiLessLethal
+    belt: ClothingBeltUtilityEngineering
+  storage:
+    back:
+    - ClothingMaskBreath
+    - NFBoxSurvival
+    - EmergencyRockCutter
+    - HandHeldMassScanner
+    - RemoteSignaller
+    - trayScanner
+    - AmmoBox127x99mm
+    - ClothingHeadHatCowboyWhite
+    - PlushieCarp
+    - FireExtinguisher
+  inhand:
+  - NFWeaponEnergyPistolDisabler
+
+#region Вариации ттс
+#1
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun1
+  name: AI Псих
+  suffix: Станнер 1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Donkey
+
+#2
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun2
+  name: AI Псих
+  suffix: Станнер 2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Father
+
+#3
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun3
+  name: AI Псих
+  suffix: Станнер 3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Patrick
+
+#4
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun4
+  name: AI Псих
+  suffix: Станнер 4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Robold
+
+#5
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun5
+  name: AI Псих
+  suffix: Станнер 5
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Sidorovich
+
+#6
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun6
+  name: AI Псих
+  suffix: Станнер 6
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Squidward
+
+#7
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun7
+  name: AI Псих
+  suffix: Станнер 7
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Sobchak
+
+#8
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun8
+  name: AI Псих
+  suffix: Станнер 8
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Takemura
+
+#9
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun9
+  name: AI Псих
+  suffix: Станнер 9
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Tiadalma
+
+#10
+- type: entity
+  parent: AIPsychoStunBase
+  id: AIPsychoStun10
+  name: AI Псих
+  suffix: Станнер 10
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    voice: Wheatley
+
+#region Спавнер
+- type: entity
+  parent: MarkerBase
+  id: AIPsychoStunSpawner
+  name: AIPsychoStunSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - AIPsychoStun1
+    - AIPsychoStun2
+    - AIPsychoStun3
+    - AIPsychoStun4
+    - AIPsychoStun5
+    - AIPsychoStun6
+    - AIPsychoStun7
+    - AIPsychoStun8
+    - AIPsychoStun9
+    - AIPsychoStun10
+    chance: 1
+    offset: 0.2

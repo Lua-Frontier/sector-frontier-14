@@ -1,0 +1,29 @@
+- type: microwaveMealRecipe
+  id: RecipeRegenerativeFireMesh
+  name: regenerative fire mesh recipe
+  result: RegenerativeFireMesh
+  time: 10
+  group: Medicinal
+  solids:
+    FoodFireAloe: 1
+    RegenerativeMesh: 1
+    MaterialCloth1: 1
+  reagents:
+    Pyrazine: 10
+    Siderlac: 10
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeImprovedMedicatedSuture
+  name: medicated improved suture recipe
+  result: ImprovedMedicatedSuture
+  time: 10
+  group: Medicinal
+  solids:
+    FoodJuniper: 1
+    MedicatedSuture: 1
+    MaterialCloth1: 1
+  reagents:
+    Saline: 10
+    PolypyryliumOligomers: 10
+  recipeType: MedicalAssembler # Frontier

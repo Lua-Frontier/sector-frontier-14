@@ -1,0 +1,108 @@
+- type: entity
+  parent: GasTankBase
+  id: BaseGlider
+  name: глайдер
+  description: Глайдер, способный перемещаться гораздо быстрее обычного джета. Ваше идеальное средство передвижения, практически бесполезное в бою.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Tools/glider.rsi
+    layers:
+    - state: icon
+      map: ["enum.JetpackVisuals.Layer"]
+  - type: Item
+    sprite: _Lua/Objects/Tools/glider.rsi
+    size: Ginormous
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 300
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:DumpCanisterBehavior
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Anchorable
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: Clothing
+    sprite: _Lua/Objects/Tools/glider.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 1500
+      temperature: 293.15
+  - type: AtmosDevice
+    requireAnchored: true
+    joinSystem: true
+  - type: NodeContainer
+    nodes:
+      port:
+        !type:PortablePipeNode
+        nodeGroupID: Pipe
+        rotationsEnabled: false
+        volume: 1
+  - type: GasPortable
+  - type: MultiHandedItem
+    handsNeeded: 2
+  - type: HeldSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: Jetpack
+    toggleAction: ActionToggleGlider
+    acceleration: 3.15
+    weightlessModifier: 5.4
+    moleUsage: 0.255
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.JetpackVisuals.Enabled:
+        enum.JetpackVisuals.Layer:
+          True: {state: icon-on}
+          False: {state: icon}
+  - type: RadarBlip
+    radarColor: "#eede00"
+    scale: 2
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 4096
+  - type: Tag
+    tags: []
+  - type: StaticPrice
+    price: 100
+
+# заполненный
+- type: entity
+  id: GliderFilled
+  parent: BaseGlider
+  name: глайдер
+  description: Глайдер, способный перемещаться гораздо быстрее обычного джета. Ваше идеальное средство передвижения, практически бесполезное в бою.
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      # 13 minutes of thrust
+      volume: 1500
+      temperature: 293.15
+      moles:
+        - 307.7068575 # oxygen
+        - 307.7068575 # nitrogen

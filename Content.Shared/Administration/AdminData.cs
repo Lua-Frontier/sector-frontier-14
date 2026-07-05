@@ -51,7 +51,7 @@ namespace Content.Shared.Administration
         /// </summary>
         public bool CanScript()
         {
-            return HasFlag(AdminFlags.Host);
+            return false;
         }
 
         /// <summary>

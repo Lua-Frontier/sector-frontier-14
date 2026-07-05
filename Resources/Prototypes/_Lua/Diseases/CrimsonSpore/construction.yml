@@ -1,0 +1,143 @@
+#region рецепты постройки
+
+
+
+
+
+#region блокер
+- type: construction
+  id: BiohazardousFleshBlocker
+  graph: BiohazardousFleshBlockerGraph
+  startNode: start
+  targetNode: BiohazardousFleshBlocker
+  category: BioCategory
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: constructionGraph
+  id: BiohazardousFleshBlockerGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: BiohazardousFleshBlocker
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: CrimsonSporeFleshStack
+        amount: 5
+        doAfter: 10
+  - node: BiohazardousFleshBlocker
+    entity: BiohazardousFleshBlocker
+
+
+#region мультиспавнер
+- type: construction
+  id: BiohazardousFleshDigestiveSack
+  graph: BiohazardousFleshDigestiveSackGraph
+  startNode: start
+  targetNode: BiohazardousFleshDigestiveSack
+  category: BioCategory
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: constructionGraph
+  id: BiohazardousFleshDigestiveSackGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: BiohazardousFleshDigestiveSack
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: CrimsonSporeFleshStack
+        amount: 25
+        doAfter: 15
+  - node: BiohazardousFleshDigestiveSack
+    entity: BiohazardousFleshDigestiveSack
+
+
+#region спавнер рукастых парней
+- type: construction
+  id: BiohazardousFleshHandyManCocoon
+  graph: BiohazardousFleshHandyManCocoonGraph
+  startNode: start
+  targetNode: BiohazardousFleshHandyManCocoon
+  category: BioCategory
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: constructionGraph
+  id: BiohazardousFleshHandyManCocoonGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: BiohazardousFleshHandyManCocoon
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: CrimsonSporeFleshStack
+        amount: 30
+        doAfter: 20
+  - node: BiohazardousFleshHandyManCocoon
+    entity: BiohazardousFleshHandyManCocoon
+
+
+#region материнский мицелий
+- type: construction
+  id: BiohazardousMotherFungus
+  graph: BiohazardousMotherFungusGraph
+  startNode: start
+  targetNode: BiohazardousMotherFungus
+  category: BioCategory
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: BiohazardousMotherFungusGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: BiohazardousMotherFungus
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: CrimsonSporeFleshStackWaken
+        amount: 30
+        doAfter: 400
+  - node: BiohazardousMotherFungus
+    entity: BiohazardousMotherFungus
+
+#region пробуждённая спора
+- type: construction
+  id: CrimsonSporeFleshWaken1
+  graph: CrimsonSporeFleshWaken1Graph
+  startNode: start
+  targetNode: CrimsonSporeFleshWaken1
+  category: BioCategory
+  objectType: Item
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: constructionGraph
+  id: CrimsonSporeFleshWaken1Graph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CrimsonSporeFleshWaken1
+      completed:
+      - !type:SnapToGrid
+      steps:
+      - material: CrimsonSporeFleshStack
+        amount: 30
+        doAfter: 60
+  - node: CrimsonSporeFleshWaken1
+    entity: CrimsonSporeFleshWaken1

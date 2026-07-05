@@ -9,3 +9,4 @@ chat-emote-msg-vulpkanin-howls-1 = воет.
 chat-emote-msg-vulpkanin-howls-2 = завывает.
 chat-emote-msg-vulpkanin-awoos-1 = издаёт аууу.
 chat-emote-msg-vulpkanin-awoos-2 = издаёт авуу.
+chat-emote-msg-vulpkanin-trill = издаёт трель

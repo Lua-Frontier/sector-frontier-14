@@ -1,0 +1,37 @@
+#region Ратексин
+- type: reagent
+  id: Ratexin
+  group: Medicine
+  name: Ratexin-name
+  desc: Ratexin-desc
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: Ratexin-flavor
+  color: "#d4bf78"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.01
+
+- type: flavor
+  id: Ratexin-flavor
+  flavorType: Complex
+  description: Ratexin-flavor
+
+- type: reaction
+  id: Ratexin
+  reactants:
+    Enzyme:
+      amount: 1
+    Milk:
+      amount: 1
+    Mannitol:
+      amount: 1
+  products:
+    Ratexin: 3

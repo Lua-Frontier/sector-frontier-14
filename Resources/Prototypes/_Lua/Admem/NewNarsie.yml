@@ -1,0 +1,383 @@
+- type: entity
+  abstract: true
+  id: MobNarsieNewBase
+  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase ]
+  name: Nar'Sie
+  description: Your mind begins to bubble and ooze as it tries to comprehend what it sees.
+  components:
+  - type: Sprite
+    sprite: Mobs/Demons/narsie.rsi
+    drawdepth: Ghosts
+    scale: 2.0,2.0
+    layers:
+    - state: narsie
+      shader: unshaded
+
+- type: entity
+  abstract: true
+  parent:
+  - BaseMob
+  - MobMovementSpeedModifierMelee
+  - MobDamageable
+  - MobCombat
+  - MobBloodstream
+  - MobFlammable
+  - MobEnhancedMovement
+  id: NarsieBaseBase
+  components:
+  - type: Sprite
+    sprite: Mobs/Demons/narsie.rsi
+    drawdepth: Ghosts
+    scale: 2.0,2.0
+    layers:
+    - state: narsie
+      shader: unshaded
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - Drowsiness
+    - Adrenaline
+  - type: StandingState
+  - type: InputMover
+  - type: MobMover
+  - type: DiseaseProtection
+  - type: ZombieImmune
+  - type: Hands
+  - type: Stripping
+  - type: Puller
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: FTLKnockdownImmune
+  - type: TTS
+    enabled: true
+  - type: GoblinAccent
+  - type: LizardAccent
+  - type: MothAccent
+  - type: ScrambledAccent
+  - type: Speech # Frontier
+    speechSounds: Alto
+    allowedEmotes: ['Belch'] # Frontier
+  - type: LanguageKnowledge # Lua start
+    speaks:
+    - Intergalactic
+    understands:
+    - Intergalactic
+    # Lua end
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: ComplexInteraction
+  - type: MindContainer
+    showExamineInfo: true
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    maxRange: 1024 # Frontier: increase admin radar range
+    followEntity: true
+    hideCoords: false # Frontier
+    maxIffRange: null # Frontier
+
+#region Спавн
+# spawn animation, spawns actual narsie when it ends
+- type: entity
+  parent: MobNarsieNewBase
+  id: MobNarsieSpawnNew
+  suffix: "адмем"
+  components:
+  - type: Sprite
+    layers:
+    - state: spawn
+      shader: unshaded
+  # spawn animation lasts 3.5 seconds
+  - type: TimedDespawn
+    lifetime: 3.5
+  - type: SpawnOnDespawn
+    prototype: MobNarsieNew
+
+#region Нар-Си
+- type: entity
+  parent: [NarsieBaseBase]
+  id: MobNarsieNew
+  suffix: "адмем"
+  components:
+  - type: AnnounceOnSpawn
+    message: narsie-has-risen
+    sender: narsie-has-risen-sender
+    sound:
+      path: /Audio/Misc/narsie_rises.ogg
+    color: red
+  - type: ContentEye
+    maxZoom: 3.0,3.0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 5
+        density: 137992
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300100: Critical
+      300200: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          NarsieSpawnGib:
+            min: 1
+            max: 1
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Biological
+  # - type: Input
+  #   context: "ghost"
+  - type: MovementIgnoreGravity
+  # narnar hears all
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Command
+    - CentCom
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Syndicate
+    globalReceive: true
+  - type: Physics
+    bodyType: Dynamic
+    bodyStatus: InAir
+  - type: MovementSpeedModifier
+    baseRunningSpeed: 40
+    baseWalkSpeed: 25
+  - type: CanMoveInAir
+  # singulose components
+  - type: SpaceWhaleTileDevour
+    devourInterval: 0.5
+    tilesPerBite: 6
+    entitiesPerBite: 6
+    damage:
+      types:
+        Structural: 6000
+        Blunt: 10
+    ignoreWhitelist:
+      tags:
+      - SpaceLeviathan
+  - type: DamageOnCollide
+    inverted: true
+    damage:
+      types:
+        Structural: 5000
+        Blunt: 10
+  - type: RadarBlip
+    radarColor: "#FF4444"
+    scale: 4
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: false
+    maxDistance: 4096
+  - type: Tag
+    tags:
+    - GhostOnlyWarp
+  - type: WarpPoint
+    follow: true
+    location: Nar'Sie
+    blacklist:
+      tags:
+      - GhostOnlyWarp
+  - type: NightVision
+    color: "#808080"
+    activateSound: null
+    deactivateSound: null
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound: /Audio/Effects/gib3.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NarsieMeteorLarge
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 200
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot: /Audio/Effects/gib1.ogg
+    soundEmpty: /Audio/_NF/Effects/silence.ogg
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    maxRange: 2048 # Frontier: increase admin radar range
+    followEntity: true
+    hideCoords: false # Frontier
+    maxIffRange: null # Frontier
+  - type: TTS
+    enabled: true
+    voice: GmanE2
+
+- type: entity
+  parent: BaseMeteor
+  id: NarsieMeteorLarge
+  suffix: Large
+  components:
+  - type: Sprite
+    state: big
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 1250
+    intensitySlope: 5
+    maxIntensity: 1450
+  - type: Projectile
+    damage:
+      types:
+        Structural: 12500
+        Blunt: 15000
+        Ion: 30000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:WeightedSpawnEntityBehavior
+        weightedEntityTable: "MeteorSpawnAsteroidWallTable"
+        spawnOffset: 6
+        minSpawn: 8
+        maxSpawn: 16
+        spawnAfter: 0.5
+  - type: RadarBlip
+    radarColor: "#a0715b"
+    scale: 2
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: false
+    maxDistance: 4096
+
+- type: entity
+  name: NarsieSpawnGib
+  id: NarsieSpawnGib
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 2
+    table: !type:AllSelector
+      children:
+      # - !type:EntSelector
+      #   id: SpawnDungeonLootGunT4
+      # - !type:EntSelector
+      #   id: T2EventLootSpawn
+      # - !type:EntSelector
+      #   id: LuaArmorySpawnerTreasure
+      # - !type:EntSelector
+      #   id: SpawnDungeonLootMeleeT3L
+      # - !type:EntSelector
+      #   id: SpawnDungeonLootGunT3L
+      # - !type:EntSelector
+      #   id: SpawnDungeonLootGunT3L
+      # - !type:EntSelector
+      #   id: T1EventLootSpawn
+      # - !type:EntSelector
+      #   id: LuaArmorySpawnerTreasure
+      # - !type:EntSelector
+      #   id: LuaArmorySpawnerTreasure
+      # - !type:EntSelector
+      #   id: SpawnDungeonLootMeleeT3L
+      # - !type:EntSelector
+      #   id: LuaArmorySpawnerCircuitBoard
+      # - !type:EntSelector
+      #   id: RandomScrapSalvage
+      # - !type:EntSelector
+      #   id: RandomScrapSalvage
+      - !type:EntSelector
+        id: SpawnNarsieGib
+
+- type: entity
+  id: SpawnNarsieGib
+  parent: SpawnNarsieBase
+  name: Кровавая Луна
+  components:
+  - type: GridSpawner
+    path: /Maps/_NF/Bluespace/bloodmoon.yml
+  - type: AnnounceOnSpawn
+    message: narsie-has-defeated
+    sender: narsie-has-risen-sender
+    sound:
+      path: /Audio/Misc/narsie_rises.ogg
+    color: green
+
+- type: entity
+  id: SpawnNarsieBase
+  parent: MarkerBase
+  abstract: true
+  components:
+  - type: GridSpawner
+    addComponents:
+    - type: Company
+      companyName: BrokenAi
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/ai.png
+      scale: 1.2
+      allowWhenHidden: true
+    - type: IFF
+      color: "#9a2020"
+    - type: GridCleanupGrid
+      cleanupAcceleration: 3
+      ignorePowered: true
+      ignoreIFF: true
+      ignorePrice: true

@@ -1,0 +1,57 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseItem
+  id: SampleTube
+  name: sample tube
+  suffix: Empty
+  description: A glass tube with some sort of goop in it. Looks prone to breaking.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/sample_tubes.rsi
+    layers:
+    - state: blank
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        blank: ""
+        power: ""
+        reinforcer: ""
+        energy: ""
+        synchronizer: ""
+        stabilizer: ""
+  - type: LuaTreasure
+  - type: DiseaseContainer
+
+- type: entity
+  parent: SampleTube
+  id: SampleTubeX1
+  suffix: X1, FurryVirus
+  name: sample tube
+  description: A glass tube with some sort of goop in it. Looks prone to breaking.
+  components:
+  - type: DiseaseContainer
+    diseases: [FurryVirus]
+
+- type: entity
+  parent: SampleTube
+  id: SampleTubeX2
+  suffix: X2, FurryVirus, GreenFlu, MemeticAmirmir
+  name: sample tube
+  description: A glass tube with some sort of goop in it. Looks prone to breaking.
+  components:
+  - type: DiseaseContainer
+    diseases: [FurryVirus, GreenFlu, MemeticAmirmir]
+
+- type: entity
+  parent: SampleTube
+  id: SampleTubeX3
+  suffix: X3, BirdFlew, SpaceCold
+  name: sample tube
+  description: A glass tube with some sort of goop in it. Looks prone to breaking.
+  components:
+  - type: DiseaseContainer
+    diseases: [BirdFlew, SpaceCold]

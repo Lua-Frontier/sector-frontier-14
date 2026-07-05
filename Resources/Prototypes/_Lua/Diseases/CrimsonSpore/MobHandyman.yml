@@ -1,0 +1,66 @@
+#region рукастый парень
+- type: entity
+  parent: [ BiohazardousMobBase ]
+  id: BiohazardousHandyman
+  name: рукастый парень
+  description: Полноразмерная тварь с полноценными руками и желанием отобрать ваше оружие. Лучше не подпускать его к валяющимся на полу пушкам.
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: handyman
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: handyman
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CrimsonSporeFlesh1:
+            min: 2
+            max: 7
+  - type: HTN
+    rootTask:
+       task: BiohazardousHTNHandymanCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 3
+        Structural: 30
+  - type: Body
+    prototype: BiohazardousBodyMob2Handed
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: StaminaDamageOnHit
+    damage: 45
+  - type: StaticPrice
+    price: 6000

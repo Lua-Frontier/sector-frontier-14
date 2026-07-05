@@ -205,3 +205,198 @@
   - type: Sprite
     sprite: _Lua/Plushie/toys.rsi
     state: plushie_Amata_black
+
+- type: entity
+  parent: BasePlushieSpeakable
+  id: Plushie25Hydra08Alliria
+  name: плюшевая Аллирия
+  description: Плюшевая акулка, сделанная по образу Аллирии Тёрской. Мягкая и приятная на ощупь, она станет отличным подарком для любого фаната Аллирии или просто любителя акул. Плюшевая Аллирия может стать прекрасным украшением для комнаты или офиса, а также отличным компаньоном для сна.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/25Hydra08/AlliriaPlushie.rsi
+    state: icon
+  - type: Item
+    sprite: _Lua/Sponsor/25Hydra08/AlliriaPlushie.rsi
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/rawr.ogg
+    animation: WeaponArcBite
+  - type: Clothing
+    quickEquip: false
+    sprite: _Lua/Sponsor/25Hydra08/AlliriaPlushie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+  - type: RoarAccent
+  - type: Tag
+    tags:
+    - Payload
+  - type: SpeakOnTrigger
+    pack: AlliriaPlushieSpeak
+  - type: TTS
+    voice: Mortred
+
+- type: localizedDataset
+  id: AlliriaPlushieSpeak
+  values:
+    prefix: Alliriaplushie-
+    count: 26
+
+- type: entity
+  parent: BasePlushieSpeakable
+  id: PlushieSidrie
+  name: Плюшевый Сидри Друмаррунг
+  description: Это единственный (на момент выпуска) плюшевый дворф, выпущенный компанией "Друмаррунг и Сыновья". И даже этот плюшевый дворф - бюрократ, и может заполнить за тебя документы. Но ты ведь не доверишь свои финансовые документы плюшевой игрушке... Не доверишь ведь?
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/Equipable/Sidrie.rsi
+    state: icon
+  - type: Item
+    sprite: _Lua/Plushie/Equipable/Sidrie.rsi
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/quack.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/quack.ogg
+    animation: WeaponArcBite
+  - type: Clothing
+    quickEquip: false
+    sprite: _Lua/Plushie/Equipable/Sidrie.rsi
+    slots:
+    - HEAD
+  - type: Speech
+  - type: ReplacementAccent
+    accent: dwarf
+  - type: Tag
+    tags:
+    - Payload
+  - type: SpeakOnTrigger
+    pack: SidriePlushieSpeak
+  - type: TTS
+    voice: Mannoroth
+
+- type: localizedDataset
+  id: SidriePlushieSpeak
+  values:
+    prefix: Sidrieplushie-
+    count: 26
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKain
+  name: Плюшевая Каин
+  description: Вечно во всем виновата и даже не скрывает этого. Возможно, именно из-за неё появляются гномы-шагокрады
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: kain
+
+# Faust Netzach
+- type: entity
+  parent: BasePlushie
+  id: PlushieAlexL1ne
+  name: plushie of Delta
+  description: Space supreme lunatic. Loves bees.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Fun/plushies.rsi
+    state: deltaline
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: AlexL1nePlushie
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDovacot
+  name: plushie of Dovacot
+  categories: [ HideSpawnMenu ]
+  description: It's soft and fluffy! It's dark hair attract every single photon of light in the room.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Fun/plushies.rsi
+    state: dovacot
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: DovacotPlushie
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDamn
+  name: unidentified plush toy
+  description: This plushie was made by both USSP and Nanotrasen. It is a symbol.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Fun/plushies.rsi
+    state: plushie_damn
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: DamnPlushie
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieYesod
+  name: plushie YESOD
+  description: Even if it looksn't like a plushie, it is still very soft.
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Fun/plushie_yesod.rsi
+    state: yesod_base
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: YesodPlushie
+  - type: BlockMovement
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    bank: 1
+    program: 2
+  - type: Examiner
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Common
+  - type: DoAfter
+  - type: Actions
+  - type: Store
+    categories:
+    - PAIAbilities
+    currencyWhitelist:
+    - SiliconMemory
+    balance:
+      SiliconMemory: 30
+  - type: RadarConsole
+    maxRange: 256
+    followEntity: true
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+    # This has to be installed because otherwise they're not "alive",
+    #  so they can ghost and come back.
+    # Note that the personal AI never "dies".
+  - type: MobState
+    allowedStates:
+      - Alive
+  - type: StationMap
+  - type: PAI
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+        - SecretStash
+        - WrappedParcel
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon

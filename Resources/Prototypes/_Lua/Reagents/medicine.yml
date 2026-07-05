@@ -1,0 +1,20 @@
+- type: reagent
+  id : ibuprofen # currently this is just a way to create psicodine
+  name: reagent-name-ibuprofen
+  group: Medicine
+  desc: reagent-desc-ibuprofen
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: sweet
+  color: "#be5c5c"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        type: Local
+        visualType: Medium
+        messages: [ "ibuprofen-effect-painkill" ]
+        probability: 0.2
+  pricePerUnit: 0

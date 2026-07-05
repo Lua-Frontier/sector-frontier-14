@@ -83,3 +83,14 @@
     sprite: _Lua/Clothing/Neck/Cloaks/blueshield.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Neck/Cloaks/blueshield.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakNfsdShoulder
+  name: warrant officer's shoulder cape
+  description: A formal cloack for Frontier's Security Department officers. It's made of mother-of-pearl velvet.
+  components:
+    - type: Sprite
+      sprite: _Lua/Clothing/Neck/Cloaks/nfsd_formal.rsi
+    - type: Clothing
+      sprite: _Lua/Clothing/Neck/Cloaks/nfsd_formal.rsi

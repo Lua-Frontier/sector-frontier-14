@@ -1,0 +1,69 @@
+- type: reaction
+  id: PentenicAcid
+  reactants:
+    PolytrinicAcid:
+      amount: 1
+    PotassiumIodide:
+      amount: 1
+    Haloperidol:
+      amount: 1
+    Cyanide:
+      amount: 1
+  products:
+    PentenicAcid: 2
+
+- type: reaction
+  id: Antihol
+  reactants:
+    Charcoal:
+      amount: 2
+    Ethanol:
+      amount: 1
+  products:
+    Antihol: 3
+
+- type: reaction
+  id: SilverSulfadiazine
+  minTemp: 500
+  reactants:
+    Silver: # actually using silver cuz it's just strong
+      amount: 1
+    Chlorine:
+      amount: 1
+    Ammonia:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Sulfur:
+      amount: 1
+  products:
+    SilverSulfadiazine: 3
+
+- type: reaction
+  id: StypticCrystalCatalyst
+  reactants:
+    Aluminium:
+      amount: 1
+    Hydroxide:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+    Silicon:
+      amount: 1
+  products:
+    StypticCrystalCatalyst: 2
+
+- type: reaction
+  id: StypticCrystalCreation
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    StypticCrystalCatalyst:
+      amount: 5
+    Blood:
+      amount: 10
+    Sodium:
+      amount: 10
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: ShardCrystalStyptic

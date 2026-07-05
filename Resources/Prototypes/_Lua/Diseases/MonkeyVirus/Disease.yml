@@ -1,0 +1,296 @@
+#region обезьяновирус
+- type: disease
+  id: MonkeyPox
+  name: MonkeyPox-name
+  cureResist: 1
+  infectious: true
+  stages:
+  - 0
+  - 30
+  - 300
+  - 900
+  effects:
+  # сообщения о заражении
+  - !type:DiseasePopUp
+    probability: 0.015
+    message: Вы чувствуете себя нехорошо...
+    visualType: Medium
+    stages:
+    - 0
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: Ваше сознание туманится...
+    visualType: Medium
+    stages:
+    - 1
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: Вы ощущаете тягу к пальмам...
+    visualType: Medium
+    stages:
+    - 1
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вам хочется бананов...
+    visualType: Medium
+    stages:
+    - 2
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вы реально хотите бананы...
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вы чувствуете непреодолимую тягу к бананам...
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вы мечтаете о бананах...
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  # Физические симптомы
+  - !type:DiseaseSnough
+    probability: 0.03
+    emote: Cough
+    stages:
+    - 0
+  - !type:DiseaseSnough
+    probability: 0.03
+    emote: Scream
+    stages:
+    - 0
+  - !type:DiseaseAdjustReagent
+    probability: 0.020
+    reagent:
+      ReagentId: Ipecac
+    amount: 5
+    stages:
+    - 1
+  - !type:DiseaseAdjustReagent
+    probability: 0.015
+    reagent:
+      ReagentId: Razorium
+    amount: 1
+    stages:
+    - 1
+  - !type:DiseaseAdjustReagent
+    probability: 0.025
+    reagent:
+      ReagentId: Licoxide
+    amount: 0.5
+    stages:
+    - 2
+    - 3
+  - !type:DiseaseAdjustReagent
+    probability: 0.015
+    reagent:
+      ReagentId: Razorium
+    amount: 1
+    stages:
+    - 2
+    - 3
+  # дефекты речи от болезни
+  - !type:DiseaseAdjustReagent
+    probability: 0.05
+    reagent:
+      ReagentId: Ethanol
+    amount: 1
+    stages:
+    - 2
+    - 3
+  - !type:DiseaseAdjustReagent
+    probability: 0.05
+    reagent:
+      ReagentId: SpaceDrugs
+    amount: 2
+    stages:
+    - 2
+    - 3
+  # урон от генетических повреждений от болезни
+  - !type:DiseaseHealthChange
+    probability: 0.025
+    damage:
+      types:
+        Genetic: 0.5
+    stages:
+    - 2
+    - 3
+  # полиморфа на крайней стадии заражения
+  - !type:DiseasePolymorph
+    probability: 0.1
+    polymorphId: MobDiseaseMonkeyPolymorph
+    polymorphMessage: Теперь вы становитесь приматом...
+    polymorphSound:
+      path: /Audio/Effects/demon_consume.ogg
+    stages:
+    - 3
+  cures:
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Antibiotic
+    min: 10
+    cureChance: 0.1
+    stages:
+    - 0
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Bananocide
+    min: 2
+    cureChance: 0.1
+    stages:
+    - 1
+    - 2
+    - 3
+
+- type: polymorph
+  id: MobDiseaseMonkeyPolymorph
+  configuration:
+    entity: MobDiseaseMonkey
+    forced: true
+    inventory: None
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: true
+    exitPolymorphSound: /Audio/Effects/demon_consume.ogg
+
+#region обезьянья морфа для игрока
+- type: entity
+  name: обезьяна
+  id: MobDiseaseMonkey
+  parent: [SimpleNonHTNMobBase, StripableInventoryBase]
+  description: Генетический предок человека, примат, поражённый обезьяновирусом. Выглядит так, словно он только что сбежал из джунглей, и с лёгкостью может оторвать вам руку, если вы его обидите.
+  suffix: "NoAI, DiseaseMorph"
+  components:
+  - type: CombatMode
+  - type: Inventory
+    templateId: monkey
+    speciesId: monkey
+  - type: Deathgasp
+    prototype: MonkeyDeathgasp
+  - type: Cuffable
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Stripping
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "ears" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: Carriable #DeltaV
+  - type: Hands
+  - type: ComplexInteraction
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+  - type: Body
+    prototype: Primate
+    requiredLegs: 1 # TODO: More than 1 leg
+  - type: CreamPied
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Monkey_burning
+  - type: InteractionPopup
+    successChance: 0.9
+    interactSuccessString: petting-success-monkey
+    interactFailureString: petting-failure-monkey
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/ferret_happy.ogg
+    interactFailureSound:
+      path: /Audio/Items/wirecutter.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 3
+  - type: Puller
+    needsHands: false
+  - type: CanHostGuardian
+  - type: NpcFactionMember
+    factions:
+      - Passive
+      - Monkey # Frontier
+  - type: IdExaminable
+  - type: Tag
+    tags:
+    - VimPilot
+    - DoorBumpOpener
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+  - type: Crawler
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent
+  - type: InfectOnMelee
+    disease: MonkeyPox
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - MonkeyPox
+  - type: SpamEmitSound
+    minInterval: 5
+    maxInterval: 30
+    sound:
+      collection: MobDiseaseMonkeySounds
+      params:
+        variation: 0.125
+  - type: SoundWhileAlive
+
+#звуки бибизяны
+- type: soundCollection
+  id: MobDiseaseMonkeySounds
+  files:
+  - /Audio/Effects/Diseases/monkey1.ogg
+  - /Audio/Effects/Diseases/monkey2.ogg
+  - /Audio/Animals/monkey_scream.ogg

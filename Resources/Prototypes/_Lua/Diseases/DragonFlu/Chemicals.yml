@@ -1,0 +1,37 @@
+#region Рептилокс
+- type: reagent
+  id: Reptilox
+  group: Medicine
+  name: Reptilox-name
+  desc: Reptilox-desc
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: Reptilox-flavor
+  color: "#613f29"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.01
+
+- type: flavor
+  id: Reptilox-flavor
+  flavorType: Complex
+  description: Reptilox-flavor
+
+- type: reaction
+  id: Reptilox
+  reactants:
+    Iodine:
+      amount: 1
+    Hexabione:
+      amount: 1
+    RobustHarvest:
+      amount: 1
+  products:
+    Reptilox: 3

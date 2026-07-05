@@ -1,0 +1,93 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'disease-analyzer-menu-title'}"
+                      MinSize="500 285">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Vertical" Margin="8 2 8 0">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'disease-analyzer-status-label'}" FontColorOverride="Silver"/>
+                <Label Name="StatusLabel" HorizontalExpand="True"/>
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc 'disease-analyzer-substance-code-label'}" FontColorOverride="Silver"/>
+                <Label Name="SubstanceCodeLabel" StyleClasses="monospace" HorizontalExpand="True"/>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal"
+                      Margin="8 8 8 0"
+                      HorizontalExpand="True"
+                      VerticalExpand="True">
+            <BoxContainer Name="LeftPanel"
+                          Orientation="Vertical"
+                          Margin="0 0 10 0"
+                          SetWidth="210">
+                <ProgressBar Name="ProgressBar"
+                             MinValue="0.0"
+                             MaxValue="1.0"
+                             Value="0.0"
+                             MinHeight="25"
+                             HorizontalExpand="True"/>
+                <BoxContainer Orientation="Vertical" Margin="0 10 0 0">
+                    <Button Name="AnalyzeButton"
+                            Text="{Loc 'disease-analyzer-analyze-button'}"
+                            HorizontalExpand="True"
+                            MinHeight="32"/>
+                    <Button Name="PrintReportButton"
+                            Text="{Loc 'disease-analyzer-print-report-button'}"
+                            HorizontalExpand="True"
+                            MinHeight="32"/>
+                    <Button Name="ContainButton"
+                            Text="{Loc 'disease-analyzer-contain-button'}"
+                            HorizontalExpand="True"
+                            MinHeight="32"/>
+                    <Button Name="ClearButton"
+                            Text="{Loc 'disease-analyzer-clear-button'}"
+                            HorizontalExpand="True"
+                            MinHeight="32"/>
+                </BoxContainer>
+            </BoxContainer>
+            <PanelContainer Name="Divider"
+                            MinWidth="2"
+                            VerticalExpand="True"
+                            Margin="0 0 0 3">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#2A2A2E"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+            <BoxContainer Name="RightPanel"
+                          Margin="8 0 0 0"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True">
+                <BoxContainer Name="DiseaseInfo" Orientation="Horizontal">
+                    <Label Name="DiseaseLabel"
+                           FontColorOverride="Silver"
+                           Text="{Loc 'disease-analyzer-diseases-label'}"/>
+                    <Label Name="DiseaseFoundLabel" Margin="5 0 0 0"/>
+                </BoxContainer>
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer Name="DiseaseBox"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical" Margin="0 5 0 0">
+            <PanelContainer StyleClasses="LowDivider"/>
+            <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
+                <Label Text="{Loc 'disease-analyzer-hint'}" StyleClasses="WindowFooterText"/>
+                <Label Text="{Loc 'disease-analyzer-version'}"
+                       StyleClasses="WindowFooterText"
+                       HorizontalAlignment="Right"
+                       HorizontalExpand="True"
+                       Margin="0 0 5 0"/>
+                <TextureRect StyleClasses="NTLogoDark"
+                             Stretch="KeepAspectCentered"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Right"
+                             SetSize="19 19"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

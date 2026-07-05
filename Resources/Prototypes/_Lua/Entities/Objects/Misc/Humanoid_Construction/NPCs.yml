@@ -1,0 +1,476 @@
+#region общая база
+- type: entity
+  parent: [ BaseMobHuman, MobPassiveRegen ]
+  id: MobBodyguardBase
+  abstract: true
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: HTN
+    rootTask:
+       task: BodyguardCompound
+    sleepPlayerCheckRangeOverride: 150
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+    follow: true
+    spawnFriendsSearchRadius: 3
+  - type: AutoWakeUp
+
+- type: htnCompound
+  id: BodyguardCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: RangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+#region агрессивный
+- type: entity
+  parent: [ BaseMobHuman, MobPassiveRegen ]
+  id: MobBodyguardAgressive
+  name: телохранитель агрессивный
+  description: Агрессивный телохранитель, спора которого не ограничена никакими модулями. Вы сами это создали, вам это и убивать...
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: TTS
+    enabled: true
+    voice: Thrud
+  - type: HTN
+    rootTask:
+       task: BodyguardCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Vocalizer
+    minVocalizeInterval: 30
+    maxVocalizeInterval: 120
+  - type: DatasetVocalizer
+    dataset: spacepunkhumanoidchatter
+  - type: AutoWakeUp
+#монтаж и демонтаж
+  - type: Construction
+    graph: MobBodyguardAgressiveGraph
+    node: MobBodyguardAgressive
+  - type: Butcherable
+    spawned:
+    - id: MobBodyguardAgressiveGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobBodyguardAgressiveGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MobBodyguardAgressiveGib
+  id: MobBodyguardAgressiveGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: HumanoidEndoskeleton
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+
+#region нейтр. Агр.
+- type: entity
+  parent: MobBodyguardBase
+  id: MobBodyguardNeutralAgressive
+  name: телохранитель нейтрально-агрессивный
+  description: Нейтрально-агрессивный телохранитель, спора которого ограничена пустым модулем контроля сознания. Атакует всех кроме своих владельцев, которых запоминает в момент создания.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: AutoWakeUp
+#монтаж и демонтаж
+  - type: Construction
+    graph: MobBodyguardNeutralAgressiveGraph
+    node: MobBodyguardNeutralAgressive
+  - type: Butcherable
+    spawned:
+    - id: MobBodyguardNeutralAgressiveGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobBodyguardNeutralAgressiveGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MobBodyguardNeutralAgressiveGib
+  id: MobBodyguardNeutralAgressiveGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: HumanoidEndoskeletonNeutralAgressive
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+
+#region нейтр
+- type: entity
+  parent: MobBodyguardBase
+  id: MobBodyguardNeutral
+  name: телохранитель нейтральный
+  description: Нейтральный телохранитель, спора которого ограничена нейтральным модулем контроля сознания. Атакует только тех кто нанёс ему вред, кроме своих создателей.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: AutoWakeUp
+#монтаж и демонтаж
+  - type: Construction
+    graph: MobBodyguardNeutralGraph
+    node: MobBodyguardNeutral
+  - type: Butcherable
+    spawned:
+    - id: MobBodyguardNeutralGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobBodyguardNeutralGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MobBodyguardNeutralGib
+  id: MobBodyguardNeutralGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: HumanoidEndoskeletonNeutral
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+
+#region НТ
+- type: entity
+  parent: MobBodyguardBase
+  id: MobBodyguardNT
+  name: телохранитель Nanotrasen
+  description: Телохранитель, спора которого ограничена модулем контроля сознания Nanotrasen. Атакует атакует тех кто не состоит в Nanotrasen, но не трогает своих создателей, кем бы они ни были.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: AutoWakeUp
+#монтаж и демонтаж
+  - type: Construction
+    graph: MobBodyguardNTGraph
+    node: MobBodyguardNT
+  - type: Butcherable
+    spawned:
+    - id: MobBodyguardNTGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobBodyguardNTGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MobBodyguardNTGib
+  id: MobBodyguardNTGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: HumanoidEndoskeletonNT
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+
+#region Кодекс Бури
+- type: entity
+  parent: MobBodyguardBase
+  id: MobBodyguardStormCreed
+  name: телохранитель Кодекса Бури
+  description: Телохранитель, спора которого ограничена модулем контроля сознания Кодекса Бури. Атакует атакует тех кто не состоит в Кодексе Бури, но не трогает своих создателей, кем бы они ни были.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NFPirate
+  - type: AutoWakeUp
+#монтаж и демонтаж
+  - type: Construction
+    graph: MobBodyguardStormCreedGraph
+    node: MobBodyguardStormCreed
+  - type: Butcherable
+    spawned:
+    - id: MobBodyguardStormCreedGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobBodyguardStormCreedGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MobBodyguardStormCreedGib
+  id: MobBodyguardStormCreedGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: HumanoidEndoskeletonStormCreed
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+
+#region Синдикат
+- type: entity
+  parent: MobBodyguardBase
+  id: MobBodyguardSyndie
+  name: телохранитель Синдиката
+  description: Телохранитель, спора которого ограничена модулем контроля сознания Синдиката. Атакует атакует тех кто не состоит в Синдикате, но не трогает своих создателей, кем бы они ни были.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - LuaNordFoll
+  - type: AutoWakeUp
+#монтаж и демонтаж
+  - type: Construction
+    graph: MobBodyguardSyndieGraph
+    node: MobBodyguardSyndie
+  - type: Butcherable
+    spawned:
+    - id: MobBodyguardSyndieGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobBodyguardSyndieGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MobBodyguardSyndieGib
+  id: MobBodyguardSyndieGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: HumanoidEndoskeletonSyndie
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1
+      - !type:EntSelector
+        id: CrimsonSporeFleshWaken1

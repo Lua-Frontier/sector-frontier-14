@@ -1,0 +1,45 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: universal sample injector
+  id: DiseaseInjector
+  description: It contains a single dose of an advanced compound for the painless administration of vaccines. Or for the painless administration of diseases.
+  parent: BaseItem
+  components:
+  - type: DiseaseInjector
+  - type: ContainerContainer
+    containers:
+      sample_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      sample_slot:
+        name: disease-injector-sample-slot
+        whitelist:
+          components:
+          - DiseaseContainer
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: injector-inhand-left
+      right:
+      - state: injector-inhand-right
+    size: Small
+    storedRotation: -90
+  - type: Sprite
+    sprite: _Lua/Objects/Specific/Medical/disease_injector.rsi
+    layers:
+    - state: injector
+    - state: compound
+      visible: false
+  - type: ItemMapper
+    mapLayers:
+      compound:
+        whitelist:
+          components:
+          - DiseaseContainer
+    sprite: _Lua/Objects/Specific/Medical/disease_injector.rsi
+  - type: Appearance
+  - type: StaticPrice
+    price: 250

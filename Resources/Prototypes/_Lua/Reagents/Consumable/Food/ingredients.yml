@@ -1,0 +1,16 @@
+- type: reagent
+  id: GreenTeaPowder
+  name: reagent-name-green-tea-powder
+  desc: reagent-desc-green-tea-powder
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: tea
+  color: "#3A5C11"
+  group: Foods
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateThirst
+        factor: -0.2
+      - !type:AdjustReagent
+        reagent: Nutriment
+        amount: 0.1

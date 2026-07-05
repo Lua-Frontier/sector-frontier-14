@@ -1,0 +1,16 @@
+- type: latheRecipe
+  id: IronTray
+  result: ADTIronTray
+  parent: BaseServiceItemsRecipe
+  completetime: 2
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: BackpackFreezer
+  result: ClothingBackpackFreezer
+  parent: BaseServiceItemsRecipe
+  completetime: 2
+  materials:
+    Steel: 100
+    Cloth: 1000

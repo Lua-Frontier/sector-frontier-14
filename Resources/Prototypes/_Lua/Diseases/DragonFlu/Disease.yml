@@ -1,0 +1,615 @@
+#region драконовирус
+- type: disease
+  id: DragonFlu
+  name: DragonFlu-name
+  cureResist: 1
+  infectious: true
+  stages:
+  - 0
+  - 30
+  - 300
+  - 900
+  effects:
+  # сообщения о заражении
+  - !type:DiseasePopUp
+    probability: 0.015
+    message: Вы чувствуете себя нехорошо...
+    visualType: Medium
+    stages:
+    - 0
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: Ваше сознание туманится...
+    visualType: Medium
+    stages:
+    - 1
+  - !type:DiseasePopUp
+    probability: 0.03
+    message: Вы ощущаете тягу к космосу...
+    visualType: Medium
+    stages:
+    - 1
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вам хочется рычать...
+    visualType: Medium
+    stages:
+    - 2
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вы хотите плюнуть в кого-нибудь огнём...
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вы чувствуете как на вашем теле формируется грубая чешуя...
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  - !type:DiseasePopUp
+    probability: 0.05
+    message: Вы мечтаете о космческих полётах...
+    visualType: Medium
+    stages:
+    - 2
+    - 3
+  # Физические симптомы
+  - !type:DiseaseSnough
+    probability: 0.03
+    emote: Cough
+    stages:
+    - 0
+  - !type:DiseaseSnough
+    probability: 0.03
+    emote: Scream
+    stages:
+    - 0
+  - !type:DiseaseAdjustReagent
+    probability: 0.020
+    reagent:
+      ReagentId: Ipecac
+    amount: 5
+    stages:
+    - 1
+  - !type:DiseaseAdjustReagent
+    probability: 0.015
+    reagent:
+      ReagentId: Razorium
+    amount: 1
+    stages:
+    - 1
+  - !type:DiseaseAdjustReagent
+    probability: 0.025
+    reagent:
+      ReagentId: Licoxide
+    amount: 0.5
+    stages:
+    - 2
+    - 3
+  - !type:DiseaseAdjustReagent
+    probability: 0.015
+    reagent:
+      ReagentId: Razorium
+    amount: 1
+    stages:
+    - 2
+    - 3
+  # дефекты речи от болезни
+  - !type:DiseaseAdjustReagent
+    probability: 0.05
+    reagent:
+      ReagentId: Ethanol
+    amount: 1
+    stages:
+    - 2
+    - 3
+  - !type:DiseaseAdjustReagent
+    probability: 0.05
+    reagent:
+      ReagentId: SpaceDrugs
+    amount: 2
+    stages:
+    - 2
+    - 3
+  # урон от генетических повреждений от болезни
+  - !type:DiseaseHealthChange
+    probability: 0.025
+    damage:
+      types:
+        Genetic: 0.5
+    stages:
+    - 2
+    - 3
+  # полиморфа на крайней стадии заражения
+  - !type:DiseasePolymorph
+    probability: 0.1
+    polymorphId: MobDiseaseDragonPolymorph
+    polymorphMessage: Теперь вы становитесь драконом...
+    polymorphSound:
+      path: /Audio/Effects/demon_consume.ogg
+    stages:
+    - 3
+  - !type:DiseasePolymorph
+    probability: 0.1
+    polymorphId: MobDiseaseDragonMiniPolymorph
+    polymorphMessage: Теперь вы становитесь мини-драконом...
+    polymorphSound:
+      path: /Audio/Effects/demon_consume.ogg
+    stages:
+    - 3
+  - !type:DiseasePolymorph
+    probability: 0.1
+    polymorphId: MobDiseaseDragonSharkPolymorph
+    polymorphMessage: Теперь вы становитесь карпоакулой...
+    polymorphSound:
+      path: /Audio/Effects/demon_consume.ogg
+    stages:
+    - 3
+  # лечение
+  cures:
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Antibiotic
+    min: 3
+    cureChance: 0.1
+    stages:
+    - 0
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Reptilox
+    min: 2
+    cureChance: 0.5
+    stages:
+    - 1
+    - 2
+    - 3
+
+- type: polymorph
+  id: MobDiseaseDragonPolymorph
+  configuration:
+    entity: MobDiseaseDragon
+    forced: true
+    inventory: None
+    transferName: true
+    revertOnCrit: true
+    revertOnDeath: true
+    exitPolymorphSound: /Audio/Effects/demon_consume.ogg
+
+- type: polymorph
+  id: MobDiseaseDragonMiniPolymorph
+  configuration:
+    entity: MobDiseaseDragonMini
+    forced: true
+    inventory: None
+    transferName: true
+    revertOnCrit: true
+    revertOnDeath: true
+    exitPolymorphSound: /Audio/Effects/demon_consume.ogg
+
+- type: polymorph
+  id: MobDiseaseDragonSharkPolymorph
+  configuration:
+    entity: MobDiseaseDragonShark
+    forced: true
+    inventory: None
+    transferName: true
+    revertOnCrit: true
+    revertOnDeath: true
+    exitPolymorphSound: /Audio/Effects/demon_consume.ogg
+
+
+#region морфы
+
+
+
+
+
+#region большой
+- type: entity
+  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobPassiveRegen ]
+  id: MobDiseaseDragon
+  suffix: "NoAI, DiseaseMorph"
+  name: космический дракон
+  description: Летающий левиафан, способный отгрызть кусок от вашего тела. В его очертаниях угадывается что он чем-то похож на превращённого в дракона гуманоида.
+  components:
+  - type: Bloodstream
+    bloodMaxVolume: 650
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Speech
+    speechVerb: LargeMob
+  - type: CombatMode
+  - type: MobMover
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseRunningSpeed: 5
+    baseWeightlessModifier: 1.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+  - type: Sprite
+    sprite: Mobs/Aliens/Carps/dragon.rsi
+    noRot: true
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded
+      shader: unshaded
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobState
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Critical
+      500: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      250: 0.7
+      400: 0.5
+  # disable taking damage from fire, since its a fire breathing dragon
+  - type: Flammable
+    damage:
+      types: {}
+  - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
+    allowed:
+    - Stutter
+    - Electrocution
+    - TemporaryBlindness
+    - Pacified
+    - RadiationProtection
+    - Adrenaline
+  - type: InteractionPopup
+    successChance: 0.25 # It's no goose, but you better smell like carp.
+    interactSuccessString: petting-success-dragon
+    interactFailureString: petting-failure-dragon
+    interactFailureSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundPerceivedByOthers: false # A 75% chance for a loud roar would get old fast.
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Piercing: 15
+        Slash: 15
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - StunImmune
+    - CanPilot
+  - type: Puller
+    needsHands: false
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 2.5 # fast because dragon strong
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: NightVision # Goobstation - Nigthvision
+    color: "#808080"
+    activateSound: null
+    deactivateSound: null
+  - type: ActionGun
+    action: ActionDragonsBreath
+    gunProto: DragonsBreathGun
+  - type: Body
+    prototype: UniversalBodyMob2Handed
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: Hands
+  - type: RadarBlip
+    radarColor: "#e26601"
+    scale: 1.5
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: false
+    maxDistance: 4096
+  - type: InfectOnMelee
+    disease: DragonFlu
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - DragonFlu
+  - type: GoblinAccent
+  - type: LizardAccent
+  - type: MothAccent
+  - type: RoarAccent
+  - type: TTS
+    enabled: true
+    voice: Alduin
+
+#region мелкий
+- type: entity
+  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobCombat, MobPassiveRegen ]
+  id: MobDiseaseDragonMini
+  name: детёныш космического дракона
+  description: Летающее милое чудо, всё ещё способное отгрызть кусок от вашего тела. В его очертаниях угадывается что он чем-то похож на превращённого в дракона гуманоида.
+  suffix: "NoAI, DiseaseMorph"
+  components:
+  - type: Body
+    prototype: Animal
+  - type: Climbing
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: Perishable
+  - type: Hunger
+    thresholds:
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.00925925925926 # Guy needs to eat and drink
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - ForcedSleep
+      - TemporaryBlindness
+      - Pacified
+      - StaminaModifier
+      - Drowsiness
+      - Adrenaline
+  - type: Bloodstream
+    bloodMaxVolume: 650
+  - type: FloatingVisuals
+  - type: NpcFactionMember
+    factions:
+    - PetsNT
+  - type: Speech
+    speechVerb: SmallMob
+  - type: CombatMode
+  - type: MobMover
+  - type: InputMover
+  - type: Emoting
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseRunningSpeed: 5
+    baseWeightlessModifier: 1.5
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+  - type: Sprite
+    sprite: _NF/Mobs/Pets/baby_dragon.rsi
+    noRot: true
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded
+      shader: unshaded
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive-unshaded
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+        BaseUnshaded: dead-unshaded
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: InteractionPopup
+    successChance: 0.85 # It's no goose, but you better smell like carp.
+    interactSuccessString: petting-success-dragon
+    interactFailureString: petting-failure-dragon
+    interactFailureSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundPerceivedByOthers: false # A 75% chance for a loud roar would get old fast.
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Piercing: 5
+        Slash: 5
+  - type: Puller
+    needsHands: false
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - CanPilot
+  - type: ActionGun
+    action: ActionDragonsBreathBaby
+    gunProto: BabyDragonsSparkGun
+  - type: RadarBlip
+    radarColor: "#e26601"
+    scale: 1
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: false
+    maxDistance: 4096
+  - type: InfectOnMelee
+    disease: DragonFlu
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - DragonFlu
+  - type: GoblinAccent
+  - type: LizardAccent
+  - type: MothAccent
+  - type: RoarAccent
+  - type: TTS
+    enabled: true
+    voice: Elder
+
+#region акула
+- type: entity
+  name: карпоакула
+  id: MobDiseaseDragonShark
+  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobPassiveRegen ]
+  description: Странного вида карпоакула. Кажется её взгляд выглядит осмысленным.
+  suffix: "NoAI, DiseaseMorph"
+  components:
+  - type: NightVision # Goobstation - Nigthvision
+    color: "#808080"
+    activateSound: null
+    deactivateSound: null
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Sprite
+    sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
+  - type: CombatMode
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35 # Frontier 0.40<0.35 Lowered the value, to allow them to fit through the airlocks
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead # Might seem random, but this brings up the hits to kill with a crusher mark to 3
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseRunningSpeed: 3.5
+  - type: Stamina
+    critThreshold: 150
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: mouth
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_mouth
+  - type: Body
+    prototype: Bloodsucker
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: MeleeWeapon
+    damage:
+      types:
+       Slash: 7
+       Bloodloss: 7
+  - type: Damageable #Lua
+    damageModifierSet: MobHostileDamageModifierSetCarpMeleeMajor
+  - type: StaminaDamageOnCollide #Lua
+    damage: 5
+  - type: TypingIndicator
+    proto: alien
+  - type: Tag
+    tags:
+      - DoorBumpOpener
+      - CannotSuicide
+      - CanPilot
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: LargeMob
+  - type: InteractionPopup
+    interactSuccessString: petting-success-carp
+    interactFailureString: petting-failure-carp
+    interactFailureSound:
+      path: /Audio/Effects/bite.ogg
+  - type: Carriable # DeltaV
+  - type: RadarBlip
+    radarColor: "#e26601"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: false
+    maxDistance: 4096
+  - type: InfectOnMelee
+    disease: DragonFlu
+    infectChance: 1
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - DragonFlu
+  - type: GoblinAccent
+  - type: LizardAccent
+  - type: MothAccent
+  - type: RoarAccent
+  - type: TTS
+    enabled: true
+    voice: Elder

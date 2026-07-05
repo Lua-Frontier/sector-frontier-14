@@ -1,7 +1,7 @@
 - type: entity
-  id: DiseaseDiagnoser
+  id: OldDiseaseDiagnoser # Lua: DiseaseDiagnoser < OldDiseaseDiagnoser
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
-  name: Disease Diagnoser Delta Extreme
+  name: old Disease Diagnoser Delta Extreme # Lua: Added Old
   description: A machine that analyzes disease samples.
   placement:
     mode: SnapgridCenter

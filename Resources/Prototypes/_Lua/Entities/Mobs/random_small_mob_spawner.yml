@@ -1,0 +1,74 @@
+#база
+- type: entity
+  id: BaseTrashFauna600
+  abstract: true
+  components:
+  - type: TimedDespawn
+    lifetime: 600
+  - type: EmitSoundOnSpawn
+    sound: /Audio/Effects/trashbag1.ogg
+
+#таракан
+- type: entity
+  name: таракан
+  parent: [ MobCockroach, BaseTrashFauna600 ]
+  id: MobCockroachTimed
+  description: Эта станция просто кишит насекомыми
+
+#таракамоль
+- type: entity
+  name: таракамоль
+  parent: [ MobMothroach, BaseTrashFauna600 ]
+  id: MobMothroachTimed
+  description: Очаровательный результат многочисленных попыток генетического смешения ниан с тараканами.
+
+#мышь
+- type: entity
+  name: мышь
+  parent: [ MobMouse, BaseTrashFauna600 ]
+  id: MobMouseTimed
+  description: Пии!
+
+#мышь1
+- type: entity
+  name: мышь
+  parent: [ MobMouse1, BaseTrashFauna600 ]
+  id: MobMouseTimed1
+  description: Пии!
+
+#мышь2
+- type: entity
+  name: мышь
+  parent: [ MobMouse2, BaseTrashFauna600 ]
+  id: MobMouseTimed2
+  description: Пии!
+
+#раковая мышь
+- type: entity
+  name: раковая мышь
+  parent: [ MobMouseCancer, BaseTrashFauna600 ]
+  id: MobMouseCancerTimed
+  description: Токсичная. Скуик!
+
+
+- type: entity
+  parent: MarkerBase
+  id: RandomSmallMobSpawn
+  name: RandomSmallMobSpawn
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - MobCockroachTimed
+    - MobMothroachTimed
+    - MobMouseTimed
+    - MobMouseTimed1
+    - MobMouseTimed2
+    - MobMouseCancerTimed
+    - RandomDiseaseRatsSpawn
+    chance: 1
+    offset: 0.0

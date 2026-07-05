@@ -1,0 +1,69 @@
+#region пиявка
+- type: entity
+  parent: [ BiohazardousMobBase, MobPassiveRegen ]
+  id: BiohazardousMiniUnArmored
+  name: пиявка
+  description: Мерзкий сгусток красных соплей и споры, выглядящий так, словно на него несколько раз наступили. Непременно попытается отгрызть вашу пятку как только вы окажетесь у него в поле зрения.
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: mini_unarmored
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mini_unarmored
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CrimsonSporeFlesh1:
+            min: 2
+            max: 7
+  - type: HTN
+    rootTask:
+       task: BiohazardousHTNMeleeCompound
+    blackboard:
+      VisionRadius: !type:Single
+        15
+      AggroVisionRadius: !type:Single
+        15
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Bloodloss: 10
+        Structural: 20
+  - type: StaticPrice
+    price: 2000

@@ -54,9 +54,6 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
-  - type: MaterialStorageMagnetPickup # Frontier
-    range: 0.30 # Frontier
-    magnetEnabled: false
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -168,6 +165,9 @@
     - blueprint
   - type: PirateBountyItem # Frontier
     id: Autolathe # Frontier
+  - type: MaterialStorageMagnetPickup # Lua
+    range: 0.30 # Frontier
+    magnetEnabled: false
 
 - type: entity
   id: AutolatheHyperConvection
@@ -262,6 +262,9 @@
       machine_parts: !type:Container
       blueprint: !type:Container
   # End Frontier: accept blueprints
+  - type: MaterialStorageMagnetPickup # Lua
+    range: 0.30 # Frontier
+    magnetEnabled: false
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -773,6 +776,9 @@
     - type: PlaceableSurface # DeltaV: Allow ore bags to dump into it directly
       isPlaceable: false # but not place on it if you just click it with a random item
     - type: OreSiloClient # Frontier
+    - type: MaterialStorageMagnetPickup # Lua
+      range: 0.30 # Frontier
+      magnetEnabled: false
 
 - type: entity
   parent: OreProcessor

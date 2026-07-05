@@ -1,0 +1,121 @@
+#region Антибиотик 2
+- type: reagent
+  id: Hexabione
+  group: Medicine
+  name: Hexabione-name
+  desc: Hexabione-desc
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: Hexabione-flavor
+  color: "#fdff69"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.05
+  pricePerUnit: 2
+
+- type: flavor
+  id: Hexabione-flavor
+  flavorType: Complex
+  description: Hexabione-flavor
+
+- type: reaction
+  id: Hexabione
+  reactants:
+    Antibiotic:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+    Tricordrazine:
+      amount: 3
+  products:
+    Hexabione: 2
+
+#region фунгицид
+- type: reagent
+  id: CrimsonFungicide
+  group: Medicine
+  name: CrimsonFungicide-name
+  desc: CrimsonFungicide-desc
+  physicalDesc: reagent-physical-desc-fibrous
+  flavor: CrimsonFungicide-flavor
+  color: "#ff6969"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.02
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.02
+  pricePerUnit: 150
+
+- type: flavor
+  id: CrimsonFungicide-flavor
+  flavorType: Complex
+  description: CrimsonFungicide-flavor
+
+- type: reaction
+  id: CrimsonFungicide
+  reactants:
+    Hexabione:
+      amount: 1
+    Blood:
+      amount: 1
+    Vinegar:
+      amount: 1
+    Phalanximine:
+      amount: 1
+  products:
+    CrimsonFungicide: 4
+
+#region рецепт антибиотика
+- type: reaction
+  id: Antibiotic
+  reactants:
+    Cornoil:
+      amount: 1
+    Enzyme:
+      amount: 1
+    Water:
+      amount: 1
+    Tricordrazine:
+      amount: 1
+  products:
+    Antibiotic: 4
+
+#region споровая кровь
+- type: reagent
+  id: CrimzonSporeBlood
+  group: Biological
+  name: CrimzonSporeBlood-name
+  desc: CrimzonSporeBlood-desc
+  physicalDesc: reagent-physical-desc-necrotic
+  flavor: CrimzonSporeBlood-flavor
+  color: "#5a001e"
+  recognizable: true
+  boilingPoint: 147.0
+  meltingPoint: -11.0
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.1
+  pricePerUnit: 100
+
+- type: flavor
+  id: CrimzonSporeBlood-flavor
+  flavorType: Complex
+  description: CrimzonSporeBlood-flavor

@@ -127,3 +127,52 @@
         - type: ForceAnchor
         paths:
         - /Maps/_Lua/Bluespace/syndieasteroid.yml
+
+- type: entity
+  id: BluespaceBarkhan-8Tranzit
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-BluespaceBarkhan-8Tranzit-start-announcement
+    startAudio:
+      path: /Audio/_Lua/Announcements/Barkhan-8Arrival.ogg
+    warningAnnouncement: station-event-bluespace-BluespaceBarkhan-8Tranzit-warning-announcement
+    endAnnouncement: station-event-bluespace-BluespaceBarkhan-8Tranzit-end-announcement
+    earliestStart: 100
+    minimumPlayers: 10
+    weight: 3
+    duration: 3800
+    maxDuration: 4000
+    reoccurrenceDelay: 240 # once per 4 hours
+    requiredJobs:
+      Paramedic: 1
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-Barkhan-8
+        minimumDistance: 1000
+        maximumDistance: 2500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: Company
+          companyName: Nanotrasen
+        - type: VesselMusic
+          ambientMusicPrototype: Barkhan-8Music
+        - type: VesselInfo
+          description: "Здесь наука стоит выше этики."
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: IFF
+          color: "#eb87ff"
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: ForceAnchor
+        paths:
+        - /Maps/_Lua/Bluespace/Barkhan-8.yml
+

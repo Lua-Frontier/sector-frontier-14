@@ -1,0 +1,114 @@
+#region споровая плоть
+- type: entity
+  parent: FoodInjectableBase
+  id: CrimsonSporeFlesh
+  name: Споровая плоть
+  description: Кусок мяса с подозрительной способностью к ассимиляции с другими похожими кусками мяса.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Sprite
+    sprite: _Lua/Diseases/Objects/Misc/CrimsonSporeFlesh.rsi
+    state: plain
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: CrimzonSporeBlood
+          Quantity: 5
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+        - ReagentId: Fat
+          Quantity: 5
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: plain-inhand-left
+      right:
+      - state: plain-inhand-right
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 1
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaticPrice
+    price: 100
+  - type: Material
+  - type: Stack
+    stackType: CrimsonSporeFleshStack
+
+- type: entity
+  parent: CrimsonSporeFlesh
+  id: CrimsonSporeFlesh1
+  description: Кусок мяса с подозрительной способностью к ассимиляции с другими похожими кусками мяса.
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: CrimsonSporeFleshStack
+    count: 1
+
+- type: stack
+  id: CrimsonSporeFleshStack
+  name: CrimsonSporeFleshStack-name
+  icon: { sprite: _Lua/Diseases/Objects/Misc/CrimsonSporeFlesh.rsi, state: plain }
+  spawn: CrimsonSporeFlesh
+  maxCount: 30
+
+
+#region пробуждённая споровая плоть
+- type: entity
+  parent: CrimsonSporeFlesh
+  id: CrimsonSporeFleshWaken
+  name: Пробуждённая споровая плоть
+  description: Кусок мяса с пугающей способностью к ассимиляции с другими похожими кусками мяса.
+  components:
+  - type: Sprite
+    sprite: _Lua/Diseases/Objects/Misc/CrimsonSporeFlesh.rsi
+    state: plain
+    color: "#9b2525"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: CrimzonSporeBlood
+          Quantity: 15
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 10
+        - ReagentId: Fat
+          Quantity: 10
+  - type: StaticPrice
+    price: 3000
+  - type: Stack
+    stackType: CrimsonSporeFleshStackWaken
+
+- type: entity
+  parent: CrimsonSporeFleshWaken
+  id: CrimsonSporeFleshWaken1
+  suffix: Single
+  description: Кусок мяса с пугающей способностью к ассимиляции с другими похожими кусками мяса.
+  components:
+  - type: Stack
+    stackType: CrimsonSporeFleshStackWaken
+    count: 1
+  - type: Construction
+    graph: CrimsonSporeFleshWaken1Graph
+    node: CrimsonSporeFleshWaken1
+
+- type: stack
+  id: CrimsonSporeFleshStackWaken
+  name: CrimsonSporeFleshStackWaken-name
+  icon: { sprite: _Lua/Diseases/Objects/Misc/CrimsonSporeFlesh.rsi, state: plain, color: "#9b2525" }
+  spawn: CrimsonSporeFleshWaken
+  maxCount: 30

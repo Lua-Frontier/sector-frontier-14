@@ -257,6 +257,13 @@
     - state: synd_label
   - type: StaticPrice
     price: 500 # 1000 for 2
+#Lua-changes: added Tag
+  - type: Tag
+    tags: 
+    - EncryptionKeySyndie
+
+- type: Tag
+  id: EncryptionKeySyndie
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny, BaseC2Contraband] # Frontier: added RecyclableItemDeviceTiny, removed BaseSiliconScienceContraband # Lua-changes: added BaseC2Contraband
@@ -305,3 +312,10 @@
       layers:
         - state: crypt_rusted
         - state: pirate_label
+#Lua-changes: added Tag
+    - type: Tag
+      tags: 
+      - EncryptionKeyFreelance
+
+- type: Tag
+  id: EncryptionKeyFreelance

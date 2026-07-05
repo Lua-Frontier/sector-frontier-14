@@ -1,0 +1,746 @@
+#region базы
+
+- type: htnCompound
+  id: AINOCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: InnateRangedCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: entity
+  id: AINOMovementSpeedModifierRanged
+  abstract: true
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 8
+    baseSprintSpeed : 8
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSoldier
+      params:
+        volume: -3
+
+- type: entity
+  id: NOBaseLoadout
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: Clothing/Head/Hardsuits/syndicate.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#ff0000"
+      shader: unshaded
+  - type: PointLight
+    color: "#00ff00"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+#костыль для того что бы их было видно в термалах
+- type: body
+  id: AINOBody
+  name: AINOBody
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - legs
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+#region база мобов
+- type: entity
+  abstract: true
+  parent:
+  - AIClonesBase
+  - AINOMovementSpeedModifierRanged
+  id: AINOMobBase
+  components:
+  - type: Body
+    prototype: AINOBody
+    requiredLegs: 1
+    thermalVisibility: true
+  - type: NpcFactionMember
+    factions:
+    - LuaNordFoll
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      tags:
+      - AINOBeacon
+    follow: true
+    spawnFriendsSearchRadius: 5
+
+
+#region болванки
+
+
+
+
+
+#region болванка с шотганом
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiNOShotgunBase
+  - MobPassiveRegen
+  id: AiNOShotgun
+  name: клон бойца ЯО с дробовиком
+  description: Пушечное мясо, призванное защищать основные силы. Выглядит так, словно накачен стимуляторами. Осторожно, может быть заряжен кровавой культурой и желанием убивать врагов Синдиката.
+  components:
+  - type: HTN
+    rootTask:
+       task: AINOCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AIReinforcementShotgun
+  - type: TTS
+    voice: Thrud
+  # - type: NPCUseActionOnTarget
+  #   actionId: ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
+  # - type: ActionGrant
+  #   actions:
+  #   - ActionGravityJump #не может быть пофикшено, т.к. используется им на себе для прыжков в рандомные стороны с криками при угрозе, когда-нибудь сделаю им другой компач - 25Hydra08
+  # - type: JumpAbility
+  #   jumpDistance: 7
+  #   jumpThrowSpeed: 15
+  #   jumpSound:
+  #     collection: MaleScreams
+  #     params:
+  #       variation: 0.125
+  - type: DatasetVocalizer
+    dataset: AINOShotgunChatter
+  - type: Jittering
+    # Amplitude: 10 #fix
+    # Frequency: 4 #fix
+
+
+- type: startingGear
+  id: NOLoadoutShotgun
+  equipment:
+    gloves: ClothingHandsGlovesColorNOShotgun
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+- type: entity
+  id: AiNOShotgunBase
+  parent:
+  - NOBaseLoadout
+  - MobNOBreacherShotgun
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NOLoadoutShotgun
+
+#перчи шотганнера
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorNOShotgun
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
+        state: wielded-inhand-right
+
+#база шотганера
+- type: entity
+  name: NO breacher
+  parent:
+  - AINOMobBase
+  id: MobNOBreacherShotgun
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      state: equipped-INNERCLOTHING
+      color: "#474747"
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gas.rsi
+      state: equipped-MASK
+    - sprite: Clothing/Head/Helmets/security.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#b4b4b4"
+      shader: unshaded
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgun23x75mmIncendiary #Lua 4 gauge
+    capacity: 6
+    count: 6
+  - type: Gun
+    showExamineText: false
+    fireRate: 2
+    minAngle: 5
+    maxAngle: 10
+    angleIncrease: 2
+    angleDecay: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
+
+
+#region болванка с импульсным лазером
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiNOLaserBase
+  - MobPassiveRegen
+  id: AiNOLaser
+  name: клон бойца ЯО с лазером
+  description: Пушечное мясо, призванное защищать основные силы. Через его визор видно прицельные приспособления встроенные прямо в череп. Осторожно, может быть заряжен кровавой культурой и желанием убивать врагов Синдиката.
+  components:
+  - type: Gun
+    minAngle: 1.5
+    maxAngle: 7.5
+    angleIncrease: 0.5
+    angleDecay: 1.7
+    fireRate: 1
+    examineCaliber: gun-examine-hitscan-high-p
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedSpecialLaser
+    fireCost: 80
+  - type: Battery
+    maxCharge: 3600
+    startingCharge: 3600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: HTN
+    rootTask:
+       task: AINOCompound
+    blackboard:
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AIReinforcementLaser
+  - type: TTS
+    voice: Sniper
+  - type: DatasetVocalizer
+    dataset: AINOLaserChatter
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorNOLaser
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+        state: wielded-inhand-right
+
+- type: startingGear
+  id: NOLoadoutLaser
+  equipment:
+    gloves: ClothingHandsGlovesColorNOLaser
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+- type: entity
+  id: AiNOLaserBase
+  parent:
+  - AINOMovementSpeedModifierRanged
+  - NOBaseLoadout
+  - AINOMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NOLoadoutLaser
+
+#region болванка медик
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiNOMedicBase
+  - MobPassiveRegen
+  id: AiNOMedic
+  name: клон медика ЯО
+  description: Пушечное мясо, призванное защищать и лечить основные силы. Осторожно, может быть заряжен кровавой культурой и желанием вылечить паксом врагов Синдиката.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: DartNOPaxChloralDart
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    minAngle: 5
+    maxAngle: 20
+    angleIncrease: 2
+    angleDecay: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+  - type: HTN
+    rootTask:
+       task: AINOCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AIReinforcementMedic
+  - type: TTS
+    voice: Medic
+  - type: ActionGun
+    action: AINOMedibotSpawnAction
+    gunProto: AINOMedicBotThrow
+  - type: NPCUseActionOnTarget
+    actionId: AINOMedibotSpawnAction
+  - type: DatasetVocalizer
+    dataset: AINOMedicChatter
+
+#шприц
+- type: entity
+  parent: BaseCrossbowBolt
+  id: DartNOPaxChloralDart
+  name: Дротик ЯО
+  description: Вы чувствуете подавленную ненависть к многоглавому гидроподобному существу, но можете только терпеть.
+  components:
+  - type: Sprite
+    layers:
+    - state: tail
+      color: "#ff3c00"
+    - state: rod
+      color: "#646464"
+    - state: tip
+      color: "#e6e6e6"
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+    deleteOnCollide: false
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 10
+        reagents:
+        - ReagentId: Pax
+          Quantity: 5
+        - ReagentId: ChloralHydrate
+          Quantity: 5
+  - type: RefillableSolution
+    solution: injector
+  - type: InjectableSolution
+    solution: injector
+  - type: SolutionInjectOnEmbed
+    transferAmount: 10
+    solution: injector
+  - type: SolutionTransfer
+    maxTransferAmount: 10
+  - type: Injector
+    # injectOnly: true #fix
+    ignoreMobs: false
+    # minTransferAmount: 10 #fix
+    # maxTransferAmount: 10 #fix
+    # transferAmount: 10 #fix
+    # toggleState: inject #fix
+  - type: TimedDespawn
+    lifetime: 10
+
+
+#костыль для надевания лоадаута
+- type: entity
+  id: AiNOMedicBase
+  parent:
+  - AINOMovementSpeedModifierRanged
+  - NOBaseLoadoutMedic
+  - AINOMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NOLoadoutMedic
+
+#сам лоадаут медика
+- type: startingGear
+  id: NOLoadoutMedic
+  equipment:
+    gloves: ClothingHandsGlovesColorNOMedic
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+#перчатки медика
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorNOMedic
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbow.rsi
+        state: wielded-inhand-right
+
+#лоадаут скафа и всей хуйни
+- type: entity
+  id: NOBaseLoadoutMedic
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#ff0909"
+      shader: unshaded
+  - type: PointLight
+    color: "#00ff0d"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+#region медбот ЯО
+- type: entity
+  parent:
+  - AINOMovementSpeedModifierRanged
+  - MobSiliconBase
+  id: NOMedibot
+  name: Медибот ЯО
+  description: Продвинутый помощник доктора, способный вернуть с того света целый отряд. Осторожно, может быть заряжен кровавой культурой и желанием лечить бойцов Синдиката.
+  components:
+  - type: Medibot
+    treatments:
+      Alive:
+        reagent: Omnizine
+        quantity: 15
+        minDamage: 0
+        maxDamage: 199
+      Critical:
+        reagent: Ichor
+        quantity: 10
+  - type: Sprite
+    sprite: /Textures/Mobs/Silicon/chassis.rsi
+    drawdepth: Mobs
+    layers:
+    - state: synd_medical
+    - state: synd_medical_e
+      shader: unshaded
+    - state: synd_medical_l
+      shader: unshaded
+  - type: HTN
+    rootTask:
+      task: NOMedibotCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      tags:
+      - AINOComa
+    follow: true
+    spawnFriendsSearchRadius: 20
+  - type: NpcFactionMember
+    factions:
+    - LuaNordFoll
+  - type: InteractionPopup
+    interactSuccessString: petting-success-medibot
+    interactFailureString: petting-failure-medibot
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: MedibotAds
+  - type: Inventory
+    templateId: medibot
+  - type: DoAfter
+  - type: Access
+    groups:
+    - AllAccess
+    - Silicon
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent
+    - Wizard
+    - Xenoborg
+    - Pirate
+  - type: TimedDespawn
+    lifetime: 60
+  - type: TTS
+    enabled: true
+    voice: Dictor
+  - type: PointLight
+    color: "#ff0000"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: htnCompound
+  id: NOMedibotCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: InjectNearbyCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: FollowCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+#region болванка комы
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent:
+  - AiNOComaBase
+  - MobPassiveRegenStrong
+  id: AiNOComa
+  name: клон командира ЯО
+  description: Командир отряда, призванный поддерживать боевой дух и координировать действия бойцов. Осторожно, может быть заряжен кровавой культурой и желанием убивать врагов Синдиката. В руках держит модифицированный автомат с подствольным гранатомётом.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: Cartridge762x39mmHP
+    capacity: 15
+    count: 15
+  - type: Gun
+    showExamineText: false
+    minAngle: 1
+    maxAngle: 4
+    angleIncrease: 1
+    angleDecay: 3
+    selectedMode: semiAuto
+    availableModes:
+      - semiAuto
+    soundGunshot:
+      path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
+  - type: HTN
+    rootTask:
+       task: AINOCompound
+    blackboard:
+      VisionRadius: !type:Single
+        17
+      AggroVisionRadius: !type:Single
+        17
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: Damageable
+    damageModifierSet: AIReinforcementComa
+  - type: TTS
+    voice: Lieutenant
+  - type: Tag
+    tags:
+    - AINOComa
+  - type: ActionGun
+    action: AINOStunGreadeThrowAction
+    gunProto: AINOStunGreadeThrow
+  - type: NPCUseActionOnTarget
+    actionId: AINOStunGreadeThrowAction
+  - type: DatasetVocalizer
+    dataset: AINOComaChatter
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: AINOStunGreadeThrowAction
+  parent: BaseAction
+  name: "[color=cyan] кинуть гранату [/color]"
+  components:
+  - type: Action
+    icon: { sprite : Objects/Weapons/Grenades/stingergrenade.rsi, state: icon }
+    priority: 2
+    itemIconStyle: BigAction
+    useDelay: 120
+    sound:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesColorNOAnnie
+  name: combat gloves
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: Clothing/Hands/Gloves/fingerless.rsi
+        state: equipped-HAND
+      - sprite: _Mono/Objects/Weapons/Guns/Rifles/annie_inhands_32x.rsi
+        state: wielded-inhand-right
+
+- type: startingGear
+  id: NOLoadoutComa
+  equipment:
+    gloves: ClothingHandsGlovesColorNOAnnie
+    back: JetpackVoid
+    belt: ClothingBeltERTFilled
+    shoes: ClothingShoesBootsSpetsnaz
+
+- type: entity
+  id: NOBaseComaLoadout
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    # Body
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    # Suit
+    - sprite: _Lua/Clothing/OuterClothing/pmc.rsi
+      state: equipped-OUTERCLOTHING
+    # Gas tank
+    - sprite: _NF/Objects/Tanks/o2n2equal.rsi
+      state: equipped-SUITSTORAGE
+    # Helmet
+    - sprite: _Lua/Clothing/Head/pmc.rsi
+      state: on-equipped-HELMET
+    # IFF
+    - sprite: ADT/Clothing/Neck/Cloaks/syndicate_cloak.rsi
+      state: equipped-NECK
+  - type: PointLight
+    color: "#ff0000"
+    enabled: true
+    radius: 6
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+
+- type: entity
+  id: AiNOComaBase
+  parent:
+  - AINOMovementSpeedModifierRanged
+  - NOBaseComaLoadout
+  - AINOMobBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - NOLoadoutComa

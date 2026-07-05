@@ -58,3 +58,14 @@
     sprite: _Lua/Clothing/Neck/mantles/wardenmantle.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Neck/mantles/wardenmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleShoulderNfsdCream
+  name: shoulder nfsd mantle
+  description: This mantle is made of 'natural' wool. It's very warm and soft. It looks like it isn't something for Security.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Neck/mantles/nfsd_cream_shoulder.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Neck/mantles/nfsd_cream_shoulder.rsi

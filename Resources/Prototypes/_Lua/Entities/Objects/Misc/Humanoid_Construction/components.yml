@@ -1,0 +1,1015 @@
+#region эндоскелеты
+
+
+
+
+
+#region база
+- type: entity
+  id: HumanoidEndoskeleton
+  name: эндоскелет гуманоида
+  description: Готовая рама для сборки вашего личного телохранителя. Отсутствует модуль контроля сознания.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: body_light
+      map: [ "body" ]
+    - state: head_light
+      map: [ "head" ]
+    - state: head_light_eye
+      map: [ "eyes" ]
+      color: "#000000"
+      shader: unshaded
+    - state: l_arm_light
+      map: [ "leftArm" ]
+    - state: r_arm_light
+      map: [ "rightArm" ]
+    - state: l_leg_light
+      map: [ "leftLeg" ]
+    - state: r_leg_light
+      map: [ "rightLeg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Appearance
+  - type: Pullable
+#монтаж и демонтаж
+  - type: Construction
+    graph: HumanoidEndoskeletonGraph
+    node: HumanoidEndoskeleton
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: HumanoidEndoskeletonGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HumanoidEndoskeletonGib:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HumanoidEndoskeleton
+
+#спавнер для гиба
+- type: entity
+  name: HumanoidEndoskeletonGib
+  id: HumanoidEndoskeletonGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: SheetMagmite1
+      - !type:EntSelector
+        id: SheetPlastic10
+      - !type:EntSelector
+        id: SheetPlastic5
+      - !type:EntSelector
+        id: SheetSteel10
+      - !type:EntSelector
+        id: CyborgEndoskeleton
+
+#region нейтр. Агр.
+- type: entity
+  id: HumanoidEndoskeletonNeutralAgressive
+  name: эндоскелет нейтрально-агрессивного гуманоида
+  description: Готовая рама для сборки вашего личного телохранителя. Установлен пустой нейтрально-агрессивный модуль контроля сознания. Собираемый телохранитель будет атаковать всех кроме собравшего.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: body_light
+      map: [ "body" ]
+      color: "#c0b038"
+    - state: head_light
+      map: [ "head" ]
+    - state: head_light_eye
+      map: [ "eyes" ]
+      color: "#c0b038"
+      shader: unshaded
+    - state: l_arm_light
+      map: [ "leftArm" ]
+    - state: r_arm_light
+      map: [ "rightArm" ]
+    - state: l_leg_light
+      map: [ "leftLeg" ]
+    - state: r_leg_light
+      map: [ "rightLeg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Appearance
+  - type: Pullable
+#монтаж и демонтаж
+  - type: Construction
+    graph: HumanoidEndoskeletonNeutralAgressiveGraph
+    node: HumanoidEndoskeletonNeutralAgressive
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: HumanoidEndoskeletonNeutralAgressiveGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HumanoidEndoskeletonNeutralAgressiveGib:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HumanoidEndoskeletonNeutralAgressive
+
+#спавнер для гиба
+- type: entity
+  name: HumanoidEndoskeletonNeutralAgressiveGib
+  id: HumanoidEndoskeletonNeutralAgressiveGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleEmpty
+      - !type:EntSelector
+        id: HumanoidEndoskeleton
+
+
+#region нейтр
+- type: entity
+  id: HumanoidEndoskeletonNeutral
+  name: эндоскелет нейтрального гуманоида
+  description: Готовая рама для сборки вашего личного телохранителя. Установлен нейтральный модуль контроля сознания. Собираемый телохранитель будет атаковать только в ответ.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: body_light
+      map: [ "body" ]
+      color: "#4e68aa"
+    - state: head_light
+      map: [ "head" ]
+    - state: head_light_eye
+      map: [ "eyes" ]
+      color: "#4e68aa"
+      shader: unshaded
+    - state: l_arm_light
+      map: [ "leftArm" ]
+    - state: r_arm_light
+      map: [ "rightArm" ]
+    - state: l_leg_light
+      map: [ "leftLeg" ]
+    - state: r_leg_light
+      map: [ "rightLeg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Appearance
+  - type: Pullable
+#монтаж и демонтаж
+  - type: Construction
+    graph: HumanoidEndoskeletonNeutralGraph
+    node: HumanoidEndoskeletonNeutral
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: HumanoidEndoskeletonNeutralGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HumanoidEndoskeletonNeutralGib:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HumanoidEndoskeletonNeutral
+
+#спавнер для гиба
+- type: entity
+  name: HumanoidEndoskeletonNeutralGib
+  id: HumanoidEndoskeletonNeutralGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleNeutral
+      - !type:EntSelector
+        id: HumanoidEndoskeleton
+
+
+#region НТ
+- type: entity
+  id: HumanoidEndoskeletonNT
+  name: эндоскелет гуманоида Nanotrasen
+  description: Готовая рама для сборки вашего личного телохранителя. Установлен модуль контроля сознания Nanotrasen. Собираемый телохранитель будет атаковать только тех кто не состоит в Nanotrasen.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: body_light
+      map: [ "body" ]
+      color: "#6d8817"
+    - state: head_light
+      map: [ "head" ]
+    - state: head_light_eye
+      map: [ "eyes" ]
+      color: "#6d8817"
+      shader: unshaded
+    - state: l_arm_light
+      map: [ "leftArm" ]
+    - state: r_arm_light
+      map: [ "rightArm" ]
+    - state: l_leg_light
+      map: [ "leftLeg" ]
+    - state: r_leg_light
+      map: [ "rightLeg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Appearance
+  - type: Pullable
+#монтаж и демонтаж
+  - type: Construction
+    graph: HumanoidEndoskeletonNTGraph
+    node: HumanoidEndoskeletonNT
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: HumanoidEndoskeletonNTGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HumanoidEndoskeletonNTGib:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HumanoidEndoskeletonNT
+
+#спавнер для гиба
+- type: entity
+  name: HumanoidEndoskeletonNTGib
+  id: HumanoidEndoskeletonNTGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleNT
+      - !type:EntSelector
+        id: HumanoidEndoskeleton
+
+#region Кодекс Бури
+- type: entity
+  id: HumanoidEndoskeletonStormCreed
+  name: эндоскелет гуманоида Кодекса Бури
+  description: Готовая рама для сборки вашего личного телохранителя. Установлен модуль контроля сознания Кодекса Бури. Собираемый телохранитель будет атаковать только тех кто не состоит в Кодексе Бури.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: body_light
+      map: [ "body" ]
+      color: "#ff9900"
+    - state: head_light
+      map: [ "head" ]
+    - state: head_light_eye
+      map: [ "eyes" ]
+      color: "#ff9900"
+      shader: unshaded
+    - state: l_arm_light
+      map: [ "leftArm" ]
+    - state: r_arm_light
+      map: [ "rightArm" ]
+    - state: l_leg_light
+      map: [ "leftLeg" ]
+    - state: r_leg_light
+      map: [ "rightLeg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Appearance
+  - type: Pullable
+#монтаж и демонтаж
+  - type: Construction
+    graph: HumanoidEndoskeletonStormCreedGraph
+    node: HumanoidEndoskeletonStormCreed
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: HumanoidEndoskeletonStormCreedGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HumanoidEndoskeletonStormCreedGib:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HumanoidEndoskeletonStormCreed
+
+#спавнер для гиба
+- type: entity
+  name: HumanoidEndoskeletonStormCreedGib
+  id: HumanoidEndoskeletonStormCreedGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleStormCreed
+      - !type:EntSelector
+        id: HumanoidEndoskeleton
+
+
+#region Синдикат
+- type: entity
+  id: HumanoidEndoskeletonSyndie
+  name: эндоскелет гуманоида Синдиката
+  description: Готовая рама для сборки вашего личного телохранителя. Установлен модуль контроля сознания Синдиката. Собираемый телохранитель будет атаковать только тех кто не состоит в Синдикате.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/RogueSilicons/robots.rsi
+    layers:
+    - state: body_light
+      map: [ "body" ]
+      color: "#7d0000"
+    - state: head_light
+      map: [ "head" ]
+    - state: head_light_eye
+      map: [ "eyes" ]
+      color: "#7d0000"
+      shader: unshaded
+    - state: l_arm_light
+      map: [ "leftArm" ]
+    - state: r_arm_light
+      map: [ "rightArm" ]
+    - state: l_leg_light
+      map: [ "leftLeg" ]
+    - state: r_leg_light
+      map: [ "rightLeg" ]
+    - state: mask_null
+      map: [ "decor" ]
+    - state: mask_null
+      map: [ "overlay" ]
+    - state: mask_null
+      map: [ "overlayUnshaded" ]
+      shader: unshaded
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Appearance
+  - type: Pullable
+#монтаж и демонтаж
+  - type: Construction
+    graph: HumanoidEndoskeletonSyndieGraph
+    node: HumanoidEndoskeletonSyndie
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: HumanoidEndoskeletonSyndieGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          HumanoidEndoskeletonSyndieGib:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - HumanoidEndoskeletonSyndie
+
+#спавнер для гиба
+- type: entity
+  name: HumanoidEndoskeletonSyndieGib
+  id: HumanoidEndoskeletonSyndieGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleSyndie
+      - !type:EntSelector
+        id: HumanoidEndoskeleton
+
+
+#region предметы
+
+
+
+
+
+#region пустой модуль контроля сознания
+- type: entity
+  parent: BaseItem
+  id: MindControlModuleEmpty
+  name: модуль контроля сознания пустой
+  description: Небольшое устройство для контроля сознания гуманоидного существа, собранного на основе эндоскелета. Непригоден для контроля обычных гуманоидов. Не содержит ключа.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: posibrain
+      map: ["base"]
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: mmi_off
+      map: ["enum.MMIVisualLayers.Base"]
+  - type: Appearance
+  - type: Tag
+    tags:
+    - MindControlModuleEmpty
+#монтаж и демонтаж
+  - type: Construction
+    graph: MindControlModuleEmptyGraph
+    node: MindControlModuleEmpty
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: MindControlModuleEmptyGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MindControlModuleEmptyGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MindControlModuleEmptyGib
+  id: MindControlModuleEmptyGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MMI
+      - !type:EntSelector
+        id: PositronicBrain
+
+#region нейтральный модуль контроля сознания
+- type: entity
+  parent: BaseItem
+  id: MindControlModuleNeutral
+  name: модуль контроля сознания нейтральный
+  description: Небольшое устройство для контроля сознания гуманоидного существа, собранного на основе эндоскелета. Непригоден для контроля обычных гуманоидов. Содержит общий ключ, транслирует нейтральное состояние.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: posibrain
+      map: ["base"]
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: mmi_off
+      map: ["enum.MMIVisualLayers.Base"]
+    - sprite: _NF/Objects/Devices/encryption_keys.rsi
+      state: common_label
+  - type: Appearance
+  - type: Tag
+    tags:
+    - MindControlModuleNeutral
+#монтаж и демонтаж
+  - type: Construction
+    graph: MindControlModuleNeutralGraph
+    node: MindControlModuleNeutral
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: MindControlModuleNeutralGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MindControlModuleNeutralGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MindControlModuleNeutralGib
+  id: MindControlModuleNeutralGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleEmpty
+      - !type:EntSelector
+        id: EncryptionKeyCommon
+
+#region модуль контроля сознания НТ
+- type: entity
+  parent: BaseItem
+  id: MindControlModuleNT
+  name: модуль контроля сознания Nanotrasen
+  description: Небольшое устройство для контроля сознания гуманоидного существа, собранного на основе эндоскелета. Непригоден для контроля обычных гуманоидов. Содержит ключ СРБС, транслирует верность NT.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: posibrain
+      map: ["base"]
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: mmi_off
+      map: ["enum.MMIVisualLayers.Base"]
+    - sprite: _NF/Objects/Devices/encryption_keys.rsi
+      state: nfsd_label
+  - type: Appearance
+  - type: Tag
+    tags:
+    - MindControlModuleNT
+#монтаж и демонтаж
+  - type: Construction
+    graph: MindControlModuleNTGraph
+    node: MindControlModuleNT
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: MindControlModuleNTGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MindControlModuleNTGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MindControlModuleNTGib
+  id: MindControlModuleNTGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleEmpty
+      - !type:EntSelector
+        id: EncryptionKeyNfsd
+
+#region модуль контроля сознания Бури
+- type: entity
+  parent: BaseItem
+  id: MindControlModuleStormCreed
+  name: модуль контроля сознания Кодекса Бури
+  description: Небольшое устройство для контроля сознания гуманоидного существа, собранного на основе эндоскелета. Непригоден для контроля обычных гуманоидов. Содержит ключ Кодекса Бури, транслирует желание убить всех кроме членов Кодекса Бури.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: posibrain
+      map: ["base"]
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: mmi_off
+      map: ["enum.MMIVisualLayers.Base"]
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: pirate_label
+  - type: Appearance
+  - type: Tag
+    tags:
+    - MindControlModuleStormCreed
+#монтаж и демонтаж
+  - type: Construction
+    graph: MindControlModuleStormCreedGraph
+    node: MindControlModuleStormCreed
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: MindControlModuleStormCreedGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MindControlModuleStormCreedGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MindControlModuleStormCreedGib
+  id: MindControlModuleStormCreedGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleEmpty
+      - !type:EntSelector
+        id: EncryptionKeyFreelance
+
+#region модуль контроля сознания Синдиката
+- type: entity
+  parent: BaseItem
+  id: MindControlModuleSyndie
+  name: модуль контроля сознания Синдиката
+  description: Небольшое устройство для контроля сознания гуманоидного существа, собранного на основе эндоскелета. Непригоден для контроля обычных гуманоидов. Содержит ключ Синдиката, транслирует желание убить всех кроме членов Синдиката.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: posibrain
+      map: ["base"]
+    - sprite: Objects/Specific/Robotics/mmi.rsi
+      state: mmi_off
+      map: ["enum.MMIVisualLayers.Base"]
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: synd_label
+  - type: Appearance
+  - type: Tag
+    tags:
+    - MindControlModuleSyndie
+#монтаж и демонтаж
+  - type: Construction
+    graph: MindControlModuleSyndieGraph
+    node: MindControlModuleSyndie
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Butcherable
+    spawned:
+    - id: MindControlModuleSyndieGib
+      amount: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MindControlModuleSyndieGib:
+            min: 1
+            max: 1
+
+#спавнер для гиба
+- type: entity
+  name: MindControlModuleSyndieGib
+  id: MindControlModuleSyndieGib
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    offset: 0.5
+    table: !type:AllSelector
+      children:
+      - !type:EntSelector
+        id: MindControlModuleEmpty
+      - !type:EntSelector
+        id: EncryptionKeySyndie

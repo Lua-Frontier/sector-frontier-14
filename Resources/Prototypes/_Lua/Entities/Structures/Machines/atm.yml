@@ -5,17 +5,40 @@
 - type: entity
   parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerBankATMTypan
-  suffix: Тайпан
+  name: bank ATM
+  description: A huge badass ATM. Looks cool and threatening at the same time.
+  suffix: Синдикат
   components:
   - type: Sprite
     netsync: false
     noRot: true
-    sprite: _Lua/Structures/Machines/atm/typan_atm.rsi
+    sprite: _Lua/Structures/Machines/atm/syndie_atm_outdoor.rsi
     layers:
     - map: ["computerLayerBody"]
       state: icon
     - map: ["computerLayerScreen"]
       state: unshaded
+  - type: BankATM
+    corrupted: true
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMTypan]
+  id: ComputerWallmountBankATMTypan
+  name: bank ATM
+  description: A badass ATM on the wall. Looks cool and threatening at the same time.
+  suffix: Настенный, Синдикат
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Lua/Structures/Machines/atm/syndie_atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+  - type: BankATM
+    taxAccounts:
+      Frontier: 0.3 # The scandal!
 
 - type: entity
   name: консоль администрирования станции

@@ -485,6 +485,9 @@
           - !type:OrganType
             type: Vox
             shouldHave: false
+          - !type:OrganType #Lua_Start
+            type: Demon
+            shouldHave: false #Lua_End
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]
@@ -664,6 +667,9 @@
     Poison:
       effects:
       - !type:Electrocute
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
         probability: 0.8
 
 - type: reagent

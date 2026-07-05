@@ -1,0 +1,92 @@
+#region сгусток споры
+- type: entity
+  parent: [ BiohazardousMobBase, MobPassiveRegen ]
+  id: BiohazardousSporeClot
+  name: сгусток споры
+  description: Огромный шар из мяса, костей, и развившейся споры. Скорее всего когда-то он был чем-то большим и сильным, проигравшим в борьбе с красной спорой. Очень опасен своей живучестью и внушительным уроном.
+  # categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Lua/Diseases/Mobs/BiohazardMobs.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: meatball
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: meatball
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Critical
+      400: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CrimsonSporeFlesh1:
+            min: 2
+            max: 7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.1
+    rechargeSound: /Audio/Effects/gib3.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BiohazardousSpit
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.5
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Effects/gib1.ogg
+  - type: HTN
+    rootTask:
+       task: BiohazardousHTNRangedCompound
+    blackboard:
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: ThermalVision
+    lightRadius: 15
+    color: "#b96161"
+    activateSound: null
+    deactivateSound: null
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 30
+        Structural: 60
+    soundHit:
+      collection: MetalThud
+  - type: StaticPrice
+    price: 6000
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime

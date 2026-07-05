@@ -26,6 +26,7 @@ delta-chat-emote-name-bark = Лаять
 delta-chat-emote-name-whine = Скулить
 delta-chat-emote-name-howl = Выть
 delta-chat-emote-name-awoo = Аууууу
+delta-chat-emote-name-fox-trill = Лисья трель
 
 
 # Message
