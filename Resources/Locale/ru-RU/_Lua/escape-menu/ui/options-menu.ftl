@@ -7,3 +7,5 @@ ui-options-combat-music-volume = Громкость музыки во время
 ui-options-combat-music-windup = время до активаций музыки во время боя:
 ui-options-combat-music-winddown = время до деактиваций музыки во время боя:
 ui-options-combat-music-sec-format = { $value } сек
+
+ui-options-scale-50 = 50%
