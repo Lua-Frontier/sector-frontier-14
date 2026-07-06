@@ -12,6 +12,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Emag.Systems;
 using Content.Shared._DeadSpace.Photocopier;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration; // Lua
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.ContentPack;
@@ -19,6 +20,7 @@ using Robust.Shared.Audio;
 using Content.Server.Station.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
+using Content.Shared.Lua.CLVar; // Lua
 using Content.Shared.Hands.Components;
 using Content.Shared.Database;
 using Content.Server.GameTicking;
@@ -41,6 +43,7 @@ public sealed class PhotocopierSystem : EntitySystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
 
     private const string PaperSlotId = "Paper";
 
@@ -355,11 +358,12 @@ public sealed class PhotocopierSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        var currentYear = _cfg.GetCVar(CLVars.CurrentGameYear); // Lua
         string text = _resourceManager.ContentFileReadText(formPrototype.Text).ReadToEnd();
 
         text = text.Replace("DOCUMENT NAME", Loc.GetString(formPrototype.Name));
         text = text.Replace("{{HOUR.MINUTE.SECOND}}", _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"));
-        text = text.Replace("{{DAY.MONTH.YEAR}}", DateTime.UtcNow.AddHours(3).ToString("dd.MM") + ".2709");
+        text = text.Replace("{{DAY.MONTH.YEAR}}", DateTime.UtcNow.AddHours(3).ToString("dd.MM") + $".{currentYear}"); // Lua
 
         if (_station.GetOwningStation(uid) is { } station)
         {

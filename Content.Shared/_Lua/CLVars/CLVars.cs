@@ -197,5 +197,8 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("lunacoin.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
         public static readonly CVarDef<string> LunaCoinServerName =
             CVarDef.Create("lunacoin.server_name", "luna", CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> CurrentGameYear =
+            CVarDef.Create("game.current_game_year", 2710, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
     }
 }

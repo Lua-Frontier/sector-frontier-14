@@ -47,6 +47,11 @@
             <ContainerButton Name="StationTimeButton">
                 <RichTextLabel Name="StationTimeLabel" Access="Public"/>
             </ContainerButton>
+            <!-- Lua start -->
+            <ContainerButton Name="DateTimeButton">
+                <RichTextLabel Name="DateTimeLabel"/>
+            </ContainerButton>
+            <!-- Lua end -->
             <ContainerButton Name="StationAlertLevelInstructionsButton">
                 <RichTextLabel Name="StationAlertLevelInstructions" Access="Public"/>
             </ContainerButton>
