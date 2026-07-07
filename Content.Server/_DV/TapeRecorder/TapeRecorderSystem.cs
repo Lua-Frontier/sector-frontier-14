@@ -119,7 +119,7 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             var time = TimeSpan.FromSeconds((double) message.Timestamp);
 
             text.AppendLine(Loc.GetString("tape-recorder-print-message-text",
-                ("time", time.ToString(@"hh\:mm\:ss")),
+                ("time", time.ToString(@"d\:hh\:mm\:ss")), // Lua
                 ("source", name),
                 ("message", message.Message)));
         }

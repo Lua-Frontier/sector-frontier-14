@@ -107,7 +107,7 @@ public sealed partial class LuaATMMenu : FancyWindow
         {
             var typeString = Loc.GetString($"bank-atm-menu-operation-{operation.Type.ToString().ToLower()}");
             var valueString = BankSystemExtensions.ToSpesoString(operation.Value);
-            var timeString = operation.Time.ToString(@"hh\:mm\:ss");
+            var timeString = operation.Time.ToString(@"d\:hh\:mm\:ss");
             var operationString = Loc.GetString("bank-atm-menu-operation", ("type", typeString), ("value", valueString), ("time", timeString));
 
             var operationLabel = new Label

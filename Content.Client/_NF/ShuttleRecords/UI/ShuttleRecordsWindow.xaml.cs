@@ -135,7 +135,7 @@ public sealed partial class ShuttleRecordsWindow : FancyWindow
         if (shuttleRecord.TimeOfPurchase != null)
         {
             timeOfPurchaseText = Loc.GetString("shuttle-records-time-of-purchase",
-                ("time", shuttleRecord.TimeOfPurchase.Value.ToString("hh\\:mm\\:ss")));
+                ("time", shuttleRecord.TimeOfPurchase.Value.ToString(@"d\:hh\:mm\:ss"))); // Lua
         }
 
         var transactionPrice = SharedShuttleRecordsSystem.GetTransactionCost(

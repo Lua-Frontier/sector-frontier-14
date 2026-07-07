@@ -29,7 +29,7 @@ public sealed partial class NanoChatMessageControl : Control
         RobustXamlLoader.Load(this);
         MessageText.SetMessage(FormattedMessage.FromMarkupPermissive(message.Message), AllowedTags, null);
         SenderName.Text = message.SenderName;
-        TimeLabel.Text = message.Timestamp.ToString(@"hh\:mm");
+        TimeLabel.Text = message.Timestamp.ToString(@"d\:hh\:mm"); // Lua
         if (message.IsOwnMessage)
         {
             MessageContainer.HorizontalAlignment = HAlignment.Right;
