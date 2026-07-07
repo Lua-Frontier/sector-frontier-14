@@ -1,0 +1,25 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:ui="clr-namespace:Content.Client.Options.UI">
+    <BoxContainer Orientation="Vertical">
+        <ScrollContainer VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="8 8 8 8">
+                <Label Text="{Loc 'ui-options-network-prediction'}" StyleClasses="LabelKeyText"/>
+                <CheckBox Name="NetPredict" Text="{Loc 'ui-options-net-predict'}"/>
+                <ui:OptionSlider Name="NetInterpRatio" Title="{Loc 'ui-options-net-interp-ratio'}"/>
+                <ui:OptionSlider Name="NetPredictTickBias" Title="{Loc 'ui-options-net-predict-tick-bias'}"/>
+
+                <Label Text="{Loc 'ui-options-network-pvs'}" StyleClasses="LabelKeyText"/>
+                <ui:OptionSlider Name="NetPvsSpawn" Title="{Loc 'ui-options-net-pvs-spawn'}"/>
+                <ui:OptionSlider Name="NetPvsEntry" Title="{Loc 'ui-options-net-pvs-entry'}"/>
+                <ui:OptionSlider Name="NetPvsLeave" Title="{Loc 'ui-options-net-pvs-leave'}"/>
+
+                <Label Text="{Loc 'ui-options-network-gc'}" StyleClasses="LabelKeyText"/>
+                <CheckBox Name="GcCleanupEnabled"
+                          Text="{Loc 'ui-options-gc-enabled'}"
+                          ToolTip="{Loc 'ui-options-gc-enabled-tooltip'}"/>
+                <ui:OptionSlider Name="GcCleanupInterval" Title="{Loc 'ui-options-gc-interval'}"/>
+            </BoxContainer>
+        </ScrollContainer>
+        <ui:OptionsTabControlRow Name="Control"/>
+    </BoxContainer>
+</Control>

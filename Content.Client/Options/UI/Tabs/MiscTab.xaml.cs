@@ -64,7 +64,7 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CCVars.ChatEnableFancyBubbles, FancySpeechBubblesCheckBox);
         Control.AddOptionCheckBox(CCVars.ChatFancyNameBackground, FancyNameBackgroundsCheckBox);
         Control.AddOptionCheckBox(CCVars.LogInChat, LogInChatCheckBox);
-        Control.AddOptionCheckBox(CCVars.CoalesceIdenticalMessages, CoalesceIdenticalMessagesCheckBox);
+        // Control.AddOptionCheckBox(CCVars.CoalesceIdenticalMessages, CoalesceIdenticalMessagesCheckBox); // Lua
         Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
         Control.AddOptionCheckBox(MonoCVars.AreaEchoEnabled, AreaEchoCheckBox); // Mono
         Control.AddOptionCheckBox(MonoCVars.AreaEchoHighResolution, AreaEchoHighResolutionCheckBox); // Mono
