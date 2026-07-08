@@ -8,12 +8,72 @@
     sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
   - type: Clothing
     sprite: _White/Clothing/Eyes/Goggles/nightvision.rsi
-  - type: NightVision
-    flashDurationMultiplier: 2
-    isEquipment: true
-    color: "#999999"
+  - type: NightVision # Lua edit start:
+    relayOverlay: true
+    goggleEffect: true
+    viewCircleRadius: 880
+    viewCircleCount: 1
+    viewCircleSpacing: 1
+    action: ActionToggleNightVision
+    phosphorColor: "#337a98"
+    lightingColor: "#ffffff52" # Lua edit end.
   - type: IdentityBlocker
     coverage: EYES
+
+# Mono start
+# I used these for testing. You can use them for adding them to your suits.
+- type: entity
+  parent: ClothingEyesNightVisionGoggles
+  id: ClothingEyesNightVisionGogglesGen1
+  name: night vision goggles (GEN1)
+  suffix: DEBUG
+  components:
+  - type: NightVision
+    action: ActionToggleNightVision
+    viewCircleRadius: 400
+    viewCircleCount: 1
+    viewCircleSpacing: 280
+    phosphorColor: "#00FF00"
+
+- type: entity
+  parent: ClothingEyesNightVisionGoggles
+  id: ClothingEyesNightVisionGogglesGen2
+  name: night vision goggles (GEN2)
+  suffix: DEBUG
+  components:
+  - type: NightVision
+    action: ActionToggleNightVision
+    viewCircleRadius: 400
+    viewCircleCount: 2
+    viewCircleSpacing: 280
+    phosphorColor: "#00FF00"
+
+- type: entity
+  parent: ClothingEyesNightVisionGoggles
+  id: ClothingEyesNightVisionGogglesGen3
+  name: night vision goggles (GEN3)
+  suffix: DEBUG
+  components:
+  - type: NightVision
+    action: ActionToggleNightVision
+    viewCircleRadius: 450
+    viewCircleCount: 2
+    viewCircleSpacing: 280
+    phosphorColor: "#00FF00"
+
+- type: entity
+  parent: ClothingEyesNightVisionGoggles
+  id: ClothingEyesNightVisionGogglesGen4
+  name: night vision goggles (GEN4)
+  suffix: DEBUG
+  components:
+  - type: NightVision
+    action: ActionToggleNightVision
+    viewCircleRadius: 400
+    viewCircleCount: 4
+    viewCircleSpacing: 260
+    phosphorColor: "#41D7D9"
+# Mono end
 
 - type: entity
   parent: ClothingEyesNightVisionGoggles
@@ -80,3 +140,35 @@
   - type: ShowSyndicateIcons
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+
+# Lua Start
+
+- type: entity
+  id: NightVisionComfortGreen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NightVision
+    relayOverlay: true
+    goggleEffect: true
+    viewCircleRadius: 880
+    viewCircleCount: 1
+    viewCircleSpacing: 1
+    action: ActionToggleNightVision
+    phosphorColor: "#37a548"
+    lightingColor: "#ffffff52"
+
+- type: entity
+  id: NightVisionComfortBlue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NightVision
+    relayOverlay: true
+    goggleEffect: true
+    viewCircleRadius: 880
+    viewCircleCount: 1
+    viewCircleSpacing: 1
+    action: ActionToggleNightVision
+    phosphorColor: "#337a98"
+    lightingColor: "#ffffff52"
+
+# Lua End
