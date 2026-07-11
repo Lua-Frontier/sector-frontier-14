@@ -49,6 +49,27 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("admin", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.AdminAHelpObserv", b =>
+                {
+                    b.Property<Guid>("AdminUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("admin_user_id");
+
+                    b.Property<int>("ResolvedAhelps")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("resolved_ahelps");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("AdminUserId")
+                        .HasName("PK_admin_ahelp_observ");
+
+                    b.ToTable("admin_ahelp_observ", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.AdminFlag", b =>
                 {
                     b.Property<int>("Id")

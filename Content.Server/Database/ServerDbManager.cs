@@ -237,6 +237,18 @@ namespace Content.Server.Database
             string deleteReason,
             CancellationToken cancel = default);
 
+        Task IncrementAdminAHelpResolvedCount(
+            Guid adminUserId,
+            DateTimeOffset now,
+            CancellationToken cancel = default);
+
+        Task<AdminAHelpObservRecord> GetAdminAHelpObserv(
+            Guid adminUserId,
+            CancellationToken cancel = default);
+
+        Task<List<AdminAHelpObservRecord>> GetAllAdminAHelpObserv(
+            CancellationToken cancel = default);
+
         #endregion
 
         #region Rounds
@@ -785,6 +797,30 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.DeleteReputationVote(id, deletedBy, deletedAt, deleteReason, cancel));
+        }
+
+        public Task IncrementAdminAHelpResolvedCount(
+            Guid adminUserId,
+            DateTimeOffset now,
+            CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.IncrementAdminAHelpResolvedCount(adminUserId, now, cancel));
+        }
+
+        public Task<AdminAHelpObservRecord> GetAdminAHelpObserv(
+            Guid adminUserId,
+            CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAdminAHelpObserv(adminUserId, cancel));
+        }
+
+        public Task<List<AdminAHelpObservRecord>> GetAllAdminAHelpObserv(
+            CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAllAdminAHelpObserv(cancel));
         }
 
         public async Task<Server> AddOrGetServer(string serverName)

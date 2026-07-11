@@ -1203,6 +1203,72 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             }
         }
 
+        public async Task IncrementAdminAHelpResolvedCount(
+            Guid adminUserId,
+            DateTimeOffset now,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var row = await db.DbContext.AdminAHelpObservs
+                .SingleOrDefaultAsync(x => x.AdminUserId == adminUserId, cancel);
+
+            if (row == null)
+            {
+                row = new AdminAHelpObserv
+                {
+                    AdminUserId = adminUserId,
+                    ResolvedAhelps = 1,
+                    UpdatedAt = now.UtcDateTime,
+                };
+
+                db.DbContext.AdminAHelpObservs.Add(row);
+            }
+            else
+            {
+                row.ResolvedAhelps += 1;
+                row.UpdatedAt = now.UtcDateTime;
+            }
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<AdminAHelpObservRecord> GetAdminAHelpObserv(
+            Guid adminUserId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var row = await db.DbContext.AdminAHelpObservs
+                .SingleOrDefaultAsync(x => x.AdminUserId == adminUserId, cancel);
+
+            if (row == null)
+                return new AdminAHelpObservRecord(adminUserId, 0, null);
+
+            return MakeAdminAHelpObservRecord(row);
+        }
+
+        public async Task<List<AdminAHelpObservRecord>> GetAllAdminAHelpObserv(
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var rows = await db.DbContext.AdminAHelpObservs
+                .OrderByDescending(x => x.ResolvedAhelps)
+                .ThenBy(x => x.AdminUserId)
+                .ToListAsync(cancel);
+
+            return rows.Select(MakeAdminAHelpObservRecord).ToList();
+        }
+
+        private AdminAHelpObservRecord MakeAdminAHelpObservRecord(AdminAHelpObserv observ)
+        {
+            return new AdminAHelpObservRecord(
+                observ.AdminUserId,
+                observ.ResolvedAhelps,
+                NormalizeDatabaseTime(observ.UpdatedAt));
+        }
+
         protected abstract IQueryable<AdminLog> StartAdminLogsQuery(ServerDbContext db, LogFilter? filter = null);
 
         private IQueryable<AdminLog> GetAdminLogsQuery(ServerDbContext db, LogFilter? filter = null)

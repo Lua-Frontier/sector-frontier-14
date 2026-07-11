@@ -52,6 +52,7 @@ namespace Content.Server.Database
         public DbSet<Sponsor> Sponsor { get; set; } = null!;
         public DbSet<DynamicMarketEntry> DynamicMarket { get; set; } = null!;
         public DbSet<ReputationVote> ReputationVotes { get; set; } = null!;
+        public DbSet<AdminAHelpObserv> AdminAHelpObservs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -666,6 +667,19 @@ namespace Content.Server.Database
 
         [MaxLength(4096)]
         public string? DeleteReason { get; set; }
+    }
+
+    [Table("admin_ahelp_observ")]
+    public class AdminAHelpObserv
+    {
+        [Required, Key]
+        public Guid AdminUserId { get; set; }
+
+        [Required]
+        public int ResolvedAhelps { get; set; }
+
+        [Required]
+        public DateTime UpdatedAt { get; set; }
     }
 
     public class Round

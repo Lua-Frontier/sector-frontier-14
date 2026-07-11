@@ -431,6 +431,7 @@ namespace Content.Server.Administration.Systems
             }
             var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
             _reputation.SetCachedScore(record.Kind, record.TargetUserId, summary.Score);
+            await _dbManager.IncrementAdminAHelpResolvedCount(state.LastAdminId.Value.UserId, DateTimeOffset.UtcNow);
             state.RatingSubmitted = true;
             SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
             BroadcastConversationState(channel);

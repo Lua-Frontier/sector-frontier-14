@@ -143,6 +143,11 @@ public sealed record ReputationVoteRecord(
     DateTimeOffset? DeletedAt,
     string? DeleteReason);
 
+public sealed record AdminAHelpObservRecord(
+    Guid AdminUserId,
+    int ResolvedAhelps,
+    DateTimeOffset? UpdatedAt);
+
 public sealed record RoundRecord(int Id, DateTimeOffset? StartDate, ServerRecord Server);
 
 public sealed record ServerRecord(int Id, string Name);
