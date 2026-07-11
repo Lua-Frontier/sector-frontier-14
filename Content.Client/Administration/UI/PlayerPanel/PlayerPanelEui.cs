@@ -29,6 +29,7 @@ public sealed class PlayerPanelEui : BaseEui
         PlayerPanel.OnOpenBanPanel += id => _console.ExecuteCommand($"banpanel \"{id}\"");
         PlayerPanel.OnOpenBans += id => _console.ExecuteCommand($"banlist \"{id}\"");
         PlayerPanel.OnAhelp += id => _console.ExecuteCommand($"openahelp \"{id}\"");
+        PlayerPanel.OnOpenReputation += () => SendMessage(new PlayerPanelOpenReputationMessage());
         PlayerPanel.OnWhitelistToggle += (id, whitelisted) =>
         {
             _console.ExecuteCommand(whitelisted ? $"whitelistremove \"{id}\"" : $"whitelistadd \"{id}\"");
@@ -64,6 +65,7 @@ public sealed class PlayerPanelEui : BaseEui
         PlayerPanel.TargetUsername = s.Username;
         PlayerPanel.SetUsername(s.Username);
         PlayerPanel.SetPlaytime(s.Playtime);
+        PlayerPanel.SetReputation(s.ReputationScore, s.CanModerateReputation);
         PlayerPanel.SetBans(s.TotalBans, s.TotalRoleBans);
         PlayerPanel.SetNotes(s.TotalNotes);
         PlayerPanel.SetWhitelisted(s.Whitelisted);

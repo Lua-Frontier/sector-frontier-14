@@ -20,7 +20,8 @@ public sealed record PlayerInfo(
     bool Connected,
     bool ActiveThisRound,
     TimeSpan? OverallPlaytime,
-    int Balance) // Frontier
+    int Balance,
+    int ReputationScore) // Frontier
 {
     private string? _playtimeString;
 
@@ -28,6 +29,8 @@ public sealed record PlayerInfo(
 
     public string PlaytimeString => _playtimeString ??=
         OverallPlaytime?.ToString("%d':'hh':'mm") ?? Loc.GetString("generic-unknown-title");
+
+    public string ReputationString => ReputationScore > 0 ? $"+{ReputationScore}" : ReputationScore.ToString();
 
     public bool Equals(PlayerInfo? other)
     {

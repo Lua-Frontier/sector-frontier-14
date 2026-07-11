@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Forensics;
+using Content.Server._Lua.Reputation;
 using Content.Server.Afk; // Lua
 using Content.Server.Afk.Events; // Lua
 using Content.Server.GameTicking;
@@ -13,6 +14,7 @@ using Content.Server.StationRecords.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
@@ -61,6 +63,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
     [Dependency] private readonly IAfkManager _afkManager = default!; // Lua
+    [Dependency] private readonly ReputationSystem _reputation = default!;
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -98,6 +101,7 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
         SubscribeLocalEvent<ActorComponent, IdentityChangedEvent>(OnIdentityChanged);
         SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
+        SubscribeLocalEvent<PlayerReputationChangedEvent>(OnPlayerReputationChanged);
 
         SubscribeLocalEvent<AFKEvent>(OnAFKEvent); // Lua
         SubscribeLocalEvent<UnAFKEvent>(OnUnAFKEvent); // Lua
@@ -195,6 +199,17 @@ public sealed class AdminSystem : EntitySystem
             return;
 
         UpdatePlayerList(ev.Player);
+    }
+
+    private void OnPlayerReputationChanged(PlayerReputationChangedEvent ev)
+    {
+        if (!_playerManager.TryGetPlayerData(ev.UserId, out var playerData)) return;
+        _playerManager.TryGetSessionById(ev.UserId, out var session);
+        _playerList[ev.UserId] = GetPlayerInfo(playerData, session);
+        var playerInfoChangedEvent = new PlayerInfoChangedEvent
+        { PlayerInfo = _playerList[ev.UserId] };
+        foreach (var admin in GetPlayerListRecipients())
+        { RaiseNetworkEvent(playerInfoChangedEvent, admin.Channel); }
     }
 
     private void OnPlayerAttached(PlayerAttachedEvent ev)
@@ -306,7 +321,8 @@ public sealed class AdminSystem : EntitySystem
             connected,
             _roundActivePlayers.Contains(data.UserId),
             overallPlaytime,
-            balance); // Frontier
+                balance,
+                _reputation.GetCachedScore(ReputationTargetKind.Player, data.UserId)); // Frontier
     }
 
     private void OnPanicBunkerChanged(bool enabled)

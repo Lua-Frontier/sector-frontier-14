@@ -5,12 +5,14 @@ player-panel-bans = Банов: {$totalBans}
 player-panel-rolebans = Банов ролей: {$totalRoleBans}
 player-panel-notes = Заметок: {$totalNotes}
 player-panel-playtime = Наигранное время: {$days}d:{$hours}h:{$minutes}m
+player-panel-reputation = Репутация: {$score}
 player-panel-shared-connections = Общие соединения: {$sharedConnections}
 
 player-panel-copy-username = Копировать
 player-panel-show-notes = Заметки
 player-panel-show-bans = Баны
 player-panel-help = АХелп
+player-panel-open-reputation = Репутация
 player-panel-freeze-and-mute = Заморозить+Мут
 player-panel-freeze = Заморозить
 player-panel-unfreeze = Разморозить

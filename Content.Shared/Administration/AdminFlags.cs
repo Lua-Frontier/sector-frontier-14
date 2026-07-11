@@ -125,6 +125,11 @@ namespace Content.Shared.Administration
         NameColor = 1 << 21,
 
         /// <summary>
+        ///     reputation.
+        /// </summary>
+        Repo = 1 << 22,
+
+        /// <summary>
         ///     DeltaV - The ability to whitelist people. Either this permission or +BAN is required for remove.
         /// </summary>
         Whitelist = 1 << 25,

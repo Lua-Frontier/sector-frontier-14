@@ -205,6 +205,40 @@ namespace Content.Server.Database
         Task UpdateAdminRankAsync(AdminRank rank, CancellationToken cancel = default);
         #endregion
 
+        #region Reputation
+
+        Task<ReputationSummaryRecord> GetReputationSummary(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            CancellationToken cancel = default);
+
+        Task<ReputationVoteRecord?> TryCreateReputationVote(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            string targetName,
+            Guid voterUserId,
+            string voterName,
+            ReputationVoteValue value,
+            string? comment,
+            int? roundId,
+            DateTimeOffset now,
+            CancellationToken cancel = default);
+
+        Task<List<ReputationVoteRecord>> GetReputationVotes(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            bool includeDeleted = false,
+            CancellationToken cancel = default);
+
+        Task<bool> DeleteReputationVote(
+            int id,
+            Guid deletedBy,
+            DateTimeOffset deletedAt,
+            string deleteReason,
+            CancellationToken cancel = default);
+
+        #endregion
+
         #region Rounds
 
         Task<int> AddNewRound(Server server, params Guid[] playerIds);
@@ -705,6 +739,52 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.UpdateAdminRankAsync(rank, cancel));
+        }
+
+        public Task<ReputationSummaryRecord> GetReputationSummary(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetReputationSummary(kind, targetUserId, cancel));
+        }
+
+        public Task<ReputationVoteRecord?> TryCreateReputationVote(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            string targetName,
+            Guid voterUserId,
+            string voterName,
+            ReputationVoteValue value,
+            string? comment,
+            int? roundId,
+            DateTimeOffset now,
+            CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.TryCreateReputationVote(kind, targetUserId, targetName, voterUserId, voterName, value, comment, roundId, now, cancel));
+        }
+
+        public Task<List<ReputationVoteRecord>> GetReputationVotes(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            bool includeDeleted = false,
+            CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetReputationVotes(kind, targetUserId, includeDeleted, cancel));
+        }
+
+        public Task<bool> DeleteReputationVote(
+            int id,
+            Guid deletedBy,
+            DateTimeOffset deletedAt,
+            string deleteReason,
+            CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteReputationVote(id, deletedBy, deletedAt, deleteReason, cancel));
         }
 
         public async Task<Server> AddOrGetServer(string serverName)

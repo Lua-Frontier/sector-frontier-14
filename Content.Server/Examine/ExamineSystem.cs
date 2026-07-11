@@ -84,8 +84,12 @@ namespace Content.Server.Examine
                 AddERPStatusToMessage(text, detail.ERPStatus);
             }
 
+            var playerReputationTarget = entity != playerEnt &&
+                TryComp<ActorComponent>(entity, out var targetActor) &&
+                targetActor.PlayerSession != null;
+
             RaiseNetworkEvent(new ExamineSystemMessages.ExamineInfoResponseMessage(
-                request.NetEntity, request.Id, text, verbs?.ToList()), channel);
+                request.NetEntity, request.Id, text, verbs?.ToList(), playerReputationTarget: playerReputationTarget), channel);
         }
 
         private void AddERPStatusToMessage(FormattedMessage message, EnumERPStatus status)

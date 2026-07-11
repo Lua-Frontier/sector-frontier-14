@@ -51,6 +51,7 @@ namespace Content.Server.Database
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
         public DbSet<Sponsor> Sponsor { get; set; } = null!;
         public DbSet<DynamicMarketEntry> DynamicMarket { get; set; } = null!;
+        public DbSet<ReputationVote> ReputationVotes { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -161,6 +162,15 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<Player>()
                 .HasIndex(p => p.LastSeenUserName);
+
+            modelBuilder.Entity<ReputationVote>()
+                .HasIndex(v => new { v.TargetKind, v.TargetUserId });
+
+            modelBuilder.Entity<ReputationVote>()
+                .HasIndex(v => new { v.VoterUserId, v.TargetKind, v.TargetUserId, v.Deleted });
+
+            modelBuilder.Entity<ReputationVote>()
+                .HasIndex(v => v.Deleted);
 
             modelBuilder.Entity<ConnectionLog>()
                 .HasIndex(p => p.UserId);
@@ -609,6 +619,53 @@ namespace Content.Server.Database
 
         public int AdminRankId { get; set; }
         public AdminRank Rank { get; set; } = default!;
+    }
+
+    [Index(nameof(TargetKind), nameof(TargetUserId))]
+    [Index(nameof(VoterUserId), nameof(TargetKind), nameof(TargetUserId), nameof(Deleted))]
+    public class ReputationVote
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        public ReputationTargetKind TargetKind { get; set; }
+
+        [Required]
+        public Guid TargetUserId { get; set; }
+
+        [Required, MaxLength(128)]
+        public string TargetNameSnapshot { get; set; } = string.Empty;
+
+        [Required]
+        public Guid VoterUserId { get; set; }
+
+        [Required, MaxLength(128)]
+        public string VoterNameSnapshot { get; set; } = string.Empty;
+
+        [Required]
+        public ReputationVoteValue Value { get; set; }
+
+        [MaxLength(4096)]
+        public string? Comment { get; set; }
+
+        public int? RoundId { get; set; }
+
+        public Round? Round { get; set; }
+
+        [Required]
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
+
+        public bool Deleted { get; set; }
+
+        public Guid? DeletedById { get; set; }
+
+        public DateTime? DeletedAt { get; set; }
+
+        [MaxLength(4096)]
+        public string? DeleteReason { get; set; }
     }
 
     public class Round

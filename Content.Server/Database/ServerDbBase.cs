@@ -979,6 +979,156 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
             await db.DbContext.SaveChangesAsync(cancel);
         }
+
+        #endregion
+
+        #region Reputation
+
+        public async Task<ReputationSummaryRecord> GetReputationSummary(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            return await GetReputationSummary(db.DbContext, kind, targetUserId, cancel);
+        }
+
+        private static async Task<ReputationSummaryRecord> GetReputationSummary(
+            ServerDbContext db,
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            CancellationToken cancel = default)
+        {
+            var query = db.ReputationVotes
+                .Where(v => v.TargetKind == kind && v.TargetUserId == targetUserId && !v.Deleted);
+
+            var score = await query.SumAsync(v => (int) v.Value, cancel);
+            var activeVotes = await query.CountAsync(cancel);
+            var targetName = await db.ReputationVotes
+                .Where(v => v.TargetKind == kind && v.TargetUserId == targetUserId)
+                .OrderByDescending(v => v.UpdatedAt ?? v.CreatedAt)
+                .Select(v => v.TargetNameSnapshot)
+                .FirstOrDefaultAsync(cancel) ?? string.Empty;
+
+            return new ReputationSummaryRecord(
+                kind,
+                targetUserId,
+                targetName,
+                Math.Clamp(score, ReputationConstants.MinScore, ReputationConstants.MaxScore),
+                activeVotes);
+        }
+
+        public async Task<ReputationVoteRecord?> TryCreateReputationVote(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            string targetName,
+            Guid voterUserId,
+            string voterName,
+            ReputationVoteValue value,
+            string? comment,
+            int? roundId,
+            DateTimeOffset now,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+            var nowUtc = now.UtcDateTime;
+            var cooldownStart = nowUtc - ReputationConstants.VoteCooldown;
+
+            var hasRecentVote = await db.DbContext.ReputationVotes
+                .Where(v => v.TargetKind == kind &&
+                            v.TargetUserId == targetUserId &&
+                            v.VoterUserId == voterUserId &&
+                            !v.Deleted &&
+                            v.CreatedAt >= cooldownStart)
+                .AnyAsync(cancel);
+
+            if (hasRecentVote)
+                return null;
+
+            var vote = new ReputationVote
+            {
+                TargetKind = kind,
+                TargetUserId = targetUserId,
+                TargetNameSnapshot = targetName,
+                VoterUserId = voterUserId,
+                VoterNameSnapshot = voterName,
+                Value = value,
+                Comment = comment,
+                RoundId = roundId,
+                CreatedAt = nowUtc,
+            };
+
+            db.DbContext.ReputationVotes.Add(vote);
+
+            await db.DbContext.SaveChangesAsync(cancel);
+            return MakeReputationVoteRecord(vote);
+        }
+
+        public async Task<List<ReputationVoteRecord>> GetReputationVotes(
+            ReputationTargetKind kind,
+            Guid targetUserId,
+            bool includeDeleted = false,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var query = db.DbContext.ReputationVotes
+                .Where(v => v.TargetKind == kind && v.TargetUserId == targetUserId);
+
+            if (!includeDeleted)
+                query = query.Where(v => !v.Deleted);
+
+            var votes = await query
+                .OrderByDescending(v => v.UpdatedAt ?? v.CreatedAt)
+                .ToListAsync(cancel);
+
+            return votes.Select(MakeReputationVoteRecord).ToList();
+        }
+
+        public async Task<bool> DeleteReputationVote(
+            int id,
+            Guid deletedBy,
+            DateTimeOffset deletedAt,
+            string deleteReason,
+            CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var vote = await db.DbContext.ReputationVotes
+                .Where(v => v.Id == id)
+                .SingleOrDefaultAsync(cancel);
+
+            if (vote == null || vote.Deleted)
+                return false;
+
+            vote.Deleted = true;
+            vote.DeletedById = deletedBy;
+            vote.DeletedAt = deletedAt.UtcDateTime;
+            vote.DeleteReason = deleteReason;
+
+            await db.DbContext.SaveChangesAsync(cancel);
+            return true;
+        }
+
+        private ReputationVoteRecord MakeReputationVoteRecord(ReputationVote vote)
+        {
+            return new ReputationVoteRecord(
+                vote.Id,
+                vote.TargetKind,
+                vote.TargetUserId,
+                vote.TargetNameSnapshot,
+                vote.VoterUserId,
+                vote.VoterNameSnapshot,
+                vote.Value,
+                vote.Comment,
+                vote.RoundId,
+                NormalizeDatabaseTime(vote.CreatedAt),
+                NormalizeDatabaseTime(vote.UpdatedAt),
+                vote.Deleted,
+                vote.DeletedById,
+                NormalizeDatabaseTime(vote.DeletedAt),
+                vote.DeleteReason);
+        }
         #endregion
 
         #region Admin Logs
