@@ -920,7 +920,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (TryGetAvailableParkingShuttles(uid, targetId, out available, out unavailable))
             return (available, unavailable);
 
-        var isErp = _configManager.GetCVar(CLVars.IsERP);
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
         {
             // Try to find a ui key that is an instance of the shipyard console ui key
@@ -969,7 +968,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
             bool hasAccess = initialHasAccess;
-            if (!vessel.IsAvailableOnServer(isErp)) continue;
+            if (!vessel.IsAvailableOnServer()) continue;
             if (voucher is not null && vessel.NoVoucher)
                 continue;
 

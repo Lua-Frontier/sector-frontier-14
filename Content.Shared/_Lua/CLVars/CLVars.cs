@@ -76,7 +76,7 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("rabbitmq.connection_string", "", CVar.SERVERONLY);
 
         public static readonly CVarDef<bool> IsERP =
-            CVarDef.Create("ic.erp", false, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("ic.erp", true, CVar.SERVER | CVar.REPLICATED);
 
         /*
          *  World Gen

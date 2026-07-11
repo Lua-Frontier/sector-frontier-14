@@ -21,8 +21,8 @@
       station: Beacon
       worldgenConfig: AsteroidSectorDefault
       autoStart: true
-      defaultGamePreset: NFPirate
-      requiredGamePresets: [ NFPirate, LuaAdventure ]
+      defaultGamePreset: LuaAdventure
+      requiredGamePresets: [ LuaAdventure ]
 #      parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default, Xmas ]
       parallaxPool: [LuaDarkSpace, Tortuga] # Корелляция для будущего лора поля астероидов
       deadDropEnabled: true
@@ -37,22 +37,6 @@
           count: 2
 
     - id: TypanSector
-      name: "Сектор Нордфолл"
-      position: "6.849328, 6.1968246"
-      starType: sector
-      color: "#990816"
-      station: Typan
-      autoStart: true
-      defaultGamePreset: NFPirate
-      requiredGamePresets: [ NFPirate ]
-      parallaxPool: [ OriginStation, NordFoll ]
-      bluespaceEventsEnabled: false
-      crewMonitoringIsolated: true
-      poiGroups:
-        - group: TypanCargoDepot
-          count: 1
-
-    - id: TypanSectorLua
       name: "Сектор Нордфолл"
       position: "6.9, 6"
       starType: sector
@@ -75,27 +59,13 @@
     #   color: "#2595db"
     #   station: LuaTech
     #   autoStart: true
-    #   defaultGamePreset: NFPirate
-    #   requiredGamePresets: [ NFPirate, LuaAdventure ]
+    #   defaultGamePreset: LuaAdventure
+    #   requiredGamePresets: [ LuaAdventure ]
     #   parallaxPool: [ LuaDarkSpace ]
     #   bluespaceEventsEnabled: false
     #   crewMonitoringIsolated: true
 
     - id: PirateSector
-      name: "Сектор Пиратов"
-      position: "-0.68800503, 3.7413952"
-      starType: sector
-      color: "#8A6642"
-      station: Murena #Lua Cove<Murena
-      autoStart: true
-      defaultGamePreset: NFPirate
-      requiredGamePresets: [ NFPirate ]
-      parallaxPool: [ CoreStation, Tortuga ]
-      deadDropEnabled: true
-      bluespaceEventsEnabled: false
-      crewMonitoringIsolated: true
-
-    - id: PirateSectorLua
       name: "Сектор Пиратов"
       position: "-0.80699396, 4.2081265"
       starType: sector
@@ -116,8 +86,8 @@
     #   color: "#182faf"
     #   station: MercMap
     #   autoStart: true
-    #   defaultGamePreset: NFPirate
-    #   requiredGamePresets: [ NFPirate, LuaAdventure ]
+    #   defaultGamePreset: LuaAdventure
+    #   requiredGamePresets: [ LuaAdventure ]
     #   parallaxPool: [ MercenaryPlanet, Sky ]
     #   deadDropEnabled: true
     #   deadDropCount: 1
@@ -127,9 +97,7 @@
   hyperlanes:
     - [ FrontierSector, AsteroidSectorDefault ]
     - [ AsteroidSectorDefault, TypanSector ]
-    - [ AsteroidSectorDefault, TypanSectorLua ]
     # - [ AsteroidSectorDefault, LuaTechSector ]
     - [ AsteroidSectorDefault, PirateSector ]
-    - [ AsteroidSectorDefault, PirateSectorLua ]
     # - [ AsteroidSectorDefault, MercenarySector ] # Наёмники теперь спавнятся на ЧР в Поле Астероидов
     - [ CentCom, FrontierSector ]
