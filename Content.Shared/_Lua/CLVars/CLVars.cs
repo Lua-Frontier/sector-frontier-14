@@ -66,6 +66,8 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("starmap.data_id", "StarmapData", CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapLazyLoading =
             CVarDef.Create("starmap.lazy_loading", true, CVar.ARCHIVE);
+        public static readonly CVarDef<bool> StarmapRequireSectorDisks =
+            CVarDef.Create("starmap.require_sector_disks", false, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<bool> StargateGuideShown =
             CVarDef.Create("stargate.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 

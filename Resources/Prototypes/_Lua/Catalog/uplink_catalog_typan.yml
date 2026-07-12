@@ -474,19 +474,3 @@
       - NukeOpsUplink
       - TypanUplink
 
-- type: listing
-  id: UplinkCoordinatesDiskNordfall
-  name: uplink-coordinates-disk-nordfall-name
-  description: uplink-coordinates-disk-nordfall-desc
-  productEntity: CoordinatesDiskNordfall
-  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
-  cost:
-    Telecrystal: 1
-  categories:
-    - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - TypanUplink

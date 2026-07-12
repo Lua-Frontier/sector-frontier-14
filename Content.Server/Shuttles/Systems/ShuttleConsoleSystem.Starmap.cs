@@ -7,12 +7,14 @@ using Content.Server._Lua.Starmap.Systems;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Shuttles.Components;
 using Content.Server.GameTicking;
+using Content.Shared.Lua.CLVar;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Timing;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -27,9 +29,18 @@ public sealed partial class ShuttleConsoleSystem
     [Dependency] private readonly SectorOwnershipSystem _ownership = default!; // Lua
     [Dependency] private readonly SectorSystem _sectors = default!; // Lua
     [Dependency] private readonly CentcommSystem _centcomm = default!; // CentCom
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!; // Lua
     [Dependency] private readonly GameTicker _ticker = default!;
+
+    private static readonly HashSet<string> DiskOptionalSectorIds =
+    [
+        "PirateSector",
+        "TypanSector",
+        "AsteroidSectorDefault",
+        "FrontierSector"
+    ];
 
     private void OnConsoleDiskInserted(EntityUid uid, ShuttleConsoleComponent component, EntInsertedIntoContainerMessage args) // Lua
     {
@@ -129,6 +140,22 @@ public sealed partial class ShuttleConsoleSystem
         if (currentMap != MapId.Nullspace && !visibleSectorMaps.Contains(currentMap))
             visibleSectorMaps.Add(currentMap);
         var currentPreset = _ticker.CurrentPreset?.ID;
+        if (!_configurationManager.GetCVar(CLVars.StarmapRequireSectorDisks))
+        {
+            foreach (var sid in DiskOptionalSectorIds)
+            {
+                if (!TryResolveSectorMapId(sid, currentPreset, out var mapId))
+                    continue;
+
+                var star = stars.FirstOrDefault(s => s.Map == mapId);
+                if (!string.IsNullOrEmpty(star.Name) && !visibleSectorMaps.Contains(mapId))
+                    visibleSectorMaps.Add(mapId);
+
+                if (!sectorIdByMap.ContainsKey(mapId))
+                    sectorIdByMap[mapId] = sid;
+            }
+        }
+
         if (consoleUid != null)
         {
             try
@@ -143,23 +170,9 @@ public sealed partial class ShuttleConsoleSystem
                             foreach (var sid in diskComp.AllowedSectorIds)
                             {
                                 if (string.IsNullOrWhiteSpace(sid)) continue;
-                                MapId mapId;
-                                if (sid == "FrontierSector")
-                                { mapId = _ticker.DefaultMap; }
-                                else if (_sectors.TryGetMapId(sid, out var resolved))
-                                { mapId = resolved; }
-                                else if (currentPreset == "LuaAdventure")
-                                {
-                                    string? altId = sid switch
-                                    {
-                                        "TypanSector" => "TypanSectorLua",
-                                        "PirateSector" => "PirateSectorLua",
-                                        _ => null
-                                    };
-                                    if (altId == null || !_sectors.TryGetMapId(altId, out resolved)) continue; mapId = resolved;
-                                }
-                                else
-                                { continue; }
+                                if (!TryResolveSectorMapId(sid, currentPreset, out var mapId))
+                                    continue;
+
                                 {
                                     var star = stars.FirstOrDefault(s => s.Map == mapId);
                                     if (!string.IsNullOrEmpty(star.Name) && !visibleSectorMaps.Contains(mapId)) visibleSectorMaps.Add(mapId);
@@ -259,6 +272,40 @@ public sealed partial class ShuttleConsoleSystem
         List<MapId> capturing = new();
         try { capturing = _ownership.GetCapturingMaps().ToList(); } catch { }
         return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, capturing, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, colorOverrides);
+    }
+
+    private bool TryResolveSectorMapId(string sid, string? currentPreset, out MapId mapId)
+    {
+        if (sid == "FrontierSector")
+        {
+            mapId = _ticker.DefaultMap;
+            return true;
+        }
+
+        if (_sectors.TryGetMapId(sid, out var resolved))
+        {
+            mapId = resolved;
+            return true;
+        }
+
+        if (currentPreset == "LuaAdventure")
+        {
+            string? altId = sid switch
+            {
+                "TypanSector" => "TypanSectorLua",
+                "PirateSector" => "PirateSectorLua",
+                _ => null
+            };
+
+            if (altId != null && _sectors.TryGetMapId(altId, out resolved))
+            {
+                mapId = resolved;
+                return true;
+            }
+        }
+
+        mapId = MapId.Nullspace;
+        return false;
     }
 
     private void OnWarpToStarMessage(EntityUid uid, ShuttleConsoleComponent component, WarpToStarMessage args) // Lua
