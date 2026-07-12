@@ -77,6 +77,7 @@ namespace Content.Client.Administration.UI.Bwoink
             SenderLineEdit.Editable = true;
             CloseConversation.Disabled = closed;
             RatingComment.Visible = canRate;
+            RatingCounter.Visible = canRate;
             RatePositive.Visible = canRate;
             RateNegative.Visible = canRate;
             ReopenConversation.Visible = !_isAdminPanel && closed && ratingSubmitted;
@@ -104,8 +105,18 @@ namespace Content.Client.Administration.UI.Bwoink
 
         private void UpdateRatingButtons()
         {
-            if (!RateNegative.Visible) return;
+            if (!RateNegative.Visible)
+            {
+                RatingCounter.Text = string.Empty;
+                return;
+            }
+
             var commentLength = Rope.Collapse(RatingComment.TextRope).Trim().Length;
+            RatingCounter.Text = Loc.GetString(
+                "bwoink-conversation-rating-counter",
+                ("current", commentLength),
+                ("min", ReputationConstants.MinNegativeCommentLength),
+                ("max", ReputationConstants.MaxCommentLength));
             RateNegative.Disabled = commentLength < ReputationConstants.MinNegativeCommentLength || commentLength > ReputationConstants.MaxCommentLength;
             RatePositive.Disabled = commentLength > ReputationConstants.MaxCommentLength;
         }

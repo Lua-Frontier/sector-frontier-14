@@ -22,6 +22,7 @@
                 <Label Text="{Loc bwoink-panel-resolution}" StyleClasses="LabelSubText" />
                 <RichTextLabel Name="ConversationStatus" StyleClasses="LabelSubText" HorizontalExpand="True" />
                 <TextEdit Name="RatingComment" MinHeight="96" Visible="False" HorizontalExpand="True" />
+                <Label Name="RatingCounter" Visible="False" StyleClasses="LabelSubText" HorizontalExpand="True" />
             </BoxContainer>
             <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalAlignment="Center" MinWidth="170">
                 <Button Name="CloseConversation" Text="{Loc bwoink-conversation-close}" StyleClasses="OpenRight" HorizontalExpand="True" />

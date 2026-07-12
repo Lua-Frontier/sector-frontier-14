@@ -45,6 +45,7 @@ bwoink-conversation-reopen = Начать новый диалог
 bwoink-conversation-rate-positive = Хорошо
 bwoink-conversation-rate-negative = Плохо
 bwoink-conversation-rating-comment-placeholder = Комментарий к оценке. Для отрицательной оценки минимум {$min} символов.
+bwoink-conversation-rating-counter = Символов: {$current}. Для "Плохо" минимум {$min}, максимум {$max}. Для "Хорошо" максимум {$max}.
 bwoink-conversation-open-admin = Диалог открыт. После решения вопроса завершите его, чтобы игрок мог поставить оценку.
 bwoink-conversation-open-user = Диалог открыт. Когда вопрос решён, завершите его и поставьте оценку администратору.
 bwoink-conversation-closed-admin = Диалог завершён. Игроку доступна оценка администратора.
