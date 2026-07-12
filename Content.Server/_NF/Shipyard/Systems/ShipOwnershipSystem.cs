@@ -46,6 +46,14 @@ public sealed class ShipOwnershipSystem : EntitySystem
         Log.Info($"Registered ship {ToPrettyString(gridUid)} to player {owningPlayer.Name} ({owningPlayer.UserId})");
     }
 
+    public void ResetAbandonmentTimer(EntityUid shipUid, string reason)
+    {
+        if (!TryComp<ShipOwnershipComponent>(shipUid, out var ownership))
+            return;
+
+        StopDeletionTimer(shipUid, ownership, reason, resetElapsed: true);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
