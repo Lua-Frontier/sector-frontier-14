@@ -106,7 +106,7 @@ namespace Content.Client.Administration.UI.Bwoink
         {
             if (!RateNegative.Visible) return;
             var commentLength = Rope.Collapse(RatingComment.TextRope).Trim().Length;
-            RateNegative.Disabled = commentLength < ReputationConstants.MinNegativeCommentLength;
+            RateNegative.Disabled = commentLength < ReputationConstants.MinNegativeCommentLength || commentLength > ReputationConstants.MaxCommentLength;
             RatePositive.Disabled = commentLength > ReputationConstants.MaxCommentLength;
         }
 

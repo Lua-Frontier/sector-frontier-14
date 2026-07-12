@@ -125,7 +125,7 @@ namespace Content.Shared.Administration
         NameColor = 1 << 21,
 
         /// <summary>
-        ///     reputation.
+        ///     Allows moderating player/admin reputation.
         /// </summary>
         Repo = 1 << 22,
 

@@ -396,45 +396,52 @@ namespace Content.Server.Administration.Systems
 
         private async void OnRateAdmin(BwoinkRateAdminMessage msg, EntitySessionEventArgs args)
         {
-            var senderAdmin = _adminManager.GetAdminData(args.SenderSession, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true;
-            if (senderAdmin) return;
-            var channel = args.SenderSession.UserId;
-            var state = GetConversationState(channel);
-            if (!state.Closed || state.RatingSubmitted || state.LastAdminId == null || state.LastAdminName == null) return;
-            if (msg.Value is not (ReputationVoteValue.Like or ReputationVoteValue.Dislike)) return;
-            var comment = string.IsNullOrWhiteSpace(msg.Comment) ? null : msg.Comment.Trim();
-            if (comment?.Length > ReputationConstants.MaxCommentLength)
+            try
             {
-                SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-too-long", ("max", ReputationConstants.MaxCommentLength)), args.SenderSession.Channel);
-                return;
-            }
-            if (msg.Value == ReputationVoteValue.Dislike && (comment == null || comment.Length < ReputationConstants.MinNegativeCommentLength))
-            {
-                SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-negative-too-short", ("min", ReputationConstants.MinNegativeCommentLength)), args.SenderSession.Channel);
-                return;
-            }
-            var record = await _dbManager.TryCreateReputationVote(
-                ReputationTargetKind.Admin,
-                state.LastAdminId.Value.UserId,
-                state.LastAdminName,
-                args.SenderSession.UserId.UserId,
-                args.SenderSession.Name,
-                msg.Value,
-                comment,
-                roundId: null,
-                DateTimeOffset.UtcNow);
+                var senderAdmin = _adminManager.GetAdminData(args.SenderSession, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true;
+                if (senderAdmin) return;
+                var channel = args.SenderSession.UserId;
+                var state = GetConversationState(channel);
+                if (!state.Closed || state.RatingSubmitted || state.LastAdminId == null || state.LastAdminName == null) return;
+                if (msg.Value is not (ReputationVoteValue.Like or ReputationVoteValue.Dislike)) return;
+                var comment = string.IsNullOrWhiteSpace(msg.Comment) ? null : msg.Comment.Trim();
+                if (comment?.Length > ReputationConstants.MaxCommentLength)
+                {
+                    SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-too-long", ("max", ReputationConstants.MaxCommentLength)), args.SenderSession.Channel);
+                    return;
+                }
+                if (msg.Value == ReputationVoteValue.Dislike && (comment == null || comment.Length < ReputationConstants.MinNegativeCommentLength))
+                {
+                    SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-negative-too-short", ("min", ReputationConstants.MinNegativeCommentLength)), args.SenderSession.Channel);
+                    return;
+                }
+                var record = await _dbManager.TryCreateReputationVote(
+                    ReputationTargetKind.Admin,
+                    state.LastAdminId.Value.UserId,
+                    state.LastAdminName,
+                    args.SenderSession.UserId.UserId,
+                    args.SenderSession.Name,
+                    msg.Value,
+                    comment,
+                    roundId: null,
+                    DateTimeOffset.UtcNow);
 
-            if (record == null)
-            {
-                SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-too-soon"), args.SenderSession.Channel);
-                return;
+                if (record == null)
+                {
+                    SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-too-soon"), args.SenderSession.Channel);
+                    return;
+                }
+                var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
+                _reputation.SetCachedScore(record.Kind, record.TargetUserId, summary.Score);
+                await _dbManager.IncrementAdminAHelpResolvedCount(state.LastAdminId.Value.UserId, DateTimeOffset.UtcNow);
+                state.RatingSubmitted = true;
+                SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
+                BroadcastConversationState(channel);
             }
-            var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
-            _reputation.SetCachedScore(record.Kind, record.TargetUserId, summary.Score);
-            await _dbManager.IncrementAdminAHelpResolvedCount(state.LastAdminId.Value.UserId, DateTimeOffset.UtcNow);
-            state.RatingSubmitted = true;
-            SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
-            BroadcastConversationState(channel);
+            catch (Exception ex)
+            {
+                Log.Error($"Failed to rate admin via bwoink flow: {ex}");
+            }
         }
 
         private AHelpConversationState GetConversationState(NetUserId channel)

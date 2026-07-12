@@ -106,7 +106,7 @@ public sealed class ReputationSystem : EntitySystem
         catch (Exception ex)
         {
             Log.Error($"Failed to submit player reputation vote: {ex}");
-            _popup.PopupEntity("Не удалось сохранить репутацию.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-save-failed"), user, user);
         }
     }
 
@@ -115,45 +115,45 @@ public sealed class ReputationSystem : EntitySystem
         var target = GetEntity(msg.Target);
         if (!Exists(target) || !TryComp<ActorComponent>(target, out var targetActor))
         {
-            _popup.PopupEntity("Игрок не найден.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-player-not-found"), user, user);
             return;
         }
 
         if (targetActor.PlayerSession is not { } targetSession)
         {
-            _popup.PopupEntity("Игрок не найден.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-player-not-found"), user, user);
             return;
         }
 
         if (!_examine.IsInDetailsRange(user, target))
         {
-            _popup.PopupEntity("Игрок слишком далеко.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-player-too-far"), user, user);
             return;
         }
 
         if (targetSession.UserId == voterSession.UserId)
         {
-            _popup.PopupEntity("Нельзя изменить собственную репутацию.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-self-vote"), user, user);
             return;
         }
 
         if (msg.Value is not (ReputationVoteValue.Like or ReputationVoteValue.Dislike))
         {
-            _popup.PopupEntity("Некорректное значение репутации.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-invalid-value"), user, user);
             return;
         }
 
         var comment = string.IsNullOrWhiteSpace(msg.Comment) ? null : msg.Comment.Trim();
         if (comment?.Length > ReputationConstants.MaxCommentLength)
         {
-            _popup.PopupEntity($"Причина не должна превышать {ReputationConstants.MaxCommentLength} символов.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-comment-too-long", ("max", ReputationConstants.MaxCommentLength)), user, user);
             return;
         }
 
         if (msg.Value == ReputationVoteValue.Dislike &&
             (comment == null || comment.Length < ReputationConstants.MinNegativeCommentLength))
         {
-            _popup.PopupEntity($"Для снижения репутации нужна причина минимум {ReputationConstants.MinNegativeCommentLength} символов.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-negative-too-short", ("min", ReputationConstants.MinNegativeCommentLength)), user, user);
             return;
         }
 
@@ -170,7 +170,7 @@ public sealed class ReputationSystem : EntitySystem
 
         if (record == null)
         {
-            _popup.PopupEntity("Оценивать этого игрока можно не чаще одного раза в час.", user, user);
+            _popup.PopupEntity(Loc.GetString("reputation-popup-too-soon"), user, user);
             return;
         }
 
@@ -178,7 +178,7 @@ public sealed class ReputationSystem : EntitySystem
         _scoreCache[(record.Kind, record.TargetUserId)] = summary.Score;
         RaiseLocalEvent(new PlayerReputationChangedEvent(targetSession.UserId));
 
-        _popup.PopupEntity($"Репутация сохранена: {summary.Score}.", user, user);
+        _popup.PopupEntity(Loc.GetString("reputation-popup-saved", ("score", summary.Score)), user, user);
     }
 
     private void QueueScoreLoad((ReputationTargetKind Kind, Guid TargetUserId) key)

@@ -622,8 +622,6 @@ namespace Content.Server.Database
         public AdminRank Rank { get; set; } = default!;
     }
 
-    [Index(nameof(TargetKind), nameof(TargetUserId))]
-    [Index(nameof(VoterUserId), nameof(TargetKind), nameof(TargetUserId), nameof(Deleted))]
     public class ReputationVote
     {
         [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
