@@ -229,8 +229,6 @@
     layers:
     - state: jetinjector_sc
       map: [ "enum.SolutionContainerLayers.Base" ]
-    - state: jetinjector_filled1
-      map: [ "enum.SolutionContainerLayers.Fill" ]
       visible: false
   - type: Item
     sprite: ADT/Objects/Specific/Medical/adt_combathypo.rsi
@@ -238,6 +236,11 @@
     solutions:
       hypospray:
         maxVol: 30
+  - type: Injector
+    activeModeProtoId: AdvancedJetInjectorDynamicMode
+    allowedModes:
+    - AdvancedJetInjectorDynamicMode
+    - AdvancedJetInjectorInjectMode
 
 - type: entity
   parent: SyndiHypo
