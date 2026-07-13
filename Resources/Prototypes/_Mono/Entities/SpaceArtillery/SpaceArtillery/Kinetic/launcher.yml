@@ -22,10 +22,10 @@
   - type: WirelessNetworkConnection
     range: 700
   - type: Gun
-    MinAngle: 0
-    maxAngle: 6
     fireRate: 35
     projectileSpeed: 90
+    MinAngle: 0
+    maxAngle: 6
     shootThermalSignature: 10000 # relatively low for a shipgun, ~693m signature if firing continuously
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/Gunshots/slammer.ogg
