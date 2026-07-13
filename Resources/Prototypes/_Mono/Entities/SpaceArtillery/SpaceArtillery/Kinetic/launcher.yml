@@ -33,9 +33,9 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 550
+    autoRechargeRate: 1000
   - type: SpaceArtillery
-    powerChargeRate: 100
+    powerChargeRate: 600
     powerUsePassive: 100
   - type: Actions
   - type: CombatMode
@@ -43,7 +43,7 @@
   - type: Airtight
   - type: ProjectileBatteryAmmoProvider
     proto: 20mmBulletArmorPiercing
-    fireCost: 15
+    fireCost: 3
   - type: Destructible
     thresholds:
     - trigger:
@@ -101,7 +101,7 @@
     autoRecharge: true
     autoRechargeRate: 1500
   - type: SpaceArtillery
-    powerChargeRate: 100
+    powerChargeRate: 600
     powerUsePassive: 100
   - type: Actions
   - type: CombatMode
