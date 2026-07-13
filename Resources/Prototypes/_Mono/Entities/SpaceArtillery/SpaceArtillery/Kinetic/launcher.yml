@@ -8,7 +8,7 @@
   - type: StaticPrice
     price: 250
   - type: Sprite
-    sprite: _Mono/Objects/ShuttleWeapons/50cal.rsi
+    sprite: _Mono/Objects/ShuttleWeapons/L85.rsi
     layers:
     - state: space_artillery
   - type: Battery
@@ -22,7 +22,9 @@
   - type: WirelessNetworkConnection
     range: 700
   - type: Gun
-    fireRate: 12
+    MinAngle: 0
+    maxAngle: 6
+    fireRate: 35
     projectileSpeed: 90
     shootThermalSignature: 10000 # relatively low for a shipgun, ~693m signature if firing continuously
     soundGunshot:
@@ -56,7 +58,7 @@
   - type: RadiationBlocker
     resistance: 8
   - type: RadarBlip
-    radarColor: "#FF0000"
+    radarColor: "#1f9dc4"
     scale: 1
   - type: ShipGunType
     shipType: Ballistic
@@ -78,7 +80,7 @@
     layers:
     - state: space_artillery
   - type: Battery
-    maxCharge: 45000
+    maxCharge: 100000
     startingCharge: 45000
   - type: ExaminableBattery
   - type: Appearance
@@ -97,7 +99,7 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 600
+    autoRechargeRate: 1500
   - type: SpaceArtillery
     powerChargeRate: 100
     powerUsePassive: 100
@@ -107,7 +109,7 @@
   - type: Airtight
   - type: ProjectileBatteryAmmoProvider
     proto: 30mmBullet
-    fireCost: 7.5
+    fireCost: 6
   - type: Destructible
     thresholds:
     - trigger:
@@ -122,7 +124,7 @@
   - type: RadiationBlocker
     resistance: 8
   - type: RadarBlip
-    radarColor: "#FF0000"
+    radarColor: "#1f9dc4"
     scale: 1.5
   - type: ShipGunType
     shipType: Ballistic
@@ -190,11 +192,11 @@
   - type: ShipGunClass
     shipClass: Light
 
-# AK570 90mm
+# Fang 90mm
 
 - type: entity
-  id: WeaponTurretAK570
-  name: AK570 90mm heavy autocannon
+  id: WeaponTurretFang
+  name: Fang 90mm heavy autocannon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A dual-barrel, heavy 90mm autocannon firing general-purpose APHE rounds, effective for sustained fire against medium targets. Can be remotely activated or linked up to a GCS.
   components:
@@ -241,7 +243,73 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 12500
+        damage: 15500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: RadarBlip
+    radarColor: "#FF0000"
+    scale: 1.5
+  - type: ShipGunType
+    shipType: Ballistic
+  - type: ShipGunClass
+    shipClass: Light 
+
+# AK570 57mm
+
+- type: entity
+  id: WeaponTurretAK570
+  name: AK570 57mm heavy autocannon
+  parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
+  description: A dual-barrel, medium 57mm autocannon firing general-purpose APHE rounds, effective for sustained fire against medium targets. Can be remotely activated or linked up to a GCS.
+  components:
+  - type: StaticPrice
+    price: 1000
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/artillery57.rsi
+    layers:
+    - state: space_artillery
+  - type: Appearance
+  - type: FireControlRotate
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 8
+    projectileSpeed: 150
+    burstCooldown: 0.7
+    burstFireRate: 15
+    shotsPerBurst: 8
+    selectedMode: Burst
+    availableModes: Burst
+    shootThermalSignature: 2000000 # ~4.5km signature if firing continuously
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/Gunshots/120mm_mortar.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 125
+  - type: SpaceArtillery
+    powerChargeRate: 125
+    powerUsePassive: 600
+    powerUseActive: 0
+  - type: Actions
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipDravonProjectile
+    fireCost: 50
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

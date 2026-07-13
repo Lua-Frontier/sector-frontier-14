@@ -40,9 +40,39 @@
     acceleration: 300
     detectionRange: 500
     scanArc: 35
-    launchSpeed: 150
-    maxSpeed: 180
+    launchSpeed: 60
+    maxSpeed: 120
     trackDelay: 0.1
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 1500
+        layer:
+        - WallLayer
+        mask:
+        - MachineMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Meteor
+    damageTypes:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
 
 # ASM-302
 
@@ -87,9 +117,39 @@
     acceleration: 200
     detectionRange: 600
     scanArc: 40
-    launchSpeed: 90
-    maxSpeed: 210
+    launchSpeed: 50
+    maxSpeed: 100
     trackDelay: 0.2
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 1500
+        layer:
+        - WallLayer
+        mask:
+        - MachineMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Meteor
+    damageTypes:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
 
 # ASM-501
 
@@ -135,8 +195,38 @@
     detectionRange: 600
     scanArc: 30
     launchSpeed: 25
-    maxSpeed: 30
+    maxSpeed: 60
     trackDelay: 2
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 1500
+        layer:
+        - WallLayer
+        mask:
+        - MachineMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Meteor
+    damageTypes:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
 
 # TOVEK
 
@@ -189,3 +279,33 @@
     launchSpeed: 50
     maxSpeed: 125
     trackDelay: 0.6
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 1500
+        layer:
+        - WallLayer
+        mask:
+        - MachineMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Meteor
+    damageTypes:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:ExplodeBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
