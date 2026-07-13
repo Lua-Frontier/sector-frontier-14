@@ -220,7 +220,7 @@
     damage:
       types:
         Structural: 15000
-        Heat: 15000
+        Heat: 45000
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/turbolaser_shot.rsi
     layers:
@@ -240,9 +240,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: HardBombShipGun
-    totalIntensity: 6000
-    intensitySlope: 10
-    maxIntensity: 55
+    totalIntensity: 2000
+    intensitySlope: 70
+    maxIntensity: 1000
     maxTileBreak: 5
   - type: GatheringProjectile
 
