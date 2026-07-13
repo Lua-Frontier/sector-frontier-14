@@ -140,8 +140,8 @@
   - type: BypassInteractionChecks
   - type: BankAccount # Frontier
   - type: MovementSpeedModifier
-    baseWalkSpeed: 30
     baseSprintSpeed: 100
+    baseWalkSpeed: 30
   - type: InteractionPopup
     successChance: 1
     interactSuccessString: hugging-success-generic
