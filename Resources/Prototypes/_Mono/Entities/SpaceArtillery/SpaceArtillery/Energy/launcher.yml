@@ -378,7 +378,7 @@
       path: /Audio/Weapons/click.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 300
+    autoRechargeRate: 500
   - type: SpaceArtillery
     powerChargeRate: 700
     powerUsePassive: 100
@@ -387,7 +387,7 @@
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipAutopulserPlasmaProjectile
-    fireCost: 450
+    fireCost: 350
   - type: Destructible
     thresholds:
     - trigger:

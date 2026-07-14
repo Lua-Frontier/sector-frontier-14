@@ -284,7 +284,7 @@
   - type: Gun
     fireRate: 8
     projectileSpeed: 150
-    burstCooldown: 0.7
+    burstCooldown: 1.3
     burstFireRate: 15
     shotsPerBurst: 6
     selectedMode: Burst
@@ -324,11 +324,11 @@
   - type: ShipGunClass
     shipClass: Light
 
-# Peacekeeper salvo gun
+# SHR-57 "Scattergun"
 
 - type: entity
   id: WeaponTurretPeacekeeper
-  name: Peacekeeper class salvo gun 
+  name: SHR-57 "Scattergun"
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
