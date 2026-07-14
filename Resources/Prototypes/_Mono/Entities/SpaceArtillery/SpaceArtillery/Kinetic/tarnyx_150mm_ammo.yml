@@ -59,16 +59,16 @@
 # EMP end
 
 - type: entity
-  id: ShipTarnyxApProjectile
-  name: TARNYX 150mm AP projectile
+  id: ShipTarnyxHEAPProjectile
+  name: TARNYX 150mm HEAP projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Structural: 12000
-        Blunt: 3000
+        Structural: 6000
+        Blunt: 1500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/150_shell.rsi
     layers:
@@ -82,10 +82,17 @@
     shape: triangle
   - type: TimedDespawn
     lifetime: 5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 1000
+    intensitySlope: 25
+    maxIntensity: 1500
+  - type: GatheringProjectile
 
 - type: entity
-  id: 150mmApShell
-  name: 150mm AP shell
+  id: 150mmHEAPShell
+  name: 150mm HEAP shell
   description: A chemically-propelled AP shell for 150mm cannons. Its not very good, as most 150mm cannons are optimized for EMP shells. Its a crude method, and it certainly wouldn't pass a TSFN inspection.
   parent: BaseGrenade
   components:
