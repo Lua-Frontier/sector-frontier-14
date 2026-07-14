@@ -12,16 +12,14 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 45
+        maxVol: 30
   - type: RefillableSolution
     solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
   - type: Injector
     solutionName: hypospray
-    activeModeProtoId: HyposprayDynamicMode
+    activeModeProtoId: AdvancedJetInjectorDynamicMode
     allowedModes:
-    - HyposprayDynamicMode
-    - HyposprayInjectMode
-  - type: UseDelay
-    delay: 1.0
+    - AdvancedJetInjectorDynamicMode
+    - AdvancedJetInjectorInjectMode
