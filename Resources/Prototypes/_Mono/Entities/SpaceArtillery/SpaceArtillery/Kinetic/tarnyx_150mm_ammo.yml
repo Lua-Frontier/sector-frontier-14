@@ -59,8 +59,8 @@
 # EMP end
 
 - type: entity
-  id: ShipTarnyxHEAPProjectile
-  name: TARNYX 150mm HEAP projectile
+  id: ShipTarnyxApProjectile
+  name: TARNYX 150mm AP projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
@@ -91,8 +91,8 @@
   - type: GatheringProjectile
 
 - type: entity
-  id: 150mmHEAPShell
-  name: 150mm HEAP shell
+  id: 150mmApShell
+  name: 150mm AP shell
   description: A chemically-propelled AP shell for 150mm cannons. Its not very good, as most 150mm cannons are optimized for EMP shells. Its a crude method, and it certainly wouldn't pass a TSFN inspection.
   parent: BaseGrenade
   components:
@@ -102,7 +102,7 @@
   - type: Item
     size: Huge
   - type: CartridgeAmmo
-    proto: ShipTarnyxHEAPProjectile
+    proto: ShipTarnyxApProjectile
     deleteOnSpawn: true
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/150mmtarnyx.rsi
