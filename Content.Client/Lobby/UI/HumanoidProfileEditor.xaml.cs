@@ -459,6 +459,7 @@ namespace Content.Client.Lobby.UI
             #region Company
 
             TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-company-tab"));
+            TabContainer.SetTabVisible(3, false);
 
             // Clear any existing items
             CompanyButton.Clear();
@@ -466,20 +467,7 @@ namespace Content.Client.Lobby.UI
             var username = _playerManager.LocalPlayer?.Session?.Name;
 
             // Add all companies from prototypes - use consistent sorting with UpdateCompanyControls
-            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                //.Where(c => !c.Disabled) // Filter out disabled companies
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified
-                .ToList();
-            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
-
-            // Make sure "None" is first in the list
-            var noneIndex = companies.FindIndex(c => c.ID == "None");
-            if (noneIndex != -1)
-            {
-                var none = companies[noneIndex];
-                companies.RemoveAt(noneIndex);
-                companies.Insert(0, none);
-            }
+            var companies = GetSelectableCompanies(username);
 
             // Add to NGC company dropdown
             for (var i = 0; i < companies.Count; i++)
@@ -1153,6 +1141,7 @@ namespace Content.Client.Lobby.UI
             _jobCategories.Clear();
             _jobPriorities.Clear();
             var firstCategory = true;
+            var profile = Profile;
 
             // Get all displayed departments
             var departments = new List<DepartmentPrototype>();
@@ -1176,6 +1165,14 @@ namespace Content.Client.Lobby.UI
 
             foreach (var department in departments)
             {
+                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
+                    .Where(job => job.SetPreference)
+                    .Where(job => ShouldDisplayJob(job, profile))
+                    .ToArray();
+
+                if (jobs.Length == 0)
+                    continue;
+
                 var departmentName = Loc.GetString(department.Name);
 
                 if (!_jobCategories.TryGetValue(department.ID, out var category))
@@ -1218,10 +1215,6 @@ namespace Content.Client.Lobby.UI
                     JobList.AddChild(category);
                 }
 
-                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
-                    .Where(job => job.SetPreference)
-                    .ToArray();
-
                 Array.Sort(jobs, JobUIComparer.Instance);
 
                 foreach (var job in jobs)
@@ -1246,7 +1239,7 @@ namespace Content.Client.Lobby.UI
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                    if (!_requirements.IsAllowed(job, profile, out var reason))
                     {
                         selector.LockRequirements(reason);
                     }
@@ -2304,6 +2297,7 @@ namespace Content.Client.Lobby.UI
                 var profile = _entManager.System<HumanoidAppearanceSystem>().FromStream(file, _playerManager.LocalSession!);
                 var oldProfile = Profile;
                 profile = profile.WithBankBalance(oldProfile.BankBalance); // Frontier: no free money (enforce import, don't care about import)
+                profile = profile.WithCompany(oldProfile.Company);
                 SetProfile(profile, CharacterSlot);
 
                 IsDirty = !profile.MemberwiseEquals(oldProfile);
@@ -2369,21 +2363,10 @@ namespace Content.Client.Lobby.UI
                 return;
 
             var username = _playerManager.LocalPlayer?.Session?.Name; //Lua modified - company login support
+            var companies = GetSelectableCompanies(username);
 
-            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                //.Where(c => !c.Disabled) // Filter out disabled companies
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified - company login support
-                .ToList();
-            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
-
-            // Make sure "None" is first in the list
-            var noneIndex = companies.FindIndex(c => c.ID == "None");
-            if (noneIndex != -1)
-            {
-                var none = companies[noneIndex];
-                companies.RemoveAt(noneIndex);
-                companies.Insert(0, none);
-            }
+            CompanyButton.Disabled = _preferencesManager.Preferences?.SelectedCharacter is HumanoidCharacterProfile currentProfile &&
+                                     !string.Equals(currentProfile.Company, "None", StringComparison.OrdinalIgnoreCase);
 
             Logger.Debug($"Updating company controls." +
                          $"Current profile company: {Profile.Company}\n");
@@ -2420,6 +2403,38 @@ namespace Content.Client.Lobby.UI
                     Profile = Profile.WithCompany("None");
                 }
             }
+        }
+
+        private static bool ShouldDisplayJob(JobPrototype job, HumanoidCharacterProfile? profile)
+        {
+            if (profile == null)
+                return true;
+
+            if (string.IsNullOrWhiteSpace(profile.Company) || string.Equals(profile.Company, "None", StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (string.IsNullOrWhiteSpace(job.RequiredCompany))
+                return false;
+
+            return string.Equals(job.RequiredCompany, profile.Company, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private List<CompanyPrototype> GetSelectableCompanies(string? username)
+        {
+            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
+                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username)))
+                .ToList();
+            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+
+            var noneIndex = companies.FindIndex(c => c.ID == "None");
+            if (noneIndex != -1)
+            {
+                var none = companies[noneIndex];
+                companies.RemoveAt(noneIndex);
+                companies.Insert(0, none);
+            }
+
+            return companies;
         }
     }
 }

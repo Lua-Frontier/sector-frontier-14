@@ -32,6 +32,8 @@
     Medical:
       stationProto: RecordsFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Медицинский Центр'
         - type: ExtraStationInformation
@@ -39,6 +41,7 @@
           stationSubtext: 'frontier-lobby-medical-subtext'
           stationDescription: 'frontier-lobby-medical-description'
           lobbySortOrder: 4
+          requiredCompany: Nanotrasen
         - type: StationJobs
           availableJobs:
             DirectorOfCare: [ 1, 1 ]

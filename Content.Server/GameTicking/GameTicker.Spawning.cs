@@ -7,6 +7,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Server._Lua.AutoSalarySystem; // Lua
+using Content.Server._NF.Station.Components;
 using Content.Shared._NF.Roles.Components; // Frontier
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -186,6 +187,14 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            if (lateJoin && !CanLateJoinStation(character, station))
+            {
+                _chatManager.DispatchServerMessage(player,
+                    Loc.GetString("game-ticker-latejoin-station-company-denied",
+                        ("stationName", Name(station))));
+                return;
+            }
+
             if (_mind.TryGetMind(player.UserId, out var oldMindId, out var oldMind) &&
                 oldMind.OwnedEntity is { } oldEntity)
             {
@@ -241,9 +250,21 @@ namespace Content.Server.GameTicking
             var ev = new GetDisallowedJobsEvent(player, restrictedRoles);
             RaiseLocalEvent(ref ev);
 
+            AddDisallowedCompanyJobs(character, station, restrictedRoles);
+
             var jobBans = _banManager.GetJobBans(player.UserId);
             if (jobBans != null)
                 restrictedRoles.UnionWith(jobBans);
+
+            if (jobId != null
+                && _prototypeManager.TryIndex<JobPrototype>(jobId, out var selectedJob)
+                && !IsJobAllowedForCompany(character, selectedJob))
+            {
+                _chatManager.DispatchServerMessage(player,
+                    Loc.GetString("game-ticker-job-company-denied",
+                        ("job", selectedJob.LocalizedName)));
+                return;
+            }
 
             // Pick best job best on prefs.
             jobId ??= _stationJobs.PickBestAvailableJobWithPriority(station,
@@ -385,6 +406,81 @@ namespace Content.Server.GameTicking
                 station,
                 character);
             RaiseLocalEvent(mob, aev, true);
+        }
+
+        private bool CanLateJoinStation(HumanoidCharacterProfile character, EntityUid station)
+        {
+            var requiredCompany = GetStationRequiredCompany(station);
+            if (string.IsNullOrWhiteSpace(requiredCompany))
+                return true;
+
+            return IsMatchingCompany(character.Company, requiredCompany);
+        }
+
+        private string? GetStationRequiredCompany(EntityUid station)
+        {
+            var spawnAccessCompanies = _ownedStations.GetSpawnAccessCompanies(station);
+            if (!string.IsNullOrWhiteSpace(spawnAccessCompanies))
+                return spawnAccessCompanies;
+
+            if (TryComp<ExtraStationInformationComponent>(station, out var extraStationInformation)
+                && !string.IsNullOrWhiteSpace(extraStationInformation.RequiredCompany))
+            {
+                return extraStationInformation.RequiredCompany;
+            }
+
+            return null;
+        }
+
+        private void AddDisallowedCompanyJobs(HumanoidCharacterProfile character, EntityUid station, ISet<ProtoId<JobPrototype>> restrictedRoles)
+        {
+            foreach (var availableJobId in _stationJobs.GetAvailableJobs(station))
+            {
+                if (!_prototypeManager.TryIndex<JobPrototype>(availableJobId, out var jobPrototype))
+                    continue;
+
+                if (!IsJobAllowedForCompany(character, jobPrototype))
+                    restrictedRoles.Add(availableJobId);
+            }
+        }
+
+        private bool IsJobAllowedForCompany(HumanoidCharacterProfile character, JobPrototype jobPrototype)
+        {
+            if (string.IsNullOrWhiteSpace(jobPrototype.RequiredCompany))
+                return true;
+
+            return IsMatchingCompany(character.Company, jobPrototype.RequiredCompany);
+        }
+
+        private static bool IsMatchingCompany(string? profileCompany, string? requiredCompany)
+        {
+            if (string.IsNullOrWhiteSpace(requiredCompany))
+                return true;
+
+            var normalizedProfile = NormalizeCompanyId(profileCompany) ?? "None";
+
+            foreach (var companyId in requiredCompany.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            {
+                var normalizedRequired = NormalizeCompanyId(companyId);
+                if (normalizedRequired == null)
+                    continue;
+
+                if (string.Equals(normalizedProfile, normalizedRequired, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static string? NormalizeCompanyId(string? companyId)
+        {
+            if (string.IsNullOrWhiteSpace(companyId))
+                return null;
+
+            var trimmed = companyId.Trim();
+            return string.Equals(trimmed, "None", StringComparison.OrdinalIgnoreCase)
+                ? null
+                : trimmed;
         }
 
         public void Respawn(ICommonSession player)

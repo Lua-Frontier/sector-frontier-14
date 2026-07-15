@@ -1,5 +1,7 @@
 using Content.Server._NF.Station.Components;
+using Content.Server._Lua.Company;
 using Content.Server.GameTicking;
+using Content.Server.Preferences.Managers;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
 using Content.Shared.FixedPoint;
@@ -27,8 +29,10 @@ public sealed partial class StationJobsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly FactionOwnedStationSystem _ownedStations = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -38,6 +42,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         SubscribeLocalEvent<StationJobsComponent, StationRenamedEvent>(OnStationRenamed);
         SubscribeLocalEvent<StationJobsComponent, ComponentShutdown>(OnStationDeletion);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
+        SubscribeNetworkEvent<TickerJobsAvailableRequestEvent>(OnJobsAvailableRequest);
         Subs.CVar(_configurationManager, CCVars.GameDisallowLateJoins, _ => UpdateJobsAvailable(), true);
     }
 
@@ -58,7 +63,12 @@ public sealed partial class StationJobsSystem : EntitySystem
         if (_availableJobsDirty)
         {
             _cachedAvailableJobs = GenerateJobsAvailableEvent();
-            RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
+
+            foreach (var session in _player.Sessions)
+            {
+                RaiseNetworkEvent(GenerateJobsAvailableEvent(session), session.Channel);
+            }
+
             _availableJobsDirty = false;
         }
     }
@@ -512,11 +522,19 @@ public sealed partial class StationJobsSystem : EntitySystem
     /// This is moderately expensive to construct.
     /// </summary>
     /// <returns>The event.</returns>
-    private TickerJobsAvailableEvent GenerateJobsAvailableEvent()
+    private TickerJobsAvailableEvent GenerateJobsAvailableEvent(ICommonSession? session = null)
     {
         // If late join is disallowed, return no available jobs.
         if (_gameTicker.DisallowLateJoin)
             return new TickerJobsAvailableEvent(new()); // Frontier: changed param type
+
+        HumanoidCharacterProfile? profile = null;
+        if (session != null &&
+            _prefsManager.TryGetCachedPreferences(session.UserId, out var prefs) &&
+            prefs.SelectedCharacter is HumanoidCharacterProfile cachedProfile)
+        {
+            profile = cachedProfile;
+        }
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
 
@@ -525,8 +543,13 @@ public sealed partial class StationJobsSystem : EntitySystem
 
         while (query.MoveNext(out var station, out var comp))
         {
+            if (profile != null && !CanLateJoinStation(profile, station))
+                continue;
+
             var stationNetEntity = GetNetEntity(station);
-            var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
+            var list = comp.JobList
+                .Where(x => profile == null || IsJobAllowedForCompany(profile, x.Key))
+                .ToDictionary(x => x.Key, x => x.Value);
 
             // Frontier: overwrite station/vessel information generation
             var isLateJoinStation = false;
@@ -548,11 +571,14 @@ public sealed partial class StationJobsSystem : EntitySystem
                 isLateJoinStation = true;
                 if (TryComp<ExtraStationInformationComponent>(station, out var extraStationInformation))
                 {
+                    var requiredCompany = _ownedStations.GetSpawnAccessCompanies(station) ?? extraStationInformation.RequiredCompany;
+
                     stationDisplay = new StationDisplayInformation(
                         stationSubtext: extraStationInformation.StationSubtext,
                         stationDescription: extraStationInformation.StationDescription,
                         stationIcon: extraStationInformation.IconPath,
-                        lobbySortOrder: extraStationInformation.LobbySortOrder
+                        lobbySortOrder: extraStationInformation.LobbySortOrder,
+                        requiredCompany: requiredCompany
                     );
                 }
             }
@@ -579,7 +605,78 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private void OnPlayerJoinedLobby(PlayerJoinedLobbyEvent ev)
     {
-        RaiseNetworkEvent(_cachedAvailableJobs, ev.PlayerSession.Channel);
+        RaiseNetworkEvent(GenerateJobsAvailableEvent(ev.PlayerSession), ev.PlayerSession.Channel);
+    }
+
+    private void OnJobsAvailableRequest(TickerJobsAvailableRequestEvent ev, EntitySessionEventArgs args)
+    {
+        RaiseNetworkEvent(GenerateJobsAvailableEvent(args.SenderSession), args.SenderSession.Channel);
+    }
+
+    private bool CanLateJoinStation(HumanoidCharacterProfile character, EntityUid station)
+    {
+        var requiredCompany = GetStationRequiredCompany(station);
+        if (string.IsNullOrWhiteSpace(requiredCompany))
+            return true;
+
+        return IsMatchingCompany(character.Company, requiredCompany);
+    }
+
+    private string? GetStationRequiredCompany(EntityUid station)
+    {
+        var spawnAccessCompanies = _ownedStations.GetSpawnAccessCompanies(station);
+        if (!string.IsNullOrWhiteSpace(spawnAccessCompanies))
+            return spawnAccessCompanies;
+
+        if (TryComp<ExtraStationInformationComponent>(station, out var extraStationInformation)
+            && !string.IsNullOrWhiteSpace(extraStationInformation.RequiredCompany))
+        {
+            return extraStationInformation.RequiredCompany;
+        }
+
+        return null;
+    }
+
+    private bool IsJobAllowedForCompany(HumanoidCharacterProfile character, ProtoId<JobPrototype> jobId)
+    {
+        if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
+            return true;
+
+        if (string.IsNullOrWhiteSpace(jobPrototype.RequiredCompany))
+            return true;
+
+        return IsMatchingCompany(character.Company, jobPrototype.RequiredCompany);
+    }
+
+    private static bool IsMatchingCompany(string? profileCompany, string? requiredCompany)
+    {
+        if (string.IsNullOrWhiteSpace(requiredCompany))
+            return true;
+
+        var normalizedProfile = NormalizeCompanyId(profileCompany) ?? "None";
+
+        foreach (var companyId in requiredCompany.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            var normalizedRequired = NormalizeCompanyId(companyId);
+            if (normalizedRequired == null)
+                continue;
+
+            if (string.Equals(normalizedProfile, normalizedRequired, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static string? NormalizeCompanyId(string? companyId)
+    {
+        if (string.IsNullOrWhiteSpace(companyId))
+            return null;
+
+        var trimmed = companyId.Trim();
+        return string.Equals(trimmed, "None", StringComparison.OrdinalIgnoreCase)
+            ? null
+            : trimmed;
     }
 
     private void OnStationRenamed(EntityUid uid, StationJobsComponent component, StationRenamedEvent args)

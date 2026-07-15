@@ -8,6 +8,29 @@ public sealed class ProtectedGridSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _map = default!;
 
+    public void SetProtectionState(
+        EntityUid uid,
+        bool preventFloorRemoval,
+        bool preventFloorPlacement,
+        bool preventRcdUse,
+        bool preventEmpEvents,
+        bool preventExplosions,
+        bool preventArtifactTriggers,
+        bool killHostileMobs,
+        bool preventClaiming)
+    {
+        var comp = EnsureComp<ProtectedGridComponent>(uid);
+        comp.PreventFloorRemoval = preventFloorRemoval;
+        comp.PreventFloorPlacement = preventFloorPlacement;
+        comp.PreventRCDUse = preventRcdUse;
+        comp.PreventEmpEvents = preventEmpEvents;
+        comp.PreventExplosions = preventExplosions;
+        comp.PreventArtifactTriggers = preventArtifactTriggers;
+        comp.KillHostileMobs = killHostileMobs;
+        comp.PreventClaiming = preventClaiming;
+        Dirty(uid, comp);
+    }
+
     /// <inheritdoc/>
     public override void Initialize()
     {

@@ -33,6 +33,8 @@
     Nfsd:
       stationProto: SecurityFrontierOutpost
       components:
+        - type: FactionOwnedStation
+          mainBase: true
         - type: StationNameSetup
           mapNameTemplate: 'Аванпост СРБС'
         - type: ExtraStationInformation
@@ -40,6 +42,7 @@
           stationSubtext: 'frontier-lobby-nfsd-subtext'
           stationDescription: 'frontier-lobby-nfsd-description'
           lobbySortOrder: 2
+          requiredCompany: Security
         - type: StationJobs
           availableJobs:
             Sheriff: [ 1, 1 ]

@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Server.Station.Systems;
+using Content.Shared._Mono.Company;
 using Content.Shared._NF.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -75,6 +77,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            RefreshLateJoinAvailability();
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -118,7 +121,23 @@ namespace Content.Server.Preferences.Managers
                     if (humanProfile.BankBalance != humanoidEditingTarget.BankBalance)
                     {
                         _sawmill.Info($"{session.Name} has tried to modify a character's money (expected: {humanoidEditingTarget.BankBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
-                        profile = humanProfile.WithBankBalance(humanoidEditingTarget.BankBalance);
+                        humanProfile = humanProfile.WithBankBalance(humanoidEditingTarget.BankBalance);
+                    }
+
+                    if (!string.Equals(humanoidEditingTarget.Company, "None", StringComparison.OrdinalIgnoreCase) &&
+                        !string.Equals(humanProfile.Company, humanoidEditingTarget.Company, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _sawmill.Info($"{session.Name} has tried to change a locked company from {humanoidEditingTarget.Company} to {humanProfile.Company}. Restoring the saved company.");
+                        humanProfile = humanProfile.WithCompany(humanoidEditingTarget.Company);
+                    }
+                    else
+                    {
+                        var sanitizedCompany = SanitizeRequestedCompany(session, humanProfile.Company);
+                        if (!string.Equals(humanProfile.Company, sanitizedCompany, StringComparison.OrdinalIgnoreCase))
+                        {
+                            _sawmill.Info($"{session.Name} has tried to set an invalid company {humanProfile.Company} on an existing character. Restoring {sanitizedCompany}.");
+                            humanProfile = humanProfile.WithCompany(sanitizedCompany);
+                        }
                     }
                 }
                 else
@@ -126,9 +145,18 @@ namespace Content.Server.Preferences.Managers
                     if (humanProfile.BankBalance != HumanoidCharacterProfile.DefaultBalance)
                     {
                         _sawmill.Info($"{session.Name} tried to create a character with a non-default balance (expected: {HumanoidCharacterProfile.DefaultBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
-                        profile = humanProfile.WithBankBalance(HumanoidCharacterProfile.DefaultBalance);
+                        humanProfile = humanProfile.WithBankBalance(HumanoidCharacterProfile.DefaultBalance);
+                    }
+
+                    var sanitizedCompany = SanitizeRequestedCompany(session, humanProfile.Company);
+                    if (!string.Equals(humanProfile.Company, sanitizedCompany, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _sawmill.Info($"{session.Name} tried to create a character with an invalid company {humanProfile.Company}. Restoring {sanitizedCompany}.");
+                        humanProfile = humanProfile.WithCompany(sanitizedCompany);
                     }
                 }
+
+                profile = humanProfile;
             }
             // End Frontier: check for profile modifications (based on Monolith's impl)
 
@@ -138,6 +166,9 @@ namespace Content.Server.Preferences.Managers
             };
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites); // # Lua add curPrefs.SelectedCharacterIndex
+
+            if (slot == curPrefs.SelectedCharacterIndex)
+                RefreshLateJoinAvailability();
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
@@ -157,6 +188,23 @@ namespace Content.Server.Preferences.Managers
             var session = _playerManager.GetSessionById(userId);
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveConstructionFavoritesAsync(userId, favorites);
+        }
+
+        private string SanitizeRequestedCompany(ICommonSession session, string? requestedCompany)
+        {
+            if (string.IsNullOrWhiteSpace(requestedCompany) || string.Equals(requestedCompany, "None", StringComparison.OrdinalIgnoreCase))
+                return "None";
+
+            if (!_prototypeManager.TryIndex<CompanyPrototype>(requestedCompany, out var prototype))
+                return "None";
+
+            if (!prototype.Disabled)
+                return prototype.ID;
+
+            if (prototype.Logins.Contains(session.Name))
+                return prototype.ID;
+
+            return "None";
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)
@@ -367,6 +415,11 @@ namespace Content.Server.Preferences.Managers
             }
 
             return prefs;
+        }
+
+        private void RefreshLateJoinAvailability()
+        {
+            _entityManager.EntitySysManager.GetEntitySystem<StationJobsSystem>().UpdateJobsAvailable();
         }
 
         public async Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel)

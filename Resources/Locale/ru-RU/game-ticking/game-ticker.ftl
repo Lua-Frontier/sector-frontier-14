@@ -27,6 +27,8 @@ game-ticker-get-info-preround-text =
     >[color=yellow]{ $desc }[/color]
 game-ticker-no-map-selected = [color=red]Карта ещё не выбрана![/color]
 game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться к игре ни одной роли не было доступно.
+game-ticker-latejoin-station-company-denied = Вы не можете присоединиться к станции { $stationName }, потому что она недоступна для текущей фракции вашего персонажа.
+game-ticker-job-company-denied = Вы не можете присоединиться к роли { $job }, потому что она недоступна для текущей фракции вашего персонажа.
 # Displayed in chat to admins when a player joins
 player-join-message = Игрок { $name } зашёл!
 player-first-join-message = Игрок { $name } зашёл на сервер впервые.

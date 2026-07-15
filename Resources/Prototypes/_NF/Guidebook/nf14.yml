@@ -13,6 +13,7 @@
   - CargoHauling # TODO: separate this out along with salvage and mining into some NF_Cargo section
   - Shipyard
   - PreflightChecklist
+  - FactionWars
 
 - type: guideEntry
   id: Bank
@@ -51,6 +52,12 @@
   name: guide-entry-cargo-hauling
   text: "/ServerInfo/_NF/Guidebook/CargoHauling.xml"
   priority: 6
+
+- type: guideEntry
+  id: FactionWars
+  name: guide-entry-faction-wars
+  text: "/ServerInfo/_NF/Guidebook/FactionWars.xml"
+  priority: 7
 
 # Hiring children
 - type: guideEntry

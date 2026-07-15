@@ -9,15 +9,15 @@
   color: "#D381C9"
   weight: -9
   roles:
-#  - OutpostTypanAtmosTech
-#  - OutpostTypanBotanist
+  - OutpostTypanAtmosTech
+  - OutpostTypanBotanist
   - OutpostTypanCargotech
-#  - OutpostTypanChef
-#  - OutpostTypanMedic
-#  - OutpostTypanRD
+  - OutpostTypanChef
+  - OutpostTypanMedic
+  - OutpostTypanRD
   - OutpostTypanScience
   - OutpostTypanTelecommunicationsOfficer
-#  - OutpostTypanResearcher
+  - OutpostTypanResearcher
   - OutpostSyndicateShareholder
 
 - type: department
@@ -40,3 +40,14 @@
   - StormCreedCaptain
   - StormCreedFirstmate
   - StormCreedSoldier
+
+- type: department
+  id: Pirates
+  name: department-pirates
+  description: department-pirates-description
+  color: "#3a2616"
+  weight: 59
+  roles:
+  - NFPirateCaptain
+  - NFPirateFirstMate
+  - NFPirate

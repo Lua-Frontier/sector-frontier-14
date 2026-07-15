@@ -5,7 +5,7 @@
 - type: pointOfInterest
   id: TypanCargoDepot
   parent: BasePOI
-  name: 'Чёрный Рынок'
+  name: 'Торговый Форпост'
   minimumDistance: 1500
   maximumDistance: 2500
   spawnGroup: TypanCargoDepot
@@ -31,13 +31,15 @@
 
 - type: gameMap
   id: TypanCargoDepot
-  mapName: 'Чёрный Рынок'
+  mapName: 'Торговый Форпост'
   mapPath: /Maps/_Lua/POI/typancargodepot.yml
   minPlayers: 0
   stations:
     TypanCargoDepot:
       stationProto: StandardFrontierOutpost
       components: &cargoStationComponents
+        - type: FactionCapture
+          captureWholeStation: true
         - type: MailStationDisabled
         - type: StationNameSetup
-          mapNameTemplate: 'Чёрный Рынок'
+          mapNameTemplate: 'Торговый Форпост'

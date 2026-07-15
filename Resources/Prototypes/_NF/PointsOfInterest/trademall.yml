@@ -45,6 +45,8 @@
     TradeMall:
       stationProto: MarketFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Торговый Аванпост'
         - type: StationDeadDrop

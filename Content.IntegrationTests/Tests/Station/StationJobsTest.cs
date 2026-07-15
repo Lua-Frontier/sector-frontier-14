@@ -1,11 +1,17 @@
 using Content.IntegrationTests.Tests._NF;
+using Content.Server._Lua.Company;
+using Content.Server._Lua.Company.Components;
+using Content.Server._NF.Station.Components;
 using Content.Server.Maps;
+using Content.Server.Station;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Mono.Company;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -256,6 +262,60 @@ public sealed class StationJobsTest
                 }
             });
         });
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task StationOwnershipInitializesAfterGridAttach()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+
+        EntityUid station = EntityUid.Invalid;
+        EntityUid grid = EntityUid.Invalid;
+
+        await server.WaitPost(() =>
+        {
+            var entMan = server.ResolveDependency<IEntityManager>();
+            var mapSystem = entMan.System<SharedMapSystem>();
+            var mapManager = server.MapMan;
+            var stationSystem = entMan.System<StationSystem>();
+
+            mapSystem.CreateMap(out var mapId);
+            grid = mapManager.CreateGridEntity(mapId);
+
+            var config = new StationConfig
+            {
+                StationPrototype = "StandardNanotrasenStation",
+                StationComponentOverrides = new ComponentRegistry
+                {
+                    [nameof(ExtraStationInformationComponent)] = new EntityPrototype.ComponentRegistryEntry(
+                        new ExtraStationInformationComponent
+                        {
+                            RequiredCompany = "Nanotrasen"
+                        },
+                        null!)
+                }
+            };
+
+            station = stationSystem.InitializeNewStation(config, new[] { grid }, "Ownership Test");
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            var entMan = server.ResolveDependency<IEntityManager>();
+            var ownedStations = entMan.System<FactionOwnedStationSystem>();
+
+            Assert.That(entMan.TryGetComponent<CompanyComponent>(grid, out var company), Is.True);
+            Assert.That(company!.CompanyName, Is.EqualTo("Nanotrasen"));
+
+            Assert.That(entMan.TryGetComponent<FactionOwnedStationComponent>(station, out var owned), Is.True);
+            Assert.That(ownedStations.TryGetCurrentOwner(station, out var owner), Is.True);
+            Assert.That(owner, Is.EqualTo("Nanotrasen"));
+        });
+
         await pair.CleanReturnAsync();
     }
 }

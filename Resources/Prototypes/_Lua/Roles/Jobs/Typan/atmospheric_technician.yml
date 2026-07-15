@@ -6,6 +6,7 @@
   id: OutpostTypanAtmosTech
   name: job-name-typan-atmos-tech
   playTimeTracker: JobOutpostSyndicateAtmosTech
+  requiredCompany: Syndicate
   salary: 35000
   description: Атмосферный инженер из далёкого космоса.
   startingGear: SyndicateAtmos
@@ -14,12 +15,12 @@
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 24000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10000
+    # - !type:DepartmentTimeRequirement
+    #   department: Civilian
+    #   time: 24000
+    # - !type:DepartmentTimeRequirement
+    #   department: Security
+    #   time: 10000
     - !type:OverallPlaytimeRequirement
       time: 360000
   access:

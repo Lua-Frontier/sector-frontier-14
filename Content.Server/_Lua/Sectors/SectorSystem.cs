@@ -305,6 +305,7 @@ public sealed class SectorSystem : EntitySystem
         var meta = EnsureComp<MetaDataComponent>(loadedGrid.Value);
         _meta.SetEntityName(loadedGrid.Value, stationName, meta);
         EntityManager.AddComponents(loadedGrid.Value, proto.AddComponents);
+
         if (proto.NameWarp)
         {
             bool? hideWarp = proto.HideWarp ? true : null;

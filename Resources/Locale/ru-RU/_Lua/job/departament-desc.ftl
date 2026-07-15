@@ -6,5 +6,6 @@ department-LuaTech-description = Соберите данные о секторе
 department-Outpost-Typan-description = Наблюдайте, соблюдайте секретность и исследуйте, а после создавате опасные штуки.
 
 department-stormcreed-description = Освободите родной сектор от жестоких корпоратов и продажных предателей!
+department-pirates-description = Живите набегами, добычей и пиратскими договорённостями на просторах Фронтира.
 department-service-description = Гражданские роли
 department-security-description = Служба безопасности

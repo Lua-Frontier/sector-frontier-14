@@ -28,6 +28,8 @@
     AnomalousLabAlt:
       stationProto: StandardFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Лаборатория Аномалий'
         - type: StationJobs

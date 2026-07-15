@@ -34,6 +34,8 @@
     Grifty:
       stationProto: DeadDropRecordsFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "Grifty's Gas n Grub"
         - type: BindToStationVariationPassExemption

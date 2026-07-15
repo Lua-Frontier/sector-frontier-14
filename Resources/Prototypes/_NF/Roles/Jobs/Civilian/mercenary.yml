@@ -3,21 +3,22 @@
   name: job-name-mercenary
   description: job-description-mercenary
   playTimeTracker: JobMercenary
+  requiredCompany: Neutral
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobPassenger
-      time: 36000 #Lua 10h 
-    - !type:DepartmentTimeRequirement
-      department: Medical
+    # - !type:RoleTimeRequirement
+    #   role: JobPassenger
+    #   time: 36000 #Lua 10h
+    # - !type:DepartmentTimeRequirement
+    #   department: Medical
+    #   time: 36000 #Lua 10h
+    # - !type:DepartmentTimeRequirement
+    #   department: Frontier
+    #   time: 36000 #Lua 10h
+    # - !type:RoleTimeRequirement
+    #   role: JobSecurityCadet
+    #   time: 36000 #Lua 10h
+    - !type:OverallPlaytimeRequirement
       time: 36000 #Lua 10h
-    - !type:DepartmentTimeRequirement
-      department: Frontier
-      time: 36000 #Lua 10h 
-    - !type:RoleTimeRequirement
-      role: JobSecurityCadet
-      time: 36000 #Lua 10h 
-#    - !type:OverallPlaytimeRequirement
-#      time: 108000
   startingGear: MercenaryGear
   canBeAntag: true
   icon: "JobIconMercenary"

@@ -34,5 +34,7 @@
     ThePit:
       stationProto: DeadDropFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "The Pit"

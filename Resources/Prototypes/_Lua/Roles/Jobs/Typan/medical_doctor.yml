@@ -6,6 +6,7 @@
   id: OutpostTypanMedic
   name: job-name-typan-medic
   playTimeTracker: JobOutpostSyndicateMedic
+  requiredCompany: Syndicate
   salary: 35000
   description: Медик из далёкого космоса.
   startingGear: SyndicateParamedic
@@ -14,21 +15,21 @@
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobPilot
-    time: 36000 # 20h
-  - !type:RoleTimeRequirement
-    role: JobPassenger
-    time: 36000 # 20h
-  - !type:RoleTimeRequirement
-    role: JobFrontierEngineer
-    time: 36000 # 20h
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 36000 # 20h
     # - !type:RoleTimeRequirement
-    #   role: JobOutpostTypanBotanist
-    #   time: 20600
+    #   role: JobPilot
+    #   time: 36000 # 20h
+    # - !type:RoleTimeRequirement
+    #   role: JobPassenger
+    #   time: 36000 # 20h
+    # - !type:RoleTimeRequirement
+    #   role: JobFrontierEngineer
+    #   time: 36000 # 20h
+    # - !type:DepartmentTimeRequirement
+    #   department: Medical
+    #   time: 36000 # 20h
+    - !type:RoleTimeRequirement
+      role: JobOutpostSyndicateBotanist
+      time: 20600
     # - !type:DepartmentTimeRequirement
     #   department: Civilian
     #   time: 18000

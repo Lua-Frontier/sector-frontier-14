@@ -36,6 +36,8 @@
     McHoboLua:
       stationProto: DeadDropRecordsFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "Заброшенный МакКарго"
         - type: BindToStationVariationPassExemption

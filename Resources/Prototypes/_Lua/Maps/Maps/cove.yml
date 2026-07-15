@@ -40,17 +40,22 @@
     Murena:
       stationProto: StandardPiratesVessel
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/space-station.png
           scale: 1.2
           allowWhenHidden: true
         - type: MailStationDisabled
+        - type: FactionOwnedStation
+          mainBase: true
         - type: StationNameSetup
           mapNameTemplate: 'SC-RUST/MUR3NA-5.5'
         - type: ExtraStationInformation
           iconPath: /Textures/Structures/Wallmounts/flags.rsi/Stormcreed_flag.png
           stationSubtext: 'stormcreed-lobby-outpost-subtext'
           stationDescription: 'stormcreed-lobby-outpost-description'
+          requiredCompany: StormCreed
         - type: StationJobs
           availableJobs:
             StormCreedCaptain: [ 1, 1 ]
@@ -67,17 +72,22 @@
     Cove:
       stationProto: StandardPiratesVessel
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/space-station.png
           scale: 1.2
           allowWhenHidden: true
         - type: MailStationDisabled
+        - type: FactionOwnedStation
+          mainBase: true
         - type: StationNameSetup
           mapNameTemplate: 'Аванпост Пиратов'
         - type: ExtraStationInformation
           iconPath: /Textures/Structures/Wallmounts/flags.rsi/pirate_flag.png # used the biggest one, looks better when downscaling than upscaling
           stationSubtext: 'pirate-lobby-outpost-subtext'
           stationDescription: 'pirate-lobby-outpost-description'
+          requiredCompany: Pirates
         - type: StationJobs
           availableJobs:
             NFPirateCaptain: [ 1, 1 ]

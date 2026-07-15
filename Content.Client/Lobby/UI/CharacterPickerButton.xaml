@@ -10,15 +10,22 @@
                     OverrideDirection="South"
                     Name="View"
                     SetSize="64 64"/>
-        <Label Name="DescriptionLabel"
-               ClipText="True"
-               HorizontalExpand="True"/>
-        <Button Name="DeleteButton"
-                Text="{Loc 'character-setup-gui-character-picker-button-delete-button'}"/>
-        <Button Name="ConfirmDeleteButton"
-                Text="{Loc 'character-setup-gui-character-picker-button-confirm-delete-button'}"
-                Visible="False"
-                ModulateSelfOverride="{x:Static style:StyleNano.ButtonColorCautionDefault}"/>
+        <RichTextLabel Name="DescriptionLabel"
+                       HorizontalExpand="True"
+                       VerticalAlignment="Center"/>
+        <BoxContainer Orientation="Vertical"
+                      MinSize="120 0"
+                      SeparationOverride="2"
+                      VerticalAlignment="Center">
+            <Button Name="DeleteButton"
+                    HorizontalExpand="True"
+                    Text="{Loc 'character-setup-gui-character-picker-button-delete-button'}"/>
+            <Button Name="ConfirmDeleteButton"
+                    HorizontalExpand="True"
+                    Text="{Loc 'character-setup-gui-character-picker-button-confirm-delete-button'}"
+                    Visible="False"
+                    ModulateSelfOverride="{x:Static style:StyleNano.ButtonColorCautionDefault}"/>
+        </BoxContainer>
 
     </BoxContainer>
 </ContainerButton>

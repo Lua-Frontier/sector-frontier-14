@@ -45,6 +45,8 @@
       # FIXME: no records despite shipyard console, could currently be gamed
       stationProto: StandardFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Пункт прослушки Браво'
         - type: StationJobs

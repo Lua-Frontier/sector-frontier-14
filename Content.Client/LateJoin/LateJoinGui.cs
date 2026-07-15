@@ -65,6 +65,7 @@ namespace Content.Client.LateJoin
             Contents.AddChild(_base);
 
             _jobRequirements.Updated += RebuildUI;
+            _preferencesManager.OnSelectedCharacterChanged += OnSelectedCharacterChanged;
             RebuildUI();
 
             SelectedId += x =>
@@ -76,6 +77,12 @@ namespace Content.Client.LateJoin
             };
 
             _gameTicker.LobbyJobsAvailableUpdated += JobsAvailableUpdated;
+        }
+
+        private void OnSelectedCharacterChanged()
+        {
+            _gameTicker.RequestJobsAvailableRefresh();
+            RebuildUI();
         }
 
         private void RebuildUI()
@@ -328,6 +335,7 @@ namespace Content.Client.LateJoin
             if (disposing)
             {
                 _jobRequirements.Updated -= RebuildUI;
+                _preferencesManager.OnSelectedCharacterChanged -= RebuildUI;
                 _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
                 _jobButtons.Clear();
                 _jobCategories.Clear();

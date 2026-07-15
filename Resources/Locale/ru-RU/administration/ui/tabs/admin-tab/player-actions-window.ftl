@@ -10,6 +10,7 @@ admin-player-actions-window-admin-notes = Админ заметки
 admin-player-actions-window-admin-fax = Админ факс
 admin-player-actions-window-reputation = Репутация
 admin-player-actions-window-chunk-monitor = Монитор чанков
+admin-player-actions-window-faction-wars = Войны
 admin-player-actions-window-admin-stats = Статистика
 admin-reputation-actions-target = Выберите игрока или администратора
 admin-reputation-actions-player = Репутация игрока

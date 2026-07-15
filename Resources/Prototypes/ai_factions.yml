@@ -2,6 +2,7 @@
   id: Dragon
   hostile:
     - NanoTrasen
+    - Neutral
     - Syndicate
     - Xeno
     - PetsNT
@@ -54,6 +55,34 @@
   - LuaTech
 
 - type: npcFaction
+  id: Neutral
+  hostile:
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Dragon
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - WizFedFaction # Frontier
+  - BloodCultNF # Frontier
+  - NFSyndicate # Frontier
+  - NFPirate # Frontier
+  - ExplorersExpeditionNF # Frontier
+  - ArtifactConstruct # Frontier
+  - StreetGangNF # Frontier
+  - DinosaursNF # Frontier
+  - MercenariesExpeditionNF # Frontier
+  - SiliconsExpeditionNF # Frontier
+  - AberrantFleshExpeditionNF # Frontier
+  - ContrabandClothing # Frontier
+  ## Lua
+  - LuaNordFoll
+  - LuaTech
+
+- type: npcFaction
   id: Mouse
   hostile:
   - PetsNT
@@ -79,6 +108,7 @@
   id: SimpleHostile
   hostile:
   - NanoTrasen
+  - Neutral
   - Syndicate
   - Passive
   - PetsNT
@@ -115,6 +145,7 @@
   - NFSyndicate # Frontier
   hostile:
   - NanoTrasen
+  - Neutral
   - SimpleHostile
   - Xeno
   - PetsNT
@@ -143,6 +174,7 @@
   id: Xeno
   hostile:
   - NanoTrasen
+  - Neutral
   - Syndicate
   - Passive
   - PetsNT
@@ -173,6 +205,7 @@
   id: Zombie
   hostile:
   - NanoTrasen
+  - Neutral
   - SimpleNeutral
   - SimpleHostile
   - Syndicate
@@ -204,6 +237,7 @@
   id: Revolutionary
   hostile:
   - NanoTrasen
+  - Neutral
   - Zombie
   - SimpleHostile
   - Dragon
@@ -230,6 +264,7 @@
   id: AllHostile # Frontier: use HostileUniversally
   hostile:
   - NanoTrasen
+  - Neutral
   - Dragon
   - Mouse
   - Passive
@@ -249,6 +284,7 @@
   id: Wizard
   hostile:
   - NanoTrasen
+  - Neutral
   - Dragon
   - Mouse
   - Passive
@@ -283,6 +319,7 @@
   hostile:
   # they have brains
   - NanoTrasen
+  - Neutral
   - Syndicate
   - Zombie
   - Revolutionary

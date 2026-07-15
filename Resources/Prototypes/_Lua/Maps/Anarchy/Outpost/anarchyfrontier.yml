@@ -12,6 +12,8 @@
     AnarchyFrontier:
       stationProto: StandardAnarchyFrontierStation
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Фронтир'
         - type: StationJobs

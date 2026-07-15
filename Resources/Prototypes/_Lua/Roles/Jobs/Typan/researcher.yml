@@ -6,6 +6,7 @@
   id: OutpostTypanResearcher
   name: job-name-typan-researcher
   playTimeTracker: JobOutpostSyndicateResearcher
+  requiredCompany: Syndicate
   salary: 25000
   description: Исследователь из далёкого космоса.
   startingGear: SyndicateResearcher
@@ -13,19 +14,19 @@
   supervisors: job-supervisors-typan-telecommunications-officer
   canBeAntag: false
   hideConsoleVisibility: true
-  requirements:
-  - !type:RoleTimeRequirement
-    role: JobPilot
-    time: 36000 # 20h
-  - !type:RoleTimeRequirement
-    role: JobPassenger
-    time: 36000 # 20h
-  - !type:RoleTimeRequirement
-    role: JobFrontierEngineer
-    time: 36000 # 20h
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 36000 # 20h
+  # requirements:
+  # - !type:RoleTimeRequirement
+  #   role: JobPilot
+  #   time: 36000 # 20h
+  # - !type:RoleTimeRequirement
+  #   role: JobPassenger
+  #   time: 36000 # 20h
+  # - !type:RoleTimeRequirement
+  #   role: JobFrontierEngineer
+  #   time: 36000 # 20h
+  # - !type:DepartmentTimeRequirement
+  #   department: Medical
+  #   time: 36000 # 20h
   access:
   - SyndicateAgent
   - NuclearOperative

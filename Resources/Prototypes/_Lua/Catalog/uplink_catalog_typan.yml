@@ -456,21 +456,3 @@
 #       - NukeOpsUplink
 #       - TypanUplink
 
-#region starmap
-
-- type: listing
-  id: UplinkSyndicateSectorBanner
-  name: uplink-syndicate-sector-banner-name
-  description: uplink-syndicate-sector-banner-desc
-  productEntity: BannerSectorSyndicate
-  cost:
-    Telecrystal: 1
-  categories:
-    - UplinkDisruption
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - TypanUplink
-

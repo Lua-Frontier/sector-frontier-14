@@ -33,6 +33,8 @@
     Courthouse:
       stationProto: StandardFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "Courthouse"
         - type: StationDeadDropHintExempt

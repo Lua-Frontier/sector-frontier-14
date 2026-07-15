@@ -8,6 +8,7 @@ using Content.Server.Maps;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerUpdates;
+using Content.Server._Lua.Company;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -25,7 +26,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Network; // Lua
 
 #if EXCEPTION_TOLERANCE
 using Robust.Shared.Exceptions;
@@ -60,6 +60,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
         [Dependency] private readonly ServerUpdateManager _serverUpdates = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly FactionOwnedStationSystem _ownedStations = default!;
         [Dependency] private readonly StationJobsSystem _stationJobs = default!;
         [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;

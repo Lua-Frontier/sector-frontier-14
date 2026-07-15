@@ -398,8 +398,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             else if (hideLabel) { labelName = null; }
             else
             {
-                if (aliesToViewer) { labelName = EntManager.TryGetComponent<MetaDataComponent>(gUid, out var meta) ? meta.EntityName : Loc.GetString("shuttle-console-unknown"); }
-                else { labelName = _shuttles.GetIFFLabel(grid, self: false, iff) ?? Loc.GetString("shuttle-console-unknown"); }
+                labelName = _shuttles.GetIFFLabel(grid, self: false, iff) ?? Loc.GetString("shuttle-console-unknown");
             }
             // Lua decrypt mod end
 

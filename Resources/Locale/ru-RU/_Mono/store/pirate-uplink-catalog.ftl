@@ -101,8 +101,6 @@ uplink-pirate-radio-jammer-desc = При активации это устрой�
 uplink-pirate-voicemask-name = Голосовая маска
 uplink-pirate-voicemask-desc = Противогаз, позволяющий подстроить свой голос под кого угодно.
 
-uplink-pirate-sector-banner-name = Секторный баннер Пиратов
-uplink-pirate-sector-banner-desc = Позволяет захватить звезду. Установите баннер на гриде маяка в системе звезды.
 
 uplink-pirate-cash2500-name = Кредиты (2,500)
 uplink-pirate-cash2500-desc = Йарр! Молодец, пират.

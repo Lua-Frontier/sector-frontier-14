@@ -33,6 +33,8 @@
     Lodge:
       stationProto: MarketFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: SolarPoweredGrid
           trackOnInit: true
           doNotCull: true
@@ -43,10 +45,10 @@
           stationSubtext: 'frontier-lobby-erc-subtext'
           stationDescription: 'frontier-lobby-erc-description'
           lobbySortOrder: 3
+          requiredCompany: Nanotrasen
         - type: StationJobs
           availableJobs:
             Vip: [ -1, -1 ]
-            Contractor: [ -1, -1 ]
             Pilot: [ -1, -1 ]
         - type: StationDeadDrop
           maxDeadDrops: 1 # Fewer here, players start here.

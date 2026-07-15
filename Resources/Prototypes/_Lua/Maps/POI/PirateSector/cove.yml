@@ -1,0 +1,61 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: pointOfInterest
+  id: PirateCove
+  parent: BasePOI
+  name: 'Аванпост Пиратов'
+  minimumDistance: 1800
+  maximumDistance: 2800
+  spawnGroup: PirateCove
+  gridPath: /Maps/_Lua/Maps/tortuga.yml
+  addComponents:
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/space-station.png
+    scale: 1.2
+    allowWhenHidden: true
+  - type: IFF
+    color: "#c07a3e"
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+  - type: SolarPoweredGrid
+    trackOnInit: true
+    doNotCull: true
+  - type: WorldGenDistanceCarver
+    distanceThresholds:
+      - maxDistance: 500
+        prob: 0.0
+      - maxDistance: 1000
+        prob: 0.3
+
+- type: gameMap
+  id: PirateCove
+  mapName: 'Аванпост Пиратов'
+  mapPath: /Maps/_Lua/Maps/tortuga.yml
+  minPlayers: 0
+  stations:
+    PirateCove:
+      stationProto: StandardPiratesVessel
+      components:
+        - type: FactionCapture
+          captureWholeStation: true
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/space-station.png
+          scale: 1.2
+          allowWhenHidden: true
+        - type: MailStationDisabled
+        - type: FactionOwnedStation
+          mainBase: true
+        - type: StationNameSetup
+          mapNameTemplate: 'Аванпост Пиратов'
+        - type: ExtraStationInformation
+          iconPath: /Textures/Structures/Wallmounts/flags.rsi/pirate_flag.png
+          stationSubtext: 'pirate-lobby-outpost-subtext'
+          stationDescription: 'pirate-lobby-outpost-description'
+          requiredCompany: Pirates
+        - type: StationJobs
+          availableJobs:
+            NFPirateCaptain: [ 1, 1 ]
+            NFPirateFirstMate: [ 1, 1 ]
+            NFPirate: [ 4, 4 ]

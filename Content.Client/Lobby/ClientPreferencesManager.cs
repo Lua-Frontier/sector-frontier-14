@@ -7,7 +7,6 @@ using Robust.Client.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby
 {
@@ -23,6 +22,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         public event Action? OnServerDataLoaded;
+        public event Action? OnSelectedCharacterChanged;
 
         public GameSettings Settings { get; private set; } = default!;
         public PlayerPreferences Preferences { get; private set; } = default!;
@@ -54,6 +54,8 @@ namespace Content.Client.Lobby
         public void SelectCharacter(int slot)
         {
             Preferences = new PlayerPreferences(Preferences.Characters, slot, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
+            OnSelectedCharacterChanged?.Invoke();
+
             var msg = new MsgSelectCharacter
             {
                 SelectedCharacterIndex = slot
@@ -64,6 +66,14 @@ namespace Content.Client.Lobby
         public void UpdateCharacter(ICharacterProfile profile, int slot)
         {
             var collection = IoCManager.Instance!;
+
+            if (Preferences.Characters.TryGetValue(slot, out var existingProfile) &&
+                profile is HumanoidCharacterProfile incomingHumanoid &&
+                existingProfile is HumanoidCharacterProfile existingHumanoid)
+            {
+                if (!string.Equals(existingHumanoid.Company, "None", StringComparison.OrdinalIgnoreCase))
+                    profile = incomingHumanoid.WithCompany(existingHumanoid.Company);
+            }
 
             // Verify company exists if this is a humanoid profile
             if (profile is HumanoidCharacterProfile humanoidProfile)
@@ -80,6 +90,10 @@ namespace Content.Client.Lobby
             profile.EnsureValid(_playerManager.LocalSession!, collection);
             var characters = new Dictionary<int, ICharacterProfile>(Preferences.Characters) {[slot] = profile};
             Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
+
+            if (slot == Preferences.SelectedCharacterIndex)
+                OnSelectedCharacterChanged?.Invoke();
+
             var msg = new MsgUpdateCharacter
             {
                 Profile = profile,
@@ -135,6 +149,9 @@ namespace Content.Client.Lobby
 
         private void HandlePreferencesAndSettings(MsgPreferencesAndSettings message)
         {
+            var oldSelectedIndex = Preferences?.SelectedCharacterIndex;
+            var oldSelectedCharacter = Preferences?.SelectedCharacter;
+
             Preferences = message.Preferences;
             Settings = message.Settings;
 
@@ -178,6 +195,11 @@ namespace Content.Client.Lobby
                     }
                 }
             }
+
+            var currentPreferences = Preferences;
+            if (currentPreferences != null &&
+                (oldSelectedIndex != currentPreferences.SelectedCharacterIndex || !ReferenceEquals(oldSelectedCharacter, currentPreferences.SelectedCharacter)))
+                OnSelectedCharacterChanged?.Invoke();
 
             OnServerDataLoaded?.Invoke();
         }

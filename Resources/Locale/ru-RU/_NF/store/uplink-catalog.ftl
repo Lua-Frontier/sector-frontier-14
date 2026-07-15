@@ -77,8 +77,6 @@ uplink-security-holo-desc = Портативный голопроектор на
 uplink-security-jetpack-name = Джетпак
 uplink-security-jetpack-desc = Заправленный реактивный ранец для выхода в открытый космос. Поставляется в модном зелёном цвете.
 
-uplink-security-sector-banner-name = Секторный баннер СРБС
-uplink-security-sector-banner-desc = Позволяет захватить звезду. Установите баннер на гриде маяка в системе звезды.
 uplink-security-magboots-name = Магнитные сапоги СРБС
 uplink-security-magboots-desc = Лёгкие магнитные ботинки, разработанные, чтобы удержать владельца на твёрдой поверхности в условиях низкой и нулевой гравитации. Также отлично подходят для танцев на потолке.
 uplink-security-techfab-name = Техфаб СРБС

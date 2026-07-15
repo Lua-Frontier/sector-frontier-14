@@ -177,13 +177,15 @@ namespace Content.Shared.GameTicking
         LocId? stationSubtext,
         LocId? stationDescription,
         ResPath? stationIcon,
-        int lobbySortOrder
+        int lobbySortOrder,
+        string? requiredCompany
         )
     {
         public LocId? StationSubtext { get; } = stationSubtext;
         public LocId? StationDescription { get; } = stationDescription;
         public ResPath? StationIcon { get; } = stationIcon;
         public int LobbySortOrder { get; } = lobbySortOrder;
+        public string? RequiredCompany { get; } = requiredCompany;
     }
 
     /// <summary>
@@ -211,6 +213,11 @@ namespace Content.Shared.GameTicking
     ) : EntityEventArgs
     {
         public Dictionary<NetEntity, StationJobInformation> StationJobList { get; } = stationJobList;
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class TickerJobsAvailableRequestEvent : EntityEventArgs
+    {
     }
 
     [Serializable, NetSerializable, DataDefinition]

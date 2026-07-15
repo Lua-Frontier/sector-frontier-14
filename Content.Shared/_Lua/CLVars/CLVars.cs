@@ -70,6 +70,8 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("starmap.require_sector_disks", false, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<bool> StargateGuideShown =
             CVarDef.Create("stargate.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<bool> FactionWarsGuideShown =
+            CVarDef.Create("faction_wars.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> ActionsActivePreset =
             CVarDef.Create("actions.active_preset", 0, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -199,5 +201,20 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("lunacoin.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
         public static readonly CVarDef<string> LunaCoinServerName =
             CVarDef.Create("lunacoin.server_name", "luna", CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> FactionWarEnabled =
+            CVarDef.Create("lua.faction_war.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarPrimeStartHour =
+            CVarDef.Create("lua.faction_war.prime_start_hour", 22, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarPrimeEndHour =
+            CVarDef.Create("lua.faction_war.prime_end_hour", 3, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarCaptureRequiredAttackers =
+            CVarDef.Create("lua.faction_war.capture_required_attackers", 6, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarCaptureDurationSeconds =
+            CVarDef.Create("lua.faction_war.capture_duration_seconds", 600, CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }

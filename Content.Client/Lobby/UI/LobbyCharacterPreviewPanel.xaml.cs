@@ -46,11 +46,15 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
     {
         if (string.IsNullOrEmpty(value))
         {
-            Company.SetMessage(string.Empty);
+            CompanyContainer.Visible = false;
+            CompanyLabel.Text = string.Empty;
+            CompanyValue.SetMessage(string.Empty);
             return;
         }
 
-        Company.SetMessage(FormattedMessage.FromMarkupPermissive(value));
+        CompanyContainer.Visible = true;
+        CompanyLabel.Text = Loc.GetString("lobby-character-preview-panel-company-label");
+        CompanyValue.SetMessage(FormattedMessage.FromMarkupPermissive(value));
     }
     // End Company Display
 

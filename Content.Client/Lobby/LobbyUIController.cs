@@ -56,9 +56,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     /// <summary>
     /// This is the modified profile currently being edited.
     /// </summary>
-    private HumanoidCharacterProfile? EditedProfile => _profileEditor?.Profile;
+    private HumanoidCharacterProfile? EditedProfile => _characterSetup?.EditedProfile;
 
-    private int? EditedSlot => _profileEditor?.CharacterSlot;
+    private int? EditedSlot => _characterSetup?.EditedSlot;
 
     public override void Initialize()
     {
@@ -164,7 +164,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         RefreshLobbyPreview();
         var (characterGui, profileEditor) = EnsureGui();
         characterGui.ReloadCharacterPickers();
-        profileEditor.SetProfile(
+        characterGui.SetProfile(
             (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
             _preferencesManager.Preferences?.SelectedCharacterIndex);
     }
@@ -213,11 +213,11 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         var companyId = humanoid.Company;
         if (_prototypeManager.TryIndex<CompanyPrototype>(companyId, out var company))
         {
-            PreviewPanel.SetCompanyText(Loc.GetString("humanoid-profile-editor-company-label") + $" [color={company.Color.ToHex()}]{company.Name}[/color]");
+            PreviewPanel.SetCompanyText($"[color={company.Color.ToHex()}]{company.Name}[/color]");
         }
         else
         {
-            PreviewPanel.SetCompanyText(Loc.GetString("humanoid-profile-editor-company-label") + $" [color=yellow]{companyId}[/color]");
+            PreviewPanel.SetCompanyText($"[color=yellow]{companyId}[/color]");
         }
     }
 
@@ -312,7 +312,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _characterSetup.CloseButton.OnPressed += _ =>
         {
             // Open the save panel if we have unsaved changes.
-            if (_profileEditor.Profile != null && _profileEditor.IsDirty)
+            if (_characterSetup.EditedProfile != null && _characterSetup.IsDirty)
             {
                 OpenSavePanel();
 
@@ -324,6 +324,11 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         };
 
         _profileEditor.Save += SaveProfile;
+        _characterSetup.Save += (profile, slot) =>
+        {
+            _preferencesManager.UpdateCharacter(profile, slot);
+            ReloadCharacterSetup();
+        };
 
         _characterSetup.SelectCharacter += args =>
         {

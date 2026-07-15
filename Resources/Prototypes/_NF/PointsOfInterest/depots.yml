@@ -55,6 +55,8 @@
     CargoDepot:
       stationProto: StandardFrontierOutpost
       components: &cargoStationComponents
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Торговый Терминал' # Has a letter appended in PointOfInterestSystem
         - type: TradeCrateDestination

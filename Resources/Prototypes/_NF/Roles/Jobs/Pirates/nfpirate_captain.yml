@@ -3,18 +3,13 @@
   name: job-name-nf-pirate-captain
   description: job-description-nf-pirate-captain
   playTimeTracker: JobPirateCaptain
+  requiredCompany: Pirates
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 172800 # 48 hours
     - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
+      role: JobPirateFirstMate
       time: 57600 # 16 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 29800 # 3 hours
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 21800 # 3 hours
   whitelisted: false
   startingGear: NFPirateCaptainGear
   alwaysUseSpawner: true
@@ -37,7 +32,7 @@
     - type: SpecialSectorStationRecord # must be given on spawn
       recordGeneration: FalseRecord
     - type: Company
-      companyName: None
+      companyName: Pirates
     - type: DisableSuitSensors
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]

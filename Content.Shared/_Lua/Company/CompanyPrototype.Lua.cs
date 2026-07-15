@@ -9,6 +9,9 @@ public sealed partial class CompanyPrototype
     [DataField("hiddenFromNonMembers")]
     public bool HiddenFromNonMembers { get; private set; } = false;
 
+    [DataField("motd")]
+    public string? Motd { get; private set; }
+
     [DataField("leaderJobs")]
     public List<string> LeaderJobs { get; private set; } = new();
 }

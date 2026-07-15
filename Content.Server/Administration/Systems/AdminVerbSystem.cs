@@ -81,6 +81,7 @@ namespace Content.Server.Administration.Systems
         {
             AddAdminVerbs(ev);
             AddDebugVerbs(ev);
+            AddFactionWarVerbs(ev);
             AddSmiteVerbs(ev);
             AddTricksVerbs(ev);
             AddAntagVerbs(ev);
