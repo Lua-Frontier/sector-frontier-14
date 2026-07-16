@@ -87,6 +87,9 @@ public sealed class JobTest
         Assert.That(pair.Client.AttachedEntity, Is.Null);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
 
+        await pair.SetCompany("Neutral");
+        await pair.SetJobPriorities((Passenger, JobPriority.High));
+
         // Ready up and start the round
         ticker.ToggleReadyAll(true);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.ReadyToPlay));
@@ -117,6 +120,7 @@ public sealed class JobTest
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
+        await pair.SetCompany("Neutral");
         await pair.SetJobPriorities((Passenger, JobPriority.Medium), (Engineer, JobPriority.High));
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
@@ -162,6 +166,7 @@ public sealed class JobTest
         Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
         Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
 
+        await pair.SetCompany("Nanotrasen");
         await pair.SetJobPriorities((Passenger, JobPriority.Medium), (Engineer, JobPriority.High), (Captain, JobPriority.Low));
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
@@ -198,6 +203,7 @@ public sealed class JobTest
         var captain = engineers[3];
         engineers.RemoveAt(3);
 
+        await pair.SetCompany("Nanotrasen", captain);
         await pair.SetJobPriorities(captain, (Captain, JobPriority.High), (Engineer, JobPriority.Medium));
         foreach (var engi in engineers)
         {

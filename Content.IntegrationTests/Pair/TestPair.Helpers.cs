@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -237,5 +237,21 @@ public sealed partial class TestPair
         var newProfile = profile.WithJobPriorities(dictionary);
         _modifiedProfiles.Add(user);
         await Server.WaitPost(() => prefMan.SetProfile(user, 0, newProfile).Wait());
+    }
+    public async Task SetCompany(string company, NetUserId? user = null)
+    {
+        user ??= Client.User!.Value;
+        if (user is not { } userId)
+            return;
+
+        var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
+        var prefs = prefMan.GetPreferences(userId);
+
+        Assert.That(prefs.SelectedCharacterIndex, Is.EqualTo(0));
+
+        var profile = (HumanoidCharacterProfile) prefs.Characters[0];
+        var newProfile = profile.WithCompany(company);
+        _modifiedProfiles.Add(userId);
+        await Server.WaitPost(() => prefMan.SetProfile(userId, 0, newProfile, validateFields: false).Wait());
     }
 }

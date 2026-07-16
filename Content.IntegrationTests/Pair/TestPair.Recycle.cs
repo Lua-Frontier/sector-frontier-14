@@ -93,7 +93,7 @@ public sealed partial class TestPair : IAsyncDisposable
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
         foreach (var user in _modifiedProfiles)
         {
-            await Server.WaitPost(() => prefMan.SetProfile(user, 0, new HumanoidCharacterProfile()).Wait());
+            await Server.WaitPost(() => prefMan.SetProfile(user, 0, new HumanoidCharacterProfile(), validateFields: false).Wait());
         }
         _modifiedProfiles.Clear();
     }

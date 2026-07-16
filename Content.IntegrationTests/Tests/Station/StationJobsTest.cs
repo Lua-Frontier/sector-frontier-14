@@ -28,62 +28,73 @@ public sealed class StationJobsTest
     private const string StationMapId = "FooStation";
 
     [TestPrototypes]
-    private const string Prototypes = $@"
-- type: playTimeTracker
-  id: PlayTimeDummyAssistant
-
-- type: playTimeTracker
-  id: PlayTimeDummyMime
-
-- type: playTimeTracker
-  id: PlayTimeDummyClown
-
-- type: playTimeTracker
-  id: PlayTimeDummyCaptain
-
-- type: playTimeTracker
-  id: PlayTimeDummyChaplain
-
-- type: gameMap
-  id: {StationMapId}
-  minPlayers: 0
-  mapName: {StationMapId}
-  mapPath: /Maps/Test/empty.yml
-  stations:
-    Station:
-      mapNameTemplate: {StationMapId}
-      stationProto: StandardNanotrasenStation
-      components:
-        - type: StationJobs
-          availableJobs:
-            TMime: [0, -1]
-            TAssistant: [-1, -1]
-            TCaptain: [5, 5]
-            TClown: [5, 6]
-
-- type: job
-  id: TAssistant
-  playTimeTracker: PlayTimeDummyAssistant
-
-- type: job
-  id: TMime
-  weight: 20
-  playTimeTracker: PlayTimeDummyMime
-
-- type: job
-  id: TClown
-  weight: -10
-  playTimeTracker: PlayTimeDummyClown
-
-- type: job
-  id: TCaptain
-  weight: 10
-  playTimeTracker: PlayTimeDummyCaptain
-
-- type: job
-  id: TChaplain
-  playTimeTracker: PlayTimeDummyChaplain
-";
+    private const string Prototypes =
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyAssistant\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyMime\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyClown\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyCaptain\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyChaplain\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyNtOnly\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyPirateOnly\n\n" +
+        $"- type: gameMap\n" +
+        $"  id: {StationMapId}\n" +
+        $"  minPlayers: 0\n" +
+        $"  mapName: {StationMapId}\n" +
+        $"  mapPath: /Maps/Test/empty.yml\n" +
+        $"  stations:\n" +
+        $"    Station:\n" +
+        $"      mapNameTemplate: {StationMapId}\n" +
+        $"      stationProto: StandardNanotrasenStation\n" +
+        $"      components:\n" +
+        $"        - type: StationJobs\n" +
+        $"          availableJobs:\n" +
+        $"            TMime: [0, -1]\n" +
+        $"            TAssistant: [-1, -1]\n" +
+        $"            TCaptain: [5, 5]\n" +
+        $"            TClown: [5, 6]\n" +
+        $"    OwnedStation:\n" +
+        $"      mapNameTemplate: OwnedStation\n" +
+        $"      stationProto: StandardNanotrasenStation\n" +
+        $"      components:\n" +
+        $"        - type: ExtraStationInformation\n" +
+        $"          requiredCompany: Nanotrasen\n" +
+        $"        - type: StationJobs\n" +
+        $"          availableJobs:\n" +
+        $"            TNanotrasenOnly: [2, 2]\n" +
+        $"            TPirateOnly: [1, 1]\n\n" +
+        "- type: job\n" +
+        "  id: TAssistant\n" +
+        "  playTimeTracker: PlayTimeDummyAssistant\n\n" +
+        "- type: job\n" +
+        "  id: TMime\n" +
+        "  weight: 20\n" +
+        "  playTimeTracker: PlayTimeDummyMime\n\n" +
+        "- type: job\n" +
+        "  id: TClown\n" +
+        "  weight: -10\n" +
+        "  playTimeTracker: PlayTimeDummyClown\n\n" +
+        "- type: job\n" +
+        "  id: TCaptain\n" +
+        "  weight: 10\n" +
+        "  playTimeTracker: PlayTimeDummyCaptain\n\n" +
+        "- type: job\n" +
+        "  id: TChaplain\n" +
+        "  playTimeTracker: PlayTimeDummyChaplain\n\n" +
+        "- type: job\n" +
+        "  id: TNanotrasenOnly\n" +
+        "  playTimeTracker: PlayTimeDummyNtOnly\n" +
+        "  requiredCompany: Nanotrasen\n\n" +
+        "- type: job\n" +
+        "  id: TPirateOnly\n" +
+        "  playTimeTracker: PlayTimeDummyPirateOnly\n" +
+        "  requiredCompany: Pirates\n";
 
     private const int StationCount = 100;
     private const int CaptainCount = StationCount;
@@ -289,7 +300,7 @@ public sealed class StationJobsTest
                 StationPrototype = "StandardNanotrasenStation",
                 StationComponentOverrides = new ComponentRegistry
                 {
-                    [nameof(ExtraStationInformationComponent)] = new EntityPrototype.ComponentRegistryEntry(
+                    ["ExtraStationInformation"] = new EntityPrototype.ComponentRegistryEntry(
                         new ExtraStationInformationComponent
                         {
                             RequiredCompany = "Nanotrasen"
@@ -314,6 +325,66 @@ public sealed class StationJobsTest
             Assert.That(entMan.TryGetComponent<FactionOwnedStationComponent>(station, out var owned), Is.True);
             Assert.That(ownedStations.TryGetCurrentOwner(station, out var owner), Is.True);
             Assert.That(owner, Is.EqualTo("Nanotrasen"));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task StationOwnershipChangeRebuildsCompanyRestrictedJobs()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+
+        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+        var fooStationProto = prototypeManager.Index<GameMapPrototype>(StationMapId);
+
+        EntityUid station = EntityUid.Invalid;
+        EntityUid grid = EntityUid.Invalid;
+
+        await server.WaitPost(() =>
+        {
+            var entMan = server.ResolveDependency<IEntityManager>();
+            var mapSystem = entMan.System<SharedMapSystem>();
+            var mapManager = server.MapMan;
+            var stationSystem = entMan.System<StationSystem>();
+
+            mapSystem.CreateMap(out var mapId);
+            grid = mapManager.CreateGridEntity(mapId);
+
+            station = stationSystem.InitializeNewStation(fooStationProto.Stations["OwnedStation"], new[] { grid }, "Ownership Rebuild Test");
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitPost(() =>
+        {
+            var entMan = server.ResolveDependency<IEntityManager>();
+            var ownedStations = entMan.System<FactionOwnedStationSystem>();
+            ownedStations.SetOwner(station, "Pirates");
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var entMan = server.ResolveDependency<IEntityManager>();
+            var ownedStations = entMan.System<FactionOwnedStationSystem>();
+            var stationJobs = entMan.System<StationJobsSystem>();
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(ownedStations.TryGetCurrentOwner(station, out var currentOwner), Is.True);
+                Assert.That(currentOwner, Is.EqualTo("Pirates"));
+                Assert.That(ownedStations.GetSpawnAccessCompanies(station), Is.EqualTo("Pirates"));
+
+                Assert.That(entMan.TryGetComponent<CompanyComponent>(grid, out var company), Is.True);
+                Assert.That(company!.CompanyName, Is.EqualTo("Pirates"));
+
+                Assert.That(stationJobs.TryGetJobSlot(station, "TNanotrasenOnly", out var ntSlots), Is.True);
+                Assert.That(ntSlots, Is.EqualTo(0));
+
+                Assert.That(stationJobs.TryGetJobSlot(station, "TPirateOnly", out var pirateSlots), Is.True);
+                Assert.That(pirateSlots, Is.EqualTo(1));
+            });
         });
 
         await pair.CleanReturnAsync();
