@@ -3,9 +3,11 @@ using Content.Server._Lua.Company;
 using Content.Server._Lua.Company.Components;
 using Content.Server._NF.Station.Components;
 using Content.Server.Maps;
+using Content.Server.Roles;
 using Content.Server.Station;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Lua.Company;
 using Content.Shared._Mono.Company;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -26,6 +28,7 @@ namespace Content.IntegrationTests.Tests.Station;
 public sealed class StationJobsTest
 {
     private const string StationMapId = "FooStation";
+    private static readonly ProtoId<JobPrototype> DualFactionJob = "TDualFaction";
 
     [TestPrototypes]
     private const string Prototypes =
@@ -43,6 +46,8 @@ public sealed class StationJobsTest
         "  id: PlayTimeDummyNtOnly\n\n" +
         "- type: playTimeTracker\n" +
         "  id: PlayTimeDummyPirateOnly\n\n" +
+        "- type: playTimeTracker\n" +
+        "  id: PlayTimeDummyDualFaction\n\n" +
         $"- type: gameMap\n" +
         $"  id: {StationMapId}\n" +
         $"  minPlayers: 0\n" +
@@ -94,7 +99,11 @@ public sealed class StationJobsTest
         "- type: job\n" +
         "  id: TPirateOnly\n" +
         "  playTimeTracker: PlayTimeDummyPirateOnly\n" +
-        "  requiredCompany: Pirates\n";
+        "  requiredCompany: Pirates\n\n" +
+        "- type: job\n" +
+        "  id: TDualFaction\n" +
+        "  playTimeTracker: PlayTimeDummyDualFaction\n" +
+        "  requiredCompany: Nanotrasen, Pirates\n";
 
     private const int StationCount = 100;
     private const int CaptainCount = StationCount;
@@ -385,6 +394,30 @@ public sealed class StationJobsTest
                 Assert.That(stationJobs.TryGetJobSlot(station, "TPirateOnly", out var pirateSlots), Is.True);
                 Assert.That(pirateSlots, Is.EqualTo(1));
             });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task RequiredCompanyCsvSplitsIntoCompanyRequirementEntries()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+
+        await server.WaitAssertion(() =>
+        {
+            var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+            var roleSystem = server.System<RoleSystem>();
+            var job = prototypeManager.Index(DualFactionJob);
+
+            var requirements = roleSystem.GetJobRequirement(job);
+            var companyRequirement = requirements?
+                .OfType<CompanyRequirement>()
+                .SingleOrDefault();
+
+            Assert.That(companyRequirement, Is.Not.Null);
+            Assert.That(companyRequirement!.Companies, Is.EquivalentTo(new[] { "Nanotrasen", "Pirates" }));
         });
 
         await pair.CleanReturnAsync();

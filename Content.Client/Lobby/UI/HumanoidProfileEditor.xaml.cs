@@ -2414,9 +2414,15 @@ namespace Content.Client.Lobby.UI
                 return true;
 
             if (string.IsNullOrWhiteSpace(job.RequiredCompany))
-                return false;
+                return true;
 
-            return string.Equals(job.RequiredCompany, profile.Company, StringComparison.OrdinalIgnoreCase);
+            foreach (var company in job.RequiredCompany.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            {
+                if (string.Equals(company, profile.Company, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
         }
 
         private List<CompanyPrototype> GetSelectableCompanies(string? username)

@@ -335,7 +335,7 @@ namespace Content.Client.LateJoin
             if (disposing)
             {
                 _jobRequirements.Updated -= RebuildUI;
-                _preferencesManager.OnSelectedCharacterChanged -= RebuildUI;
+                _preferencesManager.OnSelectedCharacterChanged -= OnSelectedCharacterChanged;
                 _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
                 _jobButtons.Clear();
                 _jobCategories.Clear();

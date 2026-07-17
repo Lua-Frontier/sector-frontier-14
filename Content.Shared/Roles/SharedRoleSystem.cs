@@ -692,9 +692,16 @@ public abstract class SharedRoleSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(job.RequiredCompany))
             return requirements;
 
+        var requiredCompanies = job.RequiredCompany
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        if (requiredCompanies.Count == 0)
+            return requirements;
+
         if (requirements != null && requirements
                 .OfType<CompanyRequirement>()
-                .Any(companyRequirement => companyRequirement.Companies.Contains(job.RequiredCompany)))
+                .Any(companyRequirement => companyRequirement.Companies.Overlaps(requiredCompanies)))
         {
             return requirements;
         }
@@ -705,7 +712,7 @@ public abstract class SharedRoleSystem : EntitySystem
 
         mergedRequirements.Add(new CompanyRequirement
         {
-            Companies = new HashSet<string> { job.RequiredCompany }
+            Companies = requiredCompanies
         });
 
         return mergedRequirements;
