@@ -28,7 +28,7 @@ namespace Content.IntegrationTests.Tests.Station;
 public sealed class StationJobsTest
 {
     private const string StationMapId = "FooStation";
-    private static readonly ProtoId<JobPrototype> DualFactionJob = "TDualFaction";
+    private const string DualFactionJobId = "TDualFaction";
 
     [TestPrototypes]
     private const string Prototypes =
@@ -409,7 +409,7 @@ public sealed class StationJobsTest
         {
             var prototypeManager = server.ResolveDependency<IPrototypeManager>();
             var roleSystem = server.System<RoleSystem>();
-            var job = prototypeManager.Index(DualFactionJob);
+            var job = prototypeManager.Index<JobPrototype>(DualFactionJobId);
 
             var requirements = roleSystem.GetJobRequirement(job);
             var companyRequirement = requirements?
