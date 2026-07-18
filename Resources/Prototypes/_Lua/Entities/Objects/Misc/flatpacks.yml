@@ -265,7 +265,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: WeaponTurretPeacekeeperFlatPack
-  name: Peacekeeper class salvo gun
+  name: SHR-57 "Scattergun"
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
@@ -306,6 +306,37 @@
     sprite: _Lua/Flatpack/flatpack.rsi
     layers:
     - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretTarnyxApFlatPack
+  name: ADBX-31 TARNYX 150mm EMP Cannon
+  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurreApTarnyx
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretTarnyxReloadFlatPack
+  name: ADBX-31 TARNYX 150mm EMP Cannon
+  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretTarnyxReload
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
 
 - type: entity
   parent: BaseNFFlatpack
