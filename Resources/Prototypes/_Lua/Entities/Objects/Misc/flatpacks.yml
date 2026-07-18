@@ -23,7 +23,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: WeaponTurretType35FlatPack
-  name: MARAUDER-type plasma weapon
+  name: Type-35 "MARAUDER" plasma weapon
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
@@ -314,7 +314,7 @@
   description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
-    entity: WeaponTurreApTarnyx
+    entity: WeaponTurretApTarnyx
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -329,7 +329,7 @@
   description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
-    entity: WeaponTurretTarnyxReload
+    entity: WeaponTurretTarnyx
   - type: StaticPrice
     price: 5000
   - type: Sprite
