@@ -106,7 +106,7 @@ public sealed partial class AdminVerbSystem
         if (HasComp<MapComponent>(args.Target) || HasComp<MapGridComponent>(args.Target))
             return;
 
-        var explodeName = Loc.GetString("admin-smite-explode-name").ToLowerInvariant();
+        var explodeName = Loc.GetString("admin-smite-explode-name"); // Lua
         Verb explode = new()
         {
             Text = explodeName,
@@ -127,7 +127,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(explode);
 
-        var chessName = Loc.GetString("admin-smite-chess-dimension-name").ToLowerInvariant();
+        var chessName = Loc.GetString("admin-smite-chess-dimension-name"); // Lua
         Verb chess = new()
         {
             Text = chessName,
@@ -156,7 +156,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<FlammableComponent>(args.Target, out var flammable))
         {
-            var flamesName = Loc.GetString("admin-smite-set-alight-name").ToLowerInvariant();
+            var flamesName = Loc.GetString("admin-smite-set-alight-name"); // Lua
             Verb flames = new()
             {
                 Text = flamesName,
@@ -179,7 +179,7 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(flames);
         }
 
-        var monkeyName = Loc.GetString("admin-smite-monkeyify-name").ToLowerInvariant();
+        var monkeyName = Loc.GetString("admin-smite-monkeyify-name"); // Lua
         Verb monkey = new()
         {
             Text = monkeyName,
@@ -194,7 +194,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(monkey);
 
-        var disposalBinName = Loc.GetString("admin-smite-garbage-can-name").ToLowerInvariant();
+        var disposalBinName = Loc.GetString("admin-smite-garbage-can-name"); // Lua
         Verb disposalBin = new()
         {
             Text = disposalBinName,
@@ -212,7 +212,7 @@ public sealed partial class AdminVerbSystem
         if (TryComp<DamageableComponent>(args.Target, out var damageable) &&
             HasComp<MobStateComponent>(args.Target))
         {
-            var hardElectrocuteName = Loc.GetString("admin-smite-electrocute-name").ToLowerInvariant();
+            var hardElectrocuteName = Loc.GetString("admin-smite-electrocute-name"); // Lua
             Verb hardElectrocute = new()
             {
                 Text = hardElectrocuteName,
@@ -258,7 +258,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<CreamPiedComponent>(args.Target, out var creamPied))
         {
-            var creamPieName = Loc.GetString("admin-smite-creampie-name").ToLowerInvariant();
+            var creamPieName = Loc.GetString("admin-smite-creampie-name"); // Lua
             Verb creamPie = new()
             {
                 Text = creamPieName,
@@ -276,7 +276,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
         {
-            var bloodRemovalName = Loc.GetString("admin-smite-remove-blood-name").ToLowerInvariant();
+            var bloodRemovalName = Loc.GetString("admin-smite-remove-blood-name"); // Lua
             Verb bloodRemoval = new()
             {
                 Text = bloodRemovalName,
@@ -300,7 +300,7 @@ public sealed partial class AdminVerbSystem
         // bobby...
         if (TryComp<BodyComponent>(args.Target, out var body))
         {
-            var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name").ToLowerInvariant();
+            var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name"); // Lua
             Verb vomitOrgans = new()
             {
                 Text = vomitOrgansName,
@@ -329,7 +329,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(vomitOrgans);
 
-            var handsRemovalName = Loc.GetString("admin-smite-remove-hands-name").ToLowerInvariant();
+            var handsRemovalName = Loc.GetString("admin-smite-remove-hands-name"); // Lua
             Verb handsRemoval = new()
             {
                 Text = handsRemovalName,
@@ -352,7 +352,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(handsRemoval);
 
-            var handRemovalName = Loc.GetString("admin-smite-remove-hand-name").ToLowerInvariant();
+            var handRemovalName = Loc.GetString("admin-smite-remove-hand-name"); // Lua
             Verb handRemoval = new()
             {
                 Text = handRemovalName,
@@ -376,7 +376,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(handRemoval);
 
-            var stomachRemovalName = Loc.GetString("admin-smite-stomach-removal-name").ToLowerInvariant();
+            var stomachRemovalName = Loc.GetString("admin-smite-stomach-removal-name"); // Lua
             Verb stomachRemoval = new()
             {
                 Text = stomachRemovalName,
@@ -397,7 +397,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(stomachRemoval);
 
-            var lungRemovalName = Loc.GetString("admin-smite-lung-removal-name").ToLowerInvariant();
+            var lungRemovalName = Loc.GetString("admin-smite-lung-removal-name"); // Lua
             Verb lungRemoval = new()
             {
                 Text = lungRemovalName,
@@ -421,7 +421,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<PhysicsComponent>(args.Target, out var physics))
         {
-            var pinballName = Loc.GetString("admin-smite-pinball-name").ToLowerInvariant();
+            var pinballName = Loc.GetString("admin-smite-pinball-name"); // Lua
             Verb pinball = new()
             {
                 Text = pinballName,
@@ -456,7 +456,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(pinball);
 
-            var yeetName = Loc.GetString("admin-smite-yeet-name").ToLowerInvariant();
+            var yeetName = Loc.GetString("admin-smite-yeet-name"); // Lua
             Verb yeet = new()
             {
                 Text = yeetName,
@@ -488,7 +488,7 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(yeet);
         }
 
-        var breadName = Loc.GetString("admin-smite-become-bread-name").ToLowerInvariant(); // Will I get cancelled for breadName-ing you?
+        var breadName = Loc.GetString("admin-smite-become-bread-name"); // Will I get cancelled for breadName-ing you? // Lua
         Verb bread = new()
         {
             Text = breadName,
@@ -503,7 +503,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(bread);
 
-        var mouseName = Loc.GetString("admin-smite-become-mouse-name").ToLowerInvariant();
+        var mouseName = Loc.GetString("admin-smite-become-mouse-name"); // Lua
         Verb mouse = new()
         {
             Text = mouseName,
@@ -520,7 +520,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<ActorComponent>(args.Target, out var actorComponent))
         {
-            var ghostKickName = Loc.GetString("admin-smite-ghostkick-name").ToLowerInvariant();
+            var ghostKickName = Loc.GetString("admin-smite-ghostkick-name"); // Lua
             Verb ghostKick = new()
             {
                 Text = ghostKickName,
@@ -539,7 +539,7 @@ public sealed partial class AdminVerbSystem
 
         if (TryComp<InventoryComponent>(args.Target, out var inventory))
         {
-            var nyanifyName = Loc.GetString("admin-smite-nyanify-name").ToLowerInvariant();
+            var nyanifyName = Loc.GetString("admin-smite-nyanify-name"); // Lua
             Verb nyanify = new()
             {
                 Text = nyanifyName,
@@ -557,7 +557,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(nyanify);
 
-            var killSignName = Loc.GetString("admin-smite-kill-sign-name").ToLowerInvariant();
+            var killSignName = Loc.GetString("admin-smite-kill-sign-name"); // Lua
             Verb killSign = new()
             {
                 Text = killSignName,
@@ -572,7 +572,7 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(killSign);
 
-            var cluwneName = Loc.GetString("admin-smite-cluwne-name").ToLowerInvariant();
+            var cluwneName = Loc.GetString("admin-smite-cluwne-name"); // Lua
             Verb cluwne = new()
             {
                 Text = cluwneName,
@@ -613,7 +613,7 @@ public sealed partial class AdminVerbSystem
             */
         }
 
-        var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();
+        var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name"); // Lua
         Verb angerPointingArrows = new()
         {
             Text = angerPointingArrowsName,
@@ -628,7 +628,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(angerPointingArrows);
 
-        var dustName = Loc.GetString("admin-smite-dust-name").ToLowerInvariant();
+        var dustName = Loc.GetString("admin-smite-dust-name"); // Lua
         Verb dust = new()
         {
             Text = dustName,
@@ -645,7 +645,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(dust);
 
-        var youtubeVideoSimulationName = Loc.GetString("admin-smite-buffering-name").ToLowerInvariant();
+        var youtubeVideoSimulationName = Loc.GetString("admin-smite-buffering-name"); // Lua
         Verb youtubeVideoSimulation = new()
         {
             Text = youtubeVideoSimulationName,
@@ -660,7 +660,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(youtubeVideoSimulation);
 
-        var instrumentationName = Loc.GetString("admin-smite-become-instrument-name").ToLowerInvariant();
+        var instrumentationName = Loc.GetString("admin-smite-become-instrument-name"); // Lua
         Verb instrumentation = new()
         {
             Text = instrumentationName,
@@ -675,7 +675,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(instrumentation);
 
-        var noGravityName = Loc.GetString("admin-smite-remove-gravity-name").ToLowerInvariant();
+        var noGravityName = Loc.GetString("admin-smite-remove-gravity-name"); // Lua
         Verb noGravity = new()
         {
             Text = noGravityName,
@@ -698,7 +698,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(noGravity);
 
-        var reptilianName = Loc.GetString("admin-smite-reptilian-species-swap-name").ToLowerInvariant();
+        var reptilianName = Loc.GetString("admin-smite-reptilian-species-swap-name"); // Lua
         Verb reptilian = new()
         {
             Text = reptilianName,
@@ -713,7 +713,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(reptilian);
 
-        var lockerName = Loc.GetString("admin-smite-locker-stuff-name").ToLowerInvariant();
+        var lockerName = Loc.GetString("admin-smite-locker-stuff-name"); // Lua
         Verb locker = new()
         {
             Text = lockerName,
@@ -736,7 +736,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(locker);
 
-        var headstandName = Loc.GetString("admin-smite-headstand-name").ToLowerInvariant();
+        var headstandName = Loc.GetString("admin-smite-headstand-name"); // Lua
         Verb headstand = new()
         {
             Text = headstandName,
@@ -751,7 +751,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(headstand);
 
-        var zoomInName = Loc.GetString("admin-smite-zoom-in-name").ToLowerInvariant();
+        var zoomInName = Loc.GetString("admin-smite-zoom-in-name"); // Lua
         Verb zoomIn = new()
         {
             Text = zoomInName,
@@ -767,7 +767,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(zoomIn);
 
-        var flipEyeName = Loc.GetString("admin-smite-flip-eye-name").ToLowerInvariant();
+        var flipEyeName = Loc.GetString("admin-smite-flip-eye-name"); // Lua
         Verb flipEye = new()
         {
             Text = flipEyeName,
@@ -783,7 +783,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(flipEye);
 
-        var runWalkSwapName = Loc.GetString("admin-smite-run-walk-swap-name").ToLowerInvariant();
+        var runWalkSwapName = Loc.GetString("admin-smite-run-walk-swap-name"); // Lua
         Verb runWalkSwap = new()
         {
             Text = runWalkSwapName,
@@ -804,7 +804,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(runWalkSwap);
 
-        var backwardsAccentName = Loc.GetString("admin-smite-speak-backwards-name").ToLowerInvariant();
+        var backwardsAccentName = Loc.GetString("admin-smite-speak-backwards-name"); // Lua
         Verb backwardsAccent = new()
         {
             Text = backwardsAccentName,
@@ -819,7 +819,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(backwardsAccent);
 
-        var disarmProneName = Loc.GetString("admin-smite-disarm-prone-name").ToLowerInvariant();
+        var disarmProneName = Loc.GetString("admin-smite-disarm-prone-name"); // Lua
         Verb disarmProne = new()
         {
             Text = disarmProneName,
@@ -834,7 +834,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(disarmProne);
 
-        var superSpeedName = Loc.GetString("admin-smite-super-speed-name").ToLowerInvariant();
+        var superSpeedName = Loc.GetString("admin-smite-super-speed-name"); // Lua
         Verb superSpeed = new()
         {
             Text = superSpeedName,
@@ -854,7 +854,7 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(superSpeed);
 
         //Bonk
-        var superBonkLiteName = Loc.GetString("admin-smite-super-bonk-lite-name").ToLowerInvariant();
+        var superBonkLiteName = Loc.GetString("admin-smite-super-bonk-lite-name"); // Lua
         Verb superBonkLite = new()
         {
             Text = superBonkLiteName,
@@ -869,7 +869,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(superBonkLite);
 
-        var superBonkName = Loc.GetString("admin-smite-super-bonk-name").ToLowerInvariant();
+        var superBonkName = Loc.GetString("admin-smite-super-bonk-name"); // Lua
         Verb superBonk = new()
         {
             Text = superBonkName,
@@ -884,7 +884,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(superBonk);
 
-        var superslipName = Loc.GetString("admin-smite-super-slip-name").ToLowerInvariant();
+        var superslipName = Loc.GetString("admin-smite-super-slip-name"); // Lua
         Verb superslip = new()
         {
             Text = superslipName,
@@ -911,7 +911,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(superslip);
 
-        var omniaccentName = Loc.GetString("admin-smite-omni-accent-name").ToLowerInvariant();
+        var omniaccentName = Loc.GetString("admin-smite-omni-accent-name"); // Lua
         Verb omniaccent = new()
         {
             Text = omniaccentName,
@@ -943,7 +943,7 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(omniaccent);
 
         // Frontier
-        var cavemanName = Loc.GetString("admin-smite-caveman-name").ToLowerInvariant();
+        var cavemanName = Loc.GetString("admin-smite-caveman-name"); // Lua
         Verb caveman = new()
         {
             Text = cavemanName,
@@ -1001,7 +1001,7 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(caveman);
         // End Frontier
 
-        var crawlerName = Loc.GetString("admin-smite-crawler-name").ToLowerInvariant();
+        var crawlerName = Loc.GetString("admin-smite-crawler-name"); // Lua
         Verb crawler = new()
         {
             Text = crawlerName,
