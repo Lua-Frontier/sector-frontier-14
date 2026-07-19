@@ -294,20 +294,6 @@ namespace Content.Server._Lua.Starmap.Systems
             { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
             if (!_shuttleSystem.TryGetBluespaceDrive(shuttleUid.Value, out var warpDriveUid, out var warpDrive) || warpDriveUid == null)
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-warpdrive"), consoleUid); return; }
-            if (TryComp<MapGridComponent>(shuttleUid.Value, out var grid))
-            {
-                var xform = Transform(shuttleUid.Value);
-                var bounds = xform.WorldMatrix.TransformBox(grid.LocalAABB).Enlarged(ShuttleConsoleSystem.ShuttleFTLRange);
-                var dockedShuttles = new HashSet<EntityUid>();
-                _shuttleSystem.GetAllDockedShuttlesIgnoringFTLLock(shuttleUid.Value, dockedShuttles);
-                foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
-                {
-                    if (other.Owner == shuttleUid.Value) continue;
-                    if (dockedShuttles.Contains(other.Owner)) continue;
-                    if (IsGcAbleGrid(other.Owner)) continue;
-                    PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), consoleUid); return;
-                }
-            }
             void PlayDenySound(EntityUid uid)
             { _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg"), uid); }
             var angle = (float)(_random.NextDouble() * 2 * Math.PI);

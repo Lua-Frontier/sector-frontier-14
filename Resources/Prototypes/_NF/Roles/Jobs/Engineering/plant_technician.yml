@@ -3,6 +3,7 @@
   name: job-name-plant-technician
   description: job-description-plant-technician
   playTimeTracker: JobPlantTechnician
+  requiredCompany: Nanotrasen
   salary: 30000
   requirements:
     - !type:OverallPlaytimeRequirement
@@ -21,6 +22,10 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday
     prototype: FrontierBirthdayGift

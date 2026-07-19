@@ -94,9 +94,7 @@ public sealed partial class PickerWindow : FancyWindow
 
     private void UpdateUi(IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
     {
-        // This is the place where it filters out cargo stations and others that shouldn't be shown in the latejoin ui.
-        var availableJobs = obj.Where(kvp => kvp.Value.JobsAvailable.Values.Count != 0)
-            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        var availableJobs = obj.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
         var stationJobs = availableJobs.Where(kvp => kvp.Value.IsLateJoinStation)
             .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);

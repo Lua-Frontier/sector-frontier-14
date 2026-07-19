@@ -60,6 +60,7 @@ namespace Content.Client.Lobby.UI
             _createNewCharacterButton = new Button
             {
                 Text = Loc.GetString("character-setup-gui-create-new-character-button"),
+                HorizontalExpand = true,
             };
 
             _createNewCharacterButton.OnPressed += args =>

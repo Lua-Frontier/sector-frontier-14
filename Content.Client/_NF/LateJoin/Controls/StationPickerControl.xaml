@@ -46,6 +46,13 @@
                        Margin="20 4 0 4"
                        StyleClasses="FancyWindowTitle"/>
 
+                  <Label Name="NoJobsMessage"
+                      Visible="False"
+                      Margin="20 0 20 8"
+                      Modulate="#ec2416"
+                      Text="{Loc 'frontier-lobby-no-jobs-available'}"
+                      HorizontalExpand="True"/>
+
                 <ScrollContainer HorizontalExpand="True"
                                  VerticalExpand="True"
                                  VScrollEnabled="True">

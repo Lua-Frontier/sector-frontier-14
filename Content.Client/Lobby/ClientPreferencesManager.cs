@@ -71,7 +71,9 @@ namespace Content.Client.Lobby
                 profile is HumanoidCharacterProfile incomingHumanoid &&
                 existingProfile is HumanoidCharacterProfile existingHumanoid)
             {
-                if (!string.Equals(existingHumanoid.Company, "None", StringComparison.OrdinalIgnoreCase))
+                if ((string.IsNullOrWhiteSpace(incomingHumanoid.Company)
+                        || string.Equals(incomingHumanoid.Company, "None", StringComparison.OrdinalIgnoreCase))
+                    && !string.Equals(existingHumanoid.Company, "None", StringComparison.OrdinalIgnoreCase))
                     profile = incomingHumanoid.WithCompany(existingHumanoid.Company);
             }
 

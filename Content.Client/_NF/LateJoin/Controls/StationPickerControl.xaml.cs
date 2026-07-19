@@ -47,6 +47,7 @@ public sealed partial class StationPickerControl : PickerControl
             StationItemList.AddChild(item);
         }
         StationJobItemList.RemoveAllChildren();
+        NoJobsMessage.Visible = false;
         if (_lastSelectedStation != null && obj.TryGetValue(_lastSelectedStation.StationEntity, out var stationInfo))
         {
             foreach (var jobViewState in BuildJobViewStateList(stationInfo))
@@ -58,6 +59,8 @@ public sealed partial class StationPickerControl : PickerControl
                 };
                 StationJobItemList.AddChild(item);
             }
+
+            NoJobsMessage.Visible = HasNoOpenJobs(stationInfo);
         }
 
         StationName.Text = _lastSelectedStation?.StationName ?? "";
@@ -114,7 +117,7 @@ public sealed partial class StationPickerControl : PickerControl
     {
         var stationList = obj
             .Where(kvp => kvp.Value.IsLateJoinStation)
-            .Where(kvp => HasAllowedJobs(kvp.Value))
+            .Where(kvp => ShouldShowStation(kvp.Value))
             .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         var viewStateList = new List<StationListItem.ViewState>();
 
@@ -162,7 +165,7 @@ public sealed partial class StationPickerControl : PickerControl
         return sorted;
     }
 
-    private bool HasAllowedJobs(StationJobInformation jobInformation)
+    private bool ShouldShowStation(StationJobInformation jobInformation)
     {
         if (_preferencesManager.Preferences?.SelectedCharacter is not HumanoidCharacterProfile profile)
             return jobInformation.JobsAvailable.Any(job => job.Value != 0);
@@ -173,6 +176,9 @@ public sealed partial class StationPickerControl : PickerControl
         {
             return false;
         }
+
+        if (HasNoOpenJobs(jobInformation))
+            return true;
 
         foreach (var (jobPrototype, jobCount) in jobInformation.JobsAvailable)
         {
@@ -185,6 +191,11 @@ public sealed partial class StationPickerControl : PickerControl
         }
 
         return false;
+    }
+
+    private static bool HasNoOpenJobs(StationJobInformation jobInformation)
+    {
+        return jobInformation.JobsAvailable.Count > 0 && jobInformation.JobsAvailable.All(job => job.Value == 0);
     }
 
     private static bool MatchesRequiredCompany(string? profileCompany, string requiredCompany)

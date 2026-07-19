@@ -1,64 +1,38 @@
-/* // Erida-Remove | Replaced
 using Content.Shared.Examine;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Verbs;
-using Content.Shared._Lua.ERP; // Lua
-using Content.Shared.Lua.CLVar; // Lua
+using Content.Shared.Lua.CLVar;
+using Content.Shared._NF.Bank.Components;
+using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
-using Robust.Shared.Configuration; // Lua
 
 namespace Content.Shared.DetailExaminable;
 
 public sealed class DetailExaminableSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DetailExaminableComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
+        SubscribeLocalEvent<DetailExaminableComponent, ExaminedEvent>(OnExamined);
     }
 
-    private void OnGetExamineVerbs(Entity<DetailExaminableComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
+    private void OnExamined(Entity<DetailExaminableComponent> ent, ref ExaminedEvent args)
     {
-        if (Identity.Name(args.Target, EntityManager) != MetaData(args.Target).EntityName)
+        if (!_cfg.GetCVar(CLVars.IsERP))
             return;
 
-        var detailsRange = _examine.IsInDetailsRange(args.User, ent);
+        if (!HasComp<BankAccountComponent>(ent))
+            return;
 
-        var user = args.User;
-
-        var verb = new ExamineVerb
+        var color = ent.Comp.ERPStatus switch
         {
-            Act = () =>
-            {
-                var markup = new FormattedMessage();
-                markup.AddMarkupPermissive(ent.Comp.Content);
-
-                if (_cfg.GetCVar(CLVars.IsERP))
-                {
-                    if (ent.Comp.ERPStatus == EnumERPStatus.FULL)
-                        markup.PushColor(Color.Green);
-                    else if (ent.Comp.ERPStatus == EnumERPStatus.HALF)
-                        markup.PushColor(Color.Yellow);
-                    else
-                        markup.PushColor(Color.Red);
-
-                    markup.AddMarkupOrThrow("\n" + ent.Comp.GetERPStatusName());
-                }
-
-                _examine.SendExamineTooltip(user, ent, markup, false, false);
-            },
-            Text = Loc.GetString("detail-examinable-verb-text"),
-            Category = VerbCategory.Examine,
-            Disabled = !detailsRange,
-            Message = detailsRange ? null : Loc.GetString("detail-examinable-verb-disabled"),
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"))
+            Content.Shared._Lua.ERP.EnumERPStatus.FULL => "green",
+            Content.Shared._Lua.ERP.EnumERPStatus.HALF => "yellow",
+            _ => "red"
         };
 
-        args.Verbs.Add(verb);
+        var statusText = FormattedMessage.EscapeText(ent.Comp.GetERPStatusName());
+        args.PushMarkup($"[color={color}]{statusText}[/color]");
     }
 }
-*/

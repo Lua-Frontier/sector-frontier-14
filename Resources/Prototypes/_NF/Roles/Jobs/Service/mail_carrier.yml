@@ -2,6 +2,7 @@
   id: MailCarrier
   name: job-name-mail-carrier
   description: job-description-mail-carrier
+  requiredCompany: Nanotrasen
   startingGear: MailCarrierGear
   alwaysUseSpawner: true
   playTimeTracker: JobMailCarrier
@@ -23,6 +24,10 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen
   - !type:GiveItemOnHolidaySpecial # Frontier
     holiday: FrontierBirthday # Frontier
     prototype: FrontierBirthdayGift # Frontier

@@ -9,6 +9,7 @@ using Content.Server._Lua.Shuttles.Systems; // Lua
 using Content.Shared._Lua.Shuttles.Components; // Lua
 using Content.Shared._Lua.Starmap;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Shared._NF.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.ActionBlocker;
@@ -42,6 +43,7 @@ namespace Content.Server.Shuttles.Systems;
 public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 {
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -515,7 +517,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!TryComp<FireControlGridComponent>(grid, out var fcGrid) || fcGrid.ControllingServer == null) return;
         if (!TryComp<FireControlServerComponent>(fcGrid.ControllingServer, out var server)) return;
         _fireControl.FireWeapons(fcGrid.ControllingServer.Value, args.Selected, args.Coordinates, server);
-        var fireEvent = new FireControlConsoleFireEvent(args.Coordinates, args.Selected);
+        var fireEvent = new FireControlConsoleFireEvent(GetNetEntity(uid), args.Coordinates, args.Selected);
         RaiseLocalEvent(uid, fireEvent);
     }
 
@@ -734,12 +736,16 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         FTLState ftlState = FTLState.Available;
         StartEndTime stateDuration = default;
+        var inCombat = false;
 
         if (Resolve(shuttle, ref shuttle.Comp, false) && shuttle.Comp.LifeStage < ComponentLifeStage.Stopped)
         {
             ftlState = shuttle.Comp.State;
             stateDuration = _shuttle.GetStateTime(shuttle.Comp);
         }
+
+        if (TryComp<ShuttleFTLComponent>(shuttle, out var shuttleFtl))
+            inCombat = shuttleFtl.CombatUntil > _timing.CurTime;
 
         List<ShuttleBeaconObject>? beacons = null;
         List<ShuttleExclusionObject>? exclusions = null;
@@ -750,7 +756,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             ftlState,
             stateDuration,
             beacons ?? new List<ShuttleBeaconObject>(),
-            exclusions ?? new List<ShuttleExclusionObject>());
+            exclusions ?? new List<ShuttleExclusionObject>(),
+            inCombat);
     }
 
     /// <summary>

@@ -22,3 +22,11 @@ character-setup-gui-company-selector-unknown-title = Выбрана неизве
 character-setup-gui-company-selector-unknown-description = Для выбранной фракции не найден прототип.
 character-setup-gui-company-selector-ready = Выбор готов к сохранению
 character-setup-gui-company-selector-confirm-note = После подтверждения фракция закрепится за персонажем.
+humanoid-profile-editor-company-leave-button = Покинуть фракцию
+humanoid-profile-editor-company-leave-info = [color=yellow]Выход переведёт этого персонажа во фракцию Нейтральные.[/color]
+humanoid-profile-editor-company-neutral-info = Этот персонаж уже относится к фракции Нейтральные или не закреплён за частной фракцией.
+character-setup-gui-company-leave-window-title = Подтверждение выхода из фракции
+character-setup-gui-company-leave-window-text = Вы уверены, что хотите покинуть текущую фракцию?
+character-setup-gui-company-leave-window-details = Персонаж будет переведён во фракцию Нейтральные. Это действие необратимо.
+character-setup-gui-company-leave-window-confirm = Покинуть фракцию
+character-setup-gui-company-leave-window-cancel = Отмена

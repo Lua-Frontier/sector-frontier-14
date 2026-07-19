@@ -148,6 +148,14 @@ public sealed class CompanySystem : EntitySystem
         RaiseLocalEvent(uid, new CompanySetEvent(oldCompanyId, companyId, changed));
     }
 
+    public void UpdateStoredCompanyPreference(EntityUid uid, string companyId)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        _playerOriginalCompanies[actor.PlayerSession.UserId.ToString()] = companyId;
+    }
+
     public bool CanSeeCompany(EntityUid target, EntityUid examiner, CompanyComponent? targetCompany = null)
     {
         if (!Resolve(target, ref targetCompany, false))

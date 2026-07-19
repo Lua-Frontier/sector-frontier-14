@@ -9,13 +9,16 @@ using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Popups;
+using Content.Shared.Preferences;
 using Content.Shared.Verbs;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Players;
 using Content.Server._Mono.Company;
+using Content.Server.Preferences.Managers;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Threading;
 
 namespace Content.Server._Lua.Company;
 
@@ -29,6 +32,7 @@ public sealed class CompanyInviteSystem : EntitySystem
     [Dependency] private readonly CompanySystem _companySystem = default!;
     [Dependency] private readonly FactionWarSystem _factionWar = default!;
     [Dependency] private readonly CompanyMotdSystem _motds = default!;
+    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
 
     private int _nextInviteId = 1;
     private readonly Dictionary<int, PendingInvite> _pendingInvites = new();
@@ -95,14 +99,27 @@ public sealed class CompanyInviteSystem : EntitySystem
 
     private void OnSetCompanyRequest(CompanySetCompanyRequestEvent ev, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not { } user || !Exists(user)) return;
-        if (HasComp<GhostComponent>(user)) return;
-        var desired = string.IsNullOrWhiteSpace(ev.CompanyId) ? "None" : ev.CompanyId;
-        if (desired != "None" && !_prototypes.HasIndex<CompanyPrototype>(desired)) return;
-        var current = TryComp<CompanyComponent>(user, out var comp) && !string.IsNullOrWhiteSpace(comp.CompanyName) ? comp.CompanyName : "None";
-        if (string.Equals(current, desired, StringComparison.OrdinalIgnoreCase)) return;
+        var desired = NormalizeRequestedCompany(ev.CompanyId);
+        if (!_prototypes.HasIndex<CompanyPrototype>(desired)) return;
         if (IsCompanyInviteOnly(desired))
             return;
+
+        if (args.SenderSession.AttachedEntity is not { } user || !Exists(user) || HasComp<GhostComponent>(user))
+        {
+            SyncLobbyCompany(args.SenderSession, desired);
+            return;
+        }
+
+        var current = TryComp<CompanyComponent>(user, out var comp) && !string.IsNullOrWhiteSpace(comp.CompanyName)
+            ? comp.CompanyName
+            : "None";
+
+        if (string.Equals(current, desired, StringComparison.OrdinalIgnoreCase))
+        {
+            SyncLobbyCompany(args.SenderSession, desired);
+            return;
+        }
+
         SetCompany(user, current, desired);
     }
 
@@ -123,7 +140,7 @@ public sealed class CompanyInviteSystem : EntitySystem
             return;
         }
         if (!TryComp<CompanyComponent>(target, out var targetCompany) || !string.Equals(targetCompany.CompanyName, ev.CompanyId, StringComparison.OrdinalIgnoreCase)) return;
-        SetCompany(target, ev.CompanyId, "None");
+        SetCompany(target, ev.CompanyId, "Neutral");
     }
 
     private void OnDeclareWarRequest(CompanyDeclareWarRequestEvent ev, EntitySessionEventArgs args)
@@ -278,8 +295,53 @@ public sealed class CompanyInviteSystem : EntitySystem
     private void SetCompany(EntityUid target, string oldCompany, string newCompany)
     {
         _companySystem.SetCompany(target, newCompany);
+        _companySystem.UpdateStoredCompanyPreference(target, newCompany);
+        SyncLobbyCompany(target, newCompany);
         if (!string.IsNullOrWhiteSpace(oldCompany) && oldCompany != "None") BroadcastInvalidate(oldCompany);
         if (!string.IsNullOrWhiteSpace(newCompany) && newCompany != "None") BroadcastInvalidate(newCompany);
+    }
+
+    private string NormalizeRequestedCompany(string? companyId)
+    {
+        if (string.IsNullOrWhiteSpace(companyId) || string.Equals(companyId, "None", StringComparison.OrdinalIgnoreCase))
+            return "Neutral";
+
+        return companyId;
+    }
+
+    private async void SyncLobbyCompany(EntityUid target, string newCompany)
+    {
+        if (!TryComp<ActorComponent>(target, out var actor))
+            return;
+
+        if (!_prefsManager.TryGetCachedPreferences(actor.PlayerSession.UserId, out var prefs))
+            return;
+
+        var selectedIndex = prefs.SelectedCharacterIndex;
+        if (!prefs.Characters.TryGetValue(selectedIndex, out var profile) || profile is not HumanoidCharacterProfile humanoid)
+            return;
+
+        if (string.Equals(humanoid.Company, newCompany, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        await _prefsManager.SetProfile(actor.PlayerSession.UserId, selectedIndex, humanoid.WithCompany(newCompany), validateFields: false);
+        await _prefsManager.RefreshPreferencesAsync(actor.PlayerSession, CancellationToken.None);
+    }
+
+    private async void SyncLobbyCompany(ICommonSession session, string newCompany)
+    {
+        if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+            return;
+
+        var selectedIndex = prefs.SelectedCharacterIndex;
+        if (!prefs.Characters.TryGetValue(selectedIndex, out var profile) || profile is not HumanoidCharacterProfile humanoid)
+            return;
+
+        if (string.Equals(humanoid.Company, newCompany, StringComparison.OrdinalIgnoreCase))
+            return;
+
+        await _prefsManager.SetProfile(session.UserId, selectedIndex, humanoid.WithCompany(newCompany), validateFields: false);
+        await _prefsManager.RefreshPreferencesAsync(session, CancellationToken.None);
     }
 
     private bool IsCompanyInviteOnly(string companyId)

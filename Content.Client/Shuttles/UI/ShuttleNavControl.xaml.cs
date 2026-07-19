@@ -383,7 +383,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     labelName = Loc.GetString("shuttle-console-unknown");
                     unknownShuttle = true;
                 }
-                if (showCompanyOnUnknownRadar && companyProto != null)
+                if (showCompanyOnUnknownRadar && companyProto != null && !unknownShuttle)
                 {
                     //labelColor = Color.FromSrgb(companyProto.Color);
                     coordColor = new Color(labelColor.R * 0.8f, labelColor.G * 0.8f, labelColor.B * 0.8f, 0.5f);
@@ -477,13 +477,15 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
             }
             if (unknownShuttle) { vesselIcon = _unknownVesselIcon; blipScale = 1.6f; }
-            var companyColorUid = (!aliesToViewer && !(unknownShuttle && !showCompanyOnUnknownRadar)) ? gUid : default;
+            var companyColorUid = (!aliesToViewer && !unknownShuttle) ? gUid : default;
             if (ShowIFF)
             {
                 RadarBlipIconComponent? blipComp = null;
                 var hasGridIcon = EntManager.TryGetComponent<RadarBlipIconComponent>(gUid, out var gridBlip) && gridBlip.Icon != default;
                 if (hasGridIcon) blipComp = gridBlip;
                 else if (EntManager.TryGetComponent<StationMemberComponent>(gUid, out var member) && EntManager.TryGetComponent<RadarBlipIconComponent>(member.Station, out var stationBlip) && stationBlip.Icon != default) blipComp = stationBlip;
+                if (unknownShuttle)
+                    blipComp = null;
                 if (blipComp != null && blipComp.Icon != default)
                 {
                     var canShow = true;

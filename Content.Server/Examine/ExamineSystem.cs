@@ -1,22 +1,16 @@
 using System.Linq;
 using Content.Server.Verbs;
-using Content.Shared._Lua.ERP; // Lua
-using Content.Shared.Lua.CLVar; // Lua
-using Content.Shared._NF.Bank.Components;
-using Content.Shared.DetailExaminable;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Robust.Shared.Configuration; // Lua
 
 namespace Content.Server.Examine
 {
     [UsedImplicitly]
     public sealed class ExamineSystem : ExamineSystemShared
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
         [Dependency] private readonly VerbSystem _verbSystem = default!;
 
         private readonly FormattedMessage _entityNotFoundMessage = new();
@@ -77,47 +71,12 @@ namespace Content.Server.Examine
 
             var text = GetExamineText(entity, player.AttachedEntity);
 
-            if (_cfg.GetCVar(CLVars.IsERP)
-                && TryComp<BankAccountComponent>(entity, out _)
-                && TryComp<DetailExaminableComponent>(entity, out var detail))
-            {
-                AddERPStatusToMessage(text, detail.ERPStatus);
-            }
-
             var playerReputationTarget = entity != playerEnt &&
                 TryComp<ActorComponent>(entity, out var targetActor) &&
                 targetActor.PlayerSession != null;
 
             RaiseNetworkEvent(new ExamineSystemMessages.ExamineInfoResponseMessage(
                 request.NetEntity, request.Id, text, verbs?.ToList(), playerReputationTarget: playerReputationTarget), channel);
-        }
-
-        private void AddERPStatusToMessage(FormattedMessage message, EnumERPStatus status)
-        {
-            message.PushNewline();
-
-            switch (status)
-            {
-                case EnumERPStatus.FULL:
-                    message.PushColor(Color.Green);
-                    break;
-                case EnumERPStatus.HALF:
-                    message.PushColor(Color.Yellow);
-                    break;
-                default:
-                    message.PushColor(Color.Red);
-                    break;
-            }
-
-            string statusText = status switch
-            {
-                EnumERPStatus.HALF => Loc.GetString("humanoid-erp-status-half"),
-                EnumERPStatus.FULL => Loc.GetString("humanoid-erp-status-full"),
-                _ => Loc.GetString("humanoid-erp-status-no")
-            };
-
-            message.AddText(statusText);
-            message.Pop();
         }
     }
 }

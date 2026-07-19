@@ -79,7 +79,7 @@ public sealed partial class CharacterPickerButton : ContainerButton
         }
 
         Pressed = isSelected;
-        DeleteButton.Visible = !isSelected;
+        DeleteButton.Visible = true;
 
         View.SetEntity(_previewDummy);
         DescriptionLabel.SetMessage(FormattedMessage.FromMarkupPermissive(description));
