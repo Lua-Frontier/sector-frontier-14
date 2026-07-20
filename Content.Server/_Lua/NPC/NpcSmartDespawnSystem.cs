@@ -1,3 +1,4 @@
+using Content.Server._Lua.Despawn;
 using Content.Server._Lua.Stargate.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.Ghost;
@@ -31,6 +32,7 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
     private EntityQuery<MobStateComponent> _mobStateQuery;
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<GhostComponent> _ghostQuery;
+    private EntityQuery<AutoDespawnExemptComponent> _despawnExemptQuery;
     private readonly HashSet<MapId> _protectedPlanetMaps = new();
     private readonly HashSet<MapId> _planetMapIdsBuffer = new();
     private readonly List<EntityUid> _toRemoveBuffer = new();
@@ -42,6 +44,7 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
         _mobStateQuery = GetEntityQuery<MobStateComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
         _ghostQuery = GetEntityQuery<GhostComponent>();
+        _despawnExemptQuery = GetEntityQuery<AutoDespawnExemptComponent>();
         Subs.CVar(_cfg, CLVars.NpcSmartDespawnEnabled, v => _enabled = v, true);
         Subs.CVar(_cfg, CLVars.NpcSmartDespawnSleepTimeout, v => _sleepTimeout = v, true);
         Subs.CVar(_cfg, CLVars.NpcSmartDespawnDeadTimeout, v => _deadTimeout = v, true);
@@ -61,6 +64,11 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
         foreach (var (uid, deadTime) in _deadTimers)
         {
             if (TerminatingOrDeleted(uid))
+            {
+                toRemove.Add(uid);
+                continue;
+            }
+            if (_despawnExemptQuery.HasComp(uid))
             {
                 toRemove.Add(uid);
                 continue;
@@ -94,6 +102,11 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
                 toRemove.Add(uid);
                 continue;
             }
+            if (_despawnExemptQuery.HasComp(uid))
+            {
+                toRemove.Add(uid);
+                continue;
+            }
             if (_mobStateQuery.TryGetComponent(uid, out var state) && state.CurrentState == MobState.Dead)
             {
                 toRemove.Add(uid);
@@ -123,6 +136,7 @@ public sealed class NpcSmartDespawnSystem : EntitySystem
         while (query.MoveNext(out var uid, out _))
         {
             if (_sleepTimers.ContainsKey(uid) || _deadTimers.ContainsKey(uid)) continue;
+            if (_despawnExemptQuery.HasComp(uid)) continue;
             var isDead = _mobStateQuery.TryGetComponent(uid, out var mobState) && mobState.CurrentState == MobState.Dead;
             if (isDead)
             { _deadTimers[uid] = elapsed; }
