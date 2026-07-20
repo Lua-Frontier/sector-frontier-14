@@ -1,4 +1,4 @@
-﻿<BoxContainer xmlns="https://spacestation14.io"
+<BoxContainer xmlns="https://spacestation14.io"
               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
               Orientation="Vertical"
               Margin="5 5 5 5">
@@ -63,5 +63,23 @@
                 <RichTextLabel Name="ReagentDescription" HorizontalAlignment="Left"/>
             </BoxContainer>
         </BoxContainer>
+        <!-- Lua start -->
+        <PanelContainer VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5 28">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#777777"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Horizontal">
+                <TextureButton Name="AlcoholIcon"
+                               SetSize="32 32"
+                               Disabled="True"
+                               Visible="False"/>
+                <TextureButton Name="TheobromineIcon"
+                               ToolTip="{Loc 'guidebook-reagent-theobromine-tooltip'}"
+                               SetSize="32 32"
+                               Disabled="True"
+                               Visible="False"/>
+            </BoxContainer>
+        </PanelContainer>
+        <!-- Lua end -->
     </PanelContainer>
 </BoxContainer>
