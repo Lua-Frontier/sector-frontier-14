@@ -286,7 +286,9 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
         var isPublic = _prototypes.TryIndex<CompanyPrototype>(selectedCompany, out var proto) && !proto.Disabled && !proto.HiddenFromNonMembers;
         var isPrivate = !isPublic;
         var isCurrentCompany = string.Equals(_viewerCompanyId, selectedCompany, StringComparison.OrdinalIgnoreCase);
-        var canLeave = isCurrentCompany && !string.Equals(selectedCompany, "Neutral", StringComparison.OrdinalIgnoreCase);
+        var canLeave = isCurrentCompany
+            && !string.Equals(selectedCompany, "None", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(selectedCompany, "Neutral", StringComparison.OrdinalIgnoreCase);
 
         JoinButton.Visible = isPublic && !isCurrentCompany;
         LeaveButton.Visible = canLeave;

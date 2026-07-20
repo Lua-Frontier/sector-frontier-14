@@ -13,11 +13,13 @@ public sealed class CompanyClientSystem : EntitySystem
 {
     private CompanyFactionsWindow? _window;
     private CompanyCaptureWindow? _captureWindow;
+    public event Action<int, IReadOnlyList<string>>? RejoinLocksUpdated;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeNetworkEvent<CompanyMembersResponseEvent>(OnMembersResponse);
+        SubscribeNetworkEvent<CompanyRejoinLocksResponseEvent>(OnRejoinLocksResponse);
         SubscribeNetworkEvent<CompanyMembersInvalidateEvent>(OnMembersInvalidate);
         SubscribeNetworkEvent<CompanyCaptureStatusEvent>(OnCaptureStatus);
         SubscribeNetworkEvent<CompanyInviteEvent>(OnInvitePrompt);
@@ -30,6 +32,9 @@ public sealed class CompanyClientSystem : EntitySystem
 
     public void RequestSetCompany(string companyId)
     { RaiseNetworkEvent(new CompanySetCompanyRequestEvent(companyId)); }
+
+    public void RequestRejoinLocks(int characterSlot)
+    { RaiseNetworkEvent(new CompanyRejoinLocksRequestEvent(characterSlot)); }
 
     public void RequestKick(string companyId, NetEntity target)
     { RaiseNetworkEvent(new CompanyKickRequestEvent(companyId, target)); }
@@ -54,6 +59,9 @@ public sealed class CompanyClientSystem : EntitySystem
 
     private void OnMembersResponse(CompanyMembersResponseEvent ev)
     { _window?.UpdateMembers(ev.CompanyId, ev.Members, ev.ViewerIsLeader, ev.ViewerCompanyId, ev.Motd, ev.CanEditMotd, ev.WarState); }
+
+    private void OnRejoinLocksResponse(CompanyRejoinLocksResponseEvent ev)
+    { RejoinLocksUpdated?.Invoke(ev.CharacterSlot, ev.LockedCompanyIds); }
 
     private void OnMembersInvalidate(CompanyMembersInvalidateEvent ev)
     {

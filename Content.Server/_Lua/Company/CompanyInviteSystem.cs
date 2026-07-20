@@ -2,22 +2,23 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
+using Content.Server._Mono.Company;
+using Content.Server.Preferences.Managers;
 using Content.Shared._Lua.Company;
 using Content.Shared._Mono.Company;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
+using Content.Shared.Players;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
-using Content.Shared.Verbs;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.Players;
-using Content.Server._Mono.Company;
-using Content.Server.Preferences.Managers;
+using Content.Shared.Verbs;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Linq;
 using System.Threading;
 
 namespace Content.Server._Lua.Company;
@@ -44,6 +45,7 @@ public sealed class CompanyInviteSystem : EntitySystem
         base.Initialize();
         SubscribeNetworkEvent<CompanyMembersRequestEvent>(OnMembersRequest);
         SubscribeNetworkEvent<CompanySetCompanyRequestEvent>(OnSetCompanyRequest);
+        SubscribeNetworkEvent<CompanyRejoinLocksRequestEvent>(OnRejoinLocksRequest);
         SubscribeNetworkEvent<CompanyKickRequestEvent>(OnKickRequest);
         SubscribeNetworkEvent<CompanyDeclareWarRequestEvent>(OnDeclareWarRequest);
         SubscribeNetworkEvent<CompanyEndWarRequestEvent>(OnEndWarRequest);
@@ -99,28 +101,43 @@ public sealed class CompanyInviteSystem : EntitySystem
 
     private void OnSetCompanyRequest(CompanySetCompanyRequestEvent ev, EntitySessionEventArgs args)
     {
-        var desired = NormalizeRequestedCompany(ev.CompanyId);
+        var isLobbyRequest = args.SenderSession.AttachedEntity is not { } attachedEntity
+            || !Exists(attachedEntity)
+            || HasComp<GhostComponent>(attachedEntity);
+
+        var desired = NormalizeRequestedCompany(ev.CompanyId, isLobbyRequest);
         if (!_prototypes.HasIndex<CompanyPrototype>(desired)) return;
         if (IsCompanyInviteOnly(desired))
             return;
 
-        if (args.SenderSession.AttachedEntity is not { } user || !Exists(user) || HasComp<GhostComponent>(user))
+        var currentCompany = GetCurrentCompany(args.SenderSession);
+        if (string.Equals(currentCompany, desired, StringComparison.OrdinalIgnoreCase))
         {
             SyncLobbyCompany(args.SenderSession, desired);
             return;
         }
 
-        var current = TryComp<CompanyComponent>(user, out var comp) && !string.IsNullOrWhiteSpace(comp.CompanyName)
-            ? comp.CompanyName
-            : "None";
-
-        if (string.Equals(current, desired, StringComparison.OrdinalIgnoreCase))
+        if (isLobbyRequest)
         {
             SyncLobbyCompany(args.SenderSession, desired);
             return;
         }
 
-        SetCompany(user, current, desired);
+        var user = args.SenderSession.AttachedEntity!.Value;
+
+        SetCompany(user, currentCompany, desired);
+    }
+
+    private void OnRejoinLocksRequest(CompanyRejoinLocksRequestEvent ev, EntitySessionEventArgs args)
+    {
+        if (!_prefsManager.TryGetCachedPreferences(args.SenderSession.UserId, out var preferences)
+            || !preferences.Characters.ContainsKey(ev.CharacterSlot))
+        {
+            return;
+        }
+
+        var locks = _prefsManager.GetCompanyRejoinLocks(args.SenderSession.UserId, ev.CharacterSlot).ToList();
+        RaiseNetworkEvent(new CompanyRejoinLocksResponseEvent(ev.CharacterSlot, locks), Filter.SinglePlayer(args.SenderSession));
     }
 
     private void OnKickRequest(CompanyKickRequestEvent ev, EntitySessionEventArgs args)
@@ -244,6 +261,7 @@ public sealed class CompanyInviteSystem : EntitySystem
                 return;
             }
         }
+
         SetCompany(targetEnt, current, desired);
     }
 
@@ -301,12 +319,31 @@ public sealed class CompanyInviteSystem : EntitySystem
         if (!string.IsNullOrWhiteSpace(newCompany) && newCompany != "None") BroadcastInvalidate(newCompany);
     }
 
-    private string NormalizeRequestedCompany(string? companyId)
+    private static string NormalizeRequestedCompany(string? companyId, bool isLobbyRequest)
     {
         if (string.IsNullOrWhiteSpace(companyId) || string.Equals(companyId, "None", StringComparison.OrdinalIgnoreCase))
-            return "Neutral";
+            return isLobbyRequest ? "None" : "Neutral";
 
         return companyId;
+    }
+
+    private string GetCurrentCompany(ICommonSession session)
+    {
+        if (session.AttachedEntity is not { } user || !Exists(user) || HasComp<GhostComponent>(user))
+        {
+            if (_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+            {
+                var selectedIndex = prefs.SelectedCharacterIndex;
+                if (prefs.Characters.TryGetValue(selectedIndex, out var profile) && profile is HumanoidCharacterProfile humanoid)
+                    return string.IsNullOrWhiteSpace(humanoid.Company) ? "None" : humanoid.Company;
+            }
+
+            return "None";
+        }
+
+        return TryComp<CompanyComponent>(user, out var comp) && !string.IsNullOrWhiteSpace(comp.CompanyName)
+            ? comp.CompanyName
+            : "None";
     }
 
     private async void SyncLobbyCompany(EntityUid target, string newCompany)

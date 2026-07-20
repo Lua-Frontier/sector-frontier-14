@@ -1,3 +1,4 @@
+using Content.Client._Lua.Company;
 using Content.Shared._Mono.Company;
 using Content.Shared.Preferences;
 using Robust.Client.Graphics;
@@ -18,6 +19,9 @@ public sealed partial class CompanySelectorGui : BoxContainer
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
 
+    private readonly CompanyClientSystem _companySystem;
+    private readonly HashSet<string> _lockedCompanyIds = new(StringComparer.OrdinalIgnoreCase);
+
     public HumanoidCharacterProfile? Profile { get; private set; }
     public int? CharacterSlot { get; private set; }
     public bool IsDirty { get; private set; }
@@ -31,11 +35,13 @@ public sealed partial class CompanySelectorGui : BoxContainer
     private readonly TextureRect _companyIcon;
     private readonly RichTextLabel _companyDescription;
     private readonly Button _confirmButton;
-    private ButtonGroup _companyButtonGroup = new(false);
+    private ButtonGroup _companyButtonGroup = new();
 
     public CompanySelectorGui()
     {
         IoCManager.InjectDependencies(this);
+        _companySystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<CompanyClientSystem>();
+        _companySystem.RejoinLocksUpdated += OnRejoinLocksUpdated;
 
         Orientation = LayoutOrientation.Horizontal;
         SeparationOverride = 12;
@@ -153,8 +159,12 @@ public sealed partial class CompanySelectorGui : BoxContainer
         Profile = profile?.Clone();
         CharacterSlot = slot;
         IsDirty = false;
+        _lockedCompanyIds.Clear();
         RebuildCompanyButtons();
         UpdateCompanyInfo();
+
+        if (slot is { } characterSlot)
+            _companySystem.RequestRejoinLocks(characterSlot);
     }
 
     private void ConfirmSelection()
@@ -172,16 +182,20 @@ public sealed partial class CompanySelectorGui : BoxContainer
     private void RebuildCompanyButtons()
     {
         _companyList.RemoveAllChildren();
-        _companyButtonGroup = new ButtonGroup(false);
+        _companyButtonGroup = new ButtonGroup();
 
         foreach (var company in GetSelectableCompanies())
         {
+            var isLocked = _lockedCompanyIds.Contains(company.ID);
             var button = new ContainerButton
             {
                 HorizontalExpand = true,
+                Disabled = isLocked,
             };
             button.AddStyleClass(ContainerButton.StyleClassButton);
             button.Group = _companyButtonGroup;
+            if (isLocked)
+                button.ToolTip = Loc.GetString("character-setup-gui-company-selector-rejoin-locked");
 
             var layout = new BoxContainer
             {
@@ -214,7 +228,7 @@ public sealed partial class CompanySelectorGui : BoxContainer
 
             button.OnPressed += _ =>
             {
-                if (Profile == null)
+                if (Profile == null || isLocked)
                     return;
 
                 Profile = Profile.WithCompany(company.ID);
@@ -228,6 +242,19 @@ public sealed partial class CompanySelectorGui : BoxContainer
 
             _companyList.AddChild(button);
         }
+    }
+
+    private void OnRejoinLocksUpdated(int characterSlot, IReadOnlyList<string> lockedCompanyIds)
+    {
+        if (CharacterSlot != characterSlot)
+            return;
+
+        _lockedCompanyIds.Clear();
+        foreach (var companyId in lockedCompanyIds)
+            _lockedCompanyIds.Add(companyId);
+
+        RebuildCompanyButtons();
+        UpdateCompanyInfo();
     }
 
     private bool TryGetCompanyIcon(CompanyPrototype company, out Texture? texture)
@@ -283,8 +310,15 @@ public sealed partial class CompanySelectorGui : BoxContainer
         return _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
             .Where(company => company.ID != "None")
             .Where(company => !company.Disabled || username != null && company.Logins.Contains(username))
-            .OrderByDescending(company => company.ID == Profile?.Company)
-            .ThenBy(company => company.Name, StringComparer.Ordinal)
+            .OrderBy(company => company.Name, StringComparer.Ordinal)
             .ToList();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+            _companySystem.RejoinLocksUpdated -= OnRejoinLocksUpdated;
+
+        base.Dispose(disposing);
     }
 }

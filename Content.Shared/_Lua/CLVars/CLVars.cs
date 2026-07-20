@@ -216,5 +216,11 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<int> FactionWarCaptureDurationSeconds =
             CVarDef.Create("lua.faction_war.capture_duration_seconds", 600, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarDeclarationLockHours =
+            CVarDef.Create("lua.faction_war.declaration_lock_hours", 24, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> CompanyChangeLimitPerFactionPerRound =
+            CVarDef.Create("lua.company.change_faction_limit", 1, CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }

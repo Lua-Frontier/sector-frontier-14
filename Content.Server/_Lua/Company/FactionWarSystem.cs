@@ -4,6 +4,7 @@
 
 using Content.Server.Antag;
 using Content.Server.Chat.Systems;
+using Content.Server._NF.RoundNotifications.Events;
 using Content.Server._Lua.Company.Components;
 using Content.Server._Mono.Company;
 using Content.Server.Station.Components;
@@ -49,11 +50,24 @@ public sealed class FactionWarSystem : EntitySystem
     private readonly HashSet<EntityUid> _suppressedGridGodMode = new();
     private bool _warPrimeProtectionSuppressed;
     private int _nextWarId = 1;
+    private DateTimeOffset? _roundStartedAt;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<StationGridAddedEvent>(OnStationGridAdded);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+    }
+
+    private void OnRoundStarted(RoundStartedEvent _)
+    {
+        _roundStartedAt = DateTimeOffset.Now;
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
+    {
+        _roundStartedAt = null;
     }
 
     public override void Update(float frameTime)
@@ -150,6 +164,14 @@ public sealed class FactionWarSystem : EntitySystem
         else if (!IsPrimeTime(now))
         {
             statusText = GetPrimeTimeText("company-war-status-prime-time", now);
+        }
+        else if (!IsWarDeclarationUnlocked(now, out var unlockTime, out var remaining))
+        {
+            statusText = Loc.GetString(
+                "company-war-status-round-lock",
+                ("hours", _cfg.GetCVar(CLVars.FactionWarDeclarationLockHours)),
+                ("unlockTime", unlockTime.ToLocalTime().ToString("HH:mm:ss")),
+                ("remaining", FormatRemaining(remaining)));
         }
         else
         {
@@ -426,6 +448,15 @@ public sealed class FactionWarSystem : EntitySystem
         if (!IsPrimeTime(now))
             return GetPrimeTimeText("company-war-error-prime-time", now);
 
+        if (!IsWarDeclarationUnlocked(now, out var unlockTime, out var remaining))
+        {
+            return Loc.GetString(
+                "company-war-error-round-lock",
+                ("hours", _cfg.GetCVar(CLVars.FactionWarDeclarationLockHours)),
+                ("unlockTime", unlockTime.ToLocalTime().ToString("HH:mm:ss")),
+                ("remaining", FormatRemaining(remaining)));
+        }
+
         return null;
     }
 
@@ -637,6 +668,39 @@ public sealed class FactionWarSystem : EntitySystem
             return hour >= startHour && hour < endHour;
 
         return hour >= startHour || hour < endHour;
+    }
+
+    private bool IsWarDeclarationUnlocked(DateTimeOffset now, out DateTimeOffset unlockTime, out TimeSpan remaining)
+    {
+        var lockHours = Math.Max(0, _cfg.GetCVar(CLVars.FactionWarDeclarationLockHours));
+
+        if (lockHours == 0)
+        {
+            unlockTime = now;
+            remaining = TimeSpan.Zero;
+            return true;
+        }
+
+        var roundStart = _roundStartedAt ?? now;
+        unlockTime = roundStart.AddHours(lockHours);
+
+        if (now >= unlockTime)
+        {
+            remaining = TimeSpan.Zero;
+            return true;
+        }
+
+        remaining = unlockTime - now;
+        return false;
+    }
+
+    private static string FormatRemaining(TimeSpan remaining)
+    {
+        if (remaining < TimeSpan.Zero)
+            remaining = TimeSpan.Zero;
+
+        var totalHours = (int) remaining.TotalHours;
+        return $"{totalHours:D2}:{remaining.Minutes:D2}:{remaining.Seconds:D2}";
     }
 
     private string GetPrimeTimeText(string locId, DateTimeOffset now)

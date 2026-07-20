@@ -10,7 +10,6 @@ using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.FlavorText;
-using Content.Client._Lua.Company;
 using Content.Shared._Mono.Company;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -2319,8 +2318,7 @@ namespace Content.Client.Lobby.UI
                 return;
 
             var canLeaveCompany = !string.IsNullOrWhiteSpace(Profile.Company)
-                && !string.Equals(Profile.Company, "None", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(Profile.Company, "Neutral", StringComparison.OrdinalIgnoreCase);
+                && !string.Equals(Profile.Company, "None", StringComparison.OrdinalIgnoreCase);
 
             CompanyLeaveButton.Visible = canLeaveCompany;
             CompanyLeaveButton.Disabled = !canLeaveCompany;
@@ -2336,18 +2334,33 @@ namespace Content.Client.Lobby.UI
                 return;
 
             if (string.IsNullOrWhiteSpace(Profile.Company)
-                || string.Equals(Profile.Company, "None", StringComparison.OrdinalIgnoreCase)
-                || string.Equals(Profile.Company, "Neutral", StringComparison.OrdinalIgnoreCase))
+                || string.Equals(Profile.Company, "None", StringComparison.OrdinalIgnoreCase))
                 return;
 
             var window = new CompanyLeaveConfirmationWindow();
             window.ConfirmButton.OnPressed += _ =>
             {
-                _entManager.System<CompanyClientSystem>().RequestSetCompany("Neutral");
+                SetProfileCompany("None");
+                Save?.Invoke();
                 window.Close();
             };
             window.CancelButton.OnPressed += _ => window.Close();
             window.OpenCentered();
+        }
+
+        private void SetProfileCompany(string companyId)
+        {
+            if (Profile == null)
+                return;
+
+            if (string.Equals(Profile.Company, companyId, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            Profile = Profile.WithCompany(companyId);
+            UpdateCompanyControls();
+            RefreshJobs();
+            RefreshLoadouts();
+            ReloadPreview();
         }
 
         private static bool ShouldDisplayJob(JobPrototype job, HumanoidCharacterProfile? profile)

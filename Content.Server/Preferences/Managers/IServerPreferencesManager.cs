@@ -22,6 +22,9 @@ namespace Content.Server.Preferences.Managers
         PlayerPreferences? GetPreferencesOrNull(NetUserId? userId);
         IEnumerable<KeyValuePair<NetUserId, ICharacterProfile>> GetSelectedProfilesForPlayers(List<NetUserId> userIds);
         bool HavePreferencesLoaded(ICommonSession session);
+        bool TryConsumeCompanyChange(NetUserId userId, int characterSlot, string currentCompany);
+        bool IsCompanyRejoinLocked(NetUserId userId, int characterSlot, string companyId);
+        IReadOnlyCollection<string> GetCompanyRejoinLocks(NetUserId userId, int characterSlot);
         Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel); // Frontier
         Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile, bool validateFields = true); // Frontier: add validateFields
         Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites);

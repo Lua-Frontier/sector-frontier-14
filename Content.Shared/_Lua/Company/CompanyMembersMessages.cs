@@ -128,6 +128,30 @@ public sealed class CompanySetCompanyRequestEvent : EntityEventArgs
 }
 
 [Serializable, NetSerializable]
+public sealed class CompanyRejoinLocksRequestEvent : EntityEventArgs
+{
+    public int CharacterSlot;
+
+    public CompanyRejoinLocksRequestEvent(int characterSlot)
+    {
+        CharacterSlot = characterSlot;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class CompanyRejoinLocksResponseEvent : EntityEventArgs
+{
+    public int CharacterSlot;
+    public List<string> LockedCompanyIds;
+
+    public CompanyRejoinLocksResponseEvent(int characterSlot, List<string> lockedCompanyIds)
+    {
+        CharacterSlot = characterSlot;
+        LockedCompanyIds = lockedCompanyIds;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class CompanyKickRequestEvent : EntityEventArgs
 {
     public string CompanyId;
