@@ -433,7 +433,6 @@ namespace Content.Server.Administration.Systems
                 }
                 var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
                 _reputation.SetCachedReputation(record.Kind, record.TargetUserId, new ReputationSystem.CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes));
-                await _dbManager.IncrementAdminAHelpResolvedCount(state.LastAdminId.Value.UserId, DateTimeOffset.UtcNow);
                 state.RatingSubmitted = true;
                 SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
                 BroadcastConversationState(channel);
@@ -959,6 +958,9 @@ namespace Content.Server.Administration.Systems
             bwoinkText = $"{(message.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : !message.PlaySound ? Loc.GetString("bwoink-message-silent") : "")}{(fromWebhook ? Loc.GetString("bwoink-message-discord") : "")} {bwoinkText}: {escapedText}";
 
             var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false; // Lua deadmin mod
+            if (!fromWebhook && senderAHelpAdmin && senderId != SystemUserId)
+                _ = IncrementAdminAHelpMessageCountAsync(senderId.UserId);
+
             UpdateConversationFromMessage(message.UserId, senderId, senderName, senderAHelpAdmin, message.AdminOnly, fromWebhook);
             // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
             var playSound = (!senderAHelpAdmin || message.PlaySound) && !message.AdminOnly;
@@ -1080,6 +1082,18 @@ namespace Content.Server.Administration.Systems
             }
         }
         // End Frontier: webhook text messages
+
+        private async Task IncrementAdminAHelpMessageCountAsync(Guid adminUserId)
+        {
+            try
+            {
+                await _dbManager.IncrementAdminAHelpResolvedCount(adminUserId, DateTimeOffset.UtcNow);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Failed to increment admin AHelp message count for {adminUserId}: {ex}");
+            }
+        }
 
         private IList<INetChannel> GetNonAfkAdmins()
         {
