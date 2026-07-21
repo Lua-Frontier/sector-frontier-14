@@ -307,6 +307,7 @@ public sealed class AdminSystem : EntitySystem
             overallPlaytime = playTime;
         }
 
+        var repCached = _reputation.GetCachedReputation(ReputationTargetKind.Player, data.UserId);
         return new PlayerInfo(
             name,
             entityName,
@@ -321,8 +322,10 @@ public sealed class AdminSystem : EntitySystem
             connected,
             _roundActivePlayers.Contains(data.UserId),
             overallPlaytime,
-                balance,
-                _reputation.GetCachedScore(ReputationTargetKind.Player, data.UserId)); // Frontier
+            balance,
+            repCached.Score,
+            repCached.Positive,
+            repCached.Negative); // Frontier
     }
 
     private void OnPanicBunkerChanged(bool enabled)

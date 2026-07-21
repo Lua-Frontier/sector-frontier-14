@@ -10,6 +10,8 @@ public sealed class PlayerPanelEuiState(
     string username,
     TimeSpan playtime,
     int reputationScore,
+    int reputationPositive,
+    int reputationNegative,
     int? totalNotes,
     int? totalBans,
     int? totalRoleBans,
@@ -25,6 +27,8 @@ public sealed class PlayerPanelEuiState(
     public readonly string Username = username;
     public readonly TimeSpan Playtime = playtime;
     public readonly int ReputationScore = reputationScore;
+    public readonly int ReputationPositive = reputationPositive;
+    public readonly int ReputationNegative = reputationNegative;
     public readonly int? TotalNotes = totalNotes;
     public readonly int? TotalBans = totalBans;
     public readonly int? TotalRoleBans = totalRoleBans;

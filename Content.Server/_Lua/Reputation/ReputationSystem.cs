@@ -19,7 +19,9 @@ public sealed class ReputationSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    private readonly Dictionary<(ReputationTargetKind Kind, Guid TargetUserId), int> _scoreCache = new();
+    public readonly record struct CachedReputation(int Score, int Positive, int Negative);
+
+    private readonly Dictionary<(ReputationTargetKind Kind, Guid TargetUserId), CachedReputation> _scoreCache = new();
     private readonly HashSet<(ReputationTargetKind Kind, Guid TargetUserId)> _pendingScoreLoads = new();
 
     public override void Initialize()
@@ -47,16 +49,14 @@ public sealed class ReputationSystem : EntitySystem
             return;
 
         var userId = session.UserId;
-        if (!TryGetCachedScore(ReputationTargetKind.Player, userId, out var score))
+        if (!TryGetCachedReputation(ReputationTargetKind.Player, userId.UserId, out var cached))
         {
             args.PushMarkup(Loc.GetString("reputation-examine-loading"));
             return;
         }
 
-        var scoreText = score > 0 ? $"+{score}" : score.ToString();
-        var scoreColor = score > 0 ? "green" : score < 0 ? "red" : "white";
-        var coloredScore = $"[color={scoreColor}]{scoreText}[/color]";
-        args.PushMarkup(Loc.GetString("reputation-examine-score", ("score", coloredScore)));
+        var scoreText = $"[color=red]-{cached.Negative}[/color]/[color=green]+{cached.Positive}[/color]";
+        args.PushMarkup(Loc.GetString("reputation-examine-score", ("score", scoreText)));
     }
 
     public int GetCachedScore(ReputationTargetKind kind, NetUserId targetUserId)
@@ -64,17 +64,46 @@ public sealed class ReputationSystem : EntitySystem
         return GetCachedScore(kind, targetUserId.UserId);
     }
 
+    public CachedReputation GetCachedReputation(ReputationTargetKind kind, NetUserId targetUserId)
+    {
+        return GetCachedReputation(kind, targetUserId.UserId);
+    }
+
+    public CachedReputation GetCachedReputation(ReputationTargetKind kind, Guid targetUserId)
+    {
+        var key = (kind, targetUserId);
+        if (_scoreCache.TryGetValue(key, out var cached))
+            return cached;
+
+        QueueScoreLoad(key);
+        return default;
+    }
+
     public bool TryGetCachedScore(ReputationTargetKind kind, NetUserId targetUserId, out int score)
     {
         return TryGetCachedScore(kind, targetUserId.UserId, out score);
     }
 
+    public bool TryGetCachedReputation(ReputationTargetKind kind, Guid targetUserId, out CachedReputation cached)
+    {
+        var key = (kind, targetUserId);
+        if (_scoreCache.TryGetValue(key, out cached))
+            return true;
+
+        QueueScoreLoad(key);
+        return false;
+    }
+
     public bool TryGetCachedScore(ReputationTargetKind kind, Guid targetUserId, out int score)
     {
         var key = (kind, targetUserId);
-        if (_scoreCache.TryGetValue(key, out score))
+        if (_scoreCache.TryGetValue(key, out var cached))
+        {
+            score = cached.Score;
             return true;
+        }
 
+        score = 0;
         QueueScoreLoad(key);
         return false;
     }
@@ -82,8 +111,8 @@ public sealed class ReputationSystem : EntitySystem
     public int GetCachedScore(ReputationTargetKind kind, Guid targetUserId)
     {
         var key = (kind, targetUserId);
-        if (_scoreCache.TryGetValue(key, out var score))
-            return score;
+        if (_scoreCache.TryGetValue(key, out var cached))
+            return cached.Score;
 
         QueueScoreLoad(key);
         return 0;
@@ -91,7 +120,13 @@ public sealed class ReputationSystem : EntitySystem
 
     public void SetCachedScore(ReputationTargetKind kind, Guid targetUserId, int score)
     {
-        _scoreCache[(kind, targetUserId)] = score;
+        var existing = _scoreCache.GetValueOrDefault((kind, targetUserId));
+        _scoreCache[(kind, targetUserId)] = new CachedReputation(score, existing.Positive, existing.Negative);
+    }
+
+    public void SetCachedReputation(ReputationTargetKind kind, Guid targetUserId, CachedReputation cached)
+    {
+        _scoreCache[(kind, targetUserId)] = cached;
     }
 
     private async void OnSubmitPlayerReputationVote(SubmitPlayerReputationVoteEvent msg, EntitySessionEventArgs args)
@@ -175,10 +210,10 @@ public sealed class ReputationSystem : EntitySystem
         }
 
         var summary = await _db.GetReputationSummary(record.Kind, record.TargetUserId);
-        _scoreCache[(record.Kind, record.TargetUserId)] = summary.Score;
+        _scoreCache[(record.Kind, record.TargetUserId)] = new CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes);
         RaiseLocalEvent(new PlayerReputationChangedEvent(targetSession.UserId));
 
-        _popup.PopupEntity(Loc.GetString("reputation-popup-saved", ("score", summary.Score)), user, user);
+        _popup.PopupEntity(Loc.GetString("reputation-popup-saved", ("score", $"-{summary.NegativeVotes}/+{summary.PositiveVotes}")), user, user);
     }
 
     private void QueueScoreLoad((ReputationTargetKind Kind, Guid TargetUserId) key)
@@ -194,7 +229,7 @@ public sealed class ReputationSystem : EntitySystem
         try
         {
             var summary = await _db.GetReputationSummary(key.Kind, key.TargetUserId);
-            _scoreCache[key] = summary.Score;
+            _scoreCache[key] = new CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes);
 
             if (key.Kind == ReputationTargetKind.Player &&
                 _playerManager.TryGetSessionById(new NetUserId(key.TargetUserId), out var session))

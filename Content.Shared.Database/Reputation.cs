@@ -5,7 +5,7 @@ public static class ReputationConstants
     public const int MinScore = -1000;
     public const int MaxScore = 1000;
     public const int MinNegativeCommentLength = 120;
-    public const int MaxCommentLength = 4096;
+    public const int MaxCommentLength = 120;
     public static readonly TimeSpan VoteCooldown = TimeSpan.FromHours(1);
 }
 

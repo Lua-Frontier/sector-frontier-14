@@ -11,7 +11,9 @@ public sealed record ReputationTargetSummary(
     NetUserId UserId,
     string Name,
     int Score,
-    int ActiveVotes);
+    int ActiveVotes,
+    int PositiveVotes,
+    int NegativeVotes);
 
 [Serializable, NetSerializable]
 public sealed record ReputationVoteDetails(

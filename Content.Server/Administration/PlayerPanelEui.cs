@@ -33,6 +33,8 @@ public sealed class PlayerPanelEui : BaseEui
     private bool? _whitelisted;
     private TimeSpan _playtime;
     private int _reputationScore;
+    private int _reputationPositive;
+    private int _reputationNegative;
     private bool _frozen;
     private bool _canFreeze;
     private bool _canAhelp;
@@ -64,6 +66,8 @@ public sealed class PlayerPanelEui : BaseEui
             _targetPlayer.Username,
             _playtime,
             _reputationScore,
+            _reputationPositive,
+            _reputationNegative,
             _notes,
             _bans,
             _roleBans,
@@ -179,7 +183,10 @@ public sealed class PlayerPanelEui : BaseEui
             .Select(p => p.TimeSpent)
             .FirstOrDefault();
 
-        _reputationScore = (await _db.GetReputationSummary(ReputationTargetKind.Player, _targetPlayer.UserId.UserId)).Score;
+        var repSummary = await _db.GetReputationSummary(ReputationTargetKind.Player, _targetPlayer.UserId.UserId);
+        _reputationScore = repSummary.Score;
+        _reputationPositive = repSummary.PositiveVotes;
+        _reputationNegative = repSummary.NegativeVotes;
 
         if (_notesMan.CanView(Player))
         {

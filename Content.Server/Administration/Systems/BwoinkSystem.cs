@@ -432,7 +432,7 @@ namespace Content.Server.Administration.Systems
                     return;
                 }
                 var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
-                _reputation.SetCachedScore(record.Kind, record.TargetUserId, summary.Score);
+                _reputation.SetCachedReputation(record.Kind, record.TargetUserId, new ReputationSystem.CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes));
                 await _dbManager.IncrementAdminAHelpResolvedCount(state.LastAdminId.Value.UserId, DateTimeOffset.UtcNow);
                 state.RatingSubmitted = true;
                 SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
@@ -919,10 +919,8 @@ namespace Content.Server.Administration.Systems
             var adminReputation = string.Empty;
             if (!fromWebhook && senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true)
             {
-                var score = _reputation.GetCachedScore(ReputationTargetKind.Admin, senderId);
-                var scoreText = score > 0 ? $"+{score}" : score.ToString();
-                var scoreColor = score > 0 ? "green" : score < 0 ? "red" : "white";
-                var coloredScore = $"[color={scoreColor}]{scoreText}[/color]";
+                var repCached = _reputation.GetCachedReputation(ReputationTargetKind.Admin, senderId);
+                var coloredScore = $"[color=red]-{repCached.Negative}[/color]/[color=green]+{repCached.Positive}[/color]";
                 adminReputation = $" [color=gray]({Loc.GetString("reputation-ahelp-admin-score", ("score", coloredScore))})[/color]";
             }
             if (senderAdmin is not null &&

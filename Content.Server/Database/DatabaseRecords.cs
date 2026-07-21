@@ -124,7 +124,9 @@ public sealed record ReputationSummaryRecord(
     Guid TargetUserId,
     string TargetName,
     int Score,
-    int ActiveVotes);
+    int ActiveVotes,
+    int PositiveVotes,
+    int NegativeVotes);
 
 public sealed record ReputationVoteRecord(
     int Id,

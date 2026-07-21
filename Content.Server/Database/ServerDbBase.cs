@@ -1004,6 +1004,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
             var score = await query.SumAsync(v => (int) v.Value, cancel);
             var activeVotes = await query.CountAsync(cancel);
+            var positiveVotes = await query.CountAsync(v => v.Value == ReputationVoteValue.Like, cancel);
+            var negativeVotes = await query.CountAsync(v => v.Value == ReputationVoteValue.Dislike, cancel);
             var targetName = await db.ReputationVotes
                 .Where(v => v.TargetKind == kind && v.TargetUserId == targetUserId)
                 .OrderByDescending(v => v.UpdatedAt ?? v.CreatedAt)
@@ -1015,7 +1017,9 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 targetUserId,
                 targetName,
                 Math.Clamp(score, ReputationConstants.MinScore, ReputationConstants.MaxScore),
-                activeVotes);
+                activeVotes,
+                positiveVotes,
+                negativeVotes);
         }
 
         public async Task<ReputationVoteRecord?> TryCreateReputationVote(

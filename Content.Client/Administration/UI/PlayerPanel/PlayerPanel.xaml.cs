@@ -111,9 +111,9 @@ public sealed partial class PlayerPanel : FancyWindow
             ("minutes", playtime.Minutes % (24 * 60)));
     }
 
-    public void SetReputation(int score, bool canModerate)
+    public void SetReputation(int positive, int negative, bool canModerate)
     {
-        var scoreText = score > 0 ? $"+{score}" : score.ToString();
+        var scoreText = $"-{negative}/+{positive}";
         Reputation.Text = Loc.GetString("player-panel-reputation", ("score", scoreText));
         ReputationButton.Disabled = !canModerate;
     }

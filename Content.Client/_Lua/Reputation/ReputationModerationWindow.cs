@@ -82,7 +82,7 @@ public sealed class ReputationModerationWindow : DefaultWindow
     {
         Title = Loc.GetString("reputation-admin-window-title", ("target", state.Summary.Name));
         _targetKindLabel.Text = Loc.GetString(GetTargetKindLocId(state.Summary.Kind), ("target", state.Summary.Name));
-        _scoreLabel.Text = FormatScore(state.Summary.Score);
+        _scoreLabel.Text = $"-{state.Summary.NegativeVotes}/+{state.Summary.PositiveVotes}";
         _scoreLabel.FontColorOverride = GetScoreColor(state.Summary.Score);
         _votesCountLabel.Text = Loc.GetString("reputation-admin-active-votes", ("votes", state.Summary.ActiveVotes));
         _votesContainer.RemoveAllChildren();

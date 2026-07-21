@@ -32,7 +32,7 @@ public sealed class ReputationModerationEui : BaseEui
         _targetName = targetName;
         _reputation = _entity.System<ReputationSystem>();
         _state = new ReputationModerationEuiState(
-            new ReputationTargetSummary(targetKind, targetUserId, targetName, 0, 0),
+            new ReputationTargetSummary(targetKind, targetUserId, targetName, 0, 0, 0, 0),
             new List<ReputationVoteDetails>());
     }
 
@@ -100,10 +100,10 @@ public sealed class ReputationModerationEui : BaseEui
         var votes = await _db.GetReputationVotes(_targetKind, _targetUserId.UserId, includeDeleted: true);
 
         _state = new ReputationModerationEuiState(
-            new ReputationTargetSummary(summary.Kind, new NetUserId(summary.TargetUserId), summary.TargetName, summary.Score, summary.ActiveVotes),
+            new ReputationTargetSummary(summary.Kind, new NetUserId(summary.TargetUserId), summary.TargetName, summary.Score, summary.ActiveVotes, summary.PositiveVotes, summary.NegativeVotes),
             votes.Select(MakeVoteDetails).ToList());
 
-        _reputation.SetCachedScore(summary.Kind, summary.TargetUserId, summary.Score);
+        _reputation.SetCachedReputation(summary.Kind, summary.TargetUserId, new ReputationSystem.CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes));
         StateDirty();
     }
 
