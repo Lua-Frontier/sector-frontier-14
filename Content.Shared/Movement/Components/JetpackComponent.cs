@@ -26,6 +26,11 @@ public sealed partial class JetpackComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("weightlessModifier")]
     public float WeightlessModifier = 1.2f;
 
+    // Lua: added particle selection via VV (добавлен выбор частиц через VV и прототипинг)
+    // select "JetpackEffect" in case of troubles (выбирайте "JetpackEffect" в случае проблем)
+    [ViewVariables(VVAccess.ReadWrite), DataField("jetpackEffect"), AutoNetworkedField]
+    public EntProtoId JetpackEffect = "JetpackEffect";
+
     // Frontier: extra fields
     [DataField, AutoNetworkedField]
     public bool AddedCanMoveInAir;

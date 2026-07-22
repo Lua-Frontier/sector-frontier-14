@@ -2000,7 +2000,7 @@
   productEntity: BoxEncryptionKeyNfsd
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   cost:
-    FrontierUplinkCoin: 1
+    Speso: 8000
   categories:
     - UplinkSecurityUtility
   conditions:
@@ -2011,6 +2011,12 @@
     - !type:BuyerJobCondition
       whitelist:
         - Sheriff
+        - Bailiff
+        - SeniorOfficer
+        - Brigmedic
+        - SDEngineer
+        - Deputy
+        - Cadet
 
 - type: listing
   id: UplinkSecurityThrusterKit

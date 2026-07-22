@@ -90,6 +90,14 @@ public sealed class JetpackSystem : SharedJetpackSystem
             return;
         }
 
-        Spawn("JetpackEffect", coordinates);
+        // Lua Changes: Removed client-side effect spawner (убран спавнер эффектов на стороне клиента)
+        // Particles are now spawned on the server side. Client-side spawn is disabled
+        // to avoid duplicate visuals and to ensure server-side systems (radar, etc.)
+        // can observe the effect.
+        //
+        // Частицы теперь создаются на стороне сервера. Клиентская генерация отключена,
+        // чтобы избежать дублирования и чтобы серверные системы (например, радар)
+        // могли видеть эффект.
+        return;
     }
 }

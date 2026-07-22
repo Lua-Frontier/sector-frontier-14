@@ -1,0 +1,336 @@
+#region база для следов от джета
+
+- type: entity
+  id: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#0093c0"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: Physics
+  - type: RadarBlip
+    radarColor: "#0093c0"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+  # - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  # - type: AnimationPlayer
+
+#region след глайдера
+- type: entity
+  id: JetpackEffectTrailGlider
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/gravityPulse.rsi
+    drawdepth: SmallMobs
+    color: "#c0a300"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: gravityPulse
+  - type: RadarBlip
+    radarColor: "#c0a300"
+    scale: 1.1
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 600
+
+#region след мини
+- type: entity
+  id: JetpackEffectTrailMini
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#487297"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: water_vapor_old
+  - type: RadarBlip
+    radarColor: "#487297"
+    scale: 0.4
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 200
+
+#region след пират
+- type: entity
+  id: JetpackEffectTrailPirate
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#ac6324"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#ac6324"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след стелс
+- type: entity
+  id: JetpackEffectTrailStealth
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#303030"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: water_vapor_old
+  - type: RadarBlip
+    radarColor: "#303030"
+    scale: 0.4
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 100
+
+#region след чёрного
+- type: entity
+  id: JetpackEffectTrailBlack
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#669cce"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#669cce"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след синего
+- type: entity
+  id: JetpackEffectTrailBlue
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#00a2ff"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#00a2ff"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след ДСБФ
+- type: entity
+  id: JetpackEffectTrailNFSD
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#444927"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#444927"
+    scale: 0.5
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 300
+
+#region след капитана
+- type: entity
+  id: JetpackEffectTrailCaptain
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#ffee00"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#ffee00"
+    scale: 0.7
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след охраны
+- type: entity
+  id: JetpackEffectTrailSecurity
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#934242"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#934242"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след майнерсого
+- type: entity
+  id: JetpackEffectTrailMining
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#a1239b"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#a1239b"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след пустотного
+- type: entity
+  id: JetpackEffectTrailVoid
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#00cbb7"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: chem_gas_old
+  - type: RadarBlip
+    radarColor: "#00cbb7"
+    scale: 0.7
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 400
+
+#region след синди красн
+- type: entity
+  id: JetpackEffectTrailSyndie
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#a30000"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: nitrous_oxide_old
+  - type: RadarBlip
+    radarColor: "#a30000"
+    scale: 0.4
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 200
+
+#region след синди чёрн
+- type: entity
+  id: JetpackEffectTrailAdvSyndie
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    color: "#6f0000"
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: nitrous_oxide_old
+  - type: RadarBlip
+    radarColor: "#8a0000"
+    scale: 0.4
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 200
+
+#region след реакт боты
+- type: entity
+  id: JetpackEffectTrailJetBoots
+  parent: JetpackEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    drawdepth: SmallMobs
+    noRot: true
+    layers:
+    - shader: unshaded
+      state: nitryl_old
+  - type: RadarBlip
+    radarColor: "#996300"
+    scale: 0.4
+    shape: Hexagon
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 200

@@ -138,21 +138,23 @@
       path: /Audio/_Lua/Announcements/Barkhan-8Arrival.ogg
     warningAnnouncement: station-event-bluespace-BluespaceBarkhan-8Tranzit-warning-announcement
     endAnnouncement: station-event-bluespace-BluespaceBarkhan-8Tranzit-end-announcement
-    earliestStart: 100
-    minimumPlayers: 10
+    earliestStart: 2880
+    minimumPlayers: 40
     weight: 3
     duration: 3800
     maxDuration: 4000
-    reoccurrenceDelay: 240 # once per 4 hours
+    reoccurrenceDelay: 1920 # once per 48 hours
     requiredJobs:
       Paramedic: 1
+      Brigmedic: 1
+      Chemist: 1
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-Barkhan-8
-        minimumDistance: 1000
-        maximumDistance: 2500
+        minimumDistance: 1500
+        maximumDistance: 3500
         addComponents:
         - type: Gravity
           enabled: true
@@ -172,6 +174,7 @@
         - type: LinkedLifecycleGridParent
         - type: ProtectedGrid
           preventArtifactTriggers: true
+        - type: GridGodMode
         - type: ForceAnchor
         paths:
         - /Maps/_Lua/Bluespace/Barkhan-8.yml

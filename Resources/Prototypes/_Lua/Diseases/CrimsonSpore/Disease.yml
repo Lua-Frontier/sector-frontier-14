@@ -168,7 +168,7 @@
     forced: true
     inventory: None
     transferName: true
-    revertOnCrit: false
+    revertOnCrit: true
     revertOnDeath: true
     exitPolymorphSound: /Audio/Effects/demon_consume.ogg
 
@@ -179,7 +179,7 @@
     forced: true
     inventory: None
     transferName: true
-    revertOnCrit: false
+    revertOnCrit: true
     revertOnDeath: true
     exitPolymorphSound: /Audio/Effects/demon_consume.ogg
 
@@ -208,7 +208,7 @@
         scaleByQuantity: true
         damage:
           types:
-            Heat: 0.2
+            Heat: 5
     - reagents: [ CrimsonFungicide ]
       methods: [ Touch ]
       effects:
@@ -216,7 +216,7 @@
         scaleByQuantity: true
         damage:
           types:
-            Heat: 1
+            Heat: 15
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -262,7 +262,6 @@
   - type: LizardAccent
   - type: MothAccent
   - type: ScrambledAccent
-  - type: RadarSonarEcho
   - type: Speech # Frontier
     speechSounds: Alto
     allowedEmotes: ['Belch'] # Frontier
@@ -287,7 +286,7 @@
   - type: ComplexInteraction
   - type: InfectOnMelee
     disease: CrimsonSpore
-    infectChance: 0.3
+    infectChance: 0.1
   - type: SpamEmitSound
     minInterval: 20
     maxInterval: 120
@@ -303,7 +302,7 @@
     requiredLegs: 1
     thermalVisibility: true
   - type: Sericulture
-    productionLength: 5
+    productionLength: 10
     entityProduced: CrimsonSporeFlesh1
     hungerCost: 0
     action: ActionBiohazardousSericulture
@@ -316,10 +315,10 @@
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
   - type: RadarConsole
-    maxRange: 1024 # Frontier: increase admin radar range
+    maxRange: 512
     followEntity: true
-    hideCoords: false # Frontier
-    maxIffRange: null # Frontier
+    hideCoords: false
+    maxIffRange: null
   - type: Butcherable
     spawned:
     - id: CrimsonSporeFlesh1
@@ -327,6 +326,13 @@
   - type: Bloodstream
     bloodReagent: CrimzonSporeBlood
   - type: Sharp
+  - type: RadarBlip
+    radarColor: "#c00000"
+    scale: 1.1
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: false
+    maxDistance: 1024
 
 - type: entity
   parent: BaseAction
