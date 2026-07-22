@@ -37,7 +37,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// <summary>
     /// The parallax prototype to use for the background. Configurable.
     /// </summary>
-    public string ParallaxPrototype { get; set; } = "Default";
+    public string ParallaxPrototype { get; set; } = "Asteroids"; // Lua
 
     /// <summary>
     /// Updates the parallax background to use a different prototype
@@ -121,6 +121,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             ParallaxPrototype = ParallaxPrototype,
             HorizontalExpand = true,
             VerticalExpand = true,
+            // Lua start
+            SpeedX = 0.15f,
+            SpeedY = 0.15f,
+            ScaleX = 2.5f,
+            ScaleY = 2.5f,
+            // Lua end
         };
 
         // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
