@@ -24,4 +24,10 @@ public sealed partial class ExtraStationInformationComponent : Component
      */
     [DataField]
     public int LobbySortOrder;
+
+    [DataField]
+    public string? RequiredCompany;
+
+    [DataField]
+    public string? AdditionalSpawnCompanies;
 }

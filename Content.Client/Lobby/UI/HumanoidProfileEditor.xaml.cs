@@ -191,6 +191,8 @@ namespace Content.Client.Lobby.UI
                 Save?.Invoke();
             };
 
+            CompanyLeaveButton.OnPressed += _ => OpenLeaveCompanyConfirmation();
+
             #region Left
 
             #region Name
@@ -456,68 +458,9 @@ namespace Content.Client.Lobby.UI
 
             RefreshTraits();
 
-            #region Company
-
-            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-company-tab"));
-
-            // Clear any existing items
-            CompanyButton.Clear();
-
-            var username = _playerManager.LocalPlayer?.Session?.Name;
-
-            // Add all companies from prototypes - use consistent sorting with UpdateCompanyControls
-            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                //.Where(c => !c.Disabled) // Filter out disabled companies
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified
-                .ToList();
-            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
-
-            // Make sure "None" is first in the list
-            var noneIndex = companies.FindIndex(c => c.ID == "None");
-            if (noneIndex != -1)
-            {
-                var none = companies[noneIndex];
-                companies.RemoveAt(noneIndex);
-                companies.Insert(0, none);
-            }
-
-            // Add to NGC company dropdown
-            for (var i = 0; i < companies.Count; i++)
-            {
-                CompanyButton.AddItem(companies[i].Name, i);
-                Logger.Debug($"Added company to dropdown: {i} - {companies[i].ID} - {companies[i].Name}");
-            }
-
-            CompanyButton.OnItemSelected += args =>
-            {
-                CompanyButton.SelectId(args.Id);
-                if (args.Id >= 0 && args.Id < companies.Count)
-                {
-                    var company = companies[args.Id];
-                    var companyId = company.ID;
-                    var descKey = company.Description;
-                    CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(descKey)
-                    ? (Loc.TryGetString(descKey, out var desc) ? desc : descKey)
-                    : "N/A"); // Only if there's a description. If not, then set to N/A.
-
-                    // Get the current profile for comparison
-                    var oldCompany = Profile?.Company;
-                    // Update the profile with the new company
-                    Profile = Profile?.WithCompany(companyId);
-
-                    // Debug logging to verify selection
-                    Logger.Debug($"Company changed from {oldCompany} to {companyId}");
-
-                    // Explicitly call SetDirty to update save button state
-                    SetDirty();
-                }
-            };
-
-            #endregion Company
-
             #region Markings
 
-            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
+            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-markings-tab"));
 
             Markings.OnMarkingAdded += OnMarkingChange;
             Markings.OnMarkingRemoved += OnMarkingChange;
@@ -1153,6 +1096,7 @@ namespace Content.Client.Lobby.UI
             _jobCategories.Clear();
             _jobPriorities.Clear();
             var firstCategory = true;
+            var profile = Profile;
 
             // Get all displayed departments
             var departments = new List<DepartmentPrototype>();
@@ -1176,6 +1120,14 @@ namespace Content.Client.Lobby.UI
 
             foreach (var department in departments)
             {
+                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
+                    .Where(job => job.SetPreference)
+                    .Where(job => ShouldDisplayJob(job, profile))
+                    .ToArray();
+
+                if (jobs.Length == 0)
+                    continue;
+
                 var departmentName = Loc.GetString(department.Name);
 
                 if (!_jobCategories.TryGetValue(department.ID, out var category))
@@ -1218,10 +1170,6 @@ namespace Content.Client.Lobby.UI
                     JobList.AddChild(category);
                 }
 
-                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
-                    .Where(job => job.SetPreference)
-                    .ToArray();
-
                 Array.Sort(jobs, JobUIComparer.Instance);
 
                 foreach (var job in jobs)
@@ -1246,7 +1194,7 @@ namespace Content.Client.Lobby.UI
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                    if (!_requirements.IsAllowed(job, profile, out var reason))
                     {
                         selector.LockRequirements(reason);
                     }
@@ -2304,6 +2252,7 @@ namespace Content.Client.Lobby.UI
                 var profile = _entManager.System<HumanoidAppearanceSystem>().FromStream(file, _playerManager.LocalSession!);
                 var oldProfile = Profile;
                 profile = profile.WithBankBalance(oldProfile.BankBalance); // Frontier: no free money (enforce import, don't care about import)
+                profile = profile.WithCompany(oldProfile.Company);
                 SetProfile(profile, CharacterSlot);
 
                 IsDirty = !profile.MemberwiseEquals(oldProfile);
@@ -2368,58 +2317,92 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
-            var username = _playerManager.LocalPlayer?.Session?.Name; //Lua modified - company login support
+            var canLeaveCompany = !string.IsNullOrWhiteSpace(Profile.Company)
+                && !string.Equals(Profile.Company, "None", StringComparison.OrdinalIgnoreCase);
 
-            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                //.Where(c => !c.Disabled) // Filter out disabled companies
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified - company login support
-                .ToList();
-            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+            CompanyLeaveButton.Visible = canLeaveCompany;
+            CompanyLeaveButton.Disabled = !canLeaveCompany;
+            CompanyLeaveInfoLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString(
+                canLeaveCompany
+                    ? "humanoid-profile-editor-company-leave-info"
+                    : "humanoid-profile-editor-company-neutral-info")));
+        }
 
-            // Make sure "None" is first in the list
-            var noneIndex = companies.FindIndex(c => c.ID == "None");
-            if (noneIndex != -1)
+        private void OpenLeaveCompanyConfirmation()
+        {
+            if (Profile == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(Profile.Company)
+                || string.Equals(Profile.Company, "None", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            var window = new CompanyLeaveConfirmationWindow();
+            window.ConfirmButton.OnPressed += _ =>
             {
-                var none = companies[noneIndex];
-                companies.RemoveAt(noneIndex);
-                companies.Insert(0, none);
+                SetProfileCompany("None");
+                Save?.Invoke();
+                window.Close();
+            };
+            window.CancelButton.OnPressed += _ => window.Close();
+            window.OpenCentered();
+        }
+
+        private void SetProfileCompany(string companyId)
+        {
+            if (Profile == null)
+                return;
+
+            if (string.Equals(Profile.Company, companyId, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            Profile = Profile.WithCompany(companyId);
+            UpdateCompanyControls();
+            RefreshJobs();
+            RefreshLoadouts();
+            ReloadPreview();
+        }
+
+        private static bool ShouldDisplayJob(JobPrototype job, HumanoidCharacterProfile? profile)
+        {
+            if (profile == null)
+                return true;
+
+            var currentCompany = string.IsNullOrWhiteSpace(profile.Company)
+                ? "None"
+                : profile.Company;
+
+            var jobCompanies = GetJobCompanies(job);
+
+            if (string.Equals(currentCompany, "None", StringComparison.OrdinalIgnoreCase))
+                return jobCompanies.Count == 0 || jobCompanies.Contains("Neutral", StringComparer.OrdinalIgnoreCase);
+
+            if (jobCompanies.Count == 0)
+                return false;
+
+            foreach (var company in jobCompanies)
+            {
+                if (string.Equals(company, currentCompany, StringComparison.OrdinalIgnoreCase))
+                    return true;
             }
 
-            Logger.Debug($"Updating company controls." +
-                         $"Current profile company: {Profile.Company}\n");
+            return false;
+        }
 
-            // Find the company in the list and select it
-            bool found = false;
-            for (var i = 0; i < companies.Count; i++)
+        private static HashSet<string> GetJobCompanies(JobPrototype job)
+        {
+            var companies = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            if (!string.IsNullOrWhiteSpace(job.RequiredCompany))
             {
-                if (companies[i].ID != Profile.Company)
-                    continue; // Short circuit.
-
-                Logger.Debug($"Found company at index {i}: {companies[i].ID} - {companies[i].Name}");
-                CompanyButton.SelectId(i);
-
-                // Description of Company (pointed-to in prototype, defined in Locale)
-                var descKey = companies[i].Description;
-                CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(descKey)
-                ? (Loc.TryGetString(descKey, out var desc) ? desc : descKey)
-                : "N/A"); // Only if there's a description. If not, then set to N/A.
-
-                found = true;
-                break;
-            }
-
-            // If company wasn't found, default to "None" (index 0)
-            if (!found)
-            {
-                Logger.Debug($"Company {Profile.Company} not found in list, defaulting to None");
-                CompanyButton.SelectId(0);
-
-                // Also reset the profile's company to None if the current one is disabled
-                if (_prototypeManager.TryIndex<CompanyPrototype>(Profile.Company, out var companyProto) && companyProto.Disabled)
+                foreach (var company in job.RequiredCompany.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
                 {
-                    Profile = Profile.WithCompany("None");
+                    companies.Add(company);
                 }
             }
+
+            return companies;
         }
+
     }
 }

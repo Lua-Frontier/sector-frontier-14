@@ -6,6 +6,7 @@ using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Content.Server._Lua.ChatFilter; // Lua
+using Content.Server._Lua.Reputation;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Database;
@@ -17,6 +18,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
@@ -51,6 +53,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly DiscordChatLink _discordChatLink = default!;
         [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
+        [Dependency] private readonly ReputationSystem _reputation = default!;
 
         [GeneratedRegex(@"^https://(?:(?:canary|ptb)\.)?discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -89,6 +92,7 @@ namespace Content.Server.Administration.Systems
 
         private int _maxAdditionalChars;
         private readonly Dictionary<NetUserId, DateTime> _activeConversations = new();
+        private readonly Dictionary<NetUserId, AHelpConversationState> _conversationStates = new();
 
         public override void Initialize()
         {
@@ -116,7 +120,14 @@ namespace Content.Server.Administration.Systems
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
-            SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _activeConversations.Clear());
+            SubscribeNetworkEvent<BwoinkCloseConversationMessage>(OnCloseConversation);
+            SubscribeNetworkEvent<BwoinkReopenConversationMessage>(OnReopenConversation);
+            SubscribeNetworkEvent<BwoinkRateAdminMessage>(OnRateAdmin);
+            SubscribeLocalEvent<RoundRestartCleanupEvent>(_ =>
+            {
+                _activeConversations.Clear();
+                _conversationStates.Clear();
+            });
 
         	_rateLimit.Register(
                 RateLimitKey,
@@ -348,6 +359,151 @@ namespace Content.Server.Administration.Systems
 
                 RaiseNetworkEvent(update, admin);
             }
+        }
+
+        private void OnCloseConversation(BwoinkCloseConversationMessage msg, EntitySessionEventArgs args)
+        {
+            var adminData = _adminManager.GetAdminData(args.SenderSession, includeDeAdmin: true);
+            var senderAdmin = adminData?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true;
+            var senderOwnChannel = args.SenderSession.UserId == msg.Channel;
+            if (!senderAdmin && !senderOwnChannel) return;
+            var channel = senderAdmin ? msg.Channel : args.SenderSession.UserId;
+            var state = GetConversationState(channel);
+            if (state.Closed) return;
+            if (senderAdmin)
+            {
+                state.LastAdminId = args.SenderSession.UserId;
+                state.LastAdminName = args.SenderSession.Name;
+            }
+            state.Closed = true;
+            var loc = senderAdmin ? "bwoink-system-conversation-closed-by-admin" : "bwoink-system-conversation-closed-by-player";
+            SendSystemMessage(channel, Loc.GetString(loc, ("name", args.SenderSession.Name)));
+            BroadcastConversationState(channel);
+        }
+
+        private void OnReopenConversation(BwoinkReopenConversationMessage msg, EntitySessionEventArgs args)
+        {
+            var senderAdmin = _adminManager.GetAdminData(args.SenderSession, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true;
+            if (senderAdmin) return;
+            var channel = args.SenderSession.UserId;
+            var state = GetConversationState(channel);
+            if (!state.Closed) return;
+            state.Closed = false;
+            state.RatingSubmitted = false;
+            SendSystemMessage(channel, Loc.GetString("bwoink-system-conversation-reopened-by-player", ("name", args.SenderSession.Name)));
+            BroadcastConversationState(channel);
+        }
+
+        private async void OnRateAdmin(BwoinkRateAdminMessage msg, EntitySessionEventArgs args)
+        {
+            try
+            {
+                var senderAdmin = _adminManager.GetAdminData(args.SenderSession, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true;
+                if (senderAdmin) return;
+                var channel = args.SenderSession.UserId;
+                var state = GetConversationState(channel);
+                if (!state.Closed || state.RatingSubmitted || state.LastAdminId == null || state.LastAdminName == null) return;
+                if (msg.Value is not (ReputationVoteValue.Like or ReputationVoteValue.Dislike)) return;
+                var comment = string.IsNullOrWhiteSpace(msg.Comment) ? null : msg.Comment.Trim();
+                if (comment?.Length > ReputationConstants.MaxCommentLength)
+                {
+                    SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-too-long", ("max", ReputationConstants.MaxCommentLength)), args.SenderSession.Channel);
+                    return;
+                }
+                if (msg.Value == ReputationVoteValue.Dislike && (comment == null || comment.Length < ReputationConstants.MinNegativeCommentLength))
+                {
+                    SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-negative-too-short", ("min", ReputationConstants.MinNegativeCommentLength)), args.SenderSession.Channel);
+                    return;
+                }
+                var record = await _dbManager.TryCreateReputationVote(
+                    ReputationTargetKind.Admin,
+                    state.LastAdminId.Value.UserId,
+                    state.LastAdminName,
+                    args.SenderSession.UserId.UserId,
+                    args.SenderSession.Name,
+                    msg.Value,
+                    comment,
+                    roundId: null,
+                    DateTimeOffset.UtcNow);
+
+                if (record == null)
+                {
+                    SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-too-soon"), args.SenderSession.Channel);
+                    return;
+                }
+                var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
+                _reputation.SetCachedReputation(record.Kind, record.TargetUserId, new ReputationSystem.CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes));
+                state.RatingSubmitted = true;
+                SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
+                BroadcastConversationState(channel);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Failed to rate admin via bwoink flow: {ex}");
+            }
+        }
+
+        private AHelpConversationState GetConversationState(NetUserId channel)
+        {
+            if (_conversationStates.TryGetValue(channel, out var state)) return state;
+            state = new AHelpConversationState();
+            _conversationStates[channel] = state;
+            return state;
+        }
+
+        private void UpdateConversationFromMessage(NetUserId channel, NetUserId senderId, string senderName, bool senderAdmin, bool adminOnly, bool fromWebhook)
+        {
+            if (adminOnly || fromWebhook) return;
+            var state = GetConversationState(channel);
+            var changed = false;
+            if (senderAdmin)
+            {
+                state.LastAdminId = senderId;
+                state.LastAdminName = senderName;
+                changed = true;
+            }
+            if (state.Closed)
+            {
+                state.Closed = false;
+                state.RatingSubmitted = false;
+                changed = true;
+            }
+            if (changed) BroadcastConversationState(channel);
+        }
+
+        private void SendSystemMessage(NetUserId channel, string text, INetChannel? only = null)
+        {
+            var message = new BwoinkTextMessage(channel, SystemUserId, $"[color=gray]{FormattedMessage.EscapeText(text)}[/color]", playSound: false);
+            if (only != null)
+            {
+                RaiseNetworkEvent(message, only);
+                return;
+            }
+            var targets = new List<INetChannel>();
+            foreach (var admin in GetTargetAdmins())
+            { if (!targets.Contains(admin)) targets.Add(admin); }
+            if (_playerManager.TryGetSessionById(channel, out var session))
+            { if (!targets.Contains(session.Channel)) targets.Add(session.Channel); }
+            foreach (var target in targets)
+            { RaiseNetworkEvent(message, target); }
+        }
+
+        private void BroadcastConversationState(NetUserId channel)
+        {
+            var state = GetConversationState(channel);
+            var hasAdminTarget = state.LastAdminId != null && state.LastAdminName != null;
+            var message = new BwoinkConversationStateMessage(
+                channel,
+                state.Closed,
+                state.Closed && !state.RatingSubmitted && hasAdminTarget,
+                state.RatingSubmitted,
+                hasAdminTarget,
+                state.LastAdminId ?? default,
+                state.LastAdminName ?? string.Empty);
+
+            foreach (var admin in GetTargetAdmins())
+            { RaiseNetworkEvent(message, admin); }
+            if (_playerManager.TryGetSessionById(channel, out var session)) RaiseNetworkEvent(message, session.Channel);
         }
 
         private void OnServerNameChanged(string obj)
@@ -749,6 +905,7 @@ namespace Content.Server.Administration.Systems
 
             string bwoinkText;
             string adminPrefix = "";
+            var adminDisplayName = senderName;
 
             //Getting an administrator position
             if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdmin is not null && senderAdmin.Title is not null)
@@ -756,11 +913,20 @@ namespace Content.Server.Administration.Systems
                 adminPrefix = $"[bold]\\[{senderAdmin.Title}\\][/bold] ";
             }
 
+            if (senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true && !string.IsNullOrWhiteSpace(senderAdmin.Title))
+            { adminDisplayName = $"{senderName} ({senderAdmin.Title})"; }
+            var adminReputation = string.Empty;
+            if (!fromWebhook && senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) == true)
+            {
+                var repCached = _reputation.GetCachedReputation(ReputationTargetKind.Admin, senderId);
+                var coloredScore = $"[color=red]-{repCached.Negative}[/color]/[color=green]+{repCached.Positive}[/color]";
+                adminReputation = $" [color=gray]({Loc.GetString("reputation-ahelp-admin-score", ("score", coloredScore))})[/color]";
+            }
             if (senderAdmin is not null &&
                 senderAdmin.Flags ==
                 AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
-                bwoinkText = $"[color=purple]{adminPrefix}{senderName}[/color]";
+                bwoinkText = $"[color=purple]{adminPrefix}{adminDisplayName}[/color]{adminReputation}";
             }
             else if (fromWebhook || senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true)) // Lua deadmin mod
             {
@@ -781,7 +947,7 @@ namespace Content.Server.Administration.Systems
                             colorHex = prefs.AdminOOCColor.ToHex();
                         }
                     }
-                    bwoinkText = $"[color={colorHex}]{adminPrefix}{senderName}[/color]";
+                    bwoinkText = $"[color={colorHex}]{adminPrefix}{adminDisplayName}[/color]{adminReputation}";
                 }
             }
             else
@@ -792,6 +958,10 @@ namespace Content.Server.Administration.Systems
             bwoinkText = $"{(message.AdminOnly ? Loc.GetString("bwoink-message-admin-only") : !message.PlaySound ? Loc.GetString("bwoink-message-silent") : "")}{(fromWebhook ? Loc.GetString("bwoink-message-discord") : "")} {bwoinkText}: {escapedText}";
 
             var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false; // Lua deadmin mod
+            if (!fromWebhook && senderAHelpAdmin && senderId != SystemUserId)
+                _ = IncrementAdminAHelpMessageCountAsync(senderId.UserId);
+
+            UpdateConversationFromMessage(message.UserId, senderId, senderName, senderAHelpAdmin, message.AdminOnly, fromWebhook);
             // If it's not an admin / admin chooses to keep the sound and message is not an admin only message, then play it.
             var playSound = (!senderAHelpAdmin || message.PlaySound) && !message.AdminOnly;
             var msg = new BwoinkTextMessage(message.UserId, senderId, bwoinkText, playSound: playSound, adminOnly: message.AdminOnly);
@@ -913,11 +1083,31 @@ namespace Content.Server.Administration.Systems
         }
         // End Frontier: webhook text messages
 
+        private async Task IncrementAdminAHelpMessageCountAsync(Guid adminUserId)
+        {
+            try
+            {
+                await _dbManager.IncrementAdminAHelpResolvedCount(adminUserId, DateTimeOffset.UtcNow);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Failed to increment admin AHelp message count for {adminUserId}: {ex}");
+            }
+        }
+
         private IList<INetChannel> GetNonAfkAdmins()
         {
             return _adminManager.AllAdmins.Where(p => (_adminManager.GetAdminData(p, includeDeAdmin: true)?.HasFlag(AdminFlags.Adminhelp, includeDeAdmin: true) ?? false) && !_afkManager.IsAfk(p)) // Lua deadmin mod
                 .Select(p => p.Channel)
                 .ToList();
+        }
+
+        private sealed class AHelpConversationState
+        {
+            public bool Closed;
+            public bool RatingSubmitted;
+            public NetUserId? LastAdminId;
+            public string? LastAdminName;
         }
 
         private IList<INetChannel> GetTargetAdmins()

@@ -6,6 +6,7 @@
   id: OutpostTypanBotanist
   name: job-name-typan-botanist
   playTimeTracker: JobOutpostSyndicateBotanist
+  requiredCompany: Syndicate
   salary: 25000
   description: Ботаник из далёкого космоса.
   startingGear: SyndicateBotanist
@@ -14,15 +15,15 @@
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-    # - !type:RoleTimeRequirement
-    #   role: JobOutpostTypanAtmosTech
-    #   time: 20600
-    - !type:DepartmentTimeRequirement
-      department: Civilian
-      time: 24000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 19000
+    - !type:RoleTimeRequirement
+      role: JobOutpostSyndicateAtmosTech
+      time: 20600
+    # - !type:DepartmentTimeRequirement
+    #   department: Civilian
+    #   time: 24000
+    # - !type:DepartmentTimeRequirement
+    #   department: Security
+    #   time: 19000
     - !type:OverallPlaytimeRequirement
       time: 360000
   access:

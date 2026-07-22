@@ -38,6 +38,8 @@
     AnomalousGeodeLua:
       stationProto: StandardFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Аномальный Обломок'
         - type: StationJobs

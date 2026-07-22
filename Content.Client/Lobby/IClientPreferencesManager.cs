@@ -7,6 +7,7 @@ namespace Content.Client.Lobby
     public interface IClientPreferencesManager
     {
         event Action OnServerDataLoaded;
+        event Action? OnSelectedCharacterChanged;
 
         bool ServerDataLoaded => Settings != null;
 

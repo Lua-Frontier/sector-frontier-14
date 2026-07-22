@@ -49,6 +49,27 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("admin", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.AdminAHelpObserv", b =>
+                {
+                    b.Property<Guid>("AdminUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("admin_user_id");
+
+                    b.Property<int>("ResolvedAhelps")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("resolved_ahelps");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("AdminUserId")
+                        .HasName("PK_admin_ahelp_observ");
+
+                    b.ToTable("admin_ahelp_observ", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.AdminFlag", b =>
                 {
                     b.Property<int>("Id")
@@ -1252,6 +1273,92 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("profile_role_loadout", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.ReputationVote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("reputation_votes_id");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(4096)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("DeleteReason")
+                        .HasMaxLength(4096)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("delete_reason");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("deleted");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deleted_at");
+
+                    b.Property<Guid?>("DeletedById")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("deleted_by_id");
+
+                    b.Property<int?>("RoundId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("round_id");
+
+                    b.Property<byte>("TargetKind")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("target_kind");
+
+                    b.Property<string>("TargetNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("target_name_snapshot");
+
+                    b.Property<Guid>("TargetUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("target_user_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("updated_at");
+
+                    b.Property<sbyte>("Value")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("value");
+
+                    b.Property<string>("VoterNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("voter_name_snapshot");
+
+                    b.Property<Guid>("VoterUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("voter_user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_reputation_votes");
+
+                    b.HasIndex("Deleted");
+
+                    b.HasIndex("RoundId")
+                        .HasDatabaseName("IX_reputation_votes_round_id");
+
+                    b.HasIndex("TargetKind", "TargetUserId")
+                        .HasDatabaseName("IX_reputation_votes_target_kind_target_user_id");
+
+                    b.HasIndex("VoterUserId", "TargetKind", "TargetUserId", "Deleted")
+                        .HasDatabaseName("IX_reputation_votes_voter_user_id_target_kind_target_user_id_deleted");
+
+                    b.ToTable("reputation_votes", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.RoleWhitelist", b =>
                 {
                     b.Property<Guid>("PlayerUserId")
@@ -1984,6 +2091,16 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasConstraintName("FK_profile_role_loadout_profile_profile_id");
 
                     b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.ReputationVote", b =>
+                {
+                    b.HasOne("Content.Server.Database.Round", "Round")
+                        .WithMany()
+                        .HasForeignKey("RoundId")
+                        .HasConstraintName("FK_reputation_votes_round_round_id");
+
+                    b.Navigation("Round");
                 });
 
             modelBuilder.Entity("Content.Server.Database.RoleWhitelist", b =>

@@ -38,12 +38,20 @@
     AsteroidTradeOutpost:
       stationProto: MarketFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
+        - type: FactionOwnedStation
+          originalCompany: Neutral
+          currentCompany: Neutral
+          mainBase: true
         - type: StationNameSetup
           mapNameTemplate: 'Trade Outpost'
         - type: ExtraStationInformation #Lua
           iconPath: /Textures/Structures/Wallmounts/flags.rsi/pirate_flag.png
           stationSubtext: 'frontier-lobby-blackmarket-subtext'
           stationDescription: 'frontier-lobby-blackmarket-description'
+          requiredCompany: Neutral
+          additionalSpawnCompanies: LuaTech
         - type: StationDeadDrop
           maxDeadDrops: 3
         - type: TradeCrateDestination
@@ -52,3 +60,4 @@
           availableJobs:
             Contractor: [ -1, -1 ]
             Mercenary: [ -1, -1 ]
+            OpsLuaTech: [ 1, 1 ]

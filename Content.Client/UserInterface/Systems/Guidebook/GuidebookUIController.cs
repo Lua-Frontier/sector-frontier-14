@@ -31,8 +31,10 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
     private GuidebookWindow? _guideWindow;
     private MenuButton? GuidebookButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.GuidebookButton;
+    private static readonly ProtoId<GuideEntryPrototype> FactionWarsGuideId = new("FactionWars");
+
     private ProtoId<GuideEntryPrototype>? _lastEntry;
-    private bool _openedStargateGuideThisSession;
+    private bool _openedFactionWarsGuideThisSession;
 
     public void OnStateEntered(LobbyState state)
     {
@@ -62,11 +64,11 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         }
 
         if (state is GameplayState &&
-            !_configuration.GetCVar(CLVars.StargateGuideShown) &&
-            _prototypeManager.HasIndex<GuideEntryPrototype>("Stargate"))
+            !_configuration.GetCVar(CLVars.FactionWarsGuideShown) &&
+            _prototypeManager.TryIndex(FactionWarsGuideId, out GuideEntryPrototype? _))
         {
-            _openedStargateGuideThisSession = true;
-            OpenGuidebook(selected: new ProtoId<GuideEntryPrototype>("Stargate"));
+            _openedFactionWarsGuideThisSession = true;
+            OpenGuidebook(selected: FactionWarsGuideId);
             _guideWindow.RecenterWindow(new(0.5f, 0.5f));
             _guideWindow.SetPositionFirst();
         }
@@ -154,10 +156,10 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         if (GuidebookButton != null)
             GuidebookButton.Pressed = false;
 
-        if (_openedStargateGuideThisSession)
+        if (_openedFactionWarsGuideThisSession)
         {
-            _configuration.SetCVar(CLVars.StargateGuideShown, true);
-            _openedStargateGuideThisSession = false;
+            _configuration.SetCVar(CLVars.FactionWarsGuideShown, true);
+            _openedFactionWarsGuideThisSession = false;
         }
 
         if (_guideWindow != null)

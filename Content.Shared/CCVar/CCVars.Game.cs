@@ -51,7 +51,7 @@ public sealed partial class CCVars
     ///     Controls the default game preset.
     /// </summary>
     public static readonly CVarDef<string>
-        GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "nfpirate", CVar.ARCHIVE); // Frontier: secret<nfpirate
+        GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "LuaAdventure", CVar.ARCHIVE); // Lua: default preset
 
     /// <summary>
     ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -106,7 +106,7 @@ public sealed partial class CCVars
     ///     Prototype to use for map pool.
     /// </summary>
     public static readonly CVarDef<string>
-        GameMapPool = CVarDef.Create("game.map_pool", "NFMapPool", CVar.SERVERONLY); // Frontier: DefaultMapPool<NFMapPool
+        GameMapPool = CVarDef.Create("game.map_pool", "LuaMapPool", CVar.SERVERONLY); // Lua: default map pool
 
     /// <summary>
     ///     The depth of the queue used to calculate which map is next in rotation.

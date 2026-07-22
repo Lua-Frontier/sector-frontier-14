@@ -1251,38 +1251,6 @@
         tags:
           - PirateUplink
 
-#region starmap
-
-- type: listing
-  id: UplinkPirateCoordinatesDiskPirate
-  name: uplink-pirate-coordinates-disk-pirate-name
-  description: uplink-pirate-coordinates-disk-pirate-desc
-  productEntity: CoordinatesDiskPirate
-  icon: { sprite: Objects/Misc/cd.rsi, state: icon }
-  cost:
-    Doubloon: 1
-  categories:
-    - UplinkPirateUtility
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - PirateUplink
-
-- type: listing
-  id: UplinkPirateSectorBanner
-  name: uplink-pirate-sector-banner-name
-  description: uplink-pirate-sector-banner-desc
-  productEntity: BannerSectorPirates
-  cost:
-    Doubloon: 1
-  categories:
-  - UplinkPirateUtility
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
 
 #region utility
 

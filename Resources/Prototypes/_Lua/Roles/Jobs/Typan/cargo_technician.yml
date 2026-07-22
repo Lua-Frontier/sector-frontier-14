@@ -6,6 +6,7 @@
   id: OutpostTypanCargotech
   name: job-name-typan-cargotech
   playTimeTracker: JobOutpostSyndicateCargotech
+  requiredCompany: Syndicate
   salary: 35000
   description: Карготехник из далёкого космоса.
   startingGear: SyndicateCargotech
@@ -14,18 +15,8 @@
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobPilot
-    time: 36000 # 20h
-  - !type:RoleTimeRequirement
-    role: JobPassenger
-    time: 36000 # 20h
-  - !type:RoleTimeRequirement
-    role: JobFrontierEngineer
-    time: 36000 # 20h
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 36000 # 20h
+    - !type:OverallPlaytimeRequirement
+      time: 360000
   access:
   - SyndicateAgent
   - NuclearOperative

@@ -6,6 +6,7 @@
   id: OutpostTypanRD
   name: job-name-typan-rd
   playTimeTracker: JobOutpostSyndicateRD
+  requiredCompany: Syndicate
   salary: 45000
   description: Директор исследований из далёкого космоса.
   startingGear: SyndicateRD
@@ -14,12 +15,12 @@
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobHeadOfPersonnel
-    time: 72000 # 20h
-  - !type:DepartmentTimeRequirement
-    department: OutpostSyndicate
-    time: 72000 # 20h
+    # - !type:RoleTimeRequirement
+    #   role: JobHeadOfPersonnel
+    #   time: 72000 # 20h
+    - !type:DepartmentTimeRequirement
+      department: OutpostSyndicate
+      time: 72000 # 20h
     # - !type:DepartmentTimeRequirement
     #   department: Security
     #   time: 32000
@@ -29,8 +30,8 @@
     # - !type:DepartmentTimeRequirement
     #   department: Frontier
     #   time: 83000
-    # - !type:OverallPlaytimeRequirement
-    #   time: 150000
+    - !type:OverallPlaytimeRequirement
+      time: 150000
   access:
   - SyndicateAgent
   - NuclearOperative

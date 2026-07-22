@@ -59,6 +59,9 @@ namespace Content.Shared.Roles
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
+        [DataField("requiredCompany")]
+        public string? RequiredCompany { get; private set; }
+
         // Frontier: alternate requirement sets
         /// <summary>
         /// Alternate sets of requirements - one must be matched in order to spawn as this job.

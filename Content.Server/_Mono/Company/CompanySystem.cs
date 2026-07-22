@@ -1,6 +1,10 @@
 using Content.Shared._Mono.Company;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
+using Content.Shared.Players;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -14,6 +18,7 @@ public sealed class CompanySystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
 
     // Dictionary to store original company preferences for players
     private readonly Dictionary<string, string> _playerOriginalCompanies = new();
@@ -27,7 +32,7 @@ public sealed class CompanySystem : EntitySystem
         "SeniorOfficer", // Sergeant
         "Deputy",
         "Brigmedic",
-        "NFDetective" // Lua ,< 
+        "NFDetective" // Lua ,<
         //"PublicAffairsLiaison", // Lua off
         // "DirectorOfCare" // Lua off
     };
@@ -38,6 +43,8 @@ public sealed class CompanySystem : EntitySystem
         "NFPirateFirstMate",
         "NFPirate"
     };
+
+    private HashSet<ProtoId<NpcFactionPrototype>>? _companyNpcFactions;
 
     public override void Initialize()
     {
@@ -70,7 +77,7 @@ public sealed class CompanySystem : EntitySystem
         // Lua first check specials
         if (!string.IsNullOrEmpty(companyComp.CompanyName) && companyComp.CompanyName != "None")
         {
-            Dirty(args.Mob, companyComp);
+            SetCompany(args.Mob, companyComp.CompanyName, companyComp);
             return;
         }
         // Lua first check specials
@@ -85,61 +92,202 @@ public sealed class CompanySystem : EntitySystem
             _playerOriginalCompanies[playerId] = profileCompany;
         }
 
+        string assignedCompany;
+
         // Check if player's job is one of the NGC jobs
         if (args.JobId != null && _ngcJobs.Contains(args.JobId))
         {
             // Assign NGC company
-            companyComp.CompanyName = "Security"; // Lua NGC<Security
+            assignedCompany = "Security"; // Lua NGC<Security
         }
         // Check if player's job is one of the Rogue jobs
         else if (args.JobId != null && _rogueJobs.Contains(args.JobId))
         {
             // Assign Rogue company
-            companyComp.CompanyName = "None"; // Lua Rogue<None
+            assignedCompany = "None"; // Lua Rogue<None
         }
         else
         {
             // Restore the player's original company preference
-            companyComp.CompanyName = _playerOriginalCompanies[playerId];
+            assignedCompany = _playerOriginalCompanies[playerId];
         }
 
         // Lua start: Login support
-        if (companyComp.CompanyName == "None")
+        if (assignedCompany == "None")
         {
             foreach (var companyProto in _prototypeManager.EnumeratePrototypes<CompanyPrototype>())
             {
                 if (companyProto.Logins.Contains(args.Player.Name))
                 {
-                    companyComp.CompanyName = companyProto.ID;
+                    assignedCompany = companyProto.ID;
                     break;
                 }
             }
         }
         // Lua end
 
-        // Ensure the component is networked to clients
-        Dirty(args.Mob, companyComp);
+        SetCompany(args.Mob, assignedCompany, companyComp);
+    }
+
+    public void SetCompany(EntityUid uid, string companyId, CompanyComponent? companyComp = null)
+    {
+        companyComp ??= EnsureComp<CompanyComponent>(uid);
+        var oldCompanyId = string.IsNullOrWhiteSpace(companyComp.CompanyName) ? "None" : companyComp.CompanyName;
+        var changed = !string.Equals(oldCompanyId, companyId, StringComparison.OrdinalIgnoreCase);
+
+        if (changed
+            && TryComp<CompanyRevealComponent>(uid, out var revealComp))
+        {
+            revealComp.RevealedToPlayerIds.Clear();
+        }
+
+        companyComp.CompanyName = companyId;
+        Dirty(uid, companyComp);
+        SyncNpcFactions(uid, oldCompanyId, companyId);
+
+        RaiseLocalEvent(uid, new CompanySetEvent(oldCompanyId, companyId, changed));
+    }
+
+    public void UpdateStoredCompanyPreference(EntityUid uid, string companyId)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        _playerOriginalCompanies[actor.PlayerSession.UserId.ToString()] = companyId;
+    }
+
+    public bool CanSeeCompany(EntityUid target, EntityUid examiner, CompanyComponent? targetCompany = null)
+    {
+        if (!Resolve(target, ref targetCompany, false))
+            return false;
+
+        if (string.IsNullOrWhiteSpace(targetCompany.CompanyName) || targetCompany.CompanyName == "None")
+            return false;
+
+        if (string.Equals(GetCompanyId(examiner), targetCompany.CompanyName, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (IsCompanyPubliclyKnown(targetCompany.CompanyName))
+            return true;
+
+        return IsCompanyRevealedTo(target, examiner);
+    }
+
+    public bool NeedsFactionRevealRequest(EntityUid target, EntityUid examiner, CompanyComponent? targetCompany = null)
+    {
+        if (!Resolve(target, ref targetCompany, false))
+            return false;
+
+        if (string.IsNullOrWhiteSpace(targetCompany.CompanyName) || targetCompany.CompanyName == "None")
+            return false;
+
+        if (IsCompanyPubliclyKnown(targetCompany.CompanyName))
+            return false;
+
+        return !CanSeeCompany(target, examiner, targetCompany);
+    }
+
+    public void RevealCompanyTo(EntityUid target, ICommonSession session)
+    {
+        var comp = EnsureComp<CompanyRevealComponent>(target);
+        comp.RevealedToPlayerIds.Add(session.UserId.ToString());
+    }
+
+    public string GetVisibleCompanyMarkup(EntityUid target, EntityUid examiner, CompanyComponent? targetCompany = null)
+    {
+        if (!Resolve(target, ref targetCompany, false))
+            return Loc.GetString("company-examine-unknown");
+
+        if (string.IsNullOrWhiteSpace(targetCompany.CompanyName) || targetCompany.CompanyName == "None")
+            return Loc.GetString("company-examine-unknown");
+
+        if (!CanSeeCompany(target, examiner, targetCompany))
+            return Loc.GetString("company-examine-unknown");
+
+        if (_prototypeManager.TryIndex<CompanyPrototype>(targetCompany.CompanyName, out var prototype))
+            return $"[color={prototype.Color.ToHex()}]{prototype.Name}[/color]";
+
+        return $"[color=yellow]{targetCompany.CompanyName}[/color]";
+    }
+
+    private void SyncNpcFactions(EntityUid uid, string? oldCompanyId, string? newCompanyId)
+    {
+        var oldCompanyFactions = GetTargetNpcFactions(oldCompanyId);
+        var newCompanyFactions = GetTargetNpcFactions(newCompanyId);
+
+        if (!TryComp(uid, out NpcFactionMemberComponent? npcFactionComp) && newCompanyFactions.Count == 0)
+            return;
+
+        npcFactionComp ??= EnsureComp<NpcFactionMemberComponent>(uid);
+        var removedFactions = oldCompanyFactions.Count == 0 ? newCompanyFactions : oldCompanyFactions;
+        var baseFactions = new HashSet<ProtoId<NpcFactionPrototype>>(npcFactionComp.Factions);
+        baseFactions.ExceptWith(removedFactions);
+        _npcFaction.ClearFactions((uid, npcFactionComp), dirty: false);
+        _npcFaction.AddFactions((uid, npcFactionComp), baseFactions, dirty: false);
+        _npcFaction.AddFactions((uid, npcFactionComp), newCompanyFactions, dirty: true);
+    }
+
+    private HashSet<ProtoId<NpcFactionPrototype>> GetCompanyNpcFactions()
+    {
+        if (_companyNpcFactions != null)
+            return _companyNpcFactions;
+
+        _companyNpcFactions = new HashSet<ProtoId<NpcFactionPrototype>>();
+
+        foreach (var prototype in _prototypeManager.EnumeratePrototypes<CompanyPrototype>())
+        {
+            foreach (var faction in prototype.NpcFactions)
+            {
+                _companyNpcFactions.Add(faction);
+            }
+        }
+
+        return _companyNpcFactions;
+    }
+
+    private HashSet<ProtoId<NpcFactionPrototype>> GetTargetNpcFactions(string? companyId)
+    {
+        if (string.IsNullOrWhiteSpace(companyId) || companyId == "None")
+            return new();
+
+        if (!_prototypeManager.TryIndex<CompanyPrototype>(companyId, out var prototype))
+            return new();
+
+        return prototype.NpcFactions.Count == 0 ? new() : new HashSet<ProtoId<NpcFactionPrototype>>(prototype.NpcFactions);
     }
 
     private void OnExamined(EntityUid uid, Shared._Mono.Company.CompanyComponent component, ExaminedEvent args)
     {
-        // Try to get the prototype for the company
-        if (_prototypeManager.TryIndex<CompanyPrototype>(component.CompanyName, out var prototype) && component.CompanyName != "None")
-        {
-            // Use the color from the prototype with gender-appropriate pronoun
-            args.PushMarkup(Loc.GetString("examine-company", 
-                ("entity", uid), 
-                ("company", $"[color={prototype.Color.ToHex()}]{prototype.Name}[/color]")), 
-                priority: 100); // Much higher priority (100) will ensure it's at the top
-        }
-        else if (component.CompanyName != "None")
-        {
-            // Fallback for companies without prototypes
-            args.PushMarkup(Loc.GetString("examine-company", 
-                ("entity", uid), 
-                ("company", $"[color=yellow]{component.CompanyName}[/color]")), 
-                priority: 100);
-        }
-        // Don't show anything for "None" company
+        if (component.CompanyName == "None")
+            return;
+
+        var companyMarkup = GetVisibleCompanyMarkup(uid, args.Examiner, component);
+        args.PushMarkup(Loc.GetString("examine-company",
+            ("entity", uid),
+            ("company", companyMarkup)),
+            priority: 100);
+    }
+
+    private bool IsCompanyRevealedTo(EntityUid target, EntityUid examiner)
+    {
+        if (!TryComp<ActorComponent>(examiner, out var actor))
+            return false;
+
+        return TryComp<CompanyRevealComponent>(target, out var revealComp)
+            && revealComp.RevealedToPlayerIds.Contains(actor.PlayerSession.UserId.ToString());
+    }
+
+    private bool IsCompanyPubliclyKnown(string companyId)
+    {
+        return _prototypeManager.TryIndex<CompanyPrototype>(companyId, out var prototype)
+               && string.Equals(prototype.Form, "Протогонисты", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private string GetCompanyId(EntityUid uid)
+    {
+        if (!TryComp<CompanyComponent>(uid, out var companyComp) || string.IsNullOrWhiteSpace(companyComp.CompanyName))
+            return "None";
+
+        return companyComp.CompanyName;
     }
 }

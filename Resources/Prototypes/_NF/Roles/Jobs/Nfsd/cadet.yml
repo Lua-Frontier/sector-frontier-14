@@ -3,11 +3,12 @@
   name: job-name-cadet-nf
   description: job-description-cadet-nf
   playTimeTracker: JobSecurityCadet
+  requiredCompany: Security
   salary: 30000 #Lua 35000<30000
-  requirements:
-  - !type:RoleTimeRequirement #Lua
-    role: JobPilot
-    time: 36000 # 10h
+  # requirements:
+  # - !type:RoleTimeRequirement #Lua
+  #   role: JobPilot
+  #   time: 36000 # 10h
 #    - !type:OverallPlaytimeRequirement # comment from _Lua
 #      time: 21600 # 6 hours
 #    - !type:DepartmentTimeRequirement

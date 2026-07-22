@@ -35,5 +35,12 @@
                HorizontalExpand="True"
                ClipText="True"/>
         <!-- End Frontier: add balance -->
+        <!-- Frontier: add reputation -->
+        <customControls:VSeparator/>
+        <Label Name="ReputationLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <!-- End Frontier: add reputation -->
     </BoxContainer>
 </PanelContainer>

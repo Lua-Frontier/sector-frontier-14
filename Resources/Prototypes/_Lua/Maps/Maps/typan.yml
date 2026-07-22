@@ -2,39 +2,40 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
-- type: gameMap
-  id: Typan
-  mapName: 'ННКСС "Тайпан"'
-  mapPath: /Maps/_Lua/Maps/ds_typan.yml
-  isGrid: true
-  minPlayers: 0
-  stations:
-    Typan:
-      stationProto: StandardTypanVessel
-      components:
-      - type: RadarBlipIcon
-        icon: /Textures/_Lua/Interface/Radar/space-station.png
-        scale: 1.2
-        allowWhenHidden: true
-      - type: MailStationDisabled
-      - type: StationNameSetup
-        mapNameTemplate: 'ННКСС "Тайпан"'
-      - type: ExtraStationInformation
-        iconPath: /Textures/Structures/Wallmounts/flags.rsi/syndie_flag.png # used the biggest one, looks better when downscaling than upscaling
-        stationSubtext: 'typan-lobby-outpost-subtext'
-        stationDescription: 'typan-lobby-outpost-description'
-      - type: StationJobs
-        availableJobs:
-          OutpostSyndicateShareholder: [ -1, -1 ]
-#          OutpostTypanResearcher: [ 0, 4 ]
-#          OutpostTypanAtmosTech: [ 0, 1 ]
-#          OutpostTypanBotanist: [ 0, 1 ]
-          OutpostTypanCargotech: [ 0, 2 ]
-          OutpostTypanChef: [ 0, 1 ]
-          OutpostTypanMedic: [ 0, 2 ]
-          OutpostTypanRD: [ 0, 1 ]
-          OutpostTypanScience: [ 0, 2 ]
-          OutpostTypanTelecommunicationsOfficer: [ 0, 1 ]
+# - type: gameMap
+#   id: Typan
+#   mapName: 'ННКСС "Тайпан"'
+#   mapPath: /Maps/_Lua/Maps/ds_typan.yml
+#   isGrid: true
+#   minPlayers: 0
+#   stations:
+#     Typan:
+#       stationProto: StandardTypanVessel
+#       components:
+#       - type: RadarBlipIcon
+#         icon: /Textures/_Lua/Interface/Radar/space-station.png
+#         scale: 1.2
+#         allowWhenHidden: true
+#       - type: MailStationDisabled
+#       - type: StationNameSetup
+#         mapNameTemplate: 'ННКСС "Тайпан"'
+#       - type: ExtraStationInformation
+#         iconPath: /Textures/Structures/Wallmounts/flags.rsi/syndie_flag.png # used the biggest one, looks better when downscaling than upscaling
+#         stationSubtext: 'typan-lobby-outpost-subtext'
+#         stationDescription: 'typan-lobby-outpost-description'
+#         requiredCompany: Syndicate
+#       - type: StationJobs
+#         availableJobs:
+#           OutpostSyndicateShareholder: [ -1, -1 ]
+#           OutpostTypanResearcher: [ 0, 4 ]
+#           OutpostTypanAtmosTech: [ 0, 1 ]
+#           OutpostTypanBotanist: [ 0, 1 ]
+#           OutpostTypanCargotech: [ 0, 2 ]
+#           OutpostTypanChef: [ 0, 1 ]
+#           OutpostTypanMedic: [ 0, 2 ]
+#           OutpostTypanRD: [ 0, 1 ]
+#           OutpostTypanScience: [ 0, 2 ]
+#           OutpostTypanTelecommunicationsOfficer: [ 0, 1 ]
 
 - type: gameMap
   id: TypanLua
@@ -46,24 +47,31 @@
     Typan:
       stationProto: StandardTypanVessel
       components:
+      - type: FactionCapture
+        captureWholeStation: true
       - type: RadarBlipIcon
         icon: /Textures/_Lua/Interface/Radar/space-station.png
         scale: 1.2
         allowWhenHidden: true
       - type: MailStationDisabled
+      - type: FactionOwnedStation
+        mainBase: true
       - type: StationNameSetup
         mapNameTemplate: 'Нордфолл'
       - type: ExtraStationInformation
         iconPath: /Textures/Structures/Wallmounts/flags.rsi/syndie_flag.png # used the biggest one, looks better when downscaling than upscaling
         stationSubtext: 'typan-lobby-outpost-subtext'
         stationDescription: 'typan-lobby-outpost-description'
+        requiredCompany: Syndicate
       - type: StationJobs
         availableJobs:
           OutpostSyndicateShareholder: [ -1, -1 ]
-#          OutpostTypanResearcher: [ 0, 4 ]
-#          OutpostTypanAtmosTech: [ 0, 1 ]
-#          OutpostTypanMedic: [ 0, 1 ]
-#          OutpostTypanRD: [ 0, 1 ]
-          OutpostTypanCargotech: [ 0, 1 ]
-          OutpostTypanScience: [ 0, 1 ]
+          OutpostTypanResearcher: [ 0, 4 ]
+          OutpostTypanAtmosTech: [ 0, 1 ]
+          OutpostTypanBotanist: [ 0, 1 ]
+          OutpostTypanCargotech: [ 0, 2 ]
+          OutpostTypanChef: [ 0, 1 ]
+          OutpostTypanMedic: [ 0, 2 ]
+          OutpostTypanRD: [ 0, 1 ]
+          OutpostTypanScience: [ 0, 2 ]
           OutpostTypanTelecommunicationsOfficer: [ 0, 1 ]

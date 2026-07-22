@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
+using ClientReputationSystem = Content.Client._Lua.Reputation.ReputationSystem;
 using Content.Client.Verbs;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
@@ -30,6 +31,7 @@ namespace Content.Client.Examine
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly VerbSystem _verbSystem = default!;
+        [Dependency] private readonly ClientReputationSystem _reputation = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
 
         private List<Verb> _verbList = new();
@@ -159,7 +161,7 @@ namespace Content.Client.Examine
             var entity = GetEntity(ev.EntityUid);
 
             OpenTooltip(player.Value, entity, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget);
-            UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false);
+            UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false, playerReputationTarget: ev.PlayerReputationTarget);
         }
 
         public override void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor)
@@ -260,7 +262,7 @@ namespace Content.Client.Examine
         /// <summary>
         ///     Fills the examine tooltip with a message and buttons if applicable.
         /// </summary>
-        public void UpdateTooltipInfo(EntityUid player, EntityUid target, FormattedMessage message, List<Verb>? verbs=null, bool getVerbs = true)
+        public void UpdateTooltipInfo(EntityUid player, EntityUid target, FormattedMessage message, List<Verb>? verbs=null, bool getVerbs = true, bool playerReputationTarget = false)
         {
             var vBox = _examineTooltipOpen?.GetChild(0).GetChild(0);
             if (vBox == null)
@@ -308,10 +310,10 @@ namespace Content.Client.Examine
                 totalVerbs.UnionWith(verbs);
             }
 
-            AddVerbsToTooltip(totalVerbs);
+            AddVerbsToTooltip(totalVerbs, player, target, playerReputationTarget);
         }
 
-        private void AddVerbsToTooltip(IEnumerable<Verb> verbs)
+        private void AddVerbsToTooltip(IEnumerable<Verb> verbs, EntityUid player, EntityUid target, bool playerReputationTarget)
         {
             if (_examineTooltipOpen == null)
                 return;
@@ -366,6 +368,8 @@ namespace Content.Client.Examine
                     clickExamineBox.AddChild(button);
                 }
             }
+
+            if (playerReputationTarget) _reputation.AddReputationButtons(player, target, clickExamineBox);
 
             var vbox = _examineTooltipOpen?.GetChild(0).GetChild(0);
             if (vbox == null)

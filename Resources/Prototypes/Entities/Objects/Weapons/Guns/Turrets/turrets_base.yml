@@ -68,6 +68,7 @@
         3.141
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
+  - type: AutoDespawnExempt
   - type: MouseRotator
     angleTolerance: 5
     rotationSpeed: 180

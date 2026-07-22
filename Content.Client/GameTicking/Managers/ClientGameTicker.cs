@@ -102,6 +102,11 @@ namespace Content.Client.GameTicking.Managers
             LobbyJobsAvailableUpdated?.Invoke(StationJobInformationList);
         }
 
+        public void RequestJobsAvailableRefresh()
+        {
+            RaiseNetworkEvent(new TickerJobsAvailableRequestEvent());
+        }
+
         private void JoinLobby(TickerJoinLobbyEvent message)
         {
             _stateManager.RequestStateChange<LobbyState>();

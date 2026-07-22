@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
+using Content.Server._Lua.Reputation;
 using Content.Server.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
@@ -80,6 +81,7 @@ namespace Content.Server.Administration.Systems
         {
             AddAdminVerbs(ev);
             AddDebugVerbs(ev);
+            AddFactionWarVerbs(ev);
             AddSmiteVerbs(ev);
             AddTricksVerbs(ev);
             AddAntagVerbs(ev);
@@ -104,6 +106,18 @@ namespace Content.Server.Administration.Systems
 
                 if (TryComp(args.Target, out ActorComponent? targetActor))
                 {
+                    if (_adminManager.GetAdminData(player)?.CanModeratePlayerReputation() == true)
+                    {
+                        args.Verbs.Add(new Verb
+                        {
+                            Text = Loc.GetString("reputation-admin-verb-open"),
+                            Category = VerbCategory.Admin,
+                            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
+                            Act = () => _euiManager.OpenEui(new ReputationModerationEui(ReputationTargetKind.Player, targetActor.PlayerSession.UserId, targetActor.PlayerSession.Name), player),
+                            Impact = LogImpact.Low,
+                        });
+                    }
+
                     // AdminHelp
                     Verb verb = new();
                     verb.Text = Loc.GetString("ahelp-verb-get-data-text");

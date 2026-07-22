@@ -3,6 +3,7 @@ using Content.Client.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared._Mono.Company;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -11,6 +12,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby.UI;
 
@@ -59,14 +61,28 @@ public sealed partial class CharacterPickerButton : ContainerButton
                 var jobName = priorityJobProto.LocalizedName; // Frontier
                 description = $"{description}\n{jobName}";
             }
+
+            if (!string.IsNullOrWhiteSpace(humanoid.Company) &&
+                !string.Equals(humanoid.Company, "None", StringComparison.OrdinalIgnoreCase))
+            {
+                if (prototypeManager.TryIndex<CompanyPrototype>(humanoid.Company, out var company))
+                {
+                    description = $"{description}\n[color={company.Color.ToHex()}]{company.Name}[/color]";
+                }
+                else
+                {
+                    description = $"{description}\n[color=yellow]{humanoid.Company}[/color]";
+                }
+            }
+
             description += $"\n{humanoid.BankBalanceText}"; // Frontier
         }
 
         Pressed = isSelected;
-        DeleteButton.Visible = !isSelected;
+        DeleteButton.Visible = true;
 
         View.SetEntity(_previewDummy);
-        DescriptionLabel.Text = description;
+        DescriptionLabel.SetMessage(FormattedMessage.FromMarkupPermissive(description));
 
         ConfirmDeleteButton.OnPressed += _ =>
         {

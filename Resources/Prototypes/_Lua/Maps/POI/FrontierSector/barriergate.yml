@@ -25,6 +25,8 @@
     BarrierGate:
       stationProto: StandardFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: 'Barrier Gate'
         - type: StationJobs

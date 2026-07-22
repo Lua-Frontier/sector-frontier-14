@@ -1,3 +1,5 @@
+using Content.Server._Lua.Despawn;
+using Content.Server.NPC.HTN;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Player;
 
@@ -15,11 +17,9 @@ public sealed class SpaceDespawnSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<TransformComponent, MoveEvent>(OnMove);
         var xforms = EntityQueryEnumerator<TransformComponent>();
-        var initialCount = 0;
         while (xforms.MoveNext(out var uid, out var xform))
         {
             HandleEntity(uid, xform);
-            initialCount++;
         }
     }
 
@@ -31,35 +31,27 @@ public sealed class SpaceDespawnSystem : EntitySystem
         if (seconds > 0)
         {
             _tick -= seconds;
-            var processed = 0;
-            var deleted = 0;
             var timers = EntityQueryEnumerator<SpaceDespawnTimerComponent>();
             while (timers.MoveNext(out var uid, out var timer))
             {
                 timer.RemainingSeconds -= seconds;
-                processed++;
                 if (timer.RemainingSeconds <= 0)
                 {
-                    deleted++;
                     QueueDel(uid);
                 }
             }
-            if (processed > 0 || deleted > 0) ;
         }
         _scan += frameTime;
         if (_scan < ScanIntervalSecond)
             return;
         _scan = 0f;
 
-        var cleared = 0;
-        var started = 0;
         var timerScan = EntityQueryEnumerator<SpaceDespawnTimerComponent, TransformComponent>();
         while (timerScan.MoveNext(out var uid, out _, out var xform))
         {
-            if (IsPlayerControlled(uid) || !IsInOpenSpace(xform))
+            if (ShouldIgnoreSpaceDespawn(uid, xform))
             {
                 ClearSpaceTimer(uid);
-                cleared++;
             }
         }
         var mindScan = EntityQueryEnumerator<MindContainerComponent, TransformComponent>();
@@ -67,12 +59,10 @@ public sealed class SpaceDespawnSystem : EntitySystem
         {
             if (mind.HasMind) continue;
             if (!IsInOpenSpace(xform)) continue;
-            if (IsPlayerControlled(uid)) continue;
+            if (ShouldIgnoreSpaceDespawn(uid, xform)) continue;
             if (HasComp<SpaceDespawnTimerComponent>(uid)) continue;
             StartOrRefreshTimer(uid);
-            started++;
         }
-        if (cleared > 0 || started > 0) ;
     }
 
     private void ClearSpaceTimer(EntityUid uid)
@@ -100,12 +90,18 @@ public sealed class SpaceDespawnSystem : EntitySystem
         return false;
     }
 
+    private bool ShouldIgnoreSpaceDespawn(EntityUid uid, TransformComponent xform)
+    {
+        if (IsPlayerControlled(uid) || !IsInOpenSpace(xform)) return true;
+        if (HasComp<AutoDespawnExemptComponent>(uid)) return true;
+        if (HasComp<HTNComponent>(uid)) return true;
+        return false;
+    }
+
     private void StartOrRefreshTimer(EntityUid uid)
     {
-        var hadTimer = TryComp<SpaceDespawnTimerComponent>(uid, out var existing);
         if (EnsureComp<SpaceDespawnTimerComponent>(uid, out var timer))
         {
-            var prev = hadTimer ? existing!.RemainingSeconds : -1f;
             timer.RemainingSeconds = DespawnSeconds;
         }
     }
@@ -114,7 +110,7 @@ public sealed class SpaceDespawnSystem : EntitySystem
     {
         if (IsGridOrMap(uid, xform) || xform.MapUid == null)
             return;
-        if (IsPlayerControlled(uid))
+        if (ShouldIgnoreSpaceDespawn(uid, xform))
         {
             ClearSpaceTimer(uid);
             return;
@@ -132,7 +128,7 @@ public sealed class SpaceDespawnSystem : EntitySystem
         if (!args.ParentChanged)
             return;
         var inSpace = IsInOpenSpace(xform);
-        if (IsPlayerControlled(uid))
+        if (ShouldIgnoreSpaceDespawn(uid, xform))
         {
             ClearSpaceTimer(uid);
             return;

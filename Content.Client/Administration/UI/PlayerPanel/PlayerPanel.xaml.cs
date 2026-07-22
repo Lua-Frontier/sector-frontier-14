@@ -27,6 +27,7 @@ public sealed partial class PlayerPanel : FancyWindow
     public event Action? OnLogs;
     public event Action? OnDelete;
     public event Action? OnRejuvenate;
+    public event Action? OnOpenReputation;
     public event Action<NetUserId?>? OnOpenJobWhitelists; // DeltaV
 
     public NetUserId? TargetPlayer;
@@ -45,6 +46,7 @@ public sealed partial class PlayerPanel : FancyWindow
         NotesButton.OnPressed += _ => OnOpenNotes?.Invoke(TargetPlayer);
         ShowBansButton.OnPressed += _ => OnOpenBans?.Invoke(TargetPlayer);
         AhelpButton.OnPressed += _ => OnAhelp?.Invoke(TargetPlayer);
+        ReputationButton.OnPressed += _ => OnOpenReputation?.Invoke();
         WhitelistToggle.OnPressed += _ =>
         {
             OnWhitelistToggle?.Invoke(TargetPlayer, _isWhitelisted);
@@ -109,6 +111,13 @@ public sealed partial class PlayerPanel : FancyWindow
             ("minutes", playtime.Minutes % (24 * 60)));
     }
 
+    public void SetReputation(int positive, int negative, bool canModerate)
+    {
+        var scoreText = $"-{negative}/+{positive}";
+        Reputation.Text = Loc.GetString("player-panel-reputation", ("score", scoreText));
+        ReputationButton.Disabled = !canModerate;
+    }
+
     public void SetFrozen(bool canFreeze, bool frozen)
     {
         FreezeAndMuteToggleButton.Disabled = !canFreeze;
@@ -134,6 +143,7 @@ public sealed partial class PlayerPanel : FancyWindow
         LogsButton.Disabled = !_adminManager.CanCommand("adminlogs");
         RejuvenateButton.Disabled = !_adminManager.HasFlag(AdminFlags.Debug);
         DeleteButton.Disabled = !_adminManager.HasFlag(AdminFlags.Debug);
+        ReputationButton.Disabled = ReputationButton.Disabled || !_adminManager.HasFlag(AdminFlags.Host) && !_adminManager.HasFlag(AdminFlags.Repo);
         JobWhitelistsButton.Disabled = !_adminManager.HasFlag(AdminFlags.Whitelist); // DeltaV
     }
 }

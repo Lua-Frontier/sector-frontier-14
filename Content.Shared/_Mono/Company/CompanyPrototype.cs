@@ -1,3 +1,4 @@
+using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Mono.Company;
@@ -41,6 +42,12 @@ public sealed partial class CompanyPrototype : IPrototype
     public Color Color { get; private set; } = Color.Yellow;
 
     /// <summary>
+    /// Optional icon used for company selection UI.
+    /// </summary>
+    [DataField("iconPath")]
+    public string? IconPath { get; private set; }
+
+    /// <summary>
     /// Whether this company should be disabled from selection in the UI.
     /// Companies with this set to true will still be assigned automatically through the job system,
     /// but players won't be able to select them manually.
@@ -65,4 +72,10 @@ public sealed partial class CompanyPrototype : IPrototype
     /// </summary>
     [DataField]
     public bool ShowCompanyRadar { get; private set; } = false;
+
+    /// <summary>
+    /// NPC factions that should be synced with this company.
+    /// </summary>
+    [DataField("npcFactions")]
+    public List<ProtoId<NpcFactionPrototype>> NpcFactions { get; private set; } = new();
 }

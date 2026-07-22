@@ -15,13 +15,6 @@ thief-backpack-button-deselect = Select [X]
 
 # Sets
 
-thief-backpack-category-chameleon-name = Chameleon Kit
-thief-backpack-category-chameleon-description =
-    You are everyone and no one; you are a master of disguise.
-    Includes: A full set of chameleon clothing,
-    a chameleon projector, and an Agent ID.
-    Disguise as anyone and anything.
-
 thief-backpack-category-tools-name = Breacher Kit
 thief-backpack-category-tools-description =
     What's that sound? A lil' C4 knockin' at their door.

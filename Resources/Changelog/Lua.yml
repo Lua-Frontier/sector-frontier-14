@@ -4406,3 +4406,107 @@ Entries:
   id: 306
   time: '2026-06-26T12:20:39.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/595
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена система репутации игрока
+    - type: Add
+      message: Добавлена система репутации администрации
+    - type: Remove
+      message: Удален маскировочный проектор
+    - type: Tweak
+      message: Редизайн Ahelp меню
+    - type: Fix
+      message: Исправил удаление шаттла после парковки
+  id: 307
+  time: '2026-07-12T17:37:26.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/605
+- author: BTReflex
+  changes:
+    - type: Fix
+      message: Исправлены ошибки Виверны Мини
+  id: 308
+  time: '2026-07-12T17:49:25.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/603
+- author: salo2016
+  changes:
+    - type: Tweak
+      message: Агост на шифт теперь летает очень быстро.
+  id: 309
+  time: '2026-07-12T17:49:49.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/602
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены объявления войны лидерами фракций
+    - type: Add
+      message: Добавлен захват станций
+    - type: Add
+      message: Добавлен выбор фракций на этапе создания персонажа
+    - type: Tweak
+      message: Изменено меню управления фракциями
+    - type: Add
+      message: Добавлен брифинг первого входа
+    - type: Add
+      message: Добавлены оповещения и брифинги о начале войны
+    - type: Add
+      message: Возвращены пираты
+    - type: Add
+      message: Некоторые роли и станции теперь зависят от выбранной фракции
+    - type: Add
+      message: Добавлена информация о войнах фракций в гайде
+    - type: Remove
+      message: Удалены диски секторов, теперь все сектора доступны
+    - type: Add
+      message: Теперь у станций есть фракция
+    - type: Add
+      message: Во время войны у станций отключается защита
+  id: 310
+  time: '2026-07-17T21:13:34.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/607
+- author: HacksLua
+  changes:
+    - type: Add
+      message: >-
+        Добавлена кнопка "Покинуть фракцию" в окне персонализации, каждую
+        фракцию можно покинуть один раз за раунд.
+    - type: Tweak
+      message: Рефактор интерфейса персонализации
+    - type: Tweak
+      message: >-
+        Шаттлы теперь могут совершать БСС в любом месте если они не в состоянии
+        боя
+    - type: Fix
+      message: >-
+        Исправлена ошибка сломавшая маскарадинг шаттлов, теперь шаттлы
+        "Неизвестны"
+    - type: Add
+      message: >-
+        Функция пригласить во фракцию теперь работает корректно и заменяет
+        фракцию приглашенного игрока полностью
+    - type: Fix
+      message: >-
+        Исправлена ошибка из-за которой NPC переставали быть враждебны к игроку
+        поле смены фракции
+    - type: Add
+      message: Добавлен новый компонент защищающий турели от автоудаления
+    - type: Add
+      message: Теперь объявить войну можно только через 24 часа от старта раунда
+    - type: Tweak
+      message: Репутация теперь отображается как -N/+N
+  id: 311
+  time: '2026-07-21T12:23:30.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/608
+- author: BrigaDW
+  changes:
+    - type: Add
+      message: Добавлено ХП ракетам по аналогии с торпедами. Теперь их можно сбивать.
+    - type: Remove
+      message: Удалено веселье(
+    - type: Tweak
+      message: Изменены показатели скорости ракет, сплеш урон турболазера.
+    - type: Fix
+      message: Исправлены Л85, РАК-30 Драупнир, Сцилла.
+  id: 312
+  time: '2026-07-21T17:13:53.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/606

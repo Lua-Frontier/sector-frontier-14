@@ -5,6 +5,7 @@ guide-entry-piloting = Пилотирование
 guide-entry-hiring = Наём экипажа
 guide-entry-expeditions = Экспедиции
 guide-entry-shipyard = Верфи
+guide-entry-faction-wars = Войны фракций и захват станций
 guide-entry-frontier-rules = Правила сервера
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Аномальная плоть

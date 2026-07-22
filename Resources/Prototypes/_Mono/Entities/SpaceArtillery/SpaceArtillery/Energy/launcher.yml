@@ -301,6 +301,8 @@
   - type: Gun
     fireRate: 50
     projectileSpeed: 120
+    minAngle: 0
+    maxAngle: 6
     shootThermalSignature: 4000000 # ~2.8km with continuous fire
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
@@ -308,16 +310,16 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 350
+    autoRechargeRate: 1350
   - type: SpaceArtillery
-    powerChargeRate: 350
+    powerChargeRate: 1350
     powerUsePassive: 500
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipAutopulserPlasmaProjectile
-    fireCost: 500
+    fireCost: 400
   - type: Destructible
     thresholds:
     - trigger:
@@ -376,7 +378,7 @@
       path: /Audio/Weapons/click.ogg
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 300
+    autoRechargeRate: 500
   - type: SpaceArtillery
     powerChargeRate: 700
     powerUsePassive: 100
@@ -385,7 +387,7 @@
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
     proto: ShipAutopulserPlasmaProjectile
-    fireCost: 450
+    fireCost: 350
   - type: Destructible
     thresholds:
     - trigger:
@@ -652,7 +654,7 @@
           bounds: "-0.75,-0.75,0.75,0.75"
         density: 1500
   - type: Gun
-    projectileSpeed: 150
+    projectileSpeed: 195
     fireRate: 0.75
     shootThermalSignature: 12000000 # ~6km after firing
     soundGunshot:

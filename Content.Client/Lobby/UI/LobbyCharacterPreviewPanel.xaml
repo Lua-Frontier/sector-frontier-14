@@ -12,7 +12,10 @@
             <!-- Frontier -->
             <Label Name="BankBalance" HorizontalAlignment="Center" Margin="3 3"/>
             <!-- Company Display -->
-            <RichTextLabel Name="Company" HorizontalAlignment="Center" Margin="3 3"/>
+            <BoxContainer Name="CompanyContainer" Orientation="Vertical" HorizontalAlignment="Center" Margin="3 6">
+                <Label Name="CompanyLabel" HorizontalAlignment="Center"/>
+                <RichTextLabel Name="CompanyValue" HorizontalAlignment="Center"/>
+            </BoxContainer>
             <!-- End Frontier -->
             <BoxContainer Name="ViewBox" Orientation="Horizontal" HorizontalAlignment="Center">
 

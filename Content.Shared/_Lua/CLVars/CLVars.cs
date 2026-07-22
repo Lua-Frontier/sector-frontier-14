@@ -66,8 +66,12 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("starmap.data_id", "StarmapData", CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapLazyLoading =
             CVarDef.Create("starmap.lazy_loading", true, CVar.ARCHIVE);
+        public static readonly CVarDef<bool> StarmapRequireSectorDisks =
+            CVarDef.Create("starmap.require_sector_disks", false, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<bool> StargateGuideShown =
             CVarDef.Create("stargate.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<bool> FactionWarsGuideShown =
+            CVarDef.Create("faction_wars.guide_shown", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> ActionsActivePreset =
             CVarDef.Create("actions.active_preset", 0, CVar.CLIENTONLY | CVar.ARCHIVE);
@@ -76,7 +80,7 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("rabbitmq.connection_string", "", CVar.SERVERONLY);
 
         public static readonly CVarDef<bool> IsERP =
-            CVarDef.Create("ic.erp", false, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("ic.erp", true, CVar.SERVER | CVar.REPLICATED);
 
         /*
          *  World Gen
@@ -197,6 +201,27 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("lunacoin.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
         public static readonly CVarDef<string> LunaCoinServerName =
             CVarDef.Create("lunacoin.server_name", "luna", CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> FactionWarEnabled =
+            CVarDef.Create("lua.faction_war.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarPrimeStartHour =
+            CVarDef.Create("lua.faction_war.prime_start_hour", 22, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarPrimeEndHour =
+            CVarDef.Create("lua.faction_war.prime_end_hour", 3, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarCaptureRequiredAttackers =
+            CVarDef.Create("lua.faction_war.capture_required_attackers", 6, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarCaptureDurationSeconds =
+            CVarDef.Create("lua.faction_war.capture_duration_seconds", 600, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarDeclarationLockHours =
+            CVarDef.Create("lua.faction_war.declaration_lock_hours", 24, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> CompanyChangeLimitPerFactionPerRound =
+            CVarDef.Create("lua.company.change_faction_limit", 1, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> CurrentGameYear =
             CVarDef.Create("game.current_game_year", 2710, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);

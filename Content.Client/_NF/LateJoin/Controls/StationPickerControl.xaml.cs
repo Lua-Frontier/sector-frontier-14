@@ -39,15 +39,15 @@ public sealed partial class StationPickerControl : PickerControl
         _lobbyJobs = new Dictionary<NetEntity, StationJobInformation>(obj);
         StationItemList.RemoveAllChildren();
 
-        foreach (var stationViewState in BuildStationViewStateList(_lobbyJobs))
+        var stationViewStates = BuildStationViewStateList(_lobbyJobs);
+        foreach (var stationViewState in stationViewStates)
         {
             var item = new StationListItem(stationViewState);
             item.StationButton.OnPressed += _ => OnStationPressed(stationViewState);
             StationItemList.AddChild(item);
         }
-
-        // Build station jobs, the right section of the screen.
         StationJobItemList.RemoveAllChildren();
+        NoJobsMessage.Visible = false;
         if (_lastSelectedStation != null && obj.TryGetValue(_lastSelectedStation.StationEntity, out var stationInfo))
         {
             foreach (var jobViewState in BuildJobViewStateList(stationInfo))
@@ -59,6 +59,8 @@ public sealed partial class StationPickerControl : PickerControl
                 };
                 StationJobItemList.AddChild(item);
             }
+
+            NoJobsMessage.Visible = HasNoOpenJobs(stationInfo);
         }
 
         StationName.Text = _lastSelectedStation?.StationName ?? "";
@@ -110,18 +112,13 @@ public sealed partial class StationPickerControl : PickerControl
 
         return viewStateList;
     }
-
-    /**
-     * Convert some raw dictionary data to a view state model that is more readable.
-     *
-     * @param obj Dictionary of station entities to job prototypes.
-     * @param stationNames Dictionary of station entities to station names.
-     * @return List of view states for each station.
-     */
     private List<StationListItem.ViewState> BuildStationViewStateList(
         IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
     {
-        var stationList = obj.Where(kvp => kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        var stationList = obj
+            .Where(kvp => kvp.Value.IsLateJoinStation)
+            .Where(kvp => ShouldShowStation(kvp.Value))
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         var viewStateList = new List<StationListItem.ViewState>();
 
         foreach (var (stationEntity, stationJobInformation) in stationList)
@@ -139,23 +136,78 @@ public sealed partial class StationPickerControl : PickerControl
                 stationJobInformation.StationDisplayInfo?.StationIcon?.CanonPath
             );
 
-            // Always select the first station in the list if none is selected yet.
-            // This is because otherwise the right side of the screen would then be a blank space.
-            if (_lastSelectedStation == null)
-            {
-                _lastSelectedStation = viewState;
-                viewState.Selected = true;
-            }
-
             viewStateList.Add(viewState);
         }
-
-        // Sort 0 to the end of the list in the order it is in the dictionary.
-        // Sort 1 first, 2 second, etc.
-        return viewStateList
+        var sorted = viewStateList
             .OrderBy(viewState => (obj[viewState.StationEntity].StationDisplayInfo?.LobbySortOrder ?? 0) == 0
                 ? int.MaxValue
                 : obj[viewState.StationEntity].StationDisplayInfo!.LobbySortOrder)
             .ToList();
+
+        if (_lastSelectedStation != null && sorted.All(viewState => viewState.StationEntity != _lastSelectedStation.StationEntity))
+            _lastSelectedStation = null;
+
+        if (_lastSelectedStation == null)
+        {
+            if (sorted.Count == 0)
+                return sorted;
+
+            _lastSelectedStation = sorted[0];
+            sorted[0].Selected = true;
+            return sorted;
+        }
+
+        foreach (var viewState in sorted)
+        {
+            viewState.Selected = viewState.StationEntity == _lastSelectedStation.StationEntity;
+        }
+
+        return sorted;
+    }
+
+    private bool ShouldShowStation(StationJobInformation jobInformation)
+    {
+        if (_preferencesManager.Preferences?.SelectedCharacter is not HumanoidCharacterProfile profile)
+            return jobInformation.JobsAvailable.Any(job => job.Value != 0);
+
+        var requiredCompany = jobInformation.StationDisplayInfo?.RequiredCompany;
+        if (!string.IsNullOrWhiteSpace(requiredCompany) &&
+            !MatchesRequiredCompany(profile.Company, requiredCompany))
+        {
+            return false;
+        }
+
+        if (HasNoOpenJobs(jobInformation))
+            return true;
+
+        foreach (var (jobPrototype, jobCount) in jobInformation.JobsAvailable)
+        {
+            if (jobCount == 0)
+                continue;
+
+            var prototype = _prototypeManager.Index(jobPrototype);
+            if (_jobReqs.IsAllowed(prototype, profile, ignoreTimedRequirements: true, out _))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool HasNoOpenJobs(StationJobInformation jobInformation)
+    {
+        return jobInformation.JobsAvailable.Count > 0 && jobInformation.JobsAvailable.All(job => job.Value == 0);
+    }
+
+    private static bool MatchesRequiredCompany(string? profileCompany, string requiredCompany)
+    {
+        var currentCompany = profileCompany ?? "None";
+
+        foreach (var company in requiredCompany.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            if (string.Equals(currentCompany, company, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
     }
 }

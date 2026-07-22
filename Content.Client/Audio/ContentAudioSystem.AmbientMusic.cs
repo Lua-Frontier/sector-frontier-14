@@ -21,6 +21,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared._Mono.CCVar;
 using Content.Shared._Crescent.Vessel;
 using Content.Shared.Ghost;
+using Content.Shared._NF.Shuttles.Components;
 
 namespace Content.Client.Audio;
 
@@ -77,6 +78,7 @@ public sealed partial class ContentAudioSystem
     // 2. We save the state from step 1 in _lastCombatState
     // 3. When SwitchCombatMusic fires, we check if the current combat state is different than _lastCombatState. If it is, then we change music. If not, we keep it.
     private bool _lastCombatState = false;
+    private bool _desiredCombatState = false;
 
     private ProtoId<SpaceBiomePrototype>? _lastBiome;
     private EntityUid? _lastGrid;
@@ -124,6 +126,7 @@ public sealed partial class ContentAudioSystem
             return;
 
         UpdateWhaleDangerDucking();
+        UpdateCombatMusicState();
 
         if (_initialStationMusicBool)
         {
@@ -215,6 +218,7 @@ public sealed partial class ContentAudioSystem
     /// <param name="ev"></param>
     private void OnPlayerDetach(LocalPlayerDetachedEvent ev)
     {
+        ResetCombatMusicState();
         SetMusic(_lastGrid, _lastBiome, false);
     }
 
@@ -249,27 +253,63 @@ public sealed partial class ContentAudioSystem
     {
         SetMusic(_lastGrid, _lastBiome, currentCombatState);
     }
-    private void OnCombatModeToggle(ToggleCombatActionEvent ev)
+
+    private void ResetCombatMusicState()
     {
-        if (_combatMusicToggle == false) // if cvar is off, don't bother
+        _desiredCombatState = false;
+        _combatWindUpBool = false;
+        _combatWindUpTimer = 0;
+        _combatWindDownBool = false;
+        _combatWindDownTimer = 0;
+    }
+
+    private void UpdateCombatMusicState()
+    {
+        if (!_combatMusicToggle)
             return;
-        if (!_timing.IsFirstTimePredicted == true) //needed, because combat mode is predicted, and triggers 7 times otherwise.
+
+        var desiredCombatState = IsCombatMusicRequested();
+        if (desiredCombatState == _desiredCombatState)
             return;
-        bool currentCombatState = _combatModeSystem.IsInCombatMode();
-        if (currentCombatState) //if combat mode is being turned ON
+
+        _desiredCombatState = desiredCombatState;
+
+        if (desiredCombatState)
         {
             _combatWindUpBool = true;
             _combatWindUpTimer = 0;
             _combatWindDownBool = false;
             _combatWindDownTimer = 0;
         }
-        else //if combat mode is being turned OFF
+        else
         {
             _combatWindDownBool = true;
             _combatWindDownTimer = 0;
             _combatWindUpBool = false;
             _combatWindUpTimer = 0;
         }
+    }
+
+    private bool IsCombatMusicRequested()
+    {
+        return _combatModeSystem.IsInCombatMode() || IsLocalShuttleInCombat();
+    }
+
+    private bool IsLocalShuttleInCombat()
+    {
+        var local = _player.LocalEntity;
+        if (local == null || !TryComp<TransformComponent>(local.Value, out var xform) || xform.GridUid == null)
+            return false;
+
+        return TryComp<ShuttleFTLComponent>(xform.GridUid.Value, out var shuttleFtl) && shuttleFtl.InCombat;
+    }
+
+    private void OnCombatModeToggle(ToggleCombatActionEvent ev)
+    {
+        if (!_timing.IsFirstTimePredicted == true) //needed, because combat mode is predicted, and triggers 7 times otherwise.
+            return;
+
+        UpdateCombatMusicState();
     }
 
     /// <summary>
@@ -282,11 +322,11 @@ public sealed partial class ContentAudioSystem
     {
         //Log.Info("SETMUSIC: - GRID: " + newGrid.ToString() + " BIOME: " + newBiome.ToString() + " COMBAT: " + newCombatState.ToString());
         // priority list:
-        // 1. (not implemented yet :godo:) ship combat music
-        // 2. combat music
+        // 1. shuttle or player combat music
+        // 2. grid music
         // 3. grid music
         // 4. biome music
-        // therefore we check these top 2 bottom
+        // therefore we check these top priorities first
 
         #region combat music
         if (newCombatState != _lastCombatState) //we switch combat music on or off now
@@ -545,6 +585,9 @@ public sealed partial class ContentAudioSystem
 
         if (_combatMusicToggle) // if the player turned combat music back ON, then we don't really care anymore and the system works as usual
             return;
+
+        ResetCombatMusicState();
+
         if (_state.CurrentState is not GameplayState)
             return; //catches this throwing a null reference exception if u had this cvar toggled, in lobby
                     //cuz this next setmusic plays music. and well. we havent collected the music yet when we join in

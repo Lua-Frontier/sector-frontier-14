@@ -42,6 +42,7 @@ public sealed partial class MapScreen : BoxContainer
 
     private FTLState _state;
     private StartEndTime _ftlTime;
+    private bool _inCombat;
 
     private List<ShuttleBeaconObject> _beacons = new();
     private List<ShuttleExclusionObject> _exclusions = new();
@@ -120,6 +121,7 @@ public sealed partial class MapScreen : BoxContainer
         _exclusions = state.Exclusions;
         _state = state.FTLState;
         _ftlTime = state.FTLTime;
+        _inCombat = state.InCombat;
         MapRadar.InFtl = true;
         MapFTLState.Text = Loc.GetString($"shuttle-console-ftl-state-{_state.ToString()}");
 
@@ -181,7 +183,7 @@ public sealed partial class MapScreen : BoxContainer
 
     private void SetFTLAllowed(bool value)
     {
-        if (value)
+        if (value && !_inCombat)
         {
             MapFTLButton.Disabled = false;
         }

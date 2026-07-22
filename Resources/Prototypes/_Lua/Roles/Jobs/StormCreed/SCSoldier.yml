@@ -7,10 +7,11 @@
   name: job-name-sc-soldier
   description: job-description-sc-soldier
   playTimeTracker: JobStormCreedSoldier
-  requirements:
-  - !type:RoleTimeRequirement
-    role: JobSeniorOfficer
-    time: 36000 # 20h
+  requiredCompany: StormCreed
+  # requirements:
+  # - !type:RoleTimeRequirement
+  #   role: JobSeniorOfficer
+  #   time: 36000 # 20h
   startingGear: SCSoldierGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true

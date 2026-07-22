@@ -1,0 +1,13 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Title="{Loc admin-player-actions-window-reputation}" MinSize="425 360">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8">
+        <Label Text="{Loc admin-reputation-actions-target}" />
+        <cc:PlayerListControl Name="PlayerList" VerticalExpand="True" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Button Name="SubmitPlayerReputationButton" Text="{Loc admin-reputation-actions-player}" Disabled="True" HorizontalExpand="True" />
+            <Button Name="SubmitAdminReputationButton" Text="{Loc admin-reputation-actions-admin}" Disabled="True" HorizontalExpand="True" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

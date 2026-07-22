@@ -67,8 +67,8 @@
   - type: Projectile
     damage:
       types:
-        Structural: 12000
-        Blunt: 3000
+        Structural: 6000
+        Blunt: 1500
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/150_shell.rsi
     layers:
@@ -82,6 +82,13 @@
     shape: triangle
   - type: TimedDespawn
     lifetime: 5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: HardBombShipGun
+    totalIntensity: 1000
+    intensitySlope: 25
+    maxIntensity: 1500
+  - type: GatheringProjectile
 
 - type: entity
   id: 150mmApShell
@@ -105,4 +112,4 @@
   - type: Appearance
   - type: SpentAmmoVisuals
 
-# AP end
+# HEAP end

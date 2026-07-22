@@ -1,6 +1,7 @@
 using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
+using Content.Shared._Lua.RoundEnd;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
@@ -14,8 +15,10 @@ using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
+using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -43,6 +46,7 @@ namespace Content.Server.RoundEnd
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier: sector-wide alerts
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -65,7 +69,22 @@ namespace Content.Server.RoundEnd
         {
             base.Initialize();
             SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => Reset());
+            _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
             SetAutoCallTime();
+        }
+
+        public override void Shutdown()
+        {
+            base.Shutdown();
+            _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
+        }
+
+        private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+        {
+            if (args.NewStatus != SessionStatus.InGame)
+                return;
+
+            SendEvacuationTimer(args.Session);
         }
 
         private void SetAutoCallTime()
@@ -89,9 +108,23 @@ namespace Content.Server.RoundEnd
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
+            SendEvacuationTimer();
             SetAutoCallTime();
             _autoCalledBefore = false;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
+        }
+
+        private void SendEvacuationTimer(ICommonSession? session = null)
+        {
+            var message = new EvacuationTimerUpdateEvent
+            {
+                ExpectedEvacuationTime = ExpectedCountdownEnd,
+            };
+
+            if (session != null)
+                RaiseNetworkEvent(message, session);
+            else
+                RaiseNetworkEvent(message, Filter.Broadcast());
         }
 
         /// <summary>
@@ -194,6 +227,7 @@ namespace Content.Server.RoundEnd
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
+            SendEvacuationTimer();
 
             // TODO full game saves
             Timer.Spawn(countdownTime, _shuttle.DockEmergencyShuttle, _countdownTokenSource.Token);
@@ -242,6 +276,7 @@ namespace Content.Server.RoundEnd
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
+            SendEvacuationTimer();
             ActivateCooldown();
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
 
@@ -268,6 +303,7 @@ namespace Content.Server.RoundEnd
             if (_gameTicker.RunLevel != GameRunLevel.InRound) return;
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
+            SendEvacuationTimer();
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             _gameTicker.EndRound();
             _countdownTokenSource?.Cancel();

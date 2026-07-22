@@ -120,7 +120,7 @@ public sealed partial class FireControlSystem : EntitySystem
         FireWeapons((EntityUid)component.ConnectedServer, args.Selected, args.Coordinates, server);
 
         // Raise an event to track the cursor position even when not firing
-        var fireEvent = new FireControlConsoleFireEvent(args.Coordinates, args.Selected);
+        var fireEvent = new FireControlConsoleFireEvent(GetNetEntity(uid), args.Coordinates, args.Selected);
         RaiseLocalEvent(uid, fireEvent);
     }
 

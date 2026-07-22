@@ -13,15 +13,17 @@
            <controls:ConfirmButton Name="WhitelistToggle" Text="{Loc 'player-panel-false'}" Visible="False"></controls:ConfirmButton>
        </BoxContainer>
        <Label Name="Playtime"/>
+       <Label Name="Reputation"/>
        <Label Name="Notes"/>
        <Label Name="Bans"/>
        <Label Name="RoleBans"/>
        <Label Name="SharedConnections"/>
 
        <BoxContainer Align="Center">
-           <GridContainer Rows="6">
+           <GridContainer Rows="7">
             <Button Name="NotesButton" Text="{Loc player-panel-show-notes}" SetWidth="136" Disabled="True"/>
             <Button Name="AhelpButton" Text="{Loc player-panel-help}" Disabled="True"/>
+            <Button Name="ReputationButton" Text="{Loc player-panel-open-reputation}" Disabled="True"/>
             <Button Name="FreezeButton" Text = "{Loc player-panel-freeze}" Disabled="True"/>
             <controls:ConfirmButton Name="KickButton" Text="{Loc player-panel-kick}" Disabled="True"/>
             <controls:ConfirmButton Name="DeleteButton" Text="{Loc player-panel-delete}" Disabled="True"/>

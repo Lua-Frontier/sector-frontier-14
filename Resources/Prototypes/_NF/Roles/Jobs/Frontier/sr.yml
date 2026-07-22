@@ -3,13 +3,14 @@
   name: job-name-sr
   description: job-description-sr
   playTimeTracker: JobHeadOfPersonnel
+  requiredCompany: Nanotrasen
   salary: 80000
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10 hrs
     - !type:RoleTimeRequirement
       role: JobFrontierEngineer
-      time: 36000 #Lua 10h 
+      time: 36000 #Lua 10h
   whitelisted: false
   startingGear: SrGear
   alwaysUseSpawner: true
@@ -43,7 +44,7 @@
     - Flash
     - RubberStampSr
     - DoorRemoteCommand
-    - TrafficManagerTablet 
+    - TrafficManagerTablet
   encryptionKeys:
   - EncryptionKeyStationMaster
 

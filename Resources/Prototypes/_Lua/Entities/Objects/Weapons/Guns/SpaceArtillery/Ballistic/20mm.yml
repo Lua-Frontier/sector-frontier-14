@@ -74,6 +74,7 @@
   description: Это автоматическое оружие, предназначенное для защиты ключевых объектов или зон от близкорасположенных целей.
   suffix: ShuttleGun, Оборона
   components:
+  - type: AutoDespawnExempt
   - type: RadarBlip
     radarColor: "#229e51"
     scale: 1

@@ -8,6 +8,8 @@
     LuaTech:
       stationProto: StandardLuaTechVessel
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/space-station.png
           scale: 1.2

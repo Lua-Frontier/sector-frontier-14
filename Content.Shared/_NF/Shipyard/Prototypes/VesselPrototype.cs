@@ -109,9 +109,6 @@ public sealed partial class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField("marker")]
     public string? Marker;
 
-    [DataField]
-    public HashSet<VesselServerId> Whitelist = new();
-
     /// <summary>
     /// Components to be added to any spawned grids.
     /// </summary>
@@ -134,18 +131,10 @@ public sealed partial class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField]
     public List<string> Company = new();
 
-    public bool IsAvailableOnServer(bool isErp)
+    public bool IsAvailableOnServer()
     {
-        if (Whitelist.Count == 0) return true;
-        var server = isErp ? VesselServerId.Luna : VesselServerId.Frontier;
-        return Whitelist.Contains(server);
+        return true;
     }
-}
-
-public enum VesselServerId : byte
-{
-    Frontier,
-    Luna
 }
 
 public enum VesselSize : byte

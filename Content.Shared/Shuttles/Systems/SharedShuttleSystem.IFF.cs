@@ -100,6 +100,19 @@ public abstract partial class SharedShuttleSystem
     }
 
     [PublicAPI]
+    public void ForceSetIFFColor(EntityUid gridUid, Color color, IFFComponent? component = null)
+    {
+        component ??= EnsureComp<IFFComponent>(gridUid);
+
+        if (component.Color.Equals(color))
+            return;
+
+        component.Color = color;
+        Dirty(gridUid, component);
+        UpdateIFFInterfaces(gridUid, component);
+    }
+
+    [PublicAPI]
     public void AddIFFFlag(EntityUid gridUid, IFFFlags flags, IFFComponent? component = null)
     {
         component ??= EnsureComp<IFFComponent>(gridUid);

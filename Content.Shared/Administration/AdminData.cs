@@ -74,5 +74,15 @@ namespace Content.Shared.Administration
         {
             return HasFlag(AdminFlags.Host);
         }
+
+        public bool CanModeratePlayerReputation()
+        {
+            return HasFlag(AdminFlags.Repo) || HasFlag(AdminFlags.Host);
+        }
+
+        public bool CanModerateAdminReputation()
+        {
+            return HasFlag(AdminFlags.Host);
+        }
     }
 }

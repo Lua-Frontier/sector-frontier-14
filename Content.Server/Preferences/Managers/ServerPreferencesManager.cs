@@ -3,12 +3,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Server.GameTicking;
+using Content.Server.Station.Systems;
+using Content.Shared._Mono.Company;
 using Content.Shared._NF.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -31,10 +36,12 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!; // Frontier
+        [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
             new();
+        private readonly Dictionary<(NetUserId UserId, int CharacterSlot), CompanyChangeCounter> _companyChangesThisRound = new();
 
         private ISawmill _sawmill = default!;
 
@@ -75,6 +82,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            RefreshLateJoinAvailability();
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -90,7 +98,12 @@ namespace Content.Server.Preferences.Managers
             if (message.Profile == null)
                 _sawmill.Error($"User {userId} sent a {nameof(MsgUpdateCharacter)} with a null profile in slot {message.Slot}.");
             else
+            {
                 await SetProfile(userId, message.Slot, message.Profile);
+
+                if (_playerManager.TryGetSessionById(userId, out var session))
+                    await RefreshPreferencesAsync(session, CancellationToken.None);
+            }
         }
 
         public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile, bool validateFields = true) // Frontier: add validateFields
@@ -118,7 +131,37 @@ namespace Content.Server.Preferences.Managers
                     if (humanProfile.BankBalance != humanoidEditingTarget.BankBalance)
                     {
                         _sawmill.Info($"{session.Name} has tried to modify a character's money (expected: {humanoidEditingTarget.BankBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
-                        profile = humanProfile.WithBankBalance(humanoidEditingTarget.BankBalance);
+                        humanProfile = humanProfile.WithBankBalance(humanoidEditingTarget.BankBalance);
+                    }
+
+                    if (IsLockedCompanyChange(humanoidEditingTarget.Company, humanProfile.Company))
+                    {
+                        _sawmill.Info($"{session.Name} has tried to change a locked company from {humanoidEditingTarget.Company} to {humanProfile.Company}. Restoring the saved company.");
+                        humanProfile = humanProfile.WithCompany(humanoidEditingTarget.Company);
+                    }
+                    else
+                    {
+                        var sanitizedCompany = SanitizeRequestedCompany(session, humanProfile.Company);
+                        if (!string.Equals(humanProfile.Company, sanitizedCompany, StringComparison.OrdinalIgnoreCase))
+                        {
+                            _sawmill.Info($"{session.Name} has tried to set an invalid company {humanProfile.Company} on an existing character. Restoring {sanitizedCompany}.");
+                            humanProfile = humanProfile.WithCompany(sanitizedCompany);
+                        }
+
+                        if (IsCompanyRejoinLocked(userId, slot, humanProfile.Company))
+                        {
+                            _sawmill.Info($"{session.Name} has tried to rejoin locked company {humanProfile.Company} in this round. Restoring {humanoidEditingTarget.Company}.");
+                            humanProfile = humanProfile.WithCompany(humanoidEditingTarget.Company);
+                        }
+                        else
+                        {
+                            var limitedCompany = ApplyCompanyChangeLimit(userId, slot, humanoidEditingTarget.Company, humanProfile.Company);
+                            if (!string.Equals(humanProfile.Company, limitedCompany, StringComparison.OrdinalIgnoreCase))
+                            {
+                                _sawmill.Info($"{session.Name} exceeded the company change limit for faction {humanoidEditingTarget.Company} in this round. Restoring {limitedCompany}.");
+                                humanProfile = humanProfile.WithCompany(limitedCompany);
+                            }
+                        }
                     }
                 }
                 else
@@ -126,9 +169,18 @@ namespace Content.Server.Preferences.Managers
                     if (humanProfile.BankBalance != HumanoidCharacterProfile.DefaultBalance)
                     {
                         _sawmill.Info($"{session.Name} tried to create a character with a non-default balance (expected: {HumanoidCharacterProfile.DefaultBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
-                        profile = humanProfile.WithBankBalance(HumanoidCharacterProfile.DefaultBalance);
+                        humanProfile = humanProfile.WithBankBalance(HumanoidCharacterProfile.DefaultBalance);
+                    }
+
+                    var sanitizedCompany = SanitizeRequestedCompany(session, humanProfile.Company);
+                    if (!string.Equals(humanProfile.Company, sanitizedCompany, StringComparison.OrdinalIgnoreCase))
+                    {
+                        _sawmill.Info($"{session.Name} tried to create a character with an invalid company {humanProfile.Company}. Restoring {sanitizedCompany}.");
+                        humanProfile = humanProfile.WithCompany(sanitizedCompany);
                     }
                 }
+
+                profile = humanProfile;
             }
             // End Frontier: check for profile modifications (based on Monolith's impl)
 
@@ -138,6 +190,9 @@ namespace Content.Server.Preferences.Managers
             };
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites); // # Lua add curPrefs.SelectedCharacterIndex
+
+            if (slot == curPrefs.SelectedCharacterIndex)
+                RefreshLateJoinAvailability();
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
@@ -157,6 +212,138 @@ namespace Content.Server.Preferences.Managers
             var session = _playerManager.GetSessionById(userId);
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveConstructionFavoritesAsync(userId, favorites);
+        }
+
+        private string SanitizeRequestedCompany(ICommonSession session, string? requestedCompany)
+        {
+            if (string.IsNullOrWhiteSpace(requestedCompany) || string.Equals(requestedCompany, "None", StringComparison.OrdinalIgnoreCase))
+                return "None";
+
+            if (!_prototypeManager.TryIndex<CompanyPrototype>(requestedCompany, out var prototype))
+                return "None";
+
+            if (!prototype.Disabled)
+                return prototype.ID;
+
+            if (prototype.Logins.Contains(session.Name))
+                return prototype.ID;
+
+            return "None";
+        }
+
+        private static bool IsLockedCompanyChange(string? currentCompany, string? requestedCompany)
+        {
+            var current = string.IsNullOrWhiteSpace(currentCompany) ? "None" : currentCompany;
+            var requested = string.IsNullOrWhiteSpace(requestedCompany) ? "None" : requestedCompany;
+
+            if (string.Equals(current, requested, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            if (string.Equals(current, "None", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            return !string.Equals(requested, "None", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private string ApplyCompanyChangeLimit(NetUserId userId, int characterSlot, string? existingCompany, string? requestedCompany)
+        {
+            var current = string.IsNullOrWhiteSpace(existingCompany) ? "None" : existingCompany;
+            var requested = string.IsNullOrWhiteSpace(requestedCompany) ? "None" : requestedCompany;
+
+            if (string.Equals(current, requested, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(current, "None", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(current, "Neutral", StringComparison.OrdinalIgnoreCase))
+            {
+                return requested;
+            }
+
+            if (!string.Equals(requested, "None", StringComparison.OrdinalIgnoreCase))
+                return current;
+
+            return TryConsumeCompanyChange(userId, characterSlot, current) ? requested : current;
+        }
+
+        public bool TryConsumeCompanyChange(NetUserId userId, int characterSlot, string currentCompany)
+        {
+            if (string.IsNullOrWhiteSpace(currentCompany)
+                || string.Equals(currentCompany, "None", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(currentCompany, "Neutral", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            var limit = Math.Max(0, _cfg.GetCVar(CLVars.CompanyChangeLimitPerFactionPerRound));
+            if (limit <= 0)
+                return false;
+
+            var roundId = _entitySystems.GetEntitySystem<GameTicker>().RoundId;
+            var characterKey = (userId, characterSlot);
+            if (_companyChangesThisRound.TryGetValue(characterKey, out var counter) && counter.RoundId == roundId)
+            {
+                var used = counter.UsedByCompany.GetValueOrDefault(currentCompany);
+                if (used >= limit)
+                    return false;
+
+                counter.UsedByCompany[currentCompany] = used + 1;
+                return true;
+            }
+
+            _companyChangesThisRound[characterKey] = new CompanyChangeCounter(roundId, new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+            {
+                [currentCompany] = 1
+            });
+            return true;
+        }
+
+        public bool IsCompanyRejoinLocked(NetUserId userId, int characterSlot, string companyId)
+        {
+            if (string.IsNullOrWhiteSpace(companyId)
+                || string.Equals(companyId, "None", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(companyId, "Neutral", StringComparison.OrdinalIgnoreCase))
+            {
+                return false;
+            }
+
+            var characterKey = (userId, characterSlot);
+            var roundId = _entitySystems.GetEntitySystem<GameTicker>().RoundId;
+            var limit = Math.Max(0, _cfg.GetCVar(CLVars.CompanyChangeLimitPerFactionPerRound));
+            if (limit <= 0)
+                return false;
+
+            return _companyChangesThisRound.TryGetValue(characterKey, out var counter)
+                && counter.RoundId == roundId
+                && counter.UsedByCompany.GetValueOrDefault(companyId) >= limit;
+        }
+
+        public IReadOnlyCollection<string> GetCompanyRejoinLocks(NetUserId userId, int characterSlot)
+        {
+            var characterKey = (userId, characterSlot);
+            var roundId = _entitySystems.GetEntitySystem<GameTicker>().RoundId;
+            var limit = Math.Max(0, _cfg.GetCVar(CLVars.CompanyChangeLimitPerFactionPerRound));
+            if (limit <= 0)
+                return Array.Empty<string>();
+
+            if (!_companyChangesThisRound.TryGetValue(characterKey, out var counter) || counter.RoundId != roundId)
+                return Array.Empty<string>();
+
+            return counter.UsedByCompany
+                .Where(entry => entry.Value >= limit && !string.Equals(entry.Key, "Neutral", StringComparison.OrdinalIgnoreCase))
+                .Select(entry => entry.Key)
+                .ToArray();
+        }
+
+        private sealed class CompanyChangeCounter
+        {
+            public int RoundId { get; }
+            public Dictionary<string, int> UsedByCompany { get; }
+
+            public CompanyChangeCounter(int roundId, Dictionary<string, int> usedByCompany)
+            {
+                RoundId = roundId;
+                UsedByCompany = usedByCompany;
+            }
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)
@@ -367,6 +554,11 @@ namespace Content.Server.Preferences.Managers
             }
 
             return prefs;
+        }
+
+        private void RefreshLateJoinAvailability()
+        {
+            _entityManager.EntitySysManager.GetEntitySystem<StationJobsSystem>().UpdateJobsAvailable();
         }
 
         public async Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel)

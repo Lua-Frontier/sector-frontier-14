@@ -97,6 +97,11 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
     public bool IsAllowed(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
+        return IsAllowed(job, profile, ignoreTimedRequirements: false, out reason);
+    }
+
+    public bool IsAllowed(JobPrototype job, HumanoidCharacterProfile? profile, bool ignoreTimedRequirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
         reason = null;
 
         if (_jobBans.Contains(job.ID))
@@ -112,17 +117,22 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         if (player == null)
             return true;
 
-        return CheckRoleRequirements(job, profile, out reason);
+        return CheckRoleRequirements(job, profile, ignoreTimedRequirements, out reason);
     }
 
     public bool CheckRoleRequirements(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
+        return CheckRoleRequirements(job, profile, ignoreTimedRequirements: false, out reason);
+    }
+
+    public bool CheckRoleRequirements(JobPrototype job, HumanoidCharacterProfile? profile, bool ignoreTimedRequirements, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
 
         //return CheckRoleRequirements(reqs, profile, out reason); // Frontier: old implementation
 
         // Frontier: alternate role time checks
-        if (CheckRoleRequirements(reqs, profile, out reason))
+        if (CheckRoleRequirements(reqs, profile, ignoreTimedRequirements, out reason))
             return true;
 
         var altReqs = _entManager.System<SharedRoleSystem>().GetAlternateJobRequirements(job);
@@ -131,7 +141,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
             foreach (var alternateSet in altReqs.Values)
             {
                 // Suppress reasons on alternate requirement sets
-                if (CheckRoleRequirements(alternateSet, profile, out var altReason))
+                if (CheckRoleRequirements(alternateSet, profile, ignoreTimedRequirements, out var altReason))
                 {
                     return true;
                 }
@@ -147,14 +157,24 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
     public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
+        return CheckRoleRequirements(requirements, profile, ignoreTimedRequirements: false, out reason);
+    }
+
+    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, bool ignoreTimedRequirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    {
         reason = null;
 
-        if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
+        if (requirements == null)
             return true;
+
+        var checkTimedRequirements = _cfg.GetCVar(CCVars.GameRoleTimers);
 
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
+            if ((ignoreTimedRequirements || !checkTimedRequirements) && IsTimedRequirement(requirement))
+                continue;
+
             if (requirement.Check(_entManager, _prototypes, profile, _roles, out var jobReason))
                 continue;
 
@@ -163,6 +183,11 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
         reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkupOrThrow(string.Join('\n', reasons));
         return reason == null;
+    }
+
+    private static bool IsTimedRequirement(JobRequirement requirement)
+    {
+        return requirement is RoleTimeRequirement or OverallPlaytimeRequirement or DepartmentTimeRequirement;
     }
 
     public bool CheckWhitelist(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)

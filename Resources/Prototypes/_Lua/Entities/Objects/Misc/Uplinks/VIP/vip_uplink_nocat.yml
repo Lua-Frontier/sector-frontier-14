@@ -160,46 +160,6 @@
     - Акционер
 
 - type: listing
-  id: UplinkVipNocatCoordinatesDiskFrontier
-  name: uplink-vip-CoordinatesDiskFrontier-name
-  description: uplink-vip-CoordinatesDiskFrontier-desc
-  productEntity: CoordinatesDiskFrontier
-  cost:
-    Speso: 300
-  categories:
-  - UplinkVipNocat
-  - UplinkVipTierShareholder
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - VipUplink
-  - !type:BuyerSponsorTierCondition
-    whitelist:
-    - Акционер
-    - Vip
-
-- type: listing
-  id: UplinkVipNocatCoordinatesDiskNordfall
-  name: uplink-vip-CoordinatesDiskNordfall-name
-  description: uplink-vip-CoordinatesDiskNordfall-desc
-  productEntity: CoordinatesDiskNordfall
-  cost:
-    Speso: 300
-  categories:
-  - UplinkVipNocat
-  - UplinkVipTierShareholder
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - VipUplink
-  - !type:BuyerSponsorTierCondition
-    whitelist:
-    - Акционер
-    - OutpostSyndicateShareholder
-
-- type: listing
   id: UplinkVipNocatAnomalyScanner
   name: uplink-vip-AnomalyScanner-name
   description: uplink-vip-AnomalyScanner-desc

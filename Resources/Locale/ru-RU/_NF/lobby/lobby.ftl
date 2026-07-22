@@ -1,5 +1,7 @@
 frontier-lobby-station-title = Станция
+frontier-lobby-window-title = Присоединиться к игре
 frontier-lobby-available-jobs = Доступные должности
+frontier-lobby-no-jobs-available = На этой станции сейчас нет доступных ролей.
 frontier-lobby-no-stations-available = В настоящее время свободных станций нет.
 frontier-lobby-no-crews-available = В настоящее время ни один капитан не ищет команду.
 frontier-lobby-station-subtext = Пробудитесь от криосна и станьте капитаном, ищите приключения или работайте членом экипажа на космической станции, например, уборщиком, почтальоном или сотрудником службы безопасности.

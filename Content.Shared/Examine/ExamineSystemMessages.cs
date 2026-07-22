@@ -37,8 +37,10 @@ namespace Content.Shared.Examine
 
             public readonly bool KnowTarget;
 
+            public readonly bool PlayerReputationTarget;
+
             public ExamineInfoResponseMessage(NetEntity entityUid, int id, FormattedMessage message, List<Verb>? verbs=null,
-                bool centerAtCursor=true, bool openAtOldTooltip=true, bool knowTarget = true)
+                bool centerAtCursor=true, bool openAtOldTooltip=true, bool knowTarget = true, bool playerReputationTarget = false)
             {
                 EntityUid = entityUid;
                 Id = id;
@@ -47,6 +49,7 @@ namespace Content.Shared.Examine
                 CenterAtCursor = centerAtCursor;
                 OpenAtOldTooltip = openAtOldTooltip;
                 KnowTarget = knowTarget;
+                PlayerReputationTarget = playerReputationTarget;
             }
         }
     }

@@ -3,6 +3,7 @@
   name: job-name-plant-manager
   description: job-description-plant-manager
   playTimeTracker: JobPlantManager
+  requiredCompany: Nanotrasen
   salary: 40000
   requirements:
     - !type:OverallPlaytimeRequirement
@@ -22,6 +23,8 @@
     implants: [ MindShieldImplant, TrackingImplant ]
   - !type:AddComponentSpecial
     components:
+      - type: Company
+        companyName: Nanotrasen
       - type: PreventShipyardTitleOverwrite
   - !type:GiveItemOnHolidaySpecial
     holiday: FrontierBirthday

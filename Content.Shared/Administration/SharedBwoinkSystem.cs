@@ -1,4 +1,5 @@
-﻿#nullable enable
+#nullable enable
+using Content.Shared.Database;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -6,7 +7,6 @@ namespace Content.Shared.Administration
 {
     public abstract class SharedBwoinkSystem : EntitySystem
     {
-        // System users
         public static NetUserId SystemUserId { get; } = new NetUserId(Guid.Empty);
 
         public override void Initialize()
@@ -17,9 +17,7 @@ namespace Content.Shared.Administration
         }
 
         protected virtual void OnBwoinkTextMessage(BwoinkTextMessage message, EntitySessionEventArgs eventArgs)
-        {
-            // Specific side code in target.
-        }
+        { }
 
         protected void LogBwoink(BwoinkTextMessage message)
         {
@@ -32,9 +30,6 @@ namespace Content.Shared.Administration
 
             public NetUserId UserId { get; }
 
-            // This is ignored from the client.
-            // It's checked by the client when receiving a message from the server for bwoink noises.
-            // This could be a boolean "Incoming", but that would require making a second instance.
             public NetUserId TrueSender { get; }
             public string Text { get; }
 
@@ -54,10 +49,6 @@ namespace Content.Shared.Administration
         }
     }
 
-    /// <summary>
-    ///     Sent by the server to notify all clients when the webhook url is sent.
-    ///     The webhook url itself is not and should not be sent.
-    /// </summary>
     [Serializable, NetSerializable]
     public sealed class BwoinkDiscordRelayUpdated : EntityEventArgs
     {
@@ -69,9 +60,6 @@ namespace Content.Shared.Administration
         }
     }
 
-    /// <summary>
-    ///     Sent by the client to notify the server when it begins or stops typing.
-    /// </summary>
     [Serializable, NetSerializable]
     public sealed class BwoinkClientTypingUpdated : EntityEventArgs
     {
@@ -85,9 +73,6 @@ namespace Content.Shared.Administration
         }
     }
 
-    /// <summary>
-    ///     Sent by server to notify admins when a player begins or stops typing.
-    /// </summary>
     [Serializable, NetSerializable]
     public sealed class BwoinkPlayerTypingUpdated : EntityEventArgs
     {
@@ -100,6 +85,65 @@ namespace Content.Shared.Administration
             Channel = channel;
             PlayerName = playerName;
             Typing = typing;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkCloseConversationMessage : EntityEventArgs
+    {
+        public NetUserId Channel { get; }
+
+        public BwoinkCloseConversationMessage(NetUserId channel)
+        {
+            Channel = channel;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkReopenConversationMessage : EntityEventArgs
+    {
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkRateAdminMessage : EntityEventArgs
+    {
+        public ReputationVoteValue Value { get; }
+        public string? Comment { get; }
+
+        public BwoinkRateAdminMessage(ReputationVoteValue value, string? comment)
+        {
+            Value = value;
+            Comment = comment;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class BwoinkConversationStateMessage : EntityEventArgs
+    {
+        public NetUserId Channel { get; }
+        public bool Closed { get; }
+        public bool CanRate { get; }
+        public bool RatingSubmitted { get; }
+        public bool HasAdminTarget { get; }
+        public NetUserId AdminUserId { get; }
+        public string AdminName { get; }
+
+        public BwoinkConversationStateMessage(
+            NetUserId channel,
+            bool closed,
+            bool canRate,
+            bool ratingSubmitted,
+            bool hasAdminTarget,
+            NetUserId adminUserId,
+            string adminName)
+        {
+            Channel = channel;
+            Closed = closed;
+            CanRate = canRate;
+            RatingSubmitted = ratingSubmitted;
+            HasAdminTarget = hasAdminTarget;
+            AdminUserId = adminUserId;
+            AdminName = adminName;
         }
     }
 }

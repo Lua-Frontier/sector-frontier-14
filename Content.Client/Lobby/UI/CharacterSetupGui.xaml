@@ -3,16 +3,18 @@
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:style="clr-namespace:Content.Client.Stylesheets"
          xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
          VerticalExpand="True">
     <Control>
         <PanelContainer Name="BackgroundPanel" />
-        <BoxContainer Orientation="Vertical" SeparationOverride="0">
-            <BoxContainer Orientation="Horizontal" MinSize="0 40">
+        <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="8 8 8 8">
+            <BoxContainer Orientation="Horizontal" MinSize="0 36" SeparationOverride="4">
                 <Label Text="{Loc 'character-setup-gui-character-setup-label'}"
-                       Margin="8 0 0 0" VAlign="Center"
+                       VAlign="Center"
+                       HorizontalExpand="True"
                        StyleClasses="LabelHeadingBigger" />
 
-                <Button Name="StatsButton" HorizontalExpand="True"
+                <Button Name="StatsButton"
                         Text="{Loc 'character-setup-gui-character-setup-stats-button'}"
                         StyleClasses="ButtonBig"
                         HorizontalAlignment="Right" />
@@ -33,16 +35,13 @@
                     <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
                 </PanelContainer.PanelOverride>
             </PanelContainer>
-            <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
-                <ScrollContainer MinSize="325 0" Margin="5 5 0 0">
-                    <BoxContainer Name="Characters" Orientation="Vertical" />
-                </ScrollContainer>
-                <PanelContainer MinSize="2 0">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
-                    </PanelContainer.PanelOverride>
-                </PanelContainer>
-                <BoxContainer Name="CharEditor" HorizontalExpand="True" />
+            <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="6">
+                <ui:HighlightedContainer MinSize="360 0" VerticalExpand="True">
+                    <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+                        <BoxContainer Name="Characters" Orientation="Vertical" SeparationOverride="3" />
+                    </ScrollContainer>
+                </ui:HighlightedContainer>
+                <BoxContainer Name="CharEditor" HorizontalExpand="True" VerticalExpand="True" />
             </BoxContainer>
         </BoxContainer>
     </Control>

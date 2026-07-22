@@ -23,6 +23,7 @@
   name: job-name-borg
   description: job-description-borg
   playTimeTracker: JobBorg
+  requiredCompany: Nanotrasen
   setPreference: true
   requirements:
     - !type:OverallPlaytimeRequirement
@@ -32,3 +33,8 @@
   supervisors: job-supervisors-hire # Frontier
   jobEntity: PlayerBorgBattery
   applyTraits: false
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: Company
+        companyName: Nanotrasen

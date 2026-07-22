@@ -30,5 +30,7 @@
     CaseysCasino:
       stationProto: DeadDropFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "Crazy Casey's Casino"

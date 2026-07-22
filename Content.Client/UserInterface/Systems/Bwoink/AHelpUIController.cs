@@ -12,6 +12,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
@@ -30,7 +31,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
-public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
+public sealed class AHelpUIController : UIController, IOnSystemChanged<BwoinkSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
@@ -56,6 +57,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
         SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
         SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
+        SubscribeNetworkEvent<BwoinkConversationStateMessage>(ConversationStateUpdated);
 
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
         _config.OnValueChanged(CCVars.AHelpSound, v => _aHelpSound = v, true);
@@ -165,6 +167,9 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         UIHelper?.PeopleTypingUpdated(args);
     }
 
+    private void ConversationStateUpdated(BwoinkConversationStateMessage args, EntitySessionEventArgs session)
+    { UIHelper?.ConversationStateUpdated(args); }
+
     public void EnsureUIHelper()
     {
         var isAdmin = _adminManager.HasFlag(AdminFlags.Adminhelp);
@@ -178,9 +183,12 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         UIHelper.DiscordRelayChanged(_discordRelayActive);
 
         UIHelper.SendMessageAction = (userId, textMessage, playSound, adminOnly) => _bwoinkSystem?.Send(userId, textMessage, playSound, adminOnly);
+        UIHelper.CloseConversationAction = userId => _bwoinkSystem?.CloseConversation(userId);
+        UIHelper.ReopenConversationAction = () => _bwoinkSystem?.ReopenConversation();
+        UIHelper.RateAdminAction = (value, comment) => _bwoinkSystem?.RateAdmin(value, comment);
         UIHelper.InputTextChanged += (channel, text) => _bwoinkSystem?.SendInputTextUpdated(channel, text.Length > 0);
         UIHelper.OnClose += () => { SetAHelpPressed(false); };
-        UIHelper.OnOpen +=  () => { SetAHelpPressed(true); };
+        UIHelper.OnOpen += () => { SetAHelpPressed(true); };
         SetAHelpPressed(UIHelper.IsOpen);
     }
 
@@ -324,9 +332,13 @@ public interface IAHelpUIHandler : IDisposable
     public void ToggleWindow();
     public void DiscordRelayChanged(bool active);
     public void PeopleTypingUpdated(BwoinkPlayerTypingUpdated args);
+    public void ConversationStateUpdated(BwoinkConversationStateMessage args);
     public event Action OnClose;
     public event Action OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
+    public Action<NetUserId>? CloseConversationAction { get; set; }
+    public Action? ReopenConversationAction { get; set; }
+    public Action<ReputationVoteValue, string?>? RateAdminAction { get; set; }
     public event Action<NetUserId, string>? InputTextChanged;
 }
 public sealed class AdminAHelpUIHandler : IAHelpUIHandler
@@ -408,9 +420,15 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
             panel.UpdatePlayerTyping(args.PlayerName, args.Typing);
     }
 
+    public void ConversationStateUpdated(BwoinkConversationStateMessage args)
+    { if (_activePanelMap.TryGetValue(args.Channel, out var panel)) panel.UpdateConversationState(args.Closed, false, args.RatingSubmitted, args.HasAdminTarget ? args.AdminName : null); }
+
     public event Action? OnClose;
     public event Action? OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
+    public Action<NetUserId>? CloseConversationAction { get; set; }
+    public Action? ReopenConversationAction { get; set; }
+    public Action<ReputationVoteValue, string?>? RateAdminAction { get; set; }
     public event Action<NetUserId, string>? InputTextChanged;
 
     public void Open(NetUserId channelId, bool relayActive)
@@ -464,7 +482,7 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
         if (_activePanelMap.TryGetValue(channelId, out var existingPanel))
             return existingPanel;
 
-        _activePanelMap[channelId] = existingPanel = new BwoinkPanel(text => SendMessageAction?.Invoke(channelId, text, Window?.Bwoink.PlaySound.Pressed ?? true, Window?.Bwoink.AdminOnly.Pressed ?? false));
+        _activePanelMap[channelId] = existingPanel = new BwoinkPanel(text => SendMessageAction?.Invoke(channelId, text, Window?.Bwoink.PlaySound.Pressed ?? true, Window?.Bwoink.AdminOnly.Pressed ?? false), () => CloseConversationAction?.Invoke(channelId), () => ReopenConversationAction?.Invoke(), (value, comment) => RateAdminAction?.Invoke(value, comment), true);
         existingPanel.InputTextChanged += text => InputTextChanged?.Invoke(channelId, text);
         existingPanel.Visible = false;
         if (!Control!.BwoinkArea.Children.Contains(existingPanel))
@@ -548,9 +566,19 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     {
     }
 
+    public void ConversationStateUpdated(BwoinkConversationStateMessage args)
+    {
+        if (args.Channel != _ownerId) return;
+        EnsureInit(_discordRelayActive);
+        _chatPanel!.UpdateConversationState(args.Closed, args.CanRate, args.RatingSubmitted, args.HasAdminTarget ? args.AdminName : null);
+    }
+
     public event Action? OnClose;
     public event Action? OnOpen;
     public Action<NetUserId, string, bool, bool>? SendMessageAction { get; set; }
+    public Action<NetUserId>? CloseConversationAction { get; set; }
+    public Action? ReopenConversationAction { get; set; }
+    public Action<ReputationVoteValue, string?>? RateAdminAction { get; set; }
     public event Action<NetUserId, string>? InputTextChanged;
 
     public void Open(NetUserId channelId, bool relayActive)
@@ -563,22 +591,28 @@ public sealed class UserAHelpUIHandler : IAHelpUIHandler
     {
         if (_window is { Disposed: false })
             return;
-        _chatPanel = new BwoinkPanel(text => SendMessageAction?.Invoke(_ownerId, text, true, false));
+        _chatPanel = new BwoinkPanel(
+            text => SendMessageAction?.Invoke(_ownerId, text, true, false),
+            () => CloseConversationAction?.Invoke(_ownerId),
+            () => ReopenConversationAction?.Invoke(),
+            (value, comment) => RateAdminAction?.Invoke(value, comment),
+            false);
         _chatPanel.InputTextChanged += text => InputTextChanged?.Invoke(_ownerId, text);
         _chatPanel.RelayedToDiscordLabel.Visible = relayActive;
         _window = new DefaultWindow()
         {
-            TitleClass="windowTitleAlert",
-            HeaderClass="windowHeaderAlert",
-            Title=Loc.GetString("bwoink-user-title"),
-            MinSize = new Vector2(500, 300),
+            TitleClass = "windowTitleAlert",
+            HeaderClass = "windowHeaderAlert",
+            Title = Loc.GetString("bwoink-user-title"),
+            SetSize = new Vector2(1080, 590),
+            MinSize = new Vector2(1080, 590),
         };
         _window.OnClose += () => { OnClose?.Invoke(); };
         _window.OnOpen += () => { OnOpen?.Invoke(); };
         _window.Contents.AddChild(_chatPanel);
 
         var introText = Loc.GetString("bwoink-system-introductory-message");
-        var introMessage = new SharedBwoinkSystem.BwoinkTextMessage( _ownerId, SharedBwoinkSystem.SystemUserId, introText);
+        var introMessage = new SharedBwoinkSystem.BwoinkTextMessage(_ownerId, SharedBwoinkSystem.SystemUserId, introText);
         Receive(introMessage);
     }
 

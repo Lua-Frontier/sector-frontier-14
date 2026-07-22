@@ -32,6 +32,8 @@
     McHobo:
       stationProto: DeadDropRecordsFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "Derelict McCargo"
         - type: BindToStationVariationPassExemption

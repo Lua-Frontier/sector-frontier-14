@@ -25,15 +25,19 @@ public sealed class ShuttleMapInterfaceState
 
     public List<ShuttleExclusionObject> Exclusions;
 
+    public readonly bool InCombat;
+
     public ShuttleMapInterfaceState(
         FTLState ftlState,
         StartEndTime ftlTime,
         List<ShuttleBeaconObject> destinations,
-        List<ShuttleExclusionObject> exclusions)
+        List<ShuttleExclusionObject> exclusions,
+        bool inCombat = false)
     {
         FTLState = ftlState;
         FTLTime = ftlTime;
         Destinations = destinations;
         Exclusions = exclusions;
+        InCombat = inCombat;
     }
 }

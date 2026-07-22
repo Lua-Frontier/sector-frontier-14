@@ -34,5 +34,7 @@
     Tinnia:
       stationProto: DeadDropFrontierOutpost
       components:
+        - type: FactionCapture
+          captureWholeStation: true
         - type: StationNameSetup
           mapNameTemplate: "Tinnia's Rest"

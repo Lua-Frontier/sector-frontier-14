@@ -5,6 +5,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared._Lua.Company;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -668,19 +669,53 @@ public abstract class SharedRoleSystem : EntitySystem
     // mutated.
     public HashSet<JobRequirement>? GetJobRequirement(JobPrototype job)
     {
-        if (_requirementOverride != null && _requirementOverride.Jobs.TryGetValue(job.ID, out var req))
-            return req;
+        var requirements = _requirementOverride != null && _requirementOverride.Jobs.TryGetValue(job.ID, out var req)
+            ? req
+            : job.Requirements;
 
-        return job.Requirements;
+        return AddRequiredCompany(job, requirements);
     }
 
     // TODO ROLES Change to readonly.
     public HashSet<JobRequirement>? GetJobRequirement(ProtoId<JobPrototype> job)
     {
-        if (_requirementOverride != null && _requirementOverride.Jobs.TryGetValue(job, out var req))
-            return req;
+        var prototype = _prototypes.Index(job);
+        var requirements = _requirementOverride != null && _requirementOverride.Jobs.TryGetValue(job, out var req)
+            ? req
+            : prototype.Requirements;
 
-        return _prototypes.Index(job).Requirements;
+        return AddRequiredCompany(prototype, requirements);
+    }
+
+    private static HashSet<JobRequirement>? AddRequiredCompany(JobPrototype job, HashSet<JobRequirement>? requirements)
+    {
+        if (string.IsNullOrWhiteSpace(job.RequiredCompany))
+            return requirements;
+
+        var requiredCompanies = job.RequiredCompany
+            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        if (requiredCompanies.Count == 0)
+            return requirements;
+
+        if (requirements != null && requirements
+                .OfType<CompanyRequirement>()
+                .Any(companyRequirement => companyRequirement.Companies.Overlaps(requiredCompanies)))
+        {
+            return requirements;
+        }
+
+        var mergedRequirements = requirements != null
+            ? new HashSet<JobRequirement>(requirements)
+            : new HashSet<JobRequirement>();
+
+        mergedRequirements.Add(new CompanyRequirement
+        {
+            Companies = requiredCompanies
+        });
+
+        return mergedRequirements;
     }
 
     // TODO ROLES Change to readonly.

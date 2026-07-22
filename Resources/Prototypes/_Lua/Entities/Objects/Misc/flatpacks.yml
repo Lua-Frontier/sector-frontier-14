@@ -23,7 +23,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: WeaponTurretType35FlatPack
-  name: MARAUDER-type plasma weapon
+  name: Type-35 "MARAUDER" plasma weapon
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
@@ -125,6 +125,66 @@
     layers:
     - state: ship_weapon
 
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretplasmaacceleratorFlatPack
+  name: Type-1008 Plasma Accelerator
+  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretplasmaaccelerator
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretplasmaacceleratorHugeFlatPack
+  name: Type-1984 Plasma Accelerator
+  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretplasmaacceleratorHuge
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretType2048FlatPack
+  name: Type-1984 Plasma Accelerator
+  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType2048
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretScyllaFlatPack
+  name: PASM "Scylla" Plasma accelerator system of magnet
+  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretScylla
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
 #MARK: Mono - Kinetic turrets
 
 - type: entity
@@ -174,12 +234,57 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: WeaponTurretAK570FlatPack
-  name: AK570 90mm heavy autocannon
+  id: WeaponTurretFangFlatPack
+  name: Fang 90mm heavy autocannon
   description: A dual barrel, heavy autocannon. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
+    entity: WeaponTurretFang
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretAK570FlatPack
+  name: AK570 57mm medium autocannon
+  description: A dual barrel, medium autocannon. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
     entity: WeaponTurretAK570
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretPeacekeeperFlatPack
+  name: SHR-57 "Scattergun"
+  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretPeacekeeper
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretHydraFlatPack
+  name: Hydra 220mm cannon
+  description: A main battery with trial barrels, delivering rapid, punishing salvos at extreme range. Fires 220mm auto shells with slightly reduced brute strength. Can be remotely activated or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretHydra
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -201,6 +306,37 @@
     sprite: _Lua/Flatpack/flatpack.rsi
     layers:
     - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretTarnyxApFlatPack
+  name: ADBX-31 TARNYX 150mm EMP Cannon
+  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretApTarnyx
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponTurretTarnyxReloadFlatPack
+  name: ADBX-31 TARNYX 150mm EMP Cannon
+  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretTarnyx
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
 
 - type: entity
   parent: BaseNFFlatpack
@@ -346,7 +482,7 @@
   description: ASM-501 Smerchs heavy torpedo launcher. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
-    entity:
+    entity: WeaponTurretASM501
   - type: StaticPrice
     price: 250
   - type: Sprite

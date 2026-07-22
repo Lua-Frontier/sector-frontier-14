@@ -5,6 +5,7 @@ using Content.Server.Administration.Notes;
 using Content.Server.Administration.Systems;
 using Content.Server.Database;
 using Content.Server.EUI;
+using Content.Server._Lua.Reputation;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Eui;
@@ -31,9 +32,13 @@ public sealed class PlayerPanelEui : BaseEui
     private int _sharedConnections;
     private bool? _whitelisted;
     private TimeSpan _playtime;
+    private int _reputationScore;
+    private int _reputationPositive;
+    private int _reputationNegative;
     private bool _frozen;
     private bool _canFreeze;
     private bool _canAhelp;
+    private bool _canModerateReputation;
     private FollowerSystem _follower;
 
     public PlayerPanelEui(LocatedPlayerData player)
@@ -60,6 +65,9 @@ public sealed class PlayerPanelEui : BaseEui
         return new PlayerPanelEuiState(_targetPlayer.UserId,
             _targetPlayer.Username,
             _playtime,
+            _reputationScore,
+            _reputationPositive,
+            _reputationNegative,
             _notes,
             _bans,
             _roleBans,
@@ -67,7 +75,8 @@ public sealed class PlayerPanelEui : BaseEui
             _whitelisted,
             _canFreeze,
             _frozen,
-            _canAhelp);
+            _canAhelp,
+            _canModerateReputation);
     }
 
     private void OnPermsChanged(AdminPermsChangedEventArgs args)
@@ -154,6 +163,10 @@ public sealed class PlayerPanelEui : BaseEui
 
                 _follower.StartFollowingEntity(Player.AttachedEntity.Value, session.AttachedEntity.Value);
                 break;
+            case PlayerPanelOpenReputationMessage:
+                if (_admins.GetAdminData(Player)?.CanModeratePlayerReputation() != true) return;
+                _eui.OpenEui(new ReputationModerationEui(ReputationTargetKind.Player, _targetPlayer.UserId, _targetPlayer.Username), Player);
+                break;
         }
     }
 
@@ -169,6 +182,11 @@ public sealed class PlayerPanelEui : BaseEui
             .Where(p => p.Tracker == "Overall")
             .Select(p => p.TimeSpent)
             .FirstOrDefault();
+
+        var repSummary = await _db.GetReputationSummary(ReputationTargetKind.Player, _targetPlayer.UserId.UserId);
+        _reputationScore = repSummary.Score;
+        _reputationPositive = repSummary.PositiveVotes;
+        _reputationNegative = repSummary.NegativeVotes;
 
         if (_notesMan.CanView(Player))
         {
@@ -214,6 +232,8 @@ public sealed class PlayerPanelEui : BaseEui
         {
             _canAhelp = false;
         }
+
+        _canModerateReputation = _admins.GetAdminData(Player)?.CanModeratePlayerReputation() == true;
 
         StateDirty();
     }

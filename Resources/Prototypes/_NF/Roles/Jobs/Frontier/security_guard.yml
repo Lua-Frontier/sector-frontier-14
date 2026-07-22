@@ -3,6 +3,7 @@
   name: job-name-security-guard
   description: job-description-security-guard
   playTimeTracker: JobSecurityGuard
+  requiredCompany: Nanotrasen
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 18000 # Frontier - 5 hrs
@@ -34,7 +35,7 @@
   - !type:AddComponentSpecial
     components:
       - type: Company
-        companyName: Security
+        companyName: Nanotrasen
 
 - type: startingGear
   id: SecurityGuardGear

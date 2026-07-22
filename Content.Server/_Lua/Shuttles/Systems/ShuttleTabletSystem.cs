@@ -140,7 +140,7 @@ public sealed class ShuttleTabletSystem : EntitySystem
         }
 
         _fireControl.FireWeapons(fcGrid.ControllingServer.Value, args.Selected, args.Coordinates, server);
-        var fireEvent = new FireControlConsoleFireEvent(args.Coordinates, args.Selected);
+        var fireEvent = new FireControlConsoleFireEvent(GetNetEntity(tablet), args.Coordinates, args.Selected);
         RaiseLocalEvent(tablet, fireEvent);
     }
 

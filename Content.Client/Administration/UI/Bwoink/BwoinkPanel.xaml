@@ -2,9 +2,44 @@
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Orientation="Vertical"
-    HorizontalExpand="True">
-    <OutputPanel Name="TextOutput" VerticalExpand="true" />
-    <RichTextLabel Name="TypingIndicator" Access="Public" />
-    <HistoryLineEdit Name="SenderLineEdit" />
+    HorizontalExpand="True"
+    VerticalExpand="True"
+    SeparationOverride="4">
+    <PanelContainer StyleClasses="BackgroundDark" VerticalExpand="True" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc bwoink-panel-history}" StyleClasses="LabelSubText" />
+                <Control HorizontalExpand="True" />
+                <RichTextLabel Name="TypingIndicator" Access="Public" />
+            </BoxContainer>
+            <OutputPanel Name="TextOutput" VerticalExpand="true" HorizontalExpand="True" />
+        </BoxContainer>
+    </PanelContainer>
+
+    <PanelContainer Name="ConversationPanel" StyleClasses="PanelBackgroundLight">
+        <BoxContainer Orientation="Horizontal" Margin="8 6" SeparationOverride="8">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4">
+                <Label Text="{Loc bwoink-panel-resolution}" StyleClasses="LabelSubText" />
+                <RichTextLabel Name="ConversationStatus" StyleClasses="LabelSubText" HorizontalExpand="True" />
+                <TextEdit Name="RatingComment" MinHeight="96" Visible="False" HorizontalExpand="True" />
+                <Label Name="RatingCounter" Visible="False" StyleClasses="LabelSubText" HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalAlignment="Center" MinWidth="170">
+                <Button Name="CloseConversation" Text="{Loc bwoink-conversation-close}" StyleClasses="OpenRight" HorizontalExpand="True" />
+                <Button Name="ReopenConversation" Text="{Loc bwoink-conversation-reopen}" Visible="False" StyleClasses="OpenRight" HorizontalExpand="True" />
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalExpand="True" HorizontalAlignment="Center">
+                    <TextureButton Name="RatePositive" Visible="False" TexturePath="/Textures/_Lua/Interface/like.png" ToolTip="{Loc bwoink-conversation-rate-positive}" SetSize="28 28" />
+                    <TextureButton Name="RateNegative" Visible="False" TexturePath="/Textures/_Lua/Interface/dislike.png" ToolTip="{Loc bwoink-conversation-rate-negative}" SetSize="28 28" />
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+
+    <PanelContainer StyleClasses="PanelBackgroundLight">
+        <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="4">
+            <Label Text="{Loc bwoink-panel-reply}" StyleClasses="LabelSubText" />
+            <HistoryLineEdit Name="SenderLineEdit" />
+        </BoxContainer>
+    </PanelContainer>
     <RichTextLabel Name="RelayedToDiscordLabel" Access="Public" Visible="False" />
 </BoxContainer>

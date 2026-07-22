@@ -12,7 +12,10 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
+using System.Text;
 using System.Linq;
 using System.Numerics;
 
@@ -36,6 +39,9 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
     private readonly Dictionary<string, ContainerButton> _companyButtons = new();
     private Texture _lockIcon = default!;
     private Texture _unlockIcon = default!;
+    private string _lastLocalCompanyId = "None";
+    private CompanyWarUiState? _warState;
+    private bool _canEditMotd;
 
     public CompanyFactionsWindow()
     {
@@ -54,12 +60,50 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
 
         JoinButton.OnPressed += _ =>
         { if (_selectedCompanyId != null) _system.RequestSetCompany(_selectedCompanyId); };
-        LeaveButton.OnPressed += _ => _system.RequestSetCompany("None");
+        LeaveButton.OnPressed += _ => _system.RequestSetCompany("Neutral");
         KickButton.OnPressed += _ =>
         {
             if (_selectedCompanyId == null || _selectedMember == null) return;
             _system.RequestKick(_selectedCompanyId, _selectedMember.Value);
         };
+        DeclareWarButton.OnPressed += _ =>
+        {
+            if (_selectedCompanyId == null)
+                return;
+
+            _system.RequestDeclareWar(_selectedCompanyId, WarAnnouncementInput.Text);
+        };
+        EndWarButton.OnPressed += _ =>
+        {
+            if (_warState?.ActiveWar == null)
+                return;
+
+            _system.RequestEndWar(_warState.ActiveWar.WarId);
+        };
+        SaveMotdButton.OnPressed += _ =>
+        {
+            if (_selectedCompanyId == null)
+                return;
+
+            _system.RequestSetMotd(_selectedCompanyId, Rope.Collapse(MotdInput.TextRope));
+        };
+        PopulateCompanies();
+    }
+
+    protected override void Opened()
+    {
+        base.Opened();
+        PopulateCompanies();
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        var localCompany = GetLocalCompanyId();
+        if (string.Equals(localCompany, _lastLocalCompanyId, StringComparison.OrdinalIgnoreCase))
+            return;
+
         PopulateCompanies();
     }
 
@@ -72,63 +116,117 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
 
     private void PopulateCompanies()
     {
+        var previousSelectedCompanyId = _selectedCompanyId;
         CompanyOptionsList.RemoveAllChildren();
         _companyButtons.Clear();
         _companyButtonGroup = new ButtonGroup(false);
         _selectedCompanyId = null;
         MembersList.Clear();
         var myCompany = GetLocalCompanyId();
+        _lastLocalCompanyId = myCompany;
         var companies = _prototypes.EnumeratePrototypes<CompanyPrototype>().Where(c => c.ID != "None").ToList();
         companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
         string? firstVisibleCompanyId = null;
+        string? preferredCompanyId = null;
         foreach (var company in companies)
         {
-            if (company.HiddenFromNonMembers && !string.Equals(company.ID, myCompany, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!ShouldShowCompany(company, myCompany))
+                continue;
+
             firstVisibleCompanyId ??= company.ID;
+            if (string.Equals(company.ID, previousSelectedCompanyId, StringComparison.OrdinalIgnoreCase))
+                preferredCompanyId = company.ID;
+            else if (preferredCompanyId == null && string.Equals(company.ID, myCompany, StringComparison.OrdinalIgnoreCase))
+                preferredCompanyId = company.ID;
+
             AddCompanyEntry(company);
         }
-        if (firstVisibleCompanyId != null) SelectCompany(firstVisibleCompanyId);
+
+        if (preferredCompanyId != null)
+            SelectCompany(preferredCompanyId);
+        else if (firstVisibleCompanyId != null)
+            SelectCompany(firstVisibleCompanyId);
+    }
+
+    private static bool ShouldShowCompany(CompanyPrototype company, string myCompany)
+    {
+        if (string.Equals(company.ID, myCompany, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (!company.Disabled)
+            return true;
+
+        if (!company.HiddenFromNonMembers)
+            return false;
+
+        return company.LeaderJobs.Count > 0;
     }
 
     private void AddCompanyEntry(CompanyPrototype company)
     {
         var wrapper = new ContainerButton
-        { HorizontalExpand = true };
+        {
+            HorizontalExpand = true,
+            ToolTip = company.Name,
+        };
         wrapper.AddStyleClass(ContainerButton.StyleClassButton);
         wrapper.Group = _companyButtonGroup;
         var header = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
             HorizontalExpand = true,
-            SeparationOverride = 6
+            SeparationOverride = 6,
+            RectClipContent = true,
         };
-        var icon = new TextureRect
+
+        var companyIcon = new TextureRect
+        {
+            CanShrink = true,
+            MinSize = new Vector2(32, 32),
+            MaxSize = new Vector2(32, 32),
+            Stretch = TextureRect.StretchMode.KeepAspectCentered,
+            Texture = GetCompanyIcon(company),
+            VerticalAlignment = VAlignment.Center
+        };
+        /*
+        var privacyIcon = new TextureRect
         {
             CanShrink = true,
             MinSize = new Vector2(18, 18),
             Stretch = TextureRect.StretchMode.Scale,
-            Texture = company.Disabled ? _lockIcon : _unlockIcon,
+            Texture = company.Disabled || company.HiddenFromNonMembers ? _lockIcon : _unlockIcon,
             VerticalAlignment = VAlignment.Center
         };
+        */
         var name = new Label
         {
             Text = company.Name,
-            MinWidth = 50,
+            MinWidth = 0,
             HorizontalExpand = true,
-            FontColorOverride = company.Color
+            FontColorOverride = company.Color,
+            ClipText = true,
         };
-        header.AddChild(icon);
+        header.AddChild(companyIcon);
         header.AddChild(name);
+        // header.AddChild(privacyIcon);
         wrapper.AddChild(header);
-        wrapper.OnButtonDown += _ => SelectCompany(company.ID);
+        wrapper.OnPressed += _ => SelectCompany(company.ID);
         CompanyOptionsList.AddChild(wrapper);
         _companyButtons[company.ID] = wrapper;
+    }
+
+    private Texture GetCompanyIcon(CompanyPrototype company)
+    {
+        if (!string.IsNullOrWhiteSpace(company.IconPath))
+            return _cache.GetResource<TextureResource>(company.IconPath!).Texture;
+
+        return company.Disabled || company.HiddenFromNonMembers ? _lockIcon : _unlockIcon;
     }
 
     private void SelectCompany(string companyId)
     {
         _selectedCompanyId = companyId;
-        if (_companyButtons.TryGetValue(companyId, out var button) && !button.Pressed) button.Pressed = true;
+        UpdateCompanySelectionVisuals();
         var display = companyId;
         if (_prototypes.TryIndex<CompanyPrototype>(companyId, out var proto)) display = proto.Name;
         MembersTitle.Text = Loc.GetString("company-factions-members-title-selected", ("company", display));
@@ -136,11 +234,26 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
         _selectedMember = null;
         _viewerIsLeader = false;
         _viewerCompanyId = GetLocalCompanyId();
+        _warState = null;
+        _canEditMotd = false;
+        MotdInput.TextRope = Rope.Leaf.Empty;
         UpdateButtons();
         _system.RequestMembers(companyId);
     }
 
-    public void UpdateMembers(string companyId, List<CompanyMemberEntry> members, bool viewerIsLeader, string viewerCompanyId)
+    private void UpdateCompanySelectionVisuals()
+    {
+        if (_selectedCompanyId == null)
+            return;
+
+        if (!_companyButtons.TryGetValue(_selectedCompanyId, out var button))
+            return;
+
+        if (!button.Pressed)
+            button.Pressed = true;
+    }
+
+    public void UpdateMembers(string companyId, List<CompanyMemberEntry> members, bool viewerIsLeader, string viewerCompanyId, string motd, bool canEditMotd, CompanyWarUiState? warState)
     {
         if (_selectedCompanyId == null || !string.Equals(_selectedCompanyId, companyId, StringComparison.OrdinalIgnoreCase)) return;
         MembersList.Clear();
@@ -148,6 +261,9 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
         { MembersList.AddItem(entry.Name, metadata: entry.Entity); }
         _viewerIsLeader = viewerIsLeader;
         _viewerCompanyId = viewerCompanyId;
+        _canEditMotd = canEditMotd;
+        _warState = warState;
+        MotdInput.TextRope = string.IsNullOrWhiteSpace(motd) ? Rope.Leaf.Empty : new Rope.Leaf(motd);
         UpdateButtons();
     }
 
@@ -159,12 +275,23 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
             JoinButton.Visible = false;
             LeaveButton.Visible = false;
             KickButton.Visible = false;
+            DeclareWarButton.Disabled = true;
+            EndWarButton.Disabled = true;
+            WarAnnouncementInput.Editable = false;
+            MotdInput.Editable = false;
+            SaveMotdButton.Disabled = true;
+            WarStatusLabel.Text = Loc.GetString("company-factions-war-loading");
             return;
         }
-        var isPublic = _prototypes.TryIndex<CompanyPrototype>(selectedCompany, out var proto) && !proto.Disabled;
+        var isPublic = _prototypes.TryIndex<CompanyPrototype>(selectedCompany, out var proto) && !proto.Disabled && !proto.HiddenFromNonMembers;
         var isPrivate = !isPublic;
-        JoinButton.Visible = isPublic && !string.Equals(_viewerCompanyId, selectedCompany, StringComparison.OrdinalIgnoreCase);
-        LeaveButton.Visible = isPublic && string.Equals(_viewerCompanyId, selectedCompany, StringComparison.OrdinalIgnoreCase);
+        var isCurrentCompany = string.Equals(_viewerCompanyId, selectedCompany, StringComparison.OrdinalIgnoreCase);
+        var canLeave = isCurrentCompany
+            && !string.Equals(selectedCompany, "None", StringComparison.OrdinalIgnoreCase)
+            && !string.Equals(selectedCompany, "Neutral", StringComparison.OrdinalIgnoreCase);
+
+        JoinButton.Visible = isPublic && !isCurrentCompany;
+        LeaveButton.Visible = canLeave;
         JoinButton.Disabled = false;
         LeaveButton.Disabled = false;
         if (_players.LocalEntity is { } self && _entManager.HasComponent<GhostComponent>(self))
@@ -172,9 +299,75 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
             JoinButton.Disabled = true;
             LeaveButton.Disabled = true;
         }
-        KickButton.Visible = isPrivate && _viewerIsLeader && string.Equals(_viewerCompanyId, selectedCompany, StringComparison.OrdinalIgnoreCase);
+        KickButton.Visible = isPrivate && _viewerIsLeader && isCurrentCompany;
         var selfNet = _players.LocalEntity is { } selfEnt ? _entManager.GetNetEntity(selfEnt) : NetEntity.Invalid;
         KickButton.Disabled = _selectedMember == null || (_selectedMember != null && _selectedMember.Value == selfNet);
+
+        var isGhost = _players.LocalEntity is { } selfEntity && _entManager.HasComponent<GhostComponent>(selfEntity);
+        var viewerIsLeader = _warState?.ViewerIsLeader ?? _viewerIsLeader;
+        var canDeclareWar = _warState?.CanDeclareWar ?? false;
+        var canEndWar = _warState?.CanEndWar ?? false;
+        var viewerRequestedPeace = false;
+        var counterpartyRequestedPeace = false;
+
+        if (_warState?.ActiveWar != null)
+        {
+            var war = _warState.ActiveWar;
+            var viewerIsAggressor = string.Equals(war.AggressorCompanyId, _warState.ViewerCompanyId, StringComparison.OrdinalIgnoreCase);
+            viewerRequestedPeace = viewerIsAggressor ? war.AggressorRequestedPeace : war.DefenderRequestedPeace;
+            counterpartyRequestedPeace = viewerIsAggressor ? war.DefenderRequestedPeace : war.AggressorRequestedPeace;
+        }
+
+        DeclareWarButton.Visible = viewerIsLeader;
+        DeclareWarButton.Disabled = !canDeclareWar || isGhost;
+        EndWarButton.Visible = _warState?.ActiveWar != null;
+        EndWarButton.Disabled = !canEndWar || isGhost || viewerRequestedPeace;
+        EndWarButton.Text = counterpartyRequestedPeace
+            ? Loc.GetString("company-factions-war-end-confirm")
+            : viewerRequestedPeace
+                ? Loc.GetString("company-factions-war-end-pending")
+                : Loc.GetString("company-factions-war-end");
+        WarAnnouncementInput.Editable = viewerIsLeader && !isGhost;
+            MotdInput.Editable = _canEditMotd && !isGhost;
+            SaveMotdButton.Disabled = !_canEditMotd || isGhost;
+        WarStatusLabel.Text = BuildWarStatusText();
+    }
+
+    private string BuildWarStatusText()
+    {
+        if (_warState == null)
+            return Loc.GetString("company-factions-war-loading");
+
+        var builder = new StringBuilder();
+        builder.Append(_warState.StatusText);
+
+        if (_warState.ActiveWars.Count == 0)
+            return builder.ToString();
+
+        if (builder.Length > 0)
+            builder.Append('\n').Append('\n');
+
+        for (var index = 0; index < _warState.ActiveWars.Count; index++)
+        {
+            if (index > 0)
+                builder.Append('\n').Append('\n');
+
+            var war = _warState.ActiveWars[index];
+            var remaining = TimeSpan.FromSeconds(MathF.Max(0, war.RemainingSeconds));
+            var remainingText = remaining.TotalHours >= 1
+                ? $"{(int) remaining.TotalHours:D2}:{remaining.Minutes:D2}:{remaining.Seconds:D2}"
+                : $"{remaining.Minutes:D2}:{remaining.Seconds:D2}";
+
+            builder.Append(Loc.GetString(
+                "company-factions-war-active-info",
+                ("aggressor", war.AggressorName),
+                ("defender", war.DefenderName),
+                ("declaredBy", war.DeclaredBy),
+                ("remaining", remainingText),
+                ("message", war.AnnouncementText)));
+        }
+
+        return builder.ToString();
     }
 }
 

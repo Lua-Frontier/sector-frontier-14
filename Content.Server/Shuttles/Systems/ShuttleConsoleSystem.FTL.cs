@@ -8,7 +8,6 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
-using Content.Server.Worldgen.Components.GC; // Lua
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
@@ -16,26 +15,7 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-
-    public const float ShuttleFTLRange = 1500f;
-    private const float ShuttleFTLMassThreshold = 50f;
-
-    private bool IsGcAbleGrid(EntityUid gridUid) // Lua start создание проблемы и её героическое решение
-    {
-        if (HasComp<GCAbleObjectComponent>(gridUid))
-            return true;
-
-        var query = AllEntityQuery<GCAbleObjectComponent>();
-        while (query.MoveNext(out var comp))
-        {
-            if (comp.LinkedGridEntity == gridUid)
-                return true;
-        }
-
-        return false;
-    } // Lue end
 
     private void InitializeFTL()
     {
@@ -175,26 +155,6 @@ public sealed partial class ShuttleConsoleSystem
 
         if (!TryComp(shuttleUid.Value, out PhysicsComponent? shuttlePhysics))
         {
-            return;
-        }
-
-        // Check for nearby grids within the FTL safety radius
-        var xform = Transform(shuttleUid.Value);
-        var bounds = xform.WorldMatrix.TransformBox(Comp<MapGridComponent>(shuttleUid.Value).LocalAABB).Enlarged(ShuttleFTLRange);
-
-        var dockedShuttles = new HashSet<EntityUid>(); // Lua
-        _shuttle.GetAllDockedShuttlesIgnoringFTLLock(shuttleUid.Value, dockedShuttles); // Lua
-        foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
-        {
-            if (other.Owner == shuttleUid.Value)
-                continue;
-
-            if (dockedShuttles.Contains(other.Owner)) continue; // Lua
-            if (IsGcAbleGrid(other.Owner)) continue;
-
-            PlayDenySound(ent);
-            _popup.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), ent.Owner, PopupType.Medium);
-            UpdateConsoles(shuttleUid.Value);
             return;
         }
 

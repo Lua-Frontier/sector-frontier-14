@@ -54,6 +54,8 @@ public sealed class FireControlConsoleFireMessage : BoundUserInterfaceMessage
 /// </summary>
 public sealed class FireControlConsoleFireEvent : EntityEventArgs
 {
+    public NetEntity ConsoleUid;
+
     /// <summary>
     /// The coordinates of the cursor/firing position
     /// </summary>
@@ -64,8 +66,9 @@ public sealed class FireControlConsoleFireEvent : EntityEventArgs
     /// </summary>
     public List<NetEntity> Selected;
 
-    public FireControlConsoleFireEvent(NetCoordinates coordinates, List<NetEntity> selected)
+    public FireControlConsoleFireEvent(NetEntity consoleUid, NetCoordinates coordinates, List<NetEntity> selected)
     {
+        ConsoleUid = consoleUid;
         Coordinates = coordinates;
         Selected = selected;
     }

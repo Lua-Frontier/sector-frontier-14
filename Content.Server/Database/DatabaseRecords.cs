@@ -119,6 +119,37 @@ public sealed record PlayerRecord(
     IPAddress? LastSeenAddress,
     ImmutableTypedHwid? HWId);
 
+public sealed record ReputationSummaryRecord(
+    ReputationTargetKind Kind,
+    Guid TargetUserId,
+    string TargetName,
+    int Score,
+    int ActiveVotes,
+    int PositiveVotes,
+    int NegativeVotes);
+
+public sealed record ReputationVoteRecord(
+    int Id,
+    ReputationTargetKind Kind,
+    Guid TargetUserId,
+    string TargetName,
+    Guid VoterUserId,
+    string VoterName,
+    ReputationVoteValue Value,
+    string? Comment,
+    int? RoundId,
+    DateTimeOffset CreatedAt,
+    DateTimeOffset? UpdatedAt,
+    bool Deleted,
+    Guid? DeletedById,
+    DateTimeOffset? DeletedAt,
+    string? DeleteReason);
+
+public sealed record AdminAHelpObservRecord(
+    Guid AdminUserId,
+    int ResolvedAhelps,
+    DateTimeOffset? UpdatedAt);
+
 public sealed record RoundRecord(int Id, DateTimeOffset? StartDate, ServerRecord Server);
 
 public sealed record ServerRecord(int Id, string Name);

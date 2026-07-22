@@ -10,7 +10,7 @@ public sealed partial class DetailExaminableComponent : Component
     [DataField, AutoNetworkedField] // Erida-Edit | Removed: "required: true"
     public string Content = string.Empty;
 
-    [DataField("ERPStatus", required: true)]
+    [DataField("ERPStatus", required: true), AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
     public EnumERPStatus ERPStatus = EnumERPStatus.NO;
 
