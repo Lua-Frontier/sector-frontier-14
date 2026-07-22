@@ -8,7 +8,7 @@
                       SetSize="1200 720">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
-            <PanelContainer Margin="5">
+            <PanelContainer Margin="5 8 5 5">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BorderColor="#444444" BorderThickness="2"/>
                 </PanelContainer.PanelOverride>
@@ -34,14 +34,14 @@
                             Text="{Loc 'crew-monitoring-filter-dead'}"
                             ToggleMode="True"/>
                 </BoxContainer>
-                <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 3 3 5">
+                <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 3 2 5">
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BorderColor="#444444" BorderThickness="2"/>
                     </PanelContainer.PanelOverride>
                     <ScrollContainer Name="SensorScroller"
                                      HScrollEnabled="False"
                                      VerticalExpand="True"
-                                     MinWidth="524">
+                                     MinWidth="526">
                         <BoxContainer Name="SensorsTable" Orientation="Vertical"/>
                         <Label Name="NoServerLabel"
                                Text="{Loc 'crew-monitoring-user-interface-no-server'}"
