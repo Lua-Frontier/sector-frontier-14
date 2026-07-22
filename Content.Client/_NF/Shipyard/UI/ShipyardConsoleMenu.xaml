@@ -8,31 +8,25 @@
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal" Margin="3 0" HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer Orientation="Vertical" Margin="2 3 0 3">
-                <BoxContainer Orientation="Horizontal" VerticalExpand="True" Margin="3 0">
-                    <BoxContainer Orientation="Vertical" >
-                        <BoxContainer Orientation="Horizontal">
-                            <Label Text="{Loc 'bank-atm-menu-balance-label'}" FontColorOverride="Silver"/>
-                            <Label Name="BalanceLabel" Text="{Loc 'shipyard-console-no-bank'}" />
-                        </BoxContainer>
-                        <BoxContainer Orientation="Horizontal">
-                            <Label Text="{Loc 'shipyard-console-appraisal-label'}" FontColorOverride="Silver"/>
-                            <Label Name="ShipAppraisalLabel" Text="{Loc 'shipyard-console-no-deed'}" />
-                        </BoxContainer>
-                        <Label Text="{Loc 'shipyard-console-deed-label'}" FontColorOverride="Silver"/>
-                        <BoxContainer Orientation="Horizontal">
-                            <Label Text="•"/>
-                            <Label Name="DeedTitle" Margin="5 0"/>
-                        </BoxContainer>
+                <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="3 0">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'bank-atm-menu-balance-label'}" FontColorOverride="Silver"/>
+                        <Label Name="BalanceLabel"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="{Loc 'shipyard-console-appraisal-label'}" FontColorOverride="Silver"/>
+                        <Label Name="ShipAppraisalLabel"/>
+                    </BoxContainer>
+                    <Label Text="{Loc 'shipyard-console-deed-label'}" FontColorOverride="Silver"/>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="•"/>
+                        <Label Name="DeedTitle" Margin="5 0"/>
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" Name="NoDeedHelperContainer">
+                        <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}" FontColorOverride="Silver"/>
+                        <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}" FontColorOverride="Silver"/>
                     </BoxContainer>
                 </BoxContainer>
-                <BoxContainer Orientation="Vertical"
-                              Name="NoDeedHelperContainer"
-                              VerticalExpand="True"
-                              Margin="3 0">
-                    <Label Text="{Loc 'shipyard-console-no-idcard-helper-line1'}" FontColorOverride="Silver"/>
-                    <Label Text="{Loc 'shipyard-console-no-idcard-helper-line2'}" FontColorOverride="Silver"/>
-                </BoxContainer>
-                <BoxContainer Orientation="Horizontal" VerticalExpand="True"/>
                 <BoxContainer Orientation="Horizontal"
                               Name="RenameContainer"
                               VerticalAlignment="Bottom"
@@ -51,7 +45,7 @@
                 <BoxContainer Orientation="Horizontal"
                               VerticalAlignment="Bottom"
                               HorizontalExpand="True"
-                              Margin="0 3">
+                              Margin="0 1 0 2">
                     <Button Name="TargetIdButton"
                             VerticalExpand="True"
                             HorizontalExpand="True"
@@ -70,7 +64,7 @@
                                             ConfirmationText="{Loc 'admin-notes-delete-confirm'}"
                                             Disabled="True"/>
                 </BoxContainer>
-                <PanelContainer VerticalAlignment="Bottom" HorizontalExpand="True" VerticalExpand="True">
+                <PanelContainer VerticalAlignment="Bottom">
                     <luaShipyard:ShipyardDockRadarControl Name="DockRadar" MinSize="400 400"/>
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BorderColor="#444444" BorderThickness="2"/>
@@ -97,17 +91,16 @@
                                   Prefix="{Loc 'shipyard-console-menu-engine-label'}"
                                   HorizontalExpand="True"/>
                 </BoxContainer>
-                <ScrollContainer HorizontalExpand="True"
-                                 VerticalExpand="True"
-                                 Margin="0 3"
-                                 SizeFlagsStretchRatio="6">
-                    <BoxContainer Name="Vessels"
-                                  Orientation="Vertical"
-                                  HorizontalExpand="True"
-                                  VerticalExpand="True">
-                        <!-- Vessels get added here by code -->
-                    </BoxContainer>
-                </ScrollContainer>
+                <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 2 2 3">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderColor="#444444" BorderThickness="2"/>
+                    </PanelContainer.PanelOverride>
+                    <ScrollContainer SizeFlagsStretchRatio="6" HScrollEnabled="False">
+                        <BoxContainer Name="Vessels" Orientation="Vertical">
+                            <!-- Vessels get added here by code -->
+                        </BoxContainer>
+                    </ScrollContainer>
+                </PanelContainer>
             </BoxContainer>
         </BoxContainer>
         <BoxContainer Orientation="Vertical" Margin="0 2 0 0">

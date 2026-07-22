@@ -1023,7 +1023,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             GetAvailableShuttles(uid, uiKey, targetId: targetId),
             uiKey.ToString(),
             freeListings,
-            CalculateSellRate(uid));
+            CalculateSellRate(uid),
+            _limitedShuttle.GetLimitedVesselCounts()); // Lua
 
         BoundUserInterfaceState state = newState; // Lua
         ExtendUiStateLua(uid, ref state); // Lua
