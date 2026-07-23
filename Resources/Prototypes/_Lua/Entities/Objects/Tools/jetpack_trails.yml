@@ -7,14 +7,13 @@
   - type: TimedDespawn
     lifetime: 2
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#0093c0"
     noRot: true
     layers:
     - shader: unshaded
       state: chem_gas_old
-  - type: Physics
   - type: RadarBlip
     radarColor: "#0093c0"
     scale: 0.7
@@ -22,11 +21,10 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
-  # - type: EffectVisuals
+    physics: false
   - type: Tag
     tags:
       - HideContextMenu
-  # - type: AnimationPlayer
 
 #region след глайдера
 - type: entity
@@ -49,6 +47,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 600
+    physics: false
 
 #region след мини
 - type: entity
@@ -57,7 +56,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#487297"
     noRot: true
@@ -65,12 +64,13 @@
     - shader: unshaded
       state: water_vapor_old
   - type: RadarBlip
-    radarColor: "#487297"
+    radarColor: "#5383ae"
     scale: 0.4
     shape: Hexagon
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 200
+    physics: false
 
 #region след пират
 - type: entity
@@ -79,7 +79,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#ac6324"
     noRot: true
@@ -93,6 +93,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след стелс
 - type: entity
@@ -101,7 +102,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#303030"
     noRot: true
@@ -115,6 +116,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 100
+    physics: false
 
 #region след чёрного
 - type: entity
@@ -123,7 +125,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#669cce"
     noRot: true
@@ -137,6 +139,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след синего
 - type: entity
@@ -145,7 +148,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#00a2ff"
     noRot: true
@@ -159,6 +162,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след ДСБФ
 - type: entity
@@ -167,7 +171,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#444927"
     noRot: true
@@ -181,6 +185,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 300
+    physics: false
 
 #region след капитана
 - type: entity
@@ -189,7 +194,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#ffee00"
     noRot: true
@@ -203,6 +208,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след охраны
 - type: entity
@@ -211,20 +217,21 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
-    color: "#934242"
+    color: "#444927"
     noRot: true
     layers:
     - shader: unshaded
       state: chem_gas_old
   - type: RadarBlip
-    radarColor: "#934242"
+    radarColor: "#444927"
     scale: 0.7
     shape: Circle
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след майнерсого
 - type: entity
@@ -233,7 +240,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#a1239b"
     noRot: true
@@ -247,6 +254,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след пустотного
 - type: entity
@@ -255,7 +263,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#00cbb7"
     noRot: true
@@ -269,6 +277,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 400
+    physics: false
 
 #region след синди красн
 - type: entity
@@ -277,7 +286,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#a30000"
     noRot: true
@@ -291,6 +300,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 200
+    physics: false
 
 #region след синди чёрн
 - type: entity
@@ -299,7 +309,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     color: "#6f0000"
     noRot: true
@@ -313,6 +323,7 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 200
+    physics: false
 
 #region след реакт боты
 - type: entity
@@ -321,7 +332,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Effects/atmospherics.rsi
+    sprite: _Lua/Effects/jetpack_trails.rsi
     drawdepth: SmallMobs
     noRot: true
     layers:
@@ -334,3 +345,4 @@
     visibleFromOtherGrids: true
     requireNoGrid: true
     maxDistance: 200
+    physics: false

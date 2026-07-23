@@ -9,6 +9,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using System.Numerics;
+using System.Collections.Generic;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Mono.Radar;
 
@@ -16,6 +18,11 @@ public sealed partial class RadarBlipSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    // Cache for non-physics blips: NetCoordinates, world position and last update time.
+    private readonly Dictionary<EntityUid, (NetCoordinates NetCoord, Vector2 WorldPos, TimeSpan LastUpdate)> _cachedNetCoords =
+        new();
 
     public override void Initialize()
     {
@@ -76,6 +83,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
     private void OnBlipShutdown(EntityUid blipUid, RadarBlipComponent component, ComponentShutdown args)
     {
+        // Remove any cached position for this blip
+        _cachedNetCoords.Remove(blipUid);
+
         var netBlipUid = GetNetEntity(blipUid);
         var removalEv = new BlipRemovalEvent(netBlipUid);
         RaiseNetworkEvent(removalEv);
@@ -92,9 +102,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
             var radarGrid = _xform.GetGrid(uid);
             var radarMapId = radarXform.MapID;
 
-            var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent, PhysicsComponent>();
+            var blipQuery = EntityQueryEnumerator<RadarBlipComponent, TransformComponent>();
 
-            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform, out var blipPhysics))
+            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
             {
                 if (!blip.Enabled)
                     continue;
@@ -107,26 +117,56 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
                 var blipGrid = blipXform.GridUid;
 
-                var blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
+                Vector2 blipVelocity;
+                NetCoordinates sendNetCoord;
+                Vector2 sendWorldPos;
 
-                var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
+                // Если блип используется на физическом объекте - использовать компонент physics для просчёта его координат и движения (If a blip is used on a physical entity, use a physics component to calculate its coordinates and movement.)
+                if (blip.Physics && TryComp<PhysicsComponent>(blipUid, out var blipPhysics))
+                {
+                    blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
+                    sendWorldPos = _xform.GetWorldPosition(blipXform);
+                    var coord = blipXform.Coordinates;
+                    if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
+                        coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
+                    if (blipGrid != null)
+                        blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position);
 
+                    sendNetCoord = GetNetCoordinates(coord);
+                }
+                else
+                {
+                    // Статичный блип у нас использует координаты из кэша и обновляется раз в 60 секунд. (Static blip uses coordinates from the cache and updates every 60 seconds.)
+                    var now = _timing.CurTime;
+                    if (!_cachedNetCoords.TryGetValue(blipUid, out var cached) || now - cached.LastUpdate > TimeSpan.FromSeconds(60))
+                    {
+                        // Обновление координат и кэширование (Recompute and cache.)
+                        var coord = blipXform.Coordinates;
+                        if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
+                            coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
+
+                        sendNetCoord = GetNetCoordinates(coord);
+                        sendWorldPos = _xform.GetWorldPosition(blipXform);
+                        _cachedNetCoords[blipUid] = (sendNetCoord, sendWorldPos, now);
+                    }
+                    else
+                    {
+                        sendNetCoord = cached.NetCoord;
+                        sendWorldPos = cached.WorldPos;
+                    }
+
+                    blipVelocity = Vector2.Zero;
+                }
                 float maxDistance = blip.MaxDistance;
                 var radarMax = component?.MaxRange ?? SharedRadarConsoleSystem.DefaultMaxRange;
                 var allowedDistance = Math.Min(maxDistance, radarMax);
+                var distance = (sendWorldPos - radarPosition).Length();
+
                 if (distance > allowedDistance) continue;
                 if ((blip.RequireNoGrid && blipGrid != null) || (!blip.VisibleFromOtherGrids && blipGrid != radarGrid)) continue;
 
-                // due to PVS being a thing, things will break if we try to parent to not the map or a grid
-                var coord = blipXform.Coordinates;
-                if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
-                    coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
-                // we're parented to either the map or a grid and this is relative velocity so account for grid movement
-                if (blipGrid != null)
-                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position);
-
                 var sonarEcho = HasComp<RadarSonarEchoComponent>(blipUid);
-                blips.Add((netBlipUid, GetNetCoordinates(coord), blipVelocity, blip.Scale, blip.RadarColor, blip.Shape, sonarEcho));
+                blips.Add((netBlipUid, sendNetCoord, blipVelocity, blip.Scale, blip.RadarColor, blip.Shape, sonarEcho));
             }
         }
 

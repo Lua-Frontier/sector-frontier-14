@@ -483,3 +483,8 @@
     Speso: 250000
   categories:
   - UplinkConverter
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TypanUplink
