@@ -40,7 +40,7 @@
 - type: gameMap
   id: TypanLua
   mapName: 'Нордфолл'
-  mapPath: /Maps/_Lua/Maps/ds_typan.yml
+  mapPath: /Maps/_Lua/Maps/Nordfall.yml
   isGrid: true
   minPlayers: 0
   stations:
@@ -49,6 +49,7 @@
       components:
       - type: FactionCapture
         captureWholeStation: true
+      - type: GridGodMode
       - type: RadarBlipIcon
         icon: /Textures/_Lua/Interface/Radar/space-station.png
         scale: 1.2
