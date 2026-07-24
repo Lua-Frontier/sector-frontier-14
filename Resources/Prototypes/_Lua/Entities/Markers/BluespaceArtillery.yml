@@ -1,7 +1,7 @@
 #region вызов АДД
 - type: entity
   name: моментальный эффект
-  suffix: "АДД удар"
+  suffix: "Спавнер АДД"
   id: AdminInstantEffectBSA
   parent: MarkerBase
   components:
@@ -93,11 +93,12 @@
     canCreateVacuum: true
   - type: TriggerOnSpawn
   - type: TimedDespawn
-    lifetime: 2
+    lifetime: 0.9
   - type: RadarBlip # красивый маркер взывов на сканере
-    radarColor: "#d66800"
-    scale: 3
+    radarColor: "#ff8800"
+    scale: 8
     shape: Circle
     visibleFromOtherGrids: true
     requireNoGrid: false
     maxDistance: 4096
+    physics: false
