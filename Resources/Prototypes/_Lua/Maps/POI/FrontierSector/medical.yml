@@ -11,7 +11,7 @@
   minimumDistance: 1000 #450 Lua
   maximumDistance: 2000 #600 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/Med2.yml
+  gridPath: /Maps/_Lua/POI/MedCenterShuttle.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/medical.png
@@ -26,7 +26,7 @@
 - type: gameMap
   id: Medical
   mapName: 'Медицинский Центр'
-  mapPath: /Maps/_Lua/POI/Med2.yml
+  mapPath: /Maps/_Lua/POI/MedCenterShuttle.yml
   minPlayers: 0
   stations:
     Medical:

@@ -18,7 +18,7 @@
     requiredJobs:
       Sheriff: 1
   - type: BluespaceErrorRule
-    asteroid: false
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -63,7 +63,7 @@
     requiredJobs:
       Sheriff: 1
   - type: BluespaceErrorRule
-    asteroid: false
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
@@ -107,7 +107,7 @@
     requiredJobs:
       Sheriff: 1
   - type: BluespaceErrorRule
-    asteroid: false
+    asteroid: true
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:

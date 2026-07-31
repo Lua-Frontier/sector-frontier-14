@@ -15,7 +15,7 @@
   minimumDistance: 2000 #750 Lua
   maximumDistance: 3000 #1000 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/DSNfsd.yml
+  gridPath: /Maps/_Lua/POI/NFSDNew.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/nfsd.png
@@ -27,7 +27,7 @@
 - type: gameMap
   id: Nfsd
   mapName: 'Аванпост СРБС'
-  mapPath: /Maps/_Lua/POI/DSNfsd.yml
+  mapPath: /Maps/_Lua/POI/NFSDNew.yml
   minPlayers: 0
   stations:
     Nfsd:
