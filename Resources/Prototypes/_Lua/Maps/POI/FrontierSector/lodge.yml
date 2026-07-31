@@ -8,14 +8,59 @@
 
 # Notes:
 # Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
+# - type: pointOfInterest
+#   id: Lodge
+#   parent: BasePOI
+#   name: 'Аванпост ЭИК'
+#   minimumDistance: 2300 #1650 Lua
+#   maximumDistance: 5400 #3400 Lua
+#   spawnGroup: Required
+#   gridPath: /Maps/_Lua/POI/ERCOutpostL.yml
+#   addComponents:
+#   - type: RadarBlipIcon
+#     icon: /Textures/_Lua/Interface/Radar/space-outpost.png
+#     scale: 1.2
+#     allowWhenHidden: true
+#   - type: IFF
+#     color: "#3737F8"
+
+# - type: gameMap
+#   id: Lodge
+#   mapName: 'Аванпост ЭИК'
+#   mapPath: /Maps/_Lua/POI/ERCOutpostL.yml
+#   minPlayers: 0
+#   stations:
+#     Lodge:
+#       stationProto: MarketFrontierOutpost
+#       components:
+#         - type: FactionCapture
+#           captureWholeStation: true
+#         - type: SolarPoweredGrid
+#           trackOnInit: true
+#           doNotCull: true
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Аванпост ЭИК'
+#         - type: ExtraStationInformation
+#           iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
+#           stationSubtext: 'frontier-lobby-erc-subtext'
+#           stationDescription: 'frontier-lobby-erc-description'
+#           lobbySortOrder: 3
+#           requiredCompany: Nanotrasen
+#         - type: StationJobs
+#           availableJobs:
+#             Vip: [ -1, -1 ]
+#             Pilot: [ -1, -1 ]
+#         - type: StationDeadDrop
+#           maxDeadDrops: 1 # Fewer here, players start here.
+
 - type: pointOfInterest
   id: Lodge
   parent: BasePOI
-  name: 'Аванпост ЭИК'
+  name: 'Аванпост Экспедиций'
   minimumDistance: 2300 #1650 Lua
   maximumDistance: 5400 #3400 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/ERCOutpostL.yml
+  gridPath: /Maps/_Lua/POI/Expedition_Outpost.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/space-outpost.png
@@ -26,8 +71,8 @@
 
 - type: gameMap
   id: Lodge
-  mapName: 'Аванпост ЭИК'
-  mapPath: /Maps/_Lua/POI/ERCOutpostL.yml
+  mapName: 'Аванпост Экспедиций'
+  mapPath: /Maps/_Lua/POI/Expedition_Outpost.yml
   minPlayers: 0
   stations:
     Lodge:
@@ -39,7 +84,7 @@
           trackOnInit: true
           doNotCull: true
         - type: StationNameSetup
-          mapNameTemplate: 'Аванпост ЭИК'
+          mapNameTemplate: 'Аванпост Экспедиций'
         - type: ExtraStationInformation
           iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
           stationSubtext: 'frontier-lobby-erc-subtext'
