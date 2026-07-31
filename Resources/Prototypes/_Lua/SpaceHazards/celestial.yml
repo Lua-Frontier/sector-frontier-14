@@ -10,6 +10,7 @@
   components:
   - type: Transform
   - type: GlobalPvs
+  - type: AutoDespawnExempt
   - type: SpaceHazardActivity
     activationRange: 1024
     idleTimeout: 600
@@ -68,6 +69,7 @@
   - type: Transform
   - type: GlobalPvs
   - type: CleanupImmune
+  - type: AutoDespawnExempt
   - type: SpaceHazardActivity
     activationRange: 1024
     idleTimeout: 600

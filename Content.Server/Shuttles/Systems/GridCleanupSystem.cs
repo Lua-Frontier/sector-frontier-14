@@ -98,11 +98,9 @@ public sealed class GridCleanupSystem : EntitySystem
         if (HasComp<GatewayGeneratorDestinationComponent>(gridUid) || HasComp<MapperGridComponent>(gridUid))
             return;
 
-        // Skip if already scheduled for deletion
-        if (_pendingCleanup.ContainsKey(gridUid))
-            return;
         if (HasComp<ExpeditionPlanetComponent>(gridUid) || HasComp<ExpeditionMapComponent>(gridUid))
             return;
+
         var transform = Transform(gridUid);
         var mapId = transform.MapID;
         var mapUid = _mapManager.GetMapEntityId(mapId);
@@ -110,15 +108,22 @@ public sealed class GridCleanupSystem : EntitySystem
         if (HasComp<ExpeditionMapComponent>(mapUid) || HasComp<ExpeditionPlanetComponent>(mapUid))
             return;
 
-        // Count tiles
         var tileCount = CountTiles((gridUid, grid));
 
-        // If the tile count is below our threshold, schedule it for deletion
-        if (tileCount < MinimumTiles)
+        if (tileCount >= MinimumTiles)
         {
-            Logger.DebugS("salvage", $"CheckGrid: Scheduling grid {gridUid} for cleanup with {tileCount} tiles");
-            ScheduleGridCleanup(gridUid, tileCount == 0 ? EmptyGridCleanupDelay : CleanupDelay);
+            _pendingCleanup.Remove(gridUid);
+            return;
         }
+        if (_pendingCleanup.ContainsKey(gridUid))
+        {
+            if (tileCount > 0)
+                _pendingCleanup[gridUid] = _timing.CurTime + TimeSpan.FromSeconds(CleanupDelay);
+            return;
+        }
+
+        Logger.DebugS("salvage", $"CheckGrid: Scheduling grid {gridUid} for cleanup with {tileCount} tiles");
+        ScheduleGridCleanup(gridUid, tileCount == 0 ? EmptyGridCleanupDelay : CleanupDelay);
     }
 
     private void ScheduleGridCleanup(EntityUid gridUid, float delaySeconds)
