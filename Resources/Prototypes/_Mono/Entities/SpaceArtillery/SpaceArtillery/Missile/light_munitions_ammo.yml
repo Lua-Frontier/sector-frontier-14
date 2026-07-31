@@ -8,7 +8,7 @@
   - type: Projectile
     damage:
       types:
-        Structural: 6500
+        Structural: 7500
         Blunt: 7500
         Heat: 500
   - type: Sprite
@@ -219,7 +219,7 @@
     requireNoGrid: true
     shape: triangle
   - type: TimedDespawn
-    lifetime: 0.8
+    lifetime: 1
   - type: PointLight
     radius: 5
     color: green
@@ -228,8 +228,9 @@
   - type: Explosive
     explosionType: HardBombShipGun
     maxIntensity: 500
-    intensitySlope: 10
-    totalIntensity: 500
+    intensitySlope: 50
+    totalIntensity: 1500
+    maxTileBreak: 5
   - type: TargetSeeking
     acceleration: 200
     detectionRange: 1

@@ -72,12 +72,12 @@
     intensitySlope: 30
     totalIntensity: 7000
   - type: TargetSeeking
-    acceleration: 20
+    acceleration: 25
     detectionRange: 750
     scanArc: 75
-    launchSpeed: 25
+    launchSpeed: 20
     maxSpeed: 70
-    trackDelay: 3
+    trackDelay: 2
   # destructible components below
   - type: Damageable
     damageContainer: Inorganic
@@ -249,7 +249,7 @@
     acceleration: 70
     detectionRange: 750
     scanArc: 15
-    launchSpeed: 45
+    launchSpeed: 50
     maxSpeed: 250
     trackDelay: 1
   - type: Explosive
@@ -355,14 +355,14 @@
     intensitySlope: 4
     totalIntensity: 1000
   - type: TargetSeeking
-    acceleration: 20
-    detectionRange: 750
+    acceleration: 30
+    detectionRange: 1000
     scanArc: 45
-    launchSpeed: 25
-    maxSpeed: 70
-    trackDelay: 3
+    launchSpeed: 20
+    maxSpeed: 90
+    trackDelay: 2
   - type: EmpOnTrigger
-    range: 7
+    range: 12
     energyConsumption: 2900000
     disableDuration: 10
   # destructible components below
