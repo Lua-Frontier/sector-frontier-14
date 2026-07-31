@@ -1,6 +1,7 @@
 using Content.Server.Power.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
+using Content.Shared.Power;
 
 namespace Content.Server.PowerCell;
 

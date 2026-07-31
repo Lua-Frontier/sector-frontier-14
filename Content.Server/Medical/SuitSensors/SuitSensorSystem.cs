@@ -27,7 +27,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Shared._Lua.Expedition; // Frontier
 using Content.Server._NF.Medical.SuitSensors; // Frontier
 using Content.Server._Lua.Sectors; // Lua
 using Content.Shared.Emp; // Frontier
@@ -521,7 +521,7 @@ public sealed class SuitSensorSystem : EntitySystem
                             _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)));
 
                     // Frontier: check if sensor is on expedition
-                    if (TryComp<SalvageExpeditionComponent>(transform.MapUid, out var salvageComp))
+                    if (HasComp<ExpeditionMapComponent>(transform.MapUid))
                         locationName = Loc.GetString("suit-sensor-location-expedition");
                     else if (TryComp(transform.GridUid, out MetaDataComponent? meta))
                         locationName = meta.EntityName;

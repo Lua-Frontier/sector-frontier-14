@@ -48,6 +48,7 @@
     level: 1
     radsPerLevel: 4 # Frontier: 2<4
     energyLoss: 1
+  - type: CleanupImmune
   - type: RandomWalk # To make the singularity move around.
     maxSpeed: 2.5
     minSpeed: 1.875

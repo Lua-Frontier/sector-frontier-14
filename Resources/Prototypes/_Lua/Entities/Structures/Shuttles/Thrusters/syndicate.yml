@@ -1,0 +1,24 @@
+- type: entity
+  id: ThrusterSyndie
+  parent: Thruster
+  suffix: Syndicate
+  components:
+  - type: Thruster
+    baseThrust: 100
+    thrust: 136
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#C44D57"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#C44D57"

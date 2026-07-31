@@ -12,6 +12,7 @@ stargate-console-no-gate = Не найдены связанные Звёздны
 stargate-console-invalid-address = Неверный адрес.
 stargate-console-dial-failed = Не удалось установить соединение.
 stargate-console-overloaded = Система врат перегружена
+stargate-console-planets-disabled = Набор планетарных координат отключён. Доступны только существующие врата.
 stargate-console-gate-busy = Звёздные врата заняты - активна входящая червоточина.
 stargate-controllable-activate = Активировать Звёздные врата
 stargate-controllable-deactivate = Деактивировать Звёздные врата
@@ -43,6 +44,7 @@ stargate-minimap-status = Картограф Lua Technologies
 stargate-minimap-not-planet = Не планета
 stargate-minimap-insert-disk = Вставьте картографический диск
 stargate-minimap-gate = Врата
+stargate-minimap-shuttle = Шаттл
 
 ent-StargateConsole = наборное устройство
     .desc = Панель для набора адресов Звёздных врат и установки червоточины.

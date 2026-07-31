@@ -1,4 +1,5 @@
 using Content.Shared._Lua.Shuttles;
+using Content.Shared._Lua.SpaceHazards;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.BUIStates;
@@ -145,6 +146,9 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
     public bool CanDraw(EntityUid gridUid, PhysicsComponent? physics = null, IFFComponent? iffComp = null)
     {
+        if (HasComp<NebulaVeilTrackedComponent>(gridUid))
+            return false;
+
         if (!Resolve(gridUid, ref physics))
             return true;
 

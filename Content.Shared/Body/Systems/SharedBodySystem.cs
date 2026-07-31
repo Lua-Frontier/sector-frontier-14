@@ -1,3 +1,4 @@
+using Content.Shared.Body.Part; // Shitmed Change
 using Content.Shared.Damage;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
@@ -28,13 +29,13 @@ public abstract partial class SharedBodySystem : EntitySystem
     /// </summary>
     public const string OrganSlotContainerIdPrefix = "body_organ_slot_";
 
-    [Dependency] private   readonly IGameTiming _timing = default!;
-    [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
-    [Dependency] protected readonly MovementSpeedModifierSystem Movement = default!;
-    [Dependency] protected readonly SharedContainerSystem Containers = default!;
-    [Dependency] protected readonly SharedTransformSystem SharedTransform = default!;
-    [Dependency] protected readonly StandingStateSystem Standing = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] protected IPrototypeManager Prototypes = default!;
+    [Dependency] protected DamageableSystem Damageable = default!;
+    [Dependency] protected MovementSpeedModifierSystem Movement = default!;
+    [Dependency] protected SharedContainerSystem Containers = default!;
+    [Dependency] protected SharedTransformSystem SharedTransform = default!;
+    [Dependency] protected StandingStateSystem Standing = default!;
 
     public override void Initialize()
     {
@@ -42,6 +43,13 @@ public abstract partial class SharedBodySystem : EntitySystem
 
         InitializeBody();
         InitializeParts();
+        InitializeOrgans();
+        // Shitmed Change Start
+        // To try and mitigate the server load due to integrity checks, we set up a Job Queue.
+        InitializeIntegrityQueue();
+        InitializePartAppearances();
+        InitializeRelay();
+        // Shitmed Change End
     }
 
     /// <summary>

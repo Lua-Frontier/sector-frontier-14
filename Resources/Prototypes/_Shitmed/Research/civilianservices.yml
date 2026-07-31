@@ -1,0 +1,62 @@
+# Shitmed research — remapped from Monolith CivilianServices onto SF14 NFMedical
+
+- type: technology
+  id: AdvancedTreatment
+  name: research-technology-advanced-treatment
+  entityIcon: EnergyScalpel
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - EnergyScalpel
+  - EnergyCautery
+  - AdvancedRetractor
+  - BorgModuleAdvancedSurgery
+  technologyPrerequisites:
+  - NFEngineeringMedicine
+  position: 3.2, 21.2
+
+- type: technology
+  id: CyberneticEnhancements
+  name: research-technology-cybernetic-enhancements
+  entityIcon: SecurityCyberneticEyes
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - JawsOfLifeLeftArm
+  - JawsOfLifeRightArm
+  - SpeedLeftLeg
+  - SpeedRightLeg
+  - DexLeftHand
+  - DexRightHand
+  - BasicCyberneticEyes
+  - SecurityCyberneticEyes
+  - MedicalCyberneticEyes
+  technologyPrerequisites:
+  - AdvancedTreatment
+  position: 3.2, 22.4
+
+- type: technology
+  id: HighEndSurgery
+  name: research-technology-high-end-surgery
+  entityIcon: OmnimedTool
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 3
+  cost: 45000
+  recipeUnlocks:
+  - ShitmedOmnimedTool
+  - AutodocCircuitboard
+  - OperatingTableCircuitboard
+  technologyPrerequisites:
+  - CyberneticEnhancements
+  position: 3.2, 23.6

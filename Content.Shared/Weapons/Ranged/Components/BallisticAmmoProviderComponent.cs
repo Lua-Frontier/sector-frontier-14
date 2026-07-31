@@ -22,7 +22,7 @@ public sealed partial class BallisticAmmoProviderComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public int Capacity = 30;
 
-    public int Count => UnspawnedCount + Container.ContainedEntities.Count;
+    public int Count => Container.ContainedEntities.Count + (InfiniteUnspawned ? 0 : UnspawnedCount);
 
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public int UnspawnedCount;
@@ -57,4 +57,11 @@ public sealed partial class BallisticAmmoProviderComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan FillDelay = TimeSpan.FromSeconds(0.5);
+
+    /// <summary>
+    /// Mono - ignore UnspawnedCount and keep firing the prototype ammo indefinitely.
+    /// Entity ammo in the container is still preferred and consumed first.
+    /// </summary>
+    [DataField]
+    public bool InfiniteUnspawned = false;
 }

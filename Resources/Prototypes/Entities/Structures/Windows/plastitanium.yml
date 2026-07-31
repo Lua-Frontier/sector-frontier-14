@@ -46,6 +46,9 @@
         - WallLayer
         density: 4000
 
+  - type: ShipRepairable
+    repairTime: 8
+    repairCost: 8
 - type: entity
   id: PlastitaniumWindowSquareBase
   abstract: true
@@ -95,13 +98,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 9000 #1000 - Lua
+        damage: 3600 # Mono
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 6000 #500 - Lua
+        damage: 3500 # Mono
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -199,13 +202,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 9000 #1000 - Lua
+        damage: 3600 # Mono
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 6000 #500 - Lua
+        damage: 3500 # Mono
       behaviors:
       - !type:PlaySoundBehavior
         sound:

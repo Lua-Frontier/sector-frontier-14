@@ -1,13 +1,23 @@
+# Random / alternate worldgen presets.
+# No AsteroidsFallback / AsteroidSectorFallback / Failsafe.
+# Far coverage: Mono rings + DeepVoid, or NFAsteroidsFar + DeepVoid.
+
+#region Mix (inner standard + far rings)
+
 - type: worldgenConfig
   id: WG_Asteroids_Mix_01
   components:
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidsFallback
-        - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Asteroids_Mix_02
@@ -15,10 +25,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidsFallback
-        - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Asteroids_Mix_03
@@ -26,10 +40,18 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidsFallback
-        - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
+
+#endregion
+
+#region Sector rich
 
 - type: worldgenConfig
   id: WG_Sector_Rich_01
@@ -37,10 +59,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidSectorFallback
-        - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Sector_Rich_02
@@ -48,10 +74,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidSectorFallback
-        - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Sector_Rich_03
@@ -59,10 +89,18 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidSectorFallback
-        - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
+
+#endregion
+
+#region Three-ring / far-only
 
 - type: worldgenConfig
   id: WG_ThreeRing_01
@@ -70,8 +108,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
-        - NFAsteroidsFar
+        - AsteroidsStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_ThreeRing_02
@@ -79,8 +123,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidsFallback
-        - NFAsteroidsFar
+        - AsteroidsStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_ThreeRing_03
@@ -88,8 +138,18 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - AsteroidSectorFallback
-        - NFAsteroidsFar
+        - AsteroidSectorStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
+
+#endregion
+
+#region Balanced
 
 - type: worldgenConfig
   id: WG_Balanced_01
@@ -97,9 +157,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Balanced_02
@@ -107,9 +172,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Balanced_03
@@ -117,19 +187,34 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
         - AsteroidsStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
+#endregion
+
+#region Sparse / Dense
+
+# Sparse: full ring coverage, but starts thinning earlier (no dense T1/T2A bias — still continuous)
 - type: worldgenConfig
   id: WG_Sparse_01
   components:
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
-        - AsteroidsFallback
-        - NFAsteroidsFar
+        - AsteroidsStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Sparse_02
@@ -137,9 +222,14 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
-        - AsteroidSectorFallback
-        - NFAsteroidsFar
+        - AsteroidSectorStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
   id: WG_Dense_01
@@ -147,8 +237,13 @@
     - type: WorldController
     - type: BiomeSelection
       biomes:
-        - Failsafe
         - AsteroidSectorStandard
-        - NFAsteroidsFar
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
 
-
+#endregion

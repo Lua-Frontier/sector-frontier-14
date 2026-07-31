@@ -1,0 +1,60 @@
+# Flare countermeasure projectiles (Mono SparkFlare + ShipSunnyFlare)
+
+- type: entity
+  id: SparkFlare
+  name: Signal Emitter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TargetSeekingTarget
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: EmbeddableProjectile
+    deleteOnRemove: true
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        mask:
+        - ItemMask
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    state: magicm_cyan
+    scale: 0.3,0.3
+  - type: TimedDespawn
+    lifetime: 40
+  - type: AmbientSound
+    enabled: true
+    volume: -10
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+      params:
+        loop: true
+  - type: PointLight
+    enabled: true
+    color: "#CF0E0E"
+    radius: 9.0
+    energy: 3.0
+    netsync: false
+  - type: RadarBlip
+    scale: 4
+    shape: square
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Heat: 0
+
+- type: entity
+  id: ShipSunnyFlare
+  name: ECM Flare
+  parent: SparkFlare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadarBlip
+    radarColor: "#32CD32"
+    scale: 1
+    shape: hexagon

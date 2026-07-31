@@ -64,6 +64,11 @@ public enum IFFFlags : byte
     /// </summary>
     IsPlayerShuttle = 4,
 
+    /// <summary>
+    /// Mono: if HideLabel is set, still show the grid's true IFF color on radar. (we use any method to show the color Lua)
+    /// </summary>
+    AlwaysShowColor = 16,
+
     // TODO: Need one that hides its outline, just replace it with a bunch of triangles or lines or something.
 }
 

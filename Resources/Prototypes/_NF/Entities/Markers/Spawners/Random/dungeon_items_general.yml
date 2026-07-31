@@ -45,7 +45,7 @@
     - FolderSpawner
     - FolderSpawner
     - SpawnDungeonLootBureaucracyPen
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootVendingRestocks
@@ -83,7 +83,7 @@
     - LuxuryPen
     - PenCap
     - PenHop
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - PenExplodingBox
@@ -129,11 +129,11 @@
     - WardrobePinkFilled
     - WardrobeWhiteFilled
     - WardrobeYellowFilled
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootSuitStorageUnitsGeneral
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random suit storage unit
@@ -176,7 +176,7 @@
     - SuitStorageEngi
     - SuitStorageAtmos
     - SuitStorageSalv
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SuitStorageNTSRA
@@ -184,7 +184,7 @@
     - SuitStorageCE
     - SuitStorageQuartermaster
     - SuitStorageCMO
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random locker
@@ -208,7 +208,7 @@
     - ClosetFire
     - ClosetEmergencyFilledRandom
     - ClosetFireFilled
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - ClosetBomb
@@ -218,7 +218,7 @@
     - ClosetRadiationSuitFilled
     - ClosetL3Filled
     - SpawnDungeonLootSuitStorageUnitsGeneral
-    rareChance: 0.25
+    rareChance: 0.125
 
 - type: entity
   name: random bedroom
@@ -247,11 +247,11 @@
     - Bed
     - DogBed
     - Bookshelf
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootLockersGeneral
-    rareChance: 0.1
+    rareChance: 0.05
 
 - type: entity
   name: random crate
@@ -294,11 +294,11 @@
     - NFCrateSalvageAssortedGoodiesPlastic
     - SalvageMaterialCrateSpawner
     - CrateFilledSpawner
-    chance: 0.9
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootCrateArmoryWeapon
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random crate
@@ -333,7 +333,7 @@
     - CrateMaterialPaper
     - WeldingFuelTankFull
     - WaterTankFull
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - WeldingFuelTankHighCapacity
@@ -365,7 +365,7 @@
     - SpawnDungeonLootCrateRestockMed
     - SpawnDungeonLootCrateRestockHydro
     - SpawnDungeonLootCrateRestockService
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 - type: entity
@@ -393,7 +393,7 @@
     - CrateVendingMachineRestockPrideFilled
     - CrateVendingMachineRestockSalvageEquipmentFilled
     - CrateVendingMachineRestockSecTechFilled
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 # Machines
@@ -425,13 +425,13 @@
     - MachineFlatpacker
     - SpawnDungeonMachineFrame
     - SpawnDungeonLootFlatpacks
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - OreProcessorIndustrial
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
-    rareChance: 0.03
+    rareChance: 0.015
 
 - type: entity
   name: random vendomat # drinks, smokes, toy, decor
@@ -481,14 +481,14 @@
     #- VendingMachineSnackOrange
     #- VendingMachineSnackGreen
     #- VendingMachineSnackTeal
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     # - VendingMachineChemicalsSyndicate # A bit less Syndicate loot
     - VendingMachineArcadia
     # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineSyndieContraband
-    rareChance: 0.03 # actually rare vs. entry frequencies
+    rareChance: 0.015 # actually rare vs. entry frequencies
 
 - type: entity
   name: random vendomat
@@ -526,7 +526,7 @@
     - VendingMachineGeneDrobe
     - VendingMachineViroDrobe
     - VendingMachineClothingPunk
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - VendingMachineMagivend
@@ -535,7 +535,7 @@
     # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineSyndieContraband
     - SpawnDungeonMachineFrame
-    rareChance: 0.03
+    rareChance: 0.015
 
 - type: entity
   name: random vendomat
@@ -558,7 +558,7 @@
     - VendingMachineRobotics
     - VendingMachineYouTool
     - VendingMachineSalvage
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - LessLethalVendingMachine
@@ -569,7 +569,7 @@
     - VendingMachineSec
     - VendingMachineArcadia
     - SpawnDungeonMachineFrame
-    rareChance: 0.03
+    rareChance: 0.015
 
 - type: entity
   name: random machine frame
@@ -591,7 +591,7 @@
     - MachineFrameDestroyed
     - UnfinishedMachineFrame
     - MachineFrame
-    chance: 1
+    chance: 0.4
     offset: 0.0
 
 - type: entity
@@ -614,7 +614,7 @@
     - MachineFrameDestroyed
     - ComputerFrame
     - ComputerBroken
-    chance: 1
+    chance: 0.4
     offset: 0.0
 
 - type: entity
@@ -647,7 +647,7 @@
     - StorageCanisterBroken
     - WaterVaporCanisterBroken
     - OxygenCanisterBroken
-    chance: 1
+    chance: 0.4
     offset: 0.0
 
 # Other
@@ -724,7 +724,7 @@
     - ComputerIFFCircuitboard
     - SpawnDungeonLootFlatpacks
     - MercenaryTechFabCircuitboardNF
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - CloningPodMachineCircuitboard
@@ -758,14 +758,14 @@
     - SpaceCash1000
     - SpaceCash1000
     - SpaceCash2500
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpaceCash5000
     - SpaceCash10000
     - SpaceCash20000
     - SpaceCash30000
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random materials
@@ -794,7 +794,7 @@
     - SheetPlasma
     - SheetUranium
     - MaterialCloth
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SheetPaper
@@ -804,7 +804,7 @@
     - CableMVStack
     - CableApcStack
     - SheetRGlass
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random materials
@@ -828,7 +828,7 @@
     - SheetRUGlass
     - SheetPlasteel
     - MaterialDurathread
-    chance: 0.9
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond1
@@ -866,7 +866,7 @@
     - CableMVStack1
     - CableApcStack1
     - ShardGlass
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - MaterialBananium1
@@ -896,7 +896,7 @@
     - SheetPlasteel1
     - MaterialDurathread1
     - ShardGlass
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond1
@@ -928,11 +928,11 @@
     - SpaceQuartz
     - UraniumOre
     - Coal
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - BananiumOre
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random ores
@@ -958,11 +958,11 @@
     - SpaceQuartz1
     - UraniumOre1
     - Coal1
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - BananiumOre1
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random vehicle crate
@@ -983,11 +983,11 @@
   - type: RandomSpawner
     prototypes:
     - CrateFunATV
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - CrateFunHoverbikeNF
-    rareChance: 0.35
+    rareChance: 0.175
 
 - type: entity
   name: random briefcase
@@ -1007,7 +1007,7 @@
     prototypes:
     - BriefcaseBrown
     - BriefcaseBrownFilled
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes: # Make sure to scan all the briefcases for loot
     - BriefcaseSyndieLobbyingBundleFilled
@@ -1049,7 +1049,7 @@
     - ComputerResearchAndDevelopmentFlatpack
     - ResearchAndDevelopmentServerFlatpack
     - MercenaryTechFabFlatpack
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
 #    rarePrototypes: # comment from _Lua
 #    - AmmoTechFabFlatpack
@@ -1100,7 +1100,7 @@
     - VendingMachineRestockNonLethalVend
     - VendingMachineRestockAutoTuneVend
     - VendingMachineRestockPottedPlantVend
-    chance: 0.95
+    chance: 0.55
     offset: 0.0
 
 - type: entity

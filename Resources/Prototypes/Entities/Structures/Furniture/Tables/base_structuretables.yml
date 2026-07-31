@@ -44,6 +44,8 @@
   - type: RequireProjectileTarget # Goobstation - Crawling
     ignoreThrow: true
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: CounterBase
   parent: TableBase

@@ -72,6 +72,8 @@ namespace Content.Client.Stylesheets
         public const string StyleClassSliderGreen = "Green";
         public const string StyleClassSliderBlue = "Blue";
         public const string StyleClassSliderWhite = "White";
+        public const string StyleClassSliderThin = "SliderThin";
+        public const string StyleClassLineEditSliderThin = "LineEditSliderThin";
 
         public const string StyleClassLabelHeadingBigger = "LabelHeadingBigger";
         public const string StyleClassLabelKeyText = "LabelKeyText";
@@ -81,6 +83,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassButtonBig = "ButtonBig";
 
         public const string StyleClassButtonHelp = "HelpButton";
+        public const string StyleClassButtonNavCompact = "ButtonNavCompact";
 
         public const string StyleClassPopupMessageSmall = "PopupMessageSmall";
         public const string StyleClassPopupMessageSmallCaution = "PopupMessageSmallCaution";
@@ -533,6 +536,48 @@ namespace Content.Client.Stylesheets
             sliderBackBox.SetPatchMargin(StyleBox.Margin.All, 12);
             sliderForeBox.SetPatchMargin(StyleBox.Margin.All, 12);
             sliderGrabBox.SetPatchMargin(StyleBox.Margin.All, 12);
+
+            // Compact flat slider (nav console etc.)
+            var sliderThinBack = new StyleBoxFlat
+            {
+                BackgroundColor = Color.FromHex("#121512"),
+                ContentMarginTopOverride = 2,
+                ContentMarginBottomOverride = 2,
+            };
+            var sliderThinFill = new StyleBoxFlat
+            {
+                BackgroundColor = Color.FromHex("#4CAF6A"),
+                ContentMarginTopOverride = 2,
+                ContentMarginBottomOverride = 2,
+            };
+            var sliderThinFore = new StyleBoxFlat
+            {
+                BackgroundColor = Color.FromHex("#2A302A"),
+                BorderColor = Color.FromHex("#3E463E"),
+                BorderThickness = new Thickness(1),
+                ContentMarginTopOverride = 2,
+                ContentMarginBottomOverride = 2,
+            };
+            var sliderThinGrab = new StyleBoxFlat
+            {
+                BackgroundColor = Color.FromHex("#D7F5D7"),
+                BorderColor = Color.FromHex("#75BEC6"),
+                BorderThickness = new Thickness(1),
+                ContentMarginLeftOverride = 1,
+                ContentMarginRightOverride = 1,
+                ContentMarginTopOverride = 5,
+                ContentMarginBottomOverride = 5,
+            };
+            var lineEditSliderThin = new StyleBoxFlat
+            {
+                BackgroundColor = Color.FromHex("#161816"),
+                BorderColor = Color.FromHex("#3A403A"),
+                BorderThickness = new Thickness(1),
+                ContentMarginLeftOverride = 4,
+                ContentMarginRightOverride = 4,
+                ContentMarginTopOverride = 1,
+                ContentMarginBottomOverride = 1,
+            };
 
             var sliderFillGreen = new StyleBoxTexture(sliderFillBox) { Modulate = Color.LimeGreen };
             var sliderFillRed = new StyleBoxTexture(sliderFillBox) { Modulate = Color.Red };
@@ -1329,6 +1374,21 @@ namespace Content.Client.Stylesheets
                     new StyleProperty(Slider.StylePropertyFill, sliderFillWhite),
                 }),
 
+                new StyleRule(new SelectorElement(typeof(Slider), new[] { StyleClassSliderThin }, null, null), new[]
+                {
+                    new StyleProperty(Slider.StylePropertyBackground, sliderThinBack),
+                    new StyleProperty(Slider.StylePropertyForeground, sliderThinFore),
+                    new StyleProperty(Slider.StylePropertyGrabber, sliderThinGrab),
+                    new StyleProperty(Slider.StylePropertyFill, sliderThinFill),
+                }),
+
+                new StyleRule(new SelectorElement(typeof(LineEdit), new[] { StyleClassLineEditSliderThin }, null, null), new[]
+                {
+                    new StyleProperty(LineEdit.StylePropertyStyleBox, lineEditSliderThin),
+                    new StyleProperty("font", notoSans10),
+                    new StyleProperty("font-color", Color.FromHex("#C8D0C8")),
+                }),
+
                 // chat channel option selector
                 new StyleRule(new SelectorElement(typeof(Button), new[] {StyleClassChatChannelSelectorButton}, null, null), new[]
                 {
@@ -1413,6 +1473,9 @@ namespace Content.Client.Stylesheets
 
                 Element<Label>().Class(StyleClassLabelSmall)
                  .Prop(Label.StylePropertyFont, notoSans10),
+
+                Element<Button>().Class(StyleClassButtonNavCompact)
+                    .Prop("font", notoSans10),
                 // ---
 
                 // Different Background shapes ---
@@ -1682,6 +1745,59 @@ namespace Content.Client.Stylesheets
                     {
                         BackgroundColor = FancyTreeSelectedRowColor,
                     }),
+
+                // Shitmed targeting doll hover states
+                Element<TextureButton>().Class("TargetDollButtonHead")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/head_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonChest")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/torso_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonGroin")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/groin_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonLeftArm")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/leftarm_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonLeftHand")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/lefthand_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonRightArm")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/rightarm_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonRightHand")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/righthand_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonLeftLeg")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/leftleg_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonLeftFoot")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/leftfoot_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonRightLeg")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/rightleg_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonRightFoot")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/rightfoot_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonEyes")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/eyes_hover.png")),
+
+                Element<TextureButton>().Class("TargetDollButtonMouth")
+                    .Pseudo(TextureButton.StylePseudoClassHover)
+                    .Prop(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/_Shitmed/Interface/Targeting/Doll/mouth_hover.png")),
 
                 // Silicon law edit ui
                 Element<Label>().Class(SiliconLawContainer.StyleClassSiliconLawPositionLabel)

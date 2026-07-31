@@ -33,5 +33,6 @@ pirate-bounty-item-hydrotray = Hydroponics Tray
 pirate-bounty-item-hypo = Hypospray
 pirate-bounty-item-akms = AKMS
 pirate-bounty-item-enforcer = Enforcer
+pirate-bounty-item-shield = Ship Shield System
 
 pirate-bounty-description-generic = Go now, ye goon! Plunder me this!

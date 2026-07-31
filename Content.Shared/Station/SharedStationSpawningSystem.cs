@@ -175,10 +175,12 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             {
                 var inhandEntity = Spawn(prototype, coords);
 
-                if (_handsSystem.TryGetEmptyHand((entity, handsComponent), out var emptyHand))
-                {
-                    _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
-                }
+                if (_handsSystem.TryGetEmptyHand((entity, handsComponent), out var emptyHand)
+                    && _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent))
+                    continue;
+
+                // Avoid leaking gear next to the mob when hands are missing/unavailable.
+                QueueDel(inhandEntity);
             }
         }
 

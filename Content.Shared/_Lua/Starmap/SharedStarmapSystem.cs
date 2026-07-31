@@ -50,8 +50,9 @@ public sealed class StarmapConsoleBoundUserInterfaceState : BoundUserInterfaceSt
     public Dictionary<MapId, string> SectorIdByMap;
     public Dictionary<MapId, string> OwnerByMap;
     public Dictionary<MapId, string> SectorColorOverrideHexByMap;
+    public bool SectorsGloballyUnlocked;
 
-    public StarmapConsoleBoundUserInterfaceState(List<Star> stars, float range, List<HyperlaneEdge>? edges = null, List<MapId>? capturingMaps = null, float warpCooldownRemainingSeconds = 0f, float warpCooldownTotalSeconds = 0f, FTLState ftlState = FTLState.Invalid, StartEndTime ftlTime = default, List<MapId>? visibleSectorMaps = null, Dictionary<MapId, string>? sectorIdByMap = null, Dictionary<MapId, string>? ownerByMap = null, Dictionary<MapId, string>? sectorColorOverrideHexByMap = null)
+    public StarmapConsoleBoundUserInterfaceState(List<Star> stars, float range, List<HyperlaneEdge>? edges = null, List<MapId>? capturingMaps = null, float warpCooldownRemainingSeconds = 0f, float warpCooldownTotalSeconds = 0f, FTLState ftlState = FTLState.Invalid, StartEndTime ftlTime = default, List<MapId>? visibleSectorMaps = null, Dictionary<MapId, string>? sectorIdByMap = null, Dictionary<MapId, string>? ownerByMap = null, Dictionary<MapId, string>? sectorColorOverrideHexByMap = null, bool sectorsGloballyUnlocked = false)
     {
         Stars = stars;
         Range = range;
@@ -65,6 +66,7 @@ public sealed class StarmapConsoleBoundUserInterfaceState : BoundUserInterfaceSt
         SectorIdByMap = sectorIdByMap ?? new Dictionary<MapId, string>();
         OwnerByMap = ownerByMap ?? new Dictionary<MapId, string>();
         SectorColorOverrideHexByMap = sectorColorOverrideHexByMap ?? new Dictionary<MapId, string>();
+        SectorsGloballyUnlocked = sectorsGloballyUnlocked;
     }
 }
 

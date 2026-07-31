@@ -2,9 +2,10 @@
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
                       xmlns:starmap="clr-namespace:Content.Client._Lua.Starmap"
+                      xmlns:exp="clr-namespace:Content.Client._Lua.Expedition.UI"
                       Title="{Loc 'shuttle-console-window-title'}"
-                      SetSize="1260 782"
-                      MinSize="1260 782">
+                      SetSize="1260 780"
+                      MinSize="1260 780">
     <BoxContainer Orientation="Vertical">
         <!-- Top row mode buttons -->
         <BoxContainer Name="ModeButtons"
@@ -30,6 +31,12 @@
                     VerticalExpand="True"
                     Text="STARMAP"
                     Margin="5"/>
+            <Button Name="ExpModeButton"
+                    ToggleMode="True"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    Text="EXP"
+                    Margin="5"/>
             <Button Name="DockModeButton"
                     ToggleMode="True"
                     HorizontalExpand="True"
@@ -46,6 +53,7 @@
             <ui:MapScreen Name="MapContainer" Visible="False"/>
             <starmap:StarMapScreen Name="StarMapContainer" Visible="False"/>
             <ui:DockingScreen Name="DockContainer" Visible="False"/>
+            <exp:ExpScreen Name="ExpContainer" Visible="False"/>
         </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

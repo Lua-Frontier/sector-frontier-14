@@ -1,4 +1,5 @@
 using Content.Server.Destructible.Thresholds;
+using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Server.Destructible
 {
@@ -13,7 +14,7 @@ namespace Content.Server.Destructible
         /// A list of damage thresholds for the entity;
         /// includes their triggers and resultant behaviors
         /// </summary>
-        [DataField]
+        [DataField, NeverPushInheritance]
         public List<DamageThreshold> Thresholds = new();
 
         /// <summary>

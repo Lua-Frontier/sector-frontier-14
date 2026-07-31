@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client.Parallax;
 using Content.Client.Weather;
+using Content.Shared._Lua.Stargate.Components;
 using Content.Shared.Salvage;
 using Content.Shared.Weather;
 using Robust.Client.GameObjects;
@@ -63,12 +64,14 @@ public sealed partial class StencilOverlay : Overlay
 
         if (_entManager.TryGetComponent<WeatherComponent>(mapUid, out var comp))
         {
+            _entManager.TryGetComponent<SoftPlanetOverlayComponent>(mapUid, out var softOverlay);
             foreach (var (proto, weather) in comp.Weather)
             {
                 if (!_protoManager.TryIndex<WeatherPrototype>(proto, out var weatherProto))
                     continue;
 
                 var alpha = _weather.GetPercent(weather, mapUid);
+                if (softOverlay != null) alpha *= softOverlay.GetWeatherOpacity(proto);
                 DrawWeather(args, weatherProto, alpha, invMatrix);
             }
         }

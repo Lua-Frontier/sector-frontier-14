@@ -19,8 +19,8 @@
 - type: entity
   id: OrganBloodsuckerHeart
   parent: OrganAnimalHeart
-  name: heart
-  categories: [ HideSpawnMenu ]
+  name: space bloodsucker heart # Mono
+#  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     metabolizerTypes: [ Bloodsucker ]

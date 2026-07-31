@@ -686,6 +686,9 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  - type: ShipRepairable
+    repairTime: 6
+    repairCost: 6
 
 - type: entity
   id: HoloAirlock

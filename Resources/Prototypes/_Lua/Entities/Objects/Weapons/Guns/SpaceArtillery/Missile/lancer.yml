@@ -18,15 +18,16 @@
     sprite: _Lua/Objects/ShuttleWeapons/missile.rsi
     drawdepth: Mobs
     layers:
-      - state: rocket
+    - state: rocket
   - type: ContainerContainer
     containers:
+      gun_magazine: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: Destructible
     thresholds:
     - trigger:
-       !type:DamageTrigger
+        !type:DamageTrigger
         damage: 3500
       behaviors:
       - !type:PlaySoundBehavior
@@ -40,7 +41,7 @@
     projectileSpeed: 65 #40
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: Battery
     maxCharge: 20000
@@ -51,6 +52,19 @@
   - type: WirelessNetworkConnection
     range: 700
   - type: FireControllable
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLancer
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLancer
+        whitelistFailPopup: gun-magazine-whitelist-fail
   - type: SpaceArtillery
     powerChargeRate: 100
     powerUsePassive: 4000
@@ -59,6 +73,3 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletWolf
-    fireCost: 20000

@@ -4,6 +4,7 @@ using Content.Shared.Weather;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -20,10 +21,123 @@ public sealed class WeatherSystem : SharedWeatherSystem
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
+    private readonly HashSet<EntityUid> _streams = new();
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<WeatherComponent, ComponentHandleState>(OnWeatherHandleState);
+        SubscribeLocalEvent<WeatherComponent, ComponentShutdown>(OnWeatherShutdown);
+        SubscribeLocalEvent<WeatherComponent, EntityPausedEvent>(OnWeatherPaused);
+    }
+
+    private void OnWeatherShutdown(EntityUid uid, WeatherComponent component, ComponentShutdown args)
+    {
+        StopComponentStreams(component);
+        StopOrphanStreams();
+    }
+
+    private void OnWeatherPaused(EntityUid uid, WeatherComponent component, ref EntityPausedEvent args)
+    {
+        StopComponentStreams(component);
+        StopOrphanStreams();
+    }
+
+    private void ForceStop(ref EntityUid? stream)
+    {
+        if (stream is not { } uid)
+            return;
+
+        stream = null;
+        _streams.Remove(uid);
+        if (!Deleted(uid))
+            QueueDel(uid);
+    }
+
+    private EntityUid? PlayWeatherSound(SoundSpecifier sound)
+    {
+        var played = _audio.PlayGlobal(sound, Filter.Local(), true);
+        if (played == null)
+            return null;
+
+        _streams.Add(played.Value.Entity);
+        return played.Value.Entity;
+    }
+
+    private void StopComponentStreams(WeatherComponent component)
+    {
+        foreach (var weather in component.Weather.Values)
+        {
+            var stream = weather.Stream;
+            ForceStop(ref stream);
+            weather.Stream = stream;
+        }
+    }
+
+    private void StopOrphanStreams()
+    {
+        foreach (var uid in _streams)
+        {
+            if (!Deleted(uid))
+                QueueDel(uid);
+        }
+
+        _streams.Clear();
+    }
+
+    private void StopWeatherAudioIfPlayerAway()
+    {
+        var ent = _playerManager.LocalEntity;
+        EntityUid? playerMap = null;
+        if (ent != null)
+            playerMap = Transform(ent.Value).MapUid;
+
+        if (playerMap == null
+            || !TryComp<WeatherComponent>(playerMap.Value, out var active)
+            || active.Weather.Count == 0)
+        {
+            var query = EntityManager.AllEntityQueryEnumerator<WeatherComponent>();
+            while (query.MoveNext(out _, out var comp))
+                StopComponentStreams(comp);
+
+            StopOrphanStreams();
+            return;
+        }
+
+        var keep = new HashSet<EntityUid>();
+        foreach (var weather in active.Weather.Values)
+        {
+            if (weather.Stream != null)
+                keep.Add(weather.Stream.Value);
+        }
+
+        foreach (var uid in _streams)
+        {
+            if (keep.Contains(uid) || Deleted(uid))
+                continue;
+
+            QueueDel(uid);
+        }
+
+        _streams.RemoveWhere(u => Deleted(u) || !keep.Contains(u));
+    }
+
+    public override void FrameUpdate(float frameTime)
+    {
+        base.FrameUpdate(frameTime);
+        StopWeatherAudioIfPlayerAway();
+    }
+
+    protected override void EndWeather(EntityUid uid, WeatherComponent component, string proto)
+    {
+        if (!component.Weather.TryGetValue(proto, out var data))
+            return;
+
+        var stream = data.Stream;
+        ForceStop(ref stream);
+        data.Stream = null;
+        component.Weather.Remove(proto);
+        Dirty(uid, component);
     }
 
     protected override void Run(EntityUid uid, WeatherData weather, WeatherPrototype weatherProto, float frameTime)
@@ -31,40 +145,47 @@ public sealed class WeatherSystem : SharedWeatherSystem
         base.Run(uid, weather, weatherProto, frameTime);
 
         var ent = _playerManager.LocalEntity;
-
         if (ent == null)
+        {
+            var stream = weather.Stream;
+            ForceStop(ref stream);
+            weather.Stream = stream;
             return;
+        }
 
-        var mapUid = Transform(uid).MapUid;
+        var mapUid = Transform(uid).MapUid ?? uid;
         var entXform = Transform(ent.Value);
 
-        // Maybe have the viewports manage this?
-        if (mapUid == null || entXform.MapUid != mapUid)
+        if (entXform.MapUid != mapUid && entXform.MapUid != uid)
         {
-            weather.Stream = _audio.Stop(weather.Stream);
+            var stream = weather.Stream;
+            ForceStop(ref stream);
+            weather.Stream = stream;
             return;
         }
 
         if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null)
             return;
 
-        weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
+        if (weather.Stream == null || Deleted(weather.Stream.Value))
+        {
+            weather.Stream = PlayWeatherSound(weatherProto.Sound);
+            if (weather.Stream != null)
+                _streams.Add(weather.Stream.Value);
+        }
 
         if (!TryComp(weather.Stream, out AudioComponent? comp))
             return;
 
         var occlusion = 0f;
 
-        // Work out tiles nearby to determine volume.
         if (TryComp<MapGridComponent>(entXform.GridUid, out var grid))
         {
             TryComp(entXform.GridUid, out RoofComponent? roofComp);
             var gridId = entXform.GridUid.Value;
-            // FloodFill to the nearest tile and use that for audio.
             var seed = _mapSystem.GetTileRef(gridId, grid, entXform.Coordinates);
             var frontier = new Queue<TileRef>();
             frontier.Enqueue(seed);
-            // If we don't have a nearest node don't play any sound.
             EntityCoordinates? nearestNode = null;
             var visited = new HashSet<Vector2i>();
 
@@ -75,9 +196,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
 
                 if (!CanWeatherAffect(entXform.GridUid.Value, grid, node, roofComp))
                 {
-                    // Add neighbors
-                    // TODO: Ideally we pick some deterministically random direction and use that
-                    // We can't just do that naively here because it will flicker between nearby tiles.
                     for (var x = -1; x <= 1; x++)
                     {
                         for (var y = -1; y <= 1; y++)
@@ -101,7 +219,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
                 break;
             }
 
-            // Get occlusion to the targeted node if it exists, otherwise set a default occlusion.
             if (nearestNode != null)
             {
                 var entPos = _transform.GetMapCoordinates(entXform);
@@ -130,9 +247,17 @@ public sealed class WeatherSystem : SharedWeatherSystem
         if (!Timing.IsFirstTimePredicted)
             return true;
 
-        // TODO: Fades (properly)
-        weather.Stream = _audio.Stop(weather.Stream);
-        weather.Stream = _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
+        var stream = weather.Stream;
+        ForceStop(ref stream);
+        weather.Stream = stream;
+
+        var ent = _playerManager.LocalEntity;
+        if (ent == null || Transform(ent.Value).MapUid != uid)
+            return true;
+
+        if (weatherProto.Sound != null)
+            weather.Stream = PlayWeatherSound(weatherProto.Sound);
+
         return true;
     }
 
@@ -143,14 +268,12 @@ public sealed class WeatherSystem : SharedWeatherSystem
 
         foreach (var (proto, weather) in component.Weather)
         {
-            // End existing one
             if (!state.Weather.TryGetValue(proto, out var stateData))
             {
                 EndWeather(uid, component, proto);
                 continue;
             }
 
-            // Data update?
             weather.StartTime = stateData.StartTime;
             weather.EndTime = stateData.EndTime;
             weather.State = stateData.State;
@@ -161,7 +284,6 @@ public sealed class WeatherSystem : SharedWeatherSystem
             if (component.Weather.ContainsKey(proto))
                 continue;
 
-            // New weather
             StartWeather(uid, component, ProtoMan.Index<WeatherPrototype>(proto), weather.EndTime);
         }
     }

@@ -1,0 +1,1 @@
+stack-uraniumfissile = делящийся уран

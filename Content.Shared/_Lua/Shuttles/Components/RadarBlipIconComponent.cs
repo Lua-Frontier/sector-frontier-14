@@ -13,6 +13,12 @@ public sealed partial class RadarBlipIconComponent : Component
     public ResPath Icon;
 
     [DataField, AutoNetworkedField]
+    public ResPath? SecondaryIcon;
+
+    [DataField, AutoNetworkedField]
+    public LocId? Label;
+
+    [DataField, AutoNetworkedField]
     public float Scale = 1f;
 
     [DataField, AutoNetworkedField]

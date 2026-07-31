@@ -21,6 +21,7 @@
             </BoxContainer>
         </PanelContainer>
         <BoxContainer Name="ContentContainer" Orientation="Vertical" SeparationOverride="3">
+            <Label Name="TimerLabel" Margin="2 2 0 0" FontColorOverride="#FF6666" Visible="False" />
             <Label Name="QuestNameLabel" Margin="2 2 0 0" FontColorOverride="#FFFFFF" />
             <BoxContainer Name="DescriptionBox" Orientation="Vertical" Margin="2 0 0 2">
                 <RichTextLabel Name="DescriptionLabel" HorizontalExpand="True" SetWidth="290" MaxWidth="290" />

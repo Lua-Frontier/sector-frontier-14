@@ -301,3 +301,13 @@
   - name: pirate-bounty-item-enforcer
     amount: 1
     id: Enforcer
+
+- type: pirateBounty
+  id: PirateBountyShipShield
+  reward: 25
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-shield
+    amount: 1
+    id: ShipShield

@@ -14,6 +14,7 @@
   - BorgModuleTool
   - BorgModuleCable
   - BorgModuleFireExtinguisher
+  - BorgModuleSurgery # Shitmed
 
 - type: latheRecipePack
   id: BorgLimbsStatic
@@ -41,6 +42,20 @@
   - BorgModuleAdvancedMining
   - BorgModuleAdvancedParamedic # Frontier
   - BorgModuleRCD # Frontier
+  - BorgModuleAdvancedSurgery # Shitmed
+
+- type: latheRecipePack
+  id: SMCybernetics
+  recipes:
+  - JawsOfLifeLeftArm
+  - JawsOfLifeRightArm
+  - SpeedLeftLeg
+  - SpeedRightLeg
+  - BasicCyberneticEyes
+  - SecurityCyberneticEyes
+  - MedicalCyberneticEyes
+  - DexLeftHand
+  - DexRightHand
 
 - type: latheRecipePack
   id: MechParts

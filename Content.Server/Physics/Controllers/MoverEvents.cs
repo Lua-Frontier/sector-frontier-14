@@ -9,7 +9,11 @@ public record struct ShuttleInput(Vector2 Strafe, float Rotation, float Brakes);
 ///     If GotInput is false, this piloted is removed from input sources.
 /// </summary>
 [ByRefEvent]
-public record struct GetShuttleInputsEvent(float FrameTime, EntityUid ShuttleUid, ShuttleInput? Input = null, bool GotInput = false);
+public record struct GetShuttleInputsEvent(float FrameTime, EntityUid ShuttleUid, ShuttleInput? Input = null, bool GotInput = false)
+{
+    public float? SetMaxVelocity = null;
+    public float? SetMaxAngularVelocity = null;
+}
 
 [ByRefEvent]
 public record struct PilotedShuttleRelayedEvent<TEvent>(TEvent Args);

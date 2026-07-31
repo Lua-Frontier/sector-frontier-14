@@ -44,8 +44,7 @@ using Robust.Shared.Configuration;//Lua
 using Content.Shared._Lua.CryoTimer;//Lua
 using Content.Shared.Lua.CLVar;//Lua
 using Robust.Shared.Player; //Lua
-using Content.Server.Salvage.Expeditions;
-using Content.Shared.Salvage.Expeditions;
+using Content.Shared._Lua.Expedition;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Tag;
@@ -628,7 +627,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
     {
         var xform = Transform(cryopod);
         if (xform.MapUid is { } mapUid &&
-            TryComp<SalvageExpeditionComponent>(mapUid, out var expedition) &&
+            TryComp<ExpeditionMapComponent>(mapUid, out var expedition) &&
             expedition.Stage != ExpeditionStage.Added)
         {
             return true;

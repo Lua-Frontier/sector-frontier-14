@@ -5,7 +5,7 @@ namespace Content.Shared.PowerCell;
 
 /// <summary>
 ///     This component enables power-cell related interactions (e.g., entity white-lists, cell sizes, examine, rigging).
-///     The actual power functionality is provided by the server-side BatteryComponent.
+///     The actual power functionality is provided by <see cref="Content.Shared.Power.Components.BatteryComponent"/>.
 /// </summary>
 [NetworkedComponent]
 [RegisterComponent]

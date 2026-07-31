@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierTwo # Mono
   id: WallKrissReinforced
   name: reinforced wall
   components:
@@ -15,31 +15,6 @@
   - type: Construction
     graph: Girder
     node: WallKrissReinforced
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 3000 # Lua 600<3000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 2000 # Lua 400<1500<2000
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: reinf_over
@@ -62,7 +37,7 @@
     resistance: 5
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallKrissSolid
   name: solid wall
   components:
@@ -81,28 +56,6 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 2500 # Lua 400<2500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 1500 # Lua 200<1500
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: solid
@@ -271,6 +224,9 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: ShipRepairable
+    repairTime: 5
+    repairCost: 5
 
 # Indestructible reinforced window variants reusing Kriss sprites
 - type: entity
@@ -362,29 +318,44 @@
   description: Keeps the air in and the greytide out. # Frontier: restore base value
   suffix: "Станция"
   components:
-    - type: Sprite # Frontier
-      color: "#a6a6a6" # Frontier
-    - type: Tag
-      tags:
-        - Wall
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 30000 # Lua
-          behaviors:
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ReinforcedGirder:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-    - type: Damageable
-      damageContainer: StructuralInorganicUltraHeavy
-      damageModifierSet: StructuralMetallicStrongUltra
-    - type: StaticPrice
-      price: 2500
+  - type: Sprite # Frontier
+    sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
+    color: "#a6a6a6" # Frontier
+  - type: Icon
+    sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
+  - type: IconSmooth
+    key: walls
+    base: plastitanium
+  - type: Tag
+    tags:
+    - Wall
+    - WallT4
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30000 # Lua
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ReinforcedGirder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: StructuralInorganicUltraHeavy
+    damageModifierSet: StructuralMetallicStrongUltra
+  - type: StaticPrice
+    price: 2500
+  - type: ArmorThickness
+    thickness: 20
+    canBePierced: false
+  - type: ShipRepairable
+    repairTime: 12
+    repairCost: 30
+  - type: RadiationBlocker
+    resistance: 5
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -428,9 +399,13 @@
     damageModifierSet: StructuralMetallicStrongUltra
   - type: StaticPrice
     price: 1250
+  - type: ArmorThickness
+    thickness: 15
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 20
 
 # Windows
-
 - type: entity
   id: PlastitaniumWindowStation
   name: plastitanium window
@@ -469,6 +444,11 @@
     damageModifierSet: RGlass
   - type: StaticPrice # Frontier
     price: 1000 # Frontier
+  - type: ShipRepairable
+    repairTime: 8
+    repairCost: 8
+  - type: ArmorThickness
+    thickness: 20
 
 - type: entity
   id: PlastitaniumWindowDiagonalStation
@@ -508,9 +488,14 @@
     damageModifierSet: RGlass
   - type: StaticPrice
     price: 500
+  - type: ShipRepairable
+    repairTime: 8
+    repairCost: 8
+  - type: ArmorThickness
+    thickness: 15
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallSoft
   name: soft wall
   components:
@@ -555,9 +540,11 @@
     base: silver
   - type: StaticPrice
     price: 500
+  - type: ArmorThickness
+    thickness: 2
 
 - type: entity
-  parent: WallPlastitaniumDiagonalIndestructible
+  parent: WallShuttleDiagonal
   id: WallRivetedDiagonal
   name: riveted wall
   suffix: diagonal
@@ -575,108 +562,90 @@
     state: state0
   - type: ExplosionResistance
     damageCoefficient: 0.8 # Lua
+  - type: RCDDeconstructable # Frontier
+    deconstructable: false # Frontier
+  - type: StaticPrice
+    price: 250
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 2500 # Lua 1200<2000<2500
+        damage: 10100
       behaviors:
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            Girder:
-              min: 1
-              max: 1
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-  - type: RCDDeconstructable # Frontier
-    deconstructable: false # Frontier
-  - type: Damageable
-    damageContainer: StructuralInorganicUltraHeavy
-    damageModifierSet: StructuralMetallicStrongUltra
-  - type: StaticPrice
-    price: 250
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ArmorThickness
+    thickness: 20
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 20
 
 #Стены для монастыря Фауста
 - type: entity
-  parent: WallPlastitaniumIndestructible
+  parent: BaseWallTierFour # Mono
   id: WallMonasteryGray
   name: monastery gray wall
   description: Keeps the air in and the greytide out. # Frontier: restore base value
   suffix: ""
   components:
-    - type: Sprite
-      sprite: _Lua/Structures/Walls/monastery_gray.rsi
-      color: "#ffffff" # Frontier
-    - type: Icon
-      sprite: _Lua/Structures/Walls/monastery_gray.rsi
-    - type: ExplosionResistance
-      damageCoefficient: 0.8 # Lua
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 6000 # Lua 1200<7500<6000
-          behaviors:
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                Girder:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-    - type: Damageable
-      damageContainer: StructuralInorganicUltraHeavy
-      damageModifierSet: StructuralMetallicStrongUltra
-    - type: StaticPrice
-      price: 350
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/monastery_gray.rsi
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/monastery_gray.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 6000 # Lua 1200<7500<6000
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Girder:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 350
+  - type: ArmorThickness
+    thickness: 15
 
 - type: entity
-  parent: WallPlastitaniumIndestructible
+  parent: BaseWallTierTwo # Mono
   id: WallMonasteryBrown
   name: monastery brown wall
   description: Keeps the air in and the greytide out. # Frontier: restore base value
   suffix: ""
   components:
-    - type: Sprite
-      sprite: _Lua/Structures/Walls/monastery_brown.rsi
-      color: "#ffffff" # Frontier
-    - type: Icon
-      sprite: _Lua/Structures/Walls/monastery_brown.rsi
-    - type: ExplosionResistance
-      damageCoefficient: 0.8 # Lua
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 3500 # Lua 600<3500
-        behaviors:
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-      - trigger:
-          !type:DamageTrigger
-          damage: 2500 # Lua 400<2500
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-        - !type:ChangeConstructionNodeBehavior
-          node: girder
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-    - type: Damageable
-      damageContainer: StructuralInorganicUltraHeavy
-      damageModifierSet: StructuralMetallicStrongUltra
-    - type: StaticPrice
-      price: 350
+  - type: Sprite
+    sprite: _Lua/Structures/Walls/monastery_brown.rsi
+    color: "#ffffff" # Frontier
+  - type: Icon
+    sprite: _Lua/Structures/Walls/monastery_brown.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.8 # Lua
+  - type: StaticPrice
+    price: 350
 
 - type: entity
-  parent: WallPlastitaniumDiagonalIndestructible
+  parent: WallDiagonalBase
   id: WallMonasteryGrayDiagonal
   name: monastery wall
   suffix: diagonal
@@ -711,11 +680,13 @@
             collection: MetalSlam
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
-  - type: Damageable
-    damageContainer: StructuralInorganicUltraHeavy
-    damageModifierSet: StructuralMetallicStrongUltra
   - type: StaticPrice
     price: 250
+  - type: ArmorThickness
+    thickness: 10
+  - type: ShipRepairable
+    repairTime: 5
+    repairCost: 8
 
 - type: entity
   parent: WallDiagonalBase
@@ -734,9 +705,6 @@
   - type: Icon
     sprite: _Lua/Structures/Walls/monastery_brown_diagonal.rsi # Frontier: _NF folder
     state: state0
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
   - type: Destructible
     thresholds:
     - trigger:
@@ -761,9 +729,11 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
+  - type: ArmorThickness
+    thickness: 3
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallOutpost # Mono
   id: WallAstrolit
   name: astrolite wall
   description: Keeps the air in and the greytide out. # Frontier: restore base value
@@ -814,6 +784,11 @@
       resistance: 5
     - type: StaticPrice
       price: 350
+    - type: ArmorThickness
+      thickness: 20
+    - type: ShipRepairable
+      repairTime: 12
+      repairCost: 30
 
 - type: entity
   parent: WallDiagonalBase
@@ -863,6 +838,11 @@
     price: 250
   - type: RadiationBlocker
     resistance: 5
+  - type: ArmorThickness
+    thickness: 15
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 20
 
 - type: entity
   id: AstrolitWindow
@@ -960,6 +940,11 @@
   - type: Construction
     graph: AstrolitWindow
     node: astrolitWindow
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 10
+  - type: ArmorThickness
+    thickness: 15
 
 - type: entity
   id: AstrolitWindowDiagonal
@@ -1042,3 +1027,8 @@
   - type: Construction
     graph: AstrolitWindow
     node: astrolitWindowDiagonal
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 10
+  - type: ArmorThickness
+    thickness: 12

@@ -48,6 +48,10 @@
                                  ToggleMode="True"
                                  Text="{controls:Loc 'shuttle-console-ftl-button'}"
                                  TextAlign="Center"/>
+                <controls:Button Name="MapAutopilotButton"
+                                 ToggleMode="True"
+                                 Text="{controls:Loc 'shuttle-console-autopilot-button'}"
+                                 TextAlign="Center"/>
                 <controls:Button Name="MapRebuildButton"
                         Text="{controls:Loc 'shuttle-console-map-rebuild'}"
                         TextAlign="Center"/>

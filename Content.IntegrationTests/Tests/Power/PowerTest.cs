@@ -5,6 +5,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Power.Nodes;
 using Content.Shared.Coordinates;
 using Content.Shared.NodeContainer;
+using Content.Shared.Power.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Maths;

@@ -115,6 +115,8 @@
     - Chef
     - FoodRecipes
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: SyndicateMicrowave
   parent: KitchenMicrowave

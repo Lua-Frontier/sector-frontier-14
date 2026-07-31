@@ -8,6 +8,8 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
+using Content.Shared.Power.Components;
+using Content.Shared.Power;
 
 namespace Content.Server.Stunnable.Systems
 {

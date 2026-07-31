@@ -54,6 +54,11 @@
   - type: SunShadowCast
   - type: Repairable
     qualityNeeded: Welding
+  - type: ArmorThickness
+    thickness: 3
+  - type: ShipRepairable
+    repairTime: 2
+    repairCost: 3
 
 - type: entity
   abstract: true
@@ -64,7 +69,7 @@
 
 - type: entity
   abstract: true
-  parent: BaseStructureWall
+  parent: BaseWallTierOne # Mono
   id: WallDiagonalBase
   suffix: Diagonal
   components:
@@ -98,7 +103,7 @@
         - WallLayer
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallBrick
   name: brick wall
   components:
@@ -110,25 +115,12 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: brick
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierTwo # Mono
   id: WallClock
   name: clock wall
   components:
@@ -142,19 +134,6 @@
   - type: Construction
     graph: ClockworkGirder
     node: clockworkWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1800 # Mono - wall buff - 6x
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ClockworkGirder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: clock
@@ -166,7 +145,7 @@
     price: 75 # Frontier 75
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallClown
   name: bananium wall
   components:
@@ -184,19 +163,6 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: clown
@@ -213,7 +179,7 @@
         density: 8000 # really good ramming wall, bananium is rare so it's probably fine
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallMeat
   name: meat wall
   description: Sticky.
@@ -229,25 +195,12 @@
   - type: Construction
     graph: Girder
     node: meatWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 2500 # Mono - wall buff to match rwalls
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: meat
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierTwo # Mono
   id: WallCult
   name: cult wall
   components:
@@ -258,25 +211,12 @@
     sprite: Structures/Walls/cult.rsi
   - type: Icon
     sprite: Structures/Walls/cult.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: cult
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallDebug
   name: debug wall
   suffix: DEBUG
@@ -289,25 +229,12 @@
     sprite: Structures/Walls/debug.rsi
   - type: Icon
     sprite: Structures/Walls/debug.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: debug
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierThree # Mono
   id: WallDiamond
   name: diamond wall
   components:
@@ -322,25 +249,12 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 2400 # Mono - wall buff - 8x its diamonds bro
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: diamond
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallGold
   name: gold wall
   components:
@@ -358,28 +272,6 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 900 # Mono - wall buff - 3x gold is brittle
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 1500 # Mono
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: Fixtures
     fixtures:
       fix1:
@@ -396,7 +288,7 @@
     base: gold
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallIce
   name: ice wall
   components:
@@ -407,25 +299,12 @@
     sprite: Structures/Walls/ice.rsi
   - type: Icon
     sprite: Structures/Walls/ice.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600 # Mono - wall buff - 2x
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: ice
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallPlasma
   name: plasma wall
   components:
@@ -443,28 +322,6 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: plasma
@@ -472,7 +329,7 @@
     resistance: 5
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne
   id: WallPlastic
   name: plastic wall
   components:
@@ -490,28 +347,6 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 600 # Lua 300<1200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: plastic
@@ -523,67 +358,54 @@
   description: Skub knows this wall is too hard to destroy. # Frontier
   suffix: indestructible
   components:
-    - type: Tag
-      tags:
-      - Wall
-    - type: Sprite
-      sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
-      color: "#cdf3cd" # Frontier
-    - type: Icon
-      sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
-    - type: IconSmooth
-      key: walls
-      base: plastitanium
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.5,-0.5,0.5,0.5"
-          mask:
-          - FullTileMask
-          layer:
-          - WallLayer
-          density: 4000
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: StructuralMetallicStrong
-    - type: RadiationBlocker
-      resistance: 5
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
+    color: "#cdf3cd" # Frontier
+  - type: Icon
+    sprite: _Corvax/Structures/Walls/plastitanium.rsi # Lua
+  - type: IconSmooth
+    key: walls
+    base: plastitanium
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 4000
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: RadiationBlocker
+    resistance: 5
+  - type: ArmorThickness
+    canBePierced: false
 
 - type: entity
-  parent: WallPlastitaniumIndestructible
+  parent: [ WallPlastitaniumIndestructible, BaseWallTierThree ]
   id: WallPlastitanium
   name: plastitanium wall
   description: Keeps the air in and the greytide out. # Frontier: restore base value
   suffix: ""
   components:
-    - type: Tag
-      tags:
-      - Wall
-    - type: Sprite # Frontier
-      color: "#ffffff" # Frontier
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 7500 # Mono - wall buff - 7.5x
-          behaviors:
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                Girder:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-    - type: Construction # Frontier - Harder to break into
-      graph: Girder # Frontier - Harder to break into
-      node: plastitaniumwall # Lua - Harder to break into
-    - type: Damageable
-      damageContainer: StructuralInorganicUltraHeavy
-      damageModifierSet: StructuralMetallicStrongUltra
-    - type: StaticPrice
-      price: 350
+  - type: Tag
+    tags:
+    - Wall
+    - WallT3
+  - type: Sprite # Frontier
+    color: "#ffffff" # Frontier
+  - type: Construction # Frontier - Harder to break into
+    graph: Girder # Frontier - Harder to break into
+    node: plastitaniumwall # Lua - Harder to break into
+  - type: StaticPrice
+    price: 350
 
 - type: entity
   parent: WallDiagonalBase
@@ -605,9 +427,11 @@
     damageModifierSet: StructuralMetallicStrong
   - type: RadiationBlocker
     resistance: 5
+  - type: ArmorThickness
+    canBePierced: false
 
 - type: entity
-  parent: WallPlastitaniumDiagonalIndestructible
+  parent: [ WallPlastitaniumDiagonalIndestructible, BaseWallTierTwo ] # Mono
   id: WallPlastitaniumDiagonal
   name: plastitanium wall
   suffix: diagonal
@@ -627,41 +451,16 @@
   - type: Icon
     sprite: _Corvax/Structures/Walls/plastitanium_diagonal.rsi #Lua
     state: state0
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 3500 # Mono - wall buff - 2x
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 2000 # Mono - wall buff - 2x
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
   - type: Construction # Frontier - Harder to break into
     graph: Girder # Frontier - Harder to break into
     node: diagonalplastitaniumwall # Lua - Harder to break into
-  - type: Damageable
-    damageContainer: StructuralInorganicUltraHeavy
-    damageModifierSet: StructuralMetallicStrongUltra
   - type: StaticPrice
     price: 250
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierTwo # Mono
   id: WallReinforced
   name: reinforced wall
   components:
@@ -673,31 +472,6 @@
   - type: Construction
     graph: Girder
     node: reinforcedWall
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 4000 # Mono - wall buff - 5x
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 3000 # Mono - wall buff - 5x
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: reinf_over
@@ -733,6 +507,8 @@
     cost: 6 #Frontier
     delay: 8 #Frontier
     fx: EffectRCDDeconstruct8 #Frontier
+  - type: ArmorThickness
+    thickness: 4
 
 - type: entity
   parent: WallReinforced
@@ -754,31 +530,9 @@
     cost: 6 #Frontier
     delay: 8 #Frontier
     fx: EffectRCDDeconstruct8 #Frontier
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 2500 # Lua 500<2500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 1750 # Lua 350<1750
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallShuttleDiagonal
   id: WallReinforcedDiagonal
   name: reinforced wall
   suffix: diagonal
@@ -801,31 +555,6 @@
   - type: Icon
     sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
     state: state0
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 4000
-      behaviors:
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 3000
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
   - type: Construction # Lua
@@ -834,10 +563,35 @@
   - type: RCDDeconstructable # Lua
     cost: 6 # Lua
     delay: 8 # Lua
+  - type: Destructible # Mono - override HP from diagonal parent
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1100 # Mono
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000 # Mono
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShipRepairable
+    repairTime: 2
+    repairCost: 3
 
 # Riveting
 - type: entity
-  parent: BaseWall
+  parent: BaseWallOutpost # Mono
   id: WallRiveted
   name: riveted wall
   components:
@@ -848,22 +602,6 @@
     sprite: Structures/Walls/riveted.rsi
   - type: Icon
     sprite: Structures/Walls/riveted.rsi
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 6000 # Lua 1000<6000
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: riveted
@@ -875,7 +613,7 @@
     fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallSandstone
   name: sandstone wall
   components:
@@ -890,25 +628,12 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1000 # Mono - wall buff - 3.33x
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: sandstone
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallSilver
   name: silver wall
   components:
@@ -926,28 +651,6 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Mono - wall buff - 4x
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 600 # Mono - wall buff - 4x
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: silver
@@ -991,31 +694,6 @@
         layer:
         - WallLayer
         density: 2000
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 3600 # Lua 600<3600
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 1800 # Lua 300<1800
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: Construction
     graph: Girder
     node: diagonalshuttleWall
@@ -1029,35 +707,10 @@
     fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierTwo # Mono
   id: WallShuttle
   name: shuttle wall
   components:
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 3600 # Lua 600<3600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 2400 # Lua 400<2400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: StaticPrice
     price: 150 # Frontier: 250<150 - makes some shuttles way more expensive otherwise
   - type: RadiationBlocker
@@ -1104,7 +757,7 @@
     fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne
   id: WallSolid
   name: solid wall
   components:
@@ -1123,34 +776,12 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1600 # Lua 400<1600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 800 # Lua 200<800
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: walls
     base: solid
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallShuttleDiagonal
   id: WallSolidDiagonal
   name: solid wall
   components:
@@ -1161,34 +792,37 @@
   - type: Icon
     sprite: _NF/Structures/Walls/solid_diagonal.rsi # Frontier: use _NF variant
     state: state0
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1600
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 800
-      behaviors:
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: Construction # Lua
     graph: DiagonalGirder
     node: diagonalWall
   - type: RCDDeconstructable # Lua
     cost: 6 # Lua
     delay: 8 # Lua
+  - type: Destructible # Mono - override HP from diagonal parent
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600 # Mono
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 500 # Mono
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShipRepairable
+    repairTime: 2
+    repairCost: 2
 
 - type: entity
   parent: WallSolid
@@ -1206,59 +840,14 @@
   - type: IconSmooth
     key: walls
     base: solid
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1200 # Lua 300<1200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 600 # Lua 150<600
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallSolidChitin
   name: solid chitin
   components:
   - type: Tag
     tags:
       - Wall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: Sprite
     sprite: Structures/Walls/xeno.rsi
   - type: Icon
@@ -1275,7 +864,7 @@
     fx: EffectRCDDeconstruct8
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierTwo # Mono
   id: WallReinforcedChitin
   name: reinforced chitin
   components:
@@ -1284,31 +873,6 @@
   - type: Icon
     sprite: Structures/Walls/xeno.rsi
     state: rgeneric
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -1331,9 +895,12 @@
   - type: Construction
     graph: Girder
     node: reinforcedWallChitin
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallUranium
   name: uranium wall
   components:
@@ -1344,28 +911,6 @@
   - type: Construction
     graph: Girder
     node: uraniumWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 3000 # Lua 300<3000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 2000 # Lua 150<2000
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: Fixtures
     fixtures:
       fix1:
@@ -1388,7 +933,7 @@
     fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne
   id: WallWood
   name: wood wall
   description: The traditional greytide defense.
@@ -1400,28 +945,6 @@
   - type: Construction
     graph: Barricade
     node: woodWall
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroyHeavy
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroyHeavy
-      - !type:ChangeConstructionNodeBehavior
-        node: Barricade
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: IconSmooth
     key: woods
     base: wood
@@ -1431,9 +954,11 @@
     fx: EffectRCDDeconstruct8 #Frontier
   - type: StaticPrice # Frontier
     price: 30 # Frontier
+  - type: ArmorThickness
+    thickness: 1
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne
   id: WallWeb
   name: web wall
   description: Keeps the spiders in and the greytide out.
@@ -1454,15 +979,6 @@
     sprite: Structures/Walls/web.rsi
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WoodDestroy
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 30
@@ -1487,12 +1003,13 @@
     cost: 6 #Frontier
     delay: 8 #Frontier
     fx: EffectRCDDeconstruct8 #Frontier
-
+  - type: ArmorThickness
+    thickness: 1
 
 # Lavalend Walls
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallNecropolis
   name: stone wall
   components:
@@ -1503,20 +1020,12 @@
     sprite: Structures/Walls/necropolis.rsi
   - type: Icon
     sprite: Structures/Walls/necropolis.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 3500 # Lua 1000<3500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: necropolis
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallMining
   name: mining wall
   components:
@@ -1527,14 +1036,6 @@
     sprite: Structures/Walls/mining.rsi
   - type: Icon
     sprite: Structures/Walls/mining.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1750 # Mono - wall buff
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
     base: mining
@@ -1542,16 +1043,13 @@
     randomStates:
     - mining
     - miningB
-  - type: Damageable
-    damageContainer: StructuralInorganicUltraHeavy
-    damageModifierSet: StructuralMetallicStrongUltra
   - type: Appearance
   - type: Construction # Lua
     graph: Girder
     node: WallMining
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: WallShuttleDiagonal
   id: WallMiningDiagonal
   name: mining wall
   components:
@@ -1562,34 +1060,6 @@
   - type: Icon
     sprite: Structures/Walls/mining_diagonal.rsi
     state: state0
-  - type: Damageable
-    damageContainer: StructuralInorganicUltraHeavy
-    damageModifierSet: StructuralMetallicStrongUltra
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Girder:
-            min: 1
-            max: 1
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
   - type: Construction # Lua
@@ -1599,7 +1069,7 @@
 # Vault Walls
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierThree # Mono
   id: WallVaultAlien
   name: alien vault wall
   description: A mysterious ornate looking wall. There may be ancient dangers inside.
@@ -1610,15 +1080,6 @@
   - type: Icon
     sprite: Structures/Walls/vault.rsi
     state: alienvault
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 2500 # Lua 500<2500
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-
 - type: entity
   parent: WallVaultAlien
   id: WallVaultRock
@@ -1698,7 +1159,7 @@
     state: forcewall
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWallTierOne # Mono
   id: WallCobblebrick
   name: cobblestone brick wall
   description: Stone by stone, perfectly fitted together to form a wall.
@@ -1714,17 +1175,11 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1000 # Lua 100<1000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+  - type: ArmorThickness
+    thickness: 2
 
 - type: entity
   parent: WallCobblebrick

@@ -13,9 +13,7 @@ using Robust.Server.Player;
 using Robust.Shared.Localization;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
-using System.Linq;
 
 namespace Content.Server._Lua.Stargate.PlanetQuest;
 
@@ -101,19 +99,29 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
 
     private void OnTargetTerminating(Entity<PlanetQuestTargetComponent> ent, ref EntityTerminatingEvent args)
     {
-        CompleteTarget(ent.Comp);
+        if (TerminatingOrDeleted(ent.Comp.QuestMap)) return;
+        CompleteTarget(ent);
     }
 
     private void OnTargetMobStateChanged(Entity<PlanetQuestTargetComponent> ent, ref MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
-            CompleteTarget(ent.Comp);
+            CompleteTarget(ent);
     }
 
-    private void CompleteTarget(PlanetQuestTargetComponent target)
+    private void CompleteTarget(Entity<PlanetQuestTargetComponent> ent)
     {
+        var target = ent.Comp;
+        if (target.Counted)
+            return;
+
+        if (TerminatingOrDeleted(target.QuestMap))
+            return;
+
         if (!TryComp<PlanetQuestComponent>(target.QuestMap, out var quest) || quest.Completed)
             return;
+
+        target.Counted = true;
 
         if (target.ObjectiveType == PlanetObjectiveType.DestroyStructures)
         {
@@ -126,8 +134,8 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
                 quest.BossCompletedCount++;
         }
 
-        var allDone = quest.StructureCompletedCount >= quest.StructureTotalCount
-                      && quest.BossCompletedCount >= quest.BossTotalCount;
+        var hasObjectives = quest.StructureTotalCount > 0 || quest.BossTotalCount > 0;
+        var allDone = hasObjectives && quest.StructureCompletedCount >= quest.StructureTotalCount && quest.BossCompletedCount >= quest.BossTotalCount;
 
         if (allDone)
         {
@@ -140,26 +148,29 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
 
     private void DistributeRewards(EntityUid mapUid, PlanetQuestComponent quest)
     {
-        if (quest.TotalReward <= 0)
-            return;
-
-        if (!TryComp<TransformComponent>(mapUid, out var questXform))
-            return;
-
+        if (quest.RewardsDistributed || quest.TotalReward <= 0) return;
+        if (TerminatingOrDeleted(mapUid) || !TryComp<TransformComponent>(mapUid, out var questXform)) return;
         var mapId = questXform.MapID;
-        if (!_playersOnPlanetMap.TryGetValue(mapId, out var sessions) || sessions.Count == 0)
+        var playerList = new List<EntityUid>();
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.AttachedEntity is not { } playerEnt) continue;
+            if (!TryComp<TransformComponent>(playerEnt, out var xform) || xform.MapID != mapId) continue;
+            if (HasComp<GhostComponent>(playerEnt)) continue;
+            playerList.Add(playerEnt);
+        }
+
+        if (playerList.Count == 0)
             return;
 
-        var playerList = sessions.ToList();
+        quest.RewardsDistributed = true;
+
         var perPlayer = quest.TotalReward / playerList.Count;
         var remainder = quest.TotalReward - perPlayer * playerList.Count;
 
         for (var i = 0; i < playerList.Count; i++)
         {
-            var session = playerList[i];
-            if (session.AttachedEntity is not { } playerEnt)
-                continue;
-
+            var playerEnt = playerList[i];
             var amount = perPlayer;
             if (i == playerList.Count - 1)
                 amount += remainder;
@@ -187,6 +198,7 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
         var baseReward = random.Next(rewardMin, rewardMax + 1);
         quest.TotalReward = (int)(baseReward * rewardMultiplier);
         quest.Completed = false;
+        quest.RewardsDistributed = false;
         quest.QuestName = questName;
         quest.QuestDescription = questDescription;
 

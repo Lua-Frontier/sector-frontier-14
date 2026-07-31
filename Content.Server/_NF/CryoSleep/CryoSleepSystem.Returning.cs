@@ -12,8 +12,7 @@ using Robust.Shared.Network;
 using Content.Shared._NF.CryoSleep.Events;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Ghost;
-using Content.Server.Salvage.Expeditions;
-using Content.Shared.Salvage.Expeditions;
+using Content.Shared._Lua.Expedition;
 
 namespace Content.Server._NF.CryoSleep;
 
@@ -58,7 +57,7 @@ public sealed partial class CryoSleepSystem
         var cryopod = storedBody!.Value.Cryopod;
         var body = storedBody.Value.Body;
         if (_map.TryGetMap(storedBody.Value.CryopodMapId, out var mapUid) &&
-            TryComp<SalvageExpeditionComponent>(mapUid.Value, out var expedition) &&
+            TryComp<ExpeditionMapComponent>(mapUid.Value, out var expedition) &&
             expedition.Stage != ExpeditionStage.Added)
         {
             return ReturnToBodyStatus.Expedition;

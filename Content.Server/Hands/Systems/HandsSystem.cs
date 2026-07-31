@@ -3,6 +3,8 @@ using Content.Server.Stack;
 using Content.Server.Stunnable;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
+using Content.Shared._Shitmed.Body.Events;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion;
@@ -36,6 +38,7 @@ namespace Content.Server.Hands.Systems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+        [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -54,6 +57,8 @@ namespace Content.Server.Hands.Systems
 
             SubscribeLocalEvent<HandsComponent, BodyPartAddedEvent>(HandleBodyPartAdded);
             SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
+            SubscribeLocalEvent<HandsComponent, BodyPartEnabledEvent>(HandleBodyPartEnabled);
+            SubscribeLocalEvent<HandsComponent, BodyPartDisabledEvent>(HandleBodyPartDisabled);
 
             SubscribeLocalEvent<HandsComponent, ComponentGetState>(GetComponentState);
 
@@ -110,30 +115,50 @@ namespace Content.Server.Hands.Systems
             args.Handled = true; // no shove/stun.
         }
 
-        private void HandleBodyPartAdded(Entity<HandsComponent> ent, ref BodyPartAddedEvent args)
+        private void TryAddHand(Entity<HandsComponent> ent, Entity<BodyPartComponent> part, string slot)
         {
-            if (args.Part.Comp.PartType != BodyPartType.Hand)
+            if (part.Comp.PartType != BodyPartType.Hand)
                 return;
 
-            // If this annoys you, which it should.
-            // Ping Smugleaf.
-            var location = args.Part.Comp.Symmetry switch
+            var location = part.Comp.Symmetry switch
             {
                 BodyPartSymmetry.None => HandLocation.Middle,
                 BodyPartSymmetry.Left => HandLocation.Left,
                 BodyPartSymmetry.Right => HandLocation.Right,
-                _ => throw new ArgumentOutOfRangeException(nameof(args.Part.Comp.Symmetry))
+                _ => throw new ArgumentOutOfRangeException(nameof(part.Comp.Symmetry))
             };
 
-            AddHand(ent.AsNullable(), args.Slot, location);
+            if (part.Comp.Enabled
+                && _bodySystem.TryGetParentBodyPart(part, out _, out var parentPartComp)
+                && parentPartComp.Enabled)
+                AddHand(ent.AsNullable(), slot, location);
         }
 
-        private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args)
+        private void HandleBodyPartAdded(Entity<HandsComponent> ent, ref BodyPartAddedEvent args)
         {
-            if (args.Part.Comp.PartType != BodyPartType.Hand)
+            TryAddHand(ent, args.Part, args.Slot);
+        }
+
+        private void HandleBodyPartRemoved(Entity<HandsComponent> ent, ref BodyPartRemovedEvent args)
+        {
+            // Don't drop held items while the entity is being deleted — containers clean them up.
+            if (TerminatingOrDeleted(ent)
+                || args.Part.Comp.PartType != BodyPartType.Hand)
                 return;
 
-            RemoveHand(uid, args.Slot);
+            RemoveHand(ent.AsNullable(), args.Slot);
+        }
+
+        private void HandleBodyPartEnabled(Entity<HandsComponent> ent, ref BodyPartEnabledEvent args) =>
+            TryAddHand(ent, args.Part, SharedBodySystem.GetPartSlotContainerId(args.Part.Comp.ParentSlot?.Id ?? string.Empty));
+
+        private void HandleBodyPartDisabled(Entity<HandsComponent> ent, ref BodyPartDisabledEvent args)
+        {
+            if (TerminatingOrDeleted(ent)
+                || args.Part.Comp.PartType != BodyPartType.Hand)
+                return;
+
+            RemoveHand(ent.AsNullable(), SharedBodySystem.GetPartSlotContainerId(args.Part.Comp.ParentSlot?.Id ?? string.Empty));
         }
 
         #region interactions

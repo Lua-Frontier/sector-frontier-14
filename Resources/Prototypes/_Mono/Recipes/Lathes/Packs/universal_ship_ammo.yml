@@ -1,19 +1,72 @@
+# dont bloat up this file type for every ammo u add
+
 - type: latheRecipePack
-  id: UniversalTorpedoAmmo
+  id: RoundstartShipgunAmmo
+  recipes:
+  # Magfed
+  - Magazine20mmAmmoRecipe
+  - Magazine20mmASAmmoRecipe
+  - Magazine30mmAmmoRecipe
+  - Magazine30mmHEAmmoRecipe
+  - Magazine57mmHEAmmoRecipe
+  - 90mmMagazineHEAmmoRecipe
+  - 90mmMagazineAPAmmoRecipe
+  - 90mmMagazineFlakAmmoRecipe
+  - Magazine140mmAmmoRecipe
+  - Magazine140mmSACLOSAmmoRecipe
+  # Individual load
+  - 120mmCartridgeAPHEDSAmmoRecipe
+  - 220mmCartridgeAPHEAmmoRecipe
+  - 220mmCartridgeHEClusterAmmoRecipe
+  - 220mmCartridgeSmartClusterAmmoRecipe
+  - 255mmCartridgeAPHEAmmoRecipe
+  - 255mmCartridgeEMPAmmoRecipe
+  - 255mmCartridgeMineAmmoRecipe
+  - R300ShellHEAmmoRecipe
+  # Missiles
+  - VanykMagazineAmmoRecipe
+  - MissileMagazine50mmHEAmmoRecipe
+  - VanquisherMagazineAmmoRecipe
+  - PaladinMagazineAmmoRecipe
+  - PaladinMagazineEMPHEAmmoRecipe
+  - PaladinMagazineHVAmmoRecipe
+
+- type: latheRecipePack
+  id: UniversalMissileAmmo
   recipes:
   - ASM220TorpedoHEUniversal
+  - ASM220TorpedoHESACLOSUniversal
   - ASM220TorpedoECMUniversal
+  - ASM220TorpedoLOSATUniversal
 
 - type: latheRecipePack
   id: UniversalRailgunAmmo
   recipes:
   - CharonSlugUniversal
+  - CharonApheSlugUniversal
+  - CharonEmpSlugUniversal
+  - CharonSubnuclearSlugUniversal
 
 - type: latheRecipePack
   id: UniversalShellAmmo
   recipes:
   - 150mmApShellUniversal
+  - 150mmApheShellUniversal
   - 150mmEmpShellUniversal
+
+- type: latheRecipePack
+  id: UniversalOrdinance
+  recipes:
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+  - QuasarAcceleratorUniversal
+
+# Kept for SF ArmoryLathe / older research references
+- type: latheRecipePack
+  id: UniversalTorpedoAmmo
+  recipes:
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
 
 - type: latheRecipePack
   id: UniversalLightOrdinance

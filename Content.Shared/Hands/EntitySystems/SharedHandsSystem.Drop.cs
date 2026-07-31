@@ -121,6 +121,10 @@ public abstract partial class SharedHandsSystem
         if (!TryGetHeldItem(ent, handId, out var entity))
             return false;
 
+        // Holder is being deleted — leave items in containers so they are deleted with the entity.
+        if (TerminatingOrDeleted(ent))
+            return false;
+
         // if item is a fake item (like with pulling), just delete it rather than bothering with trying to drop it into the world
         if (TryComp(entity, out VirtualItemComponent? @virtual))
             _virtualSystem.DeleteVirtualItem((entity.Value, @virtual), ent);

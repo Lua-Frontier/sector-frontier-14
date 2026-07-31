@@ -1,0 +1,33 @@
+# Base debris prototypes.
+# Asteroids -> debris.yml | Wrecks -> wrecks.yml | Drones -> drone.yml
+# Biomes / worldgen -> _Lua/World/Biomes/ + _Lua/World/worldgen_default.yml
+
+# Shared floating grid debris base (radar + GC + claim)
+- type: entity
+  id: BaseDebris
+  abstract: true
+  components:
+  - type: OwnedDebris
+  - type: LocalityLoader
+  - type: GCAbleObject
+    queue: SpaceDebris
+  - type: MapGrid
+  - type: LinkedLifecycleGridParent
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/asteroid.png
+    scale: 1.2
+    maxDistance: 1024
+    allowWhenHidden: true
+  - type: IFF
+    flags: HideLabel
+  - type: ClaimableGrid
+  - type: DetectedAtRangeMultiplier
+    visualBias: 1024
+
+# NF alias — same as BaseDebris; kept for existing parent refs
+- type: entity
+  id: NFBaseDebris
+  parent: BaseDebris
+  abstract: true

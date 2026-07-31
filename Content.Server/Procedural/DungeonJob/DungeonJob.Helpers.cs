@@ -133,4 +133,15 @@ public sealed partial class DungeonJob
             }
         }
     }
+
+    private void ClearTileBlockers(Vector2i indices)
+    {
+        var box = new Box2(indices * _grid.TileSize, (indices + 1) * _grid.TileSize).Enlarged(-0.1f);
+        foreach (var ent in _lookup.GetEntitiesIntersecting(_gridUid, box, LookupFlags.Dynamic | LookupFlags.Static | LookupFlags.StaticSundries))
+        {
+            if (!_physicsQuery.TryGetComponent(ent, out var physics) || !physics.Hard) continue;
+            if ((DungeonSystem.CollisionMask & physics.CollisionLayer) == 0x0 && (DungeonSystem.CollisionLayer & physics.CollisionMask) == 0x0) continue;
+            _entManager.DeleteEntity(ent);
+        }
+    }
 }

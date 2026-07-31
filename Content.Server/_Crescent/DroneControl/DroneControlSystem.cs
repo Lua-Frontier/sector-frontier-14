@@ -1,3 +1,4 @@
+using Content.Server._Mono.NPC.HTN;
 using Content.Server._Mono.Radar;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NPC.HTN;
@@ -10,26 +11,29 @@ using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.DeviceNetwork.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server._Crescent.DroneControl;
 
-public sealed class DroneControlSystem : EntitySystem
+public sealed partial class DroneControlSystem : EntitySystem
 {
-    [Dependency] private readonly DeviceListSystem _deviceList = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly HTNSystem _htn = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _shuttleConsole = default!;
+    [Dependency] private DeviceListSystem _deviceList = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetwork = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private HTNSystem _htn = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private ShuttleConsoleSystem _shuttleConsole = default!;
+    [Dependency] private ShipSteeringSystem _shipSteering = default!;
 
     private EntityQuery<DroneControlComponent> _controlQuery;
 
     private HashSet<Entity<DockingComponent>> _docks = new();
     private HashSet<Entity<DroneControlComponent>> _controllers = new();
+    private float _routeRefreshAccum;
 
     public override void Initialize()
     {
@@ -46,6 +50,28 @@ public sealed class DroneControlSystem : EntitySystem
         SubscribeLocalEvent<DroneControlComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
 
         _controlQuery = GetEntityQuery<DroneControlComponent>();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _routeRefreshAccum += frameTime;
+        if (_routeRefreshAccum < 1.5f)
+            return;
+
+        _routeRefreshAccum = 0f;
+        if (!_shipSteering.HasActiveSteerers())
+            return;
+
+        var query = EntityQueryEnumerator<DroneControlConsoleComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out var ui))
+        {
+            if (!_ui.IsUiOpen((uid, ui), DroneConsoleUiKey.Key))
+                continue;
+
+            UpdateState(uid);
+        }
     }
 
     private void OnGetSources(Entity<DroneControlConsoleComponent> ent, ref GetRadarSourcesEvent args)
@@ -167,6 +193,7 @@ public sealed class DroneControlSystem : EntitySystem
 
         var drones = new List<(NetEntity, NetEntity)>();
         var toRemove = new List<EntityUid>();
+        var steererFilter = new HashSet<EntityUid>();
 
         foreach (var (name, device) in _deviceList.GetDeviceList(console))
         {
@@ -181,9 +208,8 @@ public sealed class DroneControlSystem : EntitySystem
             }
 
             drones.Add((GetNetEntity(device), GetNetEntity(xform.GridUid.Value)));
+            steererFilter.Add(device);
         }
-
-        // we have non-drone devices, clean up
         if (toRemove.Count != 0)
         {
             var newList = new List<EntityUid>();
@@ -195,7 +221,12 @@ public sealed class DroneControlSystem : EntitySystem
             _deviceList.UpdateDeviceList(console, newList);
         }
 
-        _ui.SetUiState(console, DroneConsoleUiKey.Key, new DroneConsoleBoundUserInterfaceState(nav, drones));
+        MapId? mapFilter = null;
+        if (TryComp(console, out TransformComponent? consoleXform))
+            mapFilter = consoleXform.MapID;
+
+        var routes = _shipSteering.BuildDroneRoutes(mapFilter, steererFilter);
+        _ui.SetUiState(console, DroneConsoleUiKey.Key, new DroneConsoleBoundUserInterfaceState(nav, drones, routes));
     }
 
     public void TryAutolink(EntityUid fromEnt)

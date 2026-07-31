@@ -210,6 +210,8 @@
   - ShipyardRCD
   - ShipyardRCDAmmo
   - PlanetaryRCD
+  - ShipRepairDevice # Mono
+  - ShipRepairDeviceAmmo # Mono
   technologyPrerequisites:
   - NFMechanicalCompression
   position: 3.043, -5.248
@@ -2184,6 +2186,9 @@
   - Weapon20mmBaseFlatpack
   - Weapon53mmBaseFlatpack
   - Weapon80mmBaseFlatpack
+  - MagazineLua20mmAmmoRecipe
+  - MagazineLua53mmAmmoRecipe
+  - MagazineLua80mmAmmoRecipe
   technologyPrerequisites:
   - MachineGCSMediumCircuitboardTech
   position: 15.548, 13.433
@@ -2201,6 +2206,9 @@
   - Weapon105mmBaseFlatpack
   - Weapon120mmBaseFlatpack
   - Weapon140mmBaseFlatpack
+  - MagazineLua105mmAmmoRecipe
+  - CartridgeLua120mmAmmoRecipe
+  - MagazineLua140mmAmmoRecipe
   technologyPrerequisites:
   - ShiparmoryBallisticBases
   position: 18.001, 16.232
@@ -2344,6 +2352,9 @@
   recipeUnlocks:
   - WeaponTurretVanykFlatPack
   - WeaponTurretVesperaFlatPack
+  - MagazineNightHunterAmmoRecipe
+  - MagazineLancerAmmoRecipe
+  - MagazineCerberAmmoRecipe
   technologyPrerequisites:
   - ShiparmoryBallisticBases
   position: 14.739, 16.244

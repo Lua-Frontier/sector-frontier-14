@@ -29,6 +29,7 @@ using Content.Shared.NPC.Components; // Frontier
 using Content.Shared.Mobs; // Frontier
 using Content.Shared.NPC.Systems; // Frontier
 using Robust.Shared.Prototypes;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Mech.Systems;
 

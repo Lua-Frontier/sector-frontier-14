@@ -68,6 +68,18 @@
   materials:
     Steel: 1200
 
+# Mono start
+
+- type: latheRecipe
+  id: WeaponCaseHeavyAmmo
+  parent: NFBaseToolboxRecipe
+  result: WeaponCaseHeavyAmmo
+  name: lathe-recipe-WeaponCaseHeavyAmmo-name
+  materials:
+    Steel: 1200
+
+# Mono end
+
 - type: latheRecipe
   id: WeaponCaseShortAmmo
   parent: NFBaseToolboxRecipe

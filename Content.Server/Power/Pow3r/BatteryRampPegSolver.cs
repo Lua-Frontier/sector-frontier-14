@@ -79,6 +79,7 @@ namespace Content.Server.Power.Pow3r
             }
 
             ClearBatteries(state);
+            MarkDirtyLoads(state);
 
             PowerSolverShared.UpdateRampPositions(frameTime, state);
         }
@@ -91,9 +92,6 @@ namespace Content.Server.Power.Pow3r
                     continue;
 
                 load.LastReceivingPower = load.ReceivingPower;
-
-                if (load.LastReceivingPower != 0f) lock (_dirtyLock) { _dirtyLoads.Add(load.Id); }
-
                 load.ReceivingPower = 0;
             }
 
@@ -107,12 +105,33 @@ namespace Content.Server.Power.Pow3r
             }
         }
 
+        private void MarkDirtyLoads(PowerState state)
+        {
+            foreach (var load in state.Loads.Values)
+            {
+                if (load.Paused)
+                    continue;
+
+                if (!MathHelper.CloseToPercent(load.LastReceivingPower, load.ReceivingPower))
+                    _dirtyLoads.Add(load.Id);
+            }
+        }
+
         private void UpdateNetwork(Network network, PowerState state, float frameTime)
         {
             // TODO Look at SIMD.
             // a lot of this is performing very basic math on arrays of data objects like batteries
             // this really shouldn't be hard to do.
             // except for maybe the paused/enabled guff. If its mostly false, I guess they could just be 0 multipliers?
+
+            if (network.Loads.Count == 0 && network.Supplies.Count == 0 &&
+                network.BatteryLoads.Count == 0 && network.BatterySupplies.Count == 0)
+            {
+                network.LastCombinedLoad = 0;
+                network.LastCombinedSupply = 0;
+                network.LastCombinedMaxSupply = 0;
+                return;
+            }
 
             // Add up demand from loads.
             var demand = 0f;
@@ -223,11 +242,7 @@ namespace Content.Server.Power.Pow3r
                 if (!load.Enabled || load.DesiredPower == 0 || load.Paused)
                     continue;
 
-                var newReceiving = load.DesiredPower * supplyRatio;
-                if (!MathHelper.CloseToPercent(load.LastReceivingPower, newReceiving))
-                    lock (_dirtyLock) { _dirtyLoads.Add(loadId); }
-
-                load.ReceivingPower = newReceiving;
+                load.ReceivingPower = load.DesiredPower * supplyRatio;
             }
 
             // Distribute supply to batteries

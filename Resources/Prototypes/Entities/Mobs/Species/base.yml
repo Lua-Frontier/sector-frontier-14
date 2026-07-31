@@ -199,6 +199,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -224,6 +226,8 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  - type: Targeting # Shitmed Change
+  - type: SurgeryTarget # Shitmed Change
   - type: MobSpeedLimit # Lua
     maxLinearVelocity: 25
   - type: LuaSprint

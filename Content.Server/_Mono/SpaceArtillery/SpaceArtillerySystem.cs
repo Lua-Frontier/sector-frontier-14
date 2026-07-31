@@ -1,10 +1,12 @@
 using System.Numerics;
+using Content.Server._Mono.AmmoLoader;
 using Content.Server._Mono.FireControl;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._Mono.AmmoLoader;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared._Mono.SpaceArtillery;
 using Content.Shared.Camera;
@@ -16,6 +18,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using SpaceArtilleryComponent = Content.Server._Mono.SpaceArtillery.Components.SpaceArtilleryComponent;
+using Content.Shared.Power.Components;
 
 namespace Content.Server._Mono.SpaceArtillery;
 
@@ -27,6 +30,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoilSystem = default!;
     [Dependency] private readonly FireControlSystem _fireControl = default!;
+    [Dependency] private readonly AmmoLoaderSystem _ammoLoader = default!;
 
     private const float DISTANCE = 100;
     private const float BIG_DAMAGE = 1000;
@@ -52,6 +56,15 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
     {
         if (!TryComp<DeviceLinkSinkComponent>(uid, out var source))
             return;
+
+        if (args.Port == component.SpaceArtilleryLoadPort)
+        {
+            if (TryComp<AmmoLoaderComponent>(args.Trigger, out var loader) && args.Trigger != null)
+            {
+                _ammoLoader.TryTransferAmmoTo(new Entity<AmmoLoaderComponent>(args.Trigger.Value, loader), uid);
+            }
+            return;
+        }
 
         if (args.Port != component.SpaceArtilleryFirePort)
             OnMalfunction(uid, component);

@@ -6,6 +6,10 @@
   components:
   - type: Sprite
     sprite: Mobs/Species/Diona/parts.rsi
+  - type: Icon # Shitmed Change
+    sprite: Mobs/Species/Diona/parts.rsi
+  - type: BodyPart # Shitmed Change
+    species: Diona
 
 - type: entity
   id: TorsoDiona
@@ -70,9 +74,6 @@
   components:
   - type: Sprite
     state: "r_leg"
-  - type: BodyPart
-    partType: Leg
-    symmetry: Right
 
 - type: entity
   id: LeftFootDiona
@@ -81,9 +82,6 @@
   components:
   - type: Sprite
     state: "l_foot"
-  - type: BodyPart
-    partType: Foot
-    symmetry: Left
 
 - type: entity
   id: RightFootDiona
@@ -92,6 +90,3 @@
   components:
   - type: Sprite
     state: "r_foot"
-  - type: BodyPart
-    partType: Foot
-    symmetry: Right

@@ -1,0 +1,680 @@
+# All world debris drone spawners (Mono BrokenAi + LuaTech).
+# Bases/asteroids/wrecks: base.yml, debris.yml, wrecks.yml
+
+# =============================================================================
+# Mono / BrokenAi drones (was: Resources/Prototypes/_Mono/Entities/World/Debris/drone.yml)
+# =============================================================================
+
+#region Spawners
+
+- type: entity
+  id: SpawnDroneBase
+  parent: MarkerBase
+  abstract: true
+  components:
+  - type: GridSpawner
+    addComponents:
+    - type: Company
+      companyName: BrokenAi
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/ai.png
+      scale: 1.2
+      maxDistance: 1024
+      allowWhenHidden: true
+    - type: DetectedAtRangeMultiplier
+      visualBias: 1024
+    - type: IFF
+      flags: AlwaysShowColor
+      color: "#9a2020"
+    - type: GridCleanupGrid
+      cleanupAcceleration: 3
+      ignorePowered: true
+      ignoreIFF: true
+      ignorePrice: true
+      distanceOverride: 1024 # so it doesn't despawn while in view
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - DroneTitle
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: MonoDroneSpawnerT1
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: DroneSpawnTableT1
+
+# Compat alias for old biome/map refs
+- type: entity
+  id: MonoRamDroneSpawnerT1
+  parent: MonoDroneSpawnerT1
+  categories: [Spawner, HideSpawnMenu]
+
+- type: entity
+  id: MonoDroneSpawnerT2Inner
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: DroneSpawnTableT2Inner
+
+- type: entity
+  id: MonoRamDroneSpawnerT2Inner
+  parent: MonoDroneSpawnerT2Inner
+  categories: [Spawner, HideSpawnMenu]
+
+- type: entity
+  id: MonoDroneSpawnerT2Middle
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: DroneSpawnTableT2Middle
+
+- type: entity
+  id: MonoRamDroneSpawnerT2Middle
+  parent: MonoDroneSpawnerT2Middle
+  categories: [Spawner, HideSpawnMenu]
+
+- type: entity
+  id: MonoDroneSpawnerT2Far
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: DroneSpawnTableT2Far
+
+- type: entity
+  id: MonoDroneSpawnerT3Near
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: DroneSpawnTableT3Near
+
+- type: entity
+  id: MonoDroneSpawnerT3Far
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: DroneSpawnTableT3Far
+
+#endregion
+
+#region Tables
+
+- type: entityTable
+  id: DroneTableT1
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneBasicSmall
+      weight: 10
+    - id: SpawnDroneBasicMedium
+      weight: 10
+    - id: SpawnDroneMPulsar
+      weight: 10
+    - id: SpawnDroneLance
+      weight: 10
+
+- type: entityTable
+  id: DroneTableT21
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneWasp
+      weight: 10
+    - id: SpawnDroneCrown
+      weight: 10
+    - id: SpawnDroneGust
+      weight: 10
+    - id: SpawnDronePiercer
+      weight: 10
+
+- type: entityTable
+  id: DroneTableT22
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneMedusa
+      weight: 10
+    - id: SpawnDroneAssembly
+      weight: 10
+    - id: SpawnDroneBracket
+      weight: 10
+
+- type: entityTable
+  id: DroneTableT23
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneMauler
+      weight: 10
+    - id: SpawnDroneQuake
+      weight: 10
+
+- type: entityTable
+  id: DroneSpawnTableT1
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DroneTableT1
+      weight: 10
+
+- type: entityTable
+  id: DroneSpawnTableT2Inner
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DroneTableT21
+      weight: 10
+
+- type: entityTable
+  id: DroneSpawnTableT2Middle
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DroneTableT21
+      weight: 20
+    - !type:NestedSelector
+      tableId: DroneTableT22
+      weight: 10
+
+- type: entityTable
+  id: DroneSpawnTableT2Far
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DroneTableT22
+      weight: 20
+    - !type:NestedSelector
+      tableId: DroneTableT23
+      weight: 10
+
+- type: entityTable
+  id: DroneSpawnTableT3Near
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DroneTableT22
+      weight: 20
+    - !type:NestedSelector
+      tableId: DroneTableT23
+      weight: 15
+
+- type: entityTable
+  id: DroneSpawnTableT3Far
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: DroneTableT22
+      weight: 5
+    - !type:NestedSelector
+      tableId: DroneTableT23
+      weight: 25
+
+#endregion
+
+#region Debug
+
+- type: entity
+  id: SpawnDroneNeedle
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/needle.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "NEEDLE"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneWedge
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/wedge.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "WEDGE"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+#region T1
+
+- type: entity
+  id: SpawnDroneBasicSmall
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/ramdronesmall.yml
+
+- type: entity
+  id: SpawnDroneBasicMedium
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/ramdronemedium.yml
+
+- type: entity
+  id: SpawnDroneMPulsar
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/mpulsar.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "PULSAR"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneLance
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/lance.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "LANCE"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+#region T2-1
+
+- type: entity
+  id: SpawnDroneGust
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/gust.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "GUST"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneWasp
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/wasp.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "WASP"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneCrown
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/crown.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "CROWN"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDronePiercer
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/piercer.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "PIERCER"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+#region T2-2
+
+- type: entity
+  id: SpawnDroneMedusa
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/medusa.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "MEDUSA"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneAssembly
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/assembly.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "ASSEMBLY"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneBracket
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/bracket.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "BRACKET"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+#region T2-3
+
+- type: entity
+  id: SpawnDroneMauler
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/mauler.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "MAULER"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneQuake
+  parent: SpawnDroneBase
+  components:
+  - type: GridSpawner
+    path: /Maps/_Mono/Shuttles/World/quake.yml
+    addComponents:
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - "QUAKE"
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+# =============================================================================
+# LuaTech drones
+# =============================================================================
+
+#region LuaTech
+
+- type: entity
+  id: SpawnDroneLuaTechBase
+  parent: MarkerBase
+  abstract: true
+  components:
+  - type: GridSpawner
+    addComponents:
+    - type: Company
+      companyName: LuaTech
+    - type: RadarBlipIcon
+      icon: /Textures/_Lua/Interface/Radar/ai.png
+      scale: 1.2
+      maxDistance: 1024
+      allowWhenHidden: true
+    - type: DetectedAtRangeMultiplier
+      visualBias: 1024
+    - type: IFF
+      flags: AlwaysShowColor
+      color: "#2595db"
+    - type: GridCleanupGrid
+      cleanupAcceleration: 3
+      ignorePowered: true
+      ignoreIFF: true
+      ignorePrice: true
+      distanceOverride: 1024
+    - type: RandomMetadata
+      nameSeparator: ""
+      nameSegments:
+      - DroneTitleLuaTech
+      - " 0x"
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+      - DroneHex
+    nameGrid: false
+
+- type: entity
+  id: SpawnDroneLTMedusa
+  parent: SpawnDroneLuaTechBase
+  suffix: LuaTech
+  components:
+  - type: GridSpawner
+    path: /Maps/_Lua/Shuttles/World/medusa.yml
+
+- type: entity
+  id: SpawnDroneLTCrown
+  parent: SpawnDroneLuaTechBase
+  suffix: LuaTech
+  components:
+  - type: GridSpawner
+    path: /Maps/_Lua/Shuttles/World/crown.yml
+
+- type: entity
+  id: SpawnDroneLTMPulsar
+  parent: SpawnDroneLuaTechBase
+  suffix: LuaTech
+  components:
+  - type: GridSpawner
+    path: /Maps/_Lua/Shuttles/World/mpulsar.yml
+
+- type: entity
+  id: LuaTechDroneSpawnerT2Inner
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: LuaTechDroneSpawnTableT2Inner
+
+- type: entity
+  id: LuaTechDroneSpawnerT2Middle
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: LuaTechDroneSpawnTableT2Middle
+
+- type: entity
+  id: LuaTechDroneSpawnerT2Far
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: LuaTechDroneSpawnTableT2Far
+
+- type: entity
+  id: LuaTechDroneSpawnerT3Near
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: LuaTechDroneSpawnTableT3Near
+
+- type: entity
+  id: LuaTechDroneSpawnerT3Far
+  parent: MarkerBase
+  categories: [Spawner]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: LuaTechDroneSpawnTableT3Far
+
+- type: entityTable
+  id: LuaTechDroneSpawnTableT2Inner
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneLTMPulsar
+      weight: 15
+    - id: SpawnDroneLTCrown
+      weight: 10
+
+- type: entityTable
+  id: LuaTechDroneSpawnTableT2Middle
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneLTCrown
+      weight: 12
+    - id: SpawnDroneLTMedusa
+      weight: 12
+    - id: SpawnDroneLTMPulsar
+      weight: 8
+
+- type: entityTable
+  id: LuaTechDroneSpawnTableT2Far
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneLTMedusa
+      weight: 20
+    - id: SpawnDroneLTCrown
+      weight: 10
+    - id: SpawnDroneLTMPulsar
+      weight: 5
+
+- type: entityTable
+  id: LuaTechDroneSpawnTableT3Near
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneLTMedusa
+      weight: 25
+    - id: SpawnDroneLTCrown
+      weight: 15
+    - id: SpawnDroneLTMPulsar
+      weight: 5
+
+- type: entityTable
+  id: LuaTechDroneSpawnTableT3Far
+  table: !type:GroupSelector
+    children:
+    - id: SpawnDroneLTMedusa
+      weight: 30
+    - id: SpawnDroneLTCrown
+      weight: 10
+    - id: SpawnDroneLTMPulsar
+      weight: 3
+
+#endregion

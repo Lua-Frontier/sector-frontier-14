@@ -109,6 +109,8 @@
     followEntity: true
     hideCoords: false # Frontier
     maxIffRange: null # Frontier
+  - type: DetectionRangeMultiplier
+    alwaysDetect: true
   - type: NFCargoOrderConsole
     taxAccounts: # Frontier
       Frontier: 0.25 # Frontier

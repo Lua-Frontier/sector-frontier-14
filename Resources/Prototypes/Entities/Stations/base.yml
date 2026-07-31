@@ -132,17 +132,7 @@
     - type: AlertLevel
       alertLevelPrototype: stationAlerts
 
-- type: entity
-  id: BaseStationExpeditions
-  abstract: true
-  components:
-    - type: SalvageExpeditionData
 
-- type: entity
-  id: BaseStationMagnet
-  abstract: true
-  components:
-    - type: SalvageMagnetData
 
 - type: entity
   id: BaseStationSalvageJobs

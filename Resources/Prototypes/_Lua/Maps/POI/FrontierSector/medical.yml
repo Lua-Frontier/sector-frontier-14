@@ -6,7 +6,7 @@
 # Medical ship garage, medical manager base and medical bounty staging area.
 - type: pointOfInterest
   id: Medical
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Медицинский Центр'
   minimumDistance: 1000 #450 Lua
   maximumDistance: 2000 #600 Lua

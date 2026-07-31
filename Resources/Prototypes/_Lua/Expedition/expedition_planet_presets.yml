@@ -1,0 +1,129 @@
+- type: stargatePlanetPreset
+  id: ExpPresetGrasslandRaid
+  biome:
+  - Grasslands
+  - GateGrassSnow
+  - GateGrassDesert
+  - GateGrassLava
+  - GateGrassCaves
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 140
+  dungeonDistanceMax: 220
+  worldRadiusMin: 620
+  worldRadiusMax: 760
+  dungeonMobCap: 220
+  dungeonMobDensity: 12
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirBreathable
+  - GateAirThin
+  - GateAirHumid
+  - GateAirOxygenRich
+  - GateAirSleepy
+  - GateAirDusty
+  temperatureMods:
+  - RoomTemp
+  - RoomTemp
+  - Cold
+  lightMods:
+  - Daylight
+  - Evening
+  weatherMods:
+  - Rain
+  - Storm
+  - Hail
+  - SnowfallLight
+  - SnowfallMedium
+  - Sandstorm
+  weight: 0.25
+
+- type: stargatePlanetPreset
+  id: ExpPresetCavesDelve
+  biome:
+  - Caves
+  - GateCavesLava
+  - GateCavesShadow
+  - GateCavesGrass
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 140
+  dungeonDistanceMax: 220
+  worldRadiusMin: 600
+  worldRadiusMax: 740
+  dungeonMobCap: 228
+  dungeonMobDensity: 13
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirDusty
+  - GateAirDusty
+  - GateAirPoisoned
+  - GateAirPlasmaTrace
+  - GateAirToxic
+  - GateAirThin
+  temperatureMods:
+  - RoomTemp
+  - Cold
+  lightMods:
+  - Evening
+  - Night
+  weatherMods:
+  - AshfallLight
+  - Ashfall
+  - Fallout
+  - Storm
+  - Rain
+  weight: 0.22
+
+- type: stargatePlanetPreset
+  id: ExpPresetShadowOutpost
+  biome:
+  - Shadow
+  - GateShadowLava
+  - GateCavesShadow
+  - GateShadowDesert
+  dungeonPool: true
+  dungeonCountMin: 1
+  dungeonCountMax: 1
+  dungeonDistanceMin: 140
+  dungeonDistanceMax: 220
+  worldRadiusMin: 580
+  worldRadiusMax: 720
+  dungeonMobCap: 236
+  dungeonMobDensity: 13
+  mobSpawnMode: DungeonOnly
+  mobLayerCount: 0
+  lootLayerCount: 0
+  nameDataset: NamesBorer
+  airMods:
+  - GateAirBreathable
+  - GateAirSleepy
+  - GateAirSleepy
+  - GateAirSwamp
+  - GateAirToxic
+  - GateAirAmmonia
+  - GateAirHumid
+  lightMods:
+  - Night
+  temperatureMods:
+  - Cold
+  - Cold
+  - RoomTemp
+  weatherMods:
+  - Sandstorm
+  - SandstormHeavy
+  - Ashfall
+  - AshfallHeavy
+  - Fallout
+  - SnowfallHeavy
+  weight: 0.20

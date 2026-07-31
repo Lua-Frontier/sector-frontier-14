@@ -7,6 +7,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Construction.Completions;
 
@@ -71,4 +72,3 @@ public sealed partial class BuildMech : IGraphAction
         entityManager.QueueDeleteEntity(uid);
     }
 }
-

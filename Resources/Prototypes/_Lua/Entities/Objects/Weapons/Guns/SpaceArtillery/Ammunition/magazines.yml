@@ -1,0 +1,531 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+# ---- Tags ----
+- type: Tag
+  id: MagazineLua20mm
+
+- type: Tag
+  id: CartridgeLua20mm
+
+- type: Tag
+  id: MagazineLua53mm
+
+- type: Tag
+  id: CartridgeLua53mm
+
+- type: Tag
+  id: MagazineLua80mm
+
+- type: Tag
+  id: CartridgeLua80mm
+
+- type: Tag
+  id: MagazineLua105mm
+
+- type: Tag
+  id: CartridgeLua105mm
+
+- type: Tag
+  id: CartridgeLua120mm
+
+- type: Tag
+  id: MagazineLua140mm
+
+- type: Tag
+  id: CartridgeLua140mm
+
+- type: Tag
+  id: MagazineNightHunter
+
+- type: Tag
+  id: MagazineLancer
+
+- type: Tag
+  id: MagazineCerber
+
+# ---- 20mm ----
+- type: entity
+  id: CartridgeLua20mm
+  name: cartridge (20mm)
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua20mm
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet20mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 20mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  id: MagazineLua20mm
+  name: 20mm ammo loader
+  description: An ammunition loader for Lua 20mm ship guns.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua20mm
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua20mm
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLua20mm
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 50
+
+# ---- 53mm ----
+- type: entity
+  id: CartridgeLua53mm
+  name: cartridge (53mm)
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua53mm
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet53mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 53mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  id: MagazineLua53mm
+  name: 53mm ammo loader
+  description: An ammunition loader for Lua 53mm ship guns.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua53mm
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua53mm
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLua53mm
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 75
+
+# ---- 80mm ----
+- type: entity
+  id: CartridgeLua80mm
+  name: cartridge (80mm)
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua80mm
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet80mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 80mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  id: MagazineLua80mm
+  name: 80mm ammo loader
+  description: An ammunition loader for Lua 80mm ship guns.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua80mm
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua80mm
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLua80mm
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 100
+
+# ---- 105mm ----
+- type: entity
+  id: CartridgeLua105mm
+  name: shell (105mm)
+  parent: BaseGrenade
+  components:
+  - type: Tag
+    tags:
+    - CartridgeLua105mm
+  - type: Item
+    size: Huge
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet105mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 105mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 5
+
+- type: entity
+  id: MagazineLua105mm
+  name: 105mm ammo loader
+  description: An ammunition loader for Lua 105mm mortars.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua105mm
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua105mm
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLua105mm
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 120
+
+# ---- 120mm (direct cartridge feed, like AK820) ----
+- type: entity
+  id: CartridgeLua120mm
+  name: shell (120mm)
+  parent: BaseGrenade
+  components:
+  - type: Tag
+    tags:
+    - CartridgeLua120mm
+  - type: Item
+    size: Huge
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet120mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 120mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 8
+
+# ---- 140mm ----
+- type: entity
+  id: CartridgeLua140mm
+  name: shell (140mm)
+  parent: BaseGrenade
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua140mm
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: Bullet140mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 140mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: MagazineLua140mm
+  name: 140mm ammo loader
+  description: An ammunition loader for Lua 140mm mortars.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua140mm
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua140mm
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLua140mm
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 150
+
+# ---- Missiles ----
+- type: entity
+  id: CartridgeNightHunter
+  name: Tomahawk missile
+  parent: BaseMissile
+  components:
+  - type: Tag
+    tags:
+    - Missile
+    - MissileNightHunter
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: BulletTomahawk
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: sdm
+
+- type: entity
+  id: MagazineNightHunter
+  name: Night Hunter missile loader
+  description: Missile magazine for the Night Hunter launcher.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineNightHunter
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeNightHunter
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - MissileNightHunter
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 200
+
+- type: entity
+  id: CartridgeLancer
+  name: Spear missile
+  parent: BaseMissile
+  components:
+  - type: Tag
+    tags:
+    - Missile
+    - MissileLancer
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: BulletWolf
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: sdm
+
+- type: entity
+  id: MagazineLancer
+  name: Lancer missile loader
+  description: Missile magazine for the Lancer-14 launcher.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineLancer
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLancer
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - MissileLancer
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  id: CartridgeCerber
+  name: Anaconda missile
+  parent: BaseMissile
+  components:
+  - type: Tag
+    tags:
+    - Missile
+    - MissileCerber
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: BulletGR
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: sdm
+
+- type: entity
+  id: MagazineCerber
+  name: Cerber missile loader
+  description: Missile magazine for the Cerber-X launcher.
+  parent: [BaseItem, RecyclableItemSteelTiny]
+  components:
+  - type: Tag
+    tags:
+    - MagazineCerber
+  - type: Item
+    size: Huge
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeCerber
+    capacity: 1
+    mayTransfer: true
+    whitelist:
+      tags:
+      - MissileCerber
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 400

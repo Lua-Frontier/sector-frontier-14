@@ -1,6 +1,3 @@
-ent-ThrusterSecurity = двигатель
-    .suffix = Охрана
-    .desc = { ent-Thruster.desc }
 ent-DebugThrusterSecurity = двигатель
     .suffix = ДЕБАГ, Охрана
     .desc = { ent-DebugThruster.desc }

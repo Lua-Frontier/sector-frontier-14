@@ -1,0 +1,17 @@
+surgery-verb-text = Start surgery
+surgery-verb-message = Begin surgery on this entity.
+surgery-ui-window-title = Surgery
+surgery-ui-window-title-part = Surgery — {$part}
+surgery-ui-window-title-full = Surgery — {$part}, {$surgery}
+surgery-ui-window-require = Requires
+surgery-ui-window-parts = < Parts
+surgery-ui-window-surgeries = < Surgeries
+surgery-ui-window-steps = < Steps
+surgery-ui-window-steps-error-skills = You have no surgical skills.
+surgery-ui-window-steps-error-table = You need an operating table for this.
+surgery-ui-window-steps-error-armor = You need to remove their armor!
+surgery-ui-window-steps-error-tools = Missing tools.
+surgery-error-laying = They need to be laying down!
+surgery-error-self-surgery = You can't perform surgery on yourself!
+surgery-error-missing-tool = You need {$tool} to perform this step!
+surgery-part-damage-evaded = {$user} narrowly evaded!

@@ -1,0 +1,78 @@
+# Ported Mono energy projectiles
+- type: entity
+  id: ShipIonProjectile
+  name: ion shot
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 50
+        Heat: 35
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_projectiles.rsi
+    layers:
+    - state: ion_blast
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempCold
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#6c00d6"
+    scale: 5
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 4.4
+  - type: PointLight
+    color: "#FB00FF"
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 6000000
+    disableDuration: 15
+  - type: LightningOnTrigger
+    chance: 1
+    count: 6
+    range: 24
+    lightningProto: LightningEMP
+    lightningEffects: false
+
+# Tartarus
+- type: entity
+  parent: BasicHitscan
+  id: TachyonLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: muzzle_superheavy_prefrac
+    travelFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: Beam_SuperHeavy_prefrac
+    impactFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: impact_superheavy_prefrac
+  - type: HitscanRadarSignature
+    radarColor: "#1cd471"
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Heat: 150
+      Structural: 8000
+  - type: HitscanSpawnEntity
+    spawnedEntity: TachyonExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 1500
+
+# Sunder
+- type: entity
+  id: TachyonExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1200
+    intensitySlope: 150
+    maxIntensity: 30

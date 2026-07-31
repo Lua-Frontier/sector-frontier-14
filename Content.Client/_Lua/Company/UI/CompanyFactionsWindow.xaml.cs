@@ -87,6 +87,7 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
 
             _system.RequestSetMotd(_selectedCompanyId, Rope.Collapse(MotdInput.TextRope));
         };
+        WarStatusLabel.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("company-factions-war-loading")));
         PopulateCompanies();
     }
 
@@ -280,7 +281,7 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
             WarAnnouncementInput.Editable = false;
             MotdInput.Editable = false;
             SaveMotdButton.Disabled = true;
-            WarStatusLabel.Text = Loc.GetString("company-factions-war-loading");
+            WarStatusLabel.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("company-factions-war-loading")));
             return;
         }
         var isPublic = _prototypes.TryIndex<CompanyPrototype>(selectedCompany, out var proto) && !proto.Disabled && !proto.HiddenFromNonMembers;
@@ -330,7 +331,7 @@ public sealed partial class CompanyFactionsWindow : DefaultWindow
         WarAnnouncementInput.Editable = viewerIsLeader && !isGhost;
             MotdInput.Editable = _canEditMotd && !isGhost;
             SaveMotdButton.Disabled = !_canEditMotd || isGhost;
-        WarStatusLabel.Text = BuildWarStatusText();
+        WarStatusLabel.SetMessage(FormattedMessage.FromUnformatted(BuildWarStatusText()));
     }
 
     private string BuildWarStatusText()

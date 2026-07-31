@@ -36,6 +36,22 @@ public sealed partial class TailedEntityComponent : Component
     [DataField]
     public float MinLengthMultiplier = 0.95f;
 
+    /// <summary>
+    /// When true, segments are chain-pulled behind the head (no distance joints).
+    /// </summary>
+    [DataField]
+    public bool KinematicFollow = false;
+
+    /// <summary>
+    /// </summary>
+    [DataField]
+    public float FollowLerp = 1f;
+
+    [DataField]
+    public float FollowInterval = 1f;
+    [DataField]
+    public float FollowLerpFalloff = 0.02f;
+
     [DataField]
     public Vector2 AnchorAOffset = new(-0.15f, 0);
 
@@ -44,4 +60,7 @@ public sealed partial class TailedEntityComponent : Component
 
     [DataField]
     public List<EntityUid> TailSegments = new();
+
+    [ViewVariables]
+    public float FollowAccumulator;
 }

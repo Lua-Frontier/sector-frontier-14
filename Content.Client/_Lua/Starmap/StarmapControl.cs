@@ -3,10 +3,14 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.Starmap;
+using Content.Shared._Mono.Company;
+using Content.Shared.Lua.CLVar;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
+using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -20,6 +24,9 @@ public sealed class StarmapControl : Control
     [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     public float Range = 1f;
     public float Zoom { get; private set; } = 1f;
     private List<Star> _stars = new List<Star>();
@@ -43,6 +50,7 @@ public sealed class StarmapControl : Control
     private StarmapConfigPrototype? _config;
     private int _centerStarIndex = -1;
     private bool _graphDirty;
+    private bool _sectorsGloballyUnlocked;
 
     public StarmapControl()
     {
@@ -77,6 +85,12 @@ public sealed class StarmapControl : Control
     public void SetVisibleSectorMaps(List<MapId> maps)
     {
         _visibleSectorMaps = new HashSet<MapId>(maps ?? new List<MapId>());
+        InvalidateGraph();
+    }
+
+    public void SetSectorsGloballyUnlocked(bool unlocked)
+    {
+        _sectorsGloballyUnlocked = unlocked;
         InvalidateGraph();
     }
 
@@ -337,12 +351,40 @@ public sealed class StarmapControl : Control
 
     private bool IsStarVisible(Star star)
     {
-        var isSector = IsSectorStar(star.Map);
-        if (_capturingMaps != null && _capturingMaps.Contains(star.Map)) return true;
-        if (!isSector) return true;
-        if (star.Position == Vector2.Zero) return true;
-        if (_visibleSectorMaps.Count == 0) return false;
-        return _visibleSectorMaps.Contains(star.Map);
+        if (_capturingMaps != null && _capturingMaps.Contains(star.Map))
+            return true;
+        if (star.Position == Vector2.Zero)
+            return true;
+        if (_visibleSectorMaps.Count > 0 || _sectorIdByMap.Count > 0)
+        {
+            if (!_visibleSectorMaps.Contains(star.Map))
+                return false;
+            return IsSectorVisibleForLocalCompany(star.Map);
+        }
+        return false;
+    }
+
+    private bool IsSectorVisibleForLocalCompany(MapId mapId)
+    {
+        if (!_sectorIdByMap.TryGetValue(mapId, out var sectorId) || string.IsNullOrWhiteSpace(sectorId))
+            return true;
+        var company = SectorVisibility.NoneCompany;
+        var local = _player.LocalEntity;
+        if (local != null &&
+            _ent.TryGetComponent(local.Value, out CompanyComponent? companyComp) &&
+            !string.IsNullOrWhiteSpace(companyComp.CompanyName))
+            company = companyComp.CompanyName;
+        try
+        {
+            var dataId = _cfg.GetCVar(CLVars.StarmapDataId);
+            if (!_proto.TryIndex<StarmapDataPrototype>(dataId, out var data))
+                return true;
+            return SectorVisibility.IsSectorVisible(data, sectorId, company, _sectorsGloballyUnlocked);
+        }
+        catch
+        {
+            return true;
+        }
     }
 
     private static float Hash01(int x, int y, int seed)

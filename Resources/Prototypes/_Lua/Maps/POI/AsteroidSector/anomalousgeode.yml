@@ -14,7 +14,7 @@
 # The local Science lab
 - type: pointOfInterest
   id: AnomalousGeodeLua
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Аномальный Обломок'
   minimumDistance: 4000 #2100
   maximumDistance: 8000 #3800

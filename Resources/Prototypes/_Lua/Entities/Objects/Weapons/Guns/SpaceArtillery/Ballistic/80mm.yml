@@ -11,61 +11,72 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: RadarBlip
-      radarColor: "#229e51"
-      scale: 0.8
-    - type: Sprite
-      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets80mm.rsi
-      drawdepth: Mobs
-      layers:
-        - state: turrets80mm
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-        machine_parts: !type:Container
-    - type: ExplosionResistance
-      damageCoefficient: 0.75 # Lua
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 2250
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-        - !type:ChangeConstructionNodeBehavior
-          node: machineFrame
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-    - type: Gun
-      fireRate: 1.5
-      projectileSpeed: 80 #60
-      selectedMode: FullAuto
-      availableModes:
-        - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-    - type: Battery
-      maxCharge: 500
-      startingCharge: 500
-    - type: ExaminableBattery
-    - type: AutoShootGun
-    - type: GunSignalControl
-    - type: WirelessNetworkConnection
-      range: 700
-    - type: FireControllable
-    - type: SpaceArtillery
-      powerChargeRate: 25
-      powerUseActive: 2500
-      powerUsePassive: 1100
-    - type: ShipGunClass
-      shipClass: Heavy
-    - type: BatterySelfRecharger
-      autoRecharge: true
-      autoRechargeRate: 25
-    - type: ProjectileBatteryAmmoProvider
-      proto: Bullet80mm
-      fireCost: 50
+  - type: RadarBlip
+    radarColor: "#229e51"
+    scale: 0.8
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets80mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets80mm
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ExplosionResistance
+    damageCoefficient: 0.75 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Gun
+    fireRate: 1.5
+    projectileSpeed: 80 #60
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: ExaminableBattery
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: WirelessNetworkConnection
+    range: 700
+  - type: FireControllable
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLua80mm
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLua80mm
+        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: SpaceArtillery
+    powerChargeRate: 25
+    powerUseActive: 2500
+    powerUsePassive: 1100
+  - type: ShipGunClass
+    shipClass: Heavy
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
 
 - type: entity
   parent: BaseNFFlatpack

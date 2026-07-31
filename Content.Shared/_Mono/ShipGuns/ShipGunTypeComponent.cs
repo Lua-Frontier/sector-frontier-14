@@ -24,5 +24,6 @@ public enum ShipGunType
     Ballistic,
     Mining,
     Energy,
-    Missile
+    Missile,
+    Other
 }

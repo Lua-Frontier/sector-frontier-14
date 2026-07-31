@@ -40,7 +40,7 @@
     - PillCanisterRandom
     - SpawnDungeonLootFlatpacksMed
     - SpawnDungeonLootVendingRestocks
-    chance: 0.95
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootKitsFirstAid
@@ -79,7 +79,7 @@
     - MedkitToxin
     - MedkitRadiationFilled
     - MedkitRadiation
-    chance: 0.75
+    chance: 0.5
     offset: 0.0
     rarePrototypes:
     - MedkitAdvancedFilled
@@ -108,11 +108,11 @@
     - ScalpelShiv
     - WelderMini
     - SawImprov
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - NFWeaponShotgunHandmade
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random tool
@@ -137,11 +137,11 @@
     - Drill
     - Hemostat
     - Retractor
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SawElectric
-    rareChance: 0.1
+    rareChance: 0.05
 
 - type: entity
   name: random tool
@@ -167,11 +167,11 @@
     - Drill
     - Hemostat
     - Retractor
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SawAdvanced
-    rareChance: 0.15
+    rareChance: 0.075
 
 - type: entity
   name: random surgery kit
@@ -192,12 +192,12 @@
     prototypes:
     - ClothingBackpackDuffelSurgeryFilled
     - ClothingBackpackDuffelSurgeryAdvancedFilled
-    chance: 0.95
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - ClothingBackpackDuffelSurgeryImpovFilled
     - ClothingBackpackDuffelSyndicateFilledMedical
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random beaker
@@ -223,11 +223,11 @@
     - CryostasisBeaker
     - Jug
     - Dropper
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - BluespaceBeaker
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random medipens
@@ -253,7 +253,7 @@
     - BurnAutoInjector
     - SpaceMedipen
     - RadAutoInjector
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - CombatMedipen
@@ -284,7 +284,7 @@
     - Ointment
     - Gauze
     - Bloodpack
-    chance: 0.7
+    chance: 0.45
     offset: 0.0
     rarePrototypes:
     - MedicatedSuture
@@ -312,7 +312,7 @@
     - Brutepack1
     - Ointment1
     - Gauze1
-    chance: 1.0
+    chance: 0.55
     offset: 0.0
 
 - type: entity
@@ -337,7 +337,7 @@
     - BodyBagFolded
     - RollerBedSpawnFolded
     - CheapRollerBedSpawnFolded
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - Stunprod
@@ -369,7 +369,7 @@
     - LightImplanter
     - SadTromboneImplanter
     - TrackingImplanter
-    chance: 1.0
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - DnaScramblerImplanter
@@ -413,11 +413,11 @@
     - SyringeStimulants
     - SyringeSigynate
     - SyringeSaline
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SyringeBluespace
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random hypospray
@@ -439,7 +439,7 @@
     - HypoMini
     - HypoBrigmedic
     - HypoMiniLimitedEdition
-    chance: 0.65
+    chance: 0.42
     offset: 0.0
 #    rarePrototypes: #comment (444-446) from _Lua
 #     - Hypospray
@@ -483,7 +483,7 @@
     - ClothingUniformJumpsuitMedicalDoctor
     - ClothingBackpackMessengerMedical
     - ClothingBackpackDuffelMedical
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - ClothingOuterHardsuitVoidParamed
@@ -518,12 +518,12 @@
     - LockerParamedicFilled
     - LockerPsychologistFilled
     - ClosetL3VirologyFilled
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - LockerChiefMedicalOfficer
     - LockerChiefMedicalOfficerFilled
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random crate
@@ -572,7 +572,7 @@
     - CrateMedicalSecureMedicine
     - CrateMedicalSecureMedicinePierce
     - CrateEvaKitParamedic
-    chance: 0.9
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     #- CrateServiceKitMedbay
@@ -600,7 +600,7 @@
     - CrateMedical
     - CrateSurgery
     - CrateChemistrySecure
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 - type: entity
@@ -621,7 +621,7 @@
     prototypes:
     - CrateVendingMachineRestockMedicalFilled
     - CrateVendingMachineRestockChemVendFilled
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 # Machines
@@ -647,13 +647,13 @@
     - VendingMachineGeneDrobe
     - VendingMachineViroDrobe
     - SpawnDungeonMachineFrame
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContraband
     # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineRobotics
-    rareChance: 0.02
+    rareChance: 0.01
 
 # Other
 - type: entity
@@ -696,7 +696,7 @@
     - JugMercury
     - JugSilver
     - JugWeldingFuel
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - ChemistryBottleCognizine
@@ -742,11 +742,11 @@
     - MedicalScannerMachineCircuitboard
     - StasisBedMachineCircuitboard
     - VaccinatorMachineCircuitboard
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - ComputerIFFCircuitboard
-    rareChance: 0.03
+    rareChance: 0.015
 
 - type: entity
   name: random flatpack
@@ -776,5 +776,5 @@
     - VendingMachineMedicalFlatpack
     - VendingMachineWallMedicalFlatpack
     - VendingMachineChemicalsFlatpack
-    chance: 0.95
+    chance: 0.4
     offset: 0.0

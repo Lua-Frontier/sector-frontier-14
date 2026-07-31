@@ -15,4 +15,7 @@ public sealed partial class PlanetQuestTargetComponent : Component
 
     [DataField]
     public EntityUid QuestMap;
+
+    [DataField]
+    public bool Counted;
 }

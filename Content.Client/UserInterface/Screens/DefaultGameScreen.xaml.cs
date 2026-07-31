@@ -21,6 +21,7 @@ public sealed partial class DefaultGameScreen : InGameScreen
         SetAnchorAndMarginPreset(Inventory, LayoutPreset.BottomLeft, margin: 5);
         SetAnchorAndMarginPreset(Hotbar, LayoutPreset.BottomWide, margin: 5);
         SetAnchorAndMarginPreset(Chat, LayoutPreset.TopRight, margin: 10);
+        SetAnchorAndMarginPreset(Targeting, LayoutPreset.BottomRight, margin: 5); // Shitmed Change
         SetAnchorPreset(AlertsContainer, LayoutPreset.Wide);
         SetMarginLeft(AlertsContainer, 0); // Lua
         SetMarginTop(AlertsContainer, 0); // Lua

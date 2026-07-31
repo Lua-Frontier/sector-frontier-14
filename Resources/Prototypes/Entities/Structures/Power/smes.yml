@@ -1,4 +1,5 @@
 # Base SMES
+# Base SMES
 - type: entity
   abstract: true
   id: BaseSMES
@@ -132,6 +133,8 @@
     maxCharge: 8000000
     startingCharge: 8000000
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: SMESBasic
   id: SMESBasicEmpty
@@ -181,6 +184,8 @@
     baseMaxCharge: 16000000
   # End Frontier: upgradable SMES
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: SMESAdvanced
   id: SMESAdvancedEmpty

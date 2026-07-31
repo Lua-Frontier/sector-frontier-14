@@ -52,6 +52,8 @@ public sealed class ShuttleTabletSystem : EntitySystem
         {
             subs.Event<ShuttleConsoleFireMessage>(OnShuttleConsoleFire);
             subs.Event<ShuttleConsoleRefreshFireControlMessage>(OnShuttleConsoleRefreshFireControl);
+            subs.Event<SetMaxShuttleSpeedRequest>(OnSetMaxShuttleSpeed);
+            subs.Event<SetMaxShuttleAngularSpeedRequest>(OnSetMaxShuttleAngularSpeed);
             subs.Event<BoundUIClosedEvent>(OnUIClose);
         });
     }
@@ -120,6 +122,30 @@ public sealed class ShuttleTabletSystem : EntitySystem
         }
 
         _shuttle.RemovePilot(args.Actor);
+    }
+
+    private void OnSetMaxShuttleSpeed(EntityUid uid, ShuttleTabletComponent component, SetMaxShuttleSpeedRequest args)
+    {
+        if (!TryComp<PilotComponent>(args.Actor, out var pilot))
+            return;
+
+        var maxSpeed = args.MaxSpeed;
+        if (maxSpeed is { } speed)
+            maxSpeed = Math.Max(speed, 0f);
+
+        pilot.SetMaxVelocity = maxSpeed;
+    }
+
+    private void OnSetMaxShuttleAngularSpeed(EntityUid uid, ShuttleTabletComponent component, SetMaxShuttleAngularSpeedRequest args)
+    {
+        if (!TryComp<PilotComponent>(args.Actor, out var pilot))
+            return;
+
+        var maxAngular = args.MaxAngularSpeed;
+        if (maxAngular is { } speed)
+            maxAngular = Math.Max(speed, 0f);
+
+        pilot.SetMaxAngularVelocity = maxAngular;
     }
 
     private void OnShuttleConsoleFire(EntityUid tablet, ShuttleTabletComponent tabletComp, ShuttleConsoleFireMessage args)

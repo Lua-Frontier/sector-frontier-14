@@ -1,3 +1,4 @@
+
 using Robust.Shared.Console;
 using Content.Server.Administration;
 using Content.Shared.Administration;
@@ -6,7 +7,7 @@ using Content.Shared.Administration;
 namespace Content.Server._Crescent.ShipShields;
 public partial class ShipShieldsSystem
 {
-    [Dependency] private readonly IConsoleHost _conHost = default!;
+    [Dependency] private IConsoleHost _conHost = default!;
 
     public void InitializeCommands()
     {

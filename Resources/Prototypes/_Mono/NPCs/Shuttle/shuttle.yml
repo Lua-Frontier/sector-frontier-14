@@ -344,3 +344,34 @@
         proto: NearbyShuttleTargets
         key: Target
         coordinatesKey: TargetCoordinates
+
+#region Autopilot
+
+- type: htnCompound
+  id: AutopilotShuttleCompound
+  branches:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Target
+    tasks:
+    - !type:HTNCompoundTask
+      task: AutopilotMoveCompound
+
+- type: htnCompound
+  id: AutopilotMoveCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: true
+        # Looser arrival band so large shuttles can brake/rotate and still finish.
+        inRangeMaxSpeed: 1.5
+        range: 120
+        leadingEnabled: false
+        targetKey: Target
+        angleKey: TargetRotation
+        maxRotateRate: 0.1
+        requireSolo: true
+        alwaysFaceTarget: true
+        maxTargetingRange: 60000

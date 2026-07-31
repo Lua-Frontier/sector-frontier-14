@@ -1,0 +1,67 @@
+- type: entity
+  parent: IngotBase
+  id: IngotPlutonium
+  name: plutonium bar
+  description: Ingots of pure fissile plutonium. A byproduct of nuclear fission reactors.
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Plutonium: 100
+  - type: Stack
+    stackType: Plutonium
+    baseLayer: base
+    layerStates:
+    - plutonium
+    - plutonium_2
+    - plutonium_3
+  - type: Sprite
+    state: plutonium_3
+    sprite: _Mono/Objects/Materials/fissiles.rsi
+    layers:
+    - state: plutonium_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: plutonium
+  - type: Appearance
+  - type: RadiationSource
+    intensity: 0.08
+    slope: 3
+  - type: Explosive
+    explosionType: Radioactive
+    totalIntensity: 5.0
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: ThermalSignature
+  - type: PassiveThermalSignature
+    signature: 150000
+  - type: RadiationReceiver
+  - type: ChainRadiation
+    baseIntensity: 0.4
+    coefficient: 0.1
+    explosionThreshold: 10
+    totalIntensity: 15000
+    intensitySlope: 2000
+    maxIntensity: 4000
+  - type: DamageOnLand
+    damage:
+      types:
+        Burn: 5
+        Radiation: 5
+  - type: PointLight
+    radius: 1.2
+    energy: 0.8
+    castShadows: false
+    color: "#22bbff"
+
+- type: entity
+  parent: IngotPlutonium
+  id: IngotPlutonium1
+  name: plutonium bar
+  suffix: Single
+  components:
+  - type: Sprite
+    state: plutonium
+  - type: Stack
+    count: 1

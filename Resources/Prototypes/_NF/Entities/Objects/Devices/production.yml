@@ -142,6 +142,50 @@
       Steel: 5
 
 - type: entity
+  id: ThrusterUSSPMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: USSP thruster machine board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ThrusterUSSP
+    requirements:
+      Capacitor: 3
+    stackRequirements:
+      Steel: 5
+
+- type: entity
+  id: ThrusterRogueMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Rogue thruster machine board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterRogue
+    requirements:
+      Capacitor: 3
+    stackRequirements:
+      Steel: 5
+
+- type: entity
+  id: LargeThrusterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medium thruster machine board
+  description: A circuitboard for a medium thruster.
+  suffix: Legacy
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterMedium
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Steel: 20
+
+- type: entity
   id: SmallThrusterMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: small thruster machine board

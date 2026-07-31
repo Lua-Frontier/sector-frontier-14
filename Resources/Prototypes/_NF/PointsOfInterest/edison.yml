@@ -10,7 +10,7 @@
 #
 - type: pointOfInterest
   id: Edison
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Электростанция Эдисона'
   minimumDistance: 4650
   maximumDistance: 7400

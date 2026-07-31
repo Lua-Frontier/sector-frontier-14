@@ -5,7 +5,9 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Damage.Components;
+using Content.Shared.Gibbing.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -16,7 +18,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
 
-public sealed class BodySystem : SharedBodySystem
+public sealed partial class BodySystem : SharedBodySystem
 {
     [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -102,7 +104,9 @@ public sealed class BodySystem : SharedBodySystem
         Vector2? splatDirection = null,
         float splatModifier = 1,
         Angle splatCone = default,
-        SoundSpecifier? gibSoundOverride = null
+        SoundSpecifier? gibSoundOverride = null,
+        GibType gib = GibType.Gib,
+        GibContentsOption contents = GibContentsOption.Drop
     )
     {
         if (!Resolve(bodyId, ref body, logMissing: false)
@@ -123,7 +127,8 @@ public sealed class BodySystem : SharedBodySystem
         RaiseLocalEvent(bodyId, ref beforeEv); // Frontier: before gibbed event
 
         var gibs = base.GibBody(bodyId, gibOrgans, body, launchGibs: launchGibs,
-            splatDirection: splatDirection, splatModifier: splatModifier, splatCone:splatCone);
+            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone,
+            gibSoundOverride: gibSoundOverride, gib: gib, contents: contents);
 
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(bodyId, ref ev);
@@ -131,5 +136,16 @@ public sealed class BodySystem : SharedBodySystem
         QueueDel(bodyId);
 
         return gibs;
+    }
+
+    protected override void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component)
+    {
+    }
+
+    protected override void RemoveBodyMarkings(
+        EntityUid target,
+        BodyPartAppearanceComponent partAppearance,
+        HumanoidAppearanceComponent bodyAppearance)
+    {
     }
 }

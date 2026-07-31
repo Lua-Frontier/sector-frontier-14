@@ -13,6 +13,8 @@ namespace Content.Client.Shuttles.UI
         public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
         public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
         public event Action<NetEntity?, bool>? OnSetHideTarget;
+        public event Action<float?>? OnMaxShuttleSpeedChanged;
+        public event Action<float?>? OnMaxShuttleAngularSpeedChanged;
 
         public event Action<string, string>? OnNetworkPortButtonPressed;
 
@@ -21,6 +23,16 @@ namespace Content.Client.Shuttles.UI
             NavContainer.OnInertiaDampeningModeChanged += (entity, mode) =>
             {
                 OnInertiaDampeningModeChanged?.Invoke(entity, mode);
+            };
+
+            NavContainer.OnMaxShuttleSpeedChanged += maxSpeed =>
+            {
+                OnMaxShuttleSpeedChanged?.Invoke(maxSpeed);
+            };
+
+            NavContainer.OnMaxShuttleAngularSpeedChanged += maxAngular =>
+            {
+                OnMaxShuttleAngularSpeedChanged?.Invoke(maxAngular);
             };
 
             NavContainer.OnNetworkPortButtonPressed += (sourcePort, targetPort) =>

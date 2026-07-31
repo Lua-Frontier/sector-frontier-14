@@ -20,6 +20,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash10
+        prob: 0.4
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -74,25 +75,27 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRevolverRitland45Expedition
+        prob: 0.65
       - id: SpeedLoader45_magnumUranium #Lua 45 -> Magnum
-      - id: SpeedLoader45_magnumUranium #Lua 45 -> Magnum
+        prob: 0.65
       - id: SpaceCash5000
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -104,25 +107,25 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRevolverRitland45Expedition
+        prob: 0.65
       - id: SpeedLoader45_magnumIncendiary #Lua 45 -> Magnum
-      - id: SpeedLoader45_magnumIncendiary #Lua 45 -> Magnum
+        prob: 0.65
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -134,24 +137,25 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpeedLoader45_magnumFMJ #Lua 45 -> Magnum
+        prob: 0.65
       - id: SpeedLoader45_magnumHP #Lua 45 -> Magnum
+        prob: 0.65
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -163,22 +167,21 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -191,23 +194,23 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponEnergyPistolLaserAdvancedExpedition
+        prob: 0.65
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -219,23 +222,23 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponEnergyPistolLaserExpedition
+        prob: 0.65
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -248,22 +251,21 @@
     items:
       - id: PowerCellHighPrinted
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T3
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpaceCash500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -275,23 +277,19 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash1000
+        prob: 0.4
       - id: SpaceCash500
+        prob: 0.4
       # Bonus Loot T3
-      - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -304,25 +302,26 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponRifleAssaultSmExpedition
+        prob: 0.65
       - id: Magazine762x39mmUranium #Lua 30 -> 762x39
-      - id: Magazine762x39mmUranium #Lua 30 -> 762x39
-        prob: 0.2
+        prob: 0.65
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
+        prob: 0.4
       # Bonus Loot T4
       - id: SpaceCash2500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.9
+        prob: 0.59
       - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 3
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootVaultGuns
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -335,24 +334,24 @@
     items:
 #      - id: NFWeaponRifleAssaultM90GrenadeLauncherExpedition #comment from _Lua
       - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
-      - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
-        prob: 0.2
+        prob: 0.65
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
+        prob: 0.4
       # Bonus Loot T4
       - id: SpaceCash2500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.9
+        prob: 0.59
       - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 3
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootVaultGuns
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -364,24 +363,24 @@
   - type: SpawnItemsOnUse
     items:
       - id: Magazine762x39mmHP #Lua 30 -> 762x39
-      - id: Magazine762x39mmHP #Lua 30 -> 762x39
-        prob: 0.2
+        prob: 0.65
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
+        prob: 0.4
       # Bonus Loot T4
       - id: SpaceCash2500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.9
+        prob: 0.59
       - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 3
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootVaultGuns
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -393,20 +392,21 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash10000
+        prob: 0.4
       # Bonus Loot T4
       - id: SpaceCash2500
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.9
+        prob: 0.59
       - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 3
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootVaultGuns
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -419,27 +419,23 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponSubMachineGunC20rExpedition
+        prob: 0.65
       - id: Magazine9x19mmSubMachineGunUranium #Lua 35 -> 9x19
-      - id: Magazine9x19mmSubMachineGunUranium #Lua 35 -> 9x19
-        prob: 0.2
+        prob: 0.65
       - id: SpaceCash1000
-      - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T3
-      - id: SpaceCash1000
-        prob: 0.9
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -451,25 +447,23 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponSubMachineGunWt550Expedition
+        prob: 0.65
       - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
+        prob: 0.65
       - id: SpaceCash1000
+        prob: 0.4
       - id: SpaceCash500
+        prob: 0.4
       # Bonus Loot T3
-      - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash500
-        prob: 0.9
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -482,25 +476,21 @@
     items:
       - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19mm base
       - id: AmmoBox9x19mmUranium #Lua 35 -> 9x19 base
-        prob: 0.2
+        prob: 0.13
       - id: SpaceCash1000
+        prob: 0.4
       - id: SpaceCash500
+        prob: 0.4
       # Bonus Loot T3
-      - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -512,23 +502,19 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash1000
+        prob: 0.4
       - id: SpaceCash500
+        prob: 0.4
       # Bonus Loot T3
-      - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash500
-        prob: 0.9
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootFlatpacks
-        prob: 0.5
+        prob: 0.33
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.4
+        prob: 0.26
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -541,17 +527,16 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponPistolViperExpedition
+        prob: 0.65
       - id: Magazine9x19mmPistolUranium #Lua 35 -> 9x19
-      - id: Magazine9x19mmPistolUranium #Lua 35 -> 9x19
-        prob: 0.2
+        prob: 0.65
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -563,17 +548,16 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponPistolMk58Expedition
+        prob: 0.65
       - id: Magazine9x19mmPistolIncendiary #Lua 35 -> 9x19
-      - id: Magazine9x19mmPistolIncendiary #Lua 35 -> 9x19
-        prob: 0.2
+        prob: 0.65
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -585,16 +569,14 @@
   - type: SpawnItemsOnUse
     items:
       - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
-      - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
-        prob: 0.2
+        prob: 0.65
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -606,13 +588,12 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -654,13 +635,12 @@
       - id: MedicatedSuture
       - id: Stimpack
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -676,13 +656,12 @@
       - id: AntiPoisonMedipen
       - id: MedicatedSuture
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -697,13 +676,12 @@
       - id: AntiPoisonMedipen
       - id: MedicatedSuture
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -717,13 +695,12 @@
       - id: AntiPoisonMedipen
       - id: MedicatedSuture
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T1
       - id: SpaceCash500
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootPartsEngi
-        prob: 0.7
+        prob: 0.45
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -739,24 +716,21 @@
   - type: SpawnItemsOnUse
     items:
       - id: NFWeaponShotgunKammererExpedition
+        prob: 0.65
       - id: SyndicateJawsOfLife
       - id: AmmoBox23x75mmUranium #Lua 4 gauge
       - id: SpaceCash1000
-      - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T2
-      - id: SpaceCash1000
-        prob: 0.9
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -770,20 +744,17 @@
       - id: AmmoBox23x75mmIncendiary #Lua 4 gauges
       - id: JawsOfLife
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T2
-      - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -796,20 +767,17 @@
     items:
       - id: JawsOfLife
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T2
-      - id: SpaceCash1000
-        prob: 0.9
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -821,20 +789,17 @@
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash1000
+        prob: 0.4
       # Bonus Loot T2
-      - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -851,22 +816,22 @@
     items:
       - id: ClothingBackpackWaterTank
       - id: WeaponSprayNozzle
+        prob: 0.65
       - id: Stimpack
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -878,22 +843,22 @@
   - type: SpawnItemsOnUse
     items:
       - id: WeaponWaterBlasterSuper
+        prob: 0.65
       - id: Stimpack
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -905,21 +870,21 @@
   - type: SpawnItemsOnUse
     items:
       - id: WeaponWaterBlaster
+        prob: 0.65
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -931,21 +896,21 @@
   - type: SpawnItemsOnUse
     items:
       - id: WeaponWaterPistol
+        prob: 0.65
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -960,20 +925,19 @@
       - id: ExGrenade
         amount: 4
       - id: SpaceCash5000
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -987,20 +951,19 @@
       - id: ExGrenade
         amount: 2
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -1014,20 +977,19 @@
       - id: GrenadeFlashBang
         amount: 4
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsBasicFull
-        prob: 0.7
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
 
@@ -1041,19 +1003,18 @@
       - id: GrenadeFlashBang
         amount: 2
       - id: SpaceCash2500
+        prob: 0.4
       # Bonus Loot T2
       - id: SpaceCash1000
-        prob: 0.9
-      - id: SpaceCash1000
-        prob: 0.7
+        prob: 0.36
       - id: SpawnDungeonLootMaterialsValuableFull
-        prob: 0.7
+        prob: 0.28
       - id: SpawnDungeonLootPartsEngi
         amount: 2
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootCircuitBoardEngi
-        prob: 0.7
+        prob: 0.45
       - id: SpawnDungeonLootToolsAdvancedEngineering
-        prob: 0.3
+        prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg

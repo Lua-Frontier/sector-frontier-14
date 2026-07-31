@@ -216,21 +216,6 @@
   components:
   - type: Transform
 
-# region Expedition Shuttles
-- type: entity
-  id: StandardFrontierSecurityExpeditionVessel
-  parent:
-  - StandardFrontierSecurityVessel
-  - BaseStationExpeditions
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  id: StandardFrontierExpeditionVessel
-  parent:
-  - StandardFrontierVessel
-  - BaseStationExpeditions
-  categories: [ HideSpawnMenu ]
-
 - type: entity
   id: StandardLuaTechSecurityVessel
   parent:

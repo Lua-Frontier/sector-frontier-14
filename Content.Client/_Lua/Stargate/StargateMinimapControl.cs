@@ -22,6 +22,7 @@ public sealed class StargateMinimapControl : Control
     private Vector2? _gatePosition;
     private Vector2? _playerPosition;
     private bool _isStargateWorld;
+    private bool _isExpeditionWorld;
     private bool _hasDisk;
     private float _viewRange = 64f;
     private Font? _font;
@@ -38,6 +39,7 @@ public sealed class StargateMinimapControl : Control
     public void UpdateState(StargateMinimapUiState state)
     {
         _isStargateWorld = state.IsStargateWorld;
+        _isExpeditionWorld = state.IsExpeditionWorld;
         _hasDisk = state.HasDisk1;
         _chunks = state.ExploredChunks;
         _markers = state.Markers;
@@ -128,7 +130,7 @@ public sealed class StargateMinimapControl : Control
             handle.DrawCircle(sp, 7f, Color.White, false);
             handle.DrawCircle(sp, 3f, Color.FromHex("#00aaff"), true);
             var font = GetFont();
-            handle.DrawString(font, sp + new Vector2(9f, -5f), Loc.GetString("stargate-minimap-gate"), Color.FromHex("#00aaff"));
+            handle.DrawString(font, sp + new Vector2(9f, -5f), Loc.GetString(_isExpeditionWorld ? "stargate-minimap-shuttle" : "stargate-minimap-gate"), Color.FromHex("#00aaff"));
             return;
         }
         var dir = new Vector2(sp.X - center.X, sp.Y - center.Y);

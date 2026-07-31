@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: GravityGenerator
   parent: BaseMachinePowered
   name: gravity generator
@@ -82,6 +82,9 @@
     price: 0 # Frontier 5000<0
   - type: PirateBountyItem # Frontier
     id: GravityGenerator # Frontier
+  - type: ShipRepairable
+    repairTime: 15
+    repairCost: 30
 
 - type: entity
   id: GravityGeneratorMini

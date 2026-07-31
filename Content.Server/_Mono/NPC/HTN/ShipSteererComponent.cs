@@ -34,7 +34,7 @@ public sealed partial class ShipSteererComponent : Component
     /// If AlwaysFaceTarget is true, how much of a difference in angle (in radians) to accept.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float AlwaysFaceTargetOffset = 0.01f;
+    public float AlwaysFaceTargetOffset = 0.0333f; // Mono RotationTolerance
 
     /// <summary>
     /// Whether to avoid obstacles.
@@ -46,7 +46,7 @@ public sealed partial class ShipSteererComponent : Component
     /// Try to evade collisions this far into the future even if stationary.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float BaseEvasionTime = 10f;
+    public float BaseEvasionTime = 8f;
 
     /// <summary>
     /// How unwilling we are to use brake to adjust our velocity. Higher means less willing.
@@ -58,7 +58,7 @@ public sealed partial class ShipSteererComponent : Component
     /// How much larger to consider the ship for collision evasion purposes.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float EvasionBuffer = 6f;
+    public float EvasionBuffer = 8f;
 
     /// <summary>
     /// How many evasion sectors to init on the outer ring.
@@ -79,22 +79,34 @@ public sealed partial class ShipSteererComponent : Component
     public bool FinishOnCollide = true;
 
     /// <summary>
-    /// How much to enlarge grid search bounds for collision evasion.
+    /// How much to enlarge grid search bounds for collision evasion (lateral padding).
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float GridSearchBuffer = 96f;
+    public float GridSearchBuffer = 128f;
 
     /// <summary>
     /// How much to enlarge grid search forward distance for collision evasion.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float GridSearchDistanceBuffer = 96f;
+    public float GridSearchDistanceBuffer = 128f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float GridObstacleClearance = 14f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float MinObstructorScanDistance = 400f;
 
     /// <summary>
     /// Up to how fast can we be going before being considered in range, if not null.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public float? InRangeMaxSpeed = null;
+
+    /// <summary>
+    /// Global angle to rotate to while in range.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Angle? InRangeRotation = null;
 
     /// <summary>
     /// Whether to try to match velocity with target.
@@ -112,7 +124,7 @@ public sealed partial class ShipSteererComponent : Component
     /// Check for obstacles for collision avoidance at most this far.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MaxObstructorDistance = 800f;
+    public float MaxObstructorDistance = 900f;
 
     /// <summary>
     /// Ignore obstacles this close to our destination grid if moving to a grid, + other grid's radius.
@@ -180,6 +192,12 @@ public sealed partial class ShipSteererComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public float TurnEaseIn = 0.2f;
+
+    [ViewVariables]
+    public List<Vector2>? Waypoints;
+
+    [ViewVariables]
+    public int WaypointIndex;
 }
 
 public enum ShipSteeringStatus : byte

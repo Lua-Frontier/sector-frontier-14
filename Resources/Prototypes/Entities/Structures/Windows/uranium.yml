@@ -51,6 +51,9 @@
   - type: RadiationBlocker
     resistance: 3
 
+  - type: ShipRepairable
+    repairTime: 3
+    repairCost: 3
 - type: entity
   id: UraniumWindowDirectional
   parent: WindowDirectionalRCDResistant

@@ -10,6 +10,7 @@ materials-gold = gold
 materials-silver = silver
 materials-plasteel = plasteel
 materials-plastitanium = plastitanium
+materials-uraniumfissile = fissile uranium
 
 # Other
 materials-biomass = biomass

@@ -1,0 +1,9 @@
+ent-AutodocCircuitboard = автодок (машинная плата)
+    .desc = Машинная плата для автодока.
+    .suffix = { ent-BaseMachineCircuitboard.suffix }
+ent-AutodocSyndieCircuitboard = { ent-AutodocCircuitboard }
+    .suffix = Синдикат, Машинная плата
+    .desc = { ent-AutodocCircuitboard.desc }
+ent-OperatingTableCircuitboard = машинная плата (операционный стол)
+    .desc = Машинная плата для операционного стола.
+    .suffix = { ent-BaseMachineCircuitboard.suffix }

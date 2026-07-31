@@ -1,6 +1,7 @@
 using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
@@ -59,6 +60,25 @@ public partial class AtmosphereSystem
         Dirty(uid, component);
         if (updateTiles)
             RefreshAllGridMapAtmospheres(uid);
+    }
+
+    public void ScaleMapGasOverlay(EntityUid uid, float scale, MapAtmosphereComponent? component = null)
+    {
+        if (!Resolve(uid, ref component)) return;
+        scale = Math.Clamp(scale, 0f, 1f);
+        var opacity = component.Overlay.Opacity;
+        if (opacity.Length == 0) return;
+        var scaled = new byte[opacity.Length];
+        var any = false;
+        for (var i = 0; i < opacity.Length; i++)
+        {
+            if (opacity[i] == 0) continue;
+            scaled[i] = (byte) Math.Clamp((int) MathF.Round(opacity[i] * scale), 1, 255);
+            any = true;
+        }
+        if (!any) return;
+        component.Overlay = new SharedGasTileOverlaySystem.GasOverlayData(component.Overlay.FireState, scaled);
+        Dirty(uid, component);
     }
 
     public void SetMapSpace(EntityUid uid, bool space, MapAtmosphereComponent? component = null, bool updateTiles = true)

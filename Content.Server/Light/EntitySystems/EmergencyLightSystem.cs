@@ -12,6 +12,7 @@ using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Color = Robust.Shared.Maths.Color;
 using Content.Server._NF.SectorServices; // Frontier: sector services
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Light.EntitySystems;
 

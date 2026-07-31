@@ -372,6 +372,15 @@ public abstract partial class SharedProjectileSystem : EntitySystem
                 args.Cancelled = true;
                 return; // Projectile phases through entities on its origin grid.
             }
+
+            // Don't collide with other projectiles from the same source grid (Monolith ProjectileGridPhase parity)
+            if (phaseComp.SourceGrid != null
+                && TryComp<ProjectileGridPhaseComponent>(args.OtherEntity, out var otherPhase)
+                && otherPhase.SourceGrid == phaseComp.SourceGrid)
+            {
+                args.Cancelled = true;
+                return;
+            }
         }
 
         // Add collision check to queue for batch processing if we have enough

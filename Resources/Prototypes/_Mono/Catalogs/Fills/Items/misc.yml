@@ -13,3 +13,33 @@
     - id: PunctAutoInjector
     - id: BurnAutoInjector
     - id: PyraAutoInjector
+
+- type: entity
+  parent: WeaponCaseHeavyAmmo
+  id: WeaponCaseHeavyAmmo150EMP
+  suffix: Heavy, Ship, 150mm EMP
+  components:
+  - type: StorageFill
+    contents:
+    - id: 150mmEmpShell
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseHeavyAmmo
+  id: WeaponCaseHeavyAmmo150AP
+  suffix: Heavy, Ship, 150mm AP
+  components:
+  - type: StorageFill
+    contents:
+    - id: 150mmApShell
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseHeavyAmmo
+  id: WeaponCaseHeavyAmmo150APHE
+  suffix: Heavy, Ship, 150mm APHE
+  components:
+  - type: StorageFill
+    contents:
+    - id: 150mmApheShell
+      amount: 4

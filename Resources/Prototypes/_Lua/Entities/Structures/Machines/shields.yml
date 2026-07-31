@@ -12,6 +12,8 @@
       unpoweredBonus: 8
       damageLimit: 110500
       damageOverloadTimePunishment: 35
+      powerModifier: 0.5
+      collisionResistanceMultiplier: 0.05
       shieldColor: "#a200ff"
     - type: ApcPowerReceiver
       powerLoad: 9000
@@ -32,6 +34,9 @@
       color: "#a200ff"
       radius: 2.0
       energy: 1.5
+    - type: ShipRepairable
+      repairTime: 30
+      repairCost: 300
 
 - type: entity
   id: CircularShieldLuaBuild

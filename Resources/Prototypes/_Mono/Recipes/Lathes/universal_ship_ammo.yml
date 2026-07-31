@@ -9,6 +9,21 @@
 
 - type: latheRecipe
   parent: BaseShipgunAmmoRecipe
+  id: BaseLightShipgunAmmoRecipe
+  abstract: true
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: BaseHeavyShipgunAmmoRecipe
+  abstract: true
+  materials:
+    Steel: 3500
+    Plasma: 500
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
   id: Base150mmShellAmmoRecipe
   abstract: true
   materials:
@@ -60,9 +75,34 @@
   result: CharonSlugAmmo
 
 - type: latheRecipe
+  id: CharonApheSlugUniversal
+  parent: BaseRailgunSlugRecipe
+  result: CharonApheSlugAmmo
+
+- type: latheRecipe
+  id: CharonEmpSlugUniversal
+  parent: BaseRailgunSlugRecipe
+  result: CharonEmpSlugAmmo
+
+- type: latheRecipe
+  id: CharonSubnuclearSlugUniversal
+  parent: BaseRailgunSlugRecipe
+  result: CharonSubnuclearSlugAmmo
+  materials:
+    Steel: 3000
+    Plasteel: 4000 # penetrator head
+    Plasma: 3000 # ionized plasma gas for heavier weight
+    UraniumFissile: 200 # payload is nuclear
+
+- type: latheRecipe
   id: ASM220TorpedoHEUniversal
   parent: BaseTorpedoRecipe
   result: Asm220TorpedoHE
+
+- type: latheRecipe
+  id: ASM220TorpedoHESACLOSUniversal
+  parent: BaseTorpedoRecipe
+  result: Asm220TorpedoHESACLOS
 
 - type: latheRecipe
   id: ASM220TorpedoECMUniversal
@@ -70,9 +110,28 @@
   result: Asm220TorpedoECM
 
 - type: latheRecipe
+  id: ASM220TorpedoLOSATUniversal
+  parent: BaseTorpedoRecipe
+  result: Asm220TorpedoLOSAT
+  materials:
+    Steel: 2400 # shell/casing
+    Plasteel: 1000 # penetrator
+    Plastitanium: 500 # penetrator
+    Glass: 400 # opticals
+    Gold: 200 # electronics
+    Silver: 200 # electronics
+    Copper: 300 # electronics
+    Lithium: 300 # electronics
+
+- type: latheRecipe
   id: 150mmApShellUniversal
   parent: Base150mmShellAmmoRecipe
   result: 150mmApShell
+
+- type: latheRecipe
+  id: 150mmApheShellUniversal
+  parent: Base150mmShellAmmoRecipe
+  result: 150mmApheShell
 
 - type: latheRecipe
   id: 150mmEmpShellUniversal
@@ -93,3 +152,169 @@
   id: QuasarAcceleratorUniversal
   parent: BaseLightOrdinanceAdvancedAmmoRecipe
   result: LightFighterOrdinanceQuasarItem
+
+# Ported Mono large-gun ammo (Ak820 / R300 / Longbow)
+- type: latheRecipe
+  id: 120mmCartridgeAPHEDSAmmoRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  result: 120mmCartridgeAPHEDS
+
+- type: latheRecipe
+  id: R300ShellHEAmmoRecipe
+  parent: BaseHeavyShipgunAmmoRecipe
+  result: R300ShellHE
+
+- type: latheRecipe
+  id: Magazine140mmAmmoRecipe
+  parent: BaseHeavyShipgunAmmoRecipe
+  result: Magazine140mm
+
+- type: latheRecipe
+  id: Magazine140mmSACLOSAmmoRecipe
+  parent: BaseHeavyShipgunAmmoRecipe
+  result: Magazine140mmSACLOS
+
+# Mags
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: Magazine20mmAmmoRecipe
+  result: Magazine20mm
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: Magazine20mmASAmmoRecipe
+  result: Magazine20mmAS
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine30mmAmmoRecipe
+  result: Magazine30mm
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine30mmHEAmmoRecipe
+  result: Magazine30mmHE
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine57mmHEAmmoRecipe
+  result: Magazine57mmHE
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: 90mmMagazineHEAmmoRecipe
+  result: 90mmMagazineHE
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: 90mmMagazineAPAmmoRecipe
+  result: 90mmMagazineAP
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: 90mmMagazineFlakAmmoRecipe
+  result: 90mmMagazineFlak
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: 220mmCartridgeAPHEAmmoRecipe
+  result: 220mmCartridgeAPHE
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: 220mmCartridgeHEClusterAmmoRecipe
+  result: 220mmCartridgeHECluster
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: 220mmCartridgeSmartClusterAmmoRecipe
+  result: 220mmCartridgeSmartCluster
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: 255mmCartridgeAPHEAmmoRecipe
+  result: 255mmCartridgeAPHE
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: 255mmCartridgeEMPAmmoRecipe
+  result: 255mmCartridgeEMP
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: 255mmCartridgeMineAmmoRecipe
+  result: 255mmCartridgeMinelayer
+
+- type: latheRecipe
+  parent: BaseMissileShipgunAmmoRecipe
+  id: MissileMagazine50mmHEAmmoRecipe
+  result: MissileMagazine50mmHE
+
+- type: latheRecipe
+  parent: BaseMissileShipgunAmmoRecipe
+  id: VanykMagazineAmmoRecipe
+  result: VanykMagazine
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: PaladinMagazineAmmoRecipe
+  result: PaladinMagazine
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: PaladinMagazineEMPHEAmmoRecipe
+  result: PaladinMagazineEMPHE
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: PaladinMagazineHVAmmoRecipe
+  result: PaladinMagazineHV
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: VanquisherMagazineAmmoRecipe
+  result: VanquisherMagazine
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: BaseMediumShipgunAmmoRecipe
+  abstract: true
+  materials:
+    Steel: 2750
+    Plasma: 250 # explosive payload
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: BaseMissileShipgunAmmoRecipe
+  abstract: true
+  materials:
+    Steel: 400
+    Plasma: 50 # explosive payload
+    Glass: 80 # optical seeker
+    Gold: 50 # electronics
+    Silver: 50 # electronics
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: BaseHeavyMissileShipgunAmmoRecipe
+  abstract: true
+  materials:
+    Steel: 900
+    Plasma: 250 # explosive payload
+    Glass: 600 # optical seeker
+    Gold: 250 # electronics
+    Silver: 250 # electronics
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: BaseLightMissileShipgunAmmoRecipe
+  abstract: true
+  materials:
+    Steel: 200
+    Plasma: 20 # explosive payload
+    Glass: 30 # optical seeker
+    Gold: 15 # electronics
+    Silver: 15 # electronics
+
+# Research ordinance

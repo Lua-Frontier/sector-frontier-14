@@ -8,6 +8,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Prototypes;
+using Content.Shared.Power.Components;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 

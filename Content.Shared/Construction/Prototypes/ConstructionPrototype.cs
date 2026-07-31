@@ -1,6 +1,7 @@
 using Content.Shared.Construction.Conditions;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Construction.Prototypes;
 
@@ -48,6 +49,13 @@ public sealed partial class ConstructionPrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public string StartNode { get; private set; } = default!;
+
+    /// <summary>
+    ///     Optional texture for the construction ghost when the target entity icon is insufficient.
+    ///     Null (not SpriteSpecifier.Invalid) — Invalid is ResPath.Self and breaks YAML texture validation.
+    /// </summary>
+    [DataField("icon")]
+    public SpriteSpecifier? Icon;
 
     /// <summary>
     ///     If you can start building or complete steps on impassable terrain.

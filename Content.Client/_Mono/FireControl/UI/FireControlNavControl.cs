@@ -86,6 +86,8 @@ public sealed class FireControlNavControl : ShuttleNavControl
                 if (mapCoords.MapId != xform.MapID) continue;
                 var enlarged = viewAABB.Enlarged(excl.Range);
                 if (!enlarged.Contains(mapCoords.Position)) continue;
+                if (!excl.Visible)
+                    continue;
                 var centerInView = Vector2.Transform(mapCoords.Position, worldToShuttle * shuttleToView);
                 var radiusPixels = excl.Range * MinimapScale;
                 var color = Color.Lime.WithAlpha(0.35f);
@@ -150,13 +152,8 @@ public sealed class FireControlNavControl : ShuttleNavControl
         if (_coordinates == null || _rotation == null || OnRadarClick == null)
             return;
 
-        var a = InverseScalePosition(relativePosition);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
-        relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
-        var coords = _coordinates.Value.Offset(relativeWorldPos);
-
         // This will update the server of our cursor position without triggering actual firing
-        OnRadarClick?.Invoke(coords);
+        OnRadarClick?.Invoke(GetMouseEntityCoordinates(relativePosition));
     }
 
     /// <summary>

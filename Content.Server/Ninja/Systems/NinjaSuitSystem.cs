@@ -9,6 +9,7 @@ using Content.Shared.Ninja.Systems;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell.Components;
 using Robust.Shared.Containers;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Ninja.Systems;
 

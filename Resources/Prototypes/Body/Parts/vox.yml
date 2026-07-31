@@ -1,13 +1,16 @@
-﻿# TODO: Add descriptions (many)
-# TODO BODY: Part damage
+# Shitmed Change: This file was fully reorganized to use composition
 - type: entity
   abstract: true
-  parent: [ BaseItem, BasePart ]
-  id: PartVox
+  parent: [BaseItem, BasePart] # Shitmed Change
+  id: PartVoxBase
   name: "vox body part"
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/parts.rsi
+  - type: Icon
+    sprite: Mobs/Species/Vox/parts.rsi
+  - type: BodyPart # Shitmed Change
+    species: Vox
   - type: Extractable
     juiceSolution:
       reagents:
@@ -17,11 +20,13 @@
         Quantity: 10
 
 - type: entity
-  parent: [PartVox, BaseTorso]
+  parent: [ PartVoxBase, BaseTorso ]
   id: TorsoVox
   name: "vox torso"
   components:
   - type: Sprite
+    state: "torso"
+  - type: Icon
     state: "torso"
   - type: Extractable
     juiceSolution:
@@ -32,11 +37,13 @@
         Quantity: 20
 
 - type: entity
-  parent: [ PartVox, BaseHead ]
+  parent: [ PartVoxBase, BaseHead ]
   id: HeadVox
   name: "vox head"
   components:
   - type: Sprite
+    state: "head"
+  - type: Icon
     state: "head"
   - type: Extractable
     juiceSolution:
@@ -47,65 +54,41 @@
         Quantity: 10
 
 - type: entity
-  parent: [ PartVox, BaseLeftArm ]
+  parent: [ PartVoxBase, BaseLeftArm ]
   id: LeftArmVox
   name: "left vox arm"
-  components:
-  - type: Sprite
-    state: "l_arm"
 
 - type: entity
-  parent: [ PartVox, BaseRightArm ]
+  parent: [ PartVoxBase, BaseRightArm ]
   id: RightArmVox
   name: "right vox arm"
-  components:
-  - type: Sprite
-    state: "r_arm"
 
 - type: entity
-  parent: [ PartVox, BaseLeftHand ]
+  parent: [ PartVoxBase, BaseLeftHand ]
   id: LeftHandVox
   name: "left vox hand"
-  components:
-  - type: Sprite
-    state: "l_hand"
 
 - type: entity
-  parent: [ PartVox, BaseRightHand ]
+  parent: [ PartVoxBase, BaseRightHand ]
   id: RightHandVox
   name: "right vox hand"
-  components:
-  - type: Sprite
-    state: "r_hand"
 
 - type: entity
-  parent:  [ PartVox, BaseLeftLeg ]
+  parent: [ PartVoxBase, BaseLeftLeg ]
   id: LeftLegVox
   name: "left vox leg"
-  components:
-  - type: Sprite
-    state: "l_leg"
 
 - type: entity
-  parent:  [ PartVox, BaseRightLeg ]
+  parent: [ PartVoxBase, BaseRightLeg ]
   id: RightLegVox
   name: "right vox leg"
-  components:
-  - type: Sprite
-    state: "r_leg"
 
 - type: entity
-  parent: [ PartVox, BaseLeftFoot ]
+  parent: [ PartVoxBase, BaseLeftFoot ]
   id: LeftFootVox
   name: "left vox foot"
-  components:
-  - type: Sprite
-    state: "l_foot"
 
 - type: entity
-  parent: [ PartVox, BaseRightFoot ]
+  parent: [ PartVoxBase, BaseRightFoot ]
   id: RightFootVox
   name: "right vox foot"
-  components:
-  - type: Sprite
-    state: "r_foot"

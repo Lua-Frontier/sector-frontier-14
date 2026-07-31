@@ -1,0 +1,95 @@
+- type: entity
+  id: ThrusterLua
+  parent: Thruster
+  suffix: LuaTech, Tier 5
+  components:
+  - type: LuaTech
+  - type: Machine
+    board: ThrusterLuaMachineCircuitboard
+  - type: Thruster
+    baseThrust: 100
+    thrust: 160
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_luatech
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_luatech
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#7653BA"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#7653BA"
+
+- type: entity
+  id: OmniThrusterLua
+  parent: BaseThrusterLarge
+  name: omni thruster
+  suffix: LuaTech, Tier 5, Magnetic
+  components:
+  - type: LuaTech
+  - type: Tag
+    tags:
+    - OmniBurnAlwaysOn
+  - type: Machine
+    board: OmnidirectionalThrusterMachineCircuitboard
+  - type: ApcPowerReceiver
+    powerLoad: 10000
+  - type: Thruster
+    thrusterType: Omnidirectional
+    baseThrust: 800
+    thrust: 1280
+    angularThrustExtra: 1900
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.49,-0.49,1.49,0.49"
+        density: 1750
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster96.rsi
+    layers:
+    - state: base_luatech_omni
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_omni_luatech
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#7962a8"
+    - state: thrust_burn_omni_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1.85
+      color: "#d5c9ee"
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.5
+    color: "#7962a8"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            TeslaMiniEnergyBall:
+              min: 1
+              max: 3
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak

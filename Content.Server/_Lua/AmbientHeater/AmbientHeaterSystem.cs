@@ -39,12 +39,8 @@ public sealed class AmbientHeaterSystem : EntitySystem
             var indices = _xform.GetGridOrMapTilePosition(ent, xform);
             var mixture = _atmosphere.GetTileMixture(grid, map, indices, true);
 
-            if (mixture is { })
-            {
-                Log.Debug(mixture.Temperature.ToString());
-                if (mixture.Temperature < comp.TargetTemperature)
-                    mixture.Temperature += comp.HeatPerSecond * frameTime;
-            }
+            if (mixture is { } && mixture.Temperature < comp.TargetTemperature)
+                mixture.Temperature += comp.HeatPerSecond * frameTime;
         }
     }
 }

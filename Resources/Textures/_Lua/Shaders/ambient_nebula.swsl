@@ -1,0 +1,101 @@
+light_mode unshaded;
+uniform highp vec4 nebula_color;
+uniform highp float seed;
+uniform highp float density;
+uniform highp float layer_alpha;
+uniform highp float particle_scale;
+uniform highp float quality;
+uniform highp float field_radius;
+uniform highp float layer_id;
+uniform highp float time;
+uniform highp float time_speed;
+highp float hash21(highp vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+highp float vnoise(highp vec2 p) {
+    highp vec2 i = floor(p);
+    highp vec2 f = fract(p);
+    highp float a = hash21(i);
+    highp float b = hash21(i + vec2(1.0, 0.0));
+    highp float c = hash21(i + vec2(0.0, 1.0));
+    highp float d = hash21(i + vec2(1.0, 1.0));
+    highp vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+highp float fbm(highp vec2 p) {
+    highp float v = 0.0;
+    highp float a = 0.5;
+    for (int i = 0; i < 5; i++) {
+        v += a * vnoise(p);
+        p = p * 2.02 + vec2(17.0, 9.0);
+        a *= 0.5;
+    }
+    return v;
+}
+highp float warpedFbm(highp vec2 p) {
+    highp vec2 q = vec2(fbm(p), fbm(p + vec2(5.2, 1.3)));
+    highp vec2 r = vec2(
+        fbm(p + 1.5 * q + vec2(1.7, 9.2)),
+        fbm(p + 1.5 * q + vec2(8.3, 2.8))
+    );
+    return fbm(p + 2.0 * r);
+}
+void fragment() {
+    highp vec2 p = (UV - vec2(0.5)) * 2.0;
+    highp float scale = mix(1.55, 2.05, clamp(quality, 0.0, 1.0)) * max(particle_scale, 0.5);
+    highp float seedF = seed;
+    highp float layerBias = layer_id * 2.3;
+    // Barely-visible air-current drift: scroll noise UV per layer, keep seed/structure.
+    highp float spd = max(time_speed, 0.0) * 0.004;
+    highp vec2 flow = vec2(
+        cos(layer_id * 1.7 + seedF * 0.31),
+        sin(layer_id * 2.3 + seedF * 0.19)
+    ) * spd * (0.65 + layer_id * 0.35);
+    highp float sizeScale = max(field_radius, 1.0) / 500.0;
+    highp vec2 base = p * sizeScale * vec2(scale * 1.35, scale * 0.95);
+    base += vec2(seedF * 0.13 + layerBias, seedF * 0.07);
+    base += flow * time;
+    highp float n = warpedFbm(base);
+    highp float detail = fbm(base * 2.6 + vec2(3.1, 5.7));
+    highp float ridges = fbm(base * 0.9 + vec2(9.0, 2.0));
+    highp float edgeNoise = fbm(base * 5.8 + vec2(2.0, 7.0));
+    highp float flameNoise = abs(fbm(base * 9.2 + vec2(ridges * 3.0, detail * 2.0)) - 0.5) * 2.0;
+    highp vec2 ap = abs(base * 1.1 + vec2(ridges * 0.4, detail * 0.35));
+    highp float ang = max(ap.x, ap.y);
+    highp float angFold = fract(ang * 0.85 + n * 0.2);
+    highp float corner = mix(0.82, 1.12, step(0.55, angFold) * step(angFold, 0.78));
+    highp float radial = length(p * vec2(1.02, 0.95));
+    highp float edgeWobble =
+        (detail - 0.5) * 0.42 +
+        (angFold - 0.5) * 0.18 +
+        (ridges - 0.5) * 0.32 +
+        (edgeNoise - 0.5) * 0.55 +
+        (flameNoise - 0.5) * 0.35;
+    highp float outer = 1.0 - smoothstep(0.52 + edgeWobble, 0.98 + edgeWobble * 0.55, radial);
+    highp float ragged = step(0.28, edgeNoise * 0.55 + flameNoise * 0.45 + outer * 0.25);
+    outer *= ragged;
+    highp float dens = clamp(density, 0.25, 0.85);
+    highp float body = smoothstep(0.34 - dens * 0.1, 0.6 + dens * 0.05, n);
+    body *= mix(0.55, 1.0, smoothstep(0.28, 0.72, ridges));
+    body *= mix(0.7, 1.08, detail);
+    body *= corner;
+    body *= outer;
+    body *= mix(0.35, 1.0, step(0.4, edgeNoise + flameNoise * 0.5));
+    body = clamp(body, 0.0, 1.0);
+    highp float layerBands = 5.0;
+    highp float bandIdx = floor(body * layerBands);
+    bandIdx = clamp(bandIdx, 0.0, layerBands - 1.0);
+    highp float stepped = bandIdx / (layerBands - 1.0);
+    highp float edgeBands = 4.0;
+    highp float edgeBandIdx = floor(clamp(outer, 0.0, 1.0) * edgeBands);
+    edgeBandIdx = clamp(edgeBandIdx, 0.0, edgeBands - 1.0);
+    highp float edgeStepped = edgeBandIdx / (edgeBands - 1.0);
+    highp float notch = step(0.68, detail) * step(0.35, angFold) * (1.0 / layerBands);
+    stepped = max(stepped - notch, 0.0);
+    stepped *= edgeStepped;
+    highp float presence = step(0.001, stepped);
+    highp float intensity = mix(0.35, 0.95, stepped);
+    highp vec3 rgb = nebula_color.rgb;
+    highp float a = presence * intensity * layer_alpha * nebula_color.a * edgeStepped;
+    COLOR = vec4(rgb, clamp(a, 0.0, 1.0));
+}

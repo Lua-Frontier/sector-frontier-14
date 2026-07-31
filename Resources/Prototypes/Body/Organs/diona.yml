@@ -6,6 +6,7 @@
   - type: Sprite
     sprite: Mobs/Species/Diona/organs.rsi
   - type: Organ
+    species: "Diona"
   - type: Food
   - type: Extractable
     grindableSolutionName: organ
@@ -23,29 +24,32 @@
           Quantity: 5
   - type: FlavorProfile
     flavors:
-      - people
+    - people
 
 - type: entity
   id: OrganDionaBrain
-  parent: [BaseDionaOrgan, OrganHumanBrain]
+  parent: BaseDionaOrgan
   name: brain
   description: "The central hub of a diona's pseudo-neurological activity, its root-like tendrils search for its former body."
   components:
+  - type: MindContainer
+    showExamineInfo: true
+  - type: Speech
+    enabled: false
+  - type: TypingIndicator
+    proto: empty
+  - type: Emoting
+    enabled: false
   - type: Item
     size: Small
     heldPrefix: brain
   - type: Sprite
     state: brain
+  - type: Organ # Shitmed
+    slotId: brain
+  - type: Brain # Shitmed
   - type: SolutionContainerManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      Lung:
-        maxVol: 100
-        canReact: False
       food:
         maxVol: 5
         reagents:
@@ -60,8 +64,11 @@
   components:
   - type: Sprite
     layers:
-      - state: eyeball-l
-      - state: eyeball-r
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: Organ
+    slotId: eyes
+  - type: Eyes
 
 - type: entity
   id: OrganDionaStomach
@@ -75,25 +82,22 @@
     solutions:
       stomach:
         maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+  - type: Organ
+    slotId: stomach
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Plant ]
     removeEmpty: true
     groups:
-      - id: Food
-      - id: Drink
-      - id: Medicine
-      - id: Cryogenic # Frontier
-      - id: Poison
-      - id: Narcotic
-      - id: Alcohol
-        rateModifier: 0.1
+    - id: Food
+    - id: Drink
+    - id: Medicine
+    - id: Cryogenic
+    - id: Poison
+    - id: Narcotic
+    - id: Alcohol
+      rateModifier: 0.1
   - type: Item
     size: Small
     heldPrefix: stomach
@@ -106,10 +110,12 @@
   components:
   - type: Sprite
     state: lungs
+  - type: Organ
+    slotId: lungs
   - type: Item
     size: Small
     heldPrefix: lungs
-  - type: Lung 
+  - type: Lung
   - type: Metabolizer
     removeEmpty: true
     solutionOnBody: false
@@ -120,11 +126,6 @@
       rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
       Lung:
         maxVol: 100
         canReact: False
@@ -138,7 +139,7 @@
   description: "The source of incredible, unending intelligence. Honk."
   components:
   - type: Brain
-  - type: Nymph # This will make the organs turn into a nymph when they're removed. 
+  - type: Nymph
     entityPrototype: OrganDionaNymphBrain
     transferMind: true
 
@@ -177,11 +178,11 @@
 
 - type: entity
   id: OrganDionaNymphStomach
-  parent: MobDionaNymphAccent 
+  parent: MobDionaNymphAccent
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Stomach
-  description: Contains the stomach of a formerly fully-formed Diona. It doesn't taste any better for it. 
+  description: Contains the stomach of a formerly fully-formed Diona. It doesn't taste any better for it.
   components:
   - type: IsDeadIC
   - type: Body
@@ -193,7 +194,7 @@
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Lungs
-  description: Contains the lungs of a formerly fully-formed Diona. Breathtaking. 
+  description: Contains the lungs of a formerly fully-formed Diona. Breathtaking.
   components:
   - type: IsDeadIC
   - type: Body

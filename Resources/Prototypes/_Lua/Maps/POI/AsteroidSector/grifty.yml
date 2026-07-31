@@ -14,7 +14,7 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: GriftyLua
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: "Заправка и Закусочная Грифти"
   minimumDistance: 3250
   maximumDistance: 8000 #5600

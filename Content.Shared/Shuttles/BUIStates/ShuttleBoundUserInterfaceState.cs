@@ -1,3 +1,4 @@
+using Content.Shared._Lua.Expedition;
 using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Shared.Serialization;
@@ -14,14 +15,15 @@ public sealed class ShuttleBoundUserInterfaceState : BoundUserInterfaceState
     public StarmapConsoleBoundUserInterfaceState StarMapState;
     public bool FireControlConnected; // Lua
     public FireControllableEntry[]? FireControllables; // Lua
+    public ExpeditionConsoleState? ExpeditionState;
 
-    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, StarmapConsoleBoundUserInterfaceState starMapState, bool fireControlConnected = false, FireControllableEntry[]? fireControllables = null) // Lua
+    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState, StarmapConsoleBoundUserInterfaceState starMapState, bool fireControlConnected = false, FireControllableEntry[]? fireControllables = null, ExpeditionConsoleState? expeditionState = null)
     {
         NavState = navState;
         MapState = mapState;
         DockState = dockState;
         StarMapState = starMapState;
-        FireControlConnected = fireControlConnected; // Lua
-        FireControllables = fireControllables; // Lua
+        FireControlConnected = fireControlConnected;
+        FireControllables = fireControllables; ExpeditionState = expeditionState;
     }
 }

@@ -6,12 +6,23 @@
       position: "2.768243, 2.7743483"
       starType: frontier
       color: "#2595db"
+      worldgenConfigs:
+        - NebulaSpace
+        - CelestialBodySpace
+        - BackgroundPlanetSpace
+      visibleCompanies: [ Nanotrasen, Security, CentComm, LuaTech ]
 
     - id: CentCom
       name: Central Command
       position: "22.957544, -22.474024"
       starType: centcom
       color: "#2595db"
+      worldgenConfigs:
+        - NebulaSpace
+        - CelestialBodySpace
+        - BackgroundPlanetSpace
+      visibleCompanies: [ CentComm, LuaTech ]
+      excludeFromGlobalUnlock: true
 
     - id: AsteroidSectorDefault
       name: "Поле Астероидов"
@@ -19,14 +30,18 @@
       starType: sector
       color: "#c3cf18"
       station: Beacon
-      worldgenConfig: AsteroidSectorDefault
+      worldgenConfigs:
+        - AsteroidSectorDefault
+        - NebulaSpace
+        - CelestialBodySpace
+        - BackgroundPlanetSpace
       autoStart: true
       defaultGamePreset: LuaAdventure
       requiredGamePresets: [ LuaAdventure ]
-#      parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default, Xmas ]
-      parallaxPool: [LuaDarkSpace, Tortuga] # Корелляция для будущего лора поля астероидов
+      parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default] #, Xmas ]
       deadDropEnabled: true
       deadDropCount: 8
+      visibleToAll: true
       poiGroups:
         - group: AsteroidRequired
           count: 0
@@ -42,12 +57,17 @@
       starType: sector
       color: "#990816"
       station: TypanLua
+      worldgenConfigs:
+        - NebulaSpace
+        - CelestialBodySpace
+        - BackgroundPlanetSpace
       autoStart: true
       defaultGamePreset: LuaAdventure
       requiredGamePresets: [ LuaAdventure ]
       parallaxPool: [ OriginStation, NordFoll ]
       bluespaceEventsEnabled: false
       crewMonitoringIsolated: true
+      visibleCompanies: [ Syndicate, LuaTech ]
       poiGroups:
         - group: TypanCargoDepot
           count: 1
@@ -71,6 +91,10 @@
       starType: sector
       color: "#8A6642"
       station: Murena #Lua Cove<Murena
+      worldgenConfigs:
+        - NebulaSpace
+        - CelestialBodySpace
+        - BackgroundPlanetSpace
       autoStart: true
       defaultGamePreset: LuaAdventure
       requiredGamePresets: [ LuaAdventure ]
@@ -78,6 +102,7 @@
       deadDropEnabled: true
       bluespaceEventsEnabled: false
       crewMonitoringIsolated: true
+      visibleCompanies: [ Pirates, StormCreed, LuaTech ]
       poiGroups:
         - group: PirateCove
           count: 1

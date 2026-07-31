@@ -86,7 +86,7 @@ public sealed partial class BlockingSystem : EntitySystem
 
     private void OnGetActions(EntityUid uid, BlockingComponent component, GetItemActionsEvent args)
     {
-        // Clothing shields use ShieldToggle + ActionToggleShield; only add "Block" action for handheld shields.
+        // Clothing personal shields use PersonalShield + ItemToggle; only add "Block" action for handheld shields.
         if (component.IsClothing)
             return;
         args.AddAction(ref component.BlockingToggleActionEntity, component.BlockingToggleAction);

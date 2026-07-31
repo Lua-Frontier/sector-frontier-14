@@ -53,6 +53,8 @@
     - AtmosphericAlertsComputer
     - DeviceMonitoringAndControl
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerAtmosMonitoring
@@ -90,6 +92,8 @@
     - AtmosphericNetworkMonitor
     - DeviceMonitoringAndControl
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputer
   id: ComputerEmergencyShuttle
@@ -122,14 +126,11 @@
   abstract: true
   components:
   - type: ShuttleConsole
+  - type: TargetSeekingTarget # Mono
   - type: ShipNpcTarget # Mono
     needPower: true
   - type: ShuttleConsoleLock
     locked: false
-  - type: DetectionRangeMultiplier
-    infraredMultiplier: 2
-    visualMultiplier: 16
-    infraredOutlinePortion: 1.0
   - type: DeviceLinkSource
     ports:
     - device-button-1
@@ -152,6 +153,7 @@
   - type: RadarConsole
     maxRange: 512
     maxIffRange: 512
+    relativePanning: true # Mono
   - type: WorldLoader
     radius: 256
   - type: PointLight
@@ -180,6 +182,23 @@
   - type: NoSignalOnLink
   - type: NoDeconstruct
 
+  - type: RadarBlip
+    visibleFromOtherGrids: true
+    radarColor: "#03f8fc"
+    scale: 1.5
+    shape: diamond
+    gridConfig:
+      color: "#03f8fc"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-0.5,-0.5,0.5,0.5"
+  - type: HTN
+    sleepPlayerCheckRangeOverride: 4000
+    rootTask:
+      task: AutopilotShuttleCompound
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
   id: ComputerShuttle
@@ -382,6 +401,8 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerMedicalRecords
@@ -407,6 +428,8 @@
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: [BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: added BaseStructureIndestructible
   id: ComputerCriminalRecords
@@ -446,6 +469,8 @@
     guides:
     - CriminalRecords
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerStationRecords
@@ -497,6 +522,8 @@
     guides:
     - Forensics
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCrewMonitoring
@@ -533,6 +560,8 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
+  - type: ShipRepairable
+    repairCost: 2
 #  - type: WirelessNetworkConnection
 #    range: 1200
 
@@ -576,6 +605,8 @@
   - type: Computer
     board: ResearchComputerCircuitboard
   - type: AccessReader
+  - type: ShipRepairable
+    repairCost: 2
 #    access: [["Research"]]
   - type: PointLight
     radius: 1.5
@@ -682,6 +713,8 @@
     guides:
     - Xenoarchaeology
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: [BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: added BaseStructureIndestructible
   id: ComputerId
@@ -748,6 +781,8 @@
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: computerBodyScanner
@@ -763,6 +798,8 @@
     energy: 4.0
     color: "#1f8c28"
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
@@ -807,6 +844,8 @@
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: ComputerComms
   id: SyndicateComputerComms
@@ -946,6 +985,8 @@
     - SolarPanels
     - Power
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerRadar
@@ -967,6 +1008,7 @@
   - type: RadarConsole
     maxRange: 256 # Frontier
     maxIffRange: 512 # Frontier
+    noRotate: true # Mono
   - type: ActivatableUI
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
@@ -982,6 +1024,8 @@
     energy: 4.0
     color: "#e6e227"
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: ComputerCargoOrders
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess] # Frontier: add BaseStructureDisableToolUse, BaseStructureIndestructible
@@ -1027,6 +1071,8 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
+  - type: ShipRepairable
+    repairCost: 2
 #  - type: WirelessNetworkConnection # Frontier
 #    range: 200 # Frontier
   - type: DeviceLinkSource
@@ -1408,14 +1454,8 @@
           enum.WiresVisualLayers.MaintenancePanel:
             True: { visible: false }
             False: { visible: true }
-    - type: SalvageExpeditionConsole
-    - type: ActivatableUI
-      key: enum.SalvageConsoleUiKey.Expedition
-    - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        enum.SalvageConsoleUiKey.Expedition:
-          type: SalvageExpeditionConsoleBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
     - type: Computer
@@ -1468,6 +1508,8 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseComputer
   id: ComputerSurveillanceWirelessCameraMonitor
@@ -1492,6 +1534,8 @@
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera
     transmitFrequencyId: SurveillanceCamera
+  - type: ShipRepairable
+    repairCost: 2
 #  - type: WirelessNetworkConnection
 #    range: 200
   - type: DeviceNetworkRequiresPower
@@ -1726,3 +1770,5 @@
     containers:
       circuit_holder: !type:ContainerSlot
       board: !type:Container
+  - type: ShipRepairable
+    repairCost: 2

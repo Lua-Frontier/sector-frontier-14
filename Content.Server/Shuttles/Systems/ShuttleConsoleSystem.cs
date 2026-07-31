@@ -1,12 +1,17 @@
 using Content.Server._Mono.FireControl; // Lua
+using Content.Server._Mono.NPC.HTN;
 using Content.Server._Mono.Ships.Systems;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Server._Lua.Expedition; // Lua
 using Content.Server._Lua.Shuttles.Systems; // Lua
 using Content.Shared._Lua.Shuttles.Components; // Lua
+using Content.Shared._Crescent.DroneControl;
+using Content.Shared._Crescent.ShipShields;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shuttles.Components;
@@ -59,6 +64,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly FireControlSystem _fireControl = default!; // Lua
     [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
+    [Dependency] private readonly ExpeditionSystem _expedition = default!; // Lua
+    [Dependency] private readonly ShipSteeringSystem _shipSteering = default!; // Lua
+    [Dependency] private readonly DeviceListSystem _deviceList = default!; // Lua
 
     private ISawmill _sawmill = default!;
 
@@ -69,6 +77,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
     private readonly HashSet<EntityUid> _starMapVisibleConsoles = new();
+    private readonly Dictionary<EntityUid, EntityUid> _starMapViewers = new();
+    private float _droneRouteRefreshAccum; // Lua
+    private bool _hadDroneSteerers; // Lua
 
     private static readonly ProtoId<TagPrototype> CanPilotTag = "CanPilot";
     private static readonly ProtoId<TagPrototype> StructureTag = "Structure"; // Lua
@@ -131,11 +142,16 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (args.Visible)
         {
             _starMapVisibleConsoles.Add(uid);
+            if (args.Actor != EntityUid.Invalid)
+                _starMapViewers[uid] = args.Actor;
             DockingInterfaceState? dockState = null;
             UpdateState(uid, ref dockState);
         }
         else
-        { _starMapVisibleConsoles.Remove(uid); }
+        {
+            _starMapVisibleConsoles.Remove(uid);
+            _starMapViewers.Remove(uid);
+        }
     }
 
     private void OnConsoleGetVerbs(EntityUid uid, ShuttleConsoleComponent comp, GetVerbsEvent<AlternativeVerb> args)
@@ -224,6 +240,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             return;
         }
 
+        _starMapVisibleConsoles.Remove(uid);
+        _starMapViewers.Remove(uid);
         RemovePilot(args.Actor);
     }
 
@@ -505,7 +523,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 fcControllables = list.ToArray();
             }
             // End Lua
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, starMapState, fcConnected, fcControllables));
+            var expeditionState = _expedition.GetExpeditionStateForConsole(consoleUid, shuttleGridUid);
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, starMapState, fcConnected, fcControllables, expeditionState));
         }
     }
 
@@ -553,6 +572,43 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         foreach (var (uid, comp) in toRemove)
         {
             RemovePilot(uid, comp);
+        }
+        _droneRouteRefreshAccum += frameTime;
+        if (_droneRouteRefreshAccum >= 1.5f)
+        {
+            _droneRouteRefreshAccum = 0f;
+            var hasSteerers = _shipSteering.HasActiveSteerers();
+            if (hasSteerers || _hadDroneSteerers)
+            {
+                _hadDroneSteerers = hasSteerers;
+                RefreshOpenConsolesForDroneRoutes();
+            }
+        }
+    }
+
+    private void RefreshOpenConsolesForDroneRoutes()
+    {
+        DockingInterfaceState? dockState = null;
+        var query = EntityQueryEnumerator<ShuttleConsoleComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out var ui))
+        {
+            if (!_ui.IsUiOpen((uid, ui), ShuttleConsoleUiKey.Key))
+                continue;
+
+            UpdateState(uid, ref dockState);
+        }
+    }
+
+    public void RefreshOpenShieldUi()
+    {
+        DockingInterfaceState? dockState = null;
+        var query = EntityQueryEnumerator<ShuttleConsoleComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out _, out var ui))
+        {
+            if (!_ui.IsUiOpen((uid, ui), ShuttleConsoleUiKey.Key))
+                continue;
+
+            UpdateState(uid, ref dockState);
         }
     }
 
@@ -699,7 +755,43 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             targetNetEntity, // Frontier
             entity.Comp1.HideTarget, // Frontier
             portNames,
-            GetExclusionList()); // Lua
+            GetExclusionList()) // Lua
+        {
+            ShieldState = GetShieldState(entity.Comp2!.GridUid),
+        };
+    }
+
+    /// <summary>
+    /// Finds the first ship shield emitter on the given grid and reports its current state.
+    /// </summary>
+    private ShipShieldState GetShieldState(EntityUid? gridUid)
+    {
+        if (gridUid == null)
+            return default;
+
+        var query = AllEntityQuery<ShipShieldEmitterComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var emitter, out var emitterXform))
+        {
+            if (emitterXform.GridUid != gridUid)
+                continue;
+
+            var limit = emitter.DamageLimit > 0 ? emitter.DamageLimit : 1f;
+            var percent = Math.Clamp(1f - emitter.Damage / limit, 0f, 1f);
+            var online = emitter.Shield != null;
+
+            TimeSpan? endTime = null;
+            if (!online)
+            {
+                var healRate = emitter.HealPerSecond * emitter.UnpoweredBonus;
+                var rechargeSeconds = healRate > 0f ? emitter.Damage / healRate : 0f;
+                var seconds = MathF.Max(rechargeSeconds, emitter.OverloadAccumulator);
+                endTime = _timing.CurTime + TimeSpan.FromSeconds(seconds);
+            }
+
+            return new ShipShieldState(true, online, percent, endTime);
+        }
+
+        return default;
     }
 
     private NetCoordinates GetNetCoordinatesSafe(EntityCoordinates coordinates)
@@ -752,12 +844,46 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         GetBeacons(ref beacons);
         GetExclusions(ref exclusions);
 
+        MapId? mapFilter = null;
+        if (TryComp(shuttle.Owner, out TransformComponent? shuttleXform))
+            mapFilter = shuttleXform.MapID;
+
+        var steererFilter = CollectOwnRouteSteerers(shuttle.Owner);
+        var droneRoutes = _shipSteering.BuildDroneRoutes(mapFilter, steererFilter);
+
         return new ShuttleMapInterfaceState(
             ftlState,
             stateDuration,
             beacons ?? new List<ShuttleBeaconObject>(),
             exclusions ?? new List<ShuttleExclusionObject>(),
-            inCombat);
+            inCombat,
+            droneRoutes);
+    }
+    private HashSet<EntityUid> CollectOwnRouteSteerers(EntityUid shuttleGrid)
+    {
+        var filter = new HashSet<EntityUid>();
+
+        var steererQuery = EntityQueryEnumerator<ShipSteererComponent, TransformComponent>();
+        while (steererQuery.MoveNext(out var uid, out _, out var xform))
+        {
+            if (xform.GridUid == shuttleGrid)
+                filter.Add(uid);
+        }
+
+        var consoleQuery = EntityQueryEnumerator<DroneControlConsoleComponent, TransformComponent>();
+        while (consoleQuery.MoveNext(out var console, out _, out var xform))
+        {
+            if (xform.GridUid != shuttleGrid)
+                continue;
+
+            foreach (var (_, device) in _deviceList.GetDeviceList(console))
+            {
+                if (HasComp<ShipSteererComponent>(device) || HasComp<DroneControlComponent>(device))
+                    filter.Add(device);
+            }
+        }
+
+        return filter;
     }
 
     /// <summary>

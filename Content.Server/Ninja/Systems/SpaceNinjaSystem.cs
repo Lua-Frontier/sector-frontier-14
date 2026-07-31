@@ -21,6 +21,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Ninja.Systems;
 

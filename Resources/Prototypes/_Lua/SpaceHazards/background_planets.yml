@@ -1,0 +1,22 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: SectorBackgroundPlanet
+  name: distant planet
+  description: A far-off world visible across the sector. Decorative.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: GlobalPvs
+  - type: SectorBackgroundPlanet
+    spriteRadius: 9
+    pixels: 1024
+  - type: PointLight
+    enabled: true
+    color: "#FFFFFF"
+    radius: 150
+    energy: 2.4
+    softness: 1.4
+    castShadows: false

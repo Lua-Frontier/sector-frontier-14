@@ -45,5 +45,8 @@
   - type: Construction
     graph: Airlock
     node: assembly
+  - type: ShipRepairable
+    repairTime: 3
+    repairCost: 3
   placement:
     mode: SnapgridCenter

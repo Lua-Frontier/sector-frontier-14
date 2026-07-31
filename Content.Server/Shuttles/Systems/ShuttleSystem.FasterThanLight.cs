@@ -32,7 +32,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
-using Content.Server.Salvage.Expeditions;
 using Content.Shared._Mono.Ships;
 using Content.Shared._Crescent.SpaceBiomes;
 using Robust.Shared.Prototypes;

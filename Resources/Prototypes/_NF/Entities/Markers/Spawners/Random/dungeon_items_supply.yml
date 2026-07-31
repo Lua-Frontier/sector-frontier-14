@@ -23,7 +23,7 @@
     - SpawnDungeonLootCircuitBoardSalvage
     - SpawnDungeonLootFlatpacksSuppl
     - SpawnDungeonLootVendingRestocks
-    chance: 0.9
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootOresFull
@@ -61,14 +61,14 @@
     - AppraisalTool
     - MiningDrill
     - ClothingHeadsetMining
-    chance: 0.9
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - NFWeaponPkaCannon
     - OreBagOfHolding
     - HandHeldMassScanner
     - SpawnDungeonLootHardsuitsSalvage
-    rareChance: 0.05
+    rareChance: 0.025
 
 # Clothes
 - type: entity
@@ -99,7 +99,7 @@
     - ClothingHeadsetMining
     - ClothingBackpackDuffelSalvage
     - ClothingBackpackMessengerSalvage
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootHardsuitsSalvage
@@ -125,11 +125,11 @@
     - ClothingOuterHardsuitSpatio
     - ClothingOuterHardsuitSalvage
     - ClothingOuterHardsuitLuxury
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - ClothingOuterHardsuitMaximPrototype
-    rareChance: 0.05
+    rareChance: 0.025
 
 # Lockers
 - type: entity
@@ -156,11 +156,11 @@
     - LockerSalvageSpecialistFilled
     - WardrobeCargoFilled
     - LockerQuarterMasterFilled
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootSuitStorageUnitsSalvage
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random suit storage unit
@@ -184,13 +184,13 @@
     - SuitStorageSalv
     - SuitStorageEVACargo
     - SuitStorageEVASalvage
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SuitStorageNTSRA
     - SuitStorageMining
     - SuitStorageQuartermaster
-    rareChance: 0.05
+    rareChance: 0.025
 
 # Machines
 - type: entity
@@ -213,12 +213,12 @@
     prototypes:
     - OreProcessor
     - Autolathe
-    chance: 1
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - OreProcessorIndustrial
     - SpawnDungeonMachineFrame
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random vendomats
@@ -241,13 +241,13 @@
     - VendingMachineSalvage
     - VendingMachineWinter
     - VendingMachineCargoDrobe
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContraband
     # - VendingMachineSyndieDrobe # A bit less Syndicate loot
     - VendingMachineArcadia
-    rareChance: 0.02
+    rareChance: 0.01
 
 # Other
 - type: entity
@@ -281,7 +281,7 @@
     - MiniGravityGeneratorCircuitboard
     - ThrusterMachineCircuitboard
     - ShuttleGunKineticCircuitboard
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - OreProcessorIndustrialMachineCircuitboard
@@ -289,7 +289,7 @@
 #    - ShuttleGunSvalinnMachineGunCircuitboard
     #- SecurityTechFabCircuitboard
     - ComputerIFFCircuitboard
-    rareChance: 0.03
+    rareChance: 0.015
 
 - type: entity
   name: random flatpack
@@ -313,7 +313,7 @@
     - OreProcessorIndustrialFlatpack
     - MaterialReclaimerFlatpack
     - WeaponCapacitorRechargerFlatpack
-    chance: 0.95
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - ShuttleGunKineticFlatpack

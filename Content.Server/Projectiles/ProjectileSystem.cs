@@ -17,6 +17,8 @@ using Content.Server.Chat.Systems; // Frontier
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Dynamics;
+using Robust.Shared.Physics.Events;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Physics;
@@ -197,13 +199,47 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 hits.RemoveAll(hit => hit.HitEntity == projectileComp.Shooter.Value);
             }
 
-            if (hits.Count > 0)
-            {
-                // Process the closest hit
-                // IntersectRay results are not guaranteed to be sorted by distance, so we sort them.
-                hits.Sort((a, b) => a.Distance.CompareTo(b.Distance));
-                var closestHit = hits.First();
+            if (!TryComp<FixturesComponent>(uid, out var projFixtures)
+                || !projFixtures.Fixtures.TryGetValue(ProjectileFixture, out var projFix))
+                continue;
 
+            (EntityUid HitEntity, float Distance)? closestValid = null;
+            foreach (var hit in hits.OrderBy(h => h.Distance))
+            {
+                var hitEnt = hit.HitEntity;
+                if (!TryComp<PhysicsComponent>(hitEnt, out var otherBody)
+                    || !TryComp<FixturesComponent>(hitEnt, out var otherFixtures))
+                    continue;
+
+                Fixture? hitFix = null;
+                foreach (var kv in otherFixtures.Fixtures)
+                {
+                    if (kv.Value.Hard)
+                    {
+                        hitFix = kv.Value;
+                        break;
+                    }
+                }
+
+                if (hitFix == null)
+                    continue;
+
+                var ourEv = new PreventCollideEvent(uid, hitEnt, physicsComp, otherBody, projFix, hitFix);
+                RaiseLocalEvent(uid, ref ourEv);
+                if (ourEv.Cancelled)
+                    continue;
+
+                var otherEv = new PreventCollideEvent(hitEnt, uid, otherBody, physicsComp, hitFix, projFix);
+                RaiseLocalEvent(hitEnt, ref otherEv);
+                if (otherEv.Cancelled)
+                    continue;
+
+                closestValid = (hitEnt, hit.Distance);
+                break;
+            }
+
+            if (closestValid is { } closestHit)
+            {
                 var hitEntity = closestHit.HitEntity;
                 var hitDistance = closestHit.Distance;
                 var hitPosition = lastPosition + rayDirection * hitDistance;

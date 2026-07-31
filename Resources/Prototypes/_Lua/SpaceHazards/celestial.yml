@@ -1,0 +1,153 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: SectorCelestialStar
+  name: star
+  description: A distant sun radiating heat and hard radiation.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: GlobalPvs
+  - type: SpaceHazardActivity
+    activationRange: 1024
+    idleTimeout: 600
+    active: true
+  - type: SectorCelestialBody
+    kind: Star
+    spriteRadius: 32
+    pixels: 1024
+    hazardRadius: 400
+    radiationRange: 500
+    starDamage:
+      types:
+        Structural: 500
+        Blunt: 200
+        Heat: 150
+    mobHazardDamage:
+      types:
+        Heat: 12
+    mobRadiationDamage:
+      types:
+        Radiation: 8
+  - type: PointLight
+    enabled: true
+    color: "#77D6C1"
+    radius: 480
+    energy: 9
+    softness: 1.2
+    castShadows: false
+  - type: RadiationSource
+    intensity: 8
+    slope: 0.016
+  - type: RadarBlip
+    radarColor: "#FFB020"
+    highlightedRadarColor: "#FFE080"
+    scale: 1
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 12000
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/star.png
+    label: radar-label-sector-star
+    scale: 1.2
+    maxDistance: 12000
+    allowWhenHidden: true
+  - type: FTLExclusion
+    range: 500
+    visible: false
+
+- type: entity
+  id: SectorCelestialBlackHole
+  name: black hole
+  description: A gravitational anomaly that pulls ships toward its event horizon.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: GlobalPvs
+  - type: CleanupImmune
+  - type: SpaceHazardActivity
+    activationRange: 1024
+    idleTimeout: 600
+    active: true
+  - type: SectorCelestialBody
+    kind: BlackHole
+    spriteRadius: 29
+    pixels: 1024
+    hazardRadius: 200
+    radiationRange: 500
+    pullRadius: 350
+    eventHorizonRadius: 45
+    horizonDamage:
+      types:
+        Structural: 800
+        Blunt: 300
+        Heat: 200
+    mobHazardDamage:
+      types:
+        Heat: 10
+        Slash: 8
+    mobRadiationDamage:
+      types:
+        Radiation: 10
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+  - type: Fixtures
+    fixtures:
+      EventHorizonCollider:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.35
+        hard: true
+        density: 99999
+        mask:
+        - SingularityLayer
+        layer:
+        - SingularityLayer
+      EventHorizonConsumer:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.35
+        hard: false
+        mask:
+        - SingularityLayer
+        layer:
+        - SingularityLayer
+  - type: EventHorizon
+    radius: 0
+    canBreachContainment: true
+    colliderFixtureId: EventHorizonCollider
+    consumerFixtureId: EventHorizonConsumer
+  - type: PointLight
+    enabled: true
+    color: "#F5F540"
+    radius: 336
+    energy: 5
+    softness: 1.2
+    castShadows: false
+  - type: SingularityDistortion
+    intensity: 12000
+    falloffPower: 1.7
+  - type: RadiationSource
+    intensity: 10
+    slope: 0.02
+  - type: RadarBlip
+    radarColor: "#A040FF"
+    highlightedRadarColor: "#D080FF"
+    scale: 1
+    shape: Circle
+    visibleFromOtherGrids: true
+    requireNoGrid: true
+    maxDistance: 12000
+  - type: RadarBlipIcon
+    icon: /Textures/_Lua/Interface/Radar/blackhole.png
+    label: radar-label-sector-black-hole
+    scale: 1.2
+    maxDistance: 12000
+    allowWhenHidden: true
+  - type: FTLExclusion
+    range: 350
+    visible: false

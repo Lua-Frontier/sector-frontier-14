@@ -31,8 +31,6 @@
   name: "demon chest"
   parent: [BaseTorso, PartDemon]
   components:
-  - type: BodyPart #Backmen-Edit
-    partType: Torso
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "torso_m"
@@ -49,8 +47,6 @@
   name: "demon head"
   parent: [BaseHead, PartDemon]
   components:
-  - type: BodyPart #Backmen-Edit
-    partType: Head
   - type: Input #Backmen-Edit
     context: "ghost"
   - type: Tag #Backmen-Edit
@@ -75,10 +71,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_arm"
-  - type: BodyPart #Backmen-Edit
-    partType: Arm
-    symmetry: Left
-
 
 - type: entity
   id: RightArmDemon
@@ -88,9 +80,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_arm"
-  - type: BodyPart #Backmen-Edit
-    partType: Arm
-    symmetry: Right
 
 - type: entity
   id: LeftHandDemon
@@ -100,9 +89,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_hand"
-  - type: BodyPart #Backmen-Edit
-    partType: Hand
-    symmetry: Left
 
 - type: entity
   id: RightHandDemon
@@ -112,9 +98,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_hand"
-  - type: BodyPart #Backmen-Edit
-    partType: Hand
-    symmetry: Right
 
 - type: entity
   id: LeftLegDemon
@@ -124,9 +107,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_leg"
-  - type: BodyPart #Backmen-Edit
-    partType: Leg
-    symmetry: Left
 
 - type: entity
   id: RightLegDemon
@@ -136,9 +116,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_leg"
-  - type: BodyPart #Backmen-Edit
-    partType: Leg
-    symmetry: Right
 
 - type: entity
   id: LeftFootDemon
@@ -148,9 +125,6 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "l_foot"
-  - type: BodyPart #Backmen-Edit
-    partType: Foot
-    symmetry: Left
 
 - type: entity
   id: RightFootDemon
@@ -160,6 +134,3 @@
   - type: Sprite
     sprite: _ADT/Mobs/Demon/parts.rsi
     state: "r_foot"
-  - type: BodyPart #Backmen-Edit
-    partType: Foot
-    symmetry: Right

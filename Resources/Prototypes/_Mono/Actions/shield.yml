@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: ActionActivatePersonalShield
+  name: Activate personal shield
+  description: "Activates suit's personal energy shield that slowly consumes battery charge."
+  components:
+  - type: Action
+    useDelay: 1
+    priority: 3
+    icon: _Lua/Interface/Actions/action_hardsuit_shield.png
+  - type: InstantAction
+    event: !type:PersonalShieldActionEvent

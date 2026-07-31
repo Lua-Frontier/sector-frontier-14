@@ -189,6 +189,8 @@
   - type: BindToStation
     enabled: false
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: [ BaseStructureDynamic, BasePressurePumpGaslock, BaseMachinePowered, ConstructibleMachine ]
   id: GaslockFrame

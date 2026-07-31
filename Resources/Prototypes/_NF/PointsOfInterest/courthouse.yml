@@ -10,7 +10,7 @@
 #
 - type: pointOfInterest
   id: Courthouse
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Судебный Аванпост'
   minimumDistance: 1150
   maximumDistance: 2050

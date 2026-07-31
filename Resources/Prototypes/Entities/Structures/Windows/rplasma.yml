@@ -56,6 +56,9 @@
   - type: StaticPrice
     price: 65 # Frontier: 132<65
 
+  - type: ShipRepairable
+    repairTime: 6
+    repairCost: 6
 - type: entity
   id: PlasmaReinforcedWindowDirectional
   parent: WindowDirectionalRCDResistant
@@ -114,6 +117,9 @@
   - type: StaticPrice
     price: 30
 
+  - type: ShipRepairable
+    repairTime: 4
+    repairCost: 4
 - type: entity
   parent: ReinforcedPlasmaWindow
   id: ReinforcedPlasmaWindowDiagonal

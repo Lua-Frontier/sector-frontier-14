@@ -36,6 +36,13 @@
   name: goliath
   description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
   components:
+  - type: Body # Shitmed
+    prototype: Goliath
+  - type: SurgeryTarget # Shitmed
+  - type: UserInterface # Shitmed
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
   - type: Sprite
     sprite: Mobs/Aliens/Asteroid/goliath.rsi
     layers:

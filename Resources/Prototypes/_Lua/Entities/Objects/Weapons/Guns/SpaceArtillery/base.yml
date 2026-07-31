@@ -72,6 +72,10 @@
           acts: ["Destruction"]
     - type: StaticPrice
       price: 1500
+    - type: DeviceLinkSink
+      ports:
+      #- SpaceArtilleryFire
+      - SpaceArtilleryLoad
 
 # Energy Weapon
 - type: entity

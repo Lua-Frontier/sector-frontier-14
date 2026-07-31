@@ -1,0 +1,238 @@
+# Synced from Monolith energy projectiles
+- type: entity
+  id: ShipCerberusPlasma
+  name: plasma projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 20
+        Structural: 120
+        Heat: 60
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
+    layers:
+    - state: plasmashot
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectPlasmaPulser
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#C92BCC"
+    scale: 2.5
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    color: "#FF0040"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 30
+    intensitySlope: 6
+    maxIntensity: 6
+- type: entity
+  id: ShipPlasmaProjectileScylla
+  name: plasma projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 15
+        Structural: 35
+        Heat: 65
+  - type: Sprite
+    sprite: _Impstation/Objects/Weapons/Guns/Projectiles/energybolts.rsi
+    layers:
+    - state: mediumstun
+    scale: 1.2, 1.2
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#00e5ff"
+    scale: 1.45
+    shape: arrow
+  - type: TimedDespawn
+    lifetime: 2.1
+  - type: PointLight
+    color: "#00e5ff"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 16
+    intensitySlope: 4
+    maxIntensity: 4
+
+# Type 241
+- type: entity
+  id: ShipNeutronProjectile
+  name: neutron projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 35
+        Structural: 160
+        Heat: 35
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_projectiles.rsi
+    layers:
+    - state: neutron_bolt
+    scale: 1.5, 1.5
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectHeavyLaser
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#ffffff"
+    scale: 2.5
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 6
+  - type: PointLight
+    color: "#ffffff"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 25
+    intensitySlope: 7
+    maxIntensity: 7
+
+# Harbinger
+- type: entity
+  id: ShipAntiMatterProjectile
+  name: antimatter projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 200
+        Structural: 500
+  - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Projectiles/ship_projectiles.rsi
+    layers:
+    - state: antimatter-particle
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectTempCold
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#ab0707"
+    scale: 3
+    shape: circle
+  - type: TimedDespawn
+    lifetime: 4.5
+  - type: PointLight
+    color: "#ab0707"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 120
+    intensitySlope: 45
+    maxIntensity: 45
+    maxTileBreak: 4
+
+
+# region Laser Hitscans
+
+# Phalanx
+- type: entity
+  parent: ApolloLaser
+  id: PrometheusLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+     types:
+       Heat: 150
+       Structural: 500
+  - type: HitscanRadarSignature
+    radarColor: "#5d46e2"
+  - type: HitscanSpawnEntity
+    spawnedEntity: PrometheusExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 1000
+
+# Reaper
+- type: entity
+  parent: BasicHitscan
+  id: SunderLaser
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: proton_muzzle
+    travelFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: proton_beam
+    impactFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: proton_impact
+  - type: HitscanRadarSignature
+    radarColor: "#f29705"
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Heat: 35
+      Structural: 150
+  - type: HitscanSpawnEntity
+    spawnedEntity: SunderExplosion
+  - type: HitscanBasicRaycast
+    maxDistance: 900
+
+# Flayer
+- type: entity
+  parent: BasicHitscan
+  id: GaussRound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: gauss_muzzle
+    travelFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: gauss_trail
+    impactFlash:
+      sprite: _Mono/Objects/Weapons/Guns/Projectiles/lasers.rsi
+      state: gauss_impact
+  - type: HitscanRadarSignature
+    radarColor: "#FFFFFF"
+    lifeTime: 0.1
+  - type: HitscanBasicDamage
+    damage:
+     types:
+      Piercing: 25
+      Heat: 5
+      Structural: 75
+  - type: HitscanBasicRaycast
+    maxDistance: 500
+
+# Hitscan Explosions
+- type: entity
+  id: SunderExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 45
+    intensitySlope: 5
+    maxIntensity: 5
+- type: entity
+  id: PrometheusExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 80
+    intensitySlope: 8
+    maxIntensity: 8

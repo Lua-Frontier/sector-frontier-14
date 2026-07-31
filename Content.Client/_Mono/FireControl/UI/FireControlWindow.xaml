@@ -5,6 +5,7 @@
             xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
             xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
             xmlns:ui="clr-namespace:Content.Client._Mono.FireControl.UI"
+            xmlns:shields="clr-namespace:Content.Client._Crescent.ShipShields.UI"
             Title="{Loc 'gunnery-window-title'}"
             SetSize="1000 800"
             MinSize="1000 800">
@@ -40,6 +41,17 @@
                       Margin="4 2 2 2" Pressed="True"/>
             </PanelContainer>
 
+            <!-- Shield status -->
+            <PanelContainer Name="ShieldPanel" Visible="False" VerticalExpand="False" HorizontalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4 2 4 4">
+                    <Label Text="{Loc 'gunnery-shield-label'}"/>
+                    <shields:ShipShieldBar Name="ShieldBar" HorizontalExpand="True" MinHeight="20"/>
+                </BoxContainer>
+            </PanelContainer>
+
             <!-- Weapons Control Section -->
             <controls:StripeBack MinSize="48 48" Margin="0 0 0 0">
                 <Label Name="WeaponsLabel" Text="{Loc 'gunnery-guns'}" HorizontalAlignment="Center" StyleClasses="StatusFieldTitle"/>
@@ -59,28 +71,28 @@
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
                     </PanelContainer.PanelOverride>
-            <Button Name="SelectBallisticButton" Access="Public" Text="Ballistics"
+            <Button Name="SelectBallisticButton" Access="Public" Text="{Loc 'gunnery-select-ballistic'}"
                     StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
                 </PanelContainer>
             <PanelContainer VerticalExpand="False" HorizontalExpand="True">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
                 </PanelContainer.PanelOverride>
-            <Button Name="SelectEnergyButton" Access="Public" Text="Energy"
+            <Button Name="SelectEnergyButton" Access="Public" Text="{Loc 'gunnery-select-energy'}"
                     StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
             </PanelContainer>
             <PanelContainer VerticalExpand="False" HorizontalExpand="True">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
                 </PanelContainer.PanelOverride>
-            <Button Name="SelectMissileButton" Access="Public" Text="Missiles"
+            <Button Name="SelectMissileButton" Access="Public" Text="{Loc 'gunnery-select-missile'}"
                     StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
             </PanelContainer>
             <PanelContainer VerticalExpand="False" HorizontalExpand="True">
                 <PanelContainer.PanelOverride>
                     <gfx:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c" />
                 </PanelContainer.PanelOverride>
-                <Button Name="SelectMiningButton" Access="Public" Text="Mining"
+                <Button Name="SelectMiningButton" Access="Public" Text="{Loc 'gunnery-select-mining'}"
                         StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
             </PanelContainer>
             </BoxContainer>
@@ -104,7 +116,9 @@
 
         <!-- Radar Display -->
         <BoxContainer Name="RadarContainer" Orientation="Horizontal" HorizontalExpand="True" Margin="50 50 50 50">
-            <ui:FireControlNavControl Name="NavRadar" />
+            <LayoutContainer>
+                <ui:FireControlNavControl Name="NavRadar" />
+            </LayoutContainer>
         </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

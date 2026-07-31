@@ -53,6 +53,9 @@
   - type: RadiationBlocker
     resistance: 2
 
+  - type: ShipRepairable
+    repairTime: 4
+    repairCost: 4
 - type: entity
   id: PlasmaWindowDirectional
   parent: WindowDirectionalRCDResistant
@@ -109,6 +112,9 @@
   - type: RadiationBlocker
     resistance: 1
 
+  - type: ShipRepairable
+    repairTime: 2
+    repairCost: 2
 - type: entity
   parent: PlasmaWindow
   id: PlasmaWindowDiagonal

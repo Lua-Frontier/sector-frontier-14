@@ -1,0 +1,90 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              HorizontalExpand="True"
+              VerticalExpand="True"
+              Orientation="Vertical">
+    <PanelContainer Name="HeaderPanel" Margin="8 8 8 4">
+        <BoxContainer Orientation="Vertical" Margin="12 10" SeparationOverride="8">
+            <Label Name="StatusLabel" Visible="False"/>
+
+            <BoxContainer Name="CoordBox" Visible="False" Orientation="Vertical" SeparationOverride="6">
+                <Label Name="CoordTitleLabel" Text="{Loc 'expedition-window-establishing-coords'}"/>
+                <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+                    <Label Name="CoordValueLabel"
+                           Text="--------"
+                           MinWidth="260"
+                           VerticalAlignment="Center"/>
+                    <ProgressBar Name="CoordBar"
+                                 HorizontalExpand="True"
+                                 MinValue="0"
+                                 MaxValue="1"
+                                 SetHeight="14"
+                                 VerticalAlignment="Center"/>
+                    <Label Name="CoordProgressText"
+                           Text="0%"
+                           MinWidth="40"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"/>
+                </BoxContainer>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+                <Label Name="NextOfferLabel"
+                       Text="{Loc 'expedition-window-next'}"
+                       MinWidth="150"
+                       VerticalAlignment="Center"/>
+                <ProgressBar Name="NextOfferBar"
+                             HorizontalExpand="True"
+                             MinValue="0"
+                             MaxValue="1"
+                             SetHeight="14"
+                             VerticalAlignment="Center"/>
+                <Label Name="NextOfferText"
+                       Text="00:00"
+                       MinWidth="48"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"/>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Horizontal" SeparationOverride="14">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                    <Label Name="ActiveCountLabel" Text="{Loc 'expedition-window-active-count'}"/>
+                    <Label Name="ActiveCountValue" Text="0"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                    <Label Name="QueueCountLabel" Text="{Loc 'expedition-window-queue-count'}"/>
+                    <Label Name="QueueCountValue" Text="-"/>
+                </BoxContainer>
+                <BoxContainer Name="ConfirmBox" Visible="False" Orientation="Horizontal" SeparationOverride="8">
+                    <Label Name="ConfirmText" Text="00:00" MinWidth="48"/>
+                    <ProgressBar Name="ConfirmBar"
+                                 MinValue="0"
+                                 MaxValue="1"
+                                 SetWidth="120"
+                                 SetHeight="12"/>
+                </BoxContainer>
+                <Control HorizontalExpand="True"/>
+                <Button Name="ConfirmButton"
+                        Text="{Loc 'expedition-window-confirm'}"
+                        Disabled="True"/>
+                <Button Name="CancelButton"
+                        Text="{Loc 'expedition-window-cancel'}"
+                        Disabled="True"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+
+    <ScrollContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 2 4 0">
+        <BoxContainer Name="MissionsContainer"
+                      Orientation="Horizontal"
+                      SeparationOverride="2"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"/>
+    </ScrollContainer>
+
+    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 8 0 10">
+        <Button Name="FinishButton"
+                Text="{Loc 'expedition-window-finish'}"
+                Disabled="True"
+                MinWidth="220"/>
+    </BoxContainer>
+</BoxContainer>

@@ -10,7 +10,7 @@
 #
 - type: pointOfInterest
   id: Nfsd
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Аванпост СРБС'
   minimumDistance: 2000 #750 Lua
   maximumDistance: 3000 #1000 Lua

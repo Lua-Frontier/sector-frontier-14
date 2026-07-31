@@ -2,10 +2,13 @@
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
 using System.Numerics;
+using Content.Client.Stylesheets;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
 
 namespace Content.Client.Shuttles.UI
 {
@@ -16,6 +19,8 @@ namespace Content.Client.Shuttles.UI
         public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
         public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
         public event Action<NetEntity?, bool>? OnSetHideTarget;
+        public event Action<float?>? OnMaxShuttleSpeedChanged;
+        public event Action<float?>? OnMaxShuttleAngularSpeedChanged;
 
         private bool _targetCoordsModified = false;
 
@@ -25,8 +30,16 @@ namespace Content.Client.Shuttles.UI
         {
             IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
 
-            MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8, 0, 0, 0);
+            ApplyThinSlider(MaximumIFFDistanceValue);
             MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
+
+            ApplyThinSlider(MaximumShuttleSpeedValue);
+            ApplyThinSlider(MaximumShuttleAngularSpeedValue);
+            MaximumShuttleSpeedValue.OnValueChanged += OnMaxSpeedChanged;
+            MaximumShuttleAngularSpeedValue.OnValueChanged += OnMaxAngularSpeedChanged;
+
+            ApplyNavColumnFont(RightDisplayNav);
+            ApplyNavColumnFont(WeaponsPanel);
 
             DampenerOff.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Off);
             DampenerOn.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Dampen);
@@ -78,11 +91,13 @@ namespace Content.Client.Shuttles.UI
             {
                 DampenerModeButtons.Visible = false;
                 ServiceFlagsBox.Visible = false;
+                MaximumShuttleSpeedBox.Visible = false;
             }
             else
             {
                 DampenerModeButtons.Visible = true;
                 ServiceFlagsBox.Visible = true;
+                MaximumShuttleSpeedBox.Visible = true;
                 DampenerOff.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Off;
                 DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
                 AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
@@ -125,6 +140,59 @@ namespace Content.Client.Shuttles.UI
         private void OnRangeFilterChanged(int value)
         {
             NavRadar.MaximumIFFDistance = value;
+        }
+
+        private static void ApplyThinSlider(SliderIntInput control)
+        {
+            if (control.ChildCount == 0)
+                return;
+
+            var row = control.GetChild(0);
+            if (row.ChildCount < 2)
+                return;
+
+            var slider = row.GetChild(0);
+            slider.AddStyleClass(StyleNano.StyleClassSliderThin);
+
+            if (row.GetChild(1) is not SpinBox spin)
+                return;
+
+            spin.Margin = new Thickness(6, 0, 0, 0);
+            spin.MaxHeight = 16;
+            spin.LineEditControl.AddStyleClass(StyleNano.StyleClassLineEditSliderThin);
+            spin.LineEditControl.MinSize = new Vector2(36, 0);
+            control.MaxHeight = 16;
+        }
+
+        private static void ApplyNavColumnFont(Control root)
+        {
+            foreach (var child in root.Children)
+            {
+                switch (child)
+                {
+                    case Label label:
+                        label.AddStyleClass(StyleNano.StyleClassLabelSmall);
+                        break;
+                    case LineEdit lineEdit:
+                        lineEdit.AddStyleClass(StyleNano.StyleClassLineEditSliderThin);
+                        break;
+                    case Button button:
+                        button.AddStyleClass(StyleNano.StyleClassButtonNavCompact);
+                        break;
+                }
+
+                ApplyNavColumnFont(child);
+            }
+        }
+
+        private void OnMaxSpeedChanged(int value)
+        {
+            OnMaxShuttleSpeedChanged?.Invoke(value <= 0 ? null : value);
+        }
+
+        private void OnMaxAngularSpeedChanged(int value)
+        {
+            OnMaxShuttleAngularSpeedChanged?.Invoke(value <= 0 ? null : MathHelper.DegreesToRadians(value));
         }
 
         private void ToggleServiceFlags(ServiceFlags flags, bool updateButtonsOnly = false)

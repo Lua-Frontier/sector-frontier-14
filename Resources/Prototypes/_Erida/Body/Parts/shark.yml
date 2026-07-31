@@ -86,7 +86,6 @@
 - type: entity
   id: BaseTail
   name: "tail"
-  parent: BasePart
   abstract: true
 
 - type: entity
@@ -95,6 +94,9 @@
   parent: [PartShark, BaseTail]
   components:
     - type: Sprite
+      sprite: _ADT/Mobs/Customization/Shark/parts.rsi
+      state: "tail_m"
+    - type: Icon
       sprite: _ADT/Mobs/Customization/Shark/parts.rsi
       state: "tail_m"
 
@@ -127,9 +129,6 @@
     - type: Icon
       sprite: _ADT/Mobs/Customization/Shark/parts.rsi
       state: "l_foot"
-    - type: BodyPart
-      partType: Foot
-      symmetry: Left
 
 - type: entity
   id: RightFootShark
@@ -142,6 +141,3 @@
     - type: Icon
       sprite: _ADT/Mobs/Customization/Shark/parts.rsi
       state: "r_foot"
-    - type: BodyPart
-      partType: Foot
-      symmetry: Right

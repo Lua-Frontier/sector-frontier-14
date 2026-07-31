@@ -1,4 +1,4 @@
-﻿# Author Info
+# Author Info
 # GitHub: Checkraze (https://github.com/cheakraze)
 # Discord: ???
 
@@ -10,7 +10,7 @@
 # Basic Cargo Depot selling point for economy and great wealth
 - type: pointOfInterest
   id: CargoDepot
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: Торговый Терминал
   minimumDistance: 6000 #4000 #lua
   maximumDistance: 10000 #5000 #lua
@@ -38,7 +38,7 @@
 
 - type: pointOfInterest
   id: CargoDepotAlt
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: Торговый Терминал
   minimumDistance: 6000 #4000 #lua
   maximumDistance: 10000 #5000 #lua

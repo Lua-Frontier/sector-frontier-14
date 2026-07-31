@@ -1,4 +1,5 @@
-﻿- type: body
+﻿# Slot ids must use spaces (Shitmed GetSlotFromBodyPart), not snake_case.
+- type: body
   parent: Human
   id: HumanSyntheticOrgans
   name: "human"
@@ -14,37 +15,38 @@
     torso:
       part: TorsoHuman
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      - head # Shitmed
       organs:
         heart: OrganSyntheticHeart
         lungs: OrganHumanLungs
         stomach: OrganHumanStomach
         liver: OrganSyntheticLiver
         kidneys: OrganSyntheticKidneys
-    right_arm:
+    right arm:
       part: RightArmHuman
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmHuman
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandHuman
-    left_hand:
+    left hand:
       part: LeftHandHuman
-    right_leg:
+    right leg:
       part: RightLegHuman
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegHuman
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootHuman
-    left_foot:
+    left foot:
       part: LeftFootHuman

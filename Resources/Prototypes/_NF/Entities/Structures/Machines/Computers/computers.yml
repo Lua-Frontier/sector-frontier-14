@@ -7,9 +7,13 @@
   components:
   - type: Computer
     board: AdvancedRadarConsoleCircuitboard
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 1.2
+    visualMultiplier: 1.5
   - type: RadarConsole
     maxRange: 1100 #Lua 768<1100
     maxIffRange: 1600 # a bit over sqrt(2) * 768 #Lua 1100<1600
+    noRotate: true # Mono
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -425,14 +429,6 @@
     graph: ComputerPirateBountyRedemption
     node: start
 
-- type: entity
-  id: ComputerSalvageExpeditionDebug
-  parent: ComputerSalvageExpedition
-  suffix: Debug
-  components:
-    - type: SalvageExpeditionConsole
-      debug: true
-
 #region Gas Sale
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
@@ -508,6 +504,9 @@
   components:
   - type: RadarConsole
     maxRange: 350
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 1
+    visualMultiplier: 3
   - type: Computer
     board: Null
   - type: Sprite

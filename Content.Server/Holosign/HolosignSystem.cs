@@ -4,6 +4,7 @@ using Content.Server.Power.Components;
 using Content.Server.PowerCell;
 using Content.Shared.Interaction;
 using Content.Shared.Storage;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Holosign;
 

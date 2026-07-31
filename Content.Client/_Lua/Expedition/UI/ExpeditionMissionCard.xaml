@@ -1,0 +1,53 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                Name="CardRoot"
+                MinWidth="225"
+                MaxWidth="225"
+                VerticalAlignment="Top"
+                Margin="5 0">
+    <BoxContainer Orientation="Vertical" Margin="10 10" SeparationOverride="5">
+        <Control Name="PlanetPreviewHost"
+                 HorizontalAlignment="Center"
+                 MinHeight="72"
+                 MaxHeight="72"/>
+
+        <PanelContainer Name="Divider"/>
+
+        <Button Name="ClaimButton"
+                HorizontalExpand="True"
+                ToggleMode="True"
+                Disabled="True"
+                Text="{Loc 'offering-window-claim'}"/>
+
+        <BoxContainer Name="IdentityBox" Orientation="Vertical" SeparationOverride="4">
+            <Label Name="BiomeKeyLabel" Text="{Loc 'expedition-window-biome'}"/>
+            <Label Name="BiomeValueLabel" HorizontalExpand="True"/>
+
+            <Label Name="PlanetKeyLabel" Text="{Loc 'expedition-window-planet'}"/>
+            <Label Name="PlanetValueLabel" HorizontalExpand="True"/>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Vertical" SeparationOverride="5">
+            <BoxContainer Orientation="Vertical" SeparationOverride="1">
+                <Label Name="AirKeyLabel" Text="{Loc 'expedition-window-air'}"/>
+                <Label Name="AirValueLabel" HorizontalExpand="True"/>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Vertical" SeparationOverride="1">
+                <Label Name="WeatherKeyLabel" Text="{Loc 'expedition-window-weather'}"/>
+                <Label Name="WeatherValueLabel" HorizontalExpand="True"/>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Vertical" SeparationOverride="1">
+                <Label Name="DurationKeyLabel" Text="{Loc 'expedition-window-duration'}"/>
+                <Label Name="DurationValueLabel"/>
+            </BoxContainer>
+
+            <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                <Label Name="RewardKeyLabel" Text="{Loc 'expedition-window-reward'}"/>
+                <Label Name="RewardValueLabel"
+                       HorizontalExpand="True"
+                       Align="Right"/>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>

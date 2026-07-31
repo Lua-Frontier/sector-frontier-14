@@ -1,0 +1,66 @@
+# NF debris biomes (was: _NF/World/Biomes/basic.yml).
+# NFBiomeBase — parent of MonoFarRingBase / MonoWorldgenVeryFar*.
+# NFAsteroidsFar — NFDefault only (no distance rings; covers all distance).
+
+- type: spaceBiome
+  id: NFBiomeBase
+  abstract: true
+  noiseRanges: {}
+  chunkComponents:
+  - type: DebrisFeaturePlacerController
+    densityNoiseChannel: Density
+  - type: NoiseDrivenDebrisSelector
+    noiseChannel: Wreck
+  - type: NoiseRangeCarver
+    ranges:
+    - 0.4, 0.6
+    noiseChannel: Carver
+  - type: PointSetDistanceCarver
+
+- type: spaceBiome
+  id: NFAsteroidsFar
+  parent: NFBiomeBase
+  priority: 0
+  # no distanceRange — NFDefault uses this alone for all distances
+  noiseRanges: {}
+  chunkComponents:
+  - type: SimpleDebrisSelector
+    debrisTable:
+    # Small
+    - id: NFAsteroidDebrisSmall
+      prob: 0.06
+      orGroup: debris
+    - id: NFAsteroidScrapDebrisSmall
+      prob: 0.06
+      orGroup: debris
+    # Medium
+    - id: NFAsteroidDebrisMedium
+      prob: 0.06
+      orGroup: debris
+    - id: NFAsteroidScrapDebrisMedium
+      prob: 0.05
+      orGroup: debris
+    - id: NFAsteroidAndesiteDebrisMedium
+      prob: 0.06
+      orGroup: debris
+    - id: NFAsteroidBasaltDebrisMedium
+      prob: 0.06
+      orGroup: debris
+    - id: NFAsteroidSandDebrisMedium
+      prob: 0.06
+      orGroup: debris
+    - id: NFAsteroidChromiteDebrisMedium
+      prob: 0.06
+      orGroup: debris
+    - id: NFAsteroidRockDebrisMedium
+      prob: 0.06
+      orGroup: debris
+  - type: NoiseDrivenDebrisSelector
+    noiseChannel: Wreck
+    debrisTable:
+    - id: NFWreckDebrisSmall
+      prob: 0.05
+      orGroup: wreck
+    - id: NFWreckDebrisMedium
+      prob: 0.08
+      orGroup: wreck

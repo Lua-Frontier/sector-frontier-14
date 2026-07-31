@@ -5,6 +5,7 @@ using Content.Server.Power.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Power.EntitySystems;
 

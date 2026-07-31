@@ -4,13 +4,16 @@
 
 using Content.Server._Lua.Stargate.Components;
 using Content.Shared._Lua.Stargate;
+using Content.Shared.Lua.CLVar;
 using Content.Shared.Paper;
+using Robust.Shared.Configuration;
 using System.Text;
 
 namespace Content.Server._Lua.Stargate.Systems;
 
 public sealed class StargateAddressPaperSystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly StargateAddressRegistrySystem _registry = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
 
@@ -23,6 +26,9 @@ public sealed class StargateAddressPaperSystem : EntitySystem
 
     private void OnAddressPaperMapInit(EntityUid uid, StargateAddressPaperComponent comp, MapInitEvent args)
     {
+        if (!_cfg.GetCVar(CLVars.StargateEnabled))
+            return;
+
         if (!TryComp<PaperComponent>(uid, out var paper))
             return;
 
@@ -37,6 +43,9 @@ public sealed class StargateAddressPaperSystem : EntitySystem
 
     private void OnDebugPaperMapInit(EntityUid uid, StargateDebugPaperComponent comp, MapInitEvent args)
     {
+        if (!_cfg.GetCVar(CLVars.StargateEnabled))
+            return;
+
         if (!TryComp<PaperComponent>(uid, out var paper))
             return;
 

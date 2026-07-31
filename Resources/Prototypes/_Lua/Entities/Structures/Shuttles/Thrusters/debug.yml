@@ -1,0 +1,52 @@
+- type: entity
+  id: DebugThruster
+  parent: Thruster
+  suffix: DEBUG
+  components:
+  - type: Thruster
+    baseThrust: 100
+    thrust: 100
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+
+- type: entity
+  id: DebugThrusterSecurity
+  parent: ThrusterSecurity
+  suffix: DEBUG, Security
+  components:
+  - type: Thruster
+    baseThrust: 100
+    thrust: 122
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+
+- type: entity
+  id: DebugThrusterNfsd
+  parent: ThrusterNfsd
+  suffix: DEBUG, NFSD
+  components:
+  - type: Thruster
+    baseThrust: 100
+    thrust: 122
+    requireSpace: false
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+
+- type: entity
+  id: DebugGyroscope
+  parent: Gyroscope
+  suffix: DEBUG
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 100
+    thrust: 100
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0

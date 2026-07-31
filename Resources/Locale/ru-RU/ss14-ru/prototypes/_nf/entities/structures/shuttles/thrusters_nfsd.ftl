@@ -1,6 +1,3 @@
-ent-ThrusterNfsd = { ent-ThrusterSecurity }
-    .suffix = СРБС
-    .desc = { ent-ThrusterSecurity.desc }
 ent-DebugThrusterNfsd = { ent-DebugThrusterSecurity }
     .suffix = ДЕБАГ, СРБС
     .desc = { ent-DebugThrusterSecurity.desc }
