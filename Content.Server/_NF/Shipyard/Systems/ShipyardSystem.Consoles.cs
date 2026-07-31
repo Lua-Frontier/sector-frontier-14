@@ -351,8 +351,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             Log.Debug("Locked shuttle device {0} to shuttle {1} for deed holder {2}", devUid, shuttleUid, targetId);
         }
 
-        // Register ship ownership for auto-deletion when owner is offline too long
-        // We need to get the player's session from their entity
         if (TryComp<ActorComponent>(player, out var actorComp) && actorComp.PlayerSession != null)
         {
             _shipOwnership.RegisterShipOwnership(shuttleUid, actorComp.PlayerSession);

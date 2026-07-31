@@ -2,9 +2,11 @@ using System.Linq;
 using Content.Server._Mono.Projectiles.TargetGuided;
 using Content.Shared._Mono.FireControl;
 using Content.Shared.Projectiles;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Shuttles.Components;
+using Robust.Server.GameObjects;
 using EntityCoordinates = Robust.Shared.Map.EntityCoordinates;
 
 namespace Content.Server._Mono.FireControl;
@@ -196,6 +198,18 @@ public sealed partial class FireControlSystem
 
         // Clean up any console positions for consoles that no longer exist or have no active missiles
         CleanupConsolePositions();
+    }
+
+    public void RefreshOpenShieldUi()
+    {
+        var query = EntityQueryEnumerator<FireControlConsoleComponent, UserInterfaceComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var ui))
+        {
+            if (!_ui.IsUiOpen((uid, ui), FireControlConsoleUiKey.Key))
+                continue;
+
+            UpdateUi(uid, comp);
+        }
     }
 
     /// <summary>

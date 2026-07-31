@@ -29,6 +29,8 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
     public event Action<NetEntity?, ServiceFlags>? OnServiceFlagsChanged;
     public event Action<NetEntity?, Vector2>? OnSetTargetCoordinates;
     public event Action<NetEntity?, bool>? OnSetHideTarget;
+    public event Action<float?>? OnMaxShuttleSpeedChanged;
+    public event Action<float?>? OnMaxShuttleAngularSpeedChanged;
 
     public event Action? OnWeaponSelectionChanged;
     public event Action? OnFireControlRefresh;
@@ -77,6 +79,8 @@ public sealed partial class ShuttleTabletWindow : FancyWindow, IComputerWindow<S
         NavContainer.OnServiceFlagsChanged += (entity, flags) => OnServiceFlagsChanged?.Invoke(entity, flags);
         NavContainer.OnSetTargetCoordinates += (entity, position) => OnSetTargetCoordinates?.Invoke(entity, position);
         NavContainer.OnSetHideTarget += (entity, hide) => OnSetHideTarget?.Invoke(entity, hide);
+        NavContainer.OnMaxShuttleSpeedChanged += maxSpeed => OnMaxShuttleSpeedChanged?.Invoke(maxSpeed);
+        NavContainer.OnMaxShuttleAngularSpeedChanged += maxAngular => OnMaxShuttleAngularSpeedChanged?.Invoke(maxAngular);
 
         NavContainer.OnWeaponSelectionChanged += () => OnWeaponSelectionChanged?.Invoke();
         NavContainer.OnFireControlRefresh += () => OnFireControlRefresh?.Invoke();

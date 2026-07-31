@@ -33,27 +33,6 @@
     - id: BluespaceBarkhan-8Tranzit # added by 25Hydra08 for LuaCorp
 
 - type: entity
-  id: BluespaceDungeonEventScheduler
-  parent: BaseGameRule
-  components:
-  - type: BasicStationEventScheduler
-    scheduledGameRules: !type:NestedSelector
-      tableId: DungeonBluespaceEventsTable
-    minimumTimeUntilFirstEvent: 600 # 10 minutes
-    minMaxEventTiming:
-      min: 4200 #2100 # 35<70 minutes between events Lua
-      max: 4800 #2400 # 40<80 minutes between events Lua
-
-- type: entityTable
-  id: DungeonBluespaceEventsTable
-  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-    - id: BluespaceDungeonBasalt
-    - id: BluespaceDungeonChromite
-    - id: BluespaceDungeonSnow
-    - id: BluespaceDungeonCave
-
-- type: entity
   id: BluespaceSalvageEventScheduler
   parent: BaseGameRule
   components:

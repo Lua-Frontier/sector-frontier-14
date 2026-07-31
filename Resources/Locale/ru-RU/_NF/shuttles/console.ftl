@@ -1,7 +1,12 @@
 shuttle-console-designation = Назначение:
 shuttle-console-designation-unknown = Неизвестно
 shuttle-console-maximum-iff-distance = Максимальная дистанция
+shuttle-console-maximum-speed = Макс. скорость
+shuttle-console-maximum-speed-tooltip = Максимальная линейная скорость. 0 — без лимита пилота.
+shuttle-console-maximum-angular-speed = Макс. поворот
+shuttle-console-maximum-angular-speed-tooltip = Максимальная скорость поворота в град/с. 0 — без лимита пилота.
 shuttle-console-iff-search = Поиск IFF
+shuttle-console-shield-label = Состояние щита
 shuttle-console-inertia-dampener-off = Дрейф
 shuttle-console-inertia-dampener-dampen = Ход
 shuttle-console-inertia-dampener-anchor = Стоп
@@ -20,10 +25,10 @@ shuttle-console-service-flag-Trade-description = Товары, продавае�
 shuttle-console-service-flag-Social-description = Социальное пространство для встреч и общения.
 
 shuttle-console-undock-all = Отстыковать Все
- 
+
 # Network Port Buttons
 shuttle-console-network-ports = Порты управлениия
- 
+
 # Device Link Buttons
 shuttle-console-device-button-1 = Кн.1
 shuttle-console-device-button-2 = Кн.2

@@ -6,7 +6,6 @@ using Content.Server._Lua.Stargate.Components;
 using Content.Shared._Lua.Stargate;
 using Content.Shared._Lua.Stargate.Components;
 using Robust.Shared.Audio;
-using System.Collections.Generic;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Lua.Stargate.Systems;
@@ -18,11 +17,16 @@ public sealed class StargateDialingSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StargateSystem _stargate = default!;
 
+    private readonly List<(EntityUid Uid, StargateDialingComponent Dialing, StargateComponent Gate)> _dialingToFinish = new();
+    private readonly List<EntityUid> _closingToFinish = new();
+    private readonly List<EntityUid> _openingToFinish = new();
+    private readonly List<(EntityUid Uid, bool IsOpening)> _irisToProcess = new();
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var dialingToFinish = new List<(EntityUid Uid, StargateDialingComponent Dialing, StargateComponent Gate)>();
+        _dialingToFinish.Clear();
         var dialQuery = AllEntityQuery<StargateDialingComponent, StargateComponent>();
         while (dialQuery.MoveNext(out var uid, out var dialing, out var gate))
         {
@@ -49,53 +53,49 @@ public sealed class StargateDialingSystem : EntitySystem
             else
             {
                 if (dialing.Accumulator >= dialing.KawooshDelay)
-                    dialingToFinish.Add((uid, dialing, gate));
+                    _dialingToFinish.Add((uid, dialing, gate));
             }
         }
-        foreach (var (uid, dialing, gate) in dialingToFinish)
-        {
+        foreach (var (uid, dialing, gate) in _dialingToFinish)
             _stargate.FinishDialing(uid, dialing, gate);
-        }
 
-        var closingToFinish = new List<EntityUid>();
+        _closingToFinish.Clear();
         var closeQuery = AllEntityQuery<StargateClosingComponent>();
         while (closeQuery.MoveNext(out var uid, out var closing))
         {
             closing.Accumulator += frameTime;
             if (closing.Accumulator >= closing.Duration)
-                closingToFinish.Add(uid);
+                _closingToFinish.Add(uid);
         }
-        foreach (var uid in closingToFinish)
+        foreach (var uid in _closingToFinish)
         {
             _stargate.UpdateGateVisualState(uid, StargateVisualState.Off);
             RemComp<StargateClosingComponent>(uid);
         }
 
-        var openingToFinish = new List<EntityUid>();
+        _openingToFinish.Clear();
         var openQuery = AllEntityQuery<StargateOpeningComponent>();
         while (openQuery.MoveNext(out var uid, out var opening))
         {
             opening.Accumulator += frameTime;
             if (opening.Accumulator >= opening.Duration)
-                openingToFinish.Add(uid);
+                _openingToFinish.Add(uid);
         }
-        foreach (var uid in openingToFinish)
+        foreach (var uid in _openingToFinish)
         {
             _stargate.UpdateGateVisualState(uid, StargateVisualState.Idle);
             RemComp<StargateOpeningComponent>(uid);
         }
 
-        var irisToProcess = new List<(EntityUid Uid, float Accumulator, float Duration, bool IsOpening)>();
+        _irisToProcess.Clear();
         var irisQuery = AllEntityQuery<StargateIrisAnimatingComponent>();
         while (irisQuery.MoveNext(out var uid, out var iris))
         {
             iris.Accumulator += frameTime;
             if (iris.Accumulator >= iris.Duration)
-                irisToProcess.Add((uid, iris.Accumulator, iris.Duration, iris.IsOpening));
+                _irisToProcess.Add((uid, iris.IsOpening));
         }
-        foreach (var (uid, _, _, isOpening) in irisToProcess)
-        {
+        foreach (var (uid, isOpening) in _irisToProcess)
             _stargate.FinishIrisAnimation(uid, isOpening);
-        }
     }
 }

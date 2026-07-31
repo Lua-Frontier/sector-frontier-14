@@ -1,5 +1,7 @@
 # Base Generator
 
+# Base Generator
+
 - type: entity
   abstract: true
   id: BaseGenerator
@@ -194,6 +196,8 @@
     node: generator
   - type: StaticPrice
     price: 14
+  - type: ShipRepairable
+    repairCost: 2
 #  - type: ContainerFill # Frontier
 #    containers: # Frontier
 #      board: WallmountGeneratorElectronics # Frontier
@@ -215,6 +219,8 @@
     node: APU
   - type: StaticPrice
     price: 38
+  - type: ShipRepairable
+    repairCost: 2
 #  - type: ContainerFill # Frontier
 #    containers: # Frontier
 #      board: WallmountGeneratorAPUElectronics # Frontier
@@ -289,6 +295,8 @@
   - type: StaticPrice
     price: 4000
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: GeneratorRTGMachineCircuitboard
   parent: BaseMachineCircuitboard
@@ -352,3 +360,5 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: ShipRepairable
+    repairCost: 2

@@ -3,6 +3,8 @@
 // See AGPLv3.txt for details.
 
 using System;
+using Content.Server._Lua.AmbientSpaceEffects;
+using Content.Server._Lua.Company;
 using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Components;
 using Content.Server.Backmen.Arrivals;
@@ -16,6 +18,7 @@ using Content.Server.Worldgen.Components.GC;
 using Content.Server.Worldgen.Prototypes;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
+using Content.Shared._Mono.Company;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Dataset;
 using Content.Shared.Lua.CLVar;
@@ -40,14 +43,6 @@ namespace Content.Server._Lua.Starmap.Systems
 {
     public sealed class SimpleStarmapSystem : EntitySystem
     {
-        private static readonly HashSet<string> DiskOptionalSectorIds =
-        [
-            "PirateSector",
-            "TypanSector",
-            "AsteroidSectorDefault",
-            "FrontierSector"
-        ];
-
         [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
         [Dependency] private readonly MapSystem _mapSystem = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
@@ -63,6 +58,7 @@ namespace Content.Server._Lua.Starmap.Systems
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly SectorSystem _sectors = default!;
         [Dependency] private readonly SharedContainerSystem _containers = default!;
+        [Dependency] private readonly FactionWarSystem _factionWar = default!;
         private StarmapConfigPrototype? _cfg;
 
         private readonly Dictionary<MapId, StarDefinition> _pendingLazyStars = new();
@@ -131,10 +127,11 @@ namespace Content.Server._Lua.Starmap.Systems
             {
                 var mapUid = _mapManager.GetMapEntityId(mapId);
 
-                if (!string.IsNullOrWhiteSpace(def.WorldgenConfig)
-                    && _prototypeManager.TryIndex<WorldgenConfigPrototype>(def.WorldgenConfig, out var wg))
+                var configs = def.EnumerateWorldgenConfigs().ToArray();
+                if (configs.Length > 0)
                 {
-                    wg.Apply(mapUid, _serializer, EntityManager);
+                    WorldgenConfigPrototype.ApplyMany(mapUid, configs, _prototypeManager, _serializer, EntityManager);
+                    EntityManager.System<AmbientSpaceFieldPlacerSystem>().InitializePlacer(mapUid);
                 }
 
                 if (def.ParallaxPool.Length > 0)
@@ -177,10 +174,11 @@ namespace Content.Server._Lua.Starmap.Systems
             {
                 var mapUid = _mapManager.GetMapEntityId(mapId);
 
-                if (!string.IsNullOrWhiteSpace(def.WorldgenConfig)
-                    && _prototypeManager.TryIndex<WorldgenConfigPrototype>(def.WorldgenConfig, out var wg))
+                var configs = def.EnumerateWorldgenConfigs().ToArray();
+                if (configs.Length > 0)
                 {
-                    wg.Apply(mapUid, _serializer, EntityManager);
+                    WorldgenConfigPrototype.ApplyMany(mapUid, configs, _prototypeManager, _serializer, EntityManager);
+                    EntityManager.System<AmbientSpaceFieldPlacerSystem>().InitializePlacer(mapUid);
                 }
 
                 if (def.ParallaxPool.Length > 0)
@@ -258,7 +256,7 @@ namespace Content.Server._Lua.Starmap.Systems
         public Star? GetStarByName(StarMapComponent component, string starName)
         { return component.StarMap.FirstOrDefault(s => s.Name == starName); }
 
-        public void WarpToStar(EntityUid consoleUid, Star star)
+        public void WarpToStar(EntityUid consoleUid, Star star, EntityUid? actor = null)
         {
             if (!TryComp<TransformComponent>(consoleUid, out var consoleTransform)) { return; }
             var shuttleUid = consoleTransform.GridUid;
@@ -288,7 +286,7 @@ namespace Content.Server._Lua.Starmap.Systems
             }
             if (isCentComTarget && _centcomm != null && !_centcomm.CentComStarUnlocked && !HasComp<AllowFtlToCentComComponent>(shuttleUid.Value))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
-            if (!HasDiskForSector(consoleUid, star.Map))
+            if (!CanAccessSector(consoleUid, star.Map, actor))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
             if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason))
             { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
@@ -310,16 +308,44 @@ namespace Content.Server._Lua.Starmap.Systems
             Dirty(shuttleUid.Value, transit);
             try { EntityManager.System<StarmapSystem>().RefreshConsoles(); } catch { }
         }
-        private bool HasDiskForSector(EntityUid consoleUid, MapId targetMap)
+
+        private bool CanAccessSector(EntityUid consoleUid, MapId targetMap, EntityUid? actor)
         {
-            if (!_configurationManager.GetCVar(CLVars.StarmapRequireSectorDisks) && IsDiskOptionalSectorMap(targetMap))
+            var company = SectorVisibility.NoneCompany;
+            if (actor != null &&
+                actor.Value.IsValid() &&
+                TryComp<CompanyComponent>(actor.Value, out var companyComp) &&
+                !string.IsNullOrWhiteSpace(companyComp.CompanyName))
+                company = companyComp.CompanyName;
+
+            var globallyUnlocked = _factionWar.AreFactionSectorsUnlocked();
+            var sectorId = ResolveSectorId(targetMap);
+            if (sectorId != null)
+            {
+                try
+                {
+                    var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
+                    if (_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data) &&
+                        !SectorVisibility.IsSectorVisible(data, sectorId, company, globallyUnlocked))
+                        return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            if (!_configurationManager.GetCVar(CLVars.StarmapRequireSectorDisks))
                 return true;
 
-            if (targetMap == _ticker.DefaultMap) return true;
-            if (_centcomm != null && _centcomm.CentComMap != MapId.Nullspace && targetMap == _centcomm.CentComMap) return true;
-            if (!_containers.TryGetContainer(consoleUid, "disk_slot", out var diskCont) || diskCont.ContainedEntities.Count == 0) return false;
+            if (targetMap == _ticker.DefaultMap)
+                return true;
+            if (_centcomm != null && _centcomm.CentComMap != MapId.Nullspace && targetMap == _centcomm.CentComMap)
+                return true;
+            if (!_containers.TryGetContainer(consoleUid, "disk_slot", out var diskCont) || diskCont.ContainedEntities.Count == 0)
+                return false;
             var disk = diskCont.ContainedEntities[0];
-            if (!TryComp<StarMapCoordinatesDiskComponent>(disk, out var diskComp) || diskComp.AllowedSectorIds.Count == 0) return false;
+            if (!TryComp<StarMapCoordinatesDiskComponent>(disk, out var diskComp) || diskComp.AllowedSectorIds.Count == 0)
+                return false;
             var currentPreset = _ticker.CurrentPreset?.ID;
             foreach (var sid in diskComp.AllowedSectorIds)
             {
@@ -327,21 +353,36 @@ namespace Content.Server._Lua.Starmap.Systems
                 if (!TryResolveSectorMapId(sid, currentPreset, out var mapId))
                     continue;
 
-                if (mapId == targetMap) return true;
-            }
-            return false;
-        }
-
-        private bool IsDiskOptionalSectorMap(MapId targetMap)
-        {
-            var currentPreset = _ticker.CurrentPreset?.ID;
-            foreach (var sid in DiskOptionalSectorIds)
-            {
-                if (TryResolveSectorMapId(sid, currentPreset, out var mapId) && mapId == targetMap)
+                if (mapId == targetMap)
                     return true;
             }
 
             return false;
+        }
+
+        private string? ResolveSectorId(MapId targetMap)
+        {
+            if (targetMap == _ticker.DefaultMap)
+                return "FrontierSector";
+            if (_centcomm != null && _centcomm.CentComMap != MapId.Nullspace && targetMap == _centcomm.CentComMap)
+                return "CentCom";
+
+            try
+            {
+                var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
+                if (_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data))
+                {
+                    var currentPreset = _ticker.CurrentPreset?.ID;
+                    foreach (var def in data.Stars)
+                    {
+                        if (TryResolveSectorMapId(def.Id, currentPreset, out var mapId) && mapId == targetMap)
+                            return def.Id;
+                    }
+                }
+            }
+            catch { }
+
+            return null;
         }
 
         private bool TryResolveSectorMapId(string sid, string? currentPreset, out MapId mapId)

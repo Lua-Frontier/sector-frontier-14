@@ -18,12 +18,16 @@ public sealed class DroneConsoleBoundUserInterfaceState : BoundUserInterfaceStat
     // Key: NetEntity of the drone, Value: Name
     public List<(NetEntity Server, NetEntity Grid)> LinkedDrones;
 
+    public List<DroneRouteState>? DroneRoutes;
+
     public DroneConsoleBoundUserInterfaceState(
         NavInterfaceState navState,
-        List<(NetEntity, NetEntity)> linkedDrones)
+        List<(NetEntity, NetEntity)> linkedDrones,
+        List<DroneRouteState>? droneRoutes = null)
     {
         NavState = navState;
         LinkedDrones = linkedDrones;
+        DroneRoutes = droneRoutes;
     }
 }
 

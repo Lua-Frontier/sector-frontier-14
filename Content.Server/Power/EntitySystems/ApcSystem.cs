@@ -13,6 +13,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Tools.Components;
+using Content.Shared.Power;
 
 namespace Content.Server.Power.EntitySystems;
 

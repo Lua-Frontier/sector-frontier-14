@@ -161,17 +161,18 @@ public sealed class FactionWarSystem : EntitySystem
         {
             statusText = Loc.GetString("company-war-status-invalid-target");
         }
+        else if (!IsWarDeclarationUnlocked(now, out var unlockTime, out var remaining))
+        {
+            var lockDays = _cfg.GetCVar(CLVars.FactionWarDeclarationLockDays);
+            statusText = Loc.GetString(
+                "company-war-status-round-lock",
+                ("days", lockDays.ToString()),
+                ("unlockTime", unlockTime.ToLocalTime().ToString("dd.MM HH:mm")),
+                ("remaining", FormatRemaining(remaining)));
+        }
         else if (!IsPrimeTime(now))
         {
             statusText = GetPrimeTimeText("company-war-status-prime-time", now);
-        }
-        else if (!IsWarDeclarationUnlocked(now, out var unlockTime, out var remaining))
-        {
-            statusText = Loc.GetString(
-                "company-war-status-round-lock",
-                ("hours", _cfg.GetCVar(CLVars.FactionWarDeclarationLockHours)),
-                ("unlockTime", unlockTime.ToLocalTime().ToString("HH:mm:ss")),
-                ("remaining", FormatRemaining(remaining)));
         }
         else
         {
@@ -445,17 +446,18 @@ public sealed class FactionWarSystem : EntitySystem
         if (TryGetWarPair(viewerCompanyId, targetCompanyId, out _))
             return Loc.GetString("company-war-error-already-at-war", ("company", GetCompanyDisplayName(targetCompanyId)));
 
-        if (!IsPrimeTime(now))
-            return GetPrimeTimeText("company-war-error-prime-time", now);
-
         if (!IsWarDeclarationUnlocked(now, out var unlockTime, out var remaining))
         {
+            var lockDays = _cfg.GetCVar(CLVars.FactionWarDeclarationLockDays);
             return Loc.GetString(
                 "company-war-error-round-lock",
-                ("hours", _cfg.GetCVar(CLVars.FactionWarDeclarationLockHours)),
-                ("unlockTime", unlockTime.ToLocalTime().ToString("HH:mm:ss")),
+                ("days", lockDays.ToString()),
+                ("unlockTime", unlockTime.ToLocalTime().ToString("dd.MM HH:mm")),
                 ("remaining", FormatRemaining(remaining)));
         }
+
+        if (!IsPrimeTime(now))
+            return GetPrimeTimeText("company-war-error-prime-time", now);
 
         return null;
     }
@@ -670,11 +672,11 @@ public sealed class FactionWarSystem : EntitySystem
         return hour >= startHour || hour < endHour;
     }
 
-    private bool IsWarDeclarationUnlocked(DateTimeOffset now, out DateTimeOffset unlockTime, out TimeSpan remaining)
+    public bool IsWarDeclarationUnlocked(DateTimeOffset now, out DateTimeOffset unlockTime, out TimeSpan remaining)
     {
-        var lockHours = Math.Max(0, _cfg.GetCVar(CLVars.FactionWarDeclarationLockHours));
+        var lockDays = Math.Max(0, _cfg.GetCVar(CLVars.FactionWarDeclarationLockDays));
 
-        if (lockHours == 0)
+        if (lockDays == 0)
         {
             unlockTime = now;
             remaining = TimeSpan.Zero;
@@ -682,7 +684,7 @@ public sealed class FactionWarSystem : EntitySystem
         }
 
         var roundStart = _roundStartedAt ?? now;
-        unlockTime = roundStart.AddHours(lockHours);
+        unlockTime = roundStart.AddHours((lockDays - 1) * 24);
 
         if (now >= unlockTime)
         {
@@ -692,6 +694,11 @@ public sealed class FactionWarSystem : EntitySystem
 
         remaining = unlockTime - now;
         return false;
+    }
+
+    public bool AreFactionSectorsUnlocked()
+    {
+        return IsWarDeclarationUnlocked(DateTimeOffset.Now, out _, out _);
     }
 
     private static string FormatRemaining(TimeSpan remaining)

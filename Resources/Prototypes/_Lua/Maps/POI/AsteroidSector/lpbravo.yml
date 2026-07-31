@@ -14,7 +14,7 @@
 # just a little loot n shoot POI. Pretty much the second POI to even exist
 - type: pointOfInterest
   id: LPBravoLua
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Пункт прослушки Браво'
   minimumDistance: 9000 #4000
   maximumDistance: 10000 #6000

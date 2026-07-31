@@ -34,6 +34,17 @@
             - MachineMask
           layer:
             - MachineLayer
+    - type: RadarBlip
+      visibleFromOtherGrids: true
+      radarColor: "#fcba03"
+      scale: 1
+      shape: square
+      gridConfig:
+        color: "#fcba03"
+        shape: Square
+        respectZoom: true
+        rotate: true
+        bounds: "-0.5,-0.5,0.5,0.5"
 
     # Visuals
     - type: Appearance

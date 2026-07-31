@@ -1,4 +1,5 @@
 # Base benches
+# Base benches
 - type: entity
   name: bench
   id: BenchBaseMiddle
@@ -16,6 +17,8 @@
     state: middle
   - type: StaticPrice # Frontier
     price: 20 # Frontier: 20
+  - type: ShipRepairable
+    repairCost: 2
 
 # Park benches
 - type: entity

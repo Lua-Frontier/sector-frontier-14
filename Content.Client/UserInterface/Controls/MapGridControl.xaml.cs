@@ -28,7 +28,7 @@ public partial class MapGridControl : LayoutContainer
     private Font _largerFont;
 
     /* Dragging */
-    protected virtual bool Draggable { get; } = false;
+    protected virtual bool Draggable { get; set; } = false; // Mono - make settable
 
     protected virtual bool ScaleWithControlSize => false; // Lua
     protected virtual bool AllowResize => false; // Lua
@@ -43,7 +43,7 @@ public partial class MapGridControl : LayoutContainer
     /// </summary>
     public Vector2 TargetOffset;
 
-    private bool _draggin;
+    protected bool _draggin; // Mono: private -> protected
     protected Vector2 StartDragPosition;
     protected bool Recentering;
 
@@ -76,7 +76,7 @@ public partial class MapGridControl : LayoutContainer
 
     public Vector2 MaxRadarRangeVector => new Vector2(MaxRadarRange, MaxRadarRange);
 
-    protected Vector2 MidPointVector => new Vector2(MidPoint, MidPoint);
+    protected virtual Vector2 MidPointVector => new Vector2(MidPoint, MidPoint);
 
     protected int SizeFull
     {
@@ -141,10 +141,11 @@ public partial class MapGridControl : LayoutContainer
         if (!Draggable)
             return;
 
-        if (args.Function == EngineKeyFunctions.Use)
+        if (args.Function == EngineKeyFunctions.UseSecondary)
         {
             StartDragPosition = args.PointerLocation.Position;
             _draggin = true;
+            args.Handle();
         }
     }
 
@@ -153,8 +154,11 @@ public partial class MapGridControl : LayoutContainer
         if (!Draggable)
             return;
 
-        if (args.Function == EngineKeyFunctions.Use)
+        if (args.Function == EngineKeyFunctions.UseSecondary)
+        {
             _draggin = false;
+            args.Handle();
+        }
     }
 
     protected override void MouseMove(GUIMouseMoveEventArgs args)

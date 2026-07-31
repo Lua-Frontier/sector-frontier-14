@@ -41,6 +41,12 @@ public sealed partial class MachineBoardComponent : Component
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Prototype;
+
+    /// <summary>
+    /// Mono - sets the framesize this board can go into (e.g. "2x1").
+    /// </summary>
+    [DataField]
+    public string? FrameSize = null;
 }
 
 [DataDefinition, Serializable]

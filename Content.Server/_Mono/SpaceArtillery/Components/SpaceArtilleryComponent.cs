@@ -37,4 +37,10 @@ public sealed partial class SpaceArtilleryComponent : Component
     [DataField("spaceArtilleryFirePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string SpaceArtilleryFirePort = "SpaceArtilleryFire";
 
+    /// <summary>
+    /// Signal port that receives ammunition from a linked AmmoLoader.
+    /// </summary>
+    [DataField("spaceArtilleryLoadPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+    public string SpaceArtilleryLoadPort = "SpaceArtilleryLoad";
+
 }

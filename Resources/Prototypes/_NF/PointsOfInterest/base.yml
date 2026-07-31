@@ -15,3 +15,9 @@
     readOnly: true
   # Prevent gravity changes
   - type: ForceAnchor
+
+- type: pointOfInterest
+  id: BaseRepairablePOI
+  abstract: true
+  addComponents:
+  - type: InitRepairSnapshot

@@ -291,7 +291,7 @@ public sealed partial class ExplosionSystem
 
             // finally check if the new tile is itself an edge tile
             if (IsEdge((ev.Entity, grid), change.GridIndices, out var spaceDir))
-                edges.Add(change.GridIndices, spaceDir);
+                edges[change.GridIndices] = spaceDir;
         }
     }
 

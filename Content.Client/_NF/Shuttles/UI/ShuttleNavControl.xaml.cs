@@ -14,6 +14,7 @@ using Content.Shared._Mono.Company;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Collections;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
@@ -57,7 +58,20 @@ public partial class ShuttleNavControl // Mono
     protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
         base.MouseMove(args);
-        _lastMousePos = args.RelativePosition;
+        if (_isMouseInside)
+            _lastMousePos = args.RelativePosition;
+
+        if (!_draggin || _coordinates == null)
+            return;
+
+        if (!_relativePanning
+            && _coordinates?.EntityId is { } coordEnt
+            && EntManager.TryGetComponent<TransformComponent>(coordEnt, out var coordXform)
+            && coordXform.MapUid != coordEnt
+        )
+            _coordinates = _transform.ToCoordinates(_transform.ToMapCoordinates(_coordinates.Value));
+
+        _wasPanned = true;
     }
     private FireControllableEntry[]? _fcControllables;
     private HashSet<NetEntity> _fcSelectedWeapons = new();
@@ -71,14 +85,12 @@ public partial class ShuttleNavControl // Mono
         var xformQuery = EntManager.GetEntityQuery<TransformComponent>();
         if (!xformQuery.TryGetComponent(_coordinates.Value.EntityId, out var xform) || xform.MapID == Robust.Shared.Map.MapId.Nullspace) return;
         var physics = EntManager.System<SharedPhysicsSystem>();
-        var posMatrix = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, _rotation.Value);
-        var ourEntRot = RotateWithEntity ? _transform.GetWorldRotation(xform) : _rotation.Value;
-        var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
-        var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
-        Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
+        var worldRot = _rotation.Value;
+        var mapPos = _transform.ToMapCoordinates(_coordinates.Value).Offset(worldRot.RotateVec(Offset));
+        var mapCoord = _transform.ToCoordinates(mapPos);
+        var worldToShuttle = Matrix3Helpers.CreateTranslation(-mapCoord.Position) * Matrix3Helpers.CreateRotation(-worldRot);
         var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
         var worldToView = worldToShuttle * shuttleToView;
-        Matrix3x2.Invert(worldToView, out var viewToWorld);
         var blipColors = new Dictionary<NetEntity, Color>();
         var blips = _blips.GetCurrentBlips();
         foreach (var blip in blips) blipColors[blip.NetUid] = blip.Color;
@@ -87,10 +99,14 @@ public partial class ShuttleNavControl // Mono
             if (!_fcSelectedWeapons.Contains(controllable.NetEntity)) continue;
             var coords = EntManager.GetCoordinates(controllable.Coordinates);
             var worldPos = _transform.ToMapCoordinates(coords).Position;
-            var cursorViewPos = InverseScalePosition(_lastMousePos);
-            cursorViewPos = ScalePosition(cursorViewPos);
-            var cursorWorldPos = Vector2.Transform(cursorViewPos, viewToWorld);
+            var cursorCoords = GetMouseEntityCoordinates(_lastMousePos);
+            if (cursorCoords == EntityCoordinates.Invalid)
+                continue;
+            var cursorWorldPos = _transform.ToMapCoordinates(cursorCoords).Position;
+            var cursorViewPos = Vector2.Transform(cursorWorldPos, worldToView);
             var direction = cursorWorldPos - worldPos;
+            if (direction.LengthSquared() <= 0.001f)
+                continue;
             var ray = new CollisionRay(worldPos, direction.Normalized(), (int)CollisionGroup.Impassable);
             var results = physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates?.EntityId);
             if (!results.Any() && blipColors.TryGetValue(controllable.NetEntity, out var color)) handle.DrawLine(Vector2.Transform(worldPos, worldToView), cursorViewPos, color.WithAlpha(0.3f));
@@ -322,11 +338,7 @@ public partial class ShuttleNavControl // Mono
         if (_coordinates == null || _rotation == null || OnRadarClick == null)
             return;
 
-        var a = InverseScalePosition(relativePosition);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
-        relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
-        var coords = _coordinates.Value.Offset(relativeWorldPos);
-        OnRadarClick?.Invoke(coords);
+        OnRadarClick?.Invoke(GetMouseEntityCoordinates(relativePosition));
     }
 
     private void DrawBlipShape(DrawingHandleScreen handle, Vector2 position, float size, Color color, RadarBlipShape shape)

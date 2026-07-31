@@ -296,7 +296,14 @@ namespace Content.Client.Construction
             var sprite = Comp<SpriteComponent>(ghost.Value);
             _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
-            if (targetProto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
+            if (prototype.Icon is { } constructionIcon)
+            {
+                _sprite.AddBlankLayer((ghost.Value, sprite), 0);
+                _sprite.LayerSetSprite((ghost.Value, sprite), 0, constructionIcon);
+                sprite.LayerSetShader(0, "unshaded");
+                _sprite.LayerSetVisible((ghost.Value, sprite), 0, true);
+            }
+            else if (targetProto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
             {
                 _sprite.AddBlankLayer((ghost.Value, sprite), 0);
                 _sprite.LayerSetSprite((ghost.Value, sprite), 0, icon.Icon);

@@ -1,0 +1,30 @@
+# Lua shipgun ammunition
+ent-MagazineLua20mm = 20mm ammo loader
+    .desc = An ammunition loader for Lua 20mm ship guns.
+ent-MagazineLua53mm = 53mm ammo loader
+    .desc = An ammunition loader for Lua 53mm ship guns.
+ent-MagazineLua80mm = 80mm ammo loader
+    .desc = An ammunition loader for Lua 80mm ship guns.
+ent-MagazineLua105mm = 105mm ammo loader
+    .desc = An ammunition loader for Lua 105mm ship guns.
+ent-CartridgeLua120mm = 120mm cartridge
+    .desc = A single 120mm cartridge for Lua ship cannons.
+ent-MagazineLua140mm = 140mm ammo loader
+    .desc = An ammunition loader for Lua 140mm ship guns.
+ent-MagazineNightHunter = NightHunter missile loader
+    .desc = Missile magazine for the NightHunter launcher.
+ent-MagazineLancer = Lancer missile loader
+    .desc = Missile magazine for the Lancer-14 launcher.
+ent-MagazineCerber = Cerber missile loader
+    .desc = Missile magazine for the Cerber-X launcher.
+
+ent-CartridgeLua20mm = 20mm cartridge
+    .desc = A cartridge for Lua 20mm ship guns.
+ent-CartridgeLua53mm = 53mm cartridge
+    .desc = A cartridge for Lua 53mm ship guns.
+ent-CartridgeLua80mm = 80mm cartridge
+    .desc = A cartridge for Lua 80mm ship guns.
+ent-CartridgeLua105mm = 105mm cartridge
+    .desc = A cartridge for Lua 105mm ship guns.
+ent-CartridgeLua140mm = 140mm cartridge
+    .desc = A cartridge for Lua 140mm ship guns.

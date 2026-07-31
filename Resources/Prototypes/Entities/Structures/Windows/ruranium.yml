@@ -53,6 +53,9 @@
   - type: RadiationBlocker
     resistance: 5
 
+  - type: ShipRepairable
+    repairTime: 6
+    repairCost: 6
 - type: entity
   id: UraniumReinforcedWindowDirectional
   parent: WindowDirectionalRCDResistant
@@ -111,6 +114,9 @@
   - type: RadiationBlocker
     resistance: 2.5
 
+  - type: ShipRepairable
+    repairTime: 4
+    repairCost: 4
 - type: entity
   parent: ReinforcedUraniumWindow
   id: ReinforcedUraniumWindowDiagonal

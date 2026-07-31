@@ -186,7 +186,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         var dungeonRotation = _dungeon.GetDungeonRotation(seed);
         var dungeonPosition = (origin + dungeonRotation.RotateVec(new Vector2i(0, dungeonDistance))).Floored();
 
-        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("GateMineshaft"), "GateMineshaft", args.MapUid, grid, dungeonPosition, seed); // Lua NFMineshaft
+        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("LuaMineshaft"), "LuaMineshaft", args.MapUid, grid, dungeonPosition, seed);
 
         // TODO: Dungeon mobs + loot.
 

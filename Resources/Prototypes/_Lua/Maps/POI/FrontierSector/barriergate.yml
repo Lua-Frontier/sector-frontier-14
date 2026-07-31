@@ -1,7 +1,7 @@
 #Disabled
 - type: pointOfInterest
   id: BarrierGate
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Barrier Gate'
   minimumDistance: 11000
   maximumDistance: 12000

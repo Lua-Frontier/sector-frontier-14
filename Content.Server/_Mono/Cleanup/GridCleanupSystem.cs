@@ -6,6 +6,7 @@ using Content.Server.Shuttles.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Power.Components;
 
 namespace Content.Server._Mono.Cleanup;
 

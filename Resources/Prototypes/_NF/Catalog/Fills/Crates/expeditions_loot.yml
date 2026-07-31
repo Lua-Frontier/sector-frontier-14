@@ -44,12 +44,15 @@
   parent: CrateEngineering
   id: CrateEngineeringKitShipyardRcd
   name: shipyard RCD toolkit
-  description: Contains a full shipyard RCD kit.
+  description: Contains a full shipyard RCD kit and ship repair device.
   components:
   - type: StorageFill
     contents:
     - id: ShipyardRCD
     - id: ShipyardRCDAmmo
+      amount: 4
+    - id: ShipRepairDevice # Mono
+    - id: ShipRepairDeviceAmmo # Mono
       amount: 4
 
 - type: entity

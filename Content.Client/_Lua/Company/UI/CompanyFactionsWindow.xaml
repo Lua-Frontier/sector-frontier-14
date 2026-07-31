@@ -121,11 +121,11 @@
                                              HScrollEnabled="False"
                                              VScrollEnabled="True"
                                              MinHeight="120">
-                                <Label Name="WarStatusLabel"
-                                       Access="Public"
-                                       Text="{Loc 'company-factions-war-loading'}"
-                                       HorizontalExpand="True"
-                                       Margin="8 6" />
+                                <RichTextLabel Name="WarStatusLabel"
+                                               Access="Public"
+                                               HorizontalExpand="True"
+                                               MaxWidth="460"
+                                               Margin="8 6" />
                             </ScrollContainer>
                         </PanelContainer>
 

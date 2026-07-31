@@ -9,8 +9,8 @@ namespace Content.Client._Mono.Radar;
 public sealed partial class RadarBlipsSystem : EntitySystem
 {
     private const double BlipStaleSeconds = 3.0;
-    private static readonly List<(Vector2, float, Color, RadarBlipShape)> EmptyBlipList = new();
-    private static readonly List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> EmptyRawBlipList = new();
+    private static readonly List<RadarBlipNetData> EmptyRawBlipList = new();
+    private static readonly List<MissileVectorNetData> EmptyMissileList = new();
     private static readonly List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> EmptyHitscanList = new();
     private TimeSpan _lastRequestTime = TimeSpan.Zero;
     private static readonly TimeSpan RequestThrottle = TimeSpan.FromMilliseconds(250);
@@ -22,7 +22,8 @@ public sealed partial class RadarBlipsSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     private TimeSpan _lastUpdatedTime;
-    private List<(NetEntity netUid, NetCoordinates Position, Vector2 Vel, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> _blips = new();
+    private List<RadarBlipNetData> _blips = new();
+    private List<MissileVectorNetData> _missiles = new();
     private List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> _hitscans = new();
     private Vector2 _radarWorldPosition;
 
@@ -44,6 +45,15 @@ public sealed partial class RadarBlipsSystem : EntitySystem
             _blips = ev.Blips;
         }
 
+        if (ev?.Missiles == null)
+        {
+            _missiles = EmptyMissileList;
+        }
+        else
+        {
+            _missiles = ev.Missiles;
+        }
+
         if (ev?.HitscanLines == null)
         {
             _hitscans = EmptyHitscanList;
@@ -58,7 +68,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
 
     private void RemoveBlip(BlipRemovalEvent args)
     {
-        var blipid = _blips.FirstOrDefault(x => x.netUid == args.NetBlipUid);
+        var blipid = _blips.FirstOrDefault(x => x.Uid == args.NetBlipUid);
         _blips.Remove(blipid);
     }
 
@@ -88,14 +98,14 @@ public sealed partial class RadarBlipsSystem : EntitySystem
     /// <summary>
     /// Gets the current blips as world positions with their scale, color and shape.
     /// </summary>
-    public List<(NetEntity NetUid, EntityCoordinates Position, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho)> GetCurrentBlips()
+    public List<(NetEntity NetUid, EntityCoordinates Position, float Scale, Color Color, RadarBlipShape Shape, bool SonarEcho, BlipConfig? GridConfig)> GetCurrentBlips()
     {
         // If it's been more than the stale threshold since our last update,
         // the data is considered stale - return an empty list
         if (_timing.CurTime.TotalSeconds - _lastUpdatedTime.TotalSeconds > BlipStaleSeconds)
             return new();
 
-        var result = new List<(NetEntity, EntityCoordinates, float, Color, RadarBlipShape, bool)>(_blips.Count);
+        var result = new List<(NetEntity, EntityCoordinates, float, Color, RadarBlipShape, bool, BlipConfig?)>(_blips.Count);
 
         foreach (var blip in _blips)
         {
@@ -110,7 +120,61 @@ public sealed partial class RadarBlipsSystem : EntitySystem
             if (Vector2.DistanceSquared(_xform.ToMapCoordinates(predictedPos).Position, _radarWorldPosition) > MaxBlipRenderDistance * MaxBlipRenderDistance)
                 continue;
 
-            result.Add((blip.netUid, predictedPos, blip.Scale, blip.Color, blip.Shape, blip.SonarEcho));
+            result.Add((blip.Uid, predictedPos, blip.Scale, blip.Color, blip.Shape, blip.SonarEcho, blip.GridConfig));
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Gets seeking / SACLOS missile direction and FOV arcs in world coordinates.
+    /// </summary>
+    public List<(Vector2 Start, Vector2 End, Color Color)> GetMissileLines()
+    {
+        if (_timing.CurTime.TotalSeconds - _lastUpdatedTime.TotalSeconds > BlipStaleSeconds)
+            return new();
+
+        var result = new List<(Vector2, Vector2, Color)>(_missiles.Count * 3);
+        var dt = (float)(_timing.CurTime - _lastUpdatedTime).TotalSeconds;
+        var color = Color.FromHex("#00AACC");
+        var colorArcs = Color.FromHex("#FF0040");
+
+        foreach (var missile in _missiles)
+        {
+            var tiedBlip = _blips.FirstOrDefault(x => x.Uid == missile.Uid);
+            if (tiedBlip.Uid == default)
+                continue;
+
+            var coord = GetCoordinates(tiedBlip.Position);
+            if (!coord.IsValid(EntityManager))
+                continue;
+
+            var predictedPos = new EntityCoordinates(coord.EntityId, coord.Position + tiedBlip.Vel * dt);
+            var start = _xform.ToMapCoordinates(predictedPos).Position;
+
+            if (Vector2.DistanceSquared(start, _radarWorldPosition) > MaxBlipRenderDistance * MaxBlipRenderDistance)
+                continue;
+
+            // Match Monolith: Cos/Sin of (Rotation - 90°) for facing.
+            var facing = tiedBlip.Rotation.Theta + Math.PI * -0.5;
+            var end = start + new Vector2(
+                missile.Range * 0.5f * (float)Math.Cos(facing),
+                missile.Range * 0.5f * (float)Math.Sin(facing));
+
+            result.Add((start, end, color));
+
+            if (missile.ScanArc > Angle.Zero)
+            {
+                var halfArc = missile.ScanArc.Theta * 0.5;
+                var left = start + new Vector2(
+                    missile.Range * (float)Math.Cos(facing - halfArc),
+                    missile.Range * (float)Math.Sin(facing - halfArc));
+                var right = start + new Vector2(
+                    missile.Range * (float)Math.Cos(facing + halfArc),
+                    missile.Range * (float)Math.Sin(facing + halfArc));
+                result.Add((start, left, colorArcs));
+                result.Add((start, right, colorArcs));
+            }
         }
 
         return result;
@@ -124,7 +188,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
         if (_timing.CurTime.TotalSeconds - _lastUpdatedTime.TotalSeconds > BlipStaleSeconds)
             return new List<(Vector2, Vector2, float, Color)>();
 
-        var result = new List<(Vector2, Vector2, float, Color)>(_hitscans.Count);
+        var result = new List<(Vector2 Start, Vector2 End, float Thickness, Color Color)>(_hitscans.Count);
 
         foreach (var hitscan in _hitscans)
         {

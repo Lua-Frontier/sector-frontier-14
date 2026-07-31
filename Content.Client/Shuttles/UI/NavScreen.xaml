@@ -4,6 +4,7 @@
               xmlns:controls="https://spacestation14.io"
               xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
               xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
+              xmlns:shields="clr-namespace:Content.Client._Crescent.ShipShields.UI"
               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
 
                 <controls:BoxContainer Name="WeaponsPanel"
@@ -33,6 +34,16 @@
                                         <controls:Button Name="RefreshButton" Access="Public" Text="{controls:Loc admin-logs-refresh}"
                                                          StyleClasses="ButtonSquare" Margin="2 2 2 2"/>
                                     </controls:PanelContainer>
+                                    <!-- Shield status (same placement as FireControlWindow) -->
+                                    <controls:PanelContainer Name="ShieldPanel" Visible="False" VerticalExpand="False" HorizontalExpand="True">
+                                        <controls:PanelContainer.PanelOverride>
+                                            <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
+                                        </controls:PanelContainer.PanelOverride>
+                                        <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4 2 4 4">
+                                            <controls:Label Text="{controls:Loc 'gunnery-shield-label'}"/>
+                                            <shields:ShipShieldBar Name="ShieldBar" HorizontalExpand="True" MinHeight="20"/>
+                                        </controls:BoxContainer>
+                                    </controls:PanelContainer>
                                     <controls1:StripeBack MinSize="48 48">
                                         <controls:Label Name="WeaponsLabel" Text="{controls:Loc 'gunnery-guns'}" HorizontalAlignment="Center" StyleClasses="StatusFieldTitle"/>
                                     </controls1:StripeBack>
@@ -51,28 +62,28 @@
                                                 <controls:PanelContainer.PanelOverride>
                                                     <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
                                                 </controls:PanelContainer.PanelOverride>
-                                                <controls:Button Name="SelectBallisticButton" Access="Public" Text="Ballistics"
+                                                <controls:Button Name="SelectBallisticButton" Access="Public" Text="{controls:Loc 'gunnery-select-ballistic'}"
                                                                  StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
                                             </controls:PanelContainer>
                                             <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
                                                 <controls:PanelContainer.PanelOverride>
                                                     <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
                                                 </controls:PanelContainer.PanelOverride>
-                                                <controls:Button Name="SelectEnergyButton" Access="Public" Text="Energy"
+                                                <controls:Button Name="SelectEnergyButton" Access="Public" Text="{controls:Loc 'gunnery-select-energy'}"
                                                                  StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
                                             </controls:PanelContainer>
                                             <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
                                                 <controls:PanelContainer.PanelOverride>
                                                     <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
                                                 </controls:PanelContainer.PanelOverride>
-                                                <controls:Button Name="SelectMissileButton" Access="Public" Text="Missiles"
+                                                <controls:Button Name="SelectMissileButton" Access="Public" Text="{controls:Loc 'gunnery-select-missile'}"
                                                                  StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
                                             </controls:PanelContainer>
                                             <controls:PanelContainer VerticalExpand="False" HorizontalExpand="True">
                                                 <controls:PanelContainer.PanelOverride>
                                                     <graphics:StyleBoxFlat BorderThickness="4" BorderColor="#2e2e2e" BackgroundColor="#1c1c1c"/>
                                                 </controls:PanelContainer.PanelOverride>
-                                                <controls:Button Name="SelectMiningButton" Access="Public" Text="Mining"
+                                                <controls:Button Name="SelectMiningButton" Access="Public" Text="{controls:Loc 'gunnery-select-mining'}"
                                                                  StyleClasses="ButtonSquare" HorizontalExpand="True" Margin="4 4"/>
                                             </controls:PanelContainer>
                                         </controls:BoxContainer>
@@ -92,13 +103,14 @@
                     </controls:PanelContainer>
                 </controls:BoxContainer>
 
-                <ui:ShuttleNavControl Name="NavRadar"
-                                 Access="Public"
-                                 MouseFilter="Stop"
-                                 VerticalAlignment="Stretch"
-                                 VerticalExpand="True"
-                                 HorizontalExpand="True"
-                                 Margin="5 4 10 5"/>
+                <controls:LayoutContainer Margin="5 4 10 5">
+                    <ui:ShuttleNavControl Name="NavRadar"
+                                     Access="Public"
+                                     MouseFilter="Stop"
+                                     VerticalAlignment="Stretch"
+                                     VerticalExpand="True"
+                                     HorizontalExpand="True"/>
+                </controls:LayoutContainer>
                 <!-- Nav controls -->
                 <controls:BoxContainer Name="RightDisplayNav"
                       VerticalAlignment="Top"
@@ -243,6 +255,27 @@
                                                  HorizontalExpand="True"/>
                     </controls:BoxContainer>
                     <!-- End Frontier - Maximum IFF Distance -->
+
+                    <!-- Frontier - Max linear / angular speed -->
+                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumShuttleSpeedBox">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-speed'}"/>
+                        <controls:SliderIntInput Name="MaximumShuttleSpeedValue"
+                                                 Access="Public"
+                                                 MinValue="0"
+                                                 MaxValue="80"
+                                                 Value="80"
+                                                 HorizontalExpand="True"
+                                                 ToolTip="{controls:Loc 'shuttle-console-maximum-speed-tooltip'}"/>
+                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-angular-speed'}"/>
+                        <controls:SliderIntInput Name="MaximumShuttleAngularSpeedValue"
+                                                 Access="Public"
+                                                 MinValue="0"
+                                                 MaxValue="230"
+                                                 Value="230"
+                                                 HorizontalExpand="True"
+                                                 ToolTip="{controls:Loc 'shuttle-console-maximum-angular-speed-tooltip'}"/>
+                    </controls:BoxContainer>
+                    <!-- End Frontier - Max linear / angular speed -->
 
                     <!-- Frontier - Service Flags -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="ServiceFlagsBox">

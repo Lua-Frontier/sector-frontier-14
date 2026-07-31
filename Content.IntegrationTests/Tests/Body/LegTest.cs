@@ -15,6 +15,7 @@ namespace Content.IntegrationTests.Tests.Body
     public sealed class LegTest
     {
         [TestPrototypes]
+        // Mono - add requiredLegs
         private const string Prototypes = @"
 - type: entity
   name: HumanBodyAndAppearanceDummy
@@ -23,6 +24,7 @@ namespace Content.IntegrationTests.Tests.Body
   - type: Appearance
   - type: Body
     prototype: Human
+    requiredLegs: 2
   - type: StandingState
 ";
 

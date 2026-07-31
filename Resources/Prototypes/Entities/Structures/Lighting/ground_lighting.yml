@@ -67,6 +67,8 @@
     price: 30 # Frontier: 75<30
   - type: RequireProjectileTarget
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: PoweredLightPostSmallEmpty
   name: post light

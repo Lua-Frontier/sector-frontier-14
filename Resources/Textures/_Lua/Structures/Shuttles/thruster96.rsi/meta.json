@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "copyright": "thruster sprites",
+  "license": "CC-BY-SA-4.0",
+  "metaAtlas": false,
+  "states": [
+    { "name": "base_rogue_large", "directions": 4 },
+    { "name": "base_luatech_omni", "directions": 4 },
+    {
+      "name": "thrust_large",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    },
+    {
+      "name": "thrust_burn_large_unshaded",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    },
+    {
+      "name": "thrust_omni_luatech",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    },
+    {
+      "name": "thrust_burn_omni_unshaded",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1, 0.1]
+      ]
+    }
+  ]
+}

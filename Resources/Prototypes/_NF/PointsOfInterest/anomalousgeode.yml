@@ -10,7 +10,7 @@
 # The local Science lab
 - type: pointOfInterest
   id: AnomalousGeode
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Anomalous Geode'
   minimumDistance: 2100
   maximumDistance: 3800

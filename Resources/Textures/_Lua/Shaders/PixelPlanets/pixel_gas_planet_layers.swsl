@@ -1,0 +1,187 @@
+uniform highp float time;
+uniform highp float pixels;
+uniform highp float seed;
+uniform highp float rotation;
+uniform highp float time_speed;
+uniform highp vec2 light_origin;
+uniform highp float size;
+uniform highp float octaves;
+uniform highp float dither_size;
+uniform highp float bands;
+uniform highp float ring_width;
+uniform highp float ring_perspective;
+uniform highp float ring_scale;
+uniform highp float ring_rotation;
+uniform highp float ring_time_speed;
+uniform highp float ring_size;
+uniform highp float ring_octaves;
+uniform highp float ring_seed;
+uniform highp float full_scale;
+uniform highp vec3 color0;
+uniform highp vec3 color1;
+uniform highp vec3 color2;
+uniform highp vec3 dark_color0;
+uniform highp vec3 dark_color1;
+uniform highp vec3 dark_color2;
+
+// Shared PixelPlanets utils (inlined; SWSL has no #include)
+highp float pp_mod1(highp float x, highp float y) {
+    return x - y * floor(x / y);
+}
+highp vec2 pp_mod2(highp vec2 x, highp vec2 y) {
+    return x - y * floor(x / y);
+}
+highp float pp_rand(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 coord) {
+    coord = pp_mod2(coord, sizeMod * round(size));
+    return fract(sin(dot(coord.xy, vec2(12.9898, 78.233))) * 0.5453 * seed);
+}
+highp float pp_noise(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 coord) {
+    highp vec2 i = floor(coord);
+    highp vec2 f = fract(coord);
+    highp float a = pp_rand(size, sizeMod, seed, i);
+    highp float b = pp_rand(size, sizeMod, seed, i + vec2(1.0, 0.0));
+    highp float c = pp_rand(size, sizeMod, seed, i + vec2(0.0, 1.0));
+    highp float d = pp_rand(size, sizeMod, seed, i + vec2(1.0, 1.0));
+    highp vec2 cubic = f * f * (3.0 - 2.0 * f);
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+highp float pp_fbm(highp float size, highp vec2 sizeMod, highp float seed, highp float octaves, highp vec2 coord) {
+    highp float value = 0.0;
+    highp float scale = 0.5;
+    for (int i = 0; i < 8; i++) {
+        if (float(i) >= octaves)
+            break;
+        value += pp_noise(size, sizeMod, seed, coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+highp float pp_circle_noise(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 uv) {
+    highp float uv_y = floor(uv.y);
+    uv.x += uv_y * 0.31;
+    highp vec2 f = fract(uv);
+    highp float h = pp_rand(size, sizeMod, seed, vec2(floor(uv.x), floor(uv_y)));
+    highp float m = length(f - 0.25 - (h * 0.5));
+    highp float r = h * 0.25;
+    return smoothstep(0.0, r, m * 0.75);
+}
+highp float pp_circle_noise_crater(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 uv) {
+    highp float uv_y = floor(uv.y);
+    uv.x += uv_y * 0.31;
+    highp vec2 f = fract(uv);
+    highp float h = pp_rand(size, sizeMod, seed, vec2(floor(uv.x), floor(uv_y)));
+    highp float m = length(f - 0.25 - (h * 0.5));
+    highp float r = h * 0.25;
+    return smoothstep(r - 0.10 * r, r, m);
+}
+highp float pp_crater(highp float size, highp vec2 sizeMod, highp float seed, highp float time, highp float time_speed, highp vec2 uv) {
+    highp float c = 1.0;
+    for (int i = 0; i < 2; i++) {
+        c *= pp_circle_noise_crater(size, sizeMod, seed, (uv * size) + (float(i + 1) + 10.0) + vec2(time * time_speed, 0.0));
+    }
+    return 1.0 - c;
+}
+highp float pp_cloud_alpha(highp float size, highp vec2 sizeMod, highp float seed, highp float time, highp float time_speed, highp float octaves, highp vec2 uv) {
+    highp float c_noise = 0.0;
+    for (int i = 0; i < 9; i++) {
+        c_noise += pp_circle_noise(size, sizeMod, seed, (uv * size * 0.3) + (float(i + 1) + 10.0) + vec2(time * time_speed, 0.0));
+    }
+    return pp_fbm(size, sizeMod, seed, octaves, uv * size + c_noise + vec2(time * time_speed, 0.0));
+}
+highp float pp_turbulence(highp float size, highp vec2 sizeMod, highp float seed, highp float time, highp float time_speed, highp vec2 uv) {
+    highp float c_noise = 0.0;
+    for (int i = 0; i < 10; i++) {
+        c_noise += pp_circle_noise(size, sizeMod, seed, (uv * size * 0.3) + (float(i + 1) + 10.0) + vec2(time * time_speed, 0.0));
+    }
+    return c_noise;
+}
+bool pp_dither(highp float pixels, highp float dither_size, highp vec2 uv_pixel, highp vec2 uv_real) {
+    return false;
+}
+highp vec2 pp_spherify(highp vec2 uv) {
+    highp vec2 centered = uv * 2.0 - 1.0;
+    highp float z = pow(max(1.0 - dot(centered.xy, centered.xy), 0.0), 0.5);
+    highp vec2 sphere = centered / (z + 1.0);
+    return sphere * 0.5 + 0.5;
+}
+highp vec2 pp_rotate(highp vec2 coord, highp float angle) {
+    coord = coord - 0.5;
+    highp float c = cos(angle);
+    highp float s = sin(angle);
+    coord = vec2(coord.x * c + coord.y * s, -coord.x * s + coord.y * c);
+    return coord + 0.5;
+}
+highp vec2 pp_scale(highp vec2 coord, highp float scaleValue) {
+    return coord * scaleValue - (scaleValue - 1.0) / 2.0;
+}
+
+highp vec3 pick_light(highp float posterized) {
+    highp float t = clamp(posterized, 0.0, 1.0);
+    if (t < 0.34) return color0;
+    if (t < 0.67) return color1;
+    return color2;
+}
+highp vec3 pick_dark(highp float posterized) {
+    highp float t = clamp(posterized, 0.0, 1.0);
+    if (t < 0.34) return dark_color0;
+    if (t < 0.67) return dark_color1;
+    return dark_color2;
+}
+void fragment() {
+    highp vec2 inputUV = UV;
+    highp vec2 scaledUV = pp_scale(inputUV, 1.0 / max(full_scale, 0.001));
+    highp vec2 ruv = floor(scaledUV * pixels) / pixels;
+    highp float light_d_r = distance(ruv, light_origin);
+    ruv = pp_rotate(ruv, rotation + ring_rotation);
+    highp vec2 uv_center = ruv - vec2(0.0, 0.5);
+    uv_center *= vec2(1.0, ring_perspective);
+    highp float center_d = distance(uv_center, vec2(0.5, 0.0));
+    highp float ring = smoothstep(0.5 - ring_width * 2.0, 0.5 - ring_width, center_d);
+    ring *= smoothstep(center_d - ring_width, center_d, 0.4);
+    if (ruv.y < 0.5) {
+        ring *= step(1.0 / max(ring_scale, 0.001), distance(ruv, vec2(0.5, 0.5)));
+    }
+    uv_center = pp_rotate(uv_center + vec2(0.0, 0.5), time * ring_time_speed);
+    ring *= pp_fbm(ring_size, vec2(2.0, 1.0), ring_seed, ring_octaves, uv_center * ring_size);
+    highp float posterized_r = floor((ring + pow(light_d_r, 2.0) * 2.0) * 4.0) / 4.0;
+    highp vec3 rcol;
+    if (posterized_r < 1.0) rcol = pick_light(posterized_r);
+    else rcol = pick_dark(posterized_r - 1.0);
+    highp float ra = step(0.28, ring);
+
+    highp float tScale = ring_scale / 2.0;
+    highp vec2 uv = pp_scale(inputUV, tScale);
+    uv = pp_scale(uv, 1.0 / max(full_scale, 0.001));
+    uv = floor(uv * pixels) / pixels;
+    highp float circle = step(distance(uv, vec2(0.5, 0.5)), 0.49999);
+    highp float light_d = distance(uv, light_origin);
+    bool dith = pp_dither(pixels, dither_size, uv, inputUV);
+    uv = pp_rotate(uv, rotation);
+    uv = pp_spherify(uv);
+    highp float band = pp_fbm(size, vec2(2.0, 1.0), seed, octaves, vec2(0.0, uv.y * size * bands));
+    highp float turb = pp_turbulence(size, vec2(2.0, 1.0), seed, time, time_speed, uv);
+    highp float fbm1 = pp_fbm(size, vec2(2.0, 1.0), seed, octaves, uv * size);
+    highp float fbm2 = pp_fbm(size, vec2(2.0, 1.0), seed, octaves, uv * vec2(1.0, 2.0) * size + fbm1 + vec2(-time * time_speed, 0.0) + turb);
+    fbm2 = fbm2 * pow(band, 2.0) * 7.0;
+    highp float light = fbm2 + light_d * 1.8;
+    fbm2 = fbm2 + pow(light_d, 1.0) - 0.3;
+    fbm2 = smoothstep(-0.2, 4.0 - fbm2, light);
+    if (dith) fbm2 *= 1.1;
+    highp float posterized = floor(fbm2 * 4.0) / 2.0;
+    highp vec3 col;
+    if (fbm2 < 0.625) col = pick_light(posterized);
+    else col = pick_dark(posterized - 1.0);
+    highp float a = circle;
+    highp vec4 body = vec4(col, a);
+    highp vec4 ringCol = vec4(rcol, ra);
+    highp vec4 result = body;
+    if (ra > 0.5) {
+        result = ringCol;
+    }
+    // Outside body disc and no ring → transparent
+    if (result.a < 0.5) {
+        discard;
+    }
+    COLOR = result;
+}

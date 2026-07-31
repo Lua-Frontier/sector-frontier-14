@@ -14,8 +14,8 @@ namespace Content.Client._Crescent.DroneControl;
 [GenerateTypedNameReferences]
 public sealed partial class DroneConsoleWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xform;
 
@@ -28,6 +28,7 @@ public sealed partial class DroneConsoleWindow : FancyWindow
     public HashSet<NetEntity> SelectedDrones = new();
 
     private readonly Dictionary<NetEntity, Button> _droneButtons = new();
+    private List<Content.Shared.Shuttles.BUIStates.DroneRouteState>? _lastDroneRoutes;
 
     public DroneConsoleWindow()
     {
@@ -44,12 +45,14 @@ public sealed partial class DroneConsoleWindow : FancyWindow
                 SelectedDrones.Add(key);
 
             RefreshButtonVisuals();
+            ApplyDroneRouteFilter(_lastDroneRoutes);
         };
 
         DeselectAllBtn.OnPressed += _ =>
         {
             SelectedDrones.Clear();
             RefreshButtonVisuals();
+            ApplyDroneRouteFilter(_lastDroneRoutes);
         };
     }
 
@@ -101,11 +104,20 @@ public sealed partial class DroneConsoleWindow : FancyWindow
             {
                 if (btn.Pressed) SelectedDrones.Add(netEnt);
                 else SelectedDrones.Remove(netEnt);
+                ApplyDroneRouteFilter(_lastDroneRoutes);
             };
 
             _droneButtons[netEnt] = btn;
             DroneListContainer.AddChild(btn);
         }
+
+        ApplyDroneRouteFilter(state.DroneRoutes);
+    }
+
+    private void ApplyDroneRouteFilter(List<Content.Shared.Shuttles.BUIStates.DroneRouteState>? routes)
+    {
+        _lastDroneRoutes = routes;
+        NavRadar.SetDroneRoutes(routes, SelectedDrones);
     }
 
     public void SetConsole(EntityUid consoleEntity)

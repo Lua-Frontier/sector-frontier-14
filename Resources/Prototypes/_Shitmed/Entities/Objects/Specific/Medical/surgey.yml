@@ -1,0 +1,53 @@
+# LuaM-port orginal Shitmed content
+- type: entity
+  id: OmnimedToolDebug
+  parent: OmnimedToolSyndie
+  suffix: Admeme
+  name: experimental surgical omnitool
+  components:
+  - type: Hemostat
+    speed: 10
+  - type: Scalpel
+    speed: 10
+  - type: Drill
+    speed: 10
+  - type: BoneSetter
+    speed: 10
+  - type: Retractor
+    speed: 10
+  - type: Cautery
+    speed: 10
+  - type: BoneGel
+    speed: 10
+  - type: BoneSaw
+    speed: 10
+  - type: Tweezers
+    speed: 10
+  - type: Tending
+    speed: 10
+  - type: SurgeryIgnoreClothing # LuaM
+
+- type: entity
+  name: bone multitool
+  id: AdvancedBoneGel
+  parent: BoneGel
+  description: A mechanized bone healer, also serves as bone setter in its powered state.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/e-bone-gel.rsi
+    state: e-bone-gel-on
+  - type: Item
+    heldPrefix: bonegel
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/bone_setter.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/bone_setter.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+  - type: BoneGel
+    speed: 3
+  - type: BoneSetter
+    speed: 3

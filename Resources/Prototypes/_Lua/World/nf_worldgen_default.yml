@@ -1,0 +1,9 @@
+# was: _NF/World/worldgen_default.yml
+
+- type: worldgenConfig
+  id: NFDefault
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - NFAsteroidsFar

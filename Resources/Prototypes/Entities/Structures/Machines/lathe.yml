@@ -236,6 +236,8 @@
     - FauxTiles
     - NFMedical # Frontier
     - NFEngineering # Frontier
+    - ShitmedSurgeryAdvanced # Shitmed
+    - ShitmedSurgeryHighEnd # Shitmed
     - NFHardsuits # Frontier
     - NFService # Frontier
     - NFScience # Frontier
@@ -324,6 +326,7 @@
     - NFMedicalBoards # Frontier
     - NFServiceBoards # Frontier
     - LuaMedicalBoards # Lua
+    - ReactorCircuitboards # FarHorizons
   - type: EmagLatheRecipes
     emagDynamicPacks: [] # Frontier: empty list
     # - SecurityBoards # Frontier
@@ -376,6 +379,7 @@
     dynamicPacks:
     - Robotics
     - BorgModules
+    - SMCybernetics # Shitmed
     - MechParts
     - MechEquipment # Mono - Mech parts
     - ClarkeMechParts
@@ -537,6 +541,13 @@
 #      - NFMercenaryMagazineStatic
 #      - RMCAmmoPack
       - MonoAmmoPackModified #Lua MonoAmmoPack<MonoAmmoPackModified
+      - RoundstartShipgunAmmo # Mono cartridge/magazine shipgun ammo
+      dynamicPacks:
+      - LuaShipgunAmmo # Lua shipgun ammo (Shiparmory R&D)
+      - UniversalRailgunAmmo
+      - UniversalMissileAmmo
+      - UniversalShellAmmo
+      - UniversalOrdinance
     - type: MaterialStorage
       whitelist:
         tags:
@@ -601,8 +612,9 @@
     # - NFSurgeryMedicalToolsStatic #Frontier
     # - NFTopicalsStatic # Frontier
     # - NFMedicalArchetypeStatic # Frontier
-    # dynamicPacks: # Frontier
-    # - Chemistry # Frontier
+    dynamicPacks:
+    - ShitmedSurgeryAdvanced # Shitmed
+    - ShitmedSurgeryHighEnd # Shitmed
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

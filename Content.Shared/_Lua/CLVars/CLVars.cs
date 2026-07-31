@@ -145,9 +145,9 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<float> SpaceWhaleOuterLimitRadius =
             CVarDef.Create("spacewhale.outer_limit_radius", 25000f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> SpaceWhaleCheckIntervalMinutes =
-            CVarDef.Create("spacewhale.check_interval_minutes", 5f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("spacewhale.check_interval_minutes", 8f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> SpaceWhaleSpawnChance =
-            CVarDef.Create("spacewhale.spawn_chance", 0.1f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("spacewhale.spawn_chance", 0.06f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> SpaceWhalePlayerClusterRadius =
             CVarDef.Create("spacewhale.player_cluster_radius", 300f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> SpaceWhaleSafeZoneRadius =
@@ -156,6 +156,19 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("spacewhale.target_detection_range", 2000f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> SpaceWhaleDespawnLifetimeMinutes =
             CVarDef.Create("spacewhale.despawn_lifetime_minutes", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<float> SpaceWhaleExposureChancePerMinute =
+            CVarDef.Create("spacewhale.exposure_chance_per_minute", 0.02f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleExposureMaxChance =
+            CVarDef.Create("spacewhale.exposure_max_chance", 0.35f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleExposureMinutesPerExtraWhale =
+            CVarDef.Create("spacewhale.exposure_minutes_per_extra_whale", 18f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<int> SpaceWhaleExposureMaxWhales =
+            CVarDef.Create("spacewhale.exposure_max_whales", 2, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleExposureMinCheckIntervalMinutes =
+            CVarDef.Create("spacewhale.exposure_min_check_interval_minutes", 3f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> SpaceWhaleExposureCheckHalveMinutes =
+            CVarDef.Create("spacewhale.exposure_check_halve_minutes", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> StargateEnabled =
             CVarDef.Create("stargate.enabled", true, CVar.SERVERONLY);
@@ -180,6 +193,9 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<bool> SalvageExpeditionEnabled =
             CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);
+
+        public static readonly CVarDef<float> ExpeditionMassLimit =
+            CVarDef.Create("expedition.mass_limit", 230f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> NpcSmartDespawnEnabled =
             CVarDef.Create("npc.smart_despawn_enabled", true, CVar.SERVERONLY);
@@ -217,11 +233,17 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<int> FactionWarCaptureDurationSeconds =
             CVarDef.Create("lua.faction_war.capture_duration_seconds", 600, CVar.SERVERONLY | CVar.ARCHIVE);
 
-        public static readonly CVarDef<int> FactionWarDeclarationLockHours =
-            CVarDef.Create("lua.faction_war.declaration_lock_hours", 24, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> FactionWarDeclarationLockDays =
+            CVarDef.Create("lua.faction_war.declaration_lock_days", 4, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> CompanyChangeLimitPerFactionPerRound =
             CVarDef.Create("lua.company.change_faction_limit", 1, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> AmbientSpaceEffectsEnabled =
+            CVarDef.Create("lua.ambient_space.enabled", true, CVar.ARCHIVE | CVar.REPLICATED);
+        public static readonly CVarDef<int> AmbientSpaceEffectsQuality =
+            CVarDef.Create("lua.ambient_space.quality", 2, CVar.ARCHIVE | CVar.CLIENTONLY);
 
         public static readonly CVarDef<int> CurrentGameYear =
             CVarDef.Create("game.current_game_year", 2710, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);

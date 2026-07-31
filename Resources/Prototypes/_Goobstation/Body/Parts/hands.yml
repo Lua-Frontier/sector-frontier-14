@@ -1,0 +1,43 @@
+# Goobstation - species/variant hands referenced by body prototypes
+- type: entity
+  id: LeftHandDwarf
+  name: "left dwarf hand"
+  parent: [PartHuman, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandDwarf
+  name: "right dwarf hand"
+  parent: [PartHuman, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: "r_hand"
+
+# Smart corgi body uses dedicated hand parts (see Body/Prototypes/Specific/smartcorgi.yml)
+- type: entity
+  id: LeftHandSmartCorgi
+  name: "left smart corgi paw"
+  parent: [PartAnimalBase, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandSmartCorgi
+  name: "right smart corgi paw"
+  parent: [PartAnimalBase, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "r_hand"
+  - type: Icon
+    sprite: Mobs/Species/Reptilian/parts.rsi
+    state: "r_hand"

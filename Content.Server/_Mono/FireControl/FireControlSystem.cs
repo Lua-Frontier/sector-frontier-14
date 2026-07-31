@@ -18,7 +18,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Interaction;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
-using Content.Server.Salvage.Expeditions;
+using Content.Shared._Lua.Expedition;
 using Content.Server.Station.Systems;
 using Content.Server._Lua.Stargate.Components;
 using Content.Shared._NF.BindToStation;
@@ -418,7 +418,7 @@ public sealed partial class FireControlSystem : EntitySystem
 
         var gridXform = Transform(grid);
         // Check if the weapon is an expedition
-        if (gridXform.MapUid != null && HasComp<SalvageExpeditionComponent>(gridXform.MapUid.Value))
+        if (gridXform.MapUid != null && HasComp<ExpeditionMapComponent>(gridXform.MapUid.Value))
             return false;
 
         // Lua: СТАРОЕ<НОВОЕ блокируем вооружение шаттлов на планетах StarGate
@@ -439,7 +439,6 @@ public sealed partial class FireControlSystem : EntitySystem
             return;
 
         var targetCoords = GetCoordinates(coordinates);
-        var artilleryFired = false; // Track if any artillery weapons fired
 
         foreach (var weapon in weapons)
         {
@@ -447,59 +446,7 @@ public sealed partial class FireControlSystem : EntitySystem
             if (!Exists(localWeapon) || !component.Controlled.Contains(localWeapon))
                 continue;
 
-            if (!TryComp<GunComponent>(localWeapon, out var gun))
-                continue;
-
-            if (TryComp<TransformComponent>(localWeapon, out var weaponXform))
-            {
-                var currentMapCoords = _xform.GetMapCoordinates(localWeapon, weaponXform);
-                var destinationMapCoords = targetCoords.ToMap(EntityManager, _xform);
-
-                if (destinationMapCoords.MapId == currentMapCoords.MapId && currentMapCoords.MapId != MapId.Nullspace)
-                {
-                    var diff = destinationMapCoords.Position - currentMapCoords.Position;
-                    if (TryComp<FireControlRotateComponent>(localWeapon, out var rotateEnabled))
-                    if (diff.LengthSquared() > 0.01f)
-                    {
-                        // Only rotate the gun if it has line of sight to the target
-                        if (HasLineOfSight(localWeapon, currentMapCoords.Position, destinationMapCoords.Position, currentMapCoords.MapId))
-                        {
-                            var goalAngle = Angle.FromWorldVec(diff);
-                            _rotateToFace.TryRotateTo(localWeapon, goalAngle, 0f, Angle.FromDegrees(1), float.MaxValue, weaponXform);
-                        }
-                    }
-                }
-            }
-
-            var weaponX = Transform(localWeapon);
-            var targetPos = targetCoords.ToMap(EntityManager, _xform);
-
-            if (targetPos.MapId != weaponX.MapID)
-                continue;
-
-            var weaponPos = _xform.GetWorldPosition(weaponX);
-
-            // Get direction to target
-            var direction = (targetPos.Position - weaponPos);
-            var distance = direction.Length();
-            if (distance <= 0)
-                continue;
-
-            direction = Vector2.Normalize(direction);
-
-            // Check for obstacles in the firing direction
-            if (!CanFireInDirection(localWeapon, weaponPos, direction, targetPos.Position, weaponX.MapID))
-                continue;
-
-            var isArtillery = HasComp<SpaceArtilleryComponent>(localWeapon);
-
-            // If we can fire, fire the weapon
-            _gun.AttemptShoot(localWeapon, localWeapon, gun, targetCoords);
-
-            if (isArtillery)
-            {
-                artilleryFired = true;
-            }
+            AttemptFire(localWeapon, localWeapon, targetCoords);
         }
     }
 
@@ -593,10 +540,16 @@ public sealed partial class FireControlSystem : EntitySystem
         // Set the cooldown for next firing
         comp.NextFire = _timing.CurTime + TimeSpan.FromSeconds(comp.FireCooldown);
 
+        if (HasComp<FireControlRotateComponent>(weapon))
+        {
+            var goalAngle = Angle.FromWorldVec(direction);
+            _rotateToFace.TryRotateTo(weapon, goalAngle, 0f, Angle.FromDegrees(1), float.MaxValue, weaponXform);
+        }
+
         // Try to get a gun component and fire the weapon
         if (TryComp<GunComponent>(weapon, out var gun))
         {
-            _gun.AttemptShoot(weapon, user, gun, coords);
+            _gun.AttemptShots(user, weapon, gun, coords, TimeSpan.FromSeconds(0.2));
             return true;
         }
 

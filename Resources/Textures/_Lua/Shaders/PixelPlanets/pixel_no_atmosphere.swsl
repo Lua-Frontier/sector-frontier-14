@@ -1,0 +1,155 @@
+uniform highp float time;
+uniform highp float pixels;
+uniform highp float seed;
+uniform highp float rotation;
+uniform highp float time_speed;
+uniform highp vec2 light_origin;
+uniform highp float size;
+uniform highp float octaves;
+uniform highp float dither_size;
+uniform highp float light_border_1;
+uniform highp float light_border_2;
+uniform highp float crater_size;
+uniform highp float crater_seed;
+uniform highp float crater_light_border;
+uniform highp vec3 color0;
+uniform highp vec3 color1;
+uniform highp vec3 color2;
+uniform highp vec3 crater_color0;
+uniform highp vec3 crater_color1;
+
+// Shared PixelPlanets utils (inlined; SWSL has no #include)
+highp float pp_mod1(highp float x, highp float y) {
+    return x - y * floor(x / y);
+}
+highp vec2 pp_mod2(highp vec2 x, highp vec2 y) {
+    return x - y * floor(x / y);
+}
+highp float pp_rand(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 coord) {
+    coord = pp_mod2(coord, sizeMod * round(size));
+    return fract(sin(dot(coord.xy, vec2(12.9898, 78.233))) * 0.5453 * seed);
+}
+highp float pp_noise(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 coord) {
+    highp vec2 i = floor(coord);
+    highp vec2 f = fract(coord);
+    highp float a = pp_rand(size, sizeMod, seed, i);
+    highp float b = pp_rand(size, sizeMod, seed, i + vec2(1.0, 0.0));
+    highp float c = pp_rand(size, sizeMod, seed, i + vec2(0.0, 1.0));
+    highp float d = pp_rand(size, sizeMod, seed, i + vec2(1.0, 1.0));
+    highp vec2 cubic = f * f * (3.0 - 2.0 * f);
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+highp float pp_fbm(highp float size, highp vec2 sizeMod, highp float seed, highp float octaves, highp vec2 coord) {
+    highp float value = 0.0;
+    highp float scale = 0.5;
+    for (int i = 0; i < 8; i++) {
+        if (float(i) >= octaves)
+            break;
+        value += pp_noise(size, sizeMod, seed, coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+highp float pp_circle_noise(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 uv) {
+    highp float uv_y = floor(uv.y);
+    uv.x += uv_y * 0.31;
+    highp vec2 f = fract(uv);
+    highp float h = pp_rand(size, sizeMod, seed, vec2(floor(uv.x), floor(uv_y)));
+    highp float m = length(f - 0.25 - (h * 0.5));
+    highp float r = h * 0.25;
+    return smoothstep(0.0, r, m * 0.75);
+}
+highp float pp_circle_noise_crater(highp float size, highp vec2 sizeMod, highp float seed, highp vec2 uv) {
+    highp float uv_y = floor(uv.y);
+    uv.x += uv_y * 0.31;
+    highp vec2 f = fract(uv);
+    highp float h = pp_rand(size, sizeMod, seed, vec2(floor(uv.x), floor(uv_y)));
+    highp float m = length(f - 0.25 - (h * 0.5));
+    highp float r = h * 0.25;
+    return smoothstep(r - 0.10 * r, r, m);
+}
+highp float pp_crater(highp float size, highp vec2 sizeMod, highp float seed, highp float time, highp float time_speed, highp vec2 uv) {
+    highp float c = 1.0;
+    for (int i = 0; i < 2; i++) {
+        c *= pp_circle_noise_crater(size, sizeMod, seed, (uv * size) + (float(i + 1) + 10.0) + vec2(time * time_speed, 0.0));
+    }
+    return 1.0 - c;
+}
+highp float pp_cloud_alpha(highp float size, highp vec2 sizeMod, highp float seed, highp float time, highp float time_speed, highp float octaves, highp vec2 uv) {
+    highp float c_noise = 0.0;
+    for (int i = 0; i < 9; i++) {
+        c_noise += pp_circle_noise(size, sizeMod, seed, (uv * size * 0.3) + (float(i + 1) + 10.0) + vec2(time * time_speed, 0.0));
+    }
+    return pp_fbm(size, sizeMod, seed, octaves, uv * size + c_noise + vec2(time * time_speed, 0.0));
+}
+highp float pp_turbulence(highp float size, highp vec2 sizeMod, highp float seed, highp float time, highp float time_speed, highp vec2 uv) {
+    highp float c_noise = 0.0;
+    for (int i = 0; i < 10; i++) {
+        c_noise += pp_circle_noise(size, sizeMod, seed, (uv * size * 0.3) + (float(i + 1) + 10.0) + vec2(time * time_speed, 0.0));
+    }
+    return c_noise;
+}
+bool pp_dither(highp float pixels, highp float dither_size, highp vec2 uv_pixel, highp vec2 uv_real) {
+    return false;
+}
+highp vec2 pp_spherify(highp vec2 uv) {
+    highp vec2 centered = uv * 2.0 - 1.0;
+    highp float z = pow(max(1.0 - dot(centered.xy, centered.xy), 0.0), 0.5);
+    highp vec2 sphere = centered / (z + 1.0);
+    return sphere * 0.5 + 0.5;
+}
+highp vec2 pp_rotate(highp vec2 coord, highp float angle) {
+    coord = coord - 0.5;
+    highp float c = cos(angle);
+    highp float s = sin(angle);
+    coord = vec2(coord.x * c + coord.y * s, -coord.x * s + coord.y * c);
+    return coord + 0.5;
+}
+highp vec2 pp_scale(highp vec2 coord, highp float scaleValue) {
+    return coord * scaleValue - (scaleValue - 1.0) / 2.0;
+}
+
+void fragment() {
+    highp vec2 inputUV = UV;
+    highp vec2 cuv = floor(inputUV * pixels) / pixels;
+    highp float d_circle_c = distance(cuv, vec2(0.5, 0.5));
+    highp float d_light_c = distance(cuv, light_origin);
+    cuv = pp_rotate(cuv, rotation);
+    cuv = pp_spherify(cuv);
+    highp float c1 = pp_crater(crater_size, vec2(1.0, 1.0), crater_seed, time, time_speed, cuv);
+    highp float c2 = pp_crater(crater_size, vec2(1.0, 1.0), crater_seed, time, time_speed, cuv + (light_origin - 0.5) * 0.03);
+    highp vec3 ccol = crater_color0;
+    highp float ca = step(0.5, c1);
+    if (c2 < c1 - (0.5 - d_light_c) * 2.0) ccol = crater_color1;
+    if (d_light_c > crater_light_border) ccol = crater_color1;
+    ca *= step(d_circle_c, 0.5);
+
+    highp vec2 uv = floor(inputUV * pixels) / pixels;
+    bool dith = pp_dither(pixels, dither_size, uv, inputUV);
+    uv = pp_rotate(uv, rotation);
+    highp float d_circle = distance(uv, vec2(0.5, 0.5));
+    highp float d_light = distance(uv, light_origin);
+    highp float a = step(d_circle, 0.49999);
+    if (a < 0.5) {
+        discard;
+    }
+    d_light += pp_fbm(size, vec2(1.0, 1.0), seed, octaves, uv * size + vec2(time * time_speed, 0.0)) * 0.3;
+    highp float dither_border = (1.0 / pixels) * dither_size;
+    highp vec3 col = color0;
+    if (d_light > light_border_1) {
+        col = color1;
+        if (d_light < light_border_1 + dither_border && dith) col = color0;
+    }
+    if (d_light > light_border_2) {
+        col = color2;
+        if (d_light < light_border_2 + dither_border && dith) col = color1;
+    }
+    highp vec4 under = vec4(col, a);
+    highp vec4 craters = vec4(ccol, ca);
+    highp vec4 result = under;
+    if (ca > 0.5) {
+        result = craters;
+    }
+    COLOR = result;
+}

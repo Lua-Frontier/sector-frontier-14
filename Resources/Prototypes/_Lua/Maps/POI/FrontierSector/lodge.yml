@@ -10,7 +10,7 @@
 # Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
 - type: pointOfInterest
   id: Lodge
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Аванпост ЭИК'
   minimumDistance: 2300 #1650 Lua
   maximumDistance: 5400 #3400 Lua

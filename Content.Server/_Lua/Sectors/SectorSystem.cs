@@ -2,6 +2,7 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
+using Content.Server._Lua.AmbientSpaceEffects;
 using Content.Server._NF.GameRule;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.Station.Systems;
@@ -13,6 +14,7 @@ using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.Worldgen.Prototypes;
 using Content.Shared._Lua.Starmap;
 using Content.Shared.GameTicking;
 using Content.Shared.Lua.CLVar;
@@ -122,10 +124,13 @@ public sealed class SectorSystem : EntitySystem
 
         foreach (var inst in _instances.Values)
         {
-            if (inst.Config.WorldgenConfig == null) continue;
-            if (!_protos.TryIndex<Content.Server.Worldgen.Prototypes.WorldgenConfigPrototype>(inst.Config.WorldgenConfig, out var wgCfg)) continue;
+            var configs = inst.Config.EnumerateWorldgenConfigs().ToArray();
+            if (configs.Length == 0)
+                continue;
+
             var ser = IoCManager.Resolve<Robust.Shared.Serialization.Manager.ISerializationManager>();
-            wgCfg.Apply(inst.MapUid, ser, EntityManager);
+            WorldgenConfigPrototype.ApplyMany(inst.MapUid, configs, _protos, ser, EntityManager);
+            EntityManager.System<AmbientSpaceFieldPlacerSystem>().InitializePlacer(inst.MapUid);
         }
     }
 

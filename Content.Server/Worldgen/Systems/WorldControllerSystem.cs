@@ -21,6 +21,9 @@ public sealed class WorldControllerSystem : EntitySystem
     private const int PlayerLoadRadius = 2;
     private static readonly TimeSpan ChunkEvictionDelay = TimeSpan.FromMinutes(5);
 
+    private static readonly TimeSpan ChunkUnloadGrace = TimeSpan.FromSeconds(20);
+    private const int MaxChunkLoadsPerTick = 6;
+
     private ISawmill _sawmill = default!;
     private EntityQuery<GhostComponent> _ghostQuery;
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
@@ -126,6 +129,7 @@ public sealed class WorldControllerSystem : EntitySystem
         var anyChunksRequested = false;
         var startTime = _gameTiming.RealTime;
         var loadedCount = 0;
+        var loadBudget = MaxChunkLoadsPerTick;
 
         while (loaderEnum.MoveNext(out var uid, out var worldLoader, out var xform))
         {
@@ -153,10 +157,15 @@ public sealed class WorldControllerSystem : EntitySystem
 
                 if (!_loadedQuery.TryGetComponent(ent.Value, out var loaded))
                 {
+                    if (loadBudget <= 0)
+                        continue;
+
                     loaded = AddComp<LoadedChunkComponent>(ent.Value);
                     loadedCount++;
+                    loadBudget--;
                 }
 
+                loaded.UnloadAfter = null;
                 loaded.Loaders ??= new List<EntityUid>(4);
                 loaded.Loaders.Add(uid);
             }
@@ -191,28 +200,46 @@ public sealed class WorldControllerSystem : EntitySystem
 
                 if (!_loadedQuery.TryGetComponent(ent.Value, out var loaded))
                 {
+                    if (loadBudget <= 0)
+                        continue;
+
                     loaded = AddComp<LoadedChunkComponent>(ent.Value);
                     loadedCount++;
+                    loadBudget--;
                 }
 
+                loaded.UnloadAfter = null;
                 loaded.Loaders ??= new List<EntityUid>(4);
                 loaded.Loaders.Add(uid);
             }
         }
 
         var chunksUnloaded = 0;
+        var now = _gameTiming.RealTime;
 
-        // Make sure these chunks get unloaded at the end of the tick.
+        // Make sure these chunks get unloaded at the end of the tick (after unload grace).
         foreach (var loadedUid in _loadedChunksBuffer)
         {
             if (!_loadedQuery.TryGetComponent(loadedUid, out var loadedChunk) ||
                 !TryComp<WorldChunkComponent>(loadedUid, out var chunk)) continue;
 
-            if (loadedChunk.Loaders is null || loadedChunk.Loaders.Count == 0)
+            if (loadedChunk.Loaders is not null && loadedChunk.Loaders.Count > 0)
             {
-                RemCompDeferred<LoadedChunkComponent>(loadedUid);
-                chunksUnloaded++;
+                loadedChunk.UnloadAfter = null;
+                continue;
             }
+
+            if (loadedChunk.UnloadAfter is null)
+            {
+                loadedChunk.UnloadAfter = now + ChunkUnloadGrace;
+                continue;
+            }
+
+            if (now < loadedChunk.UnloadAfter.Value)
+                continue;
+
+            RemCompDeferred<LoadedChunkComponent>(loadedUid);
+            chunksUnloaded++;
         }
 
         if (chunksUnloaded > 0)

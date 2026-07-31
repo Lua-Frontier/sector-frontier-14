@@ -216,6 +216,8 @@
     maxCharge: 50000
     startingCharge: 50000
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseAPC
   id: APCHighCapacity
@@ -225,6 +227,8 @@
     maxCharge: 100000
     startingCharge: 100000
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseAPC
   id: APCSuperCapacity
@@ -234,6 +238,8 @@
     maxCharge: 150000
     startingCharge: 150000
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: BaseAPC
   id: APCHyperCapacity
@@ -242,3 +248,5 @@
   - type: Battery
     maxCharge: 200000
     startingCharge: 200000
+  - type: ShipRepairable
+    repairCost: 2

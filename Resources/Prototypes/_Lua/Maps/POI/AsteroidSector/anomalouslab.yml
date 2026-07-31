@@ -4,7 +4,7 @@
 
 - type: pointOfInterest
   id: AnomalousLabAlt
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Лаборатория Аномалий'
   minimumDistance: 4000 #2100
   maximumDistance: 6000 #3800

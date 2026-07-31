@@ -46,5 +46,11 @@ namespace Content.Server.Construction.Components
 
         [ViewVariables]
         public Container PartContainer = default!;
+
+        /// <summary>
+        /// Mono - sets the framesize of boards it accepts (e.g. "2x1").
+        /// </summary>
+        [DataField]
+        public string? FrameSize = null;
     }
 }

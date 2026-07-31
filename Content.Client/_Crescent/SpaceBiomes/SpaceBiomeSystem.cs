@@ -1,10 +1,10 @@
 using Content.Shared._Crescent.SpaceBiomes;
+using Content.Shared._Lua.Expedition;
+using Content.Shared.Shuttles.Components;
+using Robust.Client.GameObjects;
+using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Client.Player;
-using Robust.Client.GameObjects;
-using Content.Shared.Shuttles.Components;
-using Content.Client.Salvage;
 
 namespace Content.Client._Crescent.SpaceBiomes;
 
@@ -28,7 +28,7 @@ public sealed class SpaceBiomeSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<FTLMapComponent, SpaceBiomeMapChangeMessage>(OnFTLMapChanged);
-        SubscribeLocalEvent<SalvageExpeditionComponent, SpaceBiomeMapChangeMessage>(OnSalvageMapChanged);
+        SubscribeLocalEvent<ExpeditionMapComponent, SpaceBiomeMapChangeMessage>(OnExpeditionMapChanged);
     }
 
     public override void Update(float frameTime)
@@ -108,8 +108,8 @@ public sealed class SpaceBiomeSystem : EntitySystem
         args.Biome = ent.Comp.Biome;
     }
 
-    private void OnSalvageMapChanged(Entity<SalvageExpeditionComponent> ent, ref SpaceBiomeMapChangeMessage args)
+    private void OnExpeditionMapChanged(Entity<ExpeditionMapComponent> ent, ref SpaceBiomeMapChangeMessage args)
     {
-        args.Biome = ent.Comp.Biome;
+        args.Biome = "BiomeExpedition";
     }
 }

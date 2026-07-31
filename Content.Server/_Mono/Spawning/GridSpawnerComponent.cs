@@ -1,5 +1,6 @@
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager.Attributes;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Mono.Spawning;
@@ -16,7 +17,10 @@ public sealed partial class GridSpawnerComponent : Component
     [DataField]
     public ProtoId<LocalizedDatasetPrototype>? NameDataset = null;
 
-    [DataField]
+    /// <summary>
+    /// Must push-inherit so children that only override names keep Company/Radar/IFF/etc.
+    /// </summary>
+    [DataField, AlwaysPushInheritance]
     public ComponentRegistry AddComponents = new();
 
     [DataField]

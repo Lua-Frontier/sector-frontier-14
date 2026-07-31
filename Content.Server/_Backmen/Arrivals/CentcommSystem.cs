@@ -1,4 +1,5 @@
 using Content.Server._Lua.Sectors;
+using Content.Server._Lua.Starmap.Systems;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server.Backmen.Arrivals.CentComm;
 using Content.Server.Chat.Systems;
@@ -6,7 +7,6 @@ using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -210,7 +210,7 @@ public sealed class CentcommSystem : EntitySystem
         if (!HasComp<ShuttleComponent>(shuttle))
             return;
 
-        if (!(HasComp<CargoShuttleComponent>(shuttle) || HasComp<SalvageShuttleComponent>(shuttle)))
+        if (!(HasComp<CargoShuttleComponent>(shuttle)))
             return;
 
         _audio.PlayPvs(SparkSound, ent);
@@ -324,6 +324,15 @@ public sealed class CentcommSystem : EntitySystem
             station.Entity = CentComGrid;
             station.ShuttleIndex = ShuttleIndex;
         }
+
+        try
+        {
+            EntityManager.System<StarmapWorldgenSystem>().ApplyPendingWorldgen();
+        }
+        catch (Exception e)
+        {
+            Log.Error($"Failed to apply CentCom worldgen: {e}");
+        }
     }
 
     // ReSharper disable once MemberCanBePrivate.Global
@@ -409,10 +418,7 @@ public sealed class CentcommSystem : EntitySystem
 
         if (!TryComp<ShuttleComponent>(shuttle.GridUid, out var comp) || HasComp<FTLComponent>(shuttle.GridUid) || (
                 HasComp<BecomesStationComponent>(shuttle.GridUid) &&
-                !(
-                    HasComp<SalvageShuttleComponent>(shuttle.GridUid) ||
-                    HasComp<CargoShuttleComponent>(shuttle.GridUid)
-                )
+                !HasComp<CargoShuttleComponent>(shuttle.GridUid)
             ))
         {
             return;

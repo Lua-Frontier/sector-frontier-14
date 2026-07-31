@@ -11,6 +11,11 @@
   - type: Damageable
     damageContainer: Biological
   - type: BodyPart
+  - type: SurgeryTool # Shitmed Change
+    startSound:
+      path: /Audio/_Shitmed/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
   - type: ContainerContainer
     containers:
       bodypart: !type:Container

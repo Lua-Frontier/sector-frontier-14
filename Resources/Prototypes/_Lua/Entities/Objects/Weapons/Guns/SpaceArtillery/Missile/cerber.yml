@@ -18,9 +18,10 @@
     sprite: _Lua/Objects/ShuttleWeapons/cheapmissile.rsi
     drawdepth: Mobs
     layers:
-      - state: rocket
+    - state: rocket
   - type: ContainerContainer
     containers:
+      gun_magazine: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: ExplosionResistance
@@ -28,21 +29,21 @@
   - type: Destructible
     thresholds:
     - trigger:
-         !type:DamageTrigger
-         damage: 7500 #It have armor!
+        !type:DamageTrigger
+        damage: 7500 #It have armor!
       behaviors:
-       - !type:PlaySoundBehavior
-         sound:
-           collection: MetalBreak
-       - !type:ChangeConstructionNodeBehavior
-         node: machineFrame
-       - !type:DoActsBehavior
-         acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 120 #40
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: Battery
     maxCharge: 50000
@@ -53,6 +54,19 @@
   - type: WirelessNetworkConnection
     range: 700
   - type: FireControllable
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineCerber
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineCerber
+        whitelistFailPopup: gun-magazine-whitelist-fail
   - type: SpaceArtillery
     powerChargeRate: 100
     powerUsePassive: 3000
@@ -61,6 +75,3 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletGR
-    fireCost: 49500

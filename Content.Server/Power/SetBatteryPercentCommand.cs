@@ -3,6 +3,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Power
 {

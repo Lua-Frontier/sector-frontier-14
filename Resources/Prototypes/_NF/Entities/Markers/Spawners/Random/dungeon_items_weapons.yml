@@ -28,11 +28,11 @@
     - WhiteCane
     - CombatKnife
     - SurvivalKnife
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT2
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region melee T2
 - type: entity
@@ -60,12 +60,12 @@
     - KukriKnife
     - Stunbaton
     - ThrowingKnife
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
     - SpawnDungeonLootMeleeT3L # Lua
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region melee T3
 - type: entity
@@ -91,11 +91,11 @@
     - Claymore
     - Truncheon
 #    - WeaponCaseShortEnergyDaggerExpedition
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT4
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region melee T4
 - type: entity
@@ -119,11 +119,11 @@
     - Katana
     - CaptainSabre
     - SecBreachingHammer
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT5
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region melee T5
 - type: entity
@@ -180,11 +180,11 @@
 #    - WeaponCaseLongBarlowsBoltExpedition # comment from _Lua
     - WeaponCaseLongRepeaterExpedition
     - WeaponCaseLongSniperCeremonialExpedition
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT2
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region guns T2
 - type: entity
@@ -218,12 +218,12 @@
 #    - WeaponCaseLongSVSExpedition #Lua
     - WeaponCaseLongKammererExpedition
 #    - WeaponCaseShortLaserGunExpedition #Lua
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT3
     - SpawnDungeonLootGunT3L # Lua
-    rareChance: 0.1 #Lua 0.05<0.1
+    rareChance: 0.05 #Lua 0.05<0.1
 
 #region guns T3
 - type: entity
@@ -253,11 +253,11 @@
 #    - WeaponCaseShortSvalinnExpedition # comment from _Lua
 #    - WeaponCaseLongHristovExpedition # comment from _Lua
 #    - WeaponCaseLongMusketExpedition
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT4
-    rareChance: 0.1 #Lua 0.05<1
+    rareChance: 0.05 #Lua 0.05<1
 
 #region guns T4
 - type: entity
@@ -287,11 +287,11 @@
     - WeaponCaseLongLaserCarbineExpedition
     - WeaponCaseLongXrayCannonExpedition
 #    - WeaponCaseLongTemperatureGunExpedition # comment from _Lua
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT5
-    rareChance: 0.1 #Lua 0.05<1
+    rareChance: 0.05 #Lua 0.05<1
 
 #region guns T5
 - type: entity
@@ -318,7 +318,7 @@
     - WeaponCaseLongEnergyGunExpedition
     - WeaponCaseLongLaserCannonExpedition
 #    - WeaponCaseHeavyAsmgtExpeditions
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 #region bombs T1
@@ -339,13 +339,14 @@
       state: 1
       color: red
   - type: RandomSpawner
+    prototypes: []
     # prototypes:
     # - WeaponCaseShortFireBomb
     # chance: 0.3
     # offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT2
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region bombs T2
 - type: entity
@@ -397,7 +398,7 @@
     # offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT4
-    rareChance: 0.05
+    rareChance: 0.025
 
 #region bombs T4
 - type: entity

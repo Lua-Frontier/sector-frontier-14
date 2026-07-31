@@ -1353,6 +1353,8 @@
   abstract: true
   components:
   - type: CombatMode
+  - type: SurgeryTarget # Shitmed
+  - type: Targeting # Shitmed
   - type: Inventory
     templateId: monkey
     speciesId: monkey
@@ -1374,6 +1376,12 @@
         layer:
         - MobLayer
   - type: Stripping
+  - type: UserInterface # Shitmed
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1404,9 +1412,9 @@
         clownedon:
           True: {visible: true}
           False: {visible: false}
-  - type: Body
-    prototype: Primate
-    requiredLegs: 1 # TODO: More than 1 leg
+  - type: Body # Shitmed
+    prototype: Monkey
+    requiredLegs: 2
   - type: CreamPied
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
@@ -1565,6 +1573,9 @@
   - type: LizardAccent
   - type: ReplacementAccent
     accent: kobold
+  - type: Body # Shitmed
+    prototype: Kobold
+    requiredLegs: 2
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian

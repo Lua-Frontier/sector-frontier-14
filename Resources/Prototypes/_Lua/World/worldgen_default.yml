@@ -1,0 +1,61 @@
+- type: worldgenConfig
+  id: Default
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidsStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
+
+- type: worldgenConfig
+  id: AsteroidSectorDefault
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - AsteroidSectorStandard
+        - MonoWorldgenVeryFarT1
+        - MonoWorldgenVeryFarT2Inner
+        - MonoWorldgenVeryFarT2Middle
+        - MonoWorldgenVeryFarT2Far
+        - MonoWorldgenVeryFarT3Near
+        - MonoWorldgenVeryFarT3Far
+        - MonoWorldgenDeepVoid
+
+- type: worldgenConfig
+  id: NebulaSpace
+  components:
+    - type: WorldController
+    - type: AmbientSpaceFieldPlacerController
+      minCount: 360
+      maxCount: 360
+      minDistance: 300
+      maxDistance: 29000
+      minStationClearance: 300
+      minSpacingFactor: 0.9
+      minCenterSeparation: 2400
+      fieldPrototype: AmbientSpaceFieldNebula
+
+- type: worldgenConfig
+  id: CelestialBodySpace
+  components:
+    - type: WorldController
+    - type: SectorCelestialPlacerController
+      spawnDistance: 8000
+
+- type: worldgenConfig
+  id: BackgroundPlanetSpace
+  components:
+    - type: WorldController
+    - type: SectorBackgroundPlanetPlacerController
+      minCount: 2
+      maxCount: 4
+      minDistance: 6000
+      maxDistance: 12000
+      planetPrototype: SectorBackgroundPlanet

@@ -4,7 +4,7 @@
 
 - type: pointOfInterest
   id: TypanCargoDepot
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Торговый Форпост'
   minimumDistance: 1500
   maximumDistance: 2500

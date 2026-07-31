@@ -3,6 +3,7 @@
   parent: OrganHumanLungs
   description: "The blue, anaerobic lungs of a vox, they intake nitrogen to breathe. Any form of gaseous oxygen is lethally toxic if breathed in."
   suffix: "vox"
+  name: vox lungs # Shitmed
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
@@ -21,14 +22,39 @@
   description: "A stomach that smells of ammonia."
   components:
   - type: Metabolizer #Skreeeee!
-    metabolizerTypes: [Vox]
+    metabolizerTypes: [ Vox ]
   - type: Stomach
 #Bird vs tags
     specialDigestible:
-      # Frontier: general vox digestion
       tags:
       - Trash
-    isSpecialDigestibleExclusive: false
+      - ClothMade # terrible efficiency from cloth eating
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  parent: OrganHumanBrain
+  id: OrganVoxBrain
+  name: cortical stack
+  description: A stack containing all the memories and experiences of a vox with some mushy brains still sticking to it. Skreeeee!
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: brain
+  - type: Organ
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+  - type: BorgBrain
 
 - type: entity
   parent: OrganHumanLiver
@@ -38,6 +64,8 @@
   components:
   - type: Metabolizer
     metabolizerTypes: [Vox]
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
 
 - type: entity
   parent: OrganHumanHeart
@@ -47,3 +75,50 @@
   components:
   - type: Metabolizer
     metabolizerTypes: [Vox]
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+
+- type: entity
+  parent: OrganHumanKidneys
+  id: OrganVoxKidneys
+  name: kidney
+  description: "Smells flammable."
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Vox]
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  id: OrganVoxEyes
+  parent: OrganHumanEyes
+  name: eyes
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+
+- type: entity
+  id: OrganVoxTongueA
+  parent: OrganHumanTongue
+  name: tongue
+  description: "A fleshy muscle mostly used for screaming."
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  id: OrganVoxTongueB
+  parent: OrganHumanTongue
+  name: tongue
+  description: "A fleshy muscle mostly used for screaming."
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+  - type: Item
+    size: Small

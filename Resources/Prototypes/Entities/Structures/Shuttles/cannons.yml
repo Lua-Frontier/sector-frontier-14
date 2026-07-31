@@ -1,5 +1,7 @@
 # Most of these have DO NOT MAP, since stations are completely unequipped to deal with ship combat + these are basically placeholder.
 
+# Most of these have DO NOT MAP, since stations are completely unequipped to deal with ship combat + these are basically placeholder.
+
 - type: entity
   id: ShuttleGunBase
   parent: BaseStructure
@@ -364,6 +366,12 @@
   - type: RadarBlip
     radarColor: "#53ff6a"
     scale: 1
+    gridConfig:
+      color: "#53ff6a"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-0.7,-0.7,0.7,0.7"
   - type: ShipGunType
     shipType: Mining
   - type: ShipGunClass # Lua
@@ -417,6 +425,8 @@
   - type: ApcPowerReceiver # Frontier
     powerLoad: 1500 # Frontier
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: ShuttleGunBase
   id: ShuttleGunKineticOld

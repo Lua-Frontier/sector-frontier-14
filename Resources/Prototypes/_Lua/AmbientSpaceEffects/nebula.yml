@@ -1,0 +1,35 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: ambientSpaceEffect
+  id: Nebula
+  shader: AmbientNebula
+  lowerOpacity: 0.16
+  midOpacity: 0.45
+  upperOpacity: 0.24
+  lowerParallax: 0.85
+  midParallax: 1.0
+  upperParallax: 1.15
+  particleScale: 1.0
+  flowSpeed: 0.20
+  midReactive: true # mid layer weather
+  upperReactive: false #dead
+
+- type: entity
+  id: AmbientSpaceFieldNebula
+  name: ambient nebula field
+  description: Atmospheric dust cloud. Sometimes carries hazardous mid-layer weather.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: GlobalPvs
+  - type: AutoDespawnExempt
+  - type: SpaceHazardActivity
+    activationRange: 1024
+    idleTimeout: 600
+  - type: AmbientSpaceField
+    effect: Nebula
+    radius: 900
+    density: 0.5
+    color: "#FFFFFFFF"

@@ -4,11 +4,11 @@
   name: CTLA-600 bluespace drive
   description: An advanced FTL drive that extends a ship's FTL range to ~600 meters, but with upgrades to allow for faster recharge and flight times. Does not stack.
   components:
+    - type: Transform
+      noRot: false
     - type: Sprite
       sprite: _Lua/Structures/Shuttles/ftlengine.rsi
       snapCardinals: true
-      offset: 0,0.5
-      drawdepth: Mobs
       layers:
       - state: control
       - state: control_on

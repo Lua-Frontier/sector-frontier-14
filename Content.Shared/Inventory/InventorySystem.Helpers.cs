@@ -55,6 +55,22 @@ public partial class InventorySystem
                && (slot.SlotFlags & flags) == flags;
     }
 
+    /// <summary>
+    /// Returns the inventory owner that currently contains this item, if any.
+    /// Used by personal shields to find the wearer of shielded clothing.
+    /// </summary>
+    public bool TryGetContainingEntity(Entity<TransformComponent?, MetaDataComponent?> entity, [NotNullWhen(true)] out EntityUid? containingEntity)
+    {
+        if (!_containerSystem.TryGetContainingContainer(entity, out var container) || !HasComp<InventoryComponent>(container.Owner))
+        {
+            containingEntity = null;
+            return false;
+        }
+
+        containingEntity = container.Owner;
+        return true;
+    }
+
     public bool SpawnItemInSlot(EntityUid uid, string slot, string prototype, bool silent = false, bool force = false, InventoryComponent? inventory = null)
     {
         if (!Resolve(uid, ref inventory, false))

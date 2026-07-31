@@ -70,6 +70,24 @@ public sealed partial class MonoCVars
     public static readonly CVarDef<float> SpaceCleanupMaxValue =
         CVarDef.Create("mono.cleanup.space.max_value", 10000.0f, CVar.SERVERONLY);
 
+    /// <summary>
+    ///     After a shuttle impact, how aggressively to sweep. Makes sweep more willing to delete items close to grids or players.
+    /// </summary>
+    public static readonly CVarDef<float> ImpactSweepAggression =
+        CVarDef.Create("mono.cleanup.impact.aggression", 0.1f, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     After a shuttle impact, in how much after the impact to perform the sweep.
+    /// </summary>
+    public static readonly CVarDef<float> ImpactSweepDelay =
+        CVarDef.Create("mono.cleanup.impact.delay", 5.0f, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     After a shuttle impact, in how much of a radius to immediately sweep for loose items.
+    /// </summary>
+    public static readonly CVarDef<float> ImpactSweepRadius =
+        CVarDef.Create("mono.cleanup.impact.radius", 60.0f, CVar.SERVERONLY);
+
     #endregion
 
     /// <summary>
@@ -146,5 +164,21 @@ public sealed partial class MonoCVars
         CVarDef.Create("mono.area_echo.recalculation_interval", TimeSpan.FromSeconds(15), CVar.ARCHIVE | CVar.CLIENTONLY);
 
     #endregion
-    
+
+    #region Detection
+
+    /// <summary>
+    ///     Multiplier of grid thermal detection radius.
+    /// </summary>
+    public static readonly CVarDef<float> ThermalDetectionMultiplier =
+        CVarDef.Create("mono.detection.thermal_multiplier", 2f, CVar.ARCHIVE | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Multiplier of grid visual detection radius.
+    /// </summary>
+    public static readonly CVarDef<float> VisualDetectionMultiplier =
+        CVarDef.Create("mono.detection.visual_multiplier", 16f, CVar.ARCHIVE | CVar.REPLICATED);
+
+    #endregion
+
 }

@@ -24,6 +24,10 @@ public sealed class AutoUnstuckSystem : EntitySystem
         new(0f, -2f),
     };
 
+    private const float ScanIntervalSeconds = 1f;
+
+    private const float StuckSeconds = 15f;
+
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -32,6 +36,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
     private EntityQuery<TransformComponent> _xformQuery;
     private readonly List<EntityUid> _toClear = new();
     private readonly List<EntityUid> _awake = new();
+    private float _scanAccum;
 
     public override void Initialize()
     {
@@ -43,6 +48,28 @@ public sealed class AutoUnstuckSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        if (_stuckTime.Count > 0)
+        {
+            _toClear.Clear();
+            foreach (var (uid, t) in _stuckTime)
+            {
+                if (!Exists(uid)) _toClear.Add(uid);
+            }
+            foreach (var uid in _toClear)
+            { _stuckTime.Remove(uid); }
+        }
+
+        _scanAccum += frameTime;
+        if (_scanAccum < ScanIntervalSeconds)
+            return;
+
+        var dt = _scanAccum;
+        _scanAccum = 0f;
+        ScanBodies(dt);
+    }
+
+    private void ScanBodies(float frameTime)
+    {
         _toClear.Clear();
         _awake.Clear();
 
@@ -79,7 +106,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
             }
             if (_stuckTime.TryGetValue(uid, out var t)) _stuckTime[uid] = t + frameTime;
             else _stuckTime[uid] = frameTime;
-            if (_stuckTime[uid] < 15f) continue;
+            if (_stuckTime[uid] < StuckSeconds) continue;
             if (_xformQuery.TryGetComponent(uid, out var xform))
             {
                 var offset = _random.Pick(StuckOffsets);
@@ -97,5 +124,3 @@ public sealed class AutoUnstuckSystem : EntitySystem
         }
     }
 }
-
-

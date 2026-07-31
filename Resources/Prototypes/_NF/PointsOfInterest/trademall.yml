@@ -10,7 +10,7 @@
 # Basic Trade Outpost buying point for economy and great wealth
 - type: pointOfInterest
   id: TradeMall
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: Торговый Аванпост
   minimumDistance: 1500
   maximumDistance: 2500

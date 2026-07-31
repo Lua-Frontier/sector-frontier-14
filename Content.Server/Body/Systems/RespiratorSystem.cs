@@ -1,15 +1,19 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
+using Content.Shared._Shitmed.Body.Components; // Shitmed Change
+using Content.Shared._Shitmed.Body.Organ; // Shitmed Change
 using Content.Server.Chat.Systems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.EntityEffects;
+using Content.Shared.Body.Events;
+using Content.Shared.Body.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.Body.Prototypes;
+using Content.Shared.Chat; // Einstein Engines - Language
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -24,20 +28,20 @@ using Robust.Shared.Timing;
 namespace Content.Server.Body.Systems;
 
 [UsedImplicitly]
-public sealed class RespiratorSystem : EntitySystem
+public sealed partial class RespiratorSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosSys = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSys = default!;
-    [Dependency] private readonly LungSystem _lungSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly EntityEffectSystem _entityEffect = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private AlertsSystem _alertsSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosSys = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private DamageableSystem _damageableSys = default!;
+    [Dependency] private EntityEffectSystem _entityEffect = default!;
+    [Dependency] private LungSystem _lungSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     private static readonly ProtoId<MetabolismGroupPrototype> GasId = new("Gas");
 
@@ -49,47 +53,40 @@ public sealed class RespiratorSystem : EntitySystem
         UpdatesAfter.Add(typeof(MetabolizerSystem));
         SubscribeLocalEvent<RespiratorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
-
-        // BodyComp stuff
-        SubscribeLocalEvent<BodyComponent, InhaledGasEvent>(OnGasInhaled);
-        SubscribeLocalEvent<BodyComponent, ExhaledGasEvent>(OnGasExhaled);
-        SubscribeLocalEvent<BodyComponent, CanMetabolizeGasEvent>(CanBodyMetabolizeGas);
-        SubscribeLocalEvent<BodyComponent, SuffocationEvent>(OnSuffocation);
-        SubscribeLocalEvent<BodyComponent, StopSuffocatingEvent>(OnStopSuffocating);
     }
 
     private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
+        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval;
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<RespiratorComponent>();
-        while (query.MoveNext(out var uid, out var respirator))
+        var query = EntityQueryEnumerator<RespiratorComponent, BodyComponent>();
+        while (query.MoveNext(out var uid, out var respirator, out var body))
         {
             if (_gameTiming.CurTime < respirator.NextUpdate)
                 continue;
 
-            respirator.NextUpdate += respirator.AdjustedUpdateInterval;
+            respirator.NextUpdate += respirator.UpdateInterval;
 
-            if (_mobState.IsDead(uid))
+            if (_mobState.IsDead(uid) || HasComp<BreathingImmunityComponent>(uid)) // Shitmed: BreathingImmunity
                 continue;
 
-            UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
+            UpdateSaturation(uid, -(float) respirator.AdjustedUpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+            if (!_mobState.IsIncapacitated(uid) && !HasComp<DebrainedComponent>(uid)) // Shitmed Change - Cannot breathe in crit or when no brain.
             {
                 switch (respirator.Status)
                 {
                     case RespiratorStatus.Inhaling:
-                        Inhale((uid, respirator));
+                        Inhale(uid, body);
                         respirator.Status = RespiratorStatus.Exhaling;
                         break;
                     case RespiratorStatus.Exhaling:
-                        Exhale((uid, respirator));
+                        Exhale(uid, body);
                         respirator.Status = RespiratorStatus.Inhaling;
                         break;
                 }
@@ -100,10 +97,7 @@ public sealed class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    _chat.TryEmoteWithChat(uid,
-                        respirator.GaspEmote,
-                        ChatTransmitRange.HideChat,
-                        ignoreActionBlocker: true);
+                    _chat.TryEmoteWithChat(uid, respirator.GaspEmote, ChatTransmitRange.HideChat, ignoreActionBlocker: true);
                 }
 
                 TakeSuffocationDamage((uid, respirator));
@@ -116,179 +110,58 @@ public sealed class RespiratorSystem : EntitySystem
         }
     }
 
-    public void Inhale(Entity<RespiratorComponent?> entity)
+    public void Inhale(EntityUid uid, BodyComponent? body = null)
     {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
+        if (!Resolve(uid, ref body, logMissing: false))
             return;
+
+        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((uid, body));
 
         // Inhale gas
-        var ev = new InhaleLocationEvent
-        {
-            Respirator = entity.Comp,
-        };
-        RaiseLocalEvent(entity, ref ev);
+        var ev = new InhaleLocationEvent(null, Comp<RespiratorComponent>(uid));
+        RaiseLocalEvent(uid, ref ev);
 
-        ev.Gas ??= _atmosSys.GetContainingMixture(entity.Owner, excite: true);
+        ev.Gas ??= _atmosSys.GetContainingMixture(uid, excite: true);
 
         if (ev.Gas is null)
+        {
             return;
+        }
 
-        var gas = ev.Gas.RemoveVolume(entity.Comp.BreathVolume);
+        var actualGas = ev.Gas.RemoveVolume(Atmospherics.BreathVolume);
 
-        var inhaleEv = new InhaledGasEvent(gas);
-        RaiseLocalEvent(entity, ref inhaleEv);
-
-        if (inhaleEv.Handled && inhaleEv.Succeeded)
-            return;
-
-        // If nothing could inhale the gas give it back.
-        _atmosSys.Merge(ev.Gas, gas);
+        var lungRatio = 1.0f / organs.Count;
+        var gas = organs.Count == 1 ? actualGas : actualGas.RemoveRatio(lungRatio);
+        foreach (var (organUid, lung, _) in organs)
+        {
+            // Merge doesn't remove gas from the giver.
+            _atmosSys.Merge(lung.Air, gas);
+            _lungSystem.GasToReagent(organUid, lung);
+        }
     }
 
-    public void Exhale(Entity<RespiratorComponent> entity)
+    public void Exhale(EntityUid uid, BodyComponent? body = null)
     {
+        if (!Resolve(uid, ref body, logMissing: false))
+            return;
+
+        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((uid, body));
+
         // exhale gas
 
         var ev = new ExhaleLocationEvent();
-        RaiseLocalEvent(entity, ref ev, broadcast: false);
+        RaiseLocalEvent(uid, ref ev, broadcast: false);
 
         if (ev.Gas is null)
         {
-            ev.Gas = _atmosSys.GetContainingMixture(entity.Owner, excite: true);
+            ev.Gas = _atmosSys.GetContainingMixture(uid, excite: true);
 
             // Walls and grids without atmos comp return null. I guess it makes sense to not be able to exhale in walls,
             // but this also means you cannot exhale on some grids.
             ev.Gas ??= GasMixture.SpaceGas;
         }
 
-        Exhale(entity!, ev.Gas);
-    }
-
-    public void Exhale(Entity<RespiratorComponent?> entity, GasMixture gas)
-    {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
-            return;
-
-        var ev = new ExhaledGasEvent(gas);
-        RaiseLocalEvent(entity, ref ev);
-    }
-
-    /// <summary>
-    /// Returns true if the entity is above their SuffocationThreshold and alive.
-    /// </summary>
-    public bool IsBreathing(Entity<RespiratorComponent?> ent)
-    {
-        if (_mobState.IsIncapacitated(ent))
-            return false;
-
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        return (ent.Comp.Saturation > ent.Comp.SuffocationThreshold);
-    }
-
-    /// <summary>
-    /// Checks if it's safe for a given entity to breathe the air from the environment it is currently situated in.
-    /// </summary>
-    /// <param name="ent">The entity attempting to metabolize the gas.</param>
-    /// <returns>Returns true only if the air is not toxic, and it wouldn't suffocate.</returns>
-    public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        // Get the gas at our location but don't actually remove it from the gas mixture.
-        var ev = new InhaleLocationEvent
-        {
-            Respirator = ent.Comp,
-        };
-        RaiseLocalEvent(ent, ref ev);
-
-        ev.Gas ??= _atmosSys.GetContainingMixture(ent.Owner, excite: true);
-
-        // If there's no air to breathe or we can't metabolize it then internals should be on.
-        return ev.Gas is not null && CanMetabolizeInhaledAir(ent, ev.Gas);
-    }
-
-    /// <summary>
-    /// Checks if a given entity can safely metabolize a given gas mixture.
-    /// </summary>
-    /// <param name="ent">The entity attempting to metabolize the gas.</param>
-    /// <param name="gas">The gas mixture we are trying to metabolize.</param>
-    /// <returns>Returns true only if the gas mixture is not toxic, and it wouldn't suffocate.</returns>
-    public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent, GasMixture gas)
-    {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        var ev = new CanMetabolizeGasEvent(gas);
-        RaiseLocalEvent(ent, ref ev);
-
-        if (!ev.Handled || ev.Toxic)
-            return false;
-
-        return ev.Saturation > ent.Comp.UpdateInterval.TotalSeconds;
-    }
-
-    /// <summary>
-    /// Tries to safely metabolize the current solutions in a body's lungs.
-    /// </summary>
-    private void CanBodyMetabolizeGas(Entity<BodyComponent> ent, ref CanMetabolizeGasEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
-        if (organs.Count == 0)
-            return;
-
-        var solution = _lungSystem.GasToReagent(args.Gas);
-
-        var saturation = 0f;
-        foreach (var organ in organs)
-        {
-            saturation += GetSaturation(solution, organ.Owner, out var toxic);
-            if (!toxic)
-                continue;
-
-            args.Handled = true;
-            args.Toxic = true;
-            return;
-        }
-
-        args.Handled = true;
-        args.Saturation = saturation;
-    }
-
-    public bool TryInhaleGasToBody(Entity<BodyComponent?> entity, GasMixture gas)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return false;
-
-        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((entity, entity.Comp));
-        if (organs.Count == 0)
-            return false;
-
-        var lungRatio = 1.0f / organs.Count;
-        var splitGas = organs.Count == 1 ? gas : gas.RemoveRatio(lungRatio);
-        foreach (var (organUid, lung, _) in organs)
-        {
-            // Merge doesn't remove gas from the giver.
-            _atmosSys.Merge(lung.Air, splitGas);
-            _lungSystem.GasToReagent(organUid, lung);
-        }
-
-        return true;
-    }
-
-    public void RemoveGasFromBody(Entity<BodyComponent> ent, GasMixture gas)
-    {
-        var outGas = new GasMixture(gas.Volume);
-
-        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, ent.Comp));
-        if (organs.Count == 0)
-            return;
-
+        var outGas = new GasMixture(ev.Gas.Volume);
         foreach (var (organUid, lung, _) in organs)
         {
             _atmosSys.Merge(outGas, lung.Air);
@@ -298,7 +171,66 @@ public sealed class RespiratorSystem : EntitySystem
                 _solutionContainerSystem.RemoveAllSolution(lung.Solution.Value);
         }
 
-        _atmosSys.Merge(gas, outGas);
+        _atmosSys.Merge(ev.Gas, outGas);
+    }
+
+    /// <summary>
+    /// Check whether or not an entity can metabolize inhaled air without suffocating or taking damage (i.e., no toxic
+    /// gasses).
+    /// </summary>
+    public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        var ev = new InhaleLocationEvent(null, ent.Comp);
+        RaiseLocalEvent(ent, ref ev);
+
+        var gas = ev.Gas ?? _atmosSys.GetContainingMixture(ent.Owner);
+        if (gas == null)
+            return false;
+
+        return CanMetabolizeGas(ent, gas);
+    }
+
+    public bool CanMetabolizeInhaledAir(Entity<RespiratorComponent?> ent, GasMixture gas)
+    {
+        return CanMetabolizeGas(ent, gas);
+    }
+
+    public bool IsBreathing(Entity<RespiratorComponent?> ent)
+    {
+        return Resolve(ent, ref ent.Comp, logMissing: false)
+               && ent.Comp.Saturation >= ent.Comp.SuffocationThreshold;
+    }
+
+    /// <summary>
+    /// Check whether or not an entity can metabolize the given gas mixture without suffocating or taking damage
+    /// (i.e., no toxic gasses).
+    /// </summary>
+    public bool CanMetabolizeGas(Entity<RespiratorComponent?> ent, GasMixture gas)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
+        if (organs.Count == 0)
+            return false;
+
+        gas = new GasMixture(gas);
+        var lungRatio = 1.0f / organs.Count;
+        gas.Multiply(MathF.Min(lungRatio * gas.Volume/Atmospherics.BreathVolume, lungRatio));
+        var solution = _lungSystem.GasToReagent(gas);
+
+        float saturation = 0;
+        foreach (var organ in organs)
+        {
+            saturation += GetSaturation(solution, organ.Owner, out var toxic);
+            if (toxic)
+                return false;
+        }
+
+        return saturation > ent.Comp.UpdateInterval.TotalSeconds;
     }
 
     /// <summary>
@@ -364,13 +296,17 @@ public sealed class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles == 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} started suffocating");
 
-        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);
+        if (ent.Comp.SuffocationCycles >= ent.Comp.SuffocationCycleThreshold)
+        {
+            // TODO: This is not going work with multiple different lungs, if that ever becomes a possibility
+            var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
+            foreach (var entity in organs)
+            {
+                _alertsSystem.ShowAlert(ent, entity.Comp1.Alert);
+            }
+        }
 
-        if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
-            return;
-
-        var ev = new SuffocationEvent();
-        RaiseLocalEvent(ent, ref ev);
+        _damageableSys.TryChangeDamage(ent, HasComp<DebrainedComponent>(ent) ? ent.Comp.Damage * 4.5f : ent.Comp.Damage, interruptsDoAfters: false);
     }
 
     private void StopSuffocation(Entity<RespiratorComponent> ent)
@@ -378,33 +314,18 @@ public sealed class RespiratorSystem : EntitySystem
         if (ent.Comp.SuffocationCycles >= 2)
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} stopped suffocating");
 
-        _damageableSys.TryChangeDamage(ent, ent.Comp.DamageRecovery);
-
-        var ev = new StopSuffocatingEvent();
-        RaiseLocalEvent(ent, ref ev);
-    }
-
-    private void OnSuffocation(Entity<BodyComponent> ent, ref SuffocationEvent args)
-    {
-        // TODO: This is not going work with multiple different lungs, if that ever becomes a possibility
-        var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
-        foreach (var entity in organs)
-        {
-            _alertsSystem.ShowAlert(ent, entity.Comp1.Alert);
-        }
-    }
-
-    private void OnStopSuffocating(Entity<BodyComponent> ent, ref StopSuffocatingEvent args)
-    {
         // TODO: This is not going work with multiple different lungs, if that ever becomes a possibility
         var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((ent, null));
         foreach (var entity in organs)
         {
             _alertsSystem.ClearAlert(ent, entity.Comp1.Alert);
         }
+
+        _damageableSys.TryChangeDamage(ent, ent.Comp.DamageRecovery);
     }
 
-    public void UpdateSaturation(EntityUid uid, float amount, RespiratorComponent? respirator = null)
+    public void UpdateSaturation(EntityUid uid, float amount,
+        RespiratorComponent? respirator = null)
     {
         if (!Resolve(uid, ref respirator, false))
             return;
@@ -414,82 +335,16 @@ public sealed class RespiratorSystem : EntitySystem
             Math.Clamp(respirator.Saturation, respirator.MinSaturation, respirator.MaxSaturation);
     }
 
-    private void OnApplyMetabolicMultiplier(Entity<RespiratorComponent> ent, ref ApplyMetabolicMultiplierEvent args)
+    private void OnApplyMetabolicMultiplier(
+        Entity<RespiratorComponent> ent,
+        ref ApplyMetabolicMultiplierEvent args)
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
     }
-
-    private void OnGasInhaled(Entity<BodyComponent> entity, ref InhaledGasEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.Handled = true;
-
-        args.Succeeded = TryInhaleGasToBody((entity, entity.Comp), args.Gas);
-    }
-
-    private void OnGasExhaled(Entity<BodyComponent> entity, ref ExhaledGasEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.Handled = true;
-
-        RemoveGasFromBody(entity, args.Gas);
-    }
 }
 
-/// <summary>
-/// Event raised when an entity first tries to inhale that returns a GasMixture from a given location.
-/// </summary>
-/// <param name="Gas">The gas that gets returned, null if there is none.</param>
-/// <param name="Respirator">The Respirator component of the entity attempting to inhale</param>
 [ByRefEvent]
 public record struct InhaleLocationEvent(GasMixture? Gas, RespiratorComponent Respirator);
 
-/// <summary>
-/// Event raised when an entity first tries to exhale a gas, determines where the gas they're exhaling will be sent.
-/// </summary>
-/// <param name="Gas">The gas mixture that the exhaled gas will be merged into.</param>
 [ByRefEvent]
 public record struct ExhaleLocationEvent(GasMixture? Gas);
-
-/// <summary>
-/// Event raised when an entity successfully inhales a gas, attempts to find a place to put the gas.
-/// </summary>
-/// <param name="Gas">The gas we're inhaling.</param>
-/// <param name="Handled">Whether a system has responded appropriately.</param>
-/// <param name="Succeeded">Whether we successfully managed to inhale the gas</param>
-[ByRefEvent]
-public record struct InhaledGasEvent(GasMixture Gas, bool Handled = false, bool Succeeded = false);
-
-/// <summary>
-/// Event raised when an entity is exhaling
-/// </summary>
-/// <param name="Gas">The gas mixture we're exhaling into.</param>
-/// <param name="Handled">Whether we have successfully exhaled or not.</param>
-[ByRefEvent]
-public record struct ExhaledGasEvent(GasMixture Gas, bool Handled = false);
-
-/// <summary>
-/// Raised when an entity starts suffocating and when suffocation progresses.
-/// </summary>
-[ByRefEvent]
-public record struct SuffocationEvent;
-
-/// <summary>
-/// Raised when an entity that was suffocating stops suffocating.
-/// </summary>
-[ByRefEvent]
-public record struct StopSuffocatingEvent;
-
-/// <summary>
-/// An event raised to inhalation handlers that asks them nicely to simulate what it would be like to metabolize
-/// a given volume of gas, without actually metabolizing it.
-/// </summary>
-/// <param name="Gas">The gas mixture we are testing.</param>
-/// <param name="Toxic">Whether the gas returns as toxic to any respirator.</param>
-/// <param name="Saturation">The amount of saturation we got from the gas.</param>
-[ByRefEvent]
-public record struct CanMetabolizeGasEvent(GasMixture Gas, bool Toxic = false, float Saturation = 0f, bool Handled = false);

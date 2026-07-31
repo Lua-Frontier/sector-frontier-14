@@ -4510,3 +4510,80 @@ Entries:
   id: 312
   time: '2026-07-21T17:13:53.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/606
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена Хирургия (PORT Monolith)
+    - type: Add
+      message: Добавлен инструмент ремонта корабля (PORT Monolith)
+    - type: Add
+      message: Добавлены случайные ИИ дроны в сектора (PORT Monolith)
+    - type: Add
+      message: Добавлен загрузчик снарядов (PORT Monolith)
+    - type: Add
+      message: Добавлено UI загрузчика снарядов
+    - type: Add
+      message: Добавлены процедурно генерируемые туманности
+    - type: Add
+      message: Добавлена новая вкладка EXP в UI консоли управления шаттлом (Экспедиции)
+    - type: Add
+      message: Добавлены небесные тела Звёзды/Чёрные дыры/Планеты
+    - type: Tweak
+      message: Обновлены персональные щиты (PORT Monolith)
+    - type: Tweak
+      message: Обновление UI консоли управления шаттлом
+    - type: Tweak
+      message: Обновлено столкновение шаттлов
+    - type: Tweak
+      message: Минимальная скорость шаттла теперь 50
+    - type: Remove
+      message: Удалены компоненты двигателя
+    - type: Remove
+      message: Удален протодробовик
+    - type: Remove
+      message: Удалено автоудаление шаттла
+    - type: Tweak
+      message: 'Войну теперь можно объявить только спустя 4 дня смены '
+    - type: Tweak
+      message: Сектора изолированы друг от друга до дня возможности объявить войну
+    - type: Add
+      message: Добавлена погода в туманностях
+    - type: Add
+      message: Добавлено состояние щита (PORT Колосс)
+    - type: Add
+      message: Добавлена регулировка максимальной скорости шаттла и скорости поворота
+    - type: Add
+      message: Добавлен Автопилот
+    - type: Add
+      message: Добавлен ядерный реактор (PORT Monolith)
+    - type: Tweak
+      message: >-
+        Обновлены радарные метки транспорта/джетпаков/вооружения шаттла (PORT
+        Monolith)
+    - type: Tweak
+      message: Обновлено корабельное вооружение (PORT Monolith)
+    - type: Tweak
+      message: Переработаны экспедиции
+    - type: Tweak
+      message: >-
+        Экспедиции теперь доступны на любом шаттле (ограничение только по массе
+        шаттла)
+    - type: Tweak
+      message: >-
+        Обновлена генерация астероидов/обломков теперь генерация обломков
+        кольцевая
+    - type: Tweak
+      message: Обновлены корабельные щиты (PORT Monolith)
+    - type: Tweak
+      message: >-
+        Улучшена генерация комплексов, уменьшено количество добываемого лута,
+        комплексы теперь значительно крупнее
+    - type: Tweak
+      message: Обновлена визуализация щита
+    - type: Tweak
+      message: Кит теперь слабее и с него падает лут ИИ дронов.
+    - type: Tweak
+      message: Техническая оптимизация кода сервера
+  id: 313
+  time: '2026-07-31T22:26:57.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/614

@@ -294,7 +294,7 @@
 
 #Security Combat Hardsuit
 - type: entity
-  parent: [EnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd] # Lua: added EnergyShieldClothing
+  parent: [MonoEnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd] # Lua: added MonoEnergyShieldClothing
   id: ClothingOuterHardsuitNfsdCombat
   name: NFSD combat suit
   description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility.
@@ -323,7 +323,7 @@
 
 #Security Command Hardsuit
 - type: entity
-  parent: [EnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd] # Lua: added EnergyShieldClothing
+  parent: [MonoEnergyShieldClothing, ClothingOuterHardsuitBaseNFNfsd] # Lua: added MonoEnergyShieldClothing
   id: ClothingOuterHardsuitNfsdCommand
   name: NFSD command combat suit
   description: A heavily armored NFSD suit. Space proof, with thick armor plating at the expense of mobility. This variant has supervisor rank markings.

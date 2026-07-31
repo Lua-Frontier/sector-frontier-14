@@ -58,9 +58,14 @@ public sealed partial class MapScreen : BoxContainer
     private TimeSpan _nextAutoRefresh; // Lua
     private readonly TimeSpan _autoRefreshInterval = TimeSpan.FromMinutes(1); // Lua
 
+    // Mono
+    private bool _autopilotTargeting = false;
+    private bool _settingTargeting;
+
     public event Action<MapCoordinates, Angle>? RequestFTL;
     public event Action<NetEntity, Angle>? RequestBeaconFTL;
     public event Action<NetEntity?, NetEntity>? RequestTrackEntity; // Frontier
+    public event Action<MapCoordinates, Angle>? RequestAutopilot; // Mono
 
     private readonly Dictionary<MapId, BoxContainer> _mapHeadings = new();
     private readonly Dictionary<MapId, List<IMapObject>> _mapObjects = new();
@@ -88,6 +93,7 @@ public sealed partial class MapScreen : BoxContainer
         OnVisibilityChanged += OnVisChange;
 
         MapFTLButton.OnToggled += FtlPreviewToggled;
+        MapAutopilotButton.OnToggled += AutopilotPreviewToggled; // Mono
 
         _ftlStyle = new StyleBoxFlat(Color.LimeGreen);
         FTLBar.ForegroundStyleBoxOverride = _ftlStyle;
@@ -95,7 +101,15 @@ public sealed partial class MapScreen : BoxContainer
         // Just pass it on up.
         MapRadar.RequestFTL += (coords, angle) =>
         {
-            RequestFTL?.Invoke(coords, angle);
+            if (_autopilotTargeting) // Mono
+            {
+                RequestAutopilot?.Invoke(coords, angle);
+                SetTargeting(false, true);
+            }
+            else
+            {
+                RequestFTL?.Invoke(coords, angle);
+            }
         };
 
         MapRadar.RequestBeaconFTL += (ent, angle) =>
@@ -119,9 +133,11 @@ public sealed partial class MapScreen : BoxContainer
         // This should work better with predicting network states as they come in.
         _beacons = state.Destinations;
         _exclusions = state.Exclusions;
+        var previousState = _state;
         _state = state.FTLState;
         _ftlTime = state.FTLTime;
         _inCombat = state.InCombat;
+        MapRadar.SetDroneRoutes(state.DroneRoutes);
         MapRadar.InFtl = true;
         MapFTLState.Text = Loc.GetString($"shuttle-console-ftl-state-{_state.ToString()}");
 
@@ -156,11 +172,14 @@ public sealed partial class MapScreen : BoxContainer
                 break;
             case FTLState.Cooldown:
                 SetFTLAllowed(false);
-                // Scroll to the FTL spot
-                if (_entManager.TryGetComponent(_shuttleEntity, out TransformComponent? shuttleXform))
+                if (_entManager.TryGetComponent(_shuttleEntity, out TransformComponent? shuttleXform)
+                    && shuttleXform.MapID != MapId.Nullspace)
                 {
+                    var mapId = shuttleXform.MapID;
                     var targetOffset = _maps.GetGridPosition(_shuttleEntity.Value);
-                    MapRadar.SetMap(shuttleXform.MapID, targetOffset, recentering: true);
+                    var mapChanged = MapRadar.ViewingMap != mapId;
+                    if (mapChanged || previousState != FTLState.Cooldown)
+                        MapRadar.SetMap(mapId, targetOffset, recentering: true);
                 }
 
                 _ftlStyle.BackgroundColor = Color.FromHex("#B02E26");
@@ -189,21 +208,61 @@ public sealed partial class MapScreen : BoxContainer
         }
         else
         {
-            // Unselect FTL
             MapFTLButton.Pressed = false;
-            MapRadar.FtlMode = false;
-            MapRadar.ShowFTLRangeOnly = false;
+            if (!_autopilotTargeting)
+            {
+                MapRadar.FtlMode = false;
+                MapRadar.ShowFTLRangeOnly = false;
+            }
             MapFTLButton.Disabled = true;
         }
     }
 
     private void FtlPreviewToggled(BaseButton.ButtonToggledEventArgs obj)
     {
-        MapRadar.FtlMode = obj.Pressed;
-        // When FTL button is toggled, disable the ShowFTLRangeOnly mode
-        if (obj.Pressed)
+        SetTargeting(obj.Pressed, false);
+    }
+
+    // Mono
+    private void AutopilotPreviewToggled(BaseButton.ButtonToggledEventArgs obj)
+    {
+        SetTargeting(obj.Pressed, true);
+    }
+
+    // Mono
+    private void SetTargeting(bool pressed, bool isAutopilot)
+    {
+        if (_settingTargeting)
+            return;
+
+        _settingTargeting = true;
+        try
         {
-            MapRadar.ShowFTLRangeOnly = false;
+            if (pressed)
+            {
+                MapRadar.FtlMode = true;
+                MapRadar.ShowFTLRangeOnly = false;
+                MapRadar.ShowFTLRange = !isAutopilot;
+                MapRadar.NoFTLRange = isAutopilot;
+                MapFTLButton.Pressed = !isAutopilot;
+                MapAutopilotButton.Pressed = isAutopilot;
+                _autopilotTargeting = isAutopilot;
+            }
+            else
+            {
+                MapRadar.FtlMode = false;
+                MapRadar.ShowFTLRange = true;
+                MapRadar.NoFTLRange = false;
+                _autopilotTargeting = false;
+                if (isAutopilot)
+                    MapAutopilotButton.Pressed = false;
+                else
+                    MapFTLButton.Pressed = false;
+            }
+        }
+        finally
+        {
+            _settingTargeting = false;
         }
     }
 
@@ -375,6 +434,7 @@ public sealed partial class MapScreen : BoxContainer
                 // If we can show it then add it to pending.
                 else if (
                     !_shuttles.IsBeaconMap(mapUid) &&
+                    _shuttles.CanDraw(grid.Owner, iffComp: iffComp) &&
                     (iffComp == null ||
                      ((flags & IFFFlags.Hide) == 0x0 &&
                       (flags & IFFFlags.HideLabel) == 0x0 &&

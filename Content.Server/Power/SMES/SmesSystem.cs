@@ -5,6 +5,7 @@ using Content.Shared.Rounding;
 using Content.Shared.SMES;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Power.SMES;
 

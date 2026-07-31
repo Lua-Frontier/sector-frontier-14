@@ -22,9 +22,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Shared.Power;
-using Content.Server.Construction; // Frontier
-using Content.Server.Construction.Components; // Frontier
-using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.DeviceLinking.Events; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
@@ -38,7 +35,6 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ConstructionSystem _construction = default!; // Frontier
     [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -70,8 +66,6 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
 
-        SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         SubscribeLocalEvent<ThrusterComponent, SignalReceivedEvent>(OnSignalReceived); // Frontier
     }
 
@@ -328,10 +322,6 @@ public sealed class ThrusterSystem : EntitySystem
     private void OnMapInit(Entity<ThrusterComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextFire = _timing.CurTime + ent.Comp.FireCooldown;
-        // Frontier: upgradeable parts
-        if (TryComp<MachineComponent>(ent, out var machineComp))
-            _construction.RefreshParts(ent, machineComp);
-        // End Frontier: upgradeable parts
     }
 
     private void OnThrusterShutdown(EntityUid uid, ThrusterComponent component, ComponentShutdown args)
@@ -751,51 +741,6 @@ public sealed class ThrusterSystem : EntitySystem
             }
         }
     }
-
-    // Frontier: upgradeable machine parts, separate EMP handler
-    private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
-    {
-        if (component.IsOn) // safely disable thruster to prevent negative thrust
-            DisableThruster(uid, component);
-
-        var thrustRating = args.PartRatings[component.MachinePartThrust];
-
-        if (component.ThrustPerPartLevel.Length <= 0)
-            component.Thrust = component.BaseThrust;
-        else if (thrustRating <= 1)
-            component.Thrust = component.ThrustPerPartLevel[0];
-        else if (thrustRating > component.ThrustPerPartLevel.Length)
-            component.Thrust = component.ThrustPerPartLevel[^1];
-        else
-        {
-            var idx = (int)thrustRating - 1;
-            component.Thrust = component.ThrustPerPartLevel[idx];
-            // Linearly interpolate if fractional
-            if (idx < component.ThrustPerPartLevel.Length - 1)
-                component.Thrust += (thrustRating - 1 - idx) * (component.ThrustPerPartLevel[idx + 1] - component.ThrustPerPartLevel[idx]);
-        }
-
-        if (component.Enabled && CanEnable(uid, component))
-            EnableThruster(uid, component);
-    }
-
-    private void OnUpgradeExamine(EntityUid uid, ThrusterComponent component, UpgradeExamineEvent args)
-    {
-        args.AddPercentageUpgrade("thruster-comp-upgrade-thrust", component.Thrust / component.BaseThrust);
-    }
-
-    //private void OnEmpPulse(EntityUid uid, ThrusterComponent component, ref EmpPulseEvent args)
-    //{
-    //    if (component.Enabled && !component.ThrusterIgnoreEmp)
-    //    {
-    //        args.Affected = true;
-    //        args.Disabled = true;
-    //    }
-    //}
-
-    //[ByRefEvent]
-    //public record struct ThrusterToggleAttemptEvent(bool Cancelled);
-    // End Frontier: upgradeable machine parts, separate EMP handler
 
     #endregion
 

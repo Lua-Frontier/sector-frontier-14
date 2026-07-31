@@ -102,5 +102,13 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Fro
         ent.Comp.HideTarget = hideTarget;
         Dirty(ent);
     }
+
+    public void ClearTarget(Entity<RadarConsoleComponent> ent)
+    {
+        ent.Comp.Target = null;
+        ent.Comp.TargetEntity = null;
+        ent.Comp.HideTarget = true;
+        Dirty(ent);
+    }
     // End Frontier
 }

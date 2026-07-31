@@ -12,6 +12,8 @@ using Content.Shared.Rounding;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
 using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
+using Content.Shared.Power.Components;
+using Content.Shared.Power;
 
 namespace Content.Server.PowerCell;
 

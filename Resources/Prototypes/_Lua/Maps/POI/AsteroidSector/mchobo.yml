@@ -15,7 +15,7 @@
 # Based on the McCargo built by Dvir01 (https://github.com/dvir001) and ruined with drunken pride by Tych0.
 - type: pointOfInterest
   id: McHoboLua
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Заброшенный МакКарго'
   minimumDistance: 6000 #3250 Lua
   maximumDistance: 9000 #5600 Lua

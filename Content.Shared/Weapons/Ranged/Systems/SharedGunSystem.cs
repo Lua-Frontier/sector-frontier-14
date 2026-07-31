@@ -289,9 +289,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             autoShoot.RemainingTime = duration;
     }
 
-    private void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun)
+    protected void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun)
     {
-        if (TryComp<AutoShootGunComponent>(gunUid, out var auto) && !auto.CanFire) // Frontier
+        if (TryComp<AutoShootGunComponent>(gunUid, out var auto) && !auto.CanFire && auto.RemainingTime <= TimeSpan.Zero) // Frontier // Mono
             return; // Frontier
 
         if (gun.FireRateModified <= 0f ||
@@ -330,6 +330,11 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
             fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
+
+        // Mono - allow systems like GunRandomFirerate to stretch/compress the delay.
+        var rateMulEv = new QueryFireRateMultiplierEvent(1f);
+        RaiseLocalEvent(gunUid, ref rateMulEv);
+        fireRate *= rateMulEv.ReloadTimeMul;
 
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once

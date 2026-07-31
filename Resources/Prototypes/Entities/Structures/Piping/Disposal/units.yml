@@ -80,6 +80,8 @@
   - type: ApcPowerReceiver # Frontier
     powerLoad: 250 # Allows us to not use the 1000 baseline
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: DisposalUnit
   parent: DisposalUnitBase

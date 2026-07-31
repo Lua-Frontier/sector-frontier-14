@@ -1,0 +1,63 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: shader
+  id: PixelStarBlobs
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_star_blobs.swsl"
+
+- type: shader
+  id: PixelStar
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_star.swsl"
+
+- type: shader
+  id: PixelStarFlares
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_star_flares.swsl"
+
+- type: shader
+  id: PixelBlackHole
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_blackhole.swsl"
+
+- type: shader
+  id: PixelLandRivers
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_land_rivers.swsl"
+
+- type: shader
+  id: PixelTerranDry
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_terran_dry.swsl"
+
+- type: shader
+  id: PixelLandMasses
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_land_masses.swsl"
+
+- type: shader
+  id: PixelNoAtmosphere
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_no_atmosphere.swsl"
+
+- type: shader
+  id: PixelGasPlanet
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_gas_planet.swsl"
+
+- type: shader
+  id: PixelGasPlanetLayers
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_gas_planet_layers.swsl"
+
+- type: shader
+  id: PixelIceWorld
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_ice_world.swsl"
+
+- type: shader
+  id: PixelLavaWorld
+  kind: source
+  path: "/Textures/_Lua/Shaders/PixelPlanets/pixel_lava_world.swsl"

@@ -1,0 +1,129 @@
+# Faction-locked nuclear reactors adapted for Sector Frontier companies.
+# Access mapping:
+#   Neutral / unaffiliated ships -> Captain
+#   Security (NFSD)              -> Security
+#   Pirates                      -> Pirate
+#   Syndicate                    -> SyndicateAgent
+#   CentComm                     -> CentralCommand
+
+- type: entity
+  id: NuclearReactorUnaffiliated
+  parent: NuclearReactorCrew
+  suffix: Neutral, Captain Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab7x7Normal
+  - type: NameIdentifier
+    group: NuclearReactor
+  - type: AccessReader
+    access: [["Captain"]]
+
+- type: entity
+  id: NuclearReactorSecurity
+  parent: NuclearReactorCrew
+  suffix: Security Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab7x7Normal
+  - type: NameIdentifier
+    group: NuclearReactorSecurity
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: NuclearReactorPirate
+  parent: NuclearReactorCrew
+  suffix: Pirate Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab7x7Normal
+  - type: NameIdentifier
+    group: NuclearReactorPirate
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  id: NuclearReactorSyndicate
+  parent: NuclearReactorCrew
+  suffix: Syndicate Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab7x7Normal
+  - type: NameIdentifier
+    group: NuclearReactorSyndicate
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
+- type: entity
+  id: NuclearReactorCentComm
+  parent: NuclearReactorCrew
+  suffix: CentComm Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab7x7Normal
+  - type: NameIdentifier
+    group: NuclearReactorCentComm
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+# Small reactors (5x5)
+
+- type: entity
+  id: NuclearReactorUnaffiliatedSmall
+  parent: NuclearReactorSmall
+  suffix: Neutral, Captain Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab5x5Normal
+  - type: NameIdentifier
+    group: NuclearReactorSmall
+  - type: AccessReader
+    access: [["Captain"]]
+
+- type: entity
+  id: NuclearReactorSecuritySmall
+  parent: NuclearReactorSmall
+  suffix: Security Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab5x5Normal
+  - type: NameIdentifier
+    group: NuclearReactorSecuritySmall
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: NuclearReactorPirateSmall
+  parent: NuclearReactorSmall
+  suffix: Pirate Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab5x5Normal
+  - type: NameIdentifier
+    group: NuclearReactorPirateSmall
+  - type: AccessReader
+    access: [["Pirate"]]
+
+- type: entity
+  id: NuclearReactorSyndicateSmall
+  parent: NuclearReactorSmall
+  suffix: Syndicate Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab5x5Normal
+  - type: NameIdentifier
+    group: NuclearReactorSyndicateSmall
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
+- type: entity
+  id: NuclearReactorCentCommSmall
+  parent: NuclearReactorSmall
+  suffix: CentComm Locked
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefab5x5Normal
+  - type: NameIdentifier
+    group: NuclearReactorCentCommSmall
+  - type: AccessReader
+    access: [["CentralCommand"]]

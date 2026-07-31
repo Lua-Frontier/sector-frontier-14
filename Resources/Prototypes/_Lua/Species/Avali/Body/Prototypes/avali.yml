@@ -2,6 +2,7 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
+# Slot ids must use spaces (Shitmed GetSlotFromBodyPart), not snake_case.
 - type: body
   id: Avali
   name: Авали
@@ -17,37 +18,38 @@
     torso:
       part: TorsoAvali
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      - head # Shitmed
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
         stomach: OrganAvaliStomach
         liver:  OrganAnimalLiver
         kidneys: OrganAnimalKidneys
-    right_arm:
+    right arm:
       part: RightArmAvali
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmAvali
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandAvali
-    left_hand:
+    left hand:
       part: LeftHandAvali
-    right_leg:
+    right leg:
       part: RightLegAvali
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegAvali
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootAvali
-    left_foot:
+    left foot:
       part: LeftFootAvali

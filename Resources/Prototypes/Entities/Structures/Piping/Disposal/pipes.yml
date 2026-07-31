@@ -1,5 +1,7 @@
 # Base
 
+# Base
+
 - type: entity
   id: DisposalPipeBase
   abstract: true
@@ -63,6 +65,8 @@
   - type: StaticPrice
     price: 22 # Frontier: 30<22 - TODO: material value rework
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: DisposalHolder
   categories: [ HideSpawnMenu ]

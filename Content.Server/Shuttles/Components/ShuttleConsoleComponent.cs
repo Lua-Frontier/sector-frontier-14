@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Shuttles.Components;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -52,6 +53,17 @@ namespace Content.Server.Shuttles.Components
         [DataField]
         public InertiaDampeningMode DampeningMode = InertiaDampeningMode.Dampen;
         // End Frontier
+
+        // <Mono>
+        [DataField]
+        public string AutopilotTargetKey = "Target";
+
+        [DataField]
+        public string AutopilotRotationKey = "TargetRotation";
+
+        [DataField]
+        public SoundSpecifier? AutopilotDoneSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/radar_ping.ogg");
+        // </Mono>
 
         // Network Port Button Source Ports
         [DataField]

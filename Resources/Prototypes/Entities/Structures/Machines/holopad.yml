@@ -105,6 +105,8 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   name: long-range holopad
   description: "A floor-mounted device for projecting holographic images to similar devices that are far away."

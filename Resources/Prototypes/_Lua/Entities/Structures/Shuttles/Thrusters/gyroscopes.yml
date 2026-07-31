@@ -1,0 +1,224 @@
+- type: entity
+  id: BaseGyroscope
+  parent: BaseThrusterNormal
+  abstract: true
+  name: gyroscope
+  description: Increases the shuttle's potential angular rotation.
+  components:
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 2000
+    thrust: 2000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+  - type: UpgradePowerDraw
+    powerDrawMultiplier: 0.75
+    scaling: Exponential
+
+- type: entity
+  id: Gyroscope
+  parent: BaseGyroscope
+  components:
+  - type: Machine
+    board: GyroscopeMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn
+      map: ["enum.ThrusterVisualLayers.Thrusting"]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+  - type: PointLight
+    radius: 1.3
+    energy: 0.8
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.1"
+    color: "#4246b3"
+  - type: PirateBountyItem
+    id: Gyroscope
+
+- type: entity
+  id: GyroscopeUnanchored
+  parent: Gyroscope
+  suffix: Unanchored
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+
+- type: entity
+  id: SmallGyroscope
+  parent: Gyroscope
+  name: small gyroscope
+  components:
+  - type: Machine
+    board: SmallGyroscopeMachineCircuitboard
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 250
+    thrust: 250
+    heatSignatureRatio: 0.5
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base_small
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_small
+      map: ["enum.ThrusterVisualLayers.Thrusting"]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 190
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: GyroscopeSecurity
+  parent: Gyroscope
+  suffix: Security
+  components:
+  - type: Machine
+    board: GyroscopeSecurityMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base_sec
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_sec
+      map: ["enum.ThrusterVisualLayers.Thrusting"]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+
+- type: entity
+  id: SmallGyroscopeSecurity
+  parent: SmallGyroscope
+  suffix: Security
+  components:
+  - type: Machine
+    board: SmallGyroscopeSecurityMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base_small_sec
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_small_sec
+      map: ["enum.ThrusterVisualLayers.Thrusting"]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+
+- type: entity
+  id: GyroscopeNfsd
+  parent: GyroscopeSecurity
+  suffix: NFSD
+  components:
+  - type: Machine
+    board: GyroscopeNfsdMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base_nfsd
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_nfsd
+      map: ["enum.ThrusterVisualLayers.Thrusting"]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+
+- type: entity
+  id: SmallGyroscopeNfsd
+  parent: SmallGyroscopeSecurity
+  suffix: NFSD
+  components:
+  - type: Machine
+    board: SmallGyroscopeNfsdMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/gyroscope.rsi
+    snapCardinals: true
+    layers:
+    - state: base_small_nfsd
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+    - state: thrust_burn_small_nfsd
+      map: ["enum.ThrusterVisualLayers.Thrusting"]
+      visible: false
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false

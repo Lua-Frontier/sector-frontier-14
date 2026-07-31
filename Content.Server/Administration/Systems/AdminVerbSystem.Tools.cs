@@ -38,6 +38,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Administration.Systems;
 

@@ -1,149 +1,378 @@
 - type: dungeonConfig
-  id: GateMineshaft
+  id: LuaMineshaft
   layers:
   - !type:PrefabDunGen
     roomWhitelist:
       tags:
       - NFMineshaft
     presets:
-    - Bucket
-    - Wow
-    - SpaceShip
-    - Tall
+    - LuaHub
+    - LuaCluster
+    - LuaGrid
+    - LuaHive
 
   - !type:CorridorDunGen
     width: 3
+    pathLimit: 8192
     tile: FloorCaveDrought
 
   - !type:DungeonEntranceDunGen
-    count: 2
+    count: 4
     tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    contents: NFMiningAirlock
 
   - !type:RoomEntranceDunGen
     tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    contents: NFMiningAirlock
+
+  - !type:BoundaryWallDunGen
+    wall: WallRock
+    cornerWall: WallRock
+    tile: FloorCaveDrought
+
+- type: dungeonConfig
+  id: LuaOutpost
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSalvageOutpost
+    presets:
+    - LuaFortress
+    - LuaMega
+    - LuaCitadel
+    - LuaBastion
+    - LuaCross
+    - LuaHub
+    - LuaWings
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorDark
+    contents: NFMiningAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorDark
+    contents: NFMiningAirlock
 
   - !type:EntranceFlankDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorDark
+    contents: NFMiningWindow
 
   - !type:ExternalWindowDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorDark
+    contents: NFMiningWindow
 
   - !type:WallMountDunGen
-    contents: NFNanoTrasenFacilityWallmounts
-    tile: FloorCaveDrought
+    contents: NFBaseWallMounts
+    tile: FloorDark
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
-
-  - !type:JunctionDunGen
-    width: 1
-    tile: FloorCaveDrought
-    contents: NFBaseWoodSupport
+    wall: WallMining
+    cornerWall: WallMining
+    tile: FloorDark
 
   - !type:JunctionDunGen
     width: 3
-    tile: FloorCaveDrought
-    contents: NFBaseWoodSupport
-
-  - !type:AutoCablingDunGen
-    entity: Catwalk
+    tile: FloorDark
+    contents: NFBaseAirlock
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-    color: "#FFFFFF"
+    contents: NFBaseClutter
 
 - type: dungeonConfig
-  id: GateTinyOutpost
+  id: LuaCaveFactory
   layers:
   - !type:PrefabDunGen
     roomWhitelist:
       tags:
-      - NFMineshaft
+      - NFCaveFactory
     presets:
-    - GateTiny
-    - GateTinySmall
-
-  - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
-
-  - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
-
-- type: dungeonConfig
-  id: GateSmallOutpost
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - NFMineshaft
-    presets:
-    - GateSmall
-    - GatePair
-    - GateSmallCompact
+    - LuaSprawl
+    - LuaMega
+    - LuaGrid
+    - LuaCascade
+    - LuaLongmarch
+    - LuaBucket
+    - LuaCluster
 
   - !type:CorridorDunGen
     width: 3
-    tile: FloorCaveDrought
+    tile: FloorTechMaint
+
+  - !type:DungeonEntranceDunGen
+    count: 4
+    tile: FloorTechMaint
+    contents: NFLavaBrigEntrance
 
   - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
+    tile: FloorTechMaint
+    contents: NFBaseAirlock
+
+  - !type:WallMountDunGen
+    contents: NFCaveFactoryWallMounts
+    tile: FloorTechMaint
 
   - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorTechMaint
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorTechMaint
+    contents: NFBaseAirlock
 
   - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
+    contents: NFBaseClutter
 
 - type: dungeonConfig
-  id: GateMediumOutpost
+  id: LuaExperiment
   layers:
   - !type:PrefabDunGen
     roomWhitelist:
       tags:
-      - NFMineshaft
+      - NFSalvageExperiment
     presets:
-    - GateTriplet
+    - LuaCampus
+    - LuaMega
+    - LuaGrid
+    - LuaSpine
+    - LuaFork
+    - LuaRing
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorWhite
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorWhite
+    contents: NFLavaBrigEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorWhite
+    contents: NFBaseAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorWhite
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorWhite
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFMedSciWallMounts
+    tile: FloorWhite
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorWhite
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorWhite
+    contents: NFBaseAirlock
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+- type: dungeonConfig
+  id: LuaLavaBrig
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFLavaBrig
+    presets:
+    - LuaFortress
+    - LuaCampus
+    - LuaGateHex
+    - LuaBastion
+    - LuaCross
+    - LuaHive
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorDark
+    contents: NFLavaBrigEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:BoundaryWallDunGen
+    wall: WallReinforced
+    cornerWall: WallReinforced
+    tile: FloorDark
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+- type: dungeonConfig
+  id: LuaHaunted
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFHaunted
+    presets:
+    - LuaMega
+    - LuaWow
+    - LuaTall
+    - LuaHive
+    - LuaSpine
+    - LuaCluster
+
+  - !type:WormCorridorDunGen
+    width: 3
+    tile: FloorCaveDrought
+
+  - !type:CorridorClutterDunGen
+    contents: HauntedClutter
+
+  - !type:BoundaryWallDunGen
+    tile: FloorCaveDrought
+    wall: WallRock
+
+- type: dungeonConfig
+  id: LuaSnowyLabs
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFSnowyLabs
+    presets:
+    - LuaCampus
+    - LuaGrid
+    - LuaFork
+    - LuaCitadel
+    - LuaBucket
+    - LuaRing
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorWhite
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorWhite
+    contents: NFSnowyLabsEntrance
+
+  - !type:RoomEntranceDunGen
+    tile: FloorWhite
+    contents: NFBaseAirlock
+
+  - !type:WallMountDunGen
+    contents: NFSnowyLabsWalls
+    tile: FloorWhite
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorWhite
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorWhite
+    contents: NFBaseAirlock
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+- type: dungeonConfig
+  id: LuaLavaMercenary
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFLavaMercenary
+    presets:
+    - LuaBastion
+    - LuaFortress
+    - LuaCross
+    - LuaCitadel
+    - LuaWings
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorDark
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorDark
+    contents: NFMercenaryAirlock
+
+  - !type:RoomEntranceDunGen
+    tile: FloorDark
+    contents: NFMercenaryAirlock
+
+  - !type:EntranceFlankDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFLavaMercenaryWallMounts
+    tile: FloorDark
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolid
+    cornerWall: WallReinforced
+    tile: FloorDark
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorDark
+    contents: NFMercenaryAirlock
+
+  - !type:CornerClutterDunGen
+    contents: NFBaseClutter
+
+- type: dungeonConfig
+  id: LuaVirologyLab
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - NFVirologyLab
+    presets:
+    - LuaCampus
+    - LuaGrid
+    - LuaSpine
+    - LuaFork
+    - LuaRing
 
   - !type:CorridorDunGen
     width: 3
     tile: FloorSteel
 
   - !type:DungeonEntranceDunGen
-    count: 2
+    count: 3
     tile: FloorSteel
-    contents: NFBaseAirlock
+    contents: NFVirologyAirlock
 
   - !type:RoomEntranceDunGen
     tile: FloorSteel
-    contents: NFBaseAirlock
+    contents: NFVirologyAirlock
 
   - !type:EntranceFlankDunGen
     tile: FloorSteel
@@ -163,141 +392,9 @@
     tile: FloorSteel
 
   - !type:JunctionDunGen
-    width: 1
-    tile: FloorSteel
-    contents: NFBaseAirlock
-
-  - !type:JunctionDunGen
     width: 3
     tile: FloorSteel
-    contents: NFBaseAirlock
-
-  - !type:AutoCablingDunGen
-    entity: CableApcExtension
-
-  - !type:CornerClutterDunGen
-    contents: NFBaseClutter
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
-    color: "#D381C996"
-
-- type: dungeonConfig
-  id: GateScatteredCaches
-  minCount: 3
-  maxCount: 5
-  minOffset: 20
-  maxOffset: 40
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - NFMineshaft
-    presets:
-    - GateTiny
-    - GateTinySmall
-    - GateCompact
-
-  - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
-
-  - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
-
-- type: dungeonConfig
-  id: GateScatteredOutposts
-  minCount: 2
-  maxCount: 3
-  minOffset: 25
-  maxOffset: 50
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - NFMineshaft
-    presets:
-    - GateSmall
-    - GatePair
-    - GateSmallCompact
-
-  - !type:CorridorDunGen
-    width: 3
-    tile: FloorCaveDrought
-
-  - !type:RoomEntranceDunGen
-    tile: FloorCaveDrought
-    contents: NFBaseWoodWall
-
-  - !type:BoundaryWallDunGen
-    wall: WallRock
-    cornerWall: WallRock
-    tile: FloorCaveDrought
-
-  - !type:CornerClutterDunGen
-    contents: NFMineshaftClutter
-
-- type: dungeonConfig
-  id: GateTinyLab
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - NFSalvageExperiment
-    presets:
-    - GateTiny
-    - GateTinySmall
-    - GateCompact
-
-  - !type:BoundaryWallDunGen
-    wall: WallSolid
-    cornerWall: WallReinforced
-    tile: FloorSteel
-
-  - !type:CornerClutterDunGen
-    contents: NFBaseClutter
-
-- type: dungeonConfig
-  id: GateSmallLab
-  layers:
-  - !type:PrefabDunGen
-    roomWhitelist:
-      tags:
-      - NFSalvageExperiment
-    presets:
-    - GateSmall
-    - GatePair
-
-  - !type:CorridorDunGen
-    width: 3
-    tile: FloorSteel
-
-  - !type:RoomEntranceDunGen
-    tile: FloorSteel
-    contents: NFBaseAirlock
-
-  - !type:BoundaryWallDunGen
-    wall: WallSolid
-    cornerWall: WallReinforced
-    tile: FloorSteel
-
-  - !type:AutoCablingDunGen
-    entity: CableApcExtension
+    contents: NFVirologyAirlock
 
   - !type:CornerClutterDunGen
     contents: NFBaseClutter

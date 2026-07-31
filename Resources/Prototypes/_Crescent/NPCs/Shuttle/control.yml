@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseMachinePowered ]
+  parent: [ BaseMachinePowered, BaseStructureDisableToolUse ]
   id: DroneController
   name: drone control server
   description: Pilots the drone it's on, if controlled by a drone control console.
@@ -9,11 +9,9 @@
     snapCardinals: true
     layers:
     - state: telecom-nopower
-    - state: telecom-stripe
     - state: telecom-on
       shader: unshaded
-      visible: false
-      map: ["telecom-on"]
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
     - state: telecom-open
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: GenericVisualizer
@@ -56,6 +54,7 @@
   - type: Pullable
   - type: DroneControl
   - type: ShipNpcTarget
+  - type: TargetSeekingTarget # Mono
   - type: HTN
     sleepPlayerCheckRangeOverride: 100000 # 100k aka basically never sleep
     rootTask:
@@ -95,6 +94,7 @@
       enum.DroneConsoleUiKey.Key:
         type: DroneConsoleBoundUserInterface
   - type: RadarConsole
+    noRotate: true
   - type: WorldLoader
     radius: 256
   - type: DeviceNetwork

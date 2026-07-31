@@ -63,6 +63,17 @@ public sealed class VendingInteractionTest : InteractionTest
     ejectDelay: 0 # no delay to speed up tests
   - type: Sprite
     sprite: error.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [""Breakage""]
+  - type: Repairable
+    doAfterDelay: 1
+    fuelCost: 0
 ";
 
     [Test]
@@ -204,6 +215,7 @@ public sealed class VendingInteractionTest : InteractionTest
         var damage = new DamageSpecifier(damageType, FixedPoint2.New(100));
         await Server.WaitPost(() => damageableSys.TryChangeDamage(SEntMan.GetEntity(Target), damage, ignoreResistances: true));
         await RunTicks(5);
+        Assert.That(SEntMan.TryGetEntity(Target!.Value, out _), Is.True, $"{VendingMachineProtoId} was deleted when broken (expected Breakage, not Destruction).");
         Assert.That(damageableComp.Damage.GetTotal(), Is.GreaterThan(FixedPoint2.Zero), $"{VendingMachineProtoId} did not take damage.");
     }
 }

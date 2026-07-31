@@ -1,0 +1,49 @@
+- type: entity
+  id: ThrusterUSSP
+  parent: ThrusterSecurity
+  suffix: USSP
+  components:
+  - type: Machine
+    board: ThrusterUSSPMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_ussp
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#FF430D"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#FF430D"
+
+- type: entity
+  id: ThrusterMediumUSSP
+  parent: ThrusterMedium
+  suffix: USSP
+  components:
+  - type: Thruster
+    baseThrust: 350
+    thrust: 469.7
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster64.rsi
+    offset: 0.5,-0.5
+    layers:
+    - state: base_ussp_medium
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_medium
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#FF430D"
+    - state: thrust_burn_medium_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2
+      color: "#FF430D"

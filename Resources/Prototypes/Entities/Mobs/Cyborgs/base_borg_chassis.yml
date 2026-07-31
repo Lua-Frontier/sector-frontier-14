@@ -6,6 +6,9 @@
   save: false
   abstract: true
   components:
+  - type: SurgerySpeedModifier # Shitmed
+  - type: SurgeryTarget # Shitmed
+  - type: Sanitized # Shitmed
   - type: Reactive
     groups:
       Acidic: [Touch]

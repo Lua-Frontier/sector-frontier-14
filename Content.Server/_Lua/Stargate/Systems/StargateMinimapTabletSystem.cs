@@ -2,6 +2,8 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 using Content.Server._Lua.Stargate.Components;
+using Content.Server.Shuttles.Components;
+using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Stargate;
 using Content.Shared._Lua.Stargate.Components;
 using Content.Shared._Lua.Stargate.PlanetQuest;
@@ -9,6 +11,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -122,15 +125,30 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
             if (player == null) continue;
             var xform = Transform(player.Value);
             if (xform.MapUid == null) continue;
-            if (!TryComp<StargateDestinationComponent>(xform.MapUid.Value, out var dest)) continue;
+
+            byte[]? address = null;
+
+            if (TryComp<StargateDestinationComponent>(xform.MapUid.Value, out var dest))
+            {
+                address = dest.Address;
+            }
+            else if (HasComp<ExpeditionPlanetComponent>(xform.MapUid.Value))
+            {
+                address = ExpeditionAddress(xform.MapUid.Value);
+            }
+
+            if (address == null) continue;
+
             var disk = GetDisk(uid, 1);
             if (disk == null || !TryComp<StargateMinimapDiskComponent>(disk, out var dc)) continue;
-            dc.CurrentPlanetAddress = dest.Address;
-            var key = AddressKey(dest.Address);
-            if (!dc.Planets.TryGetValue(key, out var pd))
+
+            dc.CurrentPlanetAddress = address;
+
+            var planetKey = AddressKey(address);
+            if (!dc.Planets.TryGetValue(planetKey, out var pd))
             {
                 pd = new StargateMinimapPlanetData();
-                dc.Planets[key] = pd;
+                dc.Planets[planetKey] = pd;
             }
             if (!TryComp<MapGridComponent>(xform.MapUid.Value, out var grid)) continue;
             ExploreTiles(xform.MapUid.Value, grid, xform, pd);
@@ -227,16 +245,29 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     {
         var player = FindHoldingPlayer(uid);
         var isSg = false;
+        var isExpedition = false;
         Vector2? gatePos = null;
         Vector2? playerPos = null;
         if (player != null)
         {
             var xform = Transform(player.Value);
-            if (xform.MapUid != null && TryComp<StargateDestinationComponent>(xform.MapUid.Value, out var dest))
+            if (xform.MapUid != null)
             {
-                isSg = true;
-                if (dest.GateUid != null && TryComp<TransformComponent>(dest.GateUid.Value, out var gx)) gatePos = _xform.GetWorldPosition(gx);
-                playerPos = _xform.GetWorldPosition(xform);
+                if (TryComp<StargateDestinationComponent>(xform.MapUid.Value, out var dest))
+                {
+                    isSg = true;
+                    if (dest.GateUid != null && TryComp<TransformComponent>(dest.GateUid.Value, out var gx))
+                        gatePos = _xform.GetWorldPosition(gx);
+                    playerPos = _xform.GetWorldPosition(xform);
+                }
+                else if (TryComp<ExpeditionPlanetComponent>(xform.MapUid.Value, out var expPlanet))
+                {
+                    isSg = true;
+                    isExpedition = true;
+                    gatePos = GetExpeditionShuttlePosition(xform.MapUid.Value)
+                        ?? new Vector2(expPlanet.LandingOrigin.X, expPlanet.LandingOrigin.Y);
+                    playerPos = _xform.GetWorldPosition(xform);
+                }
             }
         }
         var d1 = GetDisk(uid, 1);
@@ -255,9 +286,24 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
             }
         }
         CollectQuestTargetZones(player, isSg, _questZonesBuffer);
-        _ui.SetUiState(uid, StargateMinimapTabletUiKey.Key, new StargateMinimapUiState(isSg, d1 != null, d2 != null, _chunksBuffer, _markersBuffer, gatePos, playerPos, _questZonesBuffer.Count > 0 ? _questZonesBuffer : null));
+        _ui.SetUiState(uid, StargateMinimapTabletUiKey.Key, new StargateMinimapUiState(isSg, isExpedition, d1 != null, d2 != null, _chunksBuffer, _markersBuffer, gatePos, playerPos, _questZonesBuffer.Count > 0 ? _questZonesBuffer : null));
         UpdateTabletAppearance(uid);
     }
+
+    private Vector2? GetExpeditionShuttlePosition(EntityUid mapUid)
+    {
+        var shuttleQuery = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
+        while (shuttleQuery.MoveNext(out _, out _, out var shuttleXform))
+        {
+            if (shuttleXform.MapUid != mapUid)
+                continue;
+
+            return _xform.GetWorldPosition(shuttleXform);
+        }
+
+        return null;
+    }
+
     private void UpdateTabletAppearance(EntityUid uid)
     {
         var hasDisk = GetDisk(uid, 1) != null || GetDisk(uid, 2) != null;
@@ -266,6 +312,12 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     private static string AddressKey(byte[] address)
     {
         return string.Join("-", address);
+    }
+
+    private static byte[] ExpeditionAddress(EntityUid mapUid)
+    {
+        var id = (int) mapUid;
+        return new[] { (byte) 255, (byte) (id >> 24), (byte) (id >> 16), (byte) (id >> 8), (byte) id };
     }
 
     private static StargateMinimapPlanetData? GetCurrentPlanetData(StargateMinimapDiskComponent dc)

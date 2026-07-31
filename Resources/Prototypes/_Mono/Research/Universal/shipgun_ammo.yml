@@ -10,9 +10,26 @@
   cost: 20000
   recipeUnlocks:
   - CharonSlugUniversal
+  - CharonApheSlugUniversal
+  - CharonEmpSlugUniversal
   technologyPrerequisites:
   - ShuttleGrenade
   position: 7.732, 8.85
+- type: technology
+  id: UniversalSubnuclearRailgunAmmo
+  name: research-technology-universal-railgun-ammo-subnuclear
+  entityIcon: CharonSubnuclearSlugAmmo
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - CharonSubnuclearSlugUniversal
+  technologyPrerequisites:
+  - UniversalRailgunAmmo
+  position: 8.5, 10.5
 - type: technology
   id: UniversalTorpedoAmmo
   name: research-technology-universal-asm220-ammo
@@ -25,10 +42,26 @@
   cost: 40000
   recipeUnlocks:
   - ASM220TorpedoHEUniversal
+  - ASM220TorpedoHESACLOSUniversal
   - ASM220TorpedoECMUniversal
   technologyPrerequisites:
   - UniversalRailgunAmmo
   position: 9.214, 9.827
+- type: technology
+  id: UniversalTorpedoAmmoAdvanced
+  name: research-technology-universal-asm220-advanced
+  entityIcon: Asm220TorpedoLOSAT
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  - Syndicate
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - ASM220TorpedoLOSATUniversal
+  technologyPrerequisites:
+  - UniversalTorpedoAmmo
+  position: 10.0, 10.5
 - type: technology
   id: Universal150mmAmmo
   name: research-technology-universal-150mm-ammo
@@ -41,6 +74,7 @@
   cost: 15000
   recipeUnlocks:
   - 150mmApShellUniversal
+  - 150mmApheShellUniversal
   - 150mmEmpShellUniversal
   technologyPrerequisites:
   - UniversalTorpedoAmmo
@@ -76,4 +110,3 @@
   technologyPrerequisites:
   - UniversalLightFighterOrdinance
   position: 13.541, 12.778
-...

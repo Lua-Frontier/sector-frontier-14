@@ -1,4 +1,3 @@
-using Content.Server.Salvage.Magnet;
 using Content.Server.Solar.Components;
 using Content.Shared.Prototypes;
 using Robust.Shared.Prototypes;
@@ -8,11 +7,9 @@ namespace Content.IntegrationTests.Tests._NF;
 [TestFixture]
 public sealed class IllegalComponentTest
 {
-    // A list of components to check all entity prototypes for.
     private static readonly Type[] IllegalComponents =
     {
-        typeof(SolarPanelComponent), // Frontier: use NF variant
-        typeof(SalvageMobRestrictionsComponent), // Frontier: use NF variant
+        typeof(SolarPanelComponent),
     };
 
     [Test]

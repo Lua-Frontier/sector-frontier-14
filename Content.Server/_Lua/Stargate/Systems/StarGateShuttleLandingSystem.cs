@@ -2,6 +2,8 @@ using Content.Server._Lua.Shipyard.Components;
 using Content.Server._Lua.Stargate.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Lua.Expedition;
+using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Stargate;
 using Content.Shared._Lua.Stargate.Components;
 using Content.Shared._NF.Shipyard.Components;
@@ -27,7 +29,6 @@ namespace Content.Server._Lua.Stargate.Systems;
 
 public sealed class StarGateShuttleLandingSystem : EntitySystem
 {
-    private const float PlanetShuttleMassLimit = 230f;
     private const float BeaconBlockRadius = 6f;
     private const float ConsoleBlockRadius = 8f;
     private const float GateBlockRadius = 8f;
@@ -189,9 +190,9 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-shuttle-parked"), ent, user);
             return;
         }
-        if (_physicsQuery.TryGetComponent(shuttleUid, out var shuttlePhysics) && shuttlePhysics.Mass > PlanetShuttleMassLimit)
+        if (_physicsQuery.TryGetComponent(shuttleUid, out var shuttlePhysics) && shuttlePhysics.Mass > PlanetMassLimits.ShuttleMassLimit)
         {
-            _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-too-heavy", ("mass", PlanetShuttleMassLimit)), ent, user);
+            _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-too-heavy", ("mass", PlanetMassLimits.ShuttleMassLimit)), ent, user);
             return;
         }
         if (!_shuttle.CanFTL(shuttleUid, out var reason))
@@ -257,9 +258,9 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-shuttle-parked"), ent, user);
             return;
         }
-        if (_physicsQuery.TryGetComponent(shuttleUid, out var shuttlePhysics) && shuttlePhysics.Mass > PlanetShuttleMassLimit)
+        if (_physicsQuery.TryGetComponent(shuttleUid, out var shuttlePhysics) && shuttlePhysics.Mass > PlanetMassLimits.ShuttleMassLimit)
         {
-            _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-too-heavy", ("mass", PlanetShuttleMassLimit)), ent, user);
+            _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-too-heavy", ("mass", PlanetMassLimits.ShuttleMassLimit)), ent, user);
             return;
         }
         if (!_shuttle.CanFTL(shuttleUid, out var reason))

@@ -4,7 +4,7 @@
 
 - type: pointOfInterest
   id: PirateCove
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Аванпост Пиратов'
   minimumDistance: 1800
   maximumDistance: 2800

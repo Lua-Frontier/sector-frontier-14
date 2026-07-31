@@ -1,5 +1,5 @@
 using Content.Server.Popups;
-using Content.Server.Salvage.JobBoard;
+using Content.Server._Lua.Salvage.JobBoard;
 using Content.Shared.Cargo.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Timing;

@@ -2,9 +2,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
-using Content.Server.Salvage.Expeditions;
 using Content.Server.Gateway.Components;
 using Content.Server._Lua.MapperGrid; // Lua
+using Content.Shared._Lua.Expedition;
 using Content.Shared.Tiles;
 using Content.Shared.Lua.CLVar; // Lua
 
@@ -26,6 +26,9 @@ public sealed class GridCleanupSystem : EntitySystem
     // The delay before cleaning up a small grid (in seconds)
     private const float CleanupDelay = 300.0f;
 
+    private const float EmptyGridCleanupDelay = 10.0f;
+    private const int MaxDeletionsPerTick = 3;
+
     // Dictionary to track grids scheduled for deletion
     private readonly Dictionary<EntityUid, TimeSpan> _pendingCleanup = new();
     private readonly List<EntityUid> _pendingCleanupRemoveBuffer = new();
@@ -45,7 +48,7 @@ public sealed class GridCleanupSystem : EntitySystem
         // Subscribe to grid events
         SubscribeLocalEvent<GridStartupEvent>(OnGridStartup);
         SubscribeLocalEvent<MapGridComponent, TileChangedEvent>(OnTileChanged);
-        SubscribeLocalEvent<SalvageExpeditionComponent, ComponentStartup>(OnExpeditionStartup);
+        SubscribeLocalEvent<ExpeditionMapComponent, ComponentStartup>(OnExpeditionStartup);
     }
 
     private bool IsCleanupEnabled()
@@ -66,7 +69,7 @@ public sealed class GridCleanupSystem : EntitySystem
         CheckGrid(ent);
     }
 
-    private void OnExpeditionStartup(EntityUid uid, SalvageExpeditionComponent component, ComponentStartup args)
+    private void OnExpeditionStartup(EntityUid uid, ExpeditionMapComponent component, ComponentStartup args)
     {
         // Make sure any grid that gets the expedition component is removed from cleanup
         if (_pendingCleanup.ContainsKey(uid))
@@ -95,46 +98,41 @@ public sealed class GridCleanupSystem : EntitySystem
         if (HasComp<GatewayGeneratorDestinationComponent>(gridUid) || HasComp<MapperGridComponent>(gridUid))
             return;
 
-        // Skip if already scheduled for deletion
-        if (_pendingCleanup.ContainsKey(gridUid))
+        if (HasComp<ExpeditionPlanetComponent>(gridUid) || HasComp<ExpeditionMapComponent>(gridUid))
             return;
 
-        // Skip if this is a planet expedition grid
-        if (HasComp<SalvageExpeditionComponent>(gridUid))
-        {
-            //Logger.DebugS("salvage", $"CheckGrid: Skipping grid {gridUid} with SalvageExpeditionComponent");
-            return;
-        }
-
-        // Skip if the parent map has a SalvageExpeditionComponent
         var transform = Transform(gridUid);
         var mapId = transform.MapID;
         var mapUid = _mapManager.GetMapEntityId(mapId);
 
-        if (HasComp<SalvageExpeditionComponent>(mapUid))
+        if (HasComp<ExpeditionMapComponent>(mapUid) || HasComp<ExpeditionPlanetComponent>(mapUid))
+            return;
+
+        var tileCount = CountTiles((gridUid, grid));
+
+        if (tileCount >= MinimumTiles)
         {
-            //Logger.DebugS("salvage", $"CheckGrid: Skipping grid {gridUid} on expedition map {mapUid}");
+            _pendingCleanup.Remove(gridUid);
+            return;
+        }
+        if (_pendingCleanup.ContainsKey(gridUid))
+        {
+            if (tileCount > 0)
+                _pendingCleanup[gridUid] = _timing.CurTime + TimeSpan.FromSeconds(CleanupDelay);
             return;
         }
 
-        // Count tiles
-        var tileCount = CountTiles((gridUid, grid));
-
-        // If the tile count is below our threshold, schedule it for deletion
-        if (tileCount < MinimumTiles)
-        {
-            Logger.DebugS("salvage", $"CheckGrid: Scheduling grid {gridUid} for cleanup with {tileCount} tiles");
-            ScheduleGridCleanup(gridUid);
-        }
+        Logger.DebugS("salvage", $"CheckGrid: Scheduling grid {gridUid} for cleanup with {tileCount} tiles");
+        ScheduleGridCleanup(gridUid, tileCount == 0 ? EmptyGridCleanupDelay : CleanupDelay);
     }
 
-    private void ScheduleGridCleanup(EntityUid gridUid)
+    private void ScheduleGridCleanup(EntityUid gridUid, float delaySeconds)
     {
         // Skip if already scheduled
         if (_pendingCleanup.ContainsKey(gridUid))
             return;
 
-        var targetTime = _timing.CurTime + TimeSpan.FromSeconds(CleanupDelay);
+        var targetTime = _timing.CurTime + TimeSpan.FromSeconds(delaySeconds);
         _pendingCleanup[gridUid] = targetTime;
     }
 
@@ -148,6 +146,7 @@ public sealed class GridCleanupSystem : EntitySystem
         // Check if any grids need to be cleaned up
         var currentTime = _timing.CurTime;
         _pendingCleanupRemoveBuffer.Clear();
+        var deletionsThisTick = 0;
 
         foreach (var (gridUid, targetTime) in _pendingCleanup)
         {
@@ -170,7 +169,7 @@ public sealed class GridCleanupSystem : EntitySystem
             }
 
             // Skip if this is a planet expedition grid
-            if (HasComp<SalvageExpeditionComponent>(gridUid))
+            if (HasComp<ExpeditionMapComponent>(gridUid) || HasComp<ExpeditionPlanetComponent>(gridUid))
             {
                 Logger.DebugS("salvage", $"Update: Removing expedition grid {gridUid} from cleanup queue");
                 _pendingCleanupRemoveBuffer.Add(gridUid);
@@ -182,7 +181,7 @@ public sealed class GridCleanupSystem : EntitySystem
             var mapId = xform.MapID;
             var mapUid = _mapManager.GetMapEntityId(mapId);
 
-            if (HasComp<SalvageExpeditionComponent>(mapUid))
+            if (HasComp<ExpeditionMapComponent>(mapUid) || HasComp<ExpeditionPlanetComponent>(mapUid))
             {
                 Logger.DebugS("salvage", $"Update: Removing grid {gridUid} on expedition map {mapUid} from cleanup queue");
                 _pendingCleanupRemoveBuffer.Add(gridUid);
@@ -204,9 +203,13 @@ public sealed class GridCleanupSystem : EntitySystem
                 continue;
             }
 
+            if (deletionsThisTick >= MaxDeletionsPerTick)
+                break;
+
             // Queue the grid for deletion
             QueueDel(gridUid);
-            Logger.DebugS("salvage", $"Update: Queuing grid {gridUid} for deletion with {CountTiles((gridUid, grid))} tiles");
+            deletionsThisTick++;
+            Logger.DebugS("salvage", $"Update: Queuing grid {gridUid} for deletion with {tileCount} tiles");
             _pendingCleanupRemoveBuffer.Add(gridUid);
         }
 

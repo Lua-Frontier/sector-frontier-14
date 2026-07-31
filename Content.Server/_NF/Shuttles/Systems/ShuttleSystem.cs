@@ -23,6 +23,8 @@ public sealed partial class ShuttleSystem
     private void NfInitialize()
     {
         SubscribeLocalEvent<ShuttleConsoleComponent, SetInertiaDampeningRequest>(OnSetInertiaDampening);
+        SubscribeLocalEvent<ShuttleConsoleComponent, SetMaxShuttleSpeedRequest>(OnSetMaxShuttleSpeed);
+        SubscribeLocalEvent<ShuttleConsoleComponent, SetMaxShuttleAngularSpeedRequest>(OnSetMaxShuttleAngularSpeed);
         SubscribeLocalEvent<ShuttleConsoleComponent, SetServiceFlagsRequest>(NfSetServiceFlags);
         SubscribeLocalEvent<ShuttleConsoleComponent, SetTargetCoordinatesRequest>(NfSetTargetCoordinates);
         SubscribeLocalEvent<ShuttleConsoleComponent, SetHideTargetRequest>(NfSetHideTarget);
@@ -81,6 +83,36 @@ public sealed partial class ShuttleSystem
 
         if (SetInertiaDampening(uid, shuttleComponent, gridUid, args.Mode) && args.Mode != InertiaDampeningMode.Query) // Lua
             component.DampeningMode = args.Mode;
+    }
+
+    private void OnSetMaxShuttleSpeed(EntityUid uid, ShuttleConsoleComponent component, SetMaxShuttleSpeedRequest args)
+    {
+        if (!TryComp<PilotComponent>(args.Actor, out var pilot))
+            return;
+
+        var maxSpeed = args.MaxSpeed;
+        if (maxSpeed is { } speed)
+            maxSpeed = Math.Max(speed, 0f);
+
+        pilot.SetMaxVelocity = maxSpeed;
+
+        if (TryGetShuttle(uid, out var gridUid))
+            _console.RefreshShuttleConsoles(gridUid);
+    }
+
+    private void OnSetMaxShuttleAngularSpeed(EntityUid uid, ShuttleConsoleComponent component, SetMaxShuttleAngularSpeedRequest args)
+    {
+        if (!TryComp<PilotComponent>(args.Actor, out var pilot))
+            return;
+
+        var maxAngular = args.MaxAngularSpeed;
+        if (maxAngular is { } speed)
+            maxAngular = Math.Max(speed, 0f);
+
+        pilot.SetMaxAngularVelocity = maxAngular;
+
+        if (TryGetShuttle(uid, out var gridUid))
+            _console.RefreshShuttleConsoles(gridUid);
     }
 
     public InertiaDampeningMode NfGetInertiaDampeningMode(EntityUid entity)

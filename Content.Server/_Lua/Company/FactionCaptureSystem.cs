@@ -19,7 +19,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -36,14 +35,14 @@ public sealed class FactionCaptureSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly FactionWarSystem _wars = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-
-    private readonly HashSet<EntityUid> _nearby = new();
+    private readonly HashSet<Entity<ActorComponent>> _nearbyActors = new();
     private readonly HashSet<EntityUid> _zonedStations = new();
     private readonly Dictionary<EntityUid, CaptureHudTracker> _captureHudTrackers = new();
     private readonly Dictionary<string, int> _participantCompanies = new(StringComparer.OrdinalIgnoreCase);
-
-    private const float CaptureUpdateIntervalSeconds = 0.25f;
-    private static readonly TimeSpan CaptureHudInterval = TimeSpan.FromSeconds(0.25f);
+    private readonly HashSet<ICommonSession> _hudRecipients = new();
+    private const float CaptureUpdateIntervalSeconds = 0.5f;
+    private static readonly TimeSpan CaptureHudInterval = TimeSpan.FromSeconds(0.5f);
+    private const LookupFlags ActorLookupFlags = LookupFlags.Dynamic | LookupFlags.Approximate;
     private float _captureUpdateAccumulator;
 
     public override void Initialize()
@@ -80,19 +79,16 @@ public sealed class FactionCaptureSystem : EntitySystem
             }
 
             _zonedStations.Add(station.Value);
-            UpdateCapture(station.Value, capture, owned, zoneXform.Coordinates, captureFrameTime, zone);
+            CollectActorsInRange(zoneXform.Coordinates, zone.CaptureRadius ?? capture.CaptureRadius);
+            UpdateCapture(station.Value, capture, owned, captureFrameTime, zone);
         }
 
         var stationQuery = EntityQueryEnumerator<FactionCaptureComponent, FactionOwnedStationComponent>();
         while (stationQuery.MoveNext(out var uid, out var capture, out var owned))
         {
-            if (_zonedStations.Contains(uid) || !capture.CaptureWholeStation)
-                continue;
-
-            if (!TryGetWholeStationCaptureArea(uid, capture.CaptureRadius, out var center, out var radius))
-                continue;
-
-            UpdateCapture(uid, capture, owned, center, captureFrameTime, null, radius);
+            if (_zonedStations.Contains(uid) || !capture.CaptureWholeStation) continue;
+            CollectActorsOnStation(uid);
+            UpdateCapture(uid, capture, owned, captureFrameTime, null);
         }
     }
 
@@ -114,7 +110,6 @@ public sealed class FactionCaptureSystem : EntitySystem
     private void OnOwnedStationStartup(EntityUid uid, FactionOwnedStationComponent component, ComponentStartup args)
     {
         var capture = EnsureComp<FactionCaptureComponent>(uid);
-
         InitializeCapture(uid, capture);
     }
 
@@ -126,7 +121,6 @@ public sealed class FactionCaptureSystem : EntitySystem
 
     private void InitializeCapture(EntityUid uid, FactionCaptureComponent capture)
     {
-
         if (capture.RequiredAttackers <= 0)
             capture.RequiredAttackers = _cfg.GetCVar(CLVars.FactionWarCaptureRequiredAttackers);
 
@@ -134,7 +128,25 @@ public sealed class FactionCaptureSystem : EntitySystem
             capture.CaptureDuration = _cfg.GetCVar(CLVars.FactionWarCaptureDurationSeconds);
     }
 
-    private void UpdateCapture(EntityUid station, FactionCaptureComponent capture, FactionOwnedStationComponent owned, EntityCoordinates center, float frameTime, FactionCaptureZoneComponent? zone, float? fallbackRadiusOverride = null)
+    private void CollectActorsInRange(EntityCoordinates center, float radius)
+    {
+        _nearbyActors.Clear();
+        if (radius <= 0f) return;
+        _lookup.GetEntitiesInRange(center, radius, _nearbyActors, ActorLookupFlags);
+    }
+
+    private void CollectActorsOnStation(EntityUid station)
+    {
+        _nearbyActors.Clear();
+        var query = EntityQueryEnumerator<ActorComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var actor, out var xform))
+        {
+            if (_stations.GetOwningStation(uid, xform) != station) continue;
+            _nearbyActors.Add((uid, actor));
+        }
+    }
+
+    private void UpdateCapture(EntityUid station, FactionCaptureComponent capture, FactionOwnedStationComponent owned, float frameTime, FactionCaptureZoneComponent? zone)
     {
         if (!owned.CanBeCaptured)
         {
@@ -144,10 +156,6 @@ public sealed class FactionCaptureSystem : EntitySystem
 
         _ownedStations.TryGetCurrentOwner(station, out var ownerCompany);
         var isUnownedStation = string.IsNullOrWhiteSpace(ownerCompany);
-        var radius = zone?.CaptureRadius ?? fallbackRadiusOverride ?? capture.CaptureRadius;
-
-        _nearby.Clear();
-        _lookup.GetEntitiesInRange(center, radius, _nearby);
 
         string? attackerCompany;
         if (isUnownedStation)
@@ -187,7 +195,6 @@ public sealed class FactionCaptureSystem : EntitySystem
                     requiredAttackers,
                     counts.defenders,
                     true));
-
             return;
         }
 
@@ -196,7 +203,6 @@ public sealed class FactionCaptureSystem : EntitySystem
             if (!pausedIfNoAttackers)
             {
                 ResetCapture(station, capture);
-
                 return;
             }
 
@@ -212,7 +218,6 @@ public sealed class FactionCaptureSystem : EntitySystem
                     requiredAttackers,
                     counts.defenders,
                     true));
-
             return;
         }
 
@@ -256,50 +261,13 @@ public sealed class FactionCaptureSystem : EntitySystem
         CompleteCapture(station, capture, owned, attackerCompany, ownerCompany);
     }
 
-    private bool TryGetWholeStationCaptureArea(EntityUid station, float configuredRadius, out EntityCoordinates center, out float radius)
-    {
-        center = default;
-        radius = configuredRadius;
-
-        if (!TryComp<StationDataComponent>(station, out var stationData))
-            return false;
-
-        EntityUid? largestGrid = null;
-        MapGridComponent? largestGridComp = null;
-        var largestSize = 0f;
-
-        foreach (var gridUid in stationData.Grids)
-        {
-            if (!TryComp<MapGridComponent>(gridUid, out var gridComp))
-                continue;
-
-            var gridSize = gridComp.LocalAABB.Size.LengthSquared();
-            if (gridSize <= largestSize)
-                continue;
-
-            largestSize = gridSize;
-            largestGrid = gridUid;
-            largestGridComp = gridComp;
-        }
-
-        if (largestGrid == null || largestGridComp == null)
-            return false;
-
-        center = new EntityCoordinates(largestGrid.Value, largestGridComp.LocalAABB.Center);
-        radius = MathF.Max(configuredRadius, MathF.Max(largestGridComp.LocalAABB.Width, largestGridComp.LocalAABB.Height) * 0.5f);
-        return Transform(largestGrid.Value).MapUid != null;
-    }
-
     private (int attackers, int defenders) CountParticipants(string attackerCompany, string? defenderCompany)
     {
         var attackers = 0;
         var defenders = 0;
 
-        foreach (var entity in _nearby)
+        foreach (var (entity, _) in _nearbyActors)
         {
-            if (!TryComp<ActorComponent>(entity, out _))
-                continue;
-
             if (!TryComp<CompanyComponent>(entity, out var company))
                 continue;
 
@@ -324,11 +292,8 @@ public sealed class FactionCaptureSystem : EntitySystem
     {
         _participantCompanies.Clear();
 
-        foreach (var entity in _nearby)
+        foreach (var (entity, _) in _nearbyActors)
         {
-            if (!TryComp<ActorComponent>(entity, out _))
-                continue;
-
             if (!TryComp<CompanyComponent>(entity, out var company))
                 continue;
 
@@ -370,14 +335,10 @@ public sealed class FactionCaptureSystem : EntitySystem
     private bool TryGetWarCaptureAttacker(string defendingCompanyId, string? preferredCompany, out string? attackerCompany)
     {
         attackerCompany = null;
-
         _participantCompanies.Clear();
 
-        foreach (var entity in _nearby)
+        foreach (var (entity, _) in _nearbyActors)
         {
-            if (!TryComp<ActorComponent>(entity, out _))
-                continue;
-
             if (!TryComp<CompanyComponent>(entity, out var company))
                 continue;
 
@@ -466,7 +427,7 @@ public sealed class FactionCaptureSystem : EntitySystem
 
     private void PublishCaptureHud(EntityUid station, CompanyCaptureStatusEvent state)
     {
-        var recipients = GetCaptureHudRecipients();
+        FillCaptureHudRecipients();
 
         if (!_captureHudTrackers.TryGetValue(station, out var tracker))
         {
@@ -474,30 +435,28 @@ public sealed class FactionCaptureSystem : EntitySystem
             _captureHudTrackers[station] = tracker;
         }
 
-        if (recipients.Count == 0)
+        if (_hudRecipients.Count == 0)
         {
             ClearCaptureHud(station);
             return;
         }
 
-        if (_timing.CurTime < tracker.NextUpdate && tracker.Recipients.SetEquals(recipients))
+        if (_timing.CurTime < tracker.NextUpdate && tracker.Recipients.SetEquals(_hudRecipients))
             return;
 
-        RaiseNetworkEvent(state, Filter.Empty().AddPlayers(recipients));
+        RaiseNetworkEvent(state, Filter.Empty().AddPlayers(_hudRecipients));
 
         foreach (var stale in tracker.Recipients)
         {
-            if (recipients.Contains(stale))
+            if (_hudRecipients.Contains(stale))
                 continue;
 
             RaiseNetworkEvent(new CompanyCaptureStatusEvent(false), Filter.SinglePlayer(stale));
         }
 
         tracker.Recipients.Clear();
-        foreach (var recipient in recipients)
-        {
+        foreach (var recipient in _hudRecipients)
             tracker.Recipients.Add(recipient);
-        }
 
         tracker.NextUpdate = _timing.CurTime + CaptureHudInterval;
     }
@@ -508,24 +467,14 @@ public sealed class FactionCaptureSystem : EntitySystem
             return;
 
         foreach (var recipient in tracker.Recipients)
-        {
             RaiseNetworkEvent(new CompanyCaptureStatusEvent(false), Filter.SinglePlayer(recipient));
-        }
     }
 
-    private HashSet<ICommonSession> GetCaptureHudRecipients()
+    private void FillCaptureHudRecipients()
     {
-        var recipients = new HashSet<ICommonSession>();
-
-        foreach (var entity in _nearby)
-        {
-            if (!TryComp<ActorComponent>(entity, out var actor))
-                continue;
-
-            recipients.Add(actor.PlayerSession);
-        }
-
-        return recipients;
+        _hudRecipients.Clear();
+        foreach (var (_, actor) in _nearbyActors)
+            _hudRecipients.Add(actor.PlayerSession);
     }
 
     private sealed class CaptureHudTracker

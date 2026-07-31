@@ -11,6 +11,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Localization;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Lua.Stargate.PlanetQuest;
@@ -21,7 +22,10 @@ public sealed partial class PlanetQuestPanel : PanelContainer
     private const int DescriptionWidth = 290;
     private const int DescriptionMinHeight = 22;
 
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     private bool _collapsed;
+    private TimeSpan _expeditionEndTime;
 
     public bool Dragging;
     public Vector2 DragOffset;
@@ -39,6 +43,7 @@ public sealed partial class PlanetQuestPanel : PanelContainer
     public PlanetQuestPanel()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
         CollapseButton.OnPressed += _ => ToggleCollapse();
 
         DragHeader.OnKeyBindDown += args =>
@@ -69,6 +74,31 @@ public sealed partial class PlanetQuestPanel : PanelContainer
         _collapsed = !_collapsed;
         ContentContainer.Visible = !_collapsed;
         CollapseButton.Text = _collapsed ? "+" : "-";
+    }
+
+    public void SetExpeditionEndTime(TimeSpan endTime)
+    {
+        _expeditionEndTime = endTime;
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        if (_expeditionEndTime > TimeSpan.Zero)
+        {
+            var remaining = _expeditionEndTime - _timing.CurTime;
+            if (remaining < TimeSpan.Zero)
+                remaining = TimeSpan.Zero;
+
+            TimerLabel.Visible = true;
+            TimerLabel.Text = Loc.GetString("planet-quest-panel-timer",
+                ("time", remaining.ToString(@"hh\:mm\:ss")));
+        }
+        else
+        {
+            TimerLabel.Visible = false;
+        }
     }
 
     public void UpdateQuest(PlanetQuestComponent quest)

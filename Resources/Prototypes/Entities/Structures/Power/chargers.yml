@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   abstract: true
   parent: [BaseMachinePowered, ConstructibleMachine]
   id: BaseRecharger
@@ -316,3 +316,5 @@
       entity_storage: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: ShipRepairable
+    repairCost: 2

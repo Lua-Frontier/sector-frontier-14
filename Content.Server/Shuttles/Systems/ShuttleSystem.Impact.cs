@@ -1,7 +1,9 @@
 using Content.Server._NF.Shuttles.Components;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Server._Mono.Cleanup;
 using Content.Server.Shuttles.Components;
+using Content.Shared._Crescent.ShipShields;
 using Content.Shared._Mono;
+using Content.Shared._Mono.CCVar;
 using Content.Shared.Audio;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -21,7 +23,6 @@ using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Timer = Robust.Shared.Timing.Timer;
 using System;
 using System.Numerics;
 
@@ -30,6 +31,8 @@ namespace Content.Server.Shuttles.Systems;
 // shuttle impact damage ported from Goobstation (AGPLv3) with agreement of all coders involved
 public sealed partial class ShuttleSystem
 {
+    [Dependency] private readonly SpaceCleanupSystem _sweep = default!;
+
     private bool _enabled;
     private float _minimumImpactInertia;
     private float _minimumImpactVelocity;
@@ -43,6 +46,11 @@ public sealed partial class ShuttleSystem
     private float _inertiaScaling;
     // this doesn't update if plating mass is changed but edgecase
     private float _platingMass;
+
+    // Mono
+    private float _sweepAggression;
+    private float _sweepDelay;
+    private float _sweepRadius;
 
     private const float _sparkChance = 0.2f;
     // shuttle mass to consider the neutral point for inertia scaling
@@ -65,7 +73,6 @@ public sealed partial class ShuttleSystem
     private void InitializeImpact()
     {
         SubscribeLocalEvent<ShuttleComponent, StartCollideEvent>(OnShuttleCollide);
-        SubscribeLocalEvent<ShuttleTempGodModeComponent, ComponentInit>(OnShuttleTempGodModeInit); // Sosite nabegatory
 
         _dmgQuery = GetEntityQuery<DamageableComponent>();
         _projQuery = GetEntityQuery<ProjectileComponent>();
@@ -82,18 +89,12 @@ public sealed partial class ShuttleSystem
         Subs.CVar(_cfg, CCVars.ImpactMassBias, value => _massBias = value, true);
         Subs.CVar(_cfg, CCVars.ImpactInertiaScaling, value => _inertiaScaling = value, true);
 
-        _platingMass = _protoManager.Index(_platingId).Mass;
-    }
+        // Mono
+        Subs.CVar(_cfg, MonoCVars.ImpactSweepAggression, val => _sweepAggression = val, true);
+        Subs.CVar(_cfg, MonoCVars.ImpactSweepDelay, val => _sweepDelay = val, true);
+        Subs.CVar(_cfg, MonoCVars.ImpactSweepRadius, val => _sweepRadius = val, true);
 
-    private void OnShuttleTempGodModeInit(EntityUid uid, ShuttleTempGodModeComponent component, ComponentInit args)
-    {
-        Timer.Spawn(TimeSpan.FromHours(2), () =>
-        {
-            if (EntityManager.EntityExists(uid) && HasComp<ShuttleTempGodModeComponent>(uid))
-            {
-                RemComp<ShuttleTempGodModeComponent>(uid);
-            }
-        });
+        _platingMass = _protoManager.Index(_platingId).Mass;
     }
 
     /// <summary>
@@ -167,6 +168,16 @@ public sealed partial class ShuttleSystem
             if (!_enabled)
                 continue;
 
+            // Check if either grid has GridGodMode or ForceAnchor protection
+            var ourProtected = HasComp<GridGodModeComponent>(args.OurEntity) || HasComp<ForceAnchorComponent>(args.OurEntity);
+            var otherProtected = HasComp<GridGodModeComponent>(args.OtherEntity) || HasComp<ForceAnchorComponent>(args.OtherEntity);
+
+            // Check if the grids are docked together to prevent impact
+            var areGridsDocked = _dockSystem.AreGridsDocked(args.OurEntity, args.OtherEntity);
+
+            if (ourProtected || otherProtected || areGridsDocked)
+                continue;
+
             // Convert the collision point directly to tile indices
             var ourTile = new Vector2i((int)Math.Floor(ourPoint.X / ourGrid.TileSize), (int)Math.Floor(ourPoint.Y / ourGrid.TileSize));
             var otherTile = new Vector2i((int)Math.Floor(otherPoint.X / otherGrid.TileSize), (int)Math.Floor(otherPoint.Y / otherGrid.TileSize));
@@ -187,13 +198,18 @@ public sealed partial class ShuttleSystem
             var otherMassDR = MathF.Max(ourMass / otherMass, 1f);
             // multiplier to make large grids not just bonk against each other
             var inertiaMult = MathF.Pow(effectiveInertiaMult / _baseShuttleMass, _inertiaScaling);
-            var toUsEnergy = otherMass * energyMult * inertiaMult * ourMassDR;
+            var toOurEnergy = otherMass * energyMult * inertiaMult * ourMassDR;
             var toOtherEnergy = ourMass * energyMult * inertiaMult * otherMassDR;
 
             var impact = LogImpact.High;
             // if impact isn't tiny, log it as extreme
-            if (toUsEnergy + toOtherEnergy > 2f * _tileBreakEnergyMultiplier * _platingMass)
+            if (toOurEnergy + toOtherEnergy > 2f * _tileBreakEnergyMultiplier * _platingMass)
+            {
                 impact = LogImpact.Extreme;
+
+                // Mono - also queue cleanup sweeps
+                _sweep.QueueSweep(ourPoint, TimeSpan.FromSeconds(_sweepDelay), _sweepRadius, _sweepAggression);
+            }
             // TODO: would be nice for it to also log who is piloting the grid(s)
             if (CheckShouldLog(args.OurEntity) && CheckShouldLog(args.OtherEntity))
                 _logger.Add(LogType.ShuttleImpact, impact, $"Shuttle impact of {ToPrettyString(args.OurEntity)} with {ToPrettyString(args.OtherEntity)} at {worldPoint}");
@@ -205,7 +221,21 @@ public sealed partial class ShuttleSystem
             var totalInertia = ourVelocity * ourMass + otherVelocity * otherMass;
             var inelasticVel = totalInertia / (ourMass + otherMass);
 
-            DoGridImpact((args.OurEntity, ourGrid, ourXform, ourBody), args.OurFixture, inelasticVel, ourVelocity, ourTile, ourTiles, toUsEnergy);
+            // Mono Edit - partial credit to https://github.com/Sector-Crescent/Hullrot/pull/692
+            // ShipShieldedComp is removed when shields are broken, reduces both energies when shields are active.
+            float shieldFactor = 1f;
+            if (TryComp<ShipShieldedComponent>(args.OurEntity, out var shipShielded)
+                && TryComp<ShipShieldEmitterComponent>(shipShielded.Source, out var shipShieldEmitter))
+                shieldFactor *= shipShieldEmitter.CollisionResistanceMultiplier;
+
+            if (TryComp<ShipShieldedComponent>(args.OtherEntity, out var otherShipShielded)
+                && TryComp<ShipShieldEmitterComponent>(otherShipShielded.Source, out var otherShipShieldEmitter))
+                shieldFactor *= otherShipShieldEmitter.CollisionResistanceMultiplier;
+            toOurEnergy *= shieldFactor;
+            toOtherEnergy *= shieldFactor;
+            // Mono Edit end
+
+            DoGridImpact((args.OurEntity, ourGrid, ourXform, ourBody), args.OurFixture, inelasticVel, ourVelocity, ourTile, ourTiles, toOurEnergy);
             DoGridImpact((args.OtherEntity, otherGrid, otherXform, otherBody), args.OtherFixture, inelasticVel, otherVelocity, otherTile, otherTiles, toOtherEnergy);
         }
     }
@@ -222,7 +252,7 @@ public sealed partial class ShuttleSystem
                               float energy)
     {
         // for readability to not have .Comp1 .Comp2 for everything
-        var (_, grid, xform, body) = ent;
+        var (_, grid, _, body) = ent;
 
         // radius in which to actually do things so we don't hurt person 4 tiles away on slow bump
         var radius = Math.Min(_impactRadius, MathF.Sqrt(energy / _tileBreakEnergyMultiplier / _platingMass));
@@ -235,7 +265,6 @@ public sealed partial class ShuttleSystem
 
         // process tile and entity damage
         ProcessImpactZone(ent, grid, tile, energy, deltaV.Normalized(), radius);
-
     }
 
     /// <summary>

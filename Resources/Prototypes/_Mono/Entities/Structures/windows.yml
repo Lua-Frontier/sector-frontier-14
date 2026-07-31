@@ -1,0 +1,198 @@
+# strong windows for outposts sir!
+
+- type: entity
+  id: ReinforcedWindowOutpost
+  suffix: OUTPOST ONLY
+  name: reinforced window
+  parent: ReinforcedWindow
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ReinforcedWindowDiagonal
+  id: ReinforcedWindowDiagonalOutpost
+  suffix: diagonal, OUTPOST ONLY
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# plastitanium
+
+- type: entity
+  id: PlastitaniumWindowOutpost
+  suffix: OUTPOST ONLY
+  parent: PlastitaniumWindow
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30000 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 25000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: PlastitaniumWindowDiagonal
+  id: PlastitaniumWindowDiagonalOutpost
+  suffix: diagonal, OUTPOST ONLY
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30000 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Timed Despawn Window, for Sevastapol
+
+- type: entity
+  id: WindowTimedSeal
+  parent: WindowCultIndestructibleInvisible
+  name: timed seal
+  description: A powerful energy field, sealing off a location for a short period of time.
+  suffix: 30 Minutes, Indestructible
+  components:
+  - type: TimedDespawn
+    lifetime: 1800
+
+# Other Timed Despawn Windows
+
+- type: entity
+  id: WindowTimedSeal60Minutes
+  parent: WindowTimedSeal
+  suffix: 60 Minutes, Indestructible
+  components:
+  - type: TimedDespawn
+    lifetime: 3600
+
+- type: entity
+  id: WindowTimedSeal120Minutes
+  parent: WindowTimedSeal
+  suffix: 120 Minutes, Indestructible
+  components:
+  - type: TimedDespawn
+    lifetime: 7200
+
+- type: entity
+  id: WindowTimedSeal180Minutes
+  parent: WindowTimedSeal
+  suffix: 180 Minutes, Indestructible
+  components:
+  - type: TimedDespawn
+    lifetime: 10800
+
+- type: entity
+  parent: MarkerBase
+  id: TimedSealsTableSpawner
+  name: random timed seal spawner (30-180 minutes)
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: TimedSealsTable
+      prob: 1.0
+
+- type: entityTable
+  id: TimedSealsTable
+  table: !type:GroupSelector
+    children:
+    - id: WindowTimedSeal
+    - id: WindowTimedSeal60Minutes
+    - id: WindowTimedSeal120Minutes
+    - id: WindowTimedSeal180Minutes
+      weight: 1.0

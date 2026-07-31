@@ -36,6 +36,9 @@ public sealed partial class PlanetQuestComponent : Component
 
     [DataField]
     public bool Completed;
+
+    [DataField]
+    public bool RewardsDistributed;
 }
 
 [Serializable, NetSerializable]

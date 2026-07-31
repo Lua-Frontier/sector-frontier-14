@@ -4,7 +4,9 @@
 
 using Content.Server._Lua.Stargate.Components;
 using Content.Server._Lua.Stargate.Events;
+using Content.Server._NF.CryoSleep;
 using Content.Shared._Lua.Stargate.Components;
+using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Ghost;
 using Content.Shared.Lua.CLVar;
 using Content.Shared.Mind.Components;
@@ -37,16 +39,6 @@ public sealed class StargateMapFreezeSystem : EntitySystem
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<StargatePortalTimerComponent> _portalTimerQuery;
     private EntityQuery<TransformComponent> _xformQuery;
-
-    private static readonly HashSet<string> CryoPodPrototypeIds = new(StringComparer.Ordinal)
-    {
-        "MachineCryoSleepPod",
-        "MachineCryoSleepPodPlayer",
-        "MachineCryoSleepPodFallback",
-        "CryogenicSleepUnit",
-        "CryogenicSleepUnitSpawner",
-        "CryogenicSleepUnitSpawnerLateJoin",
-    };
 
     public override void Initialize()
     {
@@ -148,12 +140,20 @@ public sealed class StargateMapFreezeSystem : EntitySystem
 
     private bool MapHasCryoPod(EntityUid mapUid)
     {
-        var query = AllEntityQuery<MetaDataComponent, TransformComponent>();
-        while (query.MoveNext(out _, out var meta, out var xform))
+        var cryoSleep = EntityQueryEnumerator<CryoSleepComponent, TransformComponent>();
+        while (cryoSleep.MoveNext(out _, out _, out var xform))
         {
-            if (xform.MapUid != mapUid) continue;
-            if (meta.EntityPrototype?.ID is { } id && CryoPodPrototypeIds.Contains(id)) return true;
+            if (xform.MapUid == mapUid)
+                return true;
         }
+
+        var cryostorage = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
+        while (cryostorage.MoveNext(out _, out _, out var xform))
+        {
+            if (xform.MapUid == mapUid)
+                return true;
+        }
+
         return false;
     }
 

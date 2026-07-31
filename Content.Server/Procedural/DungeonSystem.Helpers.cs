@@ -79,7 +79,8 @@ public sealed partial class DungeonSystem
         List<(Vector2i Start, Vector2i End)> edges,
         int pathLimit,
         HashSet<Vector2i>? forbiddenTiles = null,
-        Func<Vector2i, float>? tileCallback = null)
+        Func<Vector2i, float>? tileCallback = null,
+        HashSet<Vector2i>? roomInteriorTiles = null)
     {
         // Pathfind each entrance
         var frontier = new PriorityQueue<Vector2i, float>();
@@ -87,6 +88,7 @@ public sealed partial class DungeonSystem
         var directions = new Dictionary<Vector2i, Direction>();
         var costSoFar = new Dictionary<Vector2i, float>();
         forbiddenTiles ??= new HashSet<Vector2i>();
+        roomInteriorTiles ??= new HashSet<Vector2i>();
 
         foreach (var (start, end) in edges)
         {
@@ -191,6 +193,27 @@ public sealed partial class DungeonSystem
                     corridorTiles.Add(node);
                 }
             }
+            else
+            { AddLCorridorFallback(corridorTiles, start, end, roomInteriorTiles); }
+        }
+    }
+    private static void AddLCorridorFallback(HashSet<Vector2i> corridorTiles, Vector2i start, Vector2i end, HashSet<Vector2i> roomInteriorTiles)
+    {
+        var corner = new Vector2i(end.X, start.Y);
+        AddCardinalSegment(corridorTiles, start, corner, roomInteriorTiles);
+        AddCardinalSegment(corridorTiles, corner, end, roomInteriorTiles);
+    }
+
+    private static void AddCardinalSegment(HashSet<Vector2i> corridorTiles, Vector2i from, Vector2i to, HashSet<Vector2i> roomInteriorTiles)
+    {
+        var pos = from;
+        while (pos != to)
+        {
+            if (pos.X != to.X) pos = new Vector2i(pos.X + Math.Sign(to.X - pos.X), pos.Y);
+            else if (pos.Y != to.Y) pos = new Vector2i(pos.X, pos.Y + Math.Sign(to.Y - pos.Y));
+            else break;
+            if (roomInteriorTiles.Contains(pos)) continue;
+            corridorTiles.Add(pos);
         }
     }
 }

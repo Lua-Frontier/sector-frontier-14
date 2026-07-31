@@ -18,11 +18,11 @@
     sprite: _Lua/Objects/ShuttleWeapons/50cal.rsi
     drawdepth: Mobs
     layers:
-      - state: space_artillery
+    - state: space_artillery
   - type: Destructible
     thresholds:
     - trigger:
-       !type:DamageTrigger
+        !type:DamageTrigger
         damage: 3500
       behaviors:
       - !type:PlaySoundBehavior
@@ -37,10 +37,11 @@
     projectileSpeed: 40
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: ContainerContainer
     containers:
+      gun_magazine: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: Battery
@@ -52,6 +53,19 @@
   - type: WirelessNetworkConnection
     range: 700
   - type: FireControllable
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineNightHunter
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineNightHunter
+        whitelistFailPopup: gun-magazine-whitelist-fail
   - type: SpaceArtillery
     powerChargeRate: 100
     powerUsePassive: 2000
@@ -60,6 +74,3 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 125 #100
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletTomahawk
-    fireCost: 7000

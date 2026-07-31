@@ -5,6 +5,7 @@
 using System.Numerics;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Stargate.PlanetQuest;
 using Robust.Client.GameObjects;
 using Robust.Client.Input;
@@ -127,6 +128,25 @@ public sealed class PlanetQuestUIController : UIController, IOnStateEntered<Game
         _completedHideRemaining = 0f;
         _panel.Visible = true;
         _panel.UpdateQuest(questComp);
+
+        UpdateExpeditionTimer();
+    }
+
+    private void UpdateExpeditionTimer()
+    {
+        if (_panel == null)
+            return;
+
+        if (_player.LocalEntity is not { } playerEnt)
+            return;
+
+        if (!_entMan.TryGetComponent<TransformComponent>(playerEnt, out var xform) || xform.MapUid is not { } mapUid)
+            return;
+
+        if (_entMan.TryGetComponent<ExpeditionMapComponent>(mapUid, out var expedition))
+            _panel.SetExpeditionEndTime(expedition.EndTime);
+        else
+            _panel.SetExpeditionEndTime(TimeSpan.Zero);
     }
 
     private PlanetQuestComponent? GetPlayerPlanetQuest()

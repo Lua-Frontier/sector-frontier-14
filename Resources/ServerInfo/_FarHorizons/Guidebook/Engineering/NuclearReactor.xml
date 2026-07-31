@@ -1,0 +1,242 @@
+<Document>
+	# Ядерный генератор
+
+	[color=GreenYellow]Ядерный генератор[/color] вырабатывает [color=gold]энергию[/color], нагревая газ за счёт реакций деления в [color=GreenYellow]ядерном реакторе[/color], который затем раскручивает газовую [color=DarkOrange]турбину[/color].
+
+	## Ядерный реактор
+	<Box>
+		<GuideEntityEmbed Entity="NuclearReactorNormal"/>
+	</Box>
+
+	[color=GreenYellow]Ядерный реактор[/color] — основной источник [color=OrangeRed]тепла[/color], который генератор использует для выработки [color=gold]энергии[/color].
+
+	Он представлен сеткой 7×7 портов для [color=gold]стержней реактора[/color], в которые инженеры вставляют изготовленные стержни.
+
+	Тепло создаётся реакциями деления внутри [color=MediumVioletRed]топливных стержней[/color] и передаётся в [color=SkyBlue]охлаждающий газ[/color] через [color=PaleVioletRed]газовые каналы[/color].
+
+	## Стержни реактора
+	<Box>
+		<GuideEntityEmbed Entity="NuclearFabricator"/>
+	</Box>
+	<Box>
+		<GuideEntityEmbed Entity="CerenkiteReactorFuelRod" Caption="топливный"/>
+		<GuideEntityEmbed Entity="BohrumReactorControlRod" Caption="управляющий"/>
+		<GuideEntityEmbed Entity="SteelReactorGasChannel" Caption="газовый канал"/>
+		<GuideEntityEmbed Entity="SteelReactorHeatExchanger" Caption="теплообменник"/>
+	</Box>
+
+	[color=gold]Стержни реактора[/color] — детали, которые ставятся в сетку [color=GreenYellow]реактора[/color] и обеспечивают его работу.
+
+	Они передают [color=OrangeRed]тепло[/color] и взаимодействуют с [color=DarkTurquoise]нейтронами[/color] внутри [color=GreenYellow]реактора[/color].
+
+	Если [bold]температура[/bold] [color=gold]стержня[/color] достигает 1700 кельвин, он начинает [color=Crimson]плавиться[/color].
+
+	После расплавления стержень становится гораздо активнее и сильнее передаёт [color=OrangeRed]тепло[/color] в [color=GreenYellow]реактор[/color], что может привести к полному [color=OrangeRed]расплавлению[/color].
+
+	Работа с горячими [color=gold]стержнями[/color] может вызвать серьёзные [color=OrangeRed]ожоги[/color].
+
+	Если температура выше [color=OrangeRed]80°C[/color], для работы с ними нужны перчатки. При [color=MediumVioletRed]500°C[/color] даже перчатки не спасут.
+
+	Есть четыре типа [color=gold]стержней[/color], которые можно изготовить из разных материалов и поставить в сетку [color=GreenYellow]реактора[/color]: [color=Chartreuse]топливные[/color], [color=LightSkyBlue]управляющие[/color], [color=PaleVioletRed]газовые каналы[/color] и [color=Crimson]теплообменники[/color].
+
+	### Топливные стержни
+	[color=Chartreuse]Топливные стержни[/color] — источник [color=DarkTurquoise]нейтронов[/color] и [color=OrangeRed]тепла[/color] внутри [color=GreenYellow]реактора[/color].
+
+	Они испускают [color=DarkTurquoise]нейтроны[/color] при спонтанном распаде и при взаимодействии с уже существующими [color=DarkTurquoise]нейтронами[/color], что также создаёт [color=OrangeRed]тепло[/color].
+
+	У них два параметра, определяющих эффективность и нестабильность:
+	- [bold]Нейтронная радиоактивность[/bold]: создаёт [color=cyan]высокоэнергетические нейтроны[/color] и много [color=OrangeRed]тепла[/color]. Распадается в радиоактивность.
+	- [bold]Радиоактивность[/bold]: создаёт [color=DarkTurquoise]нейтроны[/color] и [color=OrangeRed]тепло[/color]. Распадается в [color=LightSteelBlue]отработанное топливо[/color].
+
+	Также учитывается количество [bold][color=LightSteelBlue]отработанного топлива[/color][/bold]: оно не влияет на работу [color=Chartreuse]топливного стержня[/color], но показывает, когда пора его заменить.
+
+	<Box>
+		<GuideEntityEmbed Entity="NuclearCentrifuge"/>
+		<GuideEntityEmbed Entity="IngotPlutonium"/>
+	</Box>
+
+	Когда в [color=Chartreuse]топливном стержне[/color] достаточно [bold][color=LightSteelBlue]отработанного топлива[/color][/bold], его можно переработать в ядерной центрифуге и получить [color=Magenta]плутоний[/color] для изготовления [color=Magenta]плутониевых топливных стержней[/color].
+
+	### Управляющие стержни
+	[color=LightSkyBlue]Управляющие стержни[/color] регулируют поток [color=DarkTurquoise]нейтронов[/color] внутри [color=GreenYellow]реактора[/color].
+
+	Их уникальное свойство — регулируемая глубина введения, которая меняет эффективность.
+
+	Они ограничивают число [color=DarkTurquoise]нейтронов[/color], проходящих через них к [color=Chartreuse]топливному стержню[/color].
+
+	### Газовые каналы
+	[color=PaleVioletRed]Газовые каналы[/color] передают [color=OrangeRed]тепло[/color] из себя в [color=SkyBlue]охлаждающий газ[/color], который через них проходит.
+
+	Каждый [color=PaleVioletRed]газовый канал[/color] увеличивает расход на [bold]100 л/с[/bold], позволяя [color=GreenYellow]реактору[/color] обрабатывать больше газа за раз.
+
+	### Теплообменники
+	[color=Crimson]Теплообменники[/color] направляют распространение [color=OrangeRed]тепла[/color] внутри [color=GreenYellow]реактора[/color].
+
+	Они отлично передают [color=OrangeRed]тепло[/color] и почти не взаимодействуют с [color=DarkTurquoise]нейтронами[/color], поэтому идеальны для передачи [color=OrangeRed]тепла[/color] от [color=Chartreuse]топливного стержня[/color] к [color=PaleVioletRed]газовому каналу[/color] без вмешательства в процесс деления.
+
+	## Управление реактором
+	[color=GreenYellow]Реактор[/color] управляется и настраивается через интерфейс, который также показывает его состояние.
+
+	В интерфейсе три основных панели: прицеливание, вид сетки, статус.
+
+	### Прицеливание
+	Панель прицеливания позволяет вставлять и извлекать стержни из сетки [color=GreenYellow]реактора[/color].
+
+	Позиция X и Y цели меняется кнопками +X, −X и +Y, −Y.
+
+	[color=gold]Стержни[/color] вставляются или извлекаются кнопкой «Вставить/Извлечь» под кнопками позиции.
+
+	Если в целевой клетке есть [color=gold]стержень[/color], панель покажет информацию о нём:
+	- Название
+	- Температура ([color=OrangeRed]T[/color])
+	- Нейтронная радиоактивность ([color=Cyan]N[/color])
+	- Радиоактивность ([color=MediumSpringGreen]R[/color])
+	- Отработанное топливо ([color=LightSteelBlue]S[/color])
+
+	Внизу панели отображается название детали, извлечённой из [color=GreenYellow]реактора[/color] или готовой к вставке.
+
+	### Вид сетки
+	Вид сетки даёт графическое представление состояния сетки [color=GreenYellow]реактора[/color].
+
+	Кнопка «Сменить вид» переключает режимы:
+	- Температура: [color=OrangeRed]температура[/color] компонентов
+	- Нейтроны: число [color=DarkTurquoise]нейтронов[/color] в каждой клетке
+	- Цель: текущая [color=Gold]целевая клетка[/color]
+
+	### Панель статуса
+	Панель статуса показывает состояние всего [color=GreenYellow]реактора[/color] и управление [color=LightSkyBlue]управляющими стержнями[/color].
+
+	[color=Red][bold]Индикатор температуры[/bold][/color] показывает текущую температуру [color=GreenYellow]реактора[/color] в диапазоне от 0 до 2000 кельвин.
+
+	Если [color=GreenYellow]реактор[/color] достигает 2000 кельвин, происходит [color=red]расплавление[/color].
+
+	[color=MediumSpringGreen][bold]Индикатор радиации[/bold][/color] показывает текущую [color=MediumSpringGreen]радиацию[/color] от [color=GreenYellow]реактора[/color] в диапазоне от 0 до 50 рад.
+
+	[color=OrangeRed][bold]Индикатор тепловой мощности[/bold][/color] оценивает [color=OrangeRed]тепловую мощность[/color] [color=GreenYellow]реактора[/color] в диапазоне от 0 до 10 000 000 тепловых ватт (Вт).
+
+	[color=OrangeRed]Тепловая мощность[/color] — хорошая оценка того, сколько [color=gold]энергии[/color] [bold][color=DarkOrange]турбина[/color][/bold] сможет извлечь из газа.
+
+	[color=OrangeRed]Тепловая мощность[/color] обычно растёт и падает во время работы [color=GreenYellow]реактора[/color] и редко остаётся стабильной.
+
+	[bold][color=LightSkyBlue]Индикаторы управляющих стержней[/color][/bold] показывают фактическую и заданную глубину введения [color=LightSkyBlue]управляющих стержней[/color] и кнопки для её изменения.
+
+	## Охлаждение реактора
+	[color=GreenYellow]Реактор[/color] охлаждается газами, но некоторые газы при достаточной концентрации влияют на его работу:
+
+	<Box>
+		<GuideEntityEmbed Entity="PlasmaCanister" Caption=""/>
+	</Box>
+	[color=#ff3300][bold]Плазма[/bold][/color] действует реактивно: создаёт больше [color=DarkTurquoise]нейтронов[/color] и распадается в [color=#13ff4b][bold]тритий[/bold][/color].
+
+	Если плазмы в [color=GreenYellow]реакторе[/color] слишком много, реакция может выйти из-под контроля и привести к [color=red]расплавлению[/color].
+
+	<Box>
+		<GuideEntityEmbed Entity="CarbonDioxideCanister" Caption=""/>
+	</Box>
+	[color=#4e4e4e][bold]Углекислый газ[/bold][/color] действует как замедлитель, поглощая [color=DarkTurquoise]нейтроны[/color], с которыми соприкасается.
+
+	Его можно использовать для регулирования плазменной реакции или замедления [color=GreenYellow]реактора[/color].
+
+	<Box>
+		<GuideEntityEmbed Entity="TritiumCanister" Caption=""/>
+	</Box>
+	[color=#13ff4b][bold]Тритий[/bold][/color] внутри [color=GreenYellow]реактора[/color] случайно распадается в разные газы:
+	- [color=#2887e8][bold]Кислород[/bold][/color]
+	- [color=#FF0000][bold]Азот[/bold][/color]
+	- [color=#56941e][bold]Аммиак[/bold][/color]
+	- [color=#8f00ff][bold]Оксид азота[/bold][/color]
+	- [color=#3a758c][bold]Фрезон[/bold][/color]
+
+	В присутствии [color=#2887e8][bold]кислорода[/bold][/color] и при температурах [color=GreenYellow]реактора[/color] [color=#13ff4b][bold]тритий[/bold][/color] начинает гореть, [color=red]создавая огромное количество тепла[/color].
+
+	## Радиация реактора
+	<Box>
+		<GuideEntityEmbed Entity="SignRadiation" Caption=""/>
+	</Box>
+	[color=GreenYellow]Реактор[/color] иногда пропускает радиацию наружу, что опасно для незащищённого экипажа.
+
+	Уровень радиации определяется тем, сколько [color=DarkTurquoise]нейтронов[/color] покидает сетку [color=GreenYellow]реактора[/color].
+
+	<Box>
+		<GuideEntityEmbed Entity="ClosetRadiationSuit"/>
+		<GuideEntityEmbed Entity="ClothingOuterSuitRad"/>
+		<GuideEntityEmbed Entity="GeigerCounter"/>
+	</Box>
+
+	Рядом с [color=GreenYellow]реактором[/color] настоятельно рекомендуется защита и экранирование.
+
+
+	## Газовая турбина
+	<Box>
+		<GuideEntityEmbed Entity="Turbine"/>
+	</Box>
+
+	Газовая [color=DarkOrange]турбина[/color] — место, где реально вырабатывается энергия.
+
+	Она принимает горячий газ из [color=GreenYellow]реактора[/color], отдаёт электричество и возвращает более холодный газ обратно в [color=GreenYellow]реактор[/color].
+
+	Выработка [color=DarkOrange]турбины[/color] зависит от заданного расхода и нагрузки [color=Goldenrod]статора[/color], а также от [color=MediumTurquoise]об/мин[/color].
+
+	### Расход
+	Расход определяет, сколько газа проходит через [color=DarkOrange]турбину[/color] каждую секунду.
+
+	Чем выше расход, тем выше [color=MediumTurquoise]об/мин[/color] [color=DarkOrange]турбины[/color].
+
+	Обычно расход ставят на максимум для ядра [color=GreenYellow]реактора[/color] по формуле: 100 × число [color=PaleVioletRed]газовых каналов[/color] + 200.
+
+	### Нагрузка статора
+	Нагрузка [color=Goldenrod]статора[/color] определяет, сколько энергии вырабатывается за один оборот [color=DarkOrange]турбины[/color].
+
+	Чем выше нагрузка [color=Goldenrod]статора[/color], тем ниже [color=MediumTurquoise]об/мин[/color] [color=DarkOrange]турбины[/color].
+
+	Нагрузку [color=Goldenrod]статора[/color] обычно подстраивают так, чтобы [color=DarkOrange]турбина[/color] держала оптимальные [color=MediumTurquoise]об/мин[/color].
+
+	### Об/мин
+	[color=MediumTurquoise]Об/мин[/color] (обороты в минуту) — скорость вращения [color=DarkOrange]турбины[/color].
+
+	У [color=DarkOrange]турбины[/color] есть оптимальные [color=MediumTurquoise]об/мин[/color], при которых она даёт максимум мощности.
+
+	Слишком высокие или слишком низкие обороты ухудшают эффективность.
+
+	## Индикаторы статуса турбины
+	У [color=DarkOrange]турбины[/color] есть индикаторы опасных режимов и неисправностей.
+
+	### Переразгон
+	[color=MediumTurquoise]Об/мин[/color] [color=DarkOrange]турбины[/color] слишком высоки.
+
+	При чрезмерных [color=MediumTurquoise]об/мин[/color] [color=DarkOrange]турбина[/color] начинает получать повреждения.
+
+	Долгая работа в [color=red]переразгоне[/color] или [bold][color=crimson]критическом переразгоне[/color][/bold] приведёт к тому, что [color=DarkOrange]турбина[/color] [color=red]разнесёт себя[/color].
+
+	Повреждения [color=DarkOrange]турбины[/color] чинятся [color=yellow]сваркой[/color]; обычно нужно несколько попыток.
+
+	### Перегрев
+	Газ на входе [color=DarkOrange]турбины[/color] слишком горячий.
+
+	Если газ горячее [color=red]3000 кельвин[/color], сработает [bold][color=red]аварийный клапан сброса[/color][/bold] и газ выплеснется в помещение.
+
+	Горячий газ может вызвать [color=red]серьёзные ожоги[/color] или даже [color=OrangeRed]пожар[/color], если он горючий.
+
+	### Срыв
+	Нагрузка статора слишком высока или газ недостаточно горячий.
+
+	[color=Orchid]Срыв[/color] — когда газ не «толкает» [color=DarkOrange]турбину[/color] достаточно сильно, чтобы преодолеть сопротивление статора.
+
+	### Недогрев
+	Газ на входе [color=DarkOrange]турбины[/color] слишком холодный.
+
+	Если газ при комнатной температуре (20°C) или ниже, [color=DarkOrange]турбине[/color] нечего из него извлекать.
+
+
+	# Запуск ядерного генератора
+	Чтобы запустить [color=GreenYellow]ядерный генератор[/color], инженеры должны:
+	- Заполнить контур охлаждения газом.
+	- Выставить расход [color=DarkOrange]турбины[/color] под схему [color=GreenYellow]реактора[/color].
+	- Вставить [color=Chartreuse]топливные стержни[/color] в свободные клетки сетки [color=GreenYellow]реактора[/color], обычно рядом с [color=LightSkyBlue]управляющими стержнями[/color] и в окружении [color=Crimson]теплообменников[/color] и [color=PaleVioletRed]газовых каналов[/color].
+	- Выдвинуть [color=LightSkyBlue]управляющие стержни[/color], чтобы [color=GreenYellow]реактор[/color] начал разогреваться.
+	- По мере разогрева подстраивать нагрузку [color=Goldenrod]статора[/color] [color=DarkOrange]турбины[/color], удерживая оптимальные [color=MediumTurquoise]об/мин[/color].
+	- Когда [color=DarkOrange]турбина[/color] даёт достаточно энергии, ввести [color=LightSkyBlue]управляющие стержни[/color] так, чтобы стабилизировать температуру [color=GreenYellow]реактора[/color].
+
+	Со временем [color=Chartreuse]топливные стержни[/color] теряют радиоактивность: нужно дальше выдвигать [color=LightSkyBlue]управляющие стержни[/color] или заменять [color=Chartreuse]топливо[/color].
+
+</Document>

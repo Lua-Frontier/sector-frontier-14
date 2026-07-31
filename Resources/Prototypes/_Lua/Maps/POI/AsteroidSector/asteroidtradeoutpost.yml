@@ -4,7 +4,7 @@
 
 - type: pointOfInterest
   id: AsteroidTradeOutpost
-  parent: BasePOI
+  parent: [BasePOI, BaseRepairablePOI]
   name: 'Чёрный Рынок'
   minimumDistance: 2500
   maximumDistance: 3500

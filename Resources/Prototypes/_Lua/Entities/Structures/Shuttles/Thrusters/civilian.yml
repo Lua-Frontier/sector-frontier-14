@@ -1,0 +1,102 @@
+- type: entity
+  id: Thruster
+  parent: BaseThrusterNormal
+  name: thruster
+  components:
+  - type: Machine
+    board: ThrusterMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_stealth
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#4281de"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#4281de"
+  - type: PirateBountyItem
+    id: Thruster
+
+- type: entity
+  id: ThrusterUnanchored
+  parent: Thruster
+  suffix: Unanchored
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+
+- type: entity
+  id: SmallThruster
+  parent: Thruster
+  name: small thruster
+  components:
+  - type: Machine
+    board: SmallThrusterMachineCircuitboard
+  - type: Thruster
+    baseThrust: 33
+    thrust: 23.1
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_small
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_small
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#4281de"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#4281de"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.45,0.35,0.45"
+        density: 60
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: ThrusterMedium
+  parent: BaseThrusterMedium
+  name: medium thruster
+  components:
+  - type: Machine
+    board: LargeThrusterMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster64.rsi
+    offset: 0.5,-0.5
+    layers:
+    - state: base_medium
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_medium
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#4281de"
+    - state: thrust_burn_medium_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2
+      color: "#4281de"

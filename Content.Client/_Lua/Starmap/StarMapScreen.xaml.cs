@@ -59,6 +59,7 @@ public sealed partial class StarMapScreen : BoxContainer
         StarMapCanvas.SetSectorIdByMap(state.SectorIdByMap);
         StarMapCanvas.SetOwnerByMap(state.OwnerByMap);
         StarMapCanvas.SetSectorColorOverridesHex(state.SectorColorOverrideHexByMap);
+        StarMapCanvas.SetSectorsGloballyUnlocked(state.SectorsGloballyUnlocked);
         var current = state.Stars.Find(s => s.Position == System.Numerics.Vector2.Zero);
         CurrentStarLabel.Text = Loc.GetString("starmap-current-star", ("name", current.Name ?? "???"));
         if (!_selectedStar.HasValue)

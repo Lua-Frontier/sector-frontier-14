@@ -1,0 +1,79 @@
+- type: entity
+  id: ThrusterNfsd
+  parent: ThrusterSecurity
+  suffix: NFSD
+  components:
+  - type: Machine
+    board: ThrusterNfsdMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_nfsd_new
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#FF0DA1"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#FF0DA1"
+
+- type: entity
+  id: ThrusterMediumNfsd
+  parent: ThrusterMedium
+  suffix: NFSD
+  components:
+  - type: Thruster
+    baseThrust: 350
+    thrust: 469.7
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster64.rsi
+    offset: 0.5,-0.5
+    layers:
+    - state: base_nfsd_medium
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_medium
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#FF0DA1"
+    - state: thrust_burn_medium_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2
+      color: "#FF0DA1"
+
+- type: entity
+  id: ThrusterNfsdStealh
+  parent: [BaseStructureDisableToolUse, ThrusterNfsd]
+  name: stealth thruster
+  suffix: NFSD, Stealth
+  description: A thruster with a reduced drive-plume and thermal output, but significantly less thrust.
+  components:
+  - type: Thruster
+    baseThrust: 50
+    thrust: 50
+    heatSignatureRatio: 7.5
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_stealth
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#FF0DA1"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#FF0DA1"
+  - type: Anchorable
+    flags: Anchorable

@@ -185,6 +185,14 @@ public sealed class StargateSystem : EntitySystem
                 continue;
             }
 
+            if (!_cfg.GetCVar(CLVars.StargateEnabled))
+            {
+                _popup.PopupEntity(Loc.GetString("stargate-console-planets-disabled"), uid);
+                _audio.PlayPvs(gate.DialFailSound, comp.LinkedStargate.Value, GateSoundParams);
+                UpdateUi(uid, comp);
+                continue;
+            }
+
             if (!_registry.IsPoolAddress(symbols))
             {
                 _popup.PopupEntity(Loc.GetString("stargate-console-dial-failed"), uid);
@@ -545,13 +553,6 @@ public sealed class StargateSystem : EntitySystem
             return;
         }
 
-        if (!_cfg.GetCVar(CLVars.StargateEnabled))
-        {
-            _popup.PopupEntity(Loc.GetString("stargate-console-overloaded"), uid);
-            _audio.PlayPvs(gate.DialFailSound, comp.LinkedStargate.Value, GateSoundParams);
-            return;
-        }
-
         if (HasComp<StargateDialingComponent>(comp.LinkedStargate.Value))
             return;
 
@@ -596,6 +597,15 @@ public sealed class StargateSystem : EntitySystem
             _audio.PlayPvs(gate.DialFailSound, comp.LinkedStargate.Value, GateSoundParams);
             return;
         }
+
+        // Planet/pool dials only when stargate.enabled; station gates still work.
+        if (!_cfg.GetCVar(CLVars.StargateEnabled))
+        {
+            _popup.PopupEntity(Loc.GetString("stargate-console-planets-disabled"), uid);
+            _audio.PlayPvs(gate.DialFailSound, comp.LinkedStargate.Value, GateSoundParams);
+            return;
+        }
+
         if (!_registry.IsPoolAddress(symbols))
         {
             _popup.PopupEntity(Loc.GetString("stargate-console-dial-failed"), uid);

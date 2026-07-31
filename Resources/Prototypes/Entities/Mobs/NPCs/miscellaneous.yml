@@ -4,6 +4,13 @@
   parent: SimpleMobBase
   description: From the Viking age.
   components:
+    - type: Body # Shitmed
+      prototype: LaserRaptor
+    - type: SurgeryTarget # Shitmed
+    - type: UserInterface # Shitmed
+      interfaces:
+        enum.SurgeryUIKey.Key:
+          type: SurgeryBui
     - type: NpcFactionMember
       factions:
         - SimpleHostile

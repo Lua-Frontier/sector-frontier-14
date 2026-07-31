@@ -1,0 +1,84 @@
+# Shitmed Lathe Recipes
+# Note: The 'category' field has been removed as it's no longer supported in LatheRecipePrototype
+
+- type: latheRecipe
+  id: BoneGel
+  result: BoneGel
+  completetime: 2
+  materials:
+    Plastic: 200
+    Plasma: 200
+
+- type: latheRecipe
+  id: EnergyScalpel
+  result: EnergyScalpel
+  completetime: 2
+  materials:
+    Steel: 600
+    Glass: 150
+    Gold: 150
+
+- type: latheRecipe
+  id: AdvancedRetractor
+  result: AdvancedRetractor
+  completetime: 2
+  materials:
+    Steel: 600
+    Glass: 150
+    Silver: 150
+
+- type: latheRecipe
+  id: EnergyCautery
+  result: EnergyCautery
+  completetime: 2
+  materials:
+    Steel: 600
+    Glass: 150
+    Plasma: 150
+
+- type: latheRecipe
+  id: ShitmedOmnimedTool
+  result: OmnimedTool
+  completetime: 2
+  materials:
+    Steel: 1200
+    Glass: 300
+    Gold: 300
+    Silver: 300
+    Plasma: 300
+
+- type: latheRecipe
+  id: BorgModuleSurgery
+  result: BorgModuleSurgery
+  completetime: 3
+  materials:
+    Steel: 250
+    Glass: 250
+    Plastic: 250
+
+- type: latheRecipe
+  id: BorgModuleAdvancedSurgery
+  result: BorgModuleAdvancedSurgery
+  completetime: 3
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 250
+    Gold: 50
+
+# Dynamic pack: unlocked by AdvancedTreatment
+- type: latheRecipePack
+  id: ShitmedSurgeryAdvanced
+  recipes:
+  - EnergyScalpel
+  - EnergyCautery
+  - AdvancedRetractor
+  - BorgModuleAdvancedSurgery
+
+# Dynamic pack: unlocked by HighEndSurgery
+- type: latheRecipePack
+  id: ShitmedSurgeryHighEnd
+  recipes:
+  - ShitmedOmnimedTool
+  - AutodocCircuitboard
+  - OperatingTableCircuitboard

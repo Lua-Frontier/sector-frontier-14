@@ -1,5 +1,7 @@
 using Content.Client.Shuttles.UI;
+using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Starmap;
+using Content.Shared._Mono.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
@@ -26,6 +28,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
+        _window.RequestAutopilot += OnAutopilotRequest; // Mono
         _window.OnWarpToStarRequest += OnWarpToStar; // Lua StarMap
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
@@ -51,6 +54,10 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         };
         _window.OnFireControlRefresh += () =>
         { SendMessage(new ShuttleConsoleRefreshFireControlMessage()); };
+        _window.OnClaimExpedition += (index, seed) => SendMessage(new ClaimExpeditionMessage { Index = index, Seed = seed });
+        _window.OnConfirmExpedition += () => SendMessage(new ConfirmExpeditionMessage());
+        _window.OnCancelExpedition += () => SendMessage(new CancelExpeditionMessage());
+        _window.OnFinishExpedition += () => SendMessage(new FinishExpeditionMessage());
         NfOpen(); // Frontier
     }
 
@@ -94,6 +101,16 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
     private void OnFTLRequest(MapCoordinates obj, Angle angle)
     {
         SendMessage(new ShuttleConsoleFTLPositionMessage()
+        {
+            Coordinates = obj,
+            Angle = angle,
+        });
+    }
+
+    // Mono
+    private void OnAutopilotRequest(MapCoordinates obj, Angle angle)
+    {
+        SendMessage(new ShuttleConsoleAutopilotPositionMessage()
         {
             Coordinates = obj,
             Angle = angle,

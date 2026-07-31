@@ -31,4 +31,5 @@ pirate-bounty-item-plasmacanister = Канистра с плазмой
 pirate-bounty-item-contracrate = Ящик с контрабандой
 pirate-bounty-item-hydrotray = Лоток для гидропоники
 pirate-bounty-item-hypo = Гипоспрей
+pirate-bounty-item-shield = Корабельная система щитов
 pirate-bounty-description-generic = Вперёд, бездельник! Добудь мне это добро!

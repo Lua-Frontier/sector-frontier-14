@@ -37,6 +37,14 @@ namespace Content.Shared.Shuttles.Components
         [DataField]
         public ProtoId<AlertPrototype> PilotingAlert = "PilotingShuttle";
 
+        /// <summary>
+        /// Optional pilot-set linear velocity cap. Null = thruster-derived max only.
+        /// </summary>
+        [ViewVariables]
+        public float? SetMaxVelocity = null;
+        [ViewVariables]
+        public float? SetMaxAngularVelocity = null;
+
         public override bool SendOnlyToOwner => true;
     }
 

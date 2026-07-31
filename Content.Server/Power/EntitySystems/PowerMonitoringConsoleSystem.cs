@@ -15,6 +15,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.NodeContainer;
+using Content.Shared.Power.Components;
 
 namespace Content.Server.Power.EntitySystems;
 

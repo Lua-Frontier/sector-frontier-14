@@ -1,0 +1,109 @@
+light_mode unshaded;
+
+uniform highp float time;
+uniform highp float pixels;
+uniform highp float seed;
+uniform highp float rotation;
+uniform highp float time_speed;
+uniform highp float size;
+uniform highp float circle_amount;
+uniform highp float circle_size;
+uniform highp vec3 blob_color;
+
+highp float pp_mod1(highp float x, highp float y) {
+    return x - y * floor(x / y);
+}
+highp vec2 pp_mod2(highp vec2 x, highp vec2 y) {
+    return x - y * floor(x / y);
+}
+highp vec2 pp_spherify(highp vec2 uv) {
+    highp vec2 centered = uv * 2.0 - 1.0;
+    highp float z = pow(max(1.0 - dot(centered.xy, centered.xy), 0.0), 0.5);
+    highp vec2 sphere = centered / (z + 1.0);
+    return sphere * 0.5 + 0.5;
+}
+highp vec2 pp_rotate(highp vec2 coord, highp float angle) {
+    coord = coord - 0.5;
+    highp float c = cos(angle);
+    highp float s = sin(angle);
+    coord = vec2(coord.x * c + coord.y * s, -coord.x * s + coord.y * c);
+    return coord + 0.5;
+}
+bool pp_dither_simple(highp float pixels, highp vec2 uv_pixel, highp vec2 uv_real) {
+    return false;
+}
+highp float star_rand(highp vec2 co, highp float sz, highp float sd) {
+    co = pp_mod2(co, vec2(1.0, 1.0) * round(sz));
+    return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 15.5453 * sd);
+}
+highp float star_noise(highp vec2 coord, highp float sz, highp float sd) {
+    highp vec2 i = floor(coord);
+    highp vec2 f = fract(coord);
+    highp float a = star_rand(i, sz, sd);
+    highp float b = star_rand(i + vec2(1.0, 0.0), sz, sd);
+    highp float c = star_rand(i + vec2(0.0, 1.0), sz, sd);
+    highp float d = star_rand(i + vec2(1.0, 1.0), sz, sd);
+    highp vec2 cubic = f * f * (3.0 - 2.0 * f);
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+highp float star_fbm(highp vec2 coord, highp float sz, highp float sd, highp float octaves) {
+    highp float value = 0.0;
+    highp float scl = 0.5;
+    for (int i = 0; i < 8; i++) {
+        if (float(i) >= octaves)
+            break;
+        value += star_noise(coord, sz, sd) * scl;
+        coord *= 2.0;
+        scl *= 0.5;
+    }
+    return value;
+}
+highp vec2 hash2_star(highp vec2 p) {
+    highp float r = 523.0 * sin(dot(p, vec2(53.3158, 43.6143)));
+    return vec2(fract(15.32354 * r), fract(17.25865 * r));
+}
+highp float cells_star(highp vec2 p, highp float numCells, highp float tiles) {
+    p *= numCells;
+    highp float d = 10000000000.0;
+    for (int xo = -1; xo <= 1; xo++) {
+        for (int yo = -1; yo <= 1; yo++) {
+            highp vec2 tp = floor(p) + vec2(float(xo), float(yo));
+            tp = p - tp - hash2_star(pp_mod2(tp, vec2(numCells / tiles)));
+            d = min(d, dot(tp, tp));
+        }
+    }
+    return sqrt(d);
+}
+highp float circle_star(highp vec2 uv, highp float camt, highp float csize, highp float sz, highp float sd) {
+    highp float invert = 1.0 / camt;
+    if (pp_mod1(uv.y, invert * 2.0) < invert) {
+        uv.x += invert * 0.5;
+    }
+    highp vec2 rand_co = floor(uv * camt) / camt;
+    uv = pp_mod2(uv, vec2(invert)) * camt;
+    highp float r = star_rand(rand_co, sz, sd);
+    r = clamp(r, invert, 1.0 - invert);
+    highp float circle = distance(uv, vec2(r, r));
+    return smoothstep(circle, circle + 0.5, invert * csize * star_rand(rand_co * 1.5, sz, sd));
+}
+
+void fragment() {
+    highp vec2 inputUV = UV;
+    highp vec2 pixelized = floor(inputUV * pixels) / pixels;
+    highp vec2 uv = pp_rotate(pixelized, rotation);
+    highp float angle = atan(uv.x - 0.5, uv.y - 0.5);
+    highp float d = distance(pixelized, vec2(0.5, 0.5));
+    d *= 0.5;
+    highp float c = 0.0;
+    for (int i = 0; i < 15; i++) {
+        highp float r = star_rand(vec2(float(i), float(i)), size, seed);
+        highp vec2 circleUV = vec2(d, angle);
+        c += circle_star(circleUV * size - time * time_speed - (1.0 / max(d, 0.001)) * 0.1 + r, circle_amount, circle_size, size, seed);
+    }
+    c *= 0.37 - d;
+    c = step(0.07, c - d);
+    // Soft fade at UV rim so the larger outer quad doesn't hard-clip flares/blobs.
+    highp float edge = min(min(inputUV.x, inputUV.y), min(1.0 - inputUV.x, 1.0 - inputUV.y));
+    c *= smoothstep(0.0, 0.04, edge);
+    COLOR = vec4(blob_color, c);
+}

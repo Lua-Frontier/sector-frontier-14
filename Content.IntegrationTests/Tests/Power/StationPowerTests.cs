@@ -7,6 +7,7 @@ using Content.Server.Power.NodeGroups;
 using Content.Server.Power.Pow3r;
 using Content.Shared.NodeContainer;
 using Robust.Shared.EntitySerialization;
+using Content.Shared.Power.Components;
 
 namespace Content.IntegrationTests.Tests.Power;
 

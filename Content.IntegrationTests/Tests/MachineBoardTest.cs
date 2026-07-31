@@ -23,7 +23,8 @@ public sealed class MachineBoardTest
         "MachineParticleAcceleratorEmitterStarboardCircuitboard",
         "MachineParticleAcceleratorEmitterForeCircuitboard",
         "MachineParticleAcceleratorEmitterPortCircuitboard",
-        "ParticleAcceleratorComputerCircuitboard"
+        "ParticleAcceleratorComputerCircuitboard",
+        "ThrusterLuaBuildMachineCircuitboard",
     };
 
     /// <summary>

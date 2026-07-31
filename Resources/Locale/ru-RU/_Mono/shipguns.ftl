@@ -1,0 +1,61 @@
+ent-WeaponTurretFlare = система вспышек GS-002 Sunny
+    .desc = Небольшая установка для запуска вспышек-приманок против тепловых ракет. Также полезна для поиска и спасения.
+    .suffix = T1
+ent-WeaponTurretPaladin = ракетная установка MLRS-382 «Paladin»
+    .desc = Тяжёлая ракетная установка, стреляющая 250мм управляемыми ракетами очередями по 4.
+    .suffix = Large, T4
+ent-WeaponTurretVanquisher = ракетная установка SRM-573 «Vanquisher»
+    .desc = Короткобойная ракетная установка, стреляющая 150мм неуправляемыми ракетами с огромной скорострельностью.
+    .suffix = Large, T4
+
+ent-SunnyMagazine = автозарядник вспышек Sunny
+    .desc = Автозарядник для системы противоракетных вспышек GS-002.
+    .ammo-loader-type = Противомера
+    .ammo-loader-caliber = магазин GS-002
+    .ammo-loader-weight = 12 кг
+ent-SunnyCartridge = упакованная вспышка
+    .desc = Электронно активируемая вспышка для системы GS-002.
+    .ammo-loader-type = Противомера
+    .ammo-loader-caliber = вспышка GS-002
+    .ammo-loader-weight = 0.8 кг
+ent-ShipSunnyFlare = ЭРП-вспышка
+    .desc = Приманка для тепловых ракет.
+    .ammo-loader-type = Противомера
+    .ammo-loader-caliber = ЭРП-вспышка
+    .ammo-loader-weight = 0.6 кг
+
+ent-CharonApheSlugAmmo = картридж CHARON M381 280мм APHE
+    .desc = Ускоритель и вольфрамовый сердечник с небольшим фугасным зарядом.
+    .ammo-loader-type = Боеприпасы
+    .ammo-loader-caliber = 280mm APHE
+    .ammo-loader-weight = 42 кг
+ent-CharonEmpSlugAmmo = картридж CHARON M381 280мм EMP
+    .desc = Ускоритель и вольфрамовый сердечник с мощным электромагнитным зарядом.
+    .ammo-loader-type = Боеприпасы
+    .ammo-loader-caliber = 280mm EMP
+    .ammo-loader-weight = 41 кг
+ent-CharonSubnuclearSlugAmmo = картридж CHARON M381 280мм 1.5кт
+    .desc = ЯДЕРНЫЙ ЗАРЯД. Ускоритель и маломощная фугасная боеголовка.
+    .ammo-loader-type = Боеприпасы
+    .ammo-loader-caliber = 280mm 1.5 кт ядерный
+    .ammo-loader-weight = 55 кг
+ent-150mmApheShell = 150мм снаряд APHE
+    .desc = Химически метаемый APHE-снаряд для 150мм орудий.
+    .ammo-loader-type = Боеприпасы
+    .ammo-loader-caliber = 150mm APHE
+    .ammo-loader-weight = 18 кг
+ent-Asm220TorpedoHESACLOS = торпеда ASM-220 HE-SACLOS
+    .desc = Крупный фугасный заряд с наведением SACLOS. Быстрее, но требует ручного наведения.
+    .ammo-loader-type = Торпеда
+    .ammo-loader-caliber = ASM-220 HE SACLOS
+    .ammo-loader-weight = 180 кг
+ent-WeaponCaseHeavyAmmo = ящик для боеприпасов
+    .desc = Усиленный кейс для тяжёлых корабельных снарядов или магазинов.
+    .suffix = Heavy
+    .ammo-loader-type = Контейнер
+    .ammo-loader-caliber = тяжёлый ящик
+    .ammo-loader-weight = 5 кг
+
+lathe-recipe-WeaponCaseHeavyAmmo-name = ящик для боеприпасов (тяжёлый, пустой)
+
+ship-gun-class-component-examine-detail = Орудие использует [color=yellow]{$processingPower}[/color] вычислительной мощности.

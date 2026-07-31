@@ -84,7 +84,23 @@ public sealed class SectorStarMapSystem : EntitySystem
                 else
                 {
                     if (!_sectorSystem.TryGetMapId(def.Id, out var resolved))
-                        continue;
+                    {
+                        if (currentPreset == "LuaAdventure")
+                        {
+                            var altId = def.Id switch
+                            {
+                                "TypanSector" => "TypanSectorLua",
+                                "PirateSector" => "PirateSectorLua",
+                                _ => null
+                            };
+                            if (altId == null || !_sectorSystem.TryGetMapId(altId, out resolved))
+                                continue;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
                     mapId = resolved;
                 }
 

@@ -1,8 +1,13 @@
 shuttle-console-designation = Designation:
 shuttle-console-designation-unknown = Unknown
 shuttle-console-maximum-iff-distance = Maximum IFF Distance
+shuttle-console-maximum-speed = Max speed
+shuttle-console-maximum-speed-tooltip = Maximum linear speed. 0 = no pilot cap.
+shuttle-console-maximum-angular-speed = Max turn
+shuttle-console-maximum-angular-speed-tooltip = Maximum turn rate in degrees/sec. 0 = no pilot cap.
 
 shuttle-console-iff-search = Search IFF
+shuttle-console-shield-label = Shields
 shuttle-console-inertia-dampener-off = Cruise
 shuttle-console-inertia-dampener-dampen = Drive
 shuttle-console-inertia-dampener-anchor = Park

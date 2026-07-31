@@ -1,0 +1,11 @@
+- type: construction
+  id: MachineFrame2x1
+  graph: Machine2x1
+  startNode: start
+  targetNode: machine
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Mono/Structures/Machines/frames/frame_2x1_icon.rsi
+    state: "icon"

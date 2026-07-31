@@ -53,3 +53,19 @@
         enum.MagneticLatchVisualLayers.Base:
           Idle: { state: closed }
           Latched: { state: magnet }
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipRepairable
+    repairTime: 6
+    repairCost: 6
+  - type: ArmorThickness
+    thickness: 3

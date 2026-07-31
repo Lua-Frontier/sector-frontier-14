@@ -18,14 +18,14 @@
     prototypes:
     - SpawnDungeonLootCutlery
     - SpawnDungeonLootMugs
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootClothesKitchen
     - SpawnDungeonLootFood
     - SpawnDungeonLootFlatpacksService
     - SpawnDungeonLootVendingRestocks
-    rareChance: 0.05
+    rareChance: 0.025
 
 # Tools
 - type: entity
@@ -66,7 +66,7 @@
     - FoodPlateSmallPlastic
     - FoodShakerPepper
     - FoodShakerSalt
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - KitchenKnife
@@ -104,7 +104,7 @@
     - DrinkGlassCoupeShaped
     - DrinkGlass
     - DrinkShotGlass
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - DrinkFlaskBar
@@ -114,7 +114,7 @@
     - DrinkVacuumFlask
     - SpawnDungeonLootVendingRestocks
     - MysteryLighterBox #Lua
-    rareChance: 0.05 #Lua 0.01<0.05
+    rareChance: 0.025 #Lua 0.01<0.05
 
 # Clothes
 - type: entity
@@ -139,7 +139,7 @@
     - ClothingOuterApronChef
     - ClothingOuterJacketChef
     - ClothingBeltChef
-    chance: 1
+    chance: 0.55
     offset: 0.0
 
 # Furniture/Lockers
@@ -167,11 +167,11 @@
     - LockerFreezerBase
     - LockerFreezerBase
     - LockerFreezerBase
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - KitchenDeepFryer
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random crate
@@ -226,7 +226,7 @@
     - CrateFoodBarSupply
     - CrateServiceBoozeDispenser
     - CrateServiceKitCleanades
-    chance: 0.9
+    chance: 0.4
     offset: 0.0
     #rarePrototypes:
     #- CrateServiceKitKitchen
@@ -255,7 +255,7 @@
     - CrateVendingMachineRestockDinnerwareFilled
     - CrateVendingMachineRestockSmokesFilled
     - CrateVendingMachineRestockHappyHonkFilled
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 - type: entity
@@ -280,7 +280,7 @@
     - CrateHydroSecure
     - CratePlastic
     - CratePlasticBiodegradable
-    chance: 1.0
+    chance: 0.4
     offset: 0.0
 
 # Machines
@@ -301,7 +301,7 @@
   - type: RandomSpawner
     prototypes:
     - KitchenMicrowave
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - KitchenElectricGrill
@@ -310,7 +310,7 @@
     - BoozeDispenserEmpty
     - SodaDispenserEmpty
     - SpawnDungeonLootFlatpacksService
-    rareChance: 0.40
+    rareChance: 0.2
 
 # Other
 - type: entity
@@ -347,13 +347,13 @@
     #- RandomFoodMeal
     #- RandomFoodSingle
     #- RandomSnacks
-    chance: 1
+    chance: 0.55
     offset: 0.0
     rarePrototypes:
     - FoodBreadMoldySlice
     - FoodBreadMoldy
     - FoodPizzaMoldySlice
-    rareChance: 0.05
+    rareChance: 0.025
 
 - type: entity
   name: random flatpack
@@ -386,5 +386,5 @@
     - VendingMachineCigsFlatpack
     - VendingMachineClothingPunkFlatpack
     - VendingMachineBountyVendPunkFlatpack
-    chance: 0.95
+    chance: 0.4
     offset: 0.0

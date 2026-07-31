@@ -1,4 +1,5 @@
 using Content.Server.Atmos.Components;
+using Content.Server._NF.Worldgen.Components.Debris;
 using Content.Server.Shuttles.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
@@ -12,6 +13,8 @@ namespace Content.Server.Atmos.EntitySystems;
 public sealed class AutomaticAtmosSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    private const int MinimumTilesForAtmosphere = 16;
 
     public override void Initialize()
     {
@@ -24,16 +27,30 @@ public sealed class AutomaticAtmosSystem : EntitySystem
         if (_atmosphereSystem.HasAtmosphere(ent))
             return;
 
-        // We can't actually count how many tiles there are efficiently, so instead estimate with the mass.
-        if (ev.NewMass / ShuttleSystem.TileDensityMultiplier >= 7.0f)
+        if (HasComp<SpaceDebrisComponent>(ent))
+            return;
+        var estimatedTiles = ev.NewMass / ShuttleSystem.TileDensityMultiplier;
+        if (estimatedTiles < MinimumTilesForAtmosphere)
+            return;
+
+        if (CountNonEmptyTiles(ent, MinimumTilesForAtmosphere) < MinimumTilesForAtmosphere)
+            return;
+
+        AddComp<GridAtmosphereComponent>(ent);
+        Log.Info($"Giving grid {ent} GridAtmosphereComponent.");
+    }
+
+    private int CountNonEmptyTiles(Entity<MapGridComponent> ent, int stopAt)
+    {
+        var count = 0;
+        var enumerator = _map.GetAllTilesEnumerator(ent, ent.Comp);
+        while (enumerator.MoveNext(out _))
         {
-            AddComp<GridAtmosphereComponent>(ent);
-            Log.Info($"Giving grid {ent} GridAtmosphereComponent.");
+            count++;
+            if (count >= stopAt)
+                return count;
         }
 
-        // It's not super important to remove it should the grid become too small again.
-        // If explosions ever gain the ability to outright shatter grids, do rethink this.
-
-        return;
+        return count;
     }
 }

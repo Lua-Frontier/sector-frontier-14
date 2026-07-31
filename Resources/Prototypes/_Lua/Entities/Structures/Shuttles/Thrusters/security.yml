@@ -1,0 +1,26 @@
+- type: entity
+  id: ThrusterSecurity
+  parent: Thruster
+  suffix: Security
+  components:
+  - type: Machine
+    board: ThrusterSecurityMachineCircuitboard
+  - type: Thruster
+    baseThrust: 100
+    thrust: 122
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_sec
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#4281de"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#4281de"

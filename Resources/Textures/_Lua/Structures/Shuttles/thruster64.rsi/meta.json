@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "copyright": "thruster sprites",
+  "license": "CC-BY-SA-4.0",
+  "states": [
+    { "name": "base_medium", "directions": 4 },
+    { "name": "base_nfsd_medium", "directions": 4 },
+    { "name": "base_rogue_medium", "directions": 4 },
+    { "name": "base_ussp_medium", "directions": 4 },
+    {
+      "name": "thrust_medium",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1]
+      ]
+    },
+    {
+      "name": "thrust_burn_medium_unshaded",
+      "directions": 4,
+      "delays": [
+        [0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1],
+        [0.1, 0.1, 0.1, 0.1]
+      ]
+    }
+  ]
+}

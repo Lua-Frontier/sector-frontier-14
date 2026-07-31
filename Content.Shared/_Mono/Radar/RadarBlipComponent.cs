@@ -1,4 +1,3 @@
-using Content.Shared._Mono.Radar;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Mono.Radar;
@@ -29,4 +28,11 @@ public sealed partial class RadarBlipComponent : Component
 
     [DataField]
     public float MaxDistance = 1024f;
+
+    /// <summary>
+    /// If set, used instead of <see cref="RadarColor"/>/<see cref="Scale"/>/<see cref="Shape"/>
+    /// while the blip is parented to a grid (ship footprint markers, etc).
+    /// </summary>
+    [DataField]
+    public BlipConfig? GridConfig;
 }

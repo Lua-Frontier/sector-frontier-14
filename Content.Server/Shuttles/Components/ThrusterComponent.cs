@@ -1,10 +1,8 @@
 using System.Numerics;
 using Content.Server.Shuttles.Systems;
-using Content.Shared.Construction.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking; // Frontier
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -25,7 +23,6 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         public bool IsOn;
 
-        // Need to serialize this because RefreshParts isn't called on Init and this will break post-mapinit maps!
         [ViewVariables(VVAccess.ReadWrite), DataField("thrust")]
         public float Thrust = 100f;
 
@@ -66,13 +63,6 @@ namespace Content.Server.Shuttles.Components
         [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
         public TimeSpan NextFire = TimeSpan.Zero;
 
-        // Frontier: upgradeable parts, togglable thrust
-        [DataField]
-        public ProtoId<MachinePartPrototype> MachinePartThrust = "Capacitor";
-
-        [DataField]
-        public float[] ThrustPerPartLevel = [130, 170, 210, 250, 270];
-
         /// <summary>
         /// Load on the power network, in watts.
         /// </summary>
@@ -89,7 +79,6 @@ namespace Content.Server.Shuttles.Components
 
         [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
         public string TogglePort = "Toggle";
-        // End Frontier: upgradeable parts, togglable thrust
 
         // Mono
         /// <summary>

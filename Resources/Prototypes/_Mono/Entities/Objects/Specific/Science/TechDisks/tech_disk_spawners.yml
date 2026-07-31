@@ -24,7 +24,45 @@
     - id: TechDiskCivShipComps
     - id: TechDiskCivCTLA50
     - id: TechDiskCivMS250
+    - id: TechDiskShields
     - id: TechDiskRCD
+
+#T3 TECH DISKS (trimmed — SF14 lacks Mono mech/fracture disk set)
+- type: entity
+  name: T3 random mech tech disks
+  id: SpawnLootTechDisksT3Mech
+  parent: MarkerBasePlaceFree
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: SpawnLootTechDisksT2MechTrunk
+      prob: 1.0
+
+- type: entity
+  name: T3 random fracture tech disks
+  id: SpawnLootTechDisksT3Fracture
+  parent: MarkerBasePlaceFree
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: EntityTableSpawner
+    offset: 0.0
+    table: !type:NestedSelector
+      tableId: SpawnLootTechDisksT1Trunk
+      prob: 1.0
 
 #T2 TECH DISKS (trimmed for drones)
 - type: entity
@@ -52,4 +90,5 @@
     - id: TechDiskCivShipComps
     - id: TechDiskCivCTLA50
     - id: TechDiskCivMS250
+    - id: TechDiskShields
     - id: TechDiskRCD

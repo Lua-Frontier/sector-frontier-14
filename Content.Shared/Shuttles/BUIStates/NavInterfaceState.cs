@@ -1,5 +1,6 @@
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
+using Content.Shared._Crescent.ShipShields;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.Components; // Frontier
 using System.Numerics; // Frontier - InertiaDampeningMode access
@@ -70,6 +71,12 @@ public sealed class NavInterfaceState
     /// </summary>
     public bool HideTarget = true;
     // End Frontier fields
+
+    /// <summary>
+    /// Current shield state of the grid the console is mounted on.
+    /// </summary>
+    public ShipShieldState ShieldState;
+
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,

@@ -27,17 +27,21 @@ public sealed class ShuttleMapInterfaceState
 
     public readonly bool InCombat;
 
+    public List<DroneRouteState>? DroneRoutes;
+
     public ShuttleMapInterfaceState(
         FTLState ftlState,
         StartEndTime ftlTime,
         List<ShuttleBeaconObject> destinations,
         List<ShuttleExclusionObject> exclusions,
-        bool inCombat = false)
+        bool inCombat = false,
+        List<DroneRouteState>? droneRoutes = null)
     {
         FTLState = ftlState;
         FTLTime = ftlTime;
         Destinations = destinations;
         Exclusions = exclusions;
         InCombat = inCombat;
+        DroneRoutes = droneRoutes;
     }
 }

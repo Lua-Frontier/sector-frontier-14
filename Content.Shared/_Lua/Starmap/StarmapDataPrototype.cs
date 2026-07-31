@@ -32,9 +32,6 @@ public sealed partial class StarDefinition
     [DataField]
     public Vector2 Position = Vector2.Zero;
 
-    /// <summary>
-    /// sector | beacon | asteroid | ruin | warp | centcom | frontier
-    /// </summary>
     [DataField]
     public string StarType = "beacon";
 
@@ -46,6 +43,26 @@ public sealed partial class StarDefinition
 
     [DataField]
     public string? WorldgenConfig;
+
+    [DataField]
+    public string[] WorldgenConfigs = Array.Empty<string>();
+
+    public IEnumerable<string> EnumerateWorldgenConfigs()
+    {
+        if (WorldgenConfigs.Length > 0)
+        {
+            foreach (var id in WorldgenConfigs)
+            {
+                if (!string.IsNullOrWhiteSpace(id))
+                    yield return id;
+            }
+
+            yield break;
+        }
+
+        if (!string.IsNullOrWhiteSpace(WorldgenConfig))
+            yield return WorldgenConfig;
+    }
 
     [DataField]
     public string[] ParallaxPool = Array.Empty<string>();
@@ -106,6 +123,15 @@ public sealed partial class StarDefinition
 
     [DataField]
     public string? Company;
+
+    [DataField]
+    public string[] VisibleCompanies = Array.Empty<string>();
+
+    [DataField]
+    public bool VisibleToAll;
+
+    [DataField]
+    public bool ExcludeFromGlobalUnlock;
 }
 
 [DataDefinition]

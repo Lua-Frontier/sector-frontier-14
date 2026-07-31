@@ -1,0 +1,9 @@
+- type: entity
+  parent: RadiationPulse
+  id: NebulaRadiationPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadiationSource
+    intensity: 1.25
+  - type: TimedDespawn
+    lifetime: 2

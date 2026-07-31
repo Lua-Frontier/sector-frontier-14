@@ -1,0 +1,258 @@
+# Ported Mono projectiles
+- type: entity
+  id: Shrapnel90mmFlak
+  name: shrapnel
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+        Slash: 10 # worry not. missiles take 1 million slash.
+    penetrationThreshold: 200
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape: !type:PhysShapeCircle
+          radius: 4
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: RadarBlip
+    scale: 2
+    shape: circle
+    radarColor: "#1df5cd"
+  - type: TimedDespawn
+    lifetime: 0.4
+- type: entity
+  id: 90mmBulletHE
+  parent: 90mmBulletBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 25
+        Structural: 20
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/shells.rsi
+    layers:
+    - state: 90mmHE
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 27
+    intensitySlope: 3
+    maxIntensity: 3
+    maxTileBreak: 1
+  - type: PointLight
+    color: orange
+- type: entity
+  id: 90mmBulletAP
+  parent: 90mmBulletBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Structural: 400
+    penetrationThreshold: 1000
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/shells.rsi
+    layers:
+    - state: 90mmAP
+  - type: PointLight
+    color: orange
+  - type: RadarBlip
+    scale: 2.5
+    shape: triangle
+    radarColor: "#1df5cd"
+- type: entity
+  id: 90mmBulletFlak
+  parent: 90mmBulletBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Structural: 100
+    penetrationThreshold: 500
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/shells.rsi
+    layers:
+    - state: 90mmFLAK
+  - type: PointLight
+    color: orange
+  - type: RadarBlip
+    scale: 2.5
+    shape: triangle
+    radarColor: "#1df5cd"
+  - type: ProjectileGrenade
+    fillPrototype: Shrapnel90mmFlak
+    capacity: 12 # lag!
+    minVelocity: 8
+    maxVelocity: 8
+    randomAngle: true
+  - type: TriggerOnProximity
+    requiresAnchored: false
+    enabled: true
+    shape:
+      !type:PhysShapeCircle
+      radius: 5
+      mask:
+      - BulletImpassable
+      - Opaque
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+- type: entity
+  id: 140mmBulletAPHE
+  name: 140mm APHE projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 250
+        Piercing: 75
+    penetrationThreshold: 1500
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/shells.rsi
+    layers:
+    - state: 150mmAP
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    scale: 2.75
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 4
+  - type: PointLight
+    color: "#FCBA03"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    deleteAfterExplosion: false
+    explosionType: Default
+    totalIntensity: 40
+    intensitySlope: 5
+    maxIntensity: 25
+    maxTileBreak: 2
+  - type: GatheringProjectile
+- type: entity
+  id: 140mmBulletSACLOS
+  name: 140mm SACLOS projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 250
+        Piercing: 75
+    penetrationThreshold: 1500
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/shells.rsi
+    layers:
+    - state: 150mmSACLOS
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    scale: 2.75
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 4
+  - type: PointLight
+    color: "#FCBA03"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    deleteAfterExplosion: false
+    explosionType: Default
+    totalIntensity: 30
+    intensitySlope: 5
+    maxIntensity: 25
+    maxTileBreak: 2
+  - type: GatheringProjectile
+  - type: TargetGuided
+    turnRate: 15
+    acceleration: 20
+    launchSpeed: 220
+    maxSpeed: 250
+    maxLifetime: 8
+    fallbackTime: 5
+
+# 220mm
+- type: entity
+  id: ShipLeviathanProjectile
+  name: LEVIATHAN 520mm projectile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 12000
+        Blunt: 2000
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/630_armorpiercing_shell_casing.rsi
+    layers:
+    - state: base-projectile
+    scale: 2, 2
+  - type: Ammo
+    muzzleFlash: null
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    scale: 4
+    requireNoGrid: true
+    shape: star
+  - type: TimedDespawn
+    lifetime: 7.2 #3.2km - Its 520mm after all.
+  - type: PointLight
+    color: "#fc5a03"
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1900
+    intensitySlope: 8
+    maxIntensity: 90
+    maxTileBreak: 6
+  - type: GatheringProjectile
+
+# Drone
+- type: entity
+  id: ShipFragmentProjectile
+  parent: ShipShardProjectile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 200
+        Blunt: 60
+        Piercing: 10
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 6
+    intensitySlope: 2
+    maxIntensity: 2
+    maxTileBreak: 1
+  - type: ProjectileKnockback
+    knockback: 25

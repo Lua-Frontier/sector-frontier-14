@@ -74,6 +74,9 @@
             requireAll: false
           insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+    - type: ShipRepairable
+      repairTime: 20
+      repairCost: 150
 
 - type: entity
   parent: MachineFTLDrive
@@ -106,6 +109,13 @@
       board: MachineDriveCTLA50Circuitboard
     - type: BluespaceFuel
       rangeBonus: 6100
+    - type: ShipRepairable
+      repairTime: 30
+      repairCost: 220
+    - type: ShipRepairableRestrict
+      toolWhitelist:
+        tags:
+        - ADSRepairTool
 
 - type: entity
   parent: MachineFTLDrive
@@ -141,3 +151,10 @@
       board: MachineDriveCTLA25sCircuitboard
     - type: BluespaceFuel
       rangeBonus: 3000
+    - type: ShipRepairable
+      repairTime: 25
+      repairCost: 180
+    - type: ShipRepairableRestrict
+      toolWhitelist:
+        tags:
+        - ADSRepairTool

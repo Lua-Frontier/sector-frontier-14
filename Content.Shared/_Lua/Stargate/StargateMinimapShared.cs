@@ -41,6 +41,7 @@ public sealed class StargateMinimapMarker
 public sealed class StargateMinimapUiState : BoundUserInterfaceState
 {
     public readonly bool IsStargateWorld;
+    public readonly bool IsExpeditionWorld;
     public readonly bool HasDisk1;
     public readonly bool HasDisk2;
     public readonly Dictionary<Vector2i, uint[]> ExploredChunks;
@@ -48,7 +49,7 @@ public sealed class StargateMinimapUiState : BoundUserInterfaceState
     public readonly Vector2? GatePosition;
     public readonly Vector2? PlayerPosition;
     public readonly List<Vector2> QuestTargetZones;
-    public StargateMinimapUiState(bool isStargateWorld, bool hasDisk1, bool hasDisk2, Dictionary<Vector2i, uint[]> exploredChunks, List<StargateMinimapMarker> markers, Vector2? gatePosition, Vector2? playerPosition, List<Vector2>? questTargetZones = null) { IsStargateWorld = isStargateWorld; HasDisk1 = hasDisk1; HasDisk2 = hasDisk2; ExploredChunks = exploredChunks; Markers = markers; GatePosition = gatePosition; PlayerPosition = playerPosition; QuestTargetZones = questTargetZones ?? new(); }
+    public StargateMinimapUiState(bool isStargateWorld, bool isExpeditionWorld, bool hasDisk1, bool hasDisk2, Dictionary<Vector2i, uint[]> exploredChunks, List<StargateMinimapMarker> markers, Vector2? gatePosition, Vector2? playerPosition, List<Vector2>? questTargetZones = null) { IsStargateWorld = isStargateWorld; IsExpeditionWorld = isExpeditionWorld; HasDisk1 = hasDisk1; HasDisk2 = hasDisk2; ExploredChunks = exploredChunks; Markers = markers; GatePosition = gatePosition; PlayerPosition = playerPosition; QuestTargetZones = questTargetZones ?? new(); }
 }
 [Serializable, NetSerializable]
 public sealed class StargateMinimapPlaceMarkerMessage : BoundUserInterfaceMessage

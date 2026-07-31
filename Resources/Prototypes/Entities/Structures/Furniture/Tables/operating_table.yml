@@ -1,8 +1,8 @@
 - type: entity
   id: OperatingTable
-  parent: Bed
+  parent: [Bed, ConstructibleMachine]
   name: operating table
-  description: Special medical table for surgery. This one just seems to be a useless prop, though.
+  description: Used for advanced medical procedures. # Shitmed
   components:
   - type: Sprite
     sprite: Structures/Furniture/Tables/optable.rsi
@@ -11,3 +11,15 @@
   - type: Icon
     sprite: Structures/Furniture/Tables/optable.rsi
     state: operating_table
+  - type: OperatingTable
+  # Begin Shitmed Changes
+  - type: Machine
+    board: OperatingTableCircuitboard
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 2
+    ports:
+    - OperatingTable
+  # End Shitmed Changes

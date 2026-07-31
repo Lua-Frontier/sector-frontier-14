@@ -3,7 +3,6 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
-using Content.Server._NF.Shipyard.Systems;
 using Content.Server._Lua.Shipyard.Components;
 using Content.Server.Mind;
 using Content.Server.Shuttles.Components;
@@ -46,7 +45,6 @@ public sealed class ShuttleParkingSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly ShipOwnershipSystem _shipOwnership = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -76,7 +74,6 @@ public sealed class ShuttleParkingSystem : EntitySystem
         _transform.SetCoordinates(shuttleUid, new EntityCoordinates(parkingMap.Owner, spawnPosition));
         _transform.SetWorldRotation(shuttleUid, Angle.Zero);
         EnsureComp<ParkedShuttleComponent>(shuttleUid);
-        _shipOwnership.ResetAbandonmentTimer(shuttleUid, "shuttle is parked");
         return new ShuttleParkingResult(ShuttleParkingError.Success);
     }
 
@@ -95,7 +92,6 @@ public sealed class ShuttleParkingSystem : EntitySystem
         _docking.UndockDocks(shuttleUid);
         _shuttle.FTLDock((shuttleUid, Transform(shuttleUid)), config);
         RemComp<ParkedShuttleComponent>(shuttleUid);
-        _shipOwnership.ResetAbandonmentTimer(shuttleUid, "shuttle was recalled from parking");
         return new ShuttleParkingResult(ShuttleParkingError.Success);
     }
 

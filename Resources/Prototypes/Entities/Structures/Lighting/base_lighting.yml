@@ -4,6 +4,12 @@
 #Blue/Sodium/etc. - the color of the light
 
 #Basic lights
+#==Suffix Guide==
+#Always Powered - light doesn't need power to give off life
+#Empty - on map init, light spawns without bulb
+#Blue/Sodium/etc. - the color of the light
+
+#Basic lights
 - type: entity
   id: AlwaysPoweredWallLight
   name: light
@@ -83,6 +89,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+  - type: ShipRepairable
+    repairCost: 2
   placement:
     mode: SnapgridCenter
     snap:

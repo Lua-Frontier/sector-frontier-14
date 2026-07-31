@@ -1,0 +1,63 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+# Lathe recipes for Lua shipgun magazines / cartridges (Ammo TechFab)
+# Unlocked via Shiparmory R&D — not roundstart.
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: MagazineLua20mmAmmoRecipe
+  result: MagazineLua20mm
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: MagazineLua53mmAmmoRecipe
+  result: MagazineLua53mm
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: MagazineLua80mmAmmoRecipe
+  result: MagazineLua80mm
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: MagazineLua105mmAmmoRecipe
+  result: MagazineLua105mm
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: CartridgeLua120mmAmmoRecipe
+  result: CartridgeLua120mm
+
+- type: latheRecipe
+  parent: BaseHeavyShipgunAmmoRecipe
+  id: MagazineLua140mmAmmoRecipe
+  result: MagazineLua140mm
+
+- type: latheRecipe
+  parent: BaseMissileShipgunAmmoRecipe
+  id: MagazineNightHunterAmmoRecipe
+  result: MagazineNightHunter
+
+- type: latheRecipe
+  parent: BaseMissileShipgunAmmoRecipe
+  id: MagazineLancerAmmoRecipe
+  result: MagazineLancer
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: MagazineCerberAmmoRecipe
+  result: MagazineCerber
+
+- type: latheRecipePack
+  id: LuaShipgunAmmo
+  recipes:
+  - MagazineLua20mmAmmoRecipe
+  - MagazineLua53mmAmmoRecipe
+  - MagazineLua80mmAmmoRecipe
+  - MagazineLua105mmAmmoRecipe
+  - CartridgeLua120mmAmmoRecipe
+  - MagazineLua140mmAmmoRecipe
+  - MagazineNightHunterAmmoRecipe
+  - MagazineLancerAmmoRecipe
+  - MagazineCerberAmmoRecipe

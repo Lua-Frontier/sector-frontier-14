@@ -26,6 +26,8 @@ public sealed partial class ShuttleTabletWindowBoundUserInterface(EntityUid owne
         _window.OnServiceFlagsChanged += OnServiceFlagsChanged;
         _window.OnSetTargetCoordinates += OnSetTargetCoordinates;
         _window.OnSetHideTarget += OnSetHideTarget;
+        _window.OnMaxShuttleSpeedChanged += OnMaxShuttleSpeedChanged;
+        _window.OnMaxShuttleAngularSpeedChanged += OnMaxShuttleAngularSpeedChanged;
 
         _window.NavContainer.NavRadar.OnRadarClick += OnRadarClick;
         _window.OnWeaponSelectionChanged += OnWeaponSelection;
@@ -113,6 +115,22 @@ public sealed partial class ShuttleTabletWindowBoundUserInterface(EntityUid owne
         {
             ShuttleEntityUid = entityUid,
             Mode = mode,
+        });
+    }
+
+    private void OnMaxShuttleSpeedChanged(float? maxSpeed)
+    {
+        SendMessage(new SetMaxShuttleSpeedRequest
+        {
+            MaxSpeed = maxSpeed,
+        });
+    }
+
+    private void OnMaxShuttleAngularSpeedChanged(float? maxAngularSpeed)
+    {
+        SendMessage(new SetMaxShuttleAngularSpeedRequest
+        {
+            MaxAngularSpeed = maxAngularSpeed,
         });
     }
 

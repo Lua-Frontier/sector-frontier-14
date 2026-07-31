@@ -6,12 +6,16 @@
   name: "moth body part"
   abstract: true
   components:
+  - type: Icon # Shitmed Change
+    sprite: Mobs/Species/Moth/parts.rsi
+  - type: BodyPart # Shitmed Change
+    species: Moth
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: InsectBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +31,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: InsectBlood
         Quantity: 20
 
 
@@ -44,7 +48,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: InsectBlood
         Quantity: 10
 
 - type: entity

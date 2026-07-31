@@ -47,7 +47,7 @@ public sealed partial class GunSystem
                     autoShoot.RemainingTime -= TimeSpan.FromSeconds(frameTime);
                 }
 
-                AttemptShoot(uid, gun);
+                AttemptShoot(uid, uid, gun);
             }
         }
     }

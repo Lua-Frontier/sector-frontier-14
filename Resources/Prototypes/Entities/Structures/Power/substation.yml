@@ -1,4 +1,5 @@
 # Core logic shared between regular and wall-mount substation
+# Core logic shared between regular and wall-mount substation
 - type: entity
   abstract: true
   id: CoreSubstation
@@ -252,6 +253,8 @@
     maxCharge: 2500000
     startingCharge: 2500000
 
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   parent: SubstationBasic
   id: SubstationBasicEmpty
@@ -280,6 +283,8 @@
       powercell: !type:Container
 
       # Construction Frame
+  - type: ShipRepairable
+    repairCost: 2
 - type: entity
   id: BaseSubstationWallFrame
   categories: [ HideSpawnMenu ]
