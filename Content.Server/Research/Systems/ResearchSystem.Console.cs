@@ -144,7 +144,7 @@ public sealed partial class ResearchSystem
 
     private void OnConsoleDatabaseSynchronized(EntityUid uid, ResearchConsoleComponent component, ref TechnologyDatabaseSynchronizedEvent args)
     {
-        UpdateConsoleInterface(uid, component);
+        //UpdateConsoleInterface(uid, component); // Lua
     }
 
     // Frontier: unneeded emag call

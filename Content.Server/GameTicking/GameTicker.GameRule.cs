@@ -424,7 +424,7 @@ public sealed partial class GameTicker
 
             foreach (var (time, rule) in sortedRules)
             {
-                var formattedTime = time.ToString(@"hh\:mm\:ss");
+                var formattedTime = time.ToString(@"d\:hh\:mm\:ss"); // Lua
                 message += $"| {formattedTime,-10} | {rule,-16} \n";
             }
 

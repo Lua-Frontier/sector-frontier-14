@@ -141,7 +141,7 @@ public sealed class HealthAnalyzerPrinterSystem : EntitySystem
             { "patient.name", () => GetEntityName(patient) },
             { "patient.species", () => GetEntitySpecies(patient) },
             { "responder.name", () => GetEntityName(responder) },
-            { "roundTime", () => (_gameTiming.CurTime - _gameTicker.RoundStartTimeSpan).ToString(@"hh\:mm") },
+            { "roundTime", () => (_gameTiming.CurTime - _gameTicker.RoundStartTimeSpan).ToString(@"d\:hh\:mm") }, // Lua
             { "damageList", () => ComposeDamageList(damageable) },
         };
 

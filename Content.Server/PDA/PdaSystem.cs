@@ -1,3 +1,4 @@
+using System.Linq; // Lua
 using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.CartridgeLoader;
@@ -213,6 +214,18 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
+
+            // Lua start
+            if (actorUid == null)
+            {
+                var actors = _ui.GetActors(uid, PdaUiKey.Key).ToArray();
+
+                if (actors.Length == 1)
+                {
+                    actorUid = actors.First();
+                }
+            }
+            // Lua end
 
             // Frontier: balance & ship deeds
             var balance = 0;

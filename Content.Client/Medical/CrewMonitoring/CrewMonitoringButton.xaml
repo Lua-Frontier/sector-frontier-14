@@ -1,0 +1,35 @@
+<!-- Lua start -->
+<Button xmlns="https://spacestation14.io" SetHeight="55">
+    <BoxContainer Orientation="Horizontal">
+        <BoxContainer Name="StatusContainer" Orientation="Horizontal" HorizontalExpand="True">
+            <TextureRect Name="SuitCoordsIndicator"
+                         TextureScale="0.25 0.25"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
+            <AnimatedTextureRect Name="StatusIcon"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+            <TextureRect Name="JobIcon"
+                         SetSize="16 16"
+                         Stretch="KeepAspectCentered"
+                         TextureScale="2 2"
+                         Margin="0 0 5 0"/>
+            <ScrollContainer HorizontalExpand="True"
+                             VScrollEnabled="False"
+                             HScrollEnabled="False"
+                             MouseFilter="Ignore"
+                             Margin="0 0 0 2">
+                <Label Name="NameLabel"/>
+            </ScrollContainer>
+        </BoxContainer>
+        <BoxContainer Name="JobContainer"
+                      Orientation="Vertical"
+                      HorizontalAlignment="Right"
+                      Margin="5 0 0 0">
+            <Label Name="LocationLabel" HorizontalAlignment="Center"/>
+            <PanelContainer StyleClasses="LowDivider"/>
+            <Label Name="MapLabel" HorizontalAlignment="Center"/>
+        </BoxContainer>
+    </BoxContainer>
+</Button>
+<!-- Lua end -->

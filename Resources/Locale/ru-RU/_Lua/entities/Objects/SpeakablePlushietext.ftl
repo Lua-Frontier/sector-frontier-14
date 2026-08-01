@@ -24,3 +24,13 @@ Sidrieplushie-23 = ПИЗДЕЦ!!
 Sidrieplushie-24 = А нельзя полегче?
 Sidrieplushie-25 = Вы слышали о станции Бархан-8? Нет? Не забивайте себе голову.
 Sidrieplushie-26 = Старость — радость.
+
+AnemonePlushie-1 = Север помнит
+AnemonePlushie-2 = Зима близко
+AnemonePlushie-3 = Дракарис
+AnemonePlushie-4 = Вступите в ивент отдел
+AnemonePlushie-5 = Кидайте D20 на попадание!
+AnemonePlushie-6 = Вы медленно проходите в подземелье... стоп, почему первым в подземелье заходит фаерболл?
+AnemonePlushie-7 = Опять по новой бесконечный цикл, мы зашли за край
+AnemonePlushie-8 = Увы
+AnemonePlushie-9 = Мы всё забыли, кажется, что раз и навсегда

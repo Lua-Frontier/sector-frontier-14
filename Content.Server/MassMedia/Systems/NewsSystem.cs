@@ -465,7 +465,7 @@ public sealed class NewsSystem : SharedNewsSystem
                         ("server", _baseServer.ServerName),
                         ("round", _ticker.RoundId),
                         ("author", article.Author ?? Loc.GetString("news-discord-unknown-author")),
-                        ("time", article.ShareTime.ToString(@"hh\:mm\:ss")))
+                        ("time", article.ShareTime.ToString(@"d\:hh\:mm\:ss"))) // Lua
                 }
             };
             var payload = new WebhookPayload { Embeds = [embed] };

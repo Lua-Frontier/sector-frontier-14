@@ -24,6 +24,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
     private ISawmill _sawmill = default!;
     public TechnologyPrototype Prototype;
     public Action<TechnologyPrototype>? BuyAction;
+    public bool CanResearch; // Lua
 
     public FancyTechnologyInfoPanel(TechnologyPrototype proto, ProtoId<RndFactionPrototype>? researchFaction, bool hasAccess, ResearchAvailability availability, SpriteSystem sprite)
     {
@@ -85,7 +86,8 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             defaultColor: color
         );
 
-        ResearchButton.Disabled = !hasAccess || availability != ResearchAvailability.Available;
+        CanResearch = hasAccess && availability == ResearchAvailability.Available; // Lua
+        ToggleResearchButton(CanResearch); // Lua
 
         // Replace the event handling method to use a simpler approach
         ResearchButton.OnPressed += args =>
@@ -94,6 +96,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             if (BuyAction != null)
             {
                 _sawmill.Debug($"Triggering BuyAction for {proto.ID}");
+                ToggleResearchButton(false); // Lua
                 BuyAction.Invoke(proto);
             }
             else
@@ -104,6 +107,13 @@ public sealed partial class FancyTechnologyInfoPanel : Control
 
         _sawmill.Debug($"Created tech panel: {proto.ID}, availability: {availability}, button disabled: {ResearchButton.Disabled}");
     }
+
+    // Lua start
+    public void ToggleResearchButton(bool enable)
+    {
+        ResearchButton.Disabled = !enable;
+    }
+    // Lua end
 
     private void InitializePrerequisites(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype proto, ResearchSystem research, SpriteSystem sprite)
     {

@@ -16,7 +16,7 @@ public sealed class StackStatusControl : Control
     {
         _parent = parent;
         _label = new RichTextLabel {StyleClasses = {StyleNano.StyleClassItemStatus}};
-        _label.SetMarkup(Loc.GetString("comp-stack-status", ("count", _parent.Count)));
+        _label.SetMarkup(Loc.GetString("comp-stack-status", ("count", _parent.Count.ToString("N0")))); // Lua
         AddChild(_label);
     }
 
@@ -31,6 +31,6 @@ public sealed class StackStatusControl : Control
 
         _parent.UiUpdateNeeded = false;
 
-        _label.SetMarkup(Loc.GetString("comp-stack-status", ("count", _parent.Count)));
+        _label.SetMarkup(Loc.GetString("comp-stack-status", ("count", _parent.Count.ToString("N0")))); // Lua
     }
 }

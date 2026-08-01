@@ -423,10 +423,11 @@ public sealed class FrontierParkingSystem : EntitySystem
 
     private string BuildFaxContent(EntityUid frontierStation, ShuttleDeedComponent deed)
     {
+        var currentYear = _cfg.GetCVar(CLVars.CurrentGameYear);
         var text = _res.ContentFileReadText(new ResPath("/Paperwork/Frontier/2.xml")).ReadToEnd();
         text = text.Replace("DOCUMENT NAME", "НАРУШЕНИЕ СТОЯНКИ НА ФРОНТИРЕ");
-        text = text.Replace("{{HOUR.MINUTE.SECOND}}", _ticker.RoundDuration().ToString("hh\\:mm\\:ss"));
-        text = text.Replace("{{DAY.MONTH.YEAR}}", DateTime.UtcNow.AddHours(3).ToString("dd.MM") + ".2709");
+        text = text.Replace("{{HOUR.MINUTE.SECOND}}", _ticker.RoundDuration().ToString(@"d\:hh\:mm\:ss"));
+        text = text.Replace("{{DAY.MONTH.YEAR}}", DateTime.UtcNow.AddHours(3).ToString("dd.MM") + $".{currentYear}");
         text = text.Replace("STATION XX-00", Name(frontierStation));
         text = text.Replace("Я, (ФИО), в должности (полное наименование должности), фиксирую нарушение стоянки на Фронтире",
             "ИИ Автономного Контроля Трафика, фиксирует нарушение стоянки на Станции Фронтир");

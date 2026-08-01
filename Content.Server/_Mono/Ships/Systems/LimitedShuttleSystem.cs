@@ -7,6 +7,7 @@ using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared.Lua.CLVar;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes; // Lua
 using Robust.Shared.Timing;
 
 namespace Content.Server._Mono.Ships.Systems;
@@ -20,6 +21,7 @@ public sealed class LimitedShuttleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ShuttleDeedSystem _shuttleDeed = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!; // Lua
 
     private TimeSpan _lastUpdate = TimeSpan.Zero;
     private readonly TimeSpan _interval = TimeSpan.FromMinutes(1);
@@ -104,6 +106,31 @@ public sealed class LimitedShuttleSystem : EntitySystem
 
         return shuttleCount < vessel.LimitActive;
     }
+
+    // Lua start
+    public Dictionary<ProtoId<VesselPrototype>, int> GetLimitedVesselCounts()
+    {
+        var limited = new Dictionary<ProtoId<VesselPrototype>, int>();
+        var query = AllEntityQuery<VesselComponent>();
+
+        while (query.MoveNext(out _, out var vessel))
+        {
+            if (_proto.Index(vessel.VesselId).LimitActive == 0)
+            {
+                continue;
+            }
+
+            if (!limited.ContainsKey(vessel.VesselId))
+            {
+                limited[vessel.VesselId] = 0;
+            }
+
+            limited[vessel.VesselId] += 1;
+        }
+
+        return limited;
+    }
+    // Lua end
 
     private void OnAttemptShuttlePurchase(ref AttemptShipyardShuttlePurchaseEvent ev)
     {

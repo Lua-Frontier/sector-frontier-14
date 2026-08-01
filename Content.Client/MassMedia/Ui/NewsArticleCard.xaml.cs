@@ -35,7 +35,7 @@ public sealed partial class NewsArticleCard : Control
         set
         {
             _publicationTime = value;
-            PublishTimeLabel.Text = value?.ToString(@"hh\:mm\:ss") ?? "";
+            PublishTimeLabel.Text = value?.ToString(@"d\:hh\:mm\:ss") ?? ""; // Lua
         }
     }
 

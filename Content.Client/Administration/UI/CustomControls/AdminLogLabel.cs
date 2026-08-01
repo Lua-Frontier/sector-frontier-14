@@ -11,7 +11,7 @@ public sealed class AdminLogLabel : RichTextLabel
         Log = log;
         Separator = separator;
 
-        SetMessage($"{log.Date:HH:mm:ss}: {log.Message}");
+        SetMessage($"{log.Date.AddHours(3):dd.MM HH:mm:ss}: {log.Message}"); // Lua
         OnVisibilityChanged += VisibilityChanged;
     }
 

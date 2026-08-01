@@ -26,15 +26,15 @@
                     <EntityPrototypeView Name="TechnologyTexture"
                                  Scale="2 2"
                                  VerticalAlignment="Center"
-                                 Margin="4"/>
+                                 Margin="4"
+                                 MaxSize="128 128"/> <!-- Lua: Added MaxSize="128 128"-->
                 </BoxContainer>
                 <Control HorizontalExpand="True"
                          SizeFlagsStretchRatio="2"/>
             </BoxContainer>
             <RichTextLabel Name="TechnologyNameLabel"
-                           StyleClasses="LabelKeyText"
                            HorizontalExpand="True"
-                           MaxWidth="290"/>
+                           MaxWidth="290"/> <!-- Lua: Removed StyleClasses="LabelKeyText" -->
             <RichTextLabel Name="TechnologyCostLabel"
                     HorizontalExpand="True"/>
             <Button Name="ResearchButton"
@@ -55,9 +55,11 @@
                 <customControls:HSeparator StyleClasses="LowDivider"
                         Margin="0 0 0 10"/>
                 <PanelContainer>
+                    <!-- Lua start
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E"/>
+                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E"/>
                     </PanelContainer.PanelOverride>
+                         Lua end -->
                     <BoxContainer
                         Name="RequiredTechContainer"
                         Orientation="Vertical">
@@ -76,9 +78,11 @@
                 <customControls:HSeparator StyleClasses="LowDivider"
                         Margin="0 0 0 10"/>
                 <PanelContainer VerticalExpand="True">
+                    <!-- Lua start
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E"/>
                     </PanelContainer.PanelOverride>
+                         Lua end -->
                     <ScrollContainer
                         HScrollEnabled="False"
                         HorizontalExpand="True"

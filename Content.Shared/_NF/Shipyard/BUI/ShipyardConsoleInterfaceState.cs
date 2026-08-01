@@ -1,4 +1,6 @@
+using Robust.Shared.Prototypes; // Lua
 using Robust.Shared.Serialization;
+using Content.Shared._NF.Shipyard.Prototypes; // Lua
 
 namespace Content.Shared._NF.Shipyard.BUI;
 
@@ -16,6 +18,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
     public readonly string ShipyardName;
     public readonly bool FreeListings;
     public readonly float SellRate;
+    public readonly Dictionary<ProtoId<VesselPrototype>, int> LimitedCounts; // Lua
 
     public ShipyardConsoleInterfaceState(
         int balance,
@@ -27,7 +30,8 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         (List<string> available, List<string> unavailable) shipyardPrototypes,
         string shipyardName,
         bool freeListings,
-        float sellRate)
+        float sellRate,
+        Dictionary<ProtoId<VesselPrototype>, int> limitedCounts) // Lua: Added limitedCounts
     {
         Balance = balance;
         AccessGranted = accessGranted;
@@ -39,5 +43,6 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         ShipyardName = shipyardName;
         FreeListings = freeListings;
         SellRate = sellRate;
+        LimitedCounts = limitedCounts; // Lua
     }
 }

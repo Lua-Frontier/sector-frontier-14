@@ -16,18 +16,15 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        EntityUid? gridUid = null;
-        var stationName = string.Empty;
+        // Lua start
+        var gridUid = EntMan.TryGetComponent<TransformComponent>(Owner, out var xform)
+        ? xform.GridUid
+        : null;
 
-        if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
-        {
-            gridUid = xform.GridUid;
-
-            if (EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData))
-            {
-                stationName = metaData.EntityName;
-            }
-        }
+        var stationName = EntMan.TryGetComponent<MetaDataComponent>(gridUid, out var metaData)
+        ? metaData.EntityName
+        : Loc.GetString("suit-sensor-location-unknown-grid");
+        // Lua end
 
         _menu = this.CreateWindow<CrewMonitoringWindow>();
         _menu.Set(stationName, gridUid);

@@ -37,7 +37,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// <summary>
     /// The parallax prototype to use for the background. Configurable.
     /// </summary>
-    public string ParallaxPrototype { get; set; } = "Default";
+    public string ParallaxPrototype { get; set; } = "Asteroids"; // Lua
 
     /// <summary>
     /// Updates the parallax background to use a different prototype
@@ -121,6 +121,12 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             ParallaxPrototype = ParallaxPrototype,
             HorizontalExpand = true,
             VerticalExpand = true,
+            // Lua start
+            SpeedX = 0.15f,
+            SpeedY = 0.15f,
+            ScaleX = 2.5f,
+            ScaleY = 2.5f,
+            // Lua end
         };
 
         // Add the parallax control to the ResearchesContainer at the beginning (bottom layer)
@@ -131,8 +137,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         // Make sure the parallax is at the bottom of the z-order (drawn first)
         _parallaxControl.SetPositionInParent(0);
 
-        TechViewport.SetPositionInParent(1);
-        RecenterButton.SetPositionInParent(2);
+        //TechViewport.SetPositionInParent(1); // Lua
+        //RecenterButton.SetPositionInParent(2); // Lua
 
         // Set up event handlers
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
@@ -268,14 +274,40 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
                 {
                     texture,
                     label,
+                    /* Lua start
                     new Control
                     {
                         MinWidth = 10
                     }
+                       Lua end */
                 }
             };
             TierDisplayContainer.AddChild(control);
         }
+
+        // Lua start
+        var available = 0;
+        var researched = 0;
+
+        foreach (var tech in List)
+        {
+            var techProto = _prototype.Index<TechnologyPrototype>(tech.Key);
+
+            if (!_research.IsTechnologyFactionAllowed(_researchFaction, techProto))
+            {
+                continue;
+            }
+
+            available += 1;
+
+            if (tech.Value == ResearchAvailability.Researched)
+            {
+                researched += 1;
+            }
+        }
+
+        ResearchedAmountLabel.Text = $"{researched}/{available}";
+        // Lua end
     }
 
     #region Drag handle
@@ -317,7 +349,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// </summary>
     /// <param name="proto">Tech proto</param>
     /// <param name="availability">Tech availability</param>
-    public void SelectTech(TechnologyPrototype proto, ResearchAvailability availability)
+    public void SelectTech(TechnologyPrototype proto, ResearchAvailability availability, bool rightClick) // Lua: Added rightClick
     {
         InfoContainer.RemoveAllChildren();
         if (!_player.LocalEntity.HasValue)
@@ -339,6 +371,14 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         var control = new FancyTechnologyInfoPanel(proto, _researchFaction, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
         control.BuyAction += args => OnTechnologyCardPressed?.Invoke(args.ID);
         InfoContainer.AddChild(control);
+
+        // Lua start
+        if (rightClick && control.CanResearch)
+        {
+            control.ToggleResearchButton(false);
+            OnTechnologyCardPressed?.Invoke(proto.ID);
+        }
+        // Lua end
     }
 
     public void Recenter()
@@ -363,11 +403,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     {
         base.MouseWheel(args);
         if (args.Delta.Y == 0) return;
-        var mouseScreen = UserInterfaceManager.MousePositionScaled.Position * UIScale;
-        var viewportLocal = mouseScreen - TechViewport.GlobalPixelPosition;
-        if (viewportLocal.X < 0 || viewportLocal.Y < 0 ||
-            viewportLocal.X > TechViewport.PixelWidth || viewportLocal.Y > TechViewport.PixelHeight)
-            return;
+        var viewportLocal = (args.RelativePixelPosition - PixelSize / 2f) / UIScale; // Lua
         var oldZoom = _zoom;
         var zoomMultiplier = MathF.Pow(ZoomStep, args.Delta.Y);
         _zoom = Math.Clamp(_zoom * zoomMultiplier, MinZoom, MaxZoom);
@@ -429,7 +465,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             LayoutContainer.SetPosition(item, scaledPosition);
             item.SetScale(_zoom);
         }
-        DragContainer.SetWidth = Math.Max(_baseWidth * _zoom, TechViewport.PixelWidth);
-        DragContainer.SetHeight = Math.Max(_baseHeight * _zoom, TechViewport.PixelHeight);
+        DragContainer.SetWidth = _baseWidth * _zoom; // Lua
+        DragContainer.SetHeight = _baseHeight * _zoom; // Lua
     }
 }

@@ -400,3 +400,39 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+
+- type: entity
+  parent: BasePlushieSpeakable
+  id: PlushieAnemone
+  name: Плюшевая Анемоня
+  description: Мягкий и плюшевый дракон, что на ощупь даже кажется тёплым. Любит рисовать и постоянно соваться туда, куда не надо, а ещё он ни в чём не виноват.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/Equipable/Anemone.rsi
+    state: icon
+  - type: Item
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    soundHit:
+      path: /Audio/Items/Toys/rawr.ogg
+    animation: WeaponArcBite
+  - type: Speech
+  - type: Tag
+    tags:
+    - Payload
+  - type: SpeakOnTrigger
+    pack: AnemonePlushieSpeak
+  - type: TTS
+    voice: Annah
+
+- type: localizedDataset
+  id: AnemonePlushieSpeak
+  values:
+    prefix: AnemonePlushie-
+    count: 9

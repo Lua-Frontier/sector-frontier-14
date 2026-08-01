@@ -545,6 +545,14 @@ public sealed class SuitSensorSystem : EntitySystem
 
                 status.Coordinates = GetNetCoordinates(coordinates);
                 status.LocationName = locationName; // Frontier
+
+                // Lua start
+                if (transform.MapUid != null)
+                {
+                    status.MapName = Name(transform.MapUid.Value);
+                }
+                // Lua end
+
                 break;
         }
 
@@ -578,6 +586,8 @@ public sealed class SuitSensorSystem : EntitySystem
             payload.Add(SuitSensorConstants.NET_MAP_HASH, status.MapHash); // Frontier
         if (status.LocationName != null) // Frontier
             payload.Add(SuitSensorConstants.NET_LOCATION_NAME, status.LocationName); // Frontier
+        if (status.MapName != null) // Lua
+            payload.Add(SuitSensorConstants.NET_MAP_NAME, status.MapName); // Lua
 
         return payload;
     }
@@ -608,6 +618,7 @@ public sealed class SuitSensorSystem : EntitySystem
         payload.TryGetValue(SuitSensorConstants.NET_TOTAL_DAMAGE_THRESHOLD, out int? totalDamageThreshold);
         payload.TryGetValue(SuitSensorConstants.NET_COORDINATES, out NetCoordinates? coords);
         payload.TryGetValue(SuitSensorConstants.NET_MAP_HASH, out int? mapHash); // Frontier - Crew monitor map check
+        payload.TryGetValue(SuitSensorConstants.NET_MAP_NAME, out string? mapName); // Lua
 
         var status = new SuitSensorStatus(ownerUid, suitSensorUid, name, job, jobIcon, jobDepartments, location) // Frontier: add location
         {
@@ -616,6 +627,7 @@ public sealed class SuitSensorSystem : EntitySystem
             TotalDamageThreshold = totalDamageThreshold,
             Coordinates = coords,
             MapHash = mapHash, // Frontier - Crew monitor map check
+            MapName = mapName, // Lua
         };
         return status;
     }

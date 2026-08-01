@@ -3,8 +3,10 @@ using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Events;
+using Content.Shared._NF.Shipyard.Prototypes; // Lua
 using Content.Shared.Containers.ItemSlots;
 using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes; // Lua
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client._NF.Shipyard.BUI;
@@ -48,12 +50,12 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         }
     }
 
-    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId)
+    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId, Dictionary<ProtoId<VesselPrototype>, int> limitedCounts) // Lua: Added limitedCounts
     {
         if (_menu == null)
             return;
 
-        _menu.PopulateProducts(availablePrototypes, unavailablePrototypes, freeListings, validId);
+        _menu.PopulateProducts(availablePrototypes, unavailablePrototypes, freeListings, validId, limitedCounts); // Lua
         _menu.PopulateCategories(availablePrototypes, unavailablePrototypes);
         _menu.PopulateClasses(availablePrototypes, unavailablePrototypes);
         _menu.PopulateEngines(availablePrototypes, unavailablePrototypes);
@@ -76,7 +78,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 
         Balance = baseState.Balance;
         ShipSellValue = baseState.ShipSellValue;
-        Populate(baseState.ShipyardPrototypes.available, baseState.ShipyardPrototypes.unavailable, baseState.FreeListings, baseState.IsTargetIdPresent);
+        Populate(baseState.ShipyardPrototypes.available, baseState.ShipyardPrototypes.unavailable, baseState.FreeListings, baseState.IsTargetIdPresent, baseState.LimitedCounts); // Lua
         _menu?.UpdateState(baseState);
         if (dockState != null) _menu?.UpdateDockSelect(dockState.DockNavState, dockState.SelectedDockPort);
         else _menu?.UpdateDockSelect(null, null);

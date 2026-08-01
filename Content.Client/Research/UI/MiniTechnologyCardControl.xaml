@@ -19,7 +19,8 @@
                              HorizontalExpand="False"
                              VerticalExpand="False"
                              Margin="1"
-                             Scale="1 1" /> <!-- Frontier: swap icons to be proto based -->
+                             Scale="1 1"
+                             MaxSize="64 64"/> <!-- Frontier: swap icons to be proto based --> <!-- Lua: Added MaxSize="64 64" -->
                 <Control MinWidth="5"/>
                 <RichTextLabel Name="NameLabel" StyleClasses="LabelSubText" VerticalAlignment="Center"/>
             </BoxContainer>

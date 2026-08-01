@@ -41,9 +41,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private ConfirmButton? _currentlyConfirmingButton = null;
 
     // Lua start
-
     private NavInterfaceState? _dockNav;
     private NetEntity? _selectedDockPort;
+    private Dictionary<ProtoId<VesselPrototype>, int> _limitedCounts = new();
     private readonly SharedTransformSystem _xform;
     private readonly SpriteSystem _sprite;
 
@@ -53,6 +53,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private static readonly ResPath LuaShuttleIcons = new("/Textures/_Lua/Interface/Misc/shuttle_icons.rsi");
     private static readonly ResPath ResearchDisciplines = new("/Textures/Interface/Misc/research_disciplines.rsi");
 
+    private static readonly SpriteSpecifier.Rsi VesselClassDefaultRsi = new(JobIcons, "NoId");
     private static readonly Dictionary<VesselClass, SpriteSpecifier.Rsi> VesselClassRsis = new()
     {
         [VesselClass.Nfsd] = new(NFJobIcons, "nfsdsergeant"),
@@ -84,8 +85,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         [VesselClass.Pirate] = new(JobIcons, "NoId")
     };
 
-    private static readonly SpriteSpecifier.Rsi VesselClassDefaultRsi = new(JobIcons, "NoId");
-
+    private static readonly EntProtoId VesselEngineDefaultProtoId = "MobCat";
     private static readonly Dictionary<VesselEngine, EntProtoId> VesselEngineProtoIds = new()
     {
         [VesselEngine.AME] = "AmeJar",
@@ -100,9 +100,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         [VesselEngine.Bananium] = "FuelBananium",
         [VesselEngine.Bluespace] = "FuelBluespace"
     };
-
-    private static readonly EntProtoId VesselEngineDefaultProtoId = "MobCat";
-
     // Lua end
 
     public ShipyardConsoleMenu()
@@ -185,19 +182,19 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetCategoryText(args.Id);
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId, _limitedCounts); // Lua
     }
 
     private void OnClassItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetClassText(args.Id);
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId, _limitedCounts); // Lua
     }
 
     private void OnEngineItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetEngineText(args.Id);
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId, _limitedCounts); // Lua
     }
 
     private void OnRenameButtonPressed(ButtonEventArgs args)
@@ -218,7 +215,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId, _limitedCounts); // Lua
     }
 
     private void SetCategoryText(int id)
@@ -239,20 +236,21 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, bool free, bool canPurchase)
+    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, bool free, bool canPurchase, Dictionary<ProtoId<VesselPrototype>, int> limitedCounts) // Lua: Added limitedCounts
     {
         Vessels.RemoveAllChildren();
 
         var search = SearchBar.Text.Trim().ToLowerInvariant();
 
         var newVessels = GetVesselPrototypesFromIds(availablePrototypes);
-        AddVesselsToControls(newVessels, search, free, canPurchase);
+        AddVesselsToControls(newVessels, search, free, canPurchase, limitedCounts); // Lua
 
         var newUnavailableVessels = GetVesselPrototypesFromIds(unavailablePrototypes);
-        AddVesselsToControls(newUnavailableVessels, search, free, false);
+        AddVesselsToControls(newUnavailableVessels, search, free, false, limitedCounts); // Lua
 
         _lastAvailableProtos = availablePrototypes;
         _lastUnavailableProtos = unavailablePrototypes;
+        _limitedCounts = limitedCounts; // Lua
     }
 
     /// <summary>
@@ -272,7 +270,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     /// Adds all vessels in a given list of prototypes as VesselRows in the UI.
     /// </summary>
-    private void AddVesselsToControls(IEnumerable<VesselPrototype?> vessels, string search, bool free, bool canPurchase)
+    private void AddVesselsToControls(IEnumerable<VesselPrototype?> vessels, string search, bool free, bool canPurchase, Dictionary<ProtoId<VesselPrototype>, int> limitedCounts) // Lua: Added limitedCounts
     {
         foreach (var prototype in vessels)
         {
@@ -316,6 +314,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             {
                 engineProtoId = VesselEngineDefaultProtoId;
             }
+
+            var limitRemain = limitedCounts.TryGetValue(prototype.ID, out var count)
+            ? prototype.LimitActive - count
+            : prototype.LimitActive - 0;
+
+            var purchaseDisabled = !canPurchase || prototype.LimitActive != 0 && limitRemain <= 0;
             // Lua end
 
             var vesselEntry = new VesselRow
@@ -326,8 +330,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 CategoryLabel = { Text = Loc.GetString($"shipyard-console-category-{prototype.Category}") },
                 ClassIcon = { Texture = _sprite.GetState(classRsi).Frame0 },
                 EngineIcon = { Texture = _sprite.Frame0(_protoManager.Index(engineProtoId)) },
+                LimitedCount = { Visible = prototype.LimitActive != 0, Text = $"{limitRemain}/{prototype.LimitActive}" },
+                Purchase = { Disabled = purchaseDisabled },
                 // Lua end
-                Purchase = { Text = Loc.GetString("shipyard-console-purchase-available"), Disabled = !canPurchase },
                 Guidebook = { Disabled = prototype.GuidebookPage is null, TooltipDelay = 0.2f, ToolTip = prototype.Description },
                 Price = { Text = priceText },
             };
@@ -505,6 +510,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
         _freeListings = state.FreeListings;
         _validId = state.IsTargetIdPresent;
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId, _limitedCounts); // Lua
     }
 }

@@ -390,7 +390,7 @@ namespace Content.Shared.Stacks
 
             args.PushMarkup(
                 Loc.GetString("comp-stack-examine-detail-count",
-                    ("count", component.Count),
+                    ("count", component.Count.ToString("N0")), // Lua
                     ("markupCountColor", "lightgray")
                 )
             );

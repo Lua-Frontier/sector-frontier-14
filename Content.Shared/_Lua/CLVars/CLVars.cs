@@ -244,5 +244,8 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("lua.ambient_space.enabled", true, CVar.ARCHIVE | CVar.REPLICATED);
         public static readonly CVarDef<int> AmbientSpaceEffectsQuality =
             CVarDef.Create("lua.ambient_space.quality", 2, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+        public static readonly CVarDef<int> CurrentGameYear =
+            CVarDef.Create("game.current_game_year", 2710, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
     }
 }
