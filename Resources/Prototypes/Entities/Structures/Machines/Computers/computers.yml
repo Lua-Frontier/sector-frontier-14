@@ -151,11 +151,11 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
-    maxRange: 512
-    maxIffRange: 512
+    maxRange: 1024
+    maxIffRange: 1024
     relativePanning: true # Mono
   - type: WorldLoader
-    radius: 256
+    radius: 420
   - type: PointLight
     radius: 1.5
     energy: 4.0

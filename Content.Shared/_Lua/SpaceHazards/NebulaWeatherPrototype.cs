@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using Content.Shared.Damage;
@@ -59,4 +59,34 @@ public sealed partial class NebulaWeatherPrototype : IPrototype
 
     [DataField]
     public int MaxDamagedPerTick { get; private set; } = 12;
+
+    [DataField]
+    public int MinEventDelaySeconds { get; private set; } = 5;
+
+    [DataField]
+    public int MaxEventDelaySeconds { get; private set; } = 10;
+
+    [DataField]
+    public int Priority { get; private set; }
+
+    [DataField]
+    public bool BlocksFtl { get; private set; }
+
+    [DataField]
+    public bool RadioBlackout { get; private set; }
+
+    [DataField]
+    public float ThrustMultiplier { get; private set; } = 1f;
+
+    [DataField]
+    public float WeaponCooldownMultiplier { get; private set; } = 1f;
+
+    [DataField]
+    public float ShieldLoad { get; private set; }
+
+    [DataField]
+    public float RadiationIntensity { get; private set; }
+
+    [DataField]
+    public float MobTemperatureIncrease { get; private set; }
 }

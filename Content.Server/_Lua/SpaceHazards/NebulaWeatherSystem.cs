@@ -1,16 +1,23 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using Content.Server.Emp;
 using Content.Server.Electrocution;
 using Content.Server.Lightning;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Radiation.Components;
+using Content.Server.Radiation.Events;
+using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.SpaceHazards;
+using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Maps;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
@@ -21,6 +28,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using System.Linq;
 using System.Numerics;
 
 namespace Content.Server._Lua.SpaceHazards;
@@ -30,7 +38,6 @@ public sealed class NebulaWeatherSystem : EntitySystem
     private static readonly TimeSpan TickInterval = TimeSpan.FromSeconds(1);
     private static readonly EntProtoId LightningBoltProto = "Lightning";
     private static readonly EntProtoId LightningSparkProto = "Spark";
-    private static readonly EntProtoId EmpBlastProto = "EffectEmpBlastLua";
     private static readonly EntProtoId AcidEffectProto = "Acidifier";
     private static readonly EntProtoId RadiationEffectProto = "NebulaRadiationPulse";
     private static readonly EntProtoId SparksEffectProto = "EffectSparks";
@@ -51,12 +58,24 @@ public sealed class NebulaWeatherSystem : EntitySystem
     [Dependency] private readonly SpaceHazardActivitySystem _activity = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
     [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
 
     private TimeSpan _nextTick;
     private readonly List<EntityUid> _gridScratch = new();
     private readonly List<Entity<MapGridComponent>> _gridQueryScratch = new();
     private readonly HashSet<EntityUid> _veiledThisTick = new();
+    private readonly HashSet<EntityUid> _presentThisTick = new();
+    private readonly Dictionary<EntityUid, int> _presencePriorities = new();
+    private readonly Dictionary<EntityUid, Dictionary<ProtoId<NebulaWeatherPrototype>, float>> _weatherSnapshots = new();
     private readonly List<EntityUid> _activeScratch = new();
+    private readonly Dictionary<(EntityUid Grid, string Weather), TimeSpan> _nextWeatherEvents = new();
+    private readonly HashSet<(EntityUid Grid, string Weather)> _weatherEventsSeenThisTick = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<RadiationReceiverComponent, GetAmbientRadiationEvent>(OnGetAmbientRadiation);
+    }
 
     public override void Update(float frameTime)
     {
@@ -68,6 +87,10 @@ public sealed class NebulaWeatherSystem : EntitySystem
 
         _nextTick = now + TickInterval;
         _veiledThisTick.Clear();
+        _presentThisTick.Clear();
+        _presencePriorities.Clear();
+        _weatherSnapshots.Clear();
+        _weatherEventsSeenThisTick.Clear();
         _activeScratch.Clear();
         _activeScratch.AddRange(_activity.ActiveHazards);
 
@@ -76,31 +99,154 @@ public sealed class NebulaWeatherSystem : EntitySystem
             if (!TryComp(uid, out AmbientSpaceFieldComponent? field))
                 continue;
 
-            if (field.Weather is not { } weatherId)
-                continue;
-
-            if (!_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather))
-                continue;
-
             if (!TryComp(uid, out TransformComponent? xform) || xform.MapID == MapId.Nullspace)
                 continue;
 
             var fieldPos = _transform.GetWorldPosition(xform);
             var radius = MathF.Max(field.Radius, 1f);
-            SyncFieldRadiationSource(uid, field, weather, radius);
             CollectAffectedGrids(xform.MapID, field, fieldPos, radius, _gridScratch);
 
-            foreach (var gridUid in _gridScratch)
+            foreach (var weatherId in GetFieldWeatherIds(field))
             {
-                ApplyWeather(gridUid, weather, xform.MapID);
-                if (weather.Kind == NebulaWeatherKind.Veil)
-                    _veiledThisTick.Add(gridUid);
-            }
+                if (!_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather))
+                    continue;
 
-            ApplyMobWeather(field, fieldPos, radius, weather, xform.MapID);
+                SyncFieldRadiationSource(uid, field, weather, radius);
+                foreach (var gridUid in _gridScratch)
+                {
+                    SetPresence(gridUid, field, fieldPos, radius, weatherId, weather);
+                    ApplyWeather(gridUid, weatherId, weather, xform.MapID, now);
+                    if (weather.Kind == NebulaWeatherKind.Veil)
+                        _veiledThisTick.Add(gridUid);
+                }
+
+                if (IsWeatherEventDue(uid, weatherId, weather, now))
+                    ApplyMobWeather(field, fieldPos, radius, weather, xform.MapID);
+            }
         }
 
+        CommitPresenceSnapshots();
         CleanupVeil();
+        CleanupPresence();
+        CleanupWeatherEventTimers();
+    }
+
+    private void CommitPresenceSnapshots()
+    {
+        foreach (var (gridUid, snapshot) in _weatherSnapshots)
+        {
+            if (!TryComp(gridUid, out NebulaPresenceComponent? presence))
+                continue;
+
+            presence.ActiveWeathers.Clear();
+            presence.ActiveIntensities.Clear();
+            foreach (var (weatherId, intensity) in snapshot)
+            {
+                presence.ActiveWeathers.Add(weatherId);
+                presence.ActiveIntensities.Add(intensity);
+            }
+
+            Dirty(gridUid, presence);
+        }
+    }
+
+    private static IEnumerable<ProtoId<NebulaWeatherPrototype>> GetFieldWeatherIds(
+        AmbientSpaceFieldComponent field)
+    {
+        if (field.Weathers.Count > 0)
+        {
+            foreach (var weatherId in field.Weathers)
+                yield return weatherId;
+            yield break;
+        }
+
+        if (field.Weather is { } fallback)
+            yield return fallback;
+    }
+
+    private void OnGetAmbientRadiation(
+        Entity<RadiationReceiverComponent> ent,
+        ref GetAmbientRadiationEvent args)
+    {
+        if (!TryComp(ent.Owner, out TransformComponent? receiverXform) ||
+            receiverXform.MapID == MapId.Nullspace ||
+            !IsMobExposedToNebula(ent.Owner))
+            return;
+
+        var receiverPosition = _transform.GetWorldPosition(receiverXform);
+        var strongestRadiation = 0f;
+        var fields = EntityQueryEnumerator<AmbientSpaceFieldComponent, TransformComponent>();
+        while (fields.MoveNext(out _, out var field, out var fieldXform))
+        {
+            if (fieldXform.MapID != receiverXform.MapID)
+                continue;
+
+            var fieldPosition = _transform.GetWorldPosition(fieldXform);
+            if (!NebulaVeilHelpers.IsInMidZone(field, fieldPosition, receiverPosition, field.Radius))
+                continue;
+
+            foreach (var weatherId in GetFieldWeatherIds(field))
+            {
+                if (!_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather) ||
+                    weather.Kind != NebulaWeatherKind.RadiationFog ||
+                    weather.RadiationIntensity <= 0f)
+                    continue;
+
+                var normalized = (receiverPosition - fieldPosition) / MathF.Max(field.Radius, 1f);
+                var intensity = AmbientSpaceNebulaNoise.SamplePresence(normalized, field.Seed, field.Density, 1f, field.Radius);
+                strongestRadiation = MathF.Max(strongestRadiation, weather.RadiationIntensity * Math.Clamp(intensity, 0.25f, 1f));
+            }
+        }
+
+        args.Radiation += strongestRadiation;
+    }
+
+    private void SetPresence(
+        EntityUid gridUid,
+        AmbientSpaceFieldComponent field,
+        Vector2 fieldPos,
+        float radius,
+        ProtoId<NebulaWeatherPrototype> weatherId,
+        NebulaWeatherPrototype weather)
+    {
+        _presentThisTick.Add(gridUid);
+        var presence = EnsureComp<NebulaPresenceComponent>(gridUid);
+
+        var samplePos = TryComp<MapGridComponent>(gridUid, out var grid)
+            ? ClosestPointOnGrid(gridUid, grid, fieldPos)
+            : _transform.GetWorldPosition(gridUid);
+        var normalized = (samplePos - fieldPos) / radius;
+        var intensity = AmbientSpaceNebulaNoise.SamplePresence(normalized, field.Seed, field.Density, 1f, radius);
+
+        if (!_weatherSnapshots.TryGetValue(gridUid, out var snapshot))
+        {
+            snapshot = new Dictionary<ProtoId<NebulaWeatherPrototype>, float>();
+            _weatherSnapshots.Add(gridUid, snapshot);
+        }
+
+        if (!snapshot.TryGetValue(weatherId, out var existingIntensity) || intensity > existingIntensity)
+            snapshot[weatherId] = intensity;
+
+        if (_presencePriorities.TryGetValue(gridUid, out var currentPriority) && currentPriority > weather.Priority)
+            return;
+
+        _presencePriorities[gridUid] = weather.Priority;
+        if (presence.Weather == weatherId && MathF.Abs(presence.Intensity - intensity) < 0.01f)
+            return;
+
+        presence.Weather = weatherId;
+        presence.Intensity = intensity;
+        Dirty(gridUid, presence);
+    }
+
+    private void CleanupPresence()
+    {
+        var query = EntityQueryEnumerator<NebulaPresenceComponent>();
+        while (query.MoveNext(out var uid, out _))
+        {
+            if (!_presentThisTick.Contains(uid))
+                RemCompDeferred<NebulaPresenceComponent>(uid);
+        }
     }
 
     private void CollectAffectedGrids(
@@ -137,32 +283,50 @@ public sealed class NebulaWeatherSystem : EntitySystem
     public static bool IsInMidZone(AmbientSpaceFieldComponent field, Vector2 fieldPos, Vector2 worldPos, float? radiusOverride = null)
         => NebulaVeilHelpers.IsInMidZone(field, fieldPos, worldPos, radiusOverride);
 
-    private void ApplyWeather(EntityUid gridUid, NebulaWeatherPrototype weather, MapId mapId)
+    private void ApplyWeather(
+        EntityUid gridUid,
+        ProtoId<NebulaWeatherPrototype> weatherId,
+        NebulaWeatherPrototype weather,
+        MapId mapId,
+        TimeSpan now)
     {
+        if (weather.Kind == NebulaWeatherKind.Veil)
+        {
+            EnsureVeil(gridUid);
+            return;
+        }
+
+        if (!IsWeatherEventDue(gridUid, weatherId, weather, now))
+            return;
+
         switch (weather.Kind)
         {
-            case NebulaWeatherKind.Veil:
-                EnsureVeil(gridUid);
-                break;
             case NebulaWeatherKind.EmpStorm:
-                MaybeEmpOnHull(gridUid, weather, mapId, effectPrototype: EmpBlastProto);
-                MaybeSpawnHullEffect(gridUid, mapId, EmpPulseSpriteProto, chance: 0.55f, maxSpawns: 2);
-                MaybeSpawnHullEffect(gridUid, mapId, SparksEffectProto, chance: 0.7f, maxSpawns: 3);
+                EmpOnHull(gridUid, weather, mapId);
+                MaybeSpawnHullEffect(gridUid, mapId, EmpPulseSpriteProto, chance: 0.5f, maxSpawns: 1);
                 break;
             case NebulaWeatherKind.Lightning:
+                if (TryAbsorbGridHazard(gridUid, weather))
+                    break;
                 ApplyHullDamageSample(gridUid, weather);
-                MaybeEmpOnHull(gridUid, weather, mapId, chanceOverride: weather.EmpChance, effectPrototype: EmpBlastProto);
+                MaybeEmpOnHull(gridUid, weather, mapId);
                 SpawnLightningArcs(gridUid, mapId);
                 break;
             case NebulaWeatherKind.Corrosion:
+                if (TryAbsorbGridHazard(gridUid, weather))
+                    break;
                 ApplyHullDamageSample(gridUid, weather);
                 MaybeSpawnHullEffect(gridUid, mapId, AcidEffectProto, chance: 0.65f, maxSpawns: 3);
                 break;
             case NebulaWeatherKind.RadiationFog:
+                if (TryAbsorbGridHazard(gridUid, weather))
+                    break;
                 ApplyHullDamageSample(gridUid, weather);
                 MaybeSpawnHullEffect(gridUid, mapId, RadiationEffectProto, chance: 0.55f, maxSpawns: 2);
                 break;
             case NebulaWeatherKind.HeatWash:
+                if (TryAbsorbGridHazard(gridUid, weather))
+                    break;
                 ApplyHullDamageSample(gridUid, weather);
                 SpawnHeatFlashes(gridUid, mapId);
                 MaybeSpawnHullEffect(gridUid, mapId, SparksEffectProto, chance: 0.5f, maxSpawns: 2);
@@ -173,45 +337,101 @@ public sealed class NebulaWeatherSystem : EntitySystem
         }
     }
 
+    private bool IsWeatherEventDue(
+        EntityUid gridUid,
+        ProtoId<NebulaWeatherPrototype> weatherId,
+        NebulaWeatherPrototype weather,
+        TimeSpan now)
+    {
+        var key = (gridUid, weatherId.Id);
+        _weatherEventsSeenThisTick.Add(key);
+
+        if (_nextWeatherEvents.TryGetValue(key, out var nextEvent) && now < nextEvent)
+            return false;
+
+        var minDelay = Math.Max(1, Math.Min(weather.MinEventDelaySeconds, weather.MaxEventDelaySeconds));
+        var maxDelay = Math.Max(minDelay, Math.Max(weather.MinEventDelaySeconds, weather.MaxEventDelaySeconds));
+        _nextWeatherEvents[key] = now + TimeSpan.FromSeconds(_random.Next(minDelay, maxDelay + 1));
+        return nextEvent != default;
+    }
+
+    private void CleanupWeatherEventTimers()
+    {
+        foreach (var key in _nextWeatherEvents.Keys.ToArray())
+        {
+            if (!_weatherEventsSeenThisTick.Contains(key))
+                _nextWeatherEvents.Remove(key);
+        }
+    }
+
+    private bool TryAbsorbGridHazard(EntityUid gridUid, NebulaWeatherPrototype weather)
+    {
+        if (weather.ShieldLoad <= 0f || !_random.Prob(weather.DamageChance))
+            return false;
+
+        var attempt = new NebulaShieldHitAttemptEvent(weather.ShieldLoad);
+        RaiseLocalEvent(gridUid, ref attempt);
+        return attempt.Absorbed;
+    }
+
     private void EnsureVeil(EntityUid gridUid)
     {
-        if (!HasComp<NebulaVeilTrackedComponent>(gridUid))
+        if (!TryComp<NebulaVeilTrackedComponent>(gridUid, out var tracked))
         {
-            EnsureComp<NebulaVeilTrackedComponent>(gridUid);
+            tracked = EnsureComp<NebulaVeilTrackedComponent>(gridUid);
+            tracked.AddedStealth = !TryComp<StealthComponent>(gridUid, out var existingStealth);
+            if (existingStealth != null)
+            {
+                tracked.PreviousEnabled = existingStealth.Enabled;
+                tracked.PreviousVisibility = _stealth.GetVisibility(gridUid, existingStealth);
+            }
+
             var stealth = EnsureComp<StealthComponent>(gridUid);
             _stealth.SetEnabled(gridUid, true, stealth);
+            _stealth.SetVisibility(gridUid, stealth.MinVisibility, stealth);
         }
         else if (TryComp<StealthComponent>(gridUid, out var stealth))
         {
             _stealth.SetEnabled(gridUid, true, stealth);
+            _stealth.SetVisibility(gridUid, stealth.MinVisibility, stealth);
         }
     }
 
     private void CleanupVeil()
     {
         var query = EntityQueryEnumerator<NebulaVeilTrackedComponent>();
-        while (query.MoveNext(out var uid, out _))
+        while (query.MoveNext(out var uid, out var tracked))
         {
             if (_veiledThisTick.Contains(uid))
                 continue;
 
             if (TryComp<StealthComponent>(uid, out var stealth))
-                _stealth.SetEnabled(uid, false, stealth);
+            {
+                if (tracked.AddedStealth)
+                    _stealth.SetEnabled(uid, false, stealth);
+                else
+                {
+                    _stealth.SetVisibility(uid, tracked.PreviousVisibility, stealth);
+                    _stealth.SetEnabled(uid, tracked.PreviousEnabled, stealth);
+                }
+            }
 
             RemComp<NebulaVeilTrackedComponent>(uid);
-            RemCompDeferred<StealthComponent>(uid);
+            if (tracked.AddedStealth)
+                RemCompDeferred<StealthComponent>(uid);
         }
     }
+
+    private void EmpOnHull(EntityUid gridUid, NebulaWeatherPrototype weather, MapId mapId)
+        => MaybeEmpOnHull(gridUid, weather, mapId, force: true);
 
     private void MaybeEmpOnHull(
         EntityUid gridUid,
         NebulaWeatherPrototype weather,
         MapId mapId,
-        float? chanceOverride = null,
-        string? effectPrototype = null)
+        bool force = false)
     {
-        var chance = chanceOverride ?? weather.EmpChance;
-        if (chance <= 0f || !_random.Prob(chance))
+        if (!force && (weather.EmpChance <= 0f || !_random.Prob(weather.EmpChance)))
             return;
 
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
@@ -234,8 +454,7 @@ public sealed class NebulaWeatherSystem : EntitySystem
                 new MapCoordinates(worldPos, mapId),
                 weather.EmpRange,
                 weather.EmpEnergy,
-                weather.EmpDuration,
-                effectPrototype: effectPrototype);
+                weather.EmpDuration);
             Spawn(SparksEffectProto, new MapCoordinates(worldPos, mapId));
         }
     }
@@ -277,22 +496,8 @@ public sealed class NebulaWeatherSystem : EntitySystem
         NebulaWeatherPrototype weather,
         float radius)
     {
-        if (weather.Kind != NebulaWeatherKind.RadiationFog)
-        {
-            if (TryComp(fieldUid, out RadiationSourceComponent? existing))
-                existing.Enabled = false;
-            return;
-        }
-
-        var mobDamage = weather.MobDamage.Empty ? weather.Damage : weather.MobDamage;
-        var peak = SectorCelestialMobDamage.GetDamageAmount(
-            mobDamage,
-            SectorCelestialMobDamage.RadiationDamageType);
-        if (peak <= 0f)
-            peak = 6f;
-
-        var source = EnsureComp<RadiationSourceComponent>(fieldUid);
-        SectorCelestialMobDamage.SyncRadiationSource(fieldUid, source, radius, peak);
+        if (TryComp(fieldUid, out RadiationSourceComponent? existing))
+            existing.Enabled = false;
     }
 
     private void ApplyMobWeather(
@@ -309,19 +514,26 @@ public sealed class NebulaWeatherSystem : EntitySystem
         if (mobDamage.Empty)
             return;
 
-        if (!_random.Prob(MathF.Min(weather.DamageChance * 1.25f, 1f)))
-            return;
-
-        bool InMid(Vector2 pos) => NebulaVeilHelpers.IsInMidZone(field, fieldPos, pos, radius);
+        bool InMidAndExposed(EntityUid uid, Vector2 pos) =>
+            NebulaVeilHelpers.IsInMidZone(field, fieldPos, pos, radius) && IsMobExposedToNebula(uid);
         var heatUnits = SectorCelestialMobDamage.GetDamageAmount(mobDamage, SectorCelestialMobDamage.HeatDamageType);
-        if (heatUnits > 0f)
+        if (weather.MobTemperatureIncrease > 0f)
+        {
+            HeatMobsByTemperatureIncrease(
+                mapId,
+                fieldPos,
+                radius,
+                weather.MobTemperatureIncrease,
+                InMidAndExposed);
+        }
+        else if (heatUnits > 0f)
         {
             SectorCelestialMobDamage.HeatMobsWhere(
                 mapId,
                 fieldPos,
                 radius,
                 heatUnits * SectorCelestialMobDamage.HeatJoulesPerDamageUnit,
-                InMid,
+                InMidAndExposed,
                 _lookup,
                 _transform,
                 _temperature,
@@ -336,7 +548,7 @@ public sealed class NebulaWeatherSystem : EntitySystem
                 fieldPos,
                 radius,
                 Math.Max(1, (int) MathF.Round(shock)),
-                InMid,
+                InMidAndExposed,
                 _lookup,
                 _transform,
                 _electrocution,
@@ -347,11 +559,57 @@ public sealed class NebulaWeatherSystem : EntitySystem
             fieldPos,
             radius,
             mobDamage,
-            InMid,
+            InMidAndExposed,
             _lookup,
             _transform,
             _damageable,
             EntityManager);
+    }
+
+    private void HeatMobsByTemperatureIncrease(
+        MapId mapId,
+        Vector2 fieldPosition,
+        float radius,
+        float temperatureIncrease,
+        Func<EntityUid, Vector2, bool> include)
+    {
+        var mobs = new HashSet<Entity<MobStateComponent>>();
+        _lookup.GetEntitiesInRange(mapId, fieldPosition, radius, mobs, LookupFlags.Dynamic | LookupFlags.Sundries);
+
+        foreach (var (uid, mobState) in mobs)
+        {
+            if (mobState.CurrentState == MobState.Dead ||
+                !TryComp(uid, out TemperatureComponent? temperature) ||
+                !include(uid, _transform.GetWorldPosition(uid)))
+                continue;
+
+            var heat = _temperature.GetHeatCapacity(uid, temperature) * temperatureIncrease;
+            _temperature.ChangeHeat(uid, heat, temperature: temperature);
+        }
+    }
+
+    private bool IsMobExposedToNebula(EntityUid uid)
+    {
+        if (!TryComp(uid, out TransformComponent? xform))
+            return true;
+
+        if (xform.GridUid is not { } gridUid)
+            return true;
+
+        if (!TryComp(gridUid, out MapGridComponent? grid))
+            return true;
+
+        var air = _atmosphere.GetContainingMixture((uid, xform));
+        if (air != null && air.Pressure >= Atmospherics.OneAtmosphere * 0.2f)
+            return false;
+
+        if (!_maps.TryGetTileRef(gridUid, grid, xform.Coordinates, out var tileRef))
+            return true;
+
+        if (tileRef.Tile.IsEmpty || _turf.IsSpace(tileRef))
+            return true;
+
+        return true;
     }
 
     private void SpawnLightningArcs(EntityUid gridUid, MapId mapId)
@@ -359,7 +617,7 @@ public sealed class NebulaWeatherSystem : EntitySystem
         if (!TryComp<MapGridComponent>(gridUid, out var grid))
             return;
 
-        var bolts = _random.Next(2, 5);
+        var bolts = _random.Next(1, 3);
         for (var i = 0; i < bolts; i++)
         {
             if (!TryPickDistantExteriorPair(gridUid, grid, out var tileA, out var tileB))
@@ -372,7 +630,7 @@ public sealed class NebulaWeatherSystem : EntitySystem
 
             var proto = _random.Prob(0.35f) ? LightningSparkProto : LightningBoltProto;
             _lightning.ShootLightning(source, target, proto, triggerLightningEvents: false);
-            if (_random.Prob(0.55f))
+            if (_random.Prob(0.25f))
             {
                 _lightning.ShootRandomLightnings(
                     source,

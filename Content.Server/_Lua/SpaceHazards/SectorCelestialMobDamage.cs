@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using Content.Server.Electrocution;
@@ -128,7 +128,7 @@ public static class SectorCelestialMobDamage
         Vector2 worldCenter,
         float scanRadius,
         float heatJoules,
-        Func<Vector2, bool> include,
+        Func<EntityUid, Vector2, bool> include,
         EntityLookupSystem lookup,
         SharedTransformSystem transform,
         TemperatureSystem temperature,
@@ -146,7 +146,7 @@ public static class SectorCelestialMobDamage
                 continue;
 
             var pos = transform.GetWorldPosition(uid);
-            if (!include(pos))
+            if (!include(uid, pos))
                 continue;
 
             temperature.ChangeHeat(uid, heatJoules);
@@ -158,7 +158,7 @@ public static class SectorCelestialMobDamage
         Vector2 worldCenter,
         float scanRadius,
         int shockDamage,
-        Func<Vector2, bool> include,
+        Func<EntityUid, Vector2, bool> include,
         EntityLookupSystem lookup,
         SharedTransformSystem transform,
         ElectrocutionSystem electrocution,
@@ -178,7 +178,7 @@ public static class SectorCelestialMobDamage
                 continue;
 
             var pos = transform.GetWorldPosition(uid);
-            if (!include(pos))
+            if (!include(uid, pos))
                 continue;
 
             electrocution.TryDoElectrocution(uid, null, shockDamage, stun, refresh: true);
@@ -190,7 +190,7 @@ public static class SectorCelestialMobDamage
         Vector2 worldCenter,
         float scanRadius,
         DamageSpecifier damage,
-        Func<Vector2, bool> include,
+        Func<EntityUid, Vector2, bool> include,
         EntityLookupSystem lookup,
         SharedTransformSystem transform,
         DamageableSystem damageable,
@@ -209,7 +209,7 @@ public static class SectorCelestialMobDamage
                 continue;
 
             var pos = transform.GetWorldPosition(uid);
-            if (!include(pos))
+            if (!include(uid, pos))
                 continue;
 
             damageable.TryChangeDamage(uid, residual, ignoreResistances: false);

@@ -288,8 +288,6 @@ namespace Content.Server._Lua.Starmap.Systems
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
             if (!CanAccessSector(consoleUid, star.Map, actor))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
-            if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason))
-            { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
             if (!_shuttleSystem.TryGetBluespaceDrive(shuttleUid.Value, out var warpDriveUid, out var warpDrive) || warpDriveUid == null)
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-warpdrive"), consoleUid); return; }
             void PlayDenySound(EntityUid uid)
@@ -299,6 +297,8 @@ namespace Content.Server._Lua.Starmap.Systems
             var offset = new Vector2((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius);
             var targetPos = star.Position + offset;
             var targetCoordinates = new EntityCoordinates(mapUid, targetPos);
+            if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason, targetCoordinates))
+            { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
             _shuttleSystem.FTLToCoordinates(shuttleUid.Value, shuttleComponent, targetCoordinates, Angle.Zero);
             if (!HasComp<FTLComponent>(shuttleUid.Value))
             { PlayDenySound(consoleUid); return; }

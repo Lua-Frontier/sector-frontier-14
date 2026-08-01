@@ -244,7 +244,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Returns true if the grid can FTL. Used to block protected shuttles like the emergency shuttle.
     /// </summary>
-    public bool CanFTL(EntityUid shuttleUid, [NotNullWhen(false)] out string? reason)
+    public bool CanFTL(EntityUid shuttleUid, [NotNullWhen(false)] out string? reason, EntityCoordinates? destination = null)
     {
         if (HasComp<NoShuttleFTLComponent>(shuttleUid))
         {
@@ -286,7 +286,7 @@ public sealed partial class ShuttleSystem
             }
         }
 
-        var ev = new ConsoleFTLAttemptEvent(shuttleUid, false, string.Empty);
+        var ev = new ConsoleFTLAttemptEvent(shuttleUid, false, string.Empty, destination);
         RaiseLocalEvent(shuttleUid, ref ev, true);
 
         if (ev.Cancelled)

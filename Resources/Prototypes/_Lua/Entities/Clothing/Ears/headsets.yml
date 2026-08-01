@@ -8,6 +8,7 @@
   name: гарнитура КСО
   description: Гарнитура, используемая Корпусом Специальных Операций.
   components:
+  - type: NebulaRadioProtected
   - type: ContainerFill
     containers:
       key_slots:
@@ -27,6 +28,7 @@
   name: полноразмерная кроваво - красная гарнитура
   description: Модифицированный модульный интерком синдиката.
   components:
+  - type: NebulaRadioProtected
   - type: Headset
     color: "#8f4a4b"
   - type: EncryptionKeyHolder

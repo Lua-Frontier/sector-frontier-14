@@ -132,7 +132,7 @@ public sealed partial class ShuttleConsoleSystem
         if (shuttleComp.Enabled == false)
             return;
 
-        if (!_shuttle.CanFTL(shuttleUid.Value, out var reason))
+        if (!_shuttle.CanFTL(shuttleUid.Value, out var reason, targetCoordinates))
         {
             PlayDenySound(ent);
             if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, ent.Owner, PopupType.Medium);

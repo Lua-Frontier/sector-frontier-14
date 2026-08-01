@@ -1,6 +1,7 @@
 using System.Buffers;
 using System.Numerics;
 using Content.Client.Shuttles.Systems;
+using Content.Shared._Lua.SpaceHazards;
 using Content.Shared._Mono.Company;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -86,6 +87,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private readonly Dictionary<Color, List<Vector2>> _verts = new();
     private readonly Dictionary<Color, List<Vector2>> _edges = new();
     private readonly Dictionary<Color, List<(Vector2, string)>> _strings = new();
+    private readonly List<(Vector2 Position, string Icon, Color Color)> _glyphs = new();
     private readonly List<ShuttleExclusionObject> _viewportExclusions = new();
     private List<DroneRouteState>? _droneRoutes;
 
@@ -105,7 +107,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         _physicsQuery = EntManager.GetEntityQuery<PhysicsComponent>();
 
-        _font = new VectorFont(cache.GetResource<FontResource>("/EngineFonts/NotoSans/NotoSans-Regular.ttf"), 10);
+        _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 9);
     }
 
     public void SetMap(MapId mapId, Vector2 offset, bool recentering = false)
@@ -189,57 +191,160 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         base.MouseWheel(args);
     }
 
-    private void DrawParallax(DrawingHandleScreen handle)
+    private void DrawTacticalMapBackground(DrawingHandleScreen handle, Matrix3x2 mapTransform, Box2 viewBox)
     {
-        if (!EntManager.TryGetComponent(_shuttleEntity, out TransformComponent? shuttleXform) || shuttleXform.MapUid == null)
+        var bounds = UIBox2.FromDimensions(Vector2.Zero, Size);
+        handle.DrawRect(bounds, Color.FromHex("#0B0F14"));
+        handle.DrawRect(bounds, Color.FromHex("#243041").WithAlpha(0.7f), filled: false);
+
+        DrawCoordinateGrid(handle, mapTransform, viewBox);
+        DrawMapCompass(handle);
+    }
+
+    private void DrawCoordinateGrid(DrawingHandleScreen handle, Matrix3x2 mapTransform, Box2 viewBox)
+    {
+        if (MinimapScale <= 0f)
             return;
 
-        // TODO: Figure out how the fuck to make this common between the 3 slightly different parallax methods and move to parallaxsystem.
-        // Draw background texture
-        var tex = _shuttles.GetTexture(shuttleXform.MapUid.Value);
+        var minorStep = GetNiceGridStep(46f / MinimapScale);
+        var majorStep = minorStep * 4f;
+        var minorColor = Color.FromHex("#7E8BA0").WithAlpha(0.08f);
+        var majorColor = Color.FromHex("#8A96A8").WithAlpha(0.16f);
+        var axisColor = Color.FromHex("#C5CEDB").WithAlpha(0.28f);
+        var labelColor = Color.FromHex("#8A96A8").WithAlpha(0.7f);
+        var labelShadow = Color.Black.WithAlpha(0.42f);
 
-        // Size of the texture in world units.
-        var size = tex.Size * MinimapScale * 1f;
+        DrawGridAxis(handle, mapTransform, viewBox.Left, viewBox.Right, viewBox.Bottom, viewBox.Top, minorStep, majorStep, minorColor, majorColor, axisColor, vertical: true);
+        DrawGridAxis(handle, mapTransform, viewBox.Bottom, viewBox.Top, viewBox.Left, viewBox.Right, minorStep, majorStep, minorColor, majorColor, axisColor, vertical: false);
+        DrawCoordinateLabels(handle, mapTransform, viewBox, majorStep, labelColor, labelShadow);
+    }
 
-        var position = ScalePosition(new Vector2(-Offset.X, Offset.Y));
-        var slowness = 1f;
+    private static float GetNiceGridStep(float targetWorldStep)
+    {
+        targetWorldStep = MathF.Max(1f, targetWorldStep);
+        var exponent = MathF.Floor(MathF.Log10(targetWorldStep));
+        var magnitude = MathF.Pow(10f, exponent);
+        var normalized = targetWorldStep / magnitude;
+        var nice = normalized <= 1f ? 1f : normalized <= 2f ? 2f : normalized <= 5f ? 5f : 10f;
+        return nice * magnitude;
+    }
 
-        // The "home" position is the effective origin of this layer.
-        // Parallax shifting is relative to the home, and shifts away from the home and towards the Eye centre.
-        // The effects of this are such that a slowness of 1 anchors the layer to the centre of the screen, while a slowness of 0 anchors the layer to the world.
-        // (For values 0.0 to 1.0 this is in effect a lerp, but it's deliberately unclamped.)
-        // The ParallaxAnchor adapts the parallax for station positioning and possibly map-specific tweaks.
-        var home = Vector2.Zero;
-        var scrolled = Vector2.Zero;
-
-        // Origin - start with the parallax shift itself.
-        var originBL = (position - home) * slowness + scrolled;
-
-        // Place at the home.
-        originBL += home;
-
-        // Centre the image.
-        originBL -= size / 2;
-
-        // Remove offset so we can floor.
-        var botLeft = new Vector2(0f, 0f);
-        var topRight = botLeft + Size;
-
-        var flooredBL = botLeft - originBL;
-
-        // Floor to background size.
-        flooredBL = (flooredBL / size).Floored() * size;
-
-        // Re-offset.
-        flooredBL += originBL;
-
-        for (var x = flooredBL.X; x < topRight.X; x += size.X)
+    private void DrawGridAxis(
+        DrawingHandleScreen handle,
+        Matrix3x2 mapTransform,
+        float start,
+        float end,
+        float crossStart,
+        float crossEnd,
+        float minorStep,
+        float majorStep,
+        Color minorColor,
+        Color majorColor,
+        Color axisColor,
+        bool vertical)
+    {
+        var first = MathF.Floor(start / minorStep) * minorStep;
+        for (var value = first; value <= end; value += minorStep)
         {
-            for (var y = flooredBL.Y; y < topRight.Y; y += size.Y)
-            {
-                handle.DrawTextureRect(tex, new UIBox2(x, y, x + size.X, y + size.Y));
-            }
+            var color = MathF.Abs(value) < 0.01f
+                ? axisColor
+                : IsGridMajor(value, majorStep)
+                    ? majorColor
+                    : minorColor;
+
+            var a = vertical ? new Vector2(value, crossStart) : new Vector2(crossStart, value);
+            var b = vertical ? new Vector2(value, crossEnd) : new Vector2(crossEnd, value);
+            handle.DrawLine(MapToScreen(a, mapTransform), MapToScreen(b, mapTransform), color);
         }
+    }
+
+    private void DrawCoordinateLabels(
+        DrawingHandleScreen handle,
+        Matrix3x2 mapTransform,
+        Box2 viewBox,
+        float majorStep,
+        Color color,
+        Color shadow)
+    {
+        var firstX = MathF.Floor(viewBox.Left / majorStep) * majorStep;
+        for (var x = firstX; x <= viewBox.Right; x += majorStep)
+        {
+            var pos = MapToScreen(new Vector2(x, viewBox.Top), mapTransform) + new Vector2(4f, 5f);
+            DrawSoftMapText(handle, x.ToString("0"), pos, 0.72f, color, shadow);
+        }
+
+        var firstY = MathF.Floor(viewBox.Bottom / majorStep) * majorStep;
+        for (var y = firstY; y <= viewBox.Top; y += majorStep)
+        {
+            var pos = MapToScreen(new Vector2(viewBox.Left, y), mapTransform) + new Vector2(6f, -10f);
+            DrawSoftMapText(handle, y.ToString("0"), pos, 0.72f, color, shadow);
+        }
+    }
+
+    private static bool IsGridMajor(float value, float majorStep)
+        => MathF.Abs(value / majorStep - MathF.Round(value / majorStep)) < 0.02f;
+
+    private Vector2 MapToScreen(Vector2 worldPosition, Matrix3x2 mapTransform)
+    {
+        var adjusted = Vector2.Transform(worldPosition, mapTransform);
+        return ScalePosition(adjusted with { Y = -adjusted.Y });
+    }
+
+    private void DrawMapCompass(DrawingHandleScreen handle)
+    {
+        var center = new Vector2(PixelWidth - 44f, 44f);
+        const float radius = 24f;
+        var ringColor = Color.FromHex("#8A96A8").WithAlpha(0.2f);
+        var northColor = Color.FromHex("#F0C674").WithAlpha(0.86f);
+        var eastColor = Color.FromHex("#7E8BA0").WithAlpha(0.82f);
+        var headingColor = Color.FromHex("#5EC8E8").WithAlpha(0.9f);
+
+        handle.DrawCircle(center, radius, ringColor, false);
+        handle.DrawCircle(center, 2.5f, ringColor.WithAlpha(0.8f), true);
+        DrawMapCompassNeedle(handle, center, new Vector2(0f, -1f), radius, "N", northColor);
+        DrawMapCompassNeedle(handle, center, new Vector2(1f, 0f), radius * 0.82f, "E", eastColor);
+        if (_shuttleEntity is { } shuttle && EntManager.EntityExists(shuttle))
+        {
+            var heading = _xformSystem.GetWorldRotation(shuttle);
+            var direction = GetMapCompassDirection(heading);
+            DrawMapArrowLine(handle, center - direction * 7f, center + direction * (radius * 0.62f), headingColor, 7f);
+        }
+    }
+
+    private static Vector2 GetMapCompassDirection(Angle heading)
+    {
+        var radians = (float) heading.Theta + MathF.PI / 2f;
+        return new Vector2(MathF.Cos(radians), -MathF.Sin(radians));
+    }
+
+    private void DrawMapCompassNeedle(DrawingHandleScreen handle, Vector2 center, Vector2 direction, float radius, string label, Color color)
+    {
+        var tip = center + direction * radius;
+        var tail = center - direction * (radius * 0.35f);
+        DrawMapArrowLine(handle, tail, tip, color.WithAlpha(0.64f), 6f);
+
+        var labelSize = handle.GetDimensions(_font, label, 0.85f);
+        var labelPos = tip + direction * 6f - labelSize * 0.5f;
+        DrawSoftMapText(handle, label, labelPos, 0.85f, color, Color.Black.WithAlpha(0.46f));
+    }
+
+    private static void DrawMapArrowLine(DrawingHandleScreen handle, Vector2 start, Vector2 end, Color color, float headLength)
+    {
+        var direction = end - start;
+        if (direction.LengthSquared() <= 0.001f)
+            return;
+
+        direction = Vector2.Normalize(direction);
+        var side = new Vector2(-direction.Y, direction.X);
+        handle.DrawLine(start, end, color);
+        handle.DrawLine(end, end - direction * headLength + side * (headLength * 0.45f), color);
+        handle.DrawLine(end, end - direction * headLength - side * (headLength * 0.45f), color);
+    }
+
+    private void DrawSoftMapText(DrawingHandleScreen handle, string text, Vector2 position, float scale, Color color, Color shadow)
+    {
+        handle.DrawString(_font, position + new Vector2(1f, 1f), text, scale, shadow);
+        handle.DrawString(_font, position, text, scale, color);
     }
 
     private Box2 GetVisibleWorldBox()
@@ -279,6 +384,11 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (mapObj is GridMapObject gridObj && (EntManager.HasComponent<MapComponent>(gridObj.Entity) || !_entManager.EntityExists(gridObj.Entity))) // Frontier: add EntityExists
                 continue;
 
+            if (mapObj is GridMapObject veiledGrid &&
+                veiledGrid.Entity != _shuttleEntity &&
+                IsHiddenByNebulaVeil(veiledGrid.Entity))
+                continue;
+
             var mapCoords = _shuttles.GetMapCoordinates(mapObj);
 
             var relativePos = Vector2.Transform(mapCoords.Position, matty);
@@ -292,6 +402,26 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         }
 
         return results;
+    }
+
+    private bool IsHiddenByNebulaVeil(EntityUid gridUid)
+    {
+        if (!EntManager.TryGetComponent(gridUid, out NebulaPresenceComponent? presence))
+            return false;
+
+        var prototypes = IoCManager.Resolve<IPrototypeManager>();
+        if (presence.ActiveWeathers.Count == 0)
+            return prototypes.TryIndex(presence.Weather, out NebulaWeatherPrototype? fallback) &&
+                   fallback.Kind == NebulaWeatherKind.Veil;
+
+        foreach (var weatherId in presence.ActiveWeathers)
+        {
+            if (prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather) &&
+                weather.Kind == NebulaWeatherKind.Veil)
+                return true;
+        }
+
+        return false;
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -311,12 +441,11 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             return;
         }
 
-        DrawParallax(handle);
-
         var viewedMapUid = _mapSystem.GetMapOrInvalid(ViewingMap);
         var matty = Matrix3Helpers.CreateInverseTransform(Offset, Angle.Zero);
         var realTime = _timing.RealTime;
         var viewBox = GetVisibleWorldBox();
+        DrawTacticalMapBackground(handle, matty, viewBox);
         var viewportObjects = GetViewportMapObjects(matty, mapObjects);
         _viewportExclusions.Clear();
 
@@ -374,6 +503,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         _verts.Clear();
         _edges.Clear();
         _strings.Clear();
+        _glyphs.Clear();
 
         // Add beacons if relevant.
         var beaconsOnly = _shuttles.IsBeaconMap(viewedMapUid);
@@ -406,9 +536,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
                 AddMapObject(existingEdges, existingVerts, mapObject);
                 _beacons.Add(mapO);
-
-                var existingStrings = _strings.GetOrNew(displayColor);
-                existingStrings.Add((beaconUiPos, beaconName));
+                _glyphs.Add((beaconUiPos, "◎", displayColor));
             }
         }
 
@@ -500,7 +628,6 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
             var mapObj2 = GetMapObject(gridRelativePos, Angle.Zero, scalePosition: true); // Lua decrypt mod
             AddMapObject(existingEdges, existingVerts, mapObj2); // Lua decrypt mod
-
             var existingStrings = _strings.GetOrNew(gridColor);
             existingStrings.Add((gridUiPos, iffText));
         }
@@ -514,7 +641,13 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         foreach (var (color, sendEdges) in _edges)
         {
-            handle.DrawPrimitives(DrawPrimitiveTopology.LineList, sendEdges, color);
+            handle.DrawPrimitives(DrawPrimitiveTopology.LineList, sendEdges, color.WithAlpha(0.78f));
+        }
+
+        foreach (var (position, icon, color) in _glyphs)
+        {
+            var size = handle.GetDimensions(_font, icon, 0.92f);
+            DrawSoftMapText(handle, icon, position - size * 0.5f, 0.92f, color.WithAlpha(0.96f), Color.Black.WithAlpha(0.55f));
         }
 
         foreach (var (color, sendStrings) in _strings)
@@ -527,7 +660,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                 var mainLabel = lines[0];
                 var mainTextWidth = handle.GetDimensions(_font, mainLabel, 1f);
 
-                handle.DrawString(_font, gridUiPos + mainTextWidth with { X = -mainTextWidth.X / 2f, Y = mainTextWidth.Y * UIScale }, mainLabel, displayColor);
+                DrawSoftMapText(handle, mainLabel, gridUiPos + mainTextWidth with { X = -mainTextWidth.X / 2f, Y = mainTextWidth.Y * UIScale }, 1f, displayColor.WithAlpha(0.92f), Color.Black.WithAlpha(0.48f));
 
                 if (lines.Length > 1)
                 {
@@ -539,7 +672,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                         Y = mainTextWidth.Y * 2 * UIScale
                     };
 
-                    handle.DrawString(_font, gridUiPos + companyLabelOffset, companyLabel, displayColor);
+                    DrawSoftMapText(handle, companyLabel, gridUiPos + companyLabelOffset, 1f, displayColor.WithAlpha(0.78f), Color.Black.WithAlpha(0.42f));
                 }
             }
         }
@@ -633,7 +766,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             coordColor = shipCompanyProto.Color;
         }
 
-        DrawData(handle, coordsText, coordColor);
+        DrawMapData(handle, coordsText, coordColor);
     }
 
     private void AddMapObject(List<Vector2> edges, List<Vector2> verts, ValueList<Vector2> mapObject)
@@ -772,11 +905,11 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     /// <summary>
     /// Draw the coordinate data with a custom color.
     /// </summary>
-    protected void DrawData(DrawingHandleScreen handle, string text, Color color)
+    private void DrawMapData(DrawingHandleScreen handle, string text, Color color)
     {
         var font = _font;
         var dimensions = handle.GetDimensions(font, text, 1f);
         var position = new Vector2(15f, Height - dimensions.Y - 15f);
-        handle.DrawString(font, position, text, color);
+        DrawSoftMapText(handle, text, position, 1f, color.WithAlpha(0.9f), Color.Black.WithAlpha(0.5f));
     }
 }

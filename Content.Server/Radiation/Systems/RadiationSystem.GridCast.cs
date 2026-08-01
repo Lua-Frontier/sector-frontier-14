@@ -95,6 +95,10 @@ public partial class RadiationSystem
                 );
             }
 
+            var ambient = new GetAmbientRadiationEvent();
+            RaiseLocalEvent(destUid, ambient);
+            rads += MathF.Max(ambient.Radiation, 0f);
+
             // Apply modifier if the destination entity is hidden within a radiation blocking container
             rads = GetAdjustedRadiationIntensity(destUid, rads);
 

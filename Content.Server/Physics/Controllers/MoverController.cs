@@ -4,6 +4,7 @@ using Content.Server.Physics.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server._Lua.Shuttles.Systems; // Lua
+using Content.Server._Lua.SpaceHazards;
 using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -29,6 +30,7 @@ public sealed class MoverController : SharedMoverController
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
+    [Dependency] private readonly NebulaEnvironmentSystem _nebulaEnvironment = default!;
 
     private EntityQuery<ShuttleComponent> _shuttleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -542,7 +544,7 @@ public sealed class MoverController : SharedMoverController
                         force.Y -= shuttle.LinearThrust[index];
                     }
 
-                    var impulse = force * brakeInput * ShuttleComponent.BrakeCoefficient;
+                    var impulse = force * brakeInput * ShuttleComponent.BrakeCoefficient * _nebulaEnvironment.GetThrustMultiplier(uid);
                     impulse = shuttleNorthAngle.RotateVec(impulse);
                     var forceMul = frameTime * body.InvMass;
                     var maxVelocity = (-body.LinearVelocity).Length() / forceMul;
@@ -640,6 +642,8 @@ public sealed class MoverController : SharedMoverController
                     var impulse = force * linearInput.Length();
                     totalForce += impulse;
                 }
+
+                totalForce *= _nebulaEnvironment.GetThrustMultiplier(uid);
 
                 var forceMul = frameTime * body.InvMass;
 

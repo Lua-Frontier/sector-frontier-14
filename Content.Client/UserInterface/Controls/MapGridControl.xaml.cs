@@ -183,6 +183,14 @@ public partial class MapGridControl : LayoutContainer
         ActualRadarRange = Math.Clamp(ActualRadarRange + value, WorldMinRange, WorldMaxRange);
     }
 
+    public float RadarZoom => Math.Clamp((WorldMaxRange - ActualRadarRange) / (WorldMaxRange - WorldMinRange), 0f, 1f);
+
+    public void SetRadarZoom(float zoom)
+    {
+        zoom = Math.Clamp(zoom, 0f, 1f);
+        ActualRadarRange = MathHelper.Lerp(WorldMaxRange, WorldMinRange, zoom);
+    }
+
     /// <summary>
     /// Converts map coordinates to the local control.
     /// </summary>

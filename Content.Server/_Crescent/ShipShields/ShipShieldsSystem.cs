@@ -153,6 +153,7 @@ public sealed partial class ShipShieldsSystem : EntitySystem
 
         InitializeCommands();
         InitializeEmitters();
+        InitializeNebulaAbsorption();
     }
 
     private void OnPreventCollide(EntityUid uid, ShipShieldComponent component, ref PreventCollideEvent args)

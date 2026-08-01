@@ -54,6 +54,8 @@
   suffix: Rogue, Stealth
   description: A thruster with a reduced drive-plume and thermal output, but significantly less thrust.
   components:
+  - type: NebulaThrustResistance
+    resistance: 0.5
   - type: Thruster
     baseThrust: 50
     thrust: 50

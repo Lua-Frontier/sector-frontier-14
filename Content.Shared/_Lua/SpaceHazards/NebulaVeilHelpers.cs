@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using System.Numerics;
@@ -20,7 +20,31 @@ public static class NebulaVeilHelpers
         if (delta.LengthSquared() > radius * radius)
             return false;
 
-        var p = delta / radius;
-        return AmbientSpaceNebulaNoise.SamplePresence(p, field.Seed, field.Density, 1f) > 0.12f;
+        var contour = AmbientSpaceNebulaNoise.BuildMidLayerContour(fieldPos, radius, field.Seed, field.Density);
+        return ContainsPoint(contour, delta);
+    }
+
+    private static bool ContainsPoint(ReadOnlySpan<Vector2> polygon, Vector2 point)
+    {
+        if (polygon.Length < 3)
+            return false;
+
+        var inside = false;
+        var previous = polygon.Length - 1;
+        for (var current = 0; current < polygon.Length; current++)
+        {
+            var a = polygon[current];
+            var b = polygon[previous];
+
+            if ((a.Y > point.Y) != (b.Y > point.Y) &&
+                point.X < (b.X - a.X) * (point.Y - a.Y) / (b.Y - a.Y) + a.X)
+            {
+                inside = !inside;
+            }
+
+            previous = current;
+        }
+
+        return inside;
     }
 }

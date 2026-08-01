@@ -21,6 +21,7 @@ public sealed partial class ShuttleMapControl
 
     private readonly Dictionary<EntityUid, MapNebulaContourCache> _nebulaMapCache = new();
     private readonly List<(EntityUid Uid, AmbientSpaceFieldComponent Field, Vector2 Pos, float Radius)> _nebulaFieldScratch = new();
+    private Vector2[] _mapNebulaFillScratch = Array.Empty<Vector2>();
 
     private sealed class MapNebulaContourCache
     {
@@ -68,8 +69,9 @@ public sealed partial class ShuttleMapControl
         foreach (var (uid, field, worldPos, radius) in _nebulaFieldScratch)
         {
             var points = GetOrBuildMapContour(uid, field.Seed, radius, field.Density, worldPos);
-            var color = AmbientSpacePalette.ResolveFieldColor(field).WithAlpha(0.2f);
-            DrawMapClosedPolyline(handle, points, worldPos, matty, color);
+            var color = AmbientSpacePalette.ResolveFieldColor(field);
+            DrawMapFilledContour(handle, points, worldPos, matty, color.WithAlpha(field.HasWeather ? 0.1f : 0.05f));
+            DrawMapClosedPolyline(handle, points, worldPos, matty, color.WithAlpha(0.85f));
         }
 
         PruneMapContourCache();
@@ -149,7 +151,7 @@ public sealed partial class ShuttleMapControl
         var query = EntManager.AllEntityQueryEnumerator<AmbientSpaceFieldComponent, RadarBlipIconComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var field, out var icon, out var xform))
         {
-            if (xform.MapID != mapId || field.Weather == null || icon.Icon == default)
+            if (xform.MapID != mapId || !field.HasWeather || icon.Icon == default)
                 continue;
 
             var worldPos = _xformSystem.GetWorldPosition(xform);
@@ -218,7 +220,7 @@ public sealed partial class ShuttleMapControl
         if (EntManager.TryGetComponent(uid, out RadarBlipComponent? blip))
             labelColor = blip.RadarColor;
 
-        handle.DrawString(_font, labelPos, labelText, labelColor);
+        DrawSoftMapText(handle, labelText, labelPos, 1f, labelColor.WithAlpha(0.9f), Color.Black.WithAlpha(0.5f));
     }
 
     private Vector2[] GetOrBuildMapContour(EntityUid uid, int seed, float radius, float density, Vector2 worldPos)
@@ -240,6 +242,32 @@ public sealed partial class ShuttleMapControl
         }
 
         return cache.Points;
+    }
+
+    private void DrawMapFilledContour(
+        DrawingHandleScreen handle,
+        ReadOnlySpan<Vector2> worldPoints,
+        Vector2 worldOffset,
+        Matrix3x2 mapTransform,
+        Color color)
+    {
+        if (worldPoints.Length < 3)
+            return;
+
+        var count = worldPoints.Length + 2;
+        if (_mapNebulaFillScratch.Length < count)
+            _mapNebulaFillScratch = new Vector2[count];
+
+        var center = Vector2.Transform(worldOffset, mapTransform);
+        _mapNebulaFillScratch[0] = ScalePosition(center with { Y = -center.Y });
+        for (var i = 0; i < worldPoints.Length; i++)
+        {
+            var point = Vector2.Transform(worldPoints[i] + worldOffset, mapTransform);
+            _mapNebulaFillScratch[i + 1] = ScalePosition(point with { Y = -point.Y });
+        }
+
+        _mapNebulaFillScratch[count - 1] = _mapNebulaFillScratch[1];
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, new Span<Vector2>(_mapNebulaFillScratch, 0, count), color);
     }
 
     private void PruneMapContourCache()

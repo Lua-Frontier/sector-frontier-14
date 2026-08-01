@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.AmbientSpaceEffects;
@@ -17,6 +17,7 @@ public sealed class AmbientSpaceEffectSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private AmbientSpaceEffectOverlay? _overlay;
+    private NebulaWeatherOverlay? _weatherOverlay;
 
     public override void Initialize()
     {
@@ -24,6 +25,8 @@ public sealed class AmbientSpaceEffectSystem : EntitySystem
 
         _overlay = new AmbientSpaceEffectOverlay(EntityManager, _prototypes, _cfg);
         _overlays.AddOverlay(_overlay);
+        _weatherOverlay = new NebulaWeatherOverlay(EntityManager, _prototypes);
+        _overlays.AddOverlay(_weatherOverlay);
     }
 
     public override void Shutdown()
@@ -32,5 +35,7 @@ public sealed class AmbientSpaceEffectSystem : EntitySystem
 
         if (_overlay != null)
             _overlays.RemoveOverlay(_overlay);
+        if (_weatherOverlay != null)
+            _overlays.RemoveOverlay(_weatherOverlay);
     }
 }

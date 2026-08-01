@@ -293,13 +293,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
             if (!TryComp(uid, out TransformComponent? xform) || xform.MapID != mapId)
                 continue;
 
-            if (field.Weather is not { } weatherId)
-                continue;
-
-            if (!_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather))
-                continue;
-
-            if (weather.Kind != NebulaWeatherKind.Veil)
+            if (!FieldHasWeatherKind(field, NebulaWeatherKind.Veil))
                 continue;
 
             fields.Add((field, _xform.GetWorldPosition(xform)));
@@ -307,6 +301,24 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
         _veilCache[mapId] = (now, fields);
         return fields;
+    }
+
+    private bool FieldHasWeatherKind(AmbientSpaceFieldComponent field, NebulaWeatherKind kind)
+    {
+        if (field.Weathers.Count > 0)
+        {
+            foreach (var weatherId in field.Weathers)
+            {
+                if (_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather) && weather.Kind == kind)
+                    return true;
+            }
+
+            return false;
+        }
+
+        return field.Weather is { } fallbackId &&
+               _prototypes.TryIndex(fallbackId, out NebulaWeatherPrototype? fallback) &&
+               fallback.Kind == kind;
     }
 
     private bool IsHiddenByNebulaVeil(

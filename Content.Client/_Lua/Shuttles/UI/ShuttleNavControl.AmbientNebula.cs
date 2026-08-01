@@ -22,6 +22,7 @@ public partial class ShuttleNavControl
     private readonly Dictionary<EntityUid, NavNebulaContourCache> _nebulaNavCache = new();
     private readonly List<(EntityUid Uid, AmbientSpaceFieldComponent Field, TransformComponent Xform, Vector2 Pos, float Radius)> _nebulaFieldScratch = new();
     private readonly Vector2[] _celestialContourScratch = new Vector2[CelestialContourSegments];
+    private Vector2[] _nebulaFillScratch = Array.Empty<Vector2>();
 
     private sealed class NavNebulaContourCache
     {
@@ -92,8 +93,10 @@ public partial class ShuttleNavControl
             if (!_nebulaVisibility.HasVisibleMidLayer(mapId, worldPos, points))
                 continue;
 
-            var color = AmbientSpacePalette.ResolveFieldColor(field).WithAlpha(0.85f);
-            DrawClosedPolyline(handle, points, worldPos, view, color);
+            var color = AmbientSpacePalette.ResolveFieldColor(field);
+            DrawFilledContour(handle, points, worldPos, view, color.WithAlpha(field.HasWeather ? 0.11f : 0.06f));
+            DrawClosedPolyline(handle, points, worldPos, view, color.WithAlpha(0.35f), thickness: 3);
+            DrawClosedPolyline(handle, points, worldPos, view, color.WithAlpha(0.9f));
             drawn++;
         }
 
@@ -207,5 +210,27 @@ public partial class ShuttleNavControl
 
             prev = next;
         }
+    }
+
+    private void DrawFilledContour(
+        DrawingHandleScreen handle,
+        ReadOnlySpan<Vector2> worldPoints,
+        Vector2 worldOffset,
+        Matrix3x2 worldToView,
+        Color color)
+    {
+        if (worldPoints.Length < 3)
+            return;
+
+        var count = worldPoints.Length + 2;
+        if (_nebulaFillScratch.Length < count)
+            _nebulaFillScratch = new Vector2[count];
+
+        _nebulaFillScratch[0] = Vector2.Transform(worldOffset, worldToView);
+        for (var i = 0; i < worldPoints.Length; i++)
+            _nebulaFillScratch[i + 1] = Vector2.Transform(worldPoints[i] + worldOffset, worldToView);
+
+        _nebulaFillScratch[count - 1] = _nebulaFillScratch[1];
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, new Span<Vector2>(_nebulaFillScratch, 0, count), color);
     }
 }

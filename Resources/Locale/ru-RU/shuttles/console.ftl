@@ -58,9 +58,15 @@ shuttle-console-ftl-button = БСС
 shuttle-console-map-rebuild =
     Сканировать на
     наличие объектов
-shuttle-console-map-beacons = Показ маяков
 shuttle-console-no-signal = Нет сигнала
 shuttle-console-map-objects = Объекты в секторе
+shuttle-console-map-distance = Расст. (u)
+shuttle-console-map-footer-grid = Сетка: мировые координаты
+shuttle-console-map-footer-ftl = FTL: курсор и диапазон
+shuttle-console-map-footer-objects = Объекты: секторный список
+shuttle-console-map-footer-beacons = Маяки: быстрая навигация
+shuttle-console-map-footer-heading = Курс: компасс MAP
+shuttle-console-map-zoom = Масштаб
 # DOCK
 shuttle-console-docked = Пристыкованные объекты
 shuttle-console-view = Выбрать

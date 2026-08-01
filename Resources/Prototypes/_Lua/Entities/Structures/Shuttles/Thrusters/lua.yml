@@ -4,6 +4,8 @@
   suffix: LuaTech, Tier 5
   components:
   - type: LuaTech
+  - type: NebulaThrustResistance
+    resistance: 0.65
   - type: Machine
     board: ThrusterLuaMachineCircuitboard
   - type: Thruster
@@ -33,6 +35,8 @@
   suffix: LuaTech, Tier 5, Magnetic
   components:
   - type: LuaTech
+  - type: NebulaThrustResistance
+    resistance: 0.65
   - type: Tag
     tags:
     - OmniBurnAlwaysOn

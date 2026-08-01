@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using System.Numerics;
@@ -243,7 +243,7 @@ public sealed partial class ShipSteeringSystem
         var fields = EntityQueryEnumerator<AmbientSpaceFieldComponent, TransformComponent>();
         while (fields.MoveNext(out _, out var field, out var xform))
         {
-            if (xform.MapID != mapId || field.Weather == null) continue;
+            if (xform.MapID != mapId || !field.HasWeather) continue;
             var pos = _transform.GetWorldPosition(xform);
             var radius = MathF.Max(field.Radius, 1f);
             into.Add((pos, radius));

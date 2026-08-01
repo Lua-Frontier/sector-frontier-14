@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using System.Numerics;
@@ -25,6 +25,9 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
 {
     private const float WeatherSpawnChance = 0.24f;
     private const float WeatherOffPaletteChance = 0.18f;
+    private const float RadiationFogMinRadius = 980f;
+    private const float RadiationFogFullWeightRadius = 1500f;
+    private static readonly ProtoId<NebulaWeatherPrototype> RadiationFogWeather = "NebulaRadiationFog";
 
     private static readonly ProtoId<NebulaWeatherPrototype>[] WeatherByColorIndex =
     [
@@ -125,8 +128,8 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
 
             ApplyDeterministicVisuals(field, seed, radius);
             Dirty(ent, field);
-            if (field.Weather is { } weatherId)
-                EnsureWeatherRadarBlip(ent, weatherId);
+            if (field.HasWeather)
+                EnsureWeatherRadarBlip(ent, field);
             _pvs.AddGlobalOverride(ent);
             _landmarks.LockToMap(ent);
             placed.Add((pos, radius));
@@ -138,19 +141,20 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
         Log.Info($"Pregenerated {spawned}/{count} ambient nebula fields on {ToPrettyString(mapUid)} (annulus {minDist}–{maxDist})");
     }
 
-    private void EnsureWeatherRadarBlip(EntityUid uid, ProtoId<NebulaWeatherPrototype> weatherId)
+    private void EnsureWeatherRadarBlip(EntityUid uid, AmbientSpaceFieldComponent field)
     {
         var color = Color.FromHex("#C084FC");
         var highlight = Color.FromHex("#E0B0FF");
         var iconPath = new ResPath("/Textures/_Lua/Interface/Radar/nebula_hazard.png");
         ResPath? secondaryPath = null;
+        var weatherId = field.Weathers.Count > 0 ? field.Weathers[0] : field.Weather!.Value;
 
         if (_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather))
         {
             if (weather.RadarIcon is { } actualIcon)
                 iconPath = actualIcon;
 
-            if (TryComp<AmbientSpaceFieldComponent>(uid, out var field) && field.Seed != 0)
+            if (field.Seed != 0)
             {
                 var seedIdx = AmbientSpacePalette.ColorIndexFromSeed(field.Seed);
                 if (seedIdx >= 0 && seedIdx < AmbientSpacePalette.Colors.Length)
@@ -159,17 +163,12 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
                     highlight = Color.InterpolateBetween(color, Color.White, 0.35f);
                 }
 
-                var colorWeatherId = WeatherByColorIndex[Math.Clamp(seedIdx, 0, WeatherByColorIndex.Length - 1)];
-                var mixed = colorWeatherId != weatherId
-                            || (weather.PreferredColorIndex is { } pref && pref != seedIdx);
-
-                if (mixed
-                    && _prototypes.TryIndex(colorWeatherId, out NebulaWeatherPrototype? colorWeather)
-                    && colorWeather.RadarIcon is { } colorIcon
-                    && colorIcon != iconPath)
+                if (field.Weathers.Count > 1
+                    && _prototypes.TryIndex(field.Weathers[1], out NebulaWeatherPrototype? secondaryWeather)
+                    && secondaryWeather.RadarIcon is { } secondaryIcon
+                    && secondaryIcon != iconPath)
                 {
-                    secondaryPath = iconPath;
-                    iconPath = colorIcon;
+                    secondaryPath = secondaryIcon;
                 }
             }
             else if (weather.PreferredColorIndex is { } idx
@@ -188,15 +187,15 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
         blip.Shape = RadarBlipShape.Circle;
         blip.VisibleFromOtherGrids = true;
         blip.RequireNoGrid = true;
-        blip.MaxDistance = 1024f;
+        blip.MaxDistance = 1812f;
         blip.Enabled = true;
         Dirty(uid, blip);
 
         var icon = EnsureComp<RadarBlipIconComponent>(uid);
         icon.Icon = iconPath;
         icon.SecondaryIcon = secondaryPath;
-        icon.Scale = 1.5f;
-        icon.MaxDistance = 1024f;
+        icon.Scale = 1.7f;
+        icon.MaxDistance = 1812f;
         icon.AllowWhenHidden = true;
         Dirty(uid, icon);
     }
@@ -254,18 +253,50 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
         field.Density = AmbientSpacePalette.DensityFromSeed(seed);
         field.Radius = radius;
         field.Color = AmbientSpacePalette.ColorFromSeed(seed);
-        field.Weather = RollWeather(seed);
+        field.Weather = RollWeather(seed, radius);
+        field.Weathers.Clear();
+        if (field.Weather is not { } primaryWeather)
+            return;
+
+        field.Weathers.Add(primaryWeather);
+        var colorIdx = AmbientSpacePalette.ColorIndexFromSeed(seed);
+        var colorWeather = WeatherByColorIndex[Math.Clamp(colorIdx, 0, WeatherByColorIndex.Length - 1)];
+        if (colorWeather != primaryWeather && CanAddSecondaryWeather(colorWeather, seed, radius))
+            field.Weathers.Add(colorWeather);
     }
 
-    private ProtoId<NebulaWeatherPrototype>? RollWeather(int seed)
+    private bool CanAddSecondaryWeather(ProtoId<NebulaWeatherPrototype> weatherId, int seed, float radius)
+    {
+        if (!_prototypes.HasIndex(weatherId))
+            return false;
+
+        if (weatherId != RadiationFogWeather)
+            return true;
+
+        var radiationWeight = Math.Clamp(
+            (radius - RadiationFogMinRadius) / (RadiationFogFullWeightRadius - RadiationFogMinRadius),
+            0f,
+            1f);
+        var radiationRoll = (unchecked((uint) seed) >> 24 & 0xFFu) / 255f;
+        return radiationWeight > 0f && radiationRoll < radiationWeight;
+    }
+
+    private ProtoId<NebulaWeatherPrototype>? RollWeather(int seed, float radius)
     {
         var u = unchecked((uint) seed);
         var weatherRoll = (u >> 12 & 0xFFFu) / 4095f;
         if (weatherRoll >= WeatherSpawnChance)
             return null;
 
+        var radiationWeight = Math.Clamp((radius - RadiationFogMinRadius) / (RadiationFogFullWeightRadius - RadiationFogMinRadius), 0f, 1f);
+        var radiationRoll = (u >> 24 & 0xFFu) / 255f;
+        if (radiationWeight > 0f && radiationRoll < radiationWeight * 0.35f && _prototypes.HasIndex(RadiationFogWeather))
+            return RadiationFogWeather;
+
         var colorIdx = AmbientSpacePalette.ColorIndexFromSeed(seed);
         var preferred = WeatherByColorIndex[Math.Clamp(colorIdx, 0, WeatherByColorIndex.Length - 1)];
+        if (preferred == RadiationFogWeather && radiationRoll >= radiationWeight)
+            preferred = WeatherByColorIndex[Math.Abs((colorIdx + 1) % WeatherByColorIndex.Length)];
 
         var offPalette = ((u >> 4) & 0xFFu) / 255f < WeatherOffPaletteChance;
         if (!offPalette)
@@ -273,6 +304,9 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
 
         var pickIdx = (int) ((u >> 8) % (uint) WeatherByColorIndex.Length);
         var alt = WeatherByColorIndex[pickIdx];
+        if (alt == RadiationFogWeather && radiationRoll >= radiationWeight)
+            alt = preferred;
+
         if (_prototypes.HasIndex(alt))
             return alt;
 

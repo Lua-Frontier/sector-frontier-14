@@ -6,3 +6,5 @@ ent-SectorCelestialBlackHole = чёрная дыра
 
 radar-label-sector-star = Звезда
 radar-label-sector-black-hole = Чёрная дыра
+
+nebula-ftl-blocked = Пространственные помехи туманности блокируют FTL-переход.

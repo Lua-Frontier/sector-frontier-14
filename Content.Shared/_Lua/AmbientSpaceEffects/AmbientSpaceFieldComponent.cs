@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.SpaceHazards;
@@ -29,4 +29,9 @@ public sealed partial class AmbientSpaceFieldComponent : Component
 
     [DataField, AutoNetworkedField]
     public ProtoId<NebulaWeatherPrototype>? Weather;
+
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<NebulaWeatherPrototype>> Weathers = new();
+
+    public bool HasWeather => Weathers.Count > 0 || Weather != null;
 }

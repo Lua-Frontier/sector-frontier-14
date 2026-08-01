@@ -43,7 +43,7 @@ public partial class ShuttleNavControl
         var fieldQuery = EntManager.AllEntityQueryEnumerator<AmbientSpaceFieldComponent, RadarBlipIconComponent, TransformComponent>();
         while (fieldQuery.MoveNext(out var uid, out var field, out var icon, out var xform))
         {
-            if (field.Weather == null)
+            if (!field.HasWeather)
                 continue;
 
             TryDrawHazardIcon(handle, cache, uid, icon, xform, mapId, mapOrigin, view, uiXCentre, uiYCentre, scaledMousePos, fullScaleDistance, minDistanceScale, maxScaleRange);
@@ -152,6 +152,6 @@ public partial class ShuttleNavControl
         if (entManager.HasComponent<SectorCelestialBodyComponent>(uid))
             return true;
 
-        return entManager.TryGetComponent<AmbientSpaceFieldComponent>(uid, out var field) && field.Weather != null;
+        return entManager.TryGetComponent<AmbientSpaceFieldComponent>(uid, out var field) && field.HasWeather;
     }
 }
