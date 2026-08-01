@@ -363,6 +363,8 @@ public sealed class ExpeditionSystem : EntitySystem
 
     private void OnExpeditionMapTerminating(EntityUid uid, ExpeditionMapComponent component, EntityTerminatingEvent args)
     {
+        ClearExpeditionCrewMarkers(uid);
+
         var ghosts = EntityQueryEnumerator<GhostComponent, TransformComponent>();
         var newCoords = new MapCoordinates(Vector2.Zero, _gameTicker.DefaultMap);
         while (ghosts.MoveNext(out var ghostUid, out _, out var xform))
@@ -370,6 +372,20 @@ public sealed class ExpeditionSystem : EntitySystem
             if (xform.MapUid == uid)
                 _transform.SetMapCoordinates(ghostUid, newCoords);
         }
+    }
+
+    private void ClearExpeditionCrewMarkers(EntityUid expeditionMap)
+    {
+        var toRemove = new List<EntityUid>();
+        var query = EntityQueryEnumerator<ExpeditionCrewMemberComponent>();
+        while (query.MoveNext(out var uid, out var crew))
+        {
+            if (crew.ExpeditionMap == expeditionMap)
+                toRemove.Add(uid);
+        }
+
+        foreach (var uid in toRemove)
+            RemComp<ExpeditionCrewMemberComponent>(uid);
     }
 
     private void OnClaimMessage(EntityUid uid, ShuttleConsoleComponent component, ClaimExpeditionMessage args)
@@ -548,7 +564,7 @@ public sealed class ExpeditionSystem : EntitySystem
             expedition.Station = station;
             expedition.EndTime = _timing.CurTime + missionParams.Duration;
             expedition.Seed = missionParams.Seed;
-            SnapshotDepartingCrew(shuttleGrid, expedition);
+            MarkDepartingCrew(shuttleGrid, mapUid.Value);
             Dirty(mapUid.Value, expedition);
 
             var landing = Vector2.Zero;
@@ -591,10 +607,8 @@ public sealed class ExpeditionSystem : EntitySystem
         }
     }
 
-    private void SnapshotDepartingCrew(EntityUid shuttleGrid, ExpeditionMapComponent expedition)
+    private void MarkDepartingCrew(EntityUid shuttleGrid, EntityUid expeditionMap)
     {
-        expedition.ArrivedCrew.Clear();
-
         if (!TryComp(shuttleGrid, out TransformComponent? shuttleXform))
             return;
 
@@ -613,7 +627,8 @@ public sealed class ExpeditionSystem : EntitySystem
             if (_npcFaction.IsFactionHostile(NanoTrasenFaction, uid))
                 continue;
 
-            expedition.ArrivedCrew.Add(uid);
+            var crew = EnsureComp<ExpeditionCrewMemberComponent>(uid);
+            crew.ExpeditionMap = expeditionMap;
         }
     }
 

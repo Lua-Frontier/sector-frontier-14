@@ -151,7 +151,6 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
         if (TryComp<ExpeditionDataComponent>(component.Station, out var data))
         {
             data.CanFinish = true;
-            Dirty(component.Station, data);
             _shuttleConsoles.RefreshShuttleConsoles();
         }
         Announce(args.MapUid, Loc.GetString("expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
@@ -162,25 +161,40 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     private void OnFTLStarted(ref FTLStartedEvent ev)
     {
         if (ev.FromMapUid is not { } fromMap || !TryComp<ExpeditionMapComponent>(fromMap, out var expedition)) return;
+        if (!TryComp(ev.Entity, out TransformComponent? shuttleXform) ||
+            _station.GetOwningStation(ev.Entity, shuttleXform) != expedition.Station)
+        {
+            return;
+        }
+
         expedition.DepartureStarted = true;
         if (TryComp<ExpeditionDataComponent>(expedition.Station, out var data))
         {
             data.CanFinish = false;
-            Dirty(expedition.Station, data);
             _shuttleConsoles.RefreshShuttleConsoles();
         }
-        if (!HasPlayerOnGrid(ev.Entity))
+        if (!HasPlayerOnGrid(ev.Entity, fromMap))
         {
             WipeExpeditionAfterEmptyDeparture(fromMap, expedition, ev.Entity);
             return;
         }
+
+        ClearExpeditionCrewMarkers(fromMap, ev.Entity);
+
         var shuttleQuery = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
-        while (shuttleQuery.MoveNext(out _, out var shuttleXform))
-        { if (shuttleXform.MapUid == fromMap) return; }
+        while (shuttleQuery.MoveNext(out var shuttleUid, out _, out var otherShuttleXform))
+        {
+            if (otherShuttleXform.MapUid == fromMap &&
+                _station.GetOwningStation(shuttleUid, otherShuttleXform) == expedition.Station)
+            {
+                return;
+            }
+        }
+
         QueueDel(fromMap);
     }
 
-    private bool HasPlayerOnGrid(EntityUid gridUid)
+    private bool HasPlayerOnGrid(EntityUid gridUid, EntityUid expeditionMap)
     {
         var query = EntityQueryEnumerator<ActorComponent, HumanoidAppearanceComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out _, out var xform))
@@ -189,6 +203,15 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
             if (HasComp<GhostComponent>(uid)) continue;
             return true;
         }
+
+        var crewQuery = EntityQueryEnumerator<ExpeditionCrewMemberComponent, MobStateComponent, TransformComponent>();
+        while (crewQuery.MoveNext(out var uid, out var crew, out var mobState, out var xform))
+        {
+            if (crew.ExpeditionMap != expeditionMap) continue;
+            if (xform.GridUid != gridUid) continue;
+            if (_mobState.IsDead(uid, mobState) || _mobState.IsCritical(uid, mobState)) return true;
+        }
+
         return false;
     }
 
@@ -198,9 +221,26 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
         comp.Completed = false;
         Dirty(mapUid, comp);
         Announce(mapUid, Loc.GetString("expedition-failed"));
+        ClearExpeditionCrewMarkers(mapUid);
         QueueDel(emptyShuttle);
         ForceGhostActorsOnMap(mapUid);
         QueueDel(mapUid);
+    }
+
+    private void ClearExpeditionCrewMarkers(EntityUid expeditionMap, EntityUid? gridUid = null)
+    {
+        var toRemove = new List<EntityUid>();
+        var query = EntityQueryEnumerator<ExpeditionCrewMemberComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var crew, out var xform))
+        {
+            if (crew.ExpeditionMap != expeditionMap) continue;
+            if (gridUid != null && xform.GridUid != gridUid) continue;
+
+            toRemove.Add(uid);
+        }
+
+        foreach (var uid in toRemove)
+            RemComp<ExpeditionCrewMemberComponent>(uid);
     }
 
     private void ForceGhostActorsOnMap(EntityUid mapUid)

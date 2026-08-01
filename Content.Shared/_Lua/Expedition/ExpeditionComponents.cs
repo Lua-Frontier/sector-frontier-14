@@ -62,6 +62,14 @@ public sealed partial class ExpeditionDataComponent : Component
 
 [RegisterComponent]
 public sealed partial class ExpeditionShuttleComponent : Component;
+
+[RegisterComponent]
+public sealed partial class ExpeditionCrewMemberComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public EntityUid ExpeditionMap;
+}
+
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ExpeditionPlanetComponent : Component
 {
@@ -83,9 +91,6 @@ public sealed partial class ExpeditionMapComponent : Component
 
     [ViewVariables]
     public bool Completed;
-
-    [ViewVariables]
-    public HashSet<EntityUid> ArrivedCrew = new();
 
     [ViewVariables]
     public bool DepartureStarted;
