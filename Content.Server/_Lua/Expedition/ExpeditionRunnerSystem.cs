@@ -99,8 +99,10 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
             }
             else if (!comp.DepartureStarted && remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime) + TimeSpan.FromSeconds(0.5))
             {
-                var ftlTime = (float) remaining.TotalSeconds;
-                if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime)) ftlTime = MathF.Max(0, (float) remaining.TotalSeconds - 0.5f);
+                var ftlTime = (float)remaining.TotalSeconds;
+                if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime))
+                    ftlTime = MathF.Max(0, (float)remaining.TotalSeconds - 0.5f);
+
                 ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);
                 if (AutoFtlShuttlesHome(uid, comp, ftlTime)) comp.DepartureStarted = true;
             }
@@ -148,6 +150,12 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     {
         if (!TryComp<ExpeditionMapComponent>(args.MapUid, out var component)) return;
         if (component.Stage != ExpeditionStage.Added) return;
+        if (!TryComp(args.Entity, out TransformComponent? shuttleXform) ||
+            _station.GetOwningStation(args.Entity, shuttleXform) != component.Station)
+        {
+            return;
+        }
+
         if (TryComp<ExpeditionDataComponent>(component.Station, out var data))
         {
             data.CanFinish = true;
