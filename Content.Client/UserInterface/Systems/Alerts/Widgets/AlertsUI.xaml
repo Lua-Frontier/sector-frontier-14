@@ -1,5 +1,6 @@
 <widgets:AlertsUI xmlns="https://spacestation14.io"
                   xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Alerts.Widgets"
+                  xmlns:partStatus="clr-namespace:Content.Client._Shitmed.UserInterface.Systems.PartStatus.Widgets"
                   MinSize="0 0">
     <BoxContainer Orientation="Vertical">
         <!-- Right side layout (classic): 3 columns, filled top-to-bottom -->
@@ -45,5 +46,8 @@
                           HorizontalAlignment="Left"
                           Margin="6 0 0 0" />
         </GridContainer>
+
+        <!-- Shitmed: limb integrity doll (wired for PartStatusUIController) -->
+        <partStatus:PartStatusControl Name="PartStatus" Access="Public" HorizontalAlignment="Right" Margin="0 4 0 0"/>
     </BoxContainer>
 </widgets:AlertsUI>

@@ -1,78 +1,282 @@
 <controls:FancyWindow
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-    MaxHeight="600"
-    MinWidth="300"> <!-- Lua: MaxHeight="525" < "600" -->
-    <ScrollContainer
-        Margin="5 5 5 5"
-        ReturnMeasure="True"
-        VerticalExpand="True">
-        <BoxContainer
-            Name="RootContainer"
-            VerticalExpand="True"
-            Orientation="Vertical">
-            <Label
-                Name="NoPatientDataText"
-                Text="{Loc health-analyzer-window-no-patient-data-text}" />
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    SetHeight="650"
+    SetWidth="740"
+    Resizable="False">
+    <BoxContainer
+        Name="RootContainer"
+        VerticalExpand="True"
+        HorizontalExpand="True"
+        Orientation="Horizontal"
+        SeparationOverride="8"
+        Margin="8">
+                <BoxContainer
+                    VerticalExpand="True"
+                    HorizontalExpand="True"
+                    Orientation="Vertical">
+                <Label
+                    Name="NoPatientDataText"
+                    FontColorOverride="#c6e7ff"
+                    Text="{Loc health-analyzer-window-no-patient-data-text}"/>
 
-            <BoxContainer
-                Name="PatientDataContainer"
-                Margin="0 0 0 5"
-                Orientation="Vertical">
-                <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
-                    <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
-                    <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false" Stretch="KeepAspectCentered" TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
-                    <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top">
-                        <RichTextLabel Name="NameLabel" SetWidth="150" />
-                        <Label Name="SpeciesLabel" VerticalAlignment="Top" StyleClasses="LabelSubText" />
-                    </BoxContainer>
-                    <!-- Frontier: add print button -->
-                    <BoxContainer Orientation="Vertical">
-                        <Label Margin="0 0 5 0" HorizontalExpand="True" HorizontalAlignment="Right" VerticalExpand="True"
-                               VerticalAlignment="Top" Name="ScanModeLabel"
-                               Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
-                        <BoxContainer Orientation="Vertical" Name="PrintButtonsContainer">
-                            <Button Name="PrintRecordButton" HorizontalExpand="False"> <!-- Lua: HorizontalExpand="True" < "False" -->
-                                <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore" SetSize="30 30"/> <!-- Lua: Added SetSize="30 30" -->
-                            </Button>
+                <PanelContainer VerticalExpand="False" HorizontalExpand="True" Margin="2 2 2 2" MinHeight="40">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                    </PanelContainer.PanelOverride>
+                    <Button Name="ReturnButton"
+                            Text="{Loc 'health-analyzer-window-return-button-text'}"
+                            Visible="False"
+                            Margin="1"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            StyleClasses="ButtonSquare"/>
+                </PanelContainer>
+
+                <BoxContainer
+                    Name="PatientDataContainer"
+                    Margin="1 1"
+                    Orientation="Vertical">
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="2 2 2 2">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                        </PanelContainer.PanelOverride>
+                        <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+                            <PanelContainer VerticalExpand="False" HorizontalExpand="False" Margin="2 2">
+                                <PanelContainer.PanelOverride>
+                                    <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                                </PanelContainer.PanelOverride>
+                                <PanelContainer VerticalExpand="False" HorizontalExpand="False" Margin="1 1">
+                                    <PanelContainer.PanelOverride>
+                                        <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#2c3846" BackgroundColor="#0b1015"/>
+                                    </PanelContainer.PanelOverride>
+                                    <PanelContainer>
+                                        <TextureRect
+                                            Name="NoDataTex"
+                                            Access="Public"
+                                            SetSize="96 96"
+                                            Visible="False"
+                                            Stretch="KeepAspectCentered"
+                                            TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
+                                        <SpriteView
+                                            OverrideDirection="South"
+                                            Scale="1 1"
+                                            Name="SpriteView"
+                                            Access="Public"
+                                            SetSize="96 96"/>
+                                        <PanelContainer
+                                            Name="PartView"
+                                            SetSize="57 96"
+                                            Margin="18 0 0 0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left">
+                                            <PanelContainer
+                                                SetSize="15 33"
+                                                Margin="4 0 0 0"
+                                                HorizontalAlignment="Left">
+                                                <TextureButton
+                                                    Name="RightArmButton"
+                                                    MinSize="15 25"
+                                                    StyleClasses="TargetDollButtonRightArm"
+                                                    VerticalAlignment="Top"/>
+                                                <TextureButton
+                                                    Name="RightHandButton"
+                                                    MinSize="15 15"
+                                                    VerticalAlignment="Bottom"
+                                                    StyleClasses="TargetDollButtonRightHand"/>
+                                            </PanelContainer>
+                                            <PanelContainer
+                                                SetSize="43 75"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                                <TextureButton
+                                                    Name="HeadButton"
+                                                    MinSize="28 23"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Center"
+                                                    StyleClasses="TargetDollButtonHead"/>
+                                                <TextureButton
+                                                    Name="ChestButton"
+                                                    SetSize="28 30"
+                                                    Margin="0 18 0 0"
+                                                    VerticalAlignment="Top"
+                                                    HorizontalAlignment="Center"
+                                                    StyleClasses="TargetDollButtonChest"/>
+                                                <PanelContainer
+                                                    MinSize="38 35"
+                                                    VerticalAlignment="Bottom"
+                                                    HorizontalAlignment="Center">
+                                                    <TextureButton
+                                                        Name="GroinButton"
+                                                        MinSize="28 15"
+                                                        VerticalAlignment="Top"
+                                                        HorizontalAlignment="Center"
+                                                        StyleClasses="TargetDollButtonGroin"/>
+                                                    <PanelContainer
+                                                        MinSize="20 30"
+                                                        VerticalAlignment="Bottom"
+                                                        HorizontalAlignment="Right">
+                                                        <TextureButton
+                                                            Name="LeftLegButton"
+                                                            MinSize="15 28"
+                                                            VerticalAlignment="Top"
+                                                            HorizontalAlignment="Left"
+                                                            StyleClasses="TargetDollButtonLeftLeg"/>
+                                                        <TextureButton
+                                                            Name="LeftFootButton"
+                                                            MinSize="20 10"
+                                                            VerticalAlignment="Bottom"
+                                                            StyleClasses="TargetDollButtonLeftFoot"/>
+                                                    </PanelContainer>
+                                                    <PanelContainer
+                                                        MinSize="20 30"
+                                                        VerticalAlignment="Bottom"
+                                                        HorizontalAlignment="Left">
+                                                        <TextureButton
+                                                            Name="RightLegButton"
+                                                            MinSize="15 28"
+                                                            VerticalAlignment="Top"
+                                                            HorizontalAlignment="Right"
+                                                            StyleClasses="TargetDollButtonRightLeg"/>
+                                                        <TextureButton
+                                                            Name="RightFootButton"
+                                                            MinSize="20 10"
+                                                            VerticalAlignment="Bottom"
+                                                            HorizontalAlignment="Center"
+                                                            StyleClasses="TargetDollButtonRightFoot"/>
+                                                    </PanelContainer>
+                                                </PanelContainer>
+                                            </PanelContainer>
+                                            <PanelContainer
+                                                SetSize="15 33"
+                                                Margin="0 0 4 0"
+                                                HorizontalAlignment="Right">
+                                                <TextureButton
+                                                    Name="LeftArmButton"
+                                                    MinSize="15 25"
+                                                    StyleClasses="TargetDollButtonLeftArm"
+                                                    VerticalAlignment="Top"/>
+                                                <TextureButton
+                                                    Name="LeftHandButton"
+                                                    MinSize="15 15"
+                                                    VerticalAlignment="Bottom"
+                                                    StyleClasses="TargetDollButtonLeftHand"/>
+                                            </PanelContainer>
+                                        </PanelContainer>
+                                    </PanelContainer>
+                                </PanelContainer>
+                            </PanelContainer>
+
+                            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                                <RichTextLabel Name="NameLabel" SetWidth="150" HorizontalAlignment="Left"/>
+                                <Label Name="SpeciesLabel" VerticalAlignment="Top" StyleClasses="LabelSubText" HorizontalAlignment="Left" FontColorOverride="#8a93a3"/>
+                                <Label Name="PartNameLabel" Visible="False" VerticalAlignment="Bottom" StyleClasses="LabelSubText" HorizontalAlignment="Left" FontColorOverride="#8a93a3"/>
+                                <Label
+                                    Margin="0 0 5 0"
+                                    HorizontalExpand="True"
+                                    HorizontalAlignment="Right"
+                                    VerticalExpand="True"
+                                    VerticalAlignment="Bottom"
+                                    Name="ScanModeLabel"
+                                    FontColorOverride="#7ec8e3"
+                                    Text="{Loc 'health-analyzer-window-entity-unknown-text'}"/>
+                            </BoxContainer>
+
+                            <BoxContainer Orientation="Vertical" Name="PrintButtonsContainer">
+                                <Button Name="PrintRecordButton" HorizontalExpand="False">
+                                    <TextureButton TexturePath="/Textures/_NF/Interface/VerbIcons/print.png" MouseFilter="Ignore" SetSize="30 30"/>
+                                </Button>
+                            </BoxContainer>
                         </BoxContainer>
-                    </BoxContainer>
-                    <!-- End Frontier: add print button -->
+                    </PanelContainer>
+
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4 4 4">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                        </PanelContainer.PanelOverride>
+                        <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4">
+                            <PanelContainer.PanelOverride>
+                                <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#2c3846" BackgroundColor="#0b1015"/>
+                            </PanelContainer.PanelOverride>
+                            <GridContainer Margin="2 2" Columns="2">
+                                <Label Text="{Loc 'health-analyzer-window-entity-status-text'}" FontColorOverride="#c6e7ff"/>
+                                <Label Name="StatusLabel" FontColorOverride="#7ec8e3"/>
+                                <Label Text="{Loc 'health-analyzer-window-entity-temperature-text'}" FontColorOverride="#c6e7ff"/>
+                                <Label Name="TemperatureLabel" FontColorOverride="#7ec8e3"/>
+                                <Label Text="{Loc 'health-analyzer-window-entity-blood-level-text'}" FontColorOverride="#c6e7ff"/>
+                                <Label Name="BloodLabel" FontColorOverride="#7ec8e3"/>
+                                <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" FontColorOverride="#c6e7ff"/>
+                                <Label Name="DamageLabel" FontColorOverride="#7ec8e3"/>
+                            </GridContainer>
+                        </PanelContainer>
+                    </PanelContainer>
                 </BoxContainer>
 
-                <PanelContainer StyleClasses="LowDivider" />
+                <Control Name="RotDivider" Visible="False" MinHeight="4"/>
+                <RichTextLabel Name="RotLabel" Visible="False" Margin="0 9" HorizontalAlignment="Center" MaxWidth="300"/>
 
-                <GridContainer Margin="0 5 0 0" Columns="2">
-                    <Label Text="{Loc 'health-analyzer-window-entity-status-text'}" />
-                    <Label Name="StatusLabel" />
-                    <Label Text="{Loc 'health-analyzer-window-entity-temperature-text'}" />
-                    <Label Name="TemperatureLabel" />
-                    <Label Text="{Loc 'health-analyzer-window-entity-blood-level-text'}" />
-                    <Label Name="BloodLabel" />
-                    <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" />
-                    <Label Name="DamageLabel" />
-                </GridContainer>
-            </BoxContainer>
+                <Control Name="AlertsDivider" Visible="False" MinHeight="4"/>
 
-            <!-- Lua start -->
-            <PanelContainer Name="RotDivider" Visible="False" StyleClasses="LowDivider" />
-            <RichTextLabel Name="RotLabel" Visible="False" Margin="0 9" HorizontalAlignment="Center" MaxWidth="300"/>
-            <!-- Lua end -->
+                <PanelContainer Name="AlertsPanel" Visible="False" VerticalExpand="False" HorizontalExpand="True" Margin="4 4 4 4" SetHeight="62">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                    </PanelContainer.PanelOverride>
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#2c3846" BackgroundColor="#0b1015"/>
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer
+                            Margin="5 5 5 5"
+                            ReturnMeasure="True"
+                            VerticalExpand="True">
+                            <BoxContainer
+                                Name="AlertsContainer"
+                                Visible="False"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </PanelContainer>
 
-            <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" />
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4 4 4">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                    </PanelContainer.PanelOverride>
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="4 4">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#2c3846" BackgroundColor="#0b1015"/>
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer
+                            Margin="5 5 5 5"
+                            ReturnMeasure="True"
+                            VerticalExpand="True">
+                            <BoxContainer
+                                Name="GroupsContainer"
+                                Margin="0 5 0 5"
+                                Orientation="Vertical">
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </PanelContainer>
+                </BoxContainer>
 
-            <BoxContainer Name="AlertsContainer" Visible="False" Margin="0 5" Orientation="Vertical" HorizontalAlignment="Center">
-
-            </BoxContainer>
-
-            <PanelContainer StyleClasses="LowDivider" />
-
-            <BoxContainer
-                Name="GroupsContainer"
-                Margin="0 5 0 5"
-                Orientation="Vertical">
-            </BoxContainer>
-
-        </BoxContainer>
-    </ScrollContainer>
+                <PanelContainer Name="DamagedPartsPanel" Visible="False" MinWidth="250" MaxWidth="250" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#334252" BackgroundColor="#111820"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6" HorizontalExpand="True" VerticalExpand="True">
+                        <Label Text="{Loc 'health-analyzer-window-damaged-parts-title'}" FontColorOverride="#c6e7ff" StyleClasses="LabelKeyText"/>
+                        <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                            <PanelContainer.PanelOverride>
+                                <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#2c3846" BackgroundColor="#0b1015"/>
+                            </PanelContainer.PanelOverride>
+                            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" Margin="6" HScrollEnabled="False" VScrollEnabled="True">
+                                <BoxContainer Name="DamagedPartsContainer" Orientation="Vertical" SeparationOverride="4" HorizontalExpand="True"/>
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </PanelContainer>
+    </BoxContainer>
 </controls:FancyWindow>

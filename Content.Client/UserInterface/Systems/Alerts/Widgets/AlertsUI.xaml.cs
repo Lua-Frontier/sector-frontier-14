@@ -37,6 +37,9 @@ public sealed partial class AlertsUI : UIWidget
         LayoutMode = mode;
         RightModeRoot.Visible = mode == AlertsLayoutMode.Right;
         BottomModeRoot.Visible = mode == AlertsLayoutMode.Bottom;
+        PartStatus.HorizontalAlignment = mode == AlertsLayoutMode.Right
+            ? HAlignment.Right
+            : HAlignment.Center;
         ApplySprintVisibility();
         RebuildLayout(null);
     }

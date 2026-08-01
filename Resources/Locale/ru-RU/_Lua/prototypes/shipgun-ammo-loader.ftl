@@ -1,17 +1,5 @@
 # Ammo Loader item info metadata for ship ammunition
 
-ent-150mmApShell = 150mm AP снаряд
-    .desc = Одиночный бронебойный 150mm снаряд для корабельной артиллерии.
-    .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 150mm AP
-    .ammo-loader-weight = 17 кг
-
-ent-150mmEmpShell = 150mm EMP снаряд
-    .desc = Одиночный электромагнитный 150mm снаряд для корабельной артиллерии.
-    .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 150mm EMP
-    .ammo-loader-weight = 17 кг
-
 ent-220mmCartridgeAPHE = 220mm APHE картридж
     .desc = Одиночный бронебойно-фугасный 220mm картридж для корабельной артиллерии.
     .ammo-loader-type = Боеприпас
@@ -59,30 +47,6 @@ ent-R300ShellHE = R-300 HE снаряд
     .ammo-loader-type = Боеприпас
     .ammo-loader-caliber = 430mm HE
     .ammo-loader-weight = 48 кг
-
-ent-CharonSlugAmmo = 280mm кинетический картридж Charon
-    .desc = Одиночный 280mm кинетический картридж для платформы Charon.
-    .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 280mm кинетический
-    .ammo-loader-weight = 40 кг
-
-ent-Asm220TorpedoHE = торпеда ASM-220 HE
-    .desc = Тяжёлая фугасная торпеда для корабельных пусковых установок.
-    .ammo-loader-type = Торпеда
-    .ammo-loader-caliber = ASM-220 HE
-    .ammo-loader-weight = 175 кг
-
-ent-Asm220TorpedoLOSAT = торпеда ASM-220 LOSAT
-    .desc = Тяжёлая LOSAT-торпеда для корабельных пусковых установок.
-    .ammo-loader-type = Торпеда
-    .ammo-loader-caliber = ASM-220 LOSAT
-    .ammo-loader-weight = 190 кг
-
-ent-Asm220TorpedoECM = торпеда ASM-220 ECM
-    .desc = Тяжёлая торпеда радиоэлектронного противодействия для корабельных пусковых установок.
-    .ammo-loader-type = Торпеда
-    .ammo-loader-caliber = ASM-220 ECM
-    .ammo-loader-weight = 165 кг
 
 ent-20mmCartridge = 20mm картридж
     .desc = Одиночный 20mm картридж для лёгкой корабельной артиллерии.
@@ -359,18 +323,6 @@ ent-LightFighterOrdinanceGPOItem = управляемый боеприпас GPO
     .ammo-loader-type = Авиационный боеприпас
     .ammo-loader-caliber = GPO управляемый
     .ammo-loader-weight = 9 кг
-
-ent-LightFighterOrdinanceZenithItem = авиационная ракета Zenith
-    .desc = Лёгкий авиационный боеприпас с ракетой Zenith.
-    .ammo-loader-type = Авиационный боеприпас
-    .ammo-loader-caliber = Zenith ракета
-    .ammo-loader-weight = 11 кг
-
-ent-LightFighterOrdinanceQuasarItem = авиационная ракета Quasar
-    .desc = Лёгкий авиационный боеприпас с ракетой Quasar.
-    .ammo-loader-type = Авиационный боеприпас
-    .ammo-loader-caliber = Quasar ракета
-    .ammo-loader-weight = 10 кг
 
 ent-Box220mmAPHE = ящик 220mm APHE
     .desc = Тяжёлый ящик боеприпасов с 220mm APHE снарядами.

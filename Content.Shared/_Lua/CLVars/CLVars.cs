@@ -20,21 +20,21 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<string> TransferApiSecret = CVarDef.Create("transfer.api.secret", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
         public static readonly CVarDef<bool> NetDynamicTick =
-            CVarDef.Create("net.dynamictick.enabled", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("net.dynamic_tick.enabled", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
         public static readonly CVarDef<int> NetDynamicTickMinTickrate =
-            CVarDef.Create("net.dynamictick.min_tickrate", 10, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.min_tickrate", 10, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<int> NetDynamicTickMaxTickrate =
-            CVarDef.Create("net.dynamictick.max_tickrate", 30, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.max_tickrate", 30, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickCheckInterval =
-            CVarDef.Create("net.dynamictick.check_interval", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.check_interval", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickLowFpsMin =
-            CVarDef.Create("net.dynamictick.low_fps_min", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.low_fps_min", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickLowFpsMax =
-            CVarDef.Create("net.dynamictick.low_fps_max", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.low_fps_max", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickDecreaseDelay =
-            CVarDef.Create("net.dynamictick.decrease_delay", 15f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.decrease_delay", 15f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickIncreaseDelay =
-            CVarDef.Create("net.dynamictick.increase_delay", 1200f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.increase_delay", 1200f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> TransferMaxAmountPerOperation =
             CVarDef.Create("yupi.transfer.max_amount_per_operation", 50_000, CVar.SERVER | CVar.ARCHIVE);
