@@ -195,7 +195,7 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);
 
         public static readonly CVarDef<float> ExpeditionMassLimit =
-            CVarDef.Create("expedition.mass_limit", 230f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("expedition.mass_limit", 290f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> NpcSmartDespawnEnabled =
             CVarDef.Create("npc.smart_despawn_enabled", true, CVar.SERVERONLY);
