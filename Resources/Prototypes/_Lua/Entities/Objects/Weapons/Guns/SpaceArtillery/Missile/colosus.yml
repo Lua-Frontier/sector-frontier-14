@@ -3,80 +3,37 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: BaseWeaponMissile
+  parent: WeaponTurretASM220
   id: WeaponMissileLauncherStarColosus
   name: Ядерная артиллерийская установка "Звездный Колосс"
   description: Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
   suffix: НЕ МАППИТЬ!, ShuttleGun
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: RadarBlip
-    radarColor: "#850000"
-    scale: 1
   - type: Sprite
     sprite: _Lua/Objects/ShuttleWeapons/bigfuckinglaser.rsi
     drawdepth: Mobs
     layers:
       - state: space_artillery
-  - type: Destructible
-    thresholds:
-    - trigger:
-         !type:DamageTrigger
-         damage: 3000 #Nuke inside, what you have thought?
-      behaviors:
-       - !type:PlaySoundBehavior
-         sound:
-           collection: MetalBreak
-       - !type:ChangeConstructionNodeBehavior
-         node: machineFrame
-       - !type:DoActsBehavior
-         acts: ["Destruction"]
-  - type: Gun
-    projectileSpeed: 100 #40
-    selectedMode: FullAuto
-    availableModes:
-      - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-  - type: FireControllable
-  - type: ChamberMagazineAmmoProvider
-    boltClosed: null
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        startingItem: null
-        whitelist:
-          tags: []
-      gun_chamber:
-        startingItem: MissileTND
-        whitelist:
-          tags:
-          - MissileStarColosus
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - MissileStarColosus
+    capacity: 1
+    unspawnedCount: 1
+    proto: MissileTND
 
 - type: entity
   parent: WeaponMissileLauncherStarColosus
   id: WeaponMissileLauncherStarColosusEmpty
   suffix: Пустой, ShuttleGun
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        startingItem: null
-        whitelist:
-          tags: []
-      gun_chamber:
-        startingItem: null
-        whitelist:
-          tags:
-          - MissileStarColosus
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - MissileStarColosus
+    capacity: 1
+    unspawnedCount: 0
+    proto: MissileTND
 
 - type: entity
   parent: BaseNFFlatpack
@@ -96,46 +53,19 @@
 - type: entity
   id: BulletTND
   name: Инферно
-  parent: BaseBulletTrigger
+  parent: ShipMissileASM220HE
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
       - state: sam
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: PowerSink
-    totalIntensity: 900000.0 # 21 radius, wipes plastitanium
-    intensitySlope: 120
-    maxIntensity: 1000
-  - type: PointLight
-    radius: 3.5
-    color: orange
-    energy: 0.5
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: RadarBlip
-    scale: 5
-    requireNoGrid: true
-    radarColor: "#e5ff00"
-    shape: triangle
-  - type: TimedDespawn
-    lifetime: 20
 
 - type: entity
   id: MissileTND
   name: ядерная ракета класса "Инферно"
   suffix: Missile
-  parent: BaseMissile
+  parent: Asm220TorpedoHE
   components:
     - type: Sprite
       sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi

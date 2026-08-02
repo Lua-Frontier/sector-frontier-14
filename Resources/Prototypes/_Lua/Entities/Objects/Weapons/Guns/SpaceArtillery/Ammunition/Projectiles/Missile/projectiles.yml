@@ -5,81 +5,32 @@
 - type: entity
   id: BulletGR
   name: Анаконда
-  parent: BaseBulletMissile
+  parent: ShipMissileASM250HEAT
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: sam
-  - type: Explosive
-    explosionType: DemolitionCharge
-    totalIntensity: 100000.0
-    intensitySlope: 500
-    maxIntensity: 1000
-    maxTileBreak: 1
-  - type: RadarBlip
-    scale: 1.5
-    requireNoGrid: true
-    shape: triangle
-  - type: TimedDespawn
-    lifetime: 20
+    - state: sam
 
 - type: entity
   id: BulletWolf
   name: Копьё
-  parent: BaseBulletMissile
+  parent: ShipMissileASM150
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
-      - state: sam
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 25000.0 #15 range - wipes 1 layer of reinforced - 3 shots for plastitanium
-    intensitySlope: 10
-    maxIntensity: 500
-    maxTileBreak: 1
-  - type: RadarBlip
-    scale: 1.5
-    requireNoGrid: true
-    shape: triangle
-  - type: TimedDespawn
-    lifetime: 20
-  - type: TargetSeeking
-    acceleration: 250
-    detectionRange: 200
-    scanArc: 100
-    launchSpeed: 150
-    maxSpeed: 200
+    - state: sam
 
 - type: entity
   id: BulletTomahawk
   name: Томагавк
-  parent: BaseBulletMissile
+  parent: MissileProjectile50mmHE
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     layers:
     - state: sdm
-  - type: Explosive
-    explosionType: DemolitionCharge
-    totalIntensity: 1500 # 2 Plastitan Layers
-    intensitySlope: 1000 # 1x1 radius but 2 range
-    maxIntensity: 1500
-    maxTileBreak: 1
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: RadarBlip
-    scale: 1.5
-    requireNoGrid: true
-    shape: triangle
-  - type: TimedDespawn
-    lifetime: 10
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]

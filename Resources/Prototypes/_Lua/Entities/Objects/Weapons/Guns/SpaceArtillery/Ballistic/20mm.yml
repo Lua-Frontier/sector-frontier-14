@@ -3,59 +3,17 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: BaseWeaponNavalBallisctic
+  parent: WeaponTurretL85Autocannon
   id: Weapon20mm
   name: Пулемёт "20мм"
   description: Лёгий пулемёт, использует снаряды 20мм.
   suffix: ShuttleGun
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: RadarBlip
-    radarColor: "#229e51"
-    scale: 1
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets20mm.rsi
     drawdepth: Mobs
     layers:
     - state: turrets20mm
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: Battery
-    maxCharge: 5000
-    startingCharge: 5000
-  - type: ExaminableBattery
-  - type: AutoShootGun
-  - type: GunSignalControl
-  - type: WirelessNetworkConnection
-    range: 700
-  - type: FireControllable
-  - type: ExplosionResistance
-    damageCoefficient: 0.5 # Lua
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1250
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Gun
-    fireRate: 12
-    projectileSpeed: 90
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-  - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -68,18 +26,9 @@
           tags:
           - MagazineLua20mm
         whitelistFailPopup: gun-magazine-whitelist-fail
-  - type: SpaceArtillery
-    powerChargeRate: 100
-    powerUseActive: 20
-    powerUsePassive: 1100
-  - type: ShipGunClass
-    shipClass: Light
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 100
 
 - type: entity
-  parent: [BaseWeaponNavalBallisctic, Weapon20mm]
+  parent: Weapon20mm
   id: Weapon20mmPD
   name: Пулемёт Д "20мм"
   description: Это автоматическое оружие, предназначенное для защиты ключевых объектов или зон от близкорасположенных целей.
@@ -92,17 +41,6 @@
   - type: NpcFactionMember
     factions:
     - PointDefenseGun
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: Gun
-    fireRate: 14
-    projectileSpeed: 60
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
   - type: HTN
     rootTask:
       task: TurretCompound

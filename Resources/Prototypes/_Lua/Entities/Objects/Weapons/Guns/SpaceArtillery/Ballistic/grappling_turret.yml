@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: BaseWeaponNavalBallisctic
+  parent: [BallisticArtillery, BallisticArtilleryTier1HP]
   id: WeaponShuttleGrapplingTurret
   name: Турель-гарпун
   description: Шаттл-гарпун для зацепа за другой шаттл. Крюк отображается на радаре.
@@ -48,6 +48,8 @@
       powerUsePassive: 1100
     - type: ShipGunClass
       shipClass: Light
+    - type: ShipGunType
+      shipType: Ballistic
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 100

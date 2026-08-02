@@ -3,21 +3,12 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: [BaseWeaponNavalEnergy, BaseStructure]
+  parent: WeaponTurretType54
   id: ImpulseLaserBase
   name: Импульсный Лазер
   description: Лёгий лазер, использует для питания энергоячейки импульсного лазера.
   suffix: ShuttleGun
-  placement:
-    mode: SnapgridCenter
   components:
-    - type: RadarBlip
-      radarColor: "#1a4a88"
-      scale: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-        machine_parts: !type:Container
     - type: Sprite
       sprite: _Lua/Objects/Weapons/Guns/Turrets/impulselaser.rsi
       drawdepth: Mobs
@@ -39,47 +30,8 @@
         Dead:
           Base: impulselaser
           BaseUnshaded: impulselaser
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 3000 #Durable
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-        - !type:ChangeConstructionNodeBehavior
-          node: machineFrame
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
-    - type: Gun
-      fireRate: 4
-      projectileSpeed: 110
-      selectedMode: FullAuto
-      availableModes:
-        - FullAuto
-      soundGunshot: /Audio/_Lua/Weapons/Guns/Gunshots/lasergatling.ogg
-    - type: Battery
-      maxCharge: 4500
-      startingCharge: 4500
-    - type: ExaminableBattery
-    - type: AutoShootGun
-    - type: GunSignalControl
-    - type: WirelessNetworkConnection
-      range: 700
-    - type: FireControllable
-    - type: SpaceArtillery
-      powerChargeRate: 50
-      powerUseActive: 50
-      powerUsePassive: 3100
-    - type: ShipGunClass
-      shipClass: Light
-    - type: BatterySelfRecharger
-      autoRecharge: true
-      autoRechargeRate: 50
     - type: ProjectileBatteryAmmoProvider
       proto: BulletMachineGunImpulseTurret
-      fireCost: 150
 
 - type: entity
   parent: [BaseStructureDisableToolUse, ImpulseLaserBase]

@@ -42,7 +42,7 @@
     startingCharge: 750
 
 - type: entity
-  parent: BasicHitscan
+  parent: PhalanxLaser
   categories: [ HideSpawnMenu ]
   id: VioletLaser # DS
   components:
@@ -92,15 +92,6 @@
   components:
   - type: HitscanRadarSignature
     radarColor: "#c24bfa"
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Structural: 65
-        Heat: 75
-  - type: HitscanSpawnEntity
-    spawnedEntity: VioletLaserExplosion
-  - type: HitscanBasicRaycast
-    maxDistance: 800
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Lua/Objects/Weapons/Guns/Projectiles/violethit.rsi
@@ -113,22 +104,13 @@
       state: impact_beam_violet
 
 - type: entity
-  parent: BasicHitscan
+  parent: ApolloLaser
   categories: [ HideSpawnMenu ]
   id: VioletBigLaserShip
   components:
   - type: HitscanRadarSignature
     radarColor: "#c24bfa"
     lineThickness: 3
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Structural: 10
-        Heat: 10
-  - type: HitscanSpawnEntity
-    spawnedEntity: VioletBigLaserExplosion
-  - type: HitscanBasicRaycast
-    maxDistance: 800
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Lua/Objects/Weapons/Guns/Projectiles/bigviolethit.rsi

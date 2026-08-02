@@ -123,46 +123,32 @@
     - LuaTech
 
 - type: entity
-  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaser]
+  parent: WeaponLaserTurretL1Phalanx
   id: WeaponTurretLaserShuttleLuaTech
   name: лазерная турель LuaTech
   suffix: LuaTech, Shuttle
   components:
-  - type: RadarBlip
-    radarColor: "#1a4a88"
-    scale: 1.5
-  - type: FireControllable
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
+    drawdepth: Mobs
+    layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+      - state: impulselaser
+        sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
+      - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+        state: impulselaser-unshaded
+        sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
+        shader: unshaded
   - type: HitscanBatteryAmmoProvider
     proto: VioletLaserShip
-    fireCost: 300
   - type: LuaTech
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
 
 - type: entity
-  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaser]
+  parent: WeaponLaserTurretApollo
   id: WeaponTurretBigLaserShuttleLuaTech
   name: большая лазерная турель LuaTech
   suffix: LuaTech, Shuttle
   components:
-  - type: Gun
-    fireRate: 13
-    minAngle: 0
-    maxAngle: 0
-    burstCooldown: 35
-    burstFireRate: 13
-    shotsPerBurst: 40
-    selectedMode: Burst
-    availableModes: Burst
-    shootThermalSignature: 1500
-    soundBurstCooldown:
-      path: /Audio/_Lua/Weapons/Guns/Laserturret/charge.ogg
-    soundEmpty:
-      path: /Audio/_Lua/Weapons/Guns/Laserturret/noammo.ogg
-    soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/glassing.ogg
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
     drawdepth: Mobs
@@ -174,15 +160,6 @@
         state: railgun-unshaded
         sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
         shader: unshaded
-  - type: RadarBlip
-    radarColor: "#1a4a88"
-    scale: 2
-  - type: FireControllable
   - type: HitscanBatteryAmmoProvider
     proto: VioletBigLaserShip
-    fireCost: 50
   - type: LuaTech
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container

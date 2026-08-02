@@ -5,55 +5,19 @@
 - type: entity
   id: BulletMachineGunImpulseTurret
   name: импульсный лазер
-  parent: BaseBulletTrigger
+  parent: ShipAutopulserPlasmaProjectile
   categories: [ HideSpawnMenu ]
   components:
-  - type: Projectile
-    damage:
-      types:
-        Structural: 625 #175 #Lua 225<625 (1250*0.5)
-        Radiation: 375 #Lua 35<375 (750*0.5)
-        Heat: 375 #40 #Lua 220<375 (750*0.5)
-        Ion: 300 #600*0.5
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: DefaultShipGun #Default #Lua MicroBomb<DefaultShipGun
-    maxIntensity: 40 #12
-    intensitySlope: 6 #3
-    totalIntensity: 40 #4
-    maxTileBreak: 2
-  - type: PointLight
-    radius: 3.5
-    color: red
-    energy: 0.5
   - type: Sprite
     sprite: _Lua/Objects/SpaceArtillery/laserturret.rsi
     layers:
       - state: base-projectile
-  - type: RadarBlip
-    scale: 1.35
-    requireNoGrid: true
-    shape: triangle
-  - type: TimedDespawn
-    lifetime: 7 #20
-  - type: ShipWeaponProjectile
 
 - type: entity
-  parent: BasicHitscan
+  parent: PrometheusLaser
   categories: [ HideSpawnMenu ]
   id: RedHeavyLaserSyndie
   components:
-  - type: HitscanRadarSignature
-    radarColor: "#fd0d0d"
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Heat: 40
-        Structural: 50
-  - type: HitscanSpawnEntity
-    spawnedEntity: SynLaserExplosion
-  - type: HitscanBasicRaycast
-    maxDistance: 390
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -81,13 +45,5 @@
 - type: entity
   name: tesla gun lightning
   id: TeslaGunTurretBullet
-  parent: [TeslaGunBullet, BaseBullet]
+  parent: ShipIonProjectile
   categories: [ HideSpawnMenu ]
-  components:
-  - type: ShipWeaponProjectile
-  - type: RadarBlip
-    scale: 3.5 # 2.5
-    requireNoGrid: true
-    shape: circle
-  - type: TimedDespawn
-    lifetime: 20
