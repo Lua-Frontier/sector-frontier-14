@@ -165,7 +165,7 @@
   name: странная крыса
   id: DiseaseRatCrimsonSpore
   suffix: Красная Спора
-  parent: [ SimpleMobBase, MobCombat, BaseTrashFauna600 ]
+  parent: [ SimpleMobBase, MobCombat, BaseTrashFauna600, NightVisionComfortOrange ]
   description: Мерзкое облезлое существо, скорее всего оно чем-то болеет. Лучше выбросить в космос.
   components:
   - type: Carriable #DeltaV
@@ -185,8 +185,8 @@
       NavInteract: !type:Bool
         true
       NavPry: !type:Bool
-        true 
-      NavSmash: !type:Bool 
+        true
+      NavSmash: !type:Bool
         true
   - type: Reactive
     groups:
@@ -289,10 +289,6 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#a05454"
-    activateSound: null
-    deactivateSound: null
   - type: InfectOnMelee
     disease: CrimsonSpore
     infectChance: 1

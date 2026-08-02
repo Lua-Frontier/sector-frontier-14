@@ -171,4 +171,18 @@
     phosphorColor: "#337a98"
     lightingColor: "#ffffff52"
 
+- type: entity
+  id: NightVisionComfortOrange
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NightVision
+    relayOverlay: true
+    goggleEffect: true
+    viewCircleRadius: 880
+    viewCircleCount: 1
+    viewCircleSpacing: 1
+    action: ActionToggleNightVision
+    phosphorColor: "#986033"
+    lightingColor: "#ffffff52"
+
 # Lua End

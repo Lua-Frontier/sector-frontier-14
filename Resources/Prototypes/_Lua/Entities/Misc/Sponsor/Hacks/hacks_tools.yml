@@ -57,7 +57,7 @@
     state: icon
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, NightVisionComfortBlue]
   id: ClothingEyesHudLuaTech
   categories: [ HideSpawnMenu ]
   name: визор "LuaTech"
@@ -79,10 +79,6 @@
   - type: ThermalVision
     isEquipment: true
     toggleAction: ToggleThermalVision
-  - type: NightVision
-    isEquipment: true
-    color: "#999999"
-    toggleAction: ToggleNightVision
 
 - type: entity
   parent: BaseMedicalPDA

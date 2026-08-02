@@ -521,7 +521,7 @@
 
 #region очки
 - type: entity
-  parent: ClothingEyesHudMultiversal
+  parent: [ ClothingEyesHudMultiversal, NightVisionComfortBlue ]
   id: BronzeVisor
   name: визор с бронзовой оправой
   description: Высококлассный визор на половину лица, украшенный гравировкой с изображением рыцарских поединков на бронзовой оправе.
@@ -542,9 +542,5 @@
     isEquipment: true
     color: "#9b9366"
     toggleAction: ToggleThermalVision
-  - type: NightVision
-    isEquipment: true
-    color: "#a5a5a5"
-    toggleAction: ToggleNightVision
   - type: Tag
     tags: []

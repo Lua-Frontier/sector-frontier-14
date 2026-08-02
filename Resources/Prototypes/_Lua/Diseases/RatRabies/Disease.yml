@@ -185,7 +185,7 @@
 - type: entity
   name: король крыс
   id: MobDiseaseRatKing
-  parent: [ SimpleNonHTNMobBase ]
+  parent: [ SimpleNonHTNMobBase, NightVisionComfortOrange ]
   description: Он крыс, и он тут царь.
   suffix: "NoAI, DiseaseMorph"
   components:
@@ -282,9 +282,6 @@
   - type: Speech
     speechVerb: SmallMob
   - type: Sharp
-  - type: NightVision # Goobstation - Nigthvision
-    toggleAction: null
-    color: "#808080"
     activateSound: null
     deactivateSound: null
   - type: TTS

@@ -328,7 +328,7 @@
 
 # EYES
 - type: entity
-  parent: ClothingEyesHudMultiversal
+  parent: [ ClothingEyesHudMultiversal, NightVisionComfortBlue ]
   id: ClothingEyesHudSil
   name: очки в золотой оправе
   description: Изготовлено на заказ организацией LaFleur Wear.
@@ -347,9 +347,6 @@
     isEquipment: true
     color: "#ee488d"
     toggleAction: ToggleThermalVision
-  - type: NightVision
-    isEquipment: true
-    color: "#999999"
     toggleAction: ToggleNightVision
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag

@@ -163,7 +163,7 @@
 
 #region морфа игрока
 - type: entity
-  parent: [ SimpleNonHTNMobBase, MobPassiveRegen ]
+  parent: [ SimpleNonHTNMobBase, MobPassiveRegen, NightVisionComfortOrange ]
   id: MobDiseaseSpider
   name: тарантул
   description: Поистине милейшее создание с шестью замечательными лапками и милейшими восемью глазками. Выглядит так, словно когда-то было гуманоидом.
@@ -279,9 +279,6 @@
       groups:
         Brute: -0.07
         Burn: -0.07
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
     deactivateSound: null
   - type: TTS
     enabled: true

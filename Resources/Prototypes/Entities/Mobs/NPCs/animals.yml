@@ -1,6 +1,6 @@
 - type: entity
   name: bat
-  parent: [ SimpleMobBase, FlyingMobBase, MobCombat ]
+  parent: [ SimpleMobBase, FlyingMobBase, MobCombat, NightVisionComfortOrange ] # Lua add NightVisionComfortOrange
   id: MobBat
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
@@ -79,10 +79,6 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
 
 - type: entity
   name: bee
@@ -1739,7 +1735,7 @@
 
 - type: entity
   name: mouse
-  parent: SimpleMobBase
+  parent: [ SimpleMobBase, NightVisionComfortOrange ] # Lua add NightVisionComfortOrange
   id: MobMouse
   description: Squeak!
   components:
@@ -1920,10 +1916,6 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
 
 - type: entity
   parent: MobMouse
@@ -2521,7 +2513,7 @@
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
 - type: entity
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat, NightVisionComfortOrange ] # Lua add NightVisionComfortOrange
   id: MobSpiderBase
   abstract: true
   components:
@@ -2608,10 +2600,6 @@
       groups:
         Brute: -0.07
         Burn: -0.07
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
 
 - type: entity
   parent: MobSpiderBase

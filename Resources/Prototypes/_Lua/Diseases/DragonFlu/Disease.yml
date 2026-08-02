@@ -209,7 +209,7 @@
 
 #region большой
 - type: entity
-  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobPassiveRegen ]
+  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobPassiveRegen, NightVisionComfortOrange ]
   id: MobDiseaseDragon
   suffix: "NoAI, DiseaseMorph"
   name: космический дракон
@@ -322,10 +322,6 @@
     speedModifier: 2.5 # fast because dragon strong
     useSound:
       path: /Audio/Items/crowbar.ogg
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
@@ -511,14 +507,10 @@
 - type: entity
   name: карпоакула
   id: MobDiseaseDragonShark
-  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobPassiveRegen ]
+  parent: [ SimpleNonHTNSpaceMobBase, FlyingMobBase, MobPassiveRegen, NightVisionComfortOrange ]
   description: Странного вида карпоакула. Кажется её взгляд выглядит осмысленным.
   suffix: "NoAI, DiseaseMorph"
   components:
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
   - type: InputMover
   - type: MobMover
   - type: NpcFactionMember

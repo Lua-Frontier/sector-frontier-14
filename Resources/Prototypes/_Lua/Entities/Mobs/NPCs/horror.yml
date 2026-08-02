@@ -4,7 +4,7 @@
 
 - type: entity
   id: HorrorLua
-  parent: SimpleSpaceMobBase
+  parent: [ SimpleSpaceMobBase, NightVisionComfortOrange ]
   name: Теневой Кошмар
   suffix: адмем
   components:
@@ -78,10 +78,6 @@
   - type: NpcFactionMember
     factions:
     - SimpleHostile
-  - type: NightVision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
   - type: PassiveDamage
     allowedStates:
     - Alive

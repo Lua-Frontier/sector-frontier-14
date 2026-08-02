@@ -1,7 +1,7 @@
 - type: entity
   name: NVD
   id: ClothingEyesVision
-  parent: BaseItem
+  parent: [BaseItem, NightVisionComfortGreen]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
   components:
   - type: Item
@@ -14,9 +14,6 @@
     slots: [ Eyes ]
   - type: UseDelay
     delay: 4
-  - type: NightVision
-    isEquipment: true
-    toggleAction: ToggleNightVision
 
 - type: entity
   parent: ClothingEyesVision

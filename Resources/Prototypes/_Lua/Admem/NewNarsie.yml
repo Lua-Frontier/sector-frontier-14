@@ -113,7 +113,7 @@
 
 #region Нар-Си
 - type: entity
-  parent: [NarsieBaseBase]
+  parent: [NarsieBaseBase, NightVisionComfortOrange]
   id: MobNarsieNew
   suffix: "адмем"
   components:
@@ -221,10 +221,6 @@
     blacklist:
       tags:
       - GhostOnlyWarp
-  - type: NightVision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 2
     rechargeSound: /Audio/Effects/gib3.ogg

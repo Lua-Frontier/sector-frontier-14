@@ -1,6 +1,6 @@
 - type: entity
   id: MobSpaceWhale
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat, NightVisionComfortOrange ] # LuaM add NightVisionComfortOrange
   name: Космический Кит
   description: Любимый питомец богов
   categories: [ HideSpawnMenu ]
@@ -94,10 +94,10 @@
     - state: overlay
       shader: unshaded
     noRot: false
-  - type: NightVision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
+  # - type: NightVision # LuaM delete
+  #   color: "#808080"
+  #   activateSound: null
+  #   deactivateSound: null
   - type: AmbientSound
     enabled: true
     volume: 1

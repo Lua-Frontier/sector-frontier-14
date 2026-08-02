@@ -1,14 +1,10 @@
 - type: entity
   name: space carp
   id: BaseMobCarp
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat, NightVisionComfortOrange ] # Lua add NightVisionComfortOrange
   description: It's a space carp.
   abstract: true
   components:
-    - type: NightVision # Goobstation - Nigthvision
-      color: "#808080"
-      activateSound: null
-      deactivateSound: null
     - type: InputMover
     - type: MobMover
     - type: HTN

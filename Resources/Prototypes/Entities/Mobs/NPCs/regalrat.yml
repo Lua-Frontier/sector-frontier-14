@@ -1,7 +1,7 @@
 - type: entity
   name: rat king
   id: MobRatKing
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat, NightVisionComfortOrange ] # Lua add NightVisionComfortOrange
   description: He's da rat. He make da roolz.
   components:
   - type: CombatMode
@@ -129,11 +129,6 @@
     attributes:
       gender: male
   - type: Sharp
-  - type: NightVision # Goobstation - Nigthvision
-    toggleAction: null
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
 
 - type: entity
   id: MobRatKingBuff
@@ -175,7 +170,7 @@
 - type: entity
   name: rat servant
   id: MobRatServant
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat, NightVisionComfortOrange ] # Lua add NightVisionComfortOrange
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
@@ -319,10 +314,6 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
-  - type: NightVision # Goobstation - Nigthvision
-    color: "#808080"
-    activateSound: null
-    deactivateSound: null
 
 
 - type: weightedRandomEntity
