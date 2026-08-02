@@ -25,6 +25,8 @@ using Robust.Shared.Threading;
 using System.Collections.Concurrent;
 using Robust.Shared.Timing;
 using Content.Shared._Mono;
+using Content.Shared.BarricadeBlock;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Projectiles;
 
@@ -42,6 +44,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly IParallelManager _parallel = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     // Cache of projectiles waiting for collision checks
     private readonly ConcurrentQueue<(EntityUid Uid, ProjectileComponent Component, EntityUid Target)> _pendingCollisionChecks = new();
@@ -87,7 +90,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         // Check if the entity still exists before trying to add a component
         if (!EntityManager.EntityExists(uid))
             return;
-            
+
         EnsureComp<MetaDataComponent>(uid);
     }
 
@@ -356,6 +359,62 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         {
             args.Cancelled = true;
             return;
+        }
+
+        // BarricadeBlock (ported from civ14/BF14)
+        if (TryComp(args.OtherEntity, out BarricadeBlockComponent? barricadeBlock))
+        {
+            var alwaysPassThrough = false;
+            if (component.Shooter is { } shooterUid && Exists(shooterUid))
+            {
+                var shooterWorldRotation = _transform.GetWorldRotation(shooterUid);
+                var barricadeBlockWorldRotation = _transform.GetWorldRotation(args.OtherEntity);
+
+                var shooterDir = shooterWorldRotation.GetCardinalDir();
+                var barricadeBlockDir = barricadeBlockWorldRotation.GetCardinalDir();
+
+                var directionallyAllowed = false;
+                if (shooterDir == barricadeBlockDir)
+                {
+                    directionallyAllowed = true;
+                }
+                else if (barricadeBlock.Bidirectional)
+                {
+                    var oppositeBarricadeBlockDir = (Direction)(((int)barricadeBlockDir + 4) % 8);
+                    if (shooterDir == oppositeBarricadeBlockDir)
+                        directionallyAllowed = true;
+                }
+                else if (barricadeBlock.Omnidirectional)
+                {
+                    directionallyAllowed = true;
+                }
+
+                if (directionallyAllowed)
+                {
+                    var shooterCoords = Transform(shooterUid).Coordinates;
+                    var barricadeBlockCoords = Transform(args.OtherEntity).Coordinates;
+                    var bypassDistance = barricadeBlock.PassThroughDistance;
+
+                    if (shooterCoords.TryDistance(EntityManager, barricadeBlockCoords, out var distance) &&
+                        distance <= bypassDistance)
+                    {
+                        alwaysPassThrough = true;
+                    }
+                }
+            }
+
+            if (alwaysPassThrough)
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            var rando = _random.NextFloat(0.0f, 100.0f);
+            if (rando >= barricadeBlock.Blocking)
+            {
+                args.Cancelled = true;
+                return;
+            }
         }
 
         // Get transforms once for subsequent checks to avoid repeated calls
