@@ -1,7 +1,7 @@
 - type: entity
   id: BaseShellShotgun23x75mm
   name: shotgun shell (4 gauge)
-  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: added BaseC1Contraband
+  parent: BaseCartridge
   description: Large shotgun round. Kicks like a mule, and will tear a chunk out of anything that doesnt have the armor to protect it.
   abstract: true
   components:
@@ -10,7 +10,6 @@
     - Cartridge
     - ShellShotgun23x75mmBuckshot
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     soundEject:
       collection: ShellEject
       params:
@@ -21,22 +20,20 @@
       params:
         variation: 0.06
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Casings/4_gauge_shell.rsi
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-    scale: 0.65, 0.65
+    scale: 1.2, 1.2
   - type: Appearance
   - type: SpentAmmoVisuals
   - type: StaticPrice
     price: 1
 
-# Standart
 - type: entity
   id: ShellShotgun23x75mmBeanbag
   name: shotgun shell (4 gauge beanbag)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm # Frontier: remove BaseSecurityBartenderContraband
+  parent: BaseShellShotgun23x75mm
   components:
   - type: Tag
     tags:
@@ -49,42 +46,25 @@
   - type: CartridgeAmmo
     proto: Pellet23x75mmBeanbag
   - type: SpentAmmoVisuals
-    state: beanbag-spent
-
-- type: entity
-  id: ShellShotgun23x75mmPractice
-  name: shotgun shell (4 gauge practice)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-  - type: Sprite
-    layers:
-      - state: practice
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: Pellet23x75mmPracticeSpread
-  - type: SpentAmmoVisuals
-    state: practice-spent
+    state: "beanbag"
 
 - type: entity
   id: ShellShotgun23x75mmDozd
   name: shotgun shell (4 gauge Dozd)
-  suffix: Need balance test #Lua
   parent: BaseShellShotgun23x75mm
   components:
   - type: Sprite
     layers:
-      - state: dozd
+      - state: flare
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: Pellet23x75mmDozdSpread
   - type: SpentAmmoVisuals
-    state: dozd-spent
+    state: "flare"
 
 - type: entity
   id: ShellShotgun23x75mmSlug
   name: shotgun shell (4 gauge slug)
-  suffix: Need balance test #Lua
   parent: BaseShellShotgun23x75mm
   components:
   - type: Sprite
@@ -94,116 +74,7 @@
   - type: CartridgeAmmo
     proto: Pellet23x75mmSlug
   - type: SpentAmmoVisuals
-    state: slug-spent
-
-- type: entity
-  id: ShellShotgun23x75mmBuckshot
-  name: shotgun shell (4 gauge buckshot)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: Pellet23x75mmBuckshotSpread
-
-#Mechanical
-- type: entity
-  id: ShellShotgun23x75mmOOBuckshot
-  name: shotgun shell (4 gauge OO Buckshot)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: Pellet23x75mmOOBuckshotSpread
-  - type: SpentAmmoVisuals
-
-# Physical
-- type: entity
-  id: ShellShotgun23x75mmIncendiary
-  name: shotgun shell (4 gauge incendiary)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-  - type: Sprite
-    layers:
-      - state: incendiary
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: Pellet23x75mmIncendiarySpread
-  - type: SpentAmmoVisuals
-    state: incendiary-spent
-
-- type: entity
-  id: ShellShotgun23x75mmUranium
-  name: shotgun shell (4 gauge uranium)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-    - type: Sprite
-      layers:
-        - state: depleted-uranium
-          map: [ "enum.AmmoVisualLayers.Base" ]
-    - type: CartridgeAmmo
-      proto: Pellet23x75mmUraniumSpread
-    - type: SpentAmmoVisuals
-      state: depleted-uranium-spent
-
-# Special
-- type: entity
-  id: ShellShotgun23x75mmEMP
-  name: shotgun shell (4 gauge EMP)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-    - type: Sprite
-      layers:
-        - state: emp
-          map: [ "enum.AmmoVisualLayers.Base" ]
-    - type: CartridgeAmmo
-      proto: Pellet23x75mmBuckshotEMPSpread
-    - type: SpentAmmoVisuals
-      state: emp-spent
-
-- type: entity
-  id: ShellShotgun23x75mmCaustic
-  name: shotgun shell (4 gauge Caustic)
-  suffix: Need balance test #Lua
-  parent: BaseShellShotgun23x75mm
-  components:
-    - type: Sprite
-      layers:
-        - state: caustic
-          map: [ "enum.AmmoVisualLayers.Base" ]
-    - type: CartridgeAmmo
-      proto: Pellet23x75mmBuckshotCausticSpread
-    - type: SpentAmmoVisuals
-      state: caustic-spent
-
-# Utilitary
-- type: entity
-  id: ShellShotgun23x75mmFlashbang
-  name: shotgun shell (4 gauge flashbang)
-  parent: BaseShellShotgun23x75mm
-  components:
-  - type: Tag
-    tags:
-    - Cartridge
-    - ShellShotgun23x75mmBuckshot
-  - type: Sprite
-    layers:
-      - state: flashbang
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: Pellet23x75mmFlashbang
-  - type: SpentAmmoVisuals
-    state: "flashbang"
+    state: "slug"
 
 - type: entity
   id: ShellShotgun23x75mmFlare
@@ -222,3 +93,133 @@
     proto: Pellet23x75mmFlare
   - type: SpentAmmoVisuals
     state: "flare"
+
+- type: entity
+  id: ShellShotgun23x75mmBuckshot
+  name: shotgun shell (4 gauge buckshot)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmBuckshotSpread
+
+- type: entity
+  id: ShellShotgun23x75mmIncendiary
+  name: shotgun shell (4 gauge incendiary)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: incendiary
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmIncendiarySpread
+  - type: SpentAmmoVisuals
+    state: "incendiary"
+
+- type: entity
+  id: ShellShotgun23x75mmPractice
+  name: shotgun shell (4 gauge practice)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: practice
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmPracticeSpread
+  - type: SpentAmmoVisuals
+    state: "practice"
+
+- type: entity
+  id: ShellShotgun23x75mmUranium
+  name: shotgun shell (4 gauge uranium)
+  parent: BaseShellShotgun23x75mm
+  components:
+    - type: Sprite
+      layers:
+        - state: depleted-uranium
+          map: [ "enum.AmmoVisualLayers.Base" ]
+    - type: CartridgeAmmo
+      proto: Pellet23x75mmUraniumSpread
+    - type: SpentAmmoVisuals
+      state: "depleted-uranium"
+
+- type: entity
+  id: ShellShotgun23x75mmFlashbang
+  name: shotgun shell (4 gauge flashbang)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgun23x75mmBuckshot
+  - type: Sprite
+    layers:
+      - state: flare
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmFlashbang
+  - type: SpentAmmoVisuals
+    state: "flare"
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  id: ShellShotgun23x75mmOOBuckshot
+  name: shotgun shell (4 gauge OO Buckshot)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmOOBuckshotSpread
+  - type: SpentAmmoVisuals
+
+- type: entity
+  id: ShellShotgun23x75mmSlugRIP
+  name: shotgun shell (4 gauge RIP)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmSlugRIP
+  - type: SpentAmmoVisuals
+    state: "base"
+
+#armor-piercing:
+- type: entity
+  id: ShellShotgun23x75mmSlugAP
+  name: shotgun shell (4 gauge armor-piercing slug)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: blank
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmSlugAP
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity
+  id: ShellShotgun23x75mmFlechette
+  name: shotgun shell (4 gauge flechette)
+  parent: BaseShellShotgun23x75mm
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Pellet23x75mmFlechetteSpread
+  - type: SpentAmmoVisuals
+    state: "slug"

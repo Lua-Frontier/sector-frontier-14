@@ -1,7 +1,3 @@
-# Damage-per-second = 125 for pistols; 125-25 = 100 for caustic ammo; max COO = 5
-# Main damage type - Blunt for standart; main damage/special damage = 70/30 for special
-# LeptonComm status clear
-# Standart
 - type: entity
   id: Bullet45_ACPFMJ
   name: bullet (.45 ACP FMJ)
@@ -11,9 +7,10 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 25
+        Piercing: 20
+        Structural: 20
+    armorPenetration: 0.2
 
-# Mechanical
 - type: entity
   id: Bullet45_ACPPractice
   name: bullet (.45 ACP practice)
@@ -23,7 +20,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 1 #Lua -1
+        Blunt: 2
 
 - type: entity
   id: Bullet45_ACPRubber
@@ -35,22 +32,7 @@
     damage:
       types:
         Blunt: 4
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 19
 
-- type: entity
-  id: Bullet45_ACPHP
-  parent: BaseBullet
-  name: bullet (.45 hollow-point)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 17.5
-        Piercing: 7.5
-
-# Physical
 - type: entity
   id: Bullet45_ACPIncendiary
   parent: BaseBulletIncendiary
@@ -60,8 +42,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 17.5
-        Heat: 7.5
+        Piercing: 8
+        Heat: 7
+    armorPenetration: -0.1
 
 - type: entity
   id: Bullet45_ACPUranium
@@ -72,10 +55,12 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 17.5
-        Radiation: 7.5
+        Radiation: 9
+        Piercing: 15
+        Structural: 20
+    armorPenetration: -0.075
 
-# Special
+# Upstream
 - type: entity
   id: Bullet45_ACPEmp
   name: bullet (.45 ACP emp)
@@ -85,22 +70,24 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 17.5
-        Shock: 7.5
+        Shock: 2
 
+
+# Mono AP syst
+#anti-flesh:
 - type: entity
-  id: Bullet45_ACPCaustic
-  name: bullet (.45 ACP caustic)
+  id: Bullet45_ACPHP
   parent: BaseBullet
+  name: bullet (.45 hollow-point)
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Blunt: 14
-        Caustic: 6
+        Slash: 4
+        Piercing: 32
+    armorPenetration: -0.7
 
-# Out of balance
 - type: entity
   id: Bullet45_ACPRIP
   parent: BaseBullet
@@ -110,11 +97,11 @@
   - type: Projectile
     damage:
       types:
-        Slash: 10 #Lua +3
-        Piercing: 15 #Lua -27
-        Blunt: 10 #Lua add
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 6
+        Slash: 7
+        Piercing: 42
+    armorPenetration: -0.95
+
+#armor-piercing:
 
 - type: entity
   id: Bullet45_ACPPlasteelAP
@@ -125,6 +112,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20 #Lua +8
-        Structural: 75 #Lua add
-    ignoreResistances: true #Lua add
+        Piercing: 9
+        Structural: 30
+    armorPenetration: 0.9

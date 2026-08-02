@@ -25,7 +25,8 @@ public sealed class ServiceFlagsSuffixTests
     [TearDown]
     public async Task TearDownInternal()
     {
-        await _pair.CleanReturnAsync();
+        if (_pair != null)
+            await _pair.CleanReturnAsync();
     }
 
     [Test]

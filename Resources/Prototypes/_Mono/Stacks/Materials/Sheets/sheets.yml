@@ -12,3 +12,10 @@
   spawn: SheetUraniumFissile1
   maxCount: 5
 
+
+- type: stack
+  id: UraniumDepleted
+  name: stack-uraniumdepleted
+  icon: { sprite: /Textures/_Mono/Objects/Materials/fissiles.rsi, state: depleted }
+  spawn: SheetUraniumDepleted1
+  maxCount: 5

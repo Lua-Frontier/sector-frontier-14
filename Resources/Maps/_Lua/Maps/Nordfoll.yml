@@ -7735,6 +7735,7 @@ entities:
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: PreventDelete
     - type: IFF
       color: '#BF370FFF'
   - uid: 4
@@ -97641,14 +97642,14 @@ entities:
     - type: Transform
       pos: -37.952946,-47.370316
       parent: 1
-- proto: AmmoBox45_magnumIncendiary
+- proto: AmmoBox357_magnumIncendiary
   entities:
   - uid: 14403
     components:
     - type: Transform
       pos: -11.506481,19.62458
       parent: 1
-- proto: AmmoBox45_magnumHP
+- proto: AmmoBox357_magnumHP
   entities:
   - uid: 48
     components:

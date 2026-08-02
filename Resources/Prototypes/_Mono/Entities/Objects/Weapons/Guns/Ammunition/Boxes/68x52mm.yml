@@ -2,7 +2,6 @@
   abstract: true
   parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseAmmoBox68x52mmCaseless
-  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -17,11 +16,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/6.35x40mm_caseless.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/68x52mm_caseless.rsi
   - type: Appearance
   - type: Tag
     tags:
@@ -37,12 +32,10 @@
       path: /Audio/_Goobstation/Items/handling/ammobox_drop.ogg
 
 # Boxes
-# Standart
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
   id: AmmoBox68x52mmCaseless
   name: ammunition box (6.8x52mm STANAG Caseless)
-  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge68x52mmCaseless
@@ -50,14 +43,11 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
   id: AmmoBox68x52mmCaselessPractice
   name: ammunition box (6.8x52mm STANAG Caseless practice)
-  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge68x52mmCaselessPractice
@@ -65,33 +55,28 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
     - state: practice
 
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
   id: AmmoBox68x52mmCaselessRubber
   name: ammunition box (6.8x52mm STANAG Caseless rubber)
-  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge68x52mmCaselessRubber
   - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/6.35x40mm_caseless.rsi
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/68x52mm_caseless.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
     - state: rubber
 
-# Mechanical
+# Mono AP syst
+#anti-flesh:
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
   id: AmmoBox68x52mmCaselessHP
   name: ammunition box (6.8x52mm STANAG Caseless HP)
-  suffix: Need balance test #Lua
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge68x52mmCaselessHP
@@ -99,72 +84,54 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: hollowpoint
+    - state: HP
 
-# Physical
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
-  id: AmmoBox68x52mmCaselessIncendiary
-  name: ammunition box (6.8x52mm STANAG Caseless Incendiary)
-  suffix: Need balance test #Lua
+  id: AmmoBox68x52mmCaselessRIP
+  name: ammunition box (6.8x52mm STANAG Caseless RIP)
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge68x52mmCaselessIncendiary
+    proto: Cartridge68x52mmCaselessRIP
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: incendiary
+    - state: RIP
+
+#armor-piercing:
 
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
-  id: AmmoBox68x52mmCaselessUranium
-  name: ammunition box (6.8x52mm STANAG Caseless Uranium)
-  suffix: Need balance test #Lua
+  id: AmmoBox68x52mmCaselessPlasteelAP
+  name: ammunition box (6.8x52mm STANAG Caseless AP)
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge68x52mmCaselessUranium
+    proto: Cartridge68x52mmCaselessPlasteelAP
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: uranium
+    - state: plasteelAP
 
-# Special
+#big ammo boxes
 - type: entity
   parent: BaseAmmoBox68x52mmCaseless
-  id: AmmoBox68x52mmCaselessEMP
-  name: ammunition box (6.8x52mm STANAG Caseless EMP)
-  suffix: Need balance test #Lua
+  id: AmmoBox68x52mmCaselessBig
+  name: big ammunition box (6.8x52mm STANAG Caseless)
+  suffix: Big
   components:
+  - type: Item
+    shape:
+    - 0,0,1,1
   - type: BallisticAmmoProvider
-    proto: Cartridge68x52mmCaselessEMP
+    capacity: 240
+    proto: Cartridge68x52mmCaseless
   - type: Sprite
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/68x52mm_caseless.rsi
     layers:
-    - state: base
+    - state: base-b
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: emp
-
-- type: entity
-  parent: BaseAmmoBox68x52mmCaseless
-  id: AmmoBox68x52mmCaselessCaustic
-  name: ammunition box (6.8x52mm STANAG Caseless Caustic)
-  suffix: Need balance test #Lua
-  components:
-  - type: BallisticAmmoProvider
-    proto: Cartridge68x52mmCaselessCaustic
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: caustic
+  - type: Tag
+    tags:
+     - Magazine68x52mmCaselessBoxBig

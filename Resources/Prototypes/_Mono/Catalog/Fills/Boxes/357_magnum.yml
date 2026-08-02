@@ -1,0 +1,10 @@
+- type: entity
+  name: box of .357 magnum speedloaders
+  parent: BoxMagazine
+  id: BoxMagazine357_magnumFMJ
+  description: A box full of .357 magnum speedloaders.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpeedLoader357_magnumFMJ
+        amount: 4

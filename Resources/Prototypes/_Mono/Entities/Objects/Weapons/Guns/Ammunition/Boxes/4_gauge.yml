@@ -1,30 +1,21 @@
 # Shotgun Shells
-# Standart
 - type: entity
   parent: AmmoProvider23x75mmShotgunShell
   id: AmmoBox23x75mmBeanbag
   name: shotgun shell box (4 gauge beanbag)
-  suffix: Need balance test #Lua
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun23x75mmBeanbag
-    - type: MagazineVisuals
-      magState: mag-beanbag
-      steps: 5
-      zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-beanbag-1
-        map: ["enum.GunVisualLayers.Mag"]
       - state: beanbag
 
 - type: entity
   name: shotgun shell box (4 gauge buckshot)
   parent: AmmoProvider23x75mmShotgunShell
   id: AmmoBox23x75mmBuckshot
-  suffix: Need balance test #Lua
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun23x75mmBuckshot
@@ -32,15 +23,12 @@
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1
-        map: ["enum.GunVisualLayers.Mag"]
       - state: lethal
 
 - type: entity
   name: shotgun shell box (4 gauge Dozd)
   parent: AmmoProvider23x75mmShotgunShell
   id: AmmoBox23x75mmDozd
-  suffix: Need balance test #Lua
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun23x75mmDozd
@@ -48,142 +36,21 @@
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1
-        map: ["enum.GunVisualLayers.Mag"]
       - state: lethal
 
 - type: entity
   name: shotgun shell box (4 gauge slug)
   parent: AmmoProvider23x75mmShotgunShell
   id: AmmoBox23x75mmSlug
-  suffix: Need balance test #Lua
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun23x75mmSlug
-    - type: MagazineVisuals
-      magState: mag-slug
-      steps: 5
-      zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-slug-1
-        map: ["enum.GunVisualLayers.Mag"]
       - state: slug
 
-- type: entity
-  name: shotgun shell box (4 gauge practice)
-  parent: AmmoProvider23x75mmShotgunShell
-  id: AmmoBox23x75mmPractice
-  suffix: Need balance test #Lua
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun23x75mmPractice
-    - type: MagazineVisuals
-      magState: mag-practice
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-practice-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: practice
-
-# Mechanical
-- type: entity
-  name: shotgun shell box (4 gauge OO magnum buckshot)
-  parent: AmmoProvider23x75mmShotgunShell
-  id: AmmoBox23x75mmOOBuckshot
-  suffix: Need balance test #Lua
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun23x75mmOOBuckshot
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: magnum-buckshot
-
-# Physical
-- type: entity
-  name: shotgun shell box (4 gauge incendiary)
-  parent: AmmoProvider23x75mmShotgunShell
-  id: AmmoBox23x75mmIncendiary
-  suffix: Need balance test #Lua
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun23x75mmIncendiary
-    - type: MagazineVisuals
-      magState: mag-incend
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-incend-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: incendiary
-
-- type: entity
-  name: shotgun shell box (4 gauge uranium)
-  parent: AmmoProvider23x75mmShotgunShell
-  id: AmmoBox23x75mmUranium
-  suffix: Need balance test #Lua
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun23x75mmUranium
-    - type: MagazineVisuals
-      magState: mag-uranium
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-uranium-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: uranium
-
-# Special
-- type: entity
-  name: shotgun shell box (4 gauge EMP)
-  parent: AmmoProvider23x75mmShotgunShell
-  id: AmmoBox23x75mmEMP
-  suffix: Need balance test #Lua
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun23x75mmEMP
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: emp
-
-- type: entity
-  name: shotgun shell box (4 gauge Caustic)
-  parent: AmmoProvider23x75mmShotgunShell
-  id: AmmoBox23x75mmCaustic
-  suffix: Need balance test #Lua
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun23x75mmCaustic
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: caustic
-
-# Utilitary
 - type: entity
   name: flare shell box (4 gauge flare)
   parent: AmmoProvider23x75mmShotgunShell
@@ -191,17 +58,25 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun23x75mmFlare
-    - type: MagazineVisuals
-      magState: mag-flare
-      steps: 5
-      zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-flare-1
-        map: ["enum.GunVisualLayers.Mag"]
       - state: flare
+
+- type: entity
+  name: shotgun shell box (4 gauge incendiary)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmIncendiary
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmIncendiary
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: incendiary
+
 
 - type: entity
   name: shotgun shell box (4 gauge flashbang)
@@ -210,14 +85,89 @@
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun23x75mmFlashbang
-    - type: MagazineVisuals
-      magState: mag-incend
-      steps: 5
-      zeroVisible: false
     - type: Sprite
       layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-incend-1
-        map: ["enum.GunVisualLayers.Mag"]
       - state: incendiary
+
+- type: entity
+  name: shotgun shell box (4 gauge uranium)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmUranium
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmUranium
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: uranium
+
+- type: entity
+  name: shotgun shell box (4 gauge practice)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmPractice
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmPractice
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: practice
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  name: shotgun shell box (4 gauge OO magnum buckshot)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmOOBuckshot
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmOOBuckshot
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: magnum-buckshot
+
+- type: entity
+  name: shotgun shell box (4 gauge RIP)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmSlugRIP
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmSlugRIP
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slugRIP
+
+#armor-piercing:
+- type: entity
+  name: shotgun shell box (4 gauge armor-piercing slug)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmSlugAP
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmSlugAP
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slugAP
+
+- type: entity
+  name: shotgun shell box (4 gauge flechette)
+  parent: AmmoProvider23x75mmShotgunShell
+  id: AmmoBox23x75mmFlechette
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun23x75mmFlechette
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: flechette

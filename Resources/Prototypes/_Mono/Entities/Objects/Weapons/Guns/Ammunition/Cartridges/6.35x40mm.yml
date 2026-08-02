@@ -1,7 +1,7 @@
 - type: entity
   id: BaseCartridge635x40mmCaseless
-  name: cartridge (.25 rifle)
-  parent: [ BaseCartridge, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSecurityContraband<BaseC3SyndicateContraband
+  name: cartridge (6.35x40mm caseless)
+  parent: BaseCartridge
   description: Developed during corporate wars for subsonic weapons to keep a low-profile during operations.
   abstract: true
   components:
@@ -22,11 +22,9 @@
   - type: StaticPrice
     price: 1
 
-# Standart
 - type: entity
   id: Cartridge635x40mmCaseless
-  name: cartridge (635x40mm Caseless)
-  suffix: Need balance test #Lua
+  name: cartridge (6.35x40mm Caseless)
   parent: BaseCartridge635x40mmCaseless
   components:
   - type: CartridgeAmmo
@@ -34,8 +32,7 @@
 
 - type: entity
   id: Cartridge635x40mmCaselessRubber
-  name: cartridge (635x40mm Caseless rubber)
-  suffix: Need balance test #Lua
+  name: cartridge (6.35x40mm Caseless rubber)
   parent: BaseCartridge635x40mmCaseless
   components:
   - type: CartridgeAmmo
@@ -43,8 +40,7 @@
 
 - type: entity
   id: Cartridge635x40mmCaselessPractice
-  name: cartridge (635x40mm Caseless practice)
-  suffix: Need balance test #Lua
+  name: cartridge (6.35x40mm Caseless practice)
   parent: BaseCartridge635x40mmCaseless
   components:
   - type: CartridgeAmmo
@@ -57,85 +53,3 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#dbdbdb"
 
-# Mechanical
-- type: entity
-  id: Cartridge635x40mmCaselessHP
-  name: cartridge (635x40mm HP)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge635x40mmCaseless
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet635x40mmCaselessHP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#991d39"
-
-# Physical
-- type: entity
-  id: Cartridge635x40mmCaselessIncendiary
-  name: cartridge (635x40mm Incendiary)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge635x40mmCaseless
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet635x40mmCaselessIncendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#f44336"
-
-- type: entity
-  id: Cartridge635x40mmCaselessUranium
-  name: cartridge (635x40mm Uranium)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge635x40mmCaseless
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet635x40mmCaselessUranium
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#6b9747"
-
-# Special
-- type: entity
-  id: Cartridge635x40mmCaselessEMP
-  name: cartridge (635x40mm EMP)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge635x40mmCaseless
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet635x40mmCaselessEMP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#044492"
-
-- type: entity
-  id: Cartridge635x40mmCaselessCaustic
-  name: cartridge (635x40mm Caustic)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge635x40mmCaseless
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet635x40mmCaselessCaustic
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#8b9229"

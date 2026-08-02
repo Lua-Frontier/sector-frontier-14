@@ -1,0 +1,86 @@
+CrescentMothershipComputer: null # missing from map
+ShipyardLiquidatorInfo: null # missing from map
+ShipyardCeresInfo: null
+StationEfficiencyCircuitBoard : null # item removed by wizden
+# 40mmGrenadeIncendiary: 40mmGrenadeThermobaric
+# 40mmGrenadeStinger: 40mmGrenadeBaton
+# 40mmGrenadeShrapnel: 40mmGrenadeFragmentation
+CircularShieldConsole: null # entity removed
+CircularShieldBase: ShieldGeneratorSmall
+
+# PlayerStationAiRogue: PlayerStationAiPDV
+
+# missile launchers rename.
+
+ShipMissileASM557: ShipMissileASM250
+ShipMissileASM302: ShipMissileASM150
+ShipMissileASM417: MissileProjectile50mmHE
+
+# shipgun caliber changes
+
+220mmCartridge: 220mmCartridgeAPHE
+VesperaMagazine: MissileMagazine50mmHE
+255mmCartridge: 255mmCartridgeAPHE
+Magazine57mm: Magazine57mmHE
+Magazine90mm: 90mmMagazineHE
+
+# bullets
+
+57mmBullet: 57mmBulletHE
+90mmBullet: 90mmBulletHE
+ShipCyrexaProjectile: 220mmBulletAPHE
+ShipBoforsProjectile: 255mmBulletAPHE
+
+# 2026-05-10 - https://github.com/Monolith-Station/Monolith/pull/3951
+
+SpeedLoader45_magnumRubber: SpeedLoader357_magnumRubber
+SpeedLoader45_magnumFMJ: SpeedLoader357_magnumFMJ
+SpeedLoader45_magnumAP: SpeedLoader357_magnumAP
+SpeedLoader45_magnumPractice: SpeedLoader357_magnumPractice
+AmmoBox45_magnumFMJ: AmmoBox357_magnumFMJ
+AmmoBox45_magnumBigFMJ: AmmoBox357_magnumBigFMJ
+AmmoBox45_magnumPractice: AmmoBox357_magnumPractice
+BoxMagazine45_magnumFMJ: BoxMagazine357_magnumFMJ
+Magazine45_magnumPistolFMJ: null
+
+# SF: additional .45 magnum → .357 magnum (entities removed in ammo port)
+SpeedLoader45_magnumEmpty: SpeedLoader357_magnumEmpty
+SpeedLoader45_magnumIncendiary: SpeedLoader357_magnumIncendiary
+SpeedLoader45_magnumUranium: SpeedLoader357_magnumUranium
+SpeedLoader45_magnumHP: SpeedLoader357_magnumHP
+AmmoBox45_magnumIncendiary: AmmoBox357_magnumIncendiary
+AmmoBox45_magnumUranium: AmmoBox357_magnumUranium
+AmmoBox45_magnumRubber: AmmoBox357_magnumRubber
+AmmoBox45_magnumHP: AmmoBox357_magnumHP
+AmmoBox45_magnumAP: AmmoBox357_magnumAP
+Cartridge45_magnumFMJ: Cartridge357_magnumFMJ
+Cartridge45_magnumPractice: Cartridge357_magnumPractice
+Cartridge45_magnumIncendiary: Cartridge357_magnumIncendiary
+Cartridge45_magnumUranium: Cartridge357_magnumUranium
+Cartridge45_magnumRubber: Cartridge357_magnumRubber
+Cartridge45_magnumHP: Cartridge357_magnumHP
+Cartridge45_magnumAP: Cartridge357_magnumAP
+Bullet45_magnumFMJ: Bullet357_magnumFMJ
+Bullet45_magnumPractice: Bullet357_magnumPractice
+Bullet45_magnumIncendiary: Bullet357_magnumIncendiary
+Bullet45_magnumUranium: Bullet357_magnumUranium
+Bullet45_magnumRubber: Bullet357_magnumRubber
+Bullet45_magnumHP: Bullet357_magnumHP
+Bullet45_magnumAP: Bullet357_magnumAP
+Magazine45_magnumPistolHighCapacityFMJ: null
+Magazine45_magnumSubMachineGunFMJ: null
+
+# WeaponPistolN1984: WeaponRevolverMateba
+# WeaponRevolverLucky: WeaponRevolverInspector
+# WeaponRevolverFaith: WeaponRevolverInspector
+# WeaponRevolverFitz: WeaponRevolverInspector
+# WeaponRevolverDeckardExpeditionGrifty: WeaponRevolverInspector
+# WeaponRevolverDeckard: WeaponRevolverInspector
+# WeaponRevolverPirate: WeaponRevolverInspector
+
+# Hyperlink books
+
+HyperlinkBookSpaceLaw: null
+HyperlinkBookNfsdSop: null
+
+# FloorWaterEntity: CEWater

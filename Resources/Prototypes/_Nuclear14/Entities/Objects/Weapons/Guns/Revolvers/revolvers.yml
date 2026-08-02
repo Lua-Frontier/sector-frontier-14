@@ -66,9 +66,9 @@
   - type: RevolverAmmoProvider #Lua
     whitelist:
       tags:
-        - Cartridge45_magnumFMJ
+        - Cartridge357_magnumFMJ
         - SpeedLoaderMagnum
-    proto: Cartridge45_magnumFMJ
+    proto: Cartridge357_magnumFMJ
   - type: Gun
     examineCaliber: gun-examine-caliber-45mgn #Lua
     minAngle: 1 #Lua
@@ -103,9 +103,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge45_magnumFMJ #Lua N14Cartridge44Magnum<Cartridge45_magnumFMJ
+        - Cartridge357_magnumFMJ #Lua N14Cartridge44Magnum<Cartridge357_magnumFMJ
         - SpeedLoaderMagnum #Lua SpeedLoader44<SpeedLoaderMagnum
-    proto: Cartridge45_magnumFMJ #Lua N14Cartridge44Magnum<Cartridge45_magnumFMJ
+    proto: Cartridge357_magnumFMJ #Lua N14Cartridge44Magnum<Cartridge357_magnumFMJ
 
 - type: entity
   name: hunting revolver
@@ -130,9 +130,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge45_magnumFMJ #Lua N14Cartridge45-70<Cartridge45_magnumFMJ
+        - Cartridge357_magnumFMJ #Lua N14Cartridge45-70<Cartridge357_magnumFMJ
         - SpeedLoaderMagnum #Lua SpeedLoader45-70<SpeedLoaderMagnum
-    proto: Cartridge45_magnumFMJ #Lua N14Cartridge45-70<Cartridge45_magnumFMJ
+    proto: Cartridge357_magnumFMJ #Lua N14Cartridge45-70<Cartridge357_magnumFMJ
 
 - type: entity
   name: wild whisper

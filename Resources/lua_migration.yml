@@ -83,8 +83,6 @@ SpawnMobWeaponTurretTFSMC: WeaponTurretNanoTrasen
 WeaponMissileLauncherNightHunterEmpty: WeaponMissileLauncherNightHunter
 
 # 2025-09-30
-CircularShieldBase: ShieldGeneratorSmall
-CircularShieldConsole: ComputerFrame
 
 # 2025-11-07
 BusSchedule: null
@@ -107,14 +105,14 @@ RMCAmmoTechFab: null
 # AmmoBox
 
 NFAmmunitionBoxPistol35: AmmoBox9x19mmFMJ
-NFAmmunitionBoxPistol35Emp: AmmoBox9x19mmEMP
+NFAmmunitionBoxPistol35Emp: AmmoBox9x19mmEmp
 NFAmmunitionBoxPistol35Incendiary: AmmoBox9x19mmIncendiary
 NFAmmunitionBoxPistol35Uranium: AmmoBox9x19mmUranium
 NFAmmunitionBoxPistol35Practice: AmmoBox9x19mmPractice
 NFAmmunitionBoxPistol35Rubber: AmmoBox9x19mmRubber
 
 MagazineBoxPistol: AmmoBox9x19mmFMJ
-MagazineBoxPistolEmp: AmmoBox9x19mmEMP
+MagazineBoxPistolEmp: AmmoBox9x19mmEmp
 MagazineBoxPistolIncendiary: AmmoBox9x19mmIncendiary
 MagazineBoxPistolUranium: AmmoBox9x19mmUranium
 MagazineBoxPistolPractice: AmmoBox9x19mmPractice
@@ -124,14 +122,14 @@ MagazineBoxPistolRubber: AmmoBox9x19mmRubber
 
 NFMagazineSubMachineGun35: Magazine9x19mmSubMachineGunFMJ
 NFMagazineSubMachineGun35Empty: Magazine9x19mmSubMachineGunEmpty
-NFMagazineSubMachineGun35Emp: Magazine9x19mmSubMachineGunEMP
+NFMagazineSubMachineGun35Emp: Magazine9x19mmSubMachineGunEmp
 NFMagazineSubMachineGun35Practice: Magazine9x19mmSubMachineGunPractice
 NFMagazineSubMachineGun35Rubber: Magazine9x19mmSubMachineGunRubber
 NFMagazineSubMachineGun35Uranium: Magazine9x19mmSubMachineGunUranium
 NFMagazineSubMachineGun35Incendiary: Magazine9x19mmSubMachineGunIncendiary
 
 BoxMagazinePistolSubMachineGun: Magazine9x19mmSubMachineGunFMJ
-BoxMagazinePistolSubMachineGunEmp: Magazine9x19mmSubMachineGunEMP
+BoxMagazinePistolSubMachineGunEmp: Magazine9x19mmSubMachineGunEmp
 BoxMagazinePistolSubMachineGunPractice: Magazine9x19mmSubMachineGunPractice
 BoxMagazinePistolSubMachineGunRubber: Magazine9x19mmSubMachineGunRubber
 
@@ -332,52 +330,52 @@ CartridgeLightRiflePractice: Cartridge762x39mmPractice
 CartridgeLightRifleRubber: Cartridge762x39mmRubber
 CartridgeLightRifleUranium: Cartridge762x39mmUranium
 
-# .45 Magnum
+# .357 Magnum (was .45 Magnum)
 
 # AmmoBox
 
-NFAmmunitionBoxPistol45: AmmoBox45_magnumFMJ
-NFAmmunitionBoxPistol45Incendiary: AmmoBox45_magnumIncendiary
-NFAmmunitionBoxPistol45Practice: AmmoBox45_magnumPractice
-NFAmmunitionBoxPistol45Uranium: AmmoBox45_magnumUranium
+NFAmmunitionBoxPistol45: AmmoBox357_magnumFMJ
+NFAmmunitionBoxPistol45Incendiary: AmmoBox357_magnumIncendiary
+NFAmmunitionBoxPistol45Practice: AmmoBox357_magnumPractice
+NFAmmunitionBoxPistol45Uranium: AmmoBox357_magnumUranium
 
-MagazineBoxMagnum: AmmoBox45_magnumFMJ
-MagazineBoxMagnumAP: AmmoBox45_magnumFMJ
-MagazineBoxMagnumIncendiary: AmmoBox45_magnumIncendiary
-MagazineBoxMagnumPractice: AmmoBox45_magnumPractice
-MagazineBoxMagnumUranium: AmmoBox45_magnumUranium
+MagazineBoxMagnum: AmmoBox357_magnumFMJ
+MagazineBoxMagnumAP: AmmoBox357_magnumAP
+MagazineBoxMagnumIncendiary: AmmoBox357_magnumIncendiary
+MagazineBoxMagnumPractice: AmmoBox357_magnumPractice
+MagazineBoxMagnumUranium: AmmoBox357_magnumUranium
 
 # Speedloader
 
-NFSpeedLoaderPistol45: SpeedLoader45_magnumFMJ
-NFSpeedLoaderPistol45Empty: SpeedLoader45_magnumEmpty
-NFSpeedLoaderPistol45Incendiary: SpeedLoader45_magnumIncendiary
-NFSpeedLoaderPistol45Practice: SpeedLoader45_magnumPractice
-NFSpeedLoaderPistol45Rubber: SpeedLoader45_magnumRubber
-NFSpeedLoaderPistol45Uranium: SpeedLoader45_magnumUranium
+NFSpeedLoaderPistol45: SpeedLoader357_magnumFMJ
+NFSpeedLoaderPistol45Empty: SpeedLoader357_magnumEmpty
+NFSpeedLoaderPistol45Incendiary: SpeedLoader357_magnumIncendiary
+NFSpeedLoaderPistol45Practice: SpeedLoader357_magnumPractice
+NFSpeedLoaderPistol45Rubber: SpeedLoader357_magnumRubber
+NFSpeedLoaderPistol45Uranium: SpeedLoader357_magnumUranium
 
-SpeedLoaderMagnum: SpeedLoader45_magnumFMJ
-SpeedLoaderMagnumAP: SpeedLoader45_magnumFMJ
-SpeedLoaderMagnumEmpty: SpeedLoader45_magnumEmpty
-SpeedLoaderMagnumIncendiary: SpeedLoader45_magnumIncendiary
-SpeedLoaderMagnumPractice: SpeedLoader45_magnumPractice
-SpeedLoaderMagnumRubber: SpeedLoader45_magnumRubber
-SpeedLoaderMagnumUranium: SpeedLoader45_magnumUranium
+SpeedLoaderMagnum: SpeedLoader357_magnumFMJ
+SpeedLoaderMagnumAP: SpeedLoader357_magnumAP
+SpeedLoaderMagnumEmpty: SpeedLoader357_magnumEmpty
+SpeedLoaderMagnumIncendiary: SpeedLoader357_magnumIncendiary
+SpeedLoaderMagnumPractice: SpeedLoader357_magnumPractice
+SpeedLoaderMagnumRubber: SpeedLoader357_magnumRubber
+SpeedLoaderMagnumUranium: SpeedLoader357_magnumUranium
 
-# Cartrige
+# Cartridge
 
-NFCartridgePistol45: Cartridge45_magnumFMJ
-NFCartridgePistol45Incendiary: Cartridge45_magnumIncendiary
-NFCartridgePistol45Practice: Cartridge45_magnumPractice
-NFCartridgePistol45Rubber: Cartridge45_magnumRubber
-NFCartridgePistol45Uranium: Cartridge45_magnumUranium
+NFCartridgePistol45: Cartridge357_magnumFMJ
+NFCartridgePistol45Incendiary: Cartridge357_magnumIncendiary
+NFCartridgePistol45Practice: Cartridge357_magnumPractice
+NFCartridgePistol45Rubber: Cartridge357_magnumRubber
+NFCartridgePistol45Uranium: Cartridge357_magnumUranium
 
-CartridgeMagnum: Cartridge45_magnumFMJ
-CartridgeMagnumAP: Cartridge45_magnumFMJ
-CartridgeMagnumIncendiary: Cartridge45_magnumIncendiary
-CartridgeMagnumPractice: Cartridge45_magnumPractice
-CartridgeMagnumRubber: Cartridge45_magnumRubber
-CartridgeMagnumUranium: Cartridge45_magnumUranium
+CartridgeMagnum: Cartridge357_magnumFMJ
+CartridgeMagnumAP: Cartridge357_magnumAP
+CartridgeMagnumIncendiary: Cartridge357_magnumIncendiary
+CartridgeMagnumPractice: Cartridge357_magnumPractice
+CartridgeMagnumRubber: Cartridge357_magnumRubber
+CartridgeMagnumUranium: Cartridge357_magnumUranium
 
 # .45 ACP
 
@@ -403,10 +401,9 @@ MagazinePistolCaselessRiflePractice: Magazine45_ACPPistolPractice
 # 2026-04-19 WarpDrive
 MachineWarpDrive: MachineFTLDrive600
 
+# ASMGT pistol box renamed in Mono port
+MagazineAsmgtUniversalPistol: MagazineAsmgtUniversal9x19mm
 
-
-
-
-
-
-
+# 2026-05-01
+WeaponTurretKargil: WeaponTurretCyrexa
+WeaponTurretCharonette: WeaponTurretCharon

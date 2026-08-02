@@ -245,9 +245,6 @@
   - type: CartridgeAmmo
     deleteOnSpawn: true
     proto: BulletTomahawk
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: sdm
 
 - type: entity
   id: MagazineNightHunter
@@ -276,9 +273,6 @@
   - type: CartridgeAmmo
     deleteOnSpawn: true
     proto: BulletWolf
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: sdm
 
 - type: entity
   id: MagazineLancer
@@ -307,9 +301,7 @@
   - type: CartridgeAmmo
     deleteOnSpawn: true
     proto: BulletGR
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: sdm
+  # Sprite: inherit Mono MissileCartridge250mm (generic_cartridges.rsi / tovek)
 
 - type: entity
   id: MagazineCerber

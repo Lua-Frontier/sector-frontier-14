@@ -7,30 +7,15 @@
   name: Анаконда
   parent: ShipMissileASM250HEAT
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: sam
 
 - type: entity
   id: BulletWolf
   name: Копьё
   parent: ShipMissileASM150
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: sam
 
 - type: entity
   id: BulletTomahawk
   name: Томагавк
   parent: MissileProjectile50mmHE
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: sdm

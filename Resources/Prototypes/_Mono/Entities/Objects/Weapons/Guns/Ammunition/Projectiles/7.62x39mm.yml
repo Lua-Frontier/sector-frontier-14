@@ -1,7 +1,3 @@
-# Damage-per-second = 150 for rifles; 150-25 = 125 for caustic ammo; max COO = 5
-# Main damage type - Piercing for standart; main damage/special damage = 70/30 for special
-# LeptonComm status clear
-# Standart
 - type: entity
   id: Bullet762x39mmFMJ
   name: bullet (7.62x39mm FMJ)
@@ -11,9 +7,9 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 26.5 #Lua +1.5
+        Piercing: 25
+    armorPenetration: 0.085
 
-# Mechanical
 - type: entity
   id: Bullet762x39mmPractice
   name: bullet (7.62x39mm practice)
@@ -23,7 +19,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 1 #Lua -1
+        Blunt: 2
 
 - type: entity
   id: Bullet762x39mmRubber
@@ -35,22 +31,7 @@
     damage:
       types:
         Blunt: 3
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 15
 
-- type: entity
-  id: Bullet762x39mmHP
-  parent: BaseBullet
-  name: bullet (7.62x39mm hollow-point)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 9
-        Piercing: 21
-
-# Physical
 - type: entity
   id: Bullet762x39mmIncendiary
   parent: BaseBulletIncendiary
@@ -60,7 +41,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 21
+        Piercing: 11
         Heat: 9
 
 - type: entity
@@ -72,35 +53,9 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 21
-        Piercing: 9
+        Radiation: 10
+        Piercing: 13
 
-# Special
-- type: entity
-  id: Bullet762x39mmEMP
-  name: bullet (7.62x39mm EMP)
-  parent: BaseBulletEmp
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 21
-        Shock: 9
-
-- type: entity
-  id: Bullet762x39mmCaustic
-  name: bullet (7.62x39mm caustic)
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 17.5
-        Caustic: 7.5
-
-# Out of balance
 - type: entity
   id: Bullet762x39mmSubsonic
   name: bullet (7.62x39mm subsonic)
@@ -110,7 +65,24 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 27 #Lua +4
+        Piercing: 23
+    armorPenetration: 0.05
+
+# Mono AP syst
+# - 0.05 base AP
+#anti-flesh:
+- type: entity
+  id: Bullet762x39mmHP
+  parent: BaseBullet
+  name: bullet (7.62x39mm hollow-point)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 6
+        Piercing: 35
+    armorPenetration: -0.65
 
 - type: entity
   id: Bullet762x39mmRIP
@@ -121,9 +93,9 @@
   - type: Projectile
     damage:
       types:
-        Slash: 10 #Lua +2
-        Piercing: 12 #Lua -30
-        Blunt: 10 #Lua add
+        Slash: 8
+        Piercing: 42
+    armorPenetration: -0.95
 
 #armor-piercing:
 
@@ -136,6 +108,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 26 #Lua +1
-        Structural: 150 #Lua add
-    ignoreResistances: true #Lua add
+        Piercing: 15
+        Structural: 50
+    armorPenetration: 0.6

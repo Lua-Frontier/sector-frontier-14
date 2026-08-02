@@ -1,8 +1,10 @@
 # practice/empty = TOTAL/10
 # boxes = magazine * 3-ish
-#.45 magnum gonna use intermediate
+#.357 magnum gonna use intermediate
+
 #Base intermediate ammo magazines for 5.56, 5.45, 762x39mm and potential others
 #Magazines:     [TOTAL = 475]
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoFMJIntermediateMagazineRecipe
@@ -13,16 +15,16 @@
   materials:
     Steel: 475
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPIntermediateMagazineRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 200 #Lua x2
-#    Plasteel: 450 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPIntermediateMagazineRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 100
+    Plasteel: 375
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -75,7 +77,7 @@
   abstract: true
   materials:
     Steel: 175
-    Uranium: 300
+    UraniumDepleted: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -87,28 +89,6 @@
   materials:
     Steel: 475
 
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPIntermediateMagazineRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 75
-    Gold: 400
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoCausticIntermediateMagazineRecipe
-  categories:
-  - CausticAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 75
-    Brass: 400
-
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoRIPIntermediateMagazineRecipe
@@ -117,12 +97,10 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 350 #Lua x1.5
-    Plasteel: 360 #Lua x1.5
-    Plasma: 150 #Lua add
-    Uranium: 200 #Lua add
+    Steel: 235
+    Plasteel: 240
 
-#Base intermediate ammo speedloaders for .45 magnum, 5.56, 5.45, 762x39mm and potential others
+#Base intermediate ammo speedloaders for .357 magnum, 5.56, 5.45, 762x39mm and potential others
 #speedloaders:     [TOTAL = 175]
 
 - type: latheRecipe
@@ -135,16 +113,16 @@
   materials:
     Steel: 175
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPIntermediateSpeedloaderRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 70 #Lua x2
-#    Plasteel: 215 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPIntermediateSpeedloaderRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 35
+    Plasteel: 140
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -195,7 +173,7 @@
   abstract: true
   materials:
     Steel: 60
-    Uranium: 125
+    UraniumDepleted: 50
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -215,8 +193,8 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 130 #Lua x1.5
-    Plasteel: 135 #Lua x1.5
+    Steel: 85
+    Plasteel: 90
 
 #Base intermediate ammo boxes for 5.56, 5.45, 762x39mm and potential others
 #Boxes:     [TOTAL = 1425]
@@ -231,16 +209,16 @@
   materials:
     Steel: 1425
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPIntermediateAmmoBoxRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 700 #Lua x2
-#    Plasteel: 1150 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPIntermediateAmmoBoxRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 350
+    Plasteel: 1075
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -284,29 +262,7 @@
   abstract: true
   materials:
     Steel: 570
-    Uranium: 855
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPIntermediateAmmoBoxRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 570
-    Gold: 855
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: BaseAmmoCausticIntermediateAmmoBoxRecipe
-  categories:
-  - CausticAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 570
-    Brass: 855
+    UraniumDepleted: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -326,10 +282,8 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 1065 #Lua x1.5
-    Plasteel: 1000 #Lua x1.5
-    Plasma: 500 #Lua add
-    Uranium: 250 #Lua add
+    Steel: 710
+    Plasteel: 715
 
 #Base Fully powered ammo magazines for all the other 7.62 (-762x39mm)
 #Magazines: [TOTAL = 575]
@@ -344,16 +298,16 @@
   materials:
     Steel: 575
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPFullyPoweredMagazineRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 300 #Lua x2
-#    Plasteel: 500 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPFullyPoweredMagazineRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 150
+    Plasteel: 425
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -404,29 +358,7 @@
   abstract: true
   materials:
     Steel: 200
-    Uranium: 375
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPFullyPoweredMagazineRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 200
-    Glass: 375
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoCausticFullyPoweredMagazineRecipe
-  categories:
-  - CausticAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 200
-    Brass: 375
+    UraniumDepleted: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -446,10 +378,8 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 430 #Lua x1,5
-    Plasteel: 435 #Lua x1,5
-    Plasma: 150 #Lua add
-    Uranium: 200 #Lua add
+    Steel: 285
+    Plasteel: 290
 
 #Base Fully powered ammo boxes for all the other 7.62 (-762x39mm)
 #Boxes:     [TOTAL = 1725]
@@ -464,16 +394,16 @@
   materials:
     Steel: 1725
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPFullyPoweredAmmoBoxRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 800 #Lua x2
-#    Plasteel: 1400 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPFullyPoweredAmmoBoxRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 400
+    Plasteel: 1325
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -517,7 +447,7 @@
   abstract: true
   materials:
     Steel: 575
-    Uranium: 1150
+    UraniumDepleted: 200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -529,30 +459,6 @@
   materials:
     Steel: 1725
 
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPFullyPoweredAmmoBoxRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 345
-    Glass: 345
-    Gold: 1035
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoCausticFullyPoweredAmmoBoxRecipe
-  categories:
-  - CausticAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 345
-    Plasteel: 345
-    Brass: 1035
-
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseAmmoRIPFullyPoweredAmmoBoxRecipe
@@ -561,10 +467,8 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 1290 #Lua x1.5
-    Plasteel: 1300 #Lua x1.5
-    Plasma: 500 #Lua add
-    Uranium: 250 #Lua add
+    Steel: 860
+    Plasteel: 865
 
 #Base Fully powered ammo speedloaders for all the other 7.62 (-762x39mm)
 #speedloaders:     [TOTAL = 225]
@@ -592,16 +496,16 @@
   materials:
     Steel: 175
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-# id: BaseAmmoPlasteelAPPistolCaliberPistolMagazineRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 100 #Lua x2
-#    Plasteel: 200 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPPistolCaliberPistolMagazineRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 50
+    Plasteel: 125
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -652,29 +556,7 @@
   abstract: true
   materials:
     Steel: 50
-    Uranium: 125
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPPistolCaliberPistolMagazineRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 50
-    Gold: 125
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoCausticPistolCaliberPistolMagazineRecipe
-  categories:
-  - CausticAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 50
-    Brass: 125
+    UraniumDepleted: 50
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -694,10 +576,8 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 130 #Lua x1.5
-    Plasteel: 135 #Lua x1.5
-    Plasma: 100 #Lua add
-    Uranium: 150 #Lua add
+    Steel: 85
+    Plasteel: 90
 
 #Base pistol caliber smg magazines ammo for .45 ACP, 9mm, 5.7mm, 4.6mm
 #Magazines: [TOTAL = 375]
@@ -712,38 +592,16 @@
   materials:
     Steel: 375
 
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPPistolCaliberSubMachineGunMagazineRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 50
-    Gold: 325
-
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: BaseAmmoCausticPistolCaliberSubMachineGunMagazineRecipe
+  id: BaseAmmoPlasteelAPPistolCaliberSubMachineGunMagazineRecipe
   categories:
-  - CausticAmmo
+  - PlasteelAPAmmo
   - Ammo
   abstract: true
   materials:
     Steel: 50
-    Brass: 325
-
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPPistolCaliberSubMachineGunMagazineRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 100 #Lua x2
-#    Plasteel: 300 #Lua +75
+    Plasteel: 225
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -794,7 +652,7 @@
   abstract: true
   materials:
     Steel: 125
-    Uranium: 250
+    UraniumDepleted: 75
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -814,12 +672,10 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 280 #Lua x1.5
-    Plasteel: 285 #Lua x1.5
-    Plasma: 100 #Lua add
-    Uranium: 150 #Lua add
+    Steel: 185
+    Plasteel: 190
 
-#Base PistolCaliber ammo speedloaders for .45 magnum, 5.56, 5.45, 762x39mm and potential others
+#Base PistolCaliber ammo speedloaders for .357 magnum, 5.56, 5.45, 762x39mm and potential others
 #speedloaders:     [TOTAL = 175]
 
 - type: latheRecipe
@@ -881,7 +737,7 @@
   abstract: true
   materials:
     Steel: 60
-    Uranium: 125
+    UraniumDepleted: 50
 
 #Base pistol caliber ammo boxes for .45 ACP, 9mm, 5.7mm, 4.6mm
 #Boxes:     [TOTAL = 1125]
@@ -896,16 +752,16 @@
   materials:
     Steel: 1125
 
-#- type: latheRecipe
-#  parent: BaseAmmoRecipe
-#  id: BaseAmmoPlasteelAPPistolCaliberAmmoBoxRecipe
-#  categories:
-#  - PlasteelAPAmmo
-#  - Ammo
-#  abstract: true
-#  materials:
-#    Steel: 400 #Lua x2
-#    Plasteel: 1000 #Lua +75
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoPlasteelAPPistolCaliberAmmoBoxRecipe
+  categories:
+  - PlasteelAPAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 200
+    Plasteel: 925
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -946,29 +802,7 @@
   abstract: true
   materials:
     Steel: 375
-    Uranium: 750
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoEMPPistolCaliberAmmoBoxRecipe
-  categories:
-  - EMPAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 375
-    Gold: 750
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoRecipe
-  id: BaseAmmoCausticPistolCaliberAmmoBoxRecipe
-  categories:
-  - CausticAmmo
-  - Ammo
-  abstract: true
-  materials:
-    Steel: 375
-    Brass: 750
+    UraniumDepleted: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -988,7 +822,38 @@
   - Ammo
   abstract: true
   materials:
-    Steel: 840 #Lua x1.5
-    Plasteel: 840 #Lua x1.5
-    Plasma: 500 #Lua add
-    Uranium: 250 #Lua add
+    Steel: 560
+    Plasteel: 565
+
+#pistol caliber big
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoFMJPistolCaliberBigAmmoBoxRecipe
+  categories:
+  - FMJAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 3400
+
+#intermediate big
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoFMJIntermediateBigAmmoBoxRecipe
+  categories:
+  - FMJAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 4300
+
+#fully powered big
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseAmmoFMJFullyPoweredBigAmmoBoxRecipe
+  categories:
+  - FMJAmmo
+  - Ammo
+  abstract: true
+  materials:
+    Steel: 5200

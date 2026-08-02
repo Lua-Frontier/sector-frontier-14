@@ -14,7 +14,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - Cartridge45_magnumFMJ #Lua 45 -> Magnum
+        - Cartridge357_magnumFMJ #Lua 45 -> Magnum
     capacity: 8
   - type: Item
     size: Small
@@ -40,7 +40,7 @@
   name: пистолетный магазин пустынного орла (.45 магнум)
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge45_magnumFMJ #Lua 45 -> Magnum
+    proto: Cartridge357_magnumFMJ #Lua 45 -> Magnum
   - type: Sprite
     layers:
     - state: base
@@ -54,7 +54,7 @@
   name: пистолетный магазин пустынного орла (.45 магнум бронебойные)
   components:
   - type: BallisticAmmoProvider
-    proto: Cartridge45_magnumFMJ #Lua 45 -> Magnum
+    proto: Cartridge357_magnumFMJ #Lua 45 -> Magnum
   - type: Sprite
     layers:
     - state: red
@@ -106,11 +106,11 @@
             - MagazineEagleAP
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge45_magnumFMJ #Lua 45 -> Magnum
+        startingItem: Cartridge357_magnumFMJ #Lua 45 -> Magnum
         priority: 1
         whitelist:
           tags:
-            - Cartridge45_magnumFMJ #Lua 45 -> Magnum
+            - Cartridge357_magnumFMJ #Lua 45 -> Magnum
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

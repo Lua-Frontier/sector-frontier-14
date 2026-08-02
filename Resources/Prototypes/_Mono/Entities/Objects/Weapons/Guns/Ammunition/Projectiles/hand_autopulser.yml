@@ -1,16 +1,14 @@
 - type: entity
   id: HandheldAutopulserProjectile
   name: plasma projectile
-  parent: NFBaseBulletLaser #Lua
+  parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Shock: 15 #Lua
-        Caustic: 5
-#        Heat: 14 # comment from _Lua
-#        Radiation: 5
+        Heat: 20
+        Radiation: 5
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/plasmashot.rsi
     scale: 0.4, 0.4

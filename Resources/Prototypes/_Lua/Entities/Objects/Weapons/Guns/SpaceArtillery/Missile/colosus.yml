@@ -55,11 +55,6 @@
   name: Инферно
   parent: ShipMissileASM220HE
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-      - state: sam
 
 - type: entity
   id: MissileTND
@@ -67,9 +62,6 @@
   suffix: Missile
   parent: Asm220TorpedoHE
   components:
-    - type: Sprite
-      sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-      state: tnd
     - type: Tag
       tags:
         - MissileStarColosus

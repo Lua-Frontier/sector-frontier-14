@@ -1,7 +1,3 @@
-# Damage-per-second = 125 for pistols; 125-25 = 100 for caustic ammo; max COO = 7.5
-# Main damage type - Blunt for standart; main damage/special damage = 70/30 for special
-# LeptonComm status clear
-# Standart
 - type: entity
   id: Bullet9x19mmFMJ
   name: bullet (9x19mm FMJ)
@@ -11,9 +7,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 16.7
+        Piercing: 24
+    armorPenetration: 0.05
 
-# Mechanical
 - type: entity
   id: Bullet9x19mmPractice
   name: bullet (9x19mm practice)
@@ -23,7 +19,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 1 #Lua -1
+        Blunt: 2
 
 - type: entity
   id: Bullet9x19mmRubber
@@ -35,22 +31,7 @@
     damage:
       types:
         Blunt: 3
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 15
 
-- type: entity
-  id: Bullet9x19mmHP
-  parent: BaseBullet
-  name: bullet (9x19mm hollow-point)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 11.7
-        Piercing: 5
-
-# Physical
 - type: entity
   id: Bullet9x19mmIncendiary
   parent: BaseBulletIncendiary
@@ -60,8 +41,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 11.7
+        Piercing: 10
         Heat: 5
+    armorPenetration: -0.15
 
 - type: entity
   id: Bullet9x19mmUranium
@@ -72,10 +54,11 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 11.7
-        Radiation: 5
+        Radiation: 8
+        Piercing: 13
+    armorPenetration: -0.1
 
-# Special
+# Upstream
 - type: entity
   id: Bullet9x19mmEmp
   name: bullet (9x19mm emp)
@@ -85,22 +68,23 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 11.7
-        Shock: 5
+        Shock: 0
 
+# Mono AP syst
+#anti-flesh:
 - type: entity
-  id: Bullet9x19mmCaustic
-  name: bullet (9x19mm caustic)
+  id: Bullet9x19mmHP
   parent: BaseBullet
+  name: bullet (9x19mm hollow-point)
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
       types:
-        Blunt: 9.3
-        Caustic: 4
+        Slash: 3
+        Piercing: 26
+    armorPenetration: -0.6
 
-# Out of balance
 - type: entity
   id: Bullet9x19mmRIP
   parent: BaseBullet
@@ -111,10 +95,10 @@
     damage:
       types:
         Slash: 5
-        Piercing: 10 #Lua -25
-        Blunt: 10 #Lua add
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 5
+        Piercing: 35
+    armorPenetration: -0.95
+
+#armor-piercing:
 
 - type: entity
   id: Bullet9x19mmPlasteelAP
@@ -125,7 +109,6 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 18 #Lua +9
-    ignoreResistances: true #Lua add
-  - type: StaminaDamageOnCollide #Lua add
-    damage: 5
+        Piercing: 7
+        Structural: 25
+    armorPenetration: 0.9

@@ -4,6 +4,7 @@ stack-glass = glass
 stack-plasteel = plasteel
 stack-plastitanium = plastitanium
 stack-uraniumfissile = fissile uranium
+stack-uraniumdepleted = depleted uranium
 stack-titanium = titanium
 stack-brass = brass
 stack-plastic = plastic

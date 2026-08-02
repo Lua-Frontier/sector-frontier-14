@@ -150,3 +150,74 @@
   - type: Stack
     count: 1
 
+
+# depleted uranium
+
+- type: material
+  id: UraniumDepleted
+  stackEntity: SheetUraniumDepleted1
+  name: materials-uraniumdepleted
+  unit: materials-unit-sheet
+  icon: { sprite: /Textures/_Mono/Objects/Materials/fissiles.rsi, state: depleted }
+  color: "#14211d"
+  price: 20 # 250/sheet
+  properties: # FH edit
+    electrical: 4
+    thermal: 3
+    hard: 12
+    density: 12
+    chemical: 6
+    radioactive: 1
+    n_radioactive: 1
+
+- type: entity
+  parent: MaterialBase
+  id: SheetUraniumDepleted
+  name: depleted uranium
+  description: Ingots of durable, dense and ridiculously heavy depleted uranium, no longer fissile - but nonetheless useful for things unrelated to warcrimes.
+  suffix: Full
+  components:
+  - type: Sprite
+    sprite: /Textures/_Mono/Objects/Materials/fissiles.rsi
+    state: depleted_3
+    layers:
+    - state: depleted_3
+      map: ["base"]
+  - type: Tag
+    tags:
+    - Sheet
+  - type: Item
+    sprite: /Textures/_Mono/Objects/Materials/fissiles.rsi
+    heldPrefix: depleted uranium
+    size: Ginormous
+    inhandVisuals:
+      left:
+      - state: depleted-inhand-left
+      right:
+      - state: depleted-inhand-right
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+  - type: Stack
+    stackType: UraniumDepleted
+    count: 5
+    baseLayer: base
+    layerStates:
+    - depleted
+    - depleted_2
+    - depleted_3
+  - type: Material
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      UraniumDepleted: 100
+
+- type: entity
+  parent: SheetUraniumDepleted
+  id: SheetUraniumDepleted1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1

@@ -135,9 +135,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge45_magnumFMJ #Lua 45 -> magnum
-        - SpeedLoader45_magnumFMJ #Lua 45 -> magnum
-    proto: Cartridge45_magnumFMJ #Lua 45 -> magnum
+        - Cartridge357_magnumFMJ #Lua 45 -> magnum
+        - SpeedLoader357_magnumFMJ #Lua 45 -> magnum
+    proto: Cartridge357_magnumFMJ #Lua 45 -> magnum
 
 - type: entity
   abstract: true
@@ -216,8 +216,8 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge45_magnumFMJ #Lua 45 -> magnum
-        - SpeedLoader45_magnumFMJ #Lua 45 -> magnum
+        - Cartridge357_magnumFMJ #Lua 45 -> magnum
+        - SpeedLoader357_magnumFMJ #Lua 45 -> magnum
         - CartridgeCap
         - SpeedLoaderCap
-    proto: Cartridge45_magnumFMJ #Lua 45 -> magnum
+    proto: Cartridge357_magnumFMJ #Lua 45 -> magnum

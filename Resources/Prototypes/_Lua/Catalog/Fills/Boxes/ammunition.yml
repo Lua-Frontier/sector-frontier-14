@@ -175,25 +175,25 @@
 # revolver
 
 - type: entity
-  id: LuaBoxSpeedLoader45_magnumFMJ # FMJ
+  id: LuaBoxSpeedLoader357_magnumFMJ # FMJ
   parent: BoxMagazine
   name: box of .45 Magnum FMJ speedloaders
   description: A box full of .45 Magnum FMJ speedloaders.
   components:
   - type: StorageFill
     contents:
-      - id: SpeedLoader45_magnumFMJ
+      - id: SpeedLoader357_magnumFMJ
         amount: 4
 
 - type: entity
-  id: LuaBoxSpeedLoader45_magnumRubber # Rubber
+  id: LuaBoxSpeedLoader357_magnumRubber # Rubber
   parent: BoxMagazine
   name: box of .45 Magnum Rubber speedloaders
   description: A box full of .45 Magnum Rubber speedloaders.
   components:
   - type: StorageFill
     contents:
-      - id: SpeedLoader45_magnumRubber
+      - id: SpeedLoader357_magnumRubber
         amount: 4
 
 #region 7.62x51mm

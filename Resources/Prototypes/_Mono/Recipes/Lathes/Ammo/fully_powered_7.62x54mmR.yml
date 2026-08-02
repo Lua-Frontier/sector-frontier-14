@@ -1,13 +1,14 @@
 #Magazines
+
 - type: latheRecipe
   parent: BaseAmmoFMJFullyPoweredMagazineRecipe
   id: Magazine762x54mmRFMJ
   result: Magazine762x54mmRFMJ
 
-#- type: latheRecipe
-#  parent: BaseAmmoPlasteelAPFullyPoweredMagazineRecipe
-#  id: Magazine762x54mmRPlasteelAP
-#  result: Magazine762x54mmRPlasteelAP
+- type: latheRecipe
+  parent: BaseAmmoPlasteelAPFullyPoweredMagazineRecipe
+  id: Magazine762x54mmRPlasteelAP
+  result: Magazine762x54mmRPlasteelAP
 
 - type: latheRecipe
   parent: BaseAmmoRubberFullyPoweredMagazineRecipe
@@ -34,20 +35,15 @@
   id: Magazine762x54mmRUranium
   result: Magazine762x54mmRUranium
 
-- type: latheRecipe #Lua
-  parent: BaseAmmoEMPFullyPoweredMagazineRecipe
-  id: Magazine762x54mmREMP
-  result: Magazine762x54mmREMP
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoCausticFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRCaustic
-  result: Magazine762x54mmRCaustic
-
 - type: latheRecipe
   parent: BaseAmmoHPFullyPoweredMagazineRecipe
   id: Magazine762x54mmRHP
   result: Magazine762x54mmRHP
+
+- type: latheRecipe
+  parent: BaseAmmoRIPFullyPoweredMagazineRecipe
+  id: Magazine762x54mmRRIP
+  result: Magazine762x54mmRRIP
 
 #Speedloaders
 
@@ -63,10 +59,10 @@
   id: AmmoBox762x54mmRFMJ
   result: AmmoBox762x54mmRFMJ
 
-#- type: latheRecipe
-#  parent: BaseAmmoPlasteelAPFullyPoweredAmmoBoxRecipe
-#  id: AmmoBox762x54mmRPlasteelAP
-#  result: AmmoBox762x54mmRPlasteelAP
+- type: latheRecipe
+  parent: BaseAmmoPlasteelAPFullyPoweredAmmoBoxRecipe
+  id: AmmoBox762x54mmRPlasteelAP
+  result: AmmoBox762x54mmRPlasteelAP
 
 - type: latheRecipe
   parent: BaseAmmoRubberFullyPoweredAmmoBoxRecipe
@@ -83,16 +79,6 @@
   id: AmmoBox762x54mmRPractice
   result: AmmoBox762x54mmRPractice
 
-- type: latheRecipe #Lua
-  parent: BaseAmmoEMPFullyPoweredAmmoBoxRecipe
-  id: AmmoBox762x54mmREMP
-  result: AmmoBox762x54mmREMP
-
-- type: latheRecipe #Lua
-  parent: BaseAmmoCausticFullyPoweredAmmoBoxRecipe
-  id: AmmoBox762x54mmRCaustic
-  result: AmmoBox762x54mmRCaustic
-
 - type: latheRecipe
   parent: BaseAmmoUraniumFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRUranium
@@ -102,3 +88,14 @@
   parent: BaseAmmoHPFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRHP
   result: AmmoBox762x54mmRHP
+
+- type: latheRecipe
+  parent: BaseAmmoRIPFullyPoweredAmmoBoxRecipe
+  id: AmmoBox762x54mmRRIP
+  result: AmmoBox762x54mmRRIP
+
+#big box
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredBigAmmoBoxRecipe
+  id: AmmoBox762x54mmRBigFMJ
+  result: AmmoBox762x54mmRBigFMJ

@@ -1,19 +1,18 @@
 - type: entity
-  id: BaseCartridge45_magnum
-  name: cartridge (.45 magnum)
-  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseSecurityContraband<BaseC1Contraband
+  id: BaseCartridge357_magnum
+  name: cartridge (.357 magnum)
+  parent: BaseCartridge
   description: Heavy magnum round, usually only seen in magnums or manually-cycled rifles.
   abstract: true
   components:
   - type: Tag
     tags:
       - Cartridge
-      - Cartridge45_magnumFMJ
+      - Cartridge357_magnumFMJ
   - type: CartridgeAmmo
-    deleteOnSpawn: true
-    proto: Bullet45_magnumFMJ
+    proto: Bullet357_magnumFMJ
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Casings/pistol_ammo_casing_steel.rsi
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
@@ -22,24 +21,21 @@
   - type: StaticPrice
     price: 1
 
-# Standart
 - type: entity
-  id: Cartridge45_magnumFMJ
-  name: cartridge (.45 magnum)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
+  id: Cartridge357_magnumFMJ
+  name: cartridge (.357 magnum)
+  parent: BaseCartridge357_magnum
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_magnumFMJ
+    proto: Bullet357_magnumFMJ
 
 - type: entity
-  id: Cartridge45_magnumPractice
-  name: cartridge (.45 magnum practice)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
+  id: Cartridge357_magnumPractice
+  name: cartridge (.357 magnum practice)
+  parent: BaseCartridge357_magnum
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_magnumPractice
+    proto: Bullet357_magnumPractice
   - type: Sprite
     layers:
       - state: base
@@ -49,13 +45,57 @@
         color: "#dbdbdb"
 
 - type: entity
-  id: Cartridge45_magnumRubber
-  name: cartridge (.45 magnum rubber)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
+  id: Cartridge357_magnumIncendiary
+  name: cartridge (.357 magnum incendiary)
+  parent: BaseCartridge357_magnum
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_magnumRubber
+    proto: Bullet357_magnumIncendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: entity
+  id: Cartridge357_magnumAP
+  name: cartridge (.357 magnum armor-piercing)
+  parent: BaseCartridge357_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet357_magnumAP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#0a0a0a"
+
+- type: entity
+  id: Cartridge357_magnumUranium
+  name: cartridge (.357 magnum uranium)
+  parent: BaseCartridge357_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet357_magnumUranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"
+
+- type: entity
+  id: Cartridge357_magnumRubber
+  name: cartridge (.357 magnum rubber)
+  parent: BaseCartridge357_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet357_magnumRubber
   - type: Sprite
     layers:
       - state: base
@@ -64,85 +104,51 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
 
-# Mechanical
+# Mono AP syst
+#anti-flesh:
 - type: entity
-  id: Cartridge45_magnumHP
-  name: cartridge (.45 magnum hollow-point)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
+  id: Cartridge357_magnumHP
+  name: cartridge (.357 magnum hollow-point)
+  parent: BaseCartridge357_magnum
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_magnumHP
+    proto: Bullet357_magnumHP
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#991d39"
-
-# Physical
-- type: entity
-  id: Cartridge45_magnumIncendiary
-  name: cartridge (.45 magnum Incendiary)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet45_magnumIncendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#f44336"
+        color: "#90EE90"
 
 - type: entity
-  id: Cartridge45_magnumUranium
-  name: cartridge (.45 magnum Uranium)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
+  id: Cartridge357_magnumRIP
+  name: cartridge (.357 magnum RIP)
+  parent: BaseCartridge357_magnum
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_magnumUranium
+    proto: Bullet357_magnumRIP
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#6b9747"
+        color: "#C04000"
 
-# Special
-- type: entity
-  id: Cartridge45_magnumEMP
-  name: cartridge (.45 magnum EMP)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
-  components:
-  - type: CartridgeAmmo
-    proto: Bullet45_magnumEMP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#044492"
+#armor-piercing:
 
 - type: entity
-  id: Cartridge45_magnumCaustic
-  name: cartridge (.45 magnum Caustic)
-  suffix: Need balance test #Lua
-  parent: BaseCartridge45_magnum
+  id: Cartridge357_magnumPlasteelAP
+  name: cartridge (.357 magnum AP)
+  parent: BaseCartridge357_magnum
   components:
   - type: CartridgeAmmo
-    proto: Bullet45_magnumCaustic
+    proto: Bullet357_magnumPlasteelAP
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#8b9229"
+        color: "#888888"

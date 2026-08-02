@@ -118,22 +118,22 @@
 - type: Tag
   id: Magazine45_ACPFMJBox
 
-#45 magnum tags
+#357 magnum tags
 
 - type: Tag
-  id: Cartridge45_magnumFMJ
+  id: Cartridge357_magnumFMJ
 
 - type: Tag
-  id: Magazine45_magnumPistolHighCapacityFMJ
+  id: Magazine357_magnumPistolHighCapacityFMJ
 
 - type: Tag
-  id: SpeedLoader45_magnumFMJ
+  id: SpeedLoader357_magnumFMJ
 
 - type: Tag
-  id: Magazine45_magnumPistolFMJ
+  id: Magazine357_magnumPistolFMJ
 
 - type: Tag
-  id: Magazine45_magnumSubMachineGunFMJ
+  id: Magazine357_magnumSubMachineGunFMJ
 
 #9x19mm tags
 
@@ -153,6 +153,9 @@
   id: Magazine9x19mmSubMachineGunTopMountedFMJ
 
 - type: Tag
+  id: Magazine45_ACPSubMachineGunTopMountedFMJ
+
+- type: Tag
   id: Magazine9x19mmFMJBox
 
 - type: Tag
@@ -162,6 +165,9 @@
 
 - type: Tag
   id: MilitaryPowerCellMG
+
+- type: Tag
+  id: LargeMilitaryPowerCell
 
 - type: Tag
   id: PPLCell
@@ -424,3 +430,9 @@
 # makes shuttle AI not target this grid
 - type: Tag
   id: ShuttleAIIgnore
+
+- type: Tag
+  id: Magazine4Gauge
+
+- type: Tag
+  id: JackShotgunBackpack

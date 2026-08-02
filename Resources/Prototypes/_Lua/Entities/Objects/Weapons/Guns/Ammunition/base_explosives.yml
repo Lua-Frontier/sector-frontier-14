@@ -1,17 +1,4 @@
 - type: entity
-  parent: [BaseItem, RecyclableItemCardboard]
-  id: BaseAmmoProvider
-  abstract: true
-  components:
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Item
-    size: Normal
-  - type: Sprite
-    sprite: Objects/Storage/boxes.rsi
-
-- type: entity
   id: CartridgeRocket
   name: PG-7VL grenade
   parent: [BaseItem]

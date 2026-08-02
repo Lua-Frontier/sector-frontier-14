@@ -22,7 +22,7 @@ public sealed class MapMigrationSystem : EntitySystem
 #pragma warning restore CS0414
     [Dependency] private readonly IResourceManager _resMan = default!;
 
-    private static readonly string[] MigrationFiles = { "/migration.yml", "/nf_migration.yml", "/lua_migration.yml" }; // Frontier: use array of migration files // Lua
+    private static readonly string[] MigrationFiles = { "/migration.yml", "/nf_migration.yml", "/lua_migration.yml", "/mono_migration.yml" }; // Frontier: use array of migration files // Lua // Mono
 
     public override void Initialize()
     {
