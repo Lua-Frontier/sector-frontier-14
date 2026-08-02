@@ -129,7 +129,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!component.NightVisionEnabled) return;
         var pilot = component.PilotSlot.ContainedEntity;
         if (pilot == null) return;
-        if (!TryComp<NightVisionComponent>(pilot.Value, out var nv)) nv = AddComp<NightVisionComponent>(pilot.Value);
+        if (!TryComp<WWDPNightVisionComponent>(pilot.Value, out var nv)) nv = AddComp<WWDPNightVisionComponent>(pilot.Value);
         nv.IsEquipment = false;
         nv.DrawOverlay = true;
         nv.Color = component.NightVisionColor;
@@ -217,9 +217,9 @@ public abstract partial class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
         _actions.AddAction(pilot, ref component.MechPryDoorActionEntity, component.MechPryDoorAction, mech);
         if (component.NightVisionEnabled) _actions.AddAction(pilot, ref component.MechNightVisionActionEntity, component.MechNightVisionAction, mech);
-        if (component.NightVisionEnabled && !HasComp<NightVisionComponent>(pilot))
+        if (component.NightVisionEnabled && !HasComp<WWDPNightVisionComponent>(pilot))
         {
-            var nv = AddComp<NightVisionComponent>(pilot);
+            var nv = AddComp<WWDPNightVisionComponent>(pilot);
             nv.IsEquipment = false;
             nv.DrawOverlay = true;
             nv.Color = component.NightVisionColor;
@@ -247,11 +247,11 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (HasComp<MechNightVisionProvidedComponent>(pilot))
         {
             RemComp<MechNightVisionProvidedComponent>(pilot);
-            if (TryComp<NightVisionComponent>(pilot, out var nv))
+            if (TryComp<WWDPNightVisionComponent>(pilot, out var nv))
             {
                 nv.IsActive = false;
                 Dirty(pilot, nv);
-                RemComp<NightVisionComponent>(pilot);
+                RemComp<WWDPNightVisionComponent>(pilot);
             }
         }
     }
