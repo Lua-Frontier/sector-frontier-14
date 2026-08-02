@@ -34,6 +34,12 @@ public sealed partial class RepairableComponent : Component
     public ProtoId<ToolQualityPrototype> QualityNeeded = "Welding";
 
     /// <summary>
+    /// Tool qualities that can repair this device.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string[]? Qualities; // Mono
+
+    /// <summary>
     /// The base tool use delay (seconds). This will be modified by the tool's quality
     /// </summary>
     [DataField, AutoNetworkedField]

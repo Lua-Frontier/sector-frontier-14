@@ -6,4 +6,9 @@ namespace Content.Server.Explosion.Components;
 [RegisterComponent]
 public sealed partial class TriggerOnSpawnComponent : Component
 {
+	/// <summary>
+	/// Starts a timer on spawn rather than instantly triggering
+	/// </summary>
+	[DataField("timerOnly")] // Mono: Added "timerOnly" boolean
+	public bool timerOnly = false;
 }

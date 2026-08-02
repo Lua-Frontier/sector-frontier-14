@@ -49,3 +49,22 @@
       map: ["enum.EffectLayers.Unshaded"]
       sprite: _Impstation/Objects/Weapons/Guns/Projectiles/muzzleflashes.rsi
       state: tempcold
+
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectTempHot
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    enabled: true
+    color: "#820a16"
+    radius: 1.4
+    energy: 3.0
+  - type: Sprite
+    drawdepth: BelowMobs
+    offset: 0.15, 0
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _Impstation/Objects/Weapons/Guns/Projectiles/muzzleflashes.rsi
+      state: temphot

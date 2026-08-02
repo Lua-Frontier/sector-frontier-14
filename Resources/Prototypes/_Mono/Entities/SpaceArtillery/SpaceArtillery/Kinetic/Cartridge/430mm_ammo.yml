@@ -43,7 +43,7 @@
 - type: entity
   id: R300BulletHE
   name: 430mm HE projectile
-  parent: BaseBulletTrigger # For shootdown
+  parent: ShipMissileBase # For shootdown
   categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
@@ -74,6 +74,8 @@
     maxIntensity: 75
     maxTileBreak: 3
   - type: GatheringProjectile
+  # - type: MiningGatheringSoft
+  # - type: MiningGatheringHard
   - type: Destructible
     thresholds:
     - trigger:

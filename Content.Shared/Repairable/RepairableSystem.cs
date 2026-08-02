@@ -4,6 +4,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Tools.Components; // Mono
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Serialization;
 
@@ -71,6 +72,22 @@ public sealed partial class RepairableSystem : EntitySystem
         }
 
         // Run the repairing doafter
+        // Mono - change to support multiple qualities being usable
+
+        if (ent.Comp.Qualities is { } qualities)
+        {
+            if (!TryComp<ToolComponent>(args.Used, out var tool))
+                return;
+
+            foreach (var quality in qualities)
+            {
+                if (_toolSystem.HasQuality(args.Used, quality, tool))
+                    args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, quality, new RepairFinishedEvent(), ent.Comp.FuelCost);
+            }
+
+            return;
+        }
+
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairFinishedEvent(), ent.Comp.FuelCost);
     }
 }

@@ -288,6 +288,12 @@ public sealed partial class GunComponent : Component
     public float RecoilRotation = 0.2f;
 
     /// <summary>
+    ///     This multiplier will apply per projectile fired by the weapon.
+    /// </summary>
+    [DataField]
+    public float DamageModifier = 1f;
+
+    /// <summary>
     /// Frontier: add gun caliber text
     /// </summary>
     [DataField]

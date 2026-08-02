@@ -1,15 +1,73 @@
-# ADMP-27 VESPERA
-# ADMP-27 VESPERA
+# Corporate War Era - Syndicate
+
 - type: entity
-  id: WeaponTurretASM501
-  name: ASM-501 pod
-  parent: BallisticArtilleryUnanchorable
-  description: A cruiser torpedo launcher. Fires heavy torpedoes for high-damage strikes against large ships and stations. Can be remotely activated or linked to a GCS.
+  id: WeaponTurretSerpentMissile
+  name: Serpent torpedo launcher
+  parent:
+  - BallisticArtilleryUnanchorable
+  - BallisticArtilleryTier3HP
+  description: A light torpedo launcher developed by the Syndicate during the corporate war, uses similar systems to the anaconda for self loading munitons.
   components:
   - type: StaticPrice
     price: 5000
   - type: Sprite
-    sprite: _Mono/Objects/ShuttleWeapons/vanyk-MK2.rsi
+    sprite: _Mono/Objects/ShuttleWeapons/serpent.rsi
+    layers:
+    - state: space_artillery
+  - type: Appearance
+  - type: FireControlRotate
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: Gun
+    fireRate: 0.5
+    recoil: 10
+    shootThermalSignature: 32000000 # ~5.6km
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 250
+    powerUsePassive: 200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 60
+  - type: Actions
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShipMissileSerpent
+    fireCost: 350
+  - type: RadarBlip
+    radarColor: "#FCBA03"
+    scale: 2.75
+    visibleFromOtherGrids: true
+  - type: ShipGunType
+    shipType: Missile
+  - type: ShipGunClass
+    shipClass: Heavy
+  - type: ShipRepairable
+    repairTime: 30
+    repairCost: 120
+
+# Pre-Fracture
+
+- type: entity
+  id: WeaponTurretTorpedoEntropy
+  name: Curio-1602 electron torpedo launcher "Entropy"
+  suffix: ADS ONLY
+  parent:
+  - BallisticArtilleryUnanchorable
+  - BallisticArtilleryTier3HP
+  description: An odd weapon of the pre-fracture era, it projects a mass of electrons that seek out the positive charge of nearby targets, overloading systems and shattering sections of hull.
+  components:
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Mono/Objects/ShuttleWeapons/entropy.rsi
     layers:
     - state: space_artillery
   - type: Appearance
@@ -33,18 +91,29 @@
     powerUsePassive: 200
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 60
+    autoRechargeRate: 400
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: Actions
   - type: ProjectileBatteryAmmoProvider
-    proto: ShipMissileASM501
-    fireCost: 350
+    proto: ShipMissileEntropy
+    fireCost: 4000
   - type: RadarBlip
     radarColor: "#FCBA03"
-    scale: 2.5
+    scale: 2.75
   - type: ShipGunType
     shipType: Missile
   - type: ShipGunClass
-    shipClass: Light
-
-# ASM-302 Vanyk
-
+    shipClass: Heavy
+  - type: ShipRepairable
+    repairTime: 30
+    repairCost: 120

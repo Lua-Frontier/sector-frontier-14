@@ -1,33 +1,14 @@
 # Base
+
 - type: entity
   id: BallisticArtilleryBase
   abstract: true
   placement:
     mode: SnapgridCenter
   components:
-  - type: ExtensionCableReceiver
-  - type: ApcPowerReceiver
-    powerLoad: 250
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 20000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 10000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
+    damageModifierSet: WallDefense2
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -43,17 +24,21 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: Climbable
   - type: Transform
     anchored: true
   - type: Rotatable
     rotateWhilePulling: false
     rotateWhileAnchored: false
-    increment: 45
+    increment: 90
   - type: DeviceLinkSink
     ports:
-    #- SpaceArtilleryFire
+    - SpaceArtilleryFire
     - SpaceArtilleryLoad
   - type: SpaceArtillery
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
@@ -61,9 +46,8 @@
     containers:
       ballistic-ammo: !type:Container
   - type: FireControllable
-  - type: BindToStation
   - type: RadarBlip
-    visibleFromOtherGrids: false
+    visibleFromOtherGrids: true
     radarColor: "#9999FF"
     scale: 1
     gridConfig:
@@ -73,17 +57,29 @@
       rotate: true
       bounds: "-1,-1,1,1"
   - type: ShipGunType
-    shipType: Ballistic
+    shipType: Kinetic
   - type: ShipGunClass
     shipClass: Medium
   - type: LightningTarget
     priority: 1
   - type: ThermalSignature # at least most have a thermal signature when firing
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+    qualities:
+    - Applicating
+  - type: GravityAffected # gravrefactor
 
 - type: entity
   id: BallisticArtilleryUnanchorable
-  parent: BallisticArtillery
+  parent: BallisticArtilleryBase
   abstract: true
+  components:
+  - type: RequiresGrid
 
 - type: entity
   id: BallisticArtillery
@@ -91,6 +87,7 @@
   abstract: true
   components:
   - type: Anchorable
+    delay: 10
   - type: Pullable
   - type: PirateBountyItem # not putting this on the other, because like. how do you get a cyrexa for your bounty. thats stupid.
     id: ShipWeapon
@@ -104,23 +101,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 20000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 10000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -136,18 +116,21 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: Climbable
   - type: Transform
     anchored: true
   - type: DeviceLinkSink
     ports:
-    #- SpaceArtilleryFire
+    - SpaceArtilleryFire
     - SpaceArtilleryLoad
   - type: SpaceArtillery
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: FireControllable
-  - type: BindToStation
   - type: RadarBlip
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
@@ -160,12 +143,15 @@
       bounds: "-1,-1,1,1"
   - type: Gun
     fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: ShipGunType
-    shipType: Ballistic
+    shipType: Kinetic
   - type: ShipGunClass
     shipClass: Medium
   - type: BallisticAmmoProvider
@@ -175,6 +161,11 @@
     capacity: 2
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+    qualities:
+    - Applicating
 
 - type: entity
   id: BallisticArtilleryCartridge
@@ -182,14 +173,21 @@
   abstract: true
   components:
   - type: Anchorable
+    delay: 10
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: false
+    increment: 90
   - type: Pullable
   - type: PirateBountyItem # not putting this on the other, because like. how do you get a cyrexa for your bounty. thats stupid.
     id: ShipWeapon
 
 - type: entity
   id: BallisticArtilleryUnanchorableCartridge
-  parent: BallisticArtilleryCartridge
+  parent: BallisticArtilleryBaseCartridge
   abstract: true
+  components:
+  - type: RequiresGrid
 
 - type: entity
   id: BallisticArtilleryBaseMagazine
@@ -201,22 +199,6 @@
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
   - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 20000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 10000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -232,18 +214,21 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: Climbable
   - type: Transform
     anchored: true
   - type: DeviceLinkSink
     ports:
-    #- SpaceArtilleryFire
+    - SpaceArtilleryFire
     - SpaceArtilleryLoad
   - type: SpaceArtillery
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
   - type: FireControllable
-  - type: BindToStation
   - type: RadarBlip
     visibleFromOtherGrids: false
     radarColor: "#9999FF"
@@ -256,12 +241,15 @@
       bounds: "-1,-1,1,1"
   - type: Gun
     fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: ShipGunType
-    shipType: Ballistic
+    shipType: Kinetic
   - type: ShipGunClass
     shipClass: Medium
   - type: MagazineAmmoProvider
@@ -278,7 +266,11 @@
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+    qualities:
+    - Applicating
 
 - type: entity
   id: BallisticArtilleryMagazine
@@ -286,16 +278,24 @@
   abstract: true
   components:
   - type: Anchorable
+    delay: 10
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: false
+    increment: 90
   - type: Pullable
   - type: PirateBountyItem # not putting this on the other, because like. how do you get a cyrexa for your bounty. thats stupid.
     id: ShipWeapon
 
 - type: entity
   id: BallisticArtilleryUnanchorableMagazine
-  parent: BallisticArtilleryMagazine
+  parent: BallisticArtilleryBaseMagazine
   abstract: true
+  components:
+  - type: RequiresGrid
 
-# Ported Mono durability tiers
+# Durabilities - You can vary from this, this is just the main standard. Size of the gun is often used when deciding durability. More size, more likely to get hit.
+
 - type: entity
   id: BallisticArtilleryTier1HP # Basic weapons, e.g PD. Reinforced wall level.
   suffix: T1
@@ -321,6 +321,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+
 - type: entity
   id: BallisticArtilleryTier2HP # Normal weapons, slightly stronger than plastitanium. This is the baseline durability for your average sized anchorable weapon.
   abstract: true
@@ -340,6 +341,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+
 - type: entity
   id: BallisticArtilleryTier3HP # Medium weapons. Reinforced plastitanium level. Typical for medium-class weapons. In-between heavy artillery and standard anchorables.
   abstract: true
@@ -365,6 +367,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+
 - type: entity
   id: BallisticArtilleryTier4HP # Capital Weapons. Cyrexas, main cannons. Anything really big.
   abstract: true
@@ -390,6 +393,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+
 - type: entity
   id: BallisticArtilleryTier5HP # Supercapital class armament, station outpost weaponry and capital pre-fracture weaponry, around 4x Reinforced Plastitanium Health.
   abstract: true

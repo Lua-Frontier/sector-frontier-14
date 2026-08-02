@@ -479,6 +479,11 @@ public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, Projectile
 public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null);
 
 /// <summary>
+/// Mono - raised when a projectile is spent
+/// </summary>
+public record struct ProjectileSpentEvent();
+
+/// <summary>
 /// Raised when a projectile is about to collide with an entity, allowing systems to prevent the collision
 /// </summary>
 [ByRefEvent]

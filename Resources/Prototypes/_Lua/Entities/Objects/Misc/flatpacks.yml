@@ -127,51 +127,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: WeaponTurretplasmaacceleratorFlatPack
-  name: Type-1008 Plasma Accelerator
-  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretplasmaaccelerator
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretplasmaacceleratorHugeFlatPack
-  name: Type-1984 Plasma Accelerator
-  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretplasmaacceleratorHuge
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretType2048FlatPack
-  name: Type-1984 Plasma Accelerator
-  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretType2048
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
   id: WeaponTurretScyllaFlatPack
   name: PASM "Scylla" Plasma accelerator system of magnet
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -264,21 +219,6 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: WeaponTurretPeacekeeperFlatPack
-  name: SHR-57 "Scattergun"
-  description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretPeacekeeper
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
   id: WeaponTurretHydraFlatPack
   name: Hydra 220mm cannon
   description: A main battery with trial barrels, delivering rapid, punishing salvos at extreme range. Fires 220mm auto shells with slightly reduced brute strength. Can be remotely activated or linked up to a GCS.
@@ -300,21 +240,6 @@
   components:
   - type: Flatpack
     entity: WeaponTurretTarnyx
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretTarnyxApFlatPack
-  name: ADBX-31 TARNYX 150mm EMP Cannon
-  description: A heavy EMP Cannon made by Aetherion Dynamics. It can disable massive parts of an enemy ship, making it effective in asymmetric combat. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretApTarnyx
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -385,42 +310,12 @@
 
 - type: entity
   parent: BaseNFFlatpack
-  id: WeaponTurretCharonetteFlatPack
-  name: M194 CHARONETTE mass driver
-  description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretCharonette
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
   id: WeaponTurretBoforsFlatPack
   name: Bofors 255mm cannon
   description: A single barrelled, heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
   components:
   - type: Flatpack
     entity: WeaponTurretBofors
-  - type: StaticPrice
-    price: 5000
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretKargilFlatPack
-  name: Kargil 203mm cannon
-  description: A single barrelled, medium-heavy artillery cannon. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretKargil
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -468,21 +363,6 @@
   components:
   - type: Flatpack
     entity: WeaponTurretVespera
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: WeaponTurretASM501FlatPack
-  name: ASM-501 pod
-  description: ASM-501 Smerchs heavy torpedo launcher. Can be remotely activated, or linked up to a GCS.
-  components:
-  - type: Flatpack
-    entity: WeaponTurretASM501
   - type: StaticPrice
     price: 250
   - type: Sprite

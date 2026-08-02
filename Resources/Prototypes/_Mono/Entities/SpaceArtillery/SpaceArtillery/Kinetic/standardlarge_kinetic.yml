@@ -1,4 +1,3 @@
-# Synced from Monolith
 
 # Cyrexa 220mm
 
@@ -36,6 +35,7 @@
         layer:
         - MachineLayer
   - type: Gun
+    damageModifier: 2
     projectileSpeed: 380
     minAngle: 0
     maxAngle: 1
@@ -193,6 +193,15 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 150
+
+- type: soundCollection
+  id: 120mmAutocannonAK820
+  files:
+  - /Audio/_Mono/Weapons/Guns/Gunshots/autocannon_1.ogg
+  - /Audio/_Mono/Weapons/Guns/Gunshots/autocannon_2.ogg
+  - /Audio/_Mono/Weapons/Guns/Gunshots/autocannon_3.ogg
+
+# Bofors 255mm
 
 - type: entity
   id: WeaponTurretBofors
