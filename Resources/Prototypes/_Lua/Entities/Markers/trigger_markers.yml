@@ -112,6 +112,8 @@
     intervalSeconds: 225
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 1800
 
 - type: entity
   parent: MarkerBase

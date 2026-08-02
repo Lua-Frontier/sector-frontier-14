@@ -456,3 +456,35 @@
 #       - NukeOpsUplink
 #       - TypanUplink
 
+#region Enc. Key
+
+- type: listing
+  id: UplinkEncryptionKeyOutpostTypan # mag
+  name: красный ключ шифрования
+  description: Ключ шифрования, используемый... хм... кем же?
+  productEntity: EncryptionKeyOutpostTypan
+  cost:
+    Speso: 2000
+  categories:
+    - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TypanUplink
+
+#region TC Convert others
+- type: listing
+  id: UplinkConvertTelecrystalOthers
+  name: Телекристаллы
+  description: Обменяйте свои кредиты на более полезные вещи. Для чужаков - дороже.
+  productEntity: Telecrystal1
+  cost:
+    Speso: 250000
+  categories:
+  - UplinkConverter
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - TypanUplink

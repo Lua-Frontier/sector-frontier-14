@@ -1,7 +1,7 @@
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, ExGrenade]
+  parent: [ExGrenade] # Lua: BaseC2ContrabandUnredeemable removed (abuse)
   id: ExGrenadeNfsd
 
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, EmpGrenade]
+  parent: [EmpGrenade] # Lua: BaseC2ContrabandUnredeemable removed (abuse)
   id: EmpGrenadeNfsd

@@ -3,14 +3,14 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 2
+    lifetime: 0.5 # Lua-changes: 2 > 0.5
   - type: Sprite
     drawdepth: SmallMobs
     noRot: true
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: Effects/atmospherics.rsi
+      sprite: _Lua/Effects/jetpack_trails.rsi
       state: frezon_old
   - type: EffectVisuals
   - type: Tag
@@ -55,6 +55,7 @@
       volume: 5
       temperature: 293.15
   - type: Jetpack
+    jetpackEffect: JetpackEffect
     acceleration: 1.15
     weightlessModifier: 2.4
     moleUsage: 0.00085
@@ -104,6 +105,8 @@
     sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
     sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+  - type: Jetpack
+    jetpackEffect: JetpackEffectTrailBlue
     # DeltaV modifications - Covered by modifications on parent
     #slots:
     #  - Back
@@ -149,6 +152,7 @@
       - DemagImmune
   - type: Jetpack
     radarBlip: false
+    jetpackEffect: JetpackEffectTrailBlack
   # End Frontier: emaggable jetpacks
 #  - type: StaticPrice # Frontier
 #    price: 1000 # Frontier
@@ -181,6 +185,8 @@
     sprite: Objects/Tanks/Jetpacks/captain.rsi
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/captain.rsi
+  - type: Jetpack
+    jetpackEffect: JetpackEffectTrailCaptain
     # DeltaV modifications - Covered by modifications on parent
     #slots:
     #  - Back
@@ -231,6 +237,8 @@
         - Back
         - suitStorage
         - Belt
+    - type: Jetpack
+      jetpackEffect: JetpackEffectTrailMini
     - type: GasTank
       outputPressure: 42.6
       air:
@@ -268,6 +276,8 @@
     sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
   - type: Clothing
     sprite: _DV/Objects/Tanks/Jetpacks/security.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
+  - type: Jetpack
+    jetpackEffect: JetpackEffectTrailSecurity
     # DeltaV modifications - Covered by modifications on parent
     #slots:
     #  - Back
@@ -310,6 +320,8 @@
       - Back
       - suitStorage
       - Belt
+  - type: Jetpack
+    jetpackEffect: JetpackEffectTrailVoid
 
 # Filled void
 - type: entity

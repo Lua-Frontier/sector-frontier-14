@@ -64,11 +64,17 @@
   - type: RandomSpawner
     prototypes:
     - MobCockroachTimed
+    - MobCockroachTimed
+    - MobMothroachTimed
     - MobMothroachTimed
     - MobMouseTimed
+    - MobMouseTimed
+    - MobMouseTimed1
     - MobMouseTimed1
     - MobMouseTimed2
+    - MobMouseTimed2
+    - MobMouseCancerTimed
     - MobMouseCancerTimed
     - RandomDiseaseRatsSpawn
-    chance: 1
+    chance: 0.5
     offset: 0.0

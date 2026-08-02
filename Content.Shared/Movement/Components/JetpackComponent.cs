@@ -33,4 +33,10 @@ public sealed partial class JetpackComponent : Component
     [ViewVariables, DataField, AutoNetworkedField]
     public bool RadarBlip = true;
     // End Frontier
+
+    // Lua: added particle selection via VV (добавлен выбор частиц через VV и прототипинг)
+    // select "JetpackEffect" in case of troubles (выбирайте "JetpackEffect" в случае проблем)
+    [ViewVariables(VVAccess.ReadWrite), DataField("jetpackEffect"), AutoNetworkedField]
+    public EntProtoId JetpackEffect = "JetpackEffect";
+    // End Lua
 }

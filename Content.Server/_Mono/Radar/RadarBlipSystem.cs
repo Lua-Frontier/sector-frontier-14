@@ -16,6 +16,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Numerics;
+using System.Collections.Generic;
 
 namespace Content.Server._Mono.Radar;
 
@@ -32,6 +33,10 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
     private TimeSpan _nextMobBlipCheck;
     private readonly Dictionary<MapId, (TimeSpan BuiltAt, List<(AmbientSpaceFieldComponent Field, Vector2 Pos)> Fields)> _veilCache = new();
+
+    //Lua: Кэш для нефизических блипов (Cache for non-physics blips: NetCoordinates, world position and last update time.)
+    private readonly Dictionary<EntityUid, (NetCoordinates NetCoord, Vector2 WorldPos, TimeSpan LastUpdate)> _cachedNetCoords =
+        new();
 
     public override void Initialize()
     {
@@ -100,6 +105,9 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
     private void OnBlipShutdown(EntityUid blipUid, RadarBlipComponent component, ComponentShutdown args)
     {
+        //Lua: Удаление из кэша позиции для блипа (Remove any cached position for this blip)
+        _cachedNetCoords.Remove(blipUid);
+
         var netBlipUid = GetNetEntity(blipUid);
         var removalEv = new BlipRemovalEvent(netBlipUid);
         RaiseNetworkEvent(removalEv);
@@ -135,15 +143,57 @@ public sealed partial class RadarBlipSystem : EntitySystem
 
                 var blipGrid = blipXform.GridUid;
 
+                // var blipVelocity = Vector2.Zero;
+                // if (TryComp<PhysicsComponent>(blipUid, out var blipPhysics))
+                //     blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
+                // var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
                 var blipVelocity = Vector2.Zero;
-                if (TryComp<PhysicsComponent>(blipUid, out var blipPhysics))
-                    blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
+                NetCoordinates sendNetCoord = default;
+                Vector2 sendWorldPos = default;
 
-                var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
+                // Если блип используется на физическом объекте - использовать компонент physics для просчёта его координат и движения (If a blip is used on a physical entity, use a physics component to calculate its coordinates and movement.)
+                if (blip.Physics && TryComp<PhysicsComponent>(blipUid, out var blipPhysics))
+                {
+                    blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
+                    sendWorldPos = _xform.GetWorldPosition(blipXform);
+
+                    var localCoord = blipXform.Coordinates;
+                    if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
+                        localCoord = _xform.WithEntityId(localCoord, blipGrid ?? blipXform.MapUid!.Value);
+                    if (blipGrid != null)
+                        blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, localCoord.Position);
+
+                    sendNetCoord = GetNetCoordinates(localCoord);
+                }
+                else
+                {
+                    // Статичный блип у нас использует координаты из кэша и обновляется раз в 60 секунд. (Static blip uses coordinates from the cache and updates every 60 seconds.)
+                    var now = _timing.CurTime;
+                    if (!_cachedNetCoords.TryGetValue(blipUid, out var cached) || now - cached.LastUpdate > TimeSpan.FromSeconds(60))
+                    {
+                        // Обновление координат и кэширование (Recompute and cache.)
+
+                        var localCoord = blipXform.Coordinates;
+                        if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
+                            localCoord = _xform.WithEntityId(localCoord, blipGrid ?? blipXform.MapUid!.Value);
+
+                        sendNetCoord = GetNetCoordinates(localCoord);
+                        sendWorldPos = _xform.GetWorldPosition(blipXform);
+                        _cachedNetCoords[blipUid] = (sendNetCoord, sendWorldPos, now);
+                    }
+                    else
+                    {
+                        sendNetCoord = cached.NetCoord;
+                        sendWorldPos = cached.WorldPos;
+                    }
+
+                    blipVelocity = Vector2.Zero;
+                }
 
                 float maxDistance = blip.MaxDistance;
                 var radarMax = component?.MaxRange ?? SharedRadarConsoleSystem.DefaultMaxRange;
                 var allowedDistance = Math.Min(maxDistance, radarMax);
+                var distance = (sendWorldPos - radarPosition).Length();
                 if (distance > allowedDistance) continue;
                 if ((blip.RequireNoGrid && blipGrid != null) || (!blip.VisibleFromOtherGrids && blipGrid != radarGrid)) continue;
 

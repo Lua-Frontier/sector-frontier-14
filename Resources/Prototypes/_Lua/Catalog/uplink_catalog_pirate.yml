@@ -5,7 +5,7 @@
   description: uplink-convert-doubloon-desc
   productEntity: Doubloon1
   cost:
-    Speso: 10000
+    Speso: 250000
   categories:
   - UplinkPirateUtility
   conditions:
@@ -1324,6 +1324,21 @@
   productEntity: RadioJammer
   cost:
     Doubloon: 2
+  categories:
+  - UplinkPirateUtility
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - PirateUplink
+
+- type: listing
+  id: UplinkEncryptionKeyFreelance
+  name: ключ шифрования пустынника
+  description: Ключ шифрования, истертый песком и покрытый ржавчиной.
+  productEntity: EncryptionKeyFreelance
+  cost:
+    Speso: 2000
   categories:
   - UplinkPirateUtility
   conditions:

@@ -103,6 +103,9 @@
         whitelist:
           components:
             - GasTank
+        blacklist:
+          components:
+            - GasPortable
     - type: StaticPrice
       price: 125 # Frontier: 200<125
     - type: AccessReader

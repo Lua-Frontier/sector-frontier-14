@@ -19,7 +19,7 @@
         maxVol: 20
         reagents:
         - ReagentId: CrimzonSporeBlood
-          Quantity: 5
+          Quantity: 1.25
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
         - ReagentId: Fat
@@ -43,7 +43,7 @@
         restitution: 0.3
         friction: 0.2
   - type: StaticPrice
-    price: 100
+    price: 25
   - type: Material
   - type: Stack
     stackType: CrimsonSporeFleshStack
@@ -83,13 +83,13 @@
         maxVol: 40
         reagents:
         - ReagentId: CrimzonSporeBlood
-          Quantity: 15
+          Quantity: 5
         - ReagentId: UncookedAnimalProteins
           Quantity: 10
         - ReagentId: Fat
           Quantity: 10
   - type: StaticPrice
-    price: 3000
+    price: 750
   - type: Stack
     stackType: CrimsonSporeFleshStackWaken
 

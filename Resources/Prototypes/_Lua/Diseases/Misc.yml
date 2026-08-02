@@ -369,10 +369,14 @@
       state: diamond
   - type: RandomSpawner
     prototypes:
-    - DiseaseRatCrimsonSpore
-    - DiseaseRatMonkeyPox
     - DiseaseRatDragonFlu
+    - DiseaseRatDragonFlu
+    - DiseaseRatMonkeyPox
+    - DiseaseRatMonkeyPox
+    - DiseaseRatRatRabies
     - DiseaseRatRatRabies
     - DiseaseRatSpiderFever
-    chance: 1
+    - DiseaseRatSpiderFever
+    - DiseaseRatCrimsonSpore
+    chance: 0.5
     offset: 0.0
