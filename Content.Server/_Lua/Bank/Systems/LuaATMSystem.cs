@@ -31,6 +31,7 @@ public sealed class LuaATMSystem : EntitySystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly IAdminLogManager _admin = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -135,6 +136,15 @@ public sealed class LuaATMSystem : EntitySystem
         var originalDeposit = GetDepositValue(atmComp, out var depositItem);
         var deposit = originalDeposit;
 
+        if (depositItem is not { Valid: true } cashEntity ||
+            atmComp.CashSlot.ContainerSlot is not BaseContainer cashSlot)
+        {
+            _popup.PopupEntity(Loc.GetString("bank-atm-menu-transaction-denied"), atm, player);
+            _audio.PlayPvs(atmComp.ErrorSound, atm);
+            UpdateUserInterface(atm, atmComp);
+            return;
+        }
+
         foreach (var (account, taxCoeff) in atmComp.TaxAccounts)
         {
             if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
@@ -149,8 +159,23 @@ public sealed class LuaATMSystem : EntitySystem
 
         deposit = Math.Max(0, deposit);
 
+        if (deposit <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("bank-atm-menu-transaction-denied"), atm, player);
+            _audio.PlayPvs(atmComp.ErrorSound, atm);
+            UpdateUserInterface(atm, atmComp);
+            return;
+        }
+        if (!_container.Remove(cashEntity, cashSlot))
+        {
+            _popup.PopupEntity(Loc.GetString("bank-atm-menu-transaction-denied"), atm, player);
+            _audio.PlayPvs(atmComp.ErrorSound, atm);
+            UpdateUserInterface(atm, atmComp);
+            return;
+        }
         if (!_bank.TryBankDeposit(player, deposit))
         {
+            _container.Insert(cashEntity, cashSlot);
             _popup.PopupEntity(Loc.GetString("bank-atm-menu-transaction-denied"), atm, player);
             _audio.PlayPvs(atmComp.ErrorSound, atm);
             UpdateUserInterface(atm, atmComp);
@@ -161,7 +186,7 @@ public sealed class LuaATMSystem : EntitySystem
         _audio.PlayPvs(atmComp.ConfirmSound, atm);
         _admin.Add(LogType.ATMUsage, LogImpact.Low, $"{ToPrettyString(player):actor} deposited {deposit} into {ToPrettyString(atm)}");
 
-        QueueDel(depositItem);
+        QueueDel(cashEntity);
         UpdateUserInterface(atm, atmComp);
     }
 

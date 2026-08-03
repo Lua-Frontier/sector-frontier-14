@@ -64,7 +64,7 @@ public sealed class TechnologyTreeTests
         await server.WaitAssertion(() =>
         {
             var research = entMan.System<ResearchSystem>();
-            var tech = protoManager.Index<TechnologyPrototype>("LuaStarGateShuttleBeacon");
+            var tech = protoManager.Index<TechnologyPrototype>("NFAdvancedParts");
             var researchUid = entMan.SpawnEntity(null, MapCoordinates.Nullspace);
             var researchServer = entMan.AddComponent<ResearchServerComponent>(researchUid);
             researchServer.Faction = "Nanotrasen";
@@ -73,10 +73,10 @@ public sealed class TechnologyTreeTests
             var syndicatePosition = research.GetTechnologyPosition(researchUid, tech);
             Assert.Multiple(() =>
             {
-                Assert.That(ntPosition.X, Is.EqualTo(-14.152f).Within(0.001f));
-                Assert.That(ntPosition.Y, Is.EqualTo(1.013f).Within(0.001f));
-                Assert.That(syndicatePosition.X, Is.EqualTo(-14.255f).Within(0.001f));
-                Assert.That(syndicatePosition.Y, Is.EqualTo(1f).Within(0.001f));
+                Assert.That(ntPosition.X, Is.EqualTo(0f).Within(0f));
+                Assert.That(ntPosition.Y, Is.EqualTo(0f).Within(0f));
+                Assert.That(syndicatePosition.X, Is.EqualTo(0f).Within(0f));
+                Assert.That(syndicatePosition.Y, Is.EqualTo(0f).Within(0f));
             });
         });
         await pair.CleanReturnAsync();

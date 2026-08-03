@@ -2,6 +2,7 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using System.Linq;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Materials;
@@ -9,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Systems;
 using Content.Shared._Lua.LuaTech;
+using Content.Shared._Crescent.ShipShields;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
@@ -88,7 +90,11 @@ public abstract class SharedFlatpackSystem : EntitySystem
         // TODO FLATPAK
         // Make this logic smarter. This should eventually allow for shit like building microwaves on tables and such.
         // Also: make it ignore ghosts
-        if (_entityLookup.AnyEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static))
+        var occupied = _entityLookup
+            .GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
+            .Any(ent => !HasComp<ShipShieldComponent>(ent));
+
+        if (occupied)
         {
             // this popup is on the server because the predicts on the intersection is crazy
             if (_net.IsServer)
