@@ -1,2 +1,2 @@
-stack-uraniumfissile = делящийся уран
-stack-uraniumdepleted = обеднённый уран
+stack-uraniumfissile = РґРµР»СЏС‰РёР№СЃСЏ СѓСЂР°РЅ
+stack-uraniumdepleted = РѕР±РµРґРЅС‘РЅРЅС‹Р№ СѓСЂР°РЅ
