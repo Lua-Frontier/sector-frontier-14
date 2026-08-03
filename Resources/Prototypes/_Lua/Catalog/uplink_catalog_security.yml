@@ -1,27 +1,27 @@
 
-- type: listing
-  id: UplinkConvertTK
-  name: uplink-convert-sdtk-name
-  description: uplink-convert-sdtk-desc
-  productEntity: FrontierUplinkCoin1
-  cost:
-    Speso: 10000
-  categories:
-  - UplinkSecurityUtility
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Sheriff
-    - Bailiff
-    - SeniorOfficer
-    - Brigmedic
-    - SDEngineer
-    - Deputy
-    - Cadet
+# - type: listing #Lua: No more TK.
+#   id: UplinkConvertTK
+#   name: uplink-convert-sdtk-name
+#   description: uplink-convert-sdtk-desc
+#   productEntity: FrontierUplinkCoin1
+#   cost:
+#     Speso: 10000
+#   categories:
+#   - UplinkSecurityUtility
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     whitelist:
+#       tags:
+#       - SecurityUplink
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - Sheriff
+#     - Bailiff
+#     - SeniorOfficer
+#     - Brigmedic
+#     - SDEngineer
+#     - Deputy
+#     - Cadet
 
 #region hardsuits
 
