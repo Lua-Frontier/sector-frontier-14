@@ -5,7 +5,6 @@
   discipline: NFService
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 3
   cost: 20000
   recipeUnlocks:
@@ -15,6 +14,11 @@
   technologyPrerequisites:
   - NFAdvancedEntertainment
   position: -7.565, -3.331
+  factionOverrides:
+    Nanotrasen:
+      position: -2.133, -3.911
+      technologyPrerequisites:
+      - NFAdvancedEntertainment
 - type: technology
   id: LuaWaterRegenerator
   name: lua-research-technology-water-regenerator
@@ -22,7 +26,6 @@
   discipline: NFService
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 7500
   recipeUnlocks:
@@ -30,6 +33,11 @@
   technologyPrerequisites:
   - NFAdvancedCleaning
   position: 5.212, 22.518
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 13.511
+      technologyPrerequisites:
+      - NFAdvancedCleaning
 - type: technology
   id: NFHardsuitBotanist
   name: lua-research-technology-botanist-hardsuit
@@ -37,7 +45,6 @@
   discipline: NFService
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 10000
   recipeUnlocks:
@@ -46,8 +53,567 @@
   technologyPrerequisites:
   - NFAdvancedHydroponicsEquipment
   factionOverrides:
-    Syndicate:
-      position: -8.02, 6.08
+    Nanotrasen:
+      position: -3.556, 1.778
       technologyPrerequisites:
       - NFAdvancedHydroponicsEquipment
-...
+- type: technology
+  id: NFFauxAstroTiles
+  name: nf-research-technology-faux-astro-tiles
+  entityIcon: FloorTileItemAstroIce
+  discipline: NFService
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileAstroGrass
+  - FauxTileMowedAstroGrass
+  - FauxTileJungleAstroGrass
+  - FauxTileAstroIce
+  - FauxTileAstroSnow
+  - FauxTileAstroAsteroidSand
+  technologyPrerequisites:
+  - NFIndustrialCutter
+  position: -1.332, -5.466
+  factionOverrides:
+    Nanotrasen:
+      position: 0, -3.911
+      technologyPrerequisites:
+      - NFIndustrialCutter
+- type: technology
+  id: NFMiscellaneousItemsOrganization
+  name: nf-research-technology-personal-storage-solutions
+  entityIcon: NFPouchEngineering
+  discipline: NFService
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NFPouchUtility
+  - NFPouchEngineering
+  - NFPouchFirstAid
+  - NFPouchFirstAidAlt
+  - NFPouchScience
+  - NFPouchSalvage
+  - NFPouchAtmospherics
+  - NFPouchHydroponics
+  - NFPouchChaplain
+  - NFPouchPunk
+  - NFPouchMercenary
+  - NFPouchPrivateSecurity
+  - NFPouchJanitor
+  - NFPouchContractor
+  - NFPouchClown
+  - NFPouchMime
+  - NFPouchCaptain
+  - NFPouchCargo
+  - MedicalPouch
+  technologyPrerequisites:
+  - NFAdvancedBeltTechnology
+  position: 3.086, -2.572
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, -2.133
+      technologyPrerequisites:
+      - NFAdvancedBeltTechnology
+- type: technology
+  id: NFHardsuitsEntertainment
+  name: nf-research-technology-hardsuits-entertainment
+  entityIcon: ClothingOuterHardsuitClown
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitClown
+  - ClothingOuterHardsuitMime
+  technologyPrerequisites:
+  - NFHardsuitsBasic
+  position: -1.648, 12.018
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsAdvanced
+- type: technology
+  id: NFWirelessAudioVisualCommunication
+  name: nf-research-technology-wireless-audio-visual-communication
+  entityIcon: TelecomServer
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - TelecomServerCircuitboard
+  technologyPrerequisites:
+  - NFAudioVisualCommunication
+  position: -10.97, -1.959
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, -2.133
+      technologyPrerequisites:
+      - NFAudioVisualCommunication
+- type: technology
+  id: NFHologramCommunication
+  name: nf-research-technology-hologram-communication
+  entityIcon: NFHolopadShip
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NFHolopadShipMachineCircuitboard
+  technologyPrerequisites:
+  - NFAudioVisualCommunication
+  position: -11.562, -0.269
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, -1.422
+      technologyPrerequisites:
+      - NFAudioVisualCommunication
+- type: technology
+  id: NFAdvancedInstruments
+  name: nf-research-technology-advanced-instruments
+  entityIcon: DawInstrument
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - SynthesizerInstrument
+  - DawInstrumentMachineCircuitboard
+  - JukeboxCircuitBoard
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
+  position: -8.379, -2.207
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, -3.911
+      technologyPrerequisites:
+      - NFAdvancedEntertainment
+- type: technology
+  id: NFAdvancedEntertainment
+  name: nf-research-technology-advanced-entertainment
+  entityIcon: ComputerTelevision
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ComputerTelevisionCircuitboard
+  - SurveillanceWirelessCameraMovableCircuitboard
+  - SurveillanceWirelessCameraAnchoredCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: -5.029, 0.271
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, -2.844
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFJournalism
+  name: nf-research-technology-journalism
+  entityIcon: ComputerMassMedia
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - MassMediaCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
+  position: -8.773, -1.182
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, -2.844
+      technologyPrerequisites:
+      - NFAdvancedEntertainment
+- type: technology
+  id: NFPushHorn
+  name: nf-research-technology-clowning-utilities
+  entityIcon: PushHorn
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PushHorn
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
+  position: -6.593, -4.585
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, -3.911
+      technologyPrerequisites:
+      - NFAdvancedEntertainment
+- type: technology
+  id: NFBasicSpray
+  name: nf-research-technology-basic-spray
+  entityIcon: MegaSprayBottle
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - MegaSprayBottle
+  position: 1.308, 19.021
+  technologyPrerequisites:
+  - NFBasicMedicine
+  - NFReinforcedJug
+  factionOverrides:
+    Nanotrasen:
+      position: 1.422, 11.022
+      technologyPrerequisites:
+      - NFBasicMedicine
+      - NFReinforcedJug
+- type: technology
+  id: NFJanicart
+  name: nf-research-technology-janicart
+  entityIcon: NFVehicleJanicart
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - JanicartFlatpack
+  technologyPrerequisites:
+  - NFBasicSpray
+  position: -0.345, 21.732
+  factionOverrides:
+    Nanotrasen:
+      position: 0.356, 11.022
+      technologyPrerequisites:
+      - NFBasicSpray
+- type: technology
+  id: NFAdvancedSpray
+  name: nf-research-technology-advanced-spray
+  entityIcon: WeaponSprayNozzle
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - WeaponSprayNozzle
+  - ClothingBackpackWaterTank
+  technologyPrerequisites:
+  - NFBasicSpray
+  position: 2.078, 21.018
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 12.089
+      technologyPrerequisites:
+      - NFBasicSpray
+- type: technology
+  id: NFPortablePump
+  name: nf-research-technology-portable-cleaning
+  entityIcon: PortablePump
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PortablePumpMachineCircuitBoard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBasicSpray
+  position: 0.833, 21.279
+  factionOverrides:
+    Nanotrasen:
+      position: 0.356, 11.733
+      technologyPrerequisites:
+      - NFBasicSpray
+- type: technology
+  id: NFAdvancedCleaning
+  name: nf-research-technology-advanced-cleaning
+  entityIcon: AdvMopItem
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - AdvMopItem
+  technologyPrerequisites:
+  - NFAdvancedSpray
+  position: 3.125, 22.118
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 12.8
+      technologyPrerequisites:
+      - NFAdvancedSpray
+- type: technology
+  id: NFAdvancedCleaningCyborg
+  name: nf-research-technology-advanced-cleaning-cyborg
+  entityIcon: BorgModuleAdvancedCleaning
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedCleaning
+  technologyPrerequisites:
+  - NFAdvancedCleaning
+  position: 4.458, 23.813
+  factionOverrides:
+    Nanotrasen:
+      position: 0.356, 13.511
+      technologyPrerequisites:
+      - NFAdvancedCleaning
+- type: technology
+  id: NFSelectiveDropper
+  name: nf-research-technology-food-filtration
+  entityIcon: ServiceSelectiveDropper
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - ServiceSelectiveDropper
+  technologyPrerequisites:
+  - NFAdvancedHydroponicsEquipment
+  position: -8.961, 9.491
+  factionOverrides:
+    Nanotrasen:
+      position: -1.778, 2.844
+      technologyPrerequisites:
+      - NFAdvancedHydroponicsEquipment
+- type: technology
+  id: NFAdvancedHydroponicsEquipment
+  name: nf-research-technology-advanced-botanical-equipment
+  entityIcon: PlantAnalyzer
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PlantAnalyzer
+  position: -6.002, 7.116
+  technologyPrerequisites:
+  - NFSuperParts
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 1.778
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFHydroponics
+  name: nf-research-technology-basic-hydroponics
+  entityIcon: hydroponicsTray
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - HydroponicsTrayMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedHydroponicsEquipment
+  position: -10.764, 6.402
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 2.844
+      technologyPrerequisites:
+      - NFAdvancedHydroponicsEquipment
+- type: technology
+  id: NFAdvancedHydroponicsStorge
+  name: nf-research-technology-advanced-botanical-storage
+  entityIcon: PlantBagOfHolding
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PlantBagOfHolding
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedHydroponicsEquipment
+  position: -7.719, 9.231
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, 1.067
+      technologyPrerequisites:
+      - NFHardsuitBotanist
+- type: technology
+  id: NFFoodService
+  name: nf-research-technology-food-service
+  entityIcon: KitchenMicrowave
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - MicrowaveMachineCircuitboard
+  - ReagentGrinderMachineCircuitboard
+  - ElectricGrillMachineCircuitboard
+  - BoozeDispenserMachineCircuitboard
+  - SodaDispenserMachineCircuitboard
+  - ImpCoffeeMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedHydroponicsEquipment
+  position: -10.306, 8.98
+  factionOverrides:
+    Nanotrasen:
+      position: -3.556, 2.489
+      technologyPrerequisites:
+      - NFAdvancedHydroponicsEquipment
+- type: technology
+  id: NFSeedExtractor
+  name: nf-research-technology-seed-extractor
+  entityIcon: SeedExtractor
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - SeedExtractorMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedHydroponicsEquipment
+  position: -10.856, 7.511
+  factionOverrides:
+    Nanotrasen:
+      position: -3.556, 1.067
+      technologyPrerequisites:
+      - NFAdvancedHydroponicsEquipment
+- type: technology
+  id: NFDeepFryer
+  name: nf-research-technology-deep-fryer
+  entityIcon: KitchenDeepFryer
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - DeepFryerMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFFoodService
+  position: -12.01, 8.432
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, 2.489
+      technologyPrerequisites:
+      - NFFoodService
+- type: technology
+  id: NFAdvancedFoodService
+  name: nf-research-technology-advanced-food-service
+  entityIcon: KitchenElectricRange
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - ElectricRangeMachineCircuitboard
+  - KitchenAssemblerMachineCircuitboard
+  - ReagentGrinderIndustrialMachineCircuitboard
+  technologyPrerequisites:
+  - NFFoodService
+  position: -13.411, 11.053
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, 1.778
+      technologyPrerequisites:
+      - NFFoodService
+- type: technology
+  id: NFBiogenerator
+  name: nf-research-technology-biogenerator
+  entityIcon: Biogenerator
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BiogeneratorMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFFoodService
+  position: -11.005, 11.699
+  factionOverrides:
+    Nanotrasen:
+      position: -3.556, 3.556
+      technologyPrerequisites:
+      - NFFoodService
+- type: technology
+  id: NFMeatManipulation
+  name: nf-research-technology-meat-manipulation
+  entityIcon: FatExtractor
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - FatExtractorMachineCircuitboard
+  technologyPrerequisites:
+  - NFDeepFryer
+  position: -14.172, 7.81
+  factionOverrides:
+    Nanotrasen:
+      position: -5.689, 2.489
+      technologyPrerequisites:
+      - NFDeepFryer
+- type: technology
+  id: NFBiomass
+  name: nf-research-technology-biomass
+  entityIcon: BiomassReclaimer
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BiomassReclaimerMachineCircuitboard
+  technologyPrerequisites:
+  - NFBiogenerator
+  position: -12.424, 13.232
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, 3.556
+      technologyPrerequisites:
+      - NFBiogenerator
+- type: technology
+  id: HONKWeapons
+  name: research-technology-honk-weapons
+  entityIcon: WeaponMechSpecialBananaMortar
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 6000
+  prerequisiteLineType: Diagonal
+  recipeUnlocks:
+  - MechEquipmentHonkerBananaMortar
+  - MechEquipmentHonkerMousetrapMortar
+  technologyPrerequisites:
+  - NFHONKMech
+  position: 7.932, 3.751
+  factionOverrides:
+    Nanotrasen:
+      position: 6.044, 2.844
+      technologyPrerequisites:
+      - NFHONKMech

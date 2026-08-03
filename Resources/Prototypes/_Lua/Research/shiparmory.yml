@@ -5,7 +5,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 3500
   recipeUnlocks:
@@ -13,6 +12,11 @@
   position: 14.241, 12.074
   technologyPrerequisites:
   - ShuttleGunDuster
+  factionOverrides:
+    Nanotrasen:
+      position: 9.956, 4.978
+      technologyPrerequisites:
+      - ShuttleGunDuster
 - type: technology
   id: MachineGCSHighCircuitboardTech
   name: research-technology-machine-gcs-high
@@ -20,7 +24,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 5000
   recipeUnlocks:
@@ -28,6 +31,11 @@
   position: 19.636, 18.985
   technologyPrerequisites:
   - ShiparmoryEnergyTurrets
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, 2.844
+      technologyPrerequisites:
+      - ShiparmoryEnergyTurrets
 - type: technology
   id: BasicShuttleWeaponPad
   name: research-technology-basic-weaponpad
@@ -35,7 +43,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 10500
   recipeUnlocks:
@@ -44,6 +51,11 @@
   position: 2.288, 3.312
   technologyPrerequisites:
   - NFSuperParts
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 2.844
+      technologyPrerequisites:
+      - NFSuperParts
 - type: technology
   id: BasicShuttleWeapon
   name: research-technology-basic-weapon
@@ -51,7 +63,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 12500
   recipeUnlocks:
@@ -60,6 +71,11 @@
   technologyPrerequisites:
   - BasicShuttleWeaponPad
   position: 3.884, 4.303
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, 3.556
+      technologyPrerequisites:
+      - BasicShuttleWeaponPad
 - type: technology
   id: ShuttlePowerCage
   name: research-technology-shuttle-powercage
@@ -67,7 +83,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 13500
   recipeUnlocks:
@@ -78,6 +93,11 @@
   technologyPrerequisites:
   - BasicShuttleWeapon
   position: 4.945, 5.245
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 4.267
+      technologyPrerequisites:
+      - BasicShuttleWeapon
 - type: technology
   id: ShuttleShuttleGunPerforator
   name: research-technology-shuttle-perforator
@@ -85,7 +105,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 14800
   recipeUnlocks:
@@ -93,6 +112,11 @@
   technologyPrerequisites:
   - ShuttlePowerCage
   position: 5.927, 6.074
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 4.267
+      technologyPrerequisites:
+      - ShuttlePowerCage
 - type: technology
   id: ShuttleGrenade
   name: research-technology-shuttle-grenade
@@ -100,7 +124,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 1
   cost: 12100
   recipeUnlocks:
@@ -111,6 +134,11 @@
   technologyPrerequisites:
   - ShuttleShuttleGunPerforator
   position: 7.037, 7.05
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 5.333
+      technologyPrerequisites:
+      - ShuttleShuttleGunPerforator
 - type: technology
   id: ShuttleFriendshipPirate
   name: research-technology-shuttle-friendshippirate
@@ -118,7 +146,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 18200
   recipeUnlocks:
@@ -127,6 +154,11 @@
   technologyPrerequisites:
   - ShuttleGrenade
   position: 8.419, 8.114
+  factionOverrides:
+    Nanotrasen:
+      position: 5.689, 4.978
+      technologyPrerequisites:
+      - ShuttleGrenade
 - type: technology
   id: ShuttleCannonBall
   name: research-technology-shuttle-cannonball
@@ -134,7 +166,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 16900
   recipeUnlocks:
@@ -143,6 +174,11 @@
   technologyPrerequisites:
   - ShuttleFriendshipPirate
   position: 9.891, 9.103
+  factionOverrides:
+    Nanotrasen:
+      position: 6.756, 4.978
+      technologyPrerequisites:
+      - ShuttleFriendshipPirate
 - type: technology
   id: ShuttleGrenadeEMP
   name: research-technology-shuttle-grenadeemp
@@ -150,7 +186,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 14800
   recipeUnlocks:
@@ -159,6 +194,11 @@
   technologyPrerequisites:
   - ShuttleCannonBall
   position: 11.408, 9.971
+  factionOverrides:
+    Nanotrasen:
+      position: 7.822, 4.978
+      technologyPrerequisites:
+      - ShuttleCannonBall
 - type: technology
   id: ShuttleGunDuster
   name: research-technology-shuttle-gunduster
@@ -166,7 +206,6 @@
   discipline: Shiparmory
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 21100
   recipeUnlocks:
@@ -175,4 +214,437 @@
   technologyPrerequisites:
   - ShuttleGrenadeEMP
   position: 12.929, 10.948
-...
+  factionOverrides:
+    Nanotrasen:
+      position: 8.889, 4.978
+      technologyPrerequisites:
+      - ShuttleGrenadeEMP
+- type: technology
+  id: ShiparmoryBallisticBases
+  name: research-technology-shiparmory-ballistic-bases
+  entityIcon: Weapon20mm
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 25000
+  recipeUnlocks:
+  - Weapon20mmBaseFlatpack
+  - Weapon53mmBaseFlatpack
+  - Weapon80mmBaseFlatpack
+  - MagazineLua20mmAmmoRecipe
+  - MagazineLua53mmAmmoRecipe
+  - MagazineLua80mmAmmoRecipe
+  technologyPrerequisites:
+  - MachineGCSMediumCircuitboardTech
+  position: 15.548, 13.433
+  factionOverrides:
+    Nanotrasen:
+      position: 11.022, 4.978
+      technologyPrerequisites:
+      - MachineGCSMediumCircuitboardTech
+- type: technology
+  id: ShiparmoryHeavyBallisticBases
+  name: research-technology-shiparmory-heavy-ballistic-bases
+  entityIcon: Weapon140mm
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 35000
+  recipeUnlocks:
+  - Weapon105mmBaseFlatpack
+  - Weapon120mmBaseFlatpack
+  - Weapon140mmBaseFlatpack
+  - MagazineLua105mmAmmoRecipe
+  - CartridgeLua120mmAmmoRecipe
+  - MagazineLua140mmAmmoRecipe
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 18.001, 16.232
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, 3.911
+      technologyPrerequisites:
+      - ShiparmoryBallisticBases
+- type: technology
+  id: ShiparmoryTeslaTurretBase
+  name: research-technology-shiparmory-tesla-base
+  entityIcon: TeslaTurretBase
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 45000
+  recipeUnlocks:
+  - TeslaTurretBaseFlatpack
+  technologyPrerequisites:
+  - ShiparmoryHeavyBallisticBases
+  position: 18.829, 18.975
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, 3.911
+      technologyPrerequisites:
+      - ShiparmoryHeavyBallisticBases
+- type: technology
+  id: ShiparmoryShieldSystems
+  name: research-technology-shiparmory-shield-systems
+  entityIcon: ShieldGeneratorMedium
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 60000
+  recipeUnlocks:
+  - ShieldGeneratorMediumFlatPack
+  - ShieldGeneratorFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 17.204, 16.227
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, 4.978
+      technologyPrerequisites:
+      - ShiparmoryBallisticBases
+- type: technology
+  id: ShiparmoryCapitalShields
+  name: research-technology-shiparmory-capital-shields
+  entityIcon: ShieldGeneratorTSFCapital
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 100000
+  recipeUnlocks:
+  - ShieldGeneratorTSFCapitalFlatPack
+  technologyPrerequisites:
+  - ShiparmoryShieldSystems
+  position: 18.028, 18.974
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, 4.978
+      technologyPrerequisites:
+      - ShiparmoryShieldSystems
+- type: technology
+  id: ShiparmoryKineticTurrets
+  name: research-technology-shiparmory-kinetic-turrets
+  entityIcon: WeaponTurretAK570
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 40000
+  recipeUnlocks:
+  - WeaponTurretL85AutocannonFlatPack
+  - WeaponTurretDravonFlatPack
+  - WeaponTurretAK570FlatPack
+  - WeaponTurretRAC30FlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 15.557, 16.243
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, 6.044
+      technologyPrerequisites:
+      - ShiparmoryBallisticBases
+- type: technology
+  id: ShiparmoryAdvancedKineticTurrets
+  name: research-technology-shiparmory-advanced-kinetic-turrets
+  entityIcon: WeaponTurretCharonReload
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 90000
+  recipeUnlocks:
+  - WeaponTurretCharonReloadFlatPack
+  technologyPrerequisites:
+  - ShiparmoryKineticTurrets
+  position: 16.365, 19.006
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, 6.044
+      technologyPrerequisites:
+      - ShiparmoryKineticTurrets
+- type: technology
+  id: ShiparmoryEnergyTurrets
+  name: research-technology-shiparmory-energy-turrets
+  entityIcon: WeaponTurretType35
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 45000
+  recipeUnlocks:
+  - WeaponTurretType35FlatPack
+  - WeaponLaserTurretL1PhalanxFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 18.854, 16.226
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, 2.844
+      technologyPrerequisites:
+      - ShiparmoryBallisticBases
+- type: technology
+  id: ShiparmoryAdvancedEnergyTurrets
+  name: research-technology-shiparmory-advanced-energy-turrets
+  entityIcon: WeaponLaserTurretApollo
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 85000
+  recipeUnlocks:
+  - WeaponTurretType54FlatPack
+  - WeaponLaserTurretApolloFlatPack
+  technologyPrerequisites:
+  - MachineGCSHighCircuitboardTech
+  position: 19.629, 20.848
+  factionOverrides:
+    Nanotrasen:
+      position: 14.578, 2.844
+      technologyPrerequisites:
+      - MachineGCSHighCircuitboardTech
+- type: technology
+  id: ShiparmoryCapitalEnergyTurrets
+  name: research-technology-shiparmory-capital-energy-turrets
+  entityIcon: WeaponTurretType241
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 200000
+  recipeUnlocks:
+  - WeaponTurretType241FlatPack
+  technologyPrerequisites:
+  - ShiparmoryAdvancedEnergyTurrets
+  position: 19.637, 22.794
+  factionOverrides:
+    Nanotrasen:
+      position: 15.644, 2.844
+      technologyPrerequisites:
+      - ShiparmoryAdvancedEnergyTurrets
+- type: technology
+  id: ShiparmoryMissileTurrets
+  name: research-technology-shiparmory-missile-turrets
+  entityIcon: WeaponTurretVanyk
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 50000
+  recipeUnlocks:
+  - WeaponTurretVanykFlatPack
+  - WeaponTurretVesperaFlatPack
+  - MagazineNightHunterAmmoRecipe
+  - MagazineLancerAmmoRecipe
+  - MagazineCerberAmmoRecipe
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 14.739, 16.244
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, 8.178
+      technologyPrerequisites:
+      - ShiparmoryBallisticBases
+- type: technology
+  id: ShiparmoryAdvancedMissileTurrets
+  name: research-technology-shiparmory-advanced-missile-turrets
+  entityIcon: WeaponTurretASM220
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - WeaponTurretLightMunitionsBayFlatPack
+  - WeaponTurretASM220FlatPack
+  technologyPrerequisites:
+  - ShiparmoryMissileTurrets
+  position: 15.55, 19.022
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, 8.178
+      technologyPrerequisites:
+      - ShiparmoryMissileTurrets
+- type: technology
+  id: ShiparmoryPlastitaniumStructures
+  name: research-technology-shiparmory-plastitanium-structures
+  entityIcon: WallPlastitanium
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 30000
+  recipeUnlocks:
+  - WallPlastitaniumFlatPack
+  - PlastitaniumWindowFlatPack
+  technologyPrerequisites:
+  - ShiparmoryBallisticBases
+  position: 16.394, 16.221
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, 7.111
+      technologyPrerequisites:
+      - ShiparmoryBallisticBases
+- type: technology
+  id: ShiparmoryStationPlastitanium
+  name: research-technology-shiparmory-station-plastitanium
+  entityIcon: WallPlastitaniumStation
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - WallPlastitaniumStationFlatPack
+  - PlastitaniumWindowStationFlatPack
+  technologyPrerequisites:
+  - ShiparmoryPlastitaniumStructures
+  position: 17.205, 18.974
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, 7.111
+      technologyPrerequisites:
+      - ShiparmoryPlastitaniumStructures
+- type: technology
+  id: UniversalRailgunAmmo
+  name: research-technology-universal-railgun-ammo
+  entityIcon: CharonSlugAmmo
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - CharonSlugUniversal
+  - CharonApheSlugUniversal
+  - CharonEmpSlugUniversal
+  technologyPrerequisites:
+  - ShuttleGrenade
+  position: 7.732, 8.85
+  factionOverrides:
+    Nanotrasen:
+      position: 5.689, 5.689
+      technologyPrerequisites:
+      - ShuttleGrenade
+- type: technology
+  id: UniversalSubnuclearRailgunAmmo
+  name: research-technology-universal-railgun-ammo-subnuclear
+  entityIcon: CharonSubnuclearSlugAmmo
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - CharonSubnuclearSlugUniversal
+  technologyPrerequisites:
+  - UniversalRailgunAmmo
+  position: 8.5, 10.5
+  factionOverrides:
+    Nanotrasen:
+      position: 6.756, 6.4
+      technologyPrerequisites:
+      - UniversalRailgunAmmo
+- type: technology
+  id: UniversalTorpedoAmmo
+  name: research-technology-universal-asm220-ammo
+  entityIcon: Asm220TorpedoHE
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 40000
+  recipeUnlocks:
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoHESACLOSUniversal
+  - ASM220TorpedoECMUniversal
+  technologyPrerequisites:
+  - UniversalRailgunAmmo
+  position: 9.214, 9.827
+  factionOverrides:
+    Nanotrasen:
+      position: 6.756, 5.689
+      technologyPrerequisites:
+      - UniversalRailgunAmmo
+- type: technology
+  id: UniversalTorpedoAmmoAdvanced
+  name: research-technology-universal-asm220-advanced
+  entityIcon: Asm220TorpedoLOSAT
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - ASM220TorpedoLOSATUniversal
+  technologyPrerequisites:
+  - UniversalTorpedoAmmo
+  position: 10.0, 10.5
+  factionOverrides:
+    Nanotrasen:
+      position: 7.822, 5.689
+      technologyPrerequisites:
+      - UniversalTorpedoAmmo
+- type: technology
+  id: Universal150mmAmmo
+  name: research-technology-universal-150mm-ammo
+  entityIcon: 150mmApShell
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - 150mmApShellUniversal
+  - 150mmApheShellUniversal
+  - 150mmEmpShellUniversal
+  technologyPrerequisites:
+  - UniversalTorpedoAmmo
+  position: 10.731, 10.695
+  factionOverrides:
+    Nanotrasen:
+      position: 7.822, 6.4
+      technologyPrerequisites:
+      - UniversalTorpedoAmmo
+- type: technology
+  id: UniversalLightFighterOrdinance
+  name: research-technology-universal-light-fighter-ordinance
+  entityIcon: LightFighterOrdinanceGPOItem
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+  technologyPrerequisites:
+  - Universal150mmAmmo
+  position: 12.242, 11.668
+  factionOverrides:
+    Nanotrasen:
+      position: 8.889, 6.4
+      technologyPrerequisites:
+      - Universal150mmAmmo
+- type: technology
+  id: UniversalAdvancedLightFighterOrdinance
+  name: research-technology-universal-advanced-light-fighter-ordinance
+  entityIcon: LightFighterOrdinanceQuasarItem
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 40000
+  recipeUnlocks:
+  - QuasarAcceleratorUniversal
+  technologyPrerequisites:
+  - UniversalLightFighterOrdinance
+  position: 13.541, 12.778
+  factionOverrides:
+    Nanotrasen:
+      position: 9.956, 6.4
+      technologyPrerequisites:
+      - UniversalLightFighterOrdinance

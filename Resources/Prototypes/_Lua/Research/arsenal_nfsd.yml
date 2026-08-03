@@ -1,0 +1,143 @@
+- type: technology
+  id: NFArsenalNfsdPropulsion
+  name: nf-research-technology-security-personal-propulsion
+  entityIcon: JetpackNfsd
+  discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - JetpackNfsd
+  technologyPrerequisites:
+  - NFArsenalMercenaryPropulsion
+  position: 2.162, 10.042
+  factionOverrides:
+    Nanotrasen:
+      position: 0, 7.822
+      technologyPrerequisites:
+      - NFBasicPersonalPropulsion
+- type: technology
+  id: NFSpecialMeans
+  name: nf-research-technology-special-means
+  entityIcon: ClothingBackpackElectropack
+  discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFClothingBackpackElectropack
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedRiotControl
+  position: 5.688, 15.164
+  factionOverrides:
+    Nanotrasen:
+      position: 5.689, 9.956
+      technologyPrerequisites:
+      - NFAdvancedRiotControl
+- type: technology
+  id: NFBasicShuttleArmament
+  name: nf-research-technology-basic-shuttle-armament
+  entityIcon: PowerCageRecharger
+  discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - PowerCageRechargerCircuitboard
+  - PowerCageSmall
+  - PowerCageMedium
+  - PowerCageHigh
+  - NFMagazineGrenadeEmpty
+  - NFGrenadeFlash
+  - NFGrenadeEMP
+  prerequisiteLineType: Tree
+  technologyPrerequisites:
+  - NFImprovedSalvageWeapons
+  position: 5.149, 10.589
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, 8.178
+      technologyPrerequisites:
+      - NFImprovedSalvageWeapons
+- type: technology
+  id: Gygax
+  name: research-technology-gygax
+  entityIcon: MechGygax
+  discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxArmor
+  - GygaxHead
+  - GygaxLArm
+  - GygaxLLeg
+  - GygaxRArm
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxTargetingElectronics
+  - WeaponMechCombatUltraRifle
+  technologyPrerequisites:
+  - Ripley2
+  position: 9.02, 4.546
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, 3.911
+      technologyPrerequisites:
+      - Ripley2
+- type: technology
+  id: ExplosiveMechAmmunition
+  name: research-technology-explosive-mech-ammunition
+  entityIcon: WeaponMechCombatMissileRack8
+  discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 12000
+  recipeUnlocks:
+  - WeaponMechCombatMissileRack8
+  technologyPrerequisites:
+  - NFExplosiveTechnology
+  position: 7.526, 13.098
+  factionOverrides:
+    Nanotrasen:
+      position: 7.467, 8.889
+      technologyPrerequisites:
+      - NFExplosiveTechnology
+- type: technology
+  id: Durand
+  name: research-technology-durand
+  entityIcon: MechDurand
+  discipline: NFArsenalNfsd
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 13000
+  recipeUnlocks:
+  - DurandHarness
+  - DurandArmor
+  - DurandHead
+  - DurandLArm
+  - DurandLLeg
+  - DurandRArm
+  - DurandRLeg
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - DurandTargetingElectronics
+  - WeaponMechCombatShotgun
+  - WeaponMechCombatShotgunIncendiary
+  technologyPrerequisites:
+  - Gygax
+  position: 10.052, 4.576
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 3.911
+      technologyPrerequisites:
+      - Gygax

@@ -1,0 +1,296 @@
+- type: technology
+  id: NFHardsuitsField
+  name: nf-research-technology-hardsuits-field
+  entityIcon: ClothingOuterHardsuitSalvage
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSalvage
+  technologyPrerequisites:
+  - NFHardsuitsBasic
+  position: -1.977, 10.783
+  factionOverrides:
+    Nanotrasen:
+      position: -3.556, 7.822
+      technologyPrerequisites:
+      - NFMagnetsTech
+      - NFHardsuitsArmored
+- type: technology
+  id: NFBasicPersonalPropulsion
+  name: nf-research-technology-basic-personal-propulsion
+  entityIcon: JetpackBlue
+  discipline: NFSalvage
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - JetpackBlue
+  position: -0.026, 6.441
+  technologyPrerequisites:
+  - NFHardsuitsExperimentalProtection
+  factionOverrides:
+    Nanotrasen:
+      position: 0, 6.756
+      technologyPrerequisites: []
+- type: technology
+  id: NFPersonalPropulsion
+  name: nf-research-technology-personal-propulsion
+  entityIcon: JetpackCaptain
+  discipline: NFSalvage
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - JetpackCaptain
+  technologyPrerequisites:
+  - NFBasicPersonalPropulsion
+  position: 1.004, 7.173
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 7.822
+      technologyPrerequisites:
+      - NFBasicPersonalPropulsion
+      - NFArsenalNfsdPropulsion
+- type: technology
+  id: NFAdvancedPersonalPropulsion
+  name: nf-research-technology-advanced-personal-propulsion
+  entityIcon: JetpackVoid
+  discipline: NFSalvage
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - JetpackVoid
+  technologyPrerequisites:
+  - NFPersonalPropulsion
+  position: 2.131, 8.815
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 8.889
+      technologyPrerequisites:
+      - NFPersonalPropulsion
+- type: technology
+  id: NFSalvageGrapplingEquipment
+  name: nf-research-technology-salvage-grappling-equipment
+  entityIcon: WeaponGrapplingGun
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - WeaponGrapplingGun
+  position: 1.352, 4.712
+  technologyPrerequisites:
+  - NFSuperParts
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, 5.689
+      technologyPrerequisites:
+      - NFSuperParts
+- type: technology
+  id: NFExcavation
+  name: nf-research-technology-excavation
+  entityIcon: MiningDrill
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - MiningDrill
+  - MineralScannerEmpty
+  technologyPrerequisites:
+  - NFSalvageGrapplingEquipment
+  position: 3.025, 5.262
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 5.689
+      technologyPrerequisites:
+      - NFSalvageGrapplingEquipment
+- type: technology
+  id: NFOreProcessor
+  name: nf-research-technology-ore-processing
+  entityIcon: OreProcessor
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2000
+  recipeUnlocks:
+  - OreProcessorMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFExcavation
+  position: 4.689, 6.404
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 6.4
+      technologyPrerequisites:
+      - NFExcavation
+- type: technology
+  id: NFIndustrialOreProcessor
+  name: nf-research-technology-industrial-ore-processing
+  entityIcon: OreProcessorIndustrial
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+  technologyPrerequisites:
+  - NFOreProcessor
+  position: 5.896, 7.385
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, 6.756
+      technologyPrerequisites:
+      - NFOreProcessor
+- type: technology
+  id: NFSalvageWeapons
+  name: nf-research-technology-salvage-weapons
+  entityIcon: NFWeaponPka
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NFWeaponPka
+  - WeaponCrusher
+  - WeaponCrusherDagger
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFSalvageGrapplingEquipment
+  position: 2.029, 6.548
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 6.756
+      technologyPrerequisites:
+      - NFSalvageGrapplingEquipment
+- type: technology
+  id: NFMassExcavation
+  name: nf-research-technology-mass-excavation
+  entityIcon: MiningDrillDiamond
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MiningDrillDiamond
+  - AdvancedMineralScannerEmpty
+  technologyPrerequisites:
+  - NFExcavation
+  position: 3.998, 7.122
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 7.111
+      technologyPrerequisites:
+      - NFExcavation
+- type: technology
+  id: NFAdvancedSalvageWeapons
+  name: nf-research-technology-advanced-salvage-weapons
+  entityIcon: WeaponCrusherGlaive
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - WeaponCrusherGlaive
+  technologyPrerequisites:
+  - NFSalvageWeapons
+  position: 3.294, 7.857
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 7.822
+      technologyPrerequisites:
+      - NFSalvageWeapons
+- type: technology
+  id: NFBluespaceOreStorage
+  name: nf-research-technology-excavation-storage
+  entityIcon: OreBagOfHolding
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - OreBagOfHolding
+  technologyPrerequisites:
+  - NFMassExcavation
+  position: 5.231, 8.103
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, 7.467
+      technologyPrerequisites:
+      - NFMassExcavation
+- type: technology
+  id: NFImprovedSalvageWeapons
+  name: nf-research-technology-salvage-weapons-improved
+  entityIcon: NFWeaponPkaCannon
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - NFWeaponPkaCannon
+  technologyPrerequisites:
+  - NFAdvancedSalvageWeapons
+  position: 4.528, 8.822
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 7.822
+      technologyPrerequisites:
+      - NFAdvancedSalvageWeapons
+- type: technology
+  id: NFAdvancedSalvageCyborg
+  name: nf-research-technology-advanced-salvage-cyborg
+  entityIcon: BorgModuleAdvancedMining
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedMining
+  technologyPrerequisites:
+  - NFBluespaceOreStorage
+  position: 6.519, 9.16
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 7.467
+      technologyPrerequisites:
+      - NFBluespaceOreStorage
+- type: technology
+  id: NFBluespaceGasTanks
+  name: nf-research-technology-bluespace-gas-tanks
+  entityIcon: BluespaceAirTank
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - BluespaceAirTank
+  - SmallBluespaceAirTank
+  technologyPrerequisites:
+  - NFAdvancedPersonalPropulsion
+  position: 3.176, 10.355
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 9.956
+      technologyPrerequisites:
+      - NFAdvancedPersonalPropulsion

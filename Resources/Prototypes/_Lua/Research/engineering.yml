@@ -1,0 +1,1044 @@
+- type: technology
+  id: NFAdvancedParts
+  name: nf-research-technology-advanced-parts
+  entityIcon: AdvancedMatterBinStockPart
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - AdvancedCapacitorStockPart
+  - AdvancedMatterBinStockPart
+  - NanoManipulatorStockPart
+  - ResearchAndDevelopmentServerMachineCircuitboard
+  - ResearchAndDevelopmentServerSyndicateMachineCircuitboard
+  - ResearchAndDevelopmentServerRoguesMachineCircuitboard
+  - ResearchAndDevelopmentServerUsspMachineCircuitboard
+  - ResearchAndDevelopmentServerTSFMCMachineCircuitboard
+  - ResearchAndDevelopmentServerMercMachineCircuitboard
+  - ResearchComputerCircuitboard
+  - ResearchComputerSyndicateCircuitboard
+  - ResearchComputerRoguesCircuitboard
+  - ResearchComputerUsspCircuitboard
+  - ResearchComputerTSFMCCircuitboard
+  - ResearchComputerMercCircuitboard
+  position: 0, 0
+- type: technology
+  id: NFIndustrialCutter
+  name: nf-research-technology-industrial-cutter
+  entityIcon: CutterMachine
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - CutterMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: -0.659, -1.816
+  factionOverrides:
+    Nanotrasen:
+      position: 0, -2.844
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFIndustrialSilo
+  name: nf-research-technology-industrial-silo
+  entityIcon: MachineMaterialSilo
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MaterialSiloMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 1.152, -1.646
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, -1.422
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFIndustrialEngineering
+  name: nf-research-technology-industrial-engineering
+  entityIcon: ProtolatheHyperConvection
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - AutolatheHyperConvectionMachineCircuitboard
+  - ProtolatheHyperConvectionMachineCircuitboard
+  - CircuitImprinterHyperConvectionMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 0.774, -3.079
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, -2.844
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFAdvancedBeltTechnology
+  name: nf-research-technology-advanced-belt
+  entityIcon: ClothingBeltChiefEngineer
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingBeltChiefEngineer
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 2.415, -1.076
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, -1.422
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFAdvancedWelderTechnology
+  name: nf-research-technology-advanced-welder
+  entityIcon: WelderExperimental
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - WelderExperimental
+  - ClothingMaskWeldingGas
+  - ClothingEyesGlassesMeson
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: -2.021, 1.789
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 0
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFMechanicalCompression
+  name: nf-research-technology-mechanical-compression
+  entityIcon: MachineFlatpacker
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - FlatpackerMachineCircuitboard
+  technologyPrerequisites:
+  - NFIndustrialSilo
+  position: 1.951, -3.327
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, -2.133
+      technologyPrerequisites:
+      - NFIndustrialSilo
+- type: technology
+  id: NFRapidPartExchange
+  name: nf-research-technology-rped
+  entityIcon: RPED
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - RPED
+  technologyPrerequisites:
+  - NFIndustrialEngineering
+  position: 1.301, -6.042
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, -3.911
+      technologyPrerequisites:
+      - NFIndustrialEngineering
+- type: technology
+  id: NFAdvancedToolsTechnology
+  name: nf-research-technology-advanced-tools
+  entityIcon: PowerDrill
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PowerDrill
+  - JawsOfLife
+  - SignallerAdvanced
+  technologyPrerequisites:
+  - NFAdvancedWelderTechnology
+  position: -4.164, 1.669
+  factionOverrides:
+    Nanotrasen:
+      position: -3.556, 0
+      technologyPrerequisites:
+      - NFAdvancedWelderTechnology
+- type: technology
+  id: NFRapidConstruction
+  name: nf-research-technology-rapid-construction
+  entityIcon: ShipyardRCD
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ShipyardRCD
+  - ShipyardRCDAmmo
+  - PlanetaryRCD
+  - ShipRepairDevice
+  - ShipRepairDeviceAmmo
+  technologyPrerequisites:
+  - NFMechanicalCompression
+  position: 3.043, -5.248
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, -2.844
+      technologyPrerequisites:
+      - NFMechanicalCompression
+- type: technology
+  id: NFBluespaceStorage
+  name: nf-research-technology-bluespace-storage
+  entityIcon: ClothingBackpackHolding
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 20000
+  recipeUnlocks:
+  - ClothingBackpackHolding
+  - ClothingBackpackSatchelHolding
+  - ClothingBackpackDuffelHolding
+  - ClothingBackpackMessengerHolding
+  - ConstructionBagOfHolding
+  technologyPrerequisites:
+  - NFMiscellaneousItemsOrganization
+  position: 4.001, -4.604
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, -2.844
+      technologyPrerequisites:
+      - NFMiscellaneousItemsOrganization
+- type: technology
+  id: NFAdvancedCyborgToolsTechnology
+  name: nf-research-technology-advanced-cyborg-tools
+  entityIcon: BorgModuleAdvancedTool
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedTool
+  technologyPrerequisites:
+  - NFAdvancedToolsTechnology
+  position: -6.495, 1.692
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, 0
+      technologyPrerequisites:
+      - NFAdvancedToolsTechnology
+- type: technology
+  id: NFMatterEnergyConversion
+  name: nf-research-technology-matter-energy-conversion
+  entityIcon: BorgModuleRCD
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - BorgModuleRCD
+  prerequisiteLineType: Tree
+  technologyPrerequisites:
+  - NFRapidConstruction
+  - NFBluespaceStorage
+  position: 4.37, -6.638
+  factionOverrides:
+    Nanotrasen:
+      position: 2.844, -3.911
+      technologyPrerequisites:
+      - NFRapidConstruction
+      - NFBluespaceStorage
+- type: technology
+  id: NFHardsuitsBasic
+  name: nf-research-technology-hardsuits-basic
+  entityIcon: ClothingOuterHardsuitSpatio
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitSpatio
+  - ClothingOuterHardsuitPilot
+  position: -1.149, 8.556
+  technologyPrerequisites:
+  - NFHardsuitsEngineering
+  factionOverrides:
+    Nanotrasen:
+      position: -1.778, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsAdvanced
+- type: technology
+  id: NFHardsuitsEngineering
+  name: nf-research-technology-hardsuits-engineering
+  entityIcon: ClothingOuterHardsuitEngineering
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitAtmos
+  - ClothingOuterHardsuitEngineering
+  technologyPrerequisites:
+  - NFHardsuitsExperimentalProtection
+  position: -1.12, 6.213
+  factionOverrides:
+    Nanotrasen:
+      position: 0, 4.978
+      technologyPrerequisites:
+      - NFSuperParts
+- type: technology
+  id: NFHardsuitsAdvanced
+  name: nf-research-technology-hardsuits-advanced
+  entityIcon: ClothingOuterHardsuitEngineeringWhite
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitCap
+  - ClothingOuterHardsuitEngineeringWhite
+  - ClothingOuterHardsuitLuxury
+  technologyPrerequisites:
+  - NFHardsuitsEngineering
+  position: -2.237, 6.906
+  factionOverrides:
+    Nanotrasen:
+      position: -2.133, 5.689
+      technologyPrerequisites:
+      - NFHardsuitsEngineering
+- type: technology
+  id: NFMagnetsTech
+  name: nf-research-technology-magnets-tech
+  entityIcon: ClothingShoesBootsMag
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingShoesBootsMag
+  technologyPrerequisites:
+  - NFHardsuitsBasic
+  position: -2.729, 9.2
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 7.822
+      technologyPrerequisites:
+      - NFHardsuitsBasic
+- type: technology
+  id: NFBasicRoboticsEquipment
+  name: nf-research-technology-basic-robotics-equipment
+  entityIcon: MechEquipmentFork
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - MechEquipmentFork
+  technologyPrerequisites:
+  - NFBasicRobotics
+  position: 5.757, 1.42
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 1.067
+      technologyPrerequisites:
+      - NFBasicRobotics
+- type: technology
+  id: NFBasicRobotics
+  name: nf-research-technology-basic-robotics
+  entityIcon: ExosuitFabricator
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - ProximitySensor
+  position: 2.868, 0.69
+  technologyPrerequisites:
+  - NFAdvancedParts
+  factionOverrides:
+    Nanotrasen:
+      position: 1.778, 1.778
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFVim
+  name: nf-research-technology-vim
+  entityIcon: MechVim
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - VimHarness
+  technologyPrerequisites:
+  - NFBasicRobotics
+  position: 5.752, 2.164
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 1.778
+      technologyPrerequisites:
+      - NFBasicRobotics
+- type: technology
+  id: NFRoboticsEquipment
+  name: nf-research-technology-robotics-equipment
+  entityIcon: MechEquipmentGrabberSmall
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - MechEquipmentGrabberSmall
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBasicRoboticsEquipment
+  position: 6.862, 1.439
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 1.067
+      technologyPrerequisites:
+      - NFBasicRoboticsEquipment
+- type: technology
+  id: NFRipleyAPLU
+  name: nf-research-technology-ripley-aplu
+  entityIcon: MechRipley
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - RipleyHarness
+  - RipleyLArm
+  - RipleyRArm
+  - RipleyLLeg
+  - RipleyRLeg
+  - RipleyCentralElectronics
+  - RipleyPeripheralsElectronics
+  technologyPrerequisites:
+  - NFBasicRobotics
+  position: 5.74, 2.909
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 2.489
+      technologyPrerequisites:
+      - NFBasicRobotics
+- type: technology
+  id: NFCritterMechs
+  name: nf-research-technology-critter-mechs
+  entityIcon: MechHamtr
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - HamtrHarness
+  - HamtrLArm
+  - HamtrRArm
+  - HamtrLLeg
+  - HamtrRLeg
+  - HamtrCentralElectronics
+  - HamtrPeripheralsElectronics
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFVim
+  position: 6.873, 2.181
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 1.778
+      technologyPrerequisites:
+      - NFVim
+- type: technology
+  id: NFAdvancedRoboticsEquipment
+  name: nf-research-technology-advanced-robotics-equipment
+  entityIcon: MechEquipmentGrabber
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MechEquipmentGrabber
+  technologyPrerequisites:
+  - NFRoboticsEquipment
+  position: 7.936, 1.45
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, 1.067
+      technologyPrerequisites:
+      - NFRoboticsEquipment
+- type: technology
+  id: NFHONKMech
+  name: nf-research-technology-honk-mech
+  entityIcon: MechHonker
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HonkerHarness
+  - HonkerLArm
+  - HonkerRArm
+  - HonkerLLeg
+  - HonkerRLeg
+  - HonkerCentralElectronics
+  - HonkerPeripheralsElectronics
+  - HonkerTargetingElectronics
+  technologyPrerequisites:
+  - NFRipleyAPLU
+  position: 6.868, 2.927
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 2.489
+      technologyPrerequisites:
+      - NFRipleyAPLU
+- type: technology
+  id: NFHornRoboticsEquipment
+  name: nf-research-technology-horn-robotics-equipment
+  entityIcon: MechEquipmentHorn
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - MechEquipmentHorn
+  technologyPrerequisites:
+  - NFHONKMech
+  position: 7.93, 2.945
+  factionOverrides:
+    Nanotrasen:
+      position: 6.044, 2.133
+      technologyPrerequisites:
+      - NFHONKMech
+- type: technology
+  id: NFAdvancedPowercells
+  name: nf-research-technology-advanced-powercells
+  entityIcon: PowerCellHigh
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PowerCellHigh
+  position: 2.875, -0.127
+  technologyPrerequisites:
+  - NFAdvancedParts
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 0
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFAdvancedSMES
+  name: nf-research-technology-advanced-smes
+  entityIcon: SMESAdvancedEmpty
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - SMESAdvancedMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedPowercells
+  position: 4.435, -1.481
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, -2.133
+      technologyPrerequisites:
+      - NFAdvancedPowercells
+- type: technology
+  id: NFAdvancedCharging
+  name: nf-research-technology-advanced-charging
+  entityIcon: TurboItemRecharger
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - TurboItemRechargerCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedPowercells
+  position: 6.621, -2.009
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, -0.711
+      technologyPrerequisites:
+      - NFAdvancedPowercells
+- type: technology
+  id: NFTrashPowerGeneration
+  name: nf-research-technology-trash-power-generators
+  entityIcon: PortableGeneratorJrPacman
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PortableGeneratorJrPacmanMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedPowercells
+  position: 6.181, -0.457
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, -0.711
+      technologyPrerequisites:
+      - NFPowerSolar
+- type: technology
+  id: NFPowerSolar
+  name: nf-research-technology-power-solar
+  entityIcon: SolarPanel
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - SolarControlComputerCircuitboard
+  - SolarTrackerElectronics
+  - SolarAssemblyFlatpack
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAdvancedPowercells
+  position: 8.218, 0.602
+  factionOverrides:
+    Nanotrasen:
+      position: 5.333, 0
+      technologyPrerequisites:
+      - NFAdvancedPowercells
+- type: technology
+  id: NFEmitter
+  name: nf-research-technology-particle-emission
+  entityIcon: Emitter
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - EmitterCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedPowercells
+  position: 9.887, -0.444
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 0.711
+      technologyPrerequisites:
+      - NFPowerSolar
+- type: technology
+  id: NFFission
+  name: nf-research-technology-fission-powercells
+  entityIcon: PowerCellMicroreactor
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - PowerCellMicroreactor
+  technologyPrerequisites:
+  - NFAdvancedSMES
+  position: 6.283, -4.455
+  factionOverrides:
+    Nanotrasen:
+      position: 8.533, -2.489
+      technologyPrerequisites:
+      - NFAdvancedSMES
+      - NFPowerGeneration
+- type: technology
+  id: NFPortableFission
+  name: nf-research-technology-portable-fission
+  entityIcon: PortableRecharger
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - NFPortableRecharger
+  technologyPrerequisites:
+  - NFAdvancedCharging
+  position: 9.497, -5.39
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, -1.422
+      technologyPrerequisites:
+      - NFAdvancedCharging
+- type: technology
+  id: NFBasicPowerGeneration
+  name: nf-research-technology-basic-power-generators
+  entityIcon: PortableGeneratorPacman
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PortableGeneratorPacmanMachineCircuitboard
+  technologyPrerequisites:
+  - NFTrashPowerGeneration
+  position: 7.738, -0.953
+  factionOverrides:
+    Nanotrasen:
+      position: 7.467, -1.422
+      technologyPrerequisites:
+      - NFTrashPowerGeneration
+- type: technology
+  id: NFParticleDecelerator
+  name: nf-research-technology-portable-particle-emission
+  entityIcon: NFWeaponParticleDecelerator
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - NFWeaponParticleDecelerator
+  technologyPrerequisites:
+  - NFEmitter
+  position: 12.421, -1.711
+  factionOverrides:
+    Nanotrasen:
+      position: 7.822, 0.711
+      technologyPrerequisites:
+      - NFEmitter
+- type: technology
+  id: NFPowerGeneration
+  name: nf-research-technology-power-generators
+  entityIcon: PortableGeneratorSuperPacman
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  technologyPrerequisites:
+  - NFBasicPowerGeneration
+  position: 9.103, -1.775
+  factionOverrides:
+    Nanotrasen:
+      position: 8.533, -1.422
+      technologyPrerequisites:
+      - NFBasicPowerGeneration
+- type: technology
+  id: NuclearPowerGeneration
+  name: research-technology-nuclear-power
+  entityIcon: NuclearReactorSmall
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - NuclearFabricatorMachineCircuitboard
+  - NuclearReactorMonitorComputerCircuitboard
+  - GasTurbineMonitorComputerCircuitboard
+  - UraniumReactorFuelRod
+  - PlasmaReactorFuelRod
+  - UraniumGlassReactorFuelRod
+  - SilverReactorControlRod
+  - PlasteelReactorControlRod
+  - PlasmaGlassReactorControlRod
+  - SilverReactorGasChannel
+  - PlasteelReactorGasChannel
+  - PlasmaGlassReactorGasChannel
+  - SilverReactorHeatExchanger
+  - PlasteelReactorHeatExchanger
+  - PlasmaGlassReactorHeatExchanger
+  technologyPrerequisites:
+  - NFPowerGeneration
+  position: 11.5, -1.5
+  factionOverrides:
+    Nanotrasen:
+      position: 9.6, -0.356
+      technologyPrerequisites:
+      - NuclearPowerRecycling
+- type: technology
+  id: NuclearPowerRecycling
+  name: research-technology-nuclear-recycling
+  entityIcon: NuclearCentrifuge
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+  - NuclearCentrifugeMachineCircuitboard
+  - PlutoniumReactorFuelRod
+  - BananiumReactorFuelRod
+  - GoldReactorControlRod
+  - DiamondReactorControlRod
+  - GoldReactorGasChannel
+  - DiamondReactorGasChannel
+  - GoldReactorHeatExchanger
+  - DiamondReactorHeatExchanger
+  technologyPrerequisites:
+  - NuclearPowerGeneration
+  position: 12.8, -1.5
+  factionOverrides:
+    Nanotrasen:
+      position: 8.533, -0.356
+      technologyPrerequisites:
+      - NFEmitter
+      - NFPowerGeneration
+      - NFAdvancedPowerGeneration
+- type: technology
+  id: NFAdvancedPowerGeneration
+  name: nf-research-technology-fission-generators
+  entityIcon: PortableGeneratorDKJr
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PortableGeneratorDKJrMachineCircuitboard
+  technologyPrerequisites:
+  - NFPowerGeneration
+  position: 10.691, -3.364
+  factionOverrides:
+    Nanotrasen:
+      position: 9.6, -1.422
+      technologyPrerequisites:
+      - NFPowerGeneration
+- type: technology
+  id: NFSpaceScanning
+  name: nf-research-technology-space-scanning
+  entityIcon: ComputerRadar
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - RadarConsoleCircuitboard
+  position: -9.286, 1.075
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, -0.711
+      technologyPrerequisites:
+      - NFSpaceHandHeldScanning
+- type: technology
+  id: NFSpaceHandHeldScanning
+  name: nf-research-technology-space-handheld-scanning
+  entityIcon: HandHeldMassScanner
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - HandHeldMassScanner
+  technologyPrerequisites:
+  - NFSpaceScanning
+  position: -12.229, 1.888
+  factionOverrides:
+    Nanotrasen:
+      position: -1.778, -1.778
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFShuttlecraft
+  name: nf-research-technology-shuttlecraft
+  entityIcon: ComputerShuttle
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ShuttleConsoleCircuitboard
+  - MiniGravityGeneratorCircuitboard
+  - MiniStationAnchorCircuitboard
+  technologyPrerequisites:
+  - NFSpaceScanning
+  position: -12.672, 0.999
+  factionOverrides:
+    Nanotrasen:
+      position: -4.622, -0.711
+      technologyPrerequisites:
+      - NFSpaceScanning
+- type: technology
+  id: NFShuttlecraftThrust
+  name: nf-research-technology-shuttlecraft-thrust
+  entityIcon: Thruster
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterMachineCircuitboard
+  - GyroscopeMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFSpaceScanning
+  position: -11.147, 2.545
+  factionOverrides:
+    Nanotrasen:
+      position: -5.333, -0.711
+      technologyPrerequisites:
+      - NFShuttlecraft
+- type: technology
+  id: NFShuttlecraftThrustSmall
+  name: nf-research-technology-shuttlecraft-thrust-small
+  entityIcon: SmallThruster
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - SmallThrusterMachineCircuitboard
+  - SmallGyroscopeMachineCircuitboard
+  technologyPrerequisites:
+  - NFShuttlecraftThrust
+  position: -13.517, 3.603
+  factionOverrides:
+    Nanotrasen:
+      position: -6.044, -0.711
+      technologyPrerequisites:
+      - NFShuttlecraftThrust
+- type: technology
+  id: NFAdvancedAtmosphericsTools
+  name: nf-research-technology-advanced-atmospherics-tools
+  entityIcon: HolofanProjector
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HolofanProjector
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 1.588, 12.732
+  factionOverrides:
+    Nanotrasen:
+      position: -1.778, 7.822
+      technologyPrerequisites:
+      - NFAtmosphericTech
+- type: technology
+  id: NFAtmosphericTech
+  name: nf-research-technology-atmospheric-tech
+  entityIcon: GasThermoMachineFreezer
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ThermomachineFreezerMachineCircuitBoard
+  - GasRecyclerMachineCircuitboard
+  position: -0.111, 8.389
+  technologyPrerequisites:
+  - NFHardsuitsEngineering
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsAdvanced
+- type: technology
+  id: NFAtmosphericDrilling
+  name: nf-research-technology-atmospheric-drilling
+  entityIcon: GasMiningDrill
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - GasMiningDrillMachineCircuitboard
+  - GaslockFrameMachineCircuitboard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 0.6, 11.944
+  factionOverrides:
+    Nanotrasen:
+      position: -1.778, 8.889
+      technologyPrerequisites:
+      - NFAdvancedAtmosphericsTools
+- type: technology
+  id: NFAdvancedAtmosphericsPortable
+  name: nf-research-technology-advanced-atmospherics-portable
+  entityIcon: PortableScrubber
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - PortableScrubberMachineCircuitBoard
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: 1.84, 11.546
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, 7.822
+      technologyPrerequisites:
+      - NFAtmosphericTech
+- type: technology
+  id: NFAdvancedAtmospherics
+  name: nf-research-technology-advanced-atmospherics
+  entityIcon: GasThermoMachineHellfireFreezer
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HellfireFreezerMachineCircuitBoard
+  technologyPrerequisites:
+  - NFAtmosphericTech
+  position: -0.262, 10.643
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, 8.889
+      technologyPrerequisites:
+      - NFAdvancedAtmosphericsPortable

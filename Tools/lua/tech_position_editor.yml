@@ -1,58 +1,121 @@
-# TechPosEditor configuration file.
-# Edit paths below to match your repository layout.
-
 # Paths to technology prototype files. Use absolute paths or repo-relative paths.
 paths:
-  - Resources/Prototypes/_Lua/Research/techtree.yml
+  - Resources/Prototypes/_Lua/Research/engineering.yml
+  - Resources/Prototypes/_Lua/Research/medical.yml
+  - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+  - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+  - Resources/Prototypes/_Lua/Research/salvage.yml
+  - Resources/Prototypes/_Lua/Research/science.yml
+  - Resources/Prototypes/_Lua/Research/service.yml
   - Resources/Prototypes/_Lua/Research/shiparmory.yml
-  - Resources/Prototypes/_Goobstation/Research/arsenal.yml
-  - Resources/Prototypes/_Goobstation/Research/civilianservices.yml
   - Resources/Prototypes/_Lua/Research/arsenal.yml
   - Resources/Prototypes/_Lua/Research/industrial.yml
-  - Resources/Prototypes/_Lua/Research/service.yml
-  - Resources/Prototypes/_Mono/Research/Universal/shipgun_ammo.yml
-  - Resources/Prototypes/_White/Research/experimental.yml
 
+# Paths to discipline prototype files for faction-aware filtering.
 disciplinePaths:
   - Resources/Prototypes/_Lua/Research/nf_disciplines.yml
   - Resources/Prototypes/_Lua/Research/disciplines.yml
 
+# Paths to RnD faction prototypes (type: rndFaction).
 factionPaths:
   - Resources/Prototypes/_Lua/Research/factions.yml
 
+# Optional per-server profiles.
+# If profiles are provided, choose one in the editor to edit that branch separately.
 profiles:
-  - id: default
-    name: Обычный сервер
+  - id: nanotrasen
+    name: Нанотразен
     faction: Nanotrasen
     paths:
-      - Resources/Prototypes/_Lua/Research/techtree.yml
+      - Resources/Prototypes/_Lua/Research/engineering.yml
+      - Resources/Prototypes/_Lua/Research/medical.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+      - Resources/Prototypes/_Lua/Research/salvage.yml
+      - Resources/Prototypes/_Lua/Research/science.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
-      - Resources/Prototypes/_Goobstation/Research/arsenal.yml
-      - Resources/Prototypes/_Goobstation/Research/civilianservices.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
-      - Resources/Prototypes/_Lua/Research/service.yml
-      - Resources/Prototypes/_Mono/Research/Universal/shipgun_ammo.yml
-      - Resources/Prototypes/_White/Research/experimental.yml
 
   - id: syndicate
-    name: Сервер синдиката
+    name: Синдикат
     faction: Syndicate
     paths:
-      - Resources/Prototypes/_Lua/Research/techtree.yml
+      - Resources/Prototypes/_Lua/Research/engineering.yml
+      - Resources/Prototypes/_Lua/Research/medical.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+      - Resources/Prototypes/_Lua/Research/salvage.yml
+      - Resources/Prototypes/_Lua/Research/science.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
-      - Resources/Prototypes/_Goobstation/Research/arsenal.yml
-      - Resources/Prototypes/_Goobstation/Research/civilianservices.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
+
+  - id: pirates
+    name: Пираты
+    faction: Pirates
+    paths:
+      - Resources/Prototypes/_Lua/Research/engineering.yml
+      - Resources/Prototypes/_Lua/Research/medical.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+      - Resources/Prototypes/_Lua/Research/salvage.yml
+      - Resources/Prototypes/_Lua/Research/science.yml
       - Resources/Prototypes/_Lua/Research/service.yml
-      - Resources/Prototypes/_Mono/Research/Universal/shipgun_ammo.yml
-      - Resources/Prototypes/_White/Research/experimental.yml
+      - Resources/Prototypes/_Lua/Research/shiparmory.yml
+      - Resources/Prototypes/_Lua/Research/arsenal.yml
+      - Resources/Prototypes/_Lua/Research/industrial.yml
+
+  - id: ussp
+    name: СССП
+    faction: Ussp
+    paths:
+      - Resources/Prototypes/_Lua/Research/engineering.yml
+      - Resources/Prototypes/_Lua/Research/medical.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+      - Resources/Prototypes/_Lua/Research/salvage.yml
+      - Resources/Prototypes/_Lua/Research/science.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
+      - Resources/Prototypes/_Lua/Research/shiparmory.yml
+      - Resources/Prototypes/_Lua/Research/arsenal.yml
+      - Resources/Prototypes/_Lua/Research/industrial.yml
+
+  - id: security
+    name: СРБС
+    faction: Security
+    paths:
+      - Resources/Prototypes/_Lua/Research/engineering.yml
+      - Resources/Prototypes/_Lua/Research/medical.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+      - Resources/Prototypes/_Lua/Research/salvage.yml
+      - Resources/Prototypes/_Lua/Research/science.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
+      - Resources/Prototypes/_Lua/Research/shiparmory.yml
+      - Resources/Prototypes/_Lua/Research/arsenal.yml
+      - Resources/Prototypes/_Lua/Research/industrial.yml
+
+  - id: neutral
+    name: Гражданские
+    faction: Neutral
+    paths:
+      - Resources/Prototypes/_Lua/Research/engineering.yml
+      - Resources/Prototypes/_Lua/Research/medical.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_mercenary.yml
+      - Resources/Prototypes/_Lua/Research/arsenal_nfsd.yml
+      - Resources/Prototypes/_Lua/Research/salvage.yml
+      - Resources/Prototypes/_Lua/Research/science.yml
+      - Resources/Prototypes/_Lua/Research/service.yml
+      - Resources/Prototypes/_Lua/Research/shiparmory.yml
+      - Resources/Prototypes/_Lua/Research/arsenal.yml
+      - Resources/Prototypes/_Lua/Research/industrial.yml
 
 # Paths to entity prototype files or directories for resolving entityIcon.
 entityPaths:
   - Resources/Prototypes
-
 # Path to localization directory (folder with .ftl files).
 localePath: Resources/Locale/ru-RU
 

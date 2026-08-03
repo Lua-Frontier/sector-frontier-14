@@ -5,7 +5,6 @@
   discipline: NFMedical
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 12500
   recipeUnlocks:
@@ -14,6 +13,11 @@
   technologyPrerequisites:
   - NFBasicMedicine
   position: 3.812, 20.028
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, 11.022
+      technologyPrerequisites:
+      - NFBasicMedicine
 - type: technology
   id: LuaSmartFridge
   name: lua-research-technology-smart-fridge
@@ -21,7 +25,6 @@
   discipline: NFMedical
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 3
   cost: 15000
   recipeUnlocks:
@@ -29,4 +32,262 @@
   technologyPrerequisites:
   - NFEngineeringMedicine
   position: 4.9, 20.518
-...
+  factionOverrides:
+    Nanotrasen:
+      position: 2.844, 12.089
+      technologyPrerequisites:
+      - NFEngineeringMedicine
+- type: technology
+  id: NFHardsuitsMedical
+  name: nf-research-technology-hardsuits-medical
+  entityIcon: ClothingOuterHardsuitMedical
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitMedical
+  prerequisiteLineType: Tree
+  technologyPrerequisites:
+  - NFHardsuitsBasic
+  position: -0.71, 11.979
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 5.689
+      technologyPrerequisites:
+      - NFHardsuitsAdvanced
+- type: technology
+  id: NFBiochemicalStasis
+  name: nf-research-technology-biochemical-stasis
+  entityIcon: CryostasisBeaker
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - CryostasisBeaker
+  - SyringeCryostasis
+  technologyPrerequisites:
+  - NFHardsuitsMedical
+  position: 0.586, 14.484
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsMedical
+- type: technology
+  id: NFReinforcedJug
+  name: nf-research-technology-reinforced-jug
+  entityIcon: ReinforcedJug
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ReinforcedJug
+  position: 1.46, 15.891
+  technologyPrerequisites:
+  - NFBiochemicalStasis
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, 8.178
+      technologyPrerequisites:
+      - NFBiochemicalStasis
+- type: technology
+  id: NFBluespaceChemistry
+  name: nf-research-technology-bluespace-chemistry
+  entityIcon: BluespaceBeaker
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - BluespaceBeaker
+  - SyringeBluespace
+  - JugBluespace
+  - VialBluespace
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFReinforcedJug
+  position: 3.653, 16.479
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, 8.889
+      technologyPrerequisites:
+      - NFReinforcedJug
+- type: technology
+  id: NFBasicMedicine
+  name: nf-research-technology-basic-medicine
+  entityIcon: ChemDispenserEmpty
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ChemMasterMachineCircuitboard
+  - ChemDispenserMachineCircuitboard
+  technologyPrerequisites:
+  - NFReinforcedJug
+  position: 2.792, 17.759
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, 9.956
+      technologyPrerequisites:
+      - NFReinforcedJug
+- type: technology
+  id: NFMechanizedTreatment
+  name: nf-research-technology-mechanized-treatment
+  entityIcon: BorgModuleAdvancedParamedic
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedParamedic
+  - BorgModuleAdvancedChemical
+  technologyPrerequisites:
+  - NFBluespaceChemistry
+  position: 5.731, 17.646
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 9.956
+      technologyPrerequisites:
+      - NFBluespaceChemistry
+- type: technology
+  id: NFEngineeringMedicine
+  name: nf-research-technology-industrial-medicine
+  entityIcon: MedicalAssembler
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - MedicalAssemblerMachineCircuitboard
+  - HotplateMachineCircuitboard
+  - DefibrillatorCompact
+  technologyPrerequisites:
+  - NFBasicMedicine
+  position: 4.428, 18.811
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, 11.022
+      technologyPrerequisites:
+      - NFBasicMedicine
+- type: technology
+  id: NFSyringeGun
+  name: nf-research-technology-syringe-gun
+  entityIcon: LauncherSyringe
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - LauncherSyringe
+  - MiniSyringe
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBasicMedicine
+  position: 2.498, 19.683
+  factionOverrides:
+    Nanotrasen:
+      position: 2.844, 11.022
+      technologyPrerequisites:
+      - NFBasicMedicine
+- type: technology
+  id: NFAppliedBiochemicalStasis
+  name: nf-research-technology-applied-biochemical-stasis
+  entityIcon: StasisBed
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - StasisBedMachineCircuitboard
+  - CryoPodMachineCircuitboard
+  technologyPrerequisites:
+  - NFEngineeringMedicine
+  position: 6.245, 19.63
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, 12.089
+      technologyPrerequisites:
+      - NFEngineeringMedicine
+- type: technology
+  id: AdvancedTreatment
+  name: research-technology-advanced-treatment
+  entityIcon: EnergyScalpel
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - EnergyScalpel
+  - EnergyCautery
+  - AdvancedRetractor
+  - BorgModuleAdvancedSurgery
+  technologyPrerequisites:
+  - NFEngineeringMedicine
+  position: 3.2, 21.2
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, 12.8
+      technologyPrerequisites:
+      - NFAppliedBiochemicalStasis
+- type: technology
+  id: CyberneticEnhancements
+  name: research-technology-cybernetic-enhancements
+  entityIcon: SecurityCyberneticEyes
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - JawsOfLifeLeftArm
+  - JawsOfLifeRightArm
+  - SpeedLeftLeg
+  - SpeedRightLeg
+  - DexLeftHand
+  - DexRightHand
+  - BasicCyberneticEyes
+  - SecurityCyberneticEyes
+  - MedicalCyberneticEyes
+  technologyPrerequisites:
+  - AdvancedTreatment
+  position: 3.2, 22.4
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, 13.511
+      technologyPrerequisites:
+      - AdvancedTreatment
+- type: technology
+  id: HighEndSurgery
+  name: research-technology-high-end-surgery
+  entityIcon: OmnimedTool
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 45000
+  recipeUnlocks:
+  - ShitmedOmnimedTool
+  - AutodocCircuitboard
+  - OperatingTableCircuitboard
+  technologyPrerequisites:
+  - CyberneticEnhancements
+  position: 3.2, 23.6
+  factionOverrides:
+    Nanotrasen:
+      position: 3.556, 14.222
+      technologyPrerequisites:
+      - CyberneticEnhancements

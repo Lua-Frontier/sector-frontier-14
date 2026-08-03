@@ -1,0 +1,372 @@
+- type: technology
+  id: NFHardsuitsArmored
+  name: nf-research-technology-hardsuits-armored
+  entityIcon: ClothingOuterHardsuitMercenary
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - ClothingOuterHardsuitMercenary
+  - ClothingOuterHardsuitPrivateSecurity
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFHardsuitsAdvanced
+  position: -3.617, 8.178
+  factionOverrides:
+    Nanotrasen:
+      position: -4.267, 5.689
+      technologyPrerequisites:
+      - NFHardsuitsAdvanced
+- type: technology
+  id: NFHardsuitsOldWar
+  name: nf-research-technology-hardsuits-old-war
+  entityIcon: ClothingOuterHardsuitSurplus
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSurplus
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFHardsuitsArmored
+  position: -4.889, 7.599
+  factionOverrides:
+    Nanotrasen:
+      position: -4.978, 7.822
+      technologyPrerequisites:
+      - NFHardsuitsArmored
+- type: technology
+  id: NFHardsuitsArmoredAdvanced
+  name: nf-research-technology-hardsuits-armored-advanced
+  entityIcon: ClothingOuterHardsuitScaf
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 20000
+  prerequisiteLineType: Diagonal
+  recipeUnlocks:
+  - ClothingOuterHardsuitScaf
+  - ClothingOuterHardsuitNoble
+  technologyPrerequisites:
+  - NFHardsuitsArmored
+  position: -5.088, 8.718
+  factionOverrides:
+    Nanotrasen:
+      position: -6.044, 5.689
+      technologyPrerequisites:
+      - NFHardsuitsArmored
+- type: technology
+  id: NFMagnetsTechCombat
+  name: nf-research-technology-magnets-tech-combat
+  entityIcon: ClothingShoesBootsMagMercenary
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  prerequisiteLineType: Diagonal
+  recipeUnlocks:
+  - ClothingShoesBootsMagSecurity
+  - ClothingShoesBootsMagMercenary
+  technologyPrerequisites:
+  - NFMagnetsTech
+  - NFHardsuitsArmored
+  position: -4.181, 9.646
+  factionOverrides:
+    Nanotrasen:
+      position: -5.333, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsArmored
+- type: technology
+  id: NFAudioVisualCommunication
+  name: nf-research-technology-audio-visual-communication
+  entityIcon: SurveillanceCameraRouterConstructed
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - SurveillanceCameraRouterCircuitboard
+  - SurveillanceCameraMonitorCircuitboard
+  position: -9.179, -0.045
+  technologyPrerequisites:
+  - NFAdvancedEntertainment
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, -1.778
+      technologyPrerequisites:
+      - NFAdvancedEntertainment
+- type: technology
+  id: NFArsenalMercenaryPropulsion
+  name: nf-research-technology-combat-propulsion
+  entityIcon: JetpackSecurity
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - JetpackSecurity
+  technologyPrerequisites:
+  - NFBasicPersonalPropulsion
+  position: 1.006, 8.368
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 6.756
+      technologyPrerequisites:
+      - NFBasicPersonalPropulsion
+- type: technology
+  id: NFBasicAmmunitionProduction
+  name: nf-research-technology-basic-ammunition
+  entityIcon: NFAmmunitionBoxPistol45
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - NFAmmunitionBoxShellShotgunBuckshot
+  - NFAmmunitionBoxShellShotgunSlug
+  - NFAmmunitionBoxRifle20
+  - NFAmmunitionBoxRifle30
+  - NFAmmunitionBoxPistol35
+  - NFAmmunitionBoxPistol45
+  - NFSpeedLoaderPistol35Empty
+  - NFSpeedLoaderPistol45Empty
+  - NFMagazineClipRifle556x45Empty
+  - MagazineLightRifleLowCapacityEmpty
+  - NFMagazinePistol35Empty
+  position: 8.063, 17.966
+  technologyPrerequisites:
+  - NFBountyHunting
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 11.022
+      technologyPrerequisites:
+      - NFBountyHunting
+- type: technology
+  id: NFBountyHunting
+  name: nf-research-technology-bounty-hunting
+  entityIcon: Handcuffs
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BolaNF
+  - NFHandcuffs
+  - ClothingOuterArmorBulletproofNF
+  - ClothingOuterCoatBHTrench
+  - PinpointerUniversalNF
+  - ClothingEyesHudBountyHunter
+  - NFForensicPad
+  - FlashlightSecliteNF
+  technologyPrerequisites:
+  - NFAdvancedRiotControl
+  position: 6.911, 15.915
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 9.956
+      technologyPrerequisites:
+      - NFAdvancedRiotControl
+- type: technology
+  id: NFImprovedPistolAmmo
+  name: nf-research-technology-pistol-ammo-improved
+  entityIcon: NFAmmunitionBoxPistol35Overpressure
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NFAmmunitionBoxPistol35Overpressure
+  - NFAmmunitionBoxPistol45Overpressure
+  - NFMagazineHighCapacityPistol35Empty
+  - NFMagazineSubMachineGun35Empty
+  - NFMagazineSubMachineGunTopMounted35Empty
+  - NFMagazinePistol45Empty
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBasicAmmunitionProduction
+  position: 9.359, 19.154
+  factionOverrides:
+    Nanotrasen:
+      position: 7.111, 11.733
+      technologyPrerequisites:
+      - NFBasicAmmunitionProduction
+- type: technology
+  id: NFNonlethalAmmunition
+  name: nf-research-technology-nonlethal-ammunition
+  entityIcon: NFAmmunitionBoxShellShotgunBeanbag
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NFAmmunitionBoxShellShotgunBeanbag
+  - NFAmmunitionBoxRifle20Rubber
+  - NFAmmunitionBoxRifle30Rubber
+  - NFAmmunitionBoxPistol35Rubber
+  - NFAmmunitionBoxPistol45Rubber
+  - NFAmmunitionBoxShellShotgunTranquilizer
+  technologyPrerequisites:
+  - NFBasicAmmunitionProduction
+  position: 8.644, 19.943
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 12.089
+      technologyPrerequisites:
+      - NFBasicAmmunitionProduction
+- type: technology
+  id: NFAdvancedRiotControl
+  name: nf-research-technology-advanced-riot-control
+  entityIcon: Truncheon
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 8000
+  recipeUnlocks:
+  - NFTelescopicShield
+  technologyPrerequisites:
+  - NFExplosiveTechnology
+  position: 5.5, 13.085
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 9.244
+      technologyPrerequisites:
+      - NFExplosiveTechnology
+- type: technology
+  id: NFArsenalStyle
+  name: nf-research-technology-arsenal-style
+  entityIcon: ClothingOuterArmorPunkOrange
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - ClothingEyesPunkInfoShades
+  - ClothingOuterArmorPunkRandomized
+  - ClothingOuterArmorPunkRed
+  - ClothingOuterArmorPunkGreen
+  - ClothingOuterArmorPunkOrange
+  - ClothingOuterArmorElitePunkRandomized
+  - ClothingBeltPunkRandomized
+  - ClothingShoesBootsPunkRandomized
+  - ClothingEyesPunkGoggles
+  - ClothingEyesPunkInfoShades
+  - ClothingMaskPunkHalf
+  - ClothingUniformRandomPunkTanktop
+  - ClothingUniformRandomPunkTanktopShorts
+  - ClothingUniformRandomPunkCroptop
+  - ClothingUniformRandomPunkCroptopShorts
+  - ClothingOuterCoatLettermanRandomized
+  - ClothingOuterCoatBomberRandomized
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBountyHunting
+  position: 8.833, 17.249
+  factionOverrides:
+    Nanotrasen:
+      position: 5.689, 11.022
+      technologyPrerequisites:
+      - NFBountyHunting
+- type: technology
+  id: NFImprovedRifleAmmo
+  name: nf-research-technology-rifle-ammo-improved
+  entityIcon: NFAmmunitionBoxRifle30Overpressure
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFAmmunitionBoxRifle20Overpressure
+  - NFAmmunitionBoxRifle30Overpressure
+  - NFAmmunitionBoxShellShotgunOverpressure
+  - NFMagazineRifle20Empty
+  - NFMagazineRifle30Empty
+  - NFMagazineDrumRifle556x45Empty
+  - MagazineAsmgtUniversalEmpty
+  technologyPrerequisites:
+  - NFImprovedPistolAmmo
+  position: 10.623, 20.377
+  factionOverrides:
+    Nanotrasen:
+      position: 7.822, 12.444
+      technologyPrerequisites:
+      - NFImprovedPistolAmmo
+- type: technology
+  id: NFExplosiveTechnology
+  name: nf-research-technology-explosive-technology
+  entityIcon: ChemicalPayload
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - SignalTrigger
+  - VoiceTrigger
+  - TimerTrigger
+  - FlashPayload
+  - ChemicalPayload
+  - ExplosivePayload
+  technologyPrerequisites:
+  - NFBasicShuttleArmament
+  position: 6.49, 11.996
+  factionOverrides:
+    Nanotrasen:
+      position: 6.4, 8.178
+      technologyPrerequisites:
+      - NFBasicShuttleArmament
+- type: technology
+  id: NFDeterrenceTechnologies
+  name: nf-research-technology-deterrence
+  entityIcon: HoloprojectorField
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - HoloprojectorField
+  technologyPrerequisites:
+  - NFAdvancedRiotControl
+  position: 6.783, 14.246
+  factionOverrides:
+    Nanotrasen:
+      position: 7.111, 9.956
+      technologyPrerequisites:
+      - NFAdvancedRiotControl
+- type: technology
+  id: NFBulkRifleAmmo
+  name: nf-research-technology-rifle-ammo-bulk
+  entityIcon: NFAmmunitionBoxBigRifle20
+  discipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - NFAmmunitionBoxBigRifle20
+  - NFAmmunitionBoxBigRifle20Overpressure
+  - NFAmmunitionBoxBigRifle30
+  - NFAmmunitionBoxBigRifle30Overpressure
+  technologyPrerequisites:
+  - NFImprovedRifleAmmo
+  position: 11.856, 21.596
+  factionOverrides:
+    Nanotrasen:
+      position: 8.533, 12.444
+      technologyPrerequisites:
+      - NFImprovedRifleAmmo

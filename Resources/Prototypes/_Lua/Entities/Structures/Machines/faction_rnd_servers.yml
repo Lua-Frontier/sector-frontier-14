@@ -1,0 +1,160 @@
+- type: entity
+  id: BaseFactionResearchAndDevelopmentServer
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  abstract: true
+  name: faction R&D server
+  description: Contains the extent of somebody's hard-earned knowledge. Handle with care.
+  components:
+  - type: BindToStation
+    enabled: false
+  - type: Sprite
+    sprite: _Mono/Structures/Machines/server.rsi
+    snapCardinals: true
+    layers:
+      - state: server
+      - state: variant-rogue
+      - state: server_o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    enabled: false
+    castShadows: false
+    radius: 1.2
+    energy: 3.0
+    color: "#b89a5e"
+  - type: LitOnPowered
+  - type: ResearchServer
+  - type: DiseaseServer
+  - type: TechnologyDatabase
+    supportedDisciplines:
+     - NFEngineering
+     - NFMedical
+     - NFArsenalMercenary
+     - NFArsenalNfsd
+     - NFSalvage
+     - NFScience
+     - NFService
+     - Shiparmory
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: {visible: true}
+            False: {visible: false}
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: GuideHelp
+    guides:
+    - Science
+
+- type: entity
+  id: ResearchAndDevelopmentServerRogues
+  parent: BaseFactionResearchAndDevelopmentServer
+  name: PDV R&D server
+  description: Stores pirate research data and salvaged schematics.
+  components:
+  - type: Sprite
+    layers:
+      - state: server
+      - state: variant-rogue
+      - state: server_o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    color: "#b88a44"
+  - type: ResearchServer
+    faction: Pirates
+  - type: Machine
+    board: ResearchAndDevelopmentServerRoguesMachineCircuitboard
+
+- type: entity
+  id: ResearchAndDevelopmentServerUssp
+  parent: BaseFactionResearchAndDevelopmentServer
+  name: USSP R&D server
+  description: Stores research data attributed to the USSP presence in the sector.
+  components:
+  - type: Sprite
+    layers:
+      - state: server
+      - state: variant-ussp
+      - state: server_o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    color: "#b01340"
+  - type: ResearchServer
+    faction: Ussp
+  - type: Machine
+    board: ResearchAndDevelopmentServerUsspMachineCircuitboard
+
+- type: entity
+  id: ResearchAndDevelopmentServerTSFMC
+  parent: BaseFactionResearchAndDevelopmentServer
+  name: TSFMC R&D server
+  description: Stores security research data for sector response forces.
+  components:
+  - type: Sprite
+    layers:
+      - state: server
+      - state: variant-tsf
+      - state: server_o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    color: "#0f6fbe"
+  - type: ResearchServer
+    faction: Security
+  - type: Machine
+    board: ResearchAndDevelopmentServerTSFMCMachineCircuitboard
+
+- type: entity
+  id: ResearchAndDevelopmentServerMerc
+  parent: BaseFactionResearchAndDevelopmentServer
+  name: mercenary R&D server
+  description: Stores independently maintained mercenary research data.
+  components:
+  - type: Sprite
+    layers:
+      - state: server
+      - state: variant-merc
+      - state: server_o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    color: "#9f9a8c"
+  - type: ResearchServer
+    faction: Neutral
+  - type: Machine
+    board: ResearchAndDevelopmentServerMercMachineCircuitboard

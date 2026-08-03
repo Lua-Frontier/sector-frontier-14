@@ -665,6 +665,58 @@
     - Science
 
 - type: entity
+  parent: ComputerResearchAndDevelopment
+  id: ComputerResearchAndDevelopmentRogues
+  name: PDV R&D computer
+  description: A computer used to interface with pirate R&D tools.
+  components:
+  - type: ResearchClient
+    allowedFactions: [Pirates]
+  - type: Computer
+    board: ResearchComputerRoguesCircuitboard
+  - type: PointLight
+    color: "#b88a44"
+
+- type: entity
+  parent: ComputerResearchAndDevelopment
+  id: ComputerResearchAndDevelopmentUssp
+  name: USSP R&D computer
+  description: A computer used to interface with USSP R&D tools.
+  components:
+  - type: ResearchClient
+    allowedFactions: [Ussp]
+  - type: Computer
+    board: ResearchComputerUsspCircuitboard
+  - type: PointLight
+    color: "#b01340"
+
+- type: entity
+  parent: ComputerResearchAndDevelopment
+  id: ComputerResearchAndDevelopmentTSFMC
+  name: TSFMC R&D computer
+  description: A computer used to interface with security R&D tools.
+  components:
+  - type: ResearchClient
+    allowedFactions: [Security]
+  - type: Computer
+    board: ResearchComputerTSFMCCircuitboard
+  - type: PointLight
+    color: "#0f6fbe"
+
+- type: entity
+  parent: ComputerResearchAndDevelopment
+  id: ComputerResearchAndDevelopmentMerc
+  name: mercenary R&D computer
+  description: A computer used to interface with mercenary R&D tools.
+  components:
+  - type: ResearchClient
+    allowedFactions: [Neutral]
+  - type: Computer
+    board: ResearchComputerMercCircuitboard
+  - type: PointLight
+    color: "#9f9a8c"
+
+- type: entity
   parent: BaseComputerAiAccess
   id: ComputerAnalysisConsole
   name: analysis console

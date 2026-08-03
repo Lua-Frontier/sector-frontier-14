@@ -242,6 +242,66 @@
     enabled: false
 
 - type: entity
+  id: ResearchAndDevelopmentServerRoguesMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: PDV R&D server machine board
+  description: A machine printed circuit board for a pirate R&D server.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ResearchAndDevelopmentServerRogues
+    stackRequirements:
+      Plasma: 5
+  - type: BindToStation
+    enabled: false
+
+- type: entity
+  id: ResearchAndDevelopmentServerUsspMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: USSP R&D server machine board
+  description: A machine printed circuit board for a USSP R&D server.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ResearchAndDevelopmentServerUssp
+    stackRequirements:
+      Plasma: 5
+  - type: BindToStation
+    enabled: false
+
+- type: entity
+  id: ResearchAndDevelopmentServerTSFMCMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: TSFMC R&D server machine board
+  description: A machine printed circuit board for a security R&D server.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ResearchAndDevelopmentServerTSFMC
+    stackRequirements:
+      Plasma: 5
+  - type: BindToStation
+    enabled: false
+
+- type: entity
+  id: ResearchAndDevelopmentServerMercMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: mercenary R&D server machine board
+  description: A machine printed circuit board for a mercenary R&D server.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ResearchAndDevelopmentServerMerc
+    stackRequirements:
+      Plasma: 5
+  - type: BindToStation
+    enabled: false
+
+- type: entity
   id: BiogeneratorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: biogenerator machine board

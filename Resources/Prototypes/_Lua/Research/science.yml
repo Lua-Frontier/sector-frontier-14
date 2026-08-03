@@ -1,0 +1,327 @@
+- type: technology
+  id: NFAbnormalArtifactManipulation
+  name: nf-research-technology-abnormal-artifact-manipulation
+  entityIcon: MachineArtifactCrusher
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ArtifactCrusherMachineCircuitboard
+  technologyPrerequisites:
+  - NFBasicXenoArcheology
+  position: -4.894, 4.131
+  factionOverrides:
+    Nanotrasen:
+      position: -4.267, 4.978
+      technologyPrerequisites:
+      - NFBasicXenoArcheology
+- type: technology
+  id: NFBasicXenoArcheology
+  name: nf-research-technology-basic-xenoarcheology
+  entityIcon: MachineArtifactAnalyzer
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 2500
+  recipeUnlocks:
+  - NodeScanner
+  - AnalysisComputerCircuitboard
+  - ArtifactAnalyzerMachineCircuitboard
+  - ResearchComputerCircuitboard
+  position: -3.523, 3.539
+  technologyPrerequisites:
+  - NFSuperParts
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, 4.978
+      technologyPrerequisites:
+      - NFHardsuitsExperimentalProtection
+- type: technology
+  id: NFAnomalyCoreHarnessing
+  name: nf-research-technology-anomaly-harnessing
+  entityIcon: WeaponGauntletGorilla
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - WeaponGauntletGorilla
+  technologyPrerequisites:
+  - NFBasicAnomalousResearch
+  position: -7.731, 5.09
+  factionOverrides:
+    Nanotrasen:
+      position: -6.4, 4.978
+      technologyPrerequisites:
+      - NFBasicAnomalousResearch
+- type: technology
+  id: NFBasicAnomalousResearch
+  name: nf-research-technology-basic-anomalous-research
+  entityIcon: MachineAnomalyVessel
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - AnomalyScanner
+  - AnomalyLocator
+  - AnomalyLocatorWide
+  - APECircuitboard
+  - AnomalyVesselCircuitboard
+  technologyPrerequisites:
+  - NFAbnormalArtifactManipulation
+  position: -6.142, 4.869
+  factionOverrides:
+    Nanotrasen:
+      position: -5.333, 4.978
+      technologyPrerequisites:
+      - NFAbnormalArtifactManipulation
+- type: technology
+  id: NFAdvancedAnomalyResearch
+  name: nf-research-technology-advanced-anomaly-research
+  entityIcon: MachineAnomalyVesselExperimental
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - NFWeaponPistolCHIMP
+  - AnomalyVesselExperimentalCircuitboard
+  technologyPrerequisites:
+  - NFAnomalyCoreHarnessing
+  position: -9.767, 4.886
+  factionOverrides:
+    Nanotrasen:
+      position: -7.467, 4.978
+      technologyPrerequisites:
+      - NFAnomalyCoreHarnessing
+- type: technology
+  id: NFBluespaceTimeManipulation
+  name: nf-research-technology-bluespace-time-manipulation
+  entityIcon: DeviceDesynchronizer
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - DeviceDesynchronizer
+  prerequisiteLineType: Tree
+  technologyPrerequisites:
+  - NFAdvancedToolsTechnology
+  - NFAbnormalArtifactManipulation
+  position: -6.535, 3.259
+  factionOverrides:
+    Nanotrasen:
+      position: -5.333, 4.267
+      technologyPrerequisites:
+      - NFAbnormalArtifactManipulation
+- type: technology
+  id: NFSuperParts
+  name: nf-research-technology-super-parts
+  entityIcon: SuperMatterBinStockPart
+  discipline: NFScience
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - SuperCapacitorStockPart
+  - SuperMatterBinStockPart
+  - PicoManipulatorStockPart
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: -1.002, 3.17
+  factionOverrides:
+    Nanotrasen:
+      position: 0, 2.844
+      technologyPrerequisites:
+      - NFAdvancedParts
+- type: technology
+  id: NFHardsuitsExperimentalProtection
+  name: nf-research-technology-hardsuits-experimental-protection
+  entityIcon: ClothingOuterHardsuitRd
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitRd
+  - ClothingOuterHardsuitHostileEnvironment
+  technologyPrerequisites:
+  - NFSuperParts
+  position: -0.315, 5.013
+  factionOverrides:
+    Nanotrasen:
+      position: -2.133, 4.978
+      technologyPrerequisites:
+      - NFHardsuitsEngineering
+- type: technology
+  id: NFHardsuitsExperimentalIndustrial
+  name: nf-research-technology-hardsuits-experimental-industrial
+  entityIcon: ClothingOuterHardsuitMaximPrototype
+  discipline: NFScience
+  secondaryDiscipline: NFArsenalMercenary
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - ClothingOuterHardsuitMaximPrototype
+  technologyPrerequisites:
+  - NFHardsuitsExperimentalProtection
+  - NFHardsuitsArmored
+  position: -3.341, 6.582
+  factionOverrides:
+    Nanotrasen:
+      position: -4.267, 7.822
+      technologyPrerequisites:
+      - NFHardsuitsField
+      - NFHardsuitsArmored
+- type: technology
+  id: NFBasicMagnetsTech
+  name: nf-research-technology-basic-magnets-tech
+  entityIcon: ClothingShoesBootsMagSci
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - ClothingShoesBootsMagSci
+  position: -3.104, 10.486
+  technologyPrerequisites:
+  - NFMagnetsTech
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 8.889
+      technologyPrerequisites:
+      - NFMagnetsTech
+- type: technology
+  id: NFGravityResistantTech
+  name: nf-research-technology-anti-gravitational-fields
+  entityIcon: NFClothingShoesBootsMoon
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - NFClothingShoesBootsMoon
+  technologyPrerequisites:
+  - NFBasicMagnetsTech
+  position: -2.831, 12.154
+  factionOverrides:
+    Nanotrasen:
+      position: -2.489, 9.956
+      technologyPrerequisites:
+      - NFBasicMagnetsTech
+- type: technology
+  id: NFQuantumFiberWeaving
+  name: nf-research-technology-quantum-fiber-weaving
+  entityIcon: ClothingShoesBootsSpeed
+  discipline: NFScience
+  secondaryDiscipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - ClothingShoesBootsSpeed
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFBasicMagnetsTech
+  position: -3.997, 11.889
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, 9.956
+      technologyPrerequisites:
+      - NFBasicMagnetsTech
+- type: technology
+  id: NFMagnetsTechAdvanced
+  name: nf-research-technology-magnets-tech-advanced
+  entityIcon: ClothingShoesBootsMagAdv
+  discipline: NFScience
+  secondaryDiscipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - ClothingShoesBootsMagAdv
+  prerequisiteLineType: Diagonal
+  technologyPrerequisites:
+  - NFHardsuitsAdvanced
+  position: -2.394, 8.257
+  factionOverrides:
+    Nanotrasen:
+      position: -3.2, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsAdvanced
+- type: technology
+  id: LuaBluespaceTiles
+  name: lua-research-technology-bluespace-tiles
+  entityIcon: FloorBluespaceEntity
+  discipline: NFScience
+  secondaryDiscipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 50000
+  recipeUnlocks:
+  - FloorTileItemBluespace
+  - FloorTileItemSepia
+  technologyPrerequisites:
+  - NFFauxAstroTiles
+  position: -1.332, -7.466
+  factionOverrides:
+    Nanotrasen:
+      position: 0, -4.978
+      technologyPrerequisites:
+      - NFFauxAstroTiles
+- type: technology
+  id: NightVisionTech
+  name: research-technology-night-vision
+  entityIcon: ClothingEyesNightVisionGoggles
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingEyesNightVisionGoggles
+  technologyPrerequisites:
+  - NFHardsuitsArmoredAdvanced
+  position: -6.162, 9.588
+  factionOverrides:
+    Nanotrasen:
+      position: -6.044, 6.756
+      technologyPrerequisites:
+      - NFHardsuitsArmoredAdvanced
+- type: technology
+  id: ThermalVisionTech
+  name: research-technology-thermal-vision
+  entityIcon: ClothingEyesThermalVisionGoggles
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingEyesThermalVisionGoggles
+  technologyPrerequisites:
+  - NightVisionTech
+  position: -7.249, 10.596
+  factionOverrides:
+    Nanotrasen:
+      position: -7.111, 6.756
+      technologyPrerequisites:
+      - NightVisionTech

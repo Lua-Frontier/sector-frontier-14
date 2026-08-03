@@ -337,6 +337,58 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: ResearchComputerRoguesCircuitboard
+  name: PDV R&D computer board
+  description: A computer printed circuit board for a pirate R&D console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentRogues
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopResearchAndDevelopmentRogues
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ResearchComputerUsspCircuitboard
+  name: USSP R&D computer board
+  description: A computer printed circuit board for a USSP R&D console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentUssp
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopResearchAndDevelopmentUssp
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ResearchComputerTSFMCCircuitboard
+  name: TSFMC R&D computer board
+  description: A computer printed circuit board for a security R&D console.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentTSFMC
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopResearchAndDevelopmentTSFMC
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ResearchComputerMercCircuitboard
+  name: mercenary R&D computer board
+  description: A computer printed circuit board for a mercenary R&D console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentMerc
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopResearchAndDevelopmentMerc
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: AnalysisComputerCircuitboard
   name: analysis computer board
   description: A computer printed circuit board for an analysis console.

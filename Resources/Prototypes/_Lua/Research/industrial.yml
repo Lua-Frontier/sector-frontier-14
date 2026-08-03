@@ -5,7 +5,6 @@
   discipline: NFEngineering
   factions:
   - Nanotrasen
-  - Syndicate
   tier: 2
   cost: 8000
   prerequisiteLineType: Diagonal
@@ -15,4 +14,8 @@
   technologyPrerequisites:
   - NFRipleyAPLU
   position: 7.927, 4.517
-...
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 3.2
+      technologyPrerequisites:
+      - NFRipleyAPLU
