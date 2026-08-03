@@ -4,8 +4,8 @@ meta:
   engineVersion: 275.1.0
   forkId: dsfrontier
   forkVersion: 01082026052953
-  time: 08/03/2026 05:06:57
-  entityCount: 2515
+  time: 08/03/2026 08:18:17
+  entityCount: 2516
 maps: []
 grids:
 - 1
@@ -4457,6 +4457,20 @@ entities:
     - type: Transform
       pos: -0.5,16.5
       parent: 1
+- proto: CrateMaterialGlass
+  entities:
+  - uid: 2515
+    components:
+    - type: Transform
+      pos: 8.5,-8.5
+      parent: 1
+- proto: CrateMaterialSteel
+  entities:
+  - uid: 2516
+    components:
+    - type: Transform
+      pos: 6.5,-10.5
+      parent: 1
 - proto: CrateScienceBiosuit
   entities:
   - uid: 607
@@ -4479,7 +4493,7 @@ entities:
       pos: -2.5,16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -33211.72
+      secondsUntilStateChange: -41341.688
       state: Closing
 - proto: CurtainsPurpleOpen
   entities:
@@ -4489,7 +4503,7 @@ entities:
       pos: 5.5,16.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -33217.35
+      secondsUntilStateChange: -41347.32
       state: Closing
 - proto: CurtainsRedOpen
   entities:
@@ -7193,15 +7207,6 @@ entities:
     - type: Transform
       pos: -6.016455,-17.457453
       parent: 1
-- proto: Nakrutka1
-  entities:
-  - uid: 2515
-    components:
-    - type: Transform
-      pos: 0.5,5.5
-      parent: 1
-    - type: StaticPrice
-      price: 1000
 - proto: NFHolopadShip
   entities:
   - uid: 989
