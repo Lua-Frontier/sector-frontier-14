@@ -27,6 +27,9 @@ tiles-techmaint-floor-mechanical = механический технически
 tiles-grey-floor-commercial = серый офисный пол
 tiles-grey-floor-mono-commercial = серые офисные моно плиты
 
+tiles-catwalk-floor-tile-horizontal = горизонтальная плитка мостика
+tiles-catwalk-floor-tile-vertical = вертикальная плитка мостика
+
 tiles-woodDark = пол из тёмной древесины
 tiles-woodred = пол из красной древесины
 tiles-soft = мягкий пол
@@ -46,6 +49,8 @@ ent-FloorTileItemSteelDarkMonoCommercial = тёмные офисные моно 
 ent-FloorTileItemTechMaintAlt = механический технический пол
 ent-FloorTileItemGreySteelCommercial = серый офисный пол
 ent-FloorTileItemSteelGreyMonoCommercial = серые офисные моно плиты
+ent-FloorTileItemCatwalkHorizontal = горизонтальная плитка мостика
+ent-FloorTileItemCatwalkVertical = вертикальная плитка мостика
 
 ent-FloorTileItemRedWood = пол из красной древесины
 ent-FloorTileItemDarkWood = пол из тёмной древесины
