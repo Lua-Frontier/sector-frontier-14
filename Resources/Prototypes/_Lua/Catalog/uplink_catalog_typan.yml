@@ -472,19 +472,3 @@
     whitelist:
       tags:
       - TypanUplink
-
-#region TC Convert others
-- type: listing
-  id: UplinkConvertTelecrystalOthers
-  name: Телекристаллы
-  description: Обменяйте свои кредиты на более полезные вещи. Для чужаков - дороже.
-  productEntity: Telecrystal1
-  cost:
-    Speso: 250000
-  categories:
-  - UplinkConverter
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - TypanUplink
