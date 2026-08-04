@@ -45,9 +45,10 @@
       path: /Audio/Effects/Footsteps/suitstep2.ogg
       params:
         volume: 1
-  - type: WorldTargetAction
+  - type: TargetAction
     checkCanAccess: false
     range: 0
+  - type: WorldTargetAction
     event: !type:DashActionEvent
 
 - type: entity
@@ -82,7 +83,8 @@
         volume: 5
     priority: -12
     useDelay: 15
-  - type: WorldTargetAction
-    event: !type:DashEvent
+  - type: TargetAction
     checkCanAccess: false
     range: 7
+  - type: WorldTargetAction
+    event: !type:DashEvent
