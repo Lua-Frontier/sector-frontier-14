@@ -1,0 +1,72 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="{Loc 'share-sector-window-title'}"
+               SetSize="420 520"
+               MinSize="360 420">
+    <BoxContainer Orientation="Vertical"
+                  Margin="10"
+                  SeparationOverride="10"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <PanelContainer HorizontalExpand="True">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#161A1F"
+                                       BorderColor="#4D5A6A"
+                                       BorderThickness="2" />
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="2">
+                <Label Text="{Loc 'share-sector-window-title'}"
+                       StyleClasses="LabelKeyText" />
+                <Label Text="{Loc 'share-sector-window-subtitle'}"
+                       StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#111519"
+                                       BorderColor="#4D5A6A"
+                                       BorderThickness="2" />
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical"
+                          Margin="8"
+                          SeparationOverride="8"
+                          HorizontalExpand="True"
+                          VerticalExpand="True">
+                <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                    <Label Text="{Loc 'share-sector-window-list-title'}"
+                           StyleClasses="LabelKeyText" />
+                    <Label Name="StatusLabel"
+                           Access="Public"
+                           StyleClasses="LabelSubText" />
+                </BoxContainer>
+
+                <ui:HLine />
+
+                <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BackgroundColor="#0B0E12"
+                                               BorderColor="#2F3945"
+                                               BorderThickness="1" />
+                    </PanelContainer.PanelOverride>
+                    <ScrollContainer HorizontalExpand="True"
+                                     VerticalExpand="True"
+                                     HScrollEnabled="False"
+                                     VScrollEnabled="True"
+                                     MinHeight="120">
+                        <BoxContainer Name="SectorList"
+                                      Access="Public"
+                                      Orientation="Vertical"
+                                      HorizontalExpand="True"
+                                      SeparationOverride="4"
+                                      Margin="4" />
+                    </ScrollContainer>
+                </PanelContainer>
+
+                <Label Text="{Loc 'share-sector-window-hint'}"
+                       StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</DefaultWindow>

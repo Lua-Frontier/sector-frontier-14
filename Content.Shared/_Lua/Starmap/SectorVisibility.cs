@@ -21,7 +21,25 @@ public static class SectorVisibility
 
     public static bool IsSectorVisible(StarDefinition def, string? companyId, bool globallyUnlocked)
     {
+        return IsSectorVisible(def, companyId, globallyUnlocked, null);
+    }
+
+    public static bool IsSectorVisible(
+        StarDefinition def,
+        string? companyId,
+        bool globallyUnlocked,
+        IReadOnlyCollection<string>? learned)
+    {
         var company = NormalizeCompanyId(companyId);
+
+        if (learned != null)
+        {
+            foreach (var sectorId in learned)
+            {
+                if (string.Equals(sectorId, def.Id, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+        }
 
         if (globallyUnlocked)
         {
@@ -43,12 +61,22 @@ public static class SectorVisibility
         string? companyId,
         bool globallyUnlocked)
     {
+        return IsSectorVisible(data, sectorId, companyId, globallyUnlocked, null);
+    }
+
+    public static bool IsSectorVisible(
+        StarmapDataPrototype data,
+        string sectorId,
+        string? companyId,
+        bool globallyUnlocked,
+        IReadOnlyCollection<string>? learned)
+    {
         foreach (var def in data.Stars)
         {
             if (!string.Equals(def.Id, sectorId, StringComparison.OrdinalIgnoreCase))
                 continue;
 
-            return IsSectorVisible(def, companyId, globallyUnlocked);
+            return IsSectorVisible(def, companyId, globallyUnlocked, learned);
         }
 
         return globallyUnlocked;

@@ -312,11 +312,17 @@ namespace Content.Server._Lua.Starmap.Systems
         private bool CanAccessSector(EntityUid consoleUid, MapId targetMap, EntityUid? actor)
         {
             var company = SectorVisibility.NoneCompany;
+            IReadOnlyCollection<string>? learned = null;
             if (actor != null &&
                 actor.Value.IsValid() &&
                 TryComp<CompanyComponent>(actor.Value, out var companyComp) &&
                 !string.IsNullOrWhiteSpace(companyComp.CompanyName))
                 company = companyComp.CompanyName;
+
+            if (actor != null &&
+                actor.Value.IsValid() &&
+                TryComp<KnownSectorsComponent>(actor.Value, out var known))
+                learned = known.LearnedSectorIds;
 
             var globallyUnlocked = _factionWar.AreFactionSectorsUnlocked();
             var sectorId = ResolveSectorId(targetMap);
@@ -326,7 +332,7 @@ namespace Content.Server._Lua.Starmap.Systems
                 {
                     var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
                     if (_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data) &&
-                        !SectorVisibility.IsSectorVisible(data, sectorId, company, globallyUnlocked))
+                        !SectorVisibility.IsSectorVisible(data, sectorId, company, globallyUnlocked, learned))
                         return false;
                 }
                 catch

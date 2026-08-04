@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.Starmap;
+using Content.Shared._Lua.Starmap.Components;
 using Content.Shared._Mono.Company;
 using Content.Shared.Lua.CLVar;
 using Robust.Client.Graphics;
@@ -369,17 +370,21 @@ public sealed class StarmapControl : Control
         if (!_sectorIdByMap.TryGetValue(mapId, out var sectorId) || string.IsNullOrWhiteSpace(sectorId))
             return true;
         var company = SectorVisibility.NoneCompany;
+        IReadOnlyCollection<string>? learned = null;
         var local = _player.LocalEntity;
         if (local != null &&
             _ent.TryGetComponent(local.Value, out CompanyComponent? companyComp) &&
             !string.IsNullOrWhiteSpace(companyComp.CompanyName))
             company = companyComp.CompanyName;
+        if (local != null &&
+            _ent.TryGetComponent(local.Value, out KnownSectorsComponent? known))
+            learned = known.LearnedSectorIds;
         try
         {
             var dataId = _cfg.GetCVar(CLVars.StarmapDataId);
             if (!_proto.TryIndex<StarmapDataPrototype>(dataId, out var data))
                 return true;
-            return SectorVisibility.IsSectorVisible(data, sectorId, company, _sectorsGloballyUnlocked);
+            return SectorVisibility.IsSectorVisible(data, sectorId, company, _sectorsGloballyUnlocked, learned);
         }
         catch
         {

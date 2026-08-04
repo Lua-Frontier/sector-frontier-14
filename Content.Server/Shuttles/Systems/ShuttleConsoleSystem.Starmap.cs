@@ -70,7 +70,9 @@ public sealed partial class ShuttleConsoleSystem
 
     private StarmapConsoleBoundUserInterfaceState GetStarMapState(MapId currentMap, EntityUid? shuttleGridUid, EntityUid? consoleUid = null) // Lua
     {
-        var viewerCompany = ResolveStarMapViewerCompany(consoleUid);
+        var viewer = ResolveStarMapViewer(consoleUid);
+        var viewerCompany = ResolveStarMapViewerCompany(viewer);
+        var viewerLearned = ResolveStarMapViewerLearned(viewer);
         var sectorsGloballyUnlocked = _factionWar.AreFactionSectorsUnlocked();
         var starmapData = TryGetStarmapData();
 
@@ -90,7 +92,7 @@ public sealed partial class ShuttleConsoleSystem
                     !string.Equals(def.Id, "CentCom", StringComparison.OrdinalIgnoreCase))
                     continue;
 
-                allowCentComStar = SectorVisibility.IsSectorVisible(def, viewerCompany, sectorsGloballyUnlocked);
+                allowCentComStar = SectorVisibility.IsSectorVisible(def, viewerCompany, sectorsGloballyUnlocked, viewerLearned);
                 break;
             }
         }
@@ -165,7 +167,7 @@ public sealed partial class ShuttleConsoleSystem
         {
             foreach (var def in starmapData.Stars)
             {
-                if (!SectorVisibility.IsSectorVisible(def, viewerCompany, sectorsGloballyUnlocked))
+                if (!SectorVisibility.IsSectorVisible(def, viewerCompany, sectorsGloballyUnlocked, viewerLearned))
                     continue;
 
                 if (!TryResolveSectorMapIdForVisibility(def, currentPreset, out var mapId))
@@ -194,7 +196,7 @@ public sealed partial class ShuttleConsoleSystem
                             {
                                 if (string.IsNullOrWhiteSpace(sid)) continue;
                                 if (starmapData != null &&
-                                    !SectorVisibility.IsSectorVisible(starmapData, sid, viewerCompany, sectorsGloballyUnlocked))
+                                    !SectorVisibility.IsSectorVisible(starmapData, sid, viewerCompany, sectorsGloballyUnlocked, viewerLearned))
                                     continue;
                                 if (!TryResolveSectorMapId(sid, currentPreset, out var mapId))
                                     continue;
@@ -281,7 +283,7 @@ public sealed partial class ShuttleConsoleSystem
         return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, capturing, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, colorOverrides, sectorsGloballyUnlocked);
     }
 
-    private string ResolveStarMapViewerCompany(EntityUid? consoleUid)
+    private EntityUid? ResolveStarMapViewer(EntityUid? consoleUid)
     {
         EntityUid? viewer = null;
         if (consoleUid != null && _starMapViewers.TryGetValue(consoleUid.Value, out var stored) && Exists(stored))
@@ -308,12 +310,25 @@ public sealed partial class ShuttleConsoleSystem
             }
         }
 
+        return viewer;
+    }
+
+    private string ResolveStarMapViewerCompany(EntityUid? viewer)
+    {
         if (viewer != null &&
             TryComp<CompanyComponent>(viewer.Value, out var company) &&
             !string.IsNullOrWhiteSpace(company.CompanyName))
             return company.CompanyName;
 
         return SectorVisibility.NoneCompany;
+    }
+
+    private IReadOnlyCollection<string>? ResolveStarMapViewerLearned(EntityUid? viewer)
+    {
+        if (viewer != null && TryComp<KnownSectorsComponent>(viewer.Value, out var known))
+            return known.LearnedSectorIds;
+
+        return null;
     }
 
     private StarmapDataPrototype? TryGetStarmapData()
