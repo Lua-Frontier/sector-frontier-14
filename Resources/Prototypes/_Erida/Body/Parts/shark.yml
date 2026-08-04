@@ -6,6 +6,8 @@
   name: "shark body part"
   abstract: true
   components:
+  - type: BodyPart
+    species: Shark
   - type: Extractable
     juiceSolution:
       reagents:

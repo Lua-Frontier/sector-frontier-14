@@ -328,6 +328,15 @@ public sealed class MobThresholdSystem : EntitySystem
         VerifyThresholds(uid, component);
     }
 
+    public void SetCurrentThresholdState(EntityUid uid, MobState state, MobThresholdsComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        component.CurrentThresholdState = state;
+        Dirty(uid, component);
+    }
+
     #endregion
 
     #region Private Implementation

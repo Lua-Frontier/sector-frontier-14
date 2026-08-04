@@ -63,6 +63,18 @@ namespace Content.Shared.Humanoid
                     yield return HumanoidVisualLayers.Chest;
                     yield return HumanoidVisualLayers.Tail;
                     break;
+                case HumanoidVisualLayers.LHand:
+                    yield return HumanoidVisualLayers.LHand;
+                    break;
+                case HumanoidVisualLayers.RHand:
+                    yield return HumanoidVisualLayers.RHand;
+                    break;
+                case HumanoidVisualLayers.LFoot:
+                    yield return HumanoidVisualLayers.LFoot;
+                    break;
+                case HumanoidVisualLayers.RFoot:
+                    yield return HumanoidVisualLayers.RFoot;
+                    break;
                 default:
                     yield break;
             }

@@ -1,5 +1,6 @@
 surgery-verb-text = Начать операцию
 surgery-verb-message = Начата операция над этим существом.
+surgery-error-self-surgery = Вы не можете провести эту операцию на себе.
 surgery-ui-window-title = Операция
 surgery-ui-window-title-part = Операция — { $part }
 surgery-ui-window-title-full = Операция — { $part }, { $surgery }
@@ -12,6 +13,5 @@ surgery-ui-window-steps-error-table = Для этого нужен операц�
 surgery-ui-window-steps-error-armor = Необходимо снять обмурдирование!
 surgery-ui-window-steps-error-tools = Отсутствуют инструменты.
 surgery-error-laying = Пациент должен лежать!
-surgery-error-self-surgery = Вы не можете оперировать себя!
 surgery-error-missing-tool = Для этого этапа нужен { $tool }!
 surgery-part-damage-evaded = { $user } едва увернулся!

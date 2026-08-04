@@ -47,6 +47,9 @@ public sealed class DashAbilitySystem : EntitySystem
 
     private void OnGetActions(Entity<DashAbilityComponent> ent, ref GetItemActionsEvent args)
     {
+        if (ent.Comp.IsUser)
+            return;
+
         if (CheckDash(ent, args.User))
             args.AddAction(ent.Comp.DashActionEntity);
     }
@@ -64,7 +67,7 @@ public sealed class DashAbilitySystem : EntitySystem
         if (!CheckDash(uid, user))
             return;
 
-        if (!_hands.IsHolding(user, uid, out var _))
+        if (comp.RequireItem && !_hands.IsHolding(user, uid, out var _))
         {
             _popup.PopupClient(Loc.GetString("dash-ability-not-held", ("item", uid)), user, user);
             return;

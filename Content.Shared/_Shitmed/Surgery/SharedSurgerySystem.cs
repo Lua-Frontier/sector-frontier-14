@@ -19,8 +19,11 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Content.Shared.Prototypes;
 using Content.Shared.Standing;
+using Content.Shared._Shitmed.Autodoc.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -30,6 +33,9 @@ namespace Content.Shared._Shitmed.Medical.Surgery;
 
 public abstract partial class SharedSurgerySystem : EntitySystem
 {
+    private static readonly EntProtoId SurgeryTendWoundsBrute = "SurgeryTendWoundsBrute";
+    private static readonly EntProtoId SurgeryTendWoundsBurn = "SurgeryTendWoundsBurn";
+
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private IComponentFactory _compFactory = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
@@ -44,10 +50,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private RotateToFaceSystem _rotateToFace = default!;
-    [Dependency] private StandingStateSystem _standing = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
+    private readonly List<EntProtoId> _allSurgeries = new();
+
+    /// <summary>
+    /// Every surgery entity prototype id. Kept in sync with prototype reloads for clients such as Autodoc.
+    /// </summary>
+    public IReadOnlyList<EntProtoId> AllSurgeries => _allSurgeries;
 
     public override void Initialize()
     {
@@ -72,11 +85,23 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         //SubscribeLocalEvent<SurgeryRemoveLarvaComponent, SurgeryCompletedEvent>(OnRemoveLarva);
 
         InitializeSteps();
+        LoadSurgeryPrototypes();
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
     {
         _surgeries.Clear();
+    }
+
+    private void LoadSurgeryPrototypes()
+    {
+        _allSurgeries.Clear();
+
+        foreach (var entity in _prototypes.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (entity.HasComponent<SurgeryComponent>())
+                _allSurgeries.Add(new EntProtoId(entity.ID));
+        }
     }
 
     private void OnTargetDoAfter(Entity<SurgeryTargetComponent> ent, ref SurgeryDoAfterEvent args)
@@ -91,13 +116,17 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             || !PreviousStepsComplete(ent, part, surgery, args.Step)
             || !CanPerformStep(args.User, ent, part, step, false))
         {
+            var failEv = new SurgeryStepFailedEvent(args.User, ent, args.Surgery, args.Step);
+            RaiseLocalEvent(args.User, ref failEv);
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             return;
         }
 
         args.Repeat = (HasComp<SurgeryRepeatableStepComponent>(step) && !IsStepComplete(ent, part, args.Step, surgery));
-        var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User), surgery);
+        var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User), surgery, step);
         RaiseLocalEvent(step, ref ev);
+        ev.Complete = IsStepComplete(ent, part, args.Step, surgery);
+        RaiseLocalEvent(args.User, ref ev);
         RefreshUI(ent);
     }
 
@@ -313,6 +342,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             && !HasComp<BodyComponent>(targetPart))
             return false;
 
+        if (body == user && !CanPerformSurgeryOnSelf(surgery))
+        {
+            _popup.PopupClient(Loc.GetString("surgery-error-self-surgery"), body, user);
+            return false;
+        }
 
         var ev = new SurgeryValidEvent(body, targetPart);
         if (_timing.IsFirstTimePredicted)
@@ -328,6 +362,12 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         part = targetPart;
         step = stepEnt;
         return true;
+    }
+
+    public static bool CanPerformSurgeryOnSelf(EntProtoId surgery)
+    {
+        return surgery == SurgeryTendWoundsBrute
+            || surgery == SurgeryTendWoundsBurn;
     }
 
     public EntityUid? GetSingleton(EntProtoId surgeryOrStep)
@@ -355,6 +395,12 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     public bool IsLyingDown(EntityUid entity, EntityUid user)
     {
         if (_standing.IsDown(entity))
+            return true;
+
+        // Autodoc capsule patients are treated as ready for surgery without a bed/table.
+        if (_container.TryGetContainingContainer((entity, null, null), out var container) &&
+            TryComp(container.Owner, out AutodocComponent? autodoc) &&
+            container.ID == autodoc.BodyContainerId)
             return true;
 
         if (TryComp(entity, out BuckleComponent? buckle) &&

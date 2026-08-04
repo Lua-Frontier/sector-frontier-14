@@ -81,7 +81,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
                     || !s.Choices.TryGetValue(netPart.Value, out var surgeries))
                     return;
 
-                OnPartPressed(netPart.Value, surgeries);
+                OnPartPressed(netPart.Value, FilterSurgeriesForUser(surgeries));
             };
 
             _window.StepsButton.OnPressed += _ =>
@@ -145,7 +145,10 @@ public sealed partial class SurgeryBui : BoundUserInterface
         foreach (var (netEntity, entity, partName, _) in options)
         {
             //var netPart = _entities.GetNetEntity(part.Owner);
-            var surgeries = state.Choices[netEntity];
+            var surgeries = FilterSurgeriesForUser(state.Choices[netEntity]);
+            if (surgeries.Count == 0)
+                continue;
+
             var partButton = new XenoChoiceControl();
 
             partButton.Set(partName, null);
@@ -170,6 +173,21 @@ public sealed partial class SurgeryBui : BoundUserInterface
 
         if (!_window.IsOpen)
             _window.OpenCentered();
+    }
+
+    private List<EntProtoId> FilterSurgeriesForUser(List<EntProtoId> surgeries)
+    {
+        if (_player.LocalEntity != Owner)
+            return surgeries;
+
+        var filtered = new List<EntProtoId>();
+        foreach (var surgery in surgeries)
+        {
+            if (SharedSurgerySystem.CanPerformSurgeryOnSelf(surgery))
+                filtered.Add(surgery);
+        }
+
+        return filtered;
     }
 
     private void AddStep(EntProtoId stepId, NetEntity netPart, EntProtoId surgeryId)

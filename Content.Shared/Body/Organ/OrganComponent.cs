@@ -1,4 +1,5 @@
 using Content.Shared.Body.Systems;
+using Content.Shared._Goobstation.Autosurgeon;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes; // Shitmed Change
@@ -8,7 +9,7 @@ using Content.Shared._Shitmed.Medical.Surgery.Tools; // Shitmed Change
 namespace Content.Shared.Body.Organ;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedBodySystem), typeof(SharedSurgerySystem))] // Shitmed Change
+[Access(typeof(SharedBodySystem), typeof(SharedSurgerySystem), typeof(AutoSurgeonSystem))] // Shitmed Change
 public sealed partial class OrganComponent : Component, ISurgeryToolComponent // Shitmed Change
 {
     /// <summary>

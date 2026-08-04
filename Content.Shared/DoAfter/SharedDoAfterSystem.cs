@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Tag;
@@ -192,6 +194,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         {
             id = null;
             return false;
+        }
+
+        if (args.MultiplyDelay)
+        {
+            var delayMultiplierEv = new GetDoAfterDelayMultiplierEvent { TargetBodyPart = BodyPartType.Hand };
+            RaiseLocalEvent(args.User, delayMultiplierEv);
+            args.Delay *= delayMultiplierEv.Multiplier;
         }
 
         id = new DoAfterId(args.User, comp.NextId++);

@@ -1,4 +1,6 @@
 marking-LizardHornsShort1 = короткие рожки, ящер
+ent-BaseTail = хвост
+    .desc = { ent-BaseItem.desc }
 ent-PartShark = часть тела плафеима
     .desc = { ent-BaseItem.desc }
 ent-TorsoShark = тело плафеима

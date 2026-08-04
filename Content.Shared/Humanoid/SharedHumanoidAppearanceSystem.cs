@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Shitmed.Humanoid.Events;
 using Content.Shared.CCVar;
 using Content.Shared.Decals;
 using Content.Shared.Examine;
@@ -497,6 +498,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.Age = profile.Age;
         humanoid.ProfileLoaded = true;
 
+        RaiseLocalEvent(uid, new ProfileLoadFinishedEvent());
         Dirty(uid, humanoid);
     }
 

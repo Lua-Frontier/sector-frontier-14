@@ -103,6 +103,26 @@
 
 - type: entity
   parent: LeftArmCyberneticBase
+  id: LeftArmCybernetic
+  name: cybernetic left arm
+
+- type: entity
+  parent: RightArmCyberneticBase
+  id: RightArmCybernetic
+  name: cybernetic right arm
+
+- type: entity
+  parent: LeftLegCyberneticBase
+  id: LeftLegCybernetic
+  name: cybernetic left leg
+
+- type: entity
+  parent: RightLegCyberneticBase
+  id: RightLegCybernetic
+  name: cybernetic right leg
+
+- type: entity
+  parent: LeftArmCyberneticBase
   id: JawsOfLifeLeftArm
   name: J.W.L left arm
   description: A cybernetic left arm with the ability to pry doors open.
@@ -137,7 +157,8 @@
   components:
   - type: MovementBodyPart
     walkSpeed: 2.875 # Mono
-    sprintSpeed: 5.175 # Mono
+    runningSpeed: 5.175 # LuaSprint
+    sprintSpeed: 7.475 # LuaSprint
   - type: BodyPart
     onAdd:
     - type: NoSlip
@@ -147,11 +168,12 @@
   parent: RightLegCyberneticBase
   id: SpeedRightLeg
   name: S.P.E.E.D right leg
-  description: A cybernetic left leg that allows its wearer to run faster.
+  description: A cybernetic right leg that allows its wearer to run faster.
   components:
   - type: MovementBodyPart
     walkSpeed: 2.875 # Mono
-    sprintSpeed: 5.175 # Mono
+    runningSpeed: 5.175 # LuaSprint
+    sprintSpeed: 7.475 # LuaSprint
   - type: BodyPart
     onAdd:
     - type: NoSlip

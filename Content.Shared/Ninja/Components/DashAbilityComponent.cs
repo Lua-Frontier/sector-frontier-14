@@ -20,6 +20,12 @@ public sealed partial class DashAbilityComponent : Component
     [DataField]
     public EntProtoId<WorldTargetActionComponent> DashAction = "ActionEnergyKatanaDash";
 
+    [DataField]
+    public bool IsUser;
+
+    [DataField]
+    public bool RequireItem = true;
+
     [DataField, AutoNetworkedField]
     public EntityUid? DashActionEntity;
 }

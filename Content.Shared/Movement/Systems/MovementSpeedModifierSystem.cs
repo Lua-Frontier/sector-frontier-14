@@ -111,12 +111,13 @@ namespace Content.Shared.Movement.Systems
             Dirty(uid, move);
         }
 
-        public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null)
+        public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseRunningSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null)
         {
             if (!Resolve(uid, ref move, false))
                 return;
 
             move.BaseWalkSpeed = baseWalkSpeed;
+            move.BaseRunningSpeed = baseRunningSpeed;
             move.BaseSprintSpeed = baseSprintSpeed;
             move.Acceleration = acceleration;
             Dirty(uid, move);

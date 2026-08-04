@@ -1,0 +1,88 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleRightMantisBlade
+  name: Toggle Right Mantis Blade
+  description: Extend or retract the mantis blade in your right arm.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 2
+    icon: { sprite: _Goobstation/Objects/Weapons/Melee/mantis_blade.rsi, state: icon }
+    itemIconStyle: NoItem
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Items/unsheath.ogg
+  - type: InstantAction
+    event: !type:ToggleMantisBladeEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleLeftMantisBlade
+  name: Toggle Left Mantis Blade
+  description: Extend or retract the mantis blade in your left arm.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 2
+    icon: { sprite: _Goobstation/Objects/Weapons/Melee/mantis_blade.rsi, state: icon-mirrored }
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleMantisBladeEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionDashMuscleFibersImplant
+  name: muscle fibers dash
+  description: Use your muscle fibers implant to do a quick dash.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 7
+    icon: { sprite: _Mono/Objects/Misc/cybernetics.rsi, state: muscule }
+    itemIconStyle: NoItem
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Effects/Footsteps/suitstep2.ogg
+      params:
+        volume: 1
+  - type: WorldTargetAction
+    checkCanAccess: false
+    range: 0
+    event: !type:DashActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleSandevistan
+  name: Toggle Sandevistan
+  description: Enable or disable your improved reflexes provided by the Sandevistan.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    checkCanInteract: false
+    useDelay: 3
+    icon: { sprite: _Goobstation/Objects/Misc/sandevistan.rsi, state: icon }
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:ToggleSandevistanEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionEnergyCyberneticsShuntTSF
+  name: KR-22 implant shunt
+  description: Teleport to anywhere you can see.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+    itemIconStyle: NoItem
+    sound:
+      path: /Audio/Magic/blink.ogg
+      params:
+        volume: 5
+    priority: -12
+    useDelay: 15
+  - type: WorldTargetAction
+    event: !type:DashEvent
+    checkCanAccess: false
+    range: 7

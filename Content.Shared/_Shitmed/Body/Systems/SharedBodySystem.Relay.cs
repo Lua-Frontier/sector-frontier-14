@@ -7,7 +7,7 @@ public partial class SharedBodySystem
 {
     private void InitializeRelay()
     {
-        // No external DoAfter multiplier system is ported; relay helpers are used by local body events.
+        SubscribeLocalEvent<BodyComponent, GetDoAfterDelayMultiplierEvent>(RelayBodyPartEvent);
     }
 
     protected void RefRelayBodyPartEvent<T>(EntityUid uid, BodyComponent component, ref T args) where T : IBodyPartRelayEvent

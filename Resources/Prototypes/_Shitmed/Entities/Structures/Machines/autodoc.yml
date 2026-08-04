@@ -1,11 +1,11 @@
-# Basic Autodoc and AutodocSyndie entity prototypes
-# These are placeholder definitions to resolve the reference errors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Autodocs
 
 - type: entity
+  parent: [ ConstructibleMachine, BaseMachinePowered ]
   id: Autodoc
-  parent: [BaseMachine, ConstructibleMachine]
-  name: autodoc
-  description: An advanced medical machine for healing the critically wounded.
+  name: Autodoc Mk.X
+  description: A programmable robotic surgeon capsule. Climb in or place a patient inside to operate.
   components:
   - type: Sprite
     sprite: Structures/Machines/scanner.rsi
@@ -15,22 +15,138 @@
       map: [machineLayer]
     - state: idle_unlit
       map: [terminalLayer]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AutodocVisuals.Status:
+        machineLayer:
+          Off: { state: "closed" }
+          Open: { state: "open" }
+          Occupied: { state: "occupied" }
+        terminalLayer:
+          Off: { state: "off_unlit" }
+          Open: { state: "idle_unlit" }
+          Occupied: { state: "idle_unlit" }
+  - type: Climbable
+  - type: Hands
+  - type: HandsFill
+    hands:
+      multitool: OmnimedToolAutodoc
+      surgery_specific: null
+  - type: WiresPanel
+  - type: Wires
+    layoutId: Autodoc
+    boardName: wires-board-name-autodoc
   - type: Machine
     board: AutodocCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+     - machine_board
+     - machine_parts
+     - storagebase
+     - autodoc-bodyContainer
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - surgery_specific
+    - storagebase
+    - autodoc-bodyContainer
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_parts: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      autodoc-bodyContainer: !type:ContainerSlot
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ApcPowerReceiver
+    powerLoad: 10000
+  - type: UserInterface
+    interfaces:
+      enum.AutodocUiKey.Key:
+        type: AutodocBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.AutodocUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: Autodoc
+  - type: Sanitized
+  - type: DoAfter # Required for it to do surgery
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: Storage
+    clickInsert: false
+    openOnActivate: false
+    grid:
+    - 0,0,3,3
+  - type: SurgerySpeedModifier
+    speedModifier: 1
+  - type: GuideHelp
+    guides: [ Autodoc ]
 
 - type: entity
-  id: AutodocSyndie
   parent: Autodoc
-  name: syndicate autodoc
-  description: An advanced medical machine for healing the critically wounded. This one has a suspicious red paint job.
+  id: AutodocSyndie
+  # TODO: make it valid
+  suffix: Syndie
   components:
-  - type: Sprite
-    sprite: Structures/Machines/scanner.rsi
-    snapCardinals: true
-    layers:
-    - state: open
-      map: [machineLayer]
-    - state: idle_unlit
-      map: [terminalLayer]
   - type: Machine
     board: AutodocSyndieCircuitboard
+  - type: SurgerySpeedModifier
+    speedModifier: 1.0 # as good as a surgeon using a multitool, nukies need it or something
+
+# Autodoc tools
+
+- type: entity
+  parent: OmnimedTool
+  id: OmnimedToolAutodoc
+  suffix: Unremoveable, Autodoc
+  components:
+  - type: Unremoveable
+  - type: Hemostat
+    speed: 2
+  - type: Scalpel
+    speed: 2
+  - type: Drill
+    speed: 2
+  - type: BoneSetter
+    speed: 2
+  - type: Retractor
+    speed: 2
+  - type: Cautery
+    speed: 2
+  - type: BoneGel
+    speed: 2
+  - type: BoneSaw
+    speed: 2
+  - type: Tweezers
+    speed: 2
+  - type: Tending
+    speed: 2

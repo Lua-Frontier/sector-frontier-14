@@ -8,6 +8,9 @@ public sealed partial class MovementBodyPartComponent : Component
     [DataField("walkSpeed")]
     public float WalkSpeed = MovementSpeedModifierComponent.DefaultBaseWalkSpeed;
 
+    [DataField("runningSpeed")]
+    public float RunningSpeed = MovementSpeedModifierComponent.DefaultBaseRunningSpeed;
+
     [DataField("sprintSpeed")]
     public float SprintSpeed = MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
 

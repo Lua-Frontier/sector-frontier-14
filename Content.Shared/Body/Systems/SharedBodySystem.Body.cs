@@ -459,7 +459,10 @@ public partial class SharedBodySystem
             return;
 
         foreach (var part in GetBodyChildren(uid, component))
-            EnsureComp<BodyPartAppearanceComponent>(part.Id);
+        {
+            var appearance = EnsureComp<BodyPartAppearanceComponent>(part.Id);
+            CapturePartAppearance(part.Id, appearance);
+        }
     }
 
     private void OnStandAttempt(Entity<BodyComponent> ent, ref StandAttemptEvent args)

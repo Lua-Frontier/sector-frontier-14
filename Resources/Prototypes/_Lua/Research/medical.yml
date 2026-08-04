@@ -253,6 +253,10 @@
   tier: 2
   cost: 20000
   recipeUnlocks:
+  - LeftArmCybernetic
+  - RightArmCybernetic
+  - LeftLegCybernetic
+  - RightLegCybernetic
   - JawsOfLifeLeftArm
   - JawsOfLifeRightArm
   - SpeedLeftLeg
@@ -291,3 +295,59 @@
       position: 3.556, 14.222
       technologyPrerequisites:
       - CyberneticEnhancements
+
+- type: technology
+  id: LuaFactionCyberneticsNanotrasen
+  name: lua-research-technology-faction-cybernetics-nanotrasen
+  entityIcon: AutosurgeonAdvHeartPDVFlatpack
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 30000
+  recipeUnlocks:
+  - AutosurgeonIASPDVFlatpack
+  - AutosurgeonDermalArmorPDVFlatpack
+  - AutosurgeonAdvHeartPDVFlatpack
+  technologyPrerequisites:
+  - CyberneticEnhancements
+  position: 4.4, 23.6
+  factionOverrides:
+    Nanotrasen:
+      position: 4.267, 14.222
+      technologyPrerequisites:
+      - CyberneticEnhancements
+
+- type: technology
+  id: LuaFactionCyberneticsSecurity
+  name: lua-research-technology-faction-cybernetics-security
+  entityIcon: AutosurgeonShuntTSFFlatpack
+  discipline: NFMedical
+  factions:
+  - Security
+  tier: 3
+  cost: 45000
+  recipeUnlocks:
+  - AutosurgeonSandevistanTSFFlatpack
+  - AutosurgeonShuntTSFFlatpack
+  technologyPrerequisites:
+  - CyberneticEnhancements
+  position: 5.6, 23.6
+
+- type: technology
+  id: LuaFactionCyberneticsSyndicate
+  name: lua-research-technology-faction-cybernetics-syndicate
+  entityIcon: AutosurgeonSandevistanMieyoFlatpack
+  discipline: NFMedical
+  factions:
+  - Syndicate
+  tier: 3
+  cost: 40000
+  recipeUnlocks:
+  - AutosurgeonRightMantisBladeMieyoFlatpack
+  - AutosurgeonLeftMantisBladeMieyoFlatpack
+  - AutosurgeonSandevistanMieyoFlatpack
+  - AutosurgeonMuscleFibersMieyoFlatpack
+  technologyPrerequisites:
+  - CyberneticEnhancements
+  position: 6.8, 23.6

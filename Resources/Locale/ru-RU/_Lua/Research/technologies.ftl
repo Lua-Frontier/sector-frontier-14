@@ -4,3 +4,6 @@ lua-research-technology-water-regenerator = Регенератор воды
 lua-research-technology-virology = Вирусология
 lua-research-technology-smart-fridge = Умный холодильник
 lua-research-technology-botanist-hardsuit = Скафандр ботаника
+lua-research-technology-faction-cybernetics-nanotrasen = Кибернетика Нанотразен
+lua-research-technology-faction-cybernetics-security = Кибернетика СРБС
+lua-research-technology-faction-cybernetics-syndicate = Кибернетика Синдиката

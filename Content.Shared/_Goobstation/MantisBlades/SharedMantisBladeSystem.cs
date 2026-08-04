@@ -1,0 +1,18 @@
+using Content.Shared.Examine;
+
+namespace Content.Shared._Goobstation.MantisBlades;
+
+public sealed class SharedMantisBladeSystem : EntitySystem
+{
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<MantisBladeArmComponent, ExaminedEvent>(OnExamined);
+    }
+
+    private void OnExamined(EntityUid uid, MantisBladeArmComponent component, ref ExaminedEvent args)
+    {
+        args.PushMarkup(Loc.GetString("mantis-blade-arm-examine"));
+    }
+}

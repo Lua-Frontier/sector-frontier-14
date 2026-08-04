@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Systems;
+using Content.Shared.Body.Systems;
 // Shitmed Change Start
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Humanoid;

@@ -5,12 +5,11 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Server.Popups;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
+using Content.Shared._Shitmed.Autodoc.Components;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Conditions;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
@@ -32,13 +31,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 {
     [Dependency] private BodySystem _body = default!;
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private RottingSystem _rot = default!;
-    [Dependency] private BlindableSystem _blindableSystem = default!;
 
     private readonly List<EntProtoId> _surgeries = new();
 
@@ -160,7 +157,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepScreamComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (HasComp<SleepingComponent>(args.Body))
+        if (HasComp<AutodocComponent>(args.User) || HasComp<SleepingComponent>(args.Body))
             return;
 
         _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);

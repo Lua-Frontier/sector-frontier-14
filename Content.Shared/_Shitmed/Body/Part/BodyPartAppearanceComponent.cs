@@ -22,6 +22,12 @@ public sealed partial class BodyPartAppearanceComponent : Component
     public Dictionary<HumanoidVisualLayers, List<Marking>> Markings = new();
 
     /// <summary>
+    ///     Base layers visually attached to this part, such as species-specific eyes, antennas, hands, and other dependent layers.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> CustomBaseLayers = new();
+
+    /// <summary>
     ///     ID of this custom base layer. Must be a <see cref="HumanoidSpeciesSpriteLayer"/>.
     /// </summary>
     [DataField, AutoNetworkedField]

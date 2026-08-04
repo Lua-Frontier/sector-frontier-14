@@ -661,6 +661,18 @@ public partial class SharedBodySystem
             && AttachPart(parentPartId, slot, partId, parentPart, part);
     }
 
+    public bool DetachPart(
+        EntityUid parentPartId,
+        string slotId,
+        EntityUid partId,
+        BodyPartComponent? parentPart = null)
+    {
+        return Resolve(parentPartId, ref parentPart, logMissing: false)
+            && parentPart.Children.ContainsKey(slotId)
+            && Containers.TryGetContainer(parentPartId, GetPartSlotContainerId(slotId), out var container)
+            && Containers.Remove(partId, container);
+    }
+
     /// <summary>
     /// Attaches a body part to the specified body part parent.
     /// </summary>
@@ -712,6 +724,7 @@ public partial class SharedBodySystem
         }
 
         var walkSpeed = 0f;
+        var runningSpeed = 0f;
         var sprintSpeed = 0f;
         var acceleration = 0f;
         foreach (var legEntity in body.LegEntities)
@@ -720,13 +733,15 @@ public partial class SharedBodySystem
                 continue;
 
             walkSpeed += legModifier.WalkSpeed;
+            runningSpeed += legModifier.RunningSpeed;
             sprintSpeed += legModifier.SprintSpeed;
             acceleration += legModifier.Acceleration;
         }
         walkSpeed /= body.RequiredLegs;
+        runningSpeed /= body.RequiredLegs;
         sprintSpeed /= body.RequiredLegs;
         acceleration /= body.RequiredLegs;
-        Movement.ChangeBaseSpeed(bodyId, walkSpeed, sprintSpeed, acceleration, movement);
+        Movement.ChangeBaseSpeed(bodyId, walkSpeed, runningSpeed, sprintSpeed, acceleration, movement);
     }
 
     #endregion

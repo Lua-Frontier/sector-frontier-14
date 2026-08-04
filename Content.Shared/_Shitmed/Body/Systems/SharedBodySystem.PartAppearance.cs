@@ -28,24 +28,35 @@ public partial class SharedBodySystem
 
     private void OnPartAppearanceStartup(EntityUid uid, BodyPartAppearanceComponent component, ComponentStartup args)
     {
+        CapturePartAppearance(uid, component);
+    }
+
+    private bool CapturePartAppearance(EntityUid uid, BodyPartAppearanceComponent component)
+    {
         if (!TryComp(uid, out BodyPartComponent? part)
             || part.ToHumanoidLayers() is not { } relevantLayer)
-            return;
+            return false;
 
         if (part.BaseLayerId != null)
         {
             component.ID = part.BaseLayerId;
             component.Type = relevantLayer;
-            return;
+            component.Color = null;
+            component.EyeColor = null;
+            component.Markings.Clear();
+            component.CustomBaseLayers.Clear();
+            return true;
         }
 
         if (part.Body is not { Valid: true } body
             || !TryComp(body, out HumanoidAppearanceComponent? bodyAppearance))
-            return;
+            return false;
 
         var customLayers = bodyAppearance.CustomBaseLayers;
         var spriteLayers = bodyAppearance.BaseLayers;
         component.Type = relevantLayer;
+        component.EyeColor = null;
+        component.CustomBaseLayers.Clear();
 
         part.Species = bodyAppearance.Species;
 
@@ -73,12 +84,36 @@ public partial class SharedBodySystem
 
         foreach (var layer in HumanoidVisualLayersExtension.Sublayers(relevantLayer))
         {
+            if (layer != relevantLayer && customLayers.TryGetValue(layer, out var customLayer))
+            {
+                component.CustomBaseLayers[layer] = customLayer;
+            }
+            else if (layer != relevantLayer && spriteLayers.TryGetValue(layer, out var spriteLayer))
+            {
+                var color = layer == HumanoidVisualLayers.Eyes
+                    ? bodyAppearance.EyeColor
+                    : bodyAppearance.SkinColor;
+                component.CustomBaseLayers[layer] = new CustomBaseLayerInfo(spriteLayer.ID, color);
+            }
+            else if (layer != relevantLayer)
+            {
+                var id = CreateIdFromPart(bodyAppearance, layer);
+                if (id != null)
+                {
+                    var color = layer == HumanoidVisualLayers.Eyes
+                        ? bodyAppearance.EyeColor
+                        : bodyAppearance.SkinColor;
+                    component.CustomBaseLayers[layer] = new CustomBaseLayerInfo(id, color);
+                }
+            }
+
             var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
             if (bodyAppearance.MarkingSet.Markings.TryGetValue(category, out var markingList))
                 markingsByLayer[layer] = markingList.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList();
         }
 
         component.Markings = markingsByLayer;
+        return true;
     }
 
     private string? CreateIdFromPart(HumanoidAppearanceComponent bodyAppearance, HumanoidVisualLayers part)
@@ -157,7 +192,10 @@ public partial class SharedBodySystem
             EnsureComp<BodyPartAppearanceComponent>(args.Part);
 
         if (TryComp<BodyPartAppearanceComponent>(args.Part, out var partAppearance))
+        {
+            CapturePartAppearance(args.Part, partAppearance);
             RemoveAppearance(uid, partAppearance, args.Part);
+        }
     }
 
     protected void UpdateAppearance(EntityUid target,
@@ -177,6 +215,17 @@ public partial class SharedBodySystem
 
         _humanoid.SetLayerVisibility((target, bodyAppearance), component.Type, true, null);
 
+        foreach (var (layer, info) in component.CustomBaseLayers)
+        {
+            if (info.Id != null)
+                _humanoid.SetBaseLayerId(target, layer, info.Id, sync: true, bodyAppearance);
+
+            if (info.Color != null)
+                _humanoid.SetBaseLayerColor(target, layer, info.Color, true, bodyAppearance);
+
+            _humanoid.SetLayerVisibility((target, bodyAppearance), layer, true, null);
+        }
+
         foreach (var (visualLayer, markingList) in component.Markings)
         {
             _humanoid.SetLayerVisibility((target, bodyAppearance), visualLayer, true, null);
@@ -194,7 +243,7 @@ public partial class SharedBodySystem
         if (!TryComp(entity, out HumanoidAppearanceComponent? bodyAppearance))
             return;
 
-        foreach (var (visualLayer, markingList) in component.Markings)
+        foreach (var visualLayer in HumanoidVisualLayersExtension.Sublayers(component.Type))
         {
             _humanoid.SetLayerVisibility((entity, bodyAppearance), visualLayer, false, null);
         }
