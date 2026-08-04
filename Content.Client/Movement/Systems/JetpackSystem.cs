@@ -90,6 +90,9 @@ public sealed class JetpackSystem : SharedJetpackSystem
             return;
         }
 
-        Spawn("JetpackEffect", coordinates);
+        if (TryComp<JetpackComponent>(uid, out var jetpack))
+            Spawn(jetpack.JetpackEffect, coordinates);
+        else
+            Spawn("JetpackEffect", coordinates);
     }
 }

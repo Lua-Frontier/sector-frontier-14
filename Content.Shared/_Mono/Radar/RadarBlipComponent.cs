@@ -35,9 +35,4 @@ public sealed partial class RadarBlipComponent : Component
     /// </summary>
     [DataField]
     public BlipConfig? GridConfig;
-
-    // Lua: Добавлена булевая переменная на просчёт координат для блипа из компонента физики в случае true или из кэша с обновлением каждые 60 секунд если false. (bool variable determining whether blip coordinates are calculated from the physics component (if true) or from the cache with a 60-second update interval (if false).
-    // Нужна для отрисовки блипов на не-физических статичных объектах, таких как маркеры взрывов, области, и т.д. (It is needed for rendering blips on non-physical static objects, such as explosion markers, areas, etc.)
-    [ViewVariables(VVAccess.ReadWrite), DataField("physics")]
-    public bool Physics = true;
 }

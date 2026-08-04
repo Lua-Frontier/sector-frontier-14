@@ -5,18 +5,21 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Collections;
-using Robust.Shared.Timing;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Movement.Systems;
 
 public sealed class JetpackSystem : SharedJetpackSystem
 {
+    private static readonly EntProtoId RadarTrailProto = "JetpackRadarTrail";
+
     [Dependency] private readonly GasTankSystem _gasTank = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
@@ -99,59 +102,59 @@ public sealed class JetpackSystem : SharedJetpackSystem
             if (!usedEnoughAir)
                 toDisable.Add((uid, comp));
 
-            // Lua: добавлен спавн частиц джета на сервере, копия с клиентского спавна для работающей кастомизации следа джетов. (Server-side jet particle spawning, replicated from the client-side spawn to enable jet trail customization.)
-            // Настройка выбора серверного прототипа для спавна производится через JetpackComponent, переменную JetpackEffect. (The server-side prototype for spawning is configured via the JetpackComponent's JetpackEffect variable.
-            try
-            {
-                var uidXform = Transform(uid);
-
-                // Не спавним показываем частицы если юзер не двигается (Don't show particles unless the user is moving)
-                if (Container.TryGetContainingContainer((uid, uidXform, null), out var container) &&
-                    _entityManager.TryGetComponent(container.Owner, out PhysicsComponent? body) &&
-                    body.LinearVelocity.LengthSquared() < 1f)
-                {
-
-                }
-                else
-                {
-                    var coordinates = uidXform.Coordinates;
-                    var gridUid = _transform.GetGrid(coordinates);
-
-                    if (gridUid != null && _entityManager.TryGetComponent(gridUid, out MapGridComponent? grid))
-                    {
-                        coordinates = new EntityCoordinates(gridUid.Value, _mapSystem.WorldToLocal(gridUid.Value, grid, _transform.ToMapCoordinates(coordinates).Position));
-                    }
-                    else if (uidXform.MapUid != null)
-                    {
-                        coordinates = new EntityCoordinates(uidXform.MapUid.Value, _transform.GetWorldPosition(uidXform));
-                    }
-                    else
-                    {
-                        coordinates = default;
-                    }
-
-                    if (coordinates != default)
-                    {
-                        if (TryComp<JetpackComponent>(uid, out var jetpack))
-                        {
-                            Spawn(jetpack.JetpackEffect, coordinates);
-                        }
-                        else
-                        {
-                            Spawn("JetpackEffect", coordinates);
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                _gasTank.UpdateUserInterface(gasTank);
-            }
+            _gasTank.UpdateUserInterface(gasTank);
+            if (comp.RadarBlip)
+                TrySpawnRadarTrail(uid, comp);
         }
 
         foreach (var (uid, comp) in toDisable)
+        { SetEnabled(uid, comp, false); }
+    }
+    private void TrySpawnRadarTrail(EntityUid uid, JetpackComponent jetpack)
+    {
+        var xform = Transform(uid);
+
+        if (Container.TryGetContainingContainer((uid, xform, null), out var container) &&
+            TryComp(container.Owner, out PhysicsComponent? body) && body.LinearVelocity.LengthSquared() < 1f)
+        { return; }
+        if (!TryGetTrailCoordinates(uid, xform, out var coordinates))
+            return;
+        var trail = Spawn(RadarTrailProto, coordinates);
+        if (!TryComp(trail, out RadarBlipComponent? blip))
+            return;
+        if (_prototypes.TryIndex(jetpack.JetpackEffect, out EntityPrototype? effectProto) &&
+            effectProto.TryGetComponent<RadarBlipComponent>(out var template, EntityManager.ComponentFactory))
         {
-            SetEnabled(uid, comp, false);
+            blip.RadarColor = template.RadarColor;
+            blip.HighlightedRadarColor = template.HighlightedRadarColor;
+            blip.Scale = template.Scale;
+            blip.Shape = template.Shape;
+            blip.VisibleFromOtherGrids = template.VisibleFromOtherGrids;
+            blip.RequireNoGrid = template.RequireNoGrid;
+            blip.MaxDistance = template.MaxDistance;
+            blip.Enabled = true;
         }
+    }
+
+    private bool TryGetTrailCoordinates(EntityUid uid, TransformComponent xform, out EntityCoordinates coordinates)
+    {
+        coordinates = xform.Coordinates;
+        var gridUid = _transform.GetGrid(coordinates);
+
+        if (gridUid != null && TryComp(gridUid, out MapGridComponent? grid))
+        {
+            coordinates = new EntityCoordinates(
+                gridUid.Value, _mapSystem.WorldToLocal(gridUid.Value, grid, _transform.ToMapCoordinates(coordinates).Position));
+            return true;
+        }
+
+        if (xform.MapUid != null)
+        {
+            coordinates = new EntityCoordinates(xform.MapUid.Value, _transform.GetWorldPosition(xform));
+            return true;
+        }
+
+        coordinates = default;
+        return false;
     }
 }
