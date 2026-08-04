@@ -1,0 +1,41 @@
+# Dropped loot from CrystalMonolithic. Parent simplified vs Monolith
+# (BaseMonolithContrabandT1 not present in this fork).
+- type: entity
+  name: small monolithic crystal
+  parent: BaseItem
+  id: MonolithicCrystalSmall
+  description: A mysterious crystalline solid. Seems highly energetic, but fragile. Local factions and researchers are very interested in this.
+  components:
+  - type: Sprite
+    sprite: _Mono/Objects/Materials/monolith_crystal.rsi
+    layers:
+    - state: crystal_small
+      shader: unshaded
+  - type: Item
+    sprite: Objects/Specific/Syndicate/telecrystal.rsi
+    size: Small
+  - type: StaticPrice
+    price: 10000
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ExplodeBehavior
+  - type: Explosive
+    totalIntensity: 5
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 2
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 50

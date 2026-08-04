@@ -69,7 +69,8 @@ public sealed class CompanyBriefingSystem : EntitySystem
             return string.Empty;
         }
 
-        return Loc.GetString("company-briefing-company-info", ("text", prototype.Motd));
+        var text = Loc.TryGetString(prototype.Motd, out var localized) ? localized : prototype.Motd;
+        return Loc.GetString("company-briefing-company-info", ("text", text));
     }
 
     private string BuildLeaderMotd(string companyId)
