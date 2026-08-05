@@ -131,8 +131,9 @@ public partial class ShuttleNavControl
         var displayedDistance = worldDist < 50f ? $"{worldDist:0.0}" : worldDist < 1000 ? $"{worldDist:0}" : $"{worldDist / 1000:0.0}k";
         var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), ("distance", displayedDistance));
 
-        var textScale = UIScale * 0.9f * distanceScale;
-        var labelDimensions = handle.GetDimensions(Font, labelText, 0.9f * distanceScale);
+        const float dimScale = 0.9f;
+        var textScale = UIScale * dimScale;
+        var labelDimensions = handle.GetDimensions(Font, labelText, dimScale);
         var blipSize = RadarBlipSize * 0.7f * distanceScale;
         var labelOffset = new Vector2
         {

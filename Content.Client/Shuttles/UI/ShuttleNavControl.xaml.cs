@@ -886,7 +886,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     // Calculate unscaled offsets. + Lua decrypt md start
                     var lines = labelText.Split('\n');
                     var mainLabel = lines[0];
-                    var dimScale = 0.9f * distanceScale;
+                    const float dimScale = 0.9f;
                     var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, dimScale) : handle.GetDimensions(Font, mainLabel, dimScale);
                     var labelDimensions = mainDim;
                     if (lines.Length > 1)
@@ -919,7 +919,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             displayColor = compColor;
                     }
 
-                    var textScale = UIScale * 0.9f * distanceScale;
+                    var textScale = UIScale * dimScale;
                     if (cipherName) DrawCipherString(handle, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
                     else handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
 
@@ -929,7 +929,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         var companyLabel = lines[1];
                         var companyLabelOffset = new Vector2(
                             labelOffset.X,
-                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, textScale).Y
+                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, dimScale).Y
                         );
 
                         handle.DrawString(Font, (uiPosition + companyLabelOffset) * UIScale, companyLabel, textScale, displayColor);
