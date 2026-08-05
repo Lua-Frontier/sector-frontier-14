@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using System.Numerics;
@@ -45,6 +45,15 @@ public sealed class PixelPlanetOverlay : Overlay
         _timing = IoCManager.Resolve<IGameTiming>();
         _transform = entManager.System<SharedTransformSystem>();
         ZIndex = ParallaxSystem.ParallaxZIndex + 1;
+    }
+
+    protected override void DisposeBehavior()
+    {
+        base.DisposeBehavior();
+
+        foreach (var shader in _shaders.Values)
+            shader.Dispose();
+        _shaders.Clear();
     }
 
     protected override void Draw(in OverlayDrawArgs args)

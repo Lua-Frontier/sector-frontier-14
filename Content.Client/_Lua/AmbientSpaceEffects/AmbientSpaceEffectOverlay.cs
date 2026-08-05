@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using System.Numerics;
@@ -18,8 +18,9 @@ namespace Content.Client._Lua.AmbientSpaceEffects;
 
 public sealed class AmbientSpaceEffectOverlay : Overlay
 {
-    private const float FixedVisualRange = 20000f;
-    private const int FixedMaxFields = 48;
+    private const float FixedVisualRange = 8000f;
+    private const int FixedMaxFields = 20;
+    private readonly HashSet<EntityUid> _scratchFieldUids = new();
 
     private static readonly ProtoId<ShaderPrototype> FallbackShader = "AmbientNebula";
     private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
@@ -303,6 +304,7 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
     private void CollectFields(MapId mapId, Vector2 eyePos)
     {
         _fieldScratch.Clear();
+        _scratchFieldUids.Clear();
         var cullBox = Box2.CenteredAround(eyePos, new Vector2(FixedVisualRange * 2f, FixedVisualRange * 2f));
         var query = _entManager.EntityQueryEnumerator<AmbientSpaceFieldComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var field, out var xform))
@@ -317,6 +319,7 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
                 continue;
 
             _fieldScratch.Add((uid, field, xform));
+            _scratchFieldUids.Add(uid);
         }
 
         _fieldScratch.Sort((a, b) =>
@@ -353,13 +356,13 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
 
     private void PruneFieldShaders()
     {
-        if (_fieldShaders.Count <= FixedMaxFields * 3)
+        if (_fieldShaders.Count == 0)
             return;
 
         List<(EntityUid Uid, AmbientSpaceLayer Layer)>? toRemove = null;
         foreach (var key in _fieldShaders.Keys)
         {
-            if (_entManager.EntityExists(key.Uid))
+            if (_entManager.EntityExists(key.Uid) && _scratchFieldUids.Contains(key.Uid))
                 continue;
 
             toRemove ??= new List<(EntityUid, AmbientSpaceLayer)>();
