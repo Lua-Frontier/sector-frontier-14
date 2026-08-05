@@ -7,9 +7,11 @@ using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.Shuttles.Components;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared._Mono.Radar;
+using Content.Shared.Station.Components;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -153,5 +155,14 @@ public partial class ShuttleNavControl
             return true;
 
         return entManager.TryGetComponent<AmbientSpaceFieldComponent>(uid, out var field) && field.HasWeather;
+    }
+    private bool IsRadarBlipIconDrawnElsewhere(EntityUid uid)
+    {
+        if (IsSpaceHazardRadarIconEntity(EntManager, uid)) return true;
+        if (!ShowIFF || !EntManager.HasComponent<MapGridComponent>(uid)) return false;
+        if (EntManager.TryGetComponent<RadarBlipIconComponent>(uid, out var gridIcon) && gridIcon.Icon != default) return true;
+        return EntManager.TryGetComponent<StationMemberComponent>(uid, out var member)
+               && EntManager.TryGetComponent<RadarBlipIconComponent>(member.Station, out var stationIcon)
+               && stationIcon.Icon != default;
     }
 }

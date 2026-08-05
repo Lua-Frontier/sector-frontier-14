@@ -1123,7 +1123,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 if (!handledByLuaStyle)
                 {
                     var blipEnt = EntManager.GetEntity(blip.NetUid);
-                    if (blipEnt != EntityUid.Invalid && IsSpaceHazardRadarIconEntity(EntManager, blipEnt))
+                    if (blipEnt != EntityUid.Invalid && IsRadarBlipIconDrawnElsewhere(blipEnt))
                     {
                         handledByLuaStyle = true;
                     }
