@@ -4,6 +4,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.Shared.Projectiles;
 
@@ -100,10 +101,25 @@ public sealed partial class ProjectileComponent : Component
     [DataField]
     public FixedPoint2 PenetrationAmount = FixedPoint2.Zero;
 
+    /// <summary>
+    ///     Determines whether the entity should be deleted on collision when no damage is dealt.
+    /// </summary>
+    [DataField]
+    public bool NoDamageDelete = true;
+
     // Goobstation Start
     [DataField]
     public float ArmorPenetration;
     // Goobstation End
+
+    /// <summary>
+    ///     Needed for raycasting through continuous batches of wall on grid-bound projectiles.
+    /// </summary>
+    [DataField]
+    public Vector2? RaycastResetVelocity;
+
+    [DataField]
+    public float LinearDampening;
 
     [DataField("whitelist"), AutoNetworkedField]
     public EntityWhitelist? Whitelist = new();

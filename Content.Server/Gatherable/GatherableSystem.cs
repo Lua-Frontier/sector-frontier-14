@@ -66,7 +66,7 @@ public sealed partial class GatherableSystem : EntitySystem
         var eventArgs = new DestructionEventArgs();
         RaiseLocalEvent(gatheredUid, eventArgs);
 
-        // Now queue the entity for deletion
+        component.Gathered = true;
         QueueDel(gatheredUid);
 
         // Spawn the loot!

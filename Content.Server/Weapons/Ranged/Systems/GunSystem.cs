@@ -3,6 +3,8 @@ using Content.Server._Mono.FireControl;
 using Content.Server.Cargo.Systems;
 using Content.Server.Weapons.Ranged.Components;
 using Content.Shared._Mono;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -17,6 +19,7 @@ using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -232,6 +235,15 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         projectileComp.Damage *= gun.DamageModifier;
+
+        if (GunPrediction && user != null && TryComp<ActorComponent>(user, out var actor))
+        {
+            var predicted = EnsureComp<PredictedProjectileServerComponent>(uid);
+            predicted.Shooter = actor.PlayerSession;
+            predicted.ClientId = uid.Id;
+            predicted.ClientEnt = user;
+        }
+
         ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified);
         if (HasComp<FireControllableComponent>(gunUid))
         {
@@ -285,9 +297,17 @@ public sealed partial class GunSystem : SharedGunSystem
         RaiseNetworkEvent(message, filter);
     }
 
-    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound)
+    public override void PlayImpactSound(
+        EntityUid otherEntity,
+        DamageSpecifier? modifiedDamage,
+        SoundSpecifier? weaponSound,
+        bool forceWeaponSound,
+        Filter? filter = null,
+        Entity<ProjectileComponent, PhysicsComponent>? projectile = null)
     {
         DebugTools.Assert(!Deleted(otherEntity), "Impact sound entity was deleted");
+
+        filter ??= Filter.Pvs(otherEntity, entityManager: EntityManager);
 
         // Like projectiles and melee,
         // 1. Entity specific sound

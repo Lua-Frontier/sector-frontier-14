@@ -1,6 +1,7 @@
 using Content.Server.Gatherable.Components;
+using Content.Shared.Mining.Components;
 using Content.Shared.Projectiles;
-using Robust.Shared.Physics.Events;
+using Content.Shared.Whitelist;
 
 namespace Content.Server.Gatherable;
 
@@ -8,23 +9,39 @@ public sealed partial class GatherableSystem
 {
     private void InitializeProjectile()
     {
-        SubscribeLocalEvent<GatheringProjectileComponent, StartCollideEvent>(OnProjectileCollide);
+        SubscribeLocalEvent<GatheringProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
     }
 
-    private void OnProjectileCollide(Entity<GatheringProjectileComponent> gathering, ref StartCollideEvent args)
+    private void OnProjectileHit(Entity<GatheringProjectileComponent> gathering, ref ProjectileHitEvent args)
     {
-        if (!args.OtherFixture.Hard ||
-            args.OurFixtureId != SharedProjectileSystem.ProjectileFixture ||
+        if (!TryComp<ProjectileComponent>(gathering, out _) ||
             gathering.Comp.Amount <= 0 ||
-            !TryComp<GatherableComponent>(args.OtherEntity, out var gatherable))
+            !TryComp<GatherableComponent>(args.Target, out var gatherable))
         {
             return;
         }
 
-        Gather(args.OtherEntity, gathering, gatherable);
+        if (_whitelistSystem.IsWhitelistFail(gatherable.ToolWhitelist, gathering.Owner))
+            return;
+
+        if (TryComp<OreVeinComponent>(args.Target, out var oreVein)
+            && _whitelistSystem.IsWhitelistPass(oreVein.GatherDestructionWhitelist, gathering.Owner))
+        {
+            oreVein.PreventSpawning = true;
+        }
+
+        if (gatherable.Gathered)
+        {
+            args.Handled = true;
+            return;
+        }
+
+        Gather(args.Target, gathering, gatherable);
         gathering.Comp.Amount--;
 
         if (gathering.Comp.Amount <= 0)
-            QueueDel(gathering);
+            return;
+
+        args.Handled = true;
     }
 }

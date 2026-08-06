@@ -37,4 +37,10 @@ public sealed partial class GatherableComponent : Component
     /// </summary>
     [DataField]
     public float GatherOffset = 0.3f;
+
+    /// <summary>
+    /// Whether this entity has already been gathered this tick.
+    /// </summary>
+    [ViewVariables]
+    public bool Gathered;
 }
