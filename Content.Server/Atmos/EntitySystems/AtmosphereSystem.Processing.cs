@@ -463,6 +463,63 @@ namespace Content.Server.Atmos.EntitySystems
             return true;
         }
 
+        /// <summary>
+        /// Processes all entities with a <see cref="DeltaPressureComponent"/>, doing damage to them
+        /// depending on certain pressure differential conditions.
+        /// </summary>
+        private bool ProcessDeltaPressure(Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent> ent)
+        {
+            var atmosphere = ent.Comp1;
+            var count = atmosphere.DeltaPressureEntities.Count;
+            if (!atmosphere.ProcessingPaused)
+            {
+                atmosphere.DeltaPressureCursor = 0;
+                atmosphere.DeltaPressureDamageResults.Clear();
+            }
+
+            var remaining = count - atmosphere.DeltaPressureCursor;
+            var batchSize = Math.Max(50, DeltaPressureParallelProcessPerIteration);
+            var toProcess = Math.Min(batchSize, remaining);
+
+            var timeCheck1 = 0;
+            while (atmosphere.DeltaPressureCursor < count)
+            {
+                var job = new DeltaPressureParallelJob(this,
+                    atmosphere,
+                    atmosphere.DeltaPressureCursor,
+                    DeltaPressureParallelBatchSize);
+                _parallel.ProcessNow(job, toProcess);
+
+                atmosphere.DeltaPressureCursor += toProcess;
+
+                if (timeCheck1++ < LagCheckIterations)
+                    continue;
+
+                timeCheck1 = 0;
+                if (_simulationStopwatch.Elapsed.TotalMilliseconds >= AtmosMaxProcessTime)
+                    return false;
+            }
+
+            var timeCheck2 = 0;
+            while (atmosphere.DeltaPressureDamageResults.TryDequeue(out var result))
+            {
+                PerformDamage(result.Ent,
+                    result.Pressure,
+                    result.DeltaPressure);
+
+                if (timeCheck2++ < LagCheckIterations)
+                    continue;
+
+                timeCheck2 = 0;
+                if (_simulationStopwatch.Elapsed.TotalMilliseconds >= AtmosMaxProcessTime)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private bool ProcessPipeNets(GridAtmosphereComponent atmosphere)
         {
             if (!atmosphere.ProcessingPaused)
@@ -507,6 +564,8 @@ namespace Content.Server.Atmos.EntitySystems
             if (!ExcitedGroups)
                 num--;
             if (!Superconduction)
+                num--;
+            if (!DeltaPressureDamage)
                 num--;
             return num * AtmosTime;
         }
@@ -650,6 +709,18 @@ namespace Content.Server.Atmos.EntitySystems
                         }
 
                         atmosphere.ProcessingPaused = false;
+                        atmosphere.State = DeltaPressureDamage
+                            ? AtmosphereProcessingState.DeltaPressure
+                            : AtmosphereProcessingState.Hotspots;
+                        continue;
+                    case AtmosphereProcessingState.DeltaPressure:
+                        if (!ProcessDeltaPressure(ent))
+                        {
+                            atmosphere.ProcessingPaused = true;
+                            return;
+                        }
+
+                        atmosphere.ProcessingPaused = false;
                         atmosphere.State = AtmosphereProcessingState.Hotspots;
                         continue;
                     case AtmosphereProcessingState.Hotspots:
@@ -717,6 +788,7 @@ namespace Content.Server.Atmos.EntitySystems
         ActiveTiles,
         ExcitedGroups,
         HighPressureDelta,
+        DeltaPressure,
         Hotspots,
         Superconductivity,
         PipeNet,

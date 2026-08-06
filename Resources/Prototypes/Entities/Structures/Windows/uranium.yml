@@ -50,10 +50,15 @@
     price: 80 # Frontier: 200<80 - TODO: material value rework
   - type: RadiationBlocker
     resistance: 3
-
+  - type: DeltaPressure
+    minPressure: 75000
+    minPressureDelta: 50000
+    scalingType: Linear
+    scalingPower: 0.0005
   - type: ShipRepairable
     repairTime: 3
     repairCost: 3
+
 - type: entity
   id: UraniumWindowDirectional
   parent: WindowDirectionalRCDResistant
@@ -106,7 +111,10 @@
     price: 40 # Frontier: 100<40 - TODO: material value rework
   - type: RadiationBlocker
     resistance: 1.5
-
+  - type: DeltaPressure
+    minPressure: 18750
+    minPressureDelta: 12500
+    scalingType: Threshold
 - type: entity
   parent: UraniumWindow
   id: UraniumWindowDiagonal

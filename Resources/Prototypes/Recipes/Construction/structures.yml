@@ -181,13 +181,16 @@
   conditions:
     - !type:TileNotBlocked
 
-#Lua
+# Mono - plastitanium walls
 - type: construction
   id: WallPlastitanium
   graph: Girder
   startNode: start
-  targetNode: plastitaniumwall
+  targetNode: plastitaniumWall
   category: construction-category-structures
+  icon:
+    sprite: /Textures/_Corvax/Structures/Walls/plastitanium.rsi
+    state: full
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -199,8 +202,11 @@
   id: WallPlastitaniumDiagonal
   graph: Girder
   startNode: start
-  targetNode: diagonalplastitaniumwall
+  targetNode: wallPlastitaniumDiagonal
   category: construction-category-structures
+  icon:
+    sprite: /Textures/_Corvax/Structures/Walls/plastitanium_diagonal.rsi
+    state: state0
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: true

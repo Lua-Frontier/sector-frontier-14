@@ -55,10 +55,16 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 65 # Frontier: 132<65
-
+  - type: DeltaPressure
+    minPressure: 150000
+    minPressureDelta: 100000
+    scalingType: Linear
+    scalingPower: 0.0001
+  - type: HitscanDiffractTarget
   - type: ShipRepairable
     repairTime: 6
     repairCost: 6
+
 - type: entity
   id: PlasmaReinforcedWindowDirectional
   parent: WindowDirectionalRCDResistant
@@ -116,10 +122,15 @@
         acts: [ "Destruction" ]
   - type: StaticPrice
     price: 30
-
+  - type: DeltaPressure
+    minPressure: 37500
+    minPressureDelta: 25000
+    scalingType: Threshold
+  - type: HitscanDiffractTarget
   - type: ShipRepairable
     repairTime: 4
     repairCost: 4
+
 - type: entity
   parent: ReinforcedPlasmaWindow
   id: ReinforcedPlasmaWindowDiagonal
@@ -162,6 +173,7 @@
     airBlockedDirection:
     - South
     - East
+  - type: HitscanDiffractTarget
   - type: DamageVisuals
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi

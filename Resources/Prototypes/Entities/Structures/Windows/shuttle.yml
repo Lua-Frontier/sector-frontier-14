@@ -53,10 +53,15 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 70 # Frontier: 150<70
-
+  - type: DeltaPressure
+    minPressure: 15000
+    minPressureDelta: 10000
+    scalingType: Linear
+    scalingPower: 0.0005
   - type: ShipRepairable
     repairTime: 6
     repairCost: 6
+
 - type: entity
   parent: ShuttleWindow
   id: ShuttleWindowDiagonal

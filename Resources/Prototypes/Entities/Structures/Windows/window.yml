@@ -8,6 +8,10 @@
     snap:
     - Window
   components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -41,6 +45,9 @@
   - type: ExaminableDamage
     messages: WindowMessages
   - type: Repairable
+    qualities:
+    - Welding
+    - Applicating
   - type: RCDDeconstructable
     cost: 6
     delay: 4
@@ -71,6 +78,11 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Airtight
+  - type: DeltaPressure
+    minPressure: 1000
+    minPressureDelta: 750
+    scalingType: Linear
+    scalingPower: 0.0005
   - type: IconSmooth
     key: walls
     base: window
@@ -92,10 +104,10 @@
   - type: StaticPrice
     price: 100
   - type: BlockWeather
-
   - type: ShipRepairable
     repairTime: 3
     repairCost: 3
+
 - type: entity
   parent: Window
   id: TintedWindow
@@ -167,6 +179,9 @@
         layer:
         - GlassLayer
   - type: Repairable
+    qualities:
+    - Welding
+    - Applicating
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Glass
@@ -205,6 +220,10 @@
     noAirWhenFullyAirBlocked: false
     airBlockedDirection:
     - South
+  - type: DeltaPressure
+    minPressure: 250
+    minPressureDelta: 187.5
+    scalingType: Threshold
   - type: Construction
     graph: WindowDirectional
     node: windowDirectional
@@ -216,10 +235,10 @@
       sprite: Structures/Windows/cracks_directional.rsi
   - type: StaticPrice
     price: 15
-
   - type: ShipRepairable
     repairTime: 2
     repairCost: 2
+
 - type: entity
   id: WindowDirectionalRCDResistant
   parent: WindowDirectional

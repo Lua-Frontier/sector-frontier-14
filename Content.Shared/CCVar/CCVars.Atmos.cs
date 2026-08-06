@@ -150,4 +150,22 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> AtmosTankFragment =
         CVarDef.Create("atmos.max_explosion_range", 5f, CVar.SERVERONLY); // Frontier: 26<5 (matches wizden TOMLs)
+
+    /// <summary>
+    /// Whether atmospherics will process delta-pressure damage on entities with a DeltaPressureComponent.
+    /// </summary>
+    public static readonly CVarDef<bool> DeltaPressureDamage =
+        CVarDef.Create("atmos.delta_pressure_damage", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Number of entities to submit for parallel processing per processing run.
+    /// </summary>
+    public static readonly CVarDef<int> DeltaPressureParallelToProcessPerIteration =
+        CVarDef.Create("atmos.delta_pressure_parallel_process_per_iteration", 1000, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Number of entities to process per processing job.
+    /// </summary>
+    public static readonly CVarDef<int> DeltaPressureParallelBatchSize =
+        CVarDef.Create("atmos.delta_pressure_parallel_batch_size", 10, CVar.SERVERONLY);
 }

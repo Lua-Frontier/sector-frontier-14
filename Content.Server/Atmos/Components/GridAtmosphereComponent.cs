@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Serialization;
@@ -60,6 +61,23 @@ namespace Content.Server.Atmos.Components
 
         [ViewVariables]
         public int HighPressureDeltaCount => HighPressureDelta.Count;
+
+        /// <summary>
+        /// A list of entities that have a <see cref="DeltaPressureComponent"/> and are to
+        /// be processed by the <see cref="DeltaPressureSystem"/>, if enabled.
+        /// </summary>
+        [ViewVariables]
+        public readonly List<Entity<DeltaPressureComponent>> DeltaPressureEntities =
+            new(AtmosphereSystem.DeltaPressurePreAllocateLength);
+
+        public readonly Dictionary<EntityUid, int> DeltaPressureEntityLookup =
+            new(AtmosphereSystem.DeltaPressurePreAllocateLength);
+
+        [ViewVariables(VVAccess.ReadOnly)]
+        public int DeltaPressureCursor;
+
+        [ViewVariables]
+        public readonly ConcurrentQueue<AtmosphereSystem.DeltaPressureDamageResult> DeltaPressureDamageResults = new();
 
         [ViewVariables]
         public readonly HashSet<IPipeNet> PipeNets = new();
