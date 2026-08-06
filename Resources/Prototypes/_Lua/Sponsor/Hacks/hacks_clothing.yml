@@ -67,22 +67,38 @@
       sprintModifier: 1
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ MonoEnergyShieldClothing, ClothingNeckBase ]
   id: ClothingNeckCapeLuaDalt
   categories: [ HideSpawnMenu ]
   name: плащ Луа
   description: Плащ сшитый на заказ в память о Дальтштанте.
   components:
+  - type: PersonalShield
+    color: "#a200ff"
+    shield:
+      maxCharge: 300
+      regenRate: 3
+      spinupTime: 1
+      breakCooldown: 15
+      powerDraw: 0.5
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Neck/Cloaks/lua_cape.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ MonoEnergyShieldClothing, ClothingNeckBase ]
   id: ClothingNeckCapeLuaBlackDalt
   categories: [ HideSpawnMenu ]
   name: плащ Луа
   description: Плащ сшитый на заказ в память о Дальтштанте.
   components:
+  - type: PersonalShield
+    color: "#a200ff"
+    shield:
+      maxCharge: 300
+      regenRate: 3
+      spinupTime: 1
+      breakCooldown: 15
+      powerDraw: 0.5
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Neck/Cloaks/lua_cape_black.rsi
 

@@ -108,12 +108,17 @@
         Heat: 0.3
 
 - type: entity
-  parent: [ MonoEnergyShieldClothing, ClothingOuterHardsuitAtmos, BaseToggleClothing ]
+  parent: [ ClothingOuterHardsuitAtmos, BaseToggleClothing ]
   id: ClothingOuterHardsuitLua
   categories: [ HideSpawnMenu ]
   name: скафандр "LuaTech"
   description: Скафандр специализированный под расу "Вульпканинов" сделанный на заказ LuaTech.
   components:
+  - type: HardsuitIdentification
+    emaggable: false
+    securityMode: Acid
+    createAcidEffect: true
+  - type: HardsuitDNARadial
   - type: BreathMask
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/OuterClothing/Hardsuits/lua_hardsuit.rsi
