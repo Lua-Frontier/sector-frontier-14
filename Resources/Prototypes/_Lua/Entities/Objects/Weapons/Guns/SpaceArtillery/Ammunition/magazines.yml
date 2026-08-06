@@ -56,7 +56,6 @@
     - Cartridge
     - CartridgeLua20mm
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: Bullet20mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
@@ -90,7 +89,6 @@
     - Cartridge
     - CartridgeLua53mm
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: Bullet53mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
@@ -124,7 +122,6 @@
     - Cartridge
     - CartridgeLua80mm
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: Bullet80mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
@@ -157,7 +154,6 @@
     tags:
     - CartridgeLua105mm
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: Bullet105mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
@@ -190,7 +186,6 @@
     tags:
     - CartridgeLua120mm
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: Bullet120mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
@@ -209,7 +204,6 @@
     - Cartridge
     - CartridgeLua140mm
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: Bullet140mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
@@ -243,7 +237,6 @@
     - Missile
     - MissileNightHunter
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: BulletTomahawk
 
 - type: entity
@@ -271,7 +264,6 @@
     - Missile
     - MissileLancer
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: BulletWolf
 
 - type: entity
@@ -299,7 +291,6 @@
     - Missile
     - MissileCerber
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: BulletGR
   # Sprite: inherit Mono MissileCartridge250mm (generic_cartridges.rsi / tovek)
 

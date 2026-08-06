@@ -9,7 +9,6 @@
     - Cartridge
     - CartridgeLightRifle
   - type: CartridgeAmmo
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -31,7 +30,6 @@
       - Cartridge
       - CartridgeMagnum
   - type: CartridgeAmmo
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -53,7 +51,6 @@
       - Cartridge
       - CartridgeCaselessRifle
   - type: CartridgeAmmo
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -75,7 +72,6 @@
       - Cartridge
       - CartridgeCap
   - type: CartridgeAmmo
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/capgun_casing.rsi
     layers:
@@ -93,7 +89,6 @@
   abstract: true
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
 
 - type: entity
   id: BaseCartridgeHeavyRifle
@@ -106,7 +101,6 @@
       - Cartridge
       - CartridgeHeavyRifle
   - type: CartridgeAmmo
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -129,7 +123,6 @@
     - Cartridge
     - CartridgeAntiMateriel
   - type: CartridgeAmmo
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
     layers:

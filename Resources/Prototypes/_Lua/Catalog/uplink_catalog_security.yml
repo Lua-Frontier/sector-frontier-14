@@ -1,4 +1,3 @@
-
 # - type: listing #Lua: No more TK.
 #   id: UplinkConvertTK
 #   name: uplink-convert-sdtk-name
@@ -427,86 +426,11 @@
     - Cadet
 
 - type: listing
-  id: UplinkSecurityM54CE2Bundle # m54ce2
-  name:  uplink-security-m54ce2-name
-  description: uplink-security-m54ce2-desc
-  productEntity: WeaponCaseLongWeaponRifleM54CE2
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - UplinkSecurityWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Sheriff
-    - Bailiff
-    - SeniorOfficer
-    - Brigmedic
-    - SDEngineer
-    - Deputy
-    - Cadet
-
-- type: listing
   id: UplinkSecurityUniversalBundle # Universal
   name:  uplink-security-universal-name
   description: uplink-security-universal-desc
   productEntity: WeaponCaseShortUniversalExpedition
   icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 3
-  categories:
-  - UplinkSecurityWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Sheriff
-    - Bailiff
-    - SeniorOfficer
-    - Brigmedic
-    - SDEngineer
-    - Deputy
-    - Cadet
-
-- type: listing
-  id: UplinkSecurityMP5Bundle # MP5
-  name:  uplink-security-mp5-name
-  description: uplink-security-mp5-desc
-  productEntity: WeaponCaseLongWeaponSMGMP5
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/SMGs/mp5.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - UplinkSecurityWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-  - !type:BuyerJobCondition
-    whitelist:
-    - Sheriff
-    - Bailiff
-    - SeniorOfficer
-    - Brigmedic
-    - SDEngineer
-    - Deputy
-    - Cadet
-
-- type: listing
-  id: UplinkSecurityD18Bundle # D18
-  name:  uplink-security-d18-name
-  description: uplink-security-d18-desc
-  productEntity: WeaponCaseShortRMCWeaponPistolD18
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/m43.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 3
   categories:
@@ -758,7 +682,6 @@
       - Deputy
       - Cadet
 
-
 #region energy weapons
 - type: listing
   id: UplinkSecurityLRC21PPLBundle # NT-WS LRC-21 PPL
@@ -833,106 +756,6 @@
     - SDEngineer
     - Deputy
     - Cadet
-
-- type: listing
-  id: UplinkSecurityLaserRifle # LaserRifle
-  name:  uplink-security-laserrifle-name
-  description: uplink-security-laserrifle-desc
-  productEntity: WeaponCaseShortN14WeaponLaserRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 7
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-      - Sheriff
-      - Bailiff
-      - SeniorOfficer
-      - Brigmedic
-      - SDEngineer
-      - Deputy
-      - Cadet
-
-- type: listing
-  id: UplinkSecurityUrbanPlasma # UrbanPlasma
-  name:  uplink-security-urbanplasma-name
-  description: uplink-security-urbanplasma-desc
-  productEntity: WeaponCaseShortN14WeaponUrbanPlasmaRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 7
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-      - Sheriff
-      - Bailiff
-      - SeniorOfficer
-      - Brigmedic
-      - SDEngineer
-      - Deputy
-      - Cadet
-
-- type: listing
-  id: UplinkSecurityRechargerRifle # RechargerRifle
-  name:  uplink-security-rechargerrifle-name
-  description: uplink-security-rechargerrifle-desc
-  productEntity: WeaponCaseLongN14WeaponRechargerRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 7
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-      - Sheriff
-      - Bailiff
-      - SeniorOfficer
-      - Brigmedic
-      - SDEngineer
-      - Deputy
-      - Cadet
-
-- type: listing
-  id: UplinkSecurityRechargerPistol # RechargerPistol
-  name:  uplink-security-rechargerpistol-name
-  description: uplink-security-rechargerpistol-desc
-  productEntity: WeaponCaseShortN14WeaponRechargerPistol
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 7
-  categories:
-    - UplinkSecurityWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-      - Sheriff
-      - Bailiff
-      - SeniorOfficer
-      - Brigmedic
-      - SDEngineer
-      - Deputy
-      - Cadet
 
 - type: listing
   id: UplinkSecurityRifleTemperature # RifleTemperature
@@ -1575,7 +1398,6 @@
       - Deputy
       - Cadet
 
-
 - type: listing
   id: UplinkSecuritySmokeGrenadeBox
   name:  uplink-security-smokegrenade-box-name
@@ -1729,7 +1551,6 @@
       - Deputy
       - Cadet
 
-
 - type: listing
   id: UplinkSecurityRadPen
   name:  uplink-pirate-rad-pen-name
@@ -1871,7 +1692,6 @@
       - Deputy
       - Cadet
 
-
 - type: listing
   id: UplinkSecurityMedkit
   name:  uplink-security-medkit-name
@@ -1896,7 +1716,6 @@
       - SDEngineer
       - Deputy
       - Cadet
-
 
 #region utility
 
@@ -2092,7 +1911,6 @@
       - SDEngineer
       - Deputy
       - Cadet
-
 
 # - type: listing
 #   id: UplinkSecurityCash2500

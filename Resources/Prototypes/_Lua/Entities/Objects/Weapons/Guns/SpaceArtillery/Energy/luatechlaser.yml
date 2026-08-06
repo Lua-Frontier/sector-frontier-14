@@ -139,16 +139,43 @@
         state: impulselaser-unshaded
         sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
         shader: unshaded
+  - type: Gun
+    fireRate: 8
+    recoil: 0
+    minAngle: 0
+    maxAngle: 0
+    soundGunshot:
+      path: /Audio/_Lua/Weapons/Guns/Gunshots/laser_shot.ogg
+      params:
+        volume: -2
   - type: HitscanBatteryAmmoProvider
     proto: VioletLaserShip
+    fireCost: 300
   - type: LuaTech
 
 - type: entity
-  parent: WeaponLaserTurretApollo
+  parent: WeaponLaserTurretPrometheus
   id: WeaponTurretBigLaserShuttleLuaTech
   name: большая лазерная турель LuaTech
   suffix: LuaTech, Shuttle
   components:
+  - type: Gun
+    fireRate: 13
+    minAngle: 0
+    maxAngle: 0
+    burstCooldown: 35
+    burstFireRate: 13
+    shotsPerBurst: 40
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    shootThermalSignature: 1500
+    soundBurstCooldown:
+      path: /Audio/_Lua/Weapons/Guns/Laserturret/charge.ogg
+    soundEmpty:
+      path: /Audio/_Lua/Weapons/Guns/Laserturret/noammo.ogg
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/Gunshots/glassing.ogg
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
     drawdepth: Mobs
@@ -162,4 +189,5 @@
         shader: unshaded
   - type: HitscanBatteryAmmoProvider
     proto: VioletBigLaserShip
+    fireCost: 50
   - type: LuaTech
