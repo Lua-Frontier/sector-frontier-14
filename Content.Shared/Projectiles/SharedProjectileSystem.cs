@@ -83,7 +83,6 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
         SubscribeLocalEvent<ProjectileComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ProjectileComponent, PreventCollideEvent>(PreventCollision);
-        SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
         SubscribeLocalEvent<ProjectileComponent, TileFrictionEvent>(OnTileFriction);
         SubscribeLocalEvent<EmbeddableProjectileComponent, PreventCollideEvent>(EmbeddablePreventCollision); // Goobstation - Crawl Fix
         SubscribeLocalEvent<EmbeddableProjectileComponent, ProjectileHitEvent>(OnEmbedProjectileHit);
@@ -144,6 +143,9 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         }
 
         var damage = component.Damage * _damageableSystem.UniversalProjectileDamageModifier;
+        if (component.Whitelist != null && _entityWhitelistSystem.IsValid(component.Whitelist, target))
+            damage += component.DamageWhitelist;
+
         var ev = new ProjectileHitEvent(damage, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
         if (ev.Handled)
@@ -668,14 +670,6 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     public sealed partial class RemoveEmbeddedProjectileEvent : DoAfterEvent
     {
         public override DoAfterEvent Clone() => this;
-    }
-
-    private void OnProjectileHit(EntityUid uid, ProjectileComponent component, ref ProjectileHitEvent args)
-    {
-        if (component.Whitelist != null && _entityWhitelistSystem.IsValid(component.Whitelist, args.Target))
-        {
-            args.Damage += component.DamageWhitelist;
-        }
     }
 }
 

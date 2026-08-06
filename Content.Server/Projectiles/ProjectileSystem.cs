@@ -1,18 +1,13 @@
-using Content.Server.Chat.Systems;
 using Content.Server.Destructible;
 using Content.Shared.Damage;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Projectiles;
-using Content.Shared.StatusEffect;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Random;
 
 namespace Content.Server.Projectiles;
 
@@ -21,10 +16,6 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly BlindableSystem _blindingSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
 
     private EntityQuery<PhysicsComponent> _physQuery;
     private EntityQuery<FixturesComponent> _fixQuery;
@@ -36,17 +27,7 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
         _physQuery = GetEntityQuery<PhysicsComponent>();
         _fixQuery = GetEntityQuery<FixturesComponent>();
 
-        SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnRandomBlindHit);
-
         UpdatesBefore.Add(typeof(SharedPhysicsSystem));
-    }
-
-    private void OnRandomBlindHit(EntityUid uid, ProjectileComponent comp, ref ProjectileHitEvent args)
-    {
-        if (comp.RandomBlindChance <= 0.0f || !_random.Prob(comp.RandomBlindChance))
-            return;
-
-        TryBlind(args.Target);
     }
 
     public override DamageSpecifier? ProjectileCollide(Entity<ProjectileComponent, PhysicsComponent> projectile, EntityUid target, MapCoordinates? collisionCoordinates, bool predicted = false)
@@ -227,25 +208,5 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
                 return true;
             }
         }
-    }
-
-    private void TryBlind(EntityUid target)
-    {
-        if (!TryComp<BlindableComponent>(target, out var blindable) || blindable.IsBlind)
-            return;
-
-        var eyeProtectionEv = new GetEyeProtectionEvent();
-        RaiseLocalEvent(target, eyeProtectionEv);
-
-        var time = (float)(TimeSpan.FromSeconds(2) - eyeProtectionEv.Protection).TotalSeconds;
-        if (time <= 0)
-            return;
-
-        _chat.TryEmoteWithoutChat(target, "Scream");
-
-        _blindingSystem.AdjustEyeDamage((target, blindable), 1);
-        var statusTimeSpan = TimeSpan.FromSeconds(time * MathF.Sqrt(blindable.EyeDamage));
-        _statusEffectsSystem.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect,
-            statusTimeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
     }
 }
