@@ -30,20 +30,12 @@
   - NFBlueprintsCommon
 
 - type: blueprint
-  id: NFArsenalMercenary
-  name: nf-research-discipline-arsenal-mercenary
+  id: NFArsenal
+  name: nf-research-discipline-arsenal
   blueprint: NFBlueprintArsenalMercenary
   packs:
-  - NFBlueprintsMercenary
-  - NFBlueprintsMercenaryNfsd
-  - NFBlueprintsCommon
-
-- type: blueprint
-  id: NFArsenalNfsd
-  name: nf-research-discipline-arsenal-nfsd
-  blueprint: NFBlueprintArsenalNfsd
-  packs:
   - NFBlueprintsNfsd
+  - NFBlueprintsMercenary
   - NFBlueprintsMercenaryNfsd
   - NFBlueprintsCommon
 

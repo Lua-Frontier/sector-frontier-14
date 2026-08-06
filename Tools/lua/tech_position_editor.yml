@@ -10,6 +10,7 @@ paths:
   - Resources/Prototypes/_Lua/Research/shiparmory.yml
   - Resources/Prototypes/_Lua/Research/arsenal.yml
   - Resources/Prototypes/_Lua/Research/industrial.yml
+  - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
 
 # Paths to discipline prototype files for faction-aware filtering.
 disciplinePaths:
@@ -37,6 +38,7 @@ profiles:
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
+      - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
 
   - id: syndicate
     name: Синдикат
@@ -52,6 +54,7 @@ profiles:
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
+      - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
 
   - id: pirates
     name: Пираты
@@ -67,7 +70,7 @@ profiles:
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
-
+      - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
   - id: ussp
     name: СССП
     faction: Ussp
@@ -82,7 +85,7 @@ profiles:
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
-
+      - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
   - id: security
     name: СРБС
     faction: Security
@@ -97,7 +100,7 @@ profiles:
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
-
+      - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
   - id: neutral
     name: Гражданские
     faction: Neutral
@@ -112,7 +115,7 @@ profiles:
       - Resources/Prototypes/_Lua/Research/shiparmory.yml
       - Resources/Prototypes/_Lua/Research/arsenal.yml
       - Resources/Prototypes/_Lua/Research/industrial.yml
-
+      - Resources/Prototypes/_Lua/Research/discipline_placeholders.yml
 # Paths to entity prototype files or directories for resolving entityIcon.
 entityPaths:
   - Resources/Prototypes

@@ -1,0 +1,112 @@
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: BaseLuaResearchDisciplineIcon
+  name: base lua research discipline icon
+  abstract: true
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    drawdepth: Items
+    noRot: true
+  - type: Icon
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconShiparmory
+  name: lua research icon shiparmory
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: shiparmory
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research_disciplines.rsi
+    state: shiparmory
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconEngineering
+  name: lua research icon engineering
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: industrial
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: industrial
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconMedical
+  name: lua research icon medical
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: biochemical
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: biochemical
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconArsenalMercenary
+  name: lua research icon arsenal
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: arsenal
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: arsenal
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconSalvage
+  name: lua research icon salvage
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: salvage
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: salvage
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconScience
+  name: lua research icon science
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: experimental
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: experimental
+
+- type: entity
+  parent: BaseLuaResearchDisciplineIcon
+  id: LuaResearchIconService
+  name: lua research icon service
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Sprite
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: civilianservices
+  - type: Icon
+    sprite: _Lua/Interface/Misc/research32_disciplines.rsi
+    state: civilianservices

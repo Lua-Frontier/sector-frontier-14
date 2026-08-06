@@ -14,7 +14,7 @@
   position: -4.894, 4.131
   factionOverrides:
     Nanotrasen:
-      position: -4.267, 4.978
+      position: -0, 4.622
       technologyPrerequisites:
       - NFBasicXenoArcheology
 - type: technology
@@ -36,7 +36,7 @@
   - NFSuperParts
   factionOverrides:
     Nanotrasen:
-      position: -3.2, 4.978
+      position: 0, 3.556
       technologyPrerequisites:
       - NFHardsuitsExperimentalProtection
 - type: technology
@@ -55,7 +55,7 @@
   position: -7.731, 5.09
   factionOverrides:
     Nanotrasen:
-      position: -6.4, 4.978
+      position: 1.067, 6.4
       technologyPrerequisites:
       - NFBasicAnomalousResearch
 - type: technology
@@ -78,7 +78,7 @@
   position: -6.142, 4.869
   factionOverrides:
     Nanotrasen:
-      position: -5.333, 4.978
+      position: 1.067, 5.333
       technologyPrerequisites:
       - NFAbnormalArtifactManipulation
 - type: technology
@@ -98,7 +98,7 @@
   position: -9.767, 4.886
   factionOverrides:
     Nanotrasen:
-      position: -7.467, 4.978
+      position: 1.067, 7.467
       technologyPrerequisites:
       - NFAnomalyCoreHarnessing
 - type: technology
@@ -119,7 +119,7 @@
   position: -6.535, 3.259
   factionOverrides:
     Nanotrasen:
-      position: -5.333, 4.267
+      position: -1.067, 5.333
       technologyPrerequisites:
       - NFAbnormalArtifactManipulation
 - type: technology
@@ -141,9 +141,9 @@
   position: -1.002, 3.17
   factionOverrides:
     Nanotrasen:
-      position: 0, 2.844
+      position: 7.111, 1.067
       technologyPrerequisites:
-      - NFAdvancedParts
+      - NFBasicPowerGeneration
 - type: technology
   id: NFHardsuitsExperimentalProtection
   name: nf-research-technology-hardsuits-experimental-protection
@@ -161,15 +161,15 @@
   position: -0.315, 5.013
   factionOverrides:
     Nanotrasen:
-      position: -2.133, 4.978
+      position: -0, 2.489
       technologyPrerequisites:
-      - NFHardsuitsEngineering
+      - LuaDisciplinePlaceholderScience
 - type: technology
   id: NFHardsuitsExperimentalIndustrial
   name: nf-research-technology-hardsuits-experimental-industrial
   entityIcon: ClothingOuterHardsuitMaximPrototype
   discipline: NFScience
-  secondaryDiscipline: NFArsenalMercenary
+  secondaryDiscipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -182,10 +182,9 @@
   position: -3.341, 6.582
   factionOverrides:
     Nanotrasen:
-      position: -4.267, 7.822
+      position: -1.067, 3.556
       technologyPrerequisites:
-      - NFHardsuitsField
-      - NFHardsuitsArmored
+      - NFHardsuitsExperimentalProtection
 - type: technology
   id: NFBasicMagnetsTech
   name: nf-research-technology-basic-magnets-tech
@@ -202,9 +201,9 @@
   - NFMagnetsTech
   factionOverrides:
     Nanotrasen:
-      position: -2.489, 8.889
+      position: 1.067, 3.556
       technologyPrerequisites:
-      - NFMagnetsTech
+      - NFHardsuitsExperimentalProtection
 - type: technology
   id: NFGravityResistantTech
   name: nf-research-technology-anti-gravitational-fields
@@ -221,9 +220,9 @@
   position: -2.831, 12.154
   factionOverrides:
     Nanotrasen:
-      position: -2.489, 9.956
+      position: -4.622, 2.844
       technologyPrerequisites:
-      - NFBasicMagnetsTech
+      - LuaAdvancedSalvageJetBoots
 - type: technology
   id: NFQuantumFiberWeaving
   name: nf-research-technology-quantum-fiber-weaving
@@ -242,7 +241,7 @@
   position: -3.997, 11.889
   factionOverrides:
     Nanotrasen:
-      position: -3.2, 9.956
+      position: 2.133, 4.622
       technologyPrerequisites:
       - NFBasicMagnetsTech
 - type: technology
@@ -263,9 +262,9 @@
   position: -2.394, 8.257
   factionOverrides:
     Nanotrasen:
-      position: -3.2, 6.756
+      position: 4.978, -4.267
       technologyPrerequisites:
-      - NFHardsuitsAdvanced
+      - NFAdvancedBeltTechnology
 - type: technology
   id: LuaBluespaceTiles
   name: lua-research-technology-bluespace-tiles
@@ -284,7 +283,7 @@
   position: -1.332, -7.466
   factionOverrides:
     Nanotrasen:
-      position: 0, -4.978
+      position: 4.978, 2.133
       technologyPrerequisites:
       - NFFauxAstroTiles
 - type: technology
@@ -303,7 +302,7 @@
   position: -6.162, 9.588
   factionOverrides:
     Nanotrasen:
-      position: -6.044, 6.756
+      position: -4.622, 0
       technologyPrerequisites:
       - NFHardsuitsArmoredAdvanced
 - type: technology
@@ -322,6 +321,6 @@
   position: -7.249, 10.596
   factionOverrides:
     Nanotrasen:
-      position: -7.111, 6.756
+      position: -5.689, 0
       technologyPrerequisites:
       - NightVisionTech

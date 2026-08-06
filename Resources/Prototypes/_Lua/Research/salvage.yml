@@ -14,10 +14,9 @@
   position: -1.977, 10.783
   factionOverrides:
     Nanotrasen:
-      position: -3.556, 7.822
+      position: -1.067, -6.756
       technologyPrerequisites:
-      - NFMagnetsTech
-      - NFHardsuitsArmored
+      - NFPersonalPropulsion
 - type: technology
   id: NFBasicPersonalPropulsion
   name: nf-research-technology-basic-personal-propulsion
@@ -35,8 +34,9 @@
   - NFHardsuitsExperimentalProtection
   factionOverrides:
     Nanotrasen:
-      position: 0, 6.756
-      technologyPrerequisites: []
+      position: 3.911, -0
+      technologyPrerequisites:
+      - NFHardsuitsEngineering
 - type: technology
   id: NFPersonalPropulsion
   name: nf-research-technology-personal-propulsion
@@ -54,10 +54,9 @@
   position: 1.004, 7.173
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 7.822
+      position: -1.067, -5.689
       technologyPrerequisites:
-      - NFBasicPersonalPropulsion
-      - NFArsenalNfsdPropulsion
+      - NFSalvageWeapons
 - type: technology
   id: NFAdvancedPersonalPropulsion
   name: nf-research-technology-advanced-personal-propulsion
@@ -75,9 +74,9 @@
   position: 2.131, 8.815
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 8.889
+      position: 8.178, -3.2
       technologyPrerequisites:
-      - NFPersonalPropulsion
+      - NFAdvancedToolsTechnology
 - type: technology
   id: NFSalvageGrapplingEquipment
   name: nf-research-technology-salvage-grappling-equipment
@@ -94,9 +93,9 @@
   - NFSuperParts
   factionOverrides:
     Nanotrasen:
-      position: 2.133, 5.689
+      position: 0, -4.622
       technologyPrerequisites:
-      - NFSuperParts
+      - NFMagnetsTech
 - type: technology
   id: NFExcavation
   name: nf-research-technology-excavation
@@ -114,9 +113,9 @@
   position: 3.025, 5.262
   factionOverrides:
     Nanotrasen:
-      position: 3.2, 5.689
+      position: 0.711, -2.489
       technologyPrerequisites:
-      - NFSalvageGrapplingEquipment
+      - LuaDisciplinePlaceholderSalvage
 - type: technology
   id: NFOreProcessor
   name: nf-research-technology-ore-processing
@@ -134,7 +133,7 @@
   position: 4.689, 6.404
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 6.4
+      position: 0.711, -3.556
       technologyPrerequisites:
       - NFExcavation
 - type: technology
@@ -153,7 +152,7 @@
   position: 5.896, 7.385
   factionOverrides:
     Nanotrasen:
-      position: 5.333, 6.756
+      position: 0.711, -4.622
       technologyPrerequisites:
       - NFOreProcessor
 - type: technology
@@ -175,7 +174,7 @@
   position: 2.029, 6.548
   factionOverrides:
     Nanotrasen:
-      position: 3.2, 6.756
+      position: 0, -5.689
       technologyPrerequisites:
       - NFSalvageGrapplingEquipment
 - type: technology
@@ -195,9 +194,9 @@
   position: 3.998, 7.122
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 7.111
+      position: 0.711, -5.689
       technologyPrerequisites:
-      - NFExcavation
+      - NFIndustrialOreProcessor
 - type: technology
   id: NFAdvancedSalvageWeapons
   name: nf-research-technology-advanced-salvage-weapons
@@ -214,7 +213,7 @@
   position: 3.294, 7.857
   factionOverrides:
     Nanotrasen:
-      position: 3.2, 7.822
+      position: -0, -6.756
       technologyPrerequisites:
       - NFSalvageWeapons
 - type: technology
@@ -233,7 +232,7 @@
   position: 5.231, 8.103
   factionOverrides:
     Nanotrasen:
-      position: 5.333, 7.467
+      position: 0.711, -6.756
       technologyPrerequisites:
       - NFMassExcavation
 - type: technology
@@ -252,7 +251,7 @@
   position: 4.528, 8.822
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 7.822
+      position: -0, -7.822
       technologyPrerequisites:
       - NFAdvancedSalvageWeapons
 - type: technology
@@ -271,9 +270,9 @@
   position: 6.519, 9.16
   factionOverrides:
     Nanotrasen:
-      position: 6.4, 7.467
+      position: 11.378, 2.489
       technologyPrerequisites:
-      - NFBluespaceOreStorage
+      - NFAdvancedCleaningCyborg
 - type: technology
   id: NFBluespaceGasTanks
   name: nf-research-technology-bluespace-gas-tanks
@@ -291,6 +290,6 @@
   position: 3.176, 10.355
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 9.956
+      position: 8.178, -5.333
       technologyPrerequisites:
-      - NFAdvancedPersonalPropulsion
+      - NFBluespaceStorage

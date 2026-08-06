@@ -14,9 +14,9 @@
   - ShuttleGunDuster
   factionOverrides:
     Nanotrasen:
-      position: 9.956, 4.978
+      position: 2.133, 2.133
       technologyPrerequisites:
-      - ShuttleGunDuster
+      - LuaDisciplinePlaceholderShiparmory
 - type: technology
   id: MachineGCSHighCircuitboardTech
   name: research-technology-machine-gcs-high
@@ -33,9 +33,10 @@
   - ShiparmoryEnergyTurrets
   factionOverrides:
     Nanotrasen:
-      position: 13.511, 2.844
+      position: 11.378, 4.267
       technologyPrerequisites:
       - ShiparmoryEnergyTurrets
+      - ShiparmoryAdvancedKineticTurrets
 - type: technology
   id: BasicShuttleWeaponPad
   name: research-technology-basic-weaponpad
@@ -53,9 +54,9 @@
   - NFSuperParts
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 2.844
+      position: 3.2, 3.2
       technologyPrerequisites:
-      - NFSuperParts
+      - MachineGCSMediumCircuitboardTech
 - type: technology
   id: BasicShuttleWeapon
   name: research-technology-basic-weapon
@@ -73,7 +74,7 @@
   position: 3.884, 4.303
   factionOverrides:
     Nanotrasen:
-      position: 2.133, 3.556
+      position: 4.267, 4.267
       technologyPrerequisites:
       - BasicShuttleWeaponPad
 - type: technology
@@ -95,7 +96,7 @@
   position: 4.945, 5.245
   factionOverrides:
     Nanotrasen:
-      position: 3.2, 4.267
+      position: 5.333, 4.267
       technologyPrerequisites:
       - BasicShuttleWeapon
 - type: technology
@@ -114,9 +115,9 @@
   position: 5.927, 6.074
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 4.267
+      position: 7.467, 4.267
       technologyPrerequisites:
-      - ShuttlePowerCage
+      - NFBasicShuttleArmament
 - type: technology
   id: ShuttleGrenade
   name: research-technology-shuttle-grenade
@@ -136,9 +137,9 @@
   position: 7.037, 7.05
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 5.333
+      position: 4.978, 5.333
       technologyPrerequisites:
-      - ShuttleShuttleGunPerforator
+      - BasicShuttleWeapon
 - type: technology
   id: ShuttleFriendshipPirate
   name: research-technology-shuttle-friendshippirate
@@ -156,7 +157,7 @@
   position: 8.419, 8.114
   factionOverrides:
     Nanotrasen:
-      position: 5.689, 4.978
+      position: 6.044, 5.333
       technologyPrerequisites:
       - ShuttleGrenade
 - type: technology
@@ -176,7 +177,7 @@
   position: 9.891, 9.103
   factionOverrides:
     Nanotrasen:
-      position: 6.756, 4.978
+      position: 7.111, 5.333
       technologyPrerequisites:
       - ShuttleFriendshipPirate
 - type: technology
@@ -196,7 +197,7 @@
   position: 11.408, 9.971
   factionOverrides:
     Nanotrasen:
-      position: 7.822, 4.978
+      position: 8.178, 5.333
       technologyPrerequisites:
       - ShuttleCannonBall
 - type: technology
@@ -216,7 +217,7 @@
   position: 12.929, 10.948
   factionOverrides:
     Nanotrasen:
-      position: 8.889, 4.978
+      position: 9.244, 5.333
       technologyPrerequisites:
       - ShuttleGrenadeEMP
 - type: technology
@@ -240,9 +241,9 @@
   position: 15.548, 13.433
   factionOverrides:
     Nanotrasen:
-      position: 11.022, 4.978
+      position: 8.889, 6.4
       technologyPrerequisites:
-      - MachineGCSMediumCircuitboardTech
+      - UniversalTorpedoAmmoAdvanced
 - type: technology
   id: ShiparmoryHeavyBallisticBases
   name: research-technology-shiparmory-heavy-ballistic-bases
@@ -264,7 +265,7 @@
   position: 18.001, 16.232
   factionOverrides:
     Nanotrasen:
-      position: 12.444, 3.911
+      position: 9.956, 6.4
       technologyPrerequisites:
       - ShiparmoryBallisticBases
 - type: technology
@@ -283,9 +284,9 @@
   position: 18.829, 18.975
   factionOverrides:
     Nanotrasen:
-      position: 13.511, 3.911
+      position: 8.533, 4.267
       technologyPrerequisites:
-      - ShiparmoryHeavyBallisticBases
+      - ShuttleShuttleGunPerforator
 - type: technology
   id: ShiparmoryShieldSystems
   name: research-technology-shiparmory-shield-systems
@@ -303,9 +304,9 @@
   position: 17.204, 16.227
   factionOverrides:
     Nanotrasen:
-      position: 12.444, 4.978
+      position: 12.444, 5.333
       technologyPrerequisites:
-      - ShiparmoryBallisticBases
+      - MachineGCSHighCircuitboardTech
 - type: technology
   id: ShiparmoryCapitalShields
   name: research-technology-shiparmory-capital-shields
@@ -322,7 +323,7 @@
   position: 18.028, 18.974
   factionOverrides:
     Nanotrasen:
-      position: 13.511, 4.978
+      position: 13.511, 5.333
       technologyPrerequisites:
       - ShiparmoryShieldSystems
 - type: technology
@@ -344,9 +345,10 @@
   position: 15.557, 16.243
   factionOverrides:
     Nanotrasen:
-      position: 12.444, 6.044
+      position: 10.311, 5.333
       technologyPrerequisites:
       - ShiparmoryBallisticBases
+      - ShuttleGunDuster
 - type: technology
   id: ShiparmoryAdvancedKineticTurrets
   name: research-technology-shiparmory-advanced-kinetic-turrets
@@ -363,7 +365,7 @@
   position: 16.365, 19.006
   factionOverrides:
     Nanotrasen:
-      position: 13.511, 6.044
+      position: 11.378, 5.333
       technologyPrerequisites:
       - ShiparmoryKineticTurrets
 - type: technology
@@ -383,9 +385,10 @@
   position: 18.854, 16.226
   factionOverrides:
     Nanotrasen:
-      position: 12.444, 2.844
+      position: 10.311, 4.267
       technologyPrerequisites:
-      - ShiparmoryBallisticBases
+      - ShiparmoryKineticTurrets
+      - ShiparmoryTeslaTurretBase
 - type: technology
   id: ShiparmoryAdvancedEnergyTurrets
   name: research-technology-shiparmory-advanced-energy-turrets
@@ -403,7 +406,7 @@
   position: 19.629, 20.848
   factionOverrides:
     Nanotrasen:
-      position: 14.578, 2.844
+      position: 12.444, 4.267
       technologyPrerequisites:
       - MachineGCSHighCircuitboardTech
 - type: technology
@@ -422,7 +425,7 @@
   position: 19.637, 22.794
   factionOverrides:
     Nanotrasen:
-      position: 15.644, 2.844
+      position: 13.511, 4.267
       technologyPrerequisites:
       - ShiparmoryAdvancedEnergyTurrets
 - type: technology
@@ -445,9 +448,9 @@
   position: 14.739, 16.244
   factionOverrides:
     Nanotrasen:
-      position: 12.444, 8.178
+      position: 8.889, 7.822
       technologyPrerequisites:
-      - ShiparmoryBallisticBases
+      - Universal150mmAmmo
 - type: technology
   id: ShiparmoryAdvancedMissileTurrets
   name: research-technology-shiparmory-advanced-missile-turrets
@@ -465,49 +468,9 @@
   position: 15.55, 19.022
   factionOverrides:
     Nanotrasen:
-      position: 13.511, 8.178
+      position: 9.956, 7.822
       technologyPrerequisites:
       - ShiparmoryMissileTurrets
-- type: technology
-  id: ShiparmoryPlastitaniumStructures
-  name: research-technology-shiparmory-plastitanium-structures
-  entityIcon: WallPlastitanium
-  discipline: Shiparmory
-  factions:
-  - Nanotrasen
-  tier: 2
-  cost: 30000
-  recipeUnlocks:
-  - WallPlastitaniumFlatPack
-  - PlastitaniumWindowFlatPack
-  technologyPrerequisites:
-  - ShiparmoryBallisticBases
-  position: 16.394, 16.221
-  factionOverrides:
-    Nanotrasen:
-      position: 12.444, 7.111
-      technologyPrerequisites:
-      - ShiparmoryBallisticBases
-- type: technology
-  id: ShiparmoryStationPlastitanium
-  name: research-technology-shiparmory-station-plastitanium
-  entityIcon: WallPlastitaniumStation
-  discipline: Shiparmory
-  factions:
-  - Nanotrasen
-  tier: 3
-  cost: 80000
-  recipeUnlocks:
-  - WallPlastitaniumStationFlatPack
-  - PlastitaniumWindowStationFlatPack
-  technologyPrerequisites:
-  - ShiparmoryPlastitaniumStructures
-  position: 17.205, 18.974
-  factionOverrides:
-    Nanotrasen:
-      position: 13.511, 7.111
-      technologyPrerequisites:
-      - ShiparmoryPlastitaniumStructures
 - type: technology
   id: UniversalRailgunAmmo
   name: research-technology-universal-railgun-ammo
@@ -526,7 +489,7 @@
   position: 7.732, 8.85
   factionOverrides:
     Nanotrasen:
-      position: 5.689, 5.689
+      position: 5.689, 6.4
       technologyPrerequisites:
       - ShuttleGrenade
 - type: technology
@@ -545,7 +508,7 @@
   position: 8.5, 10.5
   factionOverrides:
     Nanotrasen:
-      position: 6.756, 6.4
+      position: 6.4, 7.467
       technologyPrerequisites:
       - UniversalRailgunAmmo
 - type: technology
@@ -566,7 +529,7 @@
   position: 9.214, 9.827
   factionOverrides:
     Nanotrasen:
-      position: 6.756, 5.689
+      position: 6.756, 6.4
       technologyPrerequisites:
       - UniversalRailgunAmmo
 - type: technology
@@ -585,7 +548,7 @@
   position: 10.0, 10.5
   factionOverrides:
     Nanotrasen:
-      position: 7.822, 5.689
+      position: 7.822, 6.4
       technologyPrerequisites:
       - UniversalTorpedoAmmo
 - type: technology
@@ -606,7 +569,7 @@
   position: 10.731, 10.695
   factionOverrides:
     Nanotrasen:
-      position: 7.822, 6.4
+      position: 7.822, 7.111
       technologyPrerequisites:
       - UniversalTorpedoAmmo
 - type: technology
@@ -626,7 +589,7 @@
   position: 12.242, 11.668
   factionOverrides:
     Nanotrasen:
-      position: 8.889, 6.4
+      position: 8.889, 7.111
       technologyPrerequisites:
       - Universal150mmAmmo
 - type: technology
@@ -645,6 +608,6 @@
   position: 13.541, 12.778
   factionOverrides:
     Nanotrasen:
-      position: 9.956, 6.4
+      position: 9.956, 7.111
       technologyPrerequisites:
       - UniversalLightFighterOrdinance

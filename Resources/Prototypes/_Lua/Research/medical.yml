@@ -15,7 +15,7 @@
   position: 3.812, 20.028
   factionOverrides:
     Nanotrasen:
-      position: 2.133, 11.022
+      position: 2.844, -5.333
       technologyPrerequisites:
       - NFBasicMedicine
 - type: technology
@@ -34,9 +34,9 @@
   position: 4.9, 20.518
   factionOverrides:
     Nanotrasen:
-      position: 2.844, 12.089
+      position: 2.844, -7.467
       technologyPrerequisites:
-      - NFEngineeringMedicine
+      - NFAppliedBiochemicalStasis
 - type: technology
   id: NFHardsuitsMedical
   name: nf-research-technology-hardsuits-medical
@@ -54,9 +54,9 @@
   position: -0.71, 11.979
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 5.689
+      position: 1.778, -2.133
       technologyPrerequisites:
-      - NFHardsuitsAdvanced
+      - LuaDisciplinePlaceholderMedical
 - type: technology
   id: NFBiochemicalStasis
   name: nf-research-technology-biochemical-stasis
@@ -74,7 +74,7 @@
   position: 0.586, 14.484
   factionOverrides:
     Nanotrasen:
-      position: 2.133, 6.756
+      position: 1.778, -3.2
       technologyPrerequisites:
       - NFHardsuitsMedical
 - type: technology
@@ -93,7 +93,7 @@
   - NFBiochemicalStasis
   factionOverrides:
     Nanotrasen:
-      position: 2.133, 8.178
+      position: 2.844, -3.2
       technologyPrerequisites:
       - NFBiochemicalStasis
 - type: technology
@@ -116,7 +116,7 @@
   position: 3.653, 16.479
   factionOverrides:
     Nanotrasen:
-      position: 3.2, 8.889
+      position: 2.844, -4.267
       technologyPrerequisites:
       - NFReinforcedJug
 - type: technology
@@ -136,7 +136,7 @@
   position: 2.792, 17.759
   factionOverrides:
     Nanotrasen:
-      position: 2.133, 9.956
+      position: 1.778, -4.267
       technologyPrerequisites:
       - NFReinforcedJug
 - type: technology
@@ -156,9 +156,9 @@
   position: 5.731, 17.646
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 9.956
+      position: 9.244, 2.489
       technologyPrerequisites:
-      - NFBluespaceChemistry
+      - NFBasicRobotics
 - type: technology
   id: NFEngineeringMedicine
   name: nf-research-technology-industrial-medicine
@@ -177,7 +177,7 @@
   position: 4.428, 18.811
   factionOverrides:
     Nanotrasen:
-      position: 3.556, 11.022
+      position: 1.778, -5.333
       technologyPrerequisites:
       - NFBasicMedicine
 - type: technology
@@ -198,9 +198,9 @@
   position: 2.498, 19.683
   factionOverrides:
     Nanotrasen:
-      position: 2.844, 11.022
+      position: 2.844, -6.4
       technologyPrerequisites:
-      - NFBasicMedicine
+      - NFEngineeringMedicine
 - type: technology
   id: NFAppliedBiochemicalStasis
   name: nf-research-technology-applied-biochemical-stasis
@@ -218,7 +218,7 @@
   position: 6.245, 19.63
   factionOverrides:
     Nanotrasen:
-      position: 3.556, 12.089
+      position: 1.778, -6.4
       technologyPrerequisites:
       - NFEngineeringMedicine
 - type: technology
@@ -240,114 +240,372 @@
   position: 3.2, 21.2
   factionOverrides:
     Nanotrasen:
-      position: 3.556, 12.8
+      position: 1.778, -8.533
       technologyPrerequisites:
-      - NFAppliedBiochemicalStasis
+      - HighEndSurgeryOperatingTable
 - type: technology
-  id: CyberneticEnhancements
-  name: research-technology-cybernetic-enhancements
-  entityIcon: SecurityCyberneticEyes
+  id: CyberneticLeftArm
+  name: research-technology-cybernetic-left-arm
+  entityIcon: LeftArmCybernetic
   discipline: NFMedical
   factions:
   - Nanotrasen
   tier: 2
-  cost: 20000
+  cost: 2000
   recipeUnlocks:
   - LeftArmCybernetic
+  technologyPrerequisites:
+  - AdvancedTreatment
+  position: 1.6, 22.4
+  factionOverrides:
+    Nanotrasen:
+      position: 1.422, -10.311
+      technologyPrerequisites:
+      - CyberneticLeftLeg
+- type: technology
+  id: CyberneticRightArm
+  name: research-technology-cybernetic-right-arm
+  entityIcon: RightArmCybernetic
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 2000
+  recipeUnlocks:
   - RightArmCybernetic
+  technologyPrerequisites:
+  - AdvancedTreatment
+  position: 2.4, 22.4
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, -10.311
+      technologyPrerequisites:
+      - CyberneticRightLeg
+- type: technology
+  id: CyberneticLeftLeg
+  name: research-technology-cybernetic-left-leg
+  entityIcon: LeftLegCybernetic
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 2000
+  recipeUnlocks:
   - LeftLegCybernetic
-  - RightLegCybernetic
-  - JawsOfLifeLeftArm
-  - JawsOfLifeRightArm
-  - SpeedLeftLeg
-  - SpeedRightLeg
-  - DexLeftHand
-  - DexRightHand
-  - BasicCyberneticEyes
-  - SecurityCyberneticEyes
-  - MedicalCyberneticEyes
   technologyPrerequisites:
   - AdvancedTreatment
   position: 3.2, 22.4
   factionOverrides:
     Nanotrasen:
-      position: 3.556, 13.511
+      position: 0.711, -9.244
       technologyPrerequisites:
       - AdvancedTreatment
 - type: technology
-  id: HighEndSurgery
-  name: research-technology-high-end-surgery
+  id: CyberneticRightLeg
+  name: research-technology-cybernetic-right-leg
+  entityIcon: RightLegCybernetic
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 2000
+  recipeUnlocks:
+  - RightLegCybernetic
+  technologyPrerequisites:
+  - AdvancedTreatment
+  position: 4.0, 22.4
+  factionOverrides:
+    Nanotrasen:
+      position: 2.844, -9.244
+      technologyPrerequisites:
+      - AdvancedTreatment
+- type: technology
+  id: CyberneticJawsOfLifeLeftArm
+  name: research-technology-cybernetic-jaws-left-arm
+  entityIcon: JawsOfLifeLeftArm
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - JawsOfLifeLeftArm
+  technologyPrerequisites:
+  - CyberneticLeftArm
+  position: 1.6, 23.2
+  factionOverrides:
+    Nanotrasen:
+      position: 1.422, -11.378
+      technologyPrerequisites:
+      - CyberneticLeftArm
+- type: technology
+  id: CyberneticJawsOfLifeRightArm
+  name: research-technology-cybernetic-jaws-right-arm
+  entityIcon: JawsOfLifeRightArm
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - JawsOfLifeRightArm
+  technologyPrerequisites:
+  - CyberneticRightArm
+  position: 2.4, 23.2
+  factionOverrides:
+    Nanotrasen:
+      position: 2.133, -11.378
+      technologyPrerequisites:
+      - CyberneticRightArm
+- type: technology
+  id: CyberneticSpeedLeftLeg
+  name: research-technology-cybernetic-speed-left-leg
+  entityIcon: SpeedLeftLeg
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - SpeedLeftLeg
+  technologyPrerequisites:
+  - CyberneticLeftLeg
+  position: 3.2, 23.2
+  factionOverrides:
+    Nanotrasen:
+      position: 0.356, -10.667
+      technologyPrerequisites:
+      - CyberneticLeftLeg
+      - CyberneticDexLeftHand
+- type: technology
+  id: CyberneticSpeedRightLeg
+  name: research-technology-cybernetic-speed-right-leg
+  entityIcon: SpeedRightLeg
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - SpeedRightLeg
+  technologyPrerequisites:
+  - CyberneticRightLeg
+  position: 4.0, 23.2
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, -10.667
+      technologyPrerequisites:
+      - CyberneticRightLeg
+      - CyberneticDexRightHand
+- type: technology
+  id: CyberneticDexLeftHand
+  name: research-technology-cybernetic-dex-left-hand
+  entityIcon: DexLeftHand
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - DexLeftHand
+  technologyPrerequisites:
+  - CyberneticLeftArm
+  position: 1.6, 24.0
+  factionOverrides:
+    Nanotrasen:
+      position: 0.356, -11.733
+      technologyPrerequisites:
+      - CyberneticJawsOfLifeLeftArm
+- type: technology
+  id: CyberneticDexRightHand
+  name: research-technology-cybernetic-dex-right-hand
+  entityIcon: DexRightHand
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - DexRightHand
+  technologyPrerequisites:
+  - CyberneticRightArm
+  position: 2.4, 24.0
+  factionOverrides:
+    Nanotrasen:
+      position: 3.2, -11.733
+      technologyPrerequisites:
+      - CyberneticJawsOfLifeRightArm
+- type: technology
+  id: CyberneticEyesBasic
+  name: research-technology-cybernetic-eyes-basic
+  entityIcon: BasicCyberneticEyes
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 3000
+  recipeUnlocks:
+  - BasicCyberneticEyes
+  technologyPrerequisites:
+  - AdvancedTreatment
+  position: 3.2, 24.0
+  factionOverrides:
+    Nanotrasen:
+      position: 1.778, -12.444
+      technologyPrerequisites:
+      - CyberneticJawsOfLifeRightArm
+      - CyberneticJawsOfLifeLeftArm
+- type: technology
+  id: CyberneticEyesSecurity
+  name: research-technology-cybernetic-eyes-security
+  entityIcon: SecurityCyberneticEyes
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - SecurityCyberneticEyes
+  technologyPrerequisites:
+  - CyberneticEyesBasic
+  position: 4.0, 24.0
+  factionOverrides:
+    Nanotrasen:
+      position: 1.778, -14.578
+      technologyPrerequisites:
+      - CyberneticEyesMedical
+      - CyberneticDexLeftHand
+      - CyberneticDexRightHand
+- type: technology
+  id: CyberneticEyesMedical
+  name: research-technology-cybernetic-eyes-medical
+  entityIcon: MedicalCyberneticEyes
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 4000
+  recipeUnlocks:
+  - MedicalCyberneticEyes
+  technologyPrerequisites:
+  - CyberneticEyesBasic
+  position: 4.8, 24.0
+  factionOverrides:
+    Nanotrasen:
+      position: 1.778, -13.511
+      technologyPrerequisites:
+      - CyberneticEyesBasic
+- type: technology
+  id: HighEndSurgeryOmnimed
+  name: research-technology-high-end-surgery-omnimed
   entityIcon: OmnimedTool
   discipline: NFMedical
   factions:
   - Nanotrasen
   tier: 3
-  cost: 45000
+  cost: 15000
   recipeUnlocks:
   - ShitmedOmnimedTool
-  - AutodocCircuitboard
-  - OperatingTableCircuitboard
   technologyPrerequisites:
-  - CyberneticEnhancements
-  position: 3.2, 23.6
+  - CyberneticEyesBasic
+  position: 2.4, 24.8
   factionOverrides:
     Nanotrasen:
-      position: 3.556, 14.222
+      position: 1.778, -15.644
       technologyPrerequisites:
-      - CyberneticEnhancements
-
+      - CyberneticEyesSecurity
 - type: technology
-  id: LuaFactionCyberneticsNanotrasen
-  name: lua-research-technology-faction-cybernetics-nanotrasen
+  id: HighEndSurgeryAutodoc
+  name: research-technology-high-end-surgery-autodoc
+  entityIcon: AutodocCircuitboard
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - AutodocCircuitboard
+  technologyPrerequisites:
+  - CyberneticEyesBasic
+  position: 3.2, 24.8
+  factionOverrides:
+    Nanotrasen:
+      position: 1.778, -16.711
+      technologyPrerequisites:
+      - HighEndSurgeryOmnimed
+- type: technology
+  id: HighEndSurgeryOperatingTable
+  name: research-technology-high-end-surgery-operating-table
+  entityIcon: OperatingTableCircuitboard
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - OperatingTableCircuitboard
+  technologyPrerequisites:
+  - CyberneticEyesBasic
+  position: 4.0, 24.8
+  factionOverrides:
+    Nanotrasen:
+      position: 1.778, -7.467
+      technologyPrerequisites:
+      - NFAppliedBiochemicalStasis
+- type: technology
+  id: LuaFactionCyberneticsIAS
+  name: lua-research-technology-faction-cybernetics-ias
+  entityIcon: AutosurgeonIASPDVFlatpack
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - AutosurgeonIASPDVFlatpack
+  technologyPrerequisites:
+  - CyberneticEyesBasic
+  position: 2.4, 25.6
+  factionOverrides:
+    Nanotrasen:
+      position: 2.844, -16
+      technologyPrerequisites:
+      - HighEndSurgeryAutodoc
+- type: technology
+  id: LuaFactionCyberneticsDermalArmor
+  name: lua-research-technology-faction-cybernetics-dermal-armor
+  entityIcon: AutosurgeonDermalArmorPDVFlatpack
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - AutosurgeonDermalArmorPDVFlatpack
+  technologyPrerequisites:
+  - CyberneticEyesBasic
+  position: 3.2, 25.6
+  factionOverrides:
+    Nanotrasen:
+      position: 0.711, -16
+      technologyPrerequisites:
+      - HighEndSurgeryAutodoc
+- type: technology
+  id: LuaFactionCyberneticsAdvHeart
+  name: lua-research-technology-faction-cybernetics-adv-heart
   entityIcon: AutosurgeonAdvHeartPDVFlatpack
   discipline: NFMedical
   factions:
   - Nanotrasen
   tier: 3
-  cost: 30000
+  cost: 10000
   recipeUnlocks:
-  - AutosurgeonIASPDVFlatpack
-  - AutosurgeonDermalArmorPDVFlatpack
   - AutosurgeonAdvHeartPDVFlatpack
   technologyPrerequisites:
-  - CyberneticEnhancements
-  position: 4.4, 23.6
+  - CyberneticEyesBasic
+  position: 4.0, 25.6
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 14.222
+      position: 1.778, -17.778
       technologyPrerequisites:
-      - CyberneticEnhancements
-
-- type: technology
-  id: LuaFactionCyberneticsSecurity
-  name: lua-research-technology-faction-cybernetics-security
-  entityIcon: AutosurgeonShuntTSFFlatpack
-  discipline: NFMedical
-  factions:
-  - Security
-  tier: 3
-  cost: 45000
-  recipeUnlocks:
-  - AutosurgeonSandevistanTSFFlatpack
-  - AutosurgeonShuntTSFFlatpack
-  technologyPrerequisites:
-  - CyberneticEnhancements
-  position: 5.6, 23.6
-
-- type: technology
-  id: LuaFactionCyberneticsSyndicate
-  name: lua-research-technology-faction-cybernetics-syndicate
-  entityIcon: AutosurgeonSandevistanMieyoFlatpack
-  discipline: NFMedical
-  factions:
-  - Syndicate
-  tier: 3
-  cost: 40000
-  recipeUnlocks:
-  - AutosurgeonRightMantisBladeMieyoFlatpack
-  - AutosurgeonLeftMantisBladeMieyoFlatpack
-  - AutosurgeonSandevistanMieyoFlatpack
-  - AutosurgeonMuscleFibersMieyoFlatpack
-  technologyPrerequisites:
-  - CyberneticEnhancements
-  position: 6.8, 23.6
+      - HighEndSurgeryAutodoc

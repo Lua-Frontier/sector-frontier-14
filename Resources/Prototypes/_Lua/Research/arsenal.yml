@@ -2,7 +2,7 @@
   id: LuaAdvancedSalvageMagmite
   name: research-technology-advanced-salvage
   entityIcon: WeaponMagmiteCrusher
-  discipline: NFArsenalNfsd
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 3
@@ -16,15 +16,15 @@
   position: 5.83, 9.874
   factionOverrides:
     Nanotrasen:
-      position: 4.267, 8.889
+      position: -1.067, -7.822
       technologyPrerequisites:
-      - NFImprovedSalvageWeapons
       - NFAdvancedSalvageWeapons
+      - NFImprovedSalvageWeapons
 - type: technology
   id: LuaAdvancedSalvageJetBoots
   name: research-technology-advanced-jet-boots
   entityIcon: ClothingShoesBootsJetBoots
-  discipline: NFArsenalNfsd
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 3
@@ -36,6 +36,6 @@
   position: -5.355, 11.053
   factionOverrides:
     Nanotrasen:
-      position: -2.489, 11.022
+      position: -3.556, 2.133
       technologyPrerequisites:
-      - NFGravityResistantTech
+      - NFExplosiveTechnology

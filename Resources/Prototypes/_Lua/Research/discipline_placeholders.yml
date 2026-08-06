@@ -1,0 +1,112 @@
+- type: technology
+  id: LuaDisciplinePlaceholderShiparmory
+  name: research-discipline-shiparmory
+  entityIcon: LuaResearchIconShiparmory
+  discipline: Shiparmory
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 0
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, 1.067
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []
+- type: technology
+  id: LuaDisciplinePlaceholderEngineering
+  name: nf-research-discipline-engineering
+  entityIcon: LuaResearchIconEngineering
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 1
+  factionOverrides:
+    Nanotrasen:
+      position: 1.422, 0
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []
+- type: technology
+  id: LuaDisciplinePlaceholderMedical
+  name: nf-research-discipline-medical
+  entityIcon: LuaResearchIconMedical
+  discipline: NFMedical
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 2
+  factionOverrides:
+    Nanotrasen:
+      position: 1.067, -1.067
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []
+- type: technology
+  id: LuaDisciplinePlaceholderArsenalMercenary
+  name: nf-research-discipline-arsenal-mercenary
+  entityIcon: LuaResearchIconArsenalMercenary
+  discipline: NFArsenal
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 3
+  factionOverrides:
+    Nanotrasen:
+      position: -1.422, -0
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []
+- type: technology
+  id: LuaDisciplinePlaceholderSalvage
+  name: nf-research-discipline-salvage
+  entityIcon: LuaResearchIconSalvage
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 5
+  factionOverrides:
+    Nanotrasen:
+      position: 0, -1.422
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []
+- type: technology
+  id: LuaDisciplinePlaceholderScience
+  name: nf-research-discipline-science
+  entityIcon: LuaResearchIconScience
+  discipline: NFScience
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 6
+  factionOverrides:
+    Nanotrasen:
+      position: 0, 1.422
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []
+- type: technology
+  id: LuaDisciplinePlaceholderService
+  name: nf-research-discipline-service
+  entityIcon: LuaResearchIconService
+  discipline: NFService
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  position: -20, 7
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, -1.067
+      technologyPrerequisites:
+      - NFAdvancedParts
+  recipeUnlocks: []

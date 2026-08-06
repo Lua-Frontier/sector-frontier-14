@@ -1,3 +1,4 @@
+research-discipline-shiparmory = Корабельное вооружение
 lua-research-technology-bluespace-art = Блюспейс рисование
 lua-research-technology-stargate-beacon = Посадочный маяк
 lua-research-technology-water-regenerator = Регенератор воды
@@ -5,5 +6,8 @@ lua-research-technology-virology = Вирусология
 lua-research-technology-smart-fridge = Умный холодильник
 lua-research-technology-botanist-hardsuit = Скафандр ботаника
 lua-research-technology-faction-cybernetics-nanotrasen = Кибернетика Нанотразен
+lua-research-technology-faction-cybernetics-ias = Автохирург IAS
+lua-research-technology-faction-cybernetics-dermal-armor = Автохирург дермальной брони
+lua-research-technology-faction-cybernetics-adv-heart = Автохирург протеза сердца
 lua-research-technology-faction-cybernetics-security = Кибернетика СРБС
 lua-research-technology-faction-cybernetics-syndicate = Кибернетика Синдиката

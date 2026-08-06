@@ -2,7 +2,7 @@
   id: NFHardsuitsArmored
   name: nf-research-technology-hardsuits-armored
   entityIcon: ClothingOuterHardsuitMercenary
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -16,14 +16,14 @@
   position: -3.617, 8.178
   factionOverrides:
     Nanotrasen:
-      position: -4.267, 5.689
+      position: -2.489, 0
       technologyPrerequisites:
-      - NFHardsuitsAdvanced
+      - LuaDisciplinePlaceholderArsenalMercenary
 - type: technology
   id: NFHardsuitsOldWar
   name: nf-research-technology-hardsuits-old-war
   entityIcon: ClothingOuterHardsuitSurplus
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -36,14 +36,13 @@
   position: -4.889, 7.599
   factionOverrides:
     Nanotrasen:
-      position: -4.978, 7.822
-      technologyPrerequisites:
-      - NFHardsuitsArmored
+      position: -3.556, 0.711
+      technologyPrerequisites: []
 - type: technology
   id: NFHardsuitsArmoredAdvanced
   name: nf-research-technology-hardsuits-armored-advanced
   entityIcon: ClothingOuterHardsuitScaf
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -57,14 +56,14 @@
   position: -5.088, 8.718
   factionOverrides:
     Nanotrasen:
-      position: -6.044, 5.689
+      position: -3.556, 0
       technologyPrerequisites:
       - NFHardsuitsArmored
 - type: technology
   id: NFMagnetsTechCombat
   name: nf-research-technology-magnets-tech-combat
   entityIcon: ClothingShoesBootsMagMercenary
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -79,14 +78,14 @@
   position: -4.181, 9.646
   factionOverrides:
     Nanotrasen:
-      position: -5.333, 6.756
+      position: -2.489, 0.711
       technologyPrerequisites:
       - NFHardsuitsArmored
 - type: technology
   id: NFAudioVisualCommunication
   name: nf-research-technology-audio-visual-communication
   entityIcon: SurveillanceCameraRouterConstructed
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -99,14 +98,14 @@
   - NFAdvancedEntertainment
   factionOverrides:
     Nanotrasen:
-      position: -3.2, -1.778
+      position: -4.622, -2.133
       technologyPrerequisites:
-      - NFAdvancedEntertainment
+      - NFFoodService
 - type: technology
   id: NFArsenalMercenaryPropulsion
   name: nf-research-technology-combat-propulsion
   entityIcon: JetpackSecurity
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -118,14 +117,14 @@
   position: 1.006, 8.368
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 6.756
+      position: -5.689, 3.556
       technologyPrerequisites:
-      - NFBasicPersonalPropulsion
+      - NFGravityResistantTech
 - type: technology
   id: NFBasicAmmunitionProduction
   name: nf-research-technology-basic-ammunition
   entityIcon: NFAmmunitionBoxPistol45
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -147,14 +146,14 @@
   - NFBountyHunting
   factionOverrides:
     Nanotrasen:
-      position: 6.4, 11.022
+      position: -4.622, 0.711
       technologyPrerequisites:
-      - NFBountyHunting
+      - NFHardsuitsOldWar
 - type: technology
   id: NFBountyHunting
   name: nf-research-technology-bounty-hunting
   entityIcon: Handcuffs
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -173,14 +172,14 @@
   position: 6.911, 15.915
   factionOverrides:
     Nanotrasen:
-      position: 6.4, 9.956
+      position: -4.622, 1.422
       technologyPrerequisites:
       - NFAdvancedRiotControl
 - type: technology
   id: NFImprovedPistolAmmo
   name: nf-research-technology-pistol-ammo-improved
   entityIcon: NFAmmunitionBoxPistol35Overpressure
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -198,14 +197,14 @@
   position: 9.359, 19.154
   factionOverrides:
     Nanotrasen:
-      position: 7.111, 11.733
+      position: -7.111, 0.356
       technologyPrerequisites:
       - NFBasicAmmunitionProduction
 - type: technology
   id: NFNonlethalAmmunition
   name: nf-research-technology-nonlethal-ammunition
   entityIcon: NFAmmunitionBoxShellShotgunBeanbag
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -222,14 +221,14 @@
   position: 8.644, 19.943
   factionOverrides:
     Nanotrasen:
-      position: 6.4, 12.089
+      position: -7.111, 1.067
       technologyPrerequisites:
       - NFBasicAmmunitionProduction
 - type: technology
   id: NFAdvancedRiotControl
   name: nf-research-technology-advanced-riot-control
   entityIcon: Truncheon
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -241,14 +240,14 @@
   position: 5.5, 13.085
   factionOverrides:
     Nanotrasen:
-      position: 6.4, 9.244
+      position: -3.556, 1.422
       technologyPrerequisites:
       - NFExplosiveTechnology
 - type: technology
   id: NFArsenalStyle
   name: nf-research-technology-arsenal-style
   entityIcon: ClothingOuterArmorPunkOrange
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -277,14 +276,14 @@
   position: 8.833, 17.249
   factionOverrides:
     Nanotrasen:
-      position: 5.689, 11.022
+      position: -5.689, 1.422
       technologyPrerequisites:
       - NFBountyHunting
 - type: technology
   id: NFImprovedRifleAmmo
   name: nf-research-technology-rifle-ammo-improved
   entityIcon: NFAmmunitionBoxRifle30Overpressure
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -302,14 +301,14 @@
   position: 10.623, 20.377
   factionOverrides:
     Nanotrasen:
-      position: 7.822, 12.444
+      position: -8.178, 0.356
       technologyPrerequisites:
       - NFImprovedPistolAmmo
 - type: technology
   id: NFExplosiveTechnology
   name: nf-research-technology-explosive-technology
   entityIcon: ChemicalPayload
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -326,14 +325,14 @@
   position: 6.49, 11.996
   factionOverrides:
     Nanotrasen:
-      position: 6.4, 8.178
+      position: -2.489, 1.422
       technologyPrerequisites:
-      - NFBasicShuttleArmament
+      - LuaDisciplinePlaceholderArsenalMercenary
 - type: technology
   id: NFDeterrenceTechnologies
   name: nf-research-technology-deterrence
   entityIcon: HoloprojectorField
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -345,14 +344,14 @@
   position: 6.783, 14.246
   factionOverrides:
     Nanotrasen:
-      position: 7.111, 9.956
+      position: -4.622, 2.133
       technologyPrerequisites:
       - NFAdvancedRiotControl
 - type: technology
   id: NFBulkRifleAmmo
   name: nf-research-technology-rifle-ammo-bulk
   entityIcon: NFAmmunitionBoxBigRifle20
-  discipline: NFArsenalMercenary
+  discipline: NFArsenal
   factions:
   - Nanotrasen
   tier: 1
@@ -367,6 +366,6 @@
   position: 11.856, 21.596
   factionOverrides:
     Nanotrasen:
-      position: 8.533, 12.444
+      position: -9.244, 0.356
       technologyPrerequisites:
       - NFImprovedRifleAmmo

@@ -16,7 +16,7 @@
   position: -7.565, -3.331
   factionOverrides:
     Nanotrasen:
-      position: -2.133, -3.911
+      position: -3.2, -2.844
       technologyPrerequisites:
       - NFAdvancedEntertainment
 - type: technology
@@ -35,7 +35,7 @@
   position: 5.212, 22.518
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 13.511
+      position: -3.2, -3.556
       technologyPrerequisites:
       - NFAdvancedCleaning
 - type: technology
@@ -54,9 +54,9 @@
   - NFAdvancedHydroponicsEquipment
   factionOverrides:
     Nanotrasen:
-      position: -3.556, 1.778
+      position: -2.133, -1.067
       technologyPrerequisites:
-      - NFAdvancedHydroponicsEquipment
+      - LuaDisciplinePlaceholderService
 - type: technology
   id: NFFauxAstroTiles
   name: nf-research-technology-faux-astro-tiles
@@ -79,7 +79,7 @@
   position: -1.332, -5.466
   factionOverrides:
     Nanotrasen:
-      position: 0, -3.911
+      position: 3.911, 2.133
       technologyPrerequisites:
       - NFIndustrialCutter
 - type: technology
@@ -117,7 +117,7 @@
   position: 3.086, -2.572
   factionOverrides:
     Nanotrasen:
-      position: 3.556, -2.133
+      position: 6.044, -4.267
       technologyPrerequisites:
       - NFAdvancedBeltTechnology
 - type: technology
@@ -137,9 +137,9 @@
   position: -1.648, 12.018
   factionOverrides:
     Nanotrasen:
-      position: -2.489, 6.756
+      position: -3.2, -4.622
       technologyPrerequisites:
-      - NFHardsuitsAdvanced
+      - LuaWaterRegenerator
 - type: technology
   id: NFWirelessAudioVisualCommunication
   name: nf-research-technology-wireless-audio-visual-communication
@@ -156,9 +156,9 @@
   position: -10.97, -1.959
   factionOverrides:
     Nanotrasen:
-      position: -4.622, -2.133
+      position: -6.756, -2.133
       technologyPrerequisites:
-      - NFAudioVisualCommunication
+      - NFJournalism
 - type: technology
   id: NFHologramCommunication
   name: nf-research-technology-hologram-communication
@@ -175,9 +175,9 @@
   position: -11.562, -0.269
   factionOverrides:
     Nanotrasen:
-      position: -4.622, -1.422
+      position: -7.822, -2.133
       technologyPrerequisites:
-      - NFAudioVisualCommunication
+      - NFWirelessAudioVisualCommunication
 - type: technology
   id: NFAdvancedInstruments
   name: nf-research-technology-advanced-instruments
@@ -196,9 +196,9 @@
   position: -8.379, -2.207
   factionOverrides:
     Nanotrasen:
-      position: -3.2, -3.911
+      position: -5.689, -3.556
       technologyPrerequisites:
-      - NFAdvancedEntertainment
+      - NFPushHorn
 - type: technology
   id: NFAdvancedEntertainment
   name: nf-research-technology-advanced-entertainment
@@ -217,9 +217,9 @@
   position: -5.029, 0.271
   factionOverrides:
     Nanotrasen:
-      position: -1.067, -2.844
+      position: -2.133, -2.133
       technologyPrerequisites:
-      - NFAdvancedParts
+      - LuaDisciplinePlaceholderService
 - type: technology
   id: NFJournalism
   name: nf-research-technology-journalism
@@ -236,9 +236,9 @@
   position: -8.773, -1.182
   factionOverrides:
     Nanotrasen:
-      position: -3.2, -2.844
+      position: -5.689, -2.133
       technologyPrerequisites:
-      - NFAdvancedEntertainment
+      - NFAudioVisualCommunication
 - type: technology
   id: NFPushHorn
   name: nf-research-technology-clowning-utilities
@@ -255,9 +255,9 @@
   position: -6.593, -4.585
   factionOverrides:
     Nanotrasen:
-      position: -1.067, -3.911
+      position: -4.622, -3.556
       technologyPrerequisites:
-      - NFAdvancedEntertainment
+      - LuaBluespaceArt
 - type: technology
   id: NFBasicSpray
   name: nf-research-technology-basic-spray
@@ -275,10 +275,9 @@
   - NFReinforcedJug
   factionOverrides:
     Nanotrasen:
-      position: 1.422, 11.022
+      position: -1.067, -2.133
       technologyPrerequisites:
-      - NFBasicMedicine
-      - NFReinforcedJug
+      - LuaDisciplinePlaceholderService
 - type: technology
   id: NFJanicart
   name: nf-research-technology-janicart
@@ -295,9 +294,9 @@
   position: -0.345, 21.732
   factionOverrides:
     Nanotrasen:
-      position: 0.356, 11.022
+      position: 7.111, 2.133
       technologyPrerequisites:
-      - NFBasicSpray
+      - NFBasicRobotics
 - type: technology
   id: NFAdvancedSpray
   name: nf-research-technology-advanced-spray
@@ -315,9 +314,9 @@
   position: 2.078, 21.018
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 12.089
+      position: -4.267, -4.267
       technologyPrerequisites:
-      - NFBasicSpray
+      - LuaWaterRegenerator
 - type: technology
   id: NFPortablePump
   name: nf-research-technology-portable-cleaning
@@ -335,7 +334,7 @@
   position: 0.833, 21.279
   factionOverrides:
     Nanotrasen:
-      position: 0.356, 11.733
+      position: -1.067, -3.2
       technologyPrerequisites:
       - NFBasicSpray
 - type: technology
@@ -354,9 +353,9 @@
   position: 3.125, 22.118
   factionOverrides:
     Nanotrasen:
-      position: 1.067, 12.8
+      position: -2.133, -3.2
       technologyPrerequisites:
-      - NFAdvancedSpray
+      - NFPortablePump
 - type: technology
   id: NFAdvancedCleaningCyborg
   name: nf-research-technology-advanced-cleaning-cyborg
@@ -373,9 +372,9 @@
   position: 4.458, 23.813
   factionOverrides:
     Nanotrasen:
-      position: 0.356, 13.511
+      position: 10.311, 2.489
       technologyPrerequisites:
-      - NFAdvancedCleaning
+      - NFMechanizedTreatment
 - type: technology
   id: NFSelectiveDropper
   name: nf-research-technology-food-filtration
@@ -392,7 +391,7 @@
   position: -8.961, 9.491
   factionOverrides:
     Nanotrasen:
-      position: -1.778, 2.844
+      position: -4.267, -1.067
       technologyPrerequisites:
       - NFAdvancedHydroponicsEquipment
 - type: technology
@@ -411,9 +410,9 @@
   - NFSuperParts
   factionOverrides:
     Nanotrasen:
-      position: -2.489, 1.778
+      position: -3.2, -1.067
       technologyPrerequisites:
-      - NFAdvancedParts
+      - NFHardsuitBotanist
 - type: technology
   id: NFHydroponics
   name: nf-research-technology-basic-hydroponics
@@ -430,9 +429,9 @@
   position: -10.764, 6.402
   factionOverrides:
     Nanotrasen:
-      position: -2.489, 2.844
+      position: -6.4, -1.067
       technologyPrerequisites:
-      - NFAdvancedHydroponicsEquipment
+      - NFSeedExtractor
 - type: technology
   id: NFAdvancedHydroponicsStorge
   name: nf-research-technology-advanced-botanical-storage
@@ -450,9 +449,9 @@
   position: -7.719, 9.231
   factionOverrides:
     Nanotrasen:
-      position: -4.622, 1.067
+      position: -7.467, -1.067
       technologyPrerequisites:
-      - NFHardsuitBotanist
+      - NFHydroponics
 - type: technology
   id: NFFoodService
   name: nf-research-technology-food-service
@@ -474,9 +473,9 @@
   position: -10.306, 8.98
   factionOverrides:
     Nanotrasen:
-      position: -3.556, 2.489
+      position: -3.2, -2.133
       technologyPrerequisites:
-      - NFAdvancedHydroponicsEquipment
+      - NFAdvancedEntertainment
 - type: technology
   id: NFSeedExtractor
   name: nf-research-technology-seed-extractor
@@ -494,9 +493,9 @@
   position: -10.856, 7.511
   factionOverrides:
     Nanotrasen:
-      position: -3.556, 1.067
+      position: -5.333, -1.067
       technologyPrerequisites:
-      - NFAdvancedHydroponicsEquipment
+      - NFSelectiveDropper
 - type: technology
   id: NFDeepFryer
   name: nf-research-technology-deep-fryer
@@ -514,9 +513,9 @@
   position: -12.01, 8.432
   factionOverrides:
     Nanotrasen:
-      position: -4.622, 2.489
+      position: -6.756, -2.844
       technologyPrerequisites:
-      - NFFoodService
+      - NFAdvancedFoodService
 - type: technology
   id: NFAdvancedFoodService
   name: nf-research-technology-advanced-food-service
@@ -535,9 +534,9 @@
   position: -13.411, 11.053
   factionOverrides:
     Nanotrasen:
-      position: -4.622, 1.778
+      position: -5.689, -2.844
       technologyPrerequisites:
-      - NFFoodService
+      - NFBiogenerator
 - type: technology
   id: NFBiogenerator
   name: nf-research-technology-biogenerator
@@ -555,7 +554,7 @@
   position: -11.005, 11.699
   factionOverrides:
     Nanotrasen:
-      position: -3.556, 3.556
+      position: -4.622, -2.844
       technologyPrerequisites:
       - NFFoodService
 - type: technology
@@ -574,9 +573,9 @@
   position: -14.172, 7.81
   factionOverrides:
     Nanotrasen:
-      position: -5.689, 2.489
+      position: -6.4, -4.267
       technologyPrerequisites:
-      - NFDeepFryer
+      - NFBiomass
 - type: technology
   id: NFBiomass
   name: nf-research-technology-biomass
@@ -593,9 +592,9 @@
   position: -12.424, 13.232
   factionOverrides:
     Nanotrasen:
-      position: -4.622, 3.556
+      position: -5.333, -4.267
       technologyPrerequisites:
-      - NFBiogenerator
+      - NFAdvancedSpray
 - type: technology
   id: HONKWeapons
   name: research-technology-honk-weapons
@@ -614,6 +613,6 @@
   position: 7.932, 3.751
   factionOverrides:
     Nanotrasen:
-      position: 6.044, 2.844
+      position: 11.378, -0
       technologyPrerequisites:
-      - NFHONKMech
+      - NFHornRoboticsEquipment
