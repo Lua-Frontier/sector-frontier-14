@@ -1,0 +1,15 @@
+- type: entity
+  id: UraniumProcessingIcon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Effects/processing.rsi
+    state: processing_2
+
+- type: entity
+  id: UraniumEnrichedProcessingIcon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Effects/processing.rsi
+    state: processing_3

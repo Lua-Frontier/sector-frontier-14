@@ -1,9 +1,11 @@
 - type: entity
-  parent: BaseStructure
+  parent: [BaseMachinePowered, ConstructibleMachine]
   id: ContainmentFieldGenerator
   name: containment field generator
   description: A machine that generates a containment field when powered by an emitter. Keeps the Singularity docile.
   components:
+  - type: Transform
+    noRot: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -15,12 +17,31 @@
         - FullTileMask
         layer:
         - WallLayer
+  - type: Damageable
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: InteractionOutline
   - type: Anchorable
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/containment.rsi
     state: icon
-    noRot: true
+    noRot: false
     layers:
       - state: icon
       - state: p1
@@ -35,6 +56,8 @@
         map: ["connectedLight"]
         visible: false
         shader: unshaded
+  - type: Machine
+    board: ContainmentFieldGeneratorCircuitboard
   - type: Icon
     sprite: Structures/Power/Generation/Singularity/containment.rsi
     state: icon
@@ -95,7 +118,6 @@
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/containment_field.rsi
     state: field
-    noRot: true
   - type: Icon
     sprite: Structures/Power/Generation/Singularity/containment_field.rsi
     state: field

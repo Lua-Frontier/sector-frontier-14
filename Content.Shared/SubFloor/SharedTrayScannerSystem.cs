@@ -5,6 +5,7 @@ using Content.Shared.Inventory.Events;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
+using Content.Shared._DV.Clothing.Events;
 
 namespace Content.Shared.SubFloor;
 
@@ -30,6 +31,7 @@ public abstract class SharedTrayScannerSystem : EntitySystem
         SubscribeLocalEvent<TrayScannerComponent, GotUnequippedEvent>(OnTrayUnequipped);
 
         SubscribeLocalEvent<TrayScannerUserComponent, GetVisMaskEvent>(OnUserGetVis);
+        SubscribeLocalEvent<TrayScannerComponent, ToggleTrayScannerEvent>(OnToggleAction);
     }
 
     private void OnUserGetVis(Entity<TrayScannerUserComponent> ent, ref GetVisMaskEvent args)
@@ -126,6 +128,15 @@ public abstract class SharedTrayScannerSystem : EntitySystem
 
         scanner.Range = state.Range;
         SetScannerEnabled(uid, state.Enabled, scanner);
+    }
+
+    private void OnToggleAction(Entity<TrayScannerComponent> scanner, ref ToggleTrayScannerEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        SetScannerEnabled(scanner, !scanner.Comp.Enabled, scanner);
+        args.Handled = true;
     }
 }
 

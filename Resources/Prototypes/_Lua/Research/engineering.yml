@@ -81,6 +81,13 @@
   - AutolatheHyperConvectionMachineCircuitboard
   - ProtolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
+  - UpgradeKitAutomation
+  - LatheUpgradeKitHyper
+  - LatheUpgradeKitCryo
+  - RoboticArmCircuitboard
+  - StorageBinCircuitboard
+  - InteractorCircuitboard
+  - ConstructorCircuitboard
   technologyPrerequisites:
   - NFAdvancedParts
   position: 0.774, -3.079
@@ -181,6 +188,7 @@
   - PowerDrill
   - JawsOfLife
   - SignallerAdvanced
+  - TrayGoggles # Mono
   technologyPrerequisites:
   - NFAdvancedWelderTechnology
   position: -4.164, 1.669
@@ -662,9 +670,9 @@
   position: 9.887, -0.444
   factionOverrides:
     Nanotrasen:
-      position: 9.244, -1.067
+      position: 10.311, -1.067
       technologyPrerequisites:
-      - NuclearPowerRecycling
+      - UniversalMaterialResearchT1
 - type: technology
   id: NFFission
   name: nf-research-technology-fission-powercells
@@ -738,7 +746,7 @@
   position: 12.421, -1.711
   factionOverrides:
     Nanotrasen:
-      position: 10.311, -1.067
+      position: 11.378, -1.067
       technologyPrerequisites:
       - NFEmitter
 - type: technology
@@ -910,6 +918,8 @@
   cost: 5000
   recipeUnlocks:
   - ThrusterMachineCircuitboard
+  - LargeThrusterMachineCircuitboard
+  - ThrusterLargeMachineCircuitboard
   - GyroscopeMachineCircuitboard
   prerequisiteLineType: Diagonal
   technologyPrerequisites:
@@ -1039,3 +1049,145 @@
       position: 12.444, -4.267
       technologyPrerequisites:
       - NFAdvancedAtmosphericsPortable
+- type: technology
+  id: UniversalMaterialResearchT1
+  name: research-technology-universal-engsci-1
+  entityIcon: SheetSteel
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 5000
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: -1.5, -4.5
+  factionOverrides:
+    Nanotrasen:
+      position: 9.244, -1.067
+      technologyPrerequisites:
+      - NuclearPowerRecycling
+  recipeUnlocks: []
+- type: technology
+  id: UniversalMaterialResearchT2
+  name: research-technology-universal-engsci-2
+  entityIcon: SheetPlasteel
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 50000
+  technologyPrerequisites:
+  - UniversalMaterialResearchT1
+  position: -1.5, -6.5
+  factionOverrides:
+    Nanotrasen:
+      position: 10.311, -2.133
+      technologyPrerequisites:
+      - UniversalMaterialResearchT1
+  recipeUnlocks:
+  - AmmoBox762x39mmBigFMJ
+  - AmmoBox762x51mmBigFMJ
+  - AmmoBox762x54mmRBigFMJ
+  - AmmoBox9x19mmBigFMJ
+  - AmmoBox45_ACPBigFMJ
+  - AmmoBox357_magnumBigFMJ
+  - AmmoBox556x45mmBigFMJ
+- type: technology
+  id: UniversalMaterialResearchT3
+  name: research-technology-universal-engsci-3
+  entityIcon: SheetPlastitanium
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 100000
+  technologyPrerequisites:
+  - UniversalMaterialResearchT2
+  position: -1.5, -8
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, -3.2
+      technologyPrerequisites:
+      - MieyoManufacturingPress
+  recipeUnlocks: []
+- type: technology
+  id: BasicProcessing
+  name: research-technology-basic-economy
+  entityIcon: UraniumProcessingIcon
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 20000
+  recipeUnlocks:
+  - CentrifugeLatheMiniCircuitboard
+  technologyPrerequisites:
+  - UniversalMaterialResearchT1
+  position: -3, -5
+  factionOverrides:
+    Nanotrasen:
+      position: 11.378, -2.133
+      technologyPrerequisites:
+      - UniversalMaterialResearchT2
+- type: technology
+  id: AdvancedProcessing
+  name: research-technology-processing-advanced
+  entityIcon: IndustrialFurnaceEconomyCompact
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - IndustrialFurnaceEconomyCompactCircuitboard
+  - PrecisionAssemblerEconomyCompactCircuitboard
+  technologyPrerequisites:
+  - UniversalMaterialResearchT2
+  position: -3, -7
+  factionOverrides:
+    Nanotrasen:
+      position: 13.511, -3.2
+      technologyPrerequisites:
+      - UniversalMaterialResearchT3
+- type: technology
+  id: UraniumProcessingAdvanced
+  name: research-technology-uranium-processing-advanced
+  entityIcon: UraniumEnrichedProcessingIcon
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - UraniumCentrifugeReprocessingMini
+  - UraniumCentrifugeEnrichedProcessingMini
+  technologyPrerequisites:
+  - UniversalMaterialResearchT2
+  - BasicProcessing
+  - AdvancedProcessing
+  position: -3, -8.5
+  factionOverrides:
+    Nanotrasen:
+      position: 12.444, -2.133
+      technologyPrerequisites:
+      - BasicProcessing
+- type: technology
+  id: MieyoManufacturingPress
+  name: research-technology-mieyo-press
+  entityIcon: IndustrialPressEconomyElectronicsMMC
+  discipline: NFEngineering
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 15000
+  recipeUnlocks:
+  - IndustrialPressEconomyElectronicsMMCMachineCircuitboard
+  - IndustrialPressEconomyPlatesMMCMachineCircuitboard
+  technologyPrerequisites:
+  - UniversalMaterialResearchT1
+  position: -4.5, -5
+  factionOverrides:
+    Nanotrasen:
+      position: 11.378, -3.2
+      technologyPrerequisites:
+      - UniversalMaterialResearchT2

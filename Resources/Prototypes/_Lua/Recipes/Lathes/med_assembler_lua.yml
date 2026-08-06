@@ -1,0 +1,24 @@
+# Lua medical assembler recipes (ex-microwaveMealRecipe)
+- type: latheRecipe
+  id: RegenerativeFireMeshAssembler
+  result: RegenerativeFireMesh
+  completetime: 10
+  entities:
+    FoodFireAloe: 1
+    RegenerativeMesh: 1
+    MaterialCloth1: 1
+  reagents:
+    Pyrazine: 10
+    Siderlac: 10
+
+- type: latheRecipe
+  id: ImprovedMedicatedSutureAssembler
+  result: ImprovedMedicatedSuture
+  completetime: 10
+  entities:
+    FoodJuniper: 1
+    MedicatedSuture: 1
+    MaterialCloth1: 1
+  reagents:
+    Saline: 10
+    PolypyryliumOligomers: 10

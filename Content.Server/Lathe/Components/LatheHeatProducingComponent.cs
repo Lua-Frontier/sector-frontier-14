@@ -1,5 +1,5 @@
+using Content.Shared.Atmos; // Mono
 using Content.Shared.Lathe;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Lathe.Components;
 
@@ -16,6 +16,22 @@ public sealed partial class LatheHeatProducingComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float EnergyPerSecond = 30000;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    public TimeSpan NextSecond;
+    // Mono
+    /// <summary>
+    /// Refuse to work if depositing the energy would bring the air to above this temperature.
+    /// Doesn't apply if null.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float? TemperatureCap = null;
+
+    // <Mono>
+    [DataField]
+    public TimeSpan UpdateAccumulator;
+
+    [DataField]
+    public TimeSpan UpdateSpacing = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public bool IsHot = false;
+    // </Mono>
 }

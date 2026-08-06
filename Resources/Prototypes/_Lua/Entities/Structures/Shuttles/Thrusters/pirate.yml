@@ -107,17 +107,18 @@
 
 - type: entity
   id: ThrusterLargeRogue
-  parent: BaseThrusterLarge
+  parent: ThrusterLarge
   name: large thruster
   suffix: Syndicate, StormCreed
   components:
   - type: Machine
-    board: ThrusterRogueMachineCircuitboard
+    board: ThrusterLargeMachineCircuitboard
   - type: Thruster
     baseThrust: 800
     thrust: 1248
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster96.rsi
+    offset: 1,-1
     layers:
     - state: base_rogue_large
       map: ["enum.ThrusterVisualLayers.Base"]

@@ -1,4 +1,11 @@
 - type: stack
+  id: Iridite
+  name: stack-iridite
+  icon: { sprite: /Textures/_Mono/Objects/Materials/iridite.rsi, state: iridite }
+  spawn: SheetIridite1
+  maxCount: 100
+
+- type: stack
   id: Plastitanium
   name: stack-plastitanium
   icon: { sprite: /Textures/_Mono/Objects/Materials/plastitanium.rsi, state: plastitanium }

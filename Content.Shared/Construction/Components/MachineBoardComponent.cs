@@ -43,6 +43,12 @@ public sealed partial class MachineBoardComponent : Component
     public EntProtoId Prototype;
 
     /// <summary>
+    /// Monolith - Whether this can be inserted into a flatpacker.
+    /// </summary>
+    [DataField]
+    public bool Flatpackable = true;
+
+    /// <summary>
     /// Mono - sets the framesize this board can go into (e.g. "2x1").
     /// </summary>
     [DataField]

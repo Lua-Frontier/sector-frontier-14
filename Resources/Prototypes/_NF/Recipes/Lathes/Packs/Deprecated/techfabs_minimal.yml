@@ -1,0 +1,50 @@
+# Minimal recipe packs so Engineering/Service/Salvage techfabs load on SF.
+# Full Mono Deprecated packs reference many recipes absent from SF tip.
+
+- type: latheRecipePack
+  id: NFEngineeringTechfabDeprecatedStatic
+  recipes:
+  - Wirecutter
+  - Screwdriver
+  - CrowbarGreen
+  - Multitool
+  - Welder
+  - Wrench
+
+- type: latheRecipePack
+  id: NFEngineeringTechfabDeprecated
+  recipes: []
+
+- type: latheRecipePack
+  id: NFServiceTechfabDeprecatedStatic
+  recipes:
+  - Wirecutter
+  - Screwdriver
+  - CrowbarGreen
+  - Wrench
+
+- type: latheRecipePack
+  id: NFServiceTechfabDeprecated
+  recipes: []
+
+- type: latheRecipePack
+  id: NFServiceTechfabDeprecatedEmagStatic
+  recipes: []
+
+- type: latheRecipePack
+  id: NFSalvageTechfabDeprecatedStatic
+  recipes:
+  - Wirecutter
+  - Screwdriver
+  - CrowbarGreen
+  - Wrench
+  - Pickaxe
+  - MiningDrill
+
+- type: latheRecipePack
+  id: NFSalvageTechfabDeprecated
+  recipes: []
+
+- type: latheRecipePack
+  id: NFSalvageTechfabDeprecatedEmag
+  recipes: []

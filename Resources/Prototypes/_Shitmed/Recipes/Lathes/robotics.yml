@@ -87,250 +87,221 @@
 # Cybernetics
 
 - type: latheRecipe
+  abstract: true
+  id: BaseCyberLimbRecipe
+  completetime: 5
+  materials:
+    Steel: 500
+    Glass: 250
+    Plastic: 250
+    Gold: 150
+    Silver: 150
+    Copper: 150
+    Lithium: 100
+
+- type: latheRecipe
+  abstract: true
+  id: BaseAdvancedCyberRecipe
+  completetime: 5
+  materials:
+    Steel: 1000
+    Glass: 500
+    Plastic: 500
+    Gold: 300
+    Silver: 300
+    Copper: 300
+    Lithium: 200
+
+- type: latheRecipe
+  parent: BaseCyberLimbRecipe
   id: LeftArmCybernetic
   result: LeftArmCybernetic
-  completetime: 5
-  materials:
-    Steel: 500
-    Glass: 250
-    Plastic: 250
-    Gold: 150
-    Silver: 150
 
 - type: latheRecipe
+  parent: BaseCyberLimbRecipe
   id: RightArmCybernetic
   result: RightArmCybernetic
-  completetime: 5
-  materials:
-    Steel: 500
-    Glass: 250
-    Plastic: 250
-    Gold: 150
-    Silver: 150
 
 - type: latheRecipe
+  parent: BaseCyberLimbRecipe
   id: LeftLegCybernetic
   result: LeftLegCybernetic
-  completetime: 5
-  materials:
-    Steel: 500
-    Glass: 250
-    Plastic: 250
-    Gold: 150
-    Silver: 150
 
 - type: latheRecipe
+  parent: BaseCyberLimbRecipe
   id: RightLegCybernetic
   result: RightLegCybernetic
-  completetime: 5
-  materials:
-    Steel: 500
-    Glass: 250
-    Plastic: 250
-    Gold: 150
-    Silver: 150
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: JawsOfLifeLeftArm
   result: JawsOfLifeLeftArm
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: JawsOfLifeRightArm
   result: JawsOfLifeRightArm
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: SpeedLeftLeg
   result: SpeedLeftLeg
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: SpeedRightLeg
   result: SpeedRightLeg
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: BasicCyberneticEyes
   result: BasicCyberneticEyes
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: SecurityCyberneticEyes
   result: SecurityCyberneticEyes
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseAdvancedCyberRecipe
   id: MedicalCyberneticEyes
   result: MedicalCyberneticEyes
-  completetime: 5
-  materials:
-    Steel: 1000
-    Glass: 500
-    Plastic: 500
-    Gold: 300
-    Silver: 300
 
 - type: latheRecipe
+  parent: BaseCyberLimbRecipe
   id: DexLeftHand
   result: DexLeftHand
-  completetime: 5
-  materials:
-    Steel: 500
-    Glass: 250
-    Plastic: 250
-    Gold: 150
-    Silver: 150
 
 - type: latheRecipe
+  parent: BaseCyberLimbRecipe
   id: DexRightHand
   result: DexRightHand
-  completetime: 5
-  materials:
-    Steel: 500
-    Glass: 250
-    Plastic: 250
-    Gold: 150
-    Silver: 150
 
-# Faction cybernetics autosurgeons
+# Faction cybernetics autosurgeons # Mono costs
 
 - type: latheRecipe
+  parent: BaseToolRecipe
   id: AutosurgeonRightMantisBladeMieyoFlatpack
   result: AutosurgeonRightMantisBladeMieyoFlatpack
-  completetime: 10
-  materials:
-    Steel: 1500
-    Glass: 500
-    Plastic: 1500
-    Gold: 500
-    Silver: 500
-    Plasma: 250
-
-- type: latheRecipe
-  id: AutosurgeonLeftMantisBladeMieyoFlatpack
-  result: AutosurgeonLeftMantisBladeMieyoFlatpack
-  completetime: 10
-  materials:
-    Steel: 1500
-    Glass: 500
-    Plastic: 1500
-    Gold: 500
-    Silver: 500
-    Plasma: 250
-
-- type: latheRecipe
-  id: AutosurgeonSandevistanMieyoFlatpack
-  result: AutosurgeonSandevistanMieyoFlatpack
-  completetime: 10
-  materials:
-    Steel: 1500
-    Glass: 1000
-    Plastic: 1500
-    Gold: 500
-    Silver: 500
-    Plasma: 500
-
-- type: latheRecipe
-  id: AutosurgeonMuscleFibersMieyoFlatpack
-  result: AutosurgeonMuscleFibersMieyoFlatpack
-  completetime: 10
-  materials:
-    Steel: 1500
-    Glass: 1000
-    Plastic: 1500
-    Gold: 500
-    Silver: 500
-
-- type: latheRecipe
-  id: AutosurgeonSandevistanTSFFlatpack
-  result: AutosurgeonSandevistanTSFFlatpack
-  completetime: 10
-  materials:
-    Steel: 2000
-    Glass: 1500
-    Plastic: 1500
-    Gold: 750
-    Silver: 750
-    Plasma: 750
-
-- type: latheRecipe
-  id: AutosurgeonShuntTSFFlatpack
-  result: AutosurgeonShuntTSFFlatpack
-  completetime: 10
+  materialDiscountScale: 0
   materials:
     Steel: 3000
-    Glass: 2000
-    Plastic: 2000
+    Plastic: 2500
+    Glass: 400
+    Plasteel: 3500
+    Plasma: 750
     Gold: 1000
-    Silver: 1000
-    Bluespace: 500
+    Lithium: 750
+    Copper: 750
+    Iridite: 20
 
 - type: latheRecipe
+  parent: AutosurgeonRightMantisBladeMieyoFlatpack
+  id: AutosurgeonLeftMantisBladeMieyoFlatpack
+  result: AutosurgeonLeftMantisBladeMieyoFlatpack
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: AutosurgeonSandevistanMieyoFlatpack
+  result: AutosurgeonSandevistanMieyoFlatpack
+  materialDiscountScale: 0
+  materials:
+    Steel: 6000
+    Plastic: 2500
+    Glass: 2000
+    Plasteel: 5000
+    Plasma: 1500
+    Gold: 2000
+    Lithium: 5000
+    Copper: 5000
+    UraniumFissile: 150
+    Iridite: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: AutosurgeonMuscleFibersMieyoFlatpack
+  result: AutosurgeonMuscleFibersMieyoFlatpack
+  materialDiscountScale: 0
+  materials:
+    Steel: 2500
+    Plastic: 2000
+    Glass: 800
+    Plasteel: 2000
+    Gold: 750
+    Lithium: 1000
+    Copper: 1000
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: AutosurgeonSandevistanTSFFlatpack
+  result: AutosurgeonSandevistanTSFFlatpack
+  materialDiscountScale: 0
+  materials:
+    Steel: 6000
+    Plastic: 2500
+    Glass: 2000
+    Plasteel: 5000
+    Plasma: 1200
+    Gold: 2000
+    Lithium: 5000
+    Copper: 4500
+    UraniumFissile: 150
+    Iridite: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: AutosurgeonShuntTSFFlatpack
+  result: AutosurgeonShuntTSFFlatpack
+  materialDiscountScale: 0
+  materials:
+    Steel: 10000
+    Plastic: 2500
+    Glass: 2000
+    Plasteel: 5000
+    Plasma: 2500
+    Gold: 5000
+    Lithium: 10000
+    Copper: 10000
+    UraniumFissile: 150
+    Bluespace: 2000
+    Iridite: 1000
+
+- type: latheRecipe
+  parent: BaseToolRecipe
   id: AutosurgeonIASPDVFlatpack
   result: AutosurgeonIASPDVFlatpack
-  completetime: 10
+  materialDiscountScale: 0
   materials:
-    Steel: 1000
-    Glass: 1000
-    Plastic: 1500
-    Gold: 250
-    Silver: 250
+    Steel: 2000
+    Plastic: 2500
+    Glass: 400
+    Plasteel: 1000
+    Lithium: 500
+    Copper: 500
 
 - type: latheRecipe
+  parent: BaseToolRecipe
   id: AutosurgeonDermalArmorPDVFlatpack
   result: AutosurgeonDermalArmorPDVFlatpack
-  completetime: 10
+  materialDiscountScale: 0
   materials:
-    Steel: 1000
-    Glass: 1000
-    Plastic: 1500
-    Gold: 250
-    Silver: 250
+    Steel: 4000
+    Plastic: 2500
+    Glass: 400
+    Plasteel: 10000
+    Durathread: 1000
 
 - type: latheRecipe
+  parent: BaseToolRecipe
   id: AutosurgeonAdvHeartPDVFlatpack
   result: AutosurgeonAdvHeartPDVFlatpack
-  completetime: 10
+  materialDiscountScale: 0
   materials:
-    Steel: 1000
-    Glass: 1000
-    Plastic: 1500
-    Gold: 500
-    Silver: 500
+    Steel: 2000
+    Plastic: 5000
+    Glass: 400
+    Plasteel: 2500
+    Plasma: 500
+    Lithium: 800
+    Copper: 800
+    Durathread: 1000

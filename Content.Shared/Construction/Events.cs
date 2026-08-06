@@ -33,12 +33,16 @@ public sealed class TryStartStructureConstructionMessage : EntityEventArgs
     /// </remarks>
     public readonly int Ack;
 
-    public TryStartStructureConstructionMessage(NetCoordinates loc, string prototypeName, Angle angle, int ack)
+    // Goobstation - optional held entity used when constructing (e.g. Constructor machine)
+    public readonly NetEntity? With = null;
+
+    public TryStartStructureConstructionMessage(NetCoordinates loc, string prototypeName, Angle angle, int ack, NetEntity? with = null)
     {
         Location = loc;
         PrototypeName = prototypeName;
         Angle = angle;
         Ack = ack;
+        With = with;
     }
 }
 

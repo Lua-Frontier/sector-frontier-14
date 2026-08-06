@@ -148,6 +148,7 @@
     - NFMedicalMobilityStatic # Frontier
     - NFServiceKitchenStatic # Frontier
     - NFEvaSuitCommon # Frontier
+    - AutomationStatic # Mono
 #  - type: EmagLatheRecipes # comment from _Lua
 #    emagStaticPacks:
 #    - NfsdAmmoStatic # Frontier: SecurityAmmoStatic<NfsdAmmoStatic
@@ -245,6 +246,7 @@
     # WD EDIT START
     - VisionGoggles
     # WD EDIT END
+    - UpgradeKits_Goob # Goob
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - NfsdAmmoStatic # Frontier: SecurityAmmo<NfsdAmmoStatic
@@ -327,6 +329,8 @@
     - NFServiceBoards # Frontier
     - LuaMedicalBoards # Lua
     - ReactorCircuitboards # FarHorizons
+    - MonoEconomyLatheBoards # Mono
+    - EngineeringBoardsGoob # Goob
   - type: EmagLatheRecipes
     emagDynamicPacks: [] # Frontier: empty list
     # - SecurityBoards # Frontier

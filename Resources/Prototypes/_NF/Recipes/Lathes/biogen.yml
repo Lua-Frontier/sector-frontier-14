@@ -31,7 +31,7 @@
   categories:
   - Tools
   completetime: 60
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   materials:
     Biomass: 1600
 
@@ -61,7 +61,7 @@
   id: NFBioGenFoodMeat
   result: FoodMeat
   parent: BioGenFoodRecipe
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   completetime: 5
   materials:
     Biomass: 35
@@ -72,7 +72,7 @@
   id: NFBioGenFoodMeatWholeChicken
   result: FoodMeatWholeChicken
   parent: BioGenFoodRecipe
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   completetime: 15
   materials:
     Biomass: 70
@@ -81,7 +81,7 @@
   id: NFBioGenFoodMeatWholePenguin
   result: FoodMeatWholePenguin
   parent: BioGenFoodRecipe
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   completetime: 20
   materials:
     Biomass: 105
@@ -90,7 +90,7 @@
   id: NFBioGenFoodMeatWholeDuck
   result: FoodMeatWholeDuck
   parent: BioGenFoodRecipe
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   completetime: 15
   materials:
     Biomass: 70
@@ -99,7 +99,7 @@
   id: NFBioGenFoodMeatCrab
   result: FoodMeatCrab
   parent: BioGenFoodRecipe
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   completetime: 5
   materials:
     Biomass: 25 #Crab is a more specific recipe, also crabs are smaller so I pressume the cut of crab meat is easier to make than a full steak
@@ -108,7 +108,7 @@
   id: NFBioGenFoodMeatBacon
   result: FoodMeatBacon
   parent: BioGenFoodRecipe
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   completetime: 5
   materials:
     Biomass: 35 

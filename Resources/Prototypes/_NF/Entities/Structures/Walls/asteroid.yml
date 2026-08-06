@@ -286,6 +286,10 @@
           scraprock07: ""
 
 - type: entity
+  id: WallRockScrapPile
+  parent: NFWallRockScrapPile
+
+- type: entity
   id: NFWallRockScrapPileBot
   parent: [NFBaseScrapBotVein, NFWallRockScrapPile]
 

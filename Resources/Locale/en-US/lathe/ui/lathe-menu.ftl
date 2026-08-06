@@ -6,6 +6,8 @@ lathe-menu-search-designs = Search designs
 lathe-menu-category-all = All
 lathe-menu-search-filter = Filter:
 lathe-menu-amount = Amount:
+lathe-menu-loop = Loop
+lathe-menu-skip = Skip If Insufficient
 lathe-menu-recipe-count = { $count ->
     [1] {$count} Recipe
     *[other] {$count} Recipes
@@ -24,6 +26,8 @@ lathe-menu-material-amount-missing = { $amount ->
     [1] {NATURALFIXED($amount, 2)} {$unit} of {$material} ([color=red]{NATURALFIXED($missingAmount, 2)} {$unit} missing[/color])
     *[other] {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit)} of {$material} ([color=red]{NATURALFIXED($missingAmount, 2)} {MAKEPLURAL($unit)} missing[/color])
 }
+lathe-menu-entity-amount-missing = {$amount} of {$material} ([color=red]{$missingAmount} missing[/color])
+lathe-menu-reagent-amount-missing = {$amount}u of {$material} ([color=red]{$missingAmount}u missing[/color])
 lathe-menu-no-materials-message = No materials loaded.
 lathe-menu-silo-linked-message = Silo Linked
 lathe-menu-fabricating-message = Fabricating...

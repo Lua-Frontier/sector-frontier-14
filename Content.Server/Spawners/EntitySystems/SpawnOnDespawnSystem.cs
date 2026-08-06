@@ -19,7 +19,12 @@ public sealed class SpawnOnDespawnSystem : EntitySystem
             return;
 
         var mapCoords = EntityManager.System<SharedTransformSystem>().GetMapCoordinates(xform);
-        Spawn(comp.Prototype, mapCoords);
+        // Mono start - multiple entity spawning
+        for (int i = 0; i <= comp.Count; i++)
+        {
+            Spawn(comp.Prototype, mapCoords);
+        }
+        // End mono
     }
 
     public void SetPrototype(Entity<SpawnOnDespawnComponent> entity, EntProtoId prototype)
