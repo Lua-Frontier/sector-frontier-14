@@ -4,8 +4,6 @@
   name: R&D server
   description: Contains the extent of somebody's hard-earned knowledge. Handle with care. # Frontier: separate description
   components:
-  - type: BindToStation # Frontier
-    enabled: false # Frontier - should be draggable between stations
   - type: Sprite
     sprite: Structures/Machines/server.rsi
     snapCardinals: true
@@ -102,8 +100,6 @@
   name: syndicate R&D server
   description: Stores classified syndicate research data.
   components:
-  - type: BindToStation
-    enabled: false
   - type: Sprite
     sprite: _Lua/Structures/Machines/Taipan/server.rsi
     snapCardinals: true

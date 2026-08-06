@@ -7,5 +7,3 @@ shuttle-console-target-name = Цель
 shuttle-console-map-track = ⌖
 
 shuttle-deed-examine-text = Он содержит судовой акт на [color=yellow]{ $shipname }[/color].
-bound-to-grid-examine-text = Это устройство зарегистрировано [color=red]{ $shipname }[/color].
-bound-to-grid-unknown-station = Неизвестное Судно

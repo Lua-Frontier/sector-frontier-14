@@ -3,15 +3,12 @@ using Content.Server.Power.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Content.Server.Station.Systems; // Frontier
-using Content.Shared._NF.BindToStation; // Frontier
 
 namespace Content.Server.Power.EntitySystems
 {
     public sealed class ExtensionCableSystem : EntitySystem
     {
         [Dependency] private readonly SharedMapSystem _map = default!;
-        [Dependency] private readonly StationSystem _station = default!; // Frontier
         public override void Initialize()
         {
             base.Initialize();
@@ -194,13 +191,7 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnReceiverAnchorStateChanged(Entity<ExtensionCableReceiverComponent> receiver, ref AnchorStateChangedEvent args)
         {
-            // Frontier - check for a grid bound lock on an entity, if it exists is not on the proper grid, don't connect
-            var gridBound = TryComp<StationBoundObjectComponent>(receiver, out var binding) &&
-                            binding.Enabled &&
-                            binding.BoundStation != null &&
-                             _station.GetOwningStation(receiver) != binding.BoundStation;
-
-            if (args.Anchored && !gridBound) //End Frontier
+            if (args.Anchored)
             {
                 Connect(receiver);
             }

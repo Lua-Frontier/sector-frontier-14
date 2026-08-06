@@ -53,7 +53,6 @@
   - type: ExtensionCableReceiver
   - type: LightningTarget
     priority: 1
-  - type: BindToStation # Frontier
 
 - type: entity
   abstract: true
@@ -73,7 +72,6 @@
     - machine_board
   - type: LightningTarget
     priority: 1
-  - type: BindToStation # Frontier
 
 - type: entity
   abstract: true

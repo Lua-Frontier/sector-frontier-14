@@ -223,8 +223,6 @@
     prototype: ResearchAndDevelopmentServer
     stackRequirements:
       Plasma: 5
-  - type: BindToStation # Frontier
-    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ResearchAndDevelopmentServerSyndicateMachineCircuitboard
@@ -238,8 +236,6 @@
     prototype: ResearchAndDevelopmentServerSyndicate
     stackRequirements:
       Plasma: 5
-  - type: BindToStation
-    enabled: false
 
 - type: entity
   id: ResearchAndDevelopmentServerRoguesMachineCircuitboard
@@ -253,8 +249,6 @@
     prototype: ResearchAndDevelopmentServerRogues
     stackRequirements:
       Plasma: 5
-  - type: BindToStation
-    enabled: false
 
 - type: entity
   id: ResearchAndDevelopmentServerUsspMachineCircuitboard
@@ -268,8 +262,6 @@
     prototype: ResearchAndDevelopmentServerUssp
     stackRequirements:
       Plasma: 5
-  - type: BindToStation
-    enabled: false
 
 - type: entity
   id: ResearchAndDevelopmentServerTSFMCMachineCircuitboard
@@ -283,8 +275,6 @@
     prototype: ResearchAndDevelopmentServerTSFMC
     stackRequirements:
       Plasma: 5
-  - type: BindToStation
-    enabled: false
 
 - type: entity
   id: ResearchAndDevelopmentServerMercMachineCircuitboard
@@ -298,8 +288,6 @@
     prototype: ResearchAndDevelopmentServerMerc
     stackRequirements:
       Plasma: 5
-  - type: BindToStation
-    enabled: false
 
 - type: entity
   id: BiogeneratorMachineCircuitboard
@@ -477,8 +465,6 @@
         # Manipulator: 2 # Frontier
         Cable: 1
         Glass: 1
-    - type: BindToStation # Frontier
-      enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ThermomachineFreezerMachineCircuitBoard
@@ -597,8 +583,6 @@
       # Manipulator: 3 # Frontier
       Cable: 5
       Glass: 2
-  - type: BindToStation # Frontier
-    enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: SpaceHeaterMachineCircuitBoard
@@ -1088,8 +1072,6 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
-    - type: BindToStation # Frontier
-      enabled: false # Frontier - should be draggable between stations
 
 - type: entity
   id: ReagentGrinderMachineCircuitboard
