@@ -183,20 +183,4 @@ public sealed partial class BodySystem : SharedBodySystem
     protected override void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component)
     {
     }
-
-    protected override void RemoveBodyMarkings(
-        EntityUid target,
-        BodyPartAppearanceComponent partAppearance,
-        HumanoidAppearanceComponent bodyAppearance)
-    {
-        foreach (var (_, markingList) in partAppearance.Markings)
-        {
-            foreach (var marking in markingList)
-            {
-                _humanoidSystem.RemoveMarking(target, marking.MarkingId, sync: false, humanoid: bodyAppearance);
-            }
-        }
-
-        Dirty(target, bodyAppearance);
-    }
 }
