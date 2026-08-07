@@ -7,6 +7,7 @@ using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Mono.NPC.HTN;
@@ -16,6 +17,8 @@ public sealed partial class ShipSteeringSystem
     private const float HazardWaypointArrive = 120f;
     private const float HazardWaypointPassRadius = 360f;
     private const float HazardClearance = 60f;
+    private const float GridRouteClearance = 48f;
+    private const float MinGridRouteHalfDiag = 12f;
     private const int HazardCircleSamples = 32;
     private const int MaxRouteNodes = 640;
     private const float CorridorExtraWidth = 2500f;
@@ -23,6 +26,7 @@ public sealed partial class ShipSteeringSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     private readonly Dictionary<MapId, (TimeSpan BuiltAt, List<(Vector2 Center, float Radius)> Circles)> _hazardCache = new();
     private readonly List<(Vector2 Center, float Radius)> _routeHazards = new();
+    private List<Entity<MapGridComponent>> _routeGrids = new();
     private readonly List<Vector2> _routeNodes = new();
     private readonly List<int> _routePrev = new();
     private readonly List<float> _routeDist = new();
@@ -45,11 +49,12 @@ public sealed partial class ShipSteeringSystem
         var dest = _transform.ToMapCoordinates(comp.Coordinates);
         if (shipPos.MapId != dest.MapId || shipPos.MapId == MapId.Nullspace) return;
         var hazards = GetCachedHazardCircles(shipPos.MapId);
-        if (hazards.Count == 0) return;
         var pad = shipGrid.LocalAABB.Size.Length() * 0.5f + HazardClearance;
         var start = shipPos.Position;
         var goal = dest.Position;
         CollectCorridorHazards(hazards, pad, start, goal, _routeHazards);
+        if (comp.AvoidCollisions)
+            AppendCorridorGridObstacles(shipPos.MapId, shipUid.Value, start, goal, pad, _routeHazards);
         if (_routeHazards.Count == 0) return;
         if (!SegmentHitsHazards(start, goal, _routeHazards, goal, allowGoalHazard: false)) return;
         if (!TryBuildHazardRoute(start, goal, _routeHazards, out var waypoints)) return;
@@ -69,6 +74,45 @@ public sealed partial class ShipSteeringSystem
             var r = radius + pad;
             if (PointInCircle(start, center, r) || PointInCircle(goal, center, r) || DistPointToSegment(center, start, goal) <= r + corridorSlack)
             { into.Add((center, r)); }
+        }
+    }
+
+    private void AppendCorridorGridObstacles(
+        MapId mapId,
+        EntityUid shipUid,
+        Vector2 start,
+        Vector2 goal,
+        float shipPad,
+        List<(Vector2 Center, float Radius)> into)
+    {
+        var box = Box2.FromTwoPoints(start, goal).Enlarged(CorridorExtraWidth);
+        _routeGrids.Clear();
+        _mapMan.FindGridsIntersecting(mapId, box, ref _routeGrids, approx: true, includeMap: false);
+
+        foreach (var gridEnt in _routeGrids)
+        {
+            if (gridEnt.Owner == shipUid)
+                continue;
+            if (!_physQuery.TryComp(gridEnt.Owner, out var body))
+                continue;
+
+            var xform = Transform(gridEnt.Owner);
+            var worldAabb = _physics.GetWorldAABB(gridEnt.Owner, body: body, xform: xform);
+            var halfDiag = gridEnt.Comp.LocalAABB.Size.Length() * 0.5f;
+            if (halfDiag < MinGridRouteHalfDiag)
+                continue;
+
+            var center = worldAabb.Center;
+            var radius = halfDiag + shipPad + GridRouteClearance;
+
+            if (PointInCircle(goal, center, radius))
+                continue;
+
+            if (PointInCircle(start, center, radius)
+                || DistPointToSegment(center, start, goal) <= radius + CorridorExtraWidth)
+            {
+                into.Add((center, radius));
+            }
         }
     }
 
