@@ -33,7 +33,7 @@
     increment: 90
   - type: DeviceLinkSink
     ports:
-    - SpaceArtilleryFire
+    #- SpaceArtilleryFire no use on SF
     - SpaceArtilleryLoad
   - type: SpaceArtillery
   - type: DeviceNetwork
@@ -121,7 +121,7 @@
     anchored: true
   - type: DeviceLinkSink
     ports:
-    - SpaceArtilleryFire
+    #- SpaceArtilleryFire no use on SF
     - SpaceArtilleryLoad
   - type: SpaceArtillery
   - type: DeviceNetwork
@@ -219,7 +219,7 @@
     anchored: true
   - type: DeviceLinkSink
     ports:
-    - SpaceArtilleryFire
+    #- SpaceArtilleryFire no use on SF
     - SpaceArtilleryLoad
   - type: SpaceArtillery
   - type: DeviceNetwork
