@@ -208,8 +208,7 @@ public sealed class GridCleanupSystem : EntitySystem
     private int CountTiles(Entity<MapGridComponent> ent)
     {
         var count = 0;
-        var enumerator = _mapSystem.GetAllTilesEnumerator(ent, ent.Comp);
-        while (enumerator.MoveNext(out _))
+        foreach (var _ in _mapSystem.GetAllTiles(ent, ent.Comp))
         {
             count++;
             if (count >= MinimumTiles)
