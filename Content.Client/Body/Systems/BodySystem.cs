@@ -1,6 +1,7 @@
 using Content.Shared.Body.Systems;
 // Shitmed Change Start
 using Content.Shared._Shitmed.Body.Part;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
@@ -64,6 +65,13 @@ public sealed partial class BodySystem : SharedBodySystem
 
                 ApplyMarkingToPart(markingPrototype, marking.MarkingColors, marking.Visible, sprite);
             }
+    }
+
+    protected override void RemoveBodyMarkings(
+        EntityUid target,
+        BodyPartAppearanceComponent partAppearance,
+        HumanoidAppearanceComponent bodyAppearance)
+    {
     }
     // Shitmed Change End
 }
