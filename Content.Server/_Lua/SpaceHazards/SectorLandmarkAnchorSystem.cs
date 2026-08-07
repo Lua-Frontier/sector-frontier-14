@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using Content.Server._Mono.Cleanup;
@@ -34,9 +34,10 @@ public sealed class SectorLandmarkAnchorSystem : EntitySystem
         => LockToMap(uid);
     public void LockToMap(EntityUid uid)
     {
-        if (HasComp<EventHorizonComponent>(uid))
-        { EnsureComp<CleanupImmuneComponent>(uid); }
-        else if (TryComp<PhysicsComponent>(uid, out var body))
+        if (HasComp<SectorCelestialBodyComponent>(uid) || HasComp<EventHorizonComponent>(uid))
+            EnsureComp<CleanupImmuneComponent>(uid);
+
+        if (TryComp<PhysicsComponent>(uid, out var body) && !HasComp<EventHorizonComponent>(uid))
         {
             _physics.SetCanCollide(uid, false, body: body);
             RemCompDeferred<FixturesComponent>(uid);

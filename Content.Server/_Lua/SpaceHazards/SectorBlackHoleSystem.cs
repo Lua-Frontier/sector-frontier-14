@@ -1,18 +1,18 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
-using Content.Server.Singularity.EntitySystems;
-using Content.Server.Singularity.Events;
+using Content.Server._NF.Shuttles.Components;
+using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
+using Content.Server.StationEvents.Events;
 using Content.Server.Temperature.Systems;
-using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Maps;
-using Content.Shared.Singularity.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
@@ -23,9 +23,9 @@ namespace Content.Server._Lua.SpaceHazards;
 
 public sealed class SectorBlackHoleSystem : EntitySystem
 {
-    private static readonly TimeSpan TickInterval = TimeSpan.FromSeconds(0.5);
+    private static readonly TimeSpan TickInterval = TimeSpan.FromSeconds(0.25);
 
-    private const int BaseMaxHits = 20;
+    private const int BaseMaxHits = 12;
 
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
@@ -35,22 +35,14 @@ public sealed class SectorBlackHoleSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EventHorizonSystem _eventHorizon = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SpaceHazardActivitySystem _activity = default!;
     [Dependency] private readonly TemperatureSystem _temperature = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycle = default!;
+    [Dependency] private readonly ShuttleSystem _shuttle = default!;
 
     private TimeSpan _nextTick;
     private readonly List<Entity<MapGridComponent>> _gridScratch = new();
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<SectorCelestialBodyComponent, EventHorizonAttemptConsumeEntityEvent>(EventHorizonSystem.PreventConsume);
-        SubscribeLocalEvent<SectorBackgroundPlanetComponent, EventHorizonAttemptConsumeEntityEvent>(EventHorizonSystem.PreventConsume);
-        SubscribeLocalEvent<AmbientSpaceFieldComponent, EventHorizonAttemptConsumeEntityEvent>(EventHorizonSystem.PreventConsume);
-    }
 
     public override void Update(float frameTime)
     {
@@ -66,9 +58,6 @@ public sealed class SectorBlackHoleSystem : EntitySystem
         foreach (var uid in _activity.ActiveHazards)
         {
             if (!TryComp(uid, out SectorCelestialBodyComponent? body) || body.Kind != CelestialKind.BlackHole)
-                continue;
-
-            if (!TryComp(uid, out EventHorizonComponent? horizon))
                 continue;
 
             if (!TryComp(uid, out TransformComponent? xform) || xform.MapID == MapId.Nullspace)
@@ -87,32 +76,17 @@ public sealed class SectorBlackHoleSystem : EntitySystem
             foreach (var grid in grids)
             {
                 var gridUid = grid.Owner;
+                if (Deleted(gridUid) || EntityManager.IsQueuedForDeletion(gridUid))
+                    continue;
+
                 var distClosest = DistanceToGrid(gridUid, grid.Comp, pos);
 
-                if (distClosest <= pullR && TryComp<PhysicsComponent>(gridUid, out var physics))
+                if (distClosest <= pullR)
                 {
-                    var gridPos = _transform.GetWorldPosition(gridUid);
-                    var toHole = pos - gridPos;
-                    var distCenter = toHole.Length();
-                    var vel = physics.LinearVelocity;
+                    TearForceAnchor(gridUid);
 
-                    if (distCenter < 0.05f)
-                    {
-                        vel *= 0.35f;
-                    }
-                    else
-                    {
-                        var dir = toHole / distCenter;
-                        var t = Math.Clamp(1f - distCenter / pullR, 0f, 1f);
-                        var strength = body.PullAcceleration * (0.2f * t + 0.8f * t * t);
-                        vel += dir * strength * dt;
-
-                        var outward = Vector2.Dot(vel, -dir);
-                        if (outward > 0f)
-                            vel += dir * outward;
-                    }
-
-                    _physics.SetLinearVelocity(gridUid, vel, body: physics);
+                    if (TryComp<PhysicsComponent>(gridUid, out var physics))
+                        ApplyGridPull(gridUid, grid.Comp, physics, pos, distClosest, pullR, horizonR, body.PullAcceleration, dt);
                 }
 
                 if (distClosest > horizonR)
@@ -136,25 +110,18 @@ public sealed class SectorBlackHoleSystem : EntitySystem
                         _random);
                 }
 
-                var circle = new Circle(pos, horizonR);
-                _eventHorizon.AttemptConsumeTiles(
+                SectorBlackHoleConsume.TryEraseAndMaybeSwallow(
                     uid,
-                    _maps.GetTilesIntersecting(gridUid, grid.Comp, circle),
                     gridUid,
                     grid.Comp,
-                    horizon);
+                    pos,
+                    horizonR,
+                    _maps,
+                    _transform,
+                    EntityManager,
+                    _linkedLifecycle);
             }
 
-            SectorCelestialMobDamage.PullUncontainedMobs(
-                xform.MapID,
-                pos,
-                pullR,
-                body.PullAcceleration,
-                dt,
-                _lookup,
-                _transform,
-                _physics,
-                EntityManager);
             SectorCelestialMobDamage.ApplyHazardToMobsInRadius(
                 xform.MapID,
                 pos,
@@ -165,28 +132,116 @@ public sealed class SectorBlackHoleSystem : EntitySystem
                 _damageable,
                 _temperature,
                 EntityManager);
-            ConsumeHardCollidableInRange(uid, horizonR, horizon);
+            SectorBlackHoleConsume.PullAndConsumeFreeEntities(
+                uid,
+                xform.MapID,
+                pos,
+                pullR,
+                horizonR,
+                body.PullAcceleration,
+                dt,
+                _lookup,
+                _transform,
+                _physics,
+                EntityManager);
         }
     }
 
-    private void ConsumeHardCollidableInRange(EntityUid uid, float range, EventHorizonComponent horizon)
+    private void TearForceAnchor(EntityUid gridUid)
     {
-        if (!TryComp(uid, out PhysicsComponent? body))
+        var hadLock =
+            HasComp<ForceAnchorComponent>(gridUid) ||
+            HasComp<ForceAnchorPostFTLComponent>(gridUid) ||
+            HasComp<PreventGridAnchorChangesComponent>(gridUid);
+
+        if (!hadLock)
+        {
+            if (TryComp(gridUid, out PhysicsComponent? physics) &&
+                physics.BodyType == BodyType.Static &&
+                HasComp<ShuttleComponent>(gridUid))
+            {
+                _shuttle.Enable(gridUid, component: physics);
+            }
+
+            return;
+        }
+
+        RemComp<ForceAnchorComponent>(gridUid);
+        RemComp<ForceAnchorPostFTLComponent>(gridUid);
+        RemComp<PreventGridAnchorChangesComponent>(gridUid);
+
+        if (TryComp(gridUid, out PhysicsComponent? body))
+        {
+            if (HasComp<ShuttleComponent>(gridUid))
+            {
+                _shuttle.Enable(gridUid, component: body);
+                if (TryComp(gridUid, out ShuttleComponent? shuttle))
+                    shuttle.Enabled = true;
+            }
+            else
+            {
+                _physics.SetBodyType(gridUid, BodyType.Dynamic, body: body);
+                _physics.SetBodyStatus(gridUid, body, BodyStatus.InAir);
+                _physics.SetFixedRotation(gridUid, false, body: body);
+            }
+        }
+    }
+
+    private void ApplyGridPull(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        PhysicsComponent physics,
+        Vector2 holePos,
+        float distClosest,
+        float pullR,
+        float horizonR,
+        float pullAcceleration,
+        float dt)
+    {
+        if (physics.BodyType == BodyType.Static)
             return;
 
-        foreach (var entity in _lookup.GetEntitiesInRange(uid, range, flags: LookupFlags.Uncontained))
+        var worldMatrix = _transform.GetWorldMatrix(gridUid);
+        var aabb = grid.LocalAABB;
+        var massCenter = Vector2.Transform(aabb.Center, worldMatrix);
+        var toHole = holePos - massCenter;
+        var distCenter = toHole.Length();
+        var hullRadius = new Vector2(aabb.Width, aabb.Height).Length() * 0.5f;
+
+        if (distCenter + hullRadius < 0.75f)
         {
-            if (entity == uid)
-                continue;
-
-            if (!TryComp(entity, out PhysicsComponent? otherBody))
-                continue;
-
-            if (!_physics.IsHardCollidable((uid, null, body), (entity, null, otherBody)))
-                continue;
-
-            _eventHorizon.AttemptConsumeEntity(uid, entity, horizon);
+            _physics.SetLinearVelocity(gridUid, Vector2.Zero, body: physics);
+            _physics.SetAngularVelocity(gridUid, 0f, body: physics);
+            return;
         }
+
+        if (distCenter < 0.05f)
+        {
+            var inv = _transform.GetInvWorldMatrix(gridUid);
+            var localHole = Vector2.Transform(holePos, inv);
+            var farLocal = Vector2.Clamp(localHole + (aabb.Center - localHole) * 2f, aabb.BottomLeft, aabb.TopRight);
+            if ((farLocal - localHole).LengthSquared() < 0.01f)
+                farLocal = aabb.Center;
+            massCenter = Vector2.Transform(farLocal, worldMatrix);
+            toHole = holePos - massCenter;
+            distCenter = toHole.Length();
+            if (distCenter < 0.05f)
+                return;
+        }
+
+        var dir = toHole / distCenter;
+        var t = Math.Clamp(1f - distCenter / MathF.Max(pullR, 1f), 0f, 1f);
+        var speed = distClosest < horizonR
+            ? pullAcceleration * (0.65f + 0.55f * t)
+            : pullAcceleration * (0.15f + 0.55f * t * t);
+
+        speed = MathF.Min(speed, distCenter / MathF.Max(dt, 0.05f) * 0.5f);
+
+        _physics.SetLinearVelocity(gridUid, dir * speed, body: physics);
+
+        var ang = physics.AngularVelocity;
+        if (ang != 0f)
+            _physics.SetAngularVelocity(gridUid, ang * MathF.Max(0f, 1f - 3f * dt), body: physics);
     }
 
     private float DistanceToGrid(EntityUid gridUid, MapGridComponent grid, Vector2 worldPoint)
