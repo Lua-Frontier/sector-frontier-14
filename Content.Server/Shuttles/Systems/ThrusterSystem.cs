@@ -10,6 +10,7 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
+using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -39,6 +40,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
     private const string GrillePrototypeId = "Grille";
     private static readonly HashSet<string> CablePrototypeIds = new() { "CableApcExtension", "CableHV", "CableMV" };
     private readonly HashSet<EntityUid> _burnOverlapSet = new();
@@ -606,6 +608,7 @@ public sealed class ThrusterSystem : EntitySystem
             foreach (var uid in _burnOverlapSet)
             {
                 if (uid == ent) continue;
+                if (_containers.IsEntityInContainer(uid)) continue;
                 if (IsGrilleOrChild(uid)) continue;
                 if (IsCableOrChild(uid)) continue;
                 if (!_transform.InRange(ent, uid, 2.5f)) continue;

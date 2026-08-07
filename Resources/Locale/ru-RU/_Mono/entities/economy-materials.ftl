@@ -40,6 +40,19 @@ ent-IriditePowder = сырой порошок иридита
 ent-IriditeCrystal = кристаллический иридит
     .desc = Очищенный кристаллический иридит.
 
+ent-MaterialIridite = Иридит
+    .desc = Сложный сплав из атмосферных газов; используется в тяжёлой промышленности, нановолокнах и высококлассных компьютерах.
+    .suffix = Полный
+ent-SheetIridite1 = Иридит
+    .desc = { ent-MaterialIridite.desc }
+    .suffix = 1
+ent-SheetIridite10 = Иридит
+    .desc = { ent-MaterialIridite.desc }
+    .suffix = 10
+ent-SheetIridite50 = Иридит
+    .desc = { ent-MaterialIridite.desc }
+    .suffix = 50
+
 ent-MaterialIndustryElectronics = пакет электронных деталей
     .desc = Упакованные электронные детали для промышленности.
 ent-MaterialIndustryElectronicsAdvanced = пакет продвинутых электронных деталей

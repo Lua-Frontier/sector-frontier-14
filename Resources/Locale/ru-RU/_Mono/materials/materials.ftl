@@ -1,5 +1,5 @@
-materials-iridite = иридит
-stack-iridite = иридит
+materials-iridite = Иридит
+stack-iridite = Иридит
 
 # Industry
 

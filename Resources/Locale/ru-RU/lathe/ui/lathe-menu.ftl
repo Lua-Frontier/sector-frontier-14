@@ -21,11 +21,11 @@ lathe-menu-tooltip-display = {$amount} {$material}
 lathe-menu-description-display = [italic]{$description}[/italic]
 lathe-menu-material-amount = { $amount ->
     [1] {NATURALFIXED($amount, 2)} {$unit}
-    *[other] {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit)}
+    *[other] {NATURALFIXED($amount, 2)} {$unit}
 }
 lathe-menu-material-amount-missing = { $amount ->
     [1] {NATURALFIXED($amount, 2)} {$unit} {$material} ([color=red]не хватает {NATURALFIXED($missingAmount, 2)} {$unit}[/color])
-    *[other] {NATURALFIXED($amount, 2)} {MAKEPLURAL($unit)} {$material} ([color=red]не хватает {NATURALFIXED($missingAmount, 2)} {MAKEPLURAL($unit)}[/color])
+    *[other] {NATURALFIXED($amount, 2)} {$unit} {$material} ([color=red]не хватает {NATURALFIXED($missingAmount, 2)} {$unit}[/color])
 }
 lathe-menu-entity-amount-missing = {$amount} {$material} ([color=red]не хватает {$missingAmount}[/color])
 lathe-menu-reagent-amount-missing = {$amount}ед. {$material} ([color=red]не хватает {$missingAmount}ед.[/color])
