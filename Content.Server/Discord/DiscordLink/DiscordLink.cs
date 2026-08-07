@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
 using Content.Shared.CCVar;
 using Discord;
+using Discord.Net;
 using Discord.WebSocket;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Reflection;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Threading.Tasks;
 using LogMessage = Discord.LogMessage;
 
 namespace Content.Server.Discord.DiscordLink;
@@ -360,7 +361,7 @@ public sealed class DiscordLink : IPostInjectInit
             var sanitizedMessage = message.Replace("<", "\\<").Replace("/", "\\/");
             await thread.SendMessageAsync(sanitizedMessage, allowedMentions: AllowedMentions.None);
         }
-        catch (HttpException e) when (e.DiscordCode == DiscordErrorCode.MissingAccess)
+        catch (HttpException e) when ((int?)e.DiscordCode == 50001)
         {
             _sawmill.Debug("Missing Discord access for thread {Thread}: {Message}", threadId, e.Message);
         }
