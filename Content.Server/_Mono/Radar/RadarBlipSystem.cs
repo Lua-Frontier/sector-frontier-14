@@ -151,8 +151,8 @@ public sealed partial class RadarBlipSystem : EntitySystem
                 if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
                     coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
                 // we're parented to either the map or a grid and this is relative velocity so account for grid movement
-                if (blipGrid != null)
-                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position);
+                if (blipGrid != null && TryComp<PhysicsComponent>(blipGrid.Value, out var gridBody)) // prevent Resolve log spam
+                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position, gridBody);
 
                 var scale = blip.Scale;
                 var color = blip.RadarColor;

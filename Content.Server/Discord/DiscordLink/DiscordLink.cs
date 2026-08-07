@@ -290,6 +290,11 @@ public sealed class DiscordLink : IPostInjectInit
             var thread = await channel.CreatePostAsync(threadName, ThreadArchiveDuration.OneDay, null, sanitizedMessage, allowedMentions: AllowedMentions.None);
             return thread.Id;
         }
+        catch (TaskCanceledException e)
+        {
+            _sawmill.Debug("Discord ahelp thread create timed out or was canceled: {Message}", e.Message);
+            return null;
+        }
         catch (Exception e)
         {
             _sawmill.Error($"Error while creating ahelp thread: {e}");
@@ -354,6 +359,14 @@ public sealed class DiscordLink : IPostInjectInit
         {
             var sanitizedMessage = message.Replace("<", "\\<").Replace("/", "\\/");
             await thread.SendMessageAsync(sanitizedMessage, allowedMentions: AllowedMentions.None);
+        }
+        catch (HttpException e) when (e.DiscordCode == DiscordErrorCode.MissingAccess)
+        {
+            _sawmill.Debug("Missing Discord access for thread {Thread}: {Message}", threadId, e.Message);
+        }
+        catch (TaskCanceledException e)
+        {
+            _sawmill.Debug("Discord thread send timed out or was canceled: {Message}", e.Message);
         }
         catch (Exception e)
         {
