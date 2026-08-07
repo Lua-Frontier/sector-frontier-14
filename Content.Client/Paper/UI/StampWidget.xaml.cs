@@ -48,6 +48,17 @@ public sealed partial class StampWidget : PanelContainer
         _stampShader = prototypes.Index(PaperStamp).InstanceUnique();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _stampShader?.Dispose();
+            _stampShader = null;
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected override void Draw(DrawingHandleScreen handle)
     {
         _stampShader?.SetParameter("objCoord", GlobalPosition * UIScale * new Vector2(1, -1));

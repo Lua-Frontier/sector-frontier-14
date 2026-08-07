@@ -31,6 +31,17 @@ public sealed partial class StampLabel : Label
         _stampShader = prototypes.Index(PaperStamp).InstanceUnique();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            _stampShader?.Dispose();
+            _stampShader = null;
+        }
+
+        base.Dispose(disposing);
+    }
+
     protected override Vector2 MeasureOverride(Vector2 availableSize)
     {
         var desiredTextSize = base.MeasureOverride(availableSize);

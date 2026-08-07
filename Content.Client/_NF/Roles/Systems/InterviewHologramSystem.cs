@@ -63,16 +63,20 @@ public sealed class InterviewHologramSystem : SharedInterviewHologramSystem
         // Find the texture height of the largest layer
         float texHeight = sprite.AllLayers.Max(x => x.PixelSize.Y);
 
-        var instance = _prototype.Index<ShaderPrototype>(hologramComp.ShaderName).InstanceUnique();
+        var instance = sprite.PostShader;
+        if (instance == null)
+        {
+            instance = _prototype.Index<ShaderPrototype>(hologramComp.ShaderName).InstanceUnique();
+            sprite.PostShader = instance;
+            sprite.RaiseShaderEvent = true;
+        }
+
         instance.SetParameter("color1", new Vector3(hologramComp.Color1.R, hologramComp.Color1.G, hologramComp.Color1.B));
         instance.SetParameter("color2", new Vector3(hologramComp.Color2.R, hologramComp.Color2.G, hologramComp.Color2.B));
         instance.SetParameter("alpha", hologramComp.Alpha);
         instance.SetParameter("intensity", hologramComp.Intensity);
         instance.SetParameter("texHeight", texHeight);
         instance.SetParameter("t", (float)_timing.CurTime.TotalSeconds * hologramComp.ScrollRate);
-
-        sprite.PostShader = instance;
-        sprite.RaiseShaderEvent = true;
     }
 
     // NOOP, spawn logic handled on server.

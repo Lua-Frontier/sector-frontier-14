@@ -53,6 +53,7 @@ namespace Content.Client.Interactable.Components
                 _inRange = inInteractionRange;
                 _lastRenderScale = renderScale;
 
+                _shader?.Dispose();
                 _shader = MakeNewShader(_inRange, _lastRenderScale);
                 sprite.PostShader = _shader;
             }
