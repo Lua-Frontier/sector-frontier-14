@@ -143,7 +143,7 @@ public sealed partial class PlayerPanel : FancyWindow
         LogsButton.Disabled = !_adminManager.CanCommand("adminlogs");
         RejuvenateButton.Disabled = !_adminManager.HasFlag(AdminFlags.Debug);
         DeleteButton.Disabled = !_adminManager.HasFlag(AdminFlags.Debug);
-        ReputationButton.Disabled = ReputationButton.Disabled || !_adminManager.HasFlag(AdminFlags.Host) && !_adminManager.HasFlag(AdminFlags.Repo);
+        ReputationButton.Disabled = ReputationButton.Disabled || !_adminManager.HasFlag(AdminFlags.Repo);
         JobWhitelistsButton.Disabled = !_adminManager.HasFlag(AdminFlags.Whitelist); // DeltaV
     }
 }
