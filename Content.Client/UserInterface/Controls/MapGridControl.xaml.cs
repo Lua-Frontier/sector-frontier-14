@@ -129,14 +129,6 @@ public partial class MapGridControl : LayoutContainer
         _circleMaskShader = PrototypeManager.Index<ShaderPrototype>("CircleAlphaMask").InstanceUnique(); // Mono
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-            _circleMaskShader.Dispose();
-
-        base.Dispose(disposing);
-    }
-
     public void ForceRecenter()
     {
         Recentering = true;

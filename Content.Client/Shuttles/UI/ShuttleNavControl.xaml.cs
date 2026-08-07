@@ -135,23 +135,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         OnMouseExited += HandleMouseExited;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            // Sibling of this control (parented onto NavScreen LayoutContainer), not auto-disposed with us.
-            _radarModeButtons?.Dispose();
-            _radarModeButtons = null;
-            _radarAzimuthButton = null;
-            _radarRotationButton = null;
-            _radarAnchorButton = null;
-            _radarResetButton = null;
-            _nebulaNavCache.Clear();
-        }
-
-        base.Dispose(disposing);
-    }
-
     private double _pruneAccumSeconds;
     protected virtual void ModifyGridPalette(ref Color fillColor, ref Color edgeColor, ref float fillAlpha, EntityUid gridUid, bool self) { } // Lua
     protected virtual bool ShowRadarPositionMarker => true; // Lua
