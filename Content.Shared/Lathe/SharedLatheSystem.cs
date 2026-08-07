@@ -161,8 +161,8 @@ public abstract class SharedLatheSystem : EntitySystem
                 container.ContainedEntities.Count == 0)
                 return false;
 
-            if (_solution.TryGetFitsInDispenser(container.ContainedEntities.First(), out _, out var solution )
-                && solution.GetReagent(new ReagentId(reagent.Id, [])).Quantity < needed * amount)
+            if (!_solution.TryGetDrainableSolution(container.ContainedEntities[0], out _, out var solution )
+                || solution.GetReagent(new ReagentId(reagent.Id, [])).Quantity < needed * amount)
                 return false;
         }
         // mono end
