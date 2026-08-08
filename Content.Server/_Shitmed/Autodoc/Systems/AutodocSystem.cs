@@ -1,9 +1,11 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
+using Content.Server.Temperature.Components;
 using Content.Shared._Lua.Chat.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared._Lua.Autodoc.Components;
 using Content.Shared._Shitmed.Autodoc.Components;
 using Content.Shared._Shitmed.Autodoc.Systems;
 using Content.Shared.Body.Components;
@@ -44,6 +46,13 @@ public sealed class AutodocSystem : SharedAutodocSystem
             _internals.DisconnectTank((patient, internals));
 
         base.WakePatient(patient);
+    }
+
+    protected override float GetPatientTemperature(EntityUid patient)
+    {
+        return TryComp<TemperatureComponent>(patient, out var temperature)
+            ? temperature.CurrentTemperature
+            : float.NaN;
     }
 
     public override void Say(EntityUid uid, string msg)

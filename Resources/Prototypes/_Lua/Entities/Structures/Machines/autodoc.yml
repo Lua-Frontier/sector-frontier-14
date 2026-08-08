@@ -1,11 +1,8 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
-# Autodocs
-
 - type: entity
   parent: [ ConstructibleMachine, BaseMachinePowered ]
   id: Autodoc
-  name: Autodoc Mk.X
-  description: A programmable robotic surgeon capsule. Climb in or place a patient inside to operate.
+  name: Autodoc Mk.XI
+  description: An interactive robotic surgeon capsule by Lua Technologies. Climb in or place a patient inside to operate.
   components:
   - type: Sprite
     sprite: Structures/Machines/scanner.rsi
@@ -105,7 +102,7 @@
     clickInsert: false
     openOnActivate: false
     grid:
-    - 0,0,3,3
+    - 0,0,5,4
   - type: SurgerySpeedModifier
     speedModifier: 1
   - type: GuideHelp

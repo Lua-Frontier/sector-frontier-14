@@ -1,0 +1,139 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:shuttles="clr-namespace:Content.Client.Shuttles.UI"
+                      Title="{Loc autodoc-title}"
+                      MinSize="705 640"
+                      SetSize="705 640">
+    <LayoutContainer>
+        <PanelContainer Name="Shell" Margin="4 2 4 4">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Name="Root" Orientation="Vertical" Margin="8" SeparationOverride="7" VerticalExpand="True">
+                <BoxContainer Name="Content" Orientation="Horizontal" VerticalExpand="True" SeparationOverride="9">
+                    <PanelContainer Name="DollPanel" MinWidth="202" MaxWidth="202" VerticalExpand="True" MouseFilter="Stop">
+                        <BoxContainer Orientation="Vertical" Margin="4 0" SeparationOverride="5">
+                            <Label Name="PatientHeadingLabel" Text="{Loc autodoc-patient}"/>
+                            <Label Name="NoPatientLabel" Text="{Loc autodoc-no-patient}" Align="Center" VerticalExpand="True"/>
+                            <BoxContainer Name="PatientContent" Orientation="Vertical" VerticalExpand="True" SeparationOverride="5" Visible="False">
+                                <PanelContainer Name="BodyDoll" MinSize="192 200" MouseFilter="Stop" HorizontalAlignment="Center">
+                                    <PanelContainer SetSize="192 192" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        <SpriteView Name="PatientSprite" SetSize="192 192" OverrideDirection="South" MouseFilter="Ignore"/>
+                                        <PanelContainer Name="PartView" SetSize="114 192" Margin="36 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                            <PanelContainer SetSize="30 66" Margin="8 0 0 0" HorizontalAlignment="Left">
+                                                <TextureButton Name="RightArmButton" MinSize="30 50" StyleClasses="TargetDollButtonRightArm" VerticalAlignment="Top"/>
+                                                <TextureButton Name="RightHandButton" MinSize="30 30" StyleClasses="TargetDollButtonRightHand" VerticalAlignment="Bottom"/>
+                                            </PanelContainer>
+                                            <PanelContainer SetSize="86 150" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                <TextureButton Name="HeadButton" MinSize="56 46" StyleClasses="TargetDollButtonHead" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                <TextureButton Name="TorsoButton" SetSize="56 60" Margin="0 36 0 0" StyleClasses="TargetDollButtonChest" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                <PanelContainer MinSize="76 70" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                                    <TextureButton Name="GroinButton" MinSize="56 30" StyleClasses="TargetDollButtonGroin" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                                                    <PanelContainer MinSize="40 60" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                                        <TextureButton Name="LeftLegButton" MinSize="30 56" StyleClasses="TargetDollButtonLeftLeg" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                                        <TextureButton Name="LeftFootButton" MinSize="40 20" StyleClasses="TargetDollButtonLeftFoot" VerticalAlignment="Bottom"/>
+                                                    </PanelContainer>
+                                                    <PanelContainer MinSize="40 60" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                                        <TextureButton Name="RightLegButton" MinSize="30 56" StyleClasses="TargetDollButtonRightLeg" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                                                        <TextureButton Name="RightFootButton" MinSize="40 20" StyleClasses="TargetDollButtonRightFoot" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                                                    </PanelContainer>
+                                                </PanelContainer>
+                                            </PanelContainer>
+                                            <PanelContainer SetSize="30 66" Margin="0 0 8 0" HorizontalAlignment="Right">
+                                                <TextureButton Name="LeftArmButton" MinSize="30 50" StyleClasses="TargetDollButtonLeftArm" VerticalAlignment="Top"/>
+                                                <TextureButton Name="LeftHandButton" MinSize="30 30" StyleClasses="TargetDollButtonLeftHand" VerticalAlignment="Bottom"/>
+                                            </PanelContainer>
+                                        </PanelContainer>
+                                    </PanelContainer>
+                                </PanelContainer>
+
+                                <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="2">
+                                    <Label Name="NameLabel" ClipText="True" HorizontalExpand="True"/>
+                                    <Label Name="SpeciesLabel" StyleClasses="LabelSubText" ClipText="True" HorizontalExpand="True"/>
+                                </BoxContainer>
+
+                                <PanelContainer Name="VitalsDivider" Margin="0 2"/>
+                                <GridContainer Columns="2" Margin="0 2" HorizontalExpand="True">
+                                    <Label Name="StatusKeyLabel" Text="{Loc health-analyzer-window-entity-status-text}"/>
+                                    <Label Name="StatusLabel" ClipText="True" HorizontalExpand="True"/>
+                                    <Label Name="TemperatureKeyLabel" Text="{Loc health-analyzer-window-entity-temperature-text}"/>
+                                    <Label Name="TemperatureLabel" ClipText="True" HorizontalExpand="True"/>
+                                    <Label Name="BloodKeyLabel" Text="{Loc health-analyzer-window-entity-blood-level-text}"/>
+                                    <Label Name="BloodLabel" ClipText="True" HorizontalExpand="True"/>
+                                    <Label Name="DamageKeyLabel" Text="{Loc health-analyzer-window-entity-damage-total-text}"/>
+                                    <Label Name="DamageLabel" ClipText="True" HorizontalExpand="True"/>
+                                </GridContainer>
+
+                                <Label Name="BleedingLabel" Text="{Loc health-analyzer-window-entity-bleeding-text}" Visible="False"/>
+
+                                <PanelContainer Name="DiagnosticsDivider" Margin="0 2"/>
+                                <Label Name="DiagnosticsTitle" Text="{Loc autodoc-diagnostics}" StyleClasses="LabelKeyText"/>
+                                <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="120">
+                                    <BoxContainer Name="DiagnosticsContainer" Orientation="Vertical" SeparationOverride="3"/>
+                                </ScrollContainer>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+
+                    <PanelContainer Name="LeftColumnDivider" MinWidth="2" VerticalExpand="True" Margin="0 2"/>
+
+                    <BoxContainer Orientation="Vertical" MinWidth="260" MaxWidth="260" SetWidth="260" VerticalExpand="True" SeparationOverride="5" Margin="2 0">
+                        <Label Name="SelectedPartLabel"
+                               Text="{Loc autodoc-select-part}"
+                               MinHeight="24"
+                               MaxHeight="24"
+                               ClipText="True"
+                               HorizontalExpand="True"/>
+                        <BoxContainer Orientation="Horizontal" SeparationOverride="6" MinHeight="36" MaxHeight="36">
+                            <Button Name="HealButton" Text="{Loc autodoc-heal-part}" HorizontalExpand="True" Disabled="True" StyleClasses="ButtonNavCompact"/>
+                            <Button Name="RemoveButton" Text="{Loc autodoc-remove-part}" StyleClasses="ButtonCaution ButtonNavCompact" HorizontalExpand="True" Disabled="True"/>
+                        </BoxContainer>
+
+                        <PanelContainer Name="OrganDivider" Margin="0 2"/>
+
+                        <PanelContainer Name="OrganPanel" VerticalExpand="True" MouseFilter="Stop">
+                            <BoxContainer Orientation="Vertical" SeparationOverride="4">
+                                <Label Name="OrgansHeadingLabel" Text="{Loc autodoc-organs}"/>
+                                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                                    <BoxContainer Name="OrganList" Orientation="Vertical" SeparationOverride="2"/>
+                                </ScrollContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+
+                    <PanelContainer Name="RightColumnDivider" MinWidth="2" VerticalExpand="True" Margin="0 2"/>
+
+                    <PanelContainer Name="StoragePanel" HorizontalExpand="True" VerticalExpand="True" MouseFilter="Stop">
+                        <BoxContainer Orientation="Vertical" Margin="4 0" SeparationOverride="4">
+                            <Label Name="StorageHeadingLabel" Text="{Loc autodoc-storage}"/>
+                            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                                <BoxContainer Name="StorageList" Orientation="Vertical" SeparationOverride="2"/>
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+                <BoxContainer Orientation="Vertical">
+                    <PanelContainer Name="FooterDivider"/>
+                    <BoxContainer Orientation="Horizontal" Margin="2 2 0 0">
+                        <Label Name="FlavorLeftLabel" Text="{Loc autodoc-window-flavor-left}" StyleClasses="WindowFooterText"/>
+                        <Label Name="FlavorRightLabel" Text="{Loc autodoc-window-flavor-right}" StyleClasses="WindowFooterText"
+                               HorizontalAlignment="Right" HorizontalExpand="True" Margin="0 0 4 0"/>
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer Name="BusyOverlay" Visible="False" MouseFilter="Stop">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#0B0F14CC"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="420" SeparationOverride="14">
+                <Label Name="BusyLabel" Align="Center"/>
+                <shuttles:ShuttleBssProgressBar Name="ProgressBar" MinSize="420 22"/>
+                <Button Name="AbortButton" Text="{Loc autodoc-abort-operation}" StyleClasses="ButtonCaution ButtonNavCompact" HorizontalAlignment="Center" MinWidth="180"/>
+            </BoxContainer>
+        </PanelContainer>
+    </LayoutContainer>
+</controls:FancyWindow>
