@@ -22,6 +22,10 @@
       weight: 0.07
     - id: WallRockUranium
       weight: 0.04
+    - id: WallRockLithium # Mono
+      weight: 0.04
+    - id: WallRockCopper # Mono
+      weight: 0.06
     - id: WallRockBananium
       weight: 0.01
     - id: WallRockArtifactFragment
@@ -32,6 +36,10 @@
       weight: 0.003
     - id: NFRockElementalSpawner
       weight: 0.06
+    - id: WallRockGems
+      weight: 0.04
+    - id: WallRockMagmite
+      weight: 0.002
 
 - type: entity
   id: NFRockMineralSoft
@@ -153,6 +161,10 @@
       weight: 0.02
     - id: WallRockSnowSilver
       weight: 0.02
+    - id: WallRockSnowLithium # Mono
+      weight: 0.02
+    - id: WallRockSnowCopper # Mono
+      weight: 0.05
     - id: WallRockSnowPlasma
       weight: 0.05
     - id: WallRockSnowUranium
@@ -288,6 +300,10 @@
       weight: 0.01
     - id: WallRockAndesiteSilver
       weight: 0.01
+    - id: WallRockAndesiteLithium # Mono
+      weight: 0.06
+    - id: WallRockAndesiteCopper # Mono
+      weight: 0.02
     - id: WallRockAndesitePlasma
       weight: 0.01
     - id: WallRockAndesiteUranium
@@ -302,6 +318,10 @@
       weight: 0.002
     - id: NFAndesiteElementalSpawner
       weight: 0.08
+    - id: WallRockAndesiteGems # Lua
+      weight: 0.04
+    - id: WallRockAndesiteMagmite # Lua
+      weight: 0.002
 
 - type: entity
   id: NFAndesiteMineralSoft
@@ -423,6 +443,10 @@
       weight: 0.01
     - id: WallRockBasaltSilver
       weight: 0.03
+    - id: WallRockBasaltLithium # Mono
+      weight: 0.01
+    - id: WallRockBasaltCopper # Mono
+      weight: 0.03
     - id: WallRockBasaltPlasma
       weight: 0.1
     - id: WallRockBasaltUranium
@@ -437,6 +461,10 @@
       weight: 0.005
     - id: NFBasaltElementalSpawner
       weight: 0.05
+    - id: WallRockBasaltGems # Lua
+      weight: 0.04
+    - id: WallRockBasaltMagmite # Lua
+      weight: 0.002
 
 - type: entity
   id: NFBasaltMineralSoft
@@ -558,6 +586,10 @@
       weight: 0.08
     - id: WallRockSandGold
       weight: 0.07
+    - id: WallRockSandLithium # Mono
+      weight: 0.02
+    - id: WallRockSandCopper # Mono
+      weight: 0.08
     - id: WallRockSandPlasma
       weight: 0.01
     - id: WallRockSandUranium
@@ -693,6 +725,10 @@
       weight: 0.01
     - id: WallRockChromiteSilver
       weight: 0.01
+    - id: WallRockChromiteLithium # Mono
+      weight: 0.09
+    - id: WallRockChromiteCopper # Mono
+      weight: 0.01
     - id: WallRockChromitePlasma
       weight: 0.04
     - id: WallRockChromiteUranium
@@ -707,6 +743,8 @@
       weight: 0.0025
     - id: NFChromiteElementalSpawner
       weight: 0.05
+    - id: WallRockChromiteGems # Lua
+      weight: 0.04
     - id: WallRockChromiteMagmite #Lua
       weight: 0.0016
 
@@ -830,6 +868,10 @@
       weight: 0.06
     - id: AsteroidRockSilver
       weight: 0.03
+    - id: AsteroidRockLithium # Mono
+      weight: 0.01
+    - id: AsteroidRockCopper # Mono
+      weight: 0.06
     - id: AsteroidRockPlasma
       weight: 0.07
     - id: AsteroidRockUranium
@@ -844,6 +886,10 @@
       weight: 0.01
     - id: NFAsteroidRockElementalSpawner
       weight: 0.08
+    - id: AsteroidRockGems # Lua
+      weight: 0.04
+    - id: AsteroidRockMagmite # Lua
+      weight: 0.002
 
 - type: entity
   id: NFAsteroidMineralSoft
@@ -965,6 +1011,10 @@
       weight: 0.02
     - id: NFWallRockScrapPileSilver
       weight: 0.02
+    - id: WallRockScrapPileLithium # Mono
+      weight: 0.05
+    - id: WallRockScrapPileCopper # Mono
+      weight: 0.05
     - id: NFWallRockScrapPilePlasma
       weight: 0.05
     - id: NFWallRockScrapPileUranium

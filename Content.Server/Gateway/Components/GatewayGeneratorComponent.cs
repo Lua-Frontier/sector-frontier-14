@@ -74,6 +74,8 @@ public sealed partial class GatewayGeneratorComponent : Component
         "OreSilver",
         "OrePlasma",
         "OreUranium",
+        "OreLithium", // Mono
+        "OreCopper", // Mono
         "OreDiamond",
         "OreArtifactFragment",
         "OreMagmite",

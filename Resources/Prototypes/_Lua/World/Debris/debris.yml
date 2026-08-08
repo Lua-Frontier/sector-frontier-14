@@ -73,6 +73,12 @@
           - id: WallRockMagmite
             prob: 0.002
             orGroup: rock
+          - id: WallRockLithium # Mono
+            prob: 0.04
+            orGroup: rock
+          - id: WallRockCopper # Mono
+            prob: 0.06
+            orGroup: rock
     - type: IFF
       flags: HideLabel
       color: "#d67e27"
