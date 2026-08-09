@@ -55,10 +55,16 @@ public sealed class SectorPayoutSystem : EntitySystem
 
             var ticks = (int) (elapsed / interval);
             var owned = _ownedStations.CountOwnedStations(comp.Faction);
+            var accrued = false;
             if (owned > 0 && perStation > 0 && ticks > 0)
+            {
                 comp.Accumulated += ticks * owned * perStation;
+                accrued = true;
+            }
 
             comp.LastAccrualAt += interval * ticks;
+            if (accrued || ticks > 0)
+                PushUi((uid, comp));
         }
     }
 
@@ -93,6 +99,11 @@ public sealed class SectorPayoutSystem : EntitySystem
     private void PushUi(Entity<FactionPayoutCollectorComponent> ent)
     {
         var owned = _ownedStations.CountOwnedStations(ent.Comp.Faction);
+        var interval = TimeSpan.FromSeconds(Math.Max(1, _intervalSeconds));
+        var last = ent.Comp.LastAccrualAt == TimeSpan.Zero
+            ? _timing.CurTime
+            : ent.Comp.LastAccrualAt;
+        var nextPayoutAt = last + interval;
         var history = ent.Comp.ClaimHistory
             .Select(e => new PayoutClaimHistoryEntry(e.CharacterName, e.Amount))
             .ToList();
@@ -102,6 +113,7 @@ public sealed class SectorPayoutSystem : EntitySystem
             ent.Comp.Faction,
             _perStation,
             _intervalSeconds,
+            nextPayoutAt,
             history);
         _ui.SetUiState(ent.Owner, PayoutCollectorUiKey.Key, state);
     }

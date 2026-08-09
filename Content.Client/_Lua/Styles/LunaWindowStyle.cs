@@ -44,6 +44,11 @@ public static class LunaWindowStyle
     public static readonly Color AccentBad = Color.FromHex("#E07070");
     public static readonly Color AccentDrop = Color.FromHex("#7DDBA3");
 
+    public static readonly Color ProgressCooldown = Color.FromHex("#3D9CC9");
+    public static readonly Color ProgressConfirm = AccentWarn;
+    public static readonly Color ProgressGood = Color.FromHex("#3CB371");
+    public static readonly Color ProgressTrack = Color.FromHex("#1C2433");
+
     public static readonly Color OverlayDim = Color.FromHex("#0B0F14CC");
 
     public const int FontSizeTiny = 9;
@@ -51,6 +56,8 @@ public static class LunaWindowStyle
     public const int FontSizeBody = 12;
     public const int FontSizeTitle = 13;
     public const int FontSizeFooter = 8;
+    public const float ProgressBarHeight = 14f;
+    public const float ProgressBarHeightThick = 30f;
 
     private static Font? _fontTiny;
     private static Font? _fontSmall;
@@ -224,4 +231,36 @@ public static class LunaWindowStyle
 
     public static void StyleDivider(PanelContainer panel) => panel.PanelOverride = ThinDivider();
     public static void StyleVerticalDivider(PanelContainer panel) => panel.PanelOverride = VerticalDivider();
+
+    public static StyleBoxFlat ProgressFill(Color fill) => new()
+    {
+        BackgroundColor = fill,
+        BorderColor = Color.Transparent,
+        BorderThickness = new Thickness(0),
+    };
+
+    public static StyleBoxFlat ProgressBackground() => new()
+    {
+        BackgroundColor = ProgressTrack,
+        BorderColor = PanelBorder,
+        BorderThickness = new Thickness(1),
+    };
+
+    public static void StyleProgressBar(ProgressBar bar, Color fill, float height = ProgressBarHeight)
+    {
+        bar.MinValue = 0f;
+        bar.MaxValue = 1f;
+        bar.SetHeight = height;
+        bar.BackgroundStyleBoxOverride = ProgressBackground();
+        bar.ForegroundStyleBoxOverride = ProgressFill(fill);
+    }
+
+    public static void StyleProgressCooldown(ProgressBar bar, float height = ProgressBarHeight) =>
+        StyleProgressBar(bar, ProgressCooldown, height);
+
+    public static void StyleProgressConfirm(ProgressBar bar, float height = ProgressBarHeight) =>
+        StyleProgressBar(bar, ProgressConfirm, height);
+
+    public static void StyleProgressGood(ProgressBar bar, float height = ProgressBarHeight) =>
+        StyleProgressBar(bar, ProgressGood, height);
 }

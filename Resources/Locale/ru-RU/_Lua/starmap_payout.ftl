@@ -4,6 +4,7 @@ payout-faction = Фракция: { $faction }
 payout-owned = Подконтрольных станций: { $count }
 payout-accum = Накоплено: { $amount }
 payout-rate = Ставка: { $amount } / станция / { $interval }
+payout-next = До выплаты
 payout-history-title = Последние снятия
 payout-history-entry = { $name } - { $amount }
 payout-last-claim-none = Ещё никто не снимал

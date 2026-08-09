@@ -33,6 +33,7 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
     public string Faction;
     public int PayoutPerStation;
     public int IntervalSeconds;
+    public TimeSpan NextPayoutAt;
     public List<PayoutClaimHistoryEntry> ClaimHistory;
 
     public PayoutCollectorBuiState(
@@ -41,6 +42,7 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
         string faction,
         int payoutPerStation,
         int intervalSeconds,
+        TimeSpan nextPayoutAt,
         List<PayoutClaimHistoryEntry> claimHistory)
     {
         OwnedStations = ownedStations;
@@ -48,6 +50,7 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
         Faction = faction;
         PayoutPerStation = payoutPerStation;
         IntervalSeconds = intervalSeconds;
+        NextPayoutAt = nextPayoutAt;
         ClaimHistory = claimHistory;
     }
 }
