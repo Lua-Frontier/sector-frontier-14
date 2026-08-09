@@ -118,13 +118,12 @@ public sealed class FactionOwnedStationSystem : EntitySystem
 
         return count;
     }
-    public void BuildMapOwnership(Dictionary<MapId, string> ownerByMap, Dictionary<MapId, string> colorHexByMap)
+    public void BuildMapOwnership(Dictionary<MapId, string> ownerByMap)
     {
         ownerByMap.Clear();
-        colorHexByMap.Clear();
 
         var query = EntityQueryEnumerator<FactionOwnedStationComponent, StationDataComponent>();
-        while (query.MoveNext(out var station, out var ownedStation, out var stationData))
+        while (query.MoveNext(out _, out var ownedStation, out var stationData))
         {
             var owner = NormalizeCompanyId(ownedStation.CurrentCompany);
             if (owner == null)
@@ -148,7 +147,6 @@ public sealed class FactionOwnedStationSystem : EntitySystem
                 continue;
 
             ownerByMap[mapId.Value] = owner;
-            colorHexByMap[mapId.Value] = GetOwnerColor(owner).ToHex();
         }
     }
 

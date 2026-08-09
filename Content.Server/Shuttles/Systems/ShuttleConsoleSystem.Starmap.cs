@@ -269,9 +269,8 @@ public sealed partial class ShuttleConsoleSystem
             }
         }
         var ownerByMap = new Dictionary<MapId, string>();
-        var colorOverrides = new Dictionary<MapId, string>();
-        _factionOwnedStations.BuildMapOwnership(ownerByMap, colorOverrides);
-        return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, null, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, colorOverrides, sectorsGloballyUnlocked);
+        _factionOwnedStations.BuildMapOwnership(ownerByMap);
+        return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, null, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, new Dictionary<MapId, string>(), sectorsGloballyUnlocked);
     }
 
     private EntityUid? ResolveStarMapViewer(EntityUid? consoleUid)
