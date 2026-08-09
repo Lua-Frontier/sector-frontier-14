@@ -247,5 +247,11 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<int> CurrentGameYear =
             CVarDef.Create("game.current_game_year", 2710, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+
+        public static readonly CVarDef<int> StationPayoutIntervalSeconds =
+            CVarDef.Create("lua.station_payout.interval_seconds", 3600, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+
+        public static readonly CVarDef<int> StationPayoutPerStation =
+            CVarDef.Create("lua.station_payout.per_station", 1, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
     }
 }

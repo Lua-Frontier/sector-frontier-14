@@ -14,6 +14,7 @@ using Content.Shared._Mono.Radar;
 using Content.Shared.Roles;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using System.Linq;
 
@@ -97,6 +98,58 @@ public sealed class FactionOwnedStationSystem : EntitySystem
         RebuildMainBaseJobsForCompany(normalizedCompanyId);
         RefreshStationOwnershipDisplay(station, ownedStation);
         _stationJobs.UpdateJobsAvailable();
+    }
+
+    public int CountOwnedStations(string companyId)
+    {
+        var normalized = NormalizeCompanyId(companyId);
+        if (normalized == null)
+            return 0;
+
+        var count = 0;
+        var query = EntityQueryEnumerator<FactionOwnedStationComponent>();
+        while (query.MoveNext(out _, out var ownedStation))
+        {
+            if (!string.Equals(NormalizeCompanyId(ownedStation.CurrentCompany), normalized, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            count++;
+        }
+
+        return count;
+    }
+    public void BuildMapOwnership(Dictionary<MapId, string> ownerByMap, Dictionary<MapId, string> colorHexByMap)
+    {
+        ownerByMap.Clear();
+        colorHexByMap.Clear();
+
+        var query = EntityQueryEnumerator<FactionOwnedStationComponent, StationDataComponent>();
+        while (query.MoveNext(out var station, out var ownedStation, out var stationData))
+        {
+            var owner = NormalizeCompanyId(ownedStation.CurrentCompany);
+            if (owner == null)
+                continue;
+
+            MapId? mapId = null;
+            foreach (var grid in stationData.Grids)
+            {
+                if (TerminatingOrDeleted(grid))
+                    continue;
+
+                var gridMap = Transform(grid).MapID;
+                if (gridMap == MapId.Nullspace)
+                    continue;
+
+                mapId = gridMap;
+                break;
+            }
+
+            if (mapId == null)
+                continue;
+
+            ownerByMap[mapId.Value] = owner;
+            colorHexByMap[mapId.Value] = GetOwnerColor(owner).ToHex();
+        }
     }
 
     private void OnExtraStationStartup(EntityUid uid, ExtraStationInformationComponent component, ComponentStartup args)

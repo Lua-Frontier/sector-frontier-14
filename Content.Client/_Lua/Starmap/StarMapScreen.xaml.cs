@@ -116,8 +116,10 @@ public sealed partial class StarMapScreen : BoxContainer
                 ownerText = owner switch
                 {
                     "Syndicate" => Loc.GetString("starmap-owner-syndicate"),
-                    "Nfsd" => Loc.GetString("starmap-owner-nfsd"),
+                    "Security" or "Nfsd" => Loc.GetString("starmap-owner-security"),
                     "Pirates" => Loc.GetString("starmap-owner-pirates"),
+                    "Nanotrasen" => Loc.GetString("starmap-owner-nanotrasen"),
+                    "StormCreed" => Loc.GetString("starmap-owner-stormcreed"),
                     _ => Loc.GetString("starmap-owner-neutral")
                 };
             }

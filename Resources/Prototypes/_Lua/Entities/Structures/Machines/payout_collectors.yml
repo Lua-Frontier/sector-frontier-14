@@ -16,10 +16,10 @@
       enum.PayoutCollectorUiKey.Key:
         type: PayoutCollectorBoundUserInterface
   - type: FactionPayoutCollector
-    faction: Nfsd
+    faction: Security
     currencyPrototypePerUnit: FrontierUplinkCoin1
-    payoutIntervalSeconds: 900
-    payoutPerSector: 1
+    payoutIntervalSeconds: 3600
+    payoutPerStation: 1
 
 - type: entity
   id: SyndicateSectorPayoutCollector
@@ -41,8 +41,8 @@
   - type: FactionPayoutCollector
     faction: Syndicate
     currencyPrototypePerUnit: Telecrystal1
-    payoutIntervalSeconds: 900
-    payoutPerSector: 1
+    payoutIntervalSeconds: 3600
+    payoutPerStation: 1
 
 - type: entity
   id: PirateSectorPayoutCollector
@@ -64,7 +64,5 @@
   - type: FactionPayoutCollector
     faction: Pirates
     currencyPrototypePerUnit: Doubloon1
-    payoutIntervalSeconds: 900
-    payoutPerSector: 1
-
-
+    payoutIntervalSeconds: 3600
+    payoutPerStation: 1

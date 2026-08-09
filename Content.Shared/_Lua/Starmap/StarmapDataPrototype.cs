@@ -107,18 +107,6 @@ public sealed partial class StarDefinition
     public bool CrewMonitoringIsolated;
 
     [DataField]
-    public bool Capturable;
-
-    [DataField]
-    public float CaptureDurationSeconds = 300f;
-
-    [DataField]
-    public string? DefaultFaction;
-
-    [DataField]
-    public string? DefaultFactionColor;
-
-    [DataField]
     public string[] CoordinateDisks = Array.Empty<string>();
 
     [DataField]
