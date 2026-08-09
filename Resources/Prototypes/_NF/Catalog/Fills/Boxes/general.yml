@@ -86,7 +86,7 @@
         - id: PaperColoredPurple
     - type: StaticPrice
       vendPrice: 600
-          
+
 - type: entity
   name: mystery spacemen minifigure bulk box
   parent: BoxCardboard
@@ -131,7 +131,7 @@
 
 - type: entity
   name: NFSD encryption key box
-  parent: BoxEncryptionKeySecurity
+  parent: [BoxEncryptionKeySecurity, BaseNanotrasenContrabandT1]
   id: BoxEncryptionKeyNfsd
   components:
   - type: StorageFill

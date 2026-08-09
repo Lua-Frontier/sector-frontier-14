@@ -59,7 +59,7 @@
     - state: idpublicaffairsliaison
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseNanotrasenContrabandT1]
   id: CadetIDCard
   name: NFSD cadet ID card
   components:

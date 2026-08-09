@@ -192,7 +192,7 @@
     - WantedListCartridge
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: CadetPDA
   name: cadet PDA
   description: Whosoever bears this PDA could be the law.

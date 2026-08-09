@@ -37,7 +37,7 @@ public sealed partial class ContrabandComponent : Component
 
     // Frontier: turn-in features
     /// <summary>
-    ///     The set of currency types this item can be redeemed 
+    ///     The set of currency types this item can be redeemed
     /// </summary>
     [DataField]
     [AutoNetworkedField]
@@ -56,5 +56,9 @@ public sealed partial class ContrabandComponent : Component
     [DataField]
     [AutoNetworkedField]
     public bool HideCarryStatus = false;
+
+    [DataField]
+    [AutoNetworkedField]
+    public HashSet<string> VisibleToCompanies = new();
     // End Frontier: turn-in extensions
 }

@@ -112,7 +112,7 @@
     state: pda-pathologist
 
 - type: entity
-  parent: BasePDA
+  parent: [BasePDA, BaseNanotrasenContrabandT1]
   id: SecurityPilotPDA
   name: security pilot PDA
   description: Smells like space shuttles.

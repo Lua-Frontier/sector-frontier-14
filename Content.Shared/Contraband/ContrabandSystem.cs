@@ -4,6 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.Localizations;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
+using Content.Shared._Mono.Company;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -45,6 +46,7 @@ public sealed class ContrabandSystem : EntitySystem
         contraband.TurnInValues = other.TurnInValues; // Frontier
         contraband.HideValues = other.HideValues; // Frontier
         contraband.HideCarryStatus = other.HideCarryStatus; // Frontier
+        contraband.VisibleToCompanies = other.VisibleToCompanies;
         Dirty(uid, contraband);
     }
 
@@ -69,6 +71,14 @@ public sealed class ContrabandSystem : EntitySystem
 
         if (component.HideValues) // Frontier: allow selective display
             return; // Frontier: allow selective display
+
+        if (component.VisibleToCompanies.Count > 0)
+        {
+            if (!TryComp<CompanyComponent>(args.User, out var company)
+                || !component.VisibleToCompanies.Any(c =>
+                    string.Equals(c, company.CompanyName, StringComparison.OrdinalIgnoreCase)))
+                return;
+        }
 
         // two strings:
         // one, the actual informative 'this is restricted'

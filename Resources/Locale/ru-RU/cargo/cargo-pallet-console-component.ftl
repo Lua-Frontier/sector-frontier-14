@@ -9,3 +9,5 @@ cargo-pallet-appraise-button = Оценить
 cargo-pallet-sell-button = Продать
 pirate-cargo-pallet-appraise-button = Оценить
 pirate-cargo-pallet-sell-button = Продать
+syndie-cargo-pallet-appraise-button = Оценить
+syndie-cargo-pallet-sell-button = Продать

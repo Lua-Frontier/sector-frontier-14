@@ -34,7 +34,7 @@
     state: pda-valet
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: PrisonGuardPDA
   name: prison guard PDA
   description: Red to hide the stains of prisoner blood.

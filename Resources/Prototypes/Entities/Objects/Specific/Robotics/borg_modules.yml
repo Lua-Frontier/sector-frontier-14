@@ -498,7 +498,7 @@
 
 - type: entity
   id: BorgModuleSecurity
-  parent: [BaseBorgModule, BaseProviderBorgModule, BaseC1Contraband] # Lua-changes: added BaseC1Contraband
+  parent: [BaseBorgModule, BaseProviderBorgModule, BaseC1Contraband, BaseNanotrasenContrabandT1] # Lua-changes: added BaseC1Contraband
   name: security cyborg module
   components:
   - type: Sprite

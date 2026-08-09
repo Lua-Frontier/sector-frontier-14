@@ -7,3 +7,5 @@ contraband-examine-text-Class2Pirate = [color=red]Этот пиратский п
 contraband-examine-text-Class2SpiderClan = [color=red]Этот предмет Клана Паука относится к контрабанде 2-го класса, его хранение гражданскими лицами без соответствующего разрешения запрещено.[/color]
 contraband-examine-text-Class3SpiderClan = [color=crimson]Этот предмет Клана Паука относится к контрабанде 3-го класса, его хранение запрещено законом.[/color]
 contraband-examine-text-Class3CentCom = [color=crimson]Этот высокотехнологичный предмет Центрального Командования относится к контрабанде 3.1 класса. Его хранение и использование разрешено только сотрудникам ДСБФ, командования и ЦК.[/color]
+contraband-examine-text-NanotrasenContrabandT1 = [color=crimson]Этот предмет является разработкой Nanotrasen, его можно успешно обменять на Телекристаллы.[/color]
+contraband-examine-text-NanotrasenContrabandT2 = [color=crimson]Этот предмет является разработкой Lua Technologies, его можно успешно обменять на Телекристаллы.[/color]

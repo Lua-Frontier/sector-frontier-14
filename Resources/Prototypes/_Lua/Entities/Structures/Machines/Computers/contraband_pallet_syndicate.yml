@@ -1,0 +1,66 @@
+- type: entity
+  name: syndicate tech exchange computer
+  parent: ComputerContrabandPalletConsole
+  id: ComputerContrabandPalletConsoleSyndicate
+  description: Exchange Nanotrasen gear for Telecrystals.
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: transferSyndicateN
+    - map: ["computerLayerKeys"]
+      state: aiming_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: Null
+  - type: ContrabandPalletConsole
+    cashType: Telecrystal
+    faction: Syndicate
+    locStringPrefix: syndie-
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Construction
+    graph: ComputerContrabandPalletConsoleSyndicate
+    node: repaired
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBroken]
+  id: ComputerContrabandPalletConsoleSyndicateBroken
+  name: broken syndicate tech exchange computer
+  description: This console has seen better days. Can be repaired with a welder.
+  components:
+  - type: Construction
+    graph: ComputerContrabandPalletConsoleSyndicate
+    node: start
+
+- type: entity
+  id: ContrabandPalletSyndicate
+  name: syndicate tech exchange pallet
+  description: Designates valid Nanotrasen items to exchange for Telecrystals.
+  parent: ContrabandPallet
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/contraband_pallet.rsi
+    layers:
+    - state: base

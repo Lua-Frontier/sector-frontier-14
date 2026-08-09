@@ -130,7 +130,7 @@
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
-  parent: SecurityTechFabCircuitboard
+  parent: [SecurityTechFabCircuitboard, BaseNanotrasenContrabandT1]
   name: NFSD techfab machine board
   description: A machine printed circuit board for an NFSD techfab.
   components:
