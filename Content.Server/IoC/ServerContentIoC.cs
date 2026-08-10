@@ -1,5 +1,7 @@
 using Content.Server._Lua.ChatFilter; // Lua
+using Content.Server._Lua.Info; // Lua
 using Content.Server._Lua.Networking; // Lua
+using Content.Shared._Lua.Info; // Lua
 using Content.Server._Lua.SponsorPlayer; // Lua
 using Content.Server._NF.Auth;
 using Content.Server.Administration;
@@ -65,6 +67,8 @@ internal static class ServerContentIoC
         deps.Register<IAfkManager, AfkManager>();
         deps.Register<IGameMapManager, GameMapManager>();
         deps.Register<RulesManager, RulesManager>();
+        deps.Register<PublicOfferManager>(); // Lua
+        deps.Register<IPublicOfferGate, PublicOfferManager>(); // Lua
         deps.Register<IBanManager, BanManager>();
         deps.Register<ContentNetworkResourceManager>();
         deps.Register<IAdminNotesManager, AdminNotesManager>();

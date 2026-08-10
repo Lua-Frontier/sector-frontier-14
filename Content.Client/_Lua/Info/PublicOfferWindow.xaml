@@ -1,0 +1,25 @@
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:info="clr-namespace:Content.Client._Lua.Info"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc 'ui-public-offer-header'}"
+                   MinSize="640 520"
+                   SetSize="720 580">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" SeparationOverride="10" Margin="10 8 10 10">
+      <info:PublicOfferControl MinHeight="380" VerticalExpand="True" />
+      <PanelContainer Name="Divider" MinHeight="1" MaxHeight="1" HorizontalExpand="True" />
+      <BoxContainer Orientation="Horizontal" SeparationOverride="8" HorizontalExpand="True">
+        <Button Name="AcceptButton"
+                Text="{Loc 'ui-public-offer-accept'}"
+                HorizontalExpand="True" />
+        <Button Name="DeclineButton"
+                Text="{Loc 'ui-public-offer-decline'}"
+                HorizontalExpand="True" />
+      </BoxContainer>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

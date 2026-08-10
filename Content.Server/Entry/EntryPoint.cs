@@ -1,5 +1,6 @@
 using Content.Server._NF.Auth;
 using Content.Server.Acz;
+using Content.Server._Lua.Info; // Lua
 using Content.Server.Administration;
 using Content.Server._Lua.ChatFilter; // Lua
 using Content.Server._Lua.Networking; // Lua
@@ -84,6 +85,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly RecipeManager _recipe = default!;
         [Dependency] private readonly RulesManager _rules = default!;
+        [Dependency] private readonly PublicOfferManager _publicOffer = default!; // Lua
         [Dependency] private readonly ServerApi _serverApi = default!;
         [Dependency] private readonly ServerInfoManager _serverInfo = default!;
         [Dependency] private readonly ServerUpdateManager _updateManager = default!;
@@ -221,6 +223,7 @@ namespace Content.Server.Entry
             _admin.Initialize();
             _afk.Initialize();
             _rules.Initialize();
+            _publicOffer.Initialize(); // Lua
             _discordLink.Initialize();
             _discordChatLink.Initialize();
             _euiManager.Initialize();

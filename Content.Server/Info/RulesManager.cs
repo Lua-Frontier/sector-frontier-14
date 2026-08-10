@@ -1,5 +1,6 @@
 using System.Net;
 using Content.Server.Database;
+using Content.Shared._Lua.Info;
 using Content.Shared.CCVar;
 using Content.Shared.Info;
 using Robust.Shared.Configuration;
@@ -12,6 +13,7 @@ public sealed class RulesManager
     [Dependency] private readonly IServerDbManager _dbManager = default!;
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPublicOfferGate _publicOfferGate = default!; // Lua
 
     private static DateTime LastValidReadTime => DateTime.UtcNow - TimeSpan.FromDays(60);
 
@@ -29,12 +31,13 @@ public sealed class RulesManager
 
         var lastRead = await _dbManager.GetLastReadRules(e.Channel.UserId);
         var hasCooldown = lastRead > LastValidReadTime;
+        var acceptedOffer = await _publicOfferGate.HasAcceptedOfferAsync(e.Channel.UserId);
 
         var showRulesMessage = new SendRulesInformationMessage
         {
             PopupTime = _cfg.GetCVar(CCVars.RulesWaitTime),
             CoreRules = _cfg.GetCVar(CCVars.RulesFile),
-            ShouldShowRules = !isLocalhost && !hasCooldown,
+            ShouldShowRules = !isLocalhost && !hasCooldown && acceptedOffer,
         };
         _netManager.ServerSendMessage(showRulesMessage, e.Channel);
     }
