@@ -1,0 +1,77 @@
+blend_mode add;
+light_mode unshaded;
+
+uniform highp float time;
+uniform highp float twinkle_speed;
+uniform highp float world_scale;
+uniform highp float star_cutoff;
+uniform highp float brightness_power;
+uniform highp float intensity;
+uniform highp float world_per_pixel;
+uniform highp float size_min_px;
+uniform highp float size_max_px;
+uniform highp vec2 world_bl;
+uniform highp vec2 world_size;
+uniform highp vec2 parallax_origin;
+uniform highp vec2 seed_bias;
+
+highp float hash12(highp vec2 p) {
+    return fract(sin(dot(p, vec2(12.9898, 78.233))) * 30000.0);
+}
+
+highp vec3 starColor(highp vec2 cell) {
+    highp float roll = hash12(cell + vec2(91.7, 14.3));
+    if (roll < 0.78) {
+        return vec3(1.0);
+    }
+
+    highp float kind = hash12(cell + vec2(17.3, 63.1));
+    highp vec3 tint;
+    if (kind < 0.20) {
+        tint = vec3(0.35, 0.55, 1.00);
+    } else if (kind < 0.40) {
+        tint = vec3(0.30, 0.90, 1.00);
+    } else if (kind < 0.60) {
+        tint = vec3(1.00, 0.85, 0.25);
+    } else if (kind < 0.78) {
+        tint = vec3(1.00, 0.35, 0.28);
+    } else {
+        tint = vec3(1.00, 0.45, 0.75);
+    }
+
+    return mix(vec3(1.0), tint, 0.92);
+}
+
+void fragment() {
+    highp vec2 worldPos = world_bl + UV2 * world_size;
+    highp vec2 scrolled = (worldPos - parallax_origin) * world_scale + seed_bias;
+    highp vec2 cell = floor(scrolled);
+    highp vec2 local = fract(scrolled) - 0.5;
+
+    highp float roll = hash12(cell);
+    highp vec3 color = vec3(0.0);
+
+    if (roll >= star_cutoff) {
+        highp float t = (roll - star_cutoff) / max(1.0 - star_cutoff, 0.001);
+        highp float core = pow(t, brightness_power);
+
+        highp float sizeRoll = hash12(cell + vec2(19.0, 7.0));
+        highp float radiusPx = mix(size_min_px, size_max_px, pow(sizeRoll, 11.0));
+        highp float radius = max(radiusPx * world_per_pixel * world_scale, 0.015);
+
+        highp float dist = length(local);
+        highp float shape = pow(max(1.0 - dist / radius, 0.0), 3.5);
+        highp float brightness = core * shape * intensity;
+
+        highp float twinkle = cos(time * twinkle_speed + roll * 150.0) * 0.5;
+        brightness *= (1.0 + twinkle);
+
+        highp vec3 sc = starColor(cell);
+        highp float chroma = max(sc.r, max(sc.g, sc.b)) - min(sc.r, min(sc.g, sc.b));
+        brightness *= 1.0 + chroma * 0.4;
+
+        color = sc * brightness;
+    }
+
+    COLOR = vec4(color, 1.0);
+}

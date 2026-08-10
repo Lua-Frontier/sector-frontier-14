@@ -34,8 +34,7 @@ public sealed partial class ShuttleMapControl
     private void DrawMapSpaceHazards(DrawingHandleScreen handle, Matrix3x2 matty, Box2 viewBox)
     {
         var cfg = IoCManager.Resolve<IConfigurationManager>();
-        if (cfg.GetCVar(CLVars.AmbientSpaceEffectsEnabled)
-            && cfg.GetCVar(CLVars.AmbientSpaceEffectsQuality) > 0)
+        if (cfg.GetCVar(CLVars.AmbientSpaceEffectsQuality) > 0)
         {
             DrawMapNebulaContours(handle, matty, viewBox);
         }

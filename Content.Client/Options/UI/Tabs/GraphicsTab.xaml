@@ -13,8 +13,23 @@
                 <Label Text="{Loc 'ui-options-quality-label'}" StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownLightingQuality" Title="{Loc 'ui-options-lighting-label'}" />
                 <CheckBox Name="ViewportLowResCheckBox" Text="{Loc 'ui-options-vp-low-res'}" />
-                <CheckBox Name="ParallaxLowQualityCheckBox" Text="{Loc 'ui-options-parallax-low-quality'}" />
                 <CheckBox Name="AmbientOcclusionCheckBox" Text="{Loc 'ui-options-ambient-occlusion'}" />
+
+                <!-- Parallax / space background -->
+                <Label Text="{Loc 'ui-options-parallax-section-label'}" StyleClasses="LabelKeyText"/>
+                <ui:OptionDropDown Name="DropDownParallaxQuality" Title="{Loc 'ui-options-parallax-label'}" />
+                <CheckBox Name="ParallaxStarsCheckBox" Text="{Loc 'ui-options-parallax-stars'}" />
+                <CheckBox Name="ParallaxImagesCheckBox" Text="{Loc 'ui-options-parallax-images'}" />
+                <CheckBox Name="ParallaxScrollCheckBox" Text="{Loc 'ui-options-parallax-scroll'}" />
+                <ui:OptionSlider Name="ParallaxStarDensitySlider" Title="{Loc 'ui-options-parallax-star-density'}" />
+
+                <!-- Ambient space effects -->
+                <Label Text="{Loc 'ui-options-ambient-space-section-label'}" StyleClasses="LabelKeyText"/>
+                <ui:OptionDropDown Name="DropDownAmbientSpaceQuality" Title="{Loc 'ui-options-ambient-space-label'}" />
+                <CheckBox Name="AmbientSpaceLayerLowerCheckBox" Text="{Loc 'ui-options-ambient-space-layer-lower'}" />
+                <CheckBox Name="AmbientSpaceLayerMidCheckBox" Text="{Loc 'ui-options-ambient-space-layer-mid'}" />
+                <CheckBox Name="AmbientSpaceLayerUpperCheckBox" Text="{Loc 'ui-options-ambient-space-layer-upper'}" />
+                <ui:OptionSlider Name="AmbientSpaceDensitySlider" Title="{Loc 'ui-options-ambient-space-density'}" />
 
                 <!-- Interface -->
                 <Label Text="{Loc 'ui-options-interface-label'}" StyleClasses="LabelKeyText"/>

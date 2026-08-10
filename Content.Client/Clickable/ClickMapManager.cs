@@ -17,6 +17,8 @@ namespace Content.Client.Clickable
             "/Textures/Interface",
             "/Textures/LobbyScreens",
             "/Textures/Parallaxes",
+            "/Textures/_Lua/Parallaxes",
+            "/Textures/_NF/Parallaxes",
             "/Textures/Logo",
         };
 

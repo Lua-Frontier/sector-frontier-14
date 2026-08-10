@@ -39,9 +39,6 @@ public partial class ShuttleNavControl
         Matrix3x2 shuttleToView)
     {
         var cfg = IoCManager.Resolve<IConfigurationManager>();
-        if (!cfg.GetCVar(CLVars.AmbientSpaceEffectsEnabled))
-            return;
-
         if (cfg.GetCVar(CLVars.AmbientSpaceEffectsQuality) <= 0)
             return;
 

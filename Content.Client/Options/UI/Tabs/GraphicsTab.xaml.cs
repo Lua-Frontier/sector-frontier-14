@@ -80,7 +80,35 @@ public sealed partial class GraphicsTab : Control
 
         Control.AddOption(new OptionIntegerScaling(Control, _cfg, IntegerScalingCheckBox));
         Control.AddOptionCheckBox(CCVars.ViewportScaleRender, ViewportLowResCheckBox, invert: true);
-        Control.AddOptionCheckBox(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox);
+
+        Control.AddOptionDropDown(
+            CCVars.ParallaxQuality,
+            DropDownParallaxQuality,
+            [
+                new OptionDropDownCVar<int>.ValueOption(0, Loc.GetString("ui-options-parallax-very-low")),
+                new OptionDropDownCVar<int>.ValueOption(1, Loc.GetString("ui-options-parallax-low")),
+                new OptionDropDownCVar<int>.ValueOption(2, Loc.GetString("ui-options-parallax-medium")),
+                new OptionDropDownCVar<int>.ValueOption(3, Loc.GetString("ui-options-parallax-high")),
+            ]);
+        Control.AddOptionCheckBox(CCVars.ParallaxStarsEnabled, ParallaxStarsCheckBox);
+        Control.AddOptionCheckBox(CCVars.ParallaxImagesEnabled, ParallaxImagesCheckBox);
+        Control.AddOptionCheckBox(CCVars.ParallaxScrollEnabled, ParallaxScrollCheckBox);
+        Control.AddOptionPercentSlider(CCVars.ParallaxStarDensity, ParallaxStarDensitySlider, min: 0f, max: 1.5f);
+
+        Control.AddOptionDropDown(
+            CLVars.AmbientSpaceEffectsQuality,
+            DropDownAmbientSpaceQuality,
+            [
+                new OptionDropDownCVar<int>.ValueOption(0, Loc.GetString("ui-options-ambient-space-off")),
+                new OptionDropDownCVar<int>.ValueOption(1, Loc.GetString("ui-options-ambient-space-low")),
+                new OptionDropDownCVar<int>.ValueOption(2, Loc.GetString("ui-options-ambient-space-medium")),
+                new OptionDropDownCVar<int>.ValueOption(3, Loc.GetString("ui-options-ambient-space-high")),
+            ]);
+        Control.AddOptionCheckBox(CLVars.AmbientSpaceLayerLower, AmbientSpaceLayerLowerCheckBox);
+        Control.AddOptionCheckBox(CLVars.AmbientSpaceLayerMid, AmbientSpaceLayerMidCheckBox);
+        Control.AddOptionCheckBox(CLVars.AmbientSpaceLayerUpper, AmbientSpaceLayerUpperCheckBox);
+        Control.AddOptionPercentSlider(CLVars.AmbientSpaceEffectsDensity, AmbientSpaceDensitySlider, min: 0f, max: 1.5f);
+
         Control.AddOptionCheckBox(CCVars.HudFpsCounterVisible, FpsCounterCheckBox);
 
         Control.Initialize();

@@ -108,7 +108,26 @@ ui-options-vp-vertical-fit-tooltip = When enabled, the main viewport will ignore
                                      fitting to your screen. If your screen is smaller than the viewport, then this
                                      will cause the viewport to be cut off on the horizontal axis.
 ui-options-vp-low-res = Low-resolution viewport
-ui-options-parallax-low-quality = Low-quality Parallax (background)
+ui-options-parallax-section-label = Parallax
+ui-options-parallax-label = Parallax quality:
+ui-options-parallax-very-low = Very Low
+ui-options-parallax-low = Low
+ui-options-parallax-medium = Medium
+ui-options-parallax-high = High
+ui-options-parallax-stars = Draw stars
+ui-options-parallax-images = Objects (asteroids, planets)
+ui-options-parallax-scroll = Parallax scroll
+ui-options-parallax-star-density = Star density:
+ui-options-ambient-space-section-label = Ambient space
+ui-options-ambient-space-label = Ambient space quality:
+ui-options-ambient-space-off = Off
+ui-options-ambient-space-low = Low
+ui-options-ambient-space-medium = Medium
+ui-options-ambient-space-high = High
+ui-options-ambient-space-layer-lower = Lower nebula layer
+ui-options-ambient-space-layer-mid = Mid nebula layer
+ui-options-ambient-space-layer-upper = Upper nebula layer
+ui-options-ambient-space-density = Nebula density:
 ui-options-ambient-occlusion = Show Ambient Occlusion
 ui-options-fps-counter = Show FPS counter
 ui-options-vp-width = Viewport width:

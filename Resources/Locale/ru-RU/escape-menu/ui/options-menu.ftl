@@ -91,7 +91,26 @@ ui-options-vp-vertical-fit-tooltip =
     при подгонке под ваш экран. Если ваш экран меньше, чем окно просмотра,
     то это приведёт к его обрезанию по горизонтальной оси.
 ui-options-vp-low-res = Изображение низкого разрешения
-ui-options-parallax-low-quality = Низкокачественный параллакс (фон)
+ui-options-parallax-section-label = Параллакс
+ui-options-parallax-label = Качество параллакса:
+ui-options-parallax-very-low = Очень низкое
+ui-options-parallax-low = Низкое
+ui-options-parallax-medium = Среднее
+ui-options-parallax-high = Высокое
+ui-options-parallax-stars = Рисовать звёзды
+ui-options-parallax-images = Объекты (астероиды, планеты)
+ui-options-parallax-scroll = Скролл параллакса
+ui-options-parallax-star-density = Плотность звёзд:
+ui-options-ambient-space-section-label = Эффекты космоса
+ui-options-ambient-space-label = Качество эффектов космоса:
+ui-options-ambient-space-off = Выкл
+ui-options-ambient-space-low = Низкое
+ui-options-ambient-space-medium = Среднее
+ui-options-ambient-space-high = Высокое
+ui-options-ambient-space-layer-lower = Нижний слой туманностей
+ui-options-ambient-space-layer-mid = Средний слой туманностей
+ui-options-ambient-space-layer-upper = Верхний слой туманностей
+ui-options-ambient-space-density = Плотность туманностей:
 ui-options-fps-counter = Показать счётчик FPS
 ui-options-vp-width = Ширина окна игры:
 ui-options-hud-layout = Тип HUD:

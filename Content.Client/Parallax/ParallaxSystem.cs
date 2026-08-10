@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Client.Parallax.Data;
 using Content.Client.Parallax.Managers;
 using Content.Shared.Parallax;
 using Robust.Client.Graphics;
@@ -22,23 +21,6 @@ public sealed class ParallaxSystem : SharedParallaxSystem
     {
         base.Initialize();
         _overlay.AddOverlay(new ParallaxOverlay());
-        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnReload);
-        SubscribeLocalEvent<ParallaxComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
-    }
-
-    private void OnReload(PrototypesReloadedEventArgs obj)
-    {
-        if (!obj.WasModified<ParallaxPrototype>())
-            return;
-
-        _parallax.UnloadParallax(Fallback);
-        _parallax.LoadDefaultParallax();
-
-        foreach (var comp in EntityQuery<ParallaxComponent>(true))
-        {
-            _parallax.UnloadParallax(comp.Parallax);
-            _parallax.LoadParallaxByName(comp.Parallax);
-        }
     }
 
     public override void Shutdown()
@@ -47,41 +29,21 @@ public sealed class ParallaxSystem : SharedParallaxSystem
         _overlay.RemoveOverlay<ParallaxOverlay>();
     }
 
-    private void OnAfterAutoHandleState(EntityUid uid, ParallaxComponent component, ref AfterAutoHandleStateEvent args)
+    public ParallaxPrototype GetParallaxPrototype(MapId mapId)
     {
-        if (!_parallax.IsLoaded(component.Parallax))
-        {
-            _parallax.LoadParallaxByName(component.Parallax);
-        }
+        return _parallax.GetPrototype(GetParallax(_map.GetMapOrInvalid(mapId)));
     }
 
-    public ParallaxLayerPrepared[] GetParallaxLayers(MapId mapId)
-    {
-        return _parallax.GetParallaxLayers(GetParallax(_map.GetMapOrInvalid(mapId)));
-    }
-
-    public string GetParallax(MapId mapId)
+    public ProtoId<ParallaxPrototype> GetParallax(MapId mapId)
     {
         return GetParallax(_map.GetMapOrInvalid(mapId));
     }
 
-    public string GetParallax(EntityUid mapUid)
+    public ProtoId<ParallaxPrototype> GetParallax(EntityUid mapUid)
     {
         return TryComp<ParallaxComponent>(mapUid, out var parallax) ? parallax.Parallax : Fallback;
     }
 
-    /// <summary>
-    /// Draws a texture as parallax in the specified world handle.
-    /// </summary>
-    /// <param name="worldHandle"></param>
-    /// <param name="worldAABB">WorldAABB to use</param>
-    /// <param name="sprite">Sprite to draw</param>
-    /// <param name="curTime">Current time, unused if scrolling not set</param>
-    /// <param name="position">Current position of the parallax</param>
-    /// <param name="scrolling">How much to scroll the parallax texture per second</param>
-    /// <param name="scale">Scale of the texture</param>
-    /// <param name="slowness">How slow the parallax moves compared to position</param>
-    /// <param name="modulate">Color modulation applied to drawing the texture</param>
     public void DrawParallax(
         DrawingHandleWorld worldHandle,
         Box2 worldAABB,
@@ -93,23 +55,13 @@ public sealed class ParallaxSystem : SharedParallaxSystem
         float slowness = 0f,
         Color? modulate = null)
     {
-        // Size of the texture in world units.
         var size = sprite.Size / (float) EyeManager.PixelsPerMeter * scale;
         var scrolled = scrolling * (float) curTime.TotalSeconds;
-
-        // Origin - start with the parallax shift itself.
         var originBL = position * slowness + scrolled;
-
-        // Centre the image.
         originBL -= size / 2;
 
-        // Remove offset so we can floor.
         var flooredBL = worldAABB.BottomLeft - originBL;
-
-        // Floor to background size.
         flooredBL = (flooredBL / size).Floored() * size;
-
-        // Re-offset.
         flooredBL += originBL;
 
         for (var x = flooredBL.X; x < worldAABB.Right; x += size.X)
