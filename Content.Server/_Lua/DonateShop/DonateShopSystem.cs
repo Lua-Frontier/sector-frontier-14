@@ -20,6 +20,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Lua.CLVar;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Store;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -53,6 +54,7 @@ public sealed class DonateShopSystem : EntitySystem
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly IAdminLogManager _admin = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     private static readonly SoundSpecifier BuySound = new SoundPathSpecifier("/Audio/Items/appraiser.ogg");
@@ -125,9 +127,9 @@ public sealed class DonateShopSystem : EntitySystem
             await SendStateAsync(session, "donate-shop-error-access-denied");
             return;
         }
-        if (session.AttachedEntity is not { Valid: true } player || HasComp<GhostComponent>(player))
+        if (!TryGetActiveBuyer(session, out var player, out var buyerError))
         {
-            await SendStateAsync(session, "donate-shop-error-no-entity");
+            await SendStateAsync(session, buyerError);
             return;
         }
 
@@ -209,7 +211,7 @@ public sealed class DonateShopSystem : EntitySystem
         var lunaCoinBalance = await GetLunaCoinBalanceAsync(session.UserId.UserId);
         if (!hasSubscription)
         {
-            if (session.AttachedEntity is { Valid: true } playerNoSub && !HasComp<GhostComponent>(playerNoSub))
+            if (TryGetActiveBuyer(session, out var playerNoSub, out _))
             {
                 var catalogNoSub = BuildCatalog(playerNoSub, session.UserId, lunaCoinBalance);
                 var listingsNoSub = catalogNoSub.Where(l => _store.ListingHasCategory(l, DonateShopCategories)).ToHashSet();
@@ -224,9 +226,9 @@ public sealed class DonateShopSystem : EntitySystem
         }
         var primary = sponsors.OrderByDescending(s => s.StartDate).First();
         var activeTierNames = sponsors.Select(s => s.Role).Distinct().ToList();
-        if (session.AttachedEntity is not { Valid: true } player || HasComp<GhostComponent>(player))
+        if (!TryGetActiveBuyer(session, out var player, out var buyerError))
         {
-            RaiseNetworkEvent(new DonateShopStateMessage(false, true, primary.Role, primary.PlannedEndDate.HasValue ? $"{primary.PlannedEndDate.Value:dd.MM.yyyy}" : "∞", errorLocKey: "donate-shop-error-no-entity", activeTierNames: activeTierNames, lunaCoinBalance: lunaCoinBalance), session);
+            RaiseNetworkEvent(new DonateShopStateMessage(false, true, primary.Role, primary.PlannedEndDate.HasValue ? $"{primary.PlannedEndDate.Value:dd.MM.yyyy}" : "∞", errorLocKey: buyerError, activeTierNames: activeTierNames, lunaCoinBalance: lunaCoinBalance), session);
             return;
         }
         var catalog = BuildCatalog(player, session.UserId, lunaCoinBalance);
@@ -461,5 +463,26 @@ public sealed class DonateShopSystem : EntitySystem
     {
         if (listing.Conditions == null) return false;
         return listing.Conditions.Any(condition => condition is ListingLimitedStockCondition stockCondition && stockCondition.Stock <= 1);
+    }
+
+    private bool TryGetActiveBuyer(ICommonSession session, out EntityUid player, out string errorLocKey)
+    {
+        player = default;
+        errorLocKey = "donate-shop-error-no-entity";
+
+        if (session.AttachedEntity is not { Valid: true } entity)
+            return false;
+
+        if (HasComp<GhostComponent>(entity))
+            return false;
+
+        if (_mobState.IsIncapacitated(entity))
+        {
+            errorLocKey = "donate-shop-error-incapacitated";
+            return false;
+        }
+
+        player = entity;
+        return true;
     }
 }

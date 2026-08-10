@@ -1,0 +1,163 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseItem
+  id: VipShareholderGiftBox
+  name: vip-shareholder-bundle
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Tools/vipbundles.rsi
+    state: share-base
+    scale: 0.7, 0.7
+  - type: Item
+    size: Normal
+  - type: Clothing
+    slots:
+    - back
+    quickEquip: false
+    sprite: _Lua/Objects/Tools/vipbundles.rsi
+    clothingVisuals:
+      back:
+      - state: mask_null
+  - type: SpawnItemsOnUse
+    items: []
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  id: ScienceLabBundleLootAnchor
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items: &ScienceLabBundleLoot
+    - id: ExosuitFabricatorFlatpack
+    - id: MachineAnomalyVesselFlatpack
+    - id: CircuitImprinterFlatpack
+    - id: BlueprintLithographFlatpack
+    - id: ResearchAndDevelopmentServerFlatpack
+    - id: ComputerResearchAndDevelopmentFlatpack
+    - id: MachineArtifactAnalyzerFlatpack
+    - id: AutolatheFlatpack
+    - id: ProtolatheFlatpack
+    - id: ComputerAnalysisConsoleFlatpack
+    - id: MachineAPEFlatpack
+    - id: AnomalyScanner
+    - id: NodeScanner
+    - id: Multitool
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundleScienceLab
+  name: uplink-vip-LabBundle-name
+  description: uplink-vip-LabBundle-desc
+  components:
+  - type: SpawnItemsOnUse
+    items: *ScienceLabBundleLoot
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundleSteel
+  name: uplink-vip-VipSteel-name
+  description: uplink-vip-VipSteel-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SheetSteel
+      amount: 3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundleGlass
+  name: uplink-vip-VipGlass-name
+  description: uplink-vip-VipGlass-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SheetGlass
+      amount: 3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundlePlasteel
+  name: uplink-vip-VipPlasteel-name
+  description: uplink-vip-VipPlasteel-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SheetPlasteel
+      amount: 3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundlePlasma
+  name: uplink-vip-VipPlasma-name
+  description: uplink-vip-VipPlasma-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SheetPlasma
+      amount: 3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundleCloth
+  name: uplink-vip-VipCloth-name
+  description: uplink-vip-VipCloth-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MaterialCloth
+      amount: 3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundleDonkpocket
+  name: uplink-vip-VipDonkpocket-name
+  description: uplink-vip-VipDonkpocket-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: FoodBoxDonkpocketHonk
+      amount: 2
+    - id: FoodBoxDonkpocketPizza
+      amount: 2
+    - id: FoodBoxDonkpocketTeriyaki
+      amount: 2
+    - id: FoodBoxDonkpocketBerry
+      amount: 2
+    - id: FoodBoxDonkpocket
+      amount: 2
+    - id: FoodBoxDonkpocketSpicy
+      amount: 2
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
+- type: entity
+  parent: VipShareholderGiftBox
+  id: VipBundlePlastic
+  name: uplink-vip-VipPlastic-name
+  description: uplink-vip-VipPlastic-desc
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SheetPlastic
+      amount: 3
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
