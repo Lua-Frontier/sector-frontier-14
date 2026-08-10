@@ -21,9 +21,6 @@ public sealed partial class GatherableSystem
             return;
         }
 
-        if (_whitelistSystem.IsWhitelistFail(gatherable.ToolWhitelist, gathering.Owner))
-            return;
-
         if (TryComp<OreVeinComponent>(args.Target, out var oreVein)
             && _whitelistSystem.IsWhitelistPass(oreVein.GatherDestructionWhitelist, gathering.Owner))
         {
@@ -38,10 +35,6 @@ public sealed partial class GatherableSystem
 
         Gather(args.Target, gathering, gatherable);
         gathering.Comp.Amount--;
-
-        if (gathering.Comp.Amount <= 0)
-            return;
-
         args.Handled = true;
     }
 }
