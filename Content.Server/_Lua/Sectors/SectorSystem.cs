@@ -8,6 +8,7 @@ using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.Smuggling.Components;
+using Content.Server._NF.Trade;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Maps;
@@ -168,6 +169,20 @@ public sealed class SectorSystem : EntitySystem
         return false;
     }
 
+    public List<MapId> GetDeadDropMapIds()
+    {
+        var result = new List<MapId>();
+        foreach (var inst in _instances.Values)
+        {
+            if (!inst.Config.DeadDropEnabled)
+                continue;
+            if (!_map.MapExists(inst.MapId))
+                continue;
+            result.Add(inst.MapId);
+        }
+        return result;
+    }
+
     public void EnsureSector(string configId)
     {
         if (_instances.ContainsKey(configId)) return;
@@ -279,7 +294,13 @@ public sealed class SectorSystem : EntitySystem
                     rotationOffset += rotation;
                     string overrideName = proto.Name + (i < 26 ? $" {(char)('A' + i)}" : $" {i + 1}");
                     if (TrySpawnPoiGrid(mapId, proto, offset, out var gridUid, overrideName) && gridUid.HasValue)
-                    { spawnedPOIs.Add(gridUid.Value); Log.Info($"[SectorSystem] Spawned POI '{proto.ID}' as '{overrideName}' at {offset}"); }
+                    {
+                        var depotStation = _station.GetOwningStation(gridUid.Value);
+                        if (TryComp<TradeCrateDestinationComponent>(depotStation, out var destComp))
+                            destComp.DestinationProto = i < 26 ? $"Cargo{(char)('A' + i)}" : "CargoOther";
+                        spawnedPOIs.Add(gridUid.Value);
+                        Log.Info($"[SectorSystem] Spawned POI '{proto.ID}' as '{overrideName}' at {offset}");
+                    }
                 }
             }
             else

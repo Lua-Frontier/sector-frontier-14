@@ -1,4 +1,4 @@
-using Content.Server._Lua.Starmap.Systems;
+using Content.Server._Lua.Sectors;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.Shipyard.Systems;
@@ -51,7 +51,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SharedGameTicker _ticker = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly StationRenameWarpsSystems _stationRenameWarps = default!;
-    [Dependency] private readonly StarmapSystem _starmap = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
@@ -446,23 +446,11 @@ public sealed class DeadDropSystem : EntitySystem
         //this is where we set up all the information that FTL is going to need, including a new null entity as a destination target because FTL needs it for reasons?
         //dont ask me im just fulfilling FTL requirements.
         var dropLocation = _random.NextVector2(component.MinimumDistance, component.MaximumDistance);
-        var targetMapId = Transform(user).MapID;
-        try
-        {
-            var stars = _starmap.CollectStars();
-            if (stars.Count > 0)
-            {
-                var candidates = new List<MapId>();
-                foreach (var star in stars)
-                {
-                    if (star.Map == MapId.Nullspace) continue;
-                    if (!_mapManager.MapExists(star.Map)) continue;
-                    candidates.Add(star.Map);
-                }
-                if (candidates.Count > 0) targetMapId = _random.Pick(candidates);
-            }
-        }
-        catch { }
+        var deadDropMaps = _sectors.GetDeadDropMapIds();
+        if (deadDropMaps.Count == 0)
+            return;
+
+        var targetMapId = _random.Pick(deadDropMaps);
 
         //tries to get the map uid, if it fails, it will return which I would assume will make the component try again.
         if (!_mapManager.TryGetMap(targetMapId, out var mapUid))
