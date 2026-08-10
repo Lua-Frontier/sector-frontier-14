@@ -72,7 +72,7 @@ public partial class MapGridControl : LayoutContainer
     /// <summary>
     /// Controls the maximum distance that will display.
     /// </summary>
-    public float MaxRadarRange { get; private set; } = 256f * 10f;
+    public float MaxRadarRange { get; private set; } = 256f * 100f; // Mono - 2560m -> 25600m
 
     public Vector2 MaxRadarRangeVector => new Vector2(MaxRadarRange, MaxRadarRange);
 

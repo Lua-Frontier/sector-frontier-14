@@ -111,7 +111,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
         SubscribeLocalEvent<GunComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
+        SubscribeLocalEvent<GunComponent, GotEquippedHandEvent>(OnGunEquipped);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
+        SubscribeLocalEvent<GunComponent, ShotAttemptedEvent>(OnGunDrawShotAttempt);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
     }
 

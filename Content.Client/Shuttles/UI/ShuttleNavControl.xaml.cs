@@ -538,6 +538,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             _rotation = Angle.Zero;
 
         var worldRot = _rotation.Value;
+        // Console/ship origin (no pan) — used for IFF range, stealth decrypt, and label distance scaling.
+        // mapPos includes Offset for camera/view transforms only.
+        var consoleMapPos = _transform.ToMapCoordinates(_coordinates.Value).Position;
         var mapPos = _transform.ToMapCoordinates(_coordinates.Value).Offset(_rotation.Value.RotateVec(Offset));
         var mapCoord = _transform.ToCoordinates(mapPos);
         var worldToShuttle = Matrix3Helpers.CreateTranslation(-mapCoord.Position) * Matrix3Helpers.CreateRotation(-worldRot);
@@ -547,7 +550,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         // Draw shields
         DrawShields(handle, xform, worldToShuttle);
         DrawNebulaContours(handle, xform, worldToShuttle, shuttleToView);
-        DrawSpaceHazardRadarIcons(handle, xform, worldToShuttle, shuttleToView, mapPos.Position);
+        DrawSpaceHazardRadarIcons(handle, xform, worldToShuttle, shuttleToView, consoleMapPos);
         DrawDroneRoutes(handle, worldToShuttle * shuttleToView);
 
         // Frontier Corvax: north line drawing
@@ -673,7 +676,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             }
             var effectiveHideLabelShuttle = hideLabelShuttle && !(companyProto?.AliesOnRadar == true && allyByCompany);
             var gridCenterMap = _transform.ToMapCoordinates(new EntityCoordinates(gUid, gridBody.LocalCenter)).Position;
-            var worldDist = Vector2.Distance(gridCenterMap, mapPos.Position);
+            // Distance from console/ship, NOT from panned camera — pan must not reveal cloaked ships or inflate label scale.
+            var worldDist = Vector2.Distance(gridCenterMap, consoleMapPos);
             var detected = detectionLevel != DetectionLevel.Undetected || (!hideLabel && !effectiveHideLabelShuttle) || (effectiveHideLabelShuttle && worldDist <= IFFDecryptionSystem.Range); // Lua Decrypt mod
             if (!detected) continue; // Lua Decrypt mod
             var beyondRadar = worldDist > CornerRadarRange;
@@ -762,9 +766,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
             //var mapCenter = curGridToWorld. * gridBody.LocalCenter;
             //shouldDrawIFF = NfCheckShouldDrawIffRangeCondition(shouldDrawIFF, mapCenter, curGridToWorld); // Frontier code
-            // Frontier: range checks
+            // Frontier: range checks (from console, not pan center)
             var gridMapPos = gridCenterMap;
-            shouldDrawIFF = NFCheckShouldDrawIffRangeCondition(shouldDrawIFF, gridMapPos - mapPos.Position);
+            shouldDrawIFF = NFCheckShouldDrawIffRangeCondition(shouldDrawIFF, gridMapPos - consoleMapPos);
             // End Frontier
 
             // Frontier: IFF drawing functions
@@ -797,14 +801,14 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var allowBlip = !hideLabel;
             if (effectiveHideLabelShuttle) allowBlip = true;
 
-            const float FullScaleDistance = 512f;
+            const float FullScaleDistance = 200f;
+            const float ScaleEndDistance = 800f;
             const float MinDistanceScale = 0.35f;
-            var maxScaleRange = MathF.Max(WorldMaxRange, FullScaleDistance + 1f);
             var scaledMousePos = GetScaledMouseUiPosition();
             var isHovered = Vector2.Distance(scaledMousePos, uiPosition * UIScale) < 30f;
             var distanceScale = isHovered || worldDist <= FullScaleDistance
                 ? 1f
-                : MathF.Max(MinDistanceScale, 1f - (worldDist - FullScaleDistance) / (maxScaleRange - FullScaleDistance) * (1f - MinDistanceScale));
+                : MathF.Max(MinDistanceScale, 1f - (worldDist - FullScaleDistance) / (ScaleEndDistance - FullScaleDistance) * (1f - MinDistanceScale));
 
             Texture? vesselIcon = null;
             var blipScale = 1f;
@@ -886,12 +890,14 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     // Calculate unscaled offsets. + Lua decrypt md start
                     var lines = labelText.Split('\n');
                     var mainLabel = lines[0];
+                    // 956a2b5 RAM leak: font scale must be quantized, not raw distanceScale.
                     const float dimScale = 0.9f;
-                    var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, dimScale) : handle.GetDimensions(Font, mainLabel, dimScale);
+                    var labelFontScale = QuantizeRadarLabelScale(dimScale * distanceScale);
+                    var mainDim = cipherName ? GetCipherDimensions(handle, mainLabel, labelFontScale) : handle.GetDimensions(Font, mainLabel, labelFontScale);
                     var labelDimensions = mainDim;
                     if (lines.Length > 1)
                     {
-                        var otherDim = handle.GetDimensions(Font, lines[1], dimScale);
+                        var otherDim = handle.GetDimensions(Font, lines[1], labelFontScale);
                         labelDimensions = new Vector2(Math.Max(labelDimensions.X, otherDim.X), labelDimensions.Y + otherDim.Y);
                     }
                     // Lua decrypt mod end
@@ -919,7 +925,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             displayColor = compColor;
                     }
 
-                    var textScale = UIScale * dimScale;
+                    var textScale = UIScale * labelFontScale;
                     if (cipherName) DrawCipherString(handle, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
                     else handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, mainLabel, textScale, displayColor); //Lua decrypt mod
 
@@ -929,7 +935,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         var companyLabel = lines[1];
                         var companyLabelOffset = new Vector2(
                             labelOffset.X,
-                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, dimScale).Y
+                            labelOffset.Y + handle.GetDimensions(Font, mainLabel, labelFontScale).Y
                         );
 
                         handle.DrawString(Font, (uiPosition + companyLabelOffset) * UIScale, companyLabel, textScale, displayColor);
@@ -1131,7 +1137,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         && EntManager.TryGetComponent<RadarBlipIconComponent>(blipEnt, out var blipIcon)
                         && blipIcon.Icon != default)
                     {
-                        var blipWorldDist = Vector2.Distance(blipMap.Position, mapPos.Position);
+                        var blipWorldDist = Vector2.Distance(blipMap.Position, consoleMapPos);
                         var beyondIconDistance = blipIcon.MaxDistance > 0f && blipWorldDist > blipIcon.MaxDistance;
                         if (!beyondIconDistance)
                         {
@@ -1139,12 +1145,12 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             if (cache.TryGetResource<TextureResource>(blipIcon.Icon, out var texRes))
                             {
                                 // Same sizing as IFF/debris RadarBlipIcon path (RadarBlipSize * UIScale * Scale * distanceScale).
-                                const float fullScaleDistance = 512f;
+                                const float fullScaleDistance = 200f;
+                                const float scaleEndDistance = 800f;
                                 const float minDistanceScale = 0.35f;
-                                var maxScaleRange = MathF.Max(WorldMaxRange, fullScaleDistance + 1f);
                                 var distanceScale = blipWorldDist <= fullScaleDistance
                                     ? 1f
-                                    : MathF.Max(minDistanceScale, 1f - (blipWorldDist - fullScaleDistance) / (maxScaleRange - fullScaleDistance) * (1f - minDistanceScale));
+                                    : MathF.Max(minDistanceScale, 1f - (blipWorldDist - fullScaleDistance) / (scaleEndDistance - fullScaleDistance) * (1f - minDistanceScale));
                                 var s = (RadarBlipSize * UIScale) * blipIcon.Scale * distanceScale;
                                 var half = new Vector2(s / 2f, s / 2f);
                                 var box = new UIBox2(blipPosInView - half, blipPosInView + half);
@@ -1371,6 +1377,23 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     }
 
     // Lua decrypt mod start
+    /// <summary>
+    /// Quantize font scale for radar labels.
+    /// Continuous scales in GetDimensions/DrawString leak glyph atlas RAM (956a2b5).
+    /// </summary>
+    private static float QuantizeRadarLabelScale(float scale)
+    {
+        if (scale >= 0.85f)
+            return 0.9f;
+        if (scale >= 0.70f)
+            return 0.75f;
+        if (scale >= 0.55f)
+            return 0.6f;
+        if (scale >= 0.42f)
+            return 0.45f;
+        return 0.35f;
+    }
+
     private Vector2 GetCipherDimensions(DrawingHandleScreen handle, string text, float scale)
     {
         if (!TrySplitCipher(text, out var pre, out var cipher, out var post)) return handle.GetDimensions(Font, text, scale);

@@ -151,7 +151,6 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
-    maxRange: 1024
     maxIffRange: 1024
     relativePanning: true # Mono
   - type: WorldLoader
@@ -1058,7 +1057,6 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RadarConsole
-    maxRange: 256 # Frontier
     maxIffRange: 512 # Frontier
     noRotate: true # Mono
   - type: ActivatableUI

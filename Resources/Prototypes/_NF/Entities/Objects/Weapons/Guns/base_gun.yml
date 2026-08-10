@@ -10,6 +10,10 @@
       - state: base
         map: ["enum.GunVisualLayers.Base"]
   - type: Gun
+  - type: WieldDelay
+    baseDelay: 0.75
+    modifiedDelay: 0.75
+    preventFiring: true
   - type: AmmoCounter
   - type: Appearance
   - type: StaticPrice

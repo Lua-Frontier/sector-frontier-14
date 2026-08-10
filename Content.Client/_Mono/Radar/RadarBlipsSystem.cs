@@ -15,9 +15,6 @@ public sealed partial class RadarBlipsSystem : EntitySystem
     private TimeSpan _lastRequestTime = TimeSpan.Zero;
     private static readonly TimeSpan RequestThrottle = TimeSpan.FromMilliseconds(250);
 
-    // Maximum distance for blips to be considered visible
-    private const float MaxBlipRenderDistance = 1000f;
-
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
@@ -25,7 +22,6 @@ public sealed partial class RadarBlipsSystem : EntitySystem
     private List<RadarBlipNetData> _blips = new();
     private List<MissileVectorNetData> _missiles = new();
     private List<(Vector2 Start, Vector2 End, float Thickness, Color Color)> _hitscans = new();
-    private Vector2 _radarWorldPosition;
 
     public override void Initialize()
     {
@@ -84,12 +80,6 @@ public sealed partial class RadarBlipsSystem : EntitySystem
 
         _lastRequestTime = _timing.CurTime;
 
-        // Cache the radar position for distance culling
-        if (TryComp<TransformComponent>(console, out var xform))
-        {
-            _radarWorldPosition = _xform.GetWorldPosition(console);
-        }
-
         var netConsole = GetNetEntity(console);
         var ev = new RequestBlipsEvent(netConsole);
         RaiseNetworkEvent(ev);
@@ -115,10 +105,6 @@ public sealed partial class RadarBlipsSystem : EntitySystem
                 continue;
 
             var predictedPos = new EntityCoordinates(coord.EntityId, coord.Position + blip.Vel * (float)(_timing.CurTime - _lastUpdatedTime).TotalSeconds);
-
-            // Distance culling for world position blips
-            if (Vector2.DistanceSquared(_xform.ToMapCoordinates(predictedPos).Position, _radarWorldPosition) > MaxBlipRenderDistance * MaxBlipRenderDistance)
-                continue;
 
             result.Add((blip.Uid, predictedPos, blip.Scale, blip.Color, blip.Shape, blip.SonarEcho, blip.GridConfig));
         }
@@ -151,9 +137,6 @@ public sealed partial class RadarBlipsSystem : EntitySystem
 
             var predictedPos = new EntityCoordinates(coord.EntityId, coord.Position + tiedBlip.Vel * dt);
             var start = _xform.ToMapCoordinates(predictedPos).Position;
-
-            if (Vector2.DistanceSquared(start, _radarWorldPosition) > MaxBlipRenderDistance * MaxBlipRenderDistance)
-                continue;
 
             // Match Monolith: Cos/Sin of (Rotation - 90°) for facing.
             var facing = tiedBlip.Rotation.Theta + Math.PI * -0.5;
@@ -192,18 +175,7 @@ public sealed partial class RadarBlipsSystem : EntitySystem
 
         foreach (var hitscan in _hitscans)
         {
-            var worldStart = hitscan.Start;
-            var worldEnd = hitscan.End;
-
-            // Distance culling - check if either end of the line is in range
-            var startDist = Vector2.DistanceSquared(worldStart, _radarWorldPosition);
-            var endDist = Vector2.DistanceSquared(worldEnd, _radarWorldPosition);
-
-            if (startDist > MaxBlipRenderDistance * MaxBlipRenderDistance &&
-                endDist > MaxBlipRenderDistance * MaxBlipRenderDistance)
-                continue;
-
-            result.Add((worldStart, worldEnd, hitscan.Thickness, hitscan.Color));
+            result.Add((hitscan.Start, hitscan.End, hitscan.Thickness, hitscan.Color));
         }
 
         return result;

@@ -131,8 +131,7 @@ public partial class ShuttleNavControl // Mono
     /// <param name="state">The navigation interface state.</param>
     private void NFUpdateState(NavInterfaceState state)
     {
-        if (state.MaxIffRange != null)
-            MaximumIFFDistance = state.MaxIffRange.Value;
+        MaximumIFFDistance = state.MaxIffRange ?? -1f;
         HideCoords = state.HideCoords;
         Target = state.Target;
         TargetEntity = state.TargetEntity;

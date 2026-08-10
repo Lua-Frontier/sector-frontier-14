@@ -34,9 +34,10 @@ public partial class ShuttleNavControl
         var uiYCentre = (int)Height / 2;
         var scaledMousePos = GetScaledMouseUiPosition();
 
-        const float fullScaleDistance = 512f;
+        const float fullScaleDistance = 200f;
         const float minDistanceScale = 0.35f;
-        var maxScaleRange = MathF.Max(WorldMaxRange, fullScaleDistance + 1f);
+        const float scaleEndDistance = 800f;
+        var maxScaleRange = scaleEndDistance;
 
         var celestialQuery = EntManager.AllEntityQueryEnumerator<SectorCelestialBodyComponent, RadarBlipIconComponent, TransformComponent>();
         while (celestialQuery.MoveNext(out var uid, out _, out var icon, out var xform))
@@ -131,9 +132,11 @@ public partial class ShuttleNavControl
         var displayedDistance = worldDist < 50f ? $"{worldDist:0.0}" : worldDist < 1000 ? $"{worldDist:0}" : $"{worldDist / 1000:0.0}k";
         var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), ("distance", displayedDistance));
 
+        // 956a2b5 RAM leak: font scale must be quantized, not raw distanceScale.
         const float dimScale = 0.9f;
-        var textScale = UIScale * dimScale;
-        var labelDimensions = handle.GetDimensions(Font, labelText, dimScale);
+        var labelFontScale = QuantizeRadarLabelScale(dimScale * distanceScale);
+        var textScale = UIScale * labelFontScale;
+        var labelDimensions = handle.GetDimensions(Font, labelText, labelFontScale);
         var blipSize = RadarBlipSize * 0.7f * distanceScale;
         var labelOffset = new Vector2
         {
