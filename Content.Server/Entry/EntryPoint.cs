@@ -125,8 +125,6 @@ namespace Content.Server.Entry
             _factory.RegisterIgnore(IgnoredComponents.List);
             _factory.GenerateNetIds();
 
-            _proto.RegisterIgnore("parallax");
-
             _loc.Initialize();
 
             var dest = _cfg.GetCVar(CCVars.DestinationFile);
