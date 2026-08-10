@@ -14,6 +14,11 @@
     drawdepth: Mobs
     layers:
     - state: turrets120mm
+  - type: Gun
+    fireRate: 0.05
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
   - type: BallisticAmmoProvider
     infiniteUnspawned: true
     whitelist:

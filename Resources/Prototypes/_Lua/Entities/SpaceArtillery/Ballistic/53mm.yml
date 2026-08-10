@@ -14,6 +14,11 @@
     drawdepth: Mobs
     layers:
     - state: turrets53mm
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
   - type: ItemSlots
     slots:
       gun_magazine:

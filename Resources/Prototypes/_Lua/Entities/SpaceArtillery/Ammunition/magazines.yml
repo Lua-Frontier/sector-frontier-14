@@ -73,6 +73,9 @@
     tags:
     - MagazineLua20mm
   - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
     proto: CartridgeLua20mm
     whitelist:
       tags:
@@ -106,6 +109,9 @@
     tags:
     - MagazineLua53mm
   - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
     proto: CartridgeLua53mm
     whitelist:
       tags:
@@ -139,6 +145,9 @@
     tags:
     - MagazineLua80mm
   - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
     proto: CartridgeLua80mm
     whitelist:
       tags:
@@ -152,6 +161,7 @@
   components:
   - type: Tag
     tags:
+    - Cartridge
     - CartridgeLua105mm
   - type: CartridgeAmmo
     proto: Bullet105mm
@@ -171,6 +181,9 @@
     tags:
     - MagazineLua105mm
   - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
     proto: CartridgeLua105mm
     whitelist:
       tags:
@@ -184,6 +197,7 @@
   components:
   - type: Tag
     tags:
+    - Cartridge
     - CartridgeLua120mm
   - type: CartridgeAmmo
     proto: Bullet120mm
@@ -221,6 +235,9 @@
     tags:
     - MagazineLua140mm
   - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
     proto: CartridgeLua140mm
     whitelist:
       tags:
