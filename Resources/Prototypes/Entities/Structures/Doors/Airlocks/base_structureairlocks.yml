@@ -207,6 +207,12 @@
         collection: GlassSmack
   - type: Door
     occludes: false
+    openSound:
+      path: /Audio/_Lua/Machines/airlock_glass_open.ogg #Lua edit
+    closeSound:
+      path: /Audio/_Lua/Machines/airlock_glass_close.ogg #Lua edit
+    denySound:
+      path: /Audio/_Lua/Machines/airlock_glass_deny.ogg #Lua edit
   - type: Occluder
     enabled: false
   - type: Sprite

@@ -13,24 +13,31 @@
   - type: SpawnItemsOnUse
     items:
     # Money - 30k # removed
+    # Bonus Silicons!
+    # - id: BlackboxSiliconsSpawnerT1
+    #   amount: 1
+    #   maxAmount: 2
+    # - id: BlackboxSiliconsSpawnerT2
+    #   amount: 1
+    #   maxAmount: 2
     # Scrap chunks
     - id: ScrapOre100
       amount: 1
     # Material
-    - id: SheetPlastitanium10
-      amount: 2
+    - id: SheetPlastitanium1 #Lua: 10>1
+      amount: 1 #Lua: 2>1
     # Parts
     - id: SuperCapacitorStockPart
-      prob: 0.8
-      amount: 3
+      prob: 0.4 #Lua: 0.8>0.4
+      amount: 1 #Lua: 3>1
     - id: SuperMatterBinStockPart
-      prob: 0.6
-      amount: 2
+      prob: 0.3 #Lua: 0.6>0.3
+      amount: 1 #Lua: 2>1
     - id: PicoManipulatorStockPart
-      prob: 0.8
-      amount: 2
+      prob: 0.15 #Lua: 0.3>0.15
+      amount: 1 #Lua: 2>1
     - id: SpawnDungeonLootPowerCell
-      prob: 0.5
+      prob: 0.1 #Lua: 0.5>0.1
     # - id: SpawnDungeonLootPartsEngi #Mono: mostly trash and bloat
     #   amount: 3
     #   prob: 0.25
@@ -45,20 +52,24 @@
       prob: 0.3
     # Flatpacks
     - id: SpawnDungeonLootFlatpacks
-      prob: 0.6
+      prob: 0.15 #Lua: 0.6>0.15
     # rare shard drop even from T1
     - id: WeaponTurretShardFlatpack
-      prob: 0.5
+      prob: 0.05 #Lua: 0.5>0.05
     # Research disk, expected value ~30k/drone
     - id: RogueSiliconResearchDisk5000
+      prob: 0.3 #Lua: added prob
     - id: RogueSiliconResearchDisk10000
-    - id: RogueSiliconResearchDisk25000
-      prob: 0.6
+      prob: 0.05  #Lua: added prob
+    # - id: RogueSiliconResearchDisk25000  #Lua: removed for balance
+    #   prob: 0.6
     # Tech disk
     - id: SpawnLootTechDisksT1
-      prob: 0.5
+      prob: 0.2  #Lua: 0.5>0.2
     sound:
       path: /Audio/Machines/windoor_open.ogg
+
+
 
 - type: entity
   parent: ClothingBackpackDroneLootT1
@@ -70,42 +81,53 @@
   - type: SpawnItemsOnUse
     items:
     # Money - 80k # removed
+    # Bonus Silicons!
+    # - id: BlackboxSiliconsSpawnerT2
+    #   amount: 1
+    #   maxAmount: 2
+    # - id: BlackboxSiliconsSpawnerT2
+    #   amount: 1
+    #   maxAmount: 2
     # Scrap chunks
     - id: ScrapOre100
-      amount: 3
+      amount: 1 #Lua: 3>1
     # Material
-    - id: SheetPlastitanium10
-      amount: 4
+    - id: SheetPlastitanium1 #Lua: 10>1
+      amount: 1 #Lua: 4>1
     # Parts
     - id: SuperCapacitorStockPart
-      amount: 3
+      amount: 1 #Lua: 3>1
     - id: SuperMatterBinStockPart
       amount: 1
     - id: PicoManipulatorStockPart
-      amount: 2
+      amount: 1 #Lua: 2>1
     # rare t4 parts
     - id: QuadraticCapacitorStockPart
-      amount: 2
-      prob: 0.8
+      amount: 1 #Lua: 2>1
+      prob: 0.2 #Lua: 0.8>0.2
     - id: FemtoManipulatorStockPart
-      prob: 0.8
+      prob: 0.2 #Lua: 0.8>0.2
     - id: BluespaceMatterBinStockPart
-      prob: 0.6
+      prob: 0.15 #Lua: 0.6>0.15
     - id: SpawnDungeonLootPowerCell
-      prob: 0.5
+      prob: 0.1 #Lua: 0.5>0.1
     - id: PowerCellMicroreactor
+      prob: 0.1 #Lua: added prob
     # free shard
     - id: WeaponTurretShardFlatpack
+      prob: 0.1 #Lua: added prob
     # no flatpacks or boards, just gamble scrap
     # Research disk, expected value ~80k/drone
     - id: RogueSiliconResearchDisk5000
+      prob: 0.1 #Lua: added prob
     - id: RogueSiliconResearchDisk10000
+      prob: 0.05 #Lua: added prob
     - id: RogueSiliconResearchDisk25000
-      prob: 0.6
-    - id: RogueSiliconResearchDisk50000
+      prob: 0.01 #Lua: 0.6>0.01
+    # - id: RogueSiliconResearchDisk50000  #Lua: removed for balance
     # Tech disk
     - id: SpawnLootTechDisksT2Mech
-      prob: 0.5
+      prob: 0.25 #Lua: 0.5>0.25
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
@@ -119,47 +141,105 @@
   - type: SpawnItemsOnUse
     items:
     # Money - 200k # removed
+    # Bonus Silicons!
+    # - id: BlackboxSiliconsSpawnerT2
+    #   amount: 1
+    #   maxAmount: 3
+    # - id: BlackboxSiliconsSpawnerT3
+    #   amount: 1
+    #   maxAmount: 3
     # Scrap chunks
     - id: ScrapOre100
-      amount: 6
+      amount: 2 #Lua: 6>2
     # Material
-    - id: SheetPlastitanium10
-      amount: 8
+    - id: SheetPlastitanium1 #Lua: 10>1
+      amount: 2 #Lua: 8>2
     # Parts
     - id: SuperCapacitorStockPart
-      amount: 6
+      amount: 1 #Lua: 6>1
     - id: SuperMatterBinStockPart
-      amount: 2
+      amount: 1 #Lua: 2>1
     - id: PicoManipulatorStockPart
-      amount: 4
+      amount: 1 #Lua: 4>1
     # rare t4 parts
     - id: QuadraticCapacitorStockPart
-      amount: 3
-      maxAmount: 6
+      amount: 0 #Lua: added 0.5 prob
+      maxAmount: 1
     - id: FemtoManipulatorStockPart
-      amount: 2
-      maxAmount: 4
+      amount: 0 #Lua: added 0.5 prob
+      maxAmount: 1
     - id: BluespaceMatterBinStockPart
-      amount: 0
-      maxAmount: 2
+      amount: 0 #Lua: added 0.5 prob
+      maxAmount: 1
     - id: SpawnDungeonLootPowerCell
-      amount: 1
-      maxAmount: 2
+      amount: 0 #Lua: added 0.5 prob
+      maxAmount: 1
     - id: PowerCellMicroreactor
+      prob: 0.1 #Lua: added prob
     # free guns
     - id: WeaponTurretShardFlatpack
-      amount: 1
-      maxAmount: 2
+      amount: 0 #Lua: 1>0
+      maxAmount: 1 #Lua: 2>1
     - id: WeaponTurretPinholeFlatpack
+      prob: 0.1 #Lua: added prob
     # no flatpacks or boards, just gamble scrap
     # Research disk, expected value 200k/drone
-    - id: RogueSiliconResearchDisk50000
-      amount: 3
-      maxAmount: 5
+    # - id: RogueSiliconResearchDisk50000  #Lua: changed to 25000 for balance
+    #   amount: 3
+    #   maxAmount: 5
+    - id: RogueSiliconResearchDisk25000
+      prob: 0.05 #Lua: added prob
     # Tech disk
     - id: SpawnLootTechDisksT3Mech
-      prob: 0.6
+      prob: 0.3 #Lua: 0.6>0.3
     - id: SpawnLootTechDisksT3Fracture
-      prob: 0.2
+      prob: 0.1 #Lua: 0.2>0.1
     sound:
       path: /Audio/Machines/windoor_open.ogg
+
+#Спавнеры
+- type: entity
+  parent: BaseItem
+  id: BlackboxSiliconsSpawnerBase
+  name: упакованный силикон
+  description: Упакованный силикон. Может в любой момент развернуться в полноценного робота. Лучше выбросить пока не поздно.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/burger.rsi
+    layers:
+    - state: ro
+  - type: TimedDespawn
+    lifetime: 7
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: BlackboxSiliconsSpawnerBase
+  id: BlackboxSiliconsSpawnerT1
+  name: упакованный силикон
+  description: Упакованный силикон. Может в любой момент развернуться в полноценного робота. Лучше выбросить пока не поздно.
+  components:
+  - type: SpawnOnDespawn
+    prototype: SpawnMobRogueScrapT1
+
+- type: entity
+  parent: BlackboxSiliconsSpawnerBase
+  id: BlackboxSiliconsSpawnerT2
+  name: упакованный силикон
+  description: Упакованный силикон. Может в любой момент развернуться в полноценного робота. Лучше выбросить пока не поздно.
+  components:
+  - type: SpawnOnDespawn
+    prototype: SpawnMobRogueSiliconsT2
+  - type: TimedDespawn
+    lifetime: 4
+
+- type: entity
+  parent: BlackboxSiliconsSpawnerBase
+  id: BlackboxSiliconsSpawnerT3
+  name: упакованный силикон
+  description: Упакованный силикон. Может в любой момент развернуться в полноценного робота. Лучше выбросить пока не поздно.
+  components:
+  - type: SpawnOnDespawn
+    prototype: SpawnMobRogueSiliconsT3
+  - type: TimedDespawn
+    lifetime: 1

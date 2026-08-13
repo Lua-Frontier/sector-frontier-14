@@ -291,7 +291,65 @@
   id: SidriePlushieSpeak
   values:
     prefix: Sidrieplushie-
-    count: 26
+    count: 46
+
+- type: entity
+  parent: BasePlushieSpeakable
+  id: PlushieMiniksim
+  name: плюшевый Микс Интим
+  description: Это уставшая плюшевая вульпа, вы лишь желаете кинуть в печь это создание.
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/Equipable/Miniksim.rsi
+    state: icon
+  - type: Item
+    sprite: _Lua/Plushie/Equipable/Miniksim.rsi
+    size: Large
+  - type: MultiHandedItem
+  - type: EmitSoundOnLand
+    sound:
+      collection: MiniksimFall
+      params:
+        volume: -5
+        maxDistance: 5
+  - type: EmitSoundOnCollide
+    sound:
+      collection: VulpkaninSneezes
+      params:
+        variation: 0.125
+  - type: Speech
+  - type: RoarAccent
+  - type: Tag
+    tags:
+    - Payload
+  - type: SpeakOnTrigger
+    pack: MiniksimPlushieSpeak
+  - type: TTS
+    voice: Chromie
+
+- type: soundCollection
+  id: MiniksimFall
+  files:
+  - /Audio/_Lua/Plushies/MiniksimPlushie/miniksim_fall1.ogg
+  - /Audio/_Lua/Plushies/MiniksimPlushie/miniksim_fall2.ogg
+  - /Audio/_Lua/Plushies/MiniksimPlushie/miniksim_fall3.ogg
+  - /Audio/_Lua/Plushies/MiniksimPlushie/miniksim_fall4.ogg
+
+- type: localizedDataset
+  id: MiniksimPlushieSpeak
+  values:
+    prefix: miniksim_plushie-
+    count: 51
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMaksimvini
+  name: плюшевый Джеймс Санте
+  description: "Виски снова кончилось, несите добавки! - именно это можно прочесть на небольшой этикетке, прикреплённой к кимоно данной игрушки. Видимо, он очень обожает виски."
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_maksimvini
 
 - type: entity
   parent: BasePlushie
