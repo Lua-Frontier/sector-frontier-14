@@ -6,10 +6,13 @@ using Content.Shared.Camera;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Mech.Components; // Goobstation
+using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using System.Linq;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -22,6 +25,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Numerics;
@@ -210,11 +215,17 @@ public sealed partial class GunSystem : SharedGunSystem
 
         Log.Debug($"Sending shoot request tick {Timing.CurTick} / {Timing.CurTime}");
 
+        if (_player.LocalSession is not { } session)
+            return;
+
+        var projectiles = ShootRequested(GetNetEntity(gunUid), GetNetCoordinates(coordinates), target, null, session);
+
         RaisePredictiveEvent(new RequestShootEvent
         {
             Target = target,
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gunUid),
+            Shot = projectiles?.Select(e => e.Entity.Id).ToList(),
         });
     }
 
@@ -413,5 +424,25 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     // TODO: Move RangedDamageSoundComponent to shared so this can be predicted.
-    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound) { }
+    public override void PlayImpactSound(
+        EntityUid otherEntity,
+        DamageSpecifier? modifiedDamage,
+        SoundSpecifier? weaponSound,
+        bool forceWeaponSound,
+        Filter? filter = null,
+        Entity<ProjectileComponent, PhysicsComponent>? projectile = null)
+    {
+    }
+
+    public override void ShootProjectile(EntityUid uid,
+        Vector2 direction,
+        Vector2 gunVelocity,
+        EntityUid? gunUid,
+        EntityUid? user = null,
+        float speed = 20f)
+    {
+        EnsureComp<PredictedProjectileClientComponent>(uid);
+        Physics.UpdateIsPredicted(uid);
+        base.ShootProjectile(uid, direction, gunVelocity, gunUid, user, speed);
+    }
 }

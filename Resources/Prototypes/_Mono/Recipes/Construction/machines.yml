@@ -1,4 +1,6 @@
 - type: construction
+  name: construction-recipe-MachineFrame2x1
+  description: construction-recipe-machine-frame-desc
   id: MachineFrame2x1
   graph: Machine2x1
   startNode: start
@@ -8,4 +10,46 @@
   canBuildInImpassable: false
   icon:
     sprite: _Mono/Structures/Machines/frames/frame_2x1_icon.rsi
+    state: "icon"
+
+- type: construction
+  name: construction-recipe-MachineFrame2x2
+  description: construction-recipe-machine-frame-desc
+  id: MachineFrame2x2
+  graph: Machine2x2
+  startNode: start
+  targetNode: machine
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Mono/Structures/Machines/frames/frame_2x2_icon.rsi
+    state: "icon"
+
+- type: construction
+  name: construction-recipe-MachineFrame3x2
+  description: construction-recipe-machine-frame-desc
+  id: MachineFrame3x2
+  graph: Machine3x2
+  startNode: start
+  targetNode: machine
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Mono/Structures/Machines/frames/frame_3x2_icon.rsi
+    state: "icon"
+
+- type: construction
+  name: construction-recipe-MachineFrame3x3
+  description: construction-recipe-machine-frame-desc
+  id: MachineFrame3x3
+  graph: Machine3x3
+  startNode: start
+  targetNode: machine
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: _Mono/Structures/Machines/frames/frame_3x3_icon.rsi
     state: "icon"

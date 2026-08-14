@@ -52,26 +52,14 @@ public sealed class LayerGroup
             Scale = new Position(0.1f, 0.1f),
             Source = new GroupSource
             {
-                Url = output.ReferenceResourceFile(resourceManager, new ResPath("/Textures/Parallaxes/layer1.png")),
+                Url = output.ReferenceResourceFile(resourceManager, new ResPath("/Textures/_Lua/ShuttleMap/space_background.png")),
                 Extent = new Extent(6000, 4000),
             },
             Layers = new List<Layer>
             {
                 new()
                 {
-                    Url = output.ReferenceResourceFile(resourceManager, new ResPath("/Textures/Parallaxes/layer1.png")),
-                },
-                new()
-                {
-                    Url = output.ReferenceResourceFile(resourceManager, new ResPath("/Textures/Parallaxes/layer2.png")),
-                    Composition = "lighter",
-                    ParallaxScale = new Position(0.2f, 0.2f)
-                },
-                new()
-                {
-                    Url = output.ReferenceResourceFile(resourceManager, new ResPath("/Textures/Parallaxes/layer3.png")),
-                    Composition = "lighter",
-                    ParallaxScale = new Position(0.3f, 0.3f)
+                    Url = output.ReferenceResourceFile(resourceManager, new ResPath("/Textures/_Lua/ShuttleMap/space_background.png")),
                 }
             }
         };

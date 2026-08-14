@@ -11,6 +11,7 @@ donate-shop-category-all = Все товары
 
 donate-shop-error-access-denied = Доступно только донатерам.
 donate-shop-error-no-entity = Невозможно определить вашего персонажа.
+donate-shop-error-incapacitated = Терминал недоступен, пока вы без сознания или мертвы.
 donate-shop-error-item-unavailable = Товар больше недоступен.
 donate-shop-error-lunacoin-insufficient = Недостаточно LunaCoin для покупки.
 donate-shop-error-lunacoin-spend-failed = Не удалось списать LunaCoin. Попробуйте снова.

@@ -1,0 +1,39 @@
+- type: guideEntry
+  id: Economy
+  name: guide-entry-economy
+  text: "/ServerInfo/_Mono/Guidebook/Economy/Economy.xml"
+  priority: 1
+  children:
+  - EconomyRecipes
+  - Introduction
+
+- type: guideEntry
+  id: Introduction
+  name: guide-entry-economy-intro
+  text: "/ServerInfo/_Mono/Guidebook/Economy/Basics.xml"
+  priority: 2
+
+- type: guideEntry
+  id: EconomyRecipes
+  name: guide-entry-economy-recipes
+  text: "/ServerInfo/_Mono/Guidebook/Economy/EconomyRecipes.xml"
+  priority: 2
+  children:
+  - ArcFurnace
+  - PrecisionAssembler
+  filterEnabled: True
+
+- type: guideEntry
+  id: ArcFurnace
+  name: guide-entry-arc-furnace
+  text: "/ServerInfo/_Mono/Guidebook/Economy/ArcFurnace.xml"
+  priority: 3
+  filterEnabled: True
+
+- type: guideEntry
+  id: PrecisionAssembler
+  name: guide-entry-precision-assembler
+  text: "/ServerInfo/_Mono/Guidebook/Economy/PrecisionAssembler.xml"
+  priority: 3
+  filterEnabled: True
+

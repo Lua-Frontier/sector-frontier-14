@@ -41,7 +41,8 @@ public sealed class ShuttleFTLSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<FireControllableComponent, AmmoShotEvent>(OnWeaponShot);
-        SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
+        // ProjectileGridPhaseComponent: unique pair; ShipWeaponProjectileComponent is already used by SpaceArtillerySystem.
+        SubscribeLocalEvent<ProjectileGridPhaseComponent, ProjectileHitEvent>(OnProjectileHit);
         SubscribeLocalEvent<ConsoleFTLAttemptEvent>(OnConsoleFTLAttempt);
     }
 
@@ -63,19 +64,13 @@ public sealed class ShuttleFTLSystem : EntitySystem
         }
     }
 
-    private void OnProjectileHit(EntityUid uid, ProjectileComponent component, ref ProjectileHitEvent args)
+    private void OnProjectileHit(EntityUid uid, ProjectileGridPhaseComponent phase, ref ProjectileHitEvent args)
     {
-        if (!HasComp<ShipWeaponProjectileComponent>(uid))
-            return;
-
         var targetGridUid = Transform(args.Target).GridUid;
         if (targetGridUid == null || !HasComp<ShuttleComponent>(targetGridUid.Value))
             return;
 
-        if (!TryComp<ProjectileGridPhaseComponent>(uid, out var phase) || phase.SourceGrid == null)
-            return;
-
-        if (phase.SourceGrid == targetGridUid)
+        if (phase.SourceGrid == null || phase.SourceGrid == targetGridUid)
             return;
 
         MarkShuttleGroupInCombat(targetGridUid.Value);

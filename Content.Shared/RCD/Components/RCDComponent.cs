@@ -58,6 +58,12 @@ public sealed partial class RCDComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public Transform ConstructionTransform { get; private set; }
 
+    /// <summary>
+    /// Indicates whether this is an RPD (rapid piping device) rather than a standard RCD.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IsRpd { get; set; } = false;
+
     // Frontier: ship-based RCDs
     /// <summary>
     /// Frontier - Shipyard RCD

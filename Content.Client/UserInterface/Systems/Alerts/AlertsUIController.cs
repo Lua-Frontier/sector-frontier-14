@@ -4,6 +4,8 @@ using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Alerts.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
+using Content.Client._Shitmed.UserInterface.Systems.PartStatus;
+using Content.Client._Shitmed.UserInterface.Systems.PartStatus.Widgets;
 using Content.Shared._Lua.Sprint;
 using Content.Shared.Alert;
 using Content.Shared.Lua.CLVar;
@@ -31,6 +33,8 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
     private Control? _rightAnchorParent; // Lua
     private LayoutPreset _rightAnchorPreset; // Lua
     private bool _rightAnchorUpdatePending; // Lua
+
+    public PartStatusControl? PartStatus => _alertsUi?.PartStatus;
 
     public override void Initialize()
     {
@@ -78,6 +82,7 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
         ApplyPosition(_cfg.GetCVar(CLVars.AlertsPosition));
         SyncAlerts();
         UpdateSprintBar();
+        UIManager.GetUIController<PartStatusUIController>().Refresh();
     }
 
     private void OnAlertPressed(object? sender, ProtoId<AlertPrototype> e)

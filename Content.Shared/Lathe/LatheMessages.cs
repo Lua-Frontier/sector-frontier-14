@@ -13,11 +13,21 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
 
     public ProtoId<LatheRecipePrototype>? CurrentlyProducing;
 
-    public LatheUpdateState(List<ProtoId<LatheRecipePrototype>> recipes, List<LatheRecipeBatch> queue, ProtoId<LatheRecipePrototype>? currentlyProducing = null) // Frontier: change queue type
+    public bool Looping; // Mono
+    public bool Skipping; // Mono
+
+    public LatheUpdateState(
+        List<ProtoId<LatheRecipePrototype>> recipes,
+        List<LatheRecipeBatch> queue,
+        ProtoId<LatheRecipePrototype>? currentlyProducing = null,
+        bool looping = false,
+        bool skipping = false)
     {
         Recipes = recipes;
         Queue = queue;
         CurrentlyProducing = currentlyProducing;
+        Looping = looping;
+        Skipping = skipping;
     }
 }
 
@@ -42,6 +52,39 @@ public sealed class LatheQueueRecipeMessage : BoundUserInterfaceMessage
     {
         ID = id;
         Quantity = quantity;
+    }
+}
+
+// Mono
+[Serializable, NetSerializable]
+public sealed class LatheSetLoopingMessage : BoundUserInterfaceMessage
+{
+    public readonly bool ShouldLoop;
+    public LatheSetLoopingMessage(bool shouldLoop)
+    {
+        ShouldLoop = shouldLoop;
+    }
+}
+
+// Mono
+[Serializable, NetSerializable]
+public sealed class LatheSetSkipMessage : BoundUserInterfaceMessage
+{
+    public readonly bool ShouldSkip;
+    public LatheSetSkipMessage(bool shouldSkip)
+    {
+        ShouldSkip = shouldSkip;
+    }
+}
+
+// Mono
+[Serializable, NetSerializable]
+public sealed class LatheRecipeCancelMessage : BoundUserInterfaceMessage
+{
+    public readonly int Index;
+    public LatheRecipeCancelMessage(int index)
+    {
+        Index = index;
     }
 }
 

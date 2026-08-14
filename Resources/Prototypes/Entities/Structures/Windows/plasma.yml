@@ -52,10 +52,16 @@
     price: 50 # Frontier: 100<50
   - type: RadiationBlocker
     resistance: 2
-
+  - type: DeltaPressure
+    minPressure: 75000
+    minPressureDelta: 50000
+    scalingType: Linear
+    scalingPower: 0.0005
+  - type: HitscanDiffractTarget
   - type: ShipRepairable
     repairTime: 4
     repairCost: 4
+
 - type: entity
   id: PlasmaWindowDirectional
   parent: WindowDirectionalRCDResistant
@@ -111,10 +117,15 @@
     price: 25 # Frontier:50<25
   - type: RadiationBlocker
     resistance: 1
-
+  - type: DeltaPressure
+    minPressure: 18750
+    minPressureDelta: 12500
+    scalingType: Threshold
+  - type: HitscanDiffractTarget
   - type: ShipRepairable
     repairTime: 2
     repairCost: 2
+
 - type: entity
   parent: PlasmaWindow
   id: PlasmaWindowDiagonal
@@ -156,6 +167,7 @@
     airBlockedDirection:
     - South
     - East
+  - type: HitscanDiffractTarget
   - type: DamageVisuals
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi

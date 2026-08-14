@@ -401,6 +401,14 @@ public sealed partial class ShipSteeringSystem : EntitySystem
                 obsRadius = halfDiag + (isGrid ? config.GridObstacleClearance : 0f);
             }
 
+            if (config.MinObstructorDistance > 0f)
+            {
+                var nearDest = (obsPos - ctx.DestMapPos.Position).Length() - obsRadius;
+                var nearFinal = (obsPos - ctx.TargetEntPos.Position).Length() - obsRadius;
+                if (nearDest < config.MinObstructorDistance || nearFinal < config.MinObstructorDistance)
+                    continue;
+            }
+
             _avoidEnts.Add(new(obsPos, obsRadius, isGrid, obstacleBody.LinearVelocity));
         }
 

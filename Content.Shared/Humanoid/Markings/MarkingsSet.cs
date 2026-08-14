@@ -195,7 +195,7 @@ public sealed partial class MarkingSet
             {
                 foreach (var marking in list)
                 {
-                    if (markingManager.TryGetMarking(marking, out var prototype)) // Frontier: modified this test to add forced marking test 
+                    if (markingManager.TryGetMarking(marking, out var prototype)) // Frontier: modified this test to add forced marking test
                     {
                         if (markingManager.MustMatchSkin(species, prototype.BodyPart, out var alpha, prototypeManager))
                             marking.SetColor(skinColor.Value.WithAlpha(alpha));
@@ -292,7 +292,7 @@ public sealed partial class MarkingSet
             }
 
             var index = 0;
-            while (points.Points > 0 || index < points.DefaultMarkings.Count)
+            while (points.Points > 0 && index < points.DefaultMarkings.Count)
             {
                 if (markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype))
                 {
@@ -439,6 +439,14 @@ public sealed partial class MarkingSet
         }
 
         return false;
+    }
+
+    public int RemoveAll(MarkingCategories category, string id)
+    {
+        var removed = 0;
+        while (Remove(category, id))
+            removed++;
+        return removed;
     }
 
     /// <summary>

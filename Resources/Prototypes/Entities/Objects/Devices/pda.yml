@@ -255,7 +255,7 @@
     - MedicalDoctor
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: SecurityCadetPDA
   name: security cadet PDA
   description: Why isn't it red?
@@ -923,7 +923,7 @@
     state: pda-science
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: HoSPDA
   name: head of security PDA
   description: Whosoever bears this PDA is the law.
@@ -958,7 +958,7 @@
     - LogProbeCartridge
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: WardenPDA
   name: warden PDA
   description: The OS appears to have been jailbroken.
@@ -977,7 +977,7 @@
     state: pda-warden
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: SecurityPDA
   name: security PDA
   description: Red to hide the stains of passenger blood.
@@ -1367,7 +1367,7 @@
     state: pda-boxer
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: DetectivePDA
   name: detective PDA
   description: Smells like rain... pouring down the rooftops...
@@ -1396,7 +1396,7 @@
     - LogProbeCartridge
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: [BaseMedicalPDA, BaseNanotrasenContrabandT1]
   id: BrigmedicPDA
   name: brigmedic PDA
   description: I wonder whose pulse is on the screen? I hope it doesn't stop...
@@ -1512,7 +1512,7 @@
     state: pda-seniorphysician
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: [BaseSecurityPDA, BaseNanotrasenContrabandT1]
   id: SeniorOfficerPDA
   name: senior officer PDA
   description: Beaten, battered and broken, but just barely useable.

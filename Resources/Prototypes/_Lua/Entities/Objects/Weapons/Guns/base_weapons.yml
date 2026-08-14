@@ -978,7 +978,6 @@
       - Cartridge
       - CartridgePistol
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     # proto: BulletPistol # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -1005,7 +1004,6 @@
       - Cartridge
       - CartridgeRifle
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     # proto: BulletRifle # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -1033,7 +1031,6 @@
     - Cartridge
     - ShellShotgun
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     soundEject:
       collection: ShellEject
   - type: Sprite

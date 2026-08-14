@@ -1,5 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Info;
+using Content.Client._Lua.UserInterface.Systems.Info;
 using Content.Shared.Guidebook;
 using Content.Shared.Info;
 using Robust.Client.Console;
@@ -45,8 +46,17 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     {
         RulesEntryId = message.CoreRules;
 
+        if (UIManager.GetUIController<PublicOfferUIController>().ShouldDeferRulesDisplay)
+            return;
+
         if (message.ShouldShowRules)
             ShowRules(message.PopupTime);
+    }
+
+    public void ShowRulesFromServer(string coreRules, float popupTime)
+    {
+        RulesEntryId = coreRules;
+        ShowRules(popupTime);
     }
 
     public void OnStateExited(GameplayState state)

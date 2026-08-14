@@ -20,7 +20,9 @@ public sealed partial class PersonalShieldOverlay : Overlay
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;
     private readonly InventorySystem _inventory;
-    private readonly ShaderInstance _shader;
+    private readonly ShaderInstance _baseShader;
+    private readonly Dictionary<EntityUid, ShaderInstance> _shaders = new();
+    private readonly HashSet<EntityUid> _seen = new();
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
@@ -31,7 +33,18 @@ public sealed partial class PersonalShieldOverlay : Overlay
         _sprite = _entManager.System<SpriteSystem>();
         _inventory = _entManager.System<InventorySystem>();
         var protoMan = IoCManager.Resolve<IPrototypeManager>();
-        _shader = protoMan.Index(ShaderId).InstanceUnique();
+        _baseShader = protoMan.Index(ShaderId).Instance().Duplicate();
+    }
+
+    protected override void DisposeBehavior()
+    {
+        base.DisposeBehavior();
+
+        foreach (var shader in _shaders.Values)
+            shader.Dispose();
+
+        _shaders.Clear();
+        _baseShader.Dispose();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -40,6 +53,7 @@ public sealed partial class PersonalShieldOverlay : Overlay
             return;
 
         var handle = args.WorldHandle;
+        _seen.Clear();
 
         // Cancel the eye rotation so the shield is always "upright".
         var eyeRot = args.Viewport.Eye?.Rotation ?? Angle.Zero;
@@ -64,30 +78,68 @@ public sealed partial class PersonalShieldOverlay : Overlay
                 continue;
 
             var size = extents * shield.Scale;
+            var shader = GetShader(uid);
+            _seen.Add(uid);
 
-            _shader.SetParameter("progress", GetProgress(shield));
-            _shader.SetParameter("skin_color", shield.Color);
-            _shader.SetParameter("brightness", shield.Brightness);
-            _shader.SetParameter("pixel_grid", shield.PixelGrid);
-            _shader.SetParameter("hex_density", shield.HexDensity);
-            _shader.SetParameter("form_origin", shield.FormOrigin);
-            _shader.SetParameter("fill_level", shield.FillLevel);
-            _shader.SetParameter("line_level", shield.LineLevel);
-            _shader.SetParameter("rim_level", shield.RimLevel);
-            _shader.SetParameter("core_fade", shield.CoreFade);
-            _shader.SetParameter("shard_scale", shield.ShardScale);
-            _shader.SetParameter("alpha_bands", shield.AlphaBands);
-            _shader.SetParameter("breath_depth", shield.BreathDepth);
+            shader.SetParameter("progress", GetProgress(shield));
+            shader.SetParameter("skin_color", shield.Color);
+            shader.SetParameter("brightness", shield.Brightness);
+            shader.SetParameter("pixel_grid", shield.PixelGrid);
+            shader.SetParameter("hex_density", shield.HexDensity);
+            shader.SetParameter("form_origin", shield.FormOrigin);
+            shader.SetParameter("fill_level", shield.FillLevel);
+            shader.SetParameter("line_level", shield.LineLevel);
+            shader.SetParameter("rim_level", shield.RimLevel);
+            shader.SetParameter("core_fade", shield.CoreFade);
+            shader.SetParameter("shard_scale", shield.ShardScale);
+            shader.SetParameter("alpha_bands", shield.AlphaBands);
+            shader.SetParameter("breath_depth", shield.BreathDepth);
 
-            handle.UseShader(_shader);
+            handle.UseShader(shader);
 
             var worldPos = _transform.GetWorldPosition(xform);
             handle.SetTransform(Matrix3x2.Multiply(counterRot, Matrix3Helpers.CreateTranslation(worldPos)));
             handle.DrawTextureRect(Texture.White, Box2.CenteredAround(Vector2.Zero, size));
         }
 
+        PruneShaders();
         handle.SetTransform(Matrix3x2.Identity);
         handle.UseShader(null);
+    }
+
+    private ShaderInstance GetShader(EntityUid uid)
+    {
+        if (_shaders.TryGetValue(uid, out var existing))
+            return existing;
+
+        var shader = _baseShader.Duplicate();
+        _shaders[uid] = shader;
+        return shader;
+    }
+
+    private void PruneShaders()
+    {
+        if (_shaders.Count == _seen.Count)
+            return;
+
+        List<EntityUid>? remove = null;
+        foreach (var uid in _shaders.Keys)
+        {
+            if (_seen.Contains(uid))
+                continue;
+
+            remove ??= new List<EntityUid>();
+            remove.Add(uid);
+        }
+
+        if (remove == null)
+            return;
+
+        foreach (var uid in remove)
+        {
+            _shaders[uid].Dispose();
+            _shaders.Remove(uid);
+        }
     }
 
     private bool TryGetHitboxSize(EntityUid uid, SpriteComponent sprite, out Vector2 extents)

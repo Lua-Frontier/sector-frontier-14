@@ -227,8 +227,13 @@
   - type: ShipRepairable
     repairTime: 5
     repairCost: 5
+  - type: DeltaPressure
+    minPressure: 15000
+    minPressureDelta: 10000
+    scalingType: Threshold
 
 # Indestructible reinforced window variants reusing Kriss sprites
+
 - type: entity
   id: ReinforcedWindowKrissIndestructible
   name: reinforced window
@@ -404,8 +409,11 @@
   - type: ShipRepairable
     repairTime: 10
     repairCost: 20
+  - type: RadiationBlocker
+    resistance: 4
 
 # Windows
+
 - type: entity
   id: PlastitaniumWindowStation
   name: plastitanium window
@@ -449,6 +457,13 @@
     repairCost: 8
   - type: ArmorThickness
     thickness: 20
+  - type: RadiationBlocker
+    resistance: 4
+  - type: DeltaPressure
+    minPressure: 15000
+    minPressureDelta: 10000
+    scalingType: Linear
+    scalingPower: 0.0005
 
 - type: entity
   id: PlastitaniumWindowDiagonalStation
@@ -493,6 +508,13 @@
     repairCost: 8
   - type: ArmorThickness
     thickness: 15
+  - type: RadiationBlocker
+    resistance: 3
+  - type: DeltaPressure
+    minPressure: 15000
+    minPressureDelta: 10000
+    scalingType: Linear
+    scalingPower: 0.0005
 
 - type: entity
   parent: BaseWallTierOne # Mono
@@ -542,6 +564,11 @@
     price: 500
   - type: ArmorThickness
     thickness: 2
+  - type: ShipRepairable
+    repairTime: 2
+    repairCost: 2
+  - type: RadiationBlocker
+    resistance: 1
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -593,8 +620,11 @@
   - type: ShipRepairable
     repairTime: 10
     repairCost: 20
+  - type: RadiationBlocker
+    resistance: 5
 
 #Стены для монастыря Фауста
+
 - type: entity
   parent: BaseWallTierFour # Mono
   id: WallMonasteryGray
@@ -626,6 +656,11 @@
     price: 350
   - type: ArmorThickness
     thickness: 15
+  - type: ShipRepairable
+    repairTime: 8
+    repairCost: 10
+  - type: RadiationBlocker
+    resistance: 4
 
 - type: entity
   parent: BaseWallTierTwo # Mono
@@ -643,6 +678,11 @@
     damageCoefficient: 0.8 # Lua
   - type: StaticPrice
     price: 350
+  - type: ShipRepairable
+    repairTime: 3
+    repairCost: 6
+  - type: RadiationBlocker
+    resistance: 3
 
 - type: entity
   parent: WallDiagonalBase
@@ -731,6 +771,9 @@
     resistance: 5
   - type: ArmorThickness
     thickness: 3
+  - type: ShipRepairable
+    repairTime: 2
+    repairCost: 3
 
 - type: entity
   parent: BaseWallOutpost # Mono
@@ -932,6 +975,9 @@
   - type: Repairable
     fuelCost: 15
     doAfterDelay: 3
+    qualities:
+    - Welding
+    - Applicating
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -945,6 +991,17 @@
     repairCost: 10
   - type: ArmorThickness
     thickness: 15
+  - type: RadiationBlocker
+    resistance: 5
+  - type: DeltaPressure
+    minPressure: 150000
+    minPressureDelta: 100000
+    scalingType: Linear
+    scalingPower: 0.0001
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
 
 - type: entity
   id: AstrolitWindowDiagonal

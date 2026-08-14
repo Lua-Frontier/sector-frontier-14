@@ -10,12 +10,9 @@
   name: Scrap Debris
   abstract: true
   components:
-    - type: RadarBlipIcon
-      icon: /Textures/_Lua/Interface/Radar/wreck.png
-      scale: 1.2
-      maxDistance: 1024
-      allowWhenHidden: true
-    - type: MapGrid
+    - type: IFF
+      flags: HideLabel
+      color: "#88b0d1"
     - type: BlobFloorPlanBuilder
       floorTileset:
         - Plating
@@ -144,13 +141,6 @@
             prob: 0.0025
           - id: Thruster
             prob: 0.005
-    - type: GCAbleObject
-      queue: SpaceDebris
-    - type: IFF
-      flags: HideLabel
-      color: "#88b0d1"
-    - type: DetectedAtRangeMultiplier
-      visualBias: 1024
 
 - type: entity
   id: ScrapDebrisSmall

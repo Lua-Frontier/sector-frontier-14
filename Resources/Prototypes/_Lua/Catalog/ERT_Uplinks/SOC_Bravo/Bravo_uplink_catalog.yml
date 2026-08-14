@@ -75,7 +75,6 @@
   categories:
     - BravoUplinkMedical
 
-
 - type: listing
   id: BravoUplinkMedicalDefibrillatorCompact
   name: компактный дефибриллятор
@@ -208,8 +207,6 @@
     Speso: 1000
   categories:
   - BravoUplinkAmmo
-
-
 
 - type: listing
   id: BravoUplinkMagazine45_ACPSubMachineGunFMJ # Mag
@@ -417,59 +414,11 @@
       - SecurityUplink
 
 - type: listing
-  id: BravoUplinkWeaponM54CE2Bundle # m54ce2
-  name:  uplink-security-m54ce2-name
-  description: uplink-security-m54ce2-desc
-  productEntity: WeaponCaseLongWeaponRifleM54CE2
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Rifles/m54ce2.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - BravoUplinkWeapon
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
   id: BravoUplinkWeaponUniversalBundle # Universal
   name:  uplink-security-universal-name
   description: uplink-security-universal-desc
   productEntity: WeaponCaseShortUniversalExpedition
   icon: { sprite: _DV/Objects/Weapons/Guns/Pistols/universal.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - BravoUplinkWeapon
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
-  id: BravoUplinkWeaponMP5Bundle # MP5
-  name:  uplink-security-mp5-name
-  description: uplink-security-mp5-desc
-  productEntity: WeaponCaseLongWeaponSMGMP5
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/SMGs/mp5.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-  - BravoUplinkWeapon
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SecurityUplink
-
-- type: listing
-  id: BravoUplinkWeaponD18Bundle # D18
-  name:  uplink-security-d18-name
-  description: uplink-security-d18-desc
-  productEntity: WeaponCaseShortRMCWeaponPistolD18
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/m43.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -556,7 +505,6 @@
   categories:
     - BravoUplinkWeapon
 
-
 - type: listing
   id: BravoUplinkWeaponInspectorBundle # Inspector (.45 Magnum)
   name:  uplink-security-InspectorBundle-name
@@ -567,7 +515,6 @@
     FrontierUplinkCoin: 5
   categories:
     - BravoUplinkWeapon
-
 
 - type: listing
   id: BravoUplinkWeaponNonLethalArmory
@@ -591,7 +538,6 @@
   categories:
     - BravoUplinkWeapon
 
-
 - type: listing
   id: BravoUplinkWeaponAshstorm # EM72 Ashstorm
   name:  uplink-security-ashstorm-name
@@ -602,7 +548,6 @@
     FrontierUplinkCoin: 5
   categories:
     - BravoUplinkWeapon
-
 
 - type: listing
   id: BravoUplinkWeaponEg4 # Energy revolver EG-4
@@ -618,54 +563,6 @@
     whitelist:
       tags:
       - SecurityUplink
-
-- type: listing
-  id: BravoUplinkWeaponLaserRifle # LaserRifle
-  name:  uplink-security-laserrifle-name
-  description: uplink-security-laserrifle-desc
-  productEntity: WeaponCaseShortN14WeaponLaserRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - BravoUplinkWeapon
-
-
-- type: listing
-  id: BravoUplinkWeaponUrbanPlasma # UrbanPlasma
-  name:  uplink-security-urbanplasma-name
-  description: uplink-security-urbanplasma-desc
-  productEntity: WeaponCaseShortN14WeaponUrbanPlasmaRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_urban.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - BravoUplinkWeapon
-
-
-- type: listing
-  id: BravoUplinkWeaponRechargerRifle # RechargerRifle
-  name:  uplink-security-rechargerrifle-name
-  description: uplink-security-rechargerrifle-desc
-  productEntity: WeaponCaseLongN14WeaponRechargerRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_rifle.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - BravoUplinkWeapon
-
-
-- type: listing
-  id: BravoUplinkWeaponRechargerPistol # RechargerPistol
-  name:  uplink-security-rechargerpistol-name
-  description: uplink-security-rechargerpistol-desc
-  productEntity: WeaponCaseShortN14WeaponRechargerPistol
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/recharger_pistol.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - BravoUplinkWeapon
-
 
 - type: listing
   id: BravoUplinkWeaponRifleTemperature # RifleTemperature

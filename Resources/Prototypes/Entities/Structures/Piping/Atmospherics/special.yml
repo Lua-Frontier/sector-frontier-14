@@ -29,7 +29,20 @@
   - type: Construction #Lua_Tweak - крафт маленького вентилятора
     graph: AtmosDeviceFanTiny 
     node: AtmosDeviceFanTiny
-
+  - type: Damageable # Lua
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible # Lua
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: ShipRepairable
     repairCost: 2
 - type: entity
@@ -63,5 +76,19 @@
   - type: Construction
     graph: AtmosDeviceFanDirectional
     node: AtmosDeviceFanDirectional
+  - type: Damageable # Lua
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible # Lua
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: ShipRepairable
     repairCost: 2

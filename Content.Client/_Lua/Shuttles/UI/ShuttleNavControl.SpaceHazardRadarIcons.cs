@@ -7,9 +7,11 @@ using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.Shuttles.Components;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared._Mono.Radar;
+using Content.Shared.Station.Components;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -32,9 +34,10 @@ public partial class ShuttleNavControl
         var uiYCentre = (int)Height / 2;
         var scaledMousePos = GetScaledMouseUiPosition();
 
-        const float fullScaleDistance = 512f;
+        const float fullScaleDistance = 200f;
         const float minDistanceScale = 0.35f;
-        var maxScaleRange = MathF.Max(WorldMaxRange, fullScaleDistance + 1f);
+        const float scaleEndDistance = 800f;
+        var maxScaleRange = scaleEndDistance;
 
         var celestialQuery = EntManager.AllEntityQueryEnumerator<SectorCelestialBodyComponent, RadarBlipIconComponent, TransformComponent>();
         while (celestialQuery.MoveNext(out var uid, out _, out var icon, out var xform))
@@ -129,8 +132,11 @@ public partial class ShuttleNavControl
         var displayedDistance = worldDist < 50f ? $"{worldDist:0.0}" : worldDist < 1000 ? $"{worldDist:0}" : $"{worldDist / 1000:0.0}k";
         var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName), ("distance", displayedDistance));
 
-        var textScale = UIScale * 0.9f * distanceScale;
-        var labelDimensions = handle.GetDimensions(Font, labelText, 0.9f * distanceScale);
+        // 956a2b5 RAM leak: font scale must be quantized, not raw distanceScale.
+        const float dimScale = 0.9f;
+        var labelFontScale = QuantizeRadarLabelScale(dimScale * distanceScale);
+        var textScale = UIScale * labelFontScale;
+        var labelDimensions = handle.GetDimensions(Font, labelText, labelFontScale);
         var blipSize = RadarBlipSize * 0.7f * distanceScale;
         var labelOffset = new Vector2
         {
@@ -153,5 +159,14 @@ public partial class ShuttleNavControl
             return true;
 
         return entManager.TryGetComponent<AmbientSpaceFieldComponent>(uid, out var field) && field.HasWeather;
+    }
+    private bool IsRadarBlipIconDrawnElsewhere(EntityUid uid)
+    {
+        if (IsSpaceHazardRadarIconEntity(EntManager, uid)) return true;
+        if (!ShowIFF || !EntManager.HasComponent<MapGridComponent>(uid)) return false;
+        if (EntManager.TryGetComponent<RadarBlipIconComponent>(uid, out var gridIcon) && gridIcon.Icon != default) return true;
+        return EntManager.TryGetComponent<StationMemberComponent>(uid, out var member)
+               && EntManager.TryGetComponent<RadarBlipIconComponent>(member.Station, out var stationIcon)
+               && stationIcon.Icon != default;
     }
 }

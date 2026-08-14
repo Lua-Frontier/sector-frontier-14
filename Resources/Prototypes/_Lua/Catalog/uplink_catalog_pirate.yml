@@ -306,22 +306,6 @@
       - PirateUplink
 
 - type: listing
-  id: UplinkPirateAntiMaterielBundle # AntiMateriel
-  name: uplink-pirate-AMBundle-name
-  description: uplink-pirate-AMBundle-desc
-  productEntity: WeaponCaseLongN14WeaponAntiMateriel
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/antimateriel.rsi, state: icon }
-  cost:
-    Doubloon: 7
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
   id: UplinkPiratePrometheusBundle # Prometheus
   name: uplink-pirate-PrometheusBundle-name
   description: uplink-pirate-PrometheusBundle-desc
@@ -354,43 +338,11 @@
       - PirateUplink
 
 - type: listing
-  id: UplinkPirateMK45Bundle # MK45
-  name: uplink-pirate-MK45Bundle-name
-  description: uplink-pirate-MK45Bundle-desc
-  productEntity: WeaponCaseShortRMCWeaponPistolMK45
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/mk45.rsi, state: icon }
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
   id: UplinkPirateMLA73Bundle # Mla73
   name: uplink-typan-Mla73Bundle-name
   description: uplink-typan-Mla73Bundle-desc
   productEntity: WeaponCaseLongMla73Bundle
   icon: { sprite: _Mono/Objects/Weapons/Guns/SMGs/mla73.rsi, state: icon }
-  cost:
-    Doubloon: 3
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
-  id: UplinkPirateHoldoutBundle # pistol holdout
-  name: uplink-pirate-HoldoutBundle-name
-  description: uplink-pirate-HoldoutBundle-desc
-  productEntity: WeaponCaseShortRMCWeaponPistolHoldout
-  icon: { sprite: _RMC14/Objects/Weapons/Guns/Pistols/holdout.rsi, state: icon }
   cost:
     Doubloon: 3
   categories:
@@ -562,102 +514,6 @@
       - PirateUplink
 
 #region energy guns
-- type: listing
-  id: UplinkPirateLaserGatlingBundle # LaserGatling
-  name: uplink-pirate-LGBundle-name
-  description: uplink-pirate-LGBundle-desc
-  productEntity: WeaponCaseLongN14WeaponLaserGatling
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_gatling.rsi, state: icon }
-  cost:
-    Doubloon: 10
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
-  id: UplinkPirateProtoRifleBundle # ProtoRifle
-  name: uplink-pirate-PRBundle-name
-  description: uplink-pirate-PRBundle-desc
-  productEntity: WeaponCaseShortN14WeaponLaserProtoRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_rifle_proto.rsi, state: icon }
-  cost:
-    Doubloon: 7
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
-  id: UplinkPiratePlasmaAutoRifleBundle # PlasmaAutoRifle
-  name: uplink-pirate-PARBundle-name
-  description: uplink-pirate-PARBundle-desc
-  productEntity: WeaponCaseShortN14WeaponPlasmaAutoRifle
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_autorifle.rsi, state: icon }
-  cost:
-    Doubloon: 7
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
-  id: UplinkPirateWattz3000Bundle # Wattz3000
-  name: uplink-pirate-wattz3Bundle-name
-  description: uplink-pirate-wattz3Bundle-desc
-  productEntity: WeaponCaseShortN14WeaponWattz3000
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/wattz3000.rsi, state: icon }
-  cost:
-    Doubloon: 7
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
-  id: UplinkPirateLaserPistolBundle # LaserPistol
-  name: uplink-pirate-LPBundle-name
-  description: uplink-pirate-LPBundle-desc
-  productEntity: WeaponCaseShortN14WeaponLaserPistol
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/laser_pistol.rsi, state: icon }
-  cost:
-    Doubloon: 7
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
-- type: listing
-  id: UplinkPiratePlasmaDefenderBundle # PlasmaDefender
-  name: uplink-pirate-PDBundle-name
-  description: uplink-pirate-PDBundle-desc
-  productEntity: WeaponCaseShortN14WeaponPlasmaDefender
-  icon: { sprite: _Nuclear14/Objects/Weapons/Guns/Battery/plasma_pistol.rsi, state: icon }
-  cost:
-    Doubloon: 7
-  categories:
-  - UplinkPirateWeapons
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - PirateUplink
-
 - type: listing
   id: UplinkPirateEGunFrostBundle # EnergyGunFrost
   name: uplink-pirate-EGFBundle-name
@@ -1250,7 +1106,6 @@
       whitelist:
         tags:
           - PirateUplink
-
 
 #region utility
 

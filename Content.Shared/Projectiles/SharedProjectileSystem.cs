@@ -1,17 +1,27 @@
 using System.Numerics;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Camera;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
 using Content.Shared.DoAfter;
+using Content.Shared.Effects;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Tag;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Events;
+using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Whitelist;
+using Content.Shared._Mono.CCVar;
+using Robust.Shared;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -19,12 +29,16 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Robust.Shared.Threading;
 using System.Collections.Concurrent;
 using Robust.Shared.Timing;
 using Content.Shared._Mono;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
+using Content.Shared.BarricadeBlock;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Projectiles;
 
@@ -33,15 +47,27 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     public const string ProjectileFixture = "projectile";
 
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedGunSystem _guns = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelistSystem = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly IParallelManager _parallel = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    private float _minRaycastVelocity;
+    private bool _adaptiveRaycasting;
+    private const int BasePhysicsTickrate = 60;
+    private int _physicsTickrate;
 
     // Cache of projectiles waiting for collision checks
     private readonly ConcurrentQueue<(EntityUid Uid, ProjectileComponent Component, EntityUid Target)> _pendingCollisionChecks = new();
@@ -55,7 +81,9 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ProjectileComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<ProjectileComponent, PreventCollideEvent>(PreventCollision);
+        SubscribeLocalEvent<ProjectileComponent, TileFrictionEvent>(OnTileFriction);
         SubscribeLocalEvent<EmbeddableProjectileComponent, PreventCollideEvent>(EmbeddablePreventCollision); // Goobstation - Crawl Fix
         SubscribeLocalEvent<EmbeddableProjectileComponent, ProjectileHitEvent>(OnEmbedProjectileHit);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ThrowDoHitEvent>(OnEmbedThrowDoHit);
@@ -68,6 +96,153 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         SubscribeLocalEvent<ProjectileGridPhaseComponent, ComponentStartup>(OnProjectileGridPhaseStartup);
         // Subscribe to ensure MetaDataComponent on projectile entities for networking
         SubscribeLocalEvent<ProjectileComponent, ComponentStartup>(OnProjectileMetaStartup);
+
+        Subs.CVar(_cfg, MonoCVars.ProjectileRaycastSpeedThreshold, value => _minRaycastVelocity = value, true);
+        Subs.CVar(_cfg, MonoCVars.ProjectileAdaptiveRaycastThreshold, value => _adaptiveRaycasting = value, true);
+        Subs.CVar(_cfg, CVars.TargetMinimumTickrate, value => _physicsTickrate = value, true);
+    }
+
+    /// <summary>
+    /// Determines whether a fast-moving projectile should use raycast hit detection.
+    /// </summary>
+    public bool ShouldRaycastProjectile(float speed)
+    {
+        if (_adaptiveRaycasting && speed > _minRaycastVelocity * (_physicsTickrate / (float) BasePhysicsTickrate))
+            return true;
+
+        if (speed > _minRaycastVelocity)
+            return true;
+
+        return false;
+    }
+
+    private void OnStartCollide(EntityUid uid, ProjectileComponent component, ref StartCollideEvent args)
+    {
+        if (args.OurFixtureId != ProjectileFixture || !args.OtherFixture.Hard
+            || component.ProjectileSpent || component is { Weapon: null, OnlyCollideWhenShot: true })
+            return;
+
+        ProjectileCollide((uid, component, args.OurBody), args.OtherEntity);
+    }
+
+    public DamageSpecifier? ProjectileCollide(Entity<ProjectileComponent, PhysicsComponent> projectile, EntityUid target, bool predicted = false)
+    {
+        return ProjectileCollide(projectile, target, null, predicted);
+    }
+
+    public virtual DamageSpecifier? ProjectileCollide(Entity<ProjectileComponent, PhysicsComponent> projectile, EntityUid target, MapCoordinates? collisionCoordinates, bool predicted = false)
+    {
+        var (uid, component, ourBody) = projectile;
+
+        var attemptEv = new ProjectileReflectAttemptEvent(uid, component, false);
+        RaiseLocalEvent(target, ref attemptEv);
+        if (attemptEv.Cancelled)
+        {
+            SetShooter(uid, component, target);
+            return null;
+        }
+
+        var damage = component.Damage * _damageableSystem.UniversalProjectileDamageModifier;
+        if (component.Whitelist != null && _entityWhitelistSystem.IsValid(component.Whitelist, target))
+            damage += component.DamageWhitelist;
+
+        var ev = new ProjectileHitEvent(damage, target, component.Shooter);
+        RaiseLocalEvent(uid, ref ev);
+        if (ev.Handled)
+            return null;
+
+        if (component.ProjectileSpent)
+        {
+            if (_net.IsServer && component.DeleteOnCollide)
+                QueueDel(uid);
+
+            return null;
+        }
+
+        var coordinates = collisionCoordinates != null
+            ? _transform.ToCoordinates(collisionCoordinates.Value)
+            : Transform(projectile).Coordinates;
+        var otherName = ToPrettyString(target);
+        var direction = ourBody.LinearVelocity.Normalized();
+        DamageSpecifier modifiedDamage;
+        if (_net.IsServer)
+        {
+            modifiedDamage = _damageableSystem.TryChangeDamage(target,
+                ev.Damage,
+                component.IgnoreResistances,
+                origin: component.Shooter,
+                tool: uid,
+                armorPenetration: component.ArmorPenetration) ?? new DamageSpecifier();
+        }
+        else
+        {
+            modifiedDamage = new DamageSpecifier(ev.Damage);
+        }
+
+        var deleted = Deleted(target);
+        var filter = Filter.Pvs(coordinates, entityMan: EntityManager);
+        if (_guns.GunPrediction &&
+            TryComp(projectile, out PredictedProjectileServerComponent? serverProjectile) &&
+            serverProjectile.Shooter is { } shooter)
+        {
+            filter = filter.RemovePlayer(shooter);
+        }
+
+        var impactFilter = Filter.Pvs(coordinates, entityMan: EntityManager);
+        var damageFilter = Filter.Pvs(coordinates, entityMan: EntityManager);
+
+        if (modifiedDamage.AnyPositive() && !deleted)
+            _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, damageFilter);
+
+        if (modifiedDamage is not null && (EntityManager.EntityExists(component.Shooter) || EntityManager.EntityExists(component.Weapon)))
+        {
+            var shooterOrWeapon = EntityManager.EntityExists(component.Shooter) ? component.Shooter!.Value : component.Weapon!.Value;
+            _adminLogger.Add(LogType.BulletHit,
+                HasComp<ActorComponent>(target) ? LogImpact.Extreme : LogImpact.High,
+                $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(shooterOrWeapon):source} hit {otherName:target} and dealt {modifiedDamage.GetTotal():damage} damage");
+        }
+
+        if (!deleted)
+        {
+            _guns.PlayImpactSound(target, modifiedDamage, component.SoundHit, component.ForceSound, filter, projectile);
+            _sharedCameraRecoil.KickCamera(target, float.IsNaN(direction.X) ? Vector2.Zero : direction);
+        }
+
+        Dirty(uid, component);
+
+        if (!predicted && component.DeleteOnCollide && component.ProjectileSpent && (_net.IsServer || IsClientSide(uid)))
+            QueueDel(uid);
+        else if (_net.IsServer && component.DeleteOnCollide && component.ProjectileSpent)
+        {
+            var predictedComp = EnsureComp<PredictedProjectileHitComponent>(uid);
+            predictedComp.Origin = _transform.GetMoverCoordinates(coordinates);
+
+            var targetCoords = _transform.GetMoverCoordinates(target);
+            if (predictedComp.Origin.TryDistance(EntityManager, _transform, targetCoords, out var distance))
+                predictedComp.Distance = distance;
+
+            Dirty(uid, predictedComp);
+        }
+
+        if (component.ImpactEffect != null)
+        {
+            var impactEffectEv = new ImpactEffectEvent(component.ImpactEffect, GetNetCoordinates(coordinates));
+            if (_net.IsServer)
+            {
+                RaiseNetworkEvent(impactEffectEv, impactFilter);
+            }
+            else if (IsClientSide(uid) || predicted)
+            {
+                RaiseLocalEvent(impactEffectEv);
+            }
+        }
+
+        return modifiedDamage;
+    }
+
+    private void OnTileFriction(Entity<ProjectileComponent> ent, ref TileFrictionEvent args)
+    {
+        args.Modifier = ent.Comp.LinearDampening;
     }
 
     /// <summary>
@@ -87,7 +262,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         // Check if the entity still exists before trying to add a component
         if (!EntityManager.EntityExists(uid))
             return;
-            
+
         EnsureComp<MetaDataComponent>(uid);
     }
 
@@ -358,6 +533,62 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             return;
         }
 
+        // BarricadeBlock (ported from civ14/BF14)
+        if (TryComp(args.OtherEntity, out BarricadeBlockComponent? barricadeBlock))
+        {
+            var alwaysPassThrough = false;
+            if (component.Shooter is { } shooterUid && Exists(shooterUid))
+            {
+                var shooterWorldRotation = _transform.GetWorldRotation(shooterUid);
+                var barricadeBlockWorldRotation = _transform.GetWorldRotation(args.OtherEntity);
+
+                var shooterDir = shooterWorldRotation.GetCardinalDir();
+                var barricadeBlockDir = barricadeBlockWorldRotation.GetCardinalDir();
+
+                var directionallyAllowed = false;
+                if (shooterDir == barricadeBlockDir)
+                {
+                    directionallyAllowed = true;
+                }
+                else if (barricadeBlock.Bidirectional)
+                {
+                    var oppositeBarricadeBlockDir = (Direction)(((int)barricadeBlockDir + 4) % 8);
+                    if (shooterDir == oppositeBarricadeBlockDir)
+                        directionallyAllowed = true;
+                }
+                else if (barricadeBlock.Omnidirectional)
+                {
+                    directionallyAllowed = true;
+                }
+
+                if (directionallyAllowed)
+                {
+                    var shooterCoords = Transform(shooterUid).Coordinates;
+                    var barricadeBlockCoords = Transform(args.OtherEntity).Coordinates;
+                    var bypassDistance = barricadeBlock.PassThroughDistance;
+
+                    if (shooterCoords.TryDistance(EntityManager, barricadeBlockCoords, out var distance) &&
+                        distance <= bypassDistance)
+                    {
+                        alwaysPassThrough = true;
+                    }
+                }
+            }
+
+            if (alwaysPassThrough)
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            var rando = _random.NextFloat(0.0f, 100.0f);
+            if (rando >= barricadeBlock.Blocking)
+            {
+                args.Cancelled = true;
+                return;
+            }
+        }
+
         // Get transforms once for subsequent checks to avoid repeated calls
         var projectileXform = Transform(uid);
         var targetXform = Transform(args.OtherEntity);
@@ -440,14 +671,6 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     {
         public override DoAfterEvent Clone() => this;
     }
-
-    private void OnProjectileHit(EntityUid uid, ProjectileComponent component, ref ProjectileHitEvent args)
-    {
-        if (component.Whitelist != null && _entityWhitelistSystem.IsValid(component.Whitelist, args.Target))
-        {
-            args.Damage += component.DamageWhitelist;
-        }
-    }
 }
 
 [Serializable, NetSerializable]
@@ -476,7 +699,7 @@ public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, Projectile
 /// Raised when a projectile hits an entity
 /// </summary>
 [ByRefEvent]
-public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null);
+public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, EntityUid? Shooter = null, bool Handled = false);
 
 /// <summary>
 /// Mono - raised when a projectile is spent

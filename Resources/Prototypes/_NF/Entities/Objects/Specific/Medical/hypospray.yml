@@ -1,6 +1,6 @@
 - type: entity
   name: NTCS-101 hypospray
-  parent: BaseItem
+  parent: [BaseItem, BaseNanotrasenContrabandT1]
   description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay.
   id: HypoMini
   components:
@@ -42,7 +42,7 @@
 
 - type: entity
   name: NTCS-102 hypospray
-  parent: [HypoMini, BaseC2ContrabandUnredeemable]
+  parent: [HypoMini, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1]
   description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay. This one is branded for use by law-enforcement.
   id: HypoBrigmedic
   components:
@@ -59,7 +59,7 @@
 
 - type: entity
   name: NTCS-103 hypospray
-  parent: HypoMini
+  parent: [HypoMini, BaseNanotrasenContrabandT1]
   description: A commercial hypospray designed by Nanotrasen Chemical Supply. It has two built in safety features for the consumer market, a small chemical reservoir and an injection delay. This one seems to be a limited edition, lucky you!
   id: HypoMiniLimitedEdition
   components:

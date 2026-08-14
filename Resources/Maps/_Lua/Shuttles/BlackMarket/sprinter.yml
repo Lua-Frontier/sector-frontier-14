@@ -5114,7 +5114,7 @@ entities:
       parent: 1
     - type: Lock
       locked: False
-- proto: Magazine45SubMachineGun
+- proto: Magazine45_ACPSubMachineGunFMJ
   entities:
   - uid: 10
     mapInit: true
@@ -5122,18 +5122,8 @@ entities:
     components:
     - type: Transform
       parent: 2
-    - type: BallisticAmmoProvider
-      unspawnedCount: 25
-    - type: EmitSoundOnCollide
-      nextSound: -101286.8547716
     - type: Physics
       canCollide: False
-    - type: InsideEntityStorage
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
   - uid: 12
     mapInit: true
     paused: true
@@ -5205,7 +5195,7 @@ entities:
       dnas: []
       fibers: []
       fingerprints: []
-- proto: MagazineBox44
+- proto: MagazineBox357
   entities:
   - uid: 374
     components:
@@ -5240,7 +5230,7 @@ entities:
     - type: Transform
       pos: -1.5,-6.5
       parent: 1
-- proto: N14CartridgePistol45
+- proto: Paper
   entities:
   - uid: 13
     components:
@@ -5248,7 +5238,7 @@ entities:
       parent: 11
     - type: Physics
       canCollide: False
-- proto: N14Weapon45SMG
+- proto: WeaponSubMachineGunVector45_ACP
   entities:
   - uid: 11
     mapInit: true
@@ -5256,33 +5246,9 @@ entities:
     components:
     - type: Transform
       parent: 2
-    - type: Gun
-      lastFire: 101246.8797079
-      currentAngle: 0.2617993877991494 rad
-      nextFire: -4.0798639
-    - type: ChamberMagazineAmmoProvider
-      boltClosed: True
-    - type: ContainerContainer
-      containers:
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 12
-        gun_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 13
-    - type: EmitSoundOnCollide
-      nextSound: -101286.8547716
     - type: Physics
       canCollide: False
-    - type: InsideEntityStorage
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
-- proto: N14WeaponRevolverMagnun
+- proto: WeaponRevolverPython357
   entities:
   - uid: 376
     components:
@@ -5346,8 +5312,6 @@ entities:
     components:
     - type: Transform
       parent: 368
-    - type: Paper
-      content: Здарова, брат смотри, чшто тебе оставил. Да.. Главное, береги этот корабль, он многое прошел. А и загляни за холодос
     - type: Physics
       canCollide: False
 - proto: PaperBin10
@@ -5882,7 +5846,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 1
-- proto: SpeedLoader44
+- proto: Paper
   entities:
   - uid: 378
     components:

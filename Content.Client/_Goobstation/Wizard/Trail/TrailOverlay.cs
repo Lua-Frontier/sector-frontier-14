@@ -20,6 +20,8 @@ public sealed class TrailOverlay : Overlay
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
 
+    private readonly Dictionary<string, ShaderInstance> _shaderCache = new();
+
     public TrailOverlay(IEntityManager entManager, IPrototypeManager protoMan, IGameTiming timing)
     {
         ZIndex = (int) DrawDepth.Effects;
@@ -29,6 +31,29 @@ public sealed class TrailOverlay : Overlay
         _timing = timing;
         _sprite = _entManager.System<SpriteSystem>();
         _transform = _entManager.System<TransformSystem>();
+    }
+
+    protected override void DisposeBehavior()
+    {
+        base.DisposeBehavior();
+
+        foreach (var shader in _shaderCache.Values)
+            shader.Dispose();
+
+        _shaderCache.Clear();
+    }
+
+    private ShaderInstance? GetShaderInstance(string id)
+    {
+        if (_shaderCache.TryGetValue(id, out var cached))
+            return cached;
+
+        if (!_protoMan.TryIndex<ShaderPrototype>(id, out var shaderProto))
+            return null;
+
+        var instance = shaderProto.InstanceUnique();
+        _shaderCache[id] = instance;
+        return instance;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -53,9 +78,8 @@ public sealed class TrailOverlay : Overlay
 
             var (position, rotation) = _transform.GetWorldPositionRotation(xform, xformQuery);
 
-            if (trail.Shader != null && _protoMan.TryIndex<ShaderPrototype>(trail.Shader, out var shaderProto))
+            if (trail.Shader != null && GetShaderInstance(trail.Shader) is { } shader)
             {
-                var shader = shaderProto.InstanceUnique();
                 foreach (var (key, data) in trail.ShaderData)
                 {
                     switch (data)

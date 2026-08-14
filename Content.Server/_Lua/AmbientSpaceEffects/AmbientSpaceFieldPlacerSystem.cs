@@ -11,7 +11,6 @@ using Content.Shared._Lua.Shuttles.Components;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared._Mono.Radar;
 using Content.Shared.Lua.CLVar;
-using Robust.Server.GameStates;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -44,7 +43,6 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PvsOverrideSystem _pvs = default!;
     [Dependency] private readonly SectorLandmarkAnchorSystem _landmarks = default!;
     [Dependency] private readonly ShipSteeringSystem _shipSteering = default!;
 
@@ -73,7 +71,6 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
 
     private void OnFieldStartup(EntityUid uid, AmbientSpaceFieldComponent component, ComponentStartup args)
     {
-        _pvs.AddGlobalOverride(uid);
         _landmarks.LockToMap(uid);
     }
 
@@ -130,7 +127,6 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
             Dirty(ent, field);
             if (field.HasWeather)
                 EnsureWeatherRadarBlip(ent, field);
-            _pvs.AddGlobalOverride(ent);
             _landmarks.LockToMap(ent);
             placed.Add((pos, radius));
             spawned++;

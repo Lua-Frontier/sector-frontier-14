@@ -139,6 +139,7 @@
         removeKeyOnFinish: false
         inRangeMaxSpeed: null # there's no braking where we're going
         leadingEnabled: false # else it's too good
+        avoidCollisions: false # hostile rammers must not brake/swerve for debris
         targetKey: TargetCoordinates
       services:
       - !type:UtilityService
@@ -159,6 +160,7 @@
         shutdownState: TaskFinished
         removeKeyOnFinish: false
         inRangeMaxSpeed: null # there's no braking where we're going
+        avoidCollisions: false
         targetKey: TargetCoordinates
       services:
       - !type:UtilityService
@@ -179,6 +181,7 @@
         shutdownState: TaskFinished
         removeKeyOnFinish: false
         inRangeMaxSpeed: null # there's no braking where we're going
+        avoidCollisions: false
         targetKey: TargetCoordinates
         avoidProjectiles: true
       services:
@@ -375,3 +378,8 @@
         requireSolo: true
         alwaysFaceTarget: true
         maxTargetingRange: 60000
+        evasionSectorCount: 32
+        evasionSectorDepth: 3
+        brakeThreshold: 0.55
+        gridObstacleClearance: 28
+        minObstructorDistance: 100

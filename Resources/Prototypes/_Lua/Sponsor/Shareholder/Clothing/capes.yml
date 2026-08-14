@@ -1,0 +1,16 @@
+- type: entity
+  parent: [ MonoEnergyShieldClothing, ClothingNeckBase ]
+  id: ClothingNeckCloakNanotrasenVip
+  name: unnown ckoak
+  description: Unnown
+  components:
+  - type: PersonalShield
+    color: "#dba122"
+    shield:
+      maxCharge: 300
+      regenRate: 3
+      spinupTime: 1
+      breakCooldown: 15
+      powerDraw: 0.5
+  - type: Sprite
+    sprite: _Lua/Cloack/nanotrasenvip.rsi

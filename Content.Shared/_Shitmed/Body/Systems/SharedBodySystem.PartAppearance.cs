@@ -108,8 +108,24 @@ public partial class SharedBodySystem
             }
 
             var category = MarkingCategoriesConversion.FromHumanoidVisualLayers(layer);
-            if (bodyAppearance.MarkingSet.Markings.TryGetValue(category, out var markingList))
-                markingsByLayer[layer] = markingList.Select(m => new Marking(m.MarkingId, m.MarkingColors.ToList())).ToList();
+            if (!bodyAppearance.MarkingSet.Markings.TryGetValue(category, out var markingList))
+                continue;
+            List<Marking>? layerMarkings = null;
+            var seen = new HashSet<string>();
+            foreach (var marking in markingList)
+            {
+                if (!seen.Add(marking.MarkingId))
+                    continue;
+
+                if (!_markingManager.TryGetMarking(marking, out var prototype) || prototype.BodyPart != layer)
+                    continue;
+
+                layerMarkings ??= new List<Marking>();
+                layerMarkings.Add(new Marking(marking.MarkingId, marking.MarkingColors.ToList()));
+            }
+
+            if (layerMarkings != null)
+                markingsByLayer[layer] = layerMarkings;
         }
 
         component.Markings = markingsByLayer;
@@ -154,11 +170,17 @@ public partial class SharedBodySystem
             var marking = new Marking(markingId, markingColors);
 
             _humanoid.SetLayerVisibility((uid, bodyAppearance), targetLayer, true, null);
-            _humanoid.AddMarking(uid, markingId, markingColors, true, true, bodyAppearance);
-            if (!partAppearance.Comp.Markings.ContainsKey(targetLayer))
-                partAppearance.Comp.Markings[targetLayer] = new List<Marking>();
+            if (!bodyAppearance.MarkingSet.TryGetMarking(prototype.MarkingCategory, markingId, out _))
+                _humanoid.AddMarking(uid, markingId, markingColors, true, true, bodyAppearance);
 
-            partAppearance.Comp.Markings[targetLayer].Add(marking);
+            if (!partAppearance.Comp.Markings.TryGetValue(targetLayer, out var partMarkings))
+            {
+                partMarkings = new List<Marking>();
+                partAppearance.Comp.Markings[targetLayer] = partMarkings;
+            }
+
+            if (!partMarkings.Any(m => m.MarkingId == markingId))
+                partMarkings.Add(marking);
         }
         //else
             //RemovePartMarkings(uid, component, bodyAppearance);
@@ -226,11 +248,20 @@ public partial class SharedBodySystem
             _humanoid.SetLayerVisibility((target, bodyAppearance), layer, true, null);
         }
 
+        var applied = new HashSet<string>();
         foreach (var (visualLayer, markingList) in component.Markings)
         {
             _humanoid.SetLayerVisibility((target, bodyAppearance), visualLayer, true, null);
             foreach (var marking in markingList)
             {
+                if (!applied.Add(marking.MarkingId))
+                    continue;
+
+                if (!_markingManager.Markings.TryGetValue(marking.MarkingId, out var prototype))
+                    continue;
+                if (bodyAppearance.MarkingSet.TryGetMarking(prototype.MarkingCategory, marking.MarkingId, out _))
+                    continue;
+
                 _humanoid.AddMarking(target, marking.MarkingId, marking.MarkingColors, true, true, bodyAppearance);
             }
         }
@@ -252,5 +283,23 @@ public partial class SharedBodySystem
 
     protected abstract void ApplyPartMarkings(EntityUid target, BodyPartAppearanceComponent component);
 
-    protected abstract void RemoveBodyMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance);
+    protected virtual void RemoveBodyMarkings(EntityUid target, BodyPartAppearanceComponent partAppearance, HumanoidAppearanceComponent bodyAppearance)
+    {
+        var seen = new HashSet<string>();
+        foreach (var (_, markingList) in partAppearance.Markings)
+        {
+            foreach (var marking in markingList)
+            {
+                if (!seen.Add(marking.MarkingId))
+                    continue;
+
+                if (!_markingManager.Markings.TryGetValue(marking.MarkingId, out var prototype))
+                    continue;
+
+                bodyAppearance.MarkingSet.RemoveAll(prototype.MarkingCategory, marking.MarkingId);
+            }
+        }
+
+        Dirty(target, bodyAppearance);
+    }
 }

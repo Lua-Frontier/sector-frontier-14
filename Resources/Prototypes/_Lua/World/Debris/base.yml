@@ -20,11 +20,11 @@
     scale: 1.2
     maxDistance: 1512
     allowWhenHidden: true
+  - type: DetectedAtRangeMultiplier
+    visualBias: 2048
   - type: IFF
     flags: HideLabel
   - type: ClaimableGrid
-  - type: DetectedAtRangeMultiplier
-    visualBias: 1512
 
 # NF alias — same as BaseDebris; kept for existing parent refs
 - type: entity

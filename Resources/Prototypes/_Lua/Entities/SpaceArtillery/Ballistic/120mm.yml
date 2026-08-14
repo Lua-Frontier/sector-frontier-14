@@ -1,0 +1,45 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: WeaponTurretAk820
+  id: Weapon120mm
+  name: Миномёт "120мм"
+  description: Средний миномёт, использует снаряды 120мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets120mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets120mm
+  - type: Gun
+    fireRate: 0.05
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    whitelist:
+      tags:
+      - CartridgeLua120mm
+    capacity: 24
+    proto: CartridgeLua120mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon120mmBaseFlatpack
+  name: упакованный средний миномёт
+  description: Упакованный Средний Миномёт (.120мм)
+  components:
+  - type: Flatpack
+    entity: Weapon120mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

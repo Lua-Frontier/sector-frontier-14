@@ -36,6 +36,7 @@ namespace Content.Shared.Localizations
             _loc.LoadCulture(fallbackCulture); // Corvax-Localization
             _loc.SetFallbackCluture(fallbackCulture); // Corvax-Localization
             _loc.AddFunction(culture, "MANY", FormatMany); // Corvax-Localization: To prevent problems in auto-generated locale files
+            _loc.AddFunction(culture, "MAKEPLURAL", FormatMakePluralPassthrough); // ru: units already plural; avoid unknown-function errors
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);
@@ -105,6 +106,14 @@ namespace Content.Shared.Localizations
         }
 
         private static readonly Regex PluralEsRule = new("^.*(s|sh|ch|x|z)$");
+
+        /// <summary>
+        /// Russian units/job names are already pluralized in locale files; return the argument unchanged.
+        /// </summary>
+        private static ILocValue FormatMakePluralPassthrough(LocArgs args)
+        {
+            return args.Args[0];
+        }
 
         private ILocValue FormatMakePlural(LocArgs args)
         {

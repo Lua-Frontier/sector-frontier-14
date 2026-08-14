@@ -13,22 +13,49 @@ public enum PayoutCollectorUiKey : byte
 }
 
 [Serializable, NetSerializable]
+public sealed class PayoutClaimHistoryEntry
+{
+    public string CharacterName;
+    public int Amount;
+
+    public PayoutClaimHistoryEntry(string characterName, int amount)
+    {
+        CharacterName = characterName;
+        Amount = amount;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
 {
-    public int OwnedSectors;
+    public int OwnedStations;
     public int Accumulated;
     public string Faction;
+    public int PayoutPerStation;
+    public int IntervalSeconds;
+    public TimeSpan NextPayoutAt;
+    public List<PayoutClaimHistoryEntry> ClaimHistory;
 
-    public PayoutCollectorBuiState(int ownedSectors, int accumulated, string faction)
+    public PayoutCollectorBuiState(
+        int ownedStations,
+        int accumulated,
+        string faction,
+        int payoutPerStation,
+        int intervalSeconds,
+        TimeSpan nextPayoutAt,
+        List<PayoutClaimHistoryEntry> claimHistory)
     {
-        OwnedSectors = ownedSectors;
+        OwnedStations = ownedStations;
         Accumulated = accumulated;
         Faction = faction;
+        PayoutPerStation = payoutPerStation;
+        IntervalSeconds = intervalSeconds;
+        NextPayoutAt = nextPayoutAt;
+        ClaimHistory = claimHistory;
     }
 }
 
 [Serializable, NetSerializable]
 public sealed class PayoutCollectorClaimMessage : BoundUserInterfaceMessage
-{ }
-
-
+{
+}

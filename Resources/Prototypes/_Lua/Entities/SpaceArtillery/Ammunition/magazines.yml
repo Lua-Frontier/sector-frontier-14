@@ -1,0 +1,327 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+# ---- Tags ----
+- type: Tag
+  id: MagazineLua20mm
+
+- type: Tag
+  id: CartridgeLua20mm
+
+- type: Tag
+  id: MagazineLua53mm
+
+- type: Tag
+  id: CartridgeLua53mm
+
+- type: Tag
+  id: MagazineLua80mm
+
+- type: Tag
+  id: CartridgeLua80mm
+
+- type: Tag
+  id: MagazineLua105mm
+
+- type: Tag
+  id: CartridgeLua105mm
+
+- type: Tag
+  id: CartridgeLua120mm
+
+- type: Tag
+  id: MagazineLua140mm
+
+- type: Tag
+  id: CartridgeLua140mm
+
+- type: Tag
+  id: MagazineNightHunter
+
+- type: Tag
+  id: MagazineLancer
+
+- type: Tag
+  id: MagazineCerber
+
+# ---- 20mm ----
+- type: entity
+  id: CartridgeLua20mm
+  name: cartridge (20mm)
+  parent: 20mmCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua20mm
+  - type: CartridgeAmmo
+    proto: Bullet20mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 20mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MagazineLua20mm
+  name: 20mm ammo loader
+  description: An ammunition loader for Lua 20mm ship guns.
+  parent: Magazine20mm
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua20mm
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
+    proto: CartridgeLua20mm
+    whitelist:
+      tags:
+      - CartridgeLua20mm
+
+# ---- 53mm ----
+- type: entity
+  id: CartridgeLua53mm
+  name: cartridge (53mm)
+  parent: 57mmCartridgeHE
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua53mm
+  - type: CartridgeAmmo
+    proto: Bullet53mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 53mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MagazineLua53mm
+  name: 53mm ammo loader
+  description: An ammunition loader for Lua 53mm ship guns.
+  parent: Magazine57mmHE
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua53mm
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
+    proto: CartridgeLua53mm
+    whitelist:
+      tags:
+      - CartridgeLua53mm
+
+# ---- 80mm ----
+- type: entity
+  id: CartridgeLua80mm
+  name: cartridge (80mm)
+  parent: 90mmCartridgeHE
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua80mm
+  - type: CartridgeAmmo
+    proto: Bullet80mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 80mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MagazineLua80mm
+  name: 80mm ammo loader
+  description: An ammunition loader for Lua 80mm ship guns.
+  parent: 90mmMagazineHE
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua80mm
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
+    proto: CartridgeLua80mm
+    whitelist:
+      tags:
+      - CartridgeLua80mm
+
+# ---- 105mm ----
+- type: entity
+  id: CartridgeLua105mm
+  name: shell (105mm)
+  parent: 90mmCartridgeHE
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua105mm
+  - type: CartridgeAmmo
+    proto: Bullet105mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 105mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MagazineLua105mm
+  name: 105mm ammo loader
+  description: An ammunition loader for Lua 105mm mortars.
+  parent: 90mmMagazineHE
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua105mm
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
+    proto: CartridgeLua105mm
+    whitelist:
+      tags:
+      - CartridgeLua105mm
+
+# ---- 120mm (direct cartridge feed, like AK820) ----
+- type: entity
+  id: CartridgeLua120mm
+  name: shell (120mm)
+  parent: 120mmCartridgeAPHEDS
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua120mm
+  - type: CartridgeAmmo
+    proto: Bullet120mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 120mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+
+# ---- 140mm ----
+- type: entity
+  id: CartridgeLua140mm
+  name: shell (140mm)
+  parent: 140mmCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeLua140mm
+  - type: CartridgeAmmo
+    proto: Bullet140mm
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 140mmhe
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MagazineLua140mm
+  name: 140mm ammo loader
+  description: An ammunition loader for Lua 140mm mortars.
+  parent: Magazine140mm
+  components:
+  - type: Tag
+    tags:
+    - MagazineLua140mm
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    mayTransfer: true
+    capacity: 1
+    proto: CartridgeLua140mm
+    whitelist:
+      tags:
+      - CartridgeLua140mm
+
+# ---- Missiles ----
+- type: entity
+  id: CartridgeNightHunter
+  name: Tomahawk missile
+  parent: MissileCartridge50mmHE
+  components:
+  - type: Tag
+    tags:
+    - Missile
+    - MissileNightHunter
+  - type: CartridgeAmmo
+    proto: BulletTomahawk
+
+- type: entity
+  id: MagazineNightHunter
+  name: Night Hunter missile loader
+  description: Missile magazine for the Night Hunter launcher.
+  parent: MissileMagazine50mmHE
+  components:
+  - type: Tag
+    tags:
+    - MagazineNightHunter
+  - type: BallisticAmmoProvider
+    proto: CartridgeNightHunter
+    whitelist:
+      tags:
+      - MissileNightHunter
+
+- type: entity
+  id: CartridgeLancer
+  name: Spear missile
+  parent: VanykCartridge
+  components:
+  - type: Tag
+    tags:
+    - Missile
+    - MissileLancer
+  - type: CartridgeAmmo
+    proto: BulletWolf
+
+- type: entity
+  id: MagazineLancer
+  name: Lancer missile loader
+  description: Missile magazine for the Lancer-14 launcher.
+  parent: VanykMagazine
+  components:
+  - type: Tag
+    tags:
+    - MagazineLancer
+  - type: BallisticAmmoProvider
+    proto: CartridgeLancer
+    whitelist:
+      tags:
+      - MissileLancer
+
+- type: entity
+  id: CartridgeCerber
+  name: Anaconda missile
+  parent: MissileCartridge250mm
+  components:
+  - type: Tag
+    tags:
+    - Missile
+    - MissileCerber
+  - type: CartridgeAmmo
+    proto: BulletGR
+  # Sprite: inherit Mono MissileCartridge250mm (generic_cartridges.rsi / tovek)
+
+- type: entity
+  id: MagazineCerber
+  name: Cerber missile loader
+  description: Missile magazine for the Cerber-X launcher.
+  parent: PaladinMagazine
+  components:
+  - type: Tag
+    tags:
+    - MagazineCerber
+  - type: BallisticAmmoProvider
+    proto: CartridgeCerber
+    whitelist:
+      tags:
+      - MissileCerber

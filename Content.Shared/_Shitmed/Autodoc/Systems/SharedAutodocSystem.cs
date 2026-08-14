@@ -1,13 +1,16 @@
-using Content.Shared._Shitmed.Autodoc;
+using Content.Shared._Lua.Autodoc;
+using Content.Shared._Lua.Autodoc.Components;
 using Content.Shared._Shitmed.Autodoc.Components;
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Effects.Step;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;
+using Content.Shared._Shitmed.Medical.Surgery.Steps.Parts;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
@@ -16,11 +19,16 @@ using Content.Shared.Climbing.Systems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DragDrop;
+using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Item;
 using Content.Shared.Labels.EntitySystems;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
@@ -47,6 +55,7 @@ public abstract class SharedAutodocSystem : EntitySystem
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly LabelSystem _label = default!;
@@ -75,12 +84,11 @@ public abstract class SharedAutodocSystem : EntitySystem
 
         Subs.BuiEvents<AutodocComponent>(AutodocUiKey.Key, s =>
         {
-            s.Event<AutodocCreateProgramMessage>(OnCreateProgram);
-            s.Event<AutodocToggleProgramSafetyMessage>(OnToggleProgramSafety);
-            s.Event<AutodocRemoveProgramMessage>(OnRemoveProgram);
-            s.Event<AutodocAddStepMessage>(OnAddStep);
-            s.Event<AutodocRemoveStepMessage>(OnRemoveStep);
-            s.Event<AutodocStartMessage>(OnStart);
+            s.Event<BoundUIOpenedEvent>(OnUiOpened);
+            s.Event<AutodocSelectPartMessage>(OnSelectPart);
+            s.Event<AutodocRemovePartMessage>(OnRemovePart);
+            s.Event<AutodocHealPartMessage>(OnHealPart);
+            s.Event<AutodocTransferMessage>(OnTransfer);
             s.Event<AutodocStopMessage>(OnStop);
         });
 
@@ -101,6 +109,7 @@ public abstract class SharedAutodocSystem : EntitySystem
             return;
 
         UpdateAppearance(ent);
+        UpdateUi(ent);
     }
 
     private void OnBodyRemoved(Entity<AutodocComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -113,6 +122,7 @@ public abstract class SharedAutodocSystem : EntitySystem
             RemCompDeferred<ActiveAutodocComponent>(ent);
 
         UpdateAppearance(ent);
+        UpdateUi(ent);
     }
 
     private void OnRelayMovement(Entity<AutodocComponent> ent, ref ContainerRelayMovementEntityEvent args)
@@ -225,55 +235,152 @@ public abstract class SharedAutodocSystem : EntitySystem
 
     #region UI Handling
 
-    private void OnCreateProgram(Entity<AutodocComponent> ent, ref AutodocCreateProgramMessage args)
+    private void OnUiOpened(Entity<AutodocComponent> ent, ref BoundUIOpenedEvent args)
     {
-        CreateProgram(ent, args.Title);
+        UpdateUi(ent);
     }
 
-    private void OnToggleProgramSafety(Entity<AutodocComponent> ent, ref AutodocToggleProgramSafetyMessage args)
+    private void OnSelectPart(Entity<AutodocComponent> ent, ref AutodocSelectPartMessage args)
     {
-        if (IsActive(ent))
+        if (GetEntity(args.Part) is not { Valid: true } part || !IsPatientPart(ent, part))
             return;
 
-        if (args.Program >= ent.Comp.Programs.Count)
+        ent.Comp.SelectedPart = part;
+        UpdateUi(ent);
+    }
+
+    private void OnRemovePart(Entity<AutodocComponent> ent, ref AutodocRemovePartMessage args)
+    {
+        if (GetEntity(args.Part) is not { Valid: true } part || !IsPatientPart(ent, part))
             return;
 
-        var program = ent.Comp.Programs[args.Program];
-        program.SkipFailed ^= true;
-        Dirty(ent);
-
-        _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(args.Actor):user} toggled safety of autodoc program {program.Title}");
+        StartOperation(ent, AutodocOperationKind.RemovePart, part, new List<EntProtoId> { "SurgeryRemovePart" }, args.Actor);
     }
 
-    private void OnRemoveProgram(Entity<AutodocComponent> ent, ref AutodocRemoveProgramMessage args)
+    private void OnHealPart(Entity<AutodocComponent> ent, ref AutodocHealPartMessage args)
     {
-        RemoveProgram(ent, args.Program);
+        if (GetEntity(args.Part) is not { Valid: true } part || !IsPatientPart(ent, part))
+            return;
+
+        var patient = GetPatient(ent);
+        if (patient == null)
+            return;
+
+        var surgeries = new List<EntProtoId>();
+        if (HasTendWoundsDamage(patient.Value, part, SurgeryTendWoundsBrute))
+            surgeries.Add(SurgeryTendWoundsBrute);
+        if (HasTendWoundsDamage(patient.Value, part, SurgeryTendWoundsBurn))
+            surgeries.Add(SurgeryTendWoundsBurn);
+
+        if (surgeries.Count != 0)
+            StartOperation(ent, AutodocOperationKind.TendWounds, part, surgeries, args.Actor);
     }
 
-    private void OnAddStep(Entity<AutodocComponent> ent, ref AutodocAddStepMessage args)
+    private void OnTransfer(Entity<AutodocComponent> ent, ref AutodocTransferMessage args)
     {
-        if (!args.Step.Validate(ent, this))
+        if (IsActive(ent) || GetEntity(args.Item) is not { Valid: true } item)
+            return;
+
+        if (args.Source == AutodocTransferTarget.BodyPart && args.Destination == AutodocTransferTarget.Storage)
         {
-            Log.Warning($"User {ToPrettyString(args.Actor)} tried to add an invalid autodoc step!");
+            if (IsPatientPart(ent, item))
+                StartOperation(ent, AutodocOperationKind.RemovePart, item, new List<EntProtoId> { "SurgeryRemovePart" }, args.Actor);
             return;
         }
 
-        AddStep(ent, args.Program, args.Step, args.Index, args.Actor);
+        if (args.Source == AutodocTransferTarget.OrganSlot && args.Destination == AutodocTransferTarget.Storage)
+        {
+            if (!TryComp<OrganComponent>(item, out var organ) || !TryFindOrganPart(ent, item, out var part) ||
+                GetOrganSurgery(organ.SlotId, insert: false) is not { } surgery)
+                return;
+
+            StartOperation(ent, AutodocOperationKind.RemoveOrgan, part, new List<EntProtoId> { surgery }, args.Actor, item);
+            return;
+        }
+
+        if (args.Source != AutodocTransferTarget.Storage ||
+            !TryComp<StorageComponent>(ent, out var storage) ||
+            !storage.Container.Contains(item) ||
+            !TryComp<HandsComponent>(ent, out var hands))
+            return;
+
+        if (args.Destination == AutodocTransferTarget.BodyPart && TryComp<BodyPartComponent>(item, out var bodyPart))
+        {
+            if (GetAttachSurgery(bodyPart.PartType, bodyPart.Symmetry) is not { } surgery ||
+                FindAttachTarget(ent, bodyPart.PartType, bodyPart.Symmetry) is not { } target)
+                return;
+
+            if (TryGetOccupiedBodyPart(ent, bodyPart.PartType, bodyPart.Symmetry) is not null)
+            {
+                RejectTransfer(ent, "part-already-present");
+                return;
+            }
+
+            if (!GrabItem((ent.Owner, ent.Comp, hands), item))
+                return;
+
+            StartOperation(ent, AutodocOperationKind.AttachPart, target, new List<EntProtoId> { surgery }, args.Actor, item);
+            return;
+        }
+
+        if (args.Destination == AutodocTransferTarget.OrganSlot &&
+            TryComp<OrganComponent>(item, out var storedOrgan) &&
+            args.TargetPart is { } netPart &&
+            GetEntity(netPart) is { Valid: true } targetPart &&
+            IsPatientPart(ent, targetPart) &&
+            GetOrganSurgery(args.OrganSlot ?? storedOrgan.SlotId, insert: true) is { } organSurgery)
+        {
+            var organSlot = args.OrganSlot ?? storedOrgan.SlotId;
+            if (TryGetOccupiedOrgan(targetPart, organSlot) is not null)
+            {
+                RejectTransfer(ent, "organ-already-present");
+                return;
+            }
+
+            if (!GrabItem((ent.Owner, ent.Comp, hands), item))
+                return;
+
+            StartOperation(ent, AutodocOperationKind.AttachOrgan, targetPart, new List<EntProtoId> { organSurgery }, args.Actor, item);
+        }
     }
 
-    private void OnRemoveStep(Entity<AutodocComponent> ent, ref AutodocRemoveStepMessage args)
+    private void RejectTransfer(Entity<AutodocComponent> ent, string errorKey)
     {
-        RemoveStep(ent, args.Program, args.Step);
+        Say(ent, Loc.GetString("autodoc-error", ("error", Loc.GetString("autodoc-error-" + errorKey))));
+        UpdateUi(ent);
     }
 
-    private void OnStart(Entity<AutodocComponent> ent, ref AutodocStartMessage args)
+    private EntityUid? TryGetOccupiedBodyPart(Entity<AutodocComponent> ent, BodyPartType type, BodyPartSymmetry symmetry)
     {
-        StartProgram(ent, args.Program, args.Actor);
+        if (GetPatient(ent) is not { } patient)
+            return null;
+
+        foreach (var (partId, _) in _body.GetBodyChildrenOfType(patient, type, symmetry: symmetry))
+        {
+            if (!HasComp<BodyPartReattachedComponent>(partId))
+                return partId;
+        }
+        return null;
+    }
+
+    private EntityUid? TryGetOccupiedOrgan(EntityUid part, string slotId)
+    {
+        foreach (var (organId, organ) in _body.GetPartOrgans(part))
+        {
+            if (organ.SlotId != slotId)
+                continue;
+
+            if (!HasComp<OrganReattachedComponent>(organId))
+                return organId;
+        }
+
+        return null;
     }
 
     private void OnStop(Entity<AutodocComponent> ent, ref AutodocStopMessage args)
     {
         RemComp<ActiveAutodocComponent>(ent);
+        UpdateUi(ent);
     }
 
     #endregion
@@ -295,7 +402,10 @@ public abstract class SharedAutodocSystem : EntitySystem
         var repeatable = HasComp<SurgeryRepeatableStepComponent>(args.Step);
         if (args.Complete || !repeatable)
         {
+            ent.Comp.CompletedSteps++;
             ent.Comp.Waiting = false; // try the next autodoc or surgery step
+            if (TryComp<AutodocComponent>(ent, out var autodoc))
+                UpdateUi((ent.Owner, autodoc));
             return;
         }
 
@@ -308,21 +418,24 @@ public abstract class SharedAutodocSystem : EntitySystem
 
     private void OnSurgeryStepFailed(Entity<ActiveAutodocComponent> ent, ref SurgeryStepFailedEvent args)
     {
+        if (ent.Comp.SuppressSurgeryFailureEvent)
+            return;
+
         if (!TryComp<AutodocComponent>(ent, out var comp))
             return;
 
-        var program = comp.Programs[ent.Comp.CurrentProgram];
-        var error = Loc.GetString("autodoc-error-surgery-failed");
-        if (program.SkipFailed)
+        ent.Comp.Waiting = false;
+        if (IsOperationGoalComplete((ent.Owner, comp, ent.Comp)))
         {
-            Say(ent, Loc.GetString("autodoc-error", ("error", error)));
-            ent.Comp.ProgramStep++;
+            ent.Comp.CurrentSurgery = null;
+            ent.Comp.SurgeryIndex = ent.Comp.Surgeries.Count;
         }
         else
         {
-            Say(ent, Loc.GetString("autodoc-fatal-error", ("error", error)));
-            RemCompDeferred<ActiveAutodocComponent>(ent);
+            ent.Comp.Failed = true;
         }
+
+        UpdateUi((ent.Owner, comp));
     }
 
     private void OnActiveShutdown(Entity<ActiveAutodocComponent> ent, ref ComponentShutdown args)
@@ -331,14 +444,30 @@ public abstract class SharedAutodocSystem : EntitySystem
             return;
 
         // wake the patient when program completes or errors out
-        if (GetPatient((ent.Owner, comp)) is {} patient)
+        if (GetPatient((ent.Owner, comp)) is { } patient)
             WakePatient(patient);
+
+        if (TryComp<HandsComponent>(ent, out var hands))
+        {
+            try
+            {
+                StoreItemOrThrow((ent.Owner, comp, hands));
+            }
+            catch (AutodocError error)
+            {
+                Say(ent, Loc.GetString("autodoc-error", ("error", Loc.GetString("autodoc-error-" + error.Message))));
+            }
+        }
+
+        UpdateUi((ent.Owner, comp), forceInactive: true);
     }
 
     protected virtual void WakePatient(EntityUid patient)
     {
         _sleeping.TryWaking(patient);
     }
+
+    protected virtual float GetPatientTemperature(EntityUid patient) => float.NaN;
 
     #region Body Slot
 
@@ -472,7 +601,7 @@ public abstract class SharedAutodocSystem : EntitySystem
 
     public void StoreItemOrThrow(Entity<AutodocComponent, HandsComponent> ent)
     {
-        if (_hands.GetHeldItem((ent.Owner, ent.Comp2), ent.Comp1.ItemSlot) is not {} item)
+        if (_hands.GetHeldItem((ent.Owner, ent.Comp2), ent.Comp1.ItemSlot) is not { } item)
             return; // Body parts are inserted directly during capture.
 
         if (!_storage.Insert(ent, item, out _))
@@ -481,7 +610,7 @@ public abstract class SharedAutodocSystem : EntitySystem
 
     public EntityUid GetHeldOrThrow(Entity<AutodocComponent, HandsComponent> ent)
     {
-        if (TryGetOperatedItem(ent) is not {} item)
+        if (TryGetOperatedItem(ent) is not { } item)
             throw new AutodocError("item-unavailable");
 
         return item;
@@ -492,7 +621,7 @@ public abstract class SharedAutodocSystem : EntitySystem
     /// </summary>
     public EntityUid? TryGetOperatedItem(Entity<AutodocComponent, HandsComponent> ent)
     {
-        if (_hands.GetHeldItem((ent.Owner, ent.Comp2), ent.Comp1.ItemSlot) is {} held)
+        if (_hands.GetHeldItem((ent.Owner, ent.Comp2), ent.Comp1.ItemSlot) is { } held)
             return held;
 
         if (!TryComp<StorageComponent>(ent, out var storage))
@@ -532,7 +661,7 @@ public abstract class SharedAutodocSystem : EntitySystem
 
     public EntityUid GetPatientOrThrow(Entity<AutodocComponent> ent)
     {
-        if (GetPatient(ent) is not {} patient)
+        if (GetPatient(ent) is not { } patient)
             throw new AutodocError("missing-patient");
 
         return patient;
@@ -554,20 +683,24 @@ public abstract class SharedAutodocSystem : EntitySystem
     /// </summary>
     public bool StartSurgeryOrThrow(Entity<AutodocComponent> ent, EntityUid patient, EntityUid part, EntProtoId surgery)
     {
-        if (_surgery.GetSingleton(surgery) is not {} singleton)
+        if (_surgery.GetSingleton(surgery) is not { } singleton)
             throw new AutodocError("reality-breaking");
 
-        if (_surgery.GetNextStep(patient, part, singleton) is not {} pair)
+        if (_surgery.GetNextStep(patient, part, singleton) is not { } pair)
             return false;
 
         var nextSurgery = pair.Item1;
-        if (MetaData(nextSurgery).EntityPrototype?.ID is not {} surgeryId) // should never happen
+        if (MetaData(nextSurgery).EntityPrototype?.ID is not { } surgeryId) // should never happen
             throw new AutodocError("reality-breaking");
 
         var index = pair.Item2;
         var nextStep = nextSurgery.Comp.Steps[index];
-        if (!_surgery.TryDoSurgeryStep(patient, part, ent, surgeryId, nextStep, out var error))
+        if (!TryDoSurgeryStep(ent, patient, part, surgeryId, nextStep, out var error))
         {
+            if (TryComp<ActiveAutodocComponent>(ent, out var active) &&
+                IsOperationGoalComplete((ent.Owner, ent.Comp, active)))
+                return false;
+
             // if the omnitool is held inserting organ etc will fail
             // may need to swap hands to the selected item instead of omnitool
             // if that works then it'll swap back automatically for the next step
@@ -575,7 +708,7 @@ public abstract class SharedAutodocSystem : EntitySystem
                 throw new AutodocError($"step-invalid-{error}");
 
             TrySwapAutodocHand(ent);
-            if (!_surgery.TryDoSurgeryStep(patient, part, ent, surgeryId, nextStep, out error))
+            if (!TryDoSurgeryStep(ent, patient, part, surgeryId, nextStep, out error))
                 throw new AutodocError($"step-invalid-{error}"); // no trying again just fail
         }
 
@@ -583,6 +716,26 @@ public abstract class SharedAutodocSystem : EntitySystem
         comp.CurrentSurgery = (patient, part, surgery);
         comp.Waiting = true; // don't go onto next step until doafter finishes
         return true;
+    }
+
+    private bool TryDoSurgeryStep(
+        EntityUid autodoc,
+        EntityUid patient,
+        EntityUid part,
+        EntProtoId surgery,
+        EntProtoId step,
+        out StepInvalidReason error)
+    {
+        var active = Comp<ActiveAutodocComponent>(autodoc);
+        active.SuppressSurgeryFailureEvent = true;
+        try
+        {
+            return _surgery.TryDoSurgeryStep(patient, part, autodoc, surgery, step, out error);
+        }
+        finally
+        {
+            active.SuppressSurgeryFailureEvent = false;
+        }
     }
 
     private void TrySwapAutodocHand(EntityUid uid)
@@ -602,159 +755,95 @@ public abstract class SharedAutodocSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// Create a blank program and return the index to it.
-    /// Programs cannot be created while operating or if there are too many, in which case it will return null.
-    /// </summary>
-    public int? CreateProgram(Entity<AutodocComponent> ent, string title)
+    public bool IsActive(EntityUid uid)
     {
-        var index = ent.Comp.Programs.Count;
-        if (IsActive(ent) || index >= ent.Comp.MaxPrograms)
-            return null;
-
-        if (string.IsNullOrEmpty(title) || title.Length > ent.Comp.MaxProgramTitleLength)
-            return null;
-
-        ent.Comp.Programs.Add(new AutodocProgram()
-        {
-            Title = title
-        });
-        Dirty(ent);
-        return index;
+        return HasComp<ActiveAutodocComponent>(uid);
     }
 
-    /// <summary>
-    /// Removes a program at an index, returning true if it succeeded.
-    /// </summary>
-    public bool RemoveProgram(Entity<AutodocComponent> ent, int index)
+    private bool StartOperation(
+        Entity<AutodocComponent> ent,
+        AutodocOperationKind operation,
+        EntityUid targetPart,
+        List<EntProtoId> surgeries,
+        EntityUid user,
+        EntityUid? item = null)
     {
-        if (IsActive(ent) || index >= ent.Comp.Programs.Count)
+        if (IsActive(ent) || surgeries.Count == 0 || GetPatient(ent) is not { } patient)
             return false;
 
-        ent.Comp.Programs.RemoveAt(index);
-        Dirty(ent);
-        return true;
-    }
+        var active = EnsureComp<ActiveAutodocComponent>(ent);
+        active.Operation = operation;
+        active.TargetPart = targetPart;
+        active.Item = item;
+        active.Surgeries = surgeries;
+        active.TotalSteps = Math.Max(1, surgeries.Sum(surgery => CountSurgerySteps(surgery, new HashSet<EntProtoId>())));
+        active.NextUpdate = Timing.CurTime + ent.Comp.UpdateDelay;
 
-    /// <summary>
-    /// Adds a step to a program at an index, returning true if it succeeded.
-    /// </summary>
-    public bool AddStep(Entity<AutodocComponent> ent, int programIndex, IAutodocStep step, int index, EntityUid user)
-    {
-        if (IsActive(ent) || programIndex >= ent.Comp.Programs.Count)
-            return false;
-
-        var program = ent.Comp.Programs[programIndex];
-        if (program.Steps.Count >= ent.Comp.MaxProgramSteps || index < 0 || index > program.Steps.Count)
-            return false;
-
-        program.Steps.Insert(index, step);
-        Dirty(ent);
-
-        _adminLogger.Add(LogType.InteractActivate, LogImpact.Low, $"{ToPrettyString(user):user} added step '{step.Title}' to autodoc program '{program.Title}'");
+        _adminLogger.Add(LogType.InteractActivate, LogImpact.High,
+            $"{ToPrettyString(user):user} started autodoc operation {operation} on {ToPrettyString(patient):patient}");
+        UpdateUi(ent);
         return true;
     }
 
     /// <summary>
     /// Removes a step from a program, returning true if it succeeded.
     /// </summary>
-    public bool RemoveStep(Entity<AutodocComponent> ent, int programIndex, int step)
-    {
-        if (IsActive(ent) || programIndex >= ent.Comp.Programs.Count)
-            return false;
-
-        var program = ent.Comp.Programs[programIndex];
-        if (step >= program.Steps.Count)
-            return false;
-
-        program.Steps.RemoveAt(step);
-        Dirty(ent);
-        return true;
-    }
-
-    public bool IsActive(EntityUid uid)
-    {
-        return HasComp<ActiveAutodocComponent>(uid);
-    }
-
-    public AutodocProgram CurrentProgram(Entity<AutodocComponent, ActiveAutodocComponent> ent)
-    {
-        // not checking if it exists since Programs isnt allowed to be changed while operating
-        return ent.Comp1.Programs[ent.Comp2.CurrentProgram];
-    }
-
-    public bool StartProgram(Entity<AutodocComponent> ent, int index, EntityUid user)
-    {
-        // no error since UI checks this too
-        if (IsActive(ent) || index >= ent.Comp.Programs.Count || GetPatient(ent) is not {} patient)
-            return false;
-
-        var active = EnsureComp<ActiveAutodocComponent>(ent);
-        active.CurrentProgram = index;
-        active.NextUpdate = Timing.CurTime + ent.Comp.UpdateDelay;
-        Dirty(ent.Owner, active);
-
-        _adminLogger.Add(LogType.InteractActivate, LogImpact.High, $"{ToPrettyString(user):user} started autodoc program '{ent.Comp.Programs[index].Title}' on {ToPrettyString(patient):patient}");
-        return true;
-    }
-
-    /// <summary>
-    /// Tries to start the next step, shouting the error if it fails.
-    /// Returns true if the program is being stopped.
-    /// </summary>
     public bool Proceed(Entity<AutodocComponent, ActiveAutodocComponent> ent)
     {
         if (ent.Comp2.Waiting)
             return false;
 
+        if (ent.Comp2.Failed)
+        {
+            var error = Loc.GetString("autodoc-error-surgery-failed");
+            Say(ent, Loc.GetString("autodoc-fatal-error", ("error", error)));
+            return true;
+        }
+
+        if (IsOperationGoalComplete(ent))
+        {
+            Say(ent, Loc.GetString("autodoc-operation-completed"));
+            return true;
+        }
+
         try
         {
-            // stay on this AutodocSurgeryStep until every step of the surgery (and its dependencies) is complete
-            // if this was the last step, StartSurgery will fail and the next autodoc step will run
-            if (ent.Comp2.CurrentSurgery is {} args)
+            if (ent.Comp2.CurrentSurgery is { } args)
             {
-                var (body, part, surgery) = args;
-                if (StartSurgeryOrThrow((ent.Owner, ent.Comp1), body, part, surgery))
+                var (body, part, currentSurgery) = args;
+                if (StartSurgeryOrThrow((ent.Owner, ent.Comp1), body, part, currentSurgery))
                     return false;
 
-                // done with the surgery onto next step!!!
                 ent.Comp2.CurrentSurgery = null;
-                ent.Comp2.ProgramStep++;
+                ent.Comp2.SurgeryIndex++;
+                UpdateUi((ent.Owner, ent.Comp1));
             }
 
-            var program = ent.Comp1.Programs[ent.Comp2.CurrentProgram];
-            var index = ent.Comp2.ProgramStep;
-            if (index >= program.Steps.Count)
+            if (ent.Comp2.SurgeryIndex >= ent.Comp2.Surgeries.Count)
             {
-                Say(ent, Loc.GetString("autodoc-program-completed"));
+                Say(ent, Loc.GetString("autodoc-operation-completed"));
                 return true;
             }
-            var step = program.Steps[index];
-            if (step.Run((ent.Owner, ent.Comp1, Comp<HandsComponent>(ent)), this))
-                ent.Comp2.ProgramStep++;
-            else
-                ent.Comp2.Waiting = true;
+
+            var patient = GetPatientOrThrow((ent.Owner, ent.Comp1));
+            var surgery = ent.Comp2.Surgeries[ent.Comp2.SurgeryIndex];
+            if (IsTendWoundsSurgery(surgery) && !HasTendWoundsDamage(patient, ent.Comp2.TargetPart, surgery))
+            {
+                ent.Comp2.SurgeryIndex++;
+                return false;
+            }
+
+            if (!StartSurgeryOrThrow((ent.Owner, ent.Comp1), patient, ent.Comp2.TargetPart, surgery))
+                ent.Comp2.SurgeryIndex++;
         }
         catch (AutodocError e)
         {
             var error = Loc.GetString("autodoc-error-" + e.Message);
-            var program = ent.Comp1.Programs[ent.Comp2.CurrentProgram];
-            var skipNoDamageTendWounds = ShouldSkipNoDamageTendWounds(ent, e.Message);
-            if (program.SkipFailed || skipNoDamageTendWounds)
-            {
-                Say(ent, skipNoDamageTendWounds
-                    ? Loc.GetString("autodoc-error-tend-wounds-no-damage")
-                    : Loc.GetString("autodoc-error", ("error", error)));
-                ent.Comp2.ProgramStep++;
-            }
-            else
-            {
-                Say(ent, Loc.GetString("autodoc-fatal-error", ("error", error)));
-                return true;
-            }
+            Say(ent, Loc.GetString("autodoc-fatal-error", ("error", error)));
+            return true;
         }
 
-        Dirty(ent.Owner, ent.Comp1);
+        UpdateUi((ent.Owner, ent.Comp1));
         return false;
     }
 
@@ -802,35 +891,314 @@ public abstract class SharedAutodocSystem : EntitySystem
         return false;
     }
 
-    private bool ShouldSkipNoDamageTendWounds(Entity<AutodocComponent, ActiveAutodocComponent> ent, string autodocErrorMessage)
+    private bool IsPatientPart(Entity<AutodocComponent> ent, EntityUid part)
     {
-        // Only handle the "patient unfit for surgery" style error; we treat it as "nothing to tend" instead.
-        if (autodocErrorMessage != "step-invalid-SurgeryInvalid")
-            return false;
-
-        if (ent.Comp2.ProgramStep < 0
-            || ent.Comp2.CurrentProgram < 0
-            || ent.Comp2.CurrentProgram >= ent.Comp1.Programs.Count)
-            return false;
-
-        var program = ent.Comp1.Programs[ent.Comp2.CurrentProgram];
-        if (ent.Comp2.ProgramStep >= program.Steps.Count)
-            return false;
-
-        if (program.Steps[ent.Comp2.ProgramStep] is not SurgeryAutodocStep surgeryStep
-            || !IsTendWoundsSurgery(surgeryStep.Surgery))
-            return false;
-
-        var patient = GetPatient((ent.Owner, ent.Comp1));
-        if (patient is not {} patientUid)
-            return true;
-
-        if (FindPart(patientUid, surgeryStep.Part, surgeryStep.Symmetry) is not {} part)
-            return true;
-
-        return !HasTendWoundsDamage(patientUid, part, surgeryStep.Surgery);
+        return GetPatient(ent) is { } patient &&
+               TryComp<BodyPartComponent>(part, out var partComp) &&
+               partComp.Body == patient;
     }
 
+    private bool IsOperationGoalComplete(Entity<AutodocComponent, ActiveAutodocComponent> ent)
+    {
+        var patient = GetPatient((ent.Owner, ent.Comp1));
+        if (patient == null)
+            return false;
+
+        return ent.Comp2.Operation switch
+        {
+            AutodocOperationKind.AttachPart => ent.Comp2.Item is { } part &&
+                TryComp<BodyPartComponent>(part, out var partComp) && partComp.Body == patient &&
+                !HasComp<BodyPartReattachedComponent>(part),
+            AutodocOperationKind.RemovePart => TryComp<BodyPartComponent>(ent.Comp2.TargetPart, out var removedPartComp) &&
+                removedPartComp.Body != patient,
+            AutodocOperationKind.AttachOrgan => ent.Comp2.Item is { } organ &&
+                TryComp<OrganComponent>(organ, out var organComp) && organComp.Body == patient &&
+                !HasComp<OrganReattachedComponent>(organ),
+            AutodocOperationKind.RemoveOrgan => ent.Comp2.Item is { } removedOrgan &&
+                TryComp<OrganComponent>(removedOrgan, out var removedOrganComp) && removedOrganComp.Body != patient,
+            _ => false
+        };
+    }
+
+    private int CountSurgerySteps(EntProtoId surgeryId, HashSet<EntProtoId> visited)
+    {
+        if (!visited.Add(surgeryId) || _surgery.GetSingleton(surgeryId) is not { } surgery ||
+            !TryComp<SurgeryComponent>(surgery, out var surgeryComp))
+            return 0;
+
+        var count = surgeryComp.Steps.Count;
+        if (surgeryComp.Requirement is { } requirement)
+            count += CountSurgerySteps(requirement, visited);
+        return count;
+    }
+
+    private bool TryFindOrganPart(Entity<AutodocComponent> ent, EntityUid organ, out EntityUid part)
+    {
+        part = default;
+        var patient = GetPatient(ent);
+        if (patient == null)
+            return false;
+
+        foreach (var (partId, _) in _body.GetBodyChildren(patient.Value))
+        {
+            if (_body.GetPartOrgans(partId).Any(value => value.Id == organ))
+            {
+                part = partId;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private EntityUid? FindAttachTarget(Entity<AutodocComponent> ent, BodyPartType type, BodyPartSymmetry symmetry)
+    {
+        var patient = GetPatient(ent);
+        if (patient == null)
+            return null;
+
+        return type switch
+        {
+            BodyPartType.Head or BodyPartType.Arm or BodyPartType.Leg => FindPart(patient.Value, BodyPartType.Torso, null),
+            BodyPartType.Hand => FindPart(patient.Value, BodyPartType.Arm, symmetry),
+            BodyPartType.Foot => FindPart(patient.Value, BodyPartType.Leg, symmetry),
+            _ => null
+        };
+    }
+
+    private static EntProtoId? GetAttachSurgery(BodyPartType type, BodyPartSymmetry symmetry)
+    {
+        return (type, symmetry) switch
+        {
+            (BodyPartType.Head, _) => "SurgeryAttachHead",
+            (BodyPartType.Arm, BodyPartSymmetry.Left) => "SurgeryAttachLeftArm",
+            (BodyPartType.Arm, BodyPartSymmetry.Right) => "SurgeryAttachRightArm",
+            (BodyPartType.Hand, BodyPartSymmetry.Left) => "SurgeryAttachLeftHand",
+            (BodyPartType.Hand, BodyPartSymmetry.Right) => "SurgeryAttachRightHand",
+            (BodyPartType.Leg, BodyPartSymmetry.Left) => "SurgeryAttachLeftLeg",
+            (BodyPartType.Leg, BodyPartSymmetry.Right) => "SurgeryAttachRightLeg",
+            (BodyPartType.Foot, BodyPartSymmetry.Left) => "SurgeryAttachLeftFoot",
+            (BodyPartType.Foot, BodyPartSymmetry.Right) => "SurgeryAttachRightFoot",
+            _ => null
+        };
+    }
+
+    private static EntProtoId? GetOrganSurgery(string slot, bool insert)
+    {
+        return (slot, insert) switch
+        {
+            ("brain", false) => "SurgeryRemoveBrain",
+            ("brain", true) => "SurgeryInsertBrain",
+            ("posbrain", false) => "SurgeryRemoveBorgBrain",
+            ("posbrain", true) => "SurgeryInsertBorgBrain",
+            ("heart", false) => "SurgeryRemoveHeart",
+            ("heart", true) => "SurgeryInsertHeart",
+            ("liver", false) => "SurgeryRemoveLiver",
+            ("liver", true) => "SurgeryInsertLiver",
+            ("lungs", false) => "SurgeryRemoveLungs",
+            ("lungs", true) => "SurgeryInsertLungs",
+            ("stomach", false) => "SurgeryRemoveStomach",
+            ("stomach", true) => "SurgeryInsertStomach",
+            ("eyes", false) => "SurgeryRemoveEyes",
+            ("eyes", true) => "SurgeryInsertEyes",
+            _ => null
+        };
+    }
+
+    private static string GetPartSlot(BodyPartType type, BodyPartSymmetry symmetry)
+    {
+        var side = symmetry switch
+        {
+            BodyPartSymmetry.Left => "Left",
+            BodyPartSymmetry.Right => "Right",
+            _ => string.Empty
+        };
+        return type switch
+        {
+            BodyPartType.Head => "Head",
+            BodyPartType.Torso => "Torso",
+            BodyPartType.Arm => side + "Arm",
+            BodyPartType.Hand => side + "Hand",
+            BodyPartType.Leg => side + "Leg",
+            BodyPartType.Foot => side + "Foot",
+            _ => "Other"
+        };
+    }
+
+    private void UpdateUi(Entity<AutodocComponent> ent, bool forceInactive = false)
+    {
+        var parts = new List<AutodocBodyPartInfo>();
+        var organs = new List<AutodocOrganInfo>();
+        var storageItems = new List<AutodocStorageItemInfo>();
+        var patient = GetPatient(ent);
+
+        if (patient != null)
+        {
+            foreach (var (part, partComp) in _body.GetBodyChildren(patient.Value))
+            {
+                var slot = GetPartSlot(partComp.PartType, partComp.Symmetry);
+                var integrity = TryComp<DamageableComponent>(part, out var damageable) && partComp.SeverIntegrity > 0
+                    ? Math.Clamp(1f - damageable.TotalDamage.Float() / partComp.SeverIntegrity, 0f, 1f)
+                    : 1f;
+                parts.Add(new AutodocBodyPartInfo(GetNetEntity(part), Name(part), slot, integrity));
+            }
+        }
+
+        if (ent.Comp.SelectedPart is { } staleSelection && !IsPatientPart(ent, staleSelection))
+            ent.Comp.SelectedPart = null;
+
+        if (ent.Comp.SelectedPart == null && parts.Count > 0)
+            ent.Comp.SelectedPart = GetEntity(parts.FirstOrDefault(part => part.Slot == "Torso")?.Entity ?? parts[0].Entity);
+
+        if (ent.Comp.SelectedPart is { } selected &&
+            TryComp<BodyPartComponent>(selected, out var selectedComp))
+        {
+            var organBySlot = _body.GetPartOrgans(selected, selectedComp)
+                .ToDictionary(value => value.Component.SlotId, value => value.Id);
+            foreach (var slot in selectedComp.Organs.Keys)
+            {
+                var organ = organBySlot.GetValueOrDefault(slot);
+                organs.Add(new AutodocOrganInfo(slot,
+                    organ.Valid ? GetNetEntity(organ) : null,
+                    organ.Valid ? Name(organ) : null));
+            }
+        }
+
+        if (TryComp<StorageComponent>(ent, out var storage))
+        {
+            foreach (var item in storage.Container.ContainedEntities)
+            {
+                if (TryComp<BodyPartComponent>(item, out var bodyPart))
+                {
+                    storageItems.Add(new AutodocStorageItemInfo(
+                        GetNetEntity(item), Name(item), GetPartSlot(bodyPart.PartType, bodyPart.Symmetry)));
+                }
+                else
+                {
+                    storageItems.Add(new AutodocStorageItemInfo(
+                        GetNetEntity(item), Name(item), false,
+                        TryComp<OrganComponent>(item, out var organ) ? organ.SlotId : null));
+                }
+            }
+        }
+
+        ActiveAutodocComponent? active = null;
+        var busy = !forceInactive && TryComp(ent, out active);
+        var progress = busy
+            ? Math.Clamp((float)active!.CompletedSteps / active.TotalSteps, 0f, 1f)
+            : 0f;
+        var progressTarget = busy && active!.Waiting
+            ? Math.Clamp((float)(active.CompletedSteps + 1) / active.TotalSteps, 0f, 1f)
+            : progress;
+        TimeSpan? progressStart = null;
+        TimeSpan? progressEnd = null;
+        if (busy && TryComp<DoAfterComponent>(ent, out var doAfters))
+        {
+            foreach (var doAfter in doAfters.DoAfters.Values)
+            {
+                if (!doAfter.Completed && !doAfter.Cancelled && doAfter.Args.Event is SurgeryDoAfterEvent)
+                {
+                    progressStart = doAfter.StartTime;
+                    progressEnd = doAfter.StartTime + doAfter.Args.Delay;
+                    break;
+                }
+            }
+        }
+        var status = busy ? Loc.GetString($"autodoc-operation-{active!.Operation.ToString().ToLowerInvariant()}") : string.Empty;
+        var vitals = patient is { } patientUid ? BuildPatientVitals(patientUid, ent.Comp.SelectedPart) : null;
+        _ui.SetUiState(ent.Owner, AutodocUiKey.Key, new AutodocBoundUserInterfaceState(
+            patient is { } patientEntity ? GetNetEntity(patientEntity) : null,
+            parts,
+            ent.Comp.SelectedPart is { } selectedPart ? GetNetEntity(selectedPart) : null,
+            organs,
+            storageItems,
+            vitals,
+            busy,
+            progress,
+            progressTarget,
+            progressStart,
+            progressEnd,
+            status));
+    }
+
+    private AutodocPatientVitals BuildPatientVitals(EntityUid patient, EntityUid? selectedPart)
+    {
+        var name = Identity.Name(patient, EntityManager);
+        string? speciesId = null;
+        if (TryComp<HumanoidAppearanceComponent>(patient, out var humanoid))
+            speciesId = humanoid.Species;
+
+        MobState? mobState = null;
+        if (TryComp<MobStateComponent>(patient, out var mob))
+            mobState = mob.CurrentState;
+
+        var temperature = GetPatientTemperature(patient);
+        var bloodLevel = float.NaN;
+        var bleeding = false;
+        if (TryComp<BloodstreamComponent>(patient, out var bloodstream))
+        {
+            bloodLevel = _bloodstream.GetBloodLevelPercentage((patient, bloodstream));
+            bleeding = bloodstream.BleedAmount > 0;
+        }
+
+        var damagePerGroup = new Dictionary<string, FixedPoint2>();
+        var damagePerType = new Dictionary<string, FixedPoint2>();
+        var totalDamage = 0f;
+        if (TryComp<DamageableComponent>(patient, out var damageable))
+        {
+            totalDamage = damageable.TotalDamage.Float();
+            foreach (var (group, amount) in damageable.DamagePerGroup)
+            {
+                if (amount > FixedPoint2.Zero)
+                    damagePerGroup[group] = amount;
+            }
+
+            foreach (var (type, amount) in damageable.Damage.DamageDict)
+            {
+                if (amount > FixedPoint2.Zero)
+                    damagePerType[type] = amount;
+            }
+        }
+
+        var damagedParts = new List<AutodocDamagedPartInfo>();
+        foreach (var (part, partComp) in _body.GetBodyChildren(patient))
+        {
+            if (!TryComp<DamageableComponent>(part, out var partDamage))
+                continue;
+
+            var typed = partDamage.Damage.DamageDict
+                .Where(entry => entry.Value > FixedPoint2.Zero)
+                .ToDictionary(entry => entry.Key, entry => entry.Value);
+            if (typed.Count == 0)
+                continue;
+
+            damagedParts.Add(new AutodocDamagedPartInfo(
+                Name(part),
+                GetPartSlot(partComp.PartType, partComp.Symmetry),
+                typed));
+        }
+
+        Dictionary<string, FixedPoint2>? selectedPartDamage = null;
+        if (selectedPart is { } selected && TryComp<DamageableComponent>(selected, out var selectedDamage))
+        {
+            selectedPartDamage = selectedDamage.Damage.DamageDict
+                .Where(entry => entry.Value > FixedPoint2.Zero)
+                .ToDictionary(entry => entry.Key, entry => entry.Value);
+        }
+
+        return new AutodocPatientVitals(
+            name,
+            speciesId,
+            mobState,
+            temperature,
+            bloodLevel,
+            bleeding,
+            totalDamage,
+            damagePerGroup,
+            damagePerType,
+            damagedParts,
+            selectedPartDamage);
+    }
     #endregion
 
     public virtual void Say(EntityUid uid, string msg)

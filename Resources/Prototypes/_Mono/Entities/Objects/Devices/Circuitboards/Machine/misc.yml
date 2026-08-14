@@ -1,0 +1,34 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CarpCallerMachineCircuitboard
+  name: carp caller machine board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: MachineCarpCaller
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    tagRequirements:
+      RadioEconomy1:
+        amount: 1
+        defaultPrototype: RadioEconomy1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ContainmentFieldGeneratorCircuitboard
+  name: containment field generator machine board
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ContainmentFieldGenerator
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Plasteel: 4
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy2

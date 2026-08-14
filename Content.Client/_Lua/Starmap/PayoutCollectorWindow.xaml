@@ -1,9 +1,39 @@
-<DefaultWindow xmlns="https://spacestation14.io" MinSize="250 120" Title="{Loc 'payout-window-title'}">
-  <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8 8 8 8">
-    <Label Name="OwnedLabel" Text="{Loc 'payout-owned-default'}" />
-    <Label Name="AccumLabel" Text="{Loc 'payout-accum-default'}" />
-    <Button Name="ClaimButton" Text="{Loc 'payout-claim'}" />
-  </BoxContainer>
-</DefaultWindow>
-
-
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc 'payout-window-title'}"
+                   MinSize="340 450"
+                   SetSize="340 485">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="10 8 10 10">
+      <Label Name="FactionLabel" Text=""/>
+      <Label Name="OwnedLabel" Text="{Loc 'payout-owned-default'}"/>
+      <Label Name="AccumLabel" Text="{Loc 'payout-accum-default'}"/>
+      <Label Name="RateLabel" Text=""/>
+      <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+        <Label Name="NextPayoutLabel" Text="{Loc 'payout-next'}" VerticalAlignment="Center" MinWidth="120"/>
+        <ProgressBar Name="NextPayoutBar"
+                     HorizontalExpand="True"
+                     MinValue="0"
+                     MaxValue="1"
+                     SetHeight="14"
+                     VerticalAlignment="Center"/>
+        <Label Name="NextPayoutText"
+               Text="00:00:00"
+               MinWidth="64"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+      </BoxContainer>
+      <PanelContainer Name="Divider" MinHeight="1" MaxHeight="1" HorizontalExpand="True"/>
+      <Label Name="HistoryHeadingLabel" Text="{Loc 'payout-history-title'}"/>
+      <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="140">
+        <BoxContainer Name="HistoryContainer" Orientation="Vertical" SeparationOverride="2"/>
+      </ScrollContainer>
+      <Label Name="HistoryEmptyLabel" Text="{Loc 'payout-last-claim-none'}"/>
+      <Button Name="ClaimButton" Text="{Loc 'payout-claim'}" HorizontalExpand="True"/>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

@@ -41,6 +41,16 @@
       Glass: 10
       Steel: 10
       Uranium: 30
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
 
 - type: entity
   id: MachineGCSLowCircuitboard
@@ -58,6 +68,13 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    tagRequirements:
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      RadioEconomy1:
+        amount: 1
+        defaultPrototype: RadioEconomy1
 
 - type: entity
   id: MachineGCSMediumCircuitboard
@@ -75,6 +92,13 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    tagRequirements:
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      RadioEconomy1:
+        amount: 1
+        defaultPrototype: RadioEconomy1
 
 - type: entity
   id: MachineGCSHighCircuitboard
@@ -92,6 +116,13 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    tagRequirements:
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      RadioEconomy1:
+        amount: 2
+        defaultPrototype: RadioEconomy1
 
 - type: entity
   id: MachineGCSUltraCircuitboard
@@ -109,6 +140,13 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    tagRequirements:
+      MicroprocessorEconomy2:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy2
+      RadioEconomy2:
+        amount: 2
+        defaultPrototype: RadioEconomy2
 
 - type: entity
   id: MachineGCSStationCircuitboard
@@ -126,6 +164,13 @@
     stackRequirements:
       Glass: 10
       Steel: 10
+    tagRequirements:
+      MicroprocessorEconomy2:
+        amount: 10
+        defaultPrototype: MicroprocessorEconomy2
+      RadioEconomy2:
+        amount: 4
+        defaultPrototype: RadioEconomy2
 
 - type: entity
   id: MachineDriveCTLA25sCircuitboard
@@ -148,6 +193,19 @@
       Glass: 20
       Steel: 20
       Uranium: 35
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      RadioEconomy1:
+        amount: 1
+        defaultPrototype: RadioEconomy1
 
 - type: entity
   id: MachineDriveCTLA50Circuitboard
@@ -170,3 +228,16 @@
       Glass: 20
       Steel: 20
       Uranium: 40
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      RadioEconomy1:
+        amount: 1
+        defaultPrototype: RadioEconomy1

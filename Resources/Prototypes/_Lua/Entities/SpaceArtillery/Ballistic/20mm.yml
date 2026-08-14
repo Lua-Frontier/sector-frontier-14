@@ -1,0 +1,74 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: WeaponTurretL85Autocannon
+  id: Weapon20mm
+  name: Пулемёт "20мм"
+  description: Лёгий пулемёт, использует снаряды 20мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets20mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets20mm
+  - type: Gun
+    damageModifier: 1
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLua20mm
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLua20mm
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: Weapon20mm
+  id: Weapon20mmPD
+  name: Пулемёт Д "20мм"
+  description: Это автоматическое оружие, предназначенное для защиты ключевых объектов или зон от близкорасположенных целей.
+  suffix: ShuttleGun, Оборона
+  components:
+  - type: AutoDespawnExempt
+  - type: RadarBlip
+    radarColor: "#229e51"
+    scale: 1
+  - type: NpcFactionMember
+    factions:
+    - PointDefenseGun
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        15.705 # 3.141 * 5
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+      AdvancedTargeting: !type:Bool
+        true
+      RangedRange: !type:Single
+        60.0
+      VisionRadius: !type:Single
+        100.0
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon20mmBaseFlatpack
+  name: упакованный лёгкий пулемёт
+  description: Упакованный Лёгкий Пулемёт (.20мм)
+  components:
+  - type: Flatpack
+    entity: Weapon20mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

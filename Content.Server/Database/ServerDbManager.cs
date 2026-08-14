@@ -302,6 +302,8 @@ namespace Content.Server.Database
 
         Task<DateTimeOffset?> GetLastReadRules(NetUserId player);
         Task SetLastReadRules(NetUserId player, DateTimeOffset? time);
+        Task<DateTimeOffset?> GetAcceptedPublicOffer(NetUserId player);
+        Task SetAcceptedPublicOffer(NetUserId player, DateTimeOffset? time);
 
         #endregion
 
@@ -922,6 +924,18 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SetLastReadRules(player, time));
+        }
+
+        public Task<DateTimeOffset?> GetAcceptedPublicOffer(NetUserId player)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAcceptedPublicOffer(player));
+        }
+
+        public Task SetAcceptedPublicOffer(NetUserId player, DateTimeOffset? time)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetAcceptedPublicOffer(player, time));
         }
 
         public Task<int> AddAdminNote(int? roundId, Guid player, TimeSpan playtimeAtNote, string message, NoteSeverity severity, bool secret, Guid createdBy, DateTimeOffset createdAt, DateTimeOffset? expiryTime)

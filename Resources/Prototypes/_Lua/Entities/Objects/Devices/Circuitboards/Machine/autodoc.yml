@@ -1,0 +1,34 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AutodocCircuitboard
+  name: autodoc machine board
+  description: A machine printed circuit board for an autodoc.
+  components:
+  - type: MachineBoard
+    prototype: Autodoc
+    requirements:
+      Manipulator: 4
+    stackRequirements:
+      Cable: 3
+      Steel: 10
+    tagRequirements: # Mono
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      MicroprocessorEconomy3:
+        amount: 1
+        defaultPrototype: MicroprocessorEconomy3
+      MotorEconomy1:
+        amount: 4
+        defaultPrototype: MotorEconomy1
+      BorgArm:
+        amount: 3
+        defaultPrototype: LeftArmBorg
+
+- type: entity
+  parent: AutodocCircuitboard
+  id: AutodocSyndieCircuitboard
+  suffix: Syndie
+  components:
+  - type: MachineBoard
+    prototype: AutodocSyndie

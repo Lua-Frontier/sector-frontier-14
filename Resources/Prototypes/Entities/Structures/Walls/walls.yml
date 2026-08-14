@@ -22,6 +22,11 @@
     tags:
     - Wall
   - type: IsRoof
+  - type: RequiresGrid # Mono
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
   - type: Sprite
     drawdepth: Walls
   - type: Icon
@@ -379,7 +384,7 @@
         - FullTileMask
         layer:
         - WallLayer
-        density: 4000
+        density: 9000
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -401,9 +406,9 @@
     - WallT3
   - type: Sprite # Frontier
     color: "#ffffff" # Frontier
-  - type: Construction # Frontier - Harder to break into
-    graph: Girder # Frontier - Harder to break into
-    node: plastitaniumwall # Lua - Harder to break into
+  - type: Construction # Mono
+    graph: Girder
+    node: plastitaniumWall
   - type: StaticPrice
     price: 350
 
@@ -453,9 +458,9 @@
     state: state0
   - type: RCDDeconstructable # Frontier
     deconstructable: false # Frontier
-  - type: Construction # Frontier - Harder to break into
-    graph: Girder # Frontier - Harder to break into
-    node: diagonalplastitaniumwall # Lua - Harder to break into
+  - type: Construction # Mono
+    graph: Girder
+    node: wallPlastitaniumDiagonal
   - type: StaticPrice
     price: 250
 

@@ -100,3 +100,28 @@
       visible: false
       offset: 0, 2
       color: "#4281de"
+
+- type: entity
+  id: ThrusterLarge
+  parent: BaseThrusterLarge
+  name: large thruster
+  components:
+  - type: Machine
+    board: ThrusterLargeMachineCircuitboard
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster96.rsi
+    offset: 1,-1
+    layers:
+    - state: base_rogue_large
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_large
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#4281de"
+    - state: thrust_burn_large_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2.8
+      color: "#4281de"

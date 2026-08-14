@@ -3,31 +3,30 @@
 # See AGPLv3.txt for details.
 
 - type: vessel
-  parent: BaseVessel
   id: Infiltrator
+  parent: BaseVessel
   name: Infiltrator
-  description: Устаревший корабль для ядерных операций Синдиката, способный летать в экспедиции.
-  limit: 1
-  price: 112370 #85000
+  description: Обновлённый фрегат синдиката, идеально подходящий для боевых операций и интенсивного огня.
+  limit: 3
+  price: 345705
   category: Medium
   group: Typan
   access: SyndicateAgent
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/infiltrator.yml # moved from /Maps/_Mono/Shuttles/Syndicate/mono_infiltrator.yml
   class:
   - Syndicate
-  - Expedition # Lua
+  - Fighter # Lua
   engine:
-  - AME # Lua
-  - Uranium # Lua
-  shuttlePath: /Maps/_Lua/Shuttles/Typan/infiltrator.yml
+  - AME
 
 - type: gameMap
   id: Infiltrator
   mapName: 'Infiltrator'
-  mapPath: /Maps/_Lua/Shuttles/Typan/infiltrator.yml
+  mapPath: /Maps/_Lua/Shuttles/Typan/infiltrator.yml # moved from /Maps/_Mono/Shuttles/Syndicate/mono_infiltrator.yml
   minPlayers: 0
   stations:
     Infiltrator:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Infiltrator {1}'

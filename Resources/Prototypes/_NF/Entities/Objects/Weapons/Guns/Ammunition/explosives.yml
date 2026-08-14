@@ -12,7 +12,6 @@
     size: Small
   - type: CartridgeAmmo
     proto: NFBulletRocket
-    deleteOnSpawn: true
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: rpg
@@ -32,7 +31,6 @@
   description: A 1.5" warhead designed for GSW rocket launchers. It's unusually slow.
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletWeakRocket
   - type: Sprite
     state: rpg
@@ -44,7 +42,6 @@
   description: A 1.5" EMP warhead designed for GSW rocket launchers. Has tubular shape.
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletRocketEmp
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
@@ -71,7 +68,6 @@
   name: baton grenade round
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletGrenadeBaton
 
 - type: entity
@@ -80,7 +76,6 @@
   name: blast grenade round
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletGrenadeBlast
 
 - type: entity
@@ -89,7 +84,6 @@
   name: cleanade grenade round
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletGrenadeCleanade
 
 - type: entity
@@ -103,7 +97,6 @@
     - NFCartridgeGrenade40mm
     - NFCartridgeGrenade40mmFlash
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletGrenadeFlash
 
 - type: entity
@@ -112,7 +105,6 @@
   name: frag grenade round
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletGrenadeFrag
 
 - type: entity
@@ -126,7 +118,6 @@
     - NFCartridgeGrenade40mm
     - NFCartridgeGrenade40mmEmp
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletGrenadeEMP
   - type: EmpDescription
     range: 5
@@ -140,7 +131,6 @@
   id: NFCannonBall
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFBulletCannonBall
 
 - type: entity
@@ -148,7 +138,6 @@
   id: NFCannonBallGrapeshot
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFPelletGrapeshotSpread
 
 - type: entity
@@ -156,7 +145,6 @@
   id: NFCannonBallGlassshot
   components:
   - type: CartridgeAmmo
-    deleteOnSpawn: true
     proto: NFPelletGlassSpread
 
 - type: entity
@@ -167,7 +155,6 @@
   components:
   - type: CartridgeAmmo
     proto: NFBulletCannonBallEmp
-    deleteOnSpawn: true
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
     state: ball-emp

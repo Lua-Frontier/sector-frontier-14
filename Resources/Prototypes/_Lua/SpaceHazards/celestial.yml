@@ -1,5 +1,5 @@
-# LuaWorld - This file is licensed under AGPLv3
-# Copyright (c) 2026 LuaWorld Contributors
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
 # See AGPLv3.txt for details.
 
 - type: entity
@@ -94,35 +94,6 @@
     mobRadiationDamage:
       types:
         Radiation: 10
-  - type: Physics
-    bodyType: Static
-    bodyStatus: InAir
-  - type: Fixtures
-    fixtures:
-      EventHorizonCollider:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.35
-        hard: true
-        density: 99999
-        mask:
-        - SingularityLayer
-        layer:
-        - SingularityLayer
-      EventHorizonConsumer:
-        shape:
-          !type:PhysShapeCircle
-            radius: 0.35
-        hard: false
-        mask:
-        - SingularityLayer
-        layer:
-        - SingularityLayer
-  - type: EventHorizon
-    radius: 0
-    canBreachContainment: true
-    colliderFixtureId: EventHorizonCollider
-    consumerFixtureId: EventHorizonConsumer
   - type: PointLight
     enabled: true
     color: "#F5F540"
@@ -131,8 +102,9 @@
     softness: 1.2
     castShadows: false
   - type: SingularityDistortion
-    intensity: 12000
-    falloffPower: 1.7
+    intensity: 18000
+    falloffPower: 1.55
+    maxDistance: 96
   - type: RadiationSource
     intensity: 10
     slope: 0.02

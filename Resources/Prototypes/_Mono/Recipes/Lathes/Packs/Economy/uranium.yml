@@ -1,0 +1,16 @@
+- type: latheRecipePack
+  id: MonoUraniumProcessing # nuclearcraft
+  recipes:
+  - UraniumCentrifugeReprocessingMini
+  - UraniumCentrifugeEnrichedProcessingMini
+
+- type: latheRecipePack
+  id: MonoCentrifugeProcessingStatic # used to let centrifuges always have basic processing
+  recipes:
+  - UraniumCentrifugeProcessingMini
+  - IriditeSlagIntoPowder # Imposter.
+
+- type: latheRecipePack
+  id: MonoCentrifugeProcessingFullSizeStatic
+  recipes:
+  - UraniumCentrifugeProcessing # No reprocessing - it would lead to duplication.

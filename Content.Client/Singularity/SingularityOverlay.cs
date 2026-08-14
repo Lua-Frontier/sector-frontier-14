@@ -21,7 +21,7 @@ namespace Content.Client.Singularity
         /// </summary>
         public const int MaxCount = 5;
 
-        private const float MaxDistance = 20f;
+        private const float DefaultMaxDistance = 20f;
 
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         public override bool RequestScreenTexture => true;
@@ -32,7 +32,7 @@ namespace Content.Client.Singularity
         {
             IoCManager.InjectDependencies(this);
             _shader = _prototypeManager.Index(Shader).Instance().Duplicate();
-            _shader.SetParameter("maxDistance", MaxDistance * EyeManager.PixelsPerMeter);
+            _shader.SetParameter("maxDistance", DefaultMaxDistance * EyeManager.PixelsPerMeter);
             _entMan.EventBus.SubscribeEvent<PixelToMapEvent>(EventSource.Local, this, OnProjectFromScreenToMap);
             ZIndex = 101; // Should be drawn after the placement overlay so admins placing items near the singularity can tell where they're going.
         }
@@ -40,6 +40,7 @@ namespace Content.Client.Singularity
         private readonly Vector2[] _positions = new Vector2[MaxCount];
         private readonly float[] _intensities = new float[MaxCount];
         private readonly float[] _falloffPowers = new float[MaxCount];
+        private float _activeMaxDistance = DefaultMaxDistance;
         private int _count = 0;
 
         protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -50,16 +51,18 @@ namespace Content.Client.Singularity
                 return false;
 
             _count = 0;
+            _activeMaxDistance = DefaultMaxDistance;
             var query = _entMan.EntityQueryEnumerator<SingularityDistortionComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var distortion, out var xform))
             {
                 if (xform.MapID != args.MapId)
                     continue;
 
+                var maxDistance = MathF.Max(distortion.MaxDistance, 1f);
                 var mapPos = _xformSystem.GetWorldPosition(uid);
 
                 // is the distortion in range?
-                if ((mapPos - args.WorldAABB.ClosestPoint(mapPos)).LengthSquared() > MaxDistance * MaxDistance)
+                if ((mapPos - args.WorldAABB.ClosestPoint(mapPos)).LengthSquared() > maxDistance * maxDistance)
                     continue;
 
                 // To be clear, this needs to use "inside-viewport" pixels.
@@ -70,6 +73,7 @@ namespace Content.Client.Singularity
                 _positions[_count] = tempCoords;
                 _intensities[_count] = distortion.Intensity;
                 _falloffPowers[_count] = distortion.FalloffPower;
+                _activeMaxDistance = MathF.Max(_activeMaxDistance, maxDistance);
                 _count++;
 
                 if (_count == MaxCount)
@@ -89,6 +93,7 @@ namespace Content.Client.Singularity
             _shader?.SetParameter("position", _positions);
             _shader?.SetParameter("intensity", _intensities);
             _shader?.SetParameter("falloffPower", _falloffPowers);
+            _shader?.SetParameter("maxDistance", _activeMaxDistance * EyeManager.PixelsPerMeter);
             _shader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
             var worldHandle = args.WorldHandle;
@@ -104,7 +109,7 @@ namespace Content.Client.Singularity
         {   // Mostly copypasta from the singularity shader.
             if (args.Viewport.Eye == null)
                 return;
-            var maxDistance = MaxDistance * EyeManager.PixelsPerMeter;
+            var maxDistance = _activeMaxDistance * EyeManager.PixelsPerMeter;
             var finalCoords = args.VisiblePosition;
 
             for (var i = 0; i < MaxCount && i < _count; i++)

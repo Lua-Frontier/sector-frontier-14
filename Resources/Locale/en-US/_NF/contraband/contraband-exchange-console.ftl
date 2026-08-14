@@ -18,3 +18,13 @@ pirate-contraband-pallet-menu-count-label = Number of items:{" "}
 pirate-contraband-pallet-appraise-button = Appraise
 pirate-contraband-pallet-sell-button = Sell
 pirate-contraband-pallet-disclaimer = Place yer plunder on the the scanner. Be sure it isn't in a chest, ye goon.
+
+# Syndicate tech exchange console
+syndie-contraband-pallet-console-menu-title = Tech Exchange
+syndie-contraband-console-menu-points-amount = {$amount} TC
+syndie-contraband-pallet-menu-no-goods-text = No exchangeable tech detected
+syndie-contraband-pallet-menu-appraisal-label = Estimated Value:{" "}
+syndie-contraband-pallet-menu-count-label = Number of items:{" "}
+syndie-contraband-pallet-appraise-button = Appraise
+syndie-contraband-pallet-sell-button = Sell
+syndie-contraband-pallet-disclaimer = Place Nanotrasen and Lua Technologies items on the scanner.

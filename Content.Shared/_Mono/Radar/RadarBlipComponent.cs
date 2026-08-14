@@ -27,7 +27,7 @@ public sealed partial class RadarBlipComponent : Component
     public bool Enabled = true;
 
     [DataField]
-    public float MaxDistance = 1024f;
+    public float MaxDistance = 2048f; // Mono
 
     /// <summary>
     /// If set, used instead of <see cref="RadarColor"/>/<see cref="Scale"/>/<see cref="Shape"/>

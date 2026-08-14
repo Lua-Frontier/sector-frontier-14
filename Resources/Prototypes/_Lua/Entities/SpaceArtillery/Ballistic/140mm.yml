@@ -1,0 +1,48 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: WeaponTurretLongbow
+  id: Weapon140mm
+  name: Миномёт "140мм"
+  description: Тяжёлый миномёт, использует снаряды 140мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets140mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets140mm
+  - type: Gun
+    fireRate: 0.01
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLua140mm
+        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLua140mm
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon140mmBaseFlatpack
+  name: упакованный тяжёлый миномёт
+  description: Упакованный Тяжёлый Миномёт (.140мм)
+  components:
+  - type: Flatpack
+    entity: Weapon140mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

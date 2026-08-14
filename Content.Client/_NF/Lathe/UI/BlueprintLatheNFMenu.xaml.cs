@@ -182,7 +182,7 @@ public sealed partial class BlueprintLatheNFMenu : DefaultWindow
             if (!_prototypeManager.TryIndex(id, out var proto))
                 continue;
 
-            var adjustedAmount = SharedLatheSystem.AdjustMaterial(amount, prototype.ApplyMaterialDiscount, component.FinalMaterialUseMultiplier);
+            var adjustedAmount = SharedLatheSystem.AdjustMaterial(amount, prototype.MaterialDiscountScale, component.FinalMaterialUseMultiplier);
             var sheetVolume = _materialStorage.GetSheetVolume(proto);
 
             var unit = Loc.GetString(proto.Unit);

@@ -1,6 +1,6 @@
 - type: entity
   name: NFSD energy shield
-  parent: [BaseC3CentCommContraband, EnergyShield] # BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
+  parent: [BaseC3CentCommContraband, EnergyShield, BaseNanotrasenContrabandT1] # BaseC2ContrabandUnredeemable > BaseC3CentCommContraband
   id: EnergyShieldNfsd
   components:
   - type: Sprite

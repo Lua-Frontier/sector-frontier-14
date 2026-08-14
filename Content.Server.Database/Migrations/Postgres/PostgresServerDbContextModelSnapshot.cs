@@ -1007,6 +1007,10 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("AcceptedPublicOffer")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("accepted_public_offer");
+
                     b.Property<DateTime>("FirstSeenTime")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("first_seen_time");
@@ -1421,11 +1425,9 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.HasIndex("RoundId")
                         .HasDatabaseName("IX_reputation_votes_round_id");
 
-                    b.HasIndex("TargetKind", "TargetUserId")
-                        .HasDatabaseName("IX_reputation_votes_target_kind_target_user_id");
+                    b.HasIndex("TargetKind", "TargetUserId");
 
-                    b.HasIndex("VoterUserId", "TargetKind", "TargetUserId", "Deleted")
-                        .HasDatabaseName("IX_reputation_votes_voter_user_id_target_kind_target_user_id_d~");
+                    b.HasIndex("VoterUserId", "TargetKind", "TargetUserId", "Deleted");
 
                     b.ToTable("reputation_votes", (string)null);
                 });

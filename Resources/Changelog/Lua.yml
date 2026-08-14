@@ -4771,3 +4771,128 @@ Entries:
   id: 321
   time: '2026-08-04T16:51:28.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/620
+- author: HacksLua
+  changes:
+    - type: Remove
+      message: Удалено вооружение Fallout и RMC
+    - type: Tweak
+      message: >-
+        Обновлена логика стрельбы со всего вида вооружений, полу монолитовская
+        логика
+    - type: Tweak
+      message: Добавлена индустриальная ветка технологий в РНД, новые руководства.
+    - type: Tweak
+      message: РНД пересортирован
+    - type: Tweak
+      message: У гранаты с металлической пеной удалено создание тайлов
+    - type: Tweak
+      message: >-
+        Больше ничего не привязывается к шаттлу, вы можете смело откручивать всё
+        что вам нужно
+    - type: Tweak
+      message: Стены выровнены под статы Monolith
+    - type: Tweak
+      message: Оптимизация Туманностей
+    - type: Fix
+      message: HOTFIX утечки RAM
+  id: 322
+  time: '2026-08-07T15:49:39.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/623
+- author: HacksLua
+  changes:
+    - type: Tweak
+      message: Улучшена логика враждебных ИИ шаттлов и автопилот
+    - type: Fix
+      message: Исправлена утечка RAM связанная с хирургией
+    - type: Fix
+      message: Исправлена утечка RAM связанная с консолью управления шаттлом
+    - type: Fix
+      message: Исправлена ошибка RadarBlip связанная с планетами
+    - type: Fix
+      message: >-
+        Исправлено отображение корабельных и персональных щитов теперь цвета не
+        наследуются от последнего щита
+  id: 323
+  time: '2026-08-08T00:07:56.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/627
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена контрабанда Nanotrasen для Синдиката
+    - type: Add
+      message: Добавлена консоль технологий для получения ТК за технологии Nanotrasen
+    - type: Add
+      message: Добавлен терминал выплат за подконтрольные станции
+    - type: Tweak
+      message: Полный рефактор Автодока, операции стали проще быстрее и понятнее
+    - type: Tweak
+      message: Вентиляторы теперь разрушаются
+    - type: Tweak
+      message: Новая руда литий и медь спавнятся на планетах и астероидах
+  id: 324
+  time: '2026-08-09T16:28:48.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/629
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлены новые параллаксы а так же настройки графики для них
+    - type: Add
+      message: Добавлена публичная оферта
+    - type: Tweak
+      message: У Аукционеров ящики заменены на гифт боксы
+    - type: Tweak
+      message: >-
+        Увеличена дистанция обзора на консолях а так же дальность отрисовки
+        меток
+    - type: Fix
+      message: Ивенты перенесены в ПА
+    - type: Fix
+      message: ДД перенесены в ПА
+    - type: Fix
+      message: Доставка грузов теперь только на торговые терминалы
+    - type: Fix
+      message: Исправил разрушаемость руды крушителем
+    - type: Fix
+      message: Восстановлен КД на взятие оружия
+    - type: Fix
+      message: Снижен урон турелям _Lua
+    - type: Fix
+      message: Исправлена стрельба с консоли вооружения при смещении радара
+    - type: Fix
+      message: Шаттлы больше невозможно распознать смещением радара
+    - type: Remove
+      message: 'Удалено веселье! :cat_xdd:'
+  id: 325
+  time: '2026-08-10T14:31:52.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/631
+- author: CQuarian-dev
+  changes:
+    - type: Add
+      message: Новый шаттл СРБС - Andromeda
+    - type: Remove
+      message: Щаттл синдиката - Expedition
+    - type: Remove
+      message: Шаттл синдиката - Explorer
+    - type: Remove
+      message: Старая версия Infiltrator (теперь в верфи только один Infiltrator)
+    - type: Tweak
+      message: Ремап Kinetic-Lancer
+    - type: Tweak
+      message: Ремап Infiltrator
+    - type: Tweak
+      message: Ремап Lancelot (проблема со щитом исправлена)
+    - type: Tweak
+      message: Ремап Pioneer
+    - type: Tweak
+      message: Ремап Ganger
+    - type: Tweak
+      message: Ремап Lunar
+    - type: Tweak
+      message: Ремап Strizh
+    - type: Tweak
+      message: Ремап Fish (химкомат убран навсегда)
+    - type: Tweak
+      message: Ремап Skif
+  id: 326
+  time: '2026-08-14T16:15:10.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/634

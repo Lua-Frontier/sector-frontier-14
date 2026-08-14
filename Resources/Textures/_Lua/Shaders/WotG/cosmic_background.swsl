@@ -1,0 +1,55 @@
+light_mode unshaded;
+
+uniform sampler2D kaliset_fractal;
+uniform sampler2D noise_texture;
+
+uniform highp float time;
+uniform highp float zoom;
+uniform highp float scroll_speed_factor;
+uniform highp float brightness;
+uniform highp float detail_iterations;
+uniform highp vec3 front_star_color;
+uniform highp vec3 back_star_color;
+uniform highp vec3 color_change_influence_1;
+uniform highp vec3 color_change_influence_2;
+uniform highp float color_change_strength_1;
+uniform highp float color_change_strength_2;
+
+void fragment() {
+    highp vec2 coordinates = UV;
+    highp vec3 result = vec3(0.0);
+    highp float volumetricLayerFade = 1.0;
+    highp float distanceFromBottom = distance(coordinates.y, 1.0);
+    highp float detailIterationsClamped = clamp(detail_iterations, 1.0, 20.0);
+    highp vec2 offset = vec2(0.22, 0.05);
+
+    for (int i = 0; i < 20; i++) {
+        highp float layerIndex = float(i);
+        highp float enabled = 1.0 - step(detailIterationsClamped, layerIndex);
+
+        highp float scrollTime = time * pow(volumetricLayerFade, 2.0) * 3.0;
+        highp vec2 p = (coordinates - offset) * zoom + offset;
+        p.y += 1.5;
+        p += vec2(scrollTime * scroll_speed_factor, scrollTime * scroll_speed_factor);
+        p /= volumetricLayerFade;
+
+        highp float totalChange = texture2D(kaliset_fractal, p).r * 1000.0;
+        highp vec3 layerColor = mix(front_star_color, back_star_color, layerIndex / detailIterationsClamped);
+        result += layerColor * totalChange * volumetricLayerFade * enabled;
+        volumetricLayerFade *= 0.92;
+    }
+
+    highp float colorChangeBrightness1 = texture2D(noise_texture, coordinates * 1.5).r;
+    highp float colorChangeBrightness2 = texture2D(noise_texture, coordinates * 1.65 + time * scroll_speed_factor).r;
+    highp float totalColorChange = colorChangeBrightness1 + colorChangeBrightness2;
+
+    result = pow(
+        max(result * 0.010714, vec3(0.0)),
+        vec3(2.64 - totalColorChange * 1.4 + pow(distanceFromBottom, 3.0) * 3.9)
+    ) * brightness;
+
+    highp float luminance = dot(result, vec3(0.3333));
+    result += color_change_influence_1 * luminance * colorChangeBrightness1 * color_change_strength_1;
+    result += color_change_influence_2 * luminance * pow(colorChangeBrightness2, 4.0) * color_change_strength_2;
+    COLOR = vec4(max(result, vec3(0.0)) * 0.4, 1.0);
+}

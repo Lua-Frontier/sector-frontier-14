@@ -595,3 +595,15 @@
     materialComposition:
       Steel: 200 # 2 sheets
       FuelGradeUranium: 500 # 5 sheets # Frontier: Uranium<FuelGradeUranium
+
+# Mono
+- type: entity
+  parent: ScrapGeneratorFuelTank
+  id: ScrapGeneratorFuelTankPlasma
+  suffix: Scrap, Plasma
+  description: A fuel tank from a portable generator. The gauge indicates it's got a little plasma left.
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200 # 2 sheets
+      Plasma: 500 # 5 sheets

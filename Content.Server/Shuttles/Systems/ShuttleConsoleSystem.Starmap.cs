@@ -29,7 +29,7 @@ namespace Content.Server.Shuttles.Systems;
 public sealed partial class ShuttleConsoleSystem
 {
     [Dependency] private readonly StarmapSystem _starmap = default!; // Lua
-    [Dependency] private readonly SectorOwnershipSystem _ownership = default!; // Lua
+    [Dependency] private readonly FactionOwnedStationSystem _factionOwnedStations = default!; // Lua
     [Dependency] private readonly SectorSystem _sectors = default!; // Lua
     [Dependency] private readonly CentcommSystem _centcomm = default!; // CentCom
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -269,18 +269,8 @@ public sealed partial class ShuttleConsoleSystem
             }
         }
         var ownerByMap = new Dictionary<MapId, string>();
-        var colorOverrides = new Dictionary<MapId, string>();
-        try
-        {
-            foreach (var kv in _ownership.GetOwnerByMap())
-            { ownerByMap[kv.Key] = kv.Value; }
-            foreach (var kv in _ownership.GetSectorColorOverridesHex())
-            { colorOverrides[kv.Key] = kv.Value; }
-        }
-        catch { }
-        List<MapId> capturing = new();
-        try { capturing = _ownership.GetCapturingMaps().ToList(); } catch { }
-        return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, capturing, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, colorOverrides, sectorsGloballyUnlocked);
+        _factionOwnedStations.BuildMapOwnership(ownerByMap);
+        return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, null, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, new Dictionary<MapId, string>(), sectorsGloballyUnlocked);
     }
 
     private EntityUid? ResolveStarMapViewer(EntityUid? consoleUid)

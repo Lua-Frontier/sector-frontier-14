@@ -1,0 +1,111 @@
+- type: latheRecipe
+  id: SynthHeart
+  result: BioSynthHeart
+  completetime: 10
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthLungs
+  result: BioSynthLungs
+  completetime: 10
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthLiver
+  result: BioSynthLiver
+  completetime: 10
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthEyes
+  result: BioSynthEyes
+  completetime: 10
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthHeadEmpty
+  result: BioSynthHeadEmpty
+  completetime: 10
+  materials:
+    Biomass: 5
+
+- type: latheRecipe
+  id: SynthLeftArm
+  result: BioSynthLeftArm
+  completetime: 5
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthLeftHand
+  result: BioSynthLeftHand
+  completetime: 5
+  materials:
+    Biomass: 3
+
+- type: latheRecipe
+  id: SynthRightArm
+  result: BioSynthRightArm
+  completetime: 5
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthRightHand
+  result: BioSynthRightHand
+  completetime: 5
+  materials:
+    Biomass: 3
+
+- type: latheRecipe
+  id: SynthLeftLeg
+  result: BioSynthLeftLeg
+  completetime: 5
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthRightLeg
+  result: BioSynthRightLeg
+  completetime: 5
+  materials:
+    Biomass: 7
+
+- type: latheRecipe
+  id: SynthLeftFoot
+  result: BioSynthLeftFoot
+  completetime: 5
+  materials:
+    Biomass: 3
+
+- type: latheRecipe
+  id: SynthRightFoot
+  result: BioSynthRightFoot
+  completetime: 5
+  materials:
+    Biomass: 3
+
+- type: latheRecipePack
+  id: MedicalSynthLimbsStatic
+  recipes:
+  - SynthLiver
+  - SynthHeart
+  - SynthLungs
+  - SynthEyes
+  - SynthHeadEmpty
+  - SynthLeftLeg
+  - SynthRightLeg
+  - SynthLeftFoot
+  - SynthRightFoot
+  - SynthLeftArm
+  - SynthRightArm
+  - SynthLeftHand
+  - SynthRightHand
+
+- type: latheRecipePack
+  id: MedicalPizzaLimbsStatic
+  recipes: []

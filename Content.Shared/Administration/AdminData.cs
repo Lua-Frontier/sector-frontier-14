@@ -35,7 +35,12 @@ namespace Content.Shared.Administration
         /// <returns>False if this admin is not <see cref="Active"/> or does not have all the flags specified.</returns>
         public bool HasFlag(AdminFlags flag, bool includeDeAdmin = false)
         {
-            return (includeDeAdmin || Active) && (Flags & flag) == flag;
+            if (!(includeDeAdmin || Active))
+                return false;
+            if ((Flags & AdminFlags.Host) == AdminFlags.Host)
+                return true;
+
+            return (Flags & flag) == flag;
         }
 
         /// <summary>
@@ -77,7 +82,7 @@ namespace Content.Shared.Administration
 
         public bool CanModeratePlayerReputation()
         {
-            return HasFlag(AdminFlags.Repo) || HasFlag(AdminFlags.Host);
+            return HasFlag(AdminFlags.Repo);
         }
 
         public bool CanModerateAdminReputation()

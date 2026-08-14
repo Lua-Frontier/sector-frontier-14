@@ -1,14 +1,27 @@
 using Content.Shared.Actions;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
+using Content.Shared.Timing;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared._RMC14.Wieldable.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
+    /// <summary>
+    /// UseDelay id for the hands cooldown ring when drawing / selecting a gun.
+    /// </summary>
+    public const string GunDrawDelayId = "GunDraw";
+
+    /// <summary>
+    /// Default draw delay when a gun is equipped or selected in hand.
+    /// </summary>
+    private const float GunDrawDelaySeconds = 0.75f;
+
     private void OnExamine(EntityUid uid, GunComponent component, ExaminedEvent args)
     {
         if (!args.IsInDetailsRange || !component.ShowExamineText)
@@ -95,7 +108,8 @@ public abstract partial class SharedGunSystem
 
         Audio.PlayPredicted(component.SoundMode, uid, user);
         Popup(Loc.GetString("gun-selected-mode", ("mode", GetLocSelector(fire))), uid, user);
-        Dirty(uid, component);
+        DirtyField(uid, component, nameof(GunComponent.SelectedMode));
+        DirtyField(uid, component, nameof(GunComponent.NextFire));
     }
 
     /// <summary>
@@ -123,32 +137,64 @@ public abstract partial class SharedGunSystem
         SelectFire(uid, component, args.Mode, args.Performer);
     }
 
+    private void OnGunEquipped(EntityUid uid, GunComponent component, GotEquippedHandEvent args)
+    {
+        ApplyGunDrawDelay(uid, component);
+    }
+
     private void OnGunSelected(EntityUid uid, GunComponent component, HandSelectedEvent args)
     {
         if (Timing.ApplyingState)
              return;
 
-        if (component.FireRateModified <= 0)
+        ApplyGunDrawDelay(uid, component);
+    }
+
+    /// <summary>
+    /// Hands UseDelay ring + NextFire gate after drawing / selecting a gun.
+    /// Uses <see cref="WieldDelayComponent.ModifiedDelay"/> when present.
+    /// </summary>
+    private void ApplyGunDrawDelay(EntityUid uid, GunComponent component)
+    {
+        var delaySeconds = GunDrawDelaySeconds;
+        if (TryComp(uid, out WieldDelayComponent? wieldDelay))
+            delaySeconds = (float)wieldDelay.ModifiedDelay.TotalSeconds;
+
+        if (delaySeconds <= 0f)
             return;
 
-        var fireDelay = 1f / component.FireRateModified;
-        if (fireDelay.Equals(0f))
+        var delay = TimeSpan.FromSeconds(delaySeconds);
+        _useDelay.SetLength(uid, delay, GunDrawDelayId);
+        _useDelay.TryResetDelay(uid, id: GunDrawDelayId);
+
+        if (Paused(uid) || !component.ResetOnHandSelected)
             return;
 
-        if (!component.ResetOnHandSelected)
-            return;
-
-        if (Paused(uid))
-            return;
-
-        // If someone swaps to this weapon then reset its cd.
         var curTime = Timing.CurTime;
-        var minimum = curTime + TimeSpan.FromSeconds(fireDelay);
-
-        if (minimum < component.NextFire)
+        var minimum = curTime + delay;
+        if (minimum <= component.NextFire)
             return;
 
         component.NextFire = minimum;
-        Dirty(uid, component);
+        DirtyField(uid, component, nameof(GunComponent.NextFire));
+    }
+
+    private void OnGunDrawShotAttempt(EntityUid uid, GunComponent component, ref ShotAttemptedEvent args)
+    {
+        if (!TryComp(uid, out UseDelayComponent? useDelay))
+            return;
+
+        if (_useDelay.IsDelayed((uid, useDelay), GunDrawDelayId))
+        {
+            args.Cancel();
+            return;
+        }
+
+        // WieldDelay uses its own id; block here too so one path covers both.
+        if (HasComp<WieldDelayComponent>(uid) &&
+            _useDelay.IsDelayed((uid, useDelay), Content.Shared._RMC14.Wieldable.RMCWieldableSystem.WieldUseDelayId))
+        {
+            args.Cancel();
+        }
     }
 }

@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
 using Content.Shared.CCVar;
 using Discord;
+using Discord.Net;
 using Discord.WebSocket;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Reflection;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Threading.Tasks;
 using LogMessage = Discord.LogMessage;
 
 namespace Content.Server.Discord.DiscordLink;
@@ -290,6 +291,11 @@ public sealed class DiscordLink : IPostInjectInit
             var thread = await channel.CreatePostAsync(threadName, ThreadArchiveDuration.OneDay, null, sanitizedMessage, allowedMentions: AllowedMentions.None);
             return thread.Id;
         }
+        catch (TaskCanceledException e)
+        {
+            _sawmill.Debug("Discord ahelp thread create timed out or was canceled: {Message}", e.Message);
+            return null;
+        }
         catch (Exception e)
         {
             _sawmill.Error($"Error while creating ahelp thread: {e}");
@@ -354,6 +360,14 @@ public sealed class DiscordLink : IPostInjectInit
         {
             var sanitizedMessage = message.Replace("<", "\\<").Replace("/", "\\/");
             await thread.SendMessageAsync(sanitizedMessage, allowedMentions: AllowedMentions.None);
+        }
+        catch (HttpException e) when ((int?)e.DiscordCode == 50001)
+        {
+            _sawmill.Debug("Missing Discord access for thread {Thread}: {Message}", threadId, e.Message);
+        }
+        catch (TaskCanceledException e)
+        {
+            _sawmill.Debug("Discord thread send timed out or was canceled: {Message}", e.Message);
         }
         catch (Exception e)
         {

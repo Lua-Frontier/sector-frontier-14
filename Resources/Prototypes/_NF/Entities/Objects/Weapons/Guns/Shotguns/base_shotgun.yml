@@ -48,6 +48,10 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunRequiresWield
+  - type: WieldDelay
+    baseDelay: 0.75
+    modifiedDelay: 0.75
+    preventFiring: true
   - type: GunWieldBonus
     minAngle: -1
     maxAngle: -4

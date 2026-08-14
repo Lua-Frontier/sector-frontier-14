@@ -1,12 +1,16 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Localizations;
 using Content.Shared.Materials;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Stacks;
 using JetBrains.Annotations;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -20,6 +24,9 @@ public abstract class SharedLatheSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] protected readonly EntityQuery<StackComponent> _stackQuery = default!;
 
     public readonly Dictionary<string, List<LatheRecipePrototype>> InverseRecipes = new();
 
@@ -85,7 +92,49 @@ public abstract class SharedLatheSystem : EntitySystem
         return _proto.TryIndex<LatheRecipePrototype>(recipe, out var proto) && CanProduce(uid, proto, amount, component);
     }
 
-    public bool CanProduce(EntityUid uid, LatheRecipePrototype recipe, int amount = 1, LatheComponent? component = null)
+    // Mono
+    public Dictionary<ProtoId<MaterialPrototype>, int> GetEndMaterialAmounts(Entity<LatheComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return new();
+
+        var currentMaterial = _materialStorage.GetStoredMaterials(ent.Owner);
+        foreach (var batch in ent.Comp.Queue)
+        {
+            if (!_proto.TryIndex(batch.Recipe, out var recipe))
+                continue;
+
+            foreach (var (material, needed) in recipe.Materials)
+            {
+                var adjustedAmount = AdjustMaterial(needed, recipe.MaterialDiscountScale, ent.Comp.FinalMaterialUseMultiplier);
+                currentMaterial[material] = currentMaterial.GetValueOrDefault(material)
+                    - adjustedAmount * (batch.ItemsRequested - batch.ItemsPrinted);
+            }
+        }
+        return currentMaterial;
+    }
+
+    // Mono
+    public bool CanProduceEnd(Entity<LatheComponent?> ent, LatheRecipePrototype recipe, int amount = 1)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+        if (!HasRecipe(ent, recipe, ent.Comp))
+            return false;
+
+        var endAmts = GetEndMaterialAmounts(ent);
+
+        foreach (var (material, needed) in recipe.Materials)
+        {
+            var adjustedAmount = AdjustMaterial(needed, recipe.MaterialDiscountScale, ent.Comp.FinalMaterialUseMultiplier);
+
+            if (endAmts.GetValueOrDefault(material) < adjustedAmount * amount)
+                return false;
+        }
+        return true;
+    }
+
+    public virtual bool CanProduce(EntityUid uid, LatheRecipePrototype recipe, int amount = 1, LatheComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -97,11 +146,27 @@ public abstract class SharedLatheSystem : EntitySystem
 
         foreach (var (material, needed) in recipe.Materials)
         {
-            var adjustedAmount = AdjustMaterial(needed, recipe.ApplyMaterialDiscount, component.FinalMaterialUseMultiplier); // Frontier: FinalMaterialUseMultiplier<MaterialUseMultiplier
+            var adjustedAmount = AdjustMaterial(needed, recipe.MaterialDiscountScale, component.FinalMaterialUseMultiplier); // Frontier: FinalMaterialUseMultiplier<MaterialUseMultiplier
 
             if (_materialStorage.GetMaterialAmount(uid, material) < adjustedAmount * amount)
                 return false;
         }
+        // mono start
+        foreach (var (reagent, needed) in recipe.Reagents)
+        {
+            if (component.ReagentOutputSlotId is not { } slotId)
+                return false;
+
+            if (!_container.TryGetContainer(uid, slotId, out var container) ||
+                container.ContainedEntities.Count == 0)
+                return false;
+
+            if (!_solution.TryGetDrainableSolution(container.ContainedEntities[0], out _, out var solution )
+                || solution.GetReagent(new ReagentId(reagent.Id, [])).Quantity < needed * amount)
+                return false;
+        }
+        // mono end
+
         return true;
     }
 
@@ -129,8 +194,8 @@ public abstract class SharedLatheSystem : EntitySystem
     }
     // End Frontier: demag
 
-    public static int AdjustMaterial(int original, bool reduce, float multiplier)
-        => reduce ? (int) MathF.Ceiling(original * multiplier) : original;
+    public static int AdjustMaterial(int original, float multScale, float multiplier)
+        => (int) MathF.Ceiling(original * MathF.Pow(multiplier, multScale));
 
     protected abstract bool HasRecipe(EntityUid uid, LatheRecipePrototype recipe, LatheComponent component);
 
@@ -210,5 +275,25 @@ public abstract class SharedLatheSystem : EntitySystem
         }
 
         return string.Empty;
+    }
+
+    public void MultiplyLatheMultipliers(Entity<LatheComponent?> ent, float? materialUse = null, float? time = null)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
+        if (materialUse != null)
+        {
+            ent.Comp.MaterialUseMultiplier *= materialUse.Value;
+            ent.Comp.FinalMaterialUseMultiplier *= materialUse.Value;
+            Dirty(ent);
+        }
+
+        if (time != null)
+        {
+            ent.Comp.TimeMultiplier *= time.Value;
+            ent.Comp.FinalTimeMultiplier *= time.Value;
+            Dirty(ent);
+        }
     }
 }

@@ -135,10 +135,13 @@
   - type: ContainerContainer
     containers:
       cash_slot: !type:ContainerSlot
-  # End Frontier
-
   - type: ShipRepairable
-    repairCost: 2
+    repairTime: 5
+    repairCost: 10
+  - type: BarricadeBlock
+    bidirectional: true
+    blocking: 67
+  # End Frontier
 - type: entity
   id: VendingMachineWallmount
   parent: BaseWallmountMachine
@@ -202,6 +205,9 @@
     enabled: false
     usesApcPower: true
   - type: Rotatable
+  - type: ShipRepairable
+    repairTime: 5
+    repairCost: 10
 
 # Vending machines
 

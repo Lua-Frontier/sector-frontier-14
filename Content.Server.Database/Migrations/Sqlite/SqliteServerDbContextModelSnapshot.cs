@@ -951,6 +951,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("player_id");
 
+                    b.Property<DateTime?>("AcceptedPublicOffer")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("accepted_public_offer");
+
                     b.Property<DateTime>("FirstSeenTime")
                         .HasColumnType("TEXT")
                         .HasColumnName("first_seen_time");
@@ -1350,11 +1354,9 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.HasIndex("RoundId")
                         .HasDatabaseName("IX_reputation_votes_round_id");
 
-                    b.HasIndex("TargetKind", "TargetUserId")
-                        .HasDatabaseName("IX_reputation_votes_target_kind_target_user_id");
+                    b.HasIndex("TargetKind", "TargetUserId");
 
-                    b.HasIndex("VoterUserId", "TargetKind", "TargetUserId", "Deleted")
-                        .HasDatabaseName("IX_reputation_votes_voter_user_id_target_kind_target_user_id_deleted");
+                    b.HasIndex("VoterUserId", "TargetKind", "TargetUserId", "Deleted");
 
                     b.ToTable("reputation_votes", (string)null);
                 });

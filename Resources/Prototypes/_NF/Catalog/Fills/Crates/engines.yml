@@ -27,7 +27,6 @@
     contents:
       - id: EmitterFlatpack
         amount: 8
-  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
 
 - type: entity
   parent: CrateEngineeringSecureEngineering
@@ -39,7 +38,6 @@
     contents:
       - id: TeslaCoilFlatpack
         amount: 6
-  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
 
 - type: entity
   id: CrateEngineeringSingularityCollectorBulk
@@ -53,7 +51,6 @@
         amount: 6
       - id: PlasmaTankFilled
         amount: 6
-  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
 
 - type: entity
   id: CrateEngineeringSingularityContainmentBulk
@@ -65,7 +62,6 @@
     contents:
       - id: ContainmentFieldGeneratorFlatpack
         amount: 8
-  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass
 
 - type: entity
   id: CrateEngineeringTeslaGroundingRodBulk
@@ -77,4 +73,3 @@
     contents:
       - id: TeslaGroundingRodFlatpack
         amount: 4
-  - type: BindFillToStation # FIXME - better storage/spawner init in variation pass

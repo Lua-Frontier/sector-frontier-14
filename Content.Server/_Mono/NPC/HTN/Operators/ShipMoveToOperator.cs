@@ -68,6 +68,12 @@ public sealed partial class ShipMoveToOperator : HTNOperator, IHtnConditionalShu
     [DataField]
     public float BrakeThreshold = 0.75f;
 
+    [DataField]
+    public float GridObstacleClearance = 14f;
+
+    [DataField]
+    public float MinObstructorDistance = 20f;
+
     /// <summary>
     /// How many evasion sectors to init on the outer ring.
     /// </summary>
@@ -213,16 +219,20 @@ public sealed partial class ShipMoveToOperator : HTNOperator, IHtnConditionalShu
         comp.EvasionSectorCount = EvasionSectorCount;
         comp.EvasionSectorDepth = EvasionSectorDepth;
         comp.FinishOnCollide = FinishOnCollide;
+        comp.GridObstacleClearance = GridObstacleClearance;
         comp.InRangeMaxSpeed = InRangeMaxSpeed;
         comp.InRangeRotation = targetAngle;
         comp.LeadingEnabled = LeadingEnabled;
         comp.MaxRotateRate = MaxRotateRate;
+        comp.MinObstructorDistance = MinObstructorDistance;
         comp.Mode = Mode;
         comp.NoFinish = ShutdownState == HTNPlanState.PlanFinished;
         comp.OrbitOffset = Angle.FromDegrees(OrbitOffset);
         comp.Range = Range;
         comp.RangeTolerance = RangeTolerance;
         comp.TargetRotation = TargetRotation;
+
+        _steering.PlanHazardWaypoints(uid, comp);
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)

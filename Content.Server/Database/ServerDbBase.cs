@@ -1460,6 +1460,30 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
+        public async Task<DateTimeOffset?> GetAcceptedPublicOffer(NetUserId player)
+        {
+            await using var db = await GetDb();
+
+            return NormalizeDatabaseTime(await db.DbContext.Player
+                .Where(dbPlayer => dbPlayer.UserId == player)
+                .Select(dbPlayer => dbPlayer.AcceptedPublicOffer)
+                .SingleOrDefaultAsync());
+        }
+
+        public async Task SetAcceptedPublicOffer(NetUserId player, DateTimeOffset? date)
+        {
+            await using var db = await GetDb();
+
+            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == player).SingleOrDefaultAsync();
+            if (dbPlayer == null)
+            {
+                return;
+            }
+
+            dbPlayer.AcceptedPublicOffer = date?.UtcDateTime;
+            await db.DbContext.SaveChangesAsync();
+        }
+
         public async Task<bool> GetBlacklistStatusAsync(NetUserId player)
         {
             await using var db = await GetDb();

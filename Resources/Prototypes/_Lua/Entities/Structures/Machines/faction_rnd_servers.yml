@@ -5,8 +5,6 @@
   name: faction R&D server
   description: Contains the extent of somebody's hard-earned knowledge. Handle with care.
   components:
-  - type: BindToStation
-    enabled: false
   - type: Sprite
     sprite: _Mono/Structures/Machines/server.rsi
     snapCardinals: true
@@ -28,8 +26,7 @@
     supportedDisciplines:
      - NFEngineering
      - NFMedical
-     - NFArsenalMercenary
-     - NFArsenalNfsd
+     - NFArsenal
      - NFSalvage
      - NFScience
      - NFService

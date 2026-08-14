@@ -10,7 +10,9 @@ public sealed class PayoutCollectorBoundUserInterface : BoundUserInterface
 {
     private PayoutCollectorWindow? _window;
 
-    public PayoutCollectorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
+    public PayoutCollectorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+    }
 
     protected override void Open()
     {
@@ -22,13 +24,19 @@ public sealed class PayoutCollectorBoundUserInterface : BoundUserInterface
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
-    { if (_window == null || state is not PayoutCollectorBuiState st) return; _window.Update(st); }
+    {
+        if (_window == null || state is not PayoutCollectorBuiState st)
+            return;
+
+        _window.Update(st);
+    }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-        if (!disposing) return; _window?.Dispose();
+        if (!disposing)
+            return;
+
+        _window?.Dispose();
     }
 }
-
-

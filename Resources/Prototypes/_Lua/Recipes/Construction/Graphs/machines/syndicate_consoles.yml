@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: ComputerContrabandPalletConsoleSyndicate
+  start: start
+  graph:
+  - node: start
+    entity: ComputerContrabandPalletConsoleSyndicateBroken
+    edges:
+    - to: repaired
+      steps:
+      - tool: Welding
+        doAfter: 10.0
+
+  - node: repaired
+    entity: ComputerContrabandPalletConsoleSyndicate

@@ -127,6 +127,35 @@
   maxGroupSize: 2
   radius: 4
 
+# Mono
+- type: biomeMarkerLayer
+  id: OreLithium
+  entityMask:
+    AsteroidRock: AsteroidRockLithium
+    WallRock: WallRockLithium
+    WallRockBasalt: WallRockBasaltLithium
+    WallRockChromite: WallRockChromiteLithium
+    WallRockSand: WallRockSandLithium
+    WallRockSnow: WallRockSnowLithium
+  maxCount: 12
+  minGroupSize: 3
+  maxGroupSize: 6
+  radius: 4
+
+- type: biomeMarkerLayer
+  id: OreCopper
+  entityMask:
+    AsteroidRock: AsteroidRockCopper
+    WallRock: WallRockCopper
+    WallRockBasalt: WallRockBasaltCopper
+    WallRockChromite: WallRockChromiteCopper
+    WallRockSand: WallRockSandCopper
+    WallRockSnow: WallRockSnowCopper
+  maxCount: 15
+  minGroupSize: 4
+  maxGroupSize: 8
+  radius: 4
+
 - type: biomeMarkerLayer
   id: OreArtifactFragment
   entityMask:

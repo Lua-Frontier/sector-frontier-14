@@ -4,16 +4,15 @@
 
 - type: vessel
   id: Lancelot
-  parent: BaseVesselAntag
+  parent: BaseVessel
   name: Lancelot
-  description: Высокомобильный, но малобронированный эсминец, предназначенный для ближнего манёвренного боя и отлично показывающий себя в дуэли.
+  description: Крейсер, предназначенный для дальнего боя и поражения бронированных целей. Эффективный и отлично показывающий себя в дуэли.
   limit: 1
-  price: 345596
+  price: 441070
   category: Large
   group: Typan
   access: SyndicateAgent
   shuttlePath: /Maps/_Lua/Shuttles/Typan/Lancelot.yml
-  guidebookPage: Null
   class:
   - Syndicate
   - Capital # Lua

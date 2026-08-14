@@ -1,6 +1,6 @@
 # Security
 - type: entity
-  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable] # Lua-changes: added BaseC2ContrabandUnredeemable
+  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] # Lua-changes: added BaseC2ContrabandUnredeemable
   id: ClothingOuterHardsuitTSFMCM73
   name: TSFMC M73 tacsuit
   description: The standard-issue TSFMC tacsuit for patrol duty. This bronze variant has private rank markings.
@@ -90,7 +90,7 @@
     sprintModifier: 0.85
 
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitBase, HardsuitIdentify] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
+  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitBase, HardsuitIdentify, BaseNanotrasenContrabandT1] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
   id: ClothingOuterHardsuitTSFMCM92
   name: TSFMC M92 tacsuit
   description: A heavy tacsuit, capable of taking a lot of physical damage.
@@ -136,7 +136,7 @@
 
 
 - type: entity
-  parent: [ClothingOuterHardsuitNfsdBronze, BaseC2ContrabandUnredeemable] # Lua-changes: added BaseC2ContrabandUnredeemable, ClothingOuterHardsuitNfsdBronze > ClothingOuterHardsuitBaseNFNfsd
+  parent: [ClothingOuterHardsuitNfsdBronze, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] # Lua-changes: added BaseC2ContrabandUnredeemable, ClothingOuterHardsuitNfsdBronze > ClothingOuterHardsuitBaseNFNfsd
   id: ClothingOuterHardsuitTSFMCM73-C
   name: TSFMC M73-C tacsuit
   description: A variant of the M73 tacsuit for combat medical and NBC use. Provides greater caustic and radiation protection.
@@ -170,7 +170,7 @@
     sprintModifier: 0.95
 
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitBase, HardsuitIdentify]  #Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband,added EnergyShieldClothing
+  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitBase, HardsuitIdentify, BaseNanotrasenContrabandT1]  #Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband,added EnergyShieldClothing
   id: ClothingOuterHardsuitTSFMCM92-X
   name: TSFMC M92-X tacsuit
   description: A experimental modification of the M92 tacsuit for spec-ops units of the TSFMC. Externally the same, internally its higher-quality alloys and fabric.
@@ -219,7 +219,7 @@
 
 #Security Combat Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
+  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
   id: ClothingOuterHardsuitTSFMCM93
   name: TSFMC M93 tacsuit
   description: A heavily armored TSFMC suit. Space proof, with thick armor plating at the expense of mobility.
@@ -254,7 +254,7 @@
 
 #Security Command Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
+  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
   id: ClothingOuterHardsuitTSFMCM93-C
   name: TSFMC M93-C tacsuit
   description: A variant of the M93 tacsuit with slightly better plating. It isn't much extra.

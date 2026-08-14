@@ -241,11 +241,30 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("lua.company.change_faction_limit", 1, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> AmbientSpaceEffectsEnabled =
-            CVarDef.Create("lua.ambient_space.enabled", true, CVar.ARCHIVE | CVar.REPLICATED);
+            CVarDef.Create("lua.ambient_space.enabled", true, CVar.ARCHIVE | CVar.SERVERONLY);
+
         public static readonly CVarDef<int> AmbientSpaceEffectsQuality =
             CVarDef.Create("lua.ambient_space.quality", 2, CVar.ARCHIVE | CVar.CLIENTONLY);
 
+        public static readonly CVarDef<bool> AmbientSpaceLayerLower =
+            CVarDef.Create("lua.ambient_space.layer_lower", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+        public static readonly CVarDef<bool> AmbientSpaceLayerMid =
+            CVarDef.Create("lua.ambient_space.layer_mid", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+        public static readonly CVarDef<bool> AmbientSpaceLayerUpper =
+            CVarDef.Create("lua.ambient_space.layer_upper", true, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+        public static readonly CVarDef<float> AmbientSpaceEffectsDensity =
+            CVarDef.Create("lua.ambient_space.density", 1f, CVar.ARCHIVE | CVar.CLIENTONLY);
+
         public static readonly CVarDef<int> CurrentGameYear =
             CVarDef.Create("game.current_game_year", 2710, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+
+        public static readonly CVarDef<int> StationPayoutIntervalSeconds =
+            CVarDef.Create("lua.station_payout.interval_seconds", 3600, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+
+        public static readonly CVarDef<int> StationPayoutPerStation =
+            CVarDef.Create("lua.station_payout.per_station", 1, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
     }
 }

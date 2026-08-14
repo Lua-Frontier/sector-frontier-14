@@ -1,0 +1,54 @@
+light_mode unshaded;
+
+uniform sampler2D noise_texture;
+uniform sampler2D nebula_texture_a;
+uniform sampler2D nebula_texture_b;
+
+uniform highp float nebula_color_exponent;
+uniform highp float nebula_color_intensity;
+uniform highp float world_scale;
+uniform highp vec2 world_bl;
+uniform highp vec2 world_size;
+uniform highp vec2 parallax_origin;
+uniform highp vec2 seed_bias;
+uniform highp vec3 sample_color;
+uniform highp vec3 nebula_color_a;
+uniform highp vec3 nebula_color_b;
+uniform highp vec3 nebula_color_c;
+
+void fragment() {
+    highp vec2 worldPos = world_bl + UV2 * world_size;
+    highp vec2 coords = (worldPos - parallax_origin) * world_scale + seed_bias;
+
+    highp float backgroundNoise =
+        texture2D(noise_texture, coords * 10.0).r *
+        texture2D(noise_texture, coords * 6.0).r *
+        texture2D(noise_texture, coords * 3.0).r;
+
+    highp vec3 baseColor = sample_color * mix(0.15, 0.35, backgroundNoise);
+
+    highp float redNebulaInterpolant =
+        texture2D(nebula_texture_a, coords * 1.1).r *
+        texture2D(nebula_texture_b, coords * 2.1).r *
+        texture2D(noise_texture, coords * 1.1).r;
+
+    highp float blueNebulaInterpolant =
+        texture2D(nebula_texture_a, coords * 1.9).r *
+        texture2D(nebula_texture_b, coords * 1.2).r *
+        texture2D(noise_texture, coords * 1.1).r *
+        (0.3 + redNebulaInterpolant * 1.5);
+
+    highp float greenNebulaInterpolant =
+        texture2D(nebula_texture_a, coords * 1.5).r *
+        texture2D(nebula_texture_b, coords * 1.8).r *
+        texture2D(noise_texture, coords * 1.21).r;
+
+    highp vec3 nebulaColor = vec3(0.0);
+    nebulaColor += nebula_color_a * smoothstep(0.06, 0.28, redNebulaInterpolant) * 0.12;
+    nebulaColor += nebula_color_b * smoothstep(0.05, 0.24, blueNebulaInterpolant) * 0.28;
+    nebulaColor += nebula_color_c * smoothstep(0.04, 0.22, greenNebulaInterpolant) * pow(blueNebulaInterpolant, 1.75) * 0.9;
+
+    nebulaColor = pow(max(nebulaColor, vec3(0.0)), vec3(max(nebula_color_exponent, 1.0))) * nebula_color_intensity;
+
+    COLOR = vec4(max(baseColor + nebulaColor, vec3(0.0)), 1.0);
+}

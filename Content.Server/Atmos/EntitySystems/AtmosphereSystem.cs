@@ -9,6 +9,7 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
+using Content.Shared.Damage;
 using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Prometheus;
@@ -19,6 +20,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Threading;
 using System.Linq;
 
 namespace Content.Server.Atmos.EntitySystems;
@@ -67,6 +69,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private readonly IParallelManager _parallel = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -77,6 +80,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] public readonly PuddleSystem Puddle = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!; // Frontier
 
     private const float ExposedUpdateDelay = 1f;

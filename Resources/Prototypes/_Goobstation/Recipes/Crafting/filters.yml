@@ -1,0 +1,64 @@
+- type: construction
+  name: construction-recipe-label-filter
+  id: AutomationFilterLabel
+  graph: AutomationFilter
+  startNode: start
+  targetNode: label
+  category: construction-category-misc
+  description: construction-recipe-label-filter-desc
+  icon:
+    sprite: _Goobstation/Objects/Misc/filter.rsi
+    state: icon
+  objectType: Item
+
+- type: construction
+  name: construction-recipe-name-filter
+  id: AutomationFilterName
+  graph: AutomationFilter
+  startNode: start
+  targetNode: name
+  category: construction-category-misc
+  description: construction-recipe-name-filter-desc
+  icon:
+    sprite: _Goobstation/Objects/Misc/filter.rsi
+    state: icon
+  objectType: Item
+
+- type: construction
+  name: construction-recipe-stack-filter
+  id: AutomationFilterStack
+  graph: AutomationFilter
+  startNode: start
+  targetNode: stack
+  category: construction-category-misc
+  description: construction-recipe-stack-filter-desc
+  icon:
+    sprite: _Goobstation/Objects/Misc/filter.rsi
+    state: icon
+  objectType: Item
+
+- type: construction
+  id: AutomationFilterPressure
+  graph: AutomationFilter
+  startNode: start
+  targetNode: pressure
+  category: construction-category-misc
+  name: construction-recipe-pressure-filter
+  description: construction-recipe-pressure-filter-desc
+  icon:
+    sprite: _Goobstation/Objects/Misc/filter.rsi
+    state: icon
+  objectType: Item
+
+- type: construction
+  name: construction-recipe-combined-filter
+  id: AutomationFilterCombined
+  graph: AutomationFilter
+  startNode: start
+  targetNode: combined
+  category: construction-category-misc
+  description: construction-recipe-combined-filter-desc
+  icon:
+    sprite: _Goobstation/Objects/Misc/filter.rsi
+    state: icon
+  objectType: Item

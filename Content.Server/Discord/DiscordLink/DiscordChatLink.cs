@@ -178,6 +178,11 @@ public sealed class DiscordChatLink : IPostInjectInit
         {
             await _discordLink.SendMessageAsync(channelId.Value, $"**{channel.GetString()}**: `{author}`: {message}");
         }
+        catch (TaskCanceledException e)
+        {
+            // HttpClient timeout / cancel — Discord outages shouldn't spam Error + stack.
+            _sawmill.Debug("Discord send timed out or was canceled: {Message}", e.Message);
+        }
         catch (Exception e)
         {
             _sawmill.Error($"Error while sending Discord message: {e}");
@@ -215,6 +220,10 @@ public sealed class DiscordChatLink : IPostInjectInit
 
             // Send message to existing thread
             await _discordLink.SendThreadMessageAsync(threadId, formattedMessage);
+        }
+        catch (TaskCanceledException e)
+        {
+            _sawmill.Debug("Discord ahelp send timed out or was canceled: {Message}", e.Message);
         }
         catch (Exception e)
         {

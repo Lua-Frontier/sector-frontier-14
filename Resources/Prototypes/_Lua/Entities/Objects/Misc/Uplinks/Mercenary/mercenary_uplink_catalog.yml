@@ -440,25 +440,6 @@
         - MercenaryBase
 
 - type: listing
-  id: UplinkMercenaryNocatHeadset
-  name:  uplink-merc-headset-name
-  description: uplink-merc-headset-desc
-  productEntity: ClothingHeadsetAltMercenary
-  icon: { sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi, state: icon_alt }
-  cost:
-    Speso: 300
-  categories:
-    - UplinkMercenaryNocat
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-- type: listing
   id: UplinkMercenaryNocatKey
   name:  uplink-merc-key-name
   description: uplink-merc-key-desc
@@ -518,43 +499,6 @@
 
 #AR10
 - type: listing
-  id: UplinkMercenaryWeaponRifleAR10
-  name: AR10
-  description: Ранняя версия более распространенной винтовки M16. Считается прародителем винтовки XX века. Как одна из них оказалась здесь — отдельная загадка. Использует патрон 7,62×51 мм.
-  productEntity: WeaponRifleAR10
-  cost:
-    Speso: 15000
-  categories:
-    - UplinkMercenaryGun
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-- type: listing
-  id: UplinkMercenaryRMCMagazineRifleAR10
-  name:  AR10 магазин (7.62x51mm)
-  description: AR10 магазин (7.62x51mm)
-  productEntity: RMCMagazineRifleAR10
-  cost:
-    Speso: 900
-  categories:
-    - UplinkMercenaryAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-#CAWS-25
-- type: listing
   id: UplinkMercenaryWeaponRifleJackdaw
   name: CAWS-25 "Галка"
   description: Начало конца возвещается песней галки. Использует безгильзовые патроны .25.
@@ -592,43 +536,6 @@
 
 #M16
 - type: listing
-  id: UplinkMercenaryWeaponRifleM16
-  name: M16
-  description: Старая, проверенная конструкция, впервые принятая на вооружение в США в 1960-х. Такой экземпляр скорее принадлежит музею военной истории. Использует патрон 5,56×45 мм.
-  productEntity: WeaponRifleM16
-  cost:
-    Speso: 12000
-  categories:
-    - UplinkMercenaryGun
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-- type: listing
-  id: UplinkMercenaryRMCMagazineRifleM16
-  name:  M16 магазин (5.56x45mm)
-  description: M16 магазин (5.56x45mm)
-  productEntity: RMCMagazineRifleM16
-  cost:
-    Speso: 1200
-  categories:
-    - UplinkMercenaryAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-#L6 SAW
-- type: listing
   id: UplinkMercenaryWeaponLightMachineGunL6
   name: L6 SAW
   description: Нелегальное оружие используемое агентами синдиката. Весьма традиционный лёгкий пулемёт с удобной лакированной деревянной пистолетной рукоятью. Использует патроны калибра .30 винтовочный.
@@ -665,43 +572,6 @@
         - MercenaryBase
 
 #MP5
-- type: listing
-  id: UplinkMercenaryWeaponSMGMP5
-  name: MP5
-  description: Немецкая разработка — один из самых массовых пистолетов-пулемётов в мире. До сих пор можно встретить этот образец у коллекционеров или фанатов огнестрельного оружия.
-  productEntity: WeaponSMGMP5
-  cost:
-    Speso: 9000
-  categories:
-    - UplinkMercenaryGun
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-- type: listing
-  id: UplinkMercenaryCMMagazineSMGMP5
-  name:  MP5 магазин (9mm)
-  description: MP5 магазин (9mm)
-  productEntity: CMMagazineSMGMP5
-  cost:
-    Speso: 700
-  categories:
-    - UplinkMercenaryAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-#Wt550
 - type: listing
   id: UplinkMercenaryWeaponSubMachineGunWt550
   name: WT550
@@ -852,43 +722,6 @@
 #        - MercenaryBase
 
 #AntiMateriel
-- type: listing
-  id: UplinkMercenaryN14WeaponAntiMateriel
-  name: Анти-Материальная винтовка
-  description: С одного взгляда внушает страх. Она может уничтожить все, что попадется на ее пути.
-  productEntity: N14WeaponAntiMateriel
-  cost:
-    Speso: 30000
-  categories:
-    - UplinkMercenaryGun
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-- type: listing
-  id: UplinkMercenaryN14Magazine50AMR
-  name: магазин (.50 BMG)
-  description: магазин (.50 BMG)
-  productEntity: N14Magazine50AMR
-  cost:
-    Speso: 1200
-  categories:
-    - UplinkMercenaryAmmo
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - MercenaryUplink
-    - !type:BuyerJobCondition
-      whitelist:
-        - MercenaryBase
-
-#Скуфандры
 - type: listing
   id: UplinkMercenaryClothingOuterHardsuitMaxim
   name:  максимальный скафандр утилизатора

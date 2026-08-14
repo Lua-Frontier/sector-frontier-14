@@ -1,31 +1,27 @@
 using System.Numerics;
-using System.Threading.Tasks;
-using Robust.Shared.Maths;
+using Content.Shared.Parallax;
+using Robust.Client.Graphics;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Parallax.Managers;
 
 public interface IParallaxManager
 {
-    /// <summary>
-    /// All WorldHomePosition values are offset by this.
-    /// </summary>
+    void LoadDefaultParallax();
+    ParallaxPrototype GetPrototype(ProtoId<ParallaxPrototype> id);
+
+    ShaderInstance GetTelescopeBackground();
+    ShaderInstance GetTelescopeStarField(int layerIndex);
+    ShaderInstance GetCosmicBackground();
+    ShaderInstance? GetNamedShader(string? id);
+    Texture GetImageTexture(ResPath path);
+
     Vector2 ParallaxAnchor { get; set; }
 
-    bool IsLoaded(string name);
-
-    /// <summary>
-    /// The layers of the selected parallax.
-    /// </summary>
-    ParallaxLayerPrepared[] GetParallaxLayers(string name);
-
-    /// <summary>
-    /// Loads in the default parallax to use.
-    /// Do not call until prototype manager is available.
-    /// </summary>
-    void LoadDefaultParallax();
-
-    Task LoadParallaxByName(string name);
-
-    void UnloadParallax(string name);
+    Texture KalisetTexture { get; }
+    Texture FireNoise { get; }
+    Texture WavyBlotchNoise { get; }
+    Texture DendriticNoiseZoomedOut { get; }
+    Texture TurbulentNoise { get; }
 }
-

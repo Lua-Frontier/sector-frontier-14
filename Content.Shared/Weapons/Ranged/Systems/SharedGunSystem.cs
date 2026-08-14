@@ -16,6 +16,7 @@ using Content.Shared.Mech.Components; //Lua mech gun support
 using Content.Shared.Item; // Delta-V: Felinids in duffelbags can't shoot.
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared._RMC14.Weapons.Ranged.Prediction;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -39,6 +40,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -72,6 +74,9 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] protected SharedGunPredictionSystem? _gunPrediction = default!;
+
+    protected EntityQuery<ProjectileComponent> _projQuery;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -100,11 +105,15 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeSolution();
         InitializeGunExamine(); // Emberfall
 
+        _projQuery = GetEntityQuery<ProjectileComponent>();
+
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
         SubscribeLocalEvent<GunComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
+        SubscribeLocalEvent<GunComponent, GotEquippedHandEvent>(OnGunEquipped);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
+        SubscribeLocalEvent<GunComponent, ShotAttemptedEvent>(OnGunDrawShotAttempt);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
     }
 
@@ -153,6 +162,50 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Target = GetEntity(msg.Target);
         AttemptShoot(user.Value, ent, gun);
     }
+
+    public List<(EntityUid Entity, ProjectileComponent Component)>? ShootRequested(
+        NetEntity gun,
+        NetCoordinates coordinates,
+        NetEntity? target,
+        List<int>? shot,
+        ICommonSession session)
+    {
+        var gunUid = GetEntity(gun);
+        var user = session.AttachedEntity;
+
+        if (user == null ||
+            !_combatMode.IsInCombatMode(user) ||
+            !TryGetGun(user.Value, out var ent, out var gunComp))
+        {
+            return null;
+        }
+
+        if (ent != gunUid)
+            return null;
+
+        gunComp.ShootCoordinates = GetCoordinates(coordinates);
+        gunComp.Target = GetEntity(target);
+
+        AttemptShoot(user.Value, ent, gunComp);
+
+        if (gunComp.ShotCounter == 0)
+            return null;
+
+        var projectiles = new List<(EntityUid Entity, ProjectileComponent Component)>();
+        if (shot != null)
+        {
+            foreach (var id in shot)
+            {
+                var entity = new EntityUid(id);
+                if (_projQuery.TryComp(entity, out var projectile))
+                    projectiles.Add((entity, projectile));
+            }
+        }
+
+        return projectiles;
+    }
+
+    public bool GunPrediction => _gunPrediction?.GunPrediction ?? false;
 
     //private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
     //{
@@ -494,7 +547,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityUid? user = null,
         bool throwItems = false);
 
-    public void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid? gunUid, EntityUid? user = null, float speed = 20f)
+    public virtual void ShootProjectile(EntityUid uid, Vector2 direction, Vector2 gunVelocity, EntityUid? gunUid, EntityUid? user = null, float speed = 20f)
     {
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
@@ -791,7 +844,13 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     protected abstract void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null);
 
-    public abstract void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound);
+    public abstract void PlayImpactSound(
+        EntityUid otherEntity,
+        DamageSpecifier? modifiedDamage,
+        SoundSpecifier? weaponSound,
+        bool forceWeaponSound,
+        Filter? filter = null,
+        Entity<ProjectileComponent, PhysicsComponent>? projectile = null);
 
     /// <summary>
     /// Used for animated effects on the client.

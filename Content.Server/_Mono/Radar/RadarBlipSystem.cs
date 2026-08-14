@@ -9,7 +9,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Shuttles.Components;
-using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -140,10 +139,8 @@ public sealed partial class RadarBlipSystem : EntitySystem
                     blipVelocity = _physics.GetMapLinearVelocity(blipUid, blipPhysics, blipXform);
 
                 var distance = (_xform.GetWorldPosition(blipXform) - radarPosition).Length();
-                float maxDistance = blip.MaxDistance;
-                var radarMax = component?.MaxRange ?? SharedRadarConsoleSystem.DefaultMaxRange;
-                var allowedDistance = Math.Min(maxDistance, radarMax);
-                if (distance > allowedDistance) continue;
+                // Match Monolith: cull by blip MaxDistance only (not console MaxRange).
+                if (distance > blip.MaxDistance) continue;
                 if ((blip.RequireNoGrid && blipGrid != null) || (!blip.VisibleFromOtherGrids && blipGrid != radarGrid)) continue;
 
                 // due to PVS being a thing, things will break if we try to parent to not the map or a grid
@@ -151,8 +148,8 @@ public sealed partial class RadarBlipSystem : EntitySystem
                 if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
                     coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
                 // we're parented to either the map or a grid and this is relative velocity so account for grid movement
-                if (blipGrid != null)
-                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position);
+                if (blipGrid != null && TryComp<PhysicsComponent>(blipGrid.Value, out var gridBody)) // prevent Resolve log spam
+                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position, gridBody);
 
                 var scale = blip.Scale;
                 var color = blip.RadarColor;

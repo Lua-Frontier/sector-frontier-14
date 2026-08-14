@@ -1,4 +1,4 @@
-ship-repair-tool-insufficient-ammo = недостаточно зарядов
+ship-repair-tool-insufficient-ammo = недостаточно зарядов: {$cost}
 ship-repair-tool-entity-exists = невозможно починить: оригинал существует
 ship-repair-tool-no-data = нет данных ремонта для грида
 ship-repair-tool-fail-whitelist = невозможно починить грид

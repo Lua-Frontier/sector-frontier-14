@@ -766,6 +766,14 @@ public sealed partial class MapScreen : BoxContainer
         base.FrameUpdate(args);
 
         var curTime = _timing.CurTime;
+        if (Visible && _shuttleEntity != null
+            && _entManager.TryGetComponent(_shuttleEntity, out TransformComponent? shuttleXform)
+            && shuttleXform.MapID != MapId.Nullspace
+            && MapRadar.ViewingMap != shuttleXform.MapID)
+        {
+            var targetOffset = _maps.GetGridPosition((_shuttleEntity.Value, null, shuttleXform));
+            MapRadar.SetMap(shuttleXform.MapID, targetOffset, recentering: true);
+        }
 
         if (!IsFTLBlocked() && _nextAutoRefresh <= curTime) // Lua
         {

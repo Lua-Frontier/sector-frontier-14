@@ -43,6 +43,12 @@ namespace Content.Shared.Research.Prototypes
         [DataField]
         public EntProtoId? Result;
 
+        /// <summary>
+        ///     Mono - Materials created by processing this recipe, deposited directly into the lathe.
+        /// </summary>
+        [DataField]
+        public Dictionary<ProtoId<MaterialPrototype>, int> MaterialResult = new();
+
         [DataField]
         public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2>? ResultReagents;
 
@@ -62,13 +68,37 @@ namespace Content.Shared.Research.Prototypes
         [DataField]
         public Dictionary<ProtoId<MaterialPrototype>, int> Materials = new();
 
+        /// <summary>
+        ///     Mono - Entities required to produce this recipe.
+        ///     Entity is acquired from EntityStorage.
+        /// </summary>
         [DataField]
-        public bool ApplyMaterialDiscount = true;
+        public Dictionary<EntProtoId, int> Entities = new();
+
+        /// <summary>
+        ///     Mono - Reagents required to produce this recipe.
+        ///     Reagent is acquired from beaker slot.
+        /// </summary>
+        [DataField]
+        public Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> Reagents = new();
+
+        /// <summary>
+        /// Mono - Scale of material discount from lathe upgrades.
+        /// 1 = full discount applied, 0 = no discount.
+        /// </summary>
+        [DataField]
+        public float MaterialDiscountScale = 1f; // Mono - changed from bool to float
 
         /// <summary>
         /// List of categories used for visually sorting lathe recipes in the UI.
         /// </summary>
         [DataField]
         public List<ProtoId<LatheCategoryPrototype>> Categories = new();
+
+        /// <summary>
+        /// Mono - Amount of entities to spawn on production.
+        /// </summary>
+        [DataField]
+        public int ResultCount = 1;
     }
 }

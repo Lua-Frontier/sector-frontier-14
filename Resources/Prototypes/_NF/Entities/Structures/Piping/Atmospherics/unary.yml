@@ -101,8 +101,6 @@
         layer:
         - MidImpassable
         - LowImpassable
-  - type: BindToStation
-    enabled: false # should be draggable between stations
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseMachinePowered ]

@@ -193,10 +193,19 @@
     Glass: 1200
 
 - type: latheRecipe
+  id: ThrusterLargeMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterLargeMachineCircuitboard
+  materials:
+    Steel: 1200
+    Glass: 1600
+    Plasteel: 400
+
+- type: latheRecipe
   id: SmallThrusterMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: SmallThrusterMachineCircuitboard
-  applyMaterialDiscount: false
+  materialDiscountScale: 0
   materials:
     Steel: 140
     Glass: 300

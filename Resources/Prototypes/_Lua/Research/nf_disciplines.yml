@@ -37,31 +37,12 @@
     3: 0.75
 
 - type: techDiscipline
-  id: NFArsenalMercenary
-  name: nf-research-discipline-arsenal-mercenary
+  id: NFArsenal
+  name: nf-research-discipline-arsenal
   color: "#874343"
   icon:
     sprite: Interface/Misc/research_disciplines.rsi
     state: arsenal
-  factions:
-  - Nanotrasen
-  - Syndicate
-  - Pirates
-  - Ussp
-  - Security
-  - Neutral
-  tierPrerequisites:
-    1: 0
-    2: 0.75
-    3: 0.75
-
-- type: techDiscipline
-  id: NFArsenalNfsd
-  name: nf-research-discipline-arsenal-nfsd
-  color: "#4b653e"
-  icon:
-    sprite: _NF/Interface/Misc/research_disciplines.rsi
-    state: nfsd
   factions:
   - Nanotrasen
   - Syndicate

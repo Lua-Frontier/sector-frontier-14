@@ -38,6 +38,11 @@ namespace Content.Client.Lathe.UI
             _menu.QueueMoveDownAction += index => SendMessage(new LatheMoveRequestMessage(index, 1));
             _menu.DeleteFabricatingAction += () => SendMessage(new LatheAbortFabricationMessage());
             // End Frontier
+
+            // <Mono>
+            _menu.OnLoopCheckboxPressed += loop => SendMessage(new LatheSetLoopingMessage(loop));
+            _menu.OnSkipCheckboxPressed += skip => SendMessage(new LatheSetSkipMessage(skip));
+            // </Mono>
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
@@ -53,6 +58,8 @@ namespace Content.Client.Lathe.UI
                     _menu?.UpdateCategories();
                     _menu?.PopulateQueueList(msg.Queue);
                     _menu?.SetQueueInfo(msg.CurrentlyProducing);
+                    _menu?.SetLooping(msg.Looping); // Mono
+                    _menu?.SetSkipping(msg.Skipping); // Mono
                     break;
             }
         }

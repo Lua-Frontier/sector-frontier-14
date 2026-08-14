@@ -59,6 +59,7 @@
         range: 250
         rangeTolerance: 50
         brakeThreshold: 1 # braking is for wusses
+        avoidCollisions: false
         targetKey: TargetCoordinates
         mode: Orbit
     - !type:HTNPrimitiveTask
@@ -97,6 +98,7 @@
         removeKeyOnFinish: false
         alwaysFaceTarget: true
         inRangeMaxSpeed: 20
+        avoidCollisions: false
         avoidProjectiles: true
         range: 45
         rangeTolerance: 15
@@ -137,6 +139,7 @@
         removeKeyOnFinish: false
         alwaysFaceTarget: true
         inRangeMaxSpeed: 50
+        avoidCollisions: false
         avoidProjectiles: true
         range: 350
         rangeTolerance: 50
@@ -235,6 +238,7 @@
         targetRotation: 90
         removeKeyOnFinish: false
         inRangeMaxSpeed: 20
+        avoidCollisions: false
         range: 200
         rangeTolerance: 20
         targetKey: TargetCoordinates
@@ -276,6 +280,7 @@
         removeKeyOnFinish: false
         alwaysFaceTarget: true
         inRangeMaxSpeed: 4
+        avoidCollisions: false
         avoidProjectiles: true
         range: 400
         rangeTolerance: 50
@@ -313,6 +318,7 @@
     - !type:HTNPrimitiveTask
       operator: !type:ShipMoveToOperator
         shutdownState: TaskFinished
+        avoidCollisions: false
         avoidProjectiles: true
         removeKeyOnFinish: false
         alwaysFaceTarget: false

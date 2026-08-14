@@ -14,6 +14,27 @@
         Glass: 1
 
 - type: entity
+  id: SalvageTechFabCircuitboardNF
+  parent: BaseMachineCircuitboard
+  name: salvage techfab machine board
+  description: A machine printed circuit board for a salvage techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: SalvageTechfabNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        MicroprocessorEconomy1:
+          amount: 1
+          defaultPrototype: MicroprocessorEconomy1
+        MotorEconomy1:
+          amount: 1
+          defaultPrototype: MotorEconomy1
+
+- type: entity
   id: MercenaryTechFabCircuitboardNF
   parent: SecurityTechFabCircuitboard
   name: mercenary techfab machine board
@@ -28,6 +49,12 @@
         MatterBin: 2
         Manipulator: 2
       tagRequirements:
+        MicroprocessorEconomy1:
+          amount: 2
+          defaultPrototype: MicroprocessorEconomy1
+        MotorEconomy1:
+          amount: 1
+          defaultPrototype: MotorEconomy1
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
@@ -49,6 +76,12 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+        MicroprocessorEconomy1:
+          amount: 1
+          defaultPrototype: MicroprocessorEconomy1
+        MotorEconomy1:
+          amount: 4
+          defaultPrototype: MotorEconomy1
 
 - type: entity
   id: GasMiningDrillMachineCircuitboard
@@ -64,8 +97,6 @@
         Manipulator: 3
       stackRequirements:
         Steel: 10
-    - type: BindToStation
-      enabled: false # should be draggable between stations
 
 - type: entity
   id: GaslockFrameMachineCircuitboard
@@ -79,8 +110,6 @@
       prototype: GaslockFrame
       stackRequirements:
         Steel: 10
-    - type: BindToStation
-      enabled: false # should be draggable between stations
 
 - type: entity
   id: OreProcessorCivilianCircuitboard
@@ -101,7 +130,7 @@
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
-  parent: SecurityTechFabCircuitboard
+  parent: [SecurityTechFabCircuitboard, BaseNanotrasenContrabandT1]
   name: NFSD techfab machine board
   description: A machine printed circuit board for an NFSD techfab.
   components:
@@ -173,17 +202,54 @@
   id: LargeThrusterMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: medium thruster machine board
-  description: A circuitboard for a medium thruster.
-  suffix: Legacy
+  description: A circuitboard for a medium thruster. Requires a 2x2 machine frame.
   components:
   - type: Sprite
     state: supply
   - type: MachineBoard
     prototype: ThrusterMedium
+    frameSize: 2x2
     requirements:
       Capacitor: 4
     stackRequirements:
       Steel: 20
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 4
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
+  id: ThrusterLargeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: large thruster machine board
+  description: A circuitboard for a large thruster. Requires a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterLarge
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+    stackRequirements:
+      Steel: 40
+      Plasteel: 10
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 6
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 6
+        defaultPrototype: ArmorPlateEconomy1
 
 - type: entity
   id: SmallThrusterMachineCircuitboard
@@ -198,6 +264,16 @@
       Capacitor: 4
     stackRequirements:
       Steel: 5
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 1
+        defaultPrototype: ArmorPlateEconomy1
   - type: StaticPrice
     price: 18 # 12.5<18
   - type: Tag # Frontier
@@ -205,6 +281,7 @@
     - SmallThrusterMachineCircuitboard # Frontier
 
 # Gyroscope
+
 - type: entity
   id: GyroscopeSecurityMachineCircuitboard
   parent: BaseMachineCircuitboard
@@ -285,6 +362,13 @@
       Capacitor: 1
     stackRequirements:
       Glass: 2
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ArmorPlateEconomy1:
+        amount: 1
+        defaultPrototype: ArmorPlateEconomy1
   - type: StaticPrice
     price: 17.5
 
@@ -319,6 +403,16 @@
         Capacitor: 2
       stackRequirements:
         CableHV: 10
+      tagRequirements:
+        ComponentBrickEconomy2:
+          amount: 2
+          defaultPrototype: ComponentBrickEconomy2
+        MotorEconomy1: # Stator!
+          amount: 2
+          defaultPrototype: MotorEconomy1
+        MicroprocessorEconomy2:
+          amount: 1
+          defaultPrototype: MicroprocessorEconomy2
     - type: PhysicalComposition
       materialComposition:
         Glass: 200
@@ -341,6 +435,16 @@
         Capacitor: 2
       stackRequirements:
         CableHV: 10
+      tagRequirements:
+        ComponentBrickEconomy2:
+          amount: 4
+          defaultPrototype: ComponentBrickEconomy2
+        MotorEconomy1: # Stator!
+          amount: 4
+          defaultPrototype: MotorEconomy1
+        MicroprocessorEconomy2:
+          amount: 2
+          defaultPrototype: MicroprocessorEconomy2
     - type: PhysicalComposition
       materialComposition:
         Glass: 200
@@ -444,7 +548,7 @@
     - type: MachineBoard
       prototype: MedicalAssembler
       requirements:
-        Capacitor: 3
+        Manipulator: 2
       stackRequirements:
         Steel: 5
         Glass: 2

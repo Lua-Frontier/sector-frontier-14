@@ -1,0 +1,175 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: Bullet20mm
+  name: 20mm HE
+  parent: 30mmBulletHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 20mmhe
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+        Structural: 10
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1
+    intensitySlope: 1
+    maxIntensity: 1
+    maxTileBreak: 1
+  - type: RadarBlip
+    scale: 0.85
+    shape: triangle
+    radarColor: "#1df1f5"
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  id: Bullet53mm
+  name: 53mm HE
+  parent: 57mmBulletHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 53mmhe
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 55
+        Piercing: 60
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 40
+    intensitySlope: 3
+    maxIntensity: 6
+    maxTileBreak: 1
+  - type: RadarBlip
+    scale: 1.5
+    shape: triangle
+    radarColor: "#1df1f5"
+  - type: TimedDespawn
+    lifetime: 4.5
+
+- type: entity
+  id: Bullet80mm
+  name: 80mm HE
+  parent: 90mmBulletHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 80mmhe
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 30
+        Structural: 45
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 70
+    intensitySlope: 5
+    maxIntensity: 10
+    maxTileBreak: 1
+  - type: RadarBlip
+    scale: 2.0
+    shape: triangle
+    radarColor: "#1df1f5"
+  - type: TimedDespawn
+    lifetime: 4.2
+
+- type: entity
+  id: Bullet105mm
+  name: 105mm HE
+  parent: 90mmBulletHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 105mmhe
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 40
+        Structural: 80
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 120
+    intensitySlope: 8
+    maxIntensity: 25
+    maxTileBreak: 2
+  - type: RadarBlip
+    scale: 2.0
+    shape: triangle
+    radarColor: "#1df1f5"
+  - type: TimedDespawn
+    lifetime: 6
+
+- type: entity
+  id: Bullet120mm
+  name: 120mm HE
+  parent: 120mmBulletAPHEDS
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 120mmhe
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50
+        Structural: 150
+    penetrationThreshold: 500
+  - type: Explosive
+    deleteAfterExplosion: false
+    explosionType: Default
+    totalIntensity: 180
+    intensitySlope: 10
+    maxIntensity: 40
+    maxTileBreak: 2
+  - type: RadarBlip
+    scale: 2.25
+    shape: triangle
+    radarColor: "#f55e1d"
+  - type: TimedDespawn
+    lifetime: 8
+
+- type: entity
+  id: Bullet140mm
+  name: 140mm HE
+  parent: 140mmBulletAPHE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+    layers:
+    - state: 140mmhe
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 60
+        Structural: 200
+    penetrationThreshold: 800
+  - type: Explosive
+    deleteAfterExplosion: false
+    explosionType: Default
+    totalIntensity: 250
+    intensitySlope: 10
+    maxIntensity: 55
+    maxTileBreak: 2
+  - type: RadarBlip
+    scale: 2.75
+    shape: triangle
+    radarColor: "#f55e1d"
+  - type: TimedDespawn
+    lifetime: 8

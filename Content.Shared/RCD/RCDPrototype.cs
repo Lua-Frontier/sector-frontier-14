@@ -39,6 +39,12 @@ public sealed partial class RCDPrototype : IPrototype
     public SpriteSpecifier? Sprite { get; private set; }
 
     /// <summary>
+    /// Optional mirrored prototype for devices that have a flipped variant (e.g. gas mixers/filters).
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public EntProtoId? MirrorPrototype { get; private set; }
+
+    /// <summary>
     /// The entity prototype that will be constructed (mode dependent)
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]

@@ -108,6 +108,12 @@
   placement:
     mode: AlignTileAny
   components:
+  - type: Construction
+    graph: Machine2x2
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: Fixtures
     fixtures:
       fix1:
@@ -137,6 +143,17 @@
       behaviors:
         - !type:DoActsBehavior
           acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
   - type: Anchorable
     flags: None
   - type: StaticPrice
@@ -171,12 +188,18 @@
   placement:
     mode: AlignTileAny
   components:
+  - type: Construction
+    graph: Machine3x3
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.5,-1.5,1.5,1.5"
+          bounds: "-0.25,-2.25,2.25,0.25"
         density: 1750
         mask:
         - MachineMask
@@ -187,7 +210,7 @@
   - type: Thruster
     baseThrust: 800
     thrust: 960
-    burnShape: ["-0.8,1.2","0,2.0","0.8,1.2","1.3,0.5"]
+    burnShape: ["-0.3,0.5","0.7,2.2","1.7,2.2","2.3,0.5"]
     damage:
       types:
         Heat: 120
@@ -200,6 +223,17 @@
       behaviors:
         - !type:DoActsBehavior
           acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 7500
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
   - type: Anchorable
     flags: None
   - type: StaticPrice
@@ -223,7 +257,7 @@
       shape: Square
       respectZoom: true
       rotate: true
-      bounds: "-0.5,-1.5,1.5,0.5"
+      bounds: "-0.25,-2.25,2.25,0.25"
   - type: ShipRepairable
     repairCost: 2
 

@@ -75,7 +75,7 @@
       projectile:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.1,-0.1,0.1,0.1"
+          bounds: "-0.1,-0.1,0.1,0.3"
         hard: false
         mask:
         - Impassable
@@ -539,6 +539,9 @@
   - type: TimedDespawn
     lifetime: 0.22 # roughly 5.5 tiles
   - type: GatheringProjectile
+  - type: Tag
+    tags:
+    - Pickaxe
   - type: ShipWeaponProjectile
   - type: RadarBlip
     scale: 0.45
@@ -578,6 +581,9 @@
     color: white
     energy: 0.5
   - type: GatheringProjectile
+  - type: Tag
+    tags:
+    - Pickaxe
 
 - type: entity
   id: BulletCharge
@@ -596,6 +602,9 @@
       - state: chronobolt
         shader: unshaded
   - type: GatheringProjectile
+  - type: Tag
+    tags:
+    - Pickaxe
   - type: DamageMarkerOnCollide
     whitelist:
       components:

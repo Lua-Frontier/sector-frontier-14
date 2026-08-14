@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2026 LuaWorld Contributors
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
 using System.Numerics;
@@ -18,8 +18,9 @@ namespace Content.Client._Lua.AmbientSpaceEffects;
 
 public sealed class AmbientSpaceEffectOverlay : Overlay
 {
-    private const float FixedVisualRange = 20000f;
-    private const int FixedMaxFields = 48;
+    private const float FixedVisualRange = 8000f;
+    private const int FixedMaxFields = 20;
+    private readonly HashSet<EntityUid> _scratchFieldUids = new();
 
     private static readonly ProtoId<ShaderPrototype> FallbackShader = "AmbientNebula";
     private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
@@ -84,9 +85,6 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         if (args.MapId == MapId.Nullspace)
             return;
 
-        if (!_cfg.GetCVar(CLVars.AmbientSpaceEffectsEnabled))
-            return;
-
         var quality = _cfg.GetCVar(CLVars.AmbientSpaceEffectsQuality);
         if (quality <= 0)
             return;
@@ -102,13 +100,18 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         if (layer == null)
             return;
 
-        if (quality == 1 && layer == AmbientSpaceLayer.Upper)
+        if (!IsLayerEnabled(layer.Value))
+            return;
+
+        if (quality <= 1 && layer == AmbientSpaceLayer.Upper)
             return;
 
         var handle = args.WorldHandle;
         var eyePos = args.Viewport.Eye?.Position.Position ?? args.WorldAABB.Center;
         var qualityF = quality >= 2 ? 1f : 0f;
-        var maxFields = FixedMaxFields;
+        var densityMul = Math.Clamp(_cfg.GetCVar(CLVars.AmbientSpaceEffectsDensity), 0f, 1.5f);
+        var maxFields = quality >= 3 ? FixedMaxFields + 8 : FixedMaxFields;
+        maxFields = Math.Max(1, (int) (maxFields * densityMul));
 
         EnsureFieldCache(args.MapId, eyePos);
         if (layer is AmbientSpaceLayer.Mid or AmbientSpaceLayer.Upper)
@@ -118,15 +121,26 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
             handle.SetTransform(Matrix3x2.Identity);
             handle.UseShader(_prototypes.Index(StencilMaskShader).Instance());
             handle.DrawTextureRect(_stencilTarget!.Texture, args.WorldBounds);
-            DrawFieldsDirect(args, layer.Value, eyePos, quality, qualityF, maxFields);
+            DrawFieldsDirect(args, layer.Value, eyePos, quality, qualityF, maxFields, densityMul);
             handle.SetTransform(Matrix3x2.Identity);
             handle.UseShader(null);
             return;
         }
 
-        DrawFieldsDirect(args, layer.Value, eyePos, quality, qualityF, maxFields);
+        DrawFieldsDirect(args, layer.Value, eyePos, quality, qualityF, maxFields, densityMul);
         handle.SetTransform(Matrix3x2.Identity);
         handle.UseShader(null);
+    }
+
+    private bool IsLayerEnabled(AmbientSpaceLayer layer)
+    {
+        return layer switch
+        {
+            AmbientSpaceLayer.Lower => _cfg.GetCVar(CLVars.AmbientSpaceLayerLower),
+            AmbientSpaceLayer.Mid => _cfg.GetCVar(CLVars.AmbientSpaceLayerMid),
+            AmbientSpaceLayer.Upper => _cfg.GetCVar(CLVars.AmbientSpaceLayerUpper),
+            _ => true,
+        };
     }
 
     private void EnsureStencilTarget(Vector2i size)
@@ -204,9 +218,10 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         Vector2 eyePos,
         int quality,
         float qualityF,
-        int maxFields)
+        int maxFields,
+        float densityMul)
     {
-        DrawFieldsCore(args.WorldHandle, layer, eyePos, quality, qualityF, maxFields);
+        DrawFieldsCore(args.WorldHandle, layer, eyePos, quality, qualityF, maxFields, densityMul);
     }
 
     private void DrawFieldsCore(
@@ -215,7 +230,8 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         Vector2 eyePos,
         int quality,
         float qualityF,
-        int maxFields)
+        int maxFields,
+        float densityMul)
     {
         var drawn = 0;
         foreach (var (uid, field, xform) in _fieldScratch)
@@ -243,8 +259,12 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
                 _ => effect.UpperOpacity,
             };
 
-            if (quality == 1)
+            if (quality <= 1)
                 opacity *= 0.75f;
+            else if (quality >= 3)
+                opacity = MathF.Min(opacity * 1.08f, 1f);
+
+            opacity *= densityMul;
 
             if (opacity <= 0f)
                 continue;
@@ -261,11 +281,17 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
             var shader = GetFieldShader(uid, layer, shaderId);
             var shaderSeed = AmbientSpacePalette.ShaderSeedFromField(field.Seed);
             var time = (float) _timing.CurTime.TotalSeconds + shaderSeed * 0.37f;
+            var particleScale = quality switch
+            {
+                >= 3 => effect.ParticleScale * 1.1f,
+                >= 2 => effect.ParticleScale,
+                _ => effect.ParticleScale * 0.75f,
+            };
             shader.SetParameter("nebula_color", paletteColor.WithAlpha(1f));
             shader.SetParameter("seed", shaderSeed);
             shader.SetParameter("density", field.Density);
             shader.SetParameter("layer_alpha", opacity);
-            shader.SetParameter("particle_scale", effect.ParticleScale * (quality >= 2 ? 1f : 0.75f));
+            shader.SetParameter("particle_scale", particleScale);
             shader.SetParameter("quality", qualityF);
             shader.SetParameter("field_radius", radius);
             shader.SetParameter("layer_id", layerId);
@@ -303,6 +329,7 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
     private void CollectFields(MapId mapId, Vector2 eyePos)
     {
         _fieldScratch.Clear();
+        _scratchFieldUids.Clear();
         var cullBox = Box2.CenteredAround(eyePos, new Vector2(FixedVisualRange * 2f, FixedVisualRange * 2f));
         var query = _entManager.EntityQueryEnumerator<AmbientSpaceFieldComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var field, out var xform))
@@ -317,6 +344,7 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
                 continue;
 
             _fieldScratch.Add((uid, field, xform));
+            _scratchFieldUids.Add(uid);
         }
 
         _fieldScratch.Sort((a, b) =>
@@ -353,13 +381,13 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
 
     private void PruneFieldShaders()
     {
-        if (_fieldShaders.Count <= FixedMaxFields * 3)
+        if (_fieldShaders.Count == 0)
             return;
 
         List<(EntityUid Uid, AmbientSpaceLayer Layer)>? toRemove = null;
         foreach (var key in _fieldShaders.Keys)
         {
-            if (_entManager.EntityExists(key.Uid))
+            if (_entManager.EntityExists(key.Uid) && _scratchFieldUids.Contains(key.Uid))
                 continue;
 
             toRemove ??= new List<(EntityUid, AmbientSpaceLayer)>();

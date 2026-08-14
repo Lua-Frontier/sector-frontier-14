@@ -186,8 +186,6 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
-  - type: BindToStation
-    enabled: false
 
   - type: ShipRepairable
     repairCost: 2
@@ -259,5 +257,3 @@
         hard: false
   - type: Machine
     board: GaslockFrameMachineCircuitboard
-  - type: BindToStation
-    enabled: false # should be draggable between stations

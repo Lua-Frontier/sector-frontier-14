@@ -22,7 +22,7 @@
     turnInValues:
       FrontierUplinkCoin: 1
       Doubloon: 1
-      
+
 - type: entity
   parent: BaseC1CultContraband
   id: BaseC1CultContrabandNoValue
@@ -76,7 +76,7 @@
     allowedDepartments: [ Civilian, Security, Command, Frontier, CentralCommand ]
     turnInValues:
       FrontierUplinkCoin: 0
-      
+
 # Class 2:
 - type: entity
   parent: BaseC1Contraband
@@ -89,7 +89,7 @@
     turnInValues:
       FrontierUplinkCoin: 1
       Doubloon: 1
-      
+
 - type: entity
   parent: BaseC2SyndicateContraband
   id: BaseC2SyndicateContrabandNoValue
@@ -111,7 +111,7 @@
     allowedDepartments: [ Security, Command, CentralCommand ]
     turnInValues:
       FrontierUplinkCoin: 1
-      
+
 - type: entity
   parent: BaseC2PirateContraband
   id: BaseC2PirateContrabandNoValue
@@ -122,7 +122,7 @@
     allowedDepartments: [ Security, Command, CentralCommand ]
     turnInValues:
       FrontierUplinkCoin: 0
-      
+
 - type: entity
   parent: BaseC1Contraband
   id: BaseC2SpiderClanContraband
@@ -131,10 +131,10 @@
   - type: Contraband
     severity: Class2SpiderClan
     allowedDepartments: [ Security, Command, CentralCommand ]
-    turnInValues: 
+    turnInValues:
       FrontierUplinkCoin: 2
       Doubloon: 2
- 
+
 # Class 3:
 - type: entity
   parent: BaseC3SyndicateContrabandUnredeemable
@@ -142,7 +142,7 @@
   abstract: true
   components:
   - type: Contraband
-    turnInValues: 
+    turnInValues:
       FrontierUplinkCoin: 4
       Doubloon: 4
 
@@ -152,9 +152,9 @@
   abstract: true
   components:
   - type: Contraband
-    turnInValues: 
+    turnInValues:
       FrontierUplinkCoin: 4
- 
+
 - type: entity
   parent: BaseC3Contraband
   id: BaseC3SpiderClanContraband
@@ -162,10 +162,10 @@
   components:
   - type: Contraband
     severity: Class3SpiderClan
-    turnInValues: 
+    turnInValues:
       FrontierUplinkCoin: 2
       Doubloon: 2
-      
+
 # Class 3.1 (CentCom and NFSD):
 - type: entity
   parent: BaseC1Contraband
@@ -177,7 +177,7 @@
     allowedDepartments: [ Security, Command, CentralCommand ]
     turnInValues:
       Doubloon: 3
-      
+
 - type: entity
   parent: BaseC1Contraband
   id: BaseC3CentCommContrabandNoValue
@@ -188,3 +188,27 @@
     allowedDepartments: [ Security, Command, CentralCommand ]
     turnInValues:
       Doubloon: 0
+
+- type: entity
+  id: BaseNanotrasenContrabandT1
+  abstract: true
+  components:
+  - type: Contraband
+    severity: NanotrasenContrabandT1
+    allowedDepartments: []
+    hideCarryStatus: true
+    visibleToCompanies: [ Syndicate ]
+    turnInValues:
+      Telecrystal: 1
+
+- type: entity
+  id: BaseNanotrasenContrabandT2
+  abstract: true
+  components:
+  - type: Contraband
+    severity: NanotrasenContrabandT2
+    allowedDepartments: []
+    hideCarryStatus: true
+    visibleToCompanies: [ Syndicate ]
+    turnInValues:
+      Telecrystal: 1

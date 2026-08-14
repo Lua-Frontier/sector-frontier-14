@@ -61,6 +61,12 @@
                         HorizontalExpand="True" />
                     <Label Name="RecipeCount" Margin="8 0 8 0" MinWidth="90" Align="Right" />
                 </BoxContainer>
+                <!-- Mono -->
+                <BoxContainer Orientation="Horizontal"
+                    HorizontalExpand="True">
+                    <CheckBox Name="LoopCheckbox" HorizontalExpand="True" Text="{Loc 'lathe-menu-loop'}" />
+                    <CheckBox Name="SkipCheckbox" HorizontalExpand="True" Text="{Loc 'lathe-menu-skip'}" />
+                </BoxContainer>
             </BoxContainer>
         </BoxContainer>
         <BoxContainer MinWidth="5"/>

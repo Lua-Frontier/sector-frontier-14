@@ -181,4 +181,21 @@ public sealed partial class MonoCVars
 
     #endregion
 
+    #region Projectile Raycasting
+
+    /// <summary>
+    ///     Speed threshold for projectiles to be calculated by raycast instead of normal collision.
+    /// </summary>
+    public static readonly CVarDef<float> ProjectileRaycastSpeedThreshold =
+        CVarDef.Create("mono.projectile.raycast_speed_threshold", 75f, CVar.ARCHIVE | CVar.REPLICATED);
+
+    /// <summary>
+    ///     Do we automatically adapt our raycast threshold based off the set tickrate?
+    ///     I.e. half the tickrate would mean a halved speed threshold.
+    /// </summary>
+    public static readonly CVarDef<bool> ProjectileAdaptiveRaycastThreshold =
+        CVarDef.Create("mono.projectile.adaptive_raycast_threshold", true, CVar.ARCHIVE | CVar.REPLICATED);
+
+    #endregion
+
 }

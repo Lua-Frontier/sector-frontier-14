@@ -7,3 +7,5 @@ contraband-examine-text-Class2Pirate = [color=red]This pirate item is classified
 contraband-examine-text-Class2SpiderClan = [color=red]This Spider Clan item is classified as Class 2 contraband, and possession by civilians without proper authorization is prohibited.[/color]
 contraband-examine-text-Class3SpiderClan = [color=crimson]This Spider Clan item is classified as Class 3 contraband, and its possession is prohibited by law.[/color]
 contraband-examine-text-Class3CentCom = [color=crimson]This high-tech Central Command item is classified as Class 3.1 contraband. Its possession and use are permitted only for Security, Command, and Central Command personnel.[/color]
+contraband-examine-text-NanotrasenContrabandT1 = [color=crimson]This item is a Nanotrasen development; it can be successfully exchanged for Telecrystals.[/color]
+contraband-examine-text-NanotrasenContrabandT2 = [color=crimson]This item is a Lua Technologies development; it can be successfully exchanged for Telecrystals.[/color]

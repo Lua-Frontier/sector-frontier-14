@@ -4995,39 +4995,19 @@ entities:
     - type: Transform
       pos: -0.5,23.5
       parent: 1
-- proto: N14WeaponRevolver9mm
+- proto: WeaponRevolverPython357
   entities:
   - uid: 560
     components:
-    - type: MetaData
-      desc: Незаменимый друг каждого бармена пока находится в той руке..
-      name: Правая рука
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.543417,20.545557
       parent: 1
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
-    missingComponents:
-    - Contraband
   - uid: 561
     components:
-    - type: MetaData
-      desc: Незаменимый друг каждого бармена пока находится в той руке..
-      name: левая рука
     - type: Transform
       pos: 1.4722227,20.608152
       parent: 1
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
-    missingComponents:
-    - Contraband
 - proto: NFMagnetBoxPlant
   entities:
   - uid: 562

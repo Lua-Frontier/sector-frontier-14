@@ -40,6 +40,12 @@
   - type: Tag
     tags:
     - OmniBurnAlwaysOn
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: Machine
     board: OmnidirectionalThrusterMachineCircuitboard
   - type: ApcPowerReceiver
@@ -97,3 +103,14 @@
         - !type:PlaySoundBehavior
           sound:
             collection: MetalBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 7500
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
