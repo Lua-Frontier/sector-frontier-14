@@ -1,161 +1,91 @@
-// Dependencies
 const fs = require("fs");
 const yaml = require("js-yaml");
 const axios = require("axios");
+const { parseChangelogBlocks } = require("./parse");
 
-// Use GitHub token if available
 if (process.env.GITHUB_TOKEN) axios.defaults.headers.common["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
 
-// Check changelog directory.
 if (!process.env.CHANGELOG_DIR) {
     console.log("CHANGELOG_DIR not defined, exiting.");
     return process.exit(1);
 }
 
-const ChangelogFilePath = `../../../${process.env.CHANGELOG_DIR}`
+const ChangelogFilePath = `../../../${process.env.CHANGELOG_DIR}`;
 
-// Regexes
-const HeaderRegex = /^\s*(?::cl:|🆑) *([a-z0-9_\-, ]+)?/img; // :cl: or 🆑 [0] followed by optional author name [1]
-const EntryRegex = /^ *[*-]? *(add|remove|tweak|fix): *([^\n\r]+)\r?$/img; // * or - followed by change type [0] and change message [1]
-const CommentRegex = /<!--.*?-->/gs; // HTML comments
-
-// Main function
 async function main() {
-    // Get PR details
     const pr = await axios.get(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/pulls/${process.env.PR_NUMBER}`);
     const { merged_at, body, user } = pr.data;
 
-    // Remove comments from the body
-    commentlessBody = body.replace(CommentRegex, '');
-
-    // Get author
-    const headerMatch = HeaderRegex.exec(commentlessBody);
-    if (!headerMatch) {
+    const blocks = parseChangelogBlocks(body, user.login);
+    if (blocks.length === 0) {
         console.log("No changelog entry found, skipping");
         return;
     }
 
-    let author = headerMatch[1];
-    if (!author) {
-        console.log("No author found, setting it to author of the PR\n");
-        author = user.login;
-    } else {
-        author = author.trim()
-    }
-
-    // Offset results past the header
-    commentlessBody = commentlessBody.slice(HeaderRegex.lastIndex);
-
-    // Get all changes from the body
-    const entries = getChanges(commentlessBody);
-
-
-    // Time is something like 2021-08-29T20:00:00Z
-    // Time should be something like 2023-02-18T00:00:00.0000000+00:00
     let time = merged_at;
-    if (time)
-    {
+    if (time) {
         time = time.replace("z", ".0000000+00:00").replace("Z", ".0000000+00:00");
-    }
-    else
-    {
+    } else {
         console.log("Pull request was not merged, skipping");
         return;
     }
 
+    const url = `https://github.com/${process.env.GITHUB_REPOSITORY}/pull/${process.env.PR_NUMBER}`;
+    let nextId = getHighestCLNumber() + 1;
+    const newEntries = [];
 
-    // Construct changelog yml entry
-    const entry = {
-        author: author,
-        changes: entries,
-        id: getHighestCLNumber() + 1,
-        time: time,
-        url: `https://github.com/${process.env.GITHUB_REPOSITORY}/pull/${process.env.PR_NUMBER}`,
-    };
+    for (const block of blocks) {
+        if (block.entries.length === 0) {
+            console.log(`Changelog block for "${block.author}" has no valid entries, skipping`);
+            continue;
+        }
 
-    // Write changelogs
-    writeChangelog(entry);
+        if (!block.namedAuthor) {
+            console.log(`No author found for a changelog block, setting it to author of the PR (${user.login})`);
+        }
 
-    console.log(`Changelog updated with changes from PR #${process.env.PR_NUMBER}`);
-}
-
-
-// Code chunking
-
-// Get all changes from the PR body
-function getChanges(body) {
-    const matches = [];
-    const entries = [];
-
-    for (const match of body.matchAll(EntryRegex)) {
-        matches.push([match[1], match[2]]);
+        newEntries.push({
+            author: block.author,
+            changes: block.entries,
+            id: nextId++,
+            time,
+            url,
+        });
     }
 
-    if (!matches)
-    {
-        console.log("No changes found, skipping");
+    if (newEntries.length === 0) {
+        console.log("No valid changelog entries found, skipping");
         return;
     }
 
-
-    // Check change types and construct changelog entry
-    matches.forEach((entry) => {
-        let type;
-
-        switch (entry[0].toLowerCase()) {
-            case "add":
-                type = "Add";
-                break;
-            case "remove":
-                type = "Remove";
-                break;
-            case "tweak":
-                type = "Tweak";
-                break;
-            case "fix":
-                type = "Fix";
-                break;
-            default:
-                break;
-        }
-
-        if (type) {
-            entries.push({
-                type: type,
-                message: entry[1],
-            });
-        }
-    });
-
-    return entries;
+    writeChangelogs(newEntries);
+    console.log(`Changelog updated with ${newEntries.length} ${newEntries.length === 1 ? "entry" : "entries"} from PR #${process.env.PR_NUMBER}`);
 }
 
-// Get the highest changelog number from the changelogs file
 function getHighestCLNumber() {
-    // Read changelogs file
-    const file = fs.readFileSync(ChangelogFilePath, "utf8");
+    if (!fs.existsSync(ChangelogFilePath)) {
+        return 0;
+    }
 
-    // Get list of CL numbers
+    const file = fs.readFileSync(ChangelogFilePath, "utf8");
     const data = yaml.load(file);
     const entries = data && data.Entries ? Array.from(data.Entries) : [];
     const clNumbers = entries.map((entry) => entry.id);
 
-    // Return highest changelog number
     return Math.max(...clNumbers, 0);
 }
 
-function writeChangelog(entry) {
+function writeChangelogs(newEntries) {
     let data = { Entries: [] };
 
-    // Create a new changelogs file if it does not exist
     if (fs.existsSync(ChangelogFilePath)) {
         const file = fs.readFileSync(ChangelogFilePath, "utf8");
-        data = yaml.load(file);
+        data = yaml.load(file) || { Entries: [] };
+        data.Entries = data.Entries || [];
     }
 
-    data.Entries.push(entry);
+    data.Entries.push(...newEntries);
 
-    // Write updated changelogs file
     fs.writeFileSync(
         ChangelogFilePath,
         "Entries:\n" +
@@ -163,5 +93,4 @@ function writeChangelog(entry) {
     );
 }
 
-// Run main
 main();
