@@ -3,22 +3,21 @@
 # See AGPLv3.txt for details.
 
 - type: vessel
-  parent: BaseVessel
   id: Fish
+  parent: BaseVessel
   name: Fish
-  description: Гордость старого флота Синдиката. Предназначен для перехвата шаттлов
-    и экспедиций.
-  price: 151820
+  description: Гордость старого флота Синдиката. Предназначен для перехвата шаттлов, экспедиций и эффективной добычи руды двумя автопульсерами.
+  price: 155068
   category: Small
   group: Typan
   access: SyndicateAgent
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/fish.yml
   class:
   - Syndicate
   - Chemistry # Lua
   - Expedition # Lua
   engine:
   - Uranium # Lua
-  shuttlePath: /Maps/_Lua/Shuttles/Typan/fish.yml
 
 - type: gameMap
   id: Fish

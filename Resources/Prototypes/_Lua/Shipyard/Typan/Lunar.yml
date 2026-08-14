@@ -1,35 +1,34 @@
-# Creator Info
-# Discord: daeqa1us_
-# Cikey: wh1te
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
 
 - type: vessel
+  parent: BaseVessel
   id: Lunar
-  parent: BaseVesselAntag
   name: Lunar
   description: Небольшой штурмовик обладающий отличной мобильностью.
-  price: 118541
+  price: 137981
   category: Small
   group: Typan
   access: SyndicateAgent
-  shuttlePath: /Maps/_Lua/Shuttles/Typan/Lunar-MKver.yml
-  guidebookPage: Null
   class:
   - Syndicate
   - Pursuit # Lua
   engine:
-  - Bananium
+  - Uranium # Lua
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/Lunar.yml
 
 - type: gameMap
   id: Lunar
   mapName: 'Lunar'
-  mapPath: /Maps/_Lua/Shuttles/Typan/Lunar-MKver.yml
+  mapPath: /Maps/_Lua/Shuttles/Typan/Lunar.yml
   minPlayers: 0
   stations:
     Lunar:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Lunar {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
+      - type: StationNameSetup
+        mapNameTemplate: 'Lunar {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
             prefixCreator: '14'
