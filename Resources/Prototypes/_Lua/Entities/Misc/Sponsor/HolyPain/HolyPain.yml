@@ -552,33 +552,10 @@
   description: "Мультиинструмент для хирургии, созданный в честь HolyPain. В нём есть всё, что нужно для проведения операций, включая скальпель, гемостат, дрель, и многое другое. Он украшен бронзой и изумрудами, а изящная гравировка служит отличными подсказками к операциям."
   categories: [ HideSpawnMenu ]
   id: HolyPainOmnimedTool
-  parent: BaseToolSurgery
+  parent: OmnimedTool
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/HolyPain/HolyPainOmnimedTool.rsi
     state: omnimed
   - type: Item
     sprite: _Lua/Sponsor/HolyPain/HolyPainOmnimedTool.rsi
-  - type: SurgeryTool
-    startSound:
-      path: /Audio/_Shitmed/Medical/Surgery/saw.ogg
-  - type: Hemostat
-    speed: 2
-  - type: Scalpel
-    speed: 2
-  - type: Drill
-    speed: 2
-  - type: BoneSetter
-    speed: 2
-  - type: Retractor
-    speed: 2
-  - type: Cautery
-    speed: 2
-  - type: BoneGel
-    speed: 2
-  - type: BoneSaw
-    speed: 2
-  - type: Tweezers
-    speed: 2
-  - type: Tending
-    speed: 2
