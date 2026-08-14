@@ -25,9 +25,9 @@
       types:
         Blunt: 25 # yowch
     openSound:
-      path: /Audio/Machines/blastdoor.ogg
+      path: /Audio/_Lua/Machines/blastdoor_open.ogg #Lua edit
     closeSound:
-      path: /Audio/Machines/blastdoor.ogg
+      path: /Audio/_Lua/Machines/blastdoor_close.ogg #Lua edit
   - type: Occluder
   - type: Appearance
   - type: RadiationBlocker

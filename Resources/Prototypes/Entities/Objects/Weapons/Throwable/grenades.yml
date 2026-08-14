@@ -19,15 +19,15 @@
     delay: 3
   - type: Damageable
     damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
-      - !type:TriggerBehavior
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+  # - type: Destructible #Lua-changes: removed to prevent grenade cookoff cascades and allow for more player control over grenades. Grenades are now destroyed by their own triggers, not by taking damage.
+  #   thresholds:
+  #   - trigger:
+  #       !type:DamageTrigger
+  #       damage: 10
+  #     behaviors:
+      # - !type:TriggerBehavior
+      # - !type:DoActsBehavior
+      #   acts: ["Destruction"]
   - type: Appearance
   - type: AnimationPlayer
   - type: GenericVisualizer

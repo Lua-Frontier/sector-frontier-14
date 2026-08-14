@@ -25,9 +25,9 @@
       - id: MechaWeaponMR12
       - id: MechaWeaponMinigun
   - type: LuaTech
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  # - type: FootstepModifier # Lua: replaced with our sounds
+  #   footstepSoundCollection:
+  #     path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
     baseState: reising
     openState: reising #-open

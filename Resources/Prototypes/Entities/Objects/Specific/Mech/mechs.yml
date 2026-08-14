@@ -100,7 +100,11 @@
     damageModifierSet: EnhancedMechArmor # Goobstation - Enhanced armor with better resistance
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Mecha/mechmove03.ogg
+      # path: /Audio/Mecha/mechmove03.ogg # Lua: replaced with our sounds
+      collection: LuaMechStep
+      params:
+        volume: -12
+        variation: 0.125
   - type: GuideHelp
     guides:
     - Robotics
@@ -157,9 +161,9 @@
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ripley
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  # - type: FootstepModifier # Lua: replaced with our sounds
+  #   footstepSoundCollection:
+  #     path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
     baseState: ripley
     openState: ripley-open
@@ -241,9 +245,9 @@
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: hamtr
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  # - type: FootstepModifier # Lua: replaced with our sounds
+  #   footstepSoundCollection:
+  #     path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
     baseState: hamtr
     openState: hamtr-open

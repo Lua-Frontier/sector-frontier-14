@@ -13,13 +13,14 @@
     - DiceBag
     - MedkitCombatFilled
     - DefibrillatorCompact
-    - PowerCellMicroreactor
+    - PowerCellAntiqueProto
     - FoodSnackCheesie
     - DrinkJuiceOrangeCartonXL
     - BronzeVisor
     - ClothingBeltChiefEngineerFilled
     - JetpackCaptainFilled
     - MedicalPouchFilledHigh
+    - HolyPainOmnimedTool
 
 #region Сумка
 - type: entity
@@ -544,3 +545,17 @@
     toggleAction: ToggleThermalVision
   - type: Tag
     tags: []
+
+#region омнимед
+- type: entity
+  name: хирургический мультиинструмент HolyPain
+  description: "Мультиинструмент для хирургии, созданный в честь HolyPain. В нём есть всё, что нужно для проведения операций, включая скальпель, гемостат, дрель, и многое другое. Он украшен бронзой и изумрудами, а изящная гравировка служит отличными подсказками к операциям."
+  categories: [ HideSpawnMenu ]
+  id: HolyPainOmnimedTool
+  parent: OmnimedTool
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/HolyPain/HolyPainOmnimedTool.rsi
+    state: omnimed
+  - type: Item
+    sprite: _Lua/Sponsor/HolyPain/HolyPainOmnimedTool.rsi

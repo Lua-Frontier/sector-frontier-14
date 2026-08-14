@@ -11,11 +11,12 @@
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: emu-empty
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/_NF/Mecha/mechstep.ogg
-      params:
-        volume: -5
+  # Lua changes: Removed footstep sounds, as they are not needed for this mech and can be annoying in certain situations. Replaced in base.
+  # - type: FootstepModifier
+  #   footstepSoundCollection:
+  #     path: /Audio/_NF/Mecha/mechstep.ogg
+  #     params:
+  #       volume: -5
   - type: Mech
     baseState: emu
     openState: emu-open
